@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState ,lazy} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import moment from "moment";
