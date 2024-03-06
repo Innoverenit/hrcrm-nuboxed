@@ -25,7 +25,7 @@ class CustomerLeadsTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper1 style={{height:"17rem"}}>
+        <TabsWrapper1 style={{height:"15rem"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

@@ -18,7 +18,7 @@ function Piechart1() {
         <Chart
           type="pie"
           width={500}
-          height={200}
+          height={170}
           series={studentMarks} 
           options={{
             labels: stdudentSubject, 

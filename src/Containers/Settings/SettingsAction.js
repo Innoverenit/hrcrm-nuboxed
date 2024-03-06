@@ -4993,3 +4993,173 @@ export const LinkProductionStagePublish = (data, cb) => (dispatch) => {
       cb && cb("Failure");
     });
 };
+
+
+export const addProcessForRepair = (data, orgId, cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_PROCESS_FOR_REPAIR_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/repairWorkflow`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+       dispatch(getProcessForRepair(orgId));
+      dispatch({
+        type: types.ADD_PROCESS_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_PROCESS_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
+export const getProcessForRepair = (orgId) => (dispatch) => {
+  debugger;
+  dispatch({
+    type: types.GET_PROCESS_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/repairWorkflow/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log("print when new process added................", res);
+      dispatch({
+        type: types.GET_PROCESS_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateProcessNameForRepair = (process, repairWorkflowDetailsId, cb) => (dispatch) => {
+  debugger;
+  dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST });
+
+  axios
+    .put(`${base_url}/repairWorkflow/workflow/${repairWorkflowDetailsId}`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const deleteRepairProcessData = (repairWorkflowDetailsId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_REPAIR_PROCESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/repairWorkflow/${repairWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_REPAIR_PROCESS_DATA_SUCCESS,
+        payload: repairWorkflowDetailsId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_REPAIR_PROCESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addProcessStageForRepair = (stage, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_PROCESS_STAGE_FOR_REPAIR_REQUEST });
+
+  axios
+    .post(`${base_url}/repairWorkflow/stages`, stage, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_REPAIR_SUCCESS,
+        payload: { ...stage, stageId: res.data },
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const getProcessStagesForRepair = (repairWorkflowDetailsId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_PROCESS_STAGES_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/repairWorkflow/Stages/${repairWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};

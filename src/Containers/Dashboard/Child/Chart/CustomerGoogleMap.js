@@ -67,7 +67,7 @@ const CustomerGoogleMap = (props) => {
 
   return (
     <GoogleMap
-      mapContainerStyle={{ height: '25rem', width: '31rem' }}
+      mapContainerStyle={{ height: '18rem', width: '44rem' }}
       options={mapOptions}
     //   onLoad={handleOnLoad}
       center={center || defaultCoordinates} // Use center or defaultCoordinates

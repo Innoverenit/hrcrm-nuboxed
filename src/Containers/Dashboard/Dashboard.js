@@ -1,8 +1,9 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { PieChart_ } from "../../Components/Charts";
+import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
+import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
@@ -86,7 +87,7 @@ class Dashboard extends Component {
         activeButton={this.state.activeButton}
         />
         <Suspense fallback={<BundleLoader />}>
-          <div class=" height-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
+          <div class=" h-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
            <div class=" flex flex-col display-block" >
@@ -153,30 +154,24 @@ class Dashboard extends Component {
     </div>
     </div>
 
-    <div class=" flex justify-between" >
-                
-                 {viewType==="ME"?(
-                   <StackedClosureChartAll/> )
-                   :this.state.activeButton==="Investors" ?
-                   (<DashInvestorsChartTab/>)
-                   : this.state.activeButton==="Accounts" ?
-                   (<CustomerGoogleMap/>)
-                   :this.state.activeButton==="RecruitPro" ?
-                   (<DashboardDetailsTab viewType={viewType}/>)
-                   :this.state.activeButton==="Finance" ?(
-                    null)
-                    : viewType==="ALL" || this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
-                      />)
-                  
-                  //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)
-            
-           
-            :(
-              
-              <StackedClosureChart/>
-          )}
-               
-            </div> 
+    <div className="flex justify-between">
+  {viewType === "ME" ? (
+    <StackedClosureChartAll />
+  ) : this.state.activeButton === "Investors" ? (
+    <DashInvestorsChartTab />
+  ) : this.state.activeButton === "Accounts" ? (
+    <CustomerGoogleMap />
+  ) : this.state.activeButton === "RecruitPro" ? (
+    <DashboardDetailsTab viewType={viewType} />
+  ) : this.state.activeButton === "Finance" ? (
+    null
+  ) : this.state.activeButton === "Customer" ? (
+    null // Put your condition for StackedClosureChart here if needed
+  ) : (
+    this.state.activeButton === "Customer" ? null : <StackedClosureChart />
+  )}
+</div>
+
 
     </div>
     </div>
@@ -239,8 +234,9 @@ class Dashboard extends Component {
 
   
     </div>
-
-    {/* <div class=" height-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
+    <MainWrapper style={{marginTop:"3rem"}}
+    >
+    <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
            <div class=" flex flex-col display-block" >
@@ -259,7 +255,7 @@ class Dashboard extends Component {
            
             :(
               
-              <StackedClosureChart/>
+          null
           )}
                
             </div> 
@@ -272,7 +268,7 @@ class Dashboard extends Component {
        <div class=" flex justify-between" >
       
                   {this.state.activeButton==="Customer"&&
-       <FunnelTab/>
+       <DashboardFinanceJumpstart/>
              }
 
  
@@ -291,7 +287,8 @@ class Dashboard extends Component {
 
 
   
-    </div> */}
+    </div>
+    </MainWrapper>
     </Suspense>
 
 

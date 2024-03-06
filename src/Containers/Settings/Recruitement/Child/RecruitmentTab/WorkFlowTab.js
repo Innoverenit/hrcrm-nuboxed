@@ -9,6 +9,7 @@ const OnboardingTab = lazy(() => import("./OnboardingTab/OnboardingTab"));
 const HiringTab = lazy(() => import("./HiringTab"));
 const TaskTab = lazy(() => import("../Configure/TaskTab"));
 const DealsTab = lazy(() => import("./Deals/DealsTab"));
+const RepairTab = lazy(() => import("./RepairTab/RepairTab"));
 
 
 const TabPane = StyledTabs.TabPane;
@@ -51,6 +52,12 @@ function WorkFlow(props) {
           <TabPane tab={`Production`} key="7">
           <div  class=" mt-[10px]" >
             <ProductionTab />
+            </div>
+          </TabPane>
+
+          <TabPane tab={`Repair`} key="8">
+          <div  class=" mt-[10px]" >
+            <RepairTab />
             </div>
           </TabPane>
 

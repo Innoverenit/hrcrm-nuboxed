@@ -361,7 +361,7 @@ const handleFinanceClick = (checked) => {
               alt="Tekorero logo"
             />
             <div class="flex justify-center mt-1">
-              <div class=" text-sm font-semibold ">Accounting</div>
+              <div class=" text-sm font-semibold ">Finance</div>
                     <div   class="  ml-2">
                     <Popconfirm
         title="Do you wish to change Status?"

@@ -77,6 +77,7 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       // dispatch(
       //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
       // );
+      message.success(res.data.message)
       const startDate = dayjs()
         .startOf("month")
         .toISOString();
@@ -100,6 +101,7 @@ export const addCustomer = (customer) => (dispatch, getState) => {
         type: types.ADD_CUSTOMER_FAILURE,
         payload: err,
       });
+      message.error(err.data.message)
       // cb && cb();
     });
 };

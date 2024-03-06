@@ -163,6 +163,9 @@ const initialState = {
   fetchingDepartmentRoleDataError: false,
   departmentRoleData: [],
 
+  addingProcessStagesForRepair: false,
+  addingProcessStagesForRepair: false,
+
   deletingOnboardingStagesData: false, 
   deletingOnboardingStagesDataError: false,
 
@@ -240,6 +243,9 @@ const initialState = {
   fetchingProcessForRecruit: false,
   fetchingProcessForRecruitError: false,
   recruitProcess: [],
+
+  updateProcessNameForRepair: false,
+  updateProcessNameForRepairError: false,
 
   deleteProductionProcessData: false,
    deleteProductionProcessDataError: false, 
@@ -413,6 +419,10 @@ const initialState = {
   fetchingRecruiterError: false,
   recruiterData: [],
 
+  fetchingProcessStagesForRepair: false,
+  fetchingProcessStagesForRepairError: false,
+  repairProcessStages: [],
+
   fetchingProcessStagesForSupplier: false,
   fetchingProcessStagesForSupplierError: false,
   supplierProcessStages: [],
@@ -478,6 +488,9 @@ const initialState = {
   fetchingDepartmentAccess: false,
   fetchingDepartmentAccessError: false,
   departmentAcces: {},
+
+  addingProcessForRepair: false,
+  addingProcessForRepairError: false,
   // vendor: ['Read', 'Create', 'Update', 'Delete'],
   // customer: ['Read', 'Create', 'Update', 'Delete'],
   // opportunity: ['Read', 'Create', 'Update', 'Delete'],
@@ -584,6 +597,10 @@ const initialState = {
   gettingNotificationConfig: false,
   gettingNotificationConfigError:false,
   notificationConfig:{},
+
+  fetchingProcessForRepair: false,
+  fetchingProcessForRepairError: false,
+  repairProcess: [],
 
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
@@ -3685,6 +3702,118 @@ export const settingsReducer = (state = initialState, action) => {
                               linkingProductionStagesPublish: false,
                               linkingProductionStagesPublishError: true,
                             };
+
+                            case types.ADD_PROCESS_FOR_REPAIR_REQUEST:
+                              return {
+                                ...state,
+                                addingProcessForRepair: true,
+                                addingProcessForRepairError: false,
+                              };
+                            case types.ADD_PROCESS_FOR_REPAIR_SUCCESS:
+                              return {
+                                ...state,
+                                addingProcessForRepair: false,
+                                addingProcessForRepairError: false,
+                                // addProcessHiringModal: false,
+                              };
+                            case types.ADD_PROCESS_FOR_REPAIR_FAILURE:
+                              return {
+                                ...state,
+                                addingProcessForRepair: false,
+                                addingProcessForRepairError: true,
+                                // addProcessHiringModal: false,
+                              };
+
+                              case types.GET_PROCESS_FOR_REPAIR_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: true,
+                                  fetchingProcessForRepairError: false,
+                                };
+                              case types.GET_PROCESS_FOR_REPAIR_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: false,
+                                  fetchingProcessForRepairError: false,
+                                  repairProcess: action.payload,
+                                };
+                              case types.GET_PROCESS_FOR_REPAIR_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: false,
+                                  fetchingProcessForRepairError: true,
+                                };
+
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST:
+                                  return { ...state, updateProcessNameForRepair: true };
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_SUCCESS:
+                                  // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                  return {
+                                    ...state,
+                                    updateProcessNameForRepair: false,
+                            
+                                    repairProcess: state.repairProcess.map((state) =>
+                                      state.repairWorkflowDetailsId === action.payload.repairWorkflowDetailsId
+                                        ? action.payload
+                                        : state
+                                    ),
+                                  };
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_FAILURE:
+                                  return {
+                                    ...state,
+                                    updateProcessNameForRepair: false,
+                                    updateProcessNameForRepairError: true,
+                                  };
+
+                                  case types.DELETE_REPAIR_PROCESS_DATA_REQUEST:
+                                    return { ...state, deleteRepairProcessData: true };
+                                  case types.DELETE_REPAIR_PROCESS_DATA_SUCCESS:
+                                    return {
+                                      ...state,
+                                      deleteRepairProcessData: false,
+                                      repairProcess: state.repairProcess.filter(
+                                        (item) => item.repairWorkflowDetailsId !== action.payload
+                                      ),
+                                    };
+                                  case types.DELETE_REPAIR_PROCESS_DATA_FAILURE:
+                                    return { ...state, deleteRepairProcessData: false, deleteRepairProcessDataError: false };
+
+
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_REQUEST:
+                                      return { ...state, addingProcessStagesForRepair: true };
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_SUCCESS:
+                                      return {
+                                        ...state,
+                                        addingProcessStagesForRepair: false,
+                                        repairProcessStages: [...state.repairProcessStages, action.payload],
+                                      };
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_FAILURE:
+                                      return {
+                                        ...state,
+                                        addingProcessStagesForRepair: false,
+                                        addingProcessStagesForRepair: true,
+                                      };
+
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_REQUEST:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: true,
+                                          fetchingProcessStagesForRepairError: false,
+                                        };
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_SUCCESS:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: false,
+                                          fetchingProcessStagesForRepairError: false,
+                                          repairProcessStages: action.payload,
+                                        };
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_FAILURE:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: false,
+                                          fetchingProcessStagesForRepairError: true,
+                                        };
+                    
         
           
 

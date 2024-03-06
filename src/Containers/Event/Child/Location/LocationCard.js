@@ -98,10 +98,13 @@ const handleLoadMore = () => {
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                        
-                        <span>
-  {`${(item.address && item.address[0].city) || ""} ${ (item.address && item.address[0].state) || ""}`.slice(0, 20)}
-</span>
-                      </div>
+                      <span>
+  {item.address && item.address.length > 0 ? (
+    `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
+  ) : (
+    "No address available"
+  )}
+</span>            </div>
                     </div>
                   </div>
                 
