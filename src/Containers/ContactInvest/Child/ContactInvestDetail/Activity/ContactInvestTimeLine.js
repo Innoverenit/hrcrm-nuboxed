@@ -5,14 +5,16 @@ import { bindActionCreators } from 'redux';
 import moment from 'moment';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import {getContactInvestTimeline} from "../../../ContactInvestAction";
+import { BundleLoader } from '../../../../../Components/Placeholder';
 
 const ContactInvestTimeline = (props) => {
   useEffect(() => {
     props.getContactInvestTimeline(props.contactInVestDetail.contactId);
   }, []);
 
-  const { contactInvestStatus, ratingValue } = props;
+  const { contactInvestStatus,fetchingContactInvestStatus, ratingValue } = props;
   console.log(props.contactInVestDetail.investorLeadsId)
+  if (fetchingContactInvestStatus) return <BundleLoader/>;
   return (
     <>
       <div className="mt-4">

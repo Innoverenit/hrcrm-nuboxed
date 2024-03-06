@@ -1,6 +1,8 @@
 import React, { Component,lazy } from "react";
 import { TextInput } from "../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
+import InvestorCurrencyToggle from "./InvestorCurrencyToggle";
+import SalesCurrencyToggle from "./SalesCurrencyToggle";
 
   const CurrencyStatusToggle = lazy(() => import("./CurrencyStatusToggle"));
 
@@ -33,6 +35,51 @@ class SingleCurrency extends Component {
              
               >
                 <div class=" flex flex-row justify-evenly  max-sm:flex-col">
+                <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+
+<div class=" text-sm text-cardBody font-medium font-poppins">
+
+Sales
+</div>
+
+
+
+
+<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" w-2/6">
+<SalesCurrencyToggle
+editInd={editInd}
+mandatoryInd={mandatoryInd}
+currency_name={currency_name}
+currency_id={currency_id}
+/>  
+</div>
+</div>
+
+</div>
+
+<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+
+<div class=" text-sm text-cardBody font-medium font-poppins">
+
+Investor
+</div>
+
+
+
+
+<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" w-2/6">
+<InvestorCurrencyToggle
+editInd={editInd}
+mandatoryInd={mandatoryInd}
+currency_name={currency_name}
+currency_id={currency_id}
+/>  
+</div>
+</div>
+
+</div>
                   <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                     <div class=" text-sm text-cardBody font-medium font-poppins">

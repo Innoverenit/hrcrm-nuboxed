@@ -6,6 +6,13 @@ const initialState = {
     fetchingCurrencyList: false,
     fetchingCurrencyListError: false,
     currencyList: [],
+
+    addingInvestorCurrencyToggle: false,
+    addingInvestorCurrencyToggleError: false,
+
+    addingSalesCurrencyToggle: false,
+    addingSalesCurrencyToggleError: false,
+
     fetchingCurrencySearchData:false,
     fetchingCurrencySearchDataError:false,
 
@@ -101,6 +108,50 @@ export const currencyReducer = (state = initialState, action) => {
                     currencyList: [], 
                     // deletedTruck: [] 
                   };
+
+
+                  case types.LINK_SALES_CURRENCY_TOGGLE_REQUEST:
+                    return { ...state, addingSalesCurrencyToggle: true };
+                  case types.LINK_SALES_CURRENCY_TOGGLE_SUCCESS:
+                    return {
+                      ...state,
+                      addingSalesCurrencyToggle: false,
+                      currencyList: state.currencyList.map((item) => {
+                        if (item.currency_id === action.payload.currency_id) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                    };
+                  case types.LINK_SALES_CURRENCY_TOGGLE_FAILURE:
+                    return {
+                      ...state,
+                      addingSalesCurrencyToggle: false,
+                      addingSalesCurrencyToggleError: true,
+                    };
+
+
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_REQUEST:
+                      return { ...state, addingInvestorCurrencyToggle: true };
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_SUCCESS:
+                      return {
+                        ...state,
+                        addingInvestorCurrencyToggle: false,
+                        currencyList: state.currencyList.map((item) => {
+                          if (item.currency_id === action.payload.currency_id) {
+                            return action.payload;
+                          } else {
+                            return item;
+                          }
+                        }),
+                      };
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_FAILURE:
+                      return {
+                        ...state,
+                        addingInvestorCurrencyToggle: false,
+                        addingInvestorCurrencyToggleError: true,
+                      };
 
      
     default:

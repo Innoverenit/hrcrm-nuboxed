@@ -34,6 +34,7 @@ import {
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import ReactCountryFlag from 'react-country-flag';
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -498,7 +499,7 @@ const [rowdata, setrowdata] = useState("");
         height={"75vh"}
       >
       
-      {teamCustomer.map((item) => { 
+      { !fetchingTeamCustomer && teamCustomer.length === 0 ?<NodataFoundPage />:teamCustomer.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(

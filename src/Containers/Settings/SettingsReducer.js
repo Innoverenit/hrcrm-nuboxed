@@ -212,6 +212,10 @@ const initialState = {
   addingProcessStages: false,
   addingProcessStagesError: false,
 
+  linkingRepairProcessPublish: false,
+  linkingRepairProcessPublishError: false,
+  repairProcessPublish:[],
+
   fetchingAllProcessStages: false,
   fetchingAllProcessStagesError: false,
   allProcessStages: [],
@@ -441,6 +445,9 @@ const initialState = {
   fetchingWebsiteError: false,
   website: [],
 
+  updatingStagesForRepair: false,
+  updatingStagesForRepairError: false,
+
   addingScheduler: false,
   addingSchedulerError: false,
 
@@ -464,6 +471,10 @@ const initialState = {
   linkingProductionStagesPublish: false,
   linkingProductionStagesPublishError: false,
   productionStagesPublish:[],
+
+  linkingRepairStagesPublish: false,
+  linkingRepairStagesPublishError: false,
+  repairStagesPublish:[],
 
   addingUpWorkAccess: false,
   addingUpWorkAccessError: false,
@@ -3813,6 +3824,93 @@ export const settingsReducer = (state = initialState, action) => {
                                           fetchingProcessStagesForRepair: false,
                                           fetchingProcessStagesForRepairError: true,
                                         };
+
+
+                                        case types.UPDATE_STAGE_FOR_REPAIR_REQUEST:
+                                          return { ...state, updatingStagesForRepair: true };
+                                        case types.UPDATE_STAGE_FOR_REPAIR_SUCCESS:
+                                          // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                          return {
+                                            ...state,
+                                            updatingStagesForRepair: false,
+                                            repairProcessStages: state.repairProcessStages.map((state) =>
+                                              state.repairStagesId === action.payload.repairStagesId ? action.payload : state
+                                            ),
+                                          };
+                                        case types.UPDATE_STAGE_FOR_REPAIR_FAILURE:
+                                          return {
+                                            ...state,
+                                            updatingStagesForRepair: false,
+                                            updatingStagesForRepairError: true,
+                                          };
+
+                                          case types.DELETE_REPAIR_STAGES_DATA_REQUEST:
+                                            return { ...state, deletingRepairStagesData: true };
+                                          case types.DELETE_REPAIR_STAGES_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              deletingRepairStagesData: false,
+                                              repairProcessStages: state.repairProcessStages.filter(
+                                                (item) => item.repairStagesId !== action.payload
+                                              ),
+                                            };
+                                          case types.DELETE_REPAIR_STAGES_DATA_FAILURE:
+                                            return { ...state, deletingRepairStagesData: false, deletingRepairStagesDataError: false };
+
+
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_REQUEST:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: true,
+                                              };
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_SUCCESS:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: false,
+                                                repairProcessPublish: state.repairProcessPublish.map((item) => {
+                                                  if (
+                                                    item.repairWorkflowDetailsId === action.payload.repairWorkflowDetailsId
+                                                  ) {
+                                                    return action.payload;
+                                                  } else {
+                                                    return item;
+                                                  }
+                                                }),
+                                              };
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_FAILURE:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: false,
+                                                linkingRepairProcessPublishError: true,
+                                              };
+
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_REQUEST:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: true,
+                                                };
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: false,
+                                                  repairStagesPublish: state.repairStagesPublish.map((item) => {
+                                                    if (item.repairStagesId === action.payload.repairStagesId) {
+                                                      return action.payload;
+                                                    } else {
+                                                      return item;
+                                                    }
+                                                  }),
+                                                };
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_FAILURE:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: false,
+                                                  linkingRepairStagesPublishError: true,
+                                                };
+                    
+
+
+                                          
                     
         
           

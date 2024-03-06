@@ -15,17 +15,17 @@ import {addProcessForRepair,
     getProcessForRepair,
     addProcessStageForRepair,
     getProcessStagesForRepair,
-    LinkProductionProcessPublish,
-    LinkProductionStagePublish,
+    LinkRepairProcessPublish,
+    LinkRepairStagePublish,
     deleteRepairProcessData,
     updateProcessNameForRepair,
-  updateStageForProduction
+    updateStageForRepair
  } from "../../../../SettingsAction"
 import {  StyledTabs } from "../../../../../../Components/UI/Antd";
 import {  Select } from "../../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 
-//   const SingleProductionStages = lazy(() => import("./SingleProductionStages"));
+  const SingleRepairStages = lazy(() => import("./SingleRepairStages"));
 const { Option } = Select;
 
 const TabPane = StyledTabs.TabPane;
@@ -93,7 +93,7 @@ class RepairTab extends Component {
       publishInd: currentProcess.publishInd ? false : true,
     };
 
-    this.props.LinkProductionProcessPublish(data, this.handleCallBack1);
+    this.props.LinkRepairProcessPublish(data, this.handleCallBack1);
   };
 
 
@@ -131,7 +131,7 @@ class RepairTab extends Component {
     });
   };
 
-  handleUpdateStage = (productionStagesId, stageName, probability, days) => {
+  handleUpdateStage = (repairStagesId, stageName, probability, days) => {
     //debugger;
     const { repairProcessStages } = this.props;
     let exist =
@@ -142,18 +142,18 @@ class RepairTab extends Component {
         "Stage with same name already exists as part of this workflow"
       );
     } else {
-      this.props.updateStageForProduction(productionStagesId, stageName, probability, days);
+      this.props.updateStageForRepair(repairStagesId, stageName, probability, days);
     }
   };
 
-handleStagePublishClick = (productionStagesId, publishInd) => {
+handleStagePublishClick = (repairStagesId, publishInd) => {
   const { recruitProcessStages } = this.props;
   const data = {
-    productionStagesId,
+    repairStagesId,
     publishInd: publishInd ? false : true,
   };
   console.log(publishInd);
-  this.props.LinkProductionStagePublish(data, this.handleCallBack);
+  this.props.LinkRepairStagePublish(data, this.handleCallBack);
 };
 
   handleCallBack = (status) => {
@@ -453,8 +453,8 @@ handleStagePublishClick = (productionStagesId, publishInd) => {
                 </>
               )}
             </div>
-          {/* {this.props.repairProcessStages.map((repairProcessStages, i) => (
-              <SingleProductionStages
+         {this.props.repairProcessStages.map((repairProcessStages, i) => (
+              <SingleRepairStages
                 key={i}
                 stageValue1={this.state.stageName}
                 newStageName="stageName"
@@ -469,11 +469,11 @@ handleStagePublishClick = (productionStagesId, publishInd) => {
                 handleUpdateStage={this.handleUpdateStage}
                 handleStageType={this.handleStageType}
                 handleStagePublishClick={this.handleStagePublishClick}
-                productionStagesId={repairProcessStages.productionStagesId}
+                repairStagesId={repairProcessStages.repairStagesId}
                 className="scrollbar"
                 id="style-3"
               />
-            ))}    */}
+            ))}  
 
             <Spacer />
             {this.state.isTextInputOpen ? (
@@ -584,11 +584,11 @@ const mapDispatchToProps = (dispatch) =>
         getProcessForRepair,
         addProcessStageForRepair,
         getProcessStagesForRepair,
-        LinkProductionProcessPublish,
-        LinkProductionStagePublish,
+        LinkRepairProcessPublish,
+        LinkRepairStagePublish,
         deleteRepairProcessData,
         updateProcessNameForRepair,
-      updateStageForProduction
+        updateStageForRepair
    
     },
     dispatch

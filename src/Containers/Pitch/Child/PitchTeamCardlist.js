@@ -108,7 +108,7 @@ const PitchTeamCardList = (props) => {
         loader={fetchingTeamPitch?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
       >
-   {props.teamPitch.map((item) => { 
+  { !fetchingTeamPitch && props.teamPitch.length === 0 ?<NodataFoundPage />:props.teamPitch.map((item,index) =>  {
  const currentdate = moment().format("DD/MM/YYYY");
  const date = moment(item.creationDate).format("DD/MM/YYYY");
        

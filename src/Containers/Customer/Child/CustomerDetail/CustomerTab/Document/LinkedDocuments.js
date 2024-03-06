@@ -25,6 +25,8 @@ import {
 import { FormattedMessage } from "react-intl";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
 
 class LinkedDocuments extends Component {
@@ -137,7 +139,7 @@ class LinkedDocuments extends Component {
       };
     });
 
-
+    if (fetchingDocumentsByCustomerId) return <BundleLoader/>;
     // if (fetchingDocumentsByCustomerIdError) {
     //   return <APIFailed />;
     // }
@@ -178,7 +180,7 @@ class LinkedDocuments extends Component {
       </div>
    
         
-      {documentsByCustomerId.map((item) => { 
+      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<NodataFoundPage />:documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         

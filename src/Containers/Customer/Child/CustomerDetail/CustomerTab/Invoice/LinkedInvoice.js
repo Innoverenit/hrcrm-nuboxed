@@ -78,6 +78,7 @@ class LinkedInvoice extends Component {
     // if (fetchingDocumentsByCustomerIdError) {
     //   return <APIFailed />;
     // }
+    // if (fetchingCustomerOpportunity) return <BundleLoader/>;
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (

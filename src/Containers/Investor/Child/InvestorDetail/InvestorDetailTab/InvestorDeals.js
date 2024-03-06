@@ -13,6 +13,7 @@ import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
@@ -38,7 +39,7 @@ const InvestorDeals = (props) => {
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-   const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllDealsData,leadsAllData  } = props;
+   const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllDealsData,leadsAllData,fetchingInvestorDealsData  } = props;
 
 //   if (fetchingAllDealsData) {
 //     return <BundleLoader />;
@@ -89,7 +90,7 @@ console.log(props.investorDealsData)
         loader={fetchingAllDealsData?<div  class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       > */}
-   {props.investorDealsData.map((item) => { 
+  { !fetchingInvestorDealsData && props.investorDealsData.length === 0 ?<NodataFoundPage />:props.investorDealsData.map((item,index) =>  {
        var findProbability = item.probability;
        item.stageList.forEach((element) => {
          if (element.oppStage === item.oppStage) {
@@ -305,6 +306,7 @@ imgHeight={"1.8rem"}
 const mapStateToProps = ({ auth, leads,investor, sector,pitch }) => ({
 investorDealsData:investor.investorDealsData,
 user: auth.userDetails,
+fetchingInvestorDealsData:investor.fetchingInvestorDealsData,
 userId: auth.userDetails.userId,
   
 });
