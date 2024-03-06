@@ -128,3 +128,63 @@ import { message } from "antd"
   };
 
 
+  export const linkSalesCurrencyToggle = ( data,currencyId) => (dispatch, getState) => {
+    //console.log(permissions, userId);
+    const orgId = getState().auth.userDetails.organizationId;
+    dispatch({
+      type: types.LINK_SALES_CURRENCY_TOGGLE_REQUEST,
+    });
+    axios
+    .put(`${base_url}/countries/currency/sale/${currencyId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.LINK_SALES_CURRENCY_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_SALES_CURRENCY_TOGGLE_FAILURE,
+          payload: err,
+        });
+      })
+  };
+
+  
+  export const linkInvestorCurrencyToggle = ( data,currencyId) => (dispatch, getState) => {
+    //console.log(permissions, userId);
+    const orgId = getState().auth.userDetails.organizationId;
+    dispatch({
+      type: types.LINK_INVESTOR_CURRENCY_TOGGLE_REQUEST,
+    });
+    axios
+    .put(`${base_url}/countries/currency/investor/${currencyId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.LINK_INVESTOR_CURRENCY_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_INVESTOR_CURRENCY_TOGGLE_FAILURE,
+          payload: err,
+        });
+      })
+  };
+
+

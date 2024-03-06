@@ -16,6 +16,8 @@ import { CurrencySymbol } from "../../../../../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
   setEditCustomerOpportunity} from "../../../../CustomerAction";
 import { Tooltip,Button,Input,Progress } from "antd";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpportunityModal")); 
 
 
@@ -373,7 +375,7 @@ function OpportunityTable(props) {
 //       width: "1%",
 //     },
 //   ];
-
+if (fetchingCustomerOpportunity) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
@@ -391,7 +393,7 @@ function OpportunityTable(props) {
 
       </div>
 
-        {opportunityByCustomerId.map((item) => {
+      { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<NodataFoundPage />:opportunityByCustomerId.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {

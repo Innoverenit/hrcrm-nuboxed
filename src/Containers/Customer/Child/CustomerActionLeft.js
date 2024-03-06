@@ -110,7 +110,7 @@ function  handleFilterChange(data){
           </span>
         </Badge>
       </Tooltip>
-      <Tooltip>
+      <Tooltip title={<FormattedMessage id="app.card" defaultMessage="Card" />}>
         <Badge
           size="small"
           count={(props.viewType === "card" && props.recordData.customer) || 0}
@@ -151,7 +151,7 @@ function  handleFilterChange(data){
       </Tooltip>
       )}
       {(user.crmInd=== true && user.customerFullListInd===true || user.role === "ADMIN") && ( 
-      <Tooltip>
+   <Tooltip title="All">
         <Badge
           size="All"
           // count={(props.viewType === "all" && props.recordData.customer) || 0}

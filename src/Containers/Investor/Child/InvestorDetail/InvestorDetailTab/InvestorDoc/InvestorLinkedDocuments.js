@@ -24,6 +24,8 @@ import {
 } from "../../../../../../Components/UI/Elements";
 import {getInvestorDocument} from "../../../../InvestorAction"
 import { DeleteOutlined } from "@ant-design/icons";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class InvestorLinkedDocuments extends Component {
   constructor(props) {
@@ -119,8 +121,9 @@ class InvestorLinkedDocuments extends Component {
     clearFilters();
     this.setState({ searchText: "" });
   };
+ 
   render() {
-  
+    if (this.props.fetchingDocumentsByInvestorId) return <BundleLoader/>;
     return (
       <>
           <div className=' flex justify-end sticky top-28 z-auto'>          
@@ -135,7 +138,7 @@ class InvestorLinkedDocuments extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
-                  {this.props.documentsByInvestorId.map((item) => {
+                  { !this.props.fetchingDocumentsByInvestorId && this.props.documentsByInvestorId.length === 0 ?<NodataFoundPage />:this.props.documentsByInvestorId.map((item,index) =>  {
                       
                       return (
                           <div >

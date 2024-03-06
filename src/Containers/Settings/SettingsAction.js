@@ -5163,3 +5163,126 @@ export const getProcessStagesForRepair = (repairWorkflowDetailsId) => (
       });
     });
 };
+
+export const updateStageForRepair = (
+  repairStagesId,
+  responsible,
+  stageName,
+
+  probability,
+  days,
+  cb
+) => (dispatch) => {
+  console.log(stageName, probability);
+  dispatch({
+    type: types.UPDATE_STAGE_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/repairWorkflow/stages/${repairStagesId}`,
+      { repairStagesId, responsible, stageName, probability, days },
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+export const deleteRepairStagesData = (repairStagesId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_REPAIR_STAGES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/repairStages/${repairStagesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_REPAIR_STAGES_DATA_SUCCESS,
+        payload: repairStagesId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_REPAIR_STAGES_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const LinkRepairProcessPublish = (data, cb,) => (dispatch) => {
+  dispatch({ type: types.LINK_REPAIR_PROCESS_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/repairWorkflow/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_REPAIR_PROCESS_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_REPAIR_PROCESS_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const LinkRepairStagePublish = (data, cb) => (dispatch) => {
+  dispatch({ type: types.LINK_REPAIR_STAGES_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/repairStages/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_REPAIR_STAGES_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_REPAIR_STAGES_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
