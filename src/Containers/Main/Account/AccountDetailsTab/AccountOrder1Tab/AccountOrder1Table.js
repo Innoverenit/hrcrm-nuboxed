@@ -195,7 +195,9 @@ const AccountOrder1Table = (props) => {
                                         </div>
 
                                     )
-                                })}</> : <NodataFoundPage />}
+                                })}</>
+                                : !props.productionOrder.length
+                                    && !props.fetchingProductionOrderById ? <NodataFoundPage /> : null}
                         </InfiniteScroll>
                     </div>
 

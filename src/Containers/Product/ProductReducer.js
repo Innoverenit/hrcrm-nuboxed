@@ -226,7 +226,7 @@ const initialState = {
 
   addingProductBuilder: false,
   addingProductBuilderError: false,
-  addedProBuilder:[],
+  addedProBuilder: [],
 
   fetchingBuilderByProductId: false,
   fetchingBuilderByProductIdError: false,
@@ -235,25 +235,25 @@ const initialState = {
   priceOpenDrawer: false,
 
   removingProductBuilder: false,
-  removingProductBuilderError:false,
+  removingProductBuilderError: false,
 
   fetchingProductCurrency: false,
-  fetchingProductCurrencyError:false,
-  ProductCurrency:[],
+  fetchingProductCurrencyError: false,
+  ProductCurrency: [],
 
   creatingProductCurrency: false,
-  creatingProductCurrencyError:false,
+  creatingProductCurrencyError: false,
 
   fetchingSearchedBuilders: false,
-  fetchingSearchedBuildersError:false,
-  searchedBuilders:[],
+  fetchingSearchedBuildersError: false,
+  searchedBuilders: [],
 
-  fetchingAllProducts: false, 
-  fetchingAllProductsError:false,
-  productAlls:[],
+  fetchingAllProducts: false,
+  fetchingAllProductsError: false,
+  productAlls: [],
 
   postingProductionBldr: false,
-  postingProductionBldrError:false,
+  postingProductionBldrError: false,
 
 
 
@@ -913,7 +913,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         addingProductBuilder: false,
-        addedProBuilder:action.payload,
+        addedProBuilder: action.payload,
         searchedBuilders: state.searchedBuilders.map((item) => {
           if (item.suppliesId == action.payload.suppliesId) {
             return action.payload;
@@ -929,7 +929,7 @@ export const productReducer = (state = initialState, action) => {
         addingProductBuilder: false,
         addingProductBuilderError: true,
       };
-      
+
     case types.GET_BUILDER_BY_PRODUCT_ID_REQUEST:
       return {
         ...state,
@@ -967,124 +967,124 @@ export const productReducer = (state = initialState, action) => {
         uploadingCatalogueListError: true,
       };
 
-      case types.REMOVE_PRODUCT_BUILDER_REQUEST:
-        return { ...state, removingProductBuilder: true };
-      case types.REMOVE_PRODUCT_BUILDER_SUCCESS:
-        return {
-          ...state,
-          removingProductBuilder: false,
-          builderbyProductId: state.builderbyProductId.filter(
-            (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
-          ),
-        };
-      case types.REMOVE_PRODUCT_BUILDER_FAILURE:
-        return {
-          ...state,
-          removingProductBuilder: false,
-          removingProductBuilderError: true,
-        };  
+    case types.REMOVE_PRODUCT_BUILDER_REQUEST:
+      return { ...state, removingProductBuilder: true };
+    case types.REMOVE_PRODUCT_BUILDER_SUCCESS:
+      return {
+        ...state,
+        removingProductBuilder: false,
+        builderbyProductId: state.builderbyProductId.filter(
+          (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
+        ),
+      };
+    case types.REMOVE_PRODUCT_BUILDER_FAILURE:
+      return {
+        ...state,
+        removingProductBuilder: false,
+        removingProductBuilderError: true,
+      };
 
-        case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
-          return { ...state, addingProductBuilder: true };
-        case types.UPDATE_PRO_SUPPL_BUILDER_SUCCESS:
-          return {
-            ...state,
-            addingProductBuilder: false,
-            // builderbyProductId:[action.payload, ...state.builderbyProductId],
-            builderbyProductId: state.builderbyProductId.map((item) => {
-              if (item.suppliesId == action.payload.suppliesId) {
-                return action.payload;
-              } else {
-                return item;
-              }
-            }),
-          };
-        case types.UPDATE_PRO_SUPPL_BUILDER_FAILURE:
-          return {
-            ...state,
-            addingProductBuilder: false,
-            addingProductBuilderError: true,
-          };
+    case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
+      return { ...state, addingProductBuilder: true };
+    case types.UPDATE_PRO_SUPPL_BUILDER_SUCCESS:
+      return {
+        ...state,
+        addingProductBuilder: false,
+        // builderbyProductId:[action.payload, ...state.builderbyProductId],
+        builderbyProductId: state.builderbyProductId.map((item) => {
+          if (item.suppliesId == action.payload.suppliesId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PRO_SUPPL_BUILDER_FAILURE:
+      return {
+        ...state,
+        addingProductBuilder: false,
+        addingProductBuilderError: true,
+      };
 
-          case types.GET_PRODUCT_CURRENCY_REQUEST:
-            return {
-              ...state,
-              fetchingProductCurrency: true,
-              fetchingProductCurrencyError: false,
-            };
-          case types.GET_PRODUCT_CURRENCY_SUCCESS:
-            return {
-              ...state,
-              fetchingProductCurrency: false,
-              ProductCurrency: action.payload,
-            };
-          case types.GET_PRODUCT_CURRENCY_FAILURE:
-            return {
-              ...state,
-              fetchingProductCurrency: false,
-              fetchingProductCurrencyError: true,
-            };
+    case types.GET_PRODUCT_CURRENCY_REQUEST:
+      return {
+        ...state,
+        fetchingProductCurrency: true,
+      };
+    case types.GET_PRODUCT_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        fetchingProductCurrency: false,
+        ProductCurrency: action.payload,
+      };
+    case types.GET_PRODUCT_CURRENCY_FAILURE:
+      return {
+        ...state,
+        fetchingProductCurrency: false,
+        fetchingProductCurrencyError: true,
+      };
 
-            case types.CREATE_PRODUCT_CURRENCY_REQUEST:
-              return { ...state, creatingProductCurrency: true };
-            case types.CREATE_PRODUCT_CURRENCY_SUCCESS:
-              return {
-                ...state,
-                creatingProductCurrency: false,
-                ProductCurrency: [action.payload, ...state.ProductCurrency]
-              };
-            case types.CREATE_PRODUCT_CURRENCY_FAILURE:
-              return {
-                ...state,
-                creatingProductCurrency: false,
-                creatingProductCurrencyError: true,
-              };
+    case types.CREATE_PRODUCT_CURRENCY_REQUEST:
+      return { ...state, creatingProductCurrency: true };
+    case types.CREATE_PRODUCT_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        creatingProductCurrency: false,
+        ProductCurrency: [action.payload, ...state.ProductCurrency]
+      };
+    case types.CREATE_PRODUCT_CURRENCY_FAILURE:
+      return {
+        ...state,
+        creatingProductCurrency: false,
+        creatingProductCurrencyError: true,
+      };
 
-              case types.GET_SEARCH_BUILDER_REQUEST:
-                return { ...state, fetchingSearchedBuilders: true };
-              case types.GET_SEARCH_BUILDER_SUCCESS:
-                return { ...state, 
-                  fetchingSearchedBuilders: false,
-                  searchedBuilders: action.payload,
-                };
-              case types.GET_SEARCH_BUILDER_FAILURE:
-                return {
-                  ...state,
-                  fetchingSearchedBuilders: false,
-                  fetchingSearchedBuildersError: true,
-                };
+    case types.GET_SEARCH_BUILDER_REQUEST:
+      return { ...state, fetchingSearchedBuilders: true };
+    case types.GET_SEARCH_BUILDER_SUCCESS:
+      return {
+        ...state,
+        fetchingSearchedBuilders: false,
+        searchedBuilders: action.payload,
+      };
+    case types.GET_SEARCH_BUILDER_FAILURE:
+      return {
+        ...state,
+        fetchingSearchedBuilders: false,
+        fetchingSearchedBuildersError: true,
+      };
 
-                case types.GET_ALL_PRODUCT_LIST_REQUEST:
-                  return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };
-                case types.GET_ALL_PRODUCT_LIST_SUCCESS:
-                  return { ...state, fetchingAllProducts: false, productAlls: action.payload };
-                case types.GET_ALL_PRODUCT_LIST_FAILURE:
-                  return { ...state, fetchingAllProducts: false, fetchingAllProductsError: true };
+    case types.GET_ALL_PRODUCT_LIST_REQUEST:
+      return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };
+    case types.GET_ALL_PRODUCT_LIST_SUCCESS:
+      return { ...state, fetchingAllProducts: false, productAlls: action.payload };
+    case types.GET_ALL_PRODUCT_LIST_FAILURE:
+      return { ...state, fetchingAllProducts: false, fetchingAllProductsError: true };
 
-                  case types.POST_PRODUCTION_BUILDER_REQUEST:
-                    return { ...state, postingProductionBldr: true };
-                  case types.POST_PRODUCTION_BUILDER_SUCCESS:
-                    return {
-                      ...state,
-                      postingProductionBldr: false,
-                      builderbyProductId: state.builderbyProductId.map((item) => {
-                        if (item.suppliesId == action.payload.suppliesId) {
-                          return action.payload;
-                        } else {
-                          return item;
-                        }
-                      }),
-                    };
-                  case types.POST_PRODUCTION_BUILDER_FAILURE:
-                    return {
-                      ...state,
-                      postingProductionBldr: false,
-                      postingProductionBldrError: true,
-                    };
+    case types.POST_PRODUCTION_BUILDER_REQUEST:
+      return { ...state, postingProductionBldr: true };
+    case types.POST_PRODUCTION_BUILDER_SUCCESS:
+      return {
+        ...state,
+        postingProductionBldr: false,
+        builderbyProductId: state.builderbyProductId.map((item) => {
+          if (item.suppliesId == action.payload.suppliesId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.POST_PRODUCTION_BUILDER_FAILURE:
+      return {
+        ...state,
+        postingProductionBldr: false,
+        postingProductionBldrError: true,
+      };
 
-              
-          
-                  default:
+
+
+    default:
       return state;
   }
 };

@@ -18,6 +18,7 @@ import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ReceivedOrderToggle from "./ReceivedOrderToggle";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const DeliveryDateModal = lazy(() => import("./DeliveryDateModal"));
 const OpenReceivedOrderIdModal = lazy(() => import("./OpenReceivedOrderIdModal"));
@@ -69,151 +70,147 @@ const ReceivedTable = (props) => {
             loader={props.fetchingReceivedUserList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"75vh"}
           >
-            {props.allReceivedUser.map((item) => {
-              const currentdate = dayjs().format("DD/MM/YYYY");
-              const date = dayjs(item.createAt).format("DD/MM/YYYY");
-              return (
-                <div>
-                  <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                    <div class="flex">
+            {props.allReceivedUser.length ? <>
+              {props.allReceivedUser.map((item) => {
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.createAt).format("DD/MM/YYYY");
+                return (
+                  <div>
+                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                      <div class="flex">
 
-                      <div className=" flex font-medium flex-col md:w-[14.1rem] max-sm:w-full  ">
-                        <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
-                          <div
-                            onClick={() => {
-                              handleRowData(item);
-                              props.handleReceivedOrderIdModal(true);
-                            }}
-                          >{item.newOrderNo}</div>&nbsp;&nbsp;
-                          {date === currentdate ? (
-                            <div class="text-xs font-bold text-[tomato]">
-                              New
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
-
-                      <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {item.awbNo}
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div className=" flex font-medium flex-col md:w-[12.51rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-poppins">
-
-                        {item.distributorName}
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
-                        <MultiAvatar
-                          primaryTitle={item.contactPersonName}
-                          imageId={item.imageId}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-                      </div>
-                    </div>
-
-                    <div className=" flex font-medium flex-col md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
-                        <MultiAvatar
-                          primaryTitle={item.startInspectionUserName}
-                          imageId={item.imageId}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {item.phoneReceiveCount}/{item.phoneCount}
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[7.24rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div>
-                        {item.inspectionInd === 0 ? <ReceivedOrderToggle
-                          orderId={item.orderPhoneId}
-                          locationId={props.locationDetailsId}
-                          inventoryReceiveInd={item.inventoryReceiveInd}
-                        /> : <b>Received</b>}
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[8.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {item.inspectionInd === 0 && item.inventoryReceiveInd ?
-                          <Button
-                            type="primary"
-                            className="w-28 text-base"
-                            onClick={() => props.updateInspection({
-                              inspectionInd: 1,
-                              startInspectionUser: props.userId,
-                              startInspectionDate: dayjs()
-                            }, item.orderPhoneId, props.locationDetailsId)}
-                          >
-                            Start Inspection
-                          </Button>
-                          : item.inspectionInd === 2 && item.inventoryReceiveInd ?
-                            <Button
-                              className="cursor-pointer text-base"
+                        <div className=" flex font-medium flex-col md:w-[14.1rem] max-sm:w-full  ">
+                          <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
+                            <div
                               onClick={() => {
-                                handleRowData(item)
-                                props.handleDeliveryDateModal(true);
+                                handleRowData(item);
+                                props.handleReceivedOrderIdModal(true);
                               }}
-                            >
-                              Send To Store
-                            </Button> :
-                            item.inspectionInd === 1 && item.inventoryReceiveInd ?
-                              <Button
-                                className="w-28 text-base"
-                                type="primary"
-                                onClick={handlePauseResume}>
-                                {pause ? "Resume Inspection" : "Pause Inspection"}
-                              </Button> : item.inventoryReceiveInd ? <b>Store locator</b> : null}
-                      </div>
-                    </div>
-                    <div class="flex md:items-center">
+                            >{item.newOrderNo}</div>&nbsp;&nbsp;
+                            {date === currentdate ? (
+                              <div class="text-xs font-bold text-[tomato]">
+                                New
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
 
-                    </div>
-                    <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
-                      <div>
-                        <Tooltip title="Notes">
-                          <NoteAltIcon
-                            className="!text-base cursor-pointer"
-                            onClick={() => {
-                              handleRowData(item);
-                              props.handleInventoryReceivedNoteOrderModal(true);
-                            }}
+                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                          <div class=" text-xs text-cardBody font-poppins">
+                            {item.awbNo}
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      <div className=" flex font-medium flex-col md:w-[12.51rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins">
+
+                          {item.distributorName}
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-[5.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                          <MultiAvatar
+                            primaryTitle={item.contactPersonName}
+                            imageId={item.imageId}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
                           />
-
-                        </Tooltip>
+                        </div>
                       </div>
 
-                      {/* <div>
-                   <Tooltip title={item.salesExecutiveEmail}>
-               <div>
-                 <i class="far fa-envelope"></i>
-               </div>
-             </Tooltip>
-                        </div> */}
-                    </div>
+                      <div className=" flex font-medium flex-col md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
 
+                          <MultiAvatar
+                            primaryTitle={item.startInspectionUserName}
+                            imageId={item.imageId}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                          {item.phoneReceiveCount}/{item.phoneCount}
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-[7.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                          {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div>
+                          {item.inspectionInd === 0 ? <ReceivedOrderToggle
+                            orderId={item.orderPhoneId}
+                            locationId={props.locationDetailsId}
+                            inventoryReceiveInd={item.inventoryReceiveInd}
+                          /> : <b>Received</b>}
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col md:w-[8.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                          {item.inspectionInd === 0 && item.inventoryReceiveInd ?
+                            <Button
+                              type="primary"
+                              className="w-28 text-base"
+                              onClick={() => props.updateInspection({
+                                inspectionInd: 1,
+                                startInspectionUser: props.userId,
+                                startInspectionDate: dayjs()
+                              }, item.orderPhoneId, props.locationDetailsId)}
+                            >
+                              Start Inspection
+                            </Button>
+                            : item.inspectionInd === 2 && item.inventoryReceiveInd ?
+                              <Button
+                                className="cursor-pointer text-base"
+                                onClick={() => {
+                                  handleRowData(item)
+                                  props.handleDeliveryDateModal(true);
+                                }}
+                              >
+                                Send To Store
+                              </Button> :
+                              item.inspectionInd === 1 && item.inventoryReceiveInd ?
+                                <Button
+                                  className="w-28 text-base"
+                                  type="primary"
+                                  onClick={handlePauseResume}>
+                                  {pause ? "Resume Inspection" : "Pause Inspection"}
+                                </Button> : item.inventoryReceiveInd ? <b>Store locator</b> : null}
+                        </div>
+                      </div>
+                      <div class="flex md:items-center">
+
+                      </div>
+                      <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
+                        <div>
+                          <Tooltip title="Notes">
+                            <NoteAltIcon
+                              className="!text-base cursor-pointer"
+                              onClick={() => {
+                                handleRowData(item);
+                                props.handleInventoryReceivedNoteOrderModal(true);
+                              }}
+                            />
+
+                          </Tooltip>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </> : !props.allReceivedUser.length
+              && !props.fetchingReceivedUserList ? <NodataFoundPage /> : null}
+
           </InfiniteScroll>
         </div>
       </div>
