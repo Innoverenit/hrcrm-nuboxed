@@ -9,7 +9,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import AddedSuppliesTable from './AddedSuppliesTable';
+import * as Yup from "yup";
 
+const FormSchema = Yup.object().shape({
+    suppliesId: Yup.string().required("Input needed!"),
+    unit: Yup.string().required("Input needed!"),
+})
 
 const AddPurchaseOrder = (props) => {
     useEffect(() => {
@@ -64,7 +69,7 @@ const AddPurchaseOrder = (props) => {
                     poSupplierDetailsId: props.poSupplierDetailsId || "",
                     userId: props.userId,
                 }}
-
+                validationSchema={FormSchema}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
                     props.linkPurchaseToSuppliers(
@@ -91,8 +96,8 @@ const AddPurchaseOrder = (props) => {
                                 <Field
                                     name="suppliesId"
                                     label={<FormattedMessage
-                                        id="app.items"
-                                        defaultMessage="Items"
+                                        id="app.material"
+                                        defaultMessage="Materials"
                                     />}
                                     isRequired
                                     isColumn
@@ -139,7 +144,7 @@ const AddPurchaseOrder = (props) => {
                             </div>
                         </div>
                         <div class="justify-between flex">
-                            <div class="w-[27%]">
+                            <div class="w-[25%]">
                                 <Field
                                     name="attributeName"
                                     label={<FormattedMessage
@@ -153,7 +158,7 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[27%]">
+                            <div class="w-[25%]">
                                 <Field
                                     name="subAttributeName"
                                     label={<FormattedMessage
@@ -167,7 +172,7 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[27%]">
+                            <div class="w-[25%]">
                                 <Field
                                     name="unit"
                                     label={<FormattedMessage
@@ -181,7 +186,7 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[27%] mt-4">
+                            <div class="w-[15%] mt-4">
                                 <Button
                                     type="primary"
                                     htmlType="submit"

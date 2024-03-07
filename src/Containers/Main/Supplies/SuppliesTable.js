@@ -24,6 +24,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -251,141 +252,148 @@ function SuppliesTable(props) {
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
             <div className="w-[3.8rem]"></div>
           </div>
-          <InfiniteScroll
-            dataLength={props.purchaseList.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"75vh"}
-          >
-            {props.purchaseList.map((item) => {
-              return (
+          <div class="overflow-x-auto h-[64vh]">
+            <InfiniteScroll
+              dataLength={props.purchaseList.length}
+              next={handleLoadMore}
+              hasMore={hasMore}
+              loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+              height={"75vh"}
+            >
+              {props.purchaseList.length ?
                 <>
-                  <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3">
-                    <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                      <div className=" flex font-medium flex-col w-[17rem]   max-sm:w-full">
-                        <div className="flex max-sm:w-full ">
-                          <div>
+                  {props.purchaseList.map((item) => {
+                    return (
+                      <>
+                        <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3">
+                          <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
+                            <div className=" flex font-medium flex-col w-[17rem]   max-sm:w-full">
+                              <div className="flex max-sm:w-full ">
+                                <div>
 
-                            <MultiAvatar
-                              // primaryTitle={item.name}
-                              imageId={item.imageId}
-                              // imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
+                                  <MultiAvatar
+                                    // primaryTitle={item.name}
+                                    imageId={item.imageId}
+                                    // imageURL={item.imageURL}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
 
-                          </div>
-                          <div class="w-[4%]">
+                                </div>
+                                <div class="w-[4%]">
 
-                          </div>
+                                </div>
 
-                          <div class="max-sm:w-full md:flex items-center">
+                                <div class="max-sm:w-full md:flex items-center">
+
+                                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                                    <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                      {item.hsn}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                {item.suppliesName}
+                              </div>
+                            </div>
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                {item.categoryName}
+                              </div>
+                            </div>
 
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                                {item.hsn}
+                                {item.subCategoryName}
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.suppliesName}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.categoryName}
-                        </div>
-                      </div>
-
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.subCategoryName}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.attributeName} {item.subAttributeName}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.reorder}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {`${moment(item.creationDate).format("ll")}`}
-                        </div>
-                      </div>
-                      {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                {item.attributeName} {item.subAttributeName}
+                              </div>
+                            </div>
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                {item.reorder}
+                              </div>
+                            </div>
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                {`${moment(item.creationDate).format("ll")}`}
+                              </div>
+                            </div>
+                            {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <QrCode />
                       </div>
                     </div> */}
-                      <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
-                        <div>
-                          <Tooltip title="Material Builder">
-                            <ViewQuiltIcon
-                              className="cursor-pointer text-base"
-                              onClick={() => {
-                                props.handleMaterialBuilderDrawer(true);
-                                handleParticularRowData(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                      </div>
-                      <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
-                        <div>
-                          {props.orderCreatRepairInd && <Tooltip>
-                            <PhoneFilled
-                              onClick={() => {
-                                props.handleBrandModel(true);
-                                handleParticularRowData(item);
-                              }}
-                              style={{ color: "blue", cursor: "pointer" }}
-                            />
-                          </Tooltip>}
-                        </div>
-                        <div>
+                            <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
+                              <div>
+                                <Tooltip title="Material Builder">
+                                  <ViewQuiltIcon
+                                    className="cursor-pointer text-base"
+                                    onClick={() => {
+                                      props.handleMaterialBuilderDrawer(true);
+                                      handleParticularRowData(item);
+                                    }}
+                                  />
+                                </Tooltip>
+                              </div>
+                            </div>
+                            <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
+                              <div>
+                                {props.orderCreatRepairInd && <Tooltip>
+                                  <PhoneFilled
+                                    onClick={() => {
+                                      props.handleBrandModel(true);
+                                      handleParticularRowData(item);
+                                    }}
+                                    style={{ color: "blue", cursor: "pointer" }}
+                                  />
+                                </Tooltip>}
+                              </div>
+                              <div>
 
-                          <InventoryIcon
-                            style={{ cursor: "pointer", fontSize: "1rem", }}
-                          />
+                                <InventoryIcon
+                                  style={{ cursor: "pointer", fontSize: "1rem", }}
+                                />
 
+                              </div>
+                            </div>
+                            <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                              <div>
+                                <Tooltip title="Edit">
+                                  <BorderColorIcon
+                                    onClick={() => {
+                                      handleUpdateSupplieDrawer(true);
+                                      handleParticularRowData(item);
+                                    }}
+                                    className=" !text-base cursor-pointer text-[tomato]"
+                                  />
+                                </Tooltip>
+                              </div>
+                              <div>
+                                <Popconfirm
+                                  title="Do you want to delete?"
+                                  onConfirm={() => props.deletePurchaseData(item.suppliesId)}
+                                >
+                                  <DeleteOutlined className=" !text-base cursor-pointer text-[red]" />
+                                </Popconfirm>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
-                        <div>
-                          <Tooltip title="Edit">
-                            <BorderColorIcon
-                              onClick={() => {
-                                handleUpdateSupplieDrawer(true);
-                                handleParticularRowData(item);
-                              }}
-                              className=" !text-base cursor-pointer text-[tomato]"
-                            />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <Popconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => props.deletePurchaseData(item.suppliesId)}
-                          >
-                            <DeleteOutlined className=" !text-base cursor-pointer text-[red]" />
-                          </Popconfirm>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </InfiniteScroll>
+                      </>
+                    );
+                  })}
+                </> :
+                !props.purchaseList.length
+                  && !props.fetchingPurchaseList ? <NodataFoundPage /> : null}
+            </InfiniteScroll>
+          </div>
         </div>
       </div>
 

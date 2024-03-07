@@ -17,7 +17,7 @@ class GrnListOfPOModal extends Component {
             <>
                 <StyledDrawer
                     title={`GRN list for PO# - ${this.props.row.newPoNumber}`}
-                    width="70%"
+                    width="80%"
                     visible={showGrnListOfPo}
                     onClose={() => handlegrnlistmodal(false)}
                     footer={null}

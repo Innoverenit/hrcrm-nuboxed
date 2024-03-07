@@ -108,11 +108,12 @@ const ReceivedDetailCard = (props) => {
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.Category" defaultMessage="Category" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Attribute" defaultMessage="Attribute" /></div>
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Unit" defaultMessage="Unit" /></div>
+                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Unit" defaultMessage="Units" /></div>
+                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Received" defaultMessage="Received" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Received" defaultMessage="Receive" /></div>
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.Damaged" defaultMessage="Damaged" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Remark" defaultMessage="Remark" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Received" defaultMessage="Received" /></div>
+
                         <div className=""></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.creategrn" defaultMessage="Create GRN" /></div>
                         <div className=""></div>
@@ -159,6 +160,21 @@ const ReceivedDetailCard = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
+                                                <PoReceiveToggle
+                                                    poSupplierDetailsId={props.row.poSupplierDetailsId}
+                                                    suppliesId={item.suppliesId}
+                                                    poReceivedInd={item.poReceivedInd}
+                                                    unitReceiveInd={item.unitReceiveInd}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
                                                         value={unitReceived}
@@ -193,16 +209,7 @@ const ReceivedDetailCard = (props) => {
                                                     : item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                <PoReceiveToggle
-                                                    poSupplierDetailsId={props.row.poSupplierDetailsId}
-                                                    suppliesId={item.suppliesId}
-                                                    poReceivedInd={item.poReceivedInd}
-                                                    unitReceiveInd={item.unitReceiveInd}
-                                                />
-                                            </div>
-                                        </div>
+
                                         <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?

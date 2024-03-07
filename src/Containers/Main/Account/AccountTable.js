@@ -21,6 +21,7 @@ import {
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import AccountPulseModal from "./AccountPulseModal";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -96,158 +97,161 @@ function AccountTable(props) {
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"75vh"}
           >
-
-            {props.customerListByUser.map((item) => {
-              const currentdate = dayjs().format("DD/MM/YYYY");
-              const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-              const diff = Math.abs(
-                dayjs().diff(dayjs(item.lastRequirementOn), "days")
-              );
-              const dataLoc = `${item.address && item.address.length && item.address[0].address1
-                } 
+            {props.customerListByUser.length ?
+              <>
+                {props.customerListByUser.map((item) => {
+                  const currentdate = dayjs().format("DD/MM/YYYY");
+                  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                  const diff = Math.abs(
+                    dayjs().diff(dayjs(item.lastRequirementOn), "days")
+                  );
+                  const dataLoc = `${item.address && item.address.length && item.address[0].address1
+                    } 
             ${item.address && item.address.length && item.address[0].street
-                }   
+                    }   
            ${item.address && item.address.length && item.address[0].state}
           ${(item.address && item.address.length && item.address[0].country) || ""
-                } 
+                    } 
            
             `;
-              return (
-                <div>
-                  <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col md:w-[13.6rem] max-sm:w-full  ">
+                  return (
+                    <div>
+                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                        <div class="flex">
+                          <div className=" flex font-medium flex-col md:w-[13.6rem] max-sm:w-full  ">
 
 
-                        <Tooltip>
-                          <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                            <Tooltip>
+                              <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                              <Link
-                                toUrl={`distributor/${item.distributorId}`}
-                                title={`${item.name}`}
-                              >{item.name}</Link>&nbsp;&nbsp;
-                              {date === currentdate ? (
-                                <span class="text-xs"
-                                  style={{
-                                    color: "tomato",
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  New
-                                </span>
-                              ) : null}
+                                  <Link
+                                    toUrl={`distributor/${item.distributorId}`}
+                                    title={`${item.name}`}
+                                  >{item.name}</Link>&nbsp;&nbsp;
+                                  {date === currentdate ? (
+                                    <span class="text-xs"
+                                      style={{
+                                        color: "tomato",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      New
+                                    </span>
+                                  ) : null}
 
-                            </div>
+                                </div>
+                              </div>
+                            </Tooltip>
+
                           </div>
-                        </Tooltip>
 
-                      </div>
+                          <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                      <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              {item.dialCode} {item.phoneNo}
+                            </div>
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {item.dialCode} {item.phoneNo}
+                          </div>
+
                         </div>
 
-                      </div>
+                        <div className=" flex font-medium flex-col md:w-[8.55rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
 
-                    </div>
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.url}
 
-                    <div className=" flex font-medium flex-col md:w-[8.55rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[7.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
-                        {item.url}
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.clientName}
 
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[7.24rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
-
-                      <div class=" text-xs text-cardBody font-poppins text-center">
-                        {item.clientName}
-
-                      </div>
-                    </div>
-
-                    <div className=" flex font-medium flex-col md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
-
-                      <div class=" text-xs text-cardBody font-poppins text-center">
-                        {item.payment}
-
-                      </div>
-                    </div>
-
-                    <div class="flex md:items-center">
-
-                      <div className=" flex font-medium flex-col  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {item.countryValue}
+                          </div>
                         </div>
 
-                      </div>
-                      <div className=" flex font-medium flex-col  md:w-[15.25rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {dataLoc}
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.payment}
+
+                          </div>
                         </div>
 
-                      </div>
+                        <div class="flex md:items-center">
 
-                      <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex font-medium flex-col  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {item.address && item.address.length && item.address[0].postalCode}
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              {item.countryValue}
+                            </div>
+
+                          </div>
+                          <div className=" flex font-medium flex-col  md:w-[15.25rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              {dataLoc}
+                            </div>
+
+                          </div>
+
+                          <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                            <div class=" text-xs text-cardBody font-poppins">
+                              {item.address && item.address.length && item.address[0].postalCode}
+                            </div>
+
+                          </div>
                         </div>
+                        <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs text-cardBody font-poppins">
+                            <Tooltip title="Pulse">
+                              <MonitorHeartIcon
+                                onClick={() => {
+                                  props.handleAccountPulse(true);
+                                  handleCurrentRowData(item);
+                                }}
+                                className=" !text-base cursor-pointer text-[#df9697]"
+                              />
+                            </Tooltip>
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div class=" text-xs text-cardBody font-poppins">
+                            <Tooltip title="Edit">
+                              <BorderColorIcon
+                                className=" !text-base cursor-pointer text-[gray]"
+                                onClick={() => {
+                                  props.setEditDistributor(item)
+                                  handleUpdateAccountModal(true);
+                                  handleCurrentRowData(item);
+                                }}
+                              />
+
+                            </Tooltip>
+                          </div>
+
+
+                        </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Pulse">
-                          <MonitorHeartIcon
-                            onClick={() => {
-                              props.handleAccountPulse(true);
-                              handleCurrentRowData(item);
-                            }}
-                            className=" !text-base cursor-pointer text-[#df9697]"
-                          />
-                        </Tooltip>
-                      </div>
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                            className=" !text-base cursor-pointer text-[gray]"
-                            onClick={() => {
-                              props.setEditDistributor(item)
-                              handleUpdateAccountModal(true);
-                              handleCurrentRowData(item);
-                            }}
-                          />
-
-                        </Tooltip>
-                      </div>
 
 
-                    </div>
-                  </div>
-                </div>
-
-
-              )
-            })}
+                  )
+                })}
+              </>
+              : !props.customerListByUser.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : null}
           </InfiniteScroll>
         </div>
       </div>

@@ -9,11 +9,12 @@ import { ValidationError, Spacer } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
-import { EyeInvisibleOutlined, EyeOutlined,
+import {
+  EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-   import FWLogo from "../../Assets/Images/Logo_new.png";
-   import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
-   import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";
+import FWLogo from "../../Assets/Images/name.jpg"; //ct
+import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
+import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nb
 
 
 /**
@@ -83,11 +84,11 @@ class LoginHr extends Component {
     console.log(this.props);
     return (
       <>
-       <div class="flex justify-between ">
+        <div class="flex justify-between ">
           <div class=" flex justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
             style={{
               // backgroundColor: "#F5F5F5",
-              backgroundColor:"white",
+              backgroundColor: "white",
               flexDirection: "column",
               position: "relative",
               margin: "auto",
@@ -101,12 +102,12 @@ class LoginHr extends Component {
             /> */}
             <img
               className="big-logo"
-              src={FWLogo2}
+              src={FWLogo}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
             <br />
-     
+
             <FormWrapper width="25em">
               <Formik
                 enableReinitialize
@@ -130,31 +131,31 @@ class LoginHr extends Component {
                       component={this.InputComponent}
                     />
                     <Spacer />
-                    <FlexContainer justifyContent="space-between" style={{alignItems:"center"}} >
-                    <div className="login_password">
-                      <div style={{width:"100%"}}>
-                        <Field
-                          name="password"
-                          placeholder="Password"
-                          type={this.state.type}
-                          component={this.InputComponent}
-                        />
-                      </div>
-                      {this.state.show ? (
-                        <EyeOutlined
-                          type="eye"
-                          onClick={this.handleClick}
-                          style={{ alignSelf:"center",marginLeft:"-1.25rem" }}
-                          size="24"
-                        />
-                      ) : (
-                        <EyeInvisibleOutlined
-                          type="eye-invisible"
-                          onClick={this.handleClick}
-                          size="24"
-                          style={{ alignSelf:"center",marginLeft:"-1.25rem" }}
-                        />
-                      )}
+                    <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
+                      <div className="login_password">
+                        <div style={{ width: "100%" }}>
+                          <Field
+                            name="password"
+                            placeholder="Password"
+                            type={this.state.type}
+                            component={this.InputComponent}
+                          />
+                        </div>
+                        {this.state.show ? (
+                          <EyeOutlined
+                            type="eye"
+                            onClick={this.handleClick}
+                            style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                            size="24"
+                          />
+                        ) : (
+                          <EyeInvisibleOutlined
+                            type="eye-invisible"
+                            onClick={this.handleClick}
+                            size="24"
+                            style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                          />
+                        )}
                       </div>
                       {/* <div >
                         <Button
@@ -213,38 +214,38 @@ class LoginHr extends Component {
               &nbsp;
               <Link
                 to="/forgotPassword"
-                style={{ textAlign: "center", fontSize: 14, color:"black" }}
+                style={{ textAlign: "center", fontSize: 14, color: "black" }}
               >
-               Forgot password? 
+                Forgot password?
               </Link>
             </FormWrapper>
             <Spacer />
 
-           
+
           </div>
           <div class="w-1/2 flex justify-center  max-sm:hidden">
-          <img
+            <img
               className="big-logo"
               src={FWLogo1}
-              style={{ }}
+              style={{}}
               alt="Tekorero logo"
             />
           </div>
-         
-          </div>
-          <div
-              className="footer1 w-wk items-center"
-              style={{
-                textAlign: "center",
-                position: "absolute",
-                bottom: 0,
-                color:"white"
-              }}
-            >
-              {/* © {new Date().getFullYear()}, {` `} tekorero.com, All rights
+
+        </div>
+        <div
+          className="footer1 w-wk items-center"
+          style={{
+            textAlign: "center",
+            position: "absolute",
+            bottom: 0,
+            color: "white"
+          }}
+        >
+          {/* © {new Date().getFullYear()}, {` `} tekorero.com, All rights
               reserved. */}
-              © {new Date().getFullYear()}  {` `} tekorero.com, All rights reserved.
-            </div>
+          © {new Date().getFullYear()}  {` `} tekorero.com, All rights reserved.
+        </div>
       </>
     );
   }

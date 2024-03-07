@@ -20,37 +20,6 @@ const AccountActionLeft = (props) => {
         }
     }, [props.viewType, props.userId]);
 
-
-    // const { distributorsByUserId } = props;
-    // var total =
-    //     distributorsByUserId &&
-    //     distributorsByUserId.reduce((a, item) => {
-    //         return (a += item.totalPayableAmount) || 0;
-    //     }, 0);
-    // var cost = `${Number(total).toFixed(2)}`;
-
-    // const { allDistributors } = props;
-    // var total1 =
-    //     allDistributors &&
-    //     allDistributors.reduce((a, item) => {
-    //         return (a += item.totalPayableAmount) || 0;
-    //     }, 0);
-    // var cost1 = `${Number(total1).toFixed(2)}`;
-
-    // var totalA =
-    //     distributorsByUserId &&
-    //     distributorsByUserId.reduce((a, item) => {
-    //         return (a += item.outstanding) || 0;
-    //     }, 0);
-    // var costA = `${Number(totalA).toFixed(2)}`;
-
-    // var totalB =
-    //     allDistributors &&
-    //     allDistributors.reduce((a, item) => {
-    //         return (a += item.outstanding) || 0;
-    //     }, 0);
-    // var costB = `${Number(totalB).toFixed(2)}`;
-
     return (
         <div class="flex items-center" >
             <div class="max-sm:hidden">
@@ -75,36 +44,7 @@ const AccountActionLeft = (props) => {
 
                 )}
             </div>
-            {/* <Tooltip title="Distributor By Group">
-                <AppstoreOutlined
-                    style={{
-                        marginRight: "0.3rem",
-                        color: props.viewType === "group" && "#1890ff",
-                    }}
 
-                    onClick={() => props.setDistributorViewType("group")}
-                />
-            </Tooltip> */}
-
-            {/* {user.designation === "Manager" &&
-                (user.functionName === "Management" || user.functionName === "Sales") && ( */}
-
-            {/* )} */}
-            {/* <Tooltip title="card Distributor">
-                        <Badge size="small"
-                            count={props.allDistributorCount.distributor || 0}>
-                            <span
-                                style={{
-                                    marginRight: "0.5rem",
-                                    color: props.viewType === "card" && "#1890ff",
-                                    fontSize: "17px",
-                                    cursor: "pointer",
-                                }}
-                                onClick={() => props.setDistributorViewType("card")}
-                            > <GridViewIcon style={{fontSize:"1.4rem"}}   />
-                            </span>
-                        </Badge>
-                    </Tooltip> */}
             {user.accountFullListInd === true && user.erpInd === true && (
                 <Tooltip title="All Customers">
                     <Badge size="small"

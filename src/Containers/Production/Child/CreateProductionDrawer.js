@@ -1,4 +1,4 @@
-import React, { lazy, Component,Suspense } from "react";
+import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -22,12 +22,9 @@ class CreateProductionDrawer extends Component {
           onClose={() => handleCreateProduction(false)}
           footer={null}
         >
-
-              
-                <Suspense fallback={<BundleLoader/>}>
-                <CreateProduction/>
-                </Suspense>
-      
+          <Suspense fallback={<BundleLoader />}>
+            <CreateProduction />
+          </Suspense>
 
         </StyledDrawer>
       </>

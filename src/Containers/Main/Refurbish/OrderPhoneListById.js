@@ -160,10 +160,7 @@ function OrderPhoneListById(props) {
                         height={"75vh"}
                     >
                         {props.orderPhoneList.map((item) => {
-                            const currentdate = dayjs().format("DD/MM/YYYY");
-                            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                            const starttimme = dayjs(item.qcStartTime).add(5, 'hours').add(30, 'minutes');
-                            //  const endtimme = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
+
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                             return (
