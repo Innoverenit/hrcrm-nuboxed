@@ -2,6 +2,7 @@ import * as types from "./KPIActionTypes";
 import axios from "axios";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
+import Swal from 'sweetalert2'
 
 /**
  * get all the Sector
@@ -51,7 +52,13 @@ export const addKpi = (sectors,departmentId, cb) => (dispatch) => {
         // dispatch(getKpis(departmentId));
         // {res.data.message?  
         //   message.success(res.data.message):
-        message.success("KPI has been added successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Kpi has been added Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("KPI has been added successfully!");
         // }
         console.log(res);
         dispatch({
@@ -120,8 +127,13 @@ export const updateKpi = ( performanceManagementId,kpi,frequency,cb) => (dispatc
         }
       )
       .then((res) => {
-        
-        message.success("KPI has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Kpi has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("KPI has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_KPI_SUCCESS,

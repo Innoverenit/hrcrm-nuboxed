@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class CustomerDashboardJumpStart extends React.Component{
@@ -85,6 +85,7 @@ render() {
     <div class="flex w-wk">
         <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#F15753,orange)"
             title={
               <FormattedMessage
                 id="app.customerAdded"
@@ -105,8 +106,9 @@ render() {
           />
   
        
-          <JumpStartBox1
+          <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             title={
               <FormattedMessage
                 id="app.ContactsAdded"
@@ -137,8 +139,9 @@ render() {
             isLoading={this.props.fetchingDatewiseReport}
           /> */}
           <div class="flex w-wk">
-          <JumpStartBox2
+          <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             // title="Open Tasks"
             title={
               <FormattedMessage
@@ -162,8 +165,9 @@ render() {
             // }
             
           />
-          <JumpStartBox3
+          <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             title={
               <FormattedMessage
                 id="app.ordersCompleted"

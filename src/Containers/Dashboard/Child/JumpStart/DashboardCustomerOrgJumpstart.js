@@ -2,7 +2,7 @@ import React, {useEffect,lazy} from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getJumpBulblist,getJumpBulblist2,
 getJumpCustomerlist,getJumpCustomerlist2,handleLeadQualifiedDrawer,handleLeadAddedDrawer,
 handleOppoAddedDrawer,handleOppoClosedDrawer
@@ -40,6 +40,7 @@ function DashboardCustomerOrgJumpstart (props){
         <div class=" flex w-full max-sm:flex-col" >
         <div class="flex w-wk">
           <JumpStartBox
+            bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
             title={<FormattedMessage
               id="app.leadsQualified"
@@ -52,7 +53,8 @@ function DashboardCustomerOrgJumpstart (props){
             isLoading={props.user.fetchingJumpstartBulb}
           />
        
-          <JumpStartBox1
+          <JumpStartBox
+                      bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
             title={<FormattedMessage
               id="app.leadsAdded"
@@ -67,7 +69,8 @@ function DashboardCustomerOrgJumpstart (props){
           />
 </div>
 <div class="flex w-wk">
-          <JumpStartBox2
+          <JumpStartBox
+ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
             title={<FormattedMessage
               id="app.opportunitiesAdded"
@@ -79,7 +82,8 @@ function DashboardCustomerOrgJumpstart (props){
              isLoading={props.fetchingJumpstartCustolist}
             
           />
-          <JumpStartBox3
+          <JumpStartBox
+            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
             title={<FormattedMessage
               id="app.opportunitiesClosed"

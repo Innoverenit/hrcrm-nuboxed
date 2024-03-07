@@ -14,11 +14,10 @@ const JumpStartWrapper = styled.div`
   margin: 0.2rem 0.4rem;
   padding: 0.3rem;
   border: 0.0625em solid #ddd;
-  // border-radius: 0.3rem;
   display: flex;
   justify-content: "space-between";
   align-items: center;
-  background: ${(props) => props.bgColor || "#F15753"};
+  background: ${(props) => props.bgColor || "linear-gradient(270deg,#F15753,orange)"};
   color: white !important;
   cursor: ${(props) => (props.clickable ? "pointer" : "")};
   -webkit-box-shadow: 0 0.5em 0.375em -0.375em rgb(46, 44, 44);

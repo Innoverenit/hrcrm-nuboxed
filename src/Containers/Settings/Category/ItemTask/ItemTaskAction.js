@@ -2,6 +2,7 @@ import * as types from "./ItemTaskActionTypes";
 import axios from "axios";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
+import Swal from 'sweetalert2'
 
 /**
  * get all the Sector
@@ -51,7 +52,13 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
         // dispatch(getItemTask(orgId));
         // {res.data.message?  
         //   message.success(res.data.message):
-        message.success("ITEM_TASK has been added successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type has been added Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("ITEM_TASK has been added successfully!");
         // }
         console.log(res);
         dispatch({
@@ -120,8 +127,13 @@ export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("ITEM_TASK has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("ITEM_TASK has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ITEM_TASK_SUCCESS,
