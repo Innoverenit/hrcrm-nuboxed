@@ -6,6 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
@@ -579,7 +580,7 @@ const [rowdata, setrowdata] = useState("");
         height={"75vh"}
       >
       
-      {customerByUserId.map((item) => { 
+      { !fetchingCustomers && customerByUserId.length === 0 ?<NodataFoundPage />:customerByUserId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.address[0].countryAlpha2Code

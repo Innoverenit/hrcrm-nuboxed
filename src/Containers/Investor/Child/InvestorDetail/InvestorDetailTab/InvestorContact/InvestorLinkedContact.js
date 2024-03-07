@@ -17,6 +17,8 @@ import styled from "styled-components";
 import {getContactListByInvestorId,handleUpdateInvestorContactModal} from "../../../../InvestorAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const InvestorUpdateContactModal = lazy(() =>
   import("../InvestorContact/InvestorUpdateContactModal")
@@ -164,7 +166,7 @@ class InvestorLinkedContact extends Component {
       invstrContactUpdateModal,
     } = this.props;
 
-  
+    if (fetchingsInvestorContact) return <BundleLoader/>;
 
     // if (fetchingsInvestorContactError) {
     //   return <APIFailed />;
@@ -202,7 +204,7 @@ class InvestorLinkedContact extends Component {
       </div>
    
         
-      {contactsbyInvestorId.map((item) => { 
+      { !fetchingsInvestorContact && contactsbyInvestorId.length === 0 ?<NodataFoundPage />:contactsbyInvestorId.map((item,index) =>  {
         const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
           } 

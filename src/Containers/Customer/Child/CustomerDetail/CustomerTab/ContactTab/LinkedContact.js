@@ -16,6 +16,8 @@ import {
 } from "../../../../CustomerAction";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
 
@@ -70,7 +72,7 @@ function LinkedContact(props) {
     addUpdateCustomerContactModal,
   } = props;
 
-
+  if (fetchingCustomerContact) return <BundleLoader/>;
   return (
     <>
       
@@ -104,7 +106,7 @@ function LinkedContact(props) {
       </div>
    
         
-      {contactByCustomerId.map((item) => { 
+      { !fetchingCustomerContact && contactByCustomerId.length === 0 ?<NodataFoundPage />:contactByCustomerId.map((item,index) =>  {
          const dataLoc = ` Address : ${
           item.address && item.address.length && item.address[0].address1
         } 

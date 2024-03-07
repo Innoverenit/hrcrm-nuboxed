@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
  import { getCustomerActivityTimeline,getCustomerActivityRecords } from '../../CustomerAction';
+import { BundleLoader } from '../../../../Components/Placeholder';
 
 const CustomerActivityTable = (props) => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const CustomerActivityTable = (props) => {
 
   const { customerActivityTimeline, ratingValue } = props;
   const currentDate = dayjs().format("DD/MM/YYYY");
+  if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
     <>
         <div className="mt-4 ml-4">

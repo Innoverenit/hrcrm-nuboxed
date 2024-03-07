@@ -26,6 +26,7 @@ import {
 } from "../../../Customer/CustomerAction";
 import ReactCountryFlag from 'react-country-flag';
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,handleUpdateInvestorModal} from "../../InvestorAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddInvestorNotesDrawerModal = lazy(() =>
   import("../InvestorDetail/AddInvestorNotesDrawerModal")
 );
@@ -123,7 +124,7 @@ function InvestorTeamCardList(props) {
         height={"75vh"}
       >
         
-      {teamInvestor.map((item) => { 
+        { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
