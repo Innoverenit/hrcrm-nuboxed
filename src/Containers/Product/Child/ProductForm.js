@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,  } from "antd";
-import { Formik, Form, Field,FastField } from "formik";
+import { Button, } from "antd";
+import { Formik, Form, Field, FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { addProduct } from "../ProductAction";
+import { getWorkflowList } from "../../Production/ProductionAction"
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
+import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 class Productform extends Component {
   constructor(props) {
@@ -77,17 +79,20 @@ class Productform extends Component {
     });
   };
 
+
+
   componentDidMount() {
     this.props.getCurrency()
+    this.props.getWorkflowList(this.props.orgId)
   }
   render() {
-    const { addingProduct, addProduct} = this.props;
+    const { addingProduct, addProduct } = this.props;
 
-    const currencyType = this.props.currencies.map((item) => {
+    const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
-        label: item.currencyName || "",
-        value: item.currencyId,
-      };
+        value: item.workflowId,
+        label: `${item.workflow || ""}`
+      }
     })
 
     const currencySymbol = (
@@ -111,13 +116,13 @@ class Productform extends Component {
             imageId: "",
             name: "",
             price: 0,
-            distributorAllowedMargin:0,
+            distributorAllowedMargin: 0,
             distributorMaxMargin: 0,
-            consumerAllowedMargin:0,
+            consumerAllowedMargin: 0,
             consumerMaxMargin: 0,
             subAttribute: "",
             subAttributeName: "",
-            articleNo:"",
+            articleNo: "",
             subCategory: "",
             subCategoryName: "",
             tax: 0,
@@ -125,8 +130,8 @@ class Productform extends Component {
             expireDays: "",
             bestBefore: "",
             alert: "",
-            maxDiscount:0,
-            maxDiscountValidDate:"",
+            maxDiscount: 0,
+            maxDiscountValidDate: "",
             publishInd: true,
             marginType: this.state.percentage ? "Percentage" : "Amount",
             consumerMarginType: this.state.amount ? "Amount" : "Percentage",
@@ -167,299 +172,141 @@ class Productform extends Component {
             ...rest
           }) => (
             <Form>
-            <div class="flex justify-between">
-              <div class="h-full w-[45%]">
-                <div class=" flex  flex-nowrap">
+              <div class="flex justify-between">
+                <div class="h-full w-[45%]">
+                  <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
-                    <div>  
+                    <div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
-                        <Field
-                  name="articleNo"
-                  label="Article #"
-                  placeholder="Article No"
-                  isColumn
-                  width={"100%"}
-                  inlineLabel
-                  component={InputComponent}
-                  
-                />
+                          <Field
+                            name="articleNo"
+                            label="Article #"
+                            placeholder="Article No"
+                            isColumn
+                            width={"100%"}
+                            inlineLabel
+                            component={InputComponent}
+
+                          />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
-                        <Field
-                  name="name"
-                  label="Name"
-                  isColumn
-                  width={"100%"}
-                  inlineLabel
-                  component={InputComponent}
-                  
-                />
+                          <Field
+                            name="name"
+                            label="Name"
+                            isColumn
+                            width={"100%"}
+                            inlineLabel
+                            component={InputComponent}
+
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
-       
-                <div class="flex justify-between mt-4">
-                 <div class="w-[48%]">
-                <Field
-                  isRequired
-                  name="categoryName"
-                  label="Category"
-                  placeholder="Search or Create"
-                  optionLabel="categoryName"
-                  optionValue="categoryName"
-                  url={`${base_url2}/product/category`}
-                  component={LazySelect}
-                  isColumn
-                  inlineLabel
-                  
-                />
-                </div>
 
-                <div class="w-[47%]">
-                <Field
-                  name="subCategoryName"
-                  label="Sub Category"
-                  placeholder="Search or Create"
-                  optionLabel="subCategoryName"
-                  optionValue="subCategoryName"
-                  url={`${base_url2}/product/subcategory`}
-                  component={LazySelect}
-                  isColumn
-                  inlineLabel
-                  
-                />
-                </div>
-                </div>
+                  <div class="flex justify-between mt-4">
+                    <div class="w-[48%]">
+                      <Field
+                        isRequired
+                        name="categoryName"
+                        label="Category"
+                        placeholder="Search or Create"
+                        optionLabel="categoryName"
+                        optionValue="categoryName"
+                        url={`${base_url2}/product/category`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
 
-                <div class="flex justify-between mt-5">
-                <div class="w-[48%]">
-                    <Field
-                      name="attributeName"
-                      label="Attribute"
-                      placeholder="Search or Create"
-                      optionLabel="attributeName"
-                      optionValue="attributeName"
-                      url={`${base_url2}/product/attribute`}
-                      component={LazySelect}
-                      isColumn
-                      inlineLabel
-                      
-                    />
+                      />
+                    </div>
+
+                    <div class="w-[47%]">
+                      <Field
+                        name="subCategoryName"
+                        label="Sub Category"
+                        placeholder="Search or Create"
+                        optionLabel="subCategoryName"
+                        optionValue="subCategoryName"
+                        url={`${base_url2}/product/subcategory`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
                   </div>
-                  <div class="w-[48%]">
-                    <Field
-                      name="subAttributeName"
-                      label="Sub Attribute"
-                      placeholder="Search or Create"
-                      optionLabel="subAttributeName"
-                      optionValue="subAttributeName"
-                      url={`${base_url2}/product/subattribute`}
-                      component={LazySelect}
-                      isColumn
-                      inlineLabel
-                     
-                    />
+
+                  <div class="flex justify-between mt-5">
+                    <div class="w-[48%]">
+                      <Field
+                        name="attributeName"
+                        label="Attribute"
+                        placeholder="Search or Create"
+                        optionLabel="attributeName"
+                        optionValue="attributeName"
+                        url={`${base_url2}/product/attribute`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
+                    <div class="w-[48%]">
+                      <Field
+                        name="subAttributeName"
+                        label="Sub Attribute"
+                        placeholder="Search or Create"
+                        optionLabel="subAttributeName"
+                        optionValue="subAttributeName"
+                        url={`${base_url2}/product/subattribute`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
                   </div>
-                </div>
-                
-                {/* <div class="flex justify-between mt-5">
-                <div class="w-[30%]">
+                  <div>
                     <Field
-                      name="expireDays"
-                      label="Expiry"
+                      label="Workflow"
+                      name="workflowId"
+                      placeholder="Value"
+                      component={SelectComponent}
+                      options={Array.isArray(workFlowOption) ? workFlowOption : []}
+                      inlineLabel
                       width={"100%"}
-                      component={InputComponent}
                       isColumn
-                      inlineLabel
-                      
-                    />
-                  </div>
-                  <div class="w-[30%] mt-3">
-                    <Field
-                      name="bestBefore"
-                      label="Best Before"
-                      width={"100%"}
-                      component={InputComponent}
-                      isColumn
-                      inlineLabel
-                      
-                    />
-                  </div>
-                  <div class="w-[30%]" >
-                    <Field
-                      name="alert"
-                      label="Alert(in days)"
-                      width={"100%"}
-                      component={InputComponent}
-                      isColumn
-                      inlineLabel
-                      
-                    />
-                  </div>
-                </div>
-                <div class="mt-5">
-                <StyledLabel>Subscription Available ?</StyledLabel> &nbsp;
-                <Switch
-                  checkedChildren="Yes"
-                  unCheckedChildren="No"
-                  checked={this.state.subscriptionAvailable}
-                  onChange={this.handleSubscriptionAvailableChange}
-                />
-              </div> */}
-              </div>
-              <div class="h-full w-[45%]">
-                {/* <Spacer style={{ marginTop: "0.625em" }} />
-                <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "29%" }}>
-                    <Field
-                      name="price"
-                      label={currencySymbol}
-                      component={InputComponent}
-                      inlineLabel
-                      isColumn
-                      width={"100%"}
-                     
                     />
                   </div>
 
-                  <div style={{ width: "29%" }}>
-                    <Field
-                      name="tax"
-                      label="GST %"
-                      width={"100%"}
-                      component={InputComponent}
-                      isColumn
-                      inlineLabel
-                     
-                    />
-                  </div>
-                  <div
-                    style={{
-                      width: "39%",
-                      fontWeight: "bold",
-                     // marginTop: "2px",
-                    }}
-                  >
-                    Price Includes GST
-                    <Switch
-                      style={{                      
-                      marginLeft: "0.3125em"
-                     }}
-                      onChange={this.handlePriceGstChange}
-                      checked={this.state.priceGst}
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                    />
-                  </div>
-                </FlexContainer>
-                <Spacer style={{ marginTop: "0.625em" }} />
-                <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "47%" }}>
-                    <Switch
-                      style={{ marginTop: "1.875em" }}
-                      onChange={this.handleAmountChange}
-                      checked={this.state.percentage}
-                      checkedChildren="Percentage"
-                      unCheckedChildren="Amount"
-                    />
-                  </div>
+                  <div class="flex justify-between">
+                    <div class="w-full">
+                      <Field
+                        name="description"
+                        label="Description"
+                        isColumn
+                        width={"33.125em"}
+                        component={TextareaComponent}
+                        inlineLabel
 
-                  <div style={{ width: "47%" }}>
-                    <Field
-                      // isRequired
-                      name="distributorMaxMargin"
-                      label="Margin(Max)"
-                      type="number"
-                      isColumn
-                      component={InputComponent}
-                      use12Hours
-                      inlineLabel
-                      width={"100%"}
-                    />
-                  </div>
-                </FlexContainer>
-                <Spacer style={{ marginTop: "0.75em" }} />
-                <div style={{ width: "100%" }}>
-                <StyledLabel>Margin applicable for B2C</StyledLabel>&nbsp;&nbsp;&nbsp;
-                  <Switch
-                    style={{marginLeft: "0.3125em" }}
-                    onChange={this.handleCustomerMarginChange}
-                    checked={this.state.marginCustomer}
-                    checkedChildren="Yes"
-                    unCheckedChildren="No"
-                  />
-                </div>
-                <Spacer style={{ marginTop: "0.75em" }} />
-                <div style={{ width: "100%" }}>
-                <StyledLabel>Margin applicable for B2B</StyledLabel>&nbsp;
-                  <Switch
-                    style={{marginLeft: "0.3125em" }}
-                    onChange={this.handleDistributorMarginChange}
-                    checked={this.state.marginDistributor}
-                    checkedChildren="Yes"
-                    unCheckedChildren="No"
-                  />
-                </div>
-                <Spacer style={{ marginTop: "0.75em" }} />
-                <div style={{ fontWeight: "bold" }}>
-                  Applicable for B2C ONLY
-                </div>
-                <FlexContainer justifyContent="space-between">
-                  <div style={{ width: "47%" }}>
-                    <Switch
-                      style={{ marginTop: "1.875em" }}
-                      onChange={this.handleConsumerMarginChange}
-                      checked={this.state.amount}
-                      checkedChildren="Amount"
-                      unCheckedChildren="Percentage"
-                    />
-                  </div>
-
-                  <div style={{ width: "47%" }}>
-                    <Field
-                      // isRequired
-                      name="consumerMaxMargin"
-                      label="B2C Margin(Max)"
-                      type="number"
-                      isColumn
-                      width={"100%"}
-                      component={InputComponent}
-                      use12Hours
-                      inlineLabel
-                     
-                    />
-                  </div>
-                </FlexContainer>
-                <Spacer style={{ marginTop: "1.25em" }} /> */}
-
-                <div class="flex justify-between">
-                  <div class="w-full">
-                    <Field
-                      name="description"
-                      label="Description"
-                      isColumn
-                      width={"33.125em"}
-                      component={TextareaComponent}
-                      inlineLabel
-                      
-                    />
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class = "flex justify-end ">
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={addingProduct}
-              >
-                Create
-              </Button>
-            </div>
-          </Form>
+              <div class="flex justify-end ">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={addingProduct}
+                >
+                  Create
+                </Button>
+              </div>
+            </Form>
           )}
         </Formik>
       </>
@@ -467,14 +314,16 @@ class Productform extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, product }) => ({
+const mapStateToProps = ({ auth, product, production }) => ({
   addingProduct: product.addingProduct,
+  workflowProduction: production.workflowProduction,
   addingProductError: product.addingProductError,
   addProductModal: product.addProductModal,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
   groupId: auth.userDetails.groupId,
   currencies: auth.currencies,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -482,6 +331,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addProduct,
       getCurrency,
+      getWorkflowList
     },
     dispatch
   );

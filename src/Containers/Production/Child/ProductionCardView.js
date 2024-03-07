@@ -1,11 +1,13 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Tooltip, Button } from "antd";
+import { Tooltip, Button, Popconfirm } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
+import ButtonGroup from "antd/lib/button/button-group";
 import { getProductionsbyLocId, handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
+import { DeleteOutlined } from "@ant-design/icons";
+import PrintIcon from '@mui/icons-material/Print';
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
@@ -20,6 +22,7 @@ function ProductionCardView(props) {
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
+
 
     function handleParticularRowData(item) {
         setParticularDiscountData(item);
@@ -40,6 +43,49 @@ function ProductionCardView(props) {
         }, 100);
     };
 
+    function StatusIcon({ type, size, iconType, tooltip, status, id, onClick, productId, indStatus }) {
+        const start = type;
+        console.log(start);
+        //////debugger;
+        if (status === type) {
+            size = "30px";
+        } else {
+            size = "16px";
+        }
+        return (
+            <Tooltip title={tooltip}>
+                <Button
+                    className="p-[6px] border-transparent"
+                    ghost={status !== type}
+                    style={{
+                        color: indStatus === type ? "orange" : "grey",
+                    }}
+                    onClick={onClick}
+                >
+                    <i className={`fas ${iconType}`} style={{ fontSize: "22px" }}></i>
+                </Button>
+            </Tooltip>
+        );
+    }
+
+    const [active, setActive] = useState("To Start")
+
+    function handleQCStatus(type, item) {
+        setActive(type)
+
+        // const data = {
+        //     qcStatus: type,
+        //     orderproductId: props.rowData.orderId,
+        //     productId: item.productId,
+        //     qcTechnicianId: props.userId,
+        //     qcInspectionInd: type === "Complete" ? 2 : 1
+        // }
+        // props.updateQCStatus(data, item.productId, props.rowData.orderproductId, handleCallBack)
+    }
+    const handleCallBack = () => {
+        // props.getPhoneOrderIdByUser(props.rowData.orderproductId, props.userId)
+        // props.getOrderByUser(props.locationId, props.userId)
+    }
     const {
         fetchingProductionLocId,
         productionByLocsId,
@@ -52,13 +98,20 @@ function ProductionCardView(props) {
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[8%]">Id</div>
-                        <div className=" md:w-[7%]">Item</div>
-                        <div className=" md:w-[6.1rem]">Start Date</div>
-                        <div className=" md:w-[6rem]">End Date</div>
-                        <div className=" md:w-[4.2rem] ">Status</div>
-                        <div className="md:w-[5.8rem]"></div>
-                        <div className="w-12"> Dispatch </div>
+                        <div className=" md:w-[10rem]">Id</div>
+                        <div className=" md:w-[7rem]">Item</div>
+                        <div className="md:w-[5rem]">Category</div>
+                        <div className="md:w-[5rem]">Attribute</div>
+                        <div className=" md:w-[5rem]">Start Date</div>
+                        <div className=" md:w-[5rem]">End Date</div>
+                        <div className="md:w-[5.2rem]">Workflow</div>
+                        <div className="md:w-[5.2rem]"></div>
+                        <div className=" md:w-[5rem] ">Status</div>
+                        <div className="md:w-[5rem]"></div>
+                        <div className="md:w-[5rem]">Inspected</div>
+                        <div className="md:w-[5rem]"> Dispatch </div>
+                        <div className="md:w-[3rem]"></div>
+                        <div className="md:w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={productionByLocsId.length}
@@ -75,7 +128,7 @@ function ProductionCardView(props) {
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                <div class=" underline text-[#1890ff] cursor-pointer w-[7rem] flex text-xs  font-poppins"
+                                                <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                     onClick={() => {
                                                         handleParticularRowData(item);
                                                         props.handleProductionIDrawer(true)
@@ -85,7 +138,7 @@ function ProductionCardView(props) {
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium flex-col  md:w-[6.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs text-cardBody font-poppins">
                                                     {item.productName}
@@ -95,27 +148,70 @@ function ProductionCardView(props) {
 
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins">
 
-                                                {item.categoryName}
+                                                {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.subCategoryName}
+                                                {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins">
 
-                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-
+                                                {item.startDate}
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.attributeName}
+                                                {item.endDate}
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.workFlow}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                                                <ButtonGroup>
+                                                    <StatusIcon
+                                                        type="In Progress"
+                                                        iconType="fa-hourglass-half"
+                                                        tooltip="In Progress"
+                                                        id={item.productId}
+                                                        indStatus={item.qcStatus}
+                                                        // productId={RowData.productId}
+                                                        status={active}
+                                                        onClick={() => {
+                                                            handleQCStatus("In Progress", item);
+                                                        }}
+                                                    />
+                                                    <StatusIcon
+                                                        type="Complete"
+                                                        iconType="fa-hourglass"
+                                                        tooltip="Complete"
+                                                        indStatus={item.qcStatus}
+                                                        status={active}
+                                                        id={item.productId}
+                                                        // productId={RowData.productId}
+                                                        onClick={() => {
+                                                            handleQCStatus("Complete", item);
+                                                        }}
+                                                    />
+                                                </ButtonGroup>
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                 <Button
@@ -129,25 +225,37 @@ function ProductionCardView(props) {
                                                 </Button>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
 
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                 <MoveToggleProduction item={item} />
                                             </div>
                                         </div>
+                                        <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                <Tooltip title="Print QR Code">
+                                                    <PrintIcon />
+                                                </Tooltip>
+                                            </div>
+                                        </div>
 
-                                        {(user.productionUpdateInd === true || user.role === "ADMIN") && (
+                                        {(user.productionDeleteInd === true || user.role === "ADMIN") && (
                                             <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                    <Tooltip title="Edit">
+                                                    <Tooltip title="Delete">
+                                                        <Popconfirm
+                                                            title="Do you want to delete?"
+                                                        //   onConfirm={() => props.deleteShipperData(item.shipperId)}
+                                                        >
+                                                            <DeleteOutlined
+                                                                className=" !text-base cursor-pointer text-[red]"
 
-                                                        <BorderColorIcon
-                                                            className="!text-base cursor-pointer text-[tomato]"
-                                                        // onClick={() => {
-                                                        //     props.setEditProducts(item);
-                                                        //     handleUpdateProductModal(true);
-                                                        // }}
-                                                        />
+                                                            />
+                                                        </Popconfirm>
                                                     </Tooltip>
                                                 </div>
 

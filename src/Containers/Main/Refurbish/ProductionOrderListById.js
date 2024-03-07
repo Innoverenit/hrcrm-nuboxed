@@ -45,10 +45,6 @@ function ProductionOrderListById(props) {
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
-                        {/* <div className=" md:w-[9.8rem] "><FormattedMessage
-                            id="app.completedunit"
-                            defaultMessage="Completed Units"
-                        /></div> */}
                         <div className="md:w-[5.8rem]"><FormattedMessage
                             id="app.status"
                             defaultMessage="status"
@@ -99,11 +95,6 @@ function ProductionOrderListById(props) {
                                                     </div>
 
                                                 </div>
-                                                {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-sm text-cardBody font-poppins">
-                                                {item.qcCompletePhoneCount}/{item.totalPhone}
-                                            </div>
-                                        </div> */}
                                             </div>
                                             <div className=" flex font-medium  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
