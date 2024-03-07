@@ -12,7 +12,7 @@ import dayjs from "dayjs";
   getWonInvestorPipeLineValue,
   getInvestorContactValue
 } from "../../InvestorAction"
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 class InvestorPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -59,7 +59,9 @@ render() {
   console.log(this.state.endDate.format("YYYY MM DD"))
   return(
     <>
+        <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
+    
     <div class="flex w-full" >
         
         <JumpStartBox
@@ -70,6 +72,7 @@ render() {
                 defaultMessage=" # Opportunities"
               />
             }
+            bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             value={
               this.props.InvestOppValue.opportunity
 
@@ -80,8 +83,9 @@ render() {
           />
   
        
-          <JumpStartBox1
+          <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             title={
               <FormattedMessage
                 id="app.pipeLineValue"
@@ -98,7 +102,8 @@ render() {
           
           />
 
-          <JumpStartBox2
+          <JumpStartBox
+          bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
             // title="Open Tasks"
             title={
@@ -116,7 +121,8 @@ render() {
           
             
           />
-          <JumpStartBox3
+          <JumpStartBox
+           bgColor="linear-gradient(270deg,black,grey)"
             noProgress
             title={
               <FormattedMessage
@@ -151,10 +157,12 @@ render() {
           <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
         </FlexContainer> */}
       </div>
+      <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
         <div class="flex w-full" >
             
             <JumpStartBox
+             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
                   <FormattedMessage
@@ -172,7 +180,8 @@ render() {
               />
       
            
-              <JumpStartBox1
+              <JumpStartBox
+               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
                   <FormattedMessage
@@ -190,7 +199,8 @@ render() {
               
               />
     
-              <JumpStartBox2
+              <JumpStartBox
+               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 // title="Open Tasks"
                 title={

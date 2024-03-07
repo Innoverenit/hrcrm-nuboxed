@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 // import dayjs from "dayjs";
 // import {getProspectWeightedValue,getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
-import { JumpStartBox, JumpStartBox1, JumpStartBox2, JumpStartBox3 } from "../../../Components/UI/Elements";
+import { JumpStartBox,  } from "../../../Components/UI/Elements";
 class AccountPulseForm extends React.Component {
     // constructor() {
     //     super();
@@ -58,6 +58,7 @@ class AccountPulseForm extends React.Component {
                                 defaultMessage=" # Opportunities"
                             />
                         }
+                        bgColor="linear-gradient(270deg,#F15753,orange)"
                     // value={this.props.OppValue.CustomerOppertunityDetails }
                     // isLoading={this.props.fetchingOppValue} 
                     //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -65,7 +66,7 @@ class AccountPulseForm extends React.Component {
                     />
 
 
-                    <JumpStartBox1
+                    <JumpStartBox
                         noProgress
                         title={
                             <FormattedMessage
@@ -73,6 +74,7 @@ class AccountPulseForm extends React.Component {
                                 defaultMessage="Pipe line value"
                             />
                         }
+                        bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
 
                     // value={pipeLineValue}
                     // isLoading={this.props.fetchingPipelineValue} 
@@ -80,8 +82,9 @@ class AccountPulseForm extends React.Component {
 
                     />
 
-                    <JumpStartBox2
+                    <JumpStartBox
                         noProgress
+                        bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                         // title="Open Tasks"
                         title={
                             <FormattedMessage
@@ -95,8 +98,9 @@ class AccountPulseForm extends React.Component {
 
 
                     />
-                    <JumpStartBox3
+                    <JumpStartBox
                         noProgress
+                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                         title={
                             <FormattedMessage
                                 id="app.#Contacts"

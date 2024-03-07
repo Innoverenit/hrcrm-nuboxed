@@ -3,7 +3,7 @@ import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getDateWiseList,getSalesDateWiseList,getJumpBulblist,getJumpBulblist2,getJumpBulblist3,getavgHour} from "../../DashboardAction";
 import { FormattedMessage } from "react-intl";
 
@@ -74,6 +74,7 @@ render() {
         <div class="flex w-full" >
         
           <JumpStartBox
+ bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
             title={
               <FormattedMessage
@@ -87,7 +88,8 @@ render() {
             isLoading={this.props.user.fetchingJumpstartBulb}
           />
        
-          <JumpStartBox1
+          <JumpStartBox
+                        bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
             title={
               <FormattedMessage
@@ -105,7 +107,8 @@ render() {
     
           />
 
-          <JumpStartBox2
+          <JumpStartBox
+ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
             title={
               <FormattedMessage
@@ -121,7 +124,8 @@ render() {
              isLoading={this.props.fetchingJumpstartBulb2}
             
           />
-          <JumpStartBox3
+          <JumpStartBox
+                       bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
             title={
               <FormattedMessage
