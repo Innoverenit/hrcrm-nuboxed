@@ -1,6 +1,6 @@
 import * as types from "./IdProofActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 /**
@@ -50,7 +50,13 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
       .then((res) => {
         {res.data.message?  
           message.success(res.data.message):
-        message.success("Identity has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Identity has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Identity has been added successfully!");
         }
         // dispatch(getIdProofs());
         console.log(res);
@@ -86,7 +92,13 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Identity has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Identity has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("Identity has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ID_PROOF_SUCCESS,

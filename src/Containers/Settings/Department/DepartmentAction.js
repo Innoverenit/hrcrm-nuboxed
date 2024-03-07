@@ -2,6 +2,7 @@ import * as types from "./DepartmentActionTypes";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 /**
  * get all the Department
  */
@@ -49,7 +50,13 @@ export const addDepartments = (departments, cb) => (dispatch) => {
     .then((res) => {
       {res.data.message?  
         message.success(res.data.message):
-      message.success("Department has been added successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Department has been added Succefully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+      // message.success("Department has been added successfully!");
       }
       dispatch(getDepartments());
       console.log(res);
@@ -125,12 +132,18 @@ export const updateDepartments = (departmentId, departmentName, sectorId, sector
       }
     )
     .then((res) => {
-      message.success("Department has been updated successfully!");
+      // message.success("Department has been updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_DEPARTMENTS_SUCCESS,
         payload: res.data,
       });
+      Swal.fire({
+        icon: 'success',
+        title: 'Department has been updated Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
     })
     .catch((err) => {
       console.log(err);

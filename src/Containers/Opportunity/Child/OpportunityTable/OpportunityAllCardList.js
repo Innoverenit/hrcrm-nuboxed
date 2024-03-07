@@ -32,6 +32,7 @@ import {
          getOpportunitySKill,
          getFullOpportunity,
 } from "../../OpportunityAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
@@ -407,7 +408,7 @@ function OpportunityAllCardList(props) {
         height={"75vh"}
       >
  <CardWrapper>      
-              {allOpportunity.map((item) => {
+ { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

@@ -38,6 +38,7 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -473,7 +474,7 @@ function ContactCardList(props) {
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
-      {filterData.map((item) => { 
+        { !fetchingContacts && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

@@ -234,7 +234,7 @@ class Dashboard extends Component {
 
   
     </div>
-    <MainWrapper style={{marginTop:"3rem"}}
+    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"18rem"}}
     >
     <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">

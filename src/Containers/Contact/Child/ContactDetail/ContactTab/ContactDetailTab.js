@@ -146,6 +146,7 @@ class ContactDetailTab extends Component {
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
           <AddDocumentModal
+                  contactId={ contactId }
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

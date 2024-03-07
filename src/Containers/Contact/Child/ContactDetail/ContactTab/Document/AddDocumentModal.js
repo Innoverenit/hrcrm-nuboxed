@@ -91,6 +91,7 @@ class AddDocumentModal extends Component {
       documentTypeName,
       documentTypeId,
       oppoStages,
+      contactId,
       subscriptionType,
       handleButtonClick,
       organization,
@@ -111,7 +112,7 @@ class AddDocumentModal extends Component {
               // enableReinitialize
               initialValues={{
                 documentTypeId: "",
-                contactId: this.props.contactInVestDetail.contactId,
+                contactId:contactId,
                 documentTitle: "", //input
                 documentDescription: "",
                 // contactId:props.contactInVestDetail.

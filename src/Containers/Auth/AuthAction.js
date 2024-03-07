@@ -1575,3 +1575,10 @@ export const forgotUserPassword = (data,cb) => (dispatch) => {
       cb && cb("failure");
     });
 };
+
+export const handleFAQModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_FAQ_MODAL,
+    payload: modalProps,
+  });
+};
