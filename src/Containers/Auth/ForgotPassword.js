@@ -116,7 +116,7 @@ import styled from "styled-components";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
-import {forgotUserPassword,validateOtpurL,verifyEmailurL} from "./AuthAction";
+import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 /**
  * yup validation scheme for set Password
  */
@@ -184,7 +184,7 @@ class ForgotPassword extends Component {
               >
                 <img
                   className="big-logo"
-                  src={FWLogo2}
+                  src={FWLogo}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
@@ -242,7 +242,7 @@ class ForgotPassword extends Component {
                                   width: "100%",
                                   margin: "7%",
                                 }}
-             
+
                               >
                                 Send OTP
                               </Button>
@@ -265,17 +265,17 @@ class ForgotPassword extends Component {
                                 type="primary"
                                 disabled={!values.otp.length}
                                 onClick={() => {
-                                    this.props.validateOtpurL({
-                                      emailId: values.emailId,
-                                      otp: values.otp,
-                                    });
+                                  this.props.validateOtpurL({
+                                    emailId: values.emailId,
+                                    otp: values.otp,
+                                  });
 
                                 }}
                                 style={{
                                   width: "100%",
                                   margin: "7%",
                                 }}
-                                // disabled={!this.state.sendOtpClicked}
+                              // disabled={!this.state.sendOtpClicked}
                               >
                                 Validate
                               </Button>
@@ -427,7 +427,7 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      forgotUserPassword,validateOtpurL,verifyEmailurL
+      forgotUserPassword, validateOtpurL, verifyEmailurL
     },
     dispatch
   );
