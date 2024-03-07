@@ -3,7 +3,7 @@ import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getDateWiseList,getSalesDateWiseList,getJumpBulblist,getJumpBulblist2,
   getJumpBulblist3,getavgHour,getJumpTasklist,getTasklist,getJumpTask2list} from "../../DashboardAction";
 import { FormattedMessage } from "react-intl";
@@ -76,6 +76,7 @@ render() {
         <div class=" flex w-full max-sm:flex-col" >
         <div class="flex w-wk">
           <JumpStartBox
+            bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
             title={   <FormattedMessage
               id="app.openTasks"
@@ -87,7 +88,8 @@ render() {
             isLoading={this.props.fetchingTaskper}
           />
        
-          <JumpStartBox1
+          <JumpStartBox
+           bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
             title={   <FormattedMessage
               id="app.tasksDeadline"
@@ -101,7 +103,8 @@ render() {
           />
 </div>
 <div class="flex w-wk">
-          <JumpStartBox2
+          <JumpStartBox
+          bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
             title={   <FormattedMessage
               id="app.highPriorityTasks"
@@ -111,7 +114,8 @@ render() {
             value={ this.props.jumpstartTasklistCount.no}
             isLoading={this.props.fetchingJumpstartTasklist}
           />
-          <JumpStartBox3
+          <JumpStartBox
+           bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
             title={   <FormattedMessage
               id="app.status"

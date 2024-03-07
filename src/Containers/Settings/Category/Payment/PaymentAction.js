@@ -1,5 +1,6 @@
 import * as types from "./PaymentActionTypes";
 import axios from "axios";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
 
@@ -51,7 +52,13 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
         // dispatch(getPayments(orgId));
         // {res.data.message?  
         //   message.success(res.data.message):
-        message.success("PAYMENT has been added successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment has been added Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("PAYMENT has been added successfully!");
         // }
         console.log(res);
         dispatch({
@@ -120,8 +127,13 @@ export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("PAYMENT has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("PAYMENT has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_PAYMENT_SUCCESS,

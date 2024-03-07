@@ -19,37 +19,6 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
   <ApplicationWrapper>
     <MainWrapper>
       <StyledMenu>
-        {/* <StyledMenuItem key="0">
-          <a
-            href="#"
-            style={{
-              color:
-                pathName === "/opportunity-stage"
-                  ? "#1890ff"
-                  : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/opportunity-stage")}
-          >
-            Sales Process
-          </a>
-        </StyledMenuItem>
-        jhjgjhgjh */}
-
-        {/* <StyledMenuItem key="1">
-          <a
-            href="#"
-            style={{
-              color:
-                pathName === "/opportunity-source"
-                  ? "#1890ff"
-                  : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/opportunity-source")}
-          >
-            Sources
-          </a>
-        </StyledMenuItem> */}
-   
 
         <StyledMenuItem key="1">
           <a
@@ -167,22 +136,11 @@ class SettingsDropdown extends Component {
           />
         }
       >
-        <a href="#" style={{ height: 45, marginRight: 10 }}>
+        <a href="#" style={{ height: 56, marginRight: 10 }}>
           <div class=" flex items-center h-full" >
-            <SettingOutlined 
+            <SettingOutlined className="!text-4 cursor-pointer text-[blue] "
               type="setting"
               style={{
-                fontSize:"1rem",
-                // fontSize:
-                //   pathName === "/opportunity-stage" ||
-                //     pathName === "/opportunity-source" ||
-                //     pathName === "/organization" ||
-                //     pathName === "/rules" ||
-                    
-                //     // pathName === "/library" ||
-                //     pathName === "/recruite" 
-                //     ? "1.75em"
-                //     : "1.375em",
                 color:
                   pathName === "/opportunity-stage" ||
                     pathName === "/opportunity-source" ||

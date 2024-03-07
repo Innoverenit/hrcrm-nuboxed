@@ -2,7 +2,7 @@ import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { JumpStartBox, JumpStartBox1, JumpStartBox2, JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
   getJumpOrderDetail
@@ -20,6 +20,7 @@ function DashboardOrderJumpstart(props) {
         <div class=" flex w-full max-sm:flex-col" >
           <div class="flex w-wk">
             <JumpStartBox
+              bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={<FormattedMessage
                 id="app.ordersAdded"
@@ -31,7 +32,8 @@ function DashboardOrderJumpstart(props) {
             // isLoading={props.fetchingJumpOrderCount}
             />
 
-            <JumpStartBox1
+            <JumpStartBox
+            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title={<FormattedMessage
                 id="app.ordersopen"
@@ -44,7 +46,8 @@ function DashboardOrderJumpstart(props) {
             />
           </div>
           <div class="flex w-wk">
-            <JumpStartBox2
+            <JumpStartBox
+bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.ordersclosed"
@@ -55,7 +58,8 @@ function DashboardOrderJumpstart(props) {
             // value={props.orderinDashboard.completeOrder}
             // isLoading={props.fetchingJumpOrderCount}
             />
-            <JumpStartBox3
+            <JumpStartBox
+                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={<FormattedMessage
                 id="app.orderscancelled"
@@ -73,6 +77,7 @@ function DashboardOrderJumpstart(props) {
         <div class=" flex w-full max-sm:flex-col" >
           <div class="flex w-wk">
             <JumpStartBox
+              bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={<FormattedMessage
                 id="app.financeadded"
@@ -84,7 +89,8 @@ function DashboardOrderJumpstart(props) {
             // isLoading={props.user.fetchingJumpstartInvestor}
             />
 
-            <JumpStartBox1
+            <JumpStartBox
+                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title={<FormattedMessage
                 id="app.financeopen"
@@ -97,7 +103,8 @@ function DashboardOrderJumpstart(props) {
             />
           </div>
           <div class="flex w-wk">
-            <JumpStartBox2
+            <JumpStartBox
+ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.financeclosed"
@@ -108,7 +115,8 @@ function DashboardOrderJumpstart(props) {
             // value={props.financeDetail.opportunityAdded}
             // isLoading={props.fetchingJumpstartInvestor3}
             />
-            <JumpStartBox3
+            <JumpStartBox
+                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={<FormattedMessage
                 id="app.financecancelled"

@@ -37,6 +37,7 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
@@ -489,7 +490,7 @@ const LeadsTeamCardList = (props) => {
         loader={fetchingLeads?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
-        {teamLeads.map((item) => {
+       { !fetchingLeads && teamLeads.length === 0 ?<NodataFoundPage />:teamLeads.map((item,index) =>  {
           const currentdate = moment().format("DD/MM/YYYY");
           const date = moment(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code

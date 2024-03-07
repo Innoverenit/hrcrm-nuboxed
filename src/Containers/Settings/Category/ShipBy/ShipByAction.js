@@ -1,6 +1,6 @@
 import * as types from "./ShipByActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
 
@@ -52,7 +52,13 @@ export const addShipBy = (sectors,orgId, cb) => (dispatch) => {
         // dispatch(getShipByData(orgId));
         {res.data.message?  
           message.success(res.data.message):
-        message.success("shipBy has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'ShipBy has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("shipBy has been added successfully!");
         }
         console.log(res);
         dispatch({
@@ -121,8 +127,13 @@ export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("SHIPBY has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'ShipBy has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("SHIPBY has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_SHIPBY_SUCCESS,

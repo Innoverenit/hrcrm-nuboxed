@@ -38,6 +38,7 @@ import {
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function OpportunityLostCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -95,7 +96,7 @@ function OpportunityLostCard(props) {
                 height={"75vh"}
               >
               
-                      {lostOpportunity.map((item) => {
+              { !fetchinglostOpportunity && lostOpportunity.length === 0 ?<NodataFoundPage />:lostOpportunity.map((item,index) =>  {
                          
                          var findProbability = item.probability;
                          item.stageList.forEach((element) => {

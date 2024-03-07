@@ -34,6 +34,7 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -487,7 +488,7 @@ if (isMobile){
         height={"75vh"}
       >
         
-      {teamContact.map((item) => { 
+        { !fetchingContacts && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
         
          const currentdate = moment().format("DD/MM/YYYY");
          const date = moment(item.creationDate).format("DD/MM/YYYY");

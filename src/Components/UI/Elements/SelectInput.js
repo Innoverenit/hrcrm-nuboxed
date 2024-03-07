@@ -4,7 +4,6 @@ const SelectInput = styled(StyledSelect)`
   .ant-input{
       background-color: ${props => props.theme.backgroundColor};
       color: ${props => props.theme.color};
-      display: block;
       margin: 0 0 0.42rem 0;
       width:21.875em;
       outline: none;

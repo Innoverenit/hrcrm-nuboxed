@@ -34,6 +34,7 @@ import {
          deleteLostOpportunity,
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
@@ -94,7 +95,7 @@ function DealWonCard(props) {
                 loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
                 height={"75vh"}
               >
-                 {wonDeals.map((item) => {
+                { !fetchingWonDeals && wonDeals.length === 0 ?<NodataFoundPage />:wonDeals.map((item,index) =>  {
                          
                          var findProbability = item.probability;
                          item.stageList.forEach((element) => {

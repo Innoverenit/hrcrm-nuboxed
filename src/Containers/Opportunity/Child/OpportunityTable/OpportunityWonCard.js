@@ -36,6 +36,7 @@ import {
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function OpportunityWonCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -427,7 +428,7 @@ function OpportunityWonCard(props) {
         loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
-{wonOpportunity.map((item) => {
+{ !fetchingWonOpportunity && wonOpportunity.length === 0 ?<NodataFoundPage />:wonOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

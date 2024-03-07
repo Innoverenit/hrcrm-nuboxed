@@ -8,6 +8,8 @@ import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
 import {setDashboardViewType} from "./DashboardAction";
+import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
+import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -159,8 +161,7 @@ class Dashboard extends Component {
     <StackedClosureChartAll />
   ) : this.state.activeButton === "Investors" ? (
     <DashInvestorsChartTab />
-  ) : this.state.activeButton === "Accounts" ? (
-    <CustomerGoogleMap />
+
   ) : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
   ) : this.state.activeButton === "Finance" ? (
@@ -234,7 +235,7 @@ class Dashboard extends Component {
 
   
     </div>
-    <MainWrapper style={{marginTop:"3rem"}}
+    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"18rem"}}
     >
     <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
@@ -249,7 +250,8 @@ class Dashboard extends Component {
                  
                     { viewType==="ALL" || this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                       />)
-                  
+                       : this.state.activeButton === "Accounts" ? (
+                        <CustomerGoogleMap />)
                   //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)
             
            
@@ -264,12 +266,21 @@ class Dashboard extends Component {
     </div>
 
      <div class="w-[47%] max-sm:w-wk">
+  
      <div class=" flex flex-col display-block" >
-       <div class=" flex justify-between" >
-      
-                  {this.state.activeButton==="Customer"&&
-       <DashboardFinanceJumpstart/>
+       <div class=" flex flex-col  justify-between" >
+       {this.state.activeButton==="Accounts"&&
+       <CustomerDashJumpstart/>
              }
+                  {this.state.activeButton==="Customer"&&
+       <DashboardProspectJumpstart/>
+             }
+                <div class=" flex flex-col justify-between" >
+                     {this.state.activeButton==="Customer"&&
+       <StackedClosureChart />
+             }
+             </div>
+
 
  
  

@@ -8,7 +8,7 @@ import {getProspectWeightedValue,
   getWonCustomerPipeLineValue,
   getWonCustomerWeightedValue,
   getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 class CustomerPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -64,20 +64,21 @@ render() {
             title={
               <FormattedMessage
                 id="app.opportunities"
-                defaultMessage=" # Opportunities"
+                defaultMessage="#Open Opportunities"
               />
             }
             value={
               this.props.OppValue.CustomerOppertunityDetails
 
             }
+            bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             isLoading={this.props.fetchingOppValue} 
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
   
        
-          <JumpStartBox1
+          <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -85,7 +86,7 @@ render() {
                 defaultMessage="Pipe line value"
               />
             }
-          
+            bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             value={
               pipeLineValue
 
@@ -95,25 +96,24 @@ render() {
           
           />
 
-          <JumpStartBox2
-            noProgress
-            // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.weightedValue"
-                defaultMessage="Weighted Value"
-              />
-            }
-            value={
-              weightedValue
-
-            }
-            isLoading={this.props.fetchingWeightedValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
+<JumpStartBox
+        noProgress
+        title={
+          <FormattedMessage
+            id="app.opportunities"
+            defaultMessage=" Opportunities Won"
           />
-          <JumpStartBox3
+        }
+        value={
+          this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+
+        }
+        bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
+        isLoading={this.props.fetchingWonCustomerOppValue} 
+        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+      
+      />
+      <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -126,11 +126,14 @@ render() {
               this.props.contactValue.CustomerContactDetails
 
             }
+            bgColor="linear-gradient(270deg,black,grey)"
             isLoading={this.props.fetchingContactValue} 
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
             
           />
+        
+        
            
 
         </div>
@@ -148,25 +151,27 @@ render() {
       </div>
 
 <div class=" flex flex-row w-full mt-4" >
-<div class="flex w-full" >
+{/* <div class="flex w-full" >
     
-    <JumpStartBox
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.opportunities"
-            defaultMessage="Won Opportunities"
+<JumpStartBox2
+            noProgress
+            // title="Open Tasks"
+            title={
+              <FormattedMessage
+                id="app.weightedValue"
+                defaultMessage="Weighted Value"
+              />
+            }
+            value={
+              weightedValue
+
+            }
+            isLoading={this.props.fetchingWeightedValue} 
+            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+          
+            
           />
-        }
-        value={
-          this.props.WonCustomerOpp.CustomerWonOppertunityDetails
-
-        }
-        isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
-
+  
    
       <JumpStartBox1
         noProgress
@@ -208,7 +213,7 @@ render() {
  
        
 
-    </div>
+    </div> */}
 
     {/* <FlexContainer>
       <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />

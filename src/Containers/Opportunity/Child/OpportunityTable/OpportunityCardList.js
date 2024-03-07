@@ -39,6 +39,7 @@ import {
 import AddOpportunityDrawerModal from "../../Child/OpportunityTable/AddOpportunityDrawerModal"
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -130,7 +131,7 @@ function OpportunityCardList(props) {
             >
 
 <div class="flex justify-center  flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
-    {opportunityByUserId.map((item) => {
+{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                    item.stageList.forEach((element) => {

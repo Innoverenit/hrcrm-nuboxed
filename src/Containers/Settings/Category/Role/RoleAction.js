@@ -1,6 +1,6 @@
 import * as types from "./RoleActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd";
 
@@ -46,7 +46,13 @@ export const getRoles = (orgId) => (dispatch) => {
         // message.error(roleType.message)
         {res.data.message?  
           message.success(res.data.message):
-        message.success("Role has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Role has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Role has been added successfully!");
         }
         // dispatch(getRoles(orgId));
         console.log(res);
@@ -94,7 +100,13 @@ export const getRoles = (orgId) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Role has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Role has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("Role has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ROLES_SUCCESS,
@@ -200,7 +212,13 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
     .then((res) => {
       {res.data.message?  
         message.success(res.data.message):
-      message.success("Role has been added successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Role has been added Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+      // message.success("Role has been added successfully!");
       }
       console.log(res);
       dispatch({
@@ -241,7 +259,13 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
       }
     )
     .then((res) => {
-      message.success("Role has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Role has been updated Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
+      // message.success("Role has been updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_TALENT_ROLES_SUCCESS,

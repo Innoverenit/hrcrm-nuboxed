@@ -13,6 +13,7 @@ import {
 } from "../../../../DealAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class LinkedDocuments extends Component {
   componentDidMount() {
@@ -39,7 +40,7 @@ class LinkedDocuments extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
-                  {this.props.documentsByInnOppId.map((item) => {
+                  { !this.props.fetchingDocumentsByDealId && this.props.documentsByInnOppId.length === 0 ?<NodataFoundPage />:this.props.documentsByInnOppId.map((item,index) =>  {
                       
                       return (
                           <div >

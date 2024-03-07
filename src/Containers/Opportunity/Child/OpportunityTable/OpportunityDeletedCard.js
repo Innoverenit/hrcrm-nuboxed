@@ -15,6 +15,7 @@ import {
   getDeletedOpportunity,
 } from "../../OpportunityAction";
 import ReinstateToggle from "../../Child/ReinstateToggle"
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function OpportunityDeletedCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -49,7 +50,7 @@ function OpportunityDeletedCard(props) {
         height={"86vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">       
-              {deletedOpportunity.map((item) => {
+{ !fetchingDeletedOpportunity && deletedOpportunity.length === 0 ?<NodataFoundPage/>:deletedOpportunity.map((item,index) =>  {
                  
                  var findProbability = 0;
                  return (

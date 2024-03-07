@@ -35,6 +35,7 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import {  Tooltip, Select } from "antd";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const Option = Select;
 const UpdateContactModal = lazy(() =>
   import("../UpdateContact/UpdateContactModal")
@@ -474,7 +475,7 @@ return (
         height={"75vh"}
       >
         
-      {allContacts.map((item) => { 
+        { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

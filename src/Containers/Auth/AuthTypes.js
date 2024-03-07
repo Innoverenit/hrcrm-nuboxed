@@ -2,6 +2,9 @@
 
 export const TOGGLE_SERVER = "TOGGLE_SERVER";
 
+
+export const HANDLE_FAQ_MODAL = "HANDLE_FAQ_MODAl"
+
 // register action types
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";

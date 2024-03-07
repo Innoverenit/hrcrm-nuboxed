@@ -1,6 +1,7 @@
 import * as types from "./CustomerActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
 
@@ -52,7 +53,13 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
         // dispatch(getCustomer(orgId));
         {res.data.message?  
           message.success(res.data.message):
-        message.success("CUSTOMER has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Type has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Type has been added successfully!");
         }
         console.log(res);
         dispatch({
@@ -121,8 +128,13 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("CUSTOMER has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("CUSTOMER has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_CUSTOMER_SUCCESS,

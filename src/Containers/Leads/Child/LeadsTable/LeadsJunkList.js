@@ -27,6 +27,7 @@ import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
@@ -411,7 +412,7 @@ Resinstate
         loader={fetchingJunkedLeads?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
-      {junkedLeadsData.map((item) => { 
+ { !fetchingJunkedLeads && junkedLeadsData.length === 0 ?<NodataFoundPage />:junkedLeadsData.map((item,index) =>  {
          const currentdate = moment().format("DD/MM/YYYY");
          const date = moment(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.address[0].country_alpha2_code

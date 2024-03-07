@@ -1,6 +1,7 @@
 import * as types from "./EducationActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 
@@ -43,7 +44,13 @@ export const addEducations = (education, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Education has been added successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Education has been added Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
+      // message.success("Education has been added successfully!");
       // dispatch(getEducations());
       console.log(res);
       dispatch({
@@ -77,7 +84,13 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
       }
     )
     .then((res) => {
-      message.success("Education has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Education has been updated Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
+      // message.success("Education has been updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_EDUCATION_SUCCESS,
