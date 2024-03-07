@@ -47,7 +47,7 @@ const CustomerGoogleMap = (props) => {
 //       ));
 
   const mapOptions = {
-    zoom: 10,
+    zoom: 5,
     center: center || defaultCoordinates, // Use center or defaultCoordinates
     draggable: true,
     zoomControl: true,
@@ -66,8 +66,8 @@ const CustomerGoogleMap = (props) => {
  
 
   return (
-    <GoogleMap
-      mapContainerStyle={{ height: '18rem', width: '44rem' }}
+    <GoogleMap 
+       mapContainerStyle={{ height: '17rem',overflow:"hidden",marginTop:"0.2rem", width: '44rem' }}
       options={mapOptions}
     //   onLoad={handleOnLoad}
       center={center || defaultCoordinates} // Use center or defaultCoordinates

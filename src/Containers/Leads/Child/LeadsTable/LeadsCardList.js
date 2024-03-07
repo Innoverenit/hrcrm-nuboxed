@@ -30,6 +30,7 @@ import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
 const OpenCETmodal = lazy(() => import("./OpenCETmodal"));
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
@@ -514,7 +515,7 @@ const LeadsCardList = (props) => {
         height={"75vh"}
         style={{overflowX:"hidden"}}
       >
-        {leadsAllData.map((item) => {
+           { !fetchingLeads && leadsAllData.length === 0 ?<NodataFoundPage />:leadsAllData.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code

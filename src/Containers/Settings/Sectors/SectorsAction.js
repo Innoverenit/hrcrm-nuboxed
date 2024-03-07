@@ -52,7 +52,13 @@ export const addSectors = (sectors, cb) => (dispatch) => {
         // dispatch(getSectors());
         {res.data.message?  
           message.success(res.data.message):
-        message.success("Sector has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Sector has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Sector has been added successfully!");
         }
         console.log(res);
         dispatch({
@@ -121,8 +127,13 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("Sector has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sector has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("Sector has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_SECTORS_SUCCESS,

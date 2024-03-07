@@ -4,6 +4,7 @@ import { getOpportunityListByUserId } from "../Opportunity/OpportunityAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
+import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class OpportunityCardView extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class OpportunityCardView extends Component {
     return (
       <>
         <CardWrapper>
-          {this.props.opportunityByUserId.map((item) => {
+        { !this.props.fetchingOpportunity && this.props.opportunityByUserId.length === 0 ?<NodataFoundPage />:this.props.opportunityByUserId.map((item,index) =>  {
             return (
               <CardElement>
                 <CardImage>
@@ -41,6 +42,7 @@ class OpportunityCardView extends Component {
 
 const mapStateToProps = ({ opportunity, auth }) => ({
   userId: auth.userDetails.userId,
+  fetchingOpportunity:opportunity.fetchingOpportunity,
   opportunityByUserId: opportunity.opportunityByUserId,
 });
 

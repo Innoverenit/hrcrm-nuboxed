@@ -1,6 +1,6 @@
 import * as types from "./DesignationActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 /**
@@ -50,7 +50,13 @@ export const addDesignations = (designation, cb) => (dispatch) => {
       .then((res) => {
         {res.data.message?  
           message.success(res.data.message):
-         message.success("Designation has been added successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Designation has been added Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        //  message.success("Designation has been added successfully!");
         }
         // dispatch(getDesignations());
         console.log(res);
@@ -123,7 +129,13 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Designation has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Designation has been updated Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("Designation has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_DESIGNATIONS_SUCCESS,

@@ -29,6 +29,7 @@ import { Button, Tooltip } from "antd";
 import StatusCustomerToggle from "./StatusCustomerToggle";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateLeadsModal =lazy(()=>import("../UpdateLeads/UpdateLeadsModal"));
 const AddLeadsEmailDrawerModal =lazy(()=>import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const BorderColorIcon =lazy(()=>import("@mui/icons-material/BorderColor"));
@@ -480,7 +481,7 @@ const LeadsAllCardList = (props) => {
         loader={fetchingAllLeads?<div  class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
-        {allleadsInfo.map((item) => {
+             { !fetchingAllLeads && allleadsInfo.length === 0 ?<NodataFoundPage />:allleadsInfo.map((item,index) =>  {
           const currentdate = moment().format("DD/MM/YYYY");
           const date = moment(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code

@@ -1,6 +1,8 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import HelpIcon from '@mui/icons-material/Help';
 import { connect } from "react-redux";
+
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -9,6 +11,7 @@ import { bindActionCreators } from "redux";
 import {
   Layout,
   message,
+  Tooltip
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
@@ -29,6 +32,7 @@ import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import FAQPage from "./FAQ/FAQPage";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -348,9 +352,11 @@ function MainApp(props) {
               height: 50,
             }}
           > */}
-              <div class=" h-3 ml-[2.5rem] "
+              <div class="  h-3 ml-[2.5rem] "
                  className="logo1"
                 style={{
+                  display:"flex",
+                  width:"-webkit-fill-available",
                   justifyContent: !collapsed ? "center" : "center",
                
                 }}
@@ -531,15 +537,7 @@ function MainApp(props) {
                     />
                   </FloatButton.Group> */}
 
-                  {/* <Link
-                                        to='/opportunity-stage'
-                                        style={{ height: 45, marginRight: 20 }}>
-                                        <FlexContainer alignItems='center' style={{ height: '100%' }}>
-                                            <Badge count={0} >
-                                                <Icon type="setting" style={{ fontSize: '1.375em' }} />
-                                            </Badge>
-                                        </FlexContainer>
-                                    </Link> */}
+               
                   {/* <Subscription /> */}
                   <div  class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
                       onClick={() => {
@@ -580,51 +578,24 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
+                  <div class=" flex">
                   {user.settingsAccessInd === true || user.role === "ADMIN" ?
   <SettingsDropdown />
   : null
 }
-                  {/* {user.role === "ADMIN" ?
-                    <IsAuthorized>
-
-                      <SettingsDropdown />
-
-                    </IsAuthorized> 
-                   : null}  */}
-                  {/* <a href="#" style={{ height: 45, marginRight: 20 }}>
-                                        <FlexContainer alignItems='center' style={{ height: '100%' }}>
-                                            <Badge count={5} >
-                                                <Icon type="user" style={{ fontSize: '1.375em' }} />
-                                            </Badge>
-                                        </FlexContainer>
-                                    </a> */}
                   <a href="#" style={{  marginRight: 10 }}>
                     <div  class=" flex items-center h-full"
                     >
                       <NotificationPopover />
                     </div>
                   </a>
-                  {/* <Link to="/help" style={{ height: 45, marginRight: 20 }}>
-                    <Tooltip title="Knowledge Hub">
-                      <FlexContainer
-                        alignItems="center"
-                        style={{ height: "100%" }}
-                      >
-                        
-                        <Icon
-                          type="question-circle"
-                          style={{
-                            fontSize: path === "help" ? "1.75em" : "1.375em",
-                            color: path === "help" && "#0582f5"
-                          }}
-                        />
-                       
-                      </FlexContainer>
-                    </Tooltip>
-                  </Link> */}
+       
+                    <RepositoryData />
+                     <FAQPage />
 
-                  <RepositoryData />
+                     </div>
                   <ProfileDropdown />
+                  
                   {/* <Theme /> */}
                 </div>
               </Header>

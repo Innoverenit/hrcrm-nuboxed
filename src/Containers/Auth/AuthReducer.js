@@ -75,6 +75,8 @@ const initialState = {
   fetchingCurrencyError: false,
   currencies: [],
 
+  faqModal:false,
+
   fetchingIncludedTask: false,
   fetchingIncludedTaskError: false,
   taskIncluded: [],
@@ -1074,6 +1076,9 @@ export const authReducer = (state = initialState, action) => {
         fetchingAllDialCodeError: true,
       };
 
+      case types.HANDLE_FAQ_MODAL:
+        return { ...state, faqModal: action.payload };
+
       case types.VERIFY_EMAIL_REQUEST:
         return { ...state, verifyingEmail: true };
       case types.VERIFY_EMAIL_SUCCESS:
@@ -1112,6 +1117,10 @@ export const authReducer = (state = initialState, action) => {
               doResetpasswordError: false,
               };
           case types.FORGOT_PASSWORD_FAILURE:
+
+
+    
+
     default:
       return state;
   }
