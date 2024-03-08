@@ -1294,3 +1294,29 @@ export const addCurrencyInPo = (data, poSupplierDetailsId) => (dispatch) => {
       });
     });
 };
+
+export const getTodayPurchaseOrder = (supplierId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PURCHASE_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/today/count/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PURCHASE_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PURCHASE_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};

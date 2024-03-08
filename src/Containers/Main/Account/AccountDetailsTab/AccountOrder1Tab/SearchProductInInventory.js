@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getProductionOrderDetails, getLocationList, searchItemInLocation } from "../../AccountAction"
+import {
+    getProductionOrderDetails,
+    getLocationList,
+    searchItemInLocation,
+    getLocationByProductId
+} from "../../AccountAction"
 import { Select } from 'antd';
 import SearchedListItems from './SearchedListItems';
 const { Option } = Select;
@@ -19,6 +24,7 @@ const SearchProductInInventory = (props) => {
 
     const handleSetProduct = (val) => {
         setProduct(val)
+        props.getLocationByProductId(val)
     }
     const handleSetLocation = (val) => {
         setLocation(val)
@@ -60,7 +66,7 @@ const SearchProductInInventory = (props) => {
                         }
                     // placeholder={`select`}
                     >
-                        {locationsName.map((a) => {
+                        {props.locationByProduct.map((a) => {
                             return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
                         })}
                     </Select>
@@ -76,6 +82,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     productionOrderDetail: distributor.productionOrderDetail,
     orgId: auth.userDetails.organizationId,
     locationlist: distributor.locationlist,
+    locationByProduct: distributor.locationByProduct
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -83,6 +90,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getProductionOrderDetails,
             getLocationList,
+            getLocationByProductId,
             searchItemInLocation
         },
         dispatch

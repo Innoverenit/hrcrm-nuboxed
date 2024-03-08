@@ -11,7 +11,7 @@ const AccountActionLeft = (props) => {
     const { user, } = props;
     useEffect(() => {
         if (props.viewType === "list") {
-            props.getAccountRecords();
+            props.getRecords(props.userId);
         } else if (props.viewType === "card") {
             props.getDistributorCount(props.userId);
         }

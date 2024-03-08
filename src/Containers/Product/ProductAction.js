@@ -598,7 +598,12 @@ export const getRecords = () => (dispatch) => {
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/user/record/count`, {})
+    .get(`${base_url2}/product/record/count`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1049,11 +1054,11 @@ export const getProductbuilder = () => (dispatch) => {
   });
   axios
     .get(`${base_url2}/supplies`,
-    {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1157,7 +1162,7 @@ export const uploadCatalogueList = (data) => (dispatch) => {
     });
 };
 
-export const removeProductBuilder = (data,productSupplyLinkId) => (dispatch) => {
+export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCT_BUILDER_REQUEST,
   });
@@ -1188,8 +1193,8 @@ export const updateProSupplBuilder = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_PRO_SUPPL_BUILDER_REQUEST });
   axios
     // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {
-      .post(`${base_url2}/productionBuilder/supplies`, data, {
-    headers: {
+    .post(`${base_url2}/productionBuilder/supplies`, data, {
+      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
@@ -1292,7 +1297,8 @@ export const getAllProductList = () => (dispatch) => {
     .get(`${base_url2}/product/all-product`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },})
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1312,8 +1318,8 @@ export const getAllProductList = () => (dispatch) => {
 export const PstoProductionBuilder = (data) => (dispatch) => {
   dispatch({ type: types.POST_PRODUCTION_BUILDER_REQUEST });
   axios
-      .post(`${base_url2}/production/productionProductBuilder`, data, {
-    headers: {
+    .post(`${base_url2}/production/productionProductBuilder`, data, {
+      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })

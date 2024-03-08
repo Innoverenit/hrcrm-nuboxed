@@ -188,3 +188,30 @@ export const getProductionBuilder = (productionProductId) => (dispatch) => {
       });
     });
 };
+
+export const getArchieveListOfProduction = (locationDetailsId, userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ARCHIEVE_PRODOCTION_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/archieve/${locationDetailsId}/${userId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODOCTION_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODOCTION_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
