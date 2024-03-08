@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { FormWrapper, Input } from "./styled";
 import { ValidationError, } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
+import * as Yup from "yup";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
@@ -20,12 +19,12 @@ import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nb
 /**
  * yup validation scheme for set Password
  */
-// const LoginSchema = Yup.object().shape({
-//   userName: Yup.string()
-//     .email("Enter a valid email")
-//     .required("Input needed !"),
-//   password: Yup.string().required("Enter password"),
-// });
+const LoginSchema = Yup.object().shape({
+  userName: Yup.string()
+    .email("Enter a valid email")
+    .required("Input needed !"),
+  password: Yup.string().required("Enter password"),
+});
 class LoginHr extends Component {
   constructor(props) {
     super(props);
@@ -57,10 +56,6 @@ class LoginHr extends Component {
     <div>
       <div>
         <Input {...field} {...props} 
-           style={{
-            borderColor:
-              touched[field.name] && field.value ? "orange" : "black",
-          }}
         />
       </div>
       {touched[field.name] && errors[field.name] && (
@@ -70,7 +65,6 @@ class LoginHr extends Component {
   );
   componentDidMount() {
     this.timeoutHandle = setTimeout(() => {
-      // Add your logic for the transition
     }, 5000);
 
     console.log("inside cDM login");
@@ -121,7 +115,7 @@ class LoginHr extends Component {
                   userName: this.state.username || "",
                   password: this.state.password || "",
                 }}
-                // validationSchema={LoginSchema}
+                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
                   // same shape as initial values
                   this.submit(values);
@@ -147,6 +141,7 @@ class LoginHr extends Component {
                             component={this.InputComponent}
                           />
                         </div>
+                        <div class=" mt-[0.35rem]">
                         {this.state.show ? (
                           <EyeOutlined
                             type="eye"
@@ -162,6 +157,8 @@ class LoginHr extends Component {
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                           />
                         )}
+                        </div>
+                      
                       </div>
                       {/* <div >
                         <Button

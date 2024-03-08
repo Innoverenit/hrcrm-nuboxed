@@ -27,7 +27,7 @@ function ProspectCustomerLevelForm(props) {
     const data = {
       approvalIndicator: props.approvalIndicator,
       approvalType: props.approvalType,
-      selectedOption: selectedOption,
+      level: selectedOption,
       subProcessName: "ProspectToCustomer",
     };
 

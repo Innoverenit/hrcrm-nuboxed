@@ -48,7 +48,7 @@ function General(props) {
           birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
           productionInd: props.requirementDuration.productionInd,
           repairInd: props.requirementDuration.repairInd,
-          partNumberInd:props.requirementDuration.partNumberInd,
+          partNoInd:props.requirementDuration.partNoInd,
           makeToInd: props.requirementDuration.makeToInd,
           independentInd: props.requirementDuration.independentInd,
 
@@ -215,9 +215,9 @@ function General(props) {
                       <div class=" flex flex-row mt-2">
                         <p style={{ minWidth: "-webkit-fill-available" }}>Generate Part Number</p>
                         <Field
-                          name="partNumberInd"
+                          name="partNoInd"
                           component={SwitchComponent}
-                          data={values.partNumberInd}
+                          data={values.partNoInd}
                           checkedChildren={"Manual"}
                           unCheckedChildren={"Automatic"}
                           width={"5em"}

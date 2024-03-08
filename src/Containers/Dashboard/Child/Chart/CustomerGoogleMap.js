@@ -30,7 +30,7 @@ const CustomerGoogleMap = ({ apiKey }) => {
   return (
     
       <GoogleMap
-        mapContainerStyle={{ height: '400px', width: '100%' }}
+      mapContainerStyle={{ height: '17.5rem',overflow:"hidden",marginTop:"0.2rem", width: '44rem' }}
         zoom={4}
         center={{ lat: 0, lng: 0 }}
         onClick={handleMapClick}

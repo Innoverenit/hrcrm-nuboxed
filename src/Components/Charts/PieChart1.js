@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {getHotColdWarm,handleLeadHCWdrawer} from "../../Containers/Dashboard/DashboardAction";
 
-function Piechart1() {
+function Piechart1(props) {
+  useEffect(()=> {
+    if (props.timeRangeType === "today") {
+   props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+    }
+    else {
+      props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+    }
+  },[props.userId,props.startDate,props.endDate]);
   const [stdudentSubject, setStudentsubject] = useState([]);
   const [studentMarks, setStudentMarks] = useState([]);
 
@@ -29,7 +40,25 @@ function Piechart1() {
   );
 }
 
-export default Piechart1;
+const mapStateToProps = ({ dashboard,auth }) => ({
+  showHotColdWarm:dashboard.showHotColdWarm,
+  userId:auth.userDetails.userId,
+  timeRangeType:dashboard.timeRangeType,
+  startDate: dashboard.startDate,
+  endDate: dashboard.endDate,
+  openLeadHCWdrawer:dashboard.openLeadHCWdrawer
+});
+const mapDispatchToProps = (dispatch) =>
+bindActionCreators(
+  {
+    getHotColdWarm,
+    handleLeadHCWdrawer
+  },
+  dispatch
+);
+export default connect(mapStateToProps, mapDispatchToProps)(Piechart1);
+
+
 
 
 

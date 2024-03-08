@@ -164,6 +164,8 @@ class Dashboard extends Component {
 
   ) : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
+    ) : this.state.activeButton === "Customer" ? (
+      <FunnelTab />
   ) : this.state.activeButton === "Finance" ? (
     null
   ) : this.state.activeButton === "Customer" ? (
@@ -206,9 +208,9 @@ class Dashboard extends Component {
        <GantChartTab/>
              } */}
 
-{viewType==="ALL"  &&
+{/* {viewType==="ALL"  &&
        <FunnelTab/>
-             }
+             } */}
    
       </div>
 
@@ -235,7 +237,7 @@ class Dashboard extends Component {
 
   
     </div>
-    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"18rem"}}
+    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
     >
     <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
