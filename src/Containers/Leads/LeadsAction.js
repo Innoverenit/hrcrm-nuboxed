@@ -41,6 +41,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead created Successfully!',
+          showConfirmButton: false,
+          // timer: 1500
+        })
         dispatch(getOpportunityRecord(userId));
         console.log(res);
         const startDate = dayjs()
@@ -252,6 +258,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.UPDATE_LEADS_BY_ID_SUCCESS,
           payload: res.data,
         });
+      })
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Info  updated Successfully!',
+        showConfirmButton: false,
+        // timer: 1500
       })
       .catch((err) => {
         console.log(err);

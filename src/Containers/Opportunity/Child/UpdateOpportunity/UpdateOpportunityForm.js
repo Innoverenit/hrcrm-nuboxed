@@ -722,7 +722,7 @@ function UpdateOpportunityForm (props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={updateOpportunityById}
+                  loading={updateOpportunityById}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}

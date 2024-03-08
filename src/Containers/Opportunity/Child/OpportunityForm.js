@@ -727,7 +727,7 @@ const AllEmplo = props.assignedToList.map((item) => {
               <Button
                 type="primary"
                 htmlType="submit"
-                Loading={addingOpportunity}
+                loading={addingOpportunity}
               >
                 <FormattedMessage id="app.create" defaultMessage="Create" />
                 {/* Create */}

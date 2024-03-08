@@ -73,6 +73,12 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect created Successfully!',
+        showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       // dispatch(
       //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
@@ -463,6 +469,12 @@ export const updateCustomer = (data, customerId) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect Info updated Successfully!',
+        showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       dispatch({
         type: types.UPDATE_CUSTOMER_BY_ID_SUCCESS,

@@ -1,6 +1,7 @@
 import * as types from "./OpportunityActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../Config/Auth";
 import { message } from "antd";
 import { ActionHeader } from "../../Components/Utils";
@@ -343,6 +344,12 @@ export const addOpportunity = (opportunity, cb) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity created Successfully!',
+        showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       const startDate = dayjs()
         .startOf("month")
@@ -569,6 +576,12 @@ export const setEditOpportunity = (name) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity Info updated Successfully!',
+        showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       //  dispatch(getOpportunityListByUserId(userId,0));
       dispatch({
