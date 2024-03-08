@@ -15,10 +15,7 @@ import {
 import { FormattedMessage } from "react-intl";
 import ProspectCustomerLevelForm from "./ProspectCustomerLevelForm";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-const MileageSchema = Yup.object().shape({
-    roleTypeId: Yup.string().required("Input needed!"),
-});
+
 class ProspectCustomerForm extends Component {
     constructor(props) {
         super(props);
@@ -54,25 +51,14 @@ class ProspectCustomerForm extends Component {
 
     render() {
     
-        const departmentNameOption = this.props.departments.map((item) => {
-            return {
-                label: `${item.departmentName || ""}`,
-                value: item.departmentId,
-            };
-        });
-        const roleNameOption = this.props.roles.map((item) => {
-            return {
-                label: `${item.roleType || ""}`,
-                value: item.roleTypeId,
-            };
-        });
+     
      
 
     
         return (
             <>
                 <Formik
-                    enableReinitialize
+                    // enableReinitialize
                     initialValues={{
                         subProcessName: "ProspectToCustomer",
                         approvalType: this.props.approvalData.approvalType === "Standard" ? true : false,
@@ -80,14 +66,14 @@ class ProspectCustomerForm extends Component {
                     
                     }}
 
-                    validationSchema={MileageSchema}
+                    // validationSchema={MileageSchema}
                     onSubmit={(values, { resetForm }) => {
                         console.log(values);
                         // if (this.state.approveType) {
                         this.props.addApprove(
                             {
                                 ...values,
-                                selectedOption: this.state.selectedOption,
+                                level: this.state.selectedOption,
                                 approvalType: values.approvalType ? "Standard" : "Exception",
                                 approvalIndicator: values.approvalIndicator ? true : false,
                                
