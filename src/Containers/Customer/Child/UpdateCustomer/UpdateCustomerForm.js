@@ -431,7 +431,7 @@ function UpdateCustomerForm (props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={updateCustomerById}
+                  loading={updateCustomerById}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}

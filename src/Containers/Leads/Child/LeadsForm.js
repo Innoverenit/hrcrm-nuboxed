@@ -530,8 +530,8 @@ props. getCrm();
             
               <div class="flex justify-end mt-3 w-wk bottom-2 mr-2 md:absolute ">
                 <Button
-                  type="primary"
-                  htmlType="submit"
+               type="primary"
+               htmlType="submit"
                   loading={addingLeads}
                 >
                   <FormattedMessage id="app.create" defaultMessage="Create" />

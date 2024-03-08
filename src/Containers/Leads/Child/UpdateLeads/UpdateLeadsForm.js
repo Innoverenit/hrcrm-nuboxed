@@ -485,7 +485,7 @@ function UpdateLeadsForm (props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={updateLeadsById}
+                  loading={updateLeadsById}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
