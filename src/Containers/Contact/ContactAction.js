@@ -14,6 +14,13 @@ export const handleContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleContactImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const emptyContact = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CONTACT_TABLE,

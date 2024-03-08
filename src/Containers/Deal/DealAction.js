@@ -613,7 +613,7 @@ export const updateDealdragstage = (
   });
   axios
     .put(
-      `${base_url}/investorOpportunity/${invOpportunityId}`,data, {
+      `${base_url}/investorOpportunity/update/stage`,data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

@@ -48,6 +48,7 @@ function General(props) {
           birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
           productionInd: props.requirementDuration.productionInd,
           repairInd: props.requirementDuration.repairInd,
+          partNumberInd:props.requirementDuration.partNumberInd,
           makeToInd: props.requirementDuration.makeToInd,
           independentInd: props.requirementDuration.independentInd,
 
@@ -160,7 +161,7 @@ function General(props) {
 
                     >
 
-                      <div class=" flex flex-row">
+                      <div class=" flex flex-row mt-2">
                         <p style={{ minWidth: "-webkit-fill-available" }}> Production</p>
                         <Field
                           name="productionInd"
@@ -174,7 +175,7 @@ function General(props) {
 
                       {values.productionInd &&
                         <>
-                          <div class=" flex flex-row">
+                          <div class=" flex flex-row mt-2">
                             <p style={{ minWidth: "-webkit-fill-available" }}> Make To Order</p>
                             <Field
                               name="makeToInd"
@@ -185,7 +186,7 @@ function General(props) {
                               width={"5em"}
                             />
                           </div>
-                          <div class=" flex flex-row">
+                          <div class=" flex flex-row mt-2">
                             <p style={{ minWidth: "-webkit-fill-available" }}> Independent</p>
                             <Field
                               name="independentInd"
@@ -207,6 +208,18 @@ function General(props) {
                           data={values.repairInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
+                          width={"5em"}
+                        />
+                      </div>
+
+                      <div class=" flex flex-row mt-2">
+                        <p style={{ minWidth: "-webkit-fill-available" }}>Generate Part Number</p>
+                        <Field
+                          name="partNumberInd"
+                          component={SwitchComponent}
+                          data={values.partNumberInd}
+                          checkedChildren={"Manual"}
+                          unCheckedChildren={"Automatic"}
                           width={"5em"}
                         />
                       </div>

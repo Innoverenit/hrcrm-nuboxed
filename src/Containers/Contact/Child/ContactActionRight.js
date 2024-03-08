@@ -22,6 +22,7 @@ class ContactActionRight extends React.Component {
       user,
       role,
       handleContactModal,
+      handleContactImportModal,
     } = this.props;
     return (
       <div class=" flex  items-center">
@@ -62,7 +63,15 @@ class ContactActionRight extends React.Component {
           Import
         </Button>
         )} */}
-        
+           <Tooltip placement="left" title="Import">
+            {user.contactCreateInd === true &&  user.crmInd === true && (
+          <Button 
+           type="primary"
+           onClick={() => handleContactImportModal(true)}>
+            Import
+          </Button>
+             )}
+        </Tooltip>
         {/* {this.props.viewType === "table" ? ( */}
           
         <Tooltip placement="left" title="Create">

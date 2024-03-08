@@ -73,7 +73,7 @@ function OpportunityForm(props) {
   const currencyNameOption = sortedCurrency.map((item) => {
     return {
       label: `${item.currency_name}`,
-      value: item.currency_id,
+      value: item.currency_name,
     };
   });
 
