@@ -8,6 +8,7 @@ import ButtonGroup from "antd/lib/button/button-group";
 import { getProductionsbyLocId, handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import PrintIcon from '@mui/icons-material/Print';
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
@@ -121,151 +122,156 @@ function ProductionCardView(props) {
                         height={"75vh"}
                         endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
-                        {productionByLocsId.map((item) => {
-                            return (
-                                <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
-                                        <div class="flex">
-                                            <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        {productionByLocsId.length ?
+                            <>
+                                {productionByLocsId.map((item) => {
+                                    return (
+                                        <div>
+                                            <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                                <div class="flex">
+                                                    <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
-                                                    onClick={() => {
-                                                        handleParticularRowData(item);
-                                                        props.handleProductionIDrawer(true)
-                                                    }}
-                                                >
-                                                    {item.manufactureId}
-                                                </div>
-
-                                            </div>
-                                            <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                                                <div class=" text-xs text-cardBody font-poppins">
-                                                    {item.productName}
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-
-                                                {item.categoryName}  {item.subCategoryName}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.attributeName}  {item.subAttributeName}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-
-                                                {item.startDate}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.endDate}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.workFlow}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
-                                                <ButtonGroup>
-                                                    <StatusIcon
-                                                        type="In Progress"
-                                                        iconType="fa-hourglass-half"
-                                                        tooltip="In Progress"
-                                                        id={item.productId}
-                                                        indStatus={item.qcStatus}
-                                                        // productId={RowData.productId}
-                                                        status={active}
-                                                        onClick={() => {
-                                                            handleQCStatus("In Progress", item);
-                                                        }}
-                                                    />
-                                                    <StatusIcon
-                                                        type="Complete"
-                                                        iconType="fa-hourglass"
-                                                        tooltip="Complete"
-                                                        indStatus={item.qcStatus}
-                                                        status={active}
-                                                        id={item.productId}
-                                                        // productId={RowData.productId}
-                                                        onClick={() => {
-                                                            handleQCStatus("Complete", item);
-                                                        }}
-                                                    />
-                                                </ButtonGroup>
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                <Button
-                                                    type="primary"
-                                                    onClick={() => {
-                                                        handleParticularRowData(item);
-                                                        handleBuilderProduction(true);
-                                                    }}
-                                                >
-                                                    Add Parts
-                                                </Button>
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                <MoveToggleProduction item={item} />
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                <Tooltip title="Print QR Code">
-                                                    <PrintIcon />
-                                                </Tooltip>
-                                            </div>
-                                        </div>
-
-                                        {(user.productionDeleteInd === true || user.role === "ADMIN") && (
-                                            <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins">
-                                                    <Tooltip title="Delete">
-                                                        <Popconfirm
-                                                            title="Do you want to delete?"
-                                                        //   onConfirm={() => props.deleteShipperData(item.shipperId)}
+                                                        <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
+                                                            onClick={() => {
+                                                                handleParticularRowData(item);
+                                                                props.handleProductionIDrawer(true)
+                                                            }}
                                                         >
-                                                            <DeleteOutlined
-                                                                className=" !text-base cursor-pointer text-[red]"
+                                                            {item.manufactureId}
+                                                        </div>
 
-                                                            />
-                                                        </Popconfirm>
-                                                    </Tooltip>
+                                                    </div>
+                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            {item.productName}
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
 
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins">
 
+                                                        {item.categoryName}  {item.subCategoryName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.attributeName}  {item.subAttributeName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins">
+
+                                                        {item.startDate}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.endDate}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.workFlow}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                                                        <ButtonGroup>
+                                                            <StatusIcon
+                                                                type="In Progress"
+                                                                iconType="fa-hourglass-half"
+                                                                tooltip="In Progress"
+                                                                id={item.productId}
+                                                                indStatus={item.qcStatus}
+                                                                // productId={RowData.productId}
+                                                                status={active}
+                                                                onClick={() => {
+                                                                    handleQCStatus("In Progress", item);
+                                                                }}
+                                                            />
+                                                            <StatusIcon
+                                                                type="Complete"
+                                                                iconType="fa-hourglass"
+                                                                tooltip="Complete"
+                                                                indStatus={item.qcStatus}
+                                                                status={active}
+                                                                id={item.productId}
+                                                                // productId={RowData.productId}
+                                                                onClick={() => {
+                                                                    handleQCStatus("Complete", item);
+                                                                }}
+                                                            />
+                                                        </ButtonGroup>
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        <Button
+                                                            type="primary"
+                                                            onClick={() => {
+                                                                handleParticularRowData(item);
+                                                                handleBuilderProduction(true);
+                                                            }}
+                                                        >
+                                                            Add Parts
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        <MoveToggleProduction item={item} />
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        <Tooltip title="Print QR Code">
+                                                            <PrintIcon />
+                                                        </Tooltip>
+                                                    </div>
+                                                </div>
+
+                                                {(user.productionDeleteInd === true || user.role === "ADMIN") && (
+                                                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <Tooltip title="Delete">
+                                                                <Popconfirm
+                                                                    title="Do you want to delete?"
+                                                                //   onConfirm={() => props.deleteShipperData(item.shipperId)}
+                                                                >
+                                                                    <DeleteOutlined
+                                                                        className=" !text-base cursor-pointer text-[red]"
+
+                                                                    />
+                                                                </Popconfirm>
+                                                            </Tooltip>
+                                                        </div>
+
+
+                                                    </div>
+                                                )}
                                             </div>
-                                        )}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                        </div>
+                                    );
+                                })}
+                            </>
+                            : !productionByLocsId.length
+                                && !fetchingProductionLocId ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
                 </div>
             </div>

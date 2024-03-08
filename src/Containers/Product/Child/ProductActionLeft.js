@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 import { DeleteOutlined, AlipayOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar } from "antd";
 import MenuIcon from '@mui/icons-material/Menu';
+import { getRecords } from "../ProductAction"
 
 const ProductActionLeft = (props) => {
   useEffect(() => {
-  }, [props.userId]);
+    props.getRecords()
+  }, []);
   const {
     viewType,
     setProductViewType,
@@ -71,7 +73,7 @@ const mapStateToProps = ({ product, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-
+      getRecords
     },
     dispatch
   );

@@ -5,7 +5,7 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import {
     TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
-import { handleLinkSuppliersOrderConfigureModal } from "../../../SuppliersAction"
+import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder } from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
 import PurchaseOrderTable from "./PurchaseOrderTable"
 import { PlusOutlined } from "@ant-design/icons";
@@ -23,6 +23,9 @@ class SupplierDetailsTab extends Component {
 
     handleTabChange = (key) => this.setState({ activeKey: key });
 
+    componentDidMount() {
+        this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
+    }
     render() {
         const { activeKey } = this.state
         return (
@@ -68,13 +71,15 @@ class SupplierDetailsTab extends Component {
 }
 const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
+    poBySupplier: suppliers.poBySupplier,
     addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            handleLinkSuppliersOrderConfigureModal
+            handleLinkSuppliersOrderConfigureModal,
+            getTodayPurchaseOrder
         },
         dispatch
     );

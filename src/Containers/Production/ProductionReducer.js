@@ -23,7 +23,11 @@ const initialState = {
 
   fetchingWorkflowList: false,
   fetchingWorkflowListError: true,
-  workflowProduction: []
+  workflowProduction: [],
+
+  fetchingArchieveProduction: false,
+  fetchingArchieveProductionError: false,
+  archieveProduction: []
 
 };
 export const productionReducer = (state = initialState, action) => {
@@ -132,6 +136,23 @@ export const productionReducer = (state = initialState, action) => {
         fetchingProdNbldrError: true,
       };
 
+    case types.GET_ARCHIEVE_PRODOCTION_LIST_REQUEST:
+      return {
+        ...state,
+        fetchingArchieveProduction: true,
+      };
+    case types.GET_ARCHIEVE_PRODOCTION_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingArchieveProduction: false,
+        archieveProduction: action.payload,
+      };
+    case types.GET_ARCHIEVE_PRODOCTION_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingArchieveProduction: false,
+        fetchingArchieveProductionError: true,
+      };
 
 
     default:

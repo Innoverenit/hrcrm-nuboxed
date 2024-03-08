@@ -277,7 +277,11 @@ const initialState = {
 
   fetchingPoDetailsList: false,
   fetchingPoDetailsListError: false,
-  poDetails: []
+  poDetails: [],
+
+  fetchingPurchaseOrder: false,
+  fetchingPurchaseOrderError: false,
+  poBySupplier: []
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -440,6 +444,21 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         fetchingGeneratorSupplierList: false,
         fetchingGeneratorSupplierListError: true,
+      };
+
+    case types.GET_PURCHASE_ORDER_REQUEST:
+      return { ...state, fetchingPurchaseOrder: true };
+    case types.GET_PURCHASE_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingPurchaseOrder: false,
+        poBySupplier: action.payload,
+      };
+    case types.GET_PURCHASE_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingPurchaseOrder: false,
+        fetchingPurchaseOrderError: true,
       };
 
     case types.MOVE_TO_INVENTORY_REQUEST:

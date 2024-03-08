@@ -412,7 +412,11 @@ const initialState = {
 
   searchingItemInLocation: false,
   searchingItemInLocationError: true,
-  searchedItem: []
+  searchedItem: [],
+
+  fetchingLocationByOrderId: false,
+  fetchingLocationByOrderIdError: false,
+  locationByProduct: []
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -1169,6 +1173,21 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingRecordsByUserId: false,
         fetchingRecordsByUserIdError: true,
+      };
+
+    case types.GET_LOCATION_BY_PRODUCTID_REQUEST:
+      return { ...state, fetchingLocationByOrderId: true };
+    case types.GET_LOCATION_BY_PRODUCTID_SUCCESS:
+      return {
+        ...state,
+        fetchingLocationByOrderId: false,
+        locationByProduct: action.payload,
+      };
+    case types.GET_LOCATION_BY_PRODUCTID_FAILURE:
+      return {
+        ...state,
+        fetchingLocationByOrderId: false,
+        fetchingLocationByOrderIdError: true,
       };
 
     case types.FETCHING_DISTRIBUTOR_DELETED_ORDER_BY_ID_REQUEST:
