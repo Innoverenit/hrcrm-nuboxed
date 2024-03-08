@@ -213,6 +213,7 @@ const initialState = {
 addingNotesByContactId:false,
   addingNotesByContactIdError:false,
 
+  addContactImportModal:false,
 
   addingContactLinkByOpportunityId: false,
 
@@ -268,6 +269,9 @@ export const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.HANDLE_CONTACT_MODAL:
       return { ...state, addContactModal: action.payload };
+
+      case types.HANDLE_CONTACT_IMPORT_MODAL:
+        return { ...state, addContactImportModal: action.payload };
     //opp modal
     case types.HANDLE_CONTACT_OPPORTUNITY_MODAL:
       return { ...state, addContactOpportunityModal: action.payload };

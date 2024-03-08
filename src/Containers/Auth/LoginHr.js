@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { FormWrapper, Input } from "./styled";
-import { ValidationError, Spacer } from "../../Components/UI/Elements";
+import { ValidationError, } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
@@ -34,6 +34,7 @@ class LoginHr extends Component {
       password: "",
       Loading: false,
       render: false,
+      
       type: "password",
       show: Boolean(),
     };
@@ -55,7 +56,12 @@ class LoginHr extends Component {
   InputComponent = ({ field, form: { touched, errors }, ...props }) => (
     <div>
       <div>
-        <Input {...field} {...props} />
+        <Input {...field} {...props} 
+           style={{
+            borderColor:
+              touched[field.name] && field.value ? "orange" : "black",
+          }}
+        />
       </div>
       {touched[field.name] && errors[field.name] && (
         <ValidationError>{errors[field.name]}</ValidationError>
@@ -94,18 +100,18 @@ class LoginHr extends Component {
               margin: "auto",
             }}
           >
+            <img
+              className="big-logo"
+              src={FWLogo2}
+              style={{ width: 200 }}
+              alt="Tekorero logo"
+            />
             {/* <img
               className="big-logo"
               src={FWLogo}
               style={{ width: 200 }}
               alt="Tekorero logo"
             /> */}
-            <img
-              className="big-logo"
-              src={FWLogo}
-              style={{ width: 200 }}
-              alt="Tekorero logo"
-            />
             <br />
 
             <FormWrapper width="25em">
@@ -130,10 +136,10 @@ class LoginHr extends Component {
                       placeholder="Email"
                       component={this.InputComponent}
                     />
-                    <Spacer />
-                    <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
+               
+                    <div class=" flex mt-3 justify-between items-center"  >
                       <div className="login_password">
-                        <div style={{ width: "100%" }}>
+                        <div class=" w-full" >
                           <Field
                             name="password"
                             placeholder="Password"
@@ -171,8 +177,8 @@ class LoginHr extends Component {
                         </Button>
                       </div> */}
 
-                    </FlexContainer>
-                    <Spacer />
+                    </div>
+              <div class=" mt-3"></div>
                     {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
                       <div >
                         <Field
@@ -197,8 +203,8 @@ class LoginHr extends Component {
                         </Button>                      
                       </div>
                       )} 
-                    </FlexContainer>
-                    <Spacer /> */}
+                    </FlexContainer>*/}
+ 
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -219,7 +225,7 @@ class LoginHr extends Component {
                 Forgot password?
               </Link>
             </FormWrapper>
-            <Spacer />
+            <div class=" mt-3"></div>
 
 
           </div>

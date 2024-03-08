@@ -3,6 +3,7 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProspectCustomerForm from "./ProspectCustomerForm";
 const ApproveForm = lazy(() => import("./ApproveForm"));
 const MileageApproveForm = lazy(() => import("./MileageApproveForm"));
 const ExpenseApproveForm = lazy(() => import("./ExpenseApproveForm"));
@@ -46,6 +47,11 @@ function ApprovalTab(props) {
                         </div>
                     </TabPane>
                     )}
+                      <TabPane tab={`Prospect to Customer`} key="6">
+                        <div style={{ marginTop: 10 }}>
+                        <ProspectCustomerForm/>
+                        </div>
+                    </TabPane>
                     {/* <TabPane tab={`ApproveList`} key="4">
                         <div style={{ marginTop: 10 }}>
                             <ApproveTable/>
