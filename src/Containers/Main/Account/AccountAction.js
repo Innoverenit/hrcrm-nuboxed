@@ -1189,7 +1189,7 @@ export const getRecords = (userId) => (dispatch) => {
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/user/record/count/${userId}`,
+    .get(`${base_url2}/distributor/today/record/count/${userId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3009,6 +3009,31 @@ export const movetoProductionArchieve = (data, productionProductId) => (
     .catch((err) => {
       dispatch({
         type: types.MOVE_TO_PRODUCTION_ARCHIEVE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getLocationByProductId = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOCATION_BY_PRODUCTID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/locationData/${productId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.GET_LOCATION_BY_PRODUCTID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_LOCATION_BY_PRODUCTID_FAILURE,
         payload: err,
       });
     });
