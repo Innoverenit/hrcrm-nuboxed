@@ -113,6 +113,7 @@ import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import styled from "styled-components";
+import inno from "../../Assets/Images/logo_22.png"; //inn
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
@@ -184,7 +185,7 @@ class ForgotPassword extends Component {
               >
                 <img
                   className="big-logo"
-                  src={FWLogo2}
+                  src={inno}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
