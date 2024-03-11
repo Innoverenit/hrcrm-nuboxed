@@ -150,6 +150,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead converted Successfully!',
+          showConfirmButton: false,
+          // timer: 1500
+        })
         dispatch(getLeads(userId));
         // dispatch(getLeadsRecords(userId));
         dispatch({

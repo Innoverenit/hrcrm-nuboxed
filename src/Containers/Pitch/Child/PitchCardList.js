@@ -757,14 +757,18 @@ const PitchCardList = (props) => {
                        {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
                        <span>
-                       <Tooltip title={item.ownerName}> 
+                       <Tooltip title={item.ownerName}>
+                <div class="max-sm:flex justify-end">
+                <Tooltip title={item.ownerName}>
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
+                imgWidth={"1.9rem"}
+                imgHeight={"1.9rem"}
               />
-                </Tooltip>
+            </Tooltip>
+            </div>
+          </Tooltip>
             </span>
                    </div>
                                

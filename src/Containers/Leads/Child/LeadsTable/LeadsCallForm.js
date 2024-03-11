@@ -119,7 +119,7 @@ function LeadsCallForm(props) {
       user: { userId, firstName, empName,middleName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCall,
+      addingLeadsActivityCall,
       deleteCall,
       deletingCall,
       addLeadsActivityCall,
@@ -740,7 +740,7 @@ function LeadsCallForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingCall : addingCall}
+                  loading={isEditing ? updatingCall : addingLeadsActivityCall}
                 >
                   {isEditing ? (
                     "Update"
@@ -758,8 +758,8 @@ function LeadsCallForm(props) {
     );
   }
 
-const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCall: call.addingCall,
+const mapStateToProps = ({ auth, call, employee,customer,leads, opportunity, candidate }) => ({
+  addingLeadsActivityCall: leads.addingLeadsActivityCall,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   allOpportunityData:opportunity.allOpportunityData,

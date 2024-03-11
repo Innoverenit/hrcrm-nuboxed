@@ -794,6 +794,22 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       },
     })
     .then((res) => {
+      if (res.data) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data,
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Not Deleted',
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       console.log(res);
       dispatch({
         type: types.DELETE_OPPORTUNITY_DATA_SUCCESS,
@@ -2476,8 +2492,23 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
     })
 
     .then((res) => {
-     
-      message.success("Opportunity move to lost category.Better luck next time!");
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Not updated',
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      // message.success("Opportunity move to lost category.Better luck next time!");
       console.log(res);
       dispatch({
         type: types.RECRUIT_LOST_STATUS_TO_OPPORTUNITY_SUCCESS,

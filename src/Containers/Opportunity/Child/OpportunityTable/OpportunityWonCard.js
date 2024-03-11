@@ -414,8 +414,7 @@ function OpportunityWonCard(props) {
         <div className=" md:w-[9.12rem]">Prospect</div>
         <div className=" md:w-[12.2rem] ">Sponsor</div>
         <div className="md:w-[8.8rem]">Start Date</div>
-        <div className="md:w-[12.3rem]">Proposal Amount</div>
-        <div className="md:w-[5.2rem]">Stages</div> 
+        <div className="md:w-[9.3rem]">Proposal Amount</div>
         <div className="md:w-[8.1rem]">Sales Rep</div>
         <div className="md:w-[2.2rem]">Owner</div>
         <div className="md:w-[4.8rem]"></div>
@@ -537,10 +536,10 @@ function OpportunityWonCard(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                                
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    {/* <div class=" text-sm text-cardBody font-poppins text-center">
                                     <Dropdown
               overlay={
                 <div>
@@ -572,8 +571,8 @@ function OpportunityWonCard(props) {
               </Tooltip>
             </Dropdown>
 
-                                    </div>
-                                </div>
+                                    </div> */}
+                              
                                 <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
@@ -757,6 +756,7 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
   sales: opportunity.sales,
   recruiterName: opportunity.recruiterName,
   recruiterList:opportunity.recruiterList,
+  fetchingWonOpportunity:opportunity.fetchingWonOpportunity,
   fetchinglostOpportunity:opportunity.fetchinglostOpportunity,
   fetchinglostOpportunityError:opportunity.fetchinglostOpportunityError,
   fetchingRecruiterList:opportunity.fetchingRecruiterList,

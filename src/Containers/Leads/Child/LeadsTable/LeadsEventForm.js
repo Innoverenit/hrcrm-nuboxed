@@ -76,7 +76,7 @@ const {
       user: { userId, firstName, empName,fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingEvent,
+      addingLeadsActivityEvent,
       addLeadsActivityEvent,
       deletingEvent,
       deleteEvent,
@@ -634,7 +634,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingEvent : addingEvent}
+                  loading={isEditing ? updatingEvent : addingLeadsActivityEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -651,8 +651,8 @@ const {
       </>
     );
 }
-const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingEvent: event.addingEvent,
+const mapStateToProps = ({ auth, event,opportunity,customer, employee,leads, events, candidate }) => ({
+  addingLeadsActivityEvent: leads.addingLeadsActivityEvent,
   orgId: auth.userDetails.organizationId,
   allCustomerData:customer.allCustomerData,
   updatingEvent: event.updatingEvent,

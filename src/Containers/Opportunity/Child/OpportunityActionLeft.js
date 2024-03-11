@@ -139,6 +139,7 @@ const OpportunityActionLeft = (props) => {
           </span>
           </Badge>
       </Tooltip>
+      {user.recruitProInd === true && (
       <Tooltip title={"Close"}>
         {" "}
         <Badge
@@ -165,6 +166,7 @@ const OpportunityActionLeft = (props) => {
           </span>
         </Badge>
       </Tooltip>
+      )}
       <Tooltip title={"Lost"}>
         <Badge
           size="small"

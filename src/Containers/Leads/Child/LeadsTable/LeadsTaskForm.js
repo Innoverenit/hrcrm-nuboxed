@@ -284,7 +284,7 @@ const [priority,setpriority]=useState(props.selectedTask
     console.log(today);
     const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
-      addingTask,
+      addingLeadsActivityTask,
       isEditing,
       prefillTask,
       addLeadsActivityTask,
@@ -1387,7 +1387,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingTask : addingTask}
+                  loading={isEditing ? updatingTask : addingLeadsActivityTask}
                 >
                   {isEditing ? (
                     "Update"
@@ -1413,10 +1413,11 @@ const mapStateToProps = ({
   unit,
   opportunity,
   tasks,
+  leads,
   customer,
   candidate,
 }) => ({
-  addingTask: task.addingTask,
+  addingLeadsActivityTask: leads.addingLeadsActivityTask,
   allOpportunityData:opportunity.allOpportunityData,
   filteredContact: candidate.filteredContact,
   allCustomerData:customer.allCustomerData,

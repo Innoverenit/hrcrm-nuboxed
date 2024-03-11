@@ -611,7 +611,7 @@ const [rowdata, setrowdata] = useState("");
                                    <div className=" flex font-medium flex-col w-[18rem]   max-sm:w-full">
                                    <div className="flex max-sm:w-full">
                       <div>
-                       
+                      {/* <Tooltip title={item.name}> */}
                           <MultiAvatar
                             primaryTitle={item.name}
                             imageId={item.imageId}
@@ -619,7 +619,7 @@ const [rowdata, setrowdata] = useState("");
                             imgWidth={"1.8rem"}
                             imgHeight={"1.8rem"}
                           />
-                        
+                        {/* </Tooltip> */}
                       </div>
                       <div class="w-[4%]"></div>
 
@@ -748,17 +748,18 @@ const [rowdata, setrowdata] = useState("");
                                 </div>
                                 <div class="flex md:items-center"> 
                                 <div className=" flex font-medium items-center flex-col md:w-24 max-sm:flex-row w-full max-sm:justify-between max-sm:mb-2 ">
-                       
-                       {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Owner</div> */}
-
-                       {/* <Tooltip title={item.ownerName}> */}
-                <MultiAvatar
-                  primaryTitle={item.ownerName}
-                  imageId={item.ownerImageId}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-              {/* </Tooltip> */}
+                                <Tooltip title={item.ownerName}>
+                <div class="max-sm:flex justify-end">
+                <Tooltip title={item.ownerName}>
+              <MultiAvatar
+                primaryTitle={item.ownerName}
+                imageId={item.ownerImageId}
+                imgWidth={"1.9rem"}
+                imgHeight={"1.9rem"}
+              />
+            </Tooltip>
+            </div>
+          </Tooltip>
                    </div>
                    <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-sm:flex-row  ">
                        

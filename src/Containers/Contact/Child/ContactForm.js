@@ -5,6 +5,7 @@ import { Button, Select, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
+import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { HeaderLabel, Spacer } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
@@ -31,6 +32,7 @@ const ContactSchema = Yup.object().shape({
 class ContactForm extends Component {
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
   }
   constructor(props) {
     super(props);
@@ -119,6 +121,30 @@ class ContactForm extends Component {
         value: item.customerId,
       };
     });
+
+    const departmentNameOption = this.props.departments
+    .sort((a, b) => {
+      const libraryNameA = a.name && a.name.toLowerCase();
+      const libraryNameB = b.name && b.name.toLowerCase();
+      if (libraryNameA < libraryNameB) {
+        return -1;
+      }
+      if (libraryNameA > libraryNameB) {
+        return 1;
+      }
+  
+      // names must be equal
+      return 0;
+    }
+  )
+    .map((item) => {
+      return {
+        label: `${item.departmentName || ""}`,
+        value: item.departmentId,
+      };
+    });
+
+    
   
     return (
       <>
@@ -129,7 +155,7 @@ class ContactForm extends Component {
             designationTypeId: this.props.designationTypeId,
             description: "",
             //department: undefined,
-            departmentId: this.props.departmentId,
+            departmentId: "",
             departmentDetails: "",
             userId: this.props.userId,
             customerId: this.props.customerId,
@@ -465,8 +491,8 @@ class ContactForm extends Component {
                   </div>
                   <Spacer />
                   <div class=" flex justify-between">         
-                  <div class="w-w47.5">
-                    <FastField
+                  <div class="  w-w47.5">
+                    <Field
                       name="departmentId"
                                          label={
                         <FormattedMessage
@@ -474,11 +500,12 @@ class ContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
                       component={InputComponent}
                       // value={values.departmentId}
-        
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
                       inlineLabel
                     />
                   </div>
@@ -627,6 +654,7 @@ const mapStateToProps = ({ auth, contact, customer, opportunity, departments, de
   addingContact: contact.addingContact,
   addingContactError: contact.addingContactError,
   user: auth.userDetails,
+  departments: departments.departments,
   userId: auth.userDetails.userId,
   customerData:customer.customerData,
   customerId: customer.customer.customerId,
@@ -642,7 +670,7 @@ const mapDispatchToProps = (dispatch) =>
     {
 
       addContact,
-      // getContactById,
+      getDepartments,
       addLinkContactByOpportunityId,
       // getCurrency,
       getCustomerData,
