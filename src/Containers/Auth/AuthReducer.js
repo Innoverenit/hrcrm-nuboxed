@@ -916,10 +916,11 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         fetchingOrganization: false,
         // customerByUserId: action.payload,
+        organizationDetailsList:action.payload,
 
-        organizationDetailsList: [
-          ...state.organizationDetailsList,
-          ...action.payload],
+        // organizationDetailsList: [
+        //   ...state.organizationDetailsList,
+        //   ...action.payload],
 
       };
     case types.GET_ORGANIZATION_FAILURE:
