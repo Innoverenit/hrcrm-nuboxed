@@ -106,9 +106,9 @@ handleInventory = () => {
 
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
-        label: item.zone_name
+        label: item.zoneName
         || null,
-        value: item.timezone_id
+        value: item.timezoneId
         ,
       };
     });

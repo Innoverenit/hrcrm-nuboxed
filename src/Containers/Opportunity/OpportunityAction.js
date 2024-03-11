@@ -794,22 +794,28 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       },
     })
     .then((res) => {
-      if (res.data) {
-        Swal.fire({
-          icon: 'success',
-          title: res.data,
-          showConfirmButton: false,
-          // timer: 1500
-        });
-      } else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity Deleted Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
        
-        Swal.fire({
-          icon: 'error',
-          title: 'Not Deleted',
-          showConfirmButton: false,
-          // timer: 1500
-        });
-      }
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
       console.log(res);
       dispatch({
         type: types.DELETE_OPPORTUNITY_DATA_SUCCESS,
@@ -2859,11 +2865,27 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
     })
   
     .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Not updated',
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       console.log(res);
-      dispatch(getlostOpportunity(userId));
+      // dispatch(getlostOpportunity(userId));
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_LOST_SUCCESS,
-        payload: res.data,
+        payload: opportunityId,
       });
       // message.success("Confirmation Successfully");
     })

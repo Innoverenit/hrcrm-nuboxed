@@ -173,6 +173,9 @@ const AllEmplo = props.assignedToList.map((item) => {
     value: item.employeeId,
   };
 });
+const filteredEmployeesData = AllEmplo.filter(
+  (item) => item.value !== props.user.userId
+);
 
   const [text, setText] = useState("");
   function handletext(e) {
@@ -558,7 +561,7 @@ const AllEmplo = props.assignedToList.map((item) => {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(AllEmplo) ? AllEmplo : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

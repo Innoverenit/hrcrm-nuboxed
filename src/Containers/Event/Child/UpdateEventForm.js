@@ -646,10 +646,8 @@ function UpdateEventForm (props) {
   onChange={handleChangeInclude}
 >
   {props.assignedToList.map((item) => {
-    // Assuming you have information about the currently logged-in user, let's call it 'currentUser'
     const isCurrentUser = item.employeeId === props.user.userId;
 
-    // Display the user in the dropdown only if it's not the current user
     if (!isCurrentUser) {
       return (
         <Option key={item.employeeId} value={item.employeeId}>

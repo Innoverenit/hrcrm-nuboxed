@@ -409,7 +409,7 @@ function OpportunityLostCard(props) {
         <div className="md:w-[8.8rem]">Start Date</div>
         <div className="md:w-[12.3rem]">Proposal Amount</div>
         <div className="md:w-[5.2rem]">Stages</div> 
-        <div className="md:w-[8.1rem]">Sales Rep</div>
+        <div className="md:w-[7.1rem]">Sales Rep</div>
         <div className="md:w-[3.2rem]">Owner</div>
         <div className="md:w-[4.8rem]"></div>
         <div className="w-12"></div>
@@ -569,7 +569,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                   <div class=" text-sm text-cardBody font-poppins">

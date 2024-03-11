@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import { FormattedMessage } from "react-intl";
+import { DeleteOutlined } from "@ant-design/icons";
+import { StyledPopconfirm } from "../../../Components/UI/Antd";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import PlaceIcon from '@mui/icons-material/Place';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import { Tooltip, Select,} from "antd";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import DraftsIcon from '@mui/icons-material/Drafts';
+import { Link } from 'react-router-dom';
+import { CurrencySymbol, } from "../../../Components/Common";
+import OpportunitySelectStages from "../../Opportunity/Child/OpportunityTable/OpportunitySelectStages"
+import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { MultiAvatar, MultiAvatar2,  } from "../../../Components/UI/Elements";
 import {
     getIncludedOpportunityList,
     emptyIncludedOpportunity,
     getOpportunityIncludedCount
 } from "../AuthAction";
+import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const Option =Select;
 
 function OppIncludedCardList(props) {
@@ -100,7 +104,7 @@ function OppIncludedCardList(props) {
     <>
     
     <div className="page-container">
-<InfiniteScroll
+    <InfiniteScroll
                 dataLength={opportunityIncluded.length}
                 next={handleLoadMore}
                 hasMore={hasMore}
@@ -108,163 +112,298 @@ function OppIncludedCardList(props) {
                 height={"75vh"}
             >
 
-<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center"> 
-               {opportunityIncluded.map((item) => {
-                 console.log("noOfDocPending",item.noOfDocPending)
-       
-                  return (
-                    <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
-                    text-[#444444] m-3 p-1 w-[19vw] flex flex-col  ">
-                     <div class=" flex flex-no-wrap items-center h-[2.81em]"
-                >
-                    <Tooltip 
-                    title={item.country}
-                    >
-                  
-                    </Tooltip>
-                            <div class="flex flex-row max-sm:justify-start items-center" >     
-                    <div >
-                           <MultiAvatar2
- 
-                            primaryTitle={item.opportunityName}
-                           
-                             imgHeight={"1.8rem"}
-                             imgWidth={"1.8rem"}
-                             imgRadius={20}
-                           />
-                          </div>
-                       
-                       <div class="font-semibold ml-2 ">
-                       {item.opportunityName}
-                         {/* <Header>
-                         <EmployeeDetailsView
-    employeeId={item.employeeId}
-    fullName=
-           />       
-                         </Header>  */}
-                         </div>
-                         </div> 
-         
-                          
-                         </div>
-                         
-                         <div class=" flex flex-row justify-evenly  w-full items-end">
-                        
-                      
-                       <div class=" font-normal text-xs text-cardBody font-poppins">{item.ownerName === null ? "Not Available" :item.ownerName}</div>
-                       <div class=" font-normal text-xs text-cardBody font-poppins">{item.oppStage  === null ? "Not Available" :item.oppStage}</div>
-           
-                    
-                       
-                         <div >
-                        
-                       
-           </div>
-           
-                       </div> 
-                    
-                        <div class=" font-normal text-xs text-cardBody font-poppins mt-2 "><VolumeUpIcon style={{fontSize:"0.75rem"}}/> {`${item.oppWorkflow}`}</div>
-           <div class=" font-normal text-xs  mt-2 text-cardBody font-poppins "><DraftsIcon style={{fontSize:"0.75rem"}} /> {item.contactName}</div>
-           <div class=" font-normal text-xs mt-2 text-cardBody font-poppins ">Reports To:  {item.assignedTo}</div>
-           <div class=" flex flex-row justify-evenly mt-[0.3rem] w-full items-end">
-           <div class=" font-normal text-xs text-cardBody font-poppins ">
-        
-           <span
-               style={{ cursor: "pointer" }}
-             
-             >
-               
-               {item.location}
-          
-      </span>
-    
-            </div>
-           <div class=" font-normal text-xs text-cardBody font-poppins ">
-           <span
-               style={{ cursor: "pointer" }}
-             //   onClick={() => {
+<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+{ !fetchingIncludedOpportunity && opportunityIncluded.length === 0 ?<NodataFoundPage />:opportunityIncluded.map((item,index) =>  {
                  
-             //      props.getEmployeeDocument(item.employeeId);
-             //      props.getEmployeeTreeMap(item.employeeId);
-             //     props.handleEmployeePulseDrawerModal(true);
-             //     handleSetCurrentEmployeeId(item)
-             //   }}
-             >
-               <MonitorHeartIcon  style={{ fontSize: "1rem", color: "#df9697" }}/>
-      </span>
-            </div>
-            <div class=" font-normal text-xs text-cardBody font-poppins ">
-           
-           <span
-               style={{ cursor: "pointer" }}
-               onClick={() => {
-                
-                //  props.handleperformanceDrawerModal(true);
-                //  handleSetCurrentCustomer(item);
-                // handleRowData(item);
-               }}
-             >
-                    {/* <Badge
-                    style={{  fontSize:"0.75em",height:"18px" ,width:"5px"}}
-                 count={item.noOfDocPending}
-                 overflowCount={999}
-               >  */}
-               <InsertDriveFileIcon  style={{ fontSize: "1rem", }}/>
-               {/* </Badge> */}
-      </span>
-            
-            </div>
-            <div class=" font-normal text-xs text-cardBody font-poppins ">
-            <Tooltip 
-                    title={`${item.workplace} , ${item.location}`}
-                    >
-           <span
-               style={{ cursor: "pointer" }}
-             
-             >
-               
-               <PlaceIcon  style={{ fontSize: "1rem", }}/>
-          
-      </span>
-      </Tooltip>
-            </div>
-            <div class=" font-normal text-xs text-cardBody font-poppins ">
-            <Tooltip title="Notify">
-            <CircleNotificationsIcon
-            style={{ cursor: "pointer",fontSize: "1rem" }}
-         //    onClick={() => {
-         //     handleSetCurrentEmployeeId(item);
-         //     props.handleNotifyDrawer(true);
-         //    }}
+                 var findProbability = item.probability;
+                   item.stageList.forEach((element) => {
+                     if (element.oppStage === item.oppStage) {
+                       findProbability = element.probability;}
+                    });
+                 return (
+                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7rem] 
+                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col  ">
+        <div class="flex items-center flex-no-wrap h-[2.81em]">
+          <div class=" flex basis-[15%] mr-[0.2rem]" >
+            <MultiAvatar
+              primaryTitle={item.opportunityName}
+              imageId={item.imageId}
+              imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
             />
-            </Tooltip>
-             </div>
-            <div class=" font-normal text-xs text-cardBody font-poppins ">
-            {/* {user.userUpdateInd === true || user.role === "ADMIN"  ? ( */}
-             <Tooltip title="Edit">
-               <BorderColorIcon
-                 style={{ cursor: "pointer",fontSize: "1rem" }}
-                 // onClick={() => {
-                 //     props.setEditEmployee(item);
-                 //     handleStoredData(item);
-                 //     props.handleUpdateEmployeeModal(true);
-                 //     handleSetCurrentEmployeeId(item);
-                   
-                 // }}
-               />
-             </Tooltip>
-             {/* ):null} */}
-            </div>
-            </div>
+          </div>
+          &nbsp;
+          <div class="flex flex-col basis-[100%] overflow-hidden">
           
-                      
-                      
- 
-                     </div>
-                  )  
-             })}
-               </div>
+            <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
+            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+      {item.opportunityName}
+    </Link>
+          {/* <Link
+toUrl={`opportunity/${item.opportunityId}`}
+title={`${item.opportunityName}`}>
+{item.opportunityName}
+</Link> */}
+          </div> 
+          </div>
+        </div>
+        <div className="flex justify-around">
+          <div>
+          {item.customer && (
+              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+                {item.customer || ""}
+              </div>
+            )}
+          </div>
+          <div>
+          <div class="font-medium text-xs ">
+          {item.contactName && (
+              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
+                {item.contactName || ""}
+              </div>
+            )}
+           
+            
+          </div>
+          </div>
+          </div>
+          <div className="flex ">
+        
+          <div>
+          <div class="font-medium text-xs ">
+          </div>
+          </div>
+          </div>
+          <div className="flex justify-around mt-1">      
+<div>
+<span>
+<Dropdown
+overlay={
+<div>
+<Menu mode="horizontal">
+  <Menu.Item
+    style={{
+      paddingLeft: 5,
+      paddingRight: 5,
+      backgroundColor: "#F5F5F5",
+    }}
+  >
+    <OpportunitySelectStages
+      rec={item}
+      oppStage={item.oppStage}
+      // recruitOwner={item.recruitOwner}
+      // candidateName={item.candidateName}
+      // approveInd={item.approveInd}
+      // rejectInd={item.rejectInd}
+      stageClick={(opportunityStagesId) => {
+        props.LinkStageOpportunity(
+          {
+            opportunityId: item.opportunityId,
+            //oppStage: item.oppStage,
+            opportunityStagesId:opportunityStagesId
+            // recruitmentProcessId: item.recruitmentProcessId,
+            // recruitmentId: item.recruitmentId,
+            // profileId: item.profileId,
+          },
+         
+        );
+      }}
+    />{" "}
+  </Menu.Item>
+</Menu>
+</div>
+}
+trigger={["click"]}
+>
+<Tooltip title={item.oppStage}>
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={findProbability}
+//disable={true}
+width={30}
+ strokeColor={"#005075"}
 
+/>
+  
+</Tooltip>
+</Dropdown>
+</span>
+</div>
+<div>
+{<CurrencySymbol currencyType={item.currency} />}
+            &nbsp;{  item.proposalAmount || ""}
+  </div>
+<span>
+<MultiAvatar2
+primaryTitle={item.assignedTo}
+imgWidth={"1.8em"}
+imgHeight={"1.8em"}
+/>
+</span>
+{/* <span>
+  <Button>Drop</Button>
+</span> */}
+        </div>
+    
+        <div class="w-full " >
+            <div class="flex justify-between w-wk mt-1">
+              <div>
+              {item.approveInd&&item.opportunityOwner ? (
+<>
+  <Tooltip 
+    title={<FormattedMessage
+      id="app.Own"
+      defaultMessage="Own"
+    />}
+
+  >
+    <CheckCircleTwoTone
+      type="check-circle"
+      theme="twoTone"
+      twoToneColor="#24D8A7"
+      style={{fontSize:"1rem" 
+     }}
+    />
+  </Tooltip>
+</>
+) : item.rejectInd&&item.opportunityOwner ? (
+<>
+  <Tooltip title={"Lost"}>
+    {" "}
+    <StopTwoTone
+      type="stop"
+      theme="twoTone"
+      twoToneColor="red"         
+      style={{ fontSize:"1rem" , marginLeft: "0.875em" }}
+    />
+  </Tooltip>
+</>
+) : (
+<>
+<Popconfirm
+  title="Change status to Won?"
+  onConfirm={() => handleWon(item.opportunityId)}
+  okText="Yes"
+  cancelText="No"
+>
+  <Tooltip 
+    title={<FormattedMessage
+      id="app.Own"
+      defaultMessage="Won"
+    />}
+
+  >
+    <CheckCircleTwoTone
+      type="check-circle"
+      theme="twoTone"
+      twoToneColor="#24D8A7"
+      style={{ fontSize:"1rem" 
+     
+     }}
+   
+    />
+  </Tooltip>
+  </Popconfirm>
+  &nbsp; &nbsp;
+  {user.recruitProInd === true && (
+  <Popconfirm
+  title="Change status to Lost?"
+  onConfirm={() => handleConfirm(item.opportunityId)}
+  okText="Yes"
+  cancelText="No"
+>
+ <Tooltip
+        title={
+          <FormattedMessage id="app.drop" defaultMessage="Lost" />
+        }
+      >
+ 
+  <StopTwoTone
+          type="stop"
+          theme="twoTone"
+          twoToneColor="red"
+          size={140}
+          style={{
+            fontSize: "1rem"
+          }}
+        />
+        </Tooltip>
+    </Popconfirm>
+     )}
+</>
+)}
+</div>
+<div>
+<Tooltip
+          placement="right"
+          title={
+            <FormattedMessage
+              id="app.notes"
+              defaultMessage="Notes"
+            />
+          }
+        >
+         
+              
+            <span
+
+              onClick={() => {
+              
+                handleOpportunityNotesDrawerModal(true);
+                handleSetCurrentOpportunityId(item);
+              }}
+            >
+                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+              </span>
+        
+          </Tooltip>
+<Tooltip
+          placement="right"
+          title={
+            <FormattedMessage
+              id="app.edit"
+              defaultMessage="Edit"
+            />
+          }
+        >
+            {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
+              
+            <span
+            className=" !text-base cursor-pointer text-[grey]"
+              onClick={() => {
+                props.setEditOpportunity(item);
+                handleUpdateOpportunityModal(true);
+                handleSetCurrentOpportunityId(item);
+              }}
+            >
+                 <BorderColorIcon  className=" !text-base cursor-pointer"/>
+              </span>
+           )}
+          </Tooltip>
+       
+          <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => deleteOpportunityData(item.opportunityId)}
+          >
+           
+             {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
+            <DeleteOutlined
+            // loading={props.deleteOpportunityData}
+            type="delete" className=" !text-base cursor-pointer text-[red]" />
+             )}
+          </StyledPopconfirm>
+
+              </div>
+            
+              </div>
+           
+        </div>
+       
+      </div>
+                 );})}
+    </div>
 
       </InfiniteScroll>
       </div>

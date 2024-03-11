@@ -2338,7 +2338,7 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                                                       ...state,
                                                                       reInstateToggleForlost: false,
                                                                       lostOpportunity: state.lostOpportunity.filter(
-                                                                        (item) => item.opportunityId !== action.payload.opportunityId
+                                                                        (item) => item.opportunityId !== action.payload
                                                                      ),
                                                                    };
                                                                  case types.REINSTATE_TOGGLE_FOR_LOST_FAILURE:
