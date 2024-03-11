@@ -478,6 +478,7 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingtechnicianByPhone: false,
+        assignOrderById: false,
       };
     case types.UPDATE_TECHNICIAN_BY_PHONE_FAILURE:
       return {

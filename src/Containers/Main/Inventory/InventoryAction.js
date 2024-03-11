@@ -778,7 +778,7 @@ export const addDeliveryDate = (data, locationDetailsId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getReceivedUserList(locationDetailsId))
+      // dispatch(getReceivedUserList(locationDetailsId))
       dispatch({
         type: types.ADD_DELIVERY_DATE_SUCCESS,
         payload: res.data,
@@ -1081,13 +1081,6 @@ export const updateValidationInReceive = (data, phoneId, id) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res);
-      dispatch(getPhonelistByOrderId(id))
-      Swal.fire({
-        icon: 'success',
-        title: 'Phone Received',
-        showConfirmButton: true,
-      })
       dispatch({
         type: types.UPDATE_VALIDATION_IN_RECEIVE_SUCCESS,
         payload: res.data,
@@ -1130,7 +1123,7 @@ export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) =
         title: 'Inspection Status Updated',
         showConfirmButton: true,
       })
-      dispatch(getReceivedUserList(locationId))
+      // dispatch(getReceivedUserList(locationId))
       dispatch({
         type: types.UPDATE_INSPECTION_SUCCESS,
         payload: res.data,

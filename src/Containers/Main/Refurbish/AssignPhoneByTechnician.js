@@ -177,6 +177,7 @@ const AssignPhoneByTechnician = (props) => {
                 <Button
                     loading={props.updatingtechnicianByPhone}
                     type='primary'
+                    disabled={!department && !technician}
                     onClick={() => props.UpdateTechnicianByPhone({
                         phoneDetailsList: checkedValue,
                         orderPhoneId: props.rowData.orderPhoneId,

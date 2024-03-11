@@ -88,6 +88,7 @@ const AddAccountForm = ({
   return (
     <>
       <Formik
+        enableReinitialize
         initialValues={{
           userId: userId,
           name: "",

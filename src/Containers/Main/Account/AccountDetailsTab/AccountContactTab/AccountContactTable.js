@@ -18,6 +18,16 @@ class AccountContactTable extends Component {
     componentDidMount() {
         this.props.getContactDistributorList(this.props.distributorId);
     }
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            rowData: {}
+        }
+    }
+    handleChangeRow(item) {
+        this.setState({ rowData: item })
+    }
 
     render() {
         const {
@@ -111,7 +121,9 @@ class AccountContactTable extends Component {
                                                     {!item.accessInd && <div class=" text-xs text-cardBody font-poppins">
                                                         <Button
                                                             type="primary"
+                                                            loading={this.state.rowData.contactPersonId === item.contactPersonId && this.props.applyingForLoginInContact}
                                                             onClick={() => {
+                                                                this.handleChangeRow(item)
                                                                 this.props.setEditDistributorContact(item);
                                                                 this.props.applyForLoginInContact(
                                                                     data,

@@ -40,11 +40,17 @@ export const addDistributor = (distributor) => (dispatch) => {
         },
       })
     .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Customer Created Successfully',
-        showConfirmButton: true,
-      })
+      if (res.data.message) {
+        message.success(res.data.message)
+
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Customer Created Successfully',
+          showConfirmButton: true,
+        })
+      }
+
       dispatch({
         type: types.ADD_DISTRIBUTOR_SUCCESS,
         payload: res.data,

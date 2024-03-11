@@ -3,7 +3,7 @@ import { Button, Switch, Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Radio } from "antd";
+import { Radio, message } from "antd";
 import { getlocation } from "../../../Event/Child/Location/LocationAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
@@ -16,11 +16,19 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
+import * as Yup from "yup";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 const { Option } = Select;
 
+const EmployeeSchema = Yup.object().shape({
+  departmentId: Yup.string().required("Input needed!"),
+  roleType: Yup.string().required("Input needed!"),
+  workplace: Yup.string().required("Input needed!"),
+  location: Yup.string().required("Input needed!"),
+  workplace: Yup.string().required("Input needed!"),
+});
 class UpdateEmployeeForm extends Component {
   constructor(props) {
     super(props);
@@ -283,26 +291,29 @@ class UpdateEmployeeForm extends Component {
             ],
 
           }}
-          //   validationSchema={documentSchema}
-
+          validationSchema={EmployeeSchema}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
-            this.props.updateEmployee(
-              {
-                ...values,
-                // workplace: currentEmployeeId.country_name ,
-                // location: currentEmployeeId.locationDetailsId ,
-                reportingManagerDeptId: department,
-                reportingManager: reportingManager,
-                job_type: this.state.active ? "Full Time" : "Part Time",
-                type: this.state.typeInd ? "true" : "false",
-                employee_type: this.state.workType,
-                employeeId: currentEmployeeId.employeeId,
-                // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
-              },
-              currentEmployeeId.employeeId,
-              () => this.handleReset(resetForm)
-            );
+            if (department && reportingManager) {
+              this.props.updateEmployee(
+                {
+                  ...values,
+                  // workplace: currentEmployeeId.country_name ,
+                  // location: currentEmployeeId.locationDetailsId ,
+                  reportingManagerDeptId: department,
+                  reportingManager: reportingManager,
+                  job_type: this.state.active ? "Full Time" : "Part Time",
+                  type: this.state.typeInd ? "true" : "false",
+                  employee_type: this.state.workType,
+                  employeeId: currentEmployeeId.employeeId,
+                  // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
+                },
+                currentEmployeeId.employeeId,
+                () => this.handleReset(resetForm)
+              );
+            }
+            else {
+              message.error("Please Provide Department And Reporting Manager ! ")
+            }
           }}
 
         >
@@ -434,21 +445,21 @@ class UpdateEmployeeForm extends Component {
                     <div class="flex justify-between max-sm:flex-col">
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk " >
                         <div class=" w-w47.5 max-sm:w-wk ">
-                        <FastField
-                        name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
+                          <FastField
+                            name="countryDialCode"
+                            isColumnWithoutNoCreate
+                            label={
+                              <FormattedMessage
+                                id="app.dialCode"
+                                defaultMessage="Dial Code"
+                              />
+                            }
+                            isColumn
+                            // width={"100%"}
+                            selectType="dialCode"
+                            component={SearchSelect}
+                            inlineLabel
                           />
-                        }
-                        isColumn
-                        // width={"100%"}
-                        selectType="dialCode"
-                        component={SearchSelect}
-                        inlineLabel
-                      />
                         </div>
                         <div class=" w-w47.5 max-sm:w-wk">
                           <Field
@@ -467,21 +478,21 @@ class UpdateEmployeeForm extends Component {
                       </div>
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk" >
                         <div class="w-w47.5 max-sm:w-wk">
-                        <FastField
-                        name="countryDialCode1"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
+                          <FastField
+                            name="countryDialCode1"
+                            isColumnWithoutNoCreate
+                            label={
+                              <FormattedMessage
+                                id="app.dialCode"
+                                defaultMessage="Dial Code"
+                              />
+                            }
+                            isColumn
+                            // width={"100%"}
+                            selectType="dialCode"
+                            component={SearchSelect}
+                            inlineLabel
                           />
-                        }
-                        isColumn
-                        // width={"100%"}
-                        selectType="dialCode"
-                        component={SearchSelect}
-                        inlineLabel
-                      />
                         </div>
                         <div class="w-w47.5 max-sm:w-wk">
                           <Field

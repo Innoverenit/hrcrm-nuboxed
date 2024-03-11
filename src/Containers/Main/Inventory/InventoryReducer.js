@@ -248,6 +248,9 @@ const initialState = {
   fetchingReceivedUnitOfAnItemError: false,
   reciveUnitData: [],
 
+  addingDeliverDate: false,
+  addingDeliverDateError: false,
+
   showGrnListOfPo: false,
 
   showStockItem: false,
@@ -760,20 +763,22 @@ export const inventoryReducer = (state = initialState, action) => {
       };
     case types.ADD_DELIVERY_DATE_REQUEST:
       return {
-        ...state,
+        ...state, addingDeliverDate: true,
       };
     case types.ADD_DELIVERY_DATE_SUCCESS:
       return {
         ...state,
-        // allReceivedUser: state.allReceivedUser.map((item) =>
-        //   item.dispatchId === action.payload.dispatchId ? action.payload : item
-        // ),
-        addDeliverDate: false,
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderId === action.payload.orderId
+            ? action.payload : item
+        ),
+        addingDeliverDate: false,
       };
     case types.ADD_DELIVERY_DATE_FAILURE:
       return {
         ...state,
-        addDeliverDate: false,
+        addingDeliverDate: false,
+        addingDeliverDateError: true,
       };
     case types.HANDLE_DELIVERY_DATE_MODAL:
       return { ...state, addDeliverDate: action.payload };
@@ -979,7 +984,11 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingValidationInRecive: false,
-        addReceivePhone: false
+        addReceivePhone: false,
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_VALIDATION_IN_RECEIVE_FAILURE:
       return {
@@ -1001,10 +1010,10 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingInspection: false,
         receivedOrdeIdModal: false,
-        // allReceivedUser: state.allReceivedUser.map((item) =>
-        //   item.orderId === action.payload.orderId
-        //     ? action.payload : item
-        // ),
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderId === action.payload.orderId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_INSPECTION_FAILURE:
       return {
