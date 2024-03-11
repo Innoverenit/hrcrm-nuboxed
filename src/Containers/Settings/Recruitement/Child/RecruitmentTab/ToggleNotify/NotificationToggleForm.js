@@ -194,13 +194,25 @@ const CheckboxGroup = Checkbox.Group;
 function NotificationToggleForm (props) {
   
   useEffect(()=>{
-    props.getNotificationConfig("candidate","create");
+    props.getNotificationConfig();
   },[]);
 
-  const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
+  // const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
+  const userOptions = [
+    { label: 'Create', value: 'create' },
+    { label: 'Update', value: 'update' },
+    // { label: 'Read', value: 'read' },
+    { label: 'Delete', value: 'delete' },
+  ];
+
+  const [checkedList, setCheckedList] = useState([]);
+  const [checkAll, setCheckAll] = useState(false);
 const [admini,setAdmini]=useState(props.notificationConfig.admin);
 const [reportingMan,setreportingMan]=useState(props.notificationConfig.reportingManager);
 const [reportingMan1,setreportingMan1]=useState(props.notificationConfig.reportingManager1);
+const [adminSwitch, setAdminSwitch] = useState(false);
+const [reportingManagerSwitch, setReportingManagerSwitch] = useState(false);
+const [reportingManagerPlus1Switch, setReportingManagerPlus1Switch] = useState(false);
 
   const [checkedUserList, setCheckedUserList] = useState();
   const [indeterminateUser, setIndeterminateUser] = useState(true);
@@ -233,7 +245,32 @@ const [reportingMan1,setreportingMan1]=useState(props.notificationConfig.reporti
           setreportingMan1((prevState) => ({
               reportingMan1: !prevState.reportingMan1,
             }));
-          };   
+          };  
+          
+          
+
+          const handleChange = (checkedValues) => {
+            setCheckedList(checkedValues);
+            setCheckAll(checkedValues.length === userOptions.length);
+          };
+        
+          const handleCheckAllChange = (e) => {
+            const checked = e.target.checked;
+            setCheckedList(checked ? userOptions.map((option) => option.value) : []);
+            setCheckAll(checked);
+          };
+
+          const handleAdminSwitchChange = (checked) => {
+            setAdminSwitch(checked);
+          };
+        
+          const handleReportingManagerSwitchChange = (checked) => {
+            setReportingManagerSwitch(checked);
+          };
+        
+          const handleReportingManagerPlus1SwitchChange = (checked) => {
+            setReportingManagerPlus1Switch(checked);
+          };
     return (
       <>
       {/* <TabsWrapper>
@@ -262,19 +299,20 @@ const [reportingMan1,setreportingMan1]=useState(props.notificationConfig.reporti
             reportingManager: reportingMan  ? "true" :"false",
             reportingManager1: reportingMan1 ? "true" : "false",
             type: "Create",
-            name: "",
+            // name: "",
 
           }}
           // validationSchema={FormSchema}
           onSubmit={(values, { resetForm }) => {
             //debugger;
             console.log(values);
-            this.props.addNotificationConfig(
+            props.addNotificationConfig(
               {
                 ...values,
-                admin: admini ? "true" : "false",
-                reportingManager: reportingMan  ? "true" :"false",
-                reportingManager1: reportingMan1 ? "true" : "false",
+                admin: adminSwitch ? "true" : "false",
+                reportingManager: reportingManagerSwitch  ? "true" :"false",
+                reportingManager1: reportingManagerPlus1Switch ? "true" : "false",
+                type:checkedList,
               },
             );
           }}
@@ -295,46 +333,72 @@ const [reportingMan1,setreportingMan1]=useState(props.notificationConfig.reporti
 <div>
 <div class="font-bold text-xs">Admin &nbsp;</div>
                       <div>
-                        <Switch
+                        {/* <Switch
                           style={{ width: "6.25em" }}
                           checked={props.notificationConfig.admin || admini}
                           onChange={handleAdmini}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
-                        />
+                        /> */}
+
+<Switch 
+ style={{ width: "6.25em" }}
+checkedChildren="Yes"
+unCheckedChildren="No"
+onChange={handleAdminSwitchChange} checked={adminSwitch} />
                       </div>
 </div>
 <div>
 <div class="font-bold text-xs">Reporting Manager &nbsp;</div>
                       <div>
-                        <Switch
+                        {/* <Switch
                           style={{ width: "6.25em" }}
                           checked={props.notificationConfig.reportingManager || reportingMan}
                           onChange={handleReportingMan}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
-                        />
+                        /> */}
+                         <Switch 
+                         style={{ width: "6.25em" }}
+                           checkedChildren="Yes"
+                           unCheckedChildren="No"
+                         onChange={handleReportingManagerSwitchChange} checked={reportingManagerSwitch} />
                       </div>
 </div>
 <div>
 <div class="font-bold text-xs">Reporting Manager +1 &nbsp;</div>
                       <div>
-                        <Switch
+                        {/* <Switch
                           style={{ width: "6.25em" }}
                           checked={props.notificationConfig.reportingManager1 || reportingMan1}
                           onChange={handleReportingMan1}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
-                        />
+                        /> */}
+                         <Switch
+                             checkedChildren="Yes"
+                             unCheckedChildren="No"
+                         style={{ width: "6.25em" }}
+          onChange={handleReportingManagerPlus1SwitchChange}
+          checked={reportingManagerPlus1Switch}
+        />
                       </div>
 </div>
 <div>
 <div class="text-sm font-semibold">Users</div>
-                <Checkbox indeterminate={indeterminateUser} onChange={onCheckAllUserChange} checked={checkAllUser}>
+                {/* <Checkbox indeterminate={indeterminateUser} onChange={onCheckAllUserChange} checked={checkAllUser}>
                  <div class="text-xs"> Check all</div>
-                </Checkbox>
+                </Checkbox> */}
+                 <Checkbox
+        indeterminate={checkedList.length > 0 && checkedList.length < userOptions.length}
+        onChange={handleCheckAllChange}
+        checked={checkAll}
+      >
+      <div class="text-xs"> Check all</div>
+      </Checkbox>
                 <Divider />
-                <CheckboxGroup options={userOptions} value={checkedUserList} onChange={onUserChange} />
+                {/* <CheckboxGroup options={userOptions} value={checkedUserList} onChange={onUserChange} /> */}
+                <CheckboxGroup options={userOptions} value={checkedList} onChange={handleChange} />
 
 </div>
               </div>
