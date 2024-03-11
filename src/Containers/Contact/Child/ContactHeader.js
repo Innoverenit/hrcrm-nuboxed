@@ -6,6 +6,7 @@ class ContactHeader extends Component {
   render() {
     const {
       handleContactModal,
+      handleContactImportModal,
       viewType,
       setContactsViewType,
       currentData,
@@ -39,6 +40,7 @@ class ContactHeader extends Component {
           }
           rightComponent={
             <ContactActionRight handleContactModal={handleContactModal} 
+            handleContactImportModal={handleContactImportModal}
             viewType={viewType}
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}

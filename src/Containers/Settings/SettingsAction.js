@@ -3271,6 +3271,7 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       },
     })
     .then((res) => {
+      
       console.log(res);
       // dispatch(getIndentApprovalData("Indent", "IndentApproval"))
       dispatch(getApproveData("Leave"))
@@ -3278,6 +3279,7 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       dispatch(getApproveData("Expense"))
       dispatch(getApproveData("ContactUser"))
       dispatch(getApproveData("PhonePair"))
+      dispatch(getApproveData("ProspectToCustomer"))
       dispatch({
         type: types.ADD_APPROVE_SUCCESS,
         payload: res.data,

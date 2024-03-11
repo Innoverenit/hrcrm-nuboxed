@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { FormWrapper, Input } from "./styled";
-import { ValidationError, Spacer } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
+import { ValidationError, } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
+import * as Yup from "yup";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
@@ -20,12 +19,12 @@ import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nb
 /**
  * yup validation scheme for set Password
  */
-// const LoginSchema = Yup.object().shape({
-//   userName: Yup.string()
-//     .email("Enter a valid email")
-//     .required("Input needed !"),
-//   password: Yup.string().required("Enter password"),
-// });
+const LoginSchema = Yup.object().shape({
+  userName: Yup.string()
+    .email("Enter a valid email")
+    .required("Input needed !"),
+  password: Yup.string().required("Enter password"),
+});
 class LoginHr extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +33,7 @@ class LoginHr extends Component {
       password: "",
       Loading: false,
       render: false,
+      
       type: "password",
       show: Boolean(),
     };
@@ -55,7 +55,8 @@ class LoginHr extends Component {
   InputComponent = ({ field, form: { touched, errors }, ...props }) => (
     <div>
       <div>
-        <Input {...field} {...props} />
+        <Input {...field} {...props} 
+        />
       </div>
       {touched[field.name] && errors[field.name] && (
         <ValidationError>{errors[field.name]}</ValidationError>
@@ -64,7 +65,6 @@ class LoginHr extends Component {
   );
   componentDidMount() {
     this.timeoutHandle = setTimeout(() => {
-      // Add your logic for the transition
     }, 5000);
 
     console.log("inside cDM login");
@@ -94,18 +94,18 @@ class LoginHr extends Component {
               margin: "auto",
             }}
           >
+            <img
+              className="big-logo"
+              src={FWLogo2}
+              style={{ width: 200 }}
+              alt="Tekorero logo"
+            />
             {/* <img
               className="big-logo"
               src={FWLogo}
               style={{ width: 200 }}
               alt="Tekorero logo"
             /> */}
-            <img
-              className="big-logo"
-              src={FWLogo}
-              style={{ width: 200 }}
-              alt="Tekorero logo"
-            />
             <br />
 
             <FormWrapper width="25em">
@@ -115,7 +115,7 @@ class LoginHr extends Component {
                   userName: this.state.username || "",
                   password: this.state.password || "",
                 }}
-                // validationSchema={LoginSchema}
+                 validationSchema={LoginSchema}
                 onSubmit={(values) => {
                   // same shape as initial values
                   this.submit(values);
@@ -130,10 +130,10 @@ class LoginHr extends Component {
                       placeholder="Email"
                       component={this.InputComponent}
                     />
-                    <Spacer />
-                    <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
+               
+                    <div class=" flex mt-3 justify-between items-center"  >
                       <div className="login_password">
-                        <div style={{ width: "100%" }}>
+                        <div class=" w-full" >
                           <Field
                             name="password"
                             placeholder="Password"
@@ -141,6 +141,7 @@ class LoginHr extends Component {
                             component={this.InputComponent}
                           />
                         </div>
+                        <div class=" mt-[0.35rem]">
                         {this.state.show ? (
                           <EyeOutlined
                             type="eye"
@@ -156,6 +157,8 @@ class LoginHr extends Component {
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                           />
                         )}
+                        </div>
+                      
                       </div>
                       {/* <div >
                         <Button
@@ -171,8 +174,8 @@ class LoginHr extends Component {
                         </Button>
                       </div> */}
 
-                    </FlexContainer>
-                    <Spacer />
+                    </div>
+              <div class=" mt-3"></div>
                     {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
                       <div >
                         <Field
@@ -197,8 +200,8 @@ class LoginHr extends Component {
                         </Button>                      
                       </div>
                       )} 
-                    </FlexContainer>
-                    <Spacer /> */}
+                    </FlexContainer>*/}
+ 
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -219,7 +222,7 @@ class LoginHr extends Component {
                 Forgot password?
               </Link>
             </FormWrapper>
-            <Spacer />
+            <div class=" mt-3"></div>
 
 
           </div>

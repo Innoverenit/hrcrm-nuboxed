@@ -73,7 +73,7 @@ function OpportunityForm(props) {
   const currencyNameOption = sortedCurrency.map((item) => {
     return {
       label: `${item.currency_name}`,
-      value: item.currency_id,
+      value: item.currency_name,
     };
   });
 
@@ -727,7 +727,7 @@ const AllEmplo = props.assignedToList.map((item) => {
               <Button
                 type="primary"
                 htmlType="submit"
-                Loading={addingOpportunity}
+                loading={addingOpportunity}
               >
                 <FormattedMessage id="app.create" defaultMessage="Create" />
                 {/* Create */}

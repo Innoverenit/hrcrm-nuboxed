@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {getCurrencyList} from "../../../../../Settings/Category/Currency/CurrencyAction"
+import {getCurrency} from "../../../../../Auth/AuthAction"
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { updateCustomerOpportunity } from "../../../../CustomerAction";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
@@ -31,7 +31,7 @@ function UpdateCustomerOpportunityForm(props) {
 
   useEffect(() => {
     props.getCrm();
-   props.getCurrencyList();
+   props.getCurrency();
     props.getWorkflow(props.orgId);
     props.getStages(props.orgId);
   }, []);
@@ -104,7 +104,7 @@ function UpdateCustomerOpportunityForm(props) {
       };
     });
 
-    const sortedCurrency =props.currencyList.sort((a, b) => {
+    const sortedCurrency =props.currencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();
       // Compare department names
@@ -119,7 +119,7 @@ function UpdateCustomerOpportunityForm(props) {
     const currencyNameOption = sortedCurrency.map((item) => {
       return {
         label: `${item.currency_name}`,
-        value: item.currency_id,
+        value: item.currency_name,
       };
     });
     const [defaultOption, setDefaultOption] = useState(props.setEditingCustomerOpportunity.assignedTo);
@@ -610,7 +610,7 @@ console.log("hh",customerId)
 const mapStateToProps = ({ auth,leads, opportunity,currency, contact, customer }) => ({
   user: auth.userDetails,
   userId: auth.userDetails.userId,
-  currencyList: currency.currencyList,
+  currencies: auth.currencies,
   organizationId: auth.userDetails.organizationId,
   contactId: contact.contactByUserId.contactId,
   customerId: customer.customer.customerId,
@@ -633,7 +633,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       updateCustomerOpportunity,
       getCrm,
-      getCurrencyList,
+      getCurrency,
       getWorkflow,
       getStages,
     },

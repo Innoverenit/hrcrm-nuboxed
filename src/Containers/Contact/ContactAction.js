@@ -14,6 +14,13 @@ export const handleContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleContactImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const emptyContact = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CONTACT_TABLE,
@@ -77,9 +84,9 @@ export const addContact = (contact) => (dispatch, getState) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Created Successfully',
+        title: 'Contact created Successfully!',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
       console.log(res);
       dispatch(getOpportunityRecord(userId));
@@ -381,7 +388,7 @@ export const addContactDocument = (data, cb) => (dispatch) => {
         icon: 'success',
         title: 'Created Successfully',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
       dispatch({
         type: types.ADD_CONTACT_DOCUMENT_SUCCESS,
@@ -531,7 +538,7 @@ export const addContactOpportunity = (opportunity, cb) => (
         icon: 'success',
         title: 'Created Successfully',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
       console.log(res);
       const startDate = dayjs()
@@ -591,9 +598,9 @@ export const updateContact = (data, contactId) => (dispatch) => {
       });
       Swal.fire({
         icon: 'success',
-        title: 'Updated Successfully',
+        title: 'Contact Info Updated Successfully!',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
     })
     .catch((err) => {
@@ -752,7 +759,7 @@ export const addLinkContactByOpportunityId = (contact, opportunityId) => (
         icon: 'success',
         title: 'Created Successfully',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
     })
     .catch((err) => {
@@ -842,7 +849,7 @@ export const shareContactPartnerPermission = (data, userId, a) => (
         icon: 'success',
         title: 'Created Successfully',
         showConfirmButton: false,
-        timer: 1500
+        // timer: 1500
       })
     })
     .catch((err) => {
