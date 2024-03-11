@@ -159,7 +159,7 @@ const handleDeptChange = (event) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={props.linkingLeads}
+                  loading={props.linkingCustomerStatus}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
@@ -176,6 +176,7 @@ const handleDeptChange = (event) => {
 
 const mapStateToProps = ({ settings,leads, departments, auth }) => ({
   userId: auth.userDetails.userId,
+  linkingCustomerStatus:leads.linkingCustomerStatus,
   departmentwiseUser:settings.departmentwiseUser,
   distributionAutomation: settings.distributionAutomation,
   orgId: auth.userDetails.organizationId,

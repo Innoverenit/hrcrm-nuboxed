@@ -127,10 +127,10 @@ function OpportunityCardList(props) {
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingOpportunity?<div style={{ textAlign: 'center' }}>Loading...</div> :null}
-                height={"87vh"}
+                height={"75vh"}
             >
 
-<div class="flex justify-center  flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
 { !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -139,9 +139,9 @@ function OpportunityCardList(props) {
                        findProbability = element.probability;}
                     });
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] justify-center shadow-[#aaa] h-[8rem] 
-                  text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-full max-sm:m-[0.15rem]  ">
-        <div class="flex items-center flex-nowrap h-[2.81em]">
+                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7rem] 
+                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col  ">
+        <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -325,6 +325,7 @@ imgHeight={"1.8em"}
   </Tooltip>
   </Popconfirm>
   &nbsp; &nbsp;
+  {user.recruitProInd === true && (
   <Popconfirm
   title="Change status to Lost?"
   onConfirm={() => handleConfirm(item.opportunityId)}
@@ -348,6 +349,7 @@ imgHeight={"1.8em"}
         />
         </Tooltip>
     </Popconfirm>
+     )}
 </>
 )}
 </div>
@@ -406,6 +408,7 @@ imgHeight={"1.8em"}
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
             <DeleteOutlined
+            // loading={props.deleteOpportunityData}
             type="delete" className=" !text-base cursor-pointer text-[red]" />
              )}
           </StyledPopconfirm>
@@ -460,6 +463,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  deleteOpportunityData:opportunity.deleteOpportunityData,
   addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   role: auth.userDetails.role,
   opportunitySkills:opportunity.opportunitySkills,

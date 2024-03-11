@@ -541,7 +541,7 @@ function ContactInvestCardList(props) {
                        {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
                    
-              {/* <Tooltip title={item.ownerName}> */}
+              <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end mt-1">
             
               <MultiAvatar
@@ -552,7 +552,7 @@ function ContactInvestCardList(props) {
               />
            
             </div>
-          {/* </Tooltip> */}
+          </Tooltip>
 
                    </div>
                                 <div class="flex flex-col md:w-6 max-sm:flex-row w-full max-sm:justify-evenly items-center">

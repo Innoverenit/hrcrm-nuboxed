@@ -10,19 +10,11 @@ const UpdateContactModal = props => {
   return (
     <>
       <StyledDrawer
-        // title={<FormattedMessage
-        //   id="app.contact"
-        //   defaultMessage="Contact"
-        // />}
         title={props.contactData.fullName}
         width={drawerWidth}
         visible={updateContactModal}
-        closable
-        destroyOnClose
-        maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{marginTop:"3rem"}}
         onClose={() => handleUpdateContactModal(false)}
-        footer={null}
+
       >
         <Suspense fallback={<BundleLoader />}>
           <UpdateContactForm contactId={props.contactData.contactId} />

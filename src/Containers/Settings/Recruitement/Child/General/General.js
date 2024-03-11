@@ -175,8 +175,8 @@ function General(props) {
 
                       {values.productionInd &&
                         <>
-                          <div class=" flex flex-row mt-2">
-                            <p style={{ minWidth: "-webkit-fill-available" }}> Make To Order</p>
+                          <div class=" flex flex-row mt-2 ml-4">
+                            <p style={{ minWidth: "-webkit-fill-available",fontWeight:"700" }}> Make To Order</p>
                             <Field
                               name="makeToInd"
                               component={SwitchComponent}
@@ -186,8 +186,8 @@ function General(props) {
                               width={"5em"}
                             />
                           </div>
-                          <div class=" flex flex-row mt-2">
-                            <p style={{ minWidth: "-webkit-fill-available" }}> Independent</p>
+                          <div class=" flex flex-row mt-2 ml-4">
+                            <p style={{ minWidth: "-webkit-fill-available",fontWeight:"700" }}> Make to Stock</p>
                             <Field
                               name="independentInd"
                               component={SwitchComponent}
@@ -200,7 +200,7 @@ function General(props) {
                         </>
                       }
 
-                      <div class=" flex flex-row mt-2">
+                      <div class=" flex flex-row mt-3">
                         <p style={{ minWidth: "-webkit-fill-available" }}>Repair</p>
                         <Field
                           name="repairInd"
@@ -220,7 +220,7 @@ function General(props) {
                           data={values.partNoInd}
                           checkedChildren={"Manual"}
                           unCheckedChildren={"Automatic"}
-                          width={"5em"}
+                          width={"6em"}
                         />
                       </div>
                     </div>

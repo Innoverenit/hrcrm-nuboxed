@@ -140,7 +140,7 @@ class UpdateContactForm extends Component {
             salutation: this.props.setEditingContact.salutation || "",
             designationTypeId: this.props.setEditingContact.designationTypeId || "",
             description: this.props.setEditingContact.description || "",
-            departmentId: this.props.setEditingContact.departmentId || "",
+            departmentId: this.props.setEditingContact.department || "",
             departmentDetails:
               this.props.setEditingContact.departmentDetails || "",
               source:
@@ -468,12 +468,13 @@ class UpdateContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
                       // component={SelectComponent}
-                      component={SearchSelect}
-                      value={values.departmentId}
-                      selectType="departmentName"
+                      component={InputComponent}
+                      // value={values.departmentId}
+                      // selectType="departmentName"
                       inlineLabel
                     />
                   </div>

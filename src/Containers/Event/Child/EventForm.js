@@ -84,6 +84,10 @@ function EventForm (props) {
         value: item.employeeId,
       };
     });
+
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const sortedOpportunity =props.allOpportunityData.sort((a, b) => {
       const nameA = a.opportunityName.toLowerCase();
       const nameB = b.opportunityName.toLowerCase();
@@ -695,7 +699,7 @@ const {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

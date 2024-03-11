@@ -83,7 +83,7 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       // dispatch(
       //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
       // );
-      message.success(res.data.message)
+      // message.success(res.data.message)
       const startDate = dayjs()
         .startOf("month")
         .toISOString();

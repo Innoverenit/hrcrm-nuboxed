@@ -316,6 +316,16 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         },
       })
       .then((res) => {
+        {res.data.message?  
+          message.success(res.data.message):
+          Swal.fire({
+            icon: 'success',
+            title: 'Contact Created Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Sector has been added successfully!");
+        }
         const startDate = dayjs()
           .startOf("month")
           .toISOString();
@@ -326,12 +336,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.ADD_INVESTOR_CONTACT_SUCCESS,
           payload: res.data,
         });
-        Swal.fire({
-          icon: 'success',
-          title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
-        })
+       
       })
       .catch((err) => {
         console.log(err);

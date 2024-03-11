@@ -740,14 +740,18 @@ const LeadsCardList = (props) => {
                   </div>
                   <div className=" flex font-medium flex-col md:w-16  max-sm:flex-row w-full max-sm:justify-between">
                     <div>
-                      <Tooltip title={item.ownerName}>
-                      <MultiAvatar
-                        primaryTitle={item.ownerName}
-                        imageId={item.ownerImageId}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                      </Tooltip>
+                    <Tooltip title={item.ownerName}>
+                <div class="max-sm:flex justify-end">
+                <Tooltip title={item.ownerName}>
+              <MultiAvatar
+                primaryTitle={item.ownerName}
+                imageId={item.ownerImageId}
+                imgWidth={"1.9rem"}
+                imgHeight={"1.9rem"}
+              />
+            </Tooltip>
+            </div>
+          </Tooltip>
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between ">

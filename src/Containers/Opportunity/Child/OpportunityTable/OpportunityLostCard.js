@@ -410,7 +410,7 @@ function OpportunityLostCard(props) {
         <div className="md:w-[12.3rem]">Proposal Amount</div>
         <div className="md:w-[5.2rem]">Stages</div> 
         <div className="md:w-[8.1rem]">Sales Rep</div>
-        <div className="md:w-[2.2rem]">Owner</div>
+        <div className="md:w-[3.2rem]">Owner</div>
         <div className="md:w-[4.8rem]"></div>
         <div className="w-12"></div>
       </div>
@@ -523,7 +523,7 @@ function OpportunityLostCard(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                   <div class=" text-sm text-cardBody font-poppins text-center">
@@ -569,7 +569,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                   <div class=" text-sm text-cardBody font-poppins">
@@ -584,7 +584,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
                      
                      {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -600,6 +600,17 @@ strokeColor={"#005075"}
           </span>
           </Tooltip>
                  </div>
+                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row ">
+                  <div class=" text-sm text-cardBody font-medium font-poppins">
+
+Reinstate
+   </div>
+                  <ReinstateToggleForLost 
+          opportunityId={item.opportunityId} 
+          
+          
+          />
+                  </div>
                  </div>
                  <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
                  <div>
@@ -628,6 +639,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
        </span>
                       </div>
           </div>
+       
                  <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
                   <div>
                   <Tooltip title='Click to Open'><span
@@ -648,13 +660,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </span>
    </Tooltip> 
                   </div>
-                  <div>
-                  <ReinstateToggleForLost 
-          opportunityId={item.opportunityId} 
-          
-          
-          />
-                  </div>
+               
                 </div>
                 <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
                  
@@ -706,7 +712,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                         </StyledPopconfirm>
                     </div>
            
-                  <div></div>
+                  <div ></div>
                 </div>   
                             
                     
