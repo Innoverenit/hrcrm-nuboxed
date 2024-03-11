@@ -492,21 +492,29 @@ function UpdateDealForm (props) {
     </Listbox>
     <div>
     <label class=" text-[#444] font-bold text-[0.75rem]" >Include</label>
+ 
     <Select
-                        name="included"
-                        mode="multiple"
-                        style={{ width: '100%' }}
-                        placeholder="Select"
-                        defaultValue={includeNames}
-                        onChange={handleChangeInclude}
-                      >
-  
-                        {props.assignedToList.map((item, i) => {
-                          return (
-                            <Option value={item.employeeId}>{item.empName}</Option>
-                          )
-                        })}
-                      </Select>
+  name="included"
+  mode="multiple"
+  style={{ width: '100%' }}
+  placeholder="Select"
+  defaultValue={includeNames}
+  onChange={handleChangeInclude}
+>
+  {props.assignedToList.map((item) => {
+    const isCurrentUser = item.employeeId === props.user.userId;
+
+    if (!isCurrentUser) {
+      return (
+        <Option key={item.employeeId} value={item.employeeId}>
+          {item.empName}
+        </Option>
+      );
+    }
+
+    return null; // Skip rendering for the current user
+  })}
+</Select>
 {/* <Field
                     name="include"
                     isColumnWithoutNoCreate

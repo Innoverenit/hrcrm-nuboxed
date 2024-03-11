@@ -68,6 +68,9 @@ function ContactEventForm (props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== userId
+    );
     
   
 const selectedOption = props.assignedToList.find((item) => item.empName === selected);
@@ -497,7 +500,7 @@ const {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

@@ -142,6 +142,9 @@ function CustomerCallActivityForm(props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const opportunityNameOption = props.opportunityByCustomerId.map((item) => {
       return {
         label: `${item.opportunityName}`,
@@ -716,7 +719,7 @@ function CustomerCallActivityForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${fullName || ""} `,

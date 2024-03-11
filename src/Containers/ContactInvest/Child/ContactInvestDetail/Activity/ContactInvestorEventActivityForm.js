@@ -64,6 +64,10 @@ function ContactInvestorEventActivityForm (props) {
         value: item.employeeId,
       };
     });
+
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
    
 const selectedOption = props.sales.find((item) => item.fullName === selected);
    
@@ -506,7 +510,7 @@ const {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${fullName || ""} `,

@@ -125,7 +125,9 @@ function DealForm(props) {
       value: item.employeeId,
     };
   });
-
+  const filteredEmployeesData = AllEmplo.filter(
+    (item) => item.value !== props.user.userId
+  );
   const sortedCurrency =props.currencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
@@ -586,7 +588,7 @@ function DealForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(AllEmplo) ? AllEmplo : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

@@ -316,15 +316,21 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         },
       })
       .then((res) => {
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
           Swal.fire({
             icon: 'success',
-            title: 'Contact Created Successfully',
+            title: res.data.message,
             showConfirmButton: false,
             // timer: 1500
-          })
-        // message.success("Sector has been added successfully!");
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Contact created Successfully',
+            showConfirmButton: false,
+            // timer: 1500
+          });
         }
         const startDate = dayjs()
           .startOf("month")

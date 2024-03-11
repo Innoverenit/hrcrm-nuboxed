@@ -75,6 +75,33 @@ export const setDealViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getInvestorDeals = (investorId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_INVESTOR_DEALS_DATA_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorOpportunity/details/investor/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_DEALS_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_INVESTOR_DEALS_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const handleDealModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_DEAL_MODAL,

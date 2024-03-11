@@ -114,7 +114,9 @@ function LeadsCallForm(props) {
         value: item.employeeId,
       };
     });
-   
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const {
       user: { userId, firstName, empName,middleName, fullName, lastName, timeZone },
       isEditing,
@@ -622,7 +624,7 @@ function LeadsCallForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

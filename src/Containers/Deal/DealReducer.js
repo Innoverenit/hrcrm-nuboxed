@@ -4,6 +4,10 @@ import dayjs from "dayjs";
 const initialState = {
   viewType: "table",
 
+  fetchingInvestorDealsData: false,
+  fetchingInvestorDealsDataError: false,
+  investorDealsData:[],
+
   fetchingAllDelasRecords: false,
   fetchingAllDelasRecordsError: false,
   dealsAllRecord:{},
@@ -137,6 +141,22 @@ export const dealReducer = (state = initialState, action) => {
           fetchingDealError: true,
         };
 
+        case types.GET_INVESTOR_DEALS_DATA_REQUEST:
+
+          return { ...state, fetchingInvestorDealsData: true };
+        case types.GET_INVESTOR_DEALS_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingInvestorDealsData: false,
+            investorDealsData: action.payload,
+          };
+        case types.GET_INVESTOR_DEALS_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingInvestorDealsData: false,
+            fetchingInvestorDealsDataError: true,
+          };
+
         case types.CREATE_DEAL_REQUEST:
           return { ...state, creatingDeal: true };
         case types.CREATE_DEAL_SUCCESS:
@@ -145,7 +165,8 @@ export const dealReducer = (state = initialState, action) => {
             creatingDeal: false,
             opencreateDealModal: false,
            dealsByuserId :[action.payload,...state.dealsByuserId],
-           allDealsData :[action.payload,...state.allDealsData]
+           allDealsData :[action.payload,...state.allDealsData],
+            investorDealsData:[action.payload,...state.investorDealsData],
           };
         case types.CREATE_DEAL_FAILURE:
           return {
