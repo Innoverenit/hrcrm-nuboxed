@@ -13,7 +13,7 @@ function TagBrandModel(props) {
     return (
         <div>
             <StyledDrawer
-                title="Tag Brand"
+                title={`Tag Brand - ${props.particularDiscountData.suppliesName}`}
                 width="60%"
                 visible={addBrandModel}
                 destroyOnClose

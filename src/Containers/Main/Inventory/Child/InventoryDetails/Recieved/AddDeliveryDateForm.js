@@ -75,7 +75,9 @@ function OrderInventoryForm(props) {
                 />
               </div>
               <div style={{ marginTop: "15px", marginLeft: "14px" }}>
-                <Button type="primary" htmlType="submit">
+                <Button
+                  loading={props.addingDeliverDate}
+                  type="primary" htmlType="submit">
                   Submit
                 </Button>
               </div>
@@ -90,6 +92,7 @@ const mapStateToProps = ({ plant, auth, inventory }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   inventory: inventory.inventory,
+  addingDeliverDate: inventory.addingDeliverDate
 });
 
 const mapDispatchToProps = (dispatch) =>

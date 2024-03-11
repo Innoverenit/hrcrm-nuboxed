@@ -192,7 +192,7 @@ const ProductionOrderList = (props) => {
                                                                 handleRowData(item);
                                                             }}
                                                         >Assign For QC </Button>
-                                                    </Tooltip> : item.qcStartInd === 2 ? <b>Assigned</b>
+                                                    </Tooltip> : item.qcStartInd === 2 ? <b>Assigned To Technician</b>
                                                         : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>QC on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                             </div>
                                         </div>

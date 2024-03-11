@@ -213,6 +213,7 @@ const AddMultipleSpare = (props) => {
                 <Button
                     htmlType='submit'
                     type='primary'
+                    loading={props.addingSpareList}
                     onClick={buttonOnClick}
                 >
                     <FormattedMessage
@@ -231,6 +232,7 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
     currencies: auth.currencies,
+    addingSpareList: distributor.addingSpareList
 });
 
 const mapDispatchToProps = (dispatch) =>

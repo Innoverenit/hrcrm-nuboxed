@@ -43,17 +43,18 @@ const StatusOfOrder = (props) => (
                         }</>,
                     description:
                         <>
-                            {
-                                props.particularRowData.qcStartInd === 0 ?
-                                    <div className=' flex justify-around w-[38rem]'>
-                                        <Button
-                                            type='primary'
-                                            onClick={() => {
-                                                props.handlePaidModal(true);
-                                            }}
-                                        >
-                                            Receive Payment
-                                        </Button>
+
+                            <div className=' flex justify-around w-[38rem]'>
+                                <Button
+                                    type='primary'
+                                    onClick={() => {
+                                        props.handlePaidModal(true);
+                                    }}
+                                >
+                                    Receive Payment
+                                </Button>
+                                {
+                                    props.particularRowData.qcStartInd === 0 ?
                                         <Button
                                             loading={props.startingQcInStatus}
                                             type='primary'
@@ -67,11 +68,12 @@ const StatusOfOrder = (props) => (
                                         >
                                             Approve QC
                                         </Button>
-                                        <b>Advance as per Order - {props.particularRowData.advancePayment} % </b>
-                                        <b>Received - {props.particularRowData.receivePayment || 0} % </b>
-                                    </div>
-                                    : <b> QC approved on {moment(props.particularRowData.qcStartDate).format("DD-MM-YYYY")} By {props.particularRowData.qcStartUser}</b>
-                            }
+                                        : <b> QC approved on {moment(props.particularRowData.qcStartDate).format("DD-MM-YYYY")}
+                                            By {props.particularRowData.qcStartUser}</b>},
+                                <b>Advance as per Order - {props.particularRowData.advancePayment} % </b>
+                                <b>Received - {props.particularRowData.receivePayment || 0} % </b>
+                            </div>
+
                         </>
                 },
                 {
