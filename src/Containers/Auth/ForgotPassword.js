@@ -185,7 +185,7 @@ class ForgotPassword extends Component {
               >
                 <img
                   className="big-logo"
-                  src={inno}
+                  src={FWLogo2}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
