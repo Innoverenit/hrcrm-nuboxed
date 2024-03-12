@@ -122,7 +122,7 @@ function OppIncludedCardList(props) {
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7rem] 
-                  text-[#444444] m-3 p-1 w-[19vw] flex flex-col  ">
+                  text-[#444444] m-3 p-1 w-[15vw] flex flex-col  ">
         <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar
