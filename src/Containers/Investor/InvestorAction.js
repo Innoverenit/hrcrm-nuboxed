@@ -318,7 +318,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       .then((res) => {
         if (res.data.message) {
           Swal.fire({
-            icon: 'success',
+            icon: 'error',
             title: res.data.message,
             showConfirmButton: false,
             // timer: 1500
