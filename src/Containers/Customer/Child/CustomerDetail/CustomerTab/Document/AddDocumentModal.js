@@ -338,7 +338,7 @@ class AddDocumentModal extends Component {
                     <Button
                       htmlType="submit"
                       type="primary"
-                      Loading={addingDocumentByCustomerId}
+                      loading={addingDocumentByCustomerId}
                     >
                       {/* Submit */}
                       <FormattedMessage

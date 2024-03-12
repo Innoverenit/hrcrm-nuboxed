@@ -9,7 +9,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import {getdealsRecord,getdealsAllRecord,getdealsTeamRecord} from "../DealAction";
+import {getdealsRecord,getdealsAllRecord,getdealsTeamRecord,getlostRecords} from "../DealAction";
 import { StopTwoTone, TableOutlined } from "@ant-design/icons";
 
 const DealActionLeft = (props) => {
@@ -19,6 +19,9 @@ const DealActionLeft = (props) => {
       props.getdealsRecord(props.userId);
     } else if (props.viewType === "all") {
       props.getdealsAllRecord(props.userId);
+    } else if (props.viewType === "lost") {
+      props.getlostRecords(props.userId);
+      
     } else if (props.viewType === "teams") {
       props.getdealsTeamRecord(props.userId);
     } 
@@ -26,6 +29,7 @@ const DealActionLeft = (props) => {
   
   const {
     viewType,
+    lostDealData,
    setDealViewType,
     dealsTeamRecord,
   } = props;
@@ -152,16 +156,16 @@ const DealActionLeft = (props) => {
         />}>
         <Badge
           size="small"
-        //   count={
-        //     (viewType === "lost" &&
-        //       lostOpportunityData.OpportunityDetailsbyLostInd) ||
-        //     0
-        //   }
+          count={
+            (viewType === "lost" &&
+            lostDealData.OpportunityDetailsByLostInd) ||
+            0
+          }
           overflowCount={999}
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
-            // onClick={() => props.setOpportunityViewType("lost")}
+             onClick={() => props.setDealViewType("lost")}
             style={{
               color: props.viewType === "lost" && "#1890ff",
             
@@ -299,6 +303,7 @@ const DealActionLeft = (props) => {
 const mapStateToProps = ({ deal, auth, opportunity }) => ({
   user: auth.userDetails,
   recordData: opportunity.recordData,
+  lostDealData:deal.lostDealData,
   dealsTeamRecord:deal.dealsTeamRecord,
   dealsAllRecord:deal.dealsAllRecord,
   userId: auth.userDetails.userId,
@@ -312,6 +317,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getdealsRecord,
+      getlostRecords,
       getdealsTeamRecord,
       getdealsAllRecord
     },

@@ -8,9 +8,14 @@ const initialState = {
   fetchingInvestorsError: false,
   investorsbyId: [],
 
+  opencreateDealModal: false,
+
   fetchingInvestorActivityCount: false,
   fetchingInvestorActivityCountError: false,
   investorActivityCount:{},
+
+  creatingInvestorDeal: false,
+  creatingInvestorDealError: false,
 
   fetchingDialCode: false,
   fetchingDialCodeError: false,
@@ -739,6 +744,29 @@ export const investorReducer = (state = initialState, action) => {
                                         fetchingInvestorActivityCount: false,
                                         fetchingInvestorActivityCountError: true,
                                       };
+
+
+                                      
+
+                                      case types.CREATE_INVESTOR_DEAL_REQUEST:
+                                        return { ...state, creatingInvestorDeal: true };
+                                      case types.CREATE_INVESTOR_DEAL_SUCCESS:
+                                        return {
+                                          ...state,
+                                          // creatingDeal: false,
+                                          opencreateDealModal: false,
+                                         investorDealsData:[action.payload,...state.investorDealsData],
+                                        };
+                                      case types.CREATE_INVESTOR_DEAL_FAILURE:
+                                        return {
+                                          ...state,
+                                          creatingInvestorDeal: false,
+                                          creatingInvestorDealError: true,
+                                        };
+
+                                        case types.HANDLE_DEAL_MODAL:
+                                          return { ...state, opencreateDealModal: action.payload };
+                              
 
 
 default:

@@ -23,8 +23,8 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const UpdateCustomerContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
   emailId: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  // phoneNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long"),
-  // mobileNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Mobile number is not valid').min(8,"Number is too short").max(10,"Number is too long")
+  phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long"),
+  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 class UpdateInvestorContactForm extends Component {
@@ -170,25 +170,8 @@ class UpdateInvestorContactForm extends Component {
                       <FastField name="imageId" component={PostImageUpld} />
                       <div>
                       <div class=" flex justify-between">
-                          <div class =" w-2/5">
-                            <FastField
-                              name="salutation"
-                              type="text"
-                              // label="Salutation"
-                              label={
-                                <FormattedMessage
-                                  id="app.salutation"
-                                  defaultMessage="Salutation"
-                                />
-                              }
-                              options={["Mr.", "Ms.", "None"]}
-                              component={SelectComponent}
-                              inlineLabel
-                              className="field"
-                              isColumn
-                            />
-                          </div>
-                          <div class=" w-2/4">
+                          
+                          <div class=" w-full">
                             <FastField
                               isRequired
                               name="firstName"
@@ -482,7 +465,7 @@ class UpdateInvestorContactForm extends Component {
 }
 
 const mapStateToProps = ({ auth, investor, customer,departments,designations }) => ({
-  updateInvestorContactById: customer.updateInvestorContactById,
+  updateInvestorContactById: investor.updateInvestorContactById,
   updateInvestorContactByIdError: customer.updateInvestorContactByIdError,
   user: auth.userDetails,
   userId: auth.userDetails.userId,

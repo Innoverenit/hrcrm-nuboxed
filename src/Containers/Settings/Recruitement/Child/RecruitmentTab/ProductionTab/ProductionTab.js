@@ -137,13 +137,13 @@ class ProductionTab extends Component {
     let exist =
     productionProcessStages &&
     productionProcessStages.some((element) => element.stageName == stageName);
-    if (exist) {
-      message.error(
-        "Stage with same name already exists as part of this workflow"
-      );
-    } else {
+    // if (exist) {
+    //   message.error(
+    //     "Stage with same name already exists as part of this workflow"
+    //   );
+    // } else {
       this.props.updateStageForProduction(productionStagesId, stageName, probability, days);
-    }
+    // }
   };
 
 handleStagePublishClick = (productionStagesId, publishInd) => {

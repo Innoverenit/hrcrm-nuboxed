@@ -230,7 +230,7 @@ class SingleDealsStages extends Component {
                   onClick={() =>
                     handleUpdateStage(
                       this.props.investorOppStagesId,
-                      this.state.responsible,
+                      // this.state.responsible,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,

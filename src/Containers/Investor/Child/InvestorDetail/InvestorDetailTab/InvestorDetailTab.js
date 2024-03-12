@@ -12,9 +12,9 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {getContactListByInvestorId,handleInvestorContactModal,
   handleInvestorDocumentUploadModal,
-  handleActivityModal
+  handleActivityModal,
+  handleDealModal
 } from "../../../InvestorAction";
-import {handleDealModal}from "../../../../Deal/DealAction";
 import InvestorActivityModal from "../InvestorActivity/InvestorActivityModal";
 import InvestorTimeLine from "../InvestorActivity/InvestorTimeLine";
 import CreateDealModal from "../../../../Deal/Child/CreateDealModal";
@@ -453,6 +453,7 @@ investorDetails={this.props.investorDetails}
             handleInvestorDocumentUploadModal={handleInvestorDocumentUploadModal}
           />
           <CreateDealModal 
+            investorDetails={this.props.investorDetails}
                        opencreateDealModal={opencreateDealModal}
                        handleDealModal={handleDealModal}/>
              <InvestorActivityModal
@@ -506,7 +507,7 @@ const mapStateToProps = ({ auth, investor, contact, opportunity,deal }) => ({
   investorActivityCount:investor.investorActivityCount,
   investorActivityModal:investor.investorActivityModal,
 contactsbyInvestorId:investor.contactsbyInvestorId,
-opencreateDealModal:deal.opencreateDealModal
+opencreateDealModal:investor.opencreateDealModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

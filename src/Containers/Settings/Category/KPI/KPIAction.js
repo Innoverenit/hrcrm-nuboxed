@@ -93,7 +93,13 @@ export const removeKpi = ( performanceManagementId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("KPI has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'KPI Deleted Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        })
+        // message.success("KPI has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_KPI_SUCCESS,

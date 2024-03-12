@@ -137,13 +137,13 @@ class RepairTab extends Component {
     let exist =
     repairProcessStages &&
     repairProcessStages.some((element) => element.stageName == stageName);
-    if (exist) {
-      message.error(
-        "Stage with same name already exists as part of this workflow"
-      );
-    } else {
+    // if (exist) {
+    //   message.error(
+    //     "Stage with same name already exists as part of this workflow"
+    //   );
+    // } else {
       this.props.updateStageForRepair(repairStagesId, stageName, probability, days);
-    }
+    // }
   };
 
 handleStagePublishClick = (repairStagesId, publishInd) => {

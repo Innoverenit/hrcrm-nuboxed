@@ -82,7 +82,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                 const showTooltip = tooltipContent.trim() !== ''; 
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
-                  text-[#444444] my-3 p-1 ml-3 w-[16rem] flex flex-col  max-sm:w-wk max-sm:ml-0 ">
+                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 ">
                       <div class="flex">
                    <Tooltip 
                    title={item.country}

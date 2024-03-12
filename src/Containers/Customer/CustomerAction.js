@@ -664,6 +664,22 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Contact created Successfully',
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       console.log(res);
       const startDate = dayjs()
         .startOf("month")
@@ -676,11 +692,7 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
         type: types.ADD_CUSTOMER_CONTACT_SUCCESS,
         payload: res.data,
       });
-      // cb && cb();
-      Swal.fire({
-        icon: 'error',
-        title: 'Contact is exist with same emailId !',
-      })
+    
     })
     .catch((err) => {
       console.log(err);

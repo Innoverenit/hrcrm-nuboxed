@@ -48,6 +48,8 @@ function General(props) {
           birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
           productionInd: props.requirementDuration.productionInd,
           repairInd: props.requirementDuration.repairInd,
+          trnsfrEvthngToErpInd:props.requirementDuration.trnsfrEvthngToErpInd,
+          trnsfrToErpQuotationWinInd:props.requirementDuration.trnsfrToErpQuotationWinInd,
           partNoInd:props.requirementDuration.partNoInd,
           makeToInd: props.requirementDuration.makeToInd,
           independentInd: props.requirementDuration.independentInd,
@@ -74,7 +76,7 @@ function General(props) {
         }}
       >
         {({ values }) => (
-          <MainWrapper style={{ height: "525px", width: "", overflow: "auto" }}>
+          <MainWrapper style={{ height: "565px", width: "", overflow: "auto" }}>
             <div class=" flex flex-row ">
               <Form className="form-background">
 
@@ -223,6 +225,29 @@ function General(props) {
                           width={"6em"}
                         />
                       </div>
+
+                      <div class=" flex flex-row mt-3">
+                        <p style={{ minWidth: "-webkit-fill-available" }}>Transfer to erp module link to quotation win</p>
+                        <Field
+                          name="trnsfrToErpQuotationWinInd"
+                          component={SwitchComponent}
+                          data={values.trnsfrToErpQuotationWinInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"5em"}
+                        />
+                      </div>
+                      <div class=" flex flex-row mt-3">
+                        <p style={{ minWidth: "-webkit-fill-available" }}>Transfer Everything to Erp</p>
+                        <Field
+                          name="trnsfrEvthngToErpInd"
+                          component={SwitchComponent}
+                          data={values.trnsfrEvthngToErpInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"5em"}
+                        />
+                      </div>
                     </div>
 
                   </div>
@@ -238,7 +263,7 @@ function General(props) {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={props.updateRequirement}
+                    loading={props.updateRequirement}
                   >
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                     {/* Update */}

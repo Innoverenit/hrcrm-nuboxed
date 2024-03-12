@@ -112,7 +112,7 @@ const DealGroupCard = (props) => {
                <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
-                          handleDelete(invOpportunityId)
+                          handleDelete()
                         }
                       >
                         {user.imInd === true && user.dealDeleteInd === true && (

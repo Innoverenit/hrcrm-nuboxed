@@ -29,6 +29,7 @@ class DealStageColumn extends Component {
               currencyType={dealDetailsbyID.currency}
               user={this.props.user}
               investorName={dealDetailsbyID.investor}
+              invOpportunityId={dealDetailsbyID.invOpportunityId}
             //   subtitle2={opportunity.phoneNo || "-"}
               // handlePreview={() => this.props.handleContactDrawer(opportunity, true)}
               handleClick={() =>

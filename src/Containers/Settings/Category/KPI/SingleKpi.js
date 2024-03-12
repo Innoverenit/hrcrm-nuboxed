@@ -62,7 +62,7 @@ class SingleKpi extends Component {
                 </div>
                 </div>
                 <div>
-                {this.props.kpi.editInd ? (
+                {/* {this.props.kpi.editInd ? ( */}
                     <BorderColorIcon
                    
                       tooltipTitle="Edit"
@@ -70,7 +70,7 @@ class SingleKpi extends Component {
                       onClick={toggleViewType}
                       style={{fontSize:"1rem"}}
                     />
-                    ) : null}
+                    {/* ) : null} */}
                   
                   <Tooltip title="Delete">
                   <Popconfirm
