@@ -97,7 +97,7 @@ class LoginHr extends Component {
           >
             <img
               className="big-logo"
-              src={FWLogo2}
+              src={FWLogo}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
