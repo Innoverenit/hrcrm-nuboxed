@@ -889,7 +889,7 @@ export const addCarDetails = (customer, id, cb) => (dispatch, getState) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Phone list added',
+        title: 'Item list added',
         showConfirmButton: true,
       })
       dispatch({
@@ -2020,7 +2020,6 @@ export const addLocationInOrder = (data, distributorId) => (dispatch) => {
         title: 'Repair facility has been choosen',
         showConfirmButton: true,
       })
-      // dispatch(getDistributorOrderByDistributorId(distributorId, 0))
       dispatch({
         type: types.ADD_LOCATION_IN_ORDER_SUCCESS,
         payload: res.data,
@@ -2246,35 +2245,6 @@ export const getSpareListByPhoneId = (phoneId) => (
         type: types.GET_SPARE_LIST_BY_PHONEID_FAILURE,
         payload: err,
       });
-    });
-};
-
-export const updateQCStatus = (data, phoneId, orderPhoneId, cb) => (dispatch) => {
-  // debugger;
-  dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
-  axios
-    .put(`${base_url2}/phone/qcstatus/${phoneId}`, data, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch(getPhonelistById(orderPhoneId))
-
-      dispatch({
-        type: types.UPDATE_QC_STATUS_SUCCESS,
-        payload: res.data,
-      });
-      cb && cb();
-      message.success("QC status updated!")
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.UPDATE_QC_STATUS_FAILURE,
-      });
-      cb && cb();
     });
 };
 

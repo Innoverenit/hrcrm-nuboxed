@@ -19,11 +19,6 @@ const RepairTaskTable = lazy(() => import('./RepairTaskTable'));
 const AddingRepairSpareList = lazy(() => import('./AddingRepairSpareList'));
 
 function PhoneListForRepair(props) {
-    // useEffect(() => {
-    //     props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
-    //     // props.gettASKItemCounts(RowData.phoneId);
-    // }, []);
-
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);

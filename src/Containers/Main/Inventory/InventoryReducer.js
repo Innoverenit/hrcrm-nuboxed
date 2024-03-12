@@ -768,10 +768,10 @@ export const inventoryReducer = (state = initialState, action) => {
     case types.ADD_DELIVERY_DATE_SUCCESS:
       return {
         ...state,
-        allReceivedUser: state.allReceivedUser.map((item) =>
-          item.orderId === action.payload.orderId
-            ? action.payload : item
-        ),
+        // allReceivedUser: state.allReceivedUser.map((item) =>
+        //   item.orderId === action.payload.orderId
+        //     ? action.payload : item
+        // ),
         addingDeliverDate: false,
       };
     case types.ADD_DELIVERY_DATE_FAILURE:
@@ -1049,7 +1049,11 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingDispatchInspectionButton: false,
-        openPickupDateModal: false
+        openPickupDateModal: false,
+        allDispatchList: state.allDispatchList.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
       return {
@@ -1064,6 +1068,10 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingDispatchReceivePhone: false,
+        updateDispatchList: state.updateDispatchList.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_DISPATCH_RECEIVE_PHONE_FAILURE:
       return {

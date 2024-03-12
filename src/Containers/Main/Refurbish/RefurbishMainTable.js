@@ -142,19 +142,6 @@ const ProductionOrderList = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {/* <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
-                                          
-                                            {item.totalReceiveQuantity}/{item.phoneCount}
-                                        </div>
-                                    </div> */}
-
-                                        {/* <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs text-cardBody font-poppins text-center">
-                                            {item.receiveRemainingQuantity}
-                                        </div>
-                                    </div> */}
                                         <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 {item.expectedPrice}

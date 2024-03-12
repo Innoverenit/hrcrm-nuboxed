@@ -127,9 +127,6 @@ const initialState = {
 
   setEditingOrder: {},
 
-  updatingQCStatus: false,
-  updatingQCStatusError: false,
-
   updateOrderDetailModal: false,
 
   updateDisributorOrderById: false,
@@ -1743,7 +1740,6 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingLocationInOrder: false,
         addInventoryInOrder: false,
-        // distributorOrder: [...action.payload,...state.distributorOrder],
         distributorOrder: state.distributorOrder.map((item) => {
           if (item.orderId == action.payload.orderId) {
             return action.payload;
@@ -1858,19 +1854,7 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingSpareListByPhoneIdError: true,
       };
 
-    case types.UPDATE_QC_STATUS_REQUEST:
-      return { ...state, updatingQCStatus: true };
-    case types.UPDATE_QC_STATUS_SUCCESS:
-      return {
-        ...state,
-        updatingQCStatus: false,
-      };
-    case types.UPDATE_QC_STATUS_FAILURE:
-      return {
-        ...state,
-        updatingQCStatus: false,
-        updatingQCStatusError: true,
-      };
+
 
     case types.UPDATE_OFFER_PRICE_REQUEST:
       return { ...state, updatingOfferPriceOfOrder: true };

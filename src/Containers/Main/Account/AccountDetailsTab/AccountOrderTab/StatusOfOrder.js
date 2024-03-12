@@ -44,7 +44,7 @@ const StatusOfOrder = (props) => (
                     description:
                         <>
 
-                            <div className=' flex justify-around w-[38rem]'>
+                            <div className=' flex justify-around w-[45rem]'>
                                 <Button
                                     type='primary'
                                     onClick={() => {

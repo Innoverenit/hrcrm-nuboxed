@@ -1,13 +1,12 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser } from "./RefurbishAction";
+import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
 import { Button, Tooltip } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
-import { updateQCStatus } from "../Account/AccountAction"
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
@@ -86,12 +85,12 @@ function OrderPhoneListById(props) {
             qcTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
-        props.updateQCStatus(data, item.phoneId, props.rowData.orderPhoneId, handleCallBack)
+        props.updateQCStatus(data, item.phoneId, props.locationId, props.userId)
     }
-    const handleCallBack = () => {
-        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
-        props.getOrderByUser(props.locationId, props.userId)
-    }
+    // const handleCallBack = () => {
+    //     props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+    //     props.getOrderByUser(props.locationId, props.userId)
+    // }
     const [hide, setHide] = useState(false);
 
     function handlePuaseButton() {

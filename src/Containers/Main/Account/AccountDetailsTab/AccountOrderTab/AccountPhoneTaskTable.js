@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneTasklist } from "../../AccountAction";
-import { addTaskByPhoneId } from "../../../Refurbish/RefurbishAction"
+import { addTaskByPhoneId, getTaskListByPhone } from "../../../Refurbish/RefurbishAction"
 import { Button, Input, Select } from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import AccountPhoneTaskList from "./AccountPhoneTaskList";
@@ -12,6 +12,7 @@ const { Option } = Select;
 function AccountPhoneTaskTable(props) {
     useEffect(() => {
         props.getPhoneTasklist(props.orgId);
+        props.getTaskListByPhone(props.phoneId)
     }, []);
 
     const [task, setTask] = useState("")
@@ -23,9 +24,6 @@ function AccountPhoneTaskTable(props) {
     }
     const handleCustomeName = (e) => {
         setCustomeName(e.target.value)
-    }
-    const handleChangeType = () => {
-        setType(!type)
     }
     const handleSubmitTask = () => {
         props.addTaskByPhoneId({
@@ -45,6 +43,9 @@ function AccountPhoneTaskTable(props) {
                                 <Option value={"custom"}>{"Custom"} </Option>
                                 {props.phoTasklist.map((a) => {
                                     return <Option value={a.itemTaskId}>{a.name}</Option>;
+                                })}
+                                {props.taskListByPhone.map((a) => {
+                                    return <Option value={a.repairTaskId}>{a.taskName}</Option>;
                                 })}
                             </Select>
 
@@ -78,7 +79,8 @@ const mapStateToProps = ({ distributor, auth, refurbish }) => ({
     phoTasklist: distributor.phoTasklist,
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    addingTaskByPhoneById: distributor.addingTaskByPhoneById
+    addingTaskByPhoneById: distributor.addingTaskByPhoneById,
+    taskListByPhone: refurbish.taskListByPhone
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -86,6 +88,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getPhoneTasklist,
             addTaskByPhoneId,
+            getTaskListByPhone
         },
         dispatch
     );

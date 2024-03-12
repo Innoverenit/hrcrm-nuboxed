@@ -124,6 +124,10 @@ const initialState = {
   fetchingPhoneListByUserError: false,
   phoneByUser: [],
 
+  fetchingTaskListByPhone: false,
+  fetchingTaskListByPhoneError: false,
+  taskListByPhone: [],
+
   deleteProductionOutput: false,
   deleteProductionOutputError: false,
   //split output
@@ -159,6 +163,9 @@ const initialState = {
   fetchingOrderIdByUserId: false,
   fetchingOrderIdByUserIdError: false,
   orderPhoneList: [],
+
+  updatingQCStatus: false,
+  updatingQCStatusError: false,
 
   fetchingOrderByUser: false,
   fetchingOrderByUserError: false,
@@ -552,6 +559,23 @@ export const refurbishReducer = (state = initialState, action) => {
 
       };
 
+    case types.GET_TASK_LIST_BY_PHONE_REQUEST:
+      return { ...state, fetchingTaskListByPhone: true };
+    case types.GET_TASK_LIST_BY_PHONE_SUCCESS:
+      return {
+        ...state,
+        fetchingTaskListByPhone: false,
+        taskListByPhone: action.payload
+      };
+    case types.GET_TASK_LIST_BY_PHONE_FAILURE:
+      return {
+        ...state,
+        fetchingTaskListByPhone: false,
+        fetchingTaskListByPhoneError: true,
+
+
+      };
+
     case types.HANDLE_PHONE_BY_TECHNICIAN_MODAL:
       return { ...state, phoneByTechnician: action.payload };
 
@@ -650,6 +674,12 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingRepairStatus: false,
+        repairPhone: state.repairPhone.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
       };
     case types.UPDATE_REPAIR_STATUS_FAILURE:
       return {
@@ -694,6 +724,7 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingTechnicianForRepair: false,
+        showAssignRepairModal: false
       };
     case types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_FAILURE:
       return {
@@ -731,12 +762,38 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingQcInspectionButton: false,
+        orderByUser: state.orderByUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_QC_INSPECTION_BUTTON_FAILURE:
       return {
         ...state,
         updatingQcInspectionButton: false,
         updatingQcInspectionButtonError: true,
+      };
+
+    case types.UPDATE_QC_STATUS_REQUEST:
+      return { ...state, updatingQCStatus: true };
+    case types.UPDATE_QC_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingQCStatus: false,
+        orderPhoneList: state.orderPhoneList.map((item) => {
+          if (item.phoneId == action.payload.phoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_QC_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingQCStatus: false,
+        updatingQCStatusError: true,
       };
 
     case types.UPDATE_REPAIR_INSPECTION_BUTTON_REQUEST:
