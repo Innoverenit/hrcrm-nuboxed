@@ -34,7 +34,7 @@ class LoginHr extends Component {
       password: "",
       Loading: false,
       render: false,
-      
+
       type: "password",
       show: Boolean(),
     };
@@ -56,7 +56,7 @@ class LoginHr extends Component {
   InputComponent = ({ field, form: { touched, errors }, ...props }) => (
     <div>
       <div>
-        <Input {...field} {...props} 
+        <Input {...field} {...props}
         />
       </div>
       {touched[field.name] && errors[field.name] && (
@@ -97,7 +97,7 @@ class LoginHr extends Component {
           >
             <img
               className="big-logo"
-              src={inno}
+              src={FWLogo2}
               style={{ width: 200 }}
               alt="Tekorero logo"
             />
@@ -116,7 +116,7 @@ class LoginHr extends Component {
                   userName: this.state.username || "",
                   password: this.state.password || "",
                 }}
-                 validationSchema={LoginSchema}
+                validationSchema={LoginSchema}
                 onSubmit={(values) => {
                   // same shape as initial values
                   this.submit(values);
@@ -131,7 +131,7 @@ class LoginHr extends Component {
                       placeholder="Email"
                       component={this.InputComponent}
                     />
-               
+
                     <div class=" flex mt-3 justify-between items-center"  >
                       <div className="login_password">
                         <div class=" w-full" >
@@ -143,23 +143,23 @@ class LoginHr extends Component {
                           />
                         </div>
                         <div class=" mt-[0.35rem]">
-                        {this.state.show ? (
-                          <EyeOutlined
-                            type="eye"
-                            onClick={this.handleClick}
-                            style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
-                            size="24"
-                          />
-                        ) : (
-                          <EyeInvisibleOutlined
-                            type="eye-invisible"
-                            onClick={this.handleClick}
-                            size="24"
-                            style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
-                          />
-                        )}
+                          {this.state.show ? (
+                            <EyeOutlined
+                              type="eye"
+                              onClick={this.handleClick}
+                              style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                              size="24"
+                            />
+                          ) : (
+                            <EyeInvisibleOutlined
+                              type="eye-invisible"
+                              onClick={this.handleClick}
+                              size="24"
+                              style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                            />
+                          )}
                         </div>
-                      
+
                       </div>
                       {/* <div >
                         <Button
@@ -176,7 +176,7 @@ class LoginHr extends Component {
                       </div> */}
 
                     </div>
-              <div class=" mt-3"></div>
+                    <div class=" mt-3"></div>
                     {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
                       <div >
                         <Field
@@ -202,7 +202,7 @@ class LoginHr extends Component {
                       </div>
                       )} 
                     </FlexContainer>*/}
- 
+
                     <Button
                       type="primary"
                       htmlType="submit"

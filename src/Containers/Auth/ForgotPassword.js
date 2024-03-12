@@ -1,107 +1,3 @@
-// import React, { Component } from 'react';
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { withRouter, Link } from "react-router-dom";
-// import { Formik, Form, Field } from "formik";
-// import * as Yup from 'yup';
-// import { Button } from "antd";
-// import { AuthContainer, FormWrapper, Input } from "./styled";
-// import { Title, SubTitle, ValidationError, HeaderText, Spacer } from "../../Components/UI/Elements";
-// import { FlexContainer } from "../../Components/UI/Layout";
-// import FWLogo from '../../Assets/Images/Axis_logo_Big.png'
-// import RandomImageScreen from './RandomImageScreen'
-// import { forgotPassword } from "./AuthAction";
-
-// /**
-//  * yup validation scheme for set Password 
-//  */
-// const ForgotPasswordSchema = Yup.object().shape({
-//     email: Yup.string()
-//         .email('Enter a valid Email')
-//         .required('Input needed!'),
-// });
-
-// class SetPassword extends Component {
-//     handleForgotPassword = ({ email }) => {
-//         const { history } = this.props;
-//         this.props.forgotPassword(email, history)
-//     }
-
-//     InputComponent = ({ field, form: { touched, errors }, ...props }) => (
-//         <div>
-//             <div>
-//                 <Input {...field} {...props} />
-//             </div>
-//             {touched[field.name] &&
-//                 errors[field.name] && <ValidationError>{errors[field.name]}</ValidationError>}
-//         </div>
-//     );
-//     render() {
-//         return (
-//             <>
-//                 <FlexContainer>
-//                     <AuthContainer style={{ backgroundColor: '#F5F5F5', flexDirection: 'column' }}>
-//                         <img className='big-logo' src={FWLogo} style={{ width: 200 }} /><br />
-//                         <FormWrapper>
-//                             <HeaderText color='#1890ff'>Forgot password</HeaderText>
-//                             <Spacer style={{ marginTop: 20 }} />
-//                             <SubTitle>Link will be sent to your registered email id </SubTitle>
-//                             <Spacer style={{ marginTop: 10 }} />
-//                             <Formik
-//                                 initialValues={{
-//                                     email: ''
-//                                 }}
-
-//                                 validationSchema={ForgotPasswordSchema}
-//                                 onSubmit={values => {
-//                                     // same shape as initial values
-//                                     console.log(values);
-//                                     this.handleForgotPassword(values)
-//                                 }}>
-
-//                                 {({ errors, touched, isSubmitting }) => (
-//                                     <Form className="form-background">
-//                                         <Field
-//                                             name="email"
-//                                             placeholder='Enter your email'
-//                                             component={this.InputComponent} />
-//                                         <Spacer />
-
-//                                         <Button
-//                                             type="primary"
-//                                             htmlType='submit'
-//                                             Loading={isSubmitting}
-//                                             style={{ marginLeft: 280, marginTop: 30 }}
-//                                         // onClick={this.handleSetPassword}
-//                                         >
-//                                             Send
-//                                         </Button>
-//                                     </Form>
-//                                 )}
-//                             </Formik>
-//                             <Spacer style={{ marginBottom: -40 }} />
-//                             <Link to='/login' style={{ textAlign: 'center', fontSize: 16, marginLeft: "0.625em" }}>Back to login</Link>
-//                         </FormWrapper>
-//                         <div className="footer1"
-//                             style={{
-//                                 textAlign: 'center',
-//                                 fontSize: '12x', fontFamily: 'SFS, Arial, sans-serif', position: 'absolute', bottom: 0
-//                             }}>
-//                             © {new Date().getFullYear()},  {` `} teKorero.com, All rights reserved.
-//                         </div>
-//                     </AuthContainer>
-//                     <RandomImageScreen />
-//                 </FlexContainer>
-//             </>
-//         )
-//    }
-//}
-// 
-
-
-
-
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -185,7 +81,7 @@ class ForgotPassword extends Component {
               >
                 <img
                   className="big-logo"
-                  src={inno}
+                  src={FWLogo2}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
