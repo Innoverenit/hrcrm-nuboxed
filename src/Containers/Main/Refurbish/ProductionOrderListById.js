@@ -106,21 +106,23 @@ function ProductionOrderListById(props) {
                                             </div>
                                             <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {item.qcInspectionInd === 0 ? <Button
-                                                        className="w-32"
-                                                        type="primary"
-                                                        onClick={() => {
-                                                            props.qcInspectionButton({
-                                                                productionDispatchId: item.productionDispatchId,
-                                                                orderPhoneId: item.orderPhoneId,
-                                                                qcInspectionInd: 1
-                                                            }, item.orderPhoneId, props.locationId, props.userId)
-                                                        }}
-                                                    >
-                                                        Start Inspection
+                                                    {item.qcInspectionInd === 0 ?
+                                                        <Button
+                                                            className="w-32"
+                                                            type="primary"
+                                                            loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQcInspectionButton}
+                                                            onClick={() => {
+                                                                props.qcInspectionButton({
+                                                                    productionDispatchId: item.productionDispatchId,
+                                                                    orderPhoneId: item.orderPhoneId,
+                                                                    qcInspectionInd: 1
+                                                                }, item.orderPhoneId, props.locationId, props.userId)
+                                                            }}
+                                                        >
+                                                            Start Inspection
 
-                                                    </Button> : item.qcInspectionInd === 1 ?
-                                                        <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
+                                                        </Button> : item.qcInspectionInd === 1 ?
+                                                            <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
 
                                                 </div>
                                             </div>
@@ -150,6 +152,7 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     locationId: auth.userDetails.locationId,
     userId: auth.userDetails.userId,
     orderByUser: refurbish.orderByUser,
+    updatingQcInspectionButton: refurbish.updatingQcInspectionButton,
     showPhoneList: refurbish.showPhoneList,
     fetchingOrderByUser: refurbish.fetchingOrderByUser
 });

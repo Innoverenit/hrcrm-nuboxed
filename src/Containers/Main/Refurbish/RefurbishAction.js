@@ -28,7 +28,30 @@ export const getTodayProduction = (date) => (dispatch) => {
       });
     });
 };
+export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/phone/qcstatus/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getOrderByUser(locationDetailsId, userId))
+      dispatch({
+        type: types.UPDATE_QC_STATUS_SUCCESS,
+        payload: res.data,
+      });
 
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QC_STATUS_FAILURE,
+      });
+    });
+};
 export const getTomorrowProduction = () => (dispatch) => {
   dispatch({
     type: types.GET_TOMORROW_PRODUCTION_REQUEST,
@@ -393,7 +416,7 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
       dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
-        title: 'Phone Assigned To Technician',
+        title: 'Items Assigned To Technician',
         showConfirmButton: true,
       })
       dispatch({
@@ -427,7 +450,7 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
       dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
-        title: 'Phone Assigned To Technician',
+        title: 'Items Assigned To Technician',
         showConfirmButton: true,
       })
       dispatch({
@@ -841,12 +864,7 @@ export const updaterepairStatus = (data, phoneId, orderPhoneId, locationDetailsI
       },
     })
     .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Status Updated ',
-        showConfirmButton: true,
-      })
-      dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+      // dispatch(getRepairPhoneByUser(orderPhoneId, userId))
       dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
@@ -887,7 +905,7 @@ export const qcInspectionButton = (data, orderPhoneId, locationDetailsId, userId
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(locationDetailsId, userId))
+
       dispatch({
         type: types.UPDATE_QC_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -1419,6 +1437,31 @@ export const getTaskByPhoneId = (phoneId) => (dispatch) => {
     });
 };
 
+export const getTaskListByPhone = (phoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_TASK_LIST_BY_PHONE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/repairTask/${phoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TASK_LIST_BY_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_LIST_BY_PHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const approveSpare = (data, phoneSpareId) => (dispatch) => {
   dispatch({
     type: types.APPROVE_SPARE_REQUEST,

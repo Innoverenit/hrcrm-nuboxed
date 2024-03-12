@@ -778,7 +778,7 @@ export const addDeliveryDate = (data, locationDetailsId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      // dispatch(getReceivedUserList(locationDetailsId))
+      dispatch(getReceivedUserList(locationDetailsId))
       dispatch({
         type: types.ADD_DELIVERY_DATE_SUCCESS,
         payload: res.data,
@@ -1123,7 +1123,7 @@ export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) =
         title: 'Inspection Status Updated',
         showConfirmButton: true,
       })
-      // dispatch(getReceivedUserList(locationId))
+      dispatch(getReceivedUserList(locationId))
       dispatch({
         type: types.UPDATE_INSPECTION_SUCCESS,
         payload: res.data,
@@ -1177,7 +1177,7 @@ export const setEditDispacthPhoneData = (name) => (dispatch) => {
     payload: name,
   });
 };
-export const updateDispatchInspectionButton = (data, orderPhoneId, locationId) => (dispatch) => {
+export const updateDispatchInspectionButton = (data, orderPhoneId) => (dispatch) => {
   dispatch({ type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_REQUEST });
   axios
     .put(`${base_url2}/phoneOrder/dispatchInspectionIndStatus/${orderPhoneId}`, data, {
@@ -1186,8 +1186,6 @@ export const updateDispatchInspectionButton = (data, orderPhoneId, locationId) =
       },
     })
     .then((res) => {
-      console.log(res);
-      dispatch(getDispatchList(locationId))
       dispatch({
         type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -1212,7 +1210,7 @@ export const updateDispatchReceivePhone = (data, phoneId, orderPhoneId) => (disp
     })
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchUpdateList(orderPhoneId))
+      // dispatch(getDispatchUpdateList(orderPhoneId))
       dispatch({
         type: types.UPDATE_DISPATCH_RECEIVE_PHONE_SUCCESS,
         payload: res.data,

@@ -129,39 +129,39 @@ export const validateEmail =
  */
 export const resetPassword =
   (userId, employeeId, token, emailId, organizationId, history) =>
-  (dispatch) => {
-    console.log(userId, token, emailId, organizationId);
+    (dispatch) => {
+      console.log(userId, token, emailId, organizationId);
 
-    axios
-      .post(`${base_url}/emailValidation`, {
-        employeeId: employeeId,
-        emailId: emailId,
-        token: token,
-        organizationId: organizationId,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data === true) {
-          history.push({
-            pathname: "/setPassword",
-            state: {
-              employeeId: employeeId,
-              emailId: emailId,
-              organizationId: organizationId,
-              token: token,
-            },
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      axios
+        .post(`${base_url}/emailValidation`, {
+          employeeId: employeeId,
+          emailId: emailId,
+          token: token,
+          organizationId: organizationId,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data === true) {
+            history.push({
+              pathname: "/setPassword",
+              state: {
+                employeeId: employeeId,
+                emailId: emailId,
+                organizationId: organizationId,
+                token: token,
+              },
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
 /**
  * Set Password goes here
  * password is set here and after password set it redirect to login page
  */
- 
+
 
 export const setPassword =
   (userId, organizationId, emailId, password, history) => (dispatch) => {
@@ -231,53 +231,53 @@ export const forgotPassword = (email) => (dispatch) => {
  */
 export const login =
   ({ userName, password }, history, cb) =>
-  (dispatch) => {
-    dispatch({
-      type: types.LOGIN_REQUEST,
-    });
-    axios
-      .post(`${login_url}/token/generate-token`, {
-        username: userName,
-        password: password,
-      })
-      .then((res) => {
-        // message.success('Welcome to FokusWork, great to have you here.')
-        console.log(res);
-        sessionStorage.setItem("token", res.data.token);
-
-        dispatch(getUserDetails(res.data.token));
-
-        history.push("/dashboard");
-        dispatch({
-          type: types.LOGIN_SUCCESS,
-          payload: res.data,
-        });
-        cb && cb("success");
-      })
-      .catch((err) => {
-        console.log(err && err.response && err.response.data);
-        cb && cb("failure");
-
-        if (
-          err &&
-          err.response &&
-          err.response.data ===
-            "You have entered an invalid username or password "
-        ) {
-          message.error("You have entered an invalid username or password ");
-        } else {
-          message.error(err.response.data);
-          console.log(err);
-          history.push({
-            pathname: "/",
-          });
-        }
-        dispatch({
-          type: types.LOGIN_FAILURE,
-          payload: err,
-        });
+    (dispatch) => {
+      dispatch({
+        type: types.LOGIN_REQUEST,
       });
-  };
+      axios
+        .post(`${login_url}/token/generate-token`, {
+          username: userName,
+          password: password,
+        })
+        .then((res) => {
+          // message.success('Welcome to FokusWork, great to have you here.')
+          console.log(res);
+          sessionStorage.setItem("token", res.data.token);
+
+          dispatch(getUserDetails(res.data.token));
+
+          history.push("/dashboard");
+          dispatch({
+            type: types.LOGIN_SUCCESS,
+            payload: res.data,
+          });
+          cb && cb("success");
+        })
+        .catch((err) => {
+          console.log(err && err.response && err.response.data);
+          cb && cb("failure");
+
+          if (
+            err &&
+            err.response &&
+            err.response.data ===
+            "You have entered an invalid username or password "
+          ) {
+            message.error("You have entered an invalid username or password ");
+          } else {
+            message.error(err.response.data);
+            console.log(err);
+            history.push({
+              pathname: "/",
+            });
+          }
+          dispatch({
+            type: types.LOGIN_FAILURE,
+            payload: err,
+          });
+        });
+    };
 
 export const getCurrency = () => (dispatch) => {
   dispatch({
@@ -340,6 +340,28 @@ export const getCountries = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_COUNTRIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSaleCurrency = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SALE_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/currencies/sales`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SALE_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SALE_CURRENCY_FAILURE,
         payload: err,
       });
     });
@@ -1535,7 +1557,7 @@ export const validateOtpurL = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'OTP validiated successfully!',
-      }) 
+      })
     })
     .catch((err) => {
       dispatch({
@@ -1546,10 +1568,10 @@ export const validateOtpurL = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'OTP is not matching with input!',
-      }) 
+      })
     });
 };
-export const forgotUserPassword = (data,cb) => (dispatch) => {
+export const forgotUserPassword = (data, cb) => (dispatch) => {
 
   dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
   axios
@@ -1559,17 +1581,17 @@ export const forgotUserPassword = (data,cb) => (dispatch) => {
       },
     })
     .then((res) => {
-    
 
-      dispatch({ 
+
+      dispatch({
         type: types.FORGOT_PASSWORD_SUCCESS,
 
       });
-      cb &&cb("success")
+      cb && cb("success")
       Swal.fire({
         icon: 'success',
         title: 'You have successfully reset your password!',
-      }) 
+      })
     })
     .catch((err) => {
 

@@ -65,60 +65,6 @@ function ProductionRepairOrder(props) {
                         /></div>
                     </div>
                     <div class="overflow-y-auto h-[67vh]">
-
-                        {/* {props.inspectionRequiredInd ? 
-                    props.choosenOrderCatalogue.map((item) => {
-                        const currentdate = moment().format("DD/MM/YYYY");
-                        const date = moment(item.creationDate).format("DD/MM/YYYY");
-                        return (
-                            <div>
-                                <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 "
-
-                                >
-                                    <div class="flex">
-                                        <div className=" flex font-medium  md:w-[32.8rem] max-sm:w-full  ">
-                                        
-                                            <span
-                                                class="underline text-[#1890ff] cursor-pointer w-[7rem] flex"
-                                                onClick={() => {
-                                                    handleRowData(item);
-                                                    props.handleRepairPhone(true)
-                                                }}>
-                                                {item.newOrderNo}
-                                            </span>
-                                          &nbsp;&nbsp;
-                                            {date === currentdate ? (
-                                                <span
-                                                class="text-[tomato] font-bold"
-                                                >
-                                                    New
-                                                </span>
-                                            ) : null}
-                                        </div>
-
-                                        <div className=" flex font-medium   md:w-[40rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.repairDueDate === null ? "" : moment(item.repairDueDate).format("DD-MM-YYYY")}
-                                            </div>
-
-                                        </div>
-                                        <div className=" flex font-medium  md:w-[37.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-sm text-cardBody font-poppins">
-                                                {item.totalProduct}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className=" flex font-medium  md:w-[.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-sm text-cardBody font-poppins">
-                                            {item.reason}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    }) :
-                         */}
                         <InfiniteScroll
                             dataLength={props.repairOrder.length}
                             next={handleLoadMore}
@@ -131,9 +77,7 @@ function ProductionRepairOrder(props) {
                                 const date = moment(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 "
-
-                                        >
+                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 "   >
                                             <div class="flex">
                                                 <div className=" flex font-medium  md:w-[20.8rem] max-sm:w-full  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
@@ -172,7 +116,9 @@ function ProductionRepairOrder(props) {
                                                         <Button
                                                             style={{ width: "8rem" }}
                                                             type="primary"
+                                                            loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingRepairInspectionButton}
                                                             onClick={() => {
+                                                                handleRowData(item);
                                                                 props.repairInspectionButton({
                                                                     repairInspectionInd: 1,
                                                                     orderPhoneId: item.orderPhoneId,
@@ -182,9 +128,11 @@ function ProductionRepairOrder(props) {
                                                                     props.locationId,
                                                                     props.userId)
                                                             }}
-                                                        >Repair Start</Button> :
+                                                        >Start Repair</Button> :
                                                         item.repairInspectionInd === 1 ?
-                                                            <Button style={{ width: "8rem" }} onClick={handlePauseResume}>{hide ? "Pause Repair" : "Resume Repair"}</Button> : <div class="text-green-600">Completed</div>}
+                                                            <Button style={{ width: "8rem" }}
+                                                                onClick={handlePauseResume}>
+                                                                {hide ? "Pause Repair" : "Resume Repair"}</Button> : <div class="text-green-600">Completed</div>}
 
                                                 </div>
                                             </div>
@@ -223,6 +171,7 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     fetchingRepairorderById: refurbish.fetchingRepairorderById,
     showRepairPhoneList: refurbish.showRepairPhoneList,
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+    updatingRepairInspectionButton: refurbish.updatingRepairInspectionButton
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
@@ -82,7 +81,7 @@ class AccountStepper extends Component {
 
                 </StyledSteps>
                 <div
-                    class="min-[50vh]"
+                    class="min-[45vh]"
                 >{steps[current].content}</div>
                 <div class="flex justify-end">
                     <div className="steps-action">
@@ -90,18 +89,18 @@ class AccountStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        <Button
-                                            style={{ marginRight: "3rem", marginTop: "70px" }}
-                                            className=" w-16 absolute top-3/4 right-0"
+                                        {!this.props.addingOrder && <Button
+                                            style={{ marginRight: "3rem", marginTop: "43px" }}
+                                            className=" w-16 absolute top-2/3 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
-
+                                        // disabled={this.props.addingOrder}
                                         >
                                             <FormattedMessage
                                                 id="app.proceed"
                                                 defaultMessage="Proceed"
                                             />
-                                        </Button>
+                                        </Button>}
                                     </>
                                 )}
                             </>
@@ -127,6 +126,7 @@ class AccountStepper extends Component {
 
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+    addingOrder: distributor.addingOrder
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

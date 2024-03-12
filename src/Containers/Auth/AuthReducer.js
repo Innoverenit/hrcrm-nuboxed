@@ -75,7 +75,7 @@ const initialState = {
   fetchingCurrencyError: false,
   currencies: [],
 
-  faqModal:false,
+  faqModal: false,
 
   fetchingIncludedTask: false,
   fetchingIncludedTaskError: false,
@@ -156,6 +156,10 @@ const initialState = {
   validatingOtpByEmailError: false,
   validateMsg: {},
 
+  fetchingSaleCurrency: false,
+  fetchingSaleCurrencyError: true,
+  saleCurrencies: [],
+
   settingPassword: false,
   settingPasswordError: false,
 
@@ -171,7 +175,7 @@ const initialState = {
 
   validatingOtp: false,
   validatingOtpError: false,
-  validOtp:"", 
+  validOtp: "",
   doResetpassword: false,
   doResetpasswordError: false,
 };
@@ -220,6 +224,18 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         fetchingCurrency: false,
         fetchingCurrencyError: true,
+      };
+
+    case types.GET_SALE_CURRENCY_REQUEST:
+      return { ...state, fetchingSaleCurrency: true };
+    case types.GET_SALE_CURRENCY_SUCCESS:
+      return { ...state, fetchingSaleCurrency: false, saleCurrencies: action.payload };
+    case types.GET_SALE_CURRENCY_FAILURE:
+      return {
+        ...state,
+        fetchingSaleCurrency: false,
+        fetchingSaleCurrencyError: true,
+
       };
 
     case types.GET_TIMEZONE_REQUEST:
@@ -916,7 +932,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         fetchingOrganization: false,
         // customerByUserId: action.payload,
-        organizationDetailsList:action.payload,
+        organizationDetailsList: action.payload,
 
         // organizationDetailsList: [
         //   ...state.organizationDetailsList,
@@ -1077,50 +1093,50 @@ export const authReducer = (state = initialState, action) => {
         fetchingAllDialCodeError: true,
       };
 
-      case types.HANDLE_FAQ_MODAL:
-        return { ...state, faqModal: action.payload };
+    case types.HANDLE_FAQ_MODAL:
+      return { ...state, faqModal: action.payload };
 
-      case types.VERIFY_EMAIL_REQUEST:
-        return { ...state, verifyingEmail: true };
-      case types.VERIFY_EMAIL_SUCCESS:
-        return {
-          ...state,
-          verifyingEmail: false,
-        };
-      case types.VERIFY_EMAIL_FAILURE:
-        return {
-          ...state,
-          verifyingEmail: false,
-          verifyingEmailError: true,
-        };  
+    case types.VERIFY_EMAIL_REQUEST:
+      return { ...state, verifyingEmail: true };
+    case types.VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        verifyingEmail: false,
+      };
+    case types.VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        verifyingEmail: false,
+        verifyingEmailError: true,
+      };
 
-        case types.VALIDATE_OTP_REQUEST:
-          return { ...state, validatingOtp: true };
-        case types.VALIDATE_OTP_SUCCESS:
-          return {
-            ...state,
-            validatingOtp: false,
-            validOtp:action.payload
-          };
-        case types.VALIDATE_OTP_FAILURE:
-          return {
-            ...state,
-            validatingOtp: false,
-            validatingOtpError: true,
-          };  
+    case types.VALIDATE_OTP_REQUEST:
+      return { ...state, validatingOtp: true };
+    case types.VALIDATE_OTP_SUCCESS:
+      return {
+        ...state,
+        validatingOtp: false,
+        validOtp: action.payload
+      };
+    case types.VALIDATE_OTP_FAILURE:
+      return {
+        ...state,
+        validatingOtp: false,
+        validatingOtpError: true,
+      };
 
-          case types.FORGOT_PASSWORD_REQUEST:
-            return { ...state, doResetpassword: true };
-          case types.FORGOT_PASSWORD_SUCCESS:
-            return {
-              ...state,
-              doResetpassword: false,
-              doResetpasswordError: false,
-              };
-          case types.FORGOT_PASSWORD_FAILURE:
+    case types.FORGOT_PASSWORD_REQUEST:
+      return { ...state, doResetpassword: true };
+    case types.FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        doResetpassword: false,
+        doResetpasswordError: false,
+      };
+    case types.FORGOT_PASSWORD_FAILURE:
 
 
-    
+
 
     default:
       return state;
