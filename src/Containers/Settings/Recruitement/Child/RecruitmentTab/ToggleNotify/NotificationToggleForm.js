@@ -199,10 +199,10 @@ function NotificationToggleForm (props) {
 
   // const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
   const userOptions = [
-    { label: 'Create', value: 'create' },
-    { label: 'Update', value: 'update' },
+    { label: 'Create', value: 'Create' },
+    { label: 'Update', value: 'Update' },
     // { label: 'Read', value: 'read' },
-    { label: 'Delete', value: 'delete' },
+    { label: 'Delete', value: 'Delete' },
   ];
 
   const [checkedList, setCheckedList] = useState([]);
@@ -271,6 +271,13 @@ const [reportingManagerPlus1Switch, setReportingManagerPlus1Switch] = useState(f
           const handleReportingManagerPlus1SwitchChange = (checked) => {
             setReportingManagerPlus1Switch(checked);
           };
+          useEffect(() => {
+            setCheckedList(props.notificationConfig.type|| []);
+            setCheckAll(props.notificationConfig.length === userOptions.length);
+            setAdminSwitch(props.notificationConfig.admin);
+            setReportingManagerSwitch(props.notificationConfig.reportingManager);
+            setReportingManagerPlus1Switch(props.notificationConfig.reportingManager1);
+          }, [props.notificationConfig]);
     return (
       <>
       {/* <TabsWrapper>
