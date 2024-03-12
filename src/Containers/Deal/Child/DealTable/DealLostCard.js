@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
 import { DeleteOutlined } from "@ant-design/icons";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -23,7 +23,6 @@ import {
   setEditOpportunity,
   deleteOpportunityData,
   updateOwneroppById,
-  handleOpportunityNotesDrawerModal,
       handleOpportunityDrawerModal,
       getAllRecruitmentByOppId,
         getAllRecruitmentPositionByOppId,
@@ -31,17 +30,16 @@ import {
          getAllRecruitmentPositionFilledByOppId,
          getAllRecruitmentDetailsByOppId,
          getOpportunitySKill,
-         getWonOpportunity,
          LinklostdOpportunity,
          deleteLostOpportunity,
-} from "../../OpportunityAction";
-import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
-import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
-import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
+} from "../../../Opportunity/OpportunityAction";
+import {getLostDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
+const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
+const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
-function OpportunityWonCard(props) {
+
+function DealLostCard(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -51,10 +49,9 @@ function OpportunityWonCard(props) {
     }else{
      
     } 
-    props. getWonOpportunity(props.userId,page);
+    props. getLostDeals(props.userId,page);
     setPage(page + 1);
   }, []);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -64,40 +61,41 @@ function OpportunityWonCard(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
   const handleLoadMore = () => {
     setPage(page + 1);
-      props. getWonOpportunity(props.userId,page);    
+      props. getLostDeals(props.userId,page);    
   }
-    const [currentOpportunityId, setCurrentOpportunityId] = useState("");
-    function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
-      setCurrentOpportunityId(opportunityId,opportunityName);
-    }
+  const [currentItem, setCurrentItem] = useState("");
+
+  function handleSetCurrentItem(item) {
+    setCurrentItem(item);
+  }
+
     const {
         user,
-        fetchingWonOpportunity,
-    handleUpdateOpportunityModal,
-    updateOpportunityModal,
-    addDrawerOpportunityNotesModal,
-    handleOpportunityNotesDrawerModal,
-    deleteOpportunityData,
-     fetchingAllOpportunities,
-     wonOpportunity,
+        fetchingLostDeals,
+        handleUpdateDealModal,
+        openupdateDealModal,
+        deleteOpportunityData,
+        lostDeals,
      
       } = props;
 
       if (isMobile){
         return (    
           <>
-          <div class="rounded-lg  p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        
+             
+        <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+              
               <InfiniteScroll
-                 dataLength={wonOpportunity.length}
+                 dataLength={lostDeals.length}
                 next={handleLoadMore}
                 hasMore={hasMore}
-                loader={fetchingWonOpportunity ?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+                loader={fetchingLostDeals ?<div class="flex justify-center">Loading...</div>:null}
                 height={"75vh"}
               >
-        {wonOpportunity.map((item) => {
+                { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
                          
                          var findProbability = item.probability;
                          item.stageList.forEach((element) => {
@@ -108,12 +106,11 @@ function OpportunityWonCard(props) {
                          return (
                             <div>
                              <div
-                        className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
-                      >
-                               <div class="flex justify-between items-center w-wk ">
-                              <div className=" flex font-medium   ">
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
+                >
+                              <div class="flex justify-between ">
+                             
                                         <div>
-        
                     <MultiAvatar
                       primaryTitle={item.opportunityName}
                       imageId={item.imageId}
@@ -121,22 +118,25 @@ function OpportunityWonCard(props) {
                       imgWidth={"1.8rem"}
                       imgHeight={"1.8rem"}
                     />
-                  
         </div>
-                                           <div class="w-[4%]">
-        
-                                           </div>
+                                           
                                            
                                                 <Tooltip>
                                                 <div class=" flex max-sm:w-full  flex-row md:flex-col">
                                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                                     Name
                                                     </div> */}
-                                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer flex items-center w-max">
-                                                        
-                                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
               {item.opportunityName}
-            </Link>&nbsp;&nbsp;
+            </Link> 
+                                                    {/* <Link
+                                toUrl={`dealDetails/${item.invOpportunityId}`}
+                                title={`${item.opportunityName}`}
+                              >
+                                {item.opportunityName}
+                              </Link> */}
+                              &nbsp;&nbsp;
                 {/* {date === currentdate ? (
                   <span
                     style={{
@@ -152,48 +152,48 @@ function OpportunityWonCard(props) {
         </div>
                                                 </Tooltip>
                                       
-                                        </div>
+                                       
         
-                                        <div className=" flex font-medium  ">
+                                        
                                    
                                             {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                            <div class=" text-sm text-cardBody font-poppins ">   
-                                            
-                                            {item.customer}
-                            
+                                            <div class=" text-sm text-cardBody font-poppins">   
+                                            <Link to ="/investor">
+                                {item.investor}
+                                </Link>
                                             </div>
-                                        </div>
                                        
-                                        <div className=" flex font-medium ">
+                                       
+                                       
                                           
         
                                             {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
                                             <div class=" text-sm text-cardBody font-poppins">
-                                          
-                                            {item.contactName === null ? "None" :
+                                           
+                    {item.contactName === null ? "None" :
                       <MultiAvatar2
                         primaryTitle={item.contactName}
                         imageId={item.imageId}
                          imageURL={item.imageURL}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
+                        imgWidth={"1.8em"}
+                        imgHeight={"1.8em"}
                       />
                     }
-                    
+                  
                                             </div>
+                                       
                                         </div>
-                                        </div>
-                                        <div class="flex justify-between items-center w-wk ">
-                                        <div className=" flex font-medium ">
-                                           
+                                        <div class="flex justify-between">
+                                      
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
         
                                             <div class=" text-sm justify-center text-cardBody font-poppins">
-                                            {moment(item.startDate).format("ll")}
+                                            {dayjs(item.startDate).format("DD/MM/YYYY")}
                                             </div>
-                                        </div>
-                                     
-                                        <div className=" flex font-medium  ">
                                        
+                                     
+                                        
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
         
                                             <div class=" text-sm text-cardBody font-poppins text-center">
                                             <CurrencySymbol currencyType={item.currency} />
@@ -201,9 +201,9 @@ function OpportunityWonCard(props) {
                     {item.proposalAmount}
         
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium  ">
-                                           
+                                       
+                                       
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
         
                                             <div class=" text-sm text-cardBody font-poppins text-center">
                                             <Dropdown
@@ -228,7 +228,7 @@ function OpportunityWonCard(props) {
                         {" "}
                         <Progress
                           type="circle"
-                          className=" !text-base cursor-pointer text-[red]"
+                          style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
                           percent={findProbability}
                           width={30}
                           strokeColor={"#005075"}
@@ -237,67 +237,86 @@ function OpportunityWonCard(props) {
                     </Dropdown>
         
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium  ">
-                                         
+                                       
+                                       
+                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+        
                                             <div class=" text-sm text-cardBody font-poppins">
                                             
                                             <span>
                                             <MultiAvatar2
                       primaryTitle={item.assignedTo}
-                      imgWidth={"1.8rem"}
-                      imgHeight={"1.8rem"}
+                      imgWidth={"1.8em"}
+                      imgHeight={"1.8em"}
                     />
                     </span>
                      
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium ">
+                                        
+                                      
                                
-                               
+                               {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
         
                       <Tooltip title={item.ownerName}>
                   <span>
                     <MultiAvatar2
-                       primaryTitle={item.ownerName}
-                       imageId={item.ownerImageId}
+                      primaryTitle={item.ownerName}
+                      imageId={item.ownerImageId}
                         imageURL={item.imageURL}
                         imgWidth={"1.8rem"}
                         imgHeight={"1.8rem"}
                       />
                     </span>
                     </Tooltip>
-                           </div>
-                           </div>
-                           <div class="flex justify-between items-center w-wk ">
                           
-                            <div>
+                           </div>
+                          
+                           <div class="flex justify-between">
+                           <div >
                             <Tooltip title='Click to Open'><span
-                 onClick={() => {
-                  props.LinkClosedOpportunity(
-                    item.opportunityId,
-                    {
-                      closeInd:false,
-                    }
-                         
-                  );         
-                }}         
+                  onClick={() => {
+                   props.LinkClosedOpportunity(
+                     item.opportunityId,
+                     {
+                       closeInd:false,
+                     }
+                          
+                   );         
+                 }}         
                
                  >
                   <LockIcon
-                        className=" !text-base cursor-pointer"
+                        style={{
+                          fontSize: "0.8rem",
+                          cursor: "pointer",
+                        }}
                       />
                     </span>
              </Tooltip> 
                             </div>
                             <div>
-                            <ReinstateToggleForLost 
-                    opportunityId={item.opportunityId} 
-                    
-                    
-                    />
+                            <Tooltip
+                                placement="right"
+                                title={
+                                  <FormattedMessage
+                                    id="app.notes"
+                                    defaultMessage="Notes"
+                                  />
+                                }
+                              >
+                                <span
+                                  onClick={() => {
+                                    props.handleDealsNotesDrawerModal(true);
+                                    handleSetCurrentItem(item);
+                                  }}
+                                >
+                                  <NoteAltIcon
+                                     className="!text-base cursor-pointer text-[green]"
+                                  />
+                                </span>
+                              </Tooltip>
                             </div>
-                        
+                          
                           
                            
                               <div>
@@ -310,18 +329,15 @@ function OpportunityWonCard(props) {
                                   />
                                 }
                               >
-                                {user.opportunityUpdateInd ===true && (
-                      
-                      <span
-                      className=" !text-base cursor-pointer text-[grey]"
-                        onClick={() => {
-                          props.setEditOpportunity(item);
-                          handleUpdateOpportunityModal(true);
-                          handleSetCurrentOpportunityId(item);
-                        }}
-                      >
+                                {user.imInd === true && user.dealUpdateInd === true && (
+                                  <span class="cursor-pointer text-[blue]"
+                                    onClick={() => {
+                                      handleUpdateDealModal(true);
+                                      handleSetCurrentItem(item);
+                                    }}
+                                  >
                                     <BorderColorIcon
-                                      className=" !text-base cursor-pointer text-[tomato]"
+                                      className="!text-base cursor-pointer text-[tomato]"
                                     />
                                   </span>
                                 )}
@@ -333,106 +349,125 @@ function OpportunityWonCard(props) {
                               <StyledPopconfirm
                                 title="Do you want to delete?"
                                 onConfirm={() =>
-                                  deleteLostOpportunity(item.opportunityId)
+                                  deleteOpportunityData(item.opportunityId)
                                 }
                               >
-                                  {user.opportunityDeleteInd ===true && (
+                                {user.imInd === true && user.dealDeleteInd === true && (
                                 
                                   <DeleteOutlined
                                     type="delete"
-                                    className=" !text-base cursor-pointer text-[red]"
+                                    className="!text-base text-[red] cursor-pointer"
                                   />
                                   )}
                                   </StyledPopconfirm>
                               </div>
                      
-                       
+                           
                          
-                                      
+                                       
                            <div>
                            <span
                  
-                 className=" cursor-pointer"
+                 style={{ cursor: "pointer" }}
                  onClick={() => {
-                     props.getAllRecruitmentByOppId(item.opportunityId);
-                     props.getAllRecruitmentPositionByOppId(item.opportunityId);
-                     props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
-                     props.getAllRecruitmentPositionFilledByOppId(
-                       item.opportunityId
-                     );
-                     props.getAllRecruitmentDetailsByOppId(item.opportunityId);
-                     props.handleOpportunityDrawerModal(true);
-                     props.getOpportunitySKill(item.oppInnitiative);
-                     handleSetCurrentOpportunityId(item.opportunityName);
+                    //  props.getAllRecruitmentByOppId(item.opportunityId);
+                    //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
+                    //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
+                    //  props.getAllRecruitmentPositionFilledByOppId(
+                    //    item.opportunityId
+                    //  );
+                    //  props.getAllRecruitmentDetailsByOppId(item.opportunityId);
+                    //  props.handleOpportunityDrawerModal(true);
+                    //  props.getOpportunitySKill(item.oppInnitiative);
+                    //  handleSetCurrentOpportunityId(item.opportunityName);
                    }}
                  >
                    {user.pulseAccessInd === true && (
                      <MonitorHeartIcon
-                     className=" !text-base cursor-pointer text-[#df9697]"
+                       style={{ fontSize: "0.8rem", color: "#df9697" }}
                      />
                    )}
                  </span>
                                 </div>
-                  
-                              </div>
+                                </div>
+                              
                                     </div>
                                 </div>
         
         
                             )
                         })}
-              
               </InfiniteScroll>
+        
               </div>
-        
-              <UpdateOpportunityModal
-                opportunityId={currentOpportunityId}
-                opportunityName={currentOpportunityId}
-                opportunityData={currentOpportunityId}
-                updateOpportunityModal={updateOpportunityModal}
-                handleUpdateOpportunityModal={handleUpdateOpportunityModal}
-                handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+              <UpdateDealModal
+                currentItem={currentItem}
+                openupdateDealModal={openupdateDealModal}
+                handleUpdateDealModal={handleUpdateDealModal}
+                handleSetCurrentItem={handleSetCurrentItem}
               />
-        
-        <AddOpportunityDrawerModal
-         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
-         opportunityName={currentOpportunityId}
-         opportunitySkills={props.opportunitySkills}
-        allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
-                     allRecruitmentByOppId={props.allRecruitmentByOppId}
-                     allRecruitmentPositionFilledByOppId={props.allRecruitmentPositionFilledByOppId}
-                     allRecruitmentAvgTimeByOppId={props.allRecruitmentAvgTimeByOppId}
-                     allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
-                       handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
-                       addDrawerOpportunityModal={props.addDrawerOpportunityModal}
-                     // candidateByUserId={this.props.candidateByUserId}
+              <AddDealsNotesDrawerModal
+                currentItem={currentItem}
+                addDrawerDealsNotesModal={props.addDrawerDealsNotesModal}
+                handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
+                handleSetCurrentItem={handleSetCurrentItem}
               />
             </>
-          );
+          ); 
       }
 
       return (    
   <>
-  <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[13.8rem]">Name</div>
-        <div className=" md:w-[9.12rem]">Prospect</div>
-        <div className=" md:w-[12.2rem] ">Sponsor</div>
-        <div className="md:w-[8.8rem]">Start Date</div>
-        <div className="md:w-[9.3rem]">Proposal Amount</div>
-        <div className="md:w-[8.1rem]">Sales Rep</div>
-        <div className="md:w-[2.2rem]">Owner</div>
-        <div className="md:w-[4.8rem]"></div>
-        <div className="w-12"></div>
+
+     
+<div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" md:w-[13.12rem]"><FormattedMessage
+                  id="app.name"
+                  defaultMessage="name"
+                /></div>
+        <div className=" md:w-[6.21rem]"><FormattedMessage
+                  id="app.investor"
+                  defaultMessage="investor"
+                /></div>
+        <div className=" md:w-[9.21rem] "><FormattedMessage
+                  id="app.sponsor"
+                  defaultMessage="sponsor"
+                /></div>
+        <div className="md:w-[7.11rem]"><FormattedMessage
+                  id="app.startdate"
+                  defaultMessage="startdate"
+                /></div>
+        <div className="md:w-[11.16rem]"><FormattedMessage
+                  id="app.proposalamt"
+                  defaultMessage="proposalamt"
+                /></div>
+        <div className="md:w-[5.14rem]"><FormattedMessage
+                  id="app.stages"
+                  defaultMessage="stages"
+                /></div> 
+        <div className="md:w-[7.1rem]"><FormattedMessage
+                  id="app.salesRep"
+                  defaultMessage="salesRep"
+                /></div>
+        <div className="md:w-[3.22rem]"><FormattedMessage
+                  id="app.owner"
+                  defaultMessage="owner"
+                /></div>
+        <div className="md:w-[5.71rem]"></div>
+        <div className="w-12"><FormattedMessage
+                  id="app.action"
+                  defaultMessage="action"
+                /></div>
       </div>
       <InfiniteScroll
-         dataLength={wonOpportunity.length}
+         dataLength={lostDeals.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingLostDeals ?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
-{ !fetchingWonOpportunity && wonOpportunity.length === 0 ?<NodataFoundPage />:wonOpportunity.map((item,index) =>  {
+          { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
@@ -443,15 +478,14 @@ function OpportunityWonCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
                       // style={{
                       //   borderBottom: "3px dotted #515050",
                       // }}
                     >
                       <div class="flex ">
-                      <div className=" flex font-medium  md:w-[13rem] max-sm:flex-row w-full ">
+                      <div className=" flex font-medium  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
                                 <div>
-
             <MultiAvatar
               primaryTitle={item.opportunityName}
               imageId={item.imageId}
@@ -459,7 +493,6 @@ function OpportunityWonCard(props) {
               imgWidth={"1.8rem"}
               imgHeight={"1.8rem"}
             />
-          
 </div>
                                    <div class="w-[4%]">
 
@@ -471,11 +504,16 @@ function OpportunityWonCard(props) {
                                             Name
                                             </div> */}
                                             <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
-                                                
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link>
-         &nbsp;&nbsp;
+    </Link> 
+                                            {/* <Link
+                        toUrl={`dealDetails/${item.invOpportunityId}`}
+                        title={`${item.opportunityName}`}
+                      >
+                        {item.opportunityName}
+                      </Link> */}
+                      &nbsp;&nbsp;
         {/* {date === currentdate ? (
           <span
             style={{
@@ -493,45 +531,45 @@ function OpportunityWonCard(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-sm text-cardBody font-poppins">   
-                                    
-                                    {item.customer}
-                    
+                                    <Link to ="/investor">
+                        {item.investor}
+                        </Link>
                                     </div>
                                 </div>
                                
-                                <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col md:w-[6.4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
                                     <div class=" text-sm text-cardBody font-poppins">
-                                    
-                                    {item.contactName === null ? "None" :
+                                   
+            {item.contactName === null ? "None" :
               <MultiAvatar2
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
+                imgWidth={"1.8em"}
+                imgHeight={"1.8em"}
               />
             }
-            
+          
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins">
-                                    {moment(item.startDate).format("ll")}
+                                    {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center">
@@ -541,10 +579,10 @@ function OpportunityWonCard(props) {
 
                                     </div>
                                 </div>
-                                
+                                <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    {/* <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm text-cardBody font-poppins text-center">
                                     <Dropdown
               overlay={
                 <div>
@@ -567,8 +605,7 @@ function OpportunityWonCard(props) {
                 {" "}
                 <Progress
                   type="circle"
-                  className=" !text-base cursor-pointer text-[red]"
-                 
+                  style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
                   percent={findProbability}
                   width={30}
                   strokeColor={"#005075"}
@@ -576,9 +613,9 @@ function OpportunityWonCard(props) {
               </Tooltip>
             </Dropdown>
 
-                                    </div> */}
-                              
-                                <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins">
@@ -586,22 +623,22 @@ function OpportunityWonCard(props) {
                                     <span>
                                     <MultiAvatar2
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8rem"}
-              imgHeight={"1.8rem"}
+              imgWidth={"1.8em"}
+              imgHeight={"1.8em"}
             />
             </span>
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
               <Tooltip title={item.ownerName}>
           <span>
             <MultiAvatar2
-               primaryTitle={item.ownerName}
-               imageId={item.ownerImageId}
+              primaryTitle={item.ownerName}
+              imageId={item.ownerImageId}
                 imageURL={item.imageURL}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
@@ -611,36 +648,53 @@ function OpportunityWonCard(props) {
                    </div>
                    </div>
                   
-                   <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
+                   <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
                     <div>
                     <Tooltip title='Click to Open'><span
-         onClick={() => {
-          props.LinkClosedOpportunity(
-            item.opportunityId,
-            {
-              closeInd:false,
-            }
-                 
-          );         
-        }}         
+          onClick={() => {
+           props.LinkClosedOpportunity(
+             item.opportunityId,
+             {
+               closeInd:false,
+             }
+                  
+           );         
+         }}         
        
          >
           <LockIcon
-           className=" !text-base cursor-pointer"
-               
+                style={{
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                }}
               />
             </span>
      </Tooltip> 
                     </div>
                     <div>
-                    <ReinstateToggleForLost 
-            opportunityId={item.opportunityId} 
-            
-            
-            />
+                    <Tooltip
+                        placement="right"
+                        title={
+                          <FormattedMessage
+                            id="app.notes"
+                            defaultMessage="Notes"
+                          />
+                        }
+                      >
+                        <span
+                          onClick={() => {
+                            props.handleDealsNotesDrawerModal(true);
+                            handleSetCurrentItem(item);
+                          }}
+                        >
+                          <NoteAltIcon
+                            className="!text-base cursor-pointer text-[green]"
+                          />
+                        </span>
+                      </Tooltip>
                     </div>
                   </div>
-                  <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
                    
                       <div>
                          <Tooltip
@@ -652,18 +706,15 @@ function OpportunityWonCard(props) {
                           />
                         }
                       >
-                        {user.opportunityUpdateInd ===true && (
-              
-              <span
-              className=" !text-base cursor-pointer text-[grey]"
-                onClick={() => {
-                  props.setEditOpportunity(item);
-                  handleUpdateOpportunityModal(true);
-                  handleSetCurrentOpportunityId(item);
-                }}
-              >
+                        {user.imInd === true && user.dealUpdateInd === true && (
+                          <span class="cursor-pointer text-[blue]"
+                            onClick={() => {
+                              handleUpdateDealModal(true);
+                              handleSetCurrentItem(item);
+                            }}
+                          >
                             <BorderColorIcon
-                             className=" !text-base cursor-pointer text-[tomato]"
+                             className="!text-base cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -675,14 +726,14 @@ function OpportunityWonCard(props) {
                       <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
-                          deleteLostOpportunity(item.opportunityId)
+                          deleteOpportunityData(item.opportunityId)
                         }
                       >
-                          {user.opportunityDeleteInd ===true && (
+                        {user.imInd === true && user.dealDeleteInd === true && (
                         
                           <DeleteOutlined
                             type="delete"
-                            className=" !text-base cursor-pointer text-[red]"
+                            className="!text-base text-[red] cursor-pointer"
                           />
                           )}
                           </StyledPopconfirm>
@@ -690,55 +741,31 @@ function OpportunityWonCard(props) {
              
                     <div></div>
                   </div>   
-                  
-                                <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
+                                <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
                    <div>
                    <span
-          className=" cursor-pointer"
+         
+         style={{ cursor: "pointer" }}
          onClick={() => {
-             props.getAllRecruitmentByOppId(item.opportunityId);
-             props.getAllRecruitmentPositionByOppId(item.opportunityId);
-             props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
-             props.getAllRecruitmentPositionFilledByOppId(
-               item.opportunityId
-             );
-             props.getAllRecruitmentDetailsByOppId(item.opportunityId);
-             props.handleOpportunityDrawerModal(true);
-             props.getOpportunitySKill(item.oppInnitiative);
-             handleSetCurrentOpportunityId(item.opportunityName);
+            //  props.getAllRecruitmentByOppId(item.opportunityId);
+            //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
+            //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
+            //  props.getAllRecruitmentPositionFilledByOppId(
+            //    item.opportunityId
+            //  );
+            //  props.getAllRecruitmentDetailsByOppId(item.opportunityId);
+            //  props.handleOpportunityDrawerModal(true);
+            //  props.getOpportunitySKill(item.oppInnitiative);
+            //  handleSetCurrentOpportunityId(item.opportunityName);
            }}
          >
            {user.pulseAccessInd === true && (
              <MonitorHeartIcon
-             className=" !text-base cursor-pointer text-[#df9697]"
+               style={{ fontSize: "0.8rem", color: "#df9697" }}
              />
            )}
          </span>
                         </div>
-<div><Tooltip
-          placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
-        >
-         
-              
-            <span
-
-              onClick={() => {
-              
-                handleOpportunityNotesDrawerModal(true);
-                handleSetCurrentOpportunityId(item);
-              }}
-            >
-                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
-              </span>
-        
-          </Tooltip></div>
-                        
             </div>
                       
                             </div>
@@ -747,53 +774,33 @@ function OpportunityWonCard(props) {
 
                     )
                 })}
-      
       </InfiniteScroll>
+
       </div>
-
-      <UpdateOpportunityModal
-        opportunityId={currentOpportunityId}
-        opportunityName={currentOpportunityId}
-        opportunityData={currentOpportunityId}
-        updateOpportunityModal={updateOpportunityModal}
-        handleUpdateOpportunityModal={handleUpdateOpportunityModal}
-        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+      <UpdateDealModal
+        currentItem={currentItem}
+        openupdateDealModal={openupdateDealModal}
+        handleUpdateDealModal={handleUpdateDealModal}
+        handleSetCurrentItem={handleSetCurrentItem}
       />
-         <AddOpportunityNotesDrawerModal
-        addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
-        opportunityData={currentOpportunityId}
-        handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
-        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
-      />
-
-<AddOpportunityDrawerModal
- handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
- opportunityName={currentOpportunityId}
- opportunitySkills={props.opportunitySkills}
-allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
-             allRecruitmentByOppId={props.allRecruitmentByOppId}
-             allRecruitmentPositionFilledByOppId={props.allRecruitmentPositionFilledByOppId}
-             allRecruitmentAvgTimeByOppId={props.allRecruitmentAvgTimeByOppId}
-             allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
-               handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
-               addDrawerOpportunityModal={props.addDrawerOpportunityModal}
-             // candidateByUserId={this.props.candidateByUserId}
+      <AddDealsNotesDrawerModal
+        currentItem={currentItem}
+        addDrawerDealsNotesModal={props.addDrawerDealsNotesModal}
+        handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
+        handleSetCurrentItem={handleSetCurrentItem}
       />
     </>
   );
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity }) => ({
+const mapStateToProps = ({ auth, deal, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
   opportunitySkills:opportunity.opportunitySkills,
-  sales: opportunity.sales,
   recruiterName: opportunity.recruiterName,
   recruiterList:opportunity.recruiterList,
-  fetchingWonOpportunity:opportunity.fetchingWonOpportunity,
-  fetchinglostOpportunity:opportunity.fetchinglostOpportunity,
   fetchinglostOpportunityError:opportunity.fetchinglostOpportunityError,
   fetchingRecruiterList:opportunity.fetchingRecruiterList,
   fetchingRecruiterListError:opportunity.fetchingRecruiterListError,
@@ -810,8 +817,11 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     opportunity.allRecruitmentPositionFilledByOppId,
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
-    wonOpportunity:opportunity.wonOpportunity,
-    addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
+
+    fetchingLostDeals:deal.fetchingLostDeals,
+    lostDeals:deal.lostDeals,
+    openupdateDealModal: deal.openupdateDealModal,
+    addDrawerDealsNotesModal: deal.addDrawerDealsNotesModal,
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -829,14 +839,15 @@ const mapDispatchToProps = (dispatch) =>
           getAllRecruitmentAvgTimeByOppId,
          getAllRecruitmentPositionFilledByOppId,
          getAllRecruitmentDetailsByOppId,
-         getWonOpportunity,
+         getLostDeals,
          LinklostdOpportunity,
          deleteLostOpportunity,
-         handleOpportunityNotesDrawerModal,
+         handleUpdateDealModal,
+         handleDealsNotesDrawerModal
     },
     dispatch
   );
 export default connect(
 mapStateToProps,
 mapDispatchToProps
-)(OpportunityWonCard);
+)(DealLostCard);

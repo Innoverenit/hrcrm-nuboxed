@@ -230,7 +230,7 @@ class SingleProductionStages extends Component {
                   onClick={() =>
                     handleUpdateStage(
                       this.props.productionStagesId,
-                      this.state.responsible,
+                      // this.state.responsible,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,

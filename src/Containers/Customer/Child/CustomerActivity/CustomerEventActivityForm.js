@@ -114,7 +114,7 @@ const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingEvent,
+      addingCustomerActivityEvent,
       addCustomerActivityEvent,
       deletingEvent,
       deleteEvent,
@@ -137,11 +137,9 @@ const {
     return (
       <>
         <Formik
-          enableReinitialize
+          // enableReinitialize
           initialValues={
-            isEditing
-              ? prefillEvent
-              : {
+            {
                   eventType: "",
                   eventTypeId: "",
                   eventSubject: "",
@@ -765,7 +763,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingEvent : addingEvent}
+                  loading={isEditing ? updatingEvent : addingCustomerActivityEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -783,7 +781,7 @@ const {
     );
 }
 const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingEvent: event.addingEvent,
+  addingCustomerActivityEvent: customer.addingCustomerActivityEvent,
   assignedToList:employee.assignedToList,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,

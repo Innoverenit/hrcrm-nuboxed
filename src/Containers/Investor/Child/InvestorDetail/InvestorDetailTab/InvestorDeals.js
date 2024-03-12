@@ -22,8 +22,8 @@ const InvestorDeals = (props) => {
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     props.getInvestorDeals(props.investorDetails.investorId);
-    
-  }, []);
+  
+ }, []);
 
   const [currentLeadsId, setCurrentLeadsId] = useState("");
   const [rowdata, setrowData] = useState({});
@@ -44,7 +44,7 @@ const InvestorDeals = (props) => {
 //   if (fetchingAllDealsData) {
 //     return <BundleLoader />;
 //   }
-console.log(props.investorDealsData)
+console.log("investorDetails",props.investorDetails)
   return (
     <>
   <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">

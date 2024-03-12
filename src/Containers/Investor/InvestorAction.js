@@ -1069,3 +1069,47 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
       });
   };
+
+  export const handleDealModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_DEAL_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const InvestorcreateDeals = (deal, cb) => (dispatch,getState) => {
+    const userId = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.CREATE_INVESTOR_DEAL_REQUEST,
+    });
+    axios
+      .post(`${base_url}/investor/opportunity/save`, deal, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        const startDate = dayjs()
+          .startOf("month")
+          .toISOString();
+        const endDate = dayjs()
+          .endOf("month")
+          .toISOString();
+    
+        // dispatch(getLatestOpportunities(userId, startDate, endDate));
+        // dispatch(getOpportunitiesByPrice(userId));
+        dispatch({
+          type: types.CREATE_INVESTOR_DEAL_SUCCESS,
+          payload: res.data,
+        });
+      
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_INVESTOR_DEAL_FAILURE,
+          payload: err,
+        });
+      });
+  };

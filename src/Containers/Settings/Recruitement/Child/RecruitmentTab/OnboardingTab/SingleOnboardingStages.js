@@ -237,7 +237,7 @@ class SingleOnboardingStages extends Component {
                   onClick={() =>
                     handleUpdateStage(
                       this.props.unboardingStagesId,
-                      this.state.responsible,
+                      // this.state.responsible,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,

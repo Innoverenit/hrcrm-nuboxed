@@ -118,8 +118,9 @@ function DealsBoard(props) {
       updateDealdragstage,
     } = props;
     let data={
-        investorOppStagesId:destination.droppableId,
+      invOpportunityStagesId:destination.droppableId,
         invOpportunityId:result.draggableId,
+        // invOppStagesId:destination.droppableId,
     }
     updateDealdragstage(data,
       source.droppableId,
