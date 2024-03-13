@@ -1,6 +1,7 @@
 import React, { useEffect, useState, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
@@ -24,6 +25,7 @@ import {
   setEditOpportunity,
   deleteOpportunityData,
   updateOwneroppById,
+  handleOpportunityNotesDrawerModal,
       handleOpportunityDrawerModal,
       getAllRecruitmentByOppId,
         getAllRecruitmentPositionByOppId,
@@ -39,6 +41,7 @@ import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 
 function OpportunityLostCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -74,6 +77,8 @@ function OpportunityLostCard(props) {
         user,
         fetchinglostOpportunity,
     fetchinglostOpportunityError,
+    addDrawerOpportunityNotesModal,
+    handleOpportunityNotesDrawerModal,
     deleteLostOpportunity,
     handleUpdateOpportunityModal,
     updateOpportunityModal,
@@ -660,6 +665,29 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </span>
    </Tooltip> 
                   </div>
+                  <div><Tooltip
+          placement="right"
+          title={
+            <FormattedMessage
+              id="app.notes"
+              defaultMessage="Notes"
+            />
+          }
+        >
+         
+              
+            <span
+
+              onClick={() => {
+              
+                handleOpportunityNotesDrawerModal(true);
+                // handleSetCurrentOpportunityId(item);
+              }}
+            >
+                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+              </span>
+        
+          </Tooltip></div>
                
                 </div>
                 <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
@@ -734,6 +762,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
       />
+            <AddOpportunityNotesDrawerModal
+        addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
+        opportunityData={currentOpportunityId}
+        handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
+        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+      />
 
 <AddOpportunityDrawerModal
  handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
@@ -778,7 +812,8 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     opportunity.allRecruitmentPositionFilledByOppId,
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
-    lostOpportunity:opportunity.lostOpportunity
+    lostOpportunity:opportunity.lostOpportunity,
+    addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -790,6 +825,7 @@ const mapDispatchToProps = (dispatch) =>
       handleOpportunityDrawerModal,
       setEditOpportunity,
       deleteOpportunityData,
+      handleOpportunityNotesDrawerModal,
       updateOwneroppById,
       getAllRecruitmentByOppId,
          getAllRecruitmentPositionByOppId,

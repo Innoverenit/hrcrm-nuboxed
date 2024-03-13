@@ -38,9 +38,17 @@ const initialState = {
 
   updatingDealDragStage:false,
 
+  fetchingLostRecords: false,
+  fetchingLostRecordsError: false,
+  lostDealData:{},
+
   fetchingNotesListByDealId: false,
   fetchingNotesListByDealIdError: false,
   notesListByDealId:[],
+
+  fetchingLostDeals: false,
+  fetchingLostDealsError: false,
+  lostDeals:[],
 
   addDrawerDealsNotesModal:false,
 
@@ -166,7 +174,7 @@ export const dealReducer = (state = initialState, action) => {
             opencreateDealModal: false,
            dealsByuserId :[action.payload,...state.dealsByuserId],
            allDealsData :[action.payload,...state.allDealsData],
-           investorDealsData:[action.payload,...state.investorDealsData],
+          //  investorDealsData:[action.payload,...state.investorDealsData],
           };
         case types.CREATE_DEAL_FAILURE:
           return {
@@ -580,7 +588,9 @@ export const dealReducer = (state = initialState, action) => {
                 ...state,
                 deleteDealData: false,
                 dealsByuserId: state.dealsByuserId.filter(
-                  (item) => item.invOpportunityId !== action.payload),
+                  (item) => item.invOpportunityId !== action.payload
+              ), 
+
               };
             case types.DELETE_DEAL_DATA_FAILURE:
               return { ...state, deleteDealData: false, deleteDealDataError: false };
@@ -620,6 +630,39 @@ export const dealReducer = (state = initialState, action) => {
                   };
                 case types.UPDATE_CONTACT_ROLE_BY_DEAL_ID_FAILURE:
                   return { ...state };
+
+
+                  case types.GET_LOST_DEALS_REQUEST:
+                  return { ...state, fetchingLostDeals: true };
+                case types.GET_LOST_DEALS_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingLostDeals: false,
+                    lostDeals: [
+                      ...state.lostDeals,
+                      ...action.payload],
+                  };
+                case types.GET_LOST_DEALS_FAILURE:
+                  return {
+                    ...state,
+                    fetchingLostDeals: false,
+                    fetchingLostDealsError: true,
+                  };
+
+                  case types.GET_LOST_RECORDS_REQUEST:
+                    return { ...state, fetchingLostRecords: true };
+                  case types.GET_LOST_RECORDS_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingLostRecords: false,
+                      lostDealData: action.payload,
+                    };
+                  case types.GET_LOST_RECORDS_FAILURE:
+                    return {
+                      ...state,
+                      fetchingLostRecords: false,
+                      fetchingLostRecordsError: true,
+                    };
 
     default:
       return state;

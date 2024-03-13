@@ -169,7 +169,7 @@ function CustomerCallActivityForm(props) {
       user: { userId, firstName, middleName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCall,
+      addingCustomerActivityCall,
       deleteCall,
       deletingCall,
       addCustomerActivityCall,
@@ -917,7 +917,7 @@ function CustomerCallActivityForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingCall : addingCall}
+                  loading={isEditing ? updatingCall : addingCustomerActivityCall}
                 >
                   {isEditing ? (
                     "Update"
@@ -936,7 +936,7 @@ function CustomerCallActivityForm(props) {
   }
 
 const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCall: call.addingCall,
+  addingCustomerActivityCall: customer.addingCustomerActivityCall,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,

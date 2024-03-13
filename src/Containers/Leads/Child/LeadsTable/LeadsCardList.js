@@ -8,6 +8,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
+import LanguageIcon from '@mui/icons-material/Language';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -869,6 +870,27 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
+                  </div>
+                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                    <div>
+                      <Tooltip
+                        // overlayStyle={{ maxWidth: "300px" }}
+                        title={item.CreationType}
+                      >
+                          <div className="cursor-pointer">
+    {item.CreationType === "Website" ? (
+      <LanguageIcon className="!text-base cursor-pointer text-[#960a0a]" />
+    ) : item.CreationType === "InApp" ? (
+      <LanguageIcon className="!text-base cursor-pointer text-blue-500" />
+    ) : (
+      // Default 
+      <LanguageIcon className="!text-base cursor-pointer" />
+    )}
+  </div>
+                      
+                      </Tooltip>
+                    </div>
+
                   </div>
                
                 </div>

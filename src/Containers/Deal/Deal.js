@@ -2,6 +2,7 @@ import React, {Suspense, lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
+import DealLostCard from './Child/DealTable/DealLostCard';
 import {setDealViewType,handleDealModal}from "./DealAction";
 const DealsBoard=lazy(()=>import ("./Child/DealsBoard"));
 const DealHeader = lazy(()=>import("./Child/DealHeader"));
@@ -46,6 +47,10 @@ function Deal (props) {
         
             <DealWonCard/>
              :
+             viewType === "lost" ?
+             (  <DealLostCard/> )
+            
+              :
             null}
                  </Suspense>
             </React.Fragment>

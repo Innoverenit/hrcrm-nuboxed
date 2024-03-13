@@ -2896,7 +2896,7 @@ export const getRemoteAccess = (orgId) => (dispath) => {
 
 export const updateStageForOpportunity = (
   opportunityStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -2910,7 +2910,7 @@ export const updateStageForOpportunity = (
   axios
     .put(
       `${base_url}/opportunityStages/${opportunityStagesId}`,
-      { opportunityStagesId, responsible, stageName, probability, days },
+      { opportunityStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3800,7 +3800,7 @@ export const updateProcessNameForDeals = (process, investorOppWorkflowId, cb) =>
 
 export const updateStageForDeals = (
   investorOppStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -3814,7 +3814,7 @@ export const updateStageForDeals = (
   axios
     .put(
       `${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`,
-      { investorOppStagesId, responsible, stageName, probability, days },
+      { investorOppStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4164,7 +4164,7 @@ export const getProcessStagesForOnboarding = (unboardingWorkflowId) => (
 
 export const updateStageForOnboarding = (
   unboardingStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -4178,7 +4178,7 @@ export const updateStageForOnboarding = (
   axios
     .put(
       `${base_url}/unboardingWorkflow/unboardingStages/${unboardingStagesId}`,
-      { unboardingStagesId, responsible, stageName, probability, days },
+      { unboardingStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4581,7 +4581,7 @@ export const getProcessStagesForSupplier = (supplierUnboardingWorkflowId) => (
 
 export const updateStageForSupplier = (
   supplierUnboardingStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -4595,7 +4595,7 @@ export const updateStageForSupplier = (
   axios
     .put(
       `${base_url}/supplier/unboardingWorkflow/supplierUnboardingStages/${supplierUnboardingStagesId}`,
-      { supplierUnboardingStagesId, responsible, stageName, probability, days },
+      { supplierUnboardingStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4874,7 +4874,7 @@ export const getProcessStagesForProduction = (productionWorkflowDetailsId) => (
 
 export const updateStageForProduction = (
   productionStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -4888,7 +4888,7 @@ export const updateStageForProduction = (
   axios
     .put(
       `${base_url}/productionWorkflow/stage/${productionStagesId}`,
-      { productionStagesId, responsible, stageName, probability, days },
+      { productionStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -5168,9 +5168,7 @@ export const getProcessStagesForRepair = (repairWorkflowDetailsId) => (
 
 export const updateStageForRepair = (
   repairStagesId,
-  responsible,
   stageName,
-
   probability,
   days,
   cb
@@ -5182,7 +5180,7 @@ export const updateStageForRepair = (
   axios
     .put(
       `${base_url}/repairWorkflow/stages/${repairStagesId}`,
-      { repairStagesId, responsible, stageName, probability, days },
+      { repairStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

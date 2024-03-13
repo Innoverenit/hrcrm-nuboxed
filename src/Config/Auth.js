@@ -12,7 +12,7 @@ const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 // const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
 
 
-//Cell Tech
+// Cell Tech
 // const login_url = "https://crm.celltechnologies.nl";
 // const base_url = "https://crm.celltechnologies.nl/api/v1";
 // const base_url2 = "https://erp.celltechnologies.nl";

@@ -140,13 +140,13 @@ class OnboardingTab extends Component {
     let exist =
     onboardingProcessStages &&
     onboardingProcessStages.some((element) => element.stageName == stageName);
-    if (exist) {
-      message.error(
-        "Stage with same name already exists as part of this workflow"
-      );
-    } else {
+    // if (exist) {
+    //   message.error(
+    //     "Stage with same name already exists as part of this workflow"
+    //   );
+    // } else {
       this.props.updateStageForOnboarding(unboardingStagesId, stageName, probability, days);
-    }
+    // }
   };
 
   handleStagePublishClick = (unboardingStagesId, publishInd) => {

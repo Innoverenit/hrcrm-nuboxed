@@ -237,7 +237,7 @@ class SingleOpportunityStages extends Component {
                   onClick={() =>
                     handleUpdateStage(
                       this.props.opportunityStagesId,
-                      this.state.responsible,
+                      // this.state.days,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,
