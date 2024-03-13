@@ -5286,3 +5286,10 @@ export const LinkRepairStagePublish = (data, cb) => (dispatch) => {
       cb && cb("Failure");
     });
 };
+
+export const handleSalaryModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SALARY_MODAL,
+    payload: modalProps,
+  });
+};

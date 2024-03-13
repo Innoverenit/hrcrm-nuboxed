@@ -734,7 +734,7 @@ function NavMenu(props) {
             </Link>
           </Menu.Item>
         )}
-        {(user.catalogAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.orderManagementInd === true) &&  (
+        {(user.catalogAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.productionInd === true) &&  (
         <Menu.Item key="/product" style={{ height: "1.7rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/product' ? 'tomato' : '#4bc076' }}>
           <Link to="/product" onClick={() => handleSelect('/product')}>

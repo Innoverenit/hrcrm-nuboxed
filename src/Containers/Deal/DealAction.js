@@ -811,22 +811,12 @@ export const deleteDealsData = (invOpportunityId) => (dispatch) => {
       },
     })
     .then((res) => {
-        if (res.data) {
-        Swal.fire({
-          icon: 'success',
-          title: res.data,
-          showConfirmButton: false,
-          // timer: 1500
-        });
-      } else {
-       
-        Swal.fire({
-          icon: 'error',
-          title: 'Not Deleted',
-          showConfirmButton: false,
-          // timer: 1500
-        });
-      }
+      Swal.fire({
+        icon: 'success',
+        title: 'Deal Deleted Successfully',
+        showConfirmButton: false,
+        // timer: 1500
+      })
       dispatch({
         type: types.DELETE_DEAL_DATA_SUCCESS,
         payload: invOpportunityId,

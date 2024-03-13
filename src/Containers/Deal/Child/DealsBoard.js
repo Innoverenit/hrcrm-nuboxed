@@ -209,7 +209,7 @@ function DealsBoard(props) {
                                       className="scrollbar"
                                       id="style-3"
                                     >
-                                      {props.aLLdealsList
+                                      {props.dealsByuserId
                                         .filter(
                                           (opp, index) =>
                                             opp.invOpportunityStagesId === stage.investorOppStagesId
@@ -254,7 +254,7 @@ const mapStateToProps = ({
     dealsProcess: settings.dealsProcess,
     orgId: auth.userDetails && auth.userDetails.organizationId,
    userId: auth.userDetails.userId,
-   aLLdealsList:deal.aLLdealsList,
+   dealsByuserId:deal.dealsByuserId,
 dealsProcessStages: settings.dealsProcessStages,
 });
 const mapDispatchToProps = (dispatch) =>
