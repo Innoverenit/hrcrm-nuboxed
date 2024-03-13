@@ -206,6 +206,7 @@ function DealCardList(props) {
                             percent={findProbability}
                             //disable={true}
                             width={30}
+                     
                             strokeColor={"#005075"}
                           />
                         </Tooltip>

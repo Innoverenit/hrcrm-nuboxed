@@ -1,7 +1,7 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select } from "antd";
+import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
 import { StyledLabel } from "../../../../../Components/UI/Elements";
@@ -11,25 +11,17 @@ import {getDepartments} from "../../../Department/DepartmentAction"
 import {
     getRoles,
   } from "../../../../Settings/Category/Role/RoleAction";
-  import * as Yup from "yup";
 import { FormattedMessage } from "react-intl";
-import ProspectCustomerLevelForm from "./ProspectCustomerLevelForm";
-
-
+const ProspectCustomerLevelForm = lazy(() => import("./ProspectCustomerLevelForm"));
 class ProspectCustomerForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             approve: false,
             type: true,
-            amendment: true,
-            selectedOption: null,
+            amendment: true
         };
     }
-
-    handleChange = (value) => {
-        this.setState({ selectedOption: value });
-      };
     handleApproveToggle = (checked) => {
         console.log(checked);
         this.setState({
@@ -46,34 +38,73 @@ class ProspectCustomerForm extends Component {
 
 
  componentDidMount() {
+         this.props.getDepartments();
+         this.props.getRoles(this.props.organizationId);
      this.props.getApproveData( "ProspectToCustomer");
  }
 
+
+
+ getRoleOptions(filterOptionKey, filterOptionValue) {
+    const roleOptions =
+      this.props.roles.length &&
+      this.props.roles
+        .filter((option) => {
+          if (
+            option.departmentId === filterOptionValue &&
+            option.probability !== 0
+          ) {
+            return option;
+          }
+        })
+        .map((option) => ({
+          label: option.roleType || "",
+          value: option.roleTypeId,
+        }));
+
+    return roleOptions;
+  };
     render() {
     
-     
+        const departmentNameOption = this.props.departments.map((item) => {
+            return {
+                label: `${item.departmentName || ""}`,
+                value: item.departmentId,
+            };
+        });
+        const roleNameOption = this.props.roles.map((item) => {
+            return {
+                label: `${item.roleType || ""}`,
+                value: item.roleTypeId,
+            };
+        });
      
 
     
         return (
             <>
                 <Formik
-                    // enableReinitialize
+                    enableReinitialize
                     initialValues={{
+                        // reportingTo: this.props.approvalData.reportingTo || "",
+                        threshold: this.props.approvalData.threshold || "",
+                        departmentId: this.props.approvalData.departmentId || "",
+                        roleTypeId: this.props.approvalData.roleTypeId || "",
+                        jobLevel: this.props.approvalData.jobLevel || 1,
+                        // processName: "BOQ",
                         subProcessName: "ProspectToCustomer",
                         approvalType: this.props.approvalData.approvalType === "Standard" ? true : false,
                         approvalIndicator: this.props.approvalData.approvalIndicator ? true : false,
                     
                     }}
 
-                    // validationSchema={MileageSchema}
+
                     onSubmit={(values, { resetForm }) => {
                         console.log(values);
                         // if (this.state.approveType) {
                         this.props.addApprove(
                             {
                                 ...values,
-                                level: this.state.selectedOption,
                                 approvalType: values.approvalType ? "Standard" : "Exception",
                                 approvalIndicator: values.approvalIndicator ? true : false,
                                
@@ -93,8 +124,8 @@ class ProspectCustomerForm extends Component {
                         ...rest
                     }) => (
                         <Form >
-                            <div class=" w-[71%] min-h-{40vh}"
-                              >
+                            <div class=" w-[70%] min-h-{40vh}"
+        >
 
                                 <div>
                                 <div class=" flex justify-between">
@@ -123,8 +154,7 @@ class ProspectCustomerForm extends Component {
                                     </div>
                                 </div>
                                 {values.approvalIndicator ? (
-                                     <div class=" mt-4">
-                                       
+                                         <div class=" mt-4">
                                      
                                         <div>
                                         <div class=" flex justify-between "
@@ -140,7 +170,7 @@ class ProspectCustomerForm extends Component {
                                                 <div class=" flex justify-between w-[30%]"
                                         
                                         >
-                                                       <div class=" w-[40%]">
+                                                <div class=" w-[40%]">
 
                                                         <Field
                                                             name="approvalType"
@@ -155,9 +185,9 @@ class ProspectCustomerForm extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    
                                         <div class=" mt-4" >
                                             {values.approvalType ? (
+                                             
                                                 <ProspectCustomerLevelForm
                                                   
                                                     approvalIndicator={values.approvalIndicator ? true : false}
@@ -165,28 +195,77 @@ class ProspectCustomerForm extends Component {
                                                 />
                                             ) : ( 
                                                 <div class=" flex justify-between" >
-                                                    <div class=" w-[32%]">
-                                                    <Select
-                      value={this.state.selectedOption}
-                      onChange={this.handleChange}
-                  >
-                    <option value="ReportingManager">Reporting Manager</option>
-                    <option value="ReportingManager+1">Reporting Manager +1</option>
-                    <option value="Management">Management</option>
-                  </Select>
+                                                <div class=" w-[32%]">
+                                                        <Field
+                                                            name="departmentId"
+                                                            label="Department"
+                                                            options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                                                            component={SelectComponent}
+                                                            value={values.departmentId}
+                                                            placeholder
+                                                            isColumn
+                                                            inlineLabel
+                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
+                                                        />
                                                     </div>
 
-                                                 
-                                                 
+                                                    <div class=" w-[32%]">
+                                                    {/* <Field
+                                                            name="roleTypeId"
+                                                            label="Role"
+                                                            options={Array.isArray(roleNameOption) ? roleNameOption : []}
+                                                            component={SelectComponent}
+                                                            value={values.roleTypeId}
+                                                            placeholder
+                                                            isColumn
+                                                            inlineLabel
+                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
+                                                        /> */}
+                                                 <Field
+                    name="roleTypeId"
+                    label={<FormattedMessage
+                      id="app.role"
+                      defaultMessage="Role"
+                    />}
+                    isColumnWithoutNoCreate
+                    component={SelectComponent}
+                    options={
+                      Array.isArray(
+                        this.getRoleOptions(
+                          "departmentId",
+                          values.departmentId
+                        )
+                      )
+                        ? this.getRoleOptions(
+                            "departmentId",
+                            values.departmentId
+                          )
+                        : []
+                    }
+                    value={values.roleTypeId}
+                    filterOption={{
+                      filterType: "departmentId",
+                      filterValue: values.departmentId,
+                    }}
+                    disabled={!values.departmentId}
+                    isColumn
+                    margintop={"0"}
+                    inlineLabel
+                    style={{ flexBasis: "80%" }}
+                    // value={values.roleTypeId}
+                    // width={"100%"}
+                    // isColumn
+                    // selectType="roleType"
+                     /> 
+                                                    </div>
+                                                
                                                 </div>
                                             )} 
                                         </div>
-
-                                   
                                         {!values.approvalType ?
-                                              <div class=" flex justify-end " 
-                                              // style={{ marginLeft: "104%", marginTop: "52px" }}
-                                              >
+                                            <div class=" flex justify-end " 
+                                            // style={{ marginLeft: "104%", marginTop: "52px" }}
+                                            >
                                                 <Button
                                                     type="primary"
                                                     htmlType="submit"
@@ -196,7 +275,6 @@ class ProspectCustomerForm extends Component {
                                                         marginTop: "52px",
                                                         marginBottom: "5px",
                                                     }}
-                                                    
                                                 >
                                                     Update
                                                 </Button>

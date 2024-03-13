@@ -263,7 +263,7 @@ function General(props) {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    loading={props.updateRequirement}
+                    Loading={props.updateRequirement}
                   >
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                     {/* Update */}
