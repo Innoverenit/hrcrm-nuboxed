@@ -1109,7 +1109,7 @@ export const handleDispatchreceivePhoneModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
-export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) => {
+export const updateInspection = (data, orderPhoneId) => (dispatch) => {
   dispatch({ type: types.UPDATE_INSPECTION_REQUEST });
   axios
     .put(`${base_url2}/phoneOrder/inspectionIndStatus/${orderPhoneId}`, data, {
@@ -1123,7 +1123,7 @@ export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) =
         title: 'Inspection Status Updated',
         showConfirmButton: true,
       })
-      dispatch(getReceivedUserList(locationId))
+      // dispatch(getReceivedUserList(locationId))
       dispatch({
         type: types.UPDATE_INSPECTION_SUCCESS,
         payload: res.data,
@@ -1596,7 +1596,7 @@ export const updateOrderReceiveToggle = (data, orderId, locationId) => (dispatch
       },
     })
     .then((res) => {
-      dispatch(getReceivedUserList(locationId))
+      // dispatch(getReceivedUserList(locationId))
       dispatch({
         type: types.UPDATE_ORDER_RECEIVE_SUCCESS,
         payload: res.data,

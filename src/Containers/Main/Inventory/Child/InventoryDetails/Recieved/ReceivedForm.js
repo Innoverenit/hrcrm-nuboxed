@@ -88,7 +88,7 @@ function ReceivedForm(props) {
               <Button
                 type="primary"
                 htmlType="submit"
-                // loading={props.addReceivedItem}
+                loading={props.addingRecievedItem}
                 style={{ marginTop: "20px" }}
               >
                 Submit
@@ -103,7 +103,7 @@ function ReceivedForm(props) {
 
 const mapStateToProps = ({ auth, inventory }) => ({
   userId: auth.userDetails.userId,
-  addRecievedItem: inventory.addRecievedItem,
+  addingRecievedItem: inventory.addingRecievedItem,
   setEditingInventory: inventory.setEditingInventory,
 });
 

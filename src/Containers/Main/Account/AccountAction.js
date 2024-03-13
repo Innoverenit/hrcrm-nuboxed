@@ -2017,7 +2017,7 @@ export const addLocationInOrder = (data, distributorId) => (dispatch) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Repair facility has been choosen',
+        title: 'Repair facility selected',
         showConfirmButton: true,
       })
       dispatch({
