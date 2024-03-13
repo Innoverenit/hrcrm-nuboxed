@@ -259,6 +259,7 @@ function EmployeeForm(props) {
           firstName: "",
           lastName: "",
           emailId: "",
+          salary:"",
           countryDialCode: props.userDetails.countryDialCode || "",
           countryDialCode1: props.userDetails.countryDialCode1 || "",
           phoneNo: "",
@@ -733,27 +734,7 @@ function EmployeeForm(props) {
                       />
                     </div>
                   </div>
-                  <div class=" flex justify-between " >
-                    <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Role</label>
-                
-                  <select
-                 
-                 className="customize-select"
-                      onChange={handleRoleChange}
-                    >
-          <option value="">Select </option>
-          {props.roles.map((item, index) => (
-            <option key={index}
-            // disabled={!values.country_name}
-             value={item.roleTypeId}>
-              {item.roleType}
-            </option>
-          ))}
-        </select> */}
-                    </div>
-                  </div>
-
+                  <div class=" flex justify-between max-sm:flex-col" >
                   <div class=" w-w48 max-sm:w-wk">
                     <Field
                       name="roleType"
@@ -792,7 +773,24 @@ function EmployeeForm(props) {
                     // selectType="roleType"
                     />
                   </div>
+                    <div class=" w-w48 flex flex-col max-sm:w-wk">
+                    <Field
+                    
+                        name="salary"
+                        type="text"
+                        isColumn
+                        width={"100%"}
+                        label={<FormattedMessage
+                          id="app.salary"
+                          defaultMessage="Salary" />}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                    </div>
+                 
 
+                
+                  </div>
 
                   <div class=" flex justify-between max-sm:flex-col" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">

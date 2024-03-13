@@ -8,9 +8,6 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { handleLeadCallModal,
   // getLeadsActivityRecords
  } from "../../LeadsAction";
-import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
-import { Tooltip,Badge } from "antd";
 const LeadsCetTab = lazy(() => import("./LeadsCetTab"));
 const CallLeadsTable = lazy(() => import("./CallLeadsTable"));
 const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));

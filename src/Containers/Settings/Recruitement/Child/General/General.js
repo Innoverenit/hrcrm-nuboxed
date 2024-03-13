@@ -49,7 +49,7 @@ function General(props) {
           productionInd: props.requirementDuration.productionInd,
           repairInd: props.requirementDuration.repairInd,
           trnsfrEvthngToErpInd:props.requirementDuration.trnsfrEvthngToErpInd,
-          trnsfrToErpQuotationWinInd:props.requirementDuration.trnsfrToErpQuotationWinInd,
+          trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
           partNoInd:props.requirementDuration.partNoInd,
           makeToInd: props.requirementDuration.makeToInd,
           independentInd: props.requirementDuration.independentInd,
@@ -229,9 +229,9 @@ function General(props) {
                       <div class=" flex flex-row mt-3">
                         <p style={{ minWidth: "-webkit-fill-available" }}>Transfer to erp module link to quotation win</p>
                         <Field
-                          name="trnsfrToErpQuotationWinInd"
+                          name="trnsfrToErpQtionWinInd"
                           component={SwitchComponent}
-                          data={values.trnsfrToErpQuotationWinInd}
+                          data={values.trnsfrToErpQtionWinInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
                           width={"5em"}

@@ -256,6 +256,7 @@ class UpdateEmployeeForm extends Component {
             firstName: currentEmployeeId.firstName || "",
             lastName: currentEmployeeId.lastName || "",
             emailId: currentEmployeeId.emailId || "",
+            salary: currentEmployeeId.salary || "",
             timeZone: currentEmployeeId.timeZone || "",
             countryDialCode: currentEmployeeId.countryDialCode || "",
             countryDialCode1: currentEmployeeId.countryDialCode1 || "",
@@ -661,24 +662,6 @@ name="departmentId"
                       </div>
                     </div>
                     <div class=" flex justify-between mt-2" >
-                      <div class=" w-w48 flex flex-col max-sm:w-wk">
-                        {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Role</label>
-       
-                  <select className="customize-select"
-                 
-                      onChange={this.handleRoleChange}
-                    >
-          <option value="">Select </option>
-          {this.state.role.map((item, index) => (
-            <option key={index}
-            // disabled={!values.country_name}
-             value={item.roleTypeId}>
-              {item.roleType}
-            </option>
-          ))}
-        </select> */}
-                      </div>
-                    </div>
                     <div class=" w-w48 max-sm:w-wk">
                       <Field
                         name="roleType"
@@ -717,6 +700,22 @@ name="departmentId"
                       // selectType="roleType"
                       />
                     </div>
+                      <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <Field
+                     
+                        name="salary"
+                        type="text"
+                        isColumn
+                        width={"100%"}
+                        label={<FormattedMessage
+                          id="app.salary"
+                          defaultMessage="Salary" />}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                 
 
                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">

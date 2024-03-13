@@ -254,6 +254,8 @@ const initialState = {
   deleteProductionProcessData: false,
    deleteProductionProcessDataError: false, 
 
+   addSalaryModal:false,
+
   addingProcessForRecruit: false,
   addingProcessForRecruitError: false,
 
@@ -3907,6 +3909,9 @@ export const settingsReducer = (state = initialState, action) => {
                                                   linkingRepairStagesPublish: false,
                                                   linkingRepairStagesPublishError: true,
                                                 };
+
+                                                case types.HANDLE_SALARY_MODAL:
+                                                  return { ...state, addSalaryModal: action.payload };
                     
 
 
