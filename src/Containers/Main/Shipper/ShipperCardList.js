@@ -204,12 +204,6 @@ function ShipperCardList(props) {
         shipperId={currentShipperId}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
       />
-      {/* <AddShipperActivityModal
-        addShipperActivityTableModal={props.addShipperActivityTableModal}
-        handleShipperActivityTableModal={props.handleShipperActivityTableModal}
-        shipperId={currentShipperId}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-      /> */}
     </>
   )
 }

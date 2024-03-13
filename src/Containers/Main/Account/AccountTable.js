@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip } from "antd";
-import { Link } from "../../../Components/Common";
+import { Link } from 'react-router-dom';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
@@ -73,7 +73,7 @@ function AccountTable(props) {
               id="app.type"
               defaultMessage="type"
             /></div>
-            <div className="md:w-[7.8rem]"><FormattedMessage
+            <div className="md:w-[8rem]"><FormattedMessage
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
@@ -120,7 +120,7 @@ function AccountTable(props) {
                     <div>
                       <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 "                                >
                         <div class="flex">
-                          <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
+                          <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
                             <div className="flex max-sm:w-full">
                               <div>
                                 <MultiAvatar
@@ -137,7 +137,10 @@ function AccountTable(props) {
                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                     <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                      <Link
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
+                                        to={`distributor/${item.distributorId}`}
+                                        title={`${item.name}`}>
                                         {item.name}
                                       </Link>  &nbsp;&nbsp;
                                       {date === currentdate ? (
@@ -175,7 +178,7 @@ function AccountTable(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.payment}
 
@@ -190,21 +193,21 @@ function AccountTable(props) {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col  md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex font-medium flex-col  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {dataLoc}
                             </div>
 
                           </div>
 
-                          <div className=" flex font-medium flex-col  md:w-[4.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex font-medium flex-col  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.address && item.address.length && item.address[0].postalCode}
                             </div>
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col  md:w-[20px] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Pulse">
                               <MonitorHeartIcon
@@ -217,7 +220,7 @@ function AccountTable(props) {
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col md:w-[20px] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon

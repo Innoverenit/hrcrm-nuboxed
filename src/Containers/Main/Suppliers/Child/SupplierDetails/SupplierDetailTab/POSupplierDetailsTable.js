@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { getPurchaseOrderDetailsList, updatePriceOfPoItem } from "../../../SuppliersAction"
-import { BorderAllRounded, BorderColorOutlined } from "@mui/icons-material";
 import { Button, Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -147,7 +147,8 @@ function PoSupplierDetailsTable(props) {
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                                    <BorderColorOutlined
+                                                    <BorderColorIcon
+                                                        className=" !text-base cursor-pointer text-[tomato]"
                                                         onClick={() => {
                                                             handlePrice()
                                                             handleRowData(item)

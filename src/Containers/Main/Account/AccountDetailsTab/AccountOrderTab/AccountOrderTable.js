@@ -7,7 +7,7 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import BorderColorOutlined from "@mui/icons-material/BorderColor";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from '@mui/icons-material/Delete';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
@@ -383,13 +383,14 @@ const AccountOrderTable = (props) => {
                                                                     id="app.updateorder"
                                                                     defaultMessage="Update Order"
                                                                 />}>
-                                                                    <BorderColorOutlined
+                                                                    <BorderColorIcon
+                                                                        className=" !text-base cursor-pointer text-[tomato]"
                                                                         onClick={() => {
                                                                             props.setEditOrder(item)
                                                                             props.handleUpdateOrder(true)
                                                                             handleSetParticularOrderData(item)
                                                                         }}
-                                                                        className="!text-base cursor-pointer" />
+                                                                    />
                                                                 </Tooltip>
                                                             </div>
                                                         </div>
