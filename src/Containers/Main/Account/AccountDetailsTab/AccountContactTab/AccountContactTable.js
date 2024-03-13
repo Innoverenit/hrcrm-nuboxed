@@ -263,8 +263,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(AccountContactTable)
 //         render: (name, item, i) => {
 //             return (
 //                 <Tooltip title="Edit">
-//                     <BorderColorOutlined
-//                         style={{ cursor: "pointer" }}
+//                   <BorderColorIcon
+// className=" !text-base cursor-pointer text-[tomato]"
 //                         onClick={() => {
 //                             this.props.setEditDistributorContact(item);
 //                             this.props.handleUpdateDistributorContactModal(true);

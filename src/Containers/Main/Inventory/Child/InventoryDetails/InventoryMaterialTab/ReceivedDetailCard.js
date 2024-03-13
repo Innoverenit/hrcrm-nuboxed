@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { StyledTable } from '../../../../../../Components/UI/Antd'
 import {
     getMaterialReceivedDetailData,
     updateReceivedDamagedUnit,
@@ -8,8 +7,8 @@ import {
 } from "../../../InventoryAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BorderColorOutlined } from '@mui/icons-material';
-import { Button, Checkbox, Form, Input, Modal, Popconfirm, Select, Switch, Tooltip, Typography, message } from 'antd';
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { Button, Input, Modal, Select, Switch, Tooltip, message } from 'antd';
 import PoReceiveToggle from './PoReceiveToggle';
 import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
@@ -239,12 +238,14 @@ const ReceivedDetailCard = (props) => {
                                                         <Button onClick={handleCancel}>Cancel</Button>
                                                     </>
                                                     : item.grnReceivedInd ? null :
-                                                        item.poReceivedInd ? <BorderColorOutlined
-                                                            onClick={() => {
-                                                                handleRowData(item);
-                                                                handleEditicon()
-                                                            }}
-                                                        /> : null
+                                                        item.poReceivedInd ?
+                                                            <BorderColorIcon
+                                                                className=" !text-base cursor-pointer text-[tomato]"
+                                                                onClick={() => {
+                                                                    handleRowData(item);
+                                                                    handleEditicon()
+                                                                }}
+                                                            /> : null
                                                 }
                                             </div>
                                         </div>

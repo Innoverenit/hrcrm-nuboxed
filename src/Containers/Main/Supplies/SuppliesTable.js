@@ -380,6 +380,7 @@ function SuppliesTable(props) {
                                 title="Do you want to delete?"
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
+
                                 <DeleteOutlined className=" !text-base cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>

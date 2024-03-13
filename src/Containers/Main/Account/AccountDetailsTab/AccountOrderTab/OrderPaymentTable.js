@@ -230,7 +230,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(OrderPaymentTable);
 // import { bindActionCreators } from "redux";
 // import { StyledTable } from "../../../../../Components/UI/Antd";
 // import { getDistributorOrderPayment, updateOrderPayment } from "../../AccountAction";
-// import { BorderColorOutlined } from "@mui/icons-material";
+// import BorderColorIcon from "@mui/icons-material/BorderColor";
 // ;
 
 // function OrderPaymentTable(props) {
@@ -446,7 +446,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(OrderPaymentTable);
                
 //                     <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
 //                      {record.approveByFinanceInd===false && (
-//                         <BorderColorOutlined  className="text-base"/>
+//                         <BorderColorIcon
+// className=" !text-base cursor-pointer text-[tomato]"
 //                      )}
 //                     </Typography.Link>
                 

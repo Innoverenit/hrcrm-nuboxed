@@ -1,10 +1,10 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { getReceivedUnitOfAnItem, updatePartIdOfAnItem } from "../../../InventoryAction"
-import { BorderColorOutlined } from "@mui/icons-material";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button, Input } from "antd";
 import AutoPartNoTOggle from "./AutoPartNoTOggle";
 
@@ -98,12 +98,14 @@ const ReceivedUnitList = (props) => {
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
                                         <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                            {item.autoPartInd ? null : <BorderColorOutlined
-                                                onClick={() => {
-                                                    handlePartNo()
-                                                    handleRowData(item)
-                                                }}
-                                            />}
+                                            {item.autoPartInd ? null :
+                                                <BorderColorIcon
+                                                    className=" !text-base cursor-pointer text-[tomato]"
+                                                    onClick={() => {
+                                                        handlePartNo()
+                                                        handleRowData(item)
+                                                    }}
+                                                />}
                                         </div>
                                     </div>
                                     <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">

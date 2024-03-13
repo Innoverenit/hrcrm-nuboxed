@@ -39,7 +39,7 @@ const AllAccountList = (props) => {
               id="app.website"
               defaultMessage="website"
             /></div>
-            <div className="md:w-[7rem]"><FormattedMessage
+            <div className="md:w-[7.5rem]"><FormattedMessage
               id="app.type"
               defaultMessage="type"
             /></div>
