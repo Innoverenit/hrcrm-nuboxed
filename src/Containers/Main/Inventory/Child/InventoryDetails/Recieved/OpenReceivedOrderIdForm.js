@@ -98,13 +98,13 @@ function OpenReceivedOrderIdForm(props) {
             <div className="md:w-[4rem]">
               <FormattedMessage
                 id="app.Received"
-                defaultMessage="Received"
+                defaultMessage="Receive"
               />
             </div>
             <div className="md:w-[4rem]">
               <FormattedMessage
-                id="app.Received by"
-                defaultMessage="Received by"
+                id="app.Received"
+                defaultMessage="Received "
               />
             </div>
             <div className="md:w-[3rem]">
@@ -233,14 +233,14 @@ function OpenReceivedOrderIdForm(props) {
                           <>
                             <Tooltip title={item.receivePhoneUserName}>
                               <MultiAvatar2
-                                primaryTitle={`${item.receivePhoneUserName} ${dayjs(item.receivePhoneDate).format("DD-MM-YY")}`}
+                                primaryTitle={`${item.receivePhoneUserName} `}
                                 imageURL={item.imageURL}
                                 imgWidth={"1.8rem"}
                                 imgHeight={"1.8rem"}
                               />
                             </Tooltip>
                             &nbsp;
-
+                            {` ${dayjs(item.receivePhoneDate).format("DD-MM-YY")}`}
                           </>
                         }
 

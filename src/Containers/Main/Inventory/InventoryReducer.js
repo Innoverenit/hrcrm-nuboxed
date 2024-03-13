@@ -112,8 +112,8 @@ const initialState = {
   //dispatchModal
   dispatchModal: false,
   //receivedItem
-  addRecievedItem: false,
-  addRecievedItemError: false,
+  addingRecievedItem: false,
+  addingRecievedItemError: false,
   //damagedItem
   addingDamagedItem: false,
   addingDamagedItemError: false,
@@ -541,18 +541,18 @@ export const inventoryReducer = (state = initialState, action) => {
 
     //addReceivedItem
     case types.ADD_TOTAL_RECEIVED_ITEM_REQUEST:
-      return { ...state, addRecievedItem: true };
+      return { ...state, addingRecievedItem: true };
     case types.ADD_TOTAL_RECEIVED_ITEM_SUCCESS:
       return {
         ...state,
-        addRecievedItem: false,
+        addingRecievedItem: false,
         receivedModal: false,
       };
     case types.ADD_TOTAL_RECEIVED_ITEM_FAILURE:
       return {
         ...state,
-        addRecievedItem: false,
-        addRecievedItemError: false,
+        addingRecievedItem: false,
+        addingRecievedItemError: false,
         receivedModal: false,
       };
     //addDamagedItem
@@ -768,10 +768,11 @@ export const inventoryReducer = (state = initialState, action) => {
     case types.ADD_DELIVERY_DATE_SUCCESS:
       return {
         ...state,
-        // allReceivedUser: state.allReceivedUser.map((item) =>
-        //   item.orderId === action.payload.orderId
-        //     ? action.payload : item
-        // ),
+        addDeliverDate: false,
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
         addingDeliverDate: false,
       };
     case types.ADD_DELIVERY_DATE_FAILURE:
@@ -1011,7 +1012,7 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingInspection: false,
         receivedOrdeIdModal: false,
         allReceivedUser: state.allReceivedUser.map((item) =>
-          item.orderId === action.payload.orderId
+          item.orderPhoneId === action.payload.orderPhoneId
             ? action.payload : item
         ),
       };
@@ -1069,7 +1070,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingDispatchReceivePhone: false,
         updateDispatchList: state.updateDispatchList.map((item) =>
-          item.orderPhoneId === action.payload.orderPhoneId
+          item.phoneId === action.payload.phoneId
             ? action.payload : item
         ),
       };
@@ -1291,7 +1292,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingOrderReceive: false,
         allReceivedUser: state.allReceivedUser.map((item) =>
-          item.orderId === action.payload.orderId
+          item.orderPhoneId === action.payload.orderPhoneId
             ? action.payload : item
         ),
       };
