@@ -15,25 +15,42 @@ const { Option } = Select;
 
 function ProspectCustomerLevelForm(props) {
     const [selectedOption, setSelectedOption] = useState(null);
-
+    const [rows, setRows] = useState(props.approvalData.level || []);
+    const [isLoading, setIsLoading] = useState(true)
     function handleChange(value) {
       setSelectedOption(value);
     }
 
+    useEffect(() => {
+      // Once approvalData.level is available, set rows and update isLoading
+      if (props.approvalData.level) {
+        setRows(props.approvalData.level);
+        setIsLoading(false);
+      }
+    }, [props.approvalData.level]);
 
 
-
-  function buttonOnClick() {
-    const data = {
-      approvalIndicator: props.approvalIndicator,
-      approvalType: props.approvalType,
-      level: selectedOption,
-      subProcessName: "ProspectToCustomer",
-    };
-
-    console.log(data);
-    props.addApprove(data);
-  }
+    function buttonOnClick() {
+      if (!selectedOption) {
+        // Handle case when no level is selected
+        return;
+      }
+  
+      const data = {
+        approvalIndicator: props.approvalIndicator,
+        approvalType: props.approvalType,
+        subProcessName: "ProspectToCustomer",
+        level: [
+          {
+            level: selectedOption,
+           
+          },
+        ],
+      };
+  
+      console.log(data);
+      props.addApprove(data);
+    }
 
  
   
@@ -47,9 +64,9 @@ function ProspectCustomerLevelForm(props) {
   // if (!props.approvalData.level) {
   //   return <BundleLoader />;
   // }
-  // if (isLoading) {
-  //   // return <BundleLoader />;
-  // }
+  if (isLoading) {
+    // return <BundleLoader />;
+  }
  
 
   return (
@@ -62,14 +79,15 @@ function ProspectCustomerLevelForm(props) {
               <div className="w-full flex font-bold mt-4 items-center">
              
                 
-                <div class="w-[83rem]">
+                <div class="w-[13rem]">
                 <Select
+                  name={`level`}
                       value={selectedOption}
                       onChange={handleChange}
                   >
                     <option value="ReportingManager">Reporting Manager</option>
                     <option value="ReportingManager+1">Reporting Manager +1</option>
-                    <option value="Management">Management</option>
+                    {/* <option value="Management">Management</option> */}
                   </Select>
                 </div>
                                 

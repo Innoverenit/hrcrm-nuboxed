@@ -37,6 +37,7 @@ class DealSelectStages extends Component {
             return (
               <div
                 style={{
+                 
                   cursor:
                     // this.props.recruitOwner !=this.props.fullName
                     //   ? "not-allowed"

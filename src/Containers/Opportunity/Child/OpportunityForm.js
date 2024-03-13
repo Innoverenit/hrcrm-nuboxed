@@ -10,6 +10,7 @@ import SpeechRecognition, {
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
+import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
 import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import {
@@ -212,6 +213,7 @@ const filteredEmployeesData = AllEmplo.filter(
           userId: props.userId,
           description: "",
           proposalAmount: "",
+          // excelId: "",
           currency: props.user.currency,
           orgId: props.organizationId,
           userId: props.userId,
@@ -722,6 +724,13 @@ const filteredEmployeesData = AllEmplo.filter(
                     </StyledLabel>
                   </div>
                 </div>
+                <div class="mt-3">
+                                        <Field
+                                            name="excelId"
+                                            // isRequired
+                                            component={DraggableUpload1}
+                                        />
+                                    </div>
               </div> 
   
             </div>
