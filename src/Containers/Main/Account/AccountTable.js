@@ -22,6 +22,7 @@ import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import AccountPulseModal from "./AccountPulseModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -54,21 +55,21 @@ function AccountTable(props) {
   return (
     <>
       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex  w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[15.12rem]">  <FormattedMessage
+        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" md:w-[15rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="name"
             /></div>
-            <div className=" md:w-[8.121rem]"><FormattedMessage
+            <div className=" md:w-[8.1rem]"><FormattedMessage
               id="app.work#"
               defaultMessage="work#"
             /></div>
-            <div className=" md:w-[8.825rem] "><FormattedMessage
+            <div className=" md:w-[9rem] "><FormattedMessage
               id="app.website"
               defaultMessage="website"
             /></div>
-            <div className="md:w-[6.95rem]"><FormattedMessage
+            <div className="md:w-[7rem]"><FormattedMessage
               id="app.type"
               defaultMessage="type"
             /></div>
@@ -76,19 +77,20 @@ function AccountTable(props) {
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
-            <div className="md:w-[6.94rem]"><FormattedMessage
+            <div className="md:w-[5rem]"><FormattedMessage
               id="app.vat"
               defaultMessage="vat"
             /></div>
-            <div className="md:w-[14.21rem]"><FormattedMessage
+            <div className="md:w-[15rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
             /></div>
-            <div className="md:w-[7.32rem]"><FormattedMessage
+            <div className="md:w-[4.8rem]"><FormattedMessage
               id="app.pincode"
               defaultMessage="pincode"
             /></div>
-
+            <div class="w-[2rem]"></div>
+            <div class="w-[2rem]"></div>
           </div>
           <InfiniteScroll
             dataLength={props.customerListByUser.length}
@@ -116,39 +118,42 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 "                                >
                         <div class="flex">
-                          <div className=" flex font-medium flex-col md:w-[13.6rem] max-sm:w-full  ">
-
-
-                            <Tooltip>
-                              <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-
-                                  <Link
-                                    toUrl={`distributor/${item.distributorId}`}
-                                    title={`${item.name}`}
-                                  >{item.name}</Link>&nbsp;&nbsp;
-                                  {date === currentdate ? (
-                                    <span class="text-xs"
-                                      style={{
-                                        color: "tomato",
-                                        fontWeight: "bold",
-                                      }}
-                                    >
-                                      New
-                                    </span>
-                                  ) : null}
-
-                                </div>
+                          <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
+                            <div className="flex max-sm:w-full">
+                              <div>
+                                <MultiAvatar
+                                  primaryTitle={item.name}
+                                  imageId={item.imageId}
+                                  imageURL={item.imageURL}
+                                  imgWidth={"1.8rem"}
+                                  imgHeight={"1.8rem"}
+                                />
                               </div>
-                            </Tooltip>
+                              <div class="w-[1rem]"></div>
+                              <div class="max-sm:w-full md:flex items-center">
+                                <Tooltip>
+                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
+                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                        {item.name}
+                                      </Link>  &nbsp;&nbsp;
+                                      {date === currentdate ? (
+                                        <div class="text-xs text-[tomato] font-bold" >
+                                          New
+                                        </div>
+                                      ) : null}
+
+                                    </div>
+                                  </div>
+                                </Tooltip>
+                              </div>
+                            </div>
                           </div>
+                          <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                          <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.dialCode} {item.phoneNo}
                             </div>
@@ -157,26 +162,20 @@ function AccountTable(props) {
 
                         </div>
 
-                        <div className=" flex font-medium flex-col md:w-[8.55rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
-
+                        <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.url}
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7.24rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
-
+                        <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.clientName}
 
                           </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Weighted Value</div> */}
-
+                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.payment}
 
@@ -185,35 +184,27 @@ function AccountTable(props) {
 
                         <div class="flex md:items-center">
 
-                          <div className=" flex font-medium flex-col  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.countryValue}
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col  md:w-[15.25rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div className=" flex font-medium flex-col  md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {dataLoc}
                             </div>
 
                           </div>
 
-                          <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                            {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                          <div className=" flex font-medium flex-col  md:w-[4.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.address && item.address.length && item.address[0].postalCode}
                             </div>
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col  md:w-[6.92rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                        <div className=" flex font-medium flex-col  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Pulse">
                               <MonitorHeartIcon
@@ -226,12 +217,11 @@ function AccountTable(props) {
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                        <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[gray]"
+                                className=" !text-base cursor-pointer text-[tomato]"
                                 onClick={() => {
                                   props.setEditDistributor(item)
                                   handleUpdateAccountModal(true);
