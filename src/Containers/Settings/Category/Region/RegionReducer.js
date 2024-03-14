@@ -11,6 +11,11 @@ const initialState = {
   addingRegionsError:false,
 
 
+
+  updatingRegions:false,
+  updatingRegionsError:false,
+
+
  
 };
 
@@ -41,6 +46,28 @@ export const regionsReducer = (state = initialState, action) => {
       };
     case types.ADD_REGIONS_FAILURE:
       return { ...state, addingRegions: false, addingRegionsError: true };
+
+
+
+      case types.UPDATE_REGIONS_REQUEST:
+      return { ...state, updatingRegions: true };
+    case types.UPDATE_REGIONS_SUCCESS:
+      // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+      return {
+        ...state,
+        updatingRegions: false,
+        regions: state.regions.map((region) =>
+        region.regionsId === action.payload.regionsId
+            ? action.payload
+            : document
+        ),
+      };
+    case types.UPDATE_REGIONS_FAILURE:
+      return {
+        ...state,
+        updatingRegions: false,
+        updatingRegionsError: true,
+      };
 
 
     /**

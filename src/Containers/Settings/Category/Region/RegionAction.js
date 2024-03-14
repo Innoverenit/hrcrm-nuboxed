@@ -68,3 +68,37 @@ export const getRegions = (orgId) => (dispatch) => {
         cb();
       });
   };
+
+
+
+  export const updateRegions = (data, regionsId, cb) => (dispatch) => {
+    // console.log(leadDocumentsId, DocumentsName);
+    dispatch({
+      type: types.UPDATE_REGIONS_REQUEST,
+    });
+    axios
+      .put(
+        `${base_url}/regions/update/${regionsId}`, data,
+        
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+     
+        // message.success("Document has been updated successfully!");
+        console.log(res);
+        dispatch({
+          type: types.UPDATE_REGIONS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_REGIONS_FAILURE,
+        });
+      });
+  };
