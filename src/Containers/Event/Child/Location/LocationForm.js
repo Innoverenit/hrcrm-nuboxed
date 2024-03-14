@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import { FormattedMessage } from "react-intl";
+import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -180,6 +182,26 @@ class LocationForm extends Component {
                       isRequired
                     />
                   </div>
+                  <div class=" w-[45%] max-sm:w-[30%]">
+                      <Field
+                        name="region"
+                        selectType="DRegion"
+                        isColumnWithoutNoCreate
+                        component={SearchSelect}
+                        // value={values.countryDialCode}
+                        label={
+                          <FormattedMessage
+                            id="app.region"
+                            defaultMessage="Region"
+                          />
+                        }
+                        isColumn
+                        // defaultValue={{
+                        //   label:`+${props.user.countryDialCode}`,
+                        // }}
+                        inlineLabel
+                      />
+                    </div>
                   {/* <div style={{ width: "100%" }}>
                     <Field
                       label="Management"
@@ -409,11 +431,12 @@ class LocationForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ location, auth, teams, plant }) => ({
+const mapStateToProps = ({ location, auth, region, plant }) => ({
   addingLocation: location.addingLocation,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
+  
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -14,7 +14,8 @@ import {
   setClearbitData
 } from "../CustomerAction";
 import { getCrm } from "../../Leads/LeadsAction";
-import { Listbox } from '@headlessui/react'
+import { Listbox } from '@headlessui/react';
+import {getCurrency} from "../../Auth/AuthAction";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -49,6 +50,7 @@ function CustomerForm(props) {
     props.getAllCustomerEmployeelist();
     props.getSectors();
     props.getCrm();
+    props.getCurrency();
   }, []);
 
     const {
@@ -85,13 +87,24 @@ function CustomerForm(props) {
         value: item.sectorId,
       };
     });
-    // const dialCodeOption = props.dialCodeList.map((item) => {
-    //   return {
-    //     label: `+${item.country_dial_code || ""}`,
-    //     value: item.country_dial_code
-    //     ,
-    //   };
-    // });
+    const sortedCurrency =props.currencies.sort((a, b) => {
+      const nameA = a.currency_name.toLowerCase();
+      const nameB = b.currency_name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const currencyNameOption = sortedCurrency.map((item) => {
+      return {
+        label: `${item.currency_name}`,
+        value: item.currency_name,
+      };
+    });
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
@@ -303,6 +316,30 @@ function CustomerForm(props) {
                         isColumn
                       />
                     </div>
+                    <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="currency"
+                      isColumnWithoutNoCreate
+                      defaultValue={{
+                        value: props.user.currency,
+                      }}
+                      label={
+                        <FormattedMessage
+                          id="app.potential"
+                          defaultMessage="Potential"
+                        />
+                      }
+                      width="100%"
+                      isColumn
+                      isRequired
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(currencyNameOption)
+                          ? currencyNameOption
+                          : []
+                      }
+                    />
+                  </div>
                   </div>
 
 
@@ -538,7 +575,7 @@ const mapStateToProps = ({ auth, customer,employee ,investor,sector,leads}) => (
   sectors: sector.sectors,
   fullName: auth.userDetails.fullName,
   crmAllData:leads.crmAllData,
-  // dialCodeList:investor.dialCodeList,
+  currencies: auth.currencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -549,6 +586,7 @@ const mapDispatchToProps = (dispatch) =>
       getSectors,
       getAllCustomerEmployeelist,
       getCrm,
+      getCurrency
     },
     dispatch
   );

@@ -6,12 +6,13 @@ const initialState = {
   fetchingRegionsError: false,
   regions: [],
 
-
   addingRegions:false,
   addingRegionsError:false,
 
-
- 
+  fetchingDropdownRegions: false,
+  fetchingDropdownRegionsError:false,
+  regionsDropDown:[],
+  
 };
 
 export const regionsReducer = (state = initialState, action) => {
@@ -42,10 +43,16 @@ export const regionsReducer = (state = initialState, action) => {
     case types.ADD_REGIONS_FAILURE:
       return { ...state, addingRegions: false, addingRegionsError: true };
 
-
-    /**
-     * add a new document
-     */
+case types.GET_DROPDOWN_REGIONS_REQUEST:
+      return { ...state, fetchingDropdownRegions: true };
+    case types.GET_DROPDOWN_REGIONS_SUCCESS:
+      return { ...state, fetchingDropdownRegions: false, regionsDropDown: action.payload };
+    case types.GET_DROPDOWN_REGIONS_FAILURE:
+      return {
+        ...state,
+        fetchingDropdownRegions: false,
+        fetchingDropdownRegionsError: true,
+      };
     
 
     default:

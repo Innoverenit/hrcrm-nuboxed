@@ -68,3 +68,29 @@ export const getRegions = (orgId) => (dispatch) => {
         cb();
       });
   };
+
+  export const getDropDownRegions = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_DROPDOWN_REGIONS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/drop-down/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_DROPDOWN_REGIONS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_DROPDOWN_REGIONS_FAILURE,
+          payload: err,
+        });
+      });
+  };

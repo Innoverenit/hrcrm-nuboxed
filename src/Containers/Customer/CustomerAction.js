@@ -2546,7 +2546,11 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
-
-
+  export const handleCampaignDrawer = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CAMPAIGN_DRAWER,
+      payload: modalProps,
+    });
+  };
   
  

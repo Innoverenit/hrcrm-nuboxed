@@ -8,12 +8,14 @@ import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitIma
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updateCustomer,setEditCustomer ,setClearbitData} from "../../CustomerAction";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Listbox, } from '@headlessui/react'
 import { getCrm} from "../../../Leads/LeadsAction";
+import {getCurrency} from "../../../Auth/AuthAction";
 
 //yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -27,6 +29,7 @@ function UpdateCustomerForm (props) {
   
   useEffect(() => {
     props.getCrm();
+    props.getCurrency();
   }, []);
 
 
@@ -51,6 +54,25 @@ function UpdateCustomerForm (props) {
     
     const srcnme=setEditingCustomer.source
 
+    const sortedCurrency =props.currencies.sort((a, b) => {
+      const nameA = a.currency_name.toLowerCase();
+      const nameB = b.currency_name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const currencyNameOption = sortedCurrency.map((item) => {
+      return {
+        label: `${item.currency_name}`,
+        value: item.currency_name,
+      };
+    });
+    
     return (
       <>
         <Formik
@@ -67,7 +89,7 @@ function UpdateCustomerForm (props) {
             phoneNumber: setEditingCustomer.phoneNumber || "",
             userId: userId,
             source:setEditingCustomer.source  || "",
-          
+            currency: setEditingCustomer.currency || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
             notes: setEditingCustomer.notes || "",
             address: [
@@ -250,6 +272,30 @@ function UpdateCustomerForm (props) {
                           inlineLabel
                         />
            </div>
+           <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
+                      name="currency"
+                      isColumnWithoutNoCreate
+                      defaultValue={{
+                        value: props.user.currency,
+                      }}
+                      label={
+                        <FormattedMessage
+                          id="app.potential"
+                          defaultMessage="Potential"
+                        />
+                      }
+                      width="100%"
+                      isColumn
+                      isRequired
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(currencyNameOption)
+                          ? currencyNameOption
+                          : []
+                      }
+                    />
+                  </div>
                  </div>
                 
            <div class=" mt-3">
@@ -457,6 +503,7 @@ const mapStateToProps = ({ auth, customer,employee,leads }) => ({
   organizationId: auth.userDetails.organizationId,
   employees: employee.employees,
   crmAllData:leads.crmAllData,
+  currencies: auth.currencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -466,6 +513,7 @@ const mapDispatchToProps = (dispatch) =>
       setClearbitData,
       setEditCustomer,
       getCrm,
+      getCurrency
     },
     dispatch
   );

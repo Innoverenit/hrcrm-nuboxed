@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import { FormattedMessage } from "react-intl";
+import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { Formik, Form, Field, FieldArray } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -220,6 +222,27 @@ handleInventory = () => {
                       isRequired
                     />
                   </div>
+                  <div class=" w-[45%] max-sm:w-[30%]">
+                      <Field
+                        name="region"
+                        selectType="DRegion"
+                        isColumnWithoutNoCreate
+                        component={SearchSelect}
+                        // value={values.countryDialCode}
+                        label={
+                          <FormattedMessage
+                            id="app.region"
+                            defaultMessage="Region"
+                          />
+                        }
+                        isColumn
+                        // defaultValue={{
+                        //   label:`+${props.user.countryDialCode}`,
+                        // }}
+                        inlineLabel
+                      />
+                    </div>
+                    
                   <div class="font-bold mt-2" >Functions</div>
                   <div class=" flex ">
                     <div  class=" w-[47%] mt-2">
