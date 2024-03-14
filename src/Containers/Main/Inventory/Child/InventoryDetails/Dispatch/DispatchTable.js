@@ -16,6 +16,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const DispatchPhoneListModal = lazy(() => import("./DispatchPhoneListModal"));
 const DispatchPackedToggle = lazy(() => import("./DispatchPackedToggle"));
@@ -39,190 +40,191 @@ function DispatchTable(props) {
 
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=""></div>
-            <div className=" md:w-[7%]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-            <div className=" md:w-[5.2rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
-            <div className="md:w-[8.5rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
-            <div className="md:w-[8.5rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
-            <div className=" md:w-[6.1rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
-            <div className="md:w-[8.5rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
-            <div className=" md:w-[6.1rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
-            <div className=" md:w-[6.1rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
-            <div className="w-12"></div>
-          </div>
-          <InfiniteScroll
-            dataLength={props.allDispatchList.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"75vh"}
-          >
-            {props.allDispatchList.length ? <>
-              {props.allDispatchList.map((item) => {
-                const currentdate = dayjs().format("DD/MM/YYYY");
-                const date = dayjs(item.createAt).format("DD/MM/YYYY");
-                return (
-                  <div>
-                    <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
-                      <div class="flex">
+      {props.fetchingDispatchList ? <BundleLoader /> :
+        <div className=' flex justify-end sticky top-28 z-auto'>
+          <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+              <div className=""></div>
+              <div className=" md:w-[7%]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" md:w-[5.2rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className="md:w-[5.2rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
+              <div className="md:w-[8.5rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
+              <div className="md:w-[8.5rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
+              <div className="md:w-[5.2rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
+              <div className=" md:w-[6.1rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
+              <div className="md:w-[8.5rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
+              <div className=" md:w-[6.1rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
+              <div className=" md:w-[6.1rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
+              <div className="md:w-[5.2rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
+              <div className="w-12"></div>
+            </div>
+            <InfiniteScroll
+              dataLength={props.allDispatchList.length}
+              // next={handleLoadMore}
+              // hasMore={hasMore}
+              // loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+              height={"75vh"}
+            >
+              {props.allDispatchList.length ? <>
+                {props.allDispatchList.map((item) => {
+                  const currentdate = dayjs().format("DD/MM/YYYY");
+                  const date = dayjs(item.createAt).format("DD/MM/YYYY");
+                  return (
+                    <div>
+                      <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
+                        <div class="flex">
 
-                        <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                          <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                            <div
-                              onClick={() => {
-                                handleRowData(item);
-                                props.handlePickupDateModal(true);
-                              }}
-                            >{item.newOrderNo}</div>&nbsp;&nbsp;
-                            {date === currentdate ? (
-                              <div class="text-xs font-bold text-[tomato]">
-                                New
-                              </div>
-                            ) : null}
+                          <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
+                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                              <div
+                                onClick={() => {
+                                  handleRowData(item);
+                                  props.handlePickupDateModal(true);
+                                }}
+                              >{item.newOrderNo}</div>&nbsp;&nbsp;
+                              {date === currentdate ? (
+                                <div class="text-xs font-bold text-[tomato]">
+                                  New
+                                </div>
+                              ) : null}
+                            </div>
+                          </div>
+
+
+                        </div>
+
+                        <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-poppins">
+
+                            {item.distributorName}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.contactPersonName}
                           </div>
                         </div>
 
 
-                      </div>
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.dispatchPhoneCount}/{item.phoneReceiveCount}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.dispatchInspectionInd === 0 ?
+                              <Button
+                                onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)}
+                                style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
+                                Start
+                              </Button>
+                              : item.dispatchInspectionInd === 2 ||
+                                item.dispatchInspectionInd === 3 ||
+                                item.dispatchInspectionInd === 4 ?
+                                <b>Completed</b>
+                                : item.dispatchInspectionInd === 1 ?
+                                  <Button
+                                    style={{ fontWeight: "500", color: "white" }}
+                                    // onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd : 1 }, item.orderPhoneId, props.locationDetailsId)}
+                                    type="primary">
+                                    Pause
+                                  </Button> :
+                                  null}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
+                              null : <DispatchPackedToggle
+                                locationDetailsId={props.locationDetailsId}
+                                item={item}
+                              />}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {/* {item.dispatchInspectionInd === 4 && !item.newAwbNo ? */}
 
-                      <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-poppins">
-
-                          {item.distributorName}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.contactPersonName}
-                        </div>
-                      </div>
-
-
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.dispatchPhoneCount}/{item.phoneReceiveCount}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.dispatchInspectionInd === 0 ?
-                            <Button
-                              onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)}
-                              style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
-                              Start
-                            </Button>
-                            : item.dispatchInspectionInd === 2 ||
-                              item.dispatchInspectionInd === 3 ||
-                              item.dispatchInspectionInd === 4 ?
-                              <b>Completed</b>
-                              : item.dispatchInspectionInd === 1 ?
-                                <Button
-                                  style={{ fontWeight: "500", color: "white" }}
-                                  // onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd : 1 }, item.orderPhoneId, props.locationDetailsId)}
-                                  type="primary">
-                                  Pause
-                                </Button> :
-                                null}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
-                            null : <DispatchPackedToggle
-                              locationDetailsId={props.locationDetailsId}
-                              item={item}
-                            />}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
-                        </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {/* {item.dispatchInspectionInd === 4 && !item.newAwbNo ? */}
-
-                          <Button type="primary"
-                            onClick={() => {
-                              handleRowData(item);
-                              props.handleCreateAWB(true)
-                            }}>Create AWB</Button>
-                          {/* : item.dispatchInspectionInd === 4 && item.newAwbNo ? <b>Awb Created</b> : null
+                            <Button type="primary"
+                              onClick={() => {
+                                handleRowData(item);
+                                props.handleCreateAWB(true)
+                              }}>Create AWB</Button>
+                            {/* : item.dispatchInspectionInd === 4 && item.newAwbNo ? <b>Awb Created</b> : null
                       } */}
+                          </div>
                         </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.shipperName === "null" ? "" : item.shipperName}
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.shipperName === "null" ? "" : item.shipperName}
+                          </div>
                         </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
+                          </div>
                         </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.newAwbNo === "null" ? "" : item.newAwbNo}
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.newAwbNo === "null" ? "" : item.newAwbNo}
+                          </div>
                         </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.status === "null" ? "" : item.status}
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.status === "null" ? "" : item.status}
+                          </div>
                         </div>
-                      </div>
-                      <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                          {item.dispatchInspectionInd === 4 && item.newAwbNo &&
-                            <DispatchValidationToggle
-                              locationDetailsId={props.locationDetailsId}
-                              item={item}
-                            />}
+                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {item.dispatchInspectionInd === 4 && item.newAwbNo &&
+                              <DispatchValidationToggle
+                                locationDetailsId={props.locationDetailsId}
+                                item={item}
+                              />}
+                          </div>
                         </div>
-                      </div>
-                      <div class="flex md:items-center">
+                        <div class="flex md:items-center">
 
-                      </div>
-                      <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
-                        <div>
-                          <Tooltip title="Notes">
-                            <NoteAltIcon
-                              style={{ cursor: "pointer", fontSize: "13px" }}
-                            // onClick={() => {
-                            //   handleRowData(item);
-                            //   props.handleInventoryReceivedNoteOrderModal(true);
-                            // }}
-                            />
-
-                          </Tooltip>
                         </div>
+                        <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
+                          <div>
+                            <Tooltip title="Notes">
+                              <NoteAltIcon
+                                style={{ cursor: "pointer", fontSize: "13px" }}
+                              // onClick={() => {
+                              //   handleRowData(item);
+                              //   props.handleInventoryReceivedNoteOrderModal(true);
+                              // }}
+                              />
 
-                        {/* <div>
+                            </Tooltip>
+                          </div>
+
+                          {/* <div>
                    <Tooltip title={item.salesExecutiveEmail}>
                <div>
                  <i class="far fa-envelope"></i>
                </div>
              </Tooltip>
                         </div> */}
-                      </div>
+                        </div>
 
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </>
-              : !props.allDispatchList.length
-                && !props.fetchingDispatchList ? <NodataFoundPage /> : null}
-          </InfiniteScroll>
-        </div>
-      </div>
+                  );
+                })}
+              </>
+                : !props.allDispatchList.length
+                  && !props.fetchingDispatchList ? <NodataFoundPage /> : null}
+            </InfiniteScroll>
+          </div>
+        </div>}
 
 
 

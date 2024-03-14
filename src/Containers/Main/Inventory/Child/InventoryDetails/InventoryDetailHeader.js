@@ -17,6 +17,8 @@ class InventoryDetailHeader extends Component {
             />
           }
           rightComponent={<InventoryDetailsActionRight
+            viewType1={this.props.viewType1}
+            setInventoryDetailViewType={this.props.setInventoryDetailViewType}
             inventory={this.props.inventory}
             handleResetTab={this.props.handleResetTab} />
           }

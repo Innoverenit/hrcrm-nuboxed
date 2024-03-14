@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import { RollbackOutlined } from "@ant-design/icons";
+import { emptyInventory } from "../../InventoryAction"
 
 class InventoryDetailActionRight extends React.Component {
     render() {
@@ -42,10 +43,10 @@ class InventoryDetailActionRight extends React.Component {
                     </div>
                     <Tooltip title="Back">
                         <RollbackOutlined
-                            class="text-[#1890ff]"
+                            style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             onClick={() => {
                                 this.props.history.goBack();
-                                this.props.handleResetTab();
+                                this.props.emptyInventory()
                             }}
                         />
                     </Tooltip>
@@ -57,7 +58,9 @@ class InventoryDetailActionRight extends React.Component {
 }
 const mapStateToProps = ({ }) => ({});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    emptyInventory
+}, dispatch);
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)
