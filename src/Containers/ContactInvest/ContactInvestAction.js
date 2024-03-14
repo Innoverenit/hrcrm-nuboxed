@@ -2,6 +2,7 @@ import * as types from "./ContactInvestActionType";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
+import Swal from "sweetalert2";
 import { message } from "antd";
 
 export const setContactInvetViewType = (viewType) => (dispatch) =>
@@ -70,7 +71,12 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
         dispatch({
           type: types.GET_CONTACTS_INVEST_FAILURE,
           payload: err,
-        });});};
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'OTP is not matching with input!',
+        })
+      });};
 
         export const getContactInvestFilterData = (userId,pageNo,filter) => (dispatch) => {
           dispatch({

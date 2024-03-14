@@ -993,6 +993,8 @@ h1{
   cursor: pointer;
 }
 
+
+
 .matrix-table button:hover {
   background-color: #45a049;
 }
@@ -1023,6 +1025,41 @@ h1{
 
 .ant-menu .ant-menu-item-selected {
   background-color: #709ab3;
+}
+
+
+.card9 {
+  border: 1px solid #e8e8e8;
+  border-radius: 17px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.add-region {
+  margin-bottom: 10px;
+}
+
+.add-region input {
+  margin-right: 10px;
+}
+
+.add-region button {
+  margin-right: 10px;
+}
+
+.region {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
 }
 
 

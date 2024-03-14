@@ -5,6 +5,7 @@ import { LOGOUT } from "../Containers/Auth/AuthTypes";
  */
 import { authReducer } from "../Containers/Auth/AuthReducer";
 import { pitchReducer } from "../Containers/Pitch/PitchReducer";
+import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
 import { messageReducer } from "../Containers/LiveMessages/MessageReducer";
 import { dashboardReducer } from "../Containers/Dashboard/DashboardReducer";
 import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/BrandModelReducer"
@@ -129,6 +130,7 @@ const appReducer = combineReducers({
   expenses: expensesReducer,
   permissions: PermissionsReducer,
   designations: designationsReducer,
+  region: regionsReducer,
   certifications: certificationReducer,
   departments: departmentsReducer,
   events: eventsReducer,
