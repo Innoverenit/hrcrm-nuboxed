@@ -37,6 +37,7 @@ function ReceivedPhoneList(props) {
                     receiveOS: props.phoneListData.receiveOS === null ?
                         props.phoneListData.os : props.phoneListData.receiveOS,
                     mismatchInd: true,
+                    mismatchOrderInd: true
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(props.phoneId)

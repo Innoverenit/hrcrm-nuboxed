@@ -1,15 +1,13 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-// import OpenReceivedOrderIdForm from "./OpenReceivedOrderIdForm";
-const OpenReceivedOrderIdForm = lazy(() => import("./OpenReceivedOrderIdForm.js"));
+const ReceivedMismatchPhoneList = lazy(() => import("./ReceivedMismatchPhoneList"));
 
-
-class OpenReceivedOrderIdModal extends Component {
+class ReceivedMismatchModal extends Component {
     render() {
         const {
-            receivedOrdeIdModal,
-            handleReceivedOrderIdModal,
+            mismatchPhoneModal,
+            handleMismatchPhoneModal,
             ...formProps
         } = this.props;
         return (
@@ -17,15 +15,12 @@ class OpenReceivedOrderIdModal extends Component {
                 <StyledDrawer
                     title={`Order No - ${this.props.rowData.newOrderNo}`}
                     width="80%"
-                    visible={receivedOrdeIdModal}
-                    onClose={() => handleReceivedOrderIdModal(false)}
+                    visible={mismatchPhoneModal}
+                    onClose={() => handleMismatchPhoneModal(false)}
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <OpenReceivedOrderIdForm
-                            rowData={this.props.rowData}
-                            locationDetailsId={this.props.locationDetailsId}
-                        />
+                        <ReceivedMismatchPhoneList rowData={this.props.rowData} />
                     </Suspense>
                 </StyledDrawer>
             </>
@@ -33,4 +28,4 @@ class OpenReceivedOrderIdModal extends Component {
     }
 }
 
-export default OpenReceivedOrderIdModal;
+export default ReceivedMismatchModal;

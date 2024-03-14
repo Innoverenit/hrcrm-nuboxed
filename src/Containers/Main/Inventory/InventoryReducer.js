@@ -122,7 +122,9 @@ const initialState = {
   openPickupDateModal: false,
   //add dispatch modal
   addDispatchModal: false,
-  //dispatchFinalDataSave
+
+  mismatchPhoneModal: false,
+
   addingDispatchFinalData: false,
   addingDispatchFinalDataError: false,
 
@@ -1086,6 +1088,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
     case types.HANDLE_PICKUP_MODAL:
       return { ...state, pickUpModal: action.payload };
+
+    case types.HANDLE_MISMATCH_PHONE_MODAL:
+      return { ...state, mismatchPhoneModal: action.payload };
+
+    case types.EMPTY_INVENTORY_LIST:
+      return { ...state, allReceivedUser: [], allDispatchList: [] };
 
     case types.HANDLE_ADD_AWB_MODAL:
       return { ...state, addAwbNo: action.payload };

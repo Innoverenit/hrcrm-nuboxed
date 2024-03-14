@@ -52,7 +52,6 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
-                awbNo: "",
                 orderCurrencyId: "",
                 deliverToBusinessInd: "",
                 fullLoadTruckInd: "",
@@ -173,8 +172,8 @@ function AddOrderInAccount(props) {
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
-                                            label="Air Way Bill"
-                                            name="awbNo"
+                                            label="Total Phone"
+                                            name="totalPhoneCount"
                                             component={InputComponent}
                                             inlineLabel
                                             width={"100%"}

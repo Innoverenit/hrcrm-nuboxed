@@ -137,18 +137,6 @@ function PhoneListForRepair(props) {
                             id="app.actualeffort"
                             defaultMessage="actualeffort"
                         /></div>
-                        <div className="md:w-[6.5rem]"><FormattedMessage
-                            id="app.expectedprice"
-                            defaultMessage="Expected Price"
-                        /></div>
-                        <div className="md:w-[5.2rem]"><FormattedMessage
-                            id="app.totalcost"
-                            defaultMessage="Total Cost"
-                        /></div>
-                        <div className="md:w-[4.7rem]"><FormattedMessage
-                            id="app.final"
-                            defaultMessage="Final"
-                        /></div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[2rem]"></div>
@@ -265,21 +253,7 @@ function PhoneListForRepair(props) {
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.expectedPrice}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.totalExtraCost}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium   md:w-[4.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.totalPrice}
-                                            </div>
-                                        </div>
+
                                         <div className=" flex font-medium md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center mr-2">
                                                 <Tooltip title="Spare">
@@ -293,8 +267,6 @@ function PhoneListForRepair(props) {
                                                         }}>
                                                         <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
                                                     </Button>
-
-
                                                 </Tooltip>
 
                                             </div>

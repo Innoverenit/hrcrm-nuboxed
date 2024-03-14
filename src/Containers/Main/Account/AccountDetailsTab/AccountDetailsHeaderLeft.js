@@ -4,6 +4,7 @@ import { FlexContainer } from "../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { emptyDistributor } from "../AccountAction"
 import { RollbackOutlined } from "@ant-design/icons";
 
 class AccountDetailsHeaderLeft extends React.Component {
@@ -16,7 +17,11 @@ class AccountDetailsHeaderLeft extends React.Component {
                         // iconType="rollback"
                         // tooltipTitle="Back"
 
-                        onClick={() => this.props.history.goBack()}
+                        onClick={() => {
+                            this.props.emptyDistributor()
+                            this.props.history.goBack();
+                        }}
+
                     />
                 </Tooltip>
                 <div>
@@ -30,7 +35,9 @@ class AccountDetailsHeaderLeft extends React.Component {
 }
 const mapStateToProps = ({ }) => ({});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    emptyDistributor
+}, dispatch);
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(AccountDetailsHeaderLeft)
