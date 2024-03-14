@@ -6,7 +6,7 @@ import {
     getRegions,
     addRegions,
     // removeDocuments,
-    // updateDocuments,
+    updateRegions
     // searchDocumentsName,
     // ClearReducerDataOfDocument
   } from "./RegionAction";
@@ -19,23 +19,16 @@ const data = [
 
 const Region = (props) => {
     const [regions, setRegions] = useState(props.regions);
+    const [editingId, setEditingId] = useState(null);
     const [addingRegion, setAddingRegion] = useState(false);
     const [newRegionName, setNewRegionName] = useState('');
     useEffect(() => {
         props.getRegions(props.organizationId);  
     }, [])
 
-    const editRegion = (id) => {
-        const newName = prompt('Enter new region name:');
-        if (newName !== null && newName.trim() !== '') {
-            const updatedRegions = regions.map(region => {
-                if (region.id === id) {
-                    return { ...region, region: newName };
-                }
-                return region;
-            });
-            setRegions(updatedRegions);
-        }
+    const editRegion = (id, regionName) => {
+        setEditingId(id);
+        setNewRegionName(regionName);
     };
 
     const deleteRegion = (id) => {
@@ -46,6 +39,17 @@ const Region = (props) => {
     const handleAddRegion = () => {
         setAddingRegion(true);
     };
+
+    const handleUpdateRegion=(region)=>{
+        console.log(region)
+        let data={
+            regionsId:region.regionsId,
+            regions:newRegionName
+         
+        }
+props.updateRegions(data,region.regionsId)
+setEditingId(null);
+    }
 
     const handleSaveRegion = () => {
         // if (newRegionName.trim() !== '') {
@@ -67,6 +71,9 @@ const Region = (props) => {
     const handleCancelAdd = () => {
         setNewRegionName('');
         setAddingRegion(false);
+    };
+    const cancelEdit = () => {
+        setEditingId(null);
     };
     useEffect(() => {
         // Check if data is available
@@ -96,13 +103,37 @@ console.log(regions)
                 )}
             </div>
             {regions.map(region => (
-                <div className="card9" key={region.regionsId}>
-                    <div className="region">{region.regions}</div>
-                    <div className="actions">
-                        <EditOutlined onClick={() => editRegion(region.id)} />
-                        <DeleteOutlined onClick={() => deleteRegion(region.id)} />
-                    </div>
-                </div>
+              <div className="card9" key={region.regionsId}>
+              {/* Region name display or input field */}
+              {editingId === region.regionsId ? (
+                  <input
+                  style={{border:"2px solid black"}}
+                      type="text"
+                      value={newRegionName}
+                      onChange={(e) => setNewRegionName(e.target.value)}
+                  />
+              ) : (
+                  <div className="region">{region.regions}</div>
+              )}
+
+              {/* Action buttons */}
+              <div className="actions">
+                  {/* Edit button */}
+                  {editingId === region.regionsId ? (
+                      <div>
+                          <button onClick={() => handleUpdateRegion(region)}>Save</button>
+                          <button onClick={cancelEdit}>Cancel</button>
+                      </div>
+                  ) : (
+                      <EditOutlined onClick={() => editRegion(region.regionsId, region.regions)} />
+                  )}
+
+                  {/* Delete button */}
+                  <DeleteOutlined 
+                //   onClick={() => handleDelete(region.id)}
+                   />
+              </div>
+          </div>
             ))}
         </div>
     );
@@ -123,7 +154,8 @@ const mapStateToProps = ({ region,auth  }) => ({
     bindActionCreators(
       {
         getRegions,
-        addRegions
+        addRegions,
+        updateRegions
         // addDocuments,
         // removeDocuments,
         // updateDocuments,
