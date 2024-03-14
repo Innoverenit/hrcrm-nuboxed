@@ -13,8 +13,6 @@ const ReceivedModal = (props) => {
                 width="50%"
                 height="100vh"
                 visible={props.addReceivePhone}
-                maskClosable={false}
-                destroyOnClose
                 maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
                 style={{ top: 40 }}
                 onCancel={() => props.handlereceivePhoneModal(false)}

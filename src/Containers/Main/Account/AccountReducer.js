@@ -445,7 +445,14 @@ export const distributorReducer = (state = initialState, action) => {
         addDistributorModal: false,
       };
     case types.EMPTY_DISTRIBUTOR_LIST:
-      return { ...state, allDistributors: [], customerListByUser: [] };
+      return {
+        ...state,
+        allDistributors: [],
+        customerListByUser: [],
+        distributorOrder: [],
+        productionOrder: [],
+        contactDistributor: []
+      };
 
     /**
      * get the list of all distributors

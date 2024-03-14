@@ -1031,6 +1031,13 @@ export const handleReceivedOrderIdModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleMismatchPhoneModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_MISMATCH_PHONE_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleInventoryReceivedNoteOrderModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_RECEIVED_NOTE_ORDER_MODAL,
@@ -1608,4 +1615,10 @@ export const updateOrderReceiveToggle = (data, orderId, locationId) => (dispatch
         payload: err,
       });
     });
+};
+
+export const emptyInventory = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_INVENTORY_LIST,
+  });
 };

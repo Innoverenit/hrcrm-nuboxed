@@ -69,36 +69,28 @@ export const getRegions = (orgId) => (dispatch) => {
       });
   };
 
-
-
-  export const updateRegions = (data, regionsId, cb) => (dispatch) => {
-    // console.log(leadDocumentsId, DocumentsName);
+  export const getDropDownRegions = (orgId) => (dispatch) => {
     dispatch({
-      type: types.UPDATE_REGIONS_REQUEST,
+      type: types.GET_DROPDOWN_REGIONS_REQUEST,
     });
     axios
-      .put(
-        `${base_url}/regions/update/${regionsId}`, data,
-        
-        {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        }
-      )
+      .get(`${base_url}/regions/drop-down/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
       .then((res) => {
-     
-        // message.success("Document has been updated successfully!");
         console.log(res);
         dispatch({
-          type: types.UPDATE_REGIONS_SUCCESS,
+          type: types.GET_DROPDOWN_REGIONS_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.UPDATE_REGIONS_FAILURE,
+          type: types.GET_DROPDOWN_REGIONS_FAILURE,
+          payload: err,
         });
       });
   };
