@@ -10,6 +10,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import RememberMeIcon from '@mui/icons-material/RememberMe';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Currency from "./Currency/Currency";
+import Region from "./Region/Region"
 const Documents = lazy(() =>
   import("../Documents/Documents")
 );
@@ -51,6 +52,8 @@ class OthersTab extends Component {
         return   <Country />;
         case "6":
         return   <Currency />;
+        case "7":
+        return   <Region />;
         
       default:
         return null;
@@ -128,6 +131,15 @@ class OthersTab extends Component {
                   </>
                 }
                 key="6"
+              />
+               <TabPane
+                tab={
+                  <>
+                 <MonetizationOnIcon/>
+                    <span class=" ml-1">Region</span>
+                  </>
+                }
+                key="7"
               />
               
             </StyledTabs>
