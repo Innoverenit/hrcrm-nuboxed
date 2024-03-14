@@ -23,6 +23,7 @@ import {
   handleInvoiceModal,
   handleCallActivityModal,
   handleCustomerReactSpeechModal,
+  handleCampaignDrawer,
 } from "../../../CustomerAction";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
@@ -46,6 +47,7 @@ const AddTagProfileModal = lazy(() =>
 );
 const AddInvoiceModal = lazy(() => import("./Invoice/AddInvoiceModal"));
 const LinkedInvoice = lazy(() => import("./Invoice/LinkedInvoice"));
+const CampaignDrawer = lazy(() => import("./Campaign/CampaignDrawer"));
 
 const TabPane = StyledTabs.TabPane;
 function handleRefreshPage() {
@@ -406,7 +408,58 @@ class ContactDetailTab extends Component {
                 <LinkedInvoice />
               </Suspense>
             </TabPane>
-      
+            <TabPane
+              tab={
+                <>
+
+                  <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <Badge
+                // count={this.props.customerActivityCount.count}
+                // overflowCount={999}
+              > 
+                  <span class=" ml-1">
+                    {
+                      <FormattedMessage
+                        id="app.campaign"
+                        defaultMessage="Campaign"
+                      />
+                    }
+                 
+                  </span>
+                  </Badge>
+                  {activeKey === "9" && (
+                    <>
+                      <PlusOutlined
+                        type="plus"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                        onClick={() => this.props.handleCampaignDrawer(true)}
+                        size="0.875em"
+                        style={{
+                          marginLeft: "0.3125em",
+                          verticalAlign: "center",
+                        }}
+                      />
+                    </>
+                  )}
+                
+                </>
+              }
+              key="9"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                cpgn
+                {/* <CustomerActivityTable
+
+                 customer={this.props.customer}
+                /> */}
+              </Suspense>
+            </TabPane>
            
           </StyledTabs>
         </TabsWrapper>
@@ -465,12 +518,16 @@ class ContactDetailTab extends Component {
             callActivityModal={callActivityModal}
             handleCallActivityModal={handleCallActivityModal}
           /> 
+          <CampaignDrawer
+           openCampaigndrwr={this.props.openCampaigndrwr}
+           handleCampaignDrawer={this.props.handleCampaignDrawer}
+          />
         </Suspense>
       </>
     );
   }
 }
-const mapStateToProps = ({ auth, customer, contact, opportunity }) => ({
+const mapStateToProps = ({ auth, customer, }) => ({
   documentUploadModal: customer.documentUploadModal,
   customerActivityCount:customer.customerActivityCount,
   addCustomerContactModal: customer.addCustomerContactModal,
@@ -486,6 +543,7 @@ const mapStateToProps = ({ auth, customer, contact, opportunity }) => ({
   addTagProfileModal: customer.addTagProfileModal,
   addInvoiceModal: customer.addInvoiceModal,
   callActivityModal:customer.callActivityModal,
+  openCampaigndrwr:customer.openCampaigndrwr
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -503,6 +561,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerProjectDrawer,
       handleCustomerReactSpeechModal,
       //handleCustomerCommercialsModal,
+      handleCampaignDrawer
     },
     dispatch
   );

@@ -142,6 +142,7 @@ const handleLoadMore = () => {
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          disabled={!props.productionInd}
                         />
                       </div>
                     </div>
@@ -155,6 +156,7 @@ const handleLoadMore = () => {
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          disabled={!props.orderManagementInd}
                         />
                       </div>
                     </div>
@@ -167,6 +169,7 @@ const handleLoadMore = () => {
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          disabled={!props.financeInd}
                         />
                       </div>
                     </div>
@@ -181,6 +184,7 @@ const handleLoadMore = () => {
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          
                         />
                       </div>
                     </div>
@@ -193,6 +197,7 @@ const handleLoadMore = () => {
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          disabled={!props.recruitProInd}
                         />
                       </div>
                     </div>
@@ -325,7 +330,13 @@ const mapStateToProps = ({ location, auth }) => ({
   locationCustomerdrawr:location.locationCustomerdrawr,
   orgId: auth.userDetails.organizationId,
   locShiftDrawer: location.locShiftDrawer,
-  locationUpdatedrawr:location.locationUpdatedrawr
+  locationUpdatedrawr:location.locationUpdatedrawr,
+  financeInd: auth.userDetails.financeInd,
+  repairInd: auth.userDetails.repairInd,
+  productionInd:auth.userDetails.productionInd,
+  orderManagementInd:auth.userDetails.orderManagementInd,
+  recruitProInd:auth.userDetails.recruitProInd
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

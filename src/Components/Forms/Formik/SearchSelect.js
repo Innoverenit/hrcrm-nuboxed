@@ -32,6 +32,7 @@ import { getDepartments } from "../../../Containers/Settings/Department/Departme
 import { getEducations } from "../../../Containers/Settings/Educations/EducationAction";
 import { getRoles } from "../../../Containers/Settings/Category/Role/RoleAction";
 import { getSources } from "../../../Containers/Settings/Category/Source/SourceAction";
+import { getDropDownRegions } from "../../../Containers/Settings/Category/Region/RegionAction";
 class SearchSelect extends Component {
   componentDidMount() {
     const {
@@ -52,6 +53,7 @@ class SearchSelect extends Component {
       getCountries,
       getCurrency,
       getSources,
+      getDropDownRegions,
       getOnlySalesUser,
       getAllDialCodeList,
       getProducts,
@@ -139,6 +141,9 @@ class SearchSelect extends Component {
     }
     if (selectType === "sourceName") {
       getSources(organizationId);
+    }
+    if (selectType === "DRegion") {
+      getDropDownRegions(organizationId);
     }
     if (selectType === "country") {
       getCountries();
@@ -301,6 +306,7 @@ class SearchSelect extends Component {
       department,
       opportunities,
       sources,
+      regionsDropDown,
       timeZone,
       level,
       deliveryUsers,
@@ -705,6 +711,14 @@ class SearchSelect extends Component {
 
       // const customOption = ({ label, value }) => <h3>{`${label}----${value}`}</h3>
     }
+    if (selectType === "DRegion") {
+      options = regionsDropDown
+        .sort((a, b) => (a.name < b.name ? -1 : 1))
+        .map((item, i) => ({
+          value: item.regionsId,
+          label: item.regions,
+          color: "#FF8B00",
+        }));}
     if (selectType === "country") {
       debugger;
       options = countries.map((item, i) => ({
@@ -1212,7 +1226,7 @@ class SearchSelect extends Component {
 }
 
 
-const mapStateToProps = ({ auth, call, document, source, role, functions, contact, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
+const mapStateToProps = ({ auth, call, document, source, role, functions, contact,region, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
   countries: auth.countries,
   currencies: auth.currencies,
   fetchingCountries: auth.fetchingCountries,
@@ -1243,7 +1257,8 @@ const mapStateToProps = ({ auth, call, document, source, role, functions, contac
   departments: departments.departments,
   allcustomersByUserId: customer.allcustomersByUserId,
   sources: source.sources,
-  dialcodeList: auth.dialcodeList
+  dialcodeList: auth.dialcodeList,
+  regionsDropDown: region.regionsDropDown,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1264,7 +1279,7 @@ const mapDispatchToProps = (dispatch) =>
       getCountries,
       getCurrency,
       getSources,
-      // getStages,
+      getDropDownRegions,
       // getProducts,
       // getDeliveryUser,
       getTimeZone,
