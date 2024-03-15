@@ -214,3 +214,44 @@ export const getRegions = (orgId) => (dispatch) => {
         });
       });
   };
+
+
+  export const handleRegionDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_REGION_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
+  export const addTarget = (documents, cb) => (dispatch) => {
+    console.log(documents);
+    dispatch({
+      type: types.ADD_TARGET_REQUEST,
+    });
+    axios
+      .post(`${base_url}/regions/target/save`, documents, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+      
+        
+        // dispatch(getDocuments());
+        console.log(res);
+        dispatch({
+          type: types.ADD_TARGET_SUCCESS,
+          payload: res.data
+           ,
+        });
+        cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_TARGET_FAILURE,
+        });
+        cb();
+      });
+  };

@@ -6,6 +6,9 @@ const initialState = {
   fetchingRegionsError: false,
   regions: [],
 
+
+  addRegionModal:false,
+
   addingRegions:false,
   addingRegionsError:false,
 
@@ -23,6 +26,11 @@ const initialState = {
   fetchingDropdownRegions: false,
   fetchingDropdownRegionsError:false,
   regionsDropDown:[],
+
+
+
+  addingTarget:false,
+  addingTargetError:false,
 
 
   removingRegions:false,
@@ -116,6 +124,10 @@ case types.GET_DROPDOWN_REGIONS_REQUEST:
       };
 
 
+      case types.HANDLE_REGION_DRAWER_MODAL:
+        return { ...state, addRegionModal: action.payload };
+
+
 
       case types.GET_REGION_SEARCH_REQUEST:
         return { ...state, fetchingRegionSearchData: true };
@@ -140,6 +152,22 @@ case types.GET_DROPDOWN_REGIONS_REQUEST:
             fetchingRegionCount: false,
             fetchingRegionCountError: true,
           };
+
+
+
+
+          case types.ADD_TARGET_REQUEST:
+            return { ...state, addingTarget: true };
+          case types.ADD_TARGET_SUCCESS:
+            return {
+              ...state,
+              addingTarget: false,
+              addRegionModal:false,
+              // regions:[action.payload,...state.regions],
+              // documents: [...state.documents, action.payload],
+            };
+          case types.ADD_TARGET_FAILURE:
+            return { ...state, addingTarget: false, addingTargetError: true };
     default:
       return state;
   }
