@@ -578,13 +578,13 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
-                  <div class=" flex">
+                  <div class=" flex items-center h-0">
                   {user.settingsAccessInd === true || user.role === "ADMIN" ?
   <SettingsDropdown />
   : null
 }
                   <a href="#" style={{  marginRight: 10 }}>
-                    <div  class=" flex items-center h-full"
+                    <div  class=" flex items-center "
                     >
                       <NotificationPopover />
                     </div>

@@ -461,15 +461,15 @@ const LeadsAllCardList = (props) => {
      <div className=' flex justify-center sticky top-28 z-auto'>
      <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex  w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[12.12rem]">Name</div>
-        <div className=" md:w-[9.1rem]"></div>
-        <div className=" md:w-[7.5rem] ">Phone #</div>
-        <div className="md:w-[5.8rem]">Country</div>
-        <div className="md:w-[10.5rem]">Company</div>
-        <div className="md:w-[8.8rem]">Sector</div> 
-        <div className="md:w-[8.8rem]">Source</div> 
-        <div className="md:w-[6rem]">Assigned to</div>
-        <div className="md:w-[5.5rem]">Owner</div>
+      <div className=" md:w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+        <div className=" md:w-[9.1rem] max-xl:w-[11.1rem] max-lg:w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" md:w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>
+        <div className="md:w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
+        <div className="md:w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
+        <div className="md:w-[8.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
+        <div className="md:w-[8.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
+        <div className="md:w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
+        <div className="md:w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         {/* <div className="md:w-[3.3rem]">Qualify</div> */}
         <div className="w-12"></div>
 
@@ -514,8 +514,8 @@ const LeadsAllCardList = (props) => {
                 className="flex rounded-xl  bg-white mt-2 h-[2.75rem] items-center p-3"
               >
                 <div class="flex ">
-                  <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
-                    <div className="flex max-sm:w-full ">
+                  <div className=" flex font-medium flex-col w-[12rem] max-xl:w-[9rem] max-lg:w-[5rem]   max-sm:w-full">
+                    <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div>
                        
                           <MultiAvatar
@@ -533,7 +533,7 @@ const LeadsAllCardList = (props) => {
                         <Tooltip>
                           <div class="max-sm:w-full justify-between flex md:flex-col">
                            
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
@@ -550,7 +550,7 @@ const LeadsAllCardList = (props) => {
                     </div>
                   </div>
 
-                  <div class="flex flex-row items-center md:w-[11%] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center w-[6.5rem] max-sm:flex-row max-xl:w-[4.5rem] max-lg:w-[4.5rem] max-sm:justify-between">
                     <div>
                       
                     </div>
@@ -616,7 +616,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  w-[9rem] max-sm:flex-row max-xl:w-[5.6rem] max-lg:w-[4.6rem] max-sm:justify-between ">
            
                     <div class=" text-xs text-cardBody font-poppins">
                       {item.countryDialCode && item.phoneNumber
@@ -625,9 +625,9 @@ const LeadsAllCardList = (props) => {
                      
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col w-[5rem] max-sm:flex-row  max-sm:justify-between max-xl:w-8 max-lg:w-8 ">
                    
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
@@ -635,7 +635,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
                   
                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                       {item.companyName || "Not Available"}
@@ -660,24 +660,24 @@ const LeadsAllCardList = (props) => {
                     ) : null}
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  w-[6.1rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
                    
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                       {item.sector}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  w-[10.1rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem]">
                    
-                   <div class=" text-xs text-cardBody font-poppins">
+                   <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source}
                    </div>
                  </div>
                 </div>
                 <div class="flex md:items-center ">
-                  <div className=" flex font-medium flex-col md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col w-[4.75rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
                   
 
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                       <div>
                         {item.assignedTo === null ? (
                           "None"
@@ -691,7 +691,7 @@ const LeadsAllCardList = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-16  max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex font-medium flex-col md:w-16  max-sm:flex-row w-full max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[1.75rem]">
                    
 
                   <Tooltip title={item.ownerName}>
@@ -894,7 +894,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i>
+      <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );
