@@ -61,6 +61,7 @@ function AddOrderInAccount(props) {
                 userId: props.userId,
                 orderId: "",
                 priority: priority || "",
+                orgId: props.orgId,
                 loadingAddress: [
                     {
                         address1: "",
@@ -393,7 +394,8 @@ const mapStateToProps = ({ homeStepper, auth, distributor }) => ({
     contactDistributor: distributor.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
-    addingOrder: distributor.addingOrder
+    addingOrder: distributor.addingOrder,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

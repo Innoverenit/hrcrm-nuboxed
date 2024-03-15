@@ -118,7 +118,7 @@ class AccountContactTable extends Component {
                                                 <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-                                                    {!item.accessInd && <div class=" text-xs text-cardBody font-poppins">
+                                                    {item.accessInd === 0 ? <div class=" text-xs text-cardBody font-poppins">
                                                         <Button
                                                             type="primary"
                                                             loading={this.state.rowData.contactPersonId === item.contactPersonId && this.props.applyingForLoginInContact}
@@ -133,7 +133,9 @@ class AccountContactTable extends Component {
                                                                 )
                                                             }}
                                                         ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
-                                                    </div>}
+                                                    </div> : item.accessInd === 2 ? <b>Login Applied</b> : <b>Login Approved</b>
+
+                                                    }
 
                                                 </div>
                                                 <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">

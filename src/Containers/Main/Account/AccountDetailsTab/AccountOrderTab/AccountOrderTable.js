@@ -22,10 +22,12 @@ import {
     handleUpdateOrder,
     setEditOrder,
     removeOrderAcc,
-    deleteDistributorData
+    deleteDistributorData,
+    getLocationList,
+    addLocationInOrder
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
-import { Button, Input, Tooltip } from 'antd';
+import { Badge, Button, Input, Select, Tooltip } from 'antd';
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
@@ -39,19 +41,32 @@ const AddNotesOrderModal = lazy(() => import('./AddNotesOrderModal'));
 const PaidButtonModal = lazy(() => import('./PaidButtonModal'));
 const AccountproductionModal = lazy(() => import('./AccountProductionModal'));
 const UpdateOrderModal = lazy(() => import('./UpdateAccountOrder/UpdateOrderModal'));
-
+const { Option } = Select;
 
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
+        props.getLocationList(props.orgId);
         props.getDistributorOrderByDistributorId(props.distributorId, page)
     }, [])
 
     const [particularRowData, setParticularRowData] = useState({});
+    const [locationChange, setLocationChange] = useState(false);
+    const [locationValue, setLocationValue] = useState("");
 
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
+    }
+    function handleChangeLocation(id) {
+        setLocationValue(id)
+    }
+    function handlelocation() {
+        setLocationChange(!locationChange);
+    }
+    function handleCallback() {
+        setLocationChange(false)
+        setLocationValue("")
     }
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
@@ -63,7 +78,11 @@ const AccountOrderTable = (props) => {
         setVisible(!visible)
     }
     const [price, setPrice] = useState(particularRowData.offerPrice)
+    const [checkAwb, setCheckAwb] = useState(false)
 
+    const handleCheckAwb = () => {
+        setCheckAwb(!checkAwb)
+    }
     const handleChange = (val) => {
         setPrice(val)
     }
@@ -89,29 +108,21 @@ const AccountOrderTable = (props) => {
                 <div div className=' flex justify-end sticky top-28 z-auto'>
                     <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                         <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
-                            <div className=" md:w-[9.41rem]">
+                            <div className=" md:w-[1.56rem]"> </div>
+                            <div className=" md:w-[7.4rem]">
                                 <FormattedMessage
                                     id="app.orderno"
                                     defaultMessage="Order No"
                                 />
                             </div>
-                            <div className=" md:w-[8.1rem]">
+                            <div className=" md:w-[5rem]">
                                 <FormattedMessage
                                     id="app.created"
                                     defaultMessage="Created"
                                 />
                             </div>
-                            <div className=" md:w-[11.2rem]">
-                                <FormattedMessage
-                                    id="app.location"
-                                    defaultMessage="Location"
-                                />
-                            </div>
+
                             <div className="md:w-[5.8rem]">
-                                <FormattedMessage
-                                    id="app.units"
-                                    defaultMessage="Units"
-                                />
                             </div>
                             <div className="md:w-[5.9rem]">
                                 <FormattedMessage
@@ -119,25 +130,32 @@ const AccountOrderTable = (props) => {
                                     defaultMessage="Contact"
                                 />
                             </div>
-                            <div className="md:w-[9.12rem]">
+                            <div className="md:w-[6rem]">
                                 <FormattedMessage
                                     id="app.expectedprice"
                                     defaultMessage="Expected Price"
                                 />
                             </div>
-                            <div className="md:w-[4.31rem]">
+                            <div className="md:w-[5rem]">
                                 <FormattedMessage
                                     id="app.finalprice"
                                     defaultMessage="Final"
                                 />
                             </div>
-                            <div className="w-[5.8rem]">
+                            <div className="w-[5rem]">
                                 <FormattedMessage
                                     id="app.revisedprice"
                                     defaultMessage="Revised"
                                 />
                             </div>
-
+                            <div className=" md:w-[5rem]">
+                            </div>
+                            <div className=" md:w-[10.1rem]">
+                                <FormattedMessage
+                                    id="app.location"
+                                    defaultMessage="Location"
+                                />
+                            </div>
                         </div>
 
                         <div class="overflow-x-auto h-[64vh]">
@@ -179,13 +197,20 @@ const AccountOrderTable = (props) => {
                                                             <div class="flex">
                                                                 <div className="ml-1 font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                                     <div class=" text-xs text-cardBody font-poppins">
-                                                                        <span
-                                                                            class="underline cursor-pointer text-[#1890ff]"
-                                                                            onClick={() => {
-                                                                                handleSetParticularOrderData(item);
-                                                                                props.handleOrderDetailsModal(true);
-                                                                            }}
-                                                                        >{item.newOrderNo}</span>
+                                                                        <Badge
+                                                                            class=" ml-2"
+                                                                            size="small"
+                                                                            count={item.count || 0}
+                                                                            overflowCount={999}
+                                                                        >
+                                                                            <span
+                                                                                class="underline cursor-pointer text-[#1890ff]"
+                                                                                onClick={() => {
+                                                                                    handleSetParticularOrderData(item);
+                                                                                    props.handleOrderDetailsModal(true);
+                                                                                }}
+                                                                            >{item.newOrderNo}</span>
+                                                                        </Badge>
                                                                         &nbsp;&nbsp;
                                                                         {date === currentdate ? (
                                                                             <span
@@ -200,9 +225,7 @@ const AccountOrderTable = (props) => {
                                                                 </div>
                                                             </div>
 
-
-
-                                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                                     <MultiAvatar2
                                                                         primaryTitle={item.userName}
@@ -210,23 +233,21 @@ const AccountOrderTable = (props) => {
                                                                         imgWidth={"1.8rem"}
                                                                         imgHeight={"1.8rem"}
                                                                     />
-
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+                                                            <div className=" flex font-medium flex-col md:w-[5.8rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                                 <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                    {item.locationName || ""}
+                                                                    <Button
+                                                                        onClick={() => {
+                                                                            handleCheckAwb();
+                                                                            handleSetParticularOrderData(item)
+                                                                        }
+                                                                        }
+                                                                    >Check AWB</Button>
                                                                 </div>
                                                             </div>
-
-                                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                    {item.count}
-
-                                                                </div>
-                                                            </div>
-                                                            <div className=" flex font-medium flex-col  md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium flex-col  md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <MultiAvatar2
                                                                         primaryTitle={item.contactPersonName}
@@ -239,16 +260,13 @@ const AccountOrderTable = (props) => {
                                                             </div>
 
 
-                                                            <div className=" flex font-medium flex-col  md:w-[3.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-
+                                                            <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium flex-col  md:w-[4.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
+                                                            <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
@@ -257,9 +275,7 @@ const AccountOrderTable = (props) => {
                                                             </div>
 
 
-                                                            <div className=" flex font-medium flex-col  md:w-[3.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-
+                                                            <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
                                                                         <Input
@@ -272,9 +288,7 @@ const AccountOrderTable = (props) => {
 
                                                             </div>
                                                         </div>
-                                                        <div className=" flex font-medium flex-col  md:w-[5.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-
+                                                        <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                             <div class=" text-xs text-cardBody font-poppins">
 
                                                                 {visible && (item.orderId === particularRowData.orderId) ? (
@@ -310,26 +324,59 @@ const AccountOrderTable = (props) => {
                                                             </div>
 
                                                         </div>
+                                                        <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                {locationChange && (item.orderId === particularRowData.orderId) ?
+                                                                    <>
+                                                                        <Select
+                                                                            value={locationValue}
+                                                                            onChange={(value) =>
+                                                                                handleChangeLocation(value)
+                                                                            }
+                                                                        >
+                                                                            {props.locationlist.map((a) => {
+                                                                                return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                                                            })}
+                                                                        </Select>
+                                                                        <div>
+                                                                            <Button
+                                                                                loading={props.addingLocationInOrder}
+                                                                                onClick={() => {
+                                                                                    props.addLocationInOrder({
+                                                                                        transferInd: 1,
+                                                                                        locationId: locationValue,
+                                                                                        userId: props.userId,
+                                                                                        orderPhoneId: item.orderId
+                                                                                    }, props.distributorId, handleCallback())
+                                                                                }}>Save</Button>
+                                                                            <Button onClick={handlelocation}>Cancel</Button>
+                                                                        </div>
+                                                                    </>
+                                                                    : item.locationName}
+                                                            </div>
+                                                        </div>
                                                         <div className=" flex font-medium flex-col  md:w-[6.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                            {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
-                                                                id="app.selectinventorylocation"
-                                                                defaultMessage="Select Inventory Location"
-                                                            />}>
-                                                                <Button
-                                                                    type='primary'
-                                                                    className="cursor-pointer text-sm bg-[#3096e9] text-white"
-                                                                    onClick={() => {
-                                                                        handleSetParticularOrderData(item);
-                                                                        props.handleInventoryLocationInOrder(true);
-                                                                    }}
-                                                                >
-                                                                    <FormattedMessage
-                                                                        id="app.orderpickup"
-                                                                        defaultMessage="Pickup"
-                                                                    />
+                                                            {item.inventoryReceiveInd ? null :
+                                                                <Tooltip title={<FormattedMessage
+                                                                    id="app.selectinventorylocation"
+                                                                    defaultMessage="Select Inventory Location"
+                                                                />}>
+                                                                    <Button
+                                                                        type='primary'
+                                                                        className="cursor-pointer text-sm bg-[#3096e9] text-white"
+                                                                        onClick={() => {
+                                                                            handlelocation()
+                                                                            handleSetParticularOrderData(item);
+                                                                            // props.handleInventoryLocationInOrder(true);
+                                                                        }}
+                                                                    >
+                                                                        <FormattedMessage
+                                                                            id="app.orderpickup"
+                                                                            defaultMessage="Pickup"
+                                                                        />
 
-                                                                </Button>
-                                                            </Tooltip>}
+                                                                    </Button>
+                                                                </Tooltip>}
                                                         </div>
                                                         <div class="flex justify-end">
                                                             <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -438,6 +485,61 @@ const AccountOrderTable = (props) => {
                                                         </div>
 
                                                     </div>
+
+                                                    {checkAwb && (item.orderId === particularRowData.orderId) && <div>
+                                                        {/* sub order part */}
+                                                        <div className=" overflow-y-auto flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+                                                            <div className=" md:w-[12rem]">
+                                                                <FormattedMessage
+                                                                    id="app.orderno"
+                                                                    defaultMessage="Order No"
+                                                                />
+                                                            </div>
+                                                            <div className=" md:w-[9rem]">
+                                                                <FormattedMessage
+                                                                    id="app.created"
+                                                                    defaultMessage="Created"
+                                                                />
+                                                            </div>
+
+                                                            <div className="md:w-[9rem]">
+                                                                <FormattedMessage
+                                                                    id="app.AWB"
+                                                                    defaultMessage="AWB"
+                                                                />
+                                                            </div>
+
+                                                        </div>
+                                                        {/* sub order card view */}
+                                                        <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                                            <div class="flex w-3/4">
+                                                                <div className="ml-1 font-medium flex-col md:w-[12em] max-sm:flex-row w-full max-sm:justify-between">
+                                                                    <div class=" text-xs text-cardBody font-poppins">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                        {/* <MultiAvatar2
+                                                                        primaryTitle={item.userName}
+                                                                        imageURL={item.imageURL}
+                                                                        imgWidth={"1.8rem"}
+                                                                        imgHeight={"1.8rem"}
+                                                                    /> */}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                        {/* {item.awbNo} */}
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>}
                                                 </div>
 
 
@@ -497,6 +599,9 @@ const mapStateToProps = ({ distributor, auth, inventory }) => ({
     addStatusOfOrder: distributor.addStatusOfOrder,
     updateOrderModal: distributor.updateOrderModal,
     addPaidButtonModal: distributor.addPaidButtonModal,
+    orgId: auth.userDetails.organizationId,
+    locationlist: distributor.locationlist,
+    addingLocationInOrder: distributor.addingLocationInOrder,
     fetchingDistributorByDistributorId: distributor.fetchingDistributorByDistributorId,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -511,7 +616,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleUpdateOrder,
     setEditOrder,
     removeOrderAcc,
-    deleteDistributorData
+    deleteDistributorData,
+    getLocationList,
+    addLocationInOrder
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);
