@@ -9,7 +9,8 @@ import {
   setEditSupplies,
   handleCurrencyPriceModal,
   handleBrandModel,
-  handleMaterialBuilderDrawer
+  handleMaterialBuilderDrawer,
+  handleSuppliersListDrawer
 } from "./SuppliesAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm } from "antd";
@@ -18,6 +19,7 @@ import {
   DeleteOutlined,
   PhoneFilled,
 } from "@ant-design/icons";
+import CategoryIcon from '@mui/icons-material/Category'
 import moment from "moment";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -29,7 +31,7 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
-
+const SuppliersListDrawer=lazy(()=>import("./SuppliesSupplierList/SuppliersListDrawer"));
 
 function SuppliesTable(props) {
 
@@ -332,7 +334,19 @@ function SuppliesTable(props) {
                     </div> */}
                           <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
                             <div>
-                              <Tooltip title="Material Builder">
+                              
+                            </div>
+                          </div>
+                          <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
+                            <div>
+                             
+                            </div>
+                            <div>
+                            </div>
+                          </div>
+                          <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                            <div>
+                            <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
                                   className="cursor-pointer text-base"
                                   onClick={() => {
@@ -342,25 +356,32 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
-                          </div>
-                          <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
-                            <div>
-                              {props.orderCreatRepairInd && <Tooltip>
+                            <div>  
+                            {props.orderCreatRepairInd && <Tooltip>
                                 <PhoneFilled
                                   onClick={() => {
                                     props.handleBrandModel(true);
                                     handleParticularRowData(item);
                                   }}
-                                  style={{ color: "blue", cursor: "pointer" }}
+                                  className=" !text-base cursor-pointer text-[blue]"
                                 />
                               </Tooltip>}
                             </div>
+                          </div>
+                          <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
                             <div>
-
-                              <InventoryIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                              />
-
+                              <Tooltip title="Suppliers">
+                                <CategoryIcon
+                                  onClick={() => {
+                                    props.handleSuppliersListDrawer(true);
+                                    handleParticularRowData(item);
+                                  }}
+                                  className=" !text-base cursor-pointer"
+                                />
+                              </Tooltip>
+                            </div>
+                            <div>  
+                                <InventoryIcon className=" !text-base cursor-pointer" />
                             </div>
                           </div>
                           <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
@@ -413,6 +434,11 @@ function SuppliesTable(props) {
           materialBuildrawer={materialBuildrawer}
           handleMaterialBuilderDrawer={handleMaterialBuilderDrawer}
         />
+        <SuppliersListDrawer
+         particularDiscountData={particularDiscountData}
+         suppliersListDrwr={props.suppliersListDrwr}
+         handleSuppliersListDrawer={props.handleSuppliersListDrawer}
+        />
       </Suspense>
 
     </>
@@ -428,6 +454,7 @@ const mapStateToProps = ({ supplies, auth }) => ({
   addBrandModel: supplies.addBrandModel,
   materialBuildrawer: supplies.materialBuildrawer,
   orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
+  suppliersListDrwr:supplies.suppliersListDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -439,7 +466,8 @@ const mapDispatchToProps = (dispatch) =>
       setEditSupplies,
       handleCurrencyPriceModal,
       handleBrandModel,
-      handleMaterialBuilderDrawer
+      handleMaterialBuilderDrawer,
+      handleSuppliersListDrawer
     },
     dispatch
   );

@@ -48,7 +48,6 @@ class Suppliesform extends Component {
             subCategoryName: "",
             price: 0,
             tax: 0,
-            // orgId: this.props.orgId,
             userId: this.props.userId,
             currencyName: ""
           }}

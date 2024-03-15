@@ -42,6 +42,7 @@ function AddSuppliersForm (props) {
             dialCode: "",
             phoneNo: "",
             emailId: "",
+            orgId: props.orgId,
             assignedTo: selectedOption ? selectedOption.employeeId:props.userId,
             address: [
               {

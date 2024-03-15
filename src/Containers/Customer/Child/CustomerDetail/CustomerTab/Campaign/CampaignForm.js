@@ -10,6 +10,7 @@ import {
     getAllCustomerData,
     getContactListByCustomerId,
     getOpportunityListByCustomerId,
+    addCustomerCampaignEvent
   } from "../../../../CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -23,7 +24,6 @@ import {
   updateEvent,
   handleEventModal,
 } from "../../../../../Event/EventAction";
-import {addCustomerActivityEvent} from "../../../../../Customer/CustomerAction"
 import { handleChooserModal } from "../../../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
@@ -59,10 +59,10 @@ function CampaignForm (props) {
   setRemider(checked);
   };
   useEffect(()=> {
-//     props.getAssignedToList(props.orgId);
-//    props.getAllCustomerData(userId)
-//    props.getOpportunityListByCustomerId(props.customer.customerId);
-//    props.getContactListByCustomerId(props.customer.customerId);
+    props.getAssignedToList(props.orgId);
+   props.getAllCustomerData(userId)
+   props.getOpportunityListByCustomerId(props.customer.customerId);
+   props.getContactListByCustomerId(props.customer.customerId);
   },[])
   
     const employeesData =props.sales.map((item) => {
@@ -114,8 +114,8 @@ const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingCustomerActivityEvent,
-      addCustomerActivityEvent,
+      addingCustomerCampaignEvent,
+      addCustomerCampaignEvent,
       deletingEvent,
       deleteEvent,
       startDate,
@@ -262,7 +262,7 @@ const {
                   },
                   handleCallback
                 )
-              : addCustomerActivityEvent(
+              : addCustomerCampaignEvent(
                   {
                     ...values,
                     contact: values.contact,
@@ -763,7 +763,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingEvent : addingCustomerActivityEvent}
+                  loading={isEditing ? updatingEvent : addingCustomerCampaignEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -781,7 +781,7 @@ const {
     );
 }
 const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingCustomerActivityEvent: customer.addingCustomerActivityEvent,
+  addingCustomerCampaignEvent: customer.addingCustomerCampaignEvent,
   assignedToList:employee.assignedToList,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
@@ -798,7 +798,7 @@ const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, c
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addCustomerActivityEvent,
+      addCustomerCampaignEvent,
       deleteEvent,
       updateEvent,
       getAssignedToList,

@@ -281,7 +281,14 @@ const initialState = {
 
   fetchingPurchaseOrder: false,
   fetchingPurchaseOrderError: false,
-  poBySupplier: []
+  poBySupplier: [],
+
+  supplierSuppliesdrwr:false,
+
+  fetchingSupplierSupplies: false,
+  fetchingSupplierSuppliesError: false,
+  supplierSuppliesList:[],
+  
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1218,6 +1225,45 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
+      case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
+        return { ...state, supplierSuppliesdrwr: action.payload };
+  
+        case types.GET_SUPPLIER_SUPPLIES_REQUEST:
+          return {
+            ...state,
+            fetchingSupplierSupplies: true,
+            fetchingSupplierSuppliesError: false,
+          };
+        case types.GET_SUPPLIER_SUPPLIES_SUCCESS:
+          return {
+            ...state,
+            fetchingSupplierSupplies: false,
+            fetchingSupplierSuppliesError: false,
+            supplierSuppliesList: action.payload,
+          };
+        case types.GET_SUPPLIER_SUPPLIES_FAILURE:
+          return {
+            ...state,
+            fetchingSupplierSupplies: false,
+            fetchingSupplierSuppliesError: true,
+          };
+
+          case types.SET_SUPPLIER_SUPPLIES_REQUEST:
+            return { ...state };
+          case types.SET_SUPPLIER_SUPPLIES_SUCCESS:
+            return {
+              ...state,
+              supplierSuppliesList: state.supplierSuppliesList.map(
+                (item) =>{
+                if (item.suppliesId === action.payload.suppliesId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            };
+          case types.SET_SUPPLIER_SUPPLIES_FAILURE:
+            return { ...state };
 
 
     default:

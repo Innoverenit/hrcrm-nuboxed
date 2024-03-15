@@ -556,12 +556,12 @@ export const addSuppliersActivityTask = (task, cb) => (dispatch) => {
     });
 };
 
-export const getAllSuppliersList = () => (dispatch) => {
+export const getAllSuppliersList = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIERS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/all-suppliers`, {
+    .get(`${base_url2}/supplier/all-suppliers/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1316,6 +1316,66 @@ export const getTodayPurchaseOrder = (supplierId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_PURCHASE_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleSuppleirSuppliesDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER,
+    payload: modalProps,
+  });
+};
+
+export const getSupplierSupplies = (supplierId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_SUPPLIES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/link-with-supplier/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIER_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const setSupplierSuppliesType = (data) => (dispatch) => {
+  dispatch({ type: types.SET_SUPPLIER_SUPPLIES_REQUEST });
+  axios
+    .post(
+      `${base_url2}/supplies/link-with-supplier`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.SET_SUPPLIER_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_SUPPLIER_SUPPLIES_FAILURE,
         payload: err,
       });
     });

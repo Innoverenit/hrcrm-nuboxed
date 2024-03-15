@@ -8,7 +8,7 @@ import { FormattedMessage } from "react-intl";
 
 function AllSuppliersCardList(props) {
   useEffect(() => {
-    props.getAllSuppliersList();
+    props.getAllSuppliersList(props.orgId);
   }, []);
 
   const [hasMore, setHasMore] = useState(true);
@@ -101,30 +101,28 @@ return(
 
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{`${(item.addresses && item.addresses.length && item.addresses[0].address1) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].state) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].street) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].city) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].pinCode) || ""}`}
+{`${(item.address && item.address.length && item.address[0].address1) || ""}
+          ${(item.address && item.address.length && item.address[0].state) || ""}
+          ${(item.address && item.address.length && item.address[0].street) || ""}`}
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.addresses &&
-           item.addresses.length &&
-           item.addresses[0].city) ||
-          ""}
+{(item.address &&
+                                  item.address.length &&
+                                  item.address[0].city) ||
+                                  ""}
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.addresses &&
-          item.addresses.length &&
-          item.addresses[0].pinCode) ||
-          ""}
+{(item.address &&
+                                  item.address.length &&
+                                  item.address[0].postalCode) ||
+                                  ""}
 </div>
 
 </div>
@@ -181,6 +179,7 @@ const mapStateToProps = ({ shipper, suppliers,auth }) => ({
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
+  orgId:auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
