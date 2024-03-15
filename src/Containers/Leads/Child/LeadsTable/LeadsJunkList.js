@@ -392,17 +392,17 @@ Resinstate
   return (
     <>
   <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
- <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
- <div className=" md:w-[12.1rem]">Name</div>
-        <div className=" md:w-[9.1rem]"></div>
-        <div className=" md:w-[7.2rem] ">Phone #</div>
-        <div className="md:w-[8.8rem]">Country</div>
-        <div className="md:w-[10.5rem]">Company</div>
-        <div className="md:w-[6.8rem]">Sector</div> 
-        <div className="md:w-[8.2rem]">Assigned to</div>
-        <div className="md:w-[5.5rem]">Owner</div>
-        <div className="md:w-[7.3rem]">Reinstate</div>
-        <div className="w-12">Action</div>
+ <div className=" flex  w-[99%] max-lg:w-[94%] max-xl:w-[94%] p-2 bg-transparent font-bold sticky top-0 z-10">
+ <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+        <div className=" w-[9.1rem] max-xl:w-[11.1rem] max-lg:w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>
+        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
+        <div className="w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
+        <div className="w-[6.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
+        <div className="w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
+        <div className="w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
+        <div className="w-12 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Action</div>
 
       </div>
       <InfiniteScroll
@@ -437,10 +437,10 @@ Resinstate
                } `;
                     return (
                       <div>
-                      <div className="flex rounded-xl  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
                               <div class="flex"> 
-                          <div className=" flex font-medium flex-col w-[13rem]   max-sm:w-full">
-                          <div className="flex max-sm:w-full"> 
+                          <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[9rem] max-lg:w-[5rem]   max-sm:w-full">
+                          <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
       <MultiAvatar
@@ -460,7 +460,7 @@ Resinstate
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <div class="text-[0.82rem] text-cardBody font-semibold  font-poppins cursor-pointer">
+                                      <div class="text-[0.82rem] text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
@@ -479,7 +479,7 @@ Resinstate
                                   </div>
                           </div>
 
-                          <div class="flex flex-row items-center md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div class="flex flex-row items-center w-[7rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">
 
 <div>
 <ButtonGroup>
@@ -541,8 +541,8 @@ props.updateTypeForLead(item.leadsId,typ)
 </div>  
 </div>
 <div class="flex"> 
-                          <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                     <div class=" text-[0.82rem] text-cardBody font-poppins">  
+                          <div className=" flex font-medium flex-col  w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                     <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
@@ -551,8 +551,8 @@ props.updateTypeForLead(item.leadsId,typ)
                     
                      </div>
                  </div>
-                 <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                            <div class=" text-[0.82rem] text-cardBody font-poppins">
+                 <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[3rem] ">
+                            <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
@@ -561,8 +561,8 @@ props.updateTypeForLead(item.leadsId,typ)
                
                  </div>
                  <div class="flex"> 
-                 <div className=" flex font-medium flex-col justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
-                     <div class=" text-[0.82rem] text-cardBody font-semibold  font-poppins">   
+                 <div className=" flex font-medium flex-col justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
+                     <div class=" text-[0.82rem] text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                      <Link to={`leads/${item.leadsId}`} title={item.companyName || "Not Available"}>
 {item.companyName || "Not Available"}
 </Link>
@@ -588,16 +588,16 @@ props.updateTypeForLead(item.leadsId,typ)
       ) : null}
                   </div>
                  
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">   
+                          <div className=" flex font-medium flex-col  w-28 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
+                              <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
                               {item.sector}
                               </div>
                           </div>
                           </div>
                           <div class="flex mb-1"> 
-                          <div className=" flex font-medium flex-col justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
 
-                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+                              <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               
                               <div>
         {item.assignedTo === null ? (
@@ -613,7 +613,7 @@ props.updateTypeForLead(item.leadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex font-medium flex-col justify-center md:w-20  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex font-medium flex-col justify-center w-20  max-sm:flex-row  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[1.75rem]">
                  
                  <div>
         <MultiAvatar
@@ -762,7 +762,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.25em" }}></i>
+        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );

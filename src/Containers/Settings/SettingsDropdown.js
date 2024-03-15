@@ -136,8 +136,8 @@ class SettingsDropdown extends Component {
           />
         }
       >
-        <a href="#" style={{ height: 56, marginRight: 10 }}>
-          <div class=" flex items-center h-full" >
+        <a href="#" style={{ marginRight: 10 }}>
+          <div class=" flex items-center" >
             <SettingOutlined className="!text-4 cursor-pointer text-[blue] "
               type="setting"
               style={{
