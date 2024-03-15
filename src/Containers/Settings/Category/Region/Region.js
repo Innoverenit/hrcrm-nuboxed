@@ -9,8 +9,11 @@ import {
     removeRegions,
     updateRegions,
     searchRegionName,
+    handleRegionDrawerModal
     // ClearReducerDataOfDocument
   } from "./RegionAction";
+import AddRegionModal from './AddRegionModal';
+import { BundleLoader } from '../../../../Components/Placeholder';
 
 const data = [
     { id: 1, region: "Europe" },
@@ -24,13 +27,19 @@ const Region = (props) => {
     const [addingRegion, setAddingRegion] = useState(false);
     const [newRegionName, setNewRegionName] = useState('');
     const [currentData, setCurrentData] = useState("");
+    const [currentregionId, setCurrentRegionId] = useState("");
     useEffect(() => {
         props.getRegions(props.organizationId);  
     }, [])
 
-    const editRegion = (id, regionName) => {
-        setEditingId(id);
-        setNewRegionName(regionName);
+    function handleSetCurrentRegionId(regionsId) {
+        setCurrentRegionId(regionsId);
+      
+      }
+
+    const editRegion = (regionsId, regions) => {
+        setEditingId(regionsId);
+        setNewRegionName(regions);
     };
 
     const deleteRegion = (id) => {
@@ -105,7 +114,11 @@ setEditingId(null);
         }
       };
 console.log(regions)
+if (props.fetchingRegions) {
+    return <div><BundleLoader/></div>;
+  }
     return (
+        <>
         <div>
               <div class=" flex flex-row justify-between">
               <div class=" flex w-[18vw]" style={{marginTop:"-8px"}} >
@@ -152,7 +165,13 @@ console.log(regions)
               {/* Action buttons */}
               <div className="actions">
                   {/* Edit button */}
-                  <MinusCircleOutlined/>
+                  <MinusCircleOutlined
+                   onClick={() => {
+                   
+                    props.handleRegionDrawerModal(true);
+                    handleSetCurrentRegionId(region.regionsId)
+                  }}
+                  />
                   {editingId === region.regionsId ? (
                       <div>
                           <button onClick={() => handleUpdateRegion(region)}>Save</button>
@@ -172,12 +191,21 @@ console.log(regions)
           </div>
             ))}
         </div>
+        <AddRegionModal
+        currentregionId={currentregionId}
+        addRegionModal={props.addRegionModal}
+        handleRegionDrawerModal={props.handleRegionDrawerModal}
+
+        />
+        </>
     );
 };
 const mapStateToProps = ({ region,auth  }) => ({
     // addingDocuments: document.addingDocuments,
     // addingDocumentsError: document.addingDocumentsError,
     regions: region.regions,
+    addRegionModal:region.addRegionModal,
+    fetchingRegions:region.fetchingRegions,
     organizationId: auth.userDetails.organizationId,
     // removingDocuments: document.removingDocuments,
     // removingDocumentsError: document.removingDocumentsError,
@@ -194,7 +222,8 @@ const mapStateToProps = ({ region,auth  }) => ({
         updateRegions,
         // addDocuments,
         removeRegions,
-        searchRegionName
+        searchRegionName,
+        handleRegionDrawerModal
         // updateDocuments,
         // ClearReducerDataOfDocument,
         // searchDocumentsName,
