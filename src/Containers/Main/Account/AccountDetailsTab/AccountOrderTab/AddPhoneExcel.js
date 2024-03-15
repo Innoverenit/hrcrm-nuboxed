@@ -18,6 +18,7 @@ function AddPhoneExcel(props) {
                     excelId: "",
                     userId: props.userId,
                     distributorId: props.distributorId,
+                    orgId: props.orgId,
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -88,7 +89,8 @@ function AddPhoneExcel(props) {
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     orderDetailsId: distributor.orderDetailsId,
-    addingCar: distributor.addingCar
+    addingCar: distributor.addingCar,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

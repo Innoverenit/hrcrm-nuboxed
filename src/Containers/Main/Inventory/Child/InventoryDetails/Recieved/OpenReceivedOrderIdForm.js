@@ -12,6 +12,7 @@ import {
   handlereceivePhoneModal,
   getPhonelistByOrderId
 } from "../../../InventoryAction";
+import MotionPhotosOffIcon from '@mui/icons-material/MotionPhotosOff';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -272,6 +273,15 @@ function OpenReceivedOrderIdForm(props) {
                               />
                             )
                             }
+                          </div>
+                        </div>
+
+                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            <Button>
+                              Can't Repair
+                            </Button>
+                            <MotionPhotosOffIcon />
                           </div>
                         </div>
                       </div>

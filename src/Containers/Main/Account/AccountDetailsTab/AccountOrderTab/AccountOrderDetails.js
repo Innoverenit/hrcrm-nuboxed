@@ -11,6 +11,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { PrintOutlined } from "@mui/icons-material";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -306,6 +307,19 @@ function DistributorPauseForm(props) {
                                                                     handleSetRowData(item);
                                                                     props.handlePhoneNotesOrderModal(true);
                                                                 }}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.Print"
+                                                            defaultMessage="Print"
+                                                        />}>
+                                                            <PrintOutlined
+                                                                className="!text-base cursor-pointer"
                                                             />
                                                         </Tooltip>
 

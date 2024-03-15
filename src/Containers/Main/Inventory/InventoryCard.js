@@ -8,6 +8,7 @@ import { getInventory, handleInventoryRoomRackModal } from "./InventoryAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../Components/Placeholder";
 const InventoryRoomRackModal = lazy(() =>
   import("./InventoryRoomRackModal")
 );
@@ -37,7 +38,7 @@ const InventoryCard = (props) => {
   const filteredData = inventory.filter((item) => item.inventoryInd === true);
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
+      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" md:w-[4.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
@@ -48,9 +49,6 @@ const InventoryCard = (props) => {
           </div>
           <InfiniteScroll
             dataLength={filteredData.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={fetchingInventoryList ? <div class="text-center text-sm">Loading...</div> : null}
             height={"75vh"}
           >
             {filteredData.length ? <>
@@ -140,7 +138,7 @@ const InventoryCard = (props) => {
           </InfiniteScroll>
         </div>
       </div>
-
+      }
 
       <InventoryRoomRackModal
         rowData={rowData}

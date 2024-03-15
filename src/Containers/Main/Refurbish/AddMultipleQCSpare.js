@@ -152,39 +152,7 @@ const AddMultipleQCSpare = (props) => {
                                     }
                                 />
                             </div>
-                            <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.cost"
-                                        defaultMessage="Cost"
-                                    />
 
-                                </label>
-                                <Input
-                                    type='text'
-                                    value={`${row.extraCost}`}
-                                    onChange={(e) =>
-                                        handleChangeValue4(e.target.value, `${row.id}_value`)
-                                    }
-                                />
-                            </div>
-                            <div class="w-[15%]">
-                                <label>{`Currency`}</label>
-
-                                <Select
-                                    name={`${row.id}_value`}
-                                    value={`${row.spareCurrency}`}
-                                    onChange={(value) =>
-                                        handleChangeValues5(value, `${row.id}_value`)
-                                    }
-                                // placeholder={`select`}
-                                >
-                                    {props.currencies.map((a) => {
-                                        return <Option value={a.currency_name}>{a.currency_name}</Option>;
-                                    })}
-                                </Select>
-
-                            </div>
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
                                     <CloseOutlined
