@@ -455,15 +455,15 @@ return (
       
      
       <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[12rem]">Name</div>
-        <div className=" md:w-40">Company</div>
-        <div className=" md:w-28 ">Designation</div>
-        <div className="md:w-36">Department</div>
-        <div className="md:w-28"># Opportunity</div>
-        <div className="md:w-28">Pipeline</div>
-        <div className="md:w-20">Portal Acess</div>
-        <div className="md:w-16">Owner</div>
+          <div className=" flex justify-between w-[98%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+        <div className=" w-40 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
+        <div className=" w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Designation</div>
+        <div className="w-36 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Department</div>
+        <div className="w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Quotation</div>
+        <div className="w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Pipeline</div>
+        <div className="w-20 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Portal Acess</div>
+        <div className="w-16 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         <div className="w-12"></div>
 
       </div>
@@ -502,7 +502,7 @@ return (
                             <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
                                 >
                                      
-                                <div className=" flex font-medium flex-col md:w-52 max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex font-medium flex-col w-52 max-sm:flex-row max-xl:w-[16rem]   max-sm:justify-between  ">
 <div className="flex max-sm:w-full"> 
 <div>
             <MultiAvatar2
@@ -517,7 +517,7 @@ return (
           <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm text-blue-500 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
          <Link
           toUrl={`contact/${item.contactId}`}
@@ -542,43 +542,43 @@ return (
                                 </div>
                                 <div class="flex">
 
-                                <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col  w-48 max-sm:flex-row max-xl:w-[7rem]   max-sm:justify-between ">
                                     
-                                    <div class=" text-sm text-cardBody font-poppins">   
+                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-36 max-sm:flex-row max-xl:w-[8rem]   max-sm:justify-between ">
                                
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                          {item.designation}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex font-medium flex-col w-36  max-sm:flex-row max-xl:w-[5rem]   max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                        {item.department}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className="flex font-medium flex-col w-32 max-sm:flex-row   max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
     {item.oppNo}
   </div>
 </div>
-<div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex font-medium flex-col w-36  max-sm:flex-row  max-sm:justify-between ">
                       
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {item.totalProposalValue}
 
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className="flex font-medium flex-col w-32 max-sm:flex-row  max-sm:justify-between ">
                
 
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                                     {item.thirdPartyAccessInd 
     ? `${item.thirdPartyAccessInd}`
@@ -587,7 +587,7 @@ return (
                                     </div>
                                 </div>
                                 <div class="flex md:items-center">
-                                <div className="flex font-medium  md:w-20  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex font-medium  w-20 max-xl:w-[3rem]   max-sm:flex-row  max-sm:justify-between">
                        
 
 

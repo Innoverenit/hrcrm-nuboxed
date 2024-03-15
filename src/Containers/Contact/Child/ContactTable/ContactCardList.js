@@ -428,37 +428,37 @@ function ContactCardList(props) {
       
      
       <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[13.5rem]">
+          <div className=" flex justify-between w-[95%] max-lg:w-[89%] max-xl:w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" md:w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <FormattedMessage
                   id="app.name"
                   defaultMessage="Name"
                 /></div>
-        <div className=" md:w-[13.1rem]"><FormattedMessage
+        <div className=" md:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="Company"
                 /></div>
-        <div className=" md:w-[9.1rem]"><FormattedMessage
+        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.designation"
                   defaultMessage="Designation"
                 /></div>
-        <div className="md:w-[10.1rem]"><FormattedMessage
+        <div className="md:w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.department"
                   defaultMessage="Department"
                 /></div>
-        <div className="md:w-[7.2rem]"><FormattedMessage
-                  id="app.opportunity"
-                  defaultMessage="# Opportunity"
+        <div className="md:w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                  id="app.quotation"
+                  defaultMessage="Quotation"
                 /></div>
-        <div className="md:w-[5.3rem]"><FormattedMessage
+        <div className="md:w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.pipeline"
                   defaultMessage="Pipeline"
                 /></div>
-        <div className="md:w-[6.1rem]"><FormattedMessage
+        <div className="md:w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.portalacess"
                   defaultMessage="Portal Acess"
                 /></div>
-        <div className="md:w-[2.1rem]"><FormattedMessage
+        <div className="md:w-[2.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="Owner"
                 /></div>
@@ -501,8 +501,8 @@ function ContactCardList(props) {
                             <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
                                 >
                                      
-                                <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                                <div className=" flex font-medium flex-col w-[14rem] max-sm:flex-row  max-sm:justify-between  ">
+<div className="flex max-sm:w-full items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
                                
             <MultiAvatar2
@@ -518,14 +518,11 @@ function ContactCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                            <div class="text-sm text-blue-500 text-cardBody font-poppins  font-semibold  cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                               
-         {/* <Link
-          toUrl={`contact/${item.contactId}`}
-          title={`${item.fullName}`}
-        >{item.fullName}</Link> */}
+        
         &nbsp;&nbsp;
         {date === currentdate ? (
           <span class="text-xs"
@@ -546,42 +543,42 @@ function ContactCardList(props) {
                                 </div>
                                 <div class="flex">
 
-                                <div className=" flex font-medium flex-col  md:w-[14.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col  w-[14.01rem] max-sm:flex-row max-xl:w-[9.5rem] max-lg:w-[6.8rem]  max-sm:justify-between ">
                                    
-                                    <div class=" text-sm text-cardBody font-poppins">   
+                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[10.2rem] max-xl:w-[6.6rem] max-lg:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
                                    
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                          {item.designation}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[8.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex font-medium flex-col w-[8.3rem] max-xl:w-[6.3rem] max-lg:w-[5.2rem]  max-sm:flex-row  max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                        {item.department}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className="flex font-medium flex-col w-32 max-xl:w-[11rem] max-lg:w-[6.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
     {item.oppNo}
   </div>
 </div>
-<div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex font-medium flex-col w-36 max-xl:w-[16rem] max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {item.totalProposalValue}
 
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                 
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                                     {item.thirdPartyAccessInd === true
     ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-base text-[green]"/></Tooltip> 
@@ -590,7 +587,7 @@ function ContactCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex md:items-center">
-                                <div className="flex font-medium  md:w-20  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex font-medium  w-20  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
               <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end">
                 <Tooltip title={item.ownerName}>
