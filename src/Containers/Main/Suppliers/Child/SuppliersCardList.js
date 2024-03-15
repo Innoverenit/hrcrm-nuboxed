@@ -78,11 +78,11 @@ function SuppliersCardList(props) {
                   {props.supplierList.map((item) => {
                     return (
                       <>
-                        <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"
-
-                        >
+                        <div
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3"
+                >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className="font-medium  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
                                   to={`supplier/${item.supplierId}`}
@@ -92,6 +92,8 @@ function SuppliersCardList(props) {
                               </div>
 
                             </div>
+
+                            
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 
@@ -112,29 +114,27 @@ function SuppliersCardList(props) {
 
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {`${(item.addresses && item.addresses.length && item.addresses[0].address1) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].state) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].street) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].city) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].pinCode) || ""}`}
+                                {`${(item.address && item.address.length && item.address[0].address1) || ""}
+          ${(item.address && item.address.length && item.address[0].state) || ""}
+          ${(item.address && item.address.length && item.address[0].street) || ""}`}
                               </div>
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {(item.addresses &&
-                                  item.addresses.length &&
-                                  item.addresses[0].city) ||
+                                {(item.address &&
+                                  item.address.length &&
+                                  item.address[0].city) ||
                                   ""}
                               </div>
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {(item.addresses &&
-                                  item.addresses.length &&
-                                  item.addresses[0].pinCode) ||
+                                {(item.address &&
+                                  item.address.length &&
+                                  item.address[0].postalCode) ||
                                   ""}
                               </div>
 

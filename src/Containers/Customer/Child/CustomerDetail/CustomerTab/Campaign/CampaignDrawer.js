@@ -5,7 +5,7 @@ import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 const CampaignForm = lazy(() => import("./CampaignForm"));
 
 const CampaignDrawer = (props) => {
-  const { ...formProps } = props;
+  const {customer, ...formProps } = props;
 
   return (
     <>
@@ -17,7 +17,7 @@ const CampaignDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CampaignForm {...formProps} />{" "}
+          <CampaignForm customer={customer}{...formProps} />{" "}
         </Suspense>
       </StyledDrawer>
     </>

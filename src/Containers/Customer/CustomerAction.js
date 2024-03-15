@@ -5,8 +5,6 @@ import { base_url,base_url2 } from "../../Config/Auth";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 
-
-
 /**
  * Customer modal action
  */
@@ -2553,4 +2551,60 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     });
   };
   
- 
+  export const addCustomerCampaignEvent = (event) => (dispatch, getState) => {
+    dispatch({
+      type: types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST,
+    });
+  
+    axios
+      .post(`${base_url}/customer/campaign/save`, event, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Campaign has been created successfully!',
+        })
+        console.log(res);
+        dispatch({
+          type: types.ADD_CUSTOMER_CAMPAIGN_EVENT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_CUSTOMER_CAMPAIGN_EVENT_FAILURE,
+          payload: err,
+        });;
+      });
+  };
+  export const geCustomerCampaignEvent = (customerId) => (dispatch) => {
+    dispatch({ type: types.GET_CUSTOMER_CAMPAIGN_EVENT_REQUEST });
+  
+    axios
+      .get(
+        `${base_url}/customer/campaign/${customerId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res)
+        dispatch({
+          type: types.GET_CUSTOMER_CAMPAIGN_EVENT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE,
+          payload: err,
+        });
+      });
+  };

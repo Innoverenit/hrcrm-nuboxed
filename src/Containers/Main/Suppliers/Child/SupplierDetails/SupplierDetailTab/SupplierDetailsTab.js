@@ -5,11 +5,13 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import {
     TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
-import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder } from "../../../SuppliersAction"
+import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder ,handleSuppleirSuppliesDrawer} from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
 import PurchaseOrderTable from "./PurchaseOrderTable"
 import { PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
+import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
+const SupplierSuppliesCardTable =lazy(()=>import("./SupplierSupplies/SupplierSuppliesCardTable"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -58,12 +60,55 @@ class SupplierDetailsTab extends Component {
                                 <PurchaseOrderTable supplier={this.props.supplier} />
                             </Suspense>
                         </TabPane>
+
+                        <TabPane
+              tab={
+                <>
+                  
+                    <i class="fab fa-connectdevelop"></i>
+                    <span style={{ marginLeft: "0.25em" }}>Materials</span>
+            
+                  {activeKey === "2" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          onClick={() =>
+                            this.props.handleSuppleirSuppliesDrawer(
+                              true
+                            )
+                          }
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip>
+                    
+                    </>
+                  )}
+                </>
+              }
+              key="2"
+            >
+                <Suspense fallback={"Loading ..."}>
+                  <SupplierSuppliesCardTable
+                    supplier={this.props.supplier}
+                  />
+                </Suspense>
+            </TabPane>
                     </StyledTabs>
+                    
                 </TabsWrapper>
                 <AddPoModal
                     supplier={this.props.supplier}
                     addLinkSuppliersOrderConfigureModal={this.props.addLinkSuppliersOrderConfigureModal}
                     handleLinkSuppliersOrderConfigureModal={this.props.handleLinkSuppliersOrderConfigureModal}
+                />
+                <SupplierSuppliesDrawer
+                supplier={this.props.supplier}
+                supplierSuppliesdrwr={this.props.supplierSuppliesdrwr}
+                handleSuppleirSuppliesDrawer={this.props.handleSuppleirSuppliesDrawer}
                 />
             </>
         );
@@ -72,14 +117,16 @@ class SupplierDetailsTab extends Component {
 const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
     poBySupplier: suppliers.poBySupplier,
-    addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal
+    addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal,
+    supplierSuppliesdrwr:suppliers.supplierSuppliesdrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             handleLinkSuppliersOrderConfigureModal,
-            getTodayPurchaseOrder
+            getTodayPurchaseOrder,
+            handleSuppleirSuppliesDrawer
         },
         dispatch
     );

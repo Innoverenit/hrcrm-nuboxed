@@ -558,3 +558,63 @@ export const deleteSupplies = (data, suppliesId) => (
       });
     });
 };
+
+export const handleSuppliersListDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERSLIST_DRAWER,
+    payload: modalProps,
+  });
+};
+export const getSupplieSupplierList = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_SUPPLIERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/supplies-supplier-link/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIES_SUPPLIERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setSuppliesSupplierType = (data) => (dispatch) => {
+  dispatch({ type: types.SET_SUPPLIES_SUPPLIER_REQUEST });
+  axios
+    .post(
+      `${base_url2}/supplies/supplies-supplier-link`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.SET_SUPPLIES_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_SUPPLIES_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};

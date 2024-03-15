@@ -48,6 +48,7 @@ const AddTagProfileModal = lazy(() =>
 const AddInvoiceModal = lazy(() => import("./Invoice/AddInvoiceModal"));
 const LinkedInvoice = lazy(() => import("./Invoice/LinkedInvoice"));
 const CampaignDrawer = lazy(() => import("./Campaign/CampaignDrawer"));
+const CampaignCardView=lazy(()=>import("./Campaign/CampaignCardView"));
 
 const TabPane = StyledTabs.TabPane;
 function handleRefreshPage() {
@@ -453,11 +454,10 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                cpgn
-                {/* <CustomerActivityTable
-
+              
+                <CampaignCardView
                  customer={this.props.customer}
-                /> */}
+                />
               </Suspense>
             </TabPane>
            
@@ -519,6 +519,7 @@ class ContactDetailTab extends Component {
             handleCallActivityModal={handleCallActivityModal}
           /> 
           <CampaignDrawer
+          customer={this.props.customer}
            openCampaigndrwr={this.props.openCampaigndrwr}
            handleCampaignDrawer={this.props.handleCampaignDrawer}
           />

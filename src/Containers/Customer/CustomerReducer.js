@@ -434,6 +434,12 @@ const initialState = {
   allCustomers: [],
 
   openCampaigndrwr: false,
+
+  addingCustomerCampaignEvent: false,
+  addingCustomerCampaignEventError: false,
+  fetchingCustomerCampaign: false,
+  fetchingCustomerCampaignError: false,
+  customerCampaign:[],
 };
 
 export const customerReducer = (state = initialState, action) => {
@@ -1902,6 +1908,46 @@ export const customerReducer = (state = initialState, action) => {
 
     case types.HANDLE_CAMPAIGN_DRAWER:
       return { ...state, openCampaigndrwr: action.payload };
+
+      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
+        return {
+          ...state,
+          addingCustomerCampaignEvent: true,
+          fetchingWonInvPipelineValueError: false,
+        };
+      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
+        return {
+          ...state,
+          addingCustomerCampaignEvent: false,
+          addingCustomerCampaignEventError: false,
+         
+        };
+      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
+        return {
+          ...state,
+          addingCustomerCampaignEvent: false,
+          addingCustomerCampaignEventError: true,
+        };
+
+        case types.GET_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
+          return {
+            ...state,
+            fetchingWonCusmWeightedValue: true,
+            fetchingWonINVWeightedValueError: false,
+          };
+        case types.GET_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
+          return {
+            ...state,
+            fetchingCustomerCampaign: false,
+            fetchingCustomerCampaignError: false,
+            customerCampaign: action.payload,
+          };
+        case types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
+          return {
+            ...state,
+            fetchingCustomerCampaign: false,
+            fetchingCustomerCampaignError: true,
+          };
 
     default:
       return state;

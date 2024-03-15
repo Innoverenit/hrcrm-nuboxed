@@ -90,6 +90,12 @@ const initialState = {
 
     deletingSuppliesData: false,
     deletingSuppliesDataError: false,
+
+    suppliersListDrwr:false,
+
+    fetchingSupplieSupplerList: false,
+    fetchingSupplieSupplerListError:false,
+    supplieSupplerList:[]
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -458,6 +464,43 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesData: false,
                 deletingSuppliesDataError: true,
             };
+
+            case types.HANDLE_SUPPLIERSLIST_DRAWER:
+                return { ...state, suppliersListDrwr: action.payload };
+    
+                case types.GET_SUPPLIES_SUPPLIERS_REQUEST:
+                    return { ...state, fetchingSupplieSupplerList: true };
+                case types.GET_SUPPLIES_SUPPLIERS_SUCCESS:
+                    return {
+                        ...state,
+                        fetchingSupplieSupplerList: false,
+                        supplieSupplerList: action.payload,
+                    };
+                case types.GET_SUPPLIES_SUPPLIERS_FAILURE:
+                    return {
+                        ...state,
+                        fetchingSupplieSupplerList: false,
+                        fetchingSupplieSupplerListError: true,
+                    };
+
+                    case types.SET_SUPPLIES_SUPPLIER_REQUEST:
+                        return { ...state };
+                      case types.SET_SUPPLIES_SUPPLIER_SUCCESS:
+                        return {
+                          ...state,
+                          supplieSupplerList: state.supplieSupplerList.map(
+                            (item) =>{
+                            if (item.supplierId === action.payload.supplierId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        };
+                      case types.SET_SUPPLIES_SUPPLIER_FAILURE:
+                        return { ...state };
+
+
         default:
             return state;
     }
