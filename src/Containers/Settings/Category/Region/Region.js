@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from 'react';
-import { EditOutlined, DeleteOutlined,PlusOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined,PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
+import {  Input} from "antd";
 import { bindActionCreators } from "redux";
 import {
     getRegions,
     addRegions,
     removeRegions,
-    updateRegions
-    // searchDocumentsName,
+    updateRegions,
+    searchRegionName,
     // ClearReducerDataOfDocument
   } from "./RegionAction";
 
@@ -22,6 +23,7 @@ const Region = (props) => {
     const [editingId, setEditingId] = useState(null);
     const [addingRegion, setAddingRegion] = useState(false);
     const [newRegionName, setNewRegionName] = useState('');
+    const [currentData, setCurrentData] = useState("");
     useEffect(() => {
         props.getRegions(props.organizationId);  
     }, [])
@@ -39,6 +41,17 @@ const Region = (props) => {
     const handleAddRegion = () => {
         setAddingRegion(true);
     };
+
+    const handleChange = (e) => {
+        setCurrentData(e.target.value.trim());
+      
+    
+        if (e.target.value.trim() === "") {
+        //   setPage(pageNo + 1);
+        props.getRegions(props.organizationId)
+        //   props.ClearReducerDataOfLoad()
+        }
+      };
 
     const handleUpdateRegion=(region)=>{
         console.log(region)
@@ -82,10 +95,29 @@ setEditingId(null);
           setRegions(props.regions);
         }
       }, [props.regions]);
+
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.searchRegionName(currentData);
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
 console.log(regions)
     return (
         <div>
-              <div className="add-region">
+              <div class=" flex flex-row justify-between">
+              <div class=" flex w-[18vw]" style={{marginTop:"-8px"}} >
+            <Input
+         placeholder="Search by Name"
+        style={{width:"100%",marginLeft:"0.5rem"}}
+            // suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+            // value={currentData}
+          />
+            </div>
                 {addingRegion ? (
                     <div>
                         <input 
@@ -101,6 +133,7 @@ console.log(regions)
                     <button  style={{backgroundColor:"tomato",color:"white"}}
                     onClick={handleAddRegion}> Add Region</button>
                 )}
+           
             </div>
             {regions.map(region => (
               <div className="card9" key={region.regionsId}>
@@ -119,6 +152,7 @@ console.log(regions)
               {/* Action buttons */}
               <div className="actions">
                   {/* Edit button */}
+                  <MinusCircleOutlined/>
                   {editingId === region.regionsId ? (
                       <div>
                           <button onClick={() => handleUpdateRegion(region)}>Save</button>
@@ -130,7 +164,8 @@ console.log(regions)
 
                   {/* Delete button */}
                   <DeleteOutlined 
-                onClick={() => props.removeRegions(region.regionsId)
+                onClick={() => 
+                    props.removeRegions(region.regionsId)
                 }
                    />
               </div>
@@ -158,7 +193,8 @@ const mapStateToProps = ({ region,auth  }) => ({
         addRegions,
         updateRegions,
         // addDocuments,
-        removeRegions
+        removeRegions,
+        searchRegionName
         // updateDocuments,
         // ClearReducerDataOfDocument,
         // searchDocumentsName,
