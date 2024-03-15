@@ -158,3 +158,59 @@ export const getRegions = (orgId) => (dispatch) => {
         });
       });
   };
+
+
+
+
+  export const searchRegionName = (name) => (dispatch) => {
+    dispatch({
+      type: types.GET_REGION_SEARCH_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/search/${name}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        message.success(res.data.message);
+        dispatch({
+          type: types.GET_REGION_SEARCH_SUCCESS,
+          payload: res.data,
+        });
+      }
+      )
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REGION_SEARCH_FAILURE,
+          payload: err,
+        });
+      });
+  }; 
+
+
+  export const getRegionCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_REGION_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REGION_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_REGION_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };

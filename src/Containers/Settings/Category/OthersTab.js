@@ -11,6 +11,9 @@ import RememberMeIcon from '@mui/icons-material/RememberMe';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Currency from "./Currency/Currency";
 import Region from "./Region/Region"
+import ServiceLine from "./ServiceLine/ServiceLine"
+import {getRegionCount} from "../Category/Region/RegionAction"
+import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 const Documents = lazy(() =>
   import("../Documents/Documents")
 );
@@ -36,6 +39,11 @@ class OthersTab extends Component {
     
     };
   }
+
+  componentDidMount() {
+    this.props.getRegionCount(this.props.organizationId)
+    this.props.getServiceLineCount(this.props.organizationId)
+  }
   
   handleTabChange = (key) => this.setState({ activeKey: key });
   renderTabContent = (key) => {
@@ -54,6 +62,8 @@ class OthersTab extends Component {
         return   <Currency />;
         case "7":
         return   <Region />;
+        case "8":
+          return   <ServiceLine />;
         
       default:
         return null;
@@ -136,10 +146,20 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <MonetizationOnIcon/>
-                    <span class=" ml-1">Region</span>
+                    <span class=" ml-1">Region {this.props.regionCount.RegionsCount}</span>
                   </>
                 }
                 key="7"
+              />
+
+<TabPane
+                tab={
+                  <>
+                 <MonetizationOnIcon/>
+                    <span class=" ml-1">Service Line {this.props.serviceLineCount.ServiceLineCount} </span>
+                  </>
+                }
+                key="8"
               />
               
             </StyledTabs>
@@ -153,8 +173,19 @@ class OthersTab extends Component {
     );
   }
 }
-const mapStateToProps = ({}) => ({});
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapStateToProps = ({
+  region,auth,serviceLines
+}
+) => ({
+  organizationId: auth.userDetails.organizationId,
+  regionCount:region.regionCount,
+  serviceLineCount:serviceLines.serviceLineCount,
+
+});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getRegionCount,
+  getServiceLineCount
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(OthersTab);
 

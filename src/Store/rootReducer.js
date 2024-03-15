@@ -6,6 +6,7 @@ import { LOGOUT } from "../Containers/Auth/AuthTypes";
 import { authReducer } from "../Containers/Auth/AuthReducer";
 import { pitchReducer } from "../Containers/Pitch/PitchReducer";
 import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
+import { serviceLineReducer } from "../Containers/Settings/Category/ServiceLine/ServiceLineReducer";
 import { messageReducer } from "../Containers/LiveMessages/MessageReducer";
 import { dashboardReducer } from "../Containers/Dashboard/DashboardReducer";
 import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/BrandModelReducer"
@@ -172,6 +173,7 @@ const appReducer = combineReducers({
   investorList:investorListReducer,
   procurement:procurementReducer,
   payments:catgPaymentReducer,
+  serviceLines:serviceLineReducer,
   itemTask:itemTaskReducer,
   module:moduleReducer,
   kpi:kpiReducer,

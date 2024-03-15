@@ -9,6 +9,14 @@ const initialState = {
   addingRegions:false,
   addingRegionsError:false,
 
+
+  fetchingRegionCount:false,
+  fetchingRegionCountError:false,
+
+  fetchingRegionCount:false,
+  fetchingRegionCountError:false,
+  regionCount:{},
+
   updatingRegions:false,
   updatingRegionsError:false,
 
@@ -19,6 +27,10 @@ const initialState = {
 
   removingRegions:false,
   removingRegionsError:false,
+
+
+  fetchingRegionSearchData:false,
+  fetchingRegionSearchDataError:false,
   
 };
 
@@ -102,9 +114,32 @@ case types.GET_DROPDOWN_REGIONS_REQUEST:
         removingRegions: false,
         removingRegionsError: true,
       };
+
+
+
+      case types.GET_REGION_SEARCH_REQUEST:
+        return { ...state, fetchingRegionSearchData: true };
+      case types.GET_REGION_SEARCH_SUCCESS:
+        return {
+          ...state,
+          fetchingRegionSearchData: false,
+          regions: action.payload,
+        };
+      case types.GET_REGION_SEARCH_FAILURE:
+        return { ...state, fetchingRegionSearchDataError: true };
         
     
-
+        case types.GET_REGION_COUNT_REQUEST:
+          return { ...state, fetchingRegionCount: true };
+        case types.GET_REGION_COUNT_SUCCESS:
+          return { ...state, fetchingRegionCount: false, 
+            regionCount: action.payload };
+        case types.GET_REGION_COUNT_FAILURE:
+          return {
+            ...state,
+            fetchingRegionCount: false,
+            fetchingRegionCountError: true,
+          };
     default:
       return state;
   }
