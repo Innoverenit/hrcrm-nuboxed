@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import {
     getRegions,
     addRegions,
-    // removeDocuments,
+    removeRegions,
     updateRegions
     // searchDocumentsName,
     // ClearReducerDataOfDocument
@@ -130,7 +130,8 @@ console.log(regions)
 
                   {/* Delete button */}
                   <DeleteOutlined 
-                //   onClick={() => handleDelete(region.id)}
+                onClick={() => props.removeRegions(region.regionsId)
+                }
                    />
               </div>
           </div>
@@ -155,9 +156,9 @@ const mapStateToProps = ({ region,auth  }) => ({
       {
         getRegions,
         addRegions,
-        updateRegions
+        updateRegions,
         // addDocuments,
-        // removeDocuments,
+        removeRegions
         // updateDocuments,
         // ClearReducerDataOfDocument,
         // searchDocumentsName,
