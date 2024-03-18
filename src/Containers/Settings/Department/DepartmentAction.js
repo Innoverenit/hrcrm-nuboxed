@@ -452,3 +452,29 @@ export const addingDeptModules = (data, departmentId) => (dispatch, getState) =>
       });
     });
 };
+
+export const getDepartmentCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEPARTMENT_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/department/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEPARTMENT_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DEPARTMENT_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

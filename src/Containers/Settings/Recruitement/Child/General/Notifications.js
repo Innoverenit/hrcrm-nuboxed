@@ -161,7 +161,7 @@ function Notifications(props) {
         onSubmit={(values, { resetForm }) => {}}
       >
         {({ values }) => (
-          <MainWrapper style={{ height: "446px", }}>
+          <MainWrapper >
             <Form className="form-background">
               <div class=" flex justify-between w-[30rem]"
              

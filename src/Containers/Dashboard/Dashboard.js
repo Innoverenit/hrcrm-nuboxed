@@ -10,6 +10,8 @@ import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpS
 import {setDashboardViewType} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
+import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
+import DashFinanceJumpstart from "./Child/JumpStart/DashFinanceJumpstart";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -92,7 +94,7 @@ class Dashboard extends Component {
           <div class=" h-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col display-block" >
+           <div class=" flex flex-col " >
            {viewType==="ME"?(
              <DashboardJumpstartAll/> )
              :viewType==="bulb" ? (<DashboardBulbJumpstart/>
@@ -106,7 +108,8 @@ class Dashboard extends Component {
              this.state.activeButton==="RecruitPro" ?
            (<DashboardJumpstartAll/>)
              : this.state.activeButton==="Investors" ?
-             (<DashboardInvestorsOrgJumpstart/>)
+            //  (<DashboardInvestorsOrgJumpstart/>)
+            (<DashboardCustomerOrgJumpstart/>)
              :viewType==="ALL" || this.state.activeButton==="Customer" ?
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
@@ -120,12 +123,13 @@ class Dashboard extends Component {
               <DashboardJumpstart />
           )}
              <div class=" w-wk" >
-             <div class=" flex flex-col display-block" >
+             <div class=" flex flex-col " >
        <div class=" flex justify-between" >
        {this.state.activeButton==="Tasks" ? (
        <TaskOrganizationTab/>)
        :this.state.activeButton==="Investors" ?(
-        <InvestorsPitchTab/>)
+        // <InvestorsPitchTab/>)
+        <CustomerLeadsTab/>)
         :this.state.activeButton==="RecruitPro" ?(
           <StackedClosureChartAll/>)
         :this.state.activeButton==="Order" ?(
@@ -160,18 +164,22 @@ class Dashboard extends Component {
   {viewType === "ME" ? (
     <StackedClosureChartAll />
   ) : this.state.activeButton === "Investors" ? (
-    <DashInvestorsChartTab />
-
+    // <DashInvestorsChartTab />
+    <FunnelTab/>
+  
   ) : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
-    ) : this.state.activeButton === "Customer" ? (
+    ) : this.state.activeButton === "Customer"  ? (
       <FunnelTab />
+   
   ) : this.state.activeButton === "Finance" ? (
     null
+    ) : this.state.activeButton === "Accounts" ? (
+      null
   ) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
   ) : (
-    this.state.activeButton === "Customer" ? null : <StackedClosureChart />
+    this.state.activeButton === "Customer"   ? null : <StackedClosureChart />
   )}
 </div>
 
@@ -180,19 +188,30 @@ class Dashboard extends Component {
     </div>
 
      <div class="w-[47%] max-sm:w-wk">
-     <div class=" flex flex-col display-block" >
+     <div class=" flex flex-col" >
        <div class=" flex justify-between" >
        {this.state.activeButton ==="test" && viewType !=="ALL" && (
             <TodoDashboardTab
             viewType={viewType}
             />)}
 
-            
+{this.state.activeButton==="Order"&& 
+       <DashOrderJumpstart/>
+             }
+             {this.state.activeButton==="Finance"&& 
+       <DashFinanceJumpstart/>
+             }
              {viewType==="bulb" ? (<SourceChart/>)
             
              :null
             }
-                  {this.state.activeButton==="Customer"&&
+                            {this.state.activeButton==="Investors"&& 
+       <FunnelTab/>
+             }
+                  {this.state.activeButton==="Customer"&& 
+       <FunnelTab/>
+             }
+                           {this.state.activeButton==="Accounts"&& 
        <FunnelTab/>
              }
                   {/* {this.state.activeButton==="Customer"&&
@@ -242,7 +261,7 @@ class Dashboard extends Component {
     <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col display-block" >
+           <div class=" flex flex-col " >
           
      
 
@@ -254,6 +273,8 @@ class Dashboard extends Component {
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)
+                        : this.state.activeButton === "Investors" ? (
+                          <CustomerGoogleMap />)
                   //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)
             
            
@@ -269,7 +290,7 @@ class Dashboard extends Component {
 
      <div class="w-[47%] max-sm:w-wk">
   
-     <div class=" flex flex-col display-block" >
+     <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >
        {this.state.activeButton==="Accounts"&&
        <CustomerDashJumpstart/>
@@ -277,10 +298,16 @@ class Dashboard extends Component {
                   {this.state.activeButton==="Customer"&&
        <DashboardProspectJumpstart/>
              }
-                <div class=" flex flex-col justify-between" >
-                     {this.state.activeButton==="Customer"&&
-       <StackedClosureChart />
+                      {this.state.activeButton==="Investors"&&
+       <DashboardProspectJumpstart/>
              }
+                <div class=" flex flex-col justify-between" >
+                     {/* {this.state.activeButton==="Customer"&&
+       <StackedClosureChart />
+             } */}
+                          {/* {this.state.activeButton==="Accounts"&&
+       <StackedClosureChart />
+             } */}
              </div>
 
 

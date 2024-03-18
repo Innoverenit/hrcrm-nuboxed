@@ -106,7 +106,7 @@ function Recruitment(props) {
       component: <NotificationToggleForm />,
     },
     {
-      rulesName: "Salary",
+      rulesName: "Pay Roll(Only for GCC)",
       ruleId: "15",
       component: <SalaryTab />,
     },

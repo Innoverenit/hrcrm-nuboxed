@@ -5293,3 +5293,54 @@ export const handleSalaryModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const getSalary = (roleTypeId) => (dispath) => {
+  dispath({ type: types.GET_SALARY_REQUEST });
+  axios
+    .get(`${base_url}/userSalaryBreakout/list/${roleTypeId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispath({
+        type: types.GET_SALARY_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_SALARY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addSalary = (process, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_SALARY_REQUEST });
+
+  axios
+    .post(`${base_url}/userSalaryBreakout`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SALARY_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SALARY_FAILURE,
+      });
+
+    });
+};

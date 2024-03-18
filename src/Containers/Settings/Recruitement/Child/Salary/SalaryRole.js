@@ -50,7 +50,7 @@ class SalaryRole extends PureComponent {
           }
         >
 
-        {/* {this.state.departmentData.roleTypeId && ( */}
+        {this.state.departmentData.roleTypeId && (
             <Suspense fallback={"Loading..."}>
               
                 <SalaryCard 
@@ -60,7 +60,7 @@ class SalaryRole extends PureComponent {
 
                 />
             </Suspense>
-        {/* )} */}
+         )} 
         </TabPane>
       ))
     ) : (

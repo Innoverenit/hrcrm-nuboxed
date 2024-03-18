@@ -12,6 +12,10 @@
   font-size: 0.75em;
   margin-top: -0.25em;
 }
+.text-red {
+  color: red;
+}
+
 .required-field {
   border: 1px solid red;
 }

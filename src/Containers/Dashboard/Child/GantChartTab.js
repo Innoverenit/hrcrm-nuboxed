@@ -8,7 +8,6 @@ import UpcomingIcon from '@mui/icons-material/Upcoming';
 import { FormattedMessage } from "react-intl";
 const TaskThisMonthGanttChart = lazy(()=>import("../Child/TaskThisMonthGanttChart"));
 const TaskGanttChart = lazy(()=>import("../Child/TaskGanttChart"));
-const LeavesGanttChart = lazy(()=>import("../Child/LeavesGanttChart"));
 
 const TabPane = StyledTabs.TabPane;
 function handleRefreshPage() {
@@ -124,28 +123,7 @@ class GantChartTab extends Component {
               </Suspense>
             </TabPane> */}
           
-            <TabPane
-              tab={
-                <>
-                  <UpcomingIcon style={{fontSize:"1.1rem"}}/>
-
-                  <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            />
-                    </span>
-
-                 
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LeavesGanttChart />
-              </Suspense>
-            </TabPane>
+          
 
             {/* <TabPane
               tab={

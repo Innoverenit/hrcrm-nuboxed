@@ -52,7 +52,7 @@ console.log("usrrr",selectedUser)
     <>
      <StyledSelect
         defaultValue={props.fullName}
-        style={{ width: "7rem",margin:"auto",paddingRight:"5px"}}
+        style={{ width: "10rem",margin:"auto",paddingRight:"5px"}}
         placeholder="Select to View"
         onChange={(e) => handleSelect(e)}
       >

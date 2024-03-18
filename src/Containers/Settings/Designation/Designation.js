@@ -8,6 +8,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {
   getDesignations,
+  getDesignationCount,
   addDesignations,
    removeDesignations,
   updateDesignations,
@@ -117,9 +118,10 @@ class Designation extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getDesignations } = this.props;
+    const { getDesignations,getDesignationCount,orgId } = this.props;
     console.log();
     getDesignations();
+    getDesignationCount(orgId);
   }
   render() {
     const {
@@ -240,13 +242,13 @@ class Designation extends Component {
   }
 }
 
-const mapStateToProps = ({ designations }) => ({
+const mapStateToProps = ({ designations,auth }) => ({
   addingDesignations: designations.addingDesignations,
   addingDesignationsError: designations.addingDesignationsError,
   designations: designations.designations,
-
-  // removingDesignations: designations.removingDesignations,
-  // removingDesignationsError: designations.removingDesignationsError,
+  orgId: auth.userDetails.organizationId,
+  removingDesignations: designations.removingDesignations,
+  removingDesignationsError: designations.removingDesignationsError,
      updatingDesignations: designations.updatingDesignations,
      updatingDesignationsError: designations.updatingDesignationsError,
   fetchingDesignations: designations.fetchingDesignations,
@@ -256,6 +258,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDesignations,
+      getDesignationCount,
       addDesignations,
        updateDesignations,
        searchDesignationName,

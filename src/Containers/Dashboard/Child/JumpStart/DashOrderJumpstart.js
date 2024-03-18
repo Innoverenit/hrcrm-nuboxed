@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
+import {
+  getJumpOrderCount,
+  getJumpOrderDetail
+} from "../../DashboardAction";
 
-function DashboardProspectJumpstart(props) {
+function DashOrderJumpstart(props) {
 
-  const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
-    openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
-  } = props;
-
-//   useEffect(() => {
-//     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
-//   }, [props.timeRangeType])
+  useEffect(() => {
+    props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+  }, [props.timeRangeType]);
+  console.log(props.timeRangeType)
   return (
     <>
+   
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           <div class="flex w-wk">
@@ -23,8 +24,8 @@ function DashboardProspectJumpstart(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={<FormattedMessage
-                id="app.prospects"
-                defaultMessage="Prospects"
+                id="app.financeadded"
+                defaultMessage="Receivables Added"
               />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
@@ -32,26 +33,15 @@ function DashboardProspectJumpstart(props) {
             // isLoading={props.user.fetchingJumpstartInvestor}
             />
 
-            <JumpStartBox
-            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title={<FormattedMessage
-                id="app.opertunitiesThisYear"
-                defaultMessage="Quotations this Year"
-              />}
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
-            />
+           
           </div>
           <div class="flex w-wk">
             <JumpStartBox
-   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.financeclosed"
-                defaultMessage="Quotations Life Time"
+                defaultMessage="Receivables Closed"
               />}
             // jumpstartClick={()=>handleDealAddedDrawer(true)}
             // cursorData={"pointer"}
@@ -63,7 +53,7 @@ function DashboardProspectJumpstart(props) {
               noProgress
               title={<FormattedMessage
                 id="app.financecancelled"
-                defaultMessage="Open Quotations"
+                defaultMessage="Receivables Cancelled"
               />}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
@@ -73,34 +63,41 @@ function DashboardProspectJumpstart(props) {
           </div>
         </div>
       </div>
-
-
+      {/* <PitchQualifiedDrawer
+      openPitchQualified={openPitchQualified}
+      handlePitchQualifiedDrawer={handlePitchQualifiedDrawer}
+      />
+       <PitchAddedDrawer
+      openPitchAdded={openPitchAdded}
+      handlePitchAddedDrawer={handlePitchAddedDrawer}
+      />
+      <DealsAddedDrawer 
+     openDealAdded={openDealAdded}
+     handleDealAddedDrawer={handleDealAddedDrawer}
+    />
+    <DealsClosedDrawer 
+     openDealClosed={openDealClosed}
+     handleDealClosedDrawer={handleDealClosedDrawer}
+    /> */}
     </>
 
   );
 }
 const mapStateToProps = ({ dashboard, auth }) => ({
   user: auth.userDetails,
-  role: auth.userDetails.role,
-  financeDetail: dashboard.financeDetail,
+  orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
-  showSalesDatelist: dashboard.showSalesDatelist,
-  fetchingSalesDatewiseReport: dashboard.fetchingSalesDatewiseReport,
-  fetchingSalesDatewiseReportError: dashboard.fetchingSalesDatewiseReportError,
-  fetchingDatewiseReport: dashboard.fetchingDatewiseReport,
-  fetchingDatewiseReportError: dashboard.fetchingDatewiseReportError,
-  recruiterId: auth.userDetails.userId,
+  fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
   userId: auth.userDetails.employeeId,
   timeRangeType: dashboard.timeRangeType,
-  startDate: dashboard.startDate,
-  endDate: dashboard.endDate,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getJumpFinanceDetail
-      //   getJumpInvestorlist,
+      getJumpOrderCount,
+      getJumpOrderDetail
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,
@@ -116,4 +113,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardProspectJumpstart);
+)(DashOrderJumpstart);

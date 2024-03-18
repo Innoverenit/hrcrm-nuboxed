@@ -8,6 +8,7 @@ import { TextInput, } from "../../../../Components/UI/Elements";
  import { BundleLoader } from "../../../../Components/Placeholder";
 import {
     getTalentRoles,
+    getExternalRoleCount,
     addTalentRoles,
     ClearReducerDataOfRoleTalent,
     searchRoleTalentName,
@@ -109,6 +110,7 @@ class RoleTalent extends Component {
   componentDidMount() {
     this.props.getTalentRoles(this.props.orgId); 
     // this.props.getDepartments();
+    this.props.getExternalRoleCount(this.props.orgId);
   }
   render() {
     const {
@@ -248,6 +250,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getTalentRoles,
+        getExternalRoleCount,
         addTalentRoles,
         ClearReducerDataOfRoleTalent,
         searchRoleTalentName,
