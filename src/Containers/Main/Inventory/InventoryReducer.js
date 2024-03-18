@@ -107,6 +107,9 @@ const initialState = {
   fetchingReceivedDetailsListError: false,
   receivedDetailsList: [],
 
+  updatingRepairStatus: false,
+  updatingRepairStatusError: false,
+
   addReceiveUnit: false,
 
   //dispatchModal
@@ -1309,6 +1312,24 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingOrderReceive: false,
         updatingOrderReceiveError: true,
+      };
+
+    case types.UPDATE_REPAIR_STATUS_REQUEST:
+      return { ...state, updatingRepairStatus: true };
+    case types.UPDATE_REPAIR_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingRepairStatus: false,
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+      };
+    case types.UPDATE_REPAIR_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingRepairStatus: false,
+        updatingRepairStatusError: true,
       };
     default:
       return state;

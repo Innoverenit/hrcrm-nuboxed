@@ -6,6 +6,7 @@ import { Formik, Form, Field } from "formik";
 import { addCarDetails } from "../../../AccountAction";
 import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
 import { FormattedMessage } from 'react-intl';
+import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
 function OrderStep2(props) {
     const [xlUpdateInd, setxlUpdateInd] = useState(true)
@@ -19,6 +20,7 @@ function OrderStep2(props) {
                     orderPhoneId: props.orderId,
                     excelId: "",
                     userId: props.userId,
+                    awbNo: "",
                     distributorId: props.distributorId,
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -46,9 +48,8 @@ function OrderStep2(props) {
                 }) => (
                     <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form class="form-background">
-
-                            <div class="justify-between flex">
-                                <div class="h-full w-[47%]">
+                            <div class="justify-between flex mt-3">
+                                <div class="h-full w-[45%]">
                                     <div class="mt-3">
                                         <Field
                                             name="excelId"
@@ -57,9 +58,19 @@ function OrderStep2(props) {
                                         />
                                     </div>
                                 </div>
-
+                                <div class="h-full w-[45%]">
+                                    <div class="mt-3">
+                                        <Field
+                                            label="AWB No"
+                                            name="awbNo"
+                                            component={InputComponent}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="justify-end flex mt-3">
                                 <Button
                                     type="primary"

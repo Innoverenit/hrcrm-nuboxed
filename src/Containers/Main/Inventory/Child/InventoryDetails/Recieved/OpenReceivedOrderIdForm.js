@@ -10,7 +10,8 @@ import {
   updateInspection,
   setEditPhoneData,
   handlereceivePhoneModal,
-  getPhonelistByOrderId
+  getPhonelistByOrderId,
+  updateRepairStatus
 } from "../../../InventoryAction";
 import MotionPhotosOffIcon from '@mui/icons-material/MotionPhotosOff';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
@@ -278,10 +279,16 @@ function OpenReceivedOrderIdForm(props) {
 
                         <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
-                            <Button>
-                              Can't Repair
-                            </Button>
-                            <MotionPhotosOffIcon />
+                            {item.inspectionInd === 1 &&
+                              <>
+                                <Button
+                                  onClick={() => {
+                                    props.updateRepairStatus()
+                                  }}>
+                                  Can't Repair
+                                </Button>
+                                <MotionPhotosOffIcon />
+                              </>}
                           </div>
                         </div>
                       </div>
@@ -395,7 +402,8 @@ const mapDispatchToProps = (dispatch) =>
       handleReceivedOrderIdPhoneNoteModal,
       updateInspection,
       setEditPhoneData,
-      handlereceivePhoneModal
+      handlereceivePhoneModal,
+      updateRepairStatus
     },
     dispatch
   );

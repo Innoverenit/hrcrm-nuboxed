@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { StyledTable } from "../../../Components/UI/Antd";
-import { getSpareListByPhoneId } from "../Account/AccountAction";
+import { getSpareListByPhoneId, updateSpareItem } from "../Account/AccountAction";
+import { BorderColorOutlined } from "@mui/icons-material";
 
 function RepairSpareListTable(props) {
     useEffect(() => {
@@ -32,7 +33,16 @@ function RepairSpareListTable(props) {
             dataIndex: "hours",
 
         },
+        {
+            title: "",
+            dataIndex: "",
+            render: (text, item) => {
+                return (
+                    <BorderColorOutlined />
+                )
+            }
 
+        },
 
     ];
 
@@ -44,11 +54,6 @@ function RepairSpareListTable(props) {
                 pagination={false}
                 loading={props.fetchingSpareListByPhoneId}
             />
-            <Button
-                className="w-12"
-                type="primary">
-                Add Spares
-            </Button>
         </>
     );
 }
@@ -61,7 +66,8 @@ const mapStateToProps = ({ distributor }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getSpareListByPhoneId
+            getSpareListByPhoneId,
+            updateSpareItem
         },
         dispatch
     );

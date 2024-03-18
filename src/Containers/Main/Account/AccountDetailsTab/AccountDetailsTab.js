@@ -43,13 +43,13 @@ function AccountDetailsTab(props) {
     };
 
     const handleTabChange = (key) => setactiveKey(key);
-
+    console.log(props.productionInd)
     return (
         <>
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-                    {props.orderCreatProductionInd && <TabPane
+                    {props.productionInd && <TabPane
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
@@ -76,7 +76,7 @@ function AccountDetailsTab(props) {
                             <AccountOrder1Table distributorId={props.distributorData.distributorId} />
                         </Suspense>
                     </TabPane>}
-                    {props.orderCreatRepairInd && <TabPane
+                    {props.repairInd && <TabPane
                         tab={
                             <>
                                 <Badge
@@ -284,8 +284,8 @@ const mapStateToProps = ({ distributor, auth }) => ({
     addDistributorActivityModal: distributor.addDistributorActivityModal,
     generateOrderModal: distributor.generateOrderModal,
     addCatalogueOrderModal: distributor.addCatalogueOrderModal,
-    orderCreatProductionInd: auth.userDetails.orderCreatProductionInd,
-    orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
+    productionInd: auth.userDetails.productionInd,
+    repairInd: auth.userDetails.repairInd,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -36,7 +36,7 @@ class InventoryDetailActionLeft extends Component {
 
           </Tooltip>
           {/* } */}
-          {this.props.orderCreatProductionInd && <Tooltip title="Production">
+          {this.props.productionInd && <Tooltip title="Production">
             <div
               className=" mr-2 cursor-pointer font-medium text-sm"
               style={{
@@ -47,7 +47,7 @@ class InventoryDetailActionLeft extends Component {
               Production
             </div>
           </Tooltip>}
-          {this.props.orderCreatRepairInd && <Tooltip title="Repair">
+          {this.props.repairInd && <Tooltip title="Repair">
             <div
               className=" mr-2 cursor-pointer font-medium text-sm"
               style={{
@@ -68,8 +68,8 @@ class InventoryDetailActionLeft extends Component {
 const mapStateToProps = ({ auth, production }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
-  orderCreatProductionInd: auth.userDetails.orderCreatProductionInd,
-  orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
+  productionInd: auth.userDetails.productionInd,
+  repairInd: auth.userDetails.repairInd,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

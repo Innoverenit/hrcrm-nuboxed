@@ -24,7 +24,8 @@ import {
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
-    addLocationInOrder
+    addLocationInOrder,
+    updateSubOrderAwb
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -77,6 +78,22 @@ const AccountOrderTable = (props) => {
     const handleUpdateRevisePrice = () => {
         setVisible(!visible)
     }
+    const [awbUpdate, setAwbUpdate] = useState(false)
+    const handleAwbNoField = () => {
+        setAwbUpdate(!awbUpdate)
+    }
+    const [awbNo, setAwbNo] = useState("")
+    const handleAwbUpdate = (val) => {
+        setAwbNo(val)
+    }
+    function handleCallback2() {
+        setAwbUpdate(false)
+        setAwbNo("")
+    }
+    const [subRow, setSubRow] = useState({});
+    function handleSubOrderData(item) {
+        setSubRow(item)
+    }
     const [price, setPrice] = useState(particularRowData.offerPrice)
     const [checkAwb, setCheckAwb] = useState(false)
 
@@ -102,454 +119,504 @@ const AccountOrderTable = (props) => {
 
     return (
         <>
-
-            {props.fetchingDistributorByDistributorId ? <BundleLoader /> :
-
-                <div div className=' flex justify-end sticky top-28 z-auto'>
-                    <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                        <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
-                            <div className=" md:w-[1.56rem]"> </div>
-                            <div className=" md:w-[7.4rem]">
-                                <FormattedMessage
-                                    id="app.orderno"
-                                    defaultMessage="Order No"
-                                />
-                            </div>
-                            <div className=" md:w-[5rem]">
-                                <FormattedMessage
-                                    id="app.created"
-                                    defaultMessage="Created"
-                                />
-                            </div>
-
-                            <div className="md:w-[5.8rem]">
-                            </div>
-                            <div className="md:w-[5.9rem]">
-                                <FormattedMessage
-                                    id="app.contact"
-                                    defaultMessage="Contact"
-                                />
-                            </div>
-                            <div className="md:w-[6rem]">
-                                <FormattedMessage
-                                    id="app.expectedprice"
-                                    defaultMessage="Expected Price"
-                                />
-                            </div>
-                            <div className="md:w-[5rem]">
-                                <FormattedMessage
-                                    id="app.finalprice"
-                                    defaultMessage="Final"
-                                />
-                            </div>
-                            <div className="w-[5rem]">
-                                <FormattedMessage
-                                    id="app.revisedprice"
-                                    defaultMessage="Revised"
-                                />
-                            </div>
-                            <div className=" md:w-[5rem]">
-                            </div>
-                            <div className=" md:w-[10.1rem]">
-                                <FormattedMessage
-                                    id="app.location"
-                                    defaultMessage="Location"
-                                />
-                            </div>
+            <div div className=' flex justify-end sticky top-28 z-auto'>
+                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" md:w-[1.56rem]"> </div>
+                        <div className=" md:w-[7.4rem]">
+                            <FormattedMessage
+                                id="app.orderno"
+                                defaultMessage="Order No"
+                            />
+                        </div>
+                        <div className=" md:w-[5rem]">
+                            <FormattedMessage
+                                id="app.created"
+                                defaultMessage="Created"
+                            />
                         </div>
 
-                        <div class="overflow-x-auto h-[64vh]">
-                            <InfiniteScroll
-                                dataLength={props.distributorOrder.length}
-                                next={handleLoadMore}
-                                hasMore={hasMore}
-                                loader={props.fetchingDistributorByDistributorId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                                height={"75vh"}
-                            >
-                                {props.distributorOrder.length ?
-                                    <>
-                                        {props.distributorOrder.map((item) => {
-                                            const currentdate = dayjs().format("DD/MM/YYYY");
-                                            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                            return (
-                                                <div >
-                                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
-                                                        <div class="flex w-3/4">
-                                                            <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
-                                                                <Tooltip>
-                                                                    <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                        <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                        <div className="md:w-[5.8rem]">
+                        </div>
+                        <div className="md:w-[5.9rem]">
+                            <FormattedMessage
+                                id="app.contact"
+                                defaultMessage="Contact"
+                            />
+                        </div>
+                        <div className="md:w-[6rem]">
+                            <FormattedMessage
+                                id="app.expectedprice"
+                                defaultMessage="Expected Price"
+                            />
+                        </div>
+                        <div className="md:w-[5rem]">
+                            <FormattedMessage
+                                id="app.finalprice"
+                                defaultMessage="Final"
+                            />
+                        </div>
+                        <div className="w-[5rem]">
+                            <FormattedMessage
+                                id="app.revisedprice"
+                                defaultMessage="Revised"
+                            />
+                        </div>
+                        <div className=" md:w-[5rem]">
+                        </div>
+                        <div className=" md:w-[10.1rem]">
+                            <FormattedMessage
+                                id="app.location"
+                                defaultMessage="Location"
+                            />
+                        </div>
+                    </div>
 
-                                                                            {item.priority === "High" && (
-                                                                                <div
-                                                                                    class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
-                                                                            )}
-                                                                            {item.priority === "Medium" && (
-                                                                                <div
-                                                                                    class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
-                                                                            {item.priority === "Low" && (
-                                                                                <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
-                                                                        </div>
-                                                                    </div>
-                                                                </Tooltip>
-                                                            </div>
+                    {/* <div class="overflow-x-auto h-[64vh]"> */}
+                    <InfiniteScroll
+                        dataLength={props.distributorOrder.length}
+                        next={handleLoadMore}
+                        hasMore={hasMore}
+                        loader={props.fetchingDistributorByDistributorId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"75vh"}
+                    >
+                        {props.distributorOrder.length ?
+                            <>
+                                {props.distributorOrder.map((item) => {
+                                    const currentdate = dayjs().format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
+                                        <div >
+                                            <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                                <div class="flex w-3/4">
+                                                    <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
+                                                        <Tooltip>
+                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                                            <div class="flex">
-                                                                <div className="ml-1 font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                                    <div class=" text-xs text-cardBody font-poppins">
-                                                                        <Badge
-                                                                            class=" ml-2"
-                                                                            size="small"
-                                                                            count={item.count || 0}
-                                                                            overflowCount={999}
-                                                                        >
-                                                                            <span
-                                                                                class="underline cursor-pointer text-[#1890ff]"
-                                                                                onClick={() => {
-                                                                                    handleSetParticularOrderData(item);
-                                                                                    props.handleOrderDetailsModal(true);
-                                                                                }}
-                                                                            >{item.newOrderNo}</span>
-                                                                        </Badge>
-                                                                        &nbsp;&nbsp;
-                                                                        {date === currentdate ? (
-                                                                            <span
-                                                                                class="text-[tomato] font-bold">
-                                                                                {<FormattedMessage
-                                                                                    id="app.new"
-                                                                                    defaultMessage="New"
-                                                                                />}
-                                                                            </span>
-                                                                        ) : null}
-                                                                    </div>
+                                                                    {item.priority === "High" && (
+                                                                        <div
+                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                    )}
+                                                                    {item.priority === "Medium" && (
+                                                                        <div
+                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                    {item.priority === "Low" && (
+                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
+                                                        </Tooltip>
+                                                    </div>
 
-                                                            <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                    <MultiAvatar2
-                                                                        primaryTitle={item.userName}
-                                                                        imageURL={item.imageURL}
-                                                                        imgWidth={"1.8rem"}
-                                                                        imgHeight={"1.8rem"}
-                                                                    />
-                                                                </div>
-                                                            </div>
-
-                                                            <div className=" flex font-medium flex-col md:w-[5.8rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                    <Button
-                                                                        onClick={() => {
-                                                                            handleCheckAwb();
-                                                                            handleSetParticularOrderData(item)
-                                                                        }
-                                                                        }
-                                                                    >Check AWB</Button>
-                                                                </div>
-                                                            </div>
-                                                            <div className=" flex font-medium flex-col  md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    <MultiAvatar2
-                                                                        primaryTitle={item.contactPersonName}
-                                                                        imageURL={item.imageURL}
-                                                                        imgWidth={"1.8em"}
-                                                                        imgHeight={"1.8em"}
-                                                                    />
-                                                                </div>
-
-                                                            </div>
-
-
-                                                            <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
-                                                                </div>
-
-                                                            </div>
-                                                            <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
-                                                                </div>
-
-                                                            </div>
-
-
-                                                            <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                    <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
-                                                                        <Input
-                                                                            type='text'
-                                                                            value={price}
-                                                                            onChange={(e) => handleChange(e.target.value)}
-                                                                        />
-                                                                        : item.offerPrice}
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class="flex">
+                                                        <div className="ml-1 font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                             <div class=" text-xs text-cardBody font-poppins">
-
-                                                                {visible && (item.orderId === particularRowData.orderId) ? (
-                                                                    <>
-                                                                        <div className=" flex justify-between flex-col">
-                                                                            <Button onClick={() => {
-                                                                                handleSubmitPrice()
-                                                                            }} >
-                                                                                <FormattedMessage
-                                                                                    id="app.save"
-                                                                                    defaultMessage="Save"
-                                                                                />
-                                                                            </Button>
-                                                                            <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
-                                                                                id="app.cancel"
-                                                                                defaultMessage="Cancel"
-                                                                            /></Button>
-                                                                        </div>
-                                                                    </>
-                                                                ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
-                                                                    id="app.updaterevisedprice"
-                                                                    defaultMessage="Update Revised Price"
-                                                                />}>
-                                                                    <PublishedWithChangesIcon
+                                                                <Badge
+                                                                    class=" ml-2"
+                                                                    size="small"
+                                                                    count={item.count || 0}
+                                                                    overflowCount={999}
+                                                                >
+                                                                    <span
+                                                                        class="underline cursor-pointer text-[#1890ff]"
                                                                         onClick={() => {
-                                                                            handleUpdateRevisePrice()
-                                                                            handleSetParticularOrderData(item)
-                                                                        }}
-                                                                        className="!text-base cursor-pointer"
-                                                                    />
-                                                                </Tooltip> : null}
-
-                                                            </div>
-
-                                                        </div>
-                                                        <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                {locationChange && (item.orderId === particularRowData.orderId) ?
-                                                                    <>
-                                                                        <Select
-                                                                            value={locationValue}
-                                                                            onChange={(value) =>
-                                                                                handleChangeLocation(value)
-                                                                            }
-                                                                        >
-                                                                            {props.locationlist.map((a) => {
-                                                                                return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                                                            })}
-                                                                        </Select>
-                                                                        <div>
-                                                                            <Button
-                                                                                loading={props.addingLocationInOrder}
-                                                                                onClick={() => {
-                                                                                    props.addLocationInOrder({
-                                                                                        transferInd: 1,
-                                                                                        locationId: locationValue,
-                                                                                        userId: props.userId,
-                                                                                        orderPhoneId: item.orderId
-                                                                                    }, props.distributorId, handleCallback())
-                                                                                }}>Save</Button>
-                                                                            <Button onClick={handlelocation}>Cancel</Button>
-                                                                        </div>
-                                                                    </>
-                                                                    : item.locationName}
-                                                            </div>
-                                                        </div>
-                                                        <div className=" flex font-medium flex-col  md:w-[6.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                            {item.inventoryReceiveInd ? null :
-                                                                <Tooltip title={<FormattedMessage
-                                                                    id="app.selectinventorylocation"
-                                                                    defaultMessage="Select Inventory Location"
-                                                                />}>
-                                                                    <Button
-                                                                        type='primary'
-                                                                        className="cursor-pointer text-sm bg-[#3096e9] text-white"
-                                                                        onClick={() => {
-                                                                            handlelocation()
                                                                             handleSetParticularOrderData(item);
-                                                                            // props.handleInventoryLocationInOrder(true);
+                                                                            props.handleOrderDetailsModal(true);
                                                                         }}
-                                                                    >
-                                                                        <FormattedMessage
-                                                                            id="app.orderpickup"
-                                                                            defaultMessage="Pickup"
-                                                                        />
-
-                                                                    </Button>
-                                                                </Tooltip>}
+                                                                    >{item.newOrderNo}</span>
+                                                                </Badge>
+                                                                &nbsp;&nbsp;
+                                                                {date === currentdate ? (
+                                                                    <span
+                                                                        class="text-[tomato] font-bold">
+                                                                        {<FormattedMessage
+                                                                            id="app.new"
+                                                                            defaultMessage="New"
+                                                                        />}
+                                                                    </span>
+                                                                ) : null}
+                                                            </div>
                                                         </div>
-                                                        <div class="flex justify-end">
-                                                            <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.notes"
-                                                                        defaultMessage="Notes"
-                                                                    />}>
-                                                                        <NoteAltIcon
-                                                                            className="!text-base cursor-pointer text-[green]"
-                                                                            onClick={() => {
-                                                                                props.handleNotesModalInOrder(true);
-                                                                                handleSetParticularOrderData(item);
-                                                                            }}
-                                                                        />
+                                                    </div>
 
-                                                                    </Tooltip>
-                                                                </div>
+                                                    <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                            <MultiAvatar2
+                                                                primaryTitle={item.userName}
+                                                                imageURL={item.imageURL}
+                                                                imgWidth={"1.8rem"}
+                                                                imgHeight={"1.8rem"}
+                                                            />
+                                                        </div>
+                                                    </div>
 
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.status"
-                                                                        defaultMessage="Status"
-                                                                    />}>
-                                                                        <EventRepeatIcon
-
-                                                                            className="!text-base cursor-pointer"
-                                                                            onClick={() => {
-                                                                                props.handleStatusOfOrder(true);
-                                                                                handleSetParticularOrderData(item);
-                                                                            }}
-                                                                        />
-                                                                    </Tooltip>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-
-                                                                <div>
-                                                                    <Tooltip title="Collection">
-                                                                        <PaidIcon
-                                                                            className="!text-base cursor-pointer"
-                                                                            onClick={() => {
-                                                                                props.handlePaidModal(true);
-                                                                                handleSetParticularOrderData(item);
-                                                                            }}
-
-                                                                        />
-                                                                    </Tooltip>
-
-                                                                </div>
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.updateorder"
-                                                                        defaultMessage="Update Order"
-                                                                    />}>
-                                                                        <BorderColorIcon
-                                                                            className=" !text-base cursor-pointer text-[tomato]"
-                                                                            onClick={() => {
-                                                                                props.setEditOrder(item)
-                                                                                props.handleUpdateOrder(true)
-                                                                                handleSetParticularOrderData(item)
-                                                                            }}
-                                                                        />
-                                                                    </Tooltip>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.rating"
-                                                                        defaultMessage="Rating"
-                                                                    />}>
-                                                                        <StarBorderIcon
-
-                                                                            className="!text-base cursor-pointer" />
-                                                                    </Tooltip>
-
-                                                                </div>
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.feedback"
-                                                                        defaultMessage="Feedback"
-                                                                    />}>
-                                                                        <FeedbackIcon
-                                                                            className="!text-base cursor-pointer"
-                                                                        />
-                                                                    </Tooltip>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.delete"
-                                                                        defaultMessage="Detele"
-                                                                    />}>
-                                                                        <DeleteIcon
-                                                                            className="!text-base cursor-pointer text-[red]"
-                                                                            onClick={() => { props.removeOrderAcc(item.orderId) }}
-                                                                        />
-                                                                    </Tooltip>
-
-                                                                </div>
-                                                            </div>
+                                                    <div className=" flex font-medium flex-col md:w-[5.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                            <Button
+                                                                class=" bg-green-500"
+                                                                onClick={() => {
+                                                                    handleCheckAwb();
+                                                                    handleSetParticularOrderData(item)
+                                                                }
+                                                                }
+                                                            >Check AWB</Button>
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex font-medium flex-col  md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <MultiAvatar2
+                                                                primaryTitle={item.contactPersonName}
+                                                                imageURL={item.imageURL}
+                                                                imgWidth={"1.8em"}
+                                                                imgHeight={"1.8em"}
+                                                            />
                                                         </div>
 
                                                     </div>
 
-                                                    {checkAwb && (item.orderId === particularRowData.orderId) && <div>
-                                                        {/* sub order part */}
-                                                        <div className=" overflow-y-auto flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
-                                                            <div className=" md:w-[12rem]">
-                                                                <FormattedMessage
-                                                                    id="app.orderno"
-                                                                    defaultMessage="Order No"
-                                                                />
-                                                            </div>
-                                                            <div className=" md:w-[9rem]">
-                                                                <FormattedMessage
-                                                                    id="app.created"
-                                                                    defaultMessage="Created"
-                                                                />
-                                                            </div>
 
-                                                            <div className="md:w-[9rem]">
-                                                                <FormattedMessage
-                                                                    id="app.AWB"
-                                                                    defaultMessage="AWB"
+                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
+                                                        </div>
+
+                                                    </div>
+                                                    <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
+                                                                <Input
+                                                                    type='text'
+                                                                    value={price}
+                                                                    onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                            </div>
+                                                                : item.offerPrice}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div class=" text-xs text-cardBody font-poppins">
+
+                                                        {visible && (item.orderId === particularRowData.orderId) ? (
+                                                            <>
+                                                                <div className=" flex justify-between flex-col">
+                                                                    <Button onClick={() => {
+                                                                        handleSubmitPrice()
+                                                                    }} >
+                                                                        <FormattedMessage
+                                                                            id="app.save"
+                                                                            defaultMessage="Save"
+                                                                        />
+                                                                    </Button>
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                        id="app.cancel"
+                                                                        defaultMessage="Cancel"
+                                                                    /></Button>
+                                                                </div>
+                                                            </>
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
+                                                            id="app.updaterevisedprice"
+                                                            defaultMessage="Update Revised Price"
+                                                        />}>
+                                                            <PublishedWithChangesIcon
+                                                                onClick={() => {
+                                                                    handleUpdateRevisePrice()
+                                                                    handleSetParticularOrderData(item)
+                                                                }}
+                                                                className="!text-base cursor-pointer"
+                                                            />
+                                                        </Tooltip> : null}
+
+                                                    </div>
+
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        {locationChange && (item.orderId === particularRowData.orderId) ?
+                                                            <>
+                                                                <Select
+                                                                    value={locationValue}
+                                                                    onChange={(value) =>
+                                                                        handleChangeLocation(value)
+                                                                    }
+                                                                >
+                                                                    {props.locationlist.map((a) => {
+                                                                        return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                                                    })}
+                                                                </Select>
+                                                                <div>
+                                                                    <Button
+                                                                        type='primary'
+                                                                        loading={props.addingLocationInOrder}
+                                                                        onClick={() => {
+                                                                            props.addLocationInOrder({
+                                                                                transferInd: 1,
+                                                                                locationId: locationValue,
+                                                                                userId: props.userId,
+                                                                                orderPhoneId: item.orderId
+                                                                            }, props.distributorId, handleCallback())
+                                                                        }}>Save</Button>
+                                                                    <Button onClick={handlelocation}>Cancel</Button>
+                                                                </div>
+                                                            </>
+                                                            : item.locationName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col  md:w-[6.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    {item.inventoryReceiveInd ? null :
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.selectinventorylocation"
+                                                            defaultMessage="Select Inventory Location"
+                                                        />}>
+                                                            <Button
+                                                                type='primary'
+                                                                className="cursor-pointer text-sm bg-[#3096e9] text-white"
+                                                                onClick={() => {
+                                                                    handlelocation()
+                                                                    handleSetParticularOrderData(item);
+                                                                    // props.handleInventoryLocationInOrder(true);
+                                                                }}
+                                                            >
+                                                                <FormattedMessage
+                                                                    id="app.orderpickup"
+                                                                    defaultMessage="Pickup"
+                                                                />
+
+                                                            </Button>
+                                                        </Tooltip>}
+                                                </div>
+                                                <div class="flex justify-end">
+                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.notes"
+                                                                defaultMessage="Notes"
+                                                            />}>
+                                                                <NoteAltIcon
+                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    onClick={() => {
+                                                                        props.handleNotesModalInOrder(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+
+                                                            </Tooltip>
+                                                        </div>
+
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.status"
+                                                                defaultMessage="Status"
+                                                            />}>
+                                                                <EventRepeatIcon
+
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatusOfOrder(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+
+                                                        <div>
+                                                            <Tooltip title="Collection">
+                                                                <PaidIcon
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handlePaidModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+
+                                                                />
+                                                            </Tooltip>
 
                                                         </div>
-                                                        {/* sub order card view */}
-                                                        <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
-                                                            <div class="flex w-3/4">
-                                                                <div className="ml-1 font-medium flex-col md:w-[12em] max-sm:flex-row w-full max-sm:justify-between">
-                                                                    <div class=" text-xs text-cardBody font-poppins">
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                        {/* <MultiAvatar2
-                                                                        primaryTitle={item.userName}
-                                                                        imageURL={item.imageURL}
-                                                                        imgWidth={"1.8rem"}
-                                                                        imgHeight={"1.8rem"}
-                                                                    /> */}
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                        {/* {item.awbNo} */}
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.updateorder"
+                                                                defaultMessage="Update Order"
+                                                            />}>
+                                                                <BorderColorIcon
+                                                                    className=" !text-base cursor-pointer text-[tomato]"
+                                                                    onClick={() => {
+                                                                        props.setEditOrder(item)
+                                                                        props.handleUpdateOrder(true)
+                                                                        handleSetParticularOrderData(item)
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
                                                         </div>
-                                                    </div>}
+                                                    </div>
+                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.rating"
+                                                                defaultMessage="Rating"
+                                                            />}>
+                                                                <StarBorderIcon
+
+                                                                    className="!text-base cursor-pointer" />
+                                                            </Tooltip>
+
+                                                        </div>
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.feedback"
+                                                                defaultMessage="Feedback"
+                                                            />}>
+                                                                <FeedbackIcon
+                                                                    className="!text-base cursor-pointer"
+                                                                />
+                                                            </Tooltip>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                        <div>
+                                                            <Tooltip title={<FormattedMessage
+                                                                id="app.delete"
+                                                                defaultMessage="Detele"
+                                                            />}>
+                                                                <DeleteIcon
+                                                                    className="!text-base cursor-pointer text-[red]"
+                                                                    onClick={() => { props.removeOrderAcc(item.orderId) }}
+                                                                />
+                                                            </Tooltip>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
 
+                                            </div>
 
-                                            )
-                                        })}
-                                    </> : !props.distributorOrder.length && !props.fetchingDistributorByDistributorId ? <NodataFoundPage /> : null}
-                            </InfiniteScroll>
-                        </div>
-                    </div>
-                </div>}
+                                            {checkAwb && (item.orderId === particularRowData.orderId) &&
+                                                <div class="h-[35vh]">
+                                                    {/* sub order part */}
+                                                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-3 z-10">
+                                                        <div className=" md:w-[12rem]">
+                                                            <FormattedMessage
+                                                                id="app.orderno"
+                                                                defaultMessage="Order No"
+                                                            />
+                                                        </div>
+                                                        <div className=" md:w-[9rem]">
+                                                            <FormattedMessage
+                                                                id="app.created"
+                                                                defaultMessage="Created"
+                                                            />
+                                                        </div>
+
+                                                        <div className="md:w-[9rem]">
+                                                            <FormattedMessage
+                                                                id="app.AWB"
+                                                                defaultMessage="AWB"
+                                                            />
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="overflow-x-auto h-[30vh]">
+                                                        {/* sub order card view */}
+                                                        {item.orderPhoneAWBs.length &&
+                                                            item.orderPhoneAWBs.map((item2) => {
+                                                                return (
+                                                                    <>
+
+                                                                        <div className="flex rounded-xl  mt-2 bg-slate-200 h-12 items-center p-3 font-bold" >
+                                                                            <div class="flex w-3/4">
+                                                                                <div className="ml-5 font-medium flex-col md:w-[12em] max-sm:flex-row w-full max-sm:justify-between">
+                                                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                                                        <Badge
+                                                                                            class=" ml-2"
+                                                                                            size="small"
+                                                                                            count={item.totalPhone || 0}
+                                                                                            overflowCount={999}
+                                                                                        >
+                                                                                            <span
+                                                                                                class="underline cursor-pointer text-[#1890ff]"
+                                                                                            >{item2.orderNo}</span>
+                                                                                        </Badge>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                                        {/* <MultiAvatar2
+                                                                       primaryTitle={item.userName}
+                                                                       imageURL={item.imageURL}
+                                                                       imgWidth={"1.8rem"}
+                                                                       imgHeight={"1.8rem"}
+                                                                   /> */}
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                                        {awbUpdate && (item2.orderPhoneAwbId === subRow.orderPhoneAwbId) ?
+                                                                                            <>
+                                                                                                <div class=" flex justify-around">
+                                                                                                    <Input
+                                                                                                        value={awbNo}
+                                                                                                        type='text'
+                                                                                                        onChange={(e) => handleAwbUpdate(e.target.value)} />
+                                                                                                    <div class=" flex justify-evenly">
+                                                                                                        <Button
+                                                                                                            type='primary'
+                                                                                                            loading={props.updatingSuborderAwb}
+                                                                                                            onClick={() => {
+                                                                                                                props.updateSubOrderAwb({
+                                                                                                                    awbNo: awbNo,
+                                                                                                                    userId: props.userId,
+                                                                                                                    orderPhoneId: item.orderId
+                                                                                                                }, item2.orderPhoneAwbId, props.distributorId)
+                                                                                                            }}>Save</Button>
+                                                                                                        <Button onClick={handleAwbNoField}>Cancel</Button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </>
+                                                                                            : item2.awbNo}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                                                        <BorderColorIcon
+                                                                                            onClick={() => {
+                                                                                                handleAwbNoField();
+                                                                                                handleSubOrderData(item2)
+                                                                                            }}
+                                                                                            className=" !text-base cursor-pointer text-[tomato]"
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            })}
+                                                    </div>
+                                                </div>}
+                                        </div>
+
+
+                                    )
+                                })}
+                            </> : !props.distributorOrder.length && !props.fetchingDistributorByDistributorId ? <NodataFoundPage /> : null}
+                    </InfiniteScroll>
+                    {/* </div> */}
+                </div>
+            </div >
             <Suspense fallback={<BundleLoader />}>
                 <AddLocationInOrder
                     particularRowData={particularRowData}
@@ -601,6 +668,8 @@ const mapStateToProps = ({ distributor, auth, inventory }) => ({
     addPaidButtonModal: distributor.addPaidButtonModal,
     orgId: auth.userDetails.organizationId,
     locationlist: distributor.locationlist,
+    userId: auth.userDetails.userId,
+    updatingSuborderAwb: distributor.updatingSuborderAwb,
     addingLocationInOrder: distributor.addingLocationInOrder,
     fetchingDistributorByDistributorId: distributor.fetchingDistributorByDistributorId,
 });
@@ -618,7 +687,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
-    addLocationInOrder
+    addLocationInOrder,
+    updateSubOrderAwb
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);
