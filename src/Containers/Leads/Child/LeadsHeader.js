@@ -21,7 +21,7 @@ class LeadsHeader extends Component {
             viewType={viewType}
             handleChange={handleChange}
             setLeadsViewType={setLeadsViewType}
-              currentData={currentData}
+              // currentData={currentData}
               handleClear={handleClear}
               handleFilterChange={this.props.handleFilterChange}
               filter={this.props.filter}

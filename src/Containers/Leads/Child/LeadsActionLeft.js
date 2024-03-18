@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
@@ -16,6 +16,19 @@ const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
   const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -55,6 +68,7 @@ const LeadsActionLeft = (props) => {
     />
   );
   const { user } = props;
+  console.log(currentData)
 
   return (
     <div class=" flex  items-center">
@@ -155,7 +169,7 @@ const LeadsActionLeft = (props) => {
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChange}
-        // value={currentData}
+        value={currentData}
         />
         {/* <Input
             placeholder="Search by Name or Sector"
