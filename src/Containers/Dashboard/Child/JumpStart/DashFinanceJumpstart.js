@@ -5,15 +5,15 @@ import { bindActionCreators } from "redux";
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 
-function DashboardProspectJumpstart(props) {
+function DashboardFinanceJumpstart(props) {
 
   const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
 
-//   useEffect(() => {
-//     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
-//   }, [props.timeRangeType])
+  useEffect(() => {
+    props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
+  }, [props.timeRangeType])
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -23,8 +23,8 @@ function DashboardProspectJumpstart(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={<FormattedMessage
-                id="app.prospects"
-                defaultMessage="Prospects"
+                id="app.financeadded"
+                defaultMessage="Receivable Added"
               />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
@@ -32,26 +32,26 @@ function DashboardProspectJumpstart(props) {
             // isLoading={props.user.fetchingJumpstartInvestor}
             />
 
-            <JumpStartBox
-            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+            {/* <JumpStartBox
+ bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title={<FormattedMessage
-                id="app.opertunitiesThisYear"
-                defaultMessage="Quotations this Year"
+                id="app.financeopen"
+                defaultMessage="Receivable Open"
               />}
             // jumpstartClick={()=>handlePitchAddedDrawer(true)}
             // cursorData={"pointer"}
             // value={props.financeDetail.createdinvestorLeadsList}
             // isLoading={props.fetchingJumpstartInvestor2}
-            />
+            /> */}
           </div>
           <div class="flex w-wk">
             <JumpStartBox
-   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+                          bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.financeclosed"
-                defaultMessage="Quotations Life Time"
+                defaultMessage="Receivable Closed"
               />}
             // jumpstartClick={()=>handleDealAddedDrawer(true)}
             // cursorData={"pointer"}
@@ -59,11 +59,11 @@ function DashboardProspectJumpstart(props) {
             // isLoading={props.fetchingJumpstartInvestor3}
             />
             <JumpStartBox
-                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+ bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={<FormattedMessage
                 id="app.financecancelled"
-                defaultMessage="Open Quotations"
+                defaultMessage="Receivable Cancelled"
               />}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
@@ -116,4 +116,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardProspectJumpstart);
+)(DashboardFinanceJumpstart);

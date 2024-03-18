@@ -18,7 +18,7 @@ function Piechart1(props) {
 
 
   useEffect(() => {
-    setStudentsubject(["Math", "Science", "English"]);
+    setStudentsubject(["Hot", "Warm", "Cold"]);
     setStudentMarks([80, 90, 75]);
   }, []);
 

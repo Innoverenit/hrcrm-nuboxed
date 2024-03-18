@@ -48,7 +48,7 @@ class TaskDashboardTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper1>
+        <TabsWrapper1 style={{height:"14.5rem"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

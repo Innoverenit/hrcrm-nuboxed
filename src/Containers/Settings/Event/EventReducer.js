@@ -8,6 +8,10 @@ const initialState = {
     fetchingEventsError: false,
     events: [],
 
+    fetchingEventCount: false,
+    fetchingEventCountError: false,
+    eventCount:{},
+
     addingEvents: false,
     addingEventsError: false,
 
@@ -107,6 +111,19 @@ export const eventsReducer = (state = initialState, action) => {
               events: [], 
               // deletedTruck: [] 
             };
+
+
+            case types.GET_EVENT_COUNT_REQUEST:
+              return { ...state, fetchingEventCount: true };
+            case types.GET_EVENT_COUNT_SUCCESS:
+              return { ...state, fetchingEventCount: false, 
+                eventCount: action.payload };
+            case types.GET_EVENT_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingEventCount: false,
+                fetchingEventCountError: true,
+              };
 
         default:
             return state;

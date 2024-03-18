@@ -70,7 +70,7 @@ const DashboardActionLeft = (props) => {
          {viewType === "ALL" && showShareForm && <DashboardShareForm />}
            
     
-         <div className="flex w-[10rem] ml-2">
+         <div className="flex w-[10rem] ml-4">
           {viewType === "ALL" && showShareForm  ? (
             // Render all icons except "My Details"
             <>
@@ -441,7 +441,7 @@ const DashboardActionLeft = (props) => {
         </div>
    
       <>
-      <div class="ml-[9rem] max-sm:hidden" >
+      <div class="ml-[4rem] max-sm:hidden" >
     <TimeInterval
     style={{fontSize:"0.67"}}
           times={dateRangeList}

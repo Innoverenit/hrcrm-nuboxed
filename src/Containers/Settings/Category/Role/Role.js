@@ -7,6 +7,7 @@ import { TextInput, } from "../../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {
   getRoles,
+  getRoleCount,
   addRoles,
   updateRoles,
   searchRoleName,removeRole,ClearReducerDataOfRole
@@ -180,6 +181,7 @@ class Department extends Component {
   componentDidMount() {
     this.props.getRoles(this.props.organizationId);
     this.props.getDepartments();
+    this.props.getRoleCount(this.props.orgId)
     // const { getRoles ,getDepartments} = this.props;
     // getDepartments(getDepartments);
     // console.log();
@@ -343,12 +345,14 @@ const mapStateToProps = ({ role, auth, departments }) => ({
   updatingRolesError: role.updatingRolesError,
   fetchingRoles: role.fetchingRoles,
   fetchingRolesError: role.fetchingRolesError,
+  orgId: auth.userDetails.organizationId,
   organizationId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getRoles,
+      getRoleCount,
       addRoles,
       updateRoles,
       getDepartments,

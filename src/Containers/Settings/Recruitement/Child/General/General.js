@@ -46,28 +46,21 @@ function General(props) {
           orgId: props.organizationId,
           jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
           birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
-          productionInd: props.requirementDuration.productionInd,
-          repairInd: props.requirementDuration.repairInd,
           trnsfrEvthngToErpInd:props.requirementDuration.trnsfrEvthngToErpInd,
           trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
           partNoInd:props.requirementDuration.partNoInd,
-          makeToInd: props.requirementDuration.makeToInd,
-          independentInd: props.requirementDuration.independentInd,
+          typeInd: props.requirementDuration.typeInd,
+          processInd: props.requirementDuration.processInd,
+          fifoInd: props.requirementDuration.fifoInd,
 
         }}
         onSubmit={(values) => {
           console.log(values)
-          // if (values.timePeriod === "0") {
-          //   values.timePeriod = "Not Applicable";
-          // }
-          // if (values.orderTimePeriod === "0") {
-          //   values.orderTimePeriod = "Not Applicable";
-          // }
+        
           props.updateRequirement(
             {
               ...values,
-              // jobAniEmailInd:  anniversary ? true : false,
-              // birthdayEmailInd:  birthday ? true : false,
+              
               timePeriod: values.timePeriod === "Not Applicable" ? "0" : values.timePeriod,
               oppTimePeriod: values.oppTimePeriod === "Not Applicable" ? "0" : values.oppTimePeriod,
             },
@@ -76,7 +69,7 @@ function General(props) {
         }}
       >
         {({ values }) => (
-          <MainWrapper style={{ height: "565px", width: "", overflow: "auto" }}>
+          <MainWrapper style={{  width: "",  }}>
             <div class=" flex flex-row ">
               <Form className="form-background">
 
@@ -89,7 +82,8 @@ function General(props) {
                     <div class=" flex justify-between w-[74%] "
 
                     >
-                      <p style={{ minWidth: "-webkit-fill-available" }}>Drop Open Orders (in months)</p>
+                     <div class=" text-sm  ml-2 ">Drop Open Orders (in months)</div>
+  
                       <div>
                         <Field
                           style={{ width: "10rem" }}
@@ -106,7 +100,8 @@ function General(props) {
                     <div class=" flex justify-between w-[74%] mt-4"
 
                     >
-                      <p style={{ minWidth: "-webkit-fill-available" }}>Drop Open Opportunities (in months)</p>
+                        <div class=" text-sm  ml-2 ">Drop Open Opportunities (in months)</div>
+      
                       <div>
                         <Field
                           name="oppTimePeriod"
@@ -121,29 +116,26 @@ function General(props) {
                     <div class=" flex justify-between w-[74%] mt-4"
 
                     >
-                      <p style={{ minWidth: "-webkit-fill-available" }}> Send Job Anniversary Email</p>
+                       <div class=" text-sm  ml-2 ">Send Job Anniversary Email</div>
                       <div>
-                        {/* <Popconfirm
-      title="Do you wish to change the status?"
-      onConfirm={() => handleAnniversay(!anniversary)}
-      okText="Yes"
-      cancelText="No"
-    > */}
+  
+    <div>
                         <Field
                           name="jobAniEmailInd"
                           component={SwitchComponent}
                           data={values.jobAniEmailInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
-                          width={"5em"}
+                          width={"7em"}
                         />
-                        {/* </Popconfirm> */}
+                        </div>
+                    
                       </div>
                     </div>
                     <div class=" flex justify-between w-[74%] mt-4"
 
                     >
-                      <p style={{ minWidth: "-webkit-fill-available" }}> Send BirthDay Email</p>
+                       <div class=" text-sm  ml-2 ">Send BirthDay Email</div>
                       <div>
 
                         <Field
@@ -152,101 +144,125 @@ function General(props) {
                           data={values.birthdayEmailInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
-                          width={"5em"}
+                          width={"7em"}
                         />
 
 
                       </div>
                     </div>
-                    <div class=" font-bold text-base mt-4"> Process </div>
+                  
                     <div class=" flex flex-col justify-between w-[74%] mt-4"
 
                     >
 
                       <div class=" flex flex-row mt-2">
-                        <p style={{ minWidth: "-webkit-fill-available" }}> Production</p>
-                        <Field
-                          name="productionInd"
-                          component={SwitchComponent}
-                          data={values.productionInd}
-                          checkedChildren={"Yes"}
-                          unCheckedChildren={"No"}
-                          width={"5em"}
-                        />
+                      <div class=" text-sm  ml-2 font-bold">Production</div>
+                       
                       </div>
 
-                      {values.productionInd &&
+                      {props.user.productionInd === true &&
                         <>
-                          <div class=" flex flex-row mt-2 ml-4">
-                            <p style={{ minWidth: "-webkit-fill-available",fontWeight:"700" }}> Make To Order</p>
+                            <div class=" flex flex-row justify-between mt-2 ml-4">
+                            <div class=" text-sm  ml-2 ">Process</div>
+                            <div>
                             <Field
-                              name="makeToInd"
+                              name="processInd"
                               component={SwitchComponent}
-                              data={values.makeToInd}
-                              checkedChildren={"Yes"}
-                              unCheckedChildren={"No"}
-                              width={"5em"}
+                              data={values.processInd}
+                              checkedChildren={"Discrete"}
+                              unCheckedChildren={"Continuous"}
+                              width={"7em"}
                             />
+                            </div>
                           </div>
-                          <div class=" flex flex-row mt-2 ml-4">
-                            <p style={{ minWidth: "-webkit-fill-available",fontWeight:"700" }}> Make to Stock</p>
+                          <div class=" flex flex-row justify-between mt-2 ml-4">
+                          <div class=" text-sm  ml-2 ">Make To</div>
+                          <div>
                             <Field
-                              name="independentInd"
+                              name="typeInd"
                               component={SwitchComponent}
-                              data={values.independentInd}
-                              checkedChildren={"Yes"}
-                              unCheckedChildren={"No"}
-                              width={"5em"}
+                              data={values.typeInd}
+                              checkedChildren={"Order"}
+                              unCheckedChildren={"Stock"}
+                              width={"7em"}
                             />
+                              </div>
                           </div>
+                      
                         </>
-                      }
+                      } 
 
-                      <div class=" flex flex-row mt-3">
-                        <p style={{ minWidth: "-webkit-fill-available" }}>Repair</p>
-                        <Field
-                          name="repairInd"
-                          component={SwitchComponent}
-                          data={values.repairInd}
-                          checkedChildren={"Yes"}
-                          unCheckedChildren={"No"}
-                          width={"5em"}
-                        />
+<div class=" flex flex-row mt-2">
+                      <div class=" text-sm  ml-2 font-bold">Inventory</div>
+                       
                       </div>
 
-                      <div class=" flex flex-row mt-2">
-                        <p style={{ minWidth: "-webkit-fill-available" }}>Generate Part Number</p>
+                      {props.user.orderManagementInd === true &&
+                        <>
+                            <div class=" flex flex-row justify-between mt-2 ml-4">
+                            <div class=" text-sm  ml-2 ">Consumption</div>
+                            <div>
+                            <Field
+                              name="fifoInd"
+                              component={SwitchComponent}
+                              data={values.fifoInd}
+                              checkedChildren={"LIFO"}
+                              unCheckedChildren={"FIFO"}
+                              width={"7em"}
+                            />
+                            </div>
+                          </div>
+                       
+                      
+                        </>
+                      } 
+
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 font-bold ">Repair</div>
+                      </div>
+
+                      <div class=" flex flex-row justify-between mt-2">
+                      <div class=" text-sm  ml-2 ">Generate Part Number</div>
+                      <div>
                         <Field
                           name="partNoInd"
                           component={SwitchComponent}
                           data={values.partNoInd}
                           checkedChildren={"Manual"}
                           unCheckedChildren={"Automatic"}
-                          width={"6em"}
+                          width={"7em"}
                         />
+                        </div>
                       </div>
-
-                      <div class=" flex flex-row mt-3">
-                        <p style={{ minWidth: "-webkit-fill-available" }}>Transfer to erp module link to quotation win</p>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 font-bold ">CRM</div>
+                      </div>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 ">Transfer Prospect to ERP On Quotation win 
+</div>
+                      <div>
                         <Field
                           name="trnsfrToErpQtionWinInd"
                           component={SwitchComponent}
                           data={values.trnsfrToErpQtionWinInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
-                          width={"5em"}
+                          width={"7em"}
                         />
+                        </div>
                       </div>
-                      <div class=" flex flex-row mt-3">
-                        <p style={{ minWidth: "-webkit-fill-available" }}>Transfer Everything to Erp</p>
+                      <div class=" flex flex-row justify-between mt-3">
+                      <div class=" text-sm  ml-2 ">Transfer All Prospect Info to Erp</div>
+                      <div>
                         <Field
                           name="trnsfrEvthngToErpInd"
                           component={SwitchComponent}
                           data={values.trnsfrEvthngToErpInd}
                           checkedChildren={"Yes"}
                           unCheckedChildren={"No"}
-                          width={"5em"}
+                          width={"7em"}
                         />
+                        </div>
                       </div>
                     </div>
 
@@ -281,8 +297,9 @@ function General(props) {
   );
 }
 
-const mapStateToProps = ({ settings, opportunity, auth }) => ({
+const mapStateToProps = ({ settings, auth }) => ({
   userId: auth.userDetails.userId,
+  user: auth.userDetails,
   requirementDuration: settings.requirementDuration,
   orgId: auth.userDetails.organizationId,
   updateRequirement: settings.updateRequirement,

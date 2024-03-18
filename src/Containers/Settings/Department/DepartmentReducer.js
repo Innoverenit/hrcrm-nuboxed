@@ -29,6 +29,10 @@ const initialState = {
     updatingDepartments: false,
     updatingDepartmentsError: false,
 
+    fetchingDepartmentCount: false,
+    fetchingDepartmentCountError: false,
+    departmentCount:{},
+
     addingCrmToggle: false,
     addingCrmToggleError: false,
 
@@ -330,6 +334,18 @@ export const departmentsReducer = (state = initialState, action) => {
             addingModules: false,
             addingModulesError: true,
           };
+
+          case types.GET_DEPARTMENT_COUNT_REQUEST:
+            return { ...state, fetchingDepartmentCount: true };
+          case types.GET_DEPARTMENT_COUNT_SUCCESS:
+            return { ...state, fetchingDepartmentCount: false, 
+              departmentCount: action.payload };
+          case types.GET_DEPARTMENT_COUNT_FAILURE:
+            return {
+              ...state,
+              fetchingDepartmentCount: false,
+              fetchingDepartmentCountError: true,
+            };
     
 
         default:

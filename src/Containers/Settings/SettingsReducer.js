@@ -181,6 +181,10 @@ const initialState = {
   fetchingProcessStagesForOnboardingError: false,
   onboardingProcessStages: [],
 
+  fetchingSalary: false,
+  fetchingSalaryError: false,
+  salary:[],
+
   updateProcessNameForDeals: false,
   updateProcessNameForDealsError: false,
 
@@ -262,6 +266,9 @@ const initialState = {
   fetchingProcessStagesForRecruit: false,
   fetchingProcessStagesForRecruitError: false,
   recruitProcessStages: [],
+
+  addingSalary: false,
+  addingSalaryError: false,
 
   updateProcessNameForRecruit: false,
   updateProcessNameForRecruitError: false,
@@ -3912,6 +3919,40 @@ export const settingsReducer = (state = initialState, action) => {
 
                                                 case types.HANDLE_SALARY_MODAL:
                                                   return { ...state, addSalaryModal: action.payload };
+
+
+                                                  case types.GET_SALARY_REQUEST:
+                                                    return { ...state, fetchingSalary: true };
+                                                  case types.GET_SALARY_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      fetchingSalary: false,
+                                                      salary: action.payload,
+                                                    };
+                                                  case types.GET_SALARY_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      fetchingSalary: false,
+                                                      fetchingSalaryError: true,
+                                                    };
+
+                                                    case types.ADD_SALARY_REQUEST:
+                                                      return { ...state, addingSalary: true };
+                                                    case types.ADD_SALARY_SUCCESS:
+                                                      // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                                      return {
+                                                        ...state,
+                                                        addingSalary: false,
+                                                        // Process: state.Process.map((state) =>
+                                                        //   state.processId === action.payload.processId ? action.payload : state
+                                                        // ),
+                                                      };
+                                                    case types.ADD_SALARY_FAILURE:
+                                                      return {
+                                                        ...state,
+                                                        addingSalary: false,
+                                                        addingSalaryError: true,
+                                                      };
                     
 
 

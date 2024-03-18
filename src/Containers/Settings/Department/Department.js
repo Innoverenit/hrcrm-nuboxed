@@ -8,6 +8,7 @@ import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput,  } from "../../../Components/UI/Elements";
 import {
   getDepartments,
+  getDepartmentCount,
   addDepartments,
   searchDepartmentName,
   removeDepartments,
@@ -131,9 +132,10 @@ class Department extends Component {
   // };
 
   componentDidMount() {
-    const { getDepartments, getSectors } = this.props;
+    const { getDepartments, getDepartmentCount,getSectors } = this.props;
     console.log();
     getDepartments(getDepartments);
+    getDepartmentCount(this.props.orgId)
     // getSectors();
   }
   render() {
@@ -276,11 +278,11 @@ class Department extends Component {
   }
 }
 
-const mapStateToProps = ({ departments, sector }) => ({
+const mapStateToProps = ({ departments, sector,auth }) => ({
   addingDepartments: departments.addingDepartments,
   addingDepartmentsError: departments.addingDepartmentsError,
   departments: departments.departments,
-
+  orgId: auth.userDetails.organizationId,
   // removingDepartments: departments.removingDepartments,
   // removingDepartmentsError: departments.removingDepartmentsError,
   updatinDepartments: departments.updatingDepartments,
@@ -293,6 +295,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDepartments,
+      getDepartmentCount,
       addDepartments,
        removeDepartments,
       updateDepartments,

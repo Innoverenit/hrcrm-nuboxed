@@ -345,4 +345,57 @@ export const searchRoleTalentName = (name) => (dispatch) => {
     });
 };
 
+export const getRoleCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ROLE_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/roleType/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ROLE_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ROLE_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getExternalRoleCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EXTERNAL_ROLE_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/roleTypeExternal/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EXTERNAL_ROLE_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EXTERNAL_ROLE_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 

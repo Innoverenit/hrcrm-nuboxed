@@ -8,6 +8,10 @@ const initialState = {
     fetchingDesignationsError: false,
     designations: [],
 
+    fetchingDesignationCount: false,
+    fetchingDesignationCountError: false,
+    designationCount:{},
+
     addingDesignations: false,
     addingDesignationsError: false,
 
@@ -103,6 +107,19 @@ export const designationsReducer = (state = initialState, action) => {
               designations: [], 
               // deletedTruck: [] 
             };
+
+
+            case types.GET_DESIGNATION_COUNT_REQUEST:
+              return { ...state, fetchingDesignationCount: true };
+            case types.GET_DESIGNATION_COUNT_SUCCESS:
+              return { ...state, fetchingDesignationCount: false, 
+                designationCount: action.payload };
+            case types.GET_DESIGNATION_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingDesignationCount: false,
+                fetchingDesignationCountError: true,
+              };
 
         default:
             return state;
