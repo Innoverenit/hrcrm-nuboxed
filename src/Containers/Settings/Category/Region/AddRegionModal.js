@@ -28,6 +28,16 @@ class AddRegionDrawerModal extends Component {
         
       <RegionForm
        currentregionId={this.props.currentregionId}
+       selectedYear={this.props.selectedYear}
+       setSelectedYear={this.props.setSelectedYear}
+       sales={this.props.sales}
+       setSales={this.props.setSales}
+       fulfillment={this.props.fulfillment}
+       setFulfillment={this.props.setFulfillment}
+       years={this.props.years}
+       investment={this.props.investment}
+       yearSelectRef={this.props.yearSelectRef}
+       setInvestment={this.props.setInvestment}
       />
           
         </Suspense>
