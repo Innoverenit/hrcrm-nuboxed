@@ -387,16 +387,16 @@ function OpportunityAllCardList(props) {
       return (    
   <>
 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
- <div className="flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[13.8rem]">Name</div>
-        <div className=" md:w-[9.1rem]">Prospect</div>
-        <div className=" md:w-[8.2rem] ">Sponsor</div>
-        <div className="md:w-[8.8rem]">Start Date</div>
-        <div className="md:w-[11.3rem]">Proposal Amount</div>
-        <div className="md:w-[5.2rem]">Stages</div> 
-        <div className="md:w-[8.1rem]">Sales Rep</div>
-        <div className="md:w-[2.2rem]">Owner</div>
-        <div className="md:w-[4.8rem]"></div>
+ <div className="flex  w-[99%] max-xl:w-[87%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
+        <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
+        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
+        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
+        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Proposal Amount</div>
+        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
+        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
+        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
+        <div className="w-[4.8rem] "></div>
         <div className="w-12"></div>
       </div>
 
@@ -423,7 +423,7 @@ function OpportunityAllCardList(props) {
                     className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-2"
                   >
                     <div class="flex ">
-                    <div className=" flex font-medium  md:w-[13rem] max-sm:flex-row w-full ">
+                    <div className=" flex font-medium  w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row  ">
                               <div>
 
           <MultiAvatar
@@ -443,7 +443,7 @@ function OpportunityAllCardList(props) {
         
                                           <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
                                               
-                                          <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="overflow-ellipsis whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>&nbsp;&nbsp;
      
@@ -453,19 +453,19 @@ function OpportunityAllCardList(props) {
                             
                               </div>
 
-                              <div className=" flex font-medium flex-col  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col  w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-sm text-cardBody font-poppins">   
+                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                   
                                   {item.customer}
                   
                                   </div>
                               </div>
                              
-                              <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                  <div class=" text-sm text-cardBody font-poppins">
+                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  
                                   {item.contactName === null ? "None" :
             <MultiAvatar2
@@ -481,28 +481,28 @@ function OpportunityAllCardList(props) {
                               </div>
                               </div>
                               <div class="flex">
-                              <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:flex-row  max-sm:justify-between ">
 
 
-                                  <div class=" text-sm justify-center text-cardBody font-poppins">
+                                  <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   {moment(item.startDate).format("ll")}
                                   </div>
                               </div>
                            
-                              <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center">
+                                  <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-36 max-xl:w-[5.1rem] max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-sm text-cardBody font-poppins text-center">
+                                  <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <Dropdown
 overlay={
 <div>
@@ -535,10 +535,10 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-sm text-cardBody font-poppins">
+                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   
                                   <span>
                                   <MultiAvatar2
@@ -550,7 +550,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                              <div className=" flex font-medium flex-col w-20 max-lg:w-[2rem] max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -576,7 +576,7 @@ strokeColor={"#005075"}
           />
                   </div>
                
-                 <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                 <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                  <div>
                  <span
        
@@ -603,7 +603,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       </div>
           </div>
         
-                 <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                 <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                   <div>
                   <Tooltip title='Click to Open'><span
        onClick={() => {
@@ -625,7 +625,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   </div>
                 
                 </div>
-                <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                  
                     <div>
                        <Tooltip
