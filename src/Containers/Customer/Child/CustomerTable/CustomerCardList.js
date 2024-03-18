@@ -496,48 +496,48 @@ function CustomerCardList(props) {
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[18.7rem]">
+            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
               <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
               />
             </div>
-            <div className=" md:w-[4.5rem]">
+            <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
               />
 
             </div>
-            <div className=" md:w-[6.1rem]">
+            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
               <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
               />
 
             </div>
-            <div className=" md:w-[6.12rem]">
+            <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
               <FormattedMessage
                 id="app.source"
                 defaultMessage="Source"
               />
 
             </div>
-            <div className=" md:w-[5.8rem] ">
+            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
               <FormattedMessage
                 id="app.country"
                 defaultMessage="Country"
               />
 
             </div>
-            <div className="md:w-[6.9rem]">
+            <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
               <FormattedMessage
                 id="app.opportunity"
                 defaultMessage="Opportunity"
               />
 
             </div>
-            <div className="md:w-[3.8rem]">
+            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[1.8rem]">
               <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
@@ -551,14 +551,14 @@ function CustomerCardList(props) {
                       />
           
           </div> */}
-            <div className="md:w-[5.2rem]">
+            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
               <FormattedMessage
                 id="app.assignedTo"
                 defaultMessage="Assigned to"
               />
 
             </div>
-            <div className="md:w-[10.8rem]">
+            <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
@@ -600,7 +600,7 @@ function CustomerCardList(props) {
                   // }}
                   >
                     <div class="flex">
-                      <div className=" flex font-medium flex-col w-[18rem]   max-sm:w-full">
+                      <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-full">
                         <div className="flex max-sm:w-full">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -620,7 +620,7 @@ function CustomerCardList(props) {
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
@@ -651,36 +651,36 @@ function CustomerCardList(props) {
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center  md:w-[5.24rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.phoneNumber}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium  items-center  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
 
                       </div>
 
-                      <div className=" flex font-medium  items-center  md:w-[6.215rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center  w-[7.215rem] max-xl:w-[4rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.source}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium flex-col justify-center md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex font-medium flex-col justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                        <div class=" text-sm text-cardBody font-poppins">
+                        <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           &nbsp;
                           {countryCode}
@@ -691,7 +691,7 @@ function CustomerCardList(props) {
                     <div className=" flex font-medium flex-col md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                       {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.oppNo}
 
                       </div>
@@ -699,7 +699,7 @@ function CustomerCardList(props) {
                     <div className=" flex font-medium flex-col md:w-[5.82rem] max-sm:flex-row w-full max-sm:justify-between ">
                       {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.totalProposalValue}
 
                       </div>
@@ -712,10 +712,10 @@ function CustomerCardList(props) {
 
                                     </div>
                                 </div> */}
-                    <div className=" flex font-medium items-center  flex-col md:w-[3rem] max-sm:max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                       {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins">
+                      <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         <div>
                           {item.assignedTo === null ? (
@@ -739,7 +739,7 @@ function CustomerCardList(props) {
                       </div>
                     </div>
                     <div class="flex md:items-center">
-                      <div className=" flex font-medium items-center flex-col md:w-24 max-sm:flex-row w-full max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex font-medium items-center flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -753,7 +753,7 @@ function CustomerCardList(props) {
                           </div>
                         </Tooltip>
                       </div>
-                      <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-sm:flex-row  ">
+                      <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
                         <Popconfirm
@@ -765,7 +765,7 @@ function CustomerCardList(props) {
                           {user.erpInd === true && (
                             <Button type="primary"
                               style={{ width: "8rem" }}>
-                              <div class="text-xs" >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
                                 <FormattedMessage
                                   id="app.addascustomer"
                                   defaultMessage="Add as Customer"
@@ -778,7 +778,7 @@ function CustomerCardList(props) {
                         </Popconfirm>
                       </div>
 
-                      <div class="flex flex-col w-6 ml-1 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                         <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
@@ -826,7 +826,7 @@ function CustomerCardList(props) {
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                           <Tooltip title="Contact">
                             <ContactsIcon
@@ -854,7 +854,7 @@ function CustomerCardList(props) {
 
                         </div>
                       </div>
-                      <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
@@ -883,7 +883,7 @@ function CustomerCardList(props) {
                         </div>
                       </div>
 
-                      <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                         <div >
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
