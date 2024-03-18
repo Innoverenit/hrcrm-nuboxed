@@ -15,6 +15,8 @@ import {
   MultiAvatar2,
  
 } from "../../../../Components/UI/Elements";
+import { FormattedMessage } from "react-intl";
+import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { Link } from 'react-router-dom';
 import {
   getAllCustomerlIST,
@@ -465,16 +467,74 @@ const [rowdata, setrowdata] = useState("");
  
          <div className=' flex justify-end sticky top-28 z-auto'>
          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        <div className=" flex justify-between w-[94.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[17.6rem]">Name</div>
-        <div className=" md:w-[5.1rem]">Sector</div>
-        <div className=" md:w-[5.8rem] ">Country</div>
-        <div className="md:w-[5.9rem]"># Opportunity</div>
-        <div className="md:w-[7.8rem]">Pipeline</div>
-        <div className="md:w-[6.9rem]">Weighted</div>
-        <div className="md:w-[5.2rem]">Assigned to</div>
-        <div className="md:w-[11.8rem]">Owner</div>
-        <div className="w-[3.8rem]"></div>
+        <div className=" flex justify-between w-[95.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+       
+            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
+              <FormattedMessage
+                id="app.name"
+                defaultMessage="Name"
+              />
+            </div>
+            <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+              <FormattedMessage
+                id="app.work"
+                defaultMessage="Work"
+              />
+
+            </div>
+            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+              <FormattedMessage
+                id="app.sector"
+                defaultMessage="Sector"
+              />
+
+            </div>
+            <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+              <FormattedMessage
+                id="app.source"
+                defaultMessage="Source"
+              />
+
+            </div>
+            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
+              <FormattedMessage
+                id="app.country"
+                defaultMessage="Country"
+              />
+
+            </div>
+            <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
+              <FormattedMessage
+                id="app.opportunity"
+                defaultMessage="Opportunity"
+              />
+
+            </div>
+            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[1.8rem]">
+              <FormattedMessage
+                id="app.pipeline"
+                defaultMessage="Pipeline"
+              />
+
+            </div>
+           
+            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
+              <FormattedMessage
+                id="app.assignedTo"
+                defaultMessage="Assigned to"
+              />
+
+            </div>
+            <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage
+                id="app.owner"
+                defaultMessage="Owner"
+              />
+
+            </div>
+            <div className="w-[3.8rem]"></div>
+
+         
 
       </div>
         <InfiniteScroll
@@ -488,6 +548,7 @@ const [rowdata, setrowdata] = useState("");
       { !fetchingAllCustomerList && allCustomers.length === 0 ?<NodataFoundPage />:allCustomers.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+         const countryCode = item.address[0].countryAlpha2Code
          const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -509,7 +570,7 @@ const [rowdata, setrowdata] = useState("");
                             <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 "
                                 >
                                    <div class="flex">
-                                   <div className=" flex font-medium flex-col w-[16rem]   max-sm:w-full">
+                                   <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-full">
                                    <div className="flex max-sm:w-full">
                       <div>
                         
@@ -528,7 +589,7 @@ const [rowdata, setrowdata] = useState("");
                       <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                             <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`customer/${item.customerId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>                                   
          {/* <Link
@@ -549,57 +610,67 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                                     </div> 
-                                <div className=" flex font-medium flex-col items-center  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex font-medium  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
                            
                                    
-                                    <div class=" text-xs text-cardBody font-poppins">   
-                                    {item.sector}
+                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
+                                    {item.phoneNumber}
                                     </div>
                                 
                                 </div> 
-                                <div className=" flex font-medium flex-col md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
-                                  
+                                <div className=" flex font-medium  items-center  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                    
-                                    <div class=" text-sm text-cardBody font-poppins">
-                                    <ReactCountryFlag
-                          countryCode={item.countryAlpha2Code}
-                          svg
-                          style={{
-                            width: '1em',
-                            height: '1em',
-                          }}
-                        />
-                        &nbsp;
-                       {item.address && item.address.length && item.address[0].country}
-                                    </div>
-                                </div>
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          {item.sector}
+                        </div>
+
+                      </div>
+
+                      <div className=" flex font-medium  items-center  w-[7.215rem] max-xl:w-[4rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+<div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  {item.source}
+</div>
+
+</div>
+<div className=" flex font-medium flex-col justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+
+
+{/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
+<div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  <CountryFlag1 countryCode={countryCode} />
+  &nbsp;
+  {countryCode}
+</div>
+</div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
                                    
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.oppNo}
+                                <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.oppNo}
 
-                                    </div>
+                          </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.totalProposalValue}
+                                <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.totalProposalValue}
 
-                                    </div>
+                          </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.weight}
+                                <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.weight}
 
-                                    </div>
+                          </div>
                                 </div>
-                                <div className=" flex font-medium items-center  flex-col md:w-72 max-sm:max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium items-center  flex-col w-72 max-sm:max-sm:flex-row max-xl:w-wk max-lg:w-wk max-sm:justify-between ">
                                   
 
                                     <div class=" text-xs text-cardBody font-poppins">
@@ -619,7 +690,7 @@ const [rowdata, setrowdata] = useState("");
                                     </div>
                                 </div>
                                 <div class="flex md:items-center"> 
-                                <div className=" flex font-medium items-center flex-col md:w-28 max-sm:flex-row w-full max-sm:justify-between mb-2 ">
+                                <div className=" flex font-medium items-center flex-col w-28 max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
                        
                      
 
@@ -642,12 +713,12 @@ const [rowdata, setrowdata] = useState("");
   cancelText="No"
 >
                        <Button type="primary">
-                     <div class="text-sm" >Convert as Customer</div>
+                     <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >Add as Customer</div>
                         </Button>
                         </Popconfirm>
                    </div>
                    
-                   <div class="flex flex-col w-[8%] max-sm:flex-row max-sm:w-[10%]">
+                   <div class="flex flex-col w-[8%] max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                                 <div>
                                 <Tooltip title={item.url}>
               {item.url !== "" ? (
@@ -693,7 +764,7 @@ const [rowdata, setrowdata] = useState("");
 
                     </div>
                     </div>
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                         <Tooltip title="Pulse">
        <MonitorHeartIcon
@@ -722,7 +793,7 @@ const [rowdata, setrowdata] = useState("");
                     </div>
                     </div>
               
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                     <div >
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
