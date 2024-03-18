@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, } from "antd";
+import { Tooltip, Button, Select, } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getReceivedUserList,
@@ -11,8 +11,10 @@ import {
   handleReceivedOrderIdModal,
   updateInspection,
   handleMismatchPhoneModal,
-  handleInventoryReceivedNoteOrderModal
+  handleInventoryReceivedNoteOrderModal,
+  addDeliveryDate,
 } from "../../../InventoryAction";
+import { getLocationList } from "../../../../Account/AccountAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
@@ -26,11 +28,13 @@ import ReceivedMismatchModal from "./ReceivedMismatchModal";
 
 const DeliveryDateModal = lazy(() => import("./DeliveryDateModal"));
 const OpenReceivedOrderIdModal = lazy(() => import("./OpenReceivedOrderIdModal"));
+const { Option } = Select;
 
 const ReceivedTable = (props) => {
   const [page, setPage] = useState(0);
   useEffect(() => {
     setPage(page + 1);
+    props.getLocationList(props.orgId);
     props.getReceivedUserList(props.locationDetailsId)
   }, [])
 
@@ -49,8 +53,22 @@ const ReceivedTable = (props) => {
   function handlePauseResume() {
     setpause(!pause)
   }
+  const [locationChange, setLocationChange] = useState(false);
+  const [locationValue, setLocationValue] = useState("");
 
-
+  function handleChangeLocation(id) {
+    setLocationValue(id)
+  }
+  function handlelocation() {
+    setLocationChange(!locationChange);
+  }
+  function handleCallback() {
+    setLocationChange(false)
+    setLocationValue("")
+  }
+  const productionLocation = props.inventory.filter((item) => {
+    return item.productionInd === true
+  })
   return (
     <>
       {props.fetchingReceivedUserList ? <BundleLoader /> :
@@ -58,13 +76,13 @@ const ReceivedTable = (props) => {
           <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" md:w-[11rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className=" md:w-[6rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
               <div className=" md:w-[8rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="md:w-[6rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
               <div className="md:w-[6rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
               <div className="md:w-[5rem]"></div>
               <div className="md:w-[7rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="md:w-[7rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
+              <div className="md:w-[7rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
               <div className="md:w-[7rem]"></div>
               <div className="md:w-[2rem]"></div>
               <div className="md:w-[2rem]"></div>
@@ -100,13 +118,6 @@ const ReceivedTable = (props) => {
                                 </div>
                               ) : null}
                             </div>
-                          </div>
-                        </div>
-
-                        <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                          <div class=" text-xs text-cardBody font-poppins">
-                            {item.awbNo}
                           </div>
                         </div>
 
@@ -158,6 +169,40 @@ const ReceivedTable = (props) => {
                             /> : <b>Received</b>}
                           </div>
                         </div>
+
+                        <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins">
+                            {locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
+                              <>
+                                <Select
+                                  value={locationValue}
+                                  onChange={(value) =>
+                                    handleChangeLocation(value)
+                                  }
+                                >
+                                  {productionLocation.map((a) => {
+                                    return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                  })}
+                                </Select>
+                                <div>
+                                  <Button
+                                    type='primary'
+                                    loading={props.addingLocationInOrder}
+                                    onClick={() => {
+                                      props.addDeliveryDate({
+                                        transferInd: 2,
+                                        inspectionInd: 3,
+                                        locationId: locationValue,
+                                        userId: props.userId,
+                                        orderPhoneId: item.orderPhoneId
+                                      }, handleCallback())
+                                    }}>Save</Button>
+                                  <Button onClick={handlelocation}>Cancel</Button>
+                                </div>
+                              </>
+                              : item.locationName}
+                          </div>
+                        </div>
                         <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-semibold  font-poppins">
                             {item.inspectionInd === 0 && item.inventoryReceiveInd ?
@@ -181,7 +226,7 @@ const ReceivedTable = (props) => {
                                   className="cursor-pointer text-base"
                                   onClick={() => {
                                     handleRowData(item)
-                                    props.handleDeliveryDateModal(true);
+                                    handlelocation();
                                   }}
                                 >
                                   Send To Store
@@ -259,7 +304,7 @@ const ReceivedTable = (props) => {
 }
 
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updatingInspection: inventory.updatingInspection,
   fetchingReceivedUserList: inventory.fetchingReceivedUserList,
   allReceivedUser: inventory.allReceivedUser,
@@ -269,6 +314,7 @@ const mapStateToProps = ({ inventory, auth }) => ({
   receivedOrdeIdModal: inventory.receivedOrdeIdModal,
   invenReceivedNoteOrderModal: inventory.invenReceivedNoteOrderModal,
   userId: auth.userDetails.userId,
+  inventory: inventory.inventory,
   mismatchPhoneModal: inventory.mismatchPhoneModal
 });
 
@@ -282,7 +328,9 @@ const mapDispatchToProps = (dispatch) =>
       handleDeliveryDateModal,
       handleReceivedOrderIdModal,
       handleInventoryReceivedNoteOrderModal,
-      updateInspection
+      updateInspection,
+      getLocationList,
+      addDeliveryDate
     },
     dispatch
   );

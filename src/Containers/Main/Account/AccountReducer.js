@@ -411,9 +411,15 @@ const initialState = {
   searchingItemInLocationError: true,
   searchedItem: [],
 
+  updatingSuborderAwb: false,
+  updatingSuborderAwbError: false,
+
   fetchingLocationByOrderId: false,
   fetchingLocationByOrderIdError: false,
-  locationByProduct: []
+  locationByProduct: [],
+
+  updatingSpareListItem: false,
+  updatingSpareListItemError: false,
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -1763,6 +1769,20 @@ export const distributorReducer = (state = initialState, action) => {
         addInventoryInOrder: false,
       };
 
+    case types.UPDATE_SUBORDER_AWB_REQUEST:
+      return { ...state, updatingSuborderAwb: true };
+    case types.UPDATE_SUBORDER_AWB_SUCCESS:
+      return {
+        ...state,
+        updatingSuborderAwb: false,
+      };
+    case types.UPDATE_SUBORDER_AWB_FAILURE:
+      return {
+        ...state,
+        updatingSuborderAwb: false,
+        updatingSuborderAwbError: true,
+      };
+
     case types.GET_PHONE_LIST_BY_ID_REQUEST:
       return { ...state, fetchingPhoneListById: true };
     case types.GET_PHONE_LIST_BY_ID_SUCCESS:
@@ -2285,6 +2305,27 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCTION_PAYMENT_MODAL:
       return { ...state, showPaymentListModal: action.payload };
+
+    case types.UPDATE_SPARELIST_ITEM_REQUEST:
+      return { ...state, updatingSpareListItem: true };
+    case types.UPDATE_SPARELIST_ITEM_SUCCESS:
+      return {
+        ...state,
+        updatingSpareListItem: false,
+        spareList: state.spareList.map((item) => {
+          if (item.phoneSpareId == action.payload.phoneSpareId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_SPARELIST_ITEM_FAILURE:
+      return {
+        ...state,
+        updatingSpareListItem: false,
+        updatingSpareListItemError: true,
+      };
     default:
       return state;
   }

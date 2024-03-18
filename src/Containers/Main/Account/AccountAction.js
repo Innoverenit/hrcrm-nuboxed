@@ -2033,7 +2033,30 @@ export const addLocationInOrder = (data, distributorId) => (dispatch) => {
       });
     });
 };
-
+export const updateSubOrderAwb = (data, orderPhoneAwbId, distributorId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SUBORDER_AWB_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/updateAwbNo/${orderPhoneAwbId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getDistributorOrderByDistributorId(distributorId, 0))
+      dispatch({
+        type: types.UPDATE_SUBORDER_AWB_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_SUBORDER_AWB_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getPhonelistById = (orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_ID_REQUEST,
@@ -3010,6 +3033,31 @@ export const getLocationByProductId = (productId) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_LOCATION_BY_PRODUCTID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateSpareItem = (data, phoneSpareId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SPARELIST_ITEM_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneSpare/spareUseInd/${phoneSpareId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_SPARELIST_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SPARELIST_ITEM_FAILURE,
         payload: err,
       });
     });

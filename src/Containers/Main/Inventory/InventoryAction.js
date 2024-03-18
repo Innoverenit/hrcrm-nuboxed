@@ -778,7 +778,7 @@ export const addDeliveryDate = (data, locationDetailsId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getReceivedUserList(locationDetailsId))
+      // dispatch(getReceivedUserList(locationDetailsId))
       dispatch({
         type: types.ADD_DELIVERY_DATE_SUCCESS,
         payload: res.data,
@@ -1541,7 +1541,30 @@ export const updatePartIdOfAnItem = (data, supplierSuppliesUniqueNumberId) => (d
       });
     });
 };
-
+export const updateRepairStatus = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_REPAIR_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/repair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_REPAIR_STATUS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_REPAIR_STATUS_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getGrnNoByPoId = (pOSupplierDetailsId) => (dispatch) => {
   dispatch({
     type: types.GET_GRN_NO_BY_PO_ID_REQUEST,

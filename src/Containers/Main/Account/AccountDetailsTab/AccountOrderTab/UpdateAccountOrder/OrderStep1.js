@@ -9,7 +9,7 @@ import { SelectComponent } from '../../../../../../Components/Forms/Formik/Selec
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message } from 'antd';
-import { getCurrency } from "../../../../../Auth/AuthAction";
+import { getSaleCurrency } from "../../../../../Auth/AuthAction";
 import { updateOrderStep1, getContactDistributorList } from '../../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
@@ -29,7 +29,7 @@ function OrderStep1(props) {
     })
     useEffect(() => {
         props.getContactDistributorList(props.setEdittingOrder.distributorId)
-        props.getCurrency()
+        props.getSaleCurrency()
     }, [])
     console.log(props.setEdittingOrder)
     const [priority, setPriority] = useState(props.setEdittingOrder.priority)
@@ -38,7 +38,7 @@ function OrderStep1(props) {
         console.log(type)
         setPriority(type)
     }
-    const currencyOption = props.currencies.map((item) => {
+    const currencyOption = props.saleCurrencies.map((item) => {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
@@ -53,7 +53,7 @@ function OrderStep1(props) {
                 paymentInTerms: props.setEdittingOrder.paymentInTerms || "",
                 customPayment: props.setEdittingOrder.customPayment || "",
                 comments: props.setEdittingOrder.comments || "",
-                awbNo: props.setEdittingOrder.awbNo || "",
+                totalPhoneCount: props.setEdittingOrder.totalPhoneCount || "",
                 deliverToBusinessInd: "",
                 fullLoadTruckInd: "",
                 privateInd: "",
@@ -121,173 +121,26 @@ function OrderStep1(props) {
             {({ values, handleChange }) => (
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
-                        <div>
-                            <StyledLabel><h3> <FormattedMessage
-                                id="app.pickupaddress"
-                                defaultMessage="Pickup Address"
-                            /></h3></StyledLabel>
+                        <div class=" flex justify-between">
+                            <div class=" w-[47%] flex-col flex">
+                                <div class="mt-3">
+                                    <StyledLabel><h3> <FormattedMessage
+                                        id="app.pickupaddress"
+                                        defaultMessage="Pickup Address"
+                                    /></h3></StyledLabel>
 
-                            <FieldArray
-                                name="loadingAddress"
-                                render={(arrayHelpers) => (
-                                    <AddressFieldArray1
-                                        singleAddress
-                                        arrayHelpers={arrayHelpers}
-                                        values={values}
-                                    />
-                                )}
-                            />
-                            {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div style={{ width: "47%" }}>
-                                <Field
-                                    name="availabilityDate"
-                                    label="Available Date "
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    disabledDate={(currentDate) => {
-                                        const date = new Date()
-                                        if (
-                                            moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
-                                        ) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-
-                                    }}
-                                    component={DatePicker}
-                                    value={values.availabilityDate}
-
-                                />
-                            </div>
-                            <div style={{ width: "47%" }}>
-                                <Field
-                                    name="deliveryDate"
-                                    label="Delivery Date "
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    component={DatePicker}
-                                    value={values.deliveryDate}
-                                    disabledDate={(currentDate) => {
-                                        if (values.availabilityDate) {
-                                            if (
-                                                moment(currentDate).isBefore(
-                                                    moment(values.availabilityDate)
-                                                )
-                                            ) {
-                                                return true;
-                                            } else {
-                                                return false;
-                                            }
-                                        }
-                                    }}
-                                />
-                            </div>
-                        </div> */}
-
-                            <div class="justify-between flex mt-3">
-                                <div class="w-[22%]">
-                                    <Field
-                                        name="paymentInTerms"
-                                        label="Payment Terms (in Days)"
-                                        isColumn
-                                        inlineLabel
-                                        component={SelectComponent}
-                                        options={["7", "15", "21", "30", "45", "60", "75", "90", "Custom"]}
-                                    />
-                                </div>
-                                {values.paymentInTerms === "Custom" && <div class="w-[22%]">
-                                    <Field
-                                        label={
-                                            <FormattedMessage
-                                                id="app.Custom Payment"
-                                                defaultMessage="Custom Payment"
+                                    <FieldArray
+                                        name="loadingAddress"
+                                        render={(arrayHelpers) => (
+                                            <AddressFieldArray1
+                                                singleAddress
+                                                arrayHelpers={arrayHelpers}
+                                                values={values}
                                             />
-                                        }
-                                        name="customPayment"
-                                        component={InputComponent}
-                                        inlineLabel
-                                        width={"100%"}
-                                        isColumn
-                                    />
-                                </div>}
-                                <div class="w-[22%]">
-                                    <Field
-                                        label="Air Way Bill"
-                                        name="awbNo"
-                                        component={InputComponent}
-                                        inlineLabel
-                                        width={"100%"}
-                                        isColumn
+                                        )}
                                     />
                                 </div>
-                                <div class="w-[22%]">
-                                    <Field
-                                        label="Contact Person"
-                                        name="contactPersonId"
-                                        placeholder="Value"
-                                        component={SelectComponent}
-                                        options={Array.isArray(contactOption) ? contactOption : []}
-                                        inlineLabel
-                                        width={"100%"}
-                                        isColumn
-                                    />
-                                </div>
-                            </div>
-
-                            <div class="justify-between flex mt-3">
-                                <div class="w-[22%]">
-                                    <Field
-                                        width={"100%"}
-                                        name="advancePayment"
-                                        label="Advance Payment(%)"
-                                        isColumn
-                                        inlineLabel
-                                        component={InputComponent}
-                                    />
-                                </div>
-                                <div class="w-[22%]">
-                                    <Field
-                                        name="orderCurrencyId"
-                                        label="Currency"
-                                        isColumn
-                                        inlineLabel
-                                        component={SelectComponent}
-                                        options={Array.isArray(currencyOption) ? currencyOption : []}
-                                    />
-                                </div>
-                                <div class="w-[22%]">
-                                    <Field
-                                        name="deliveryDate"
-                                        label="Delivery Date "
-                                        isColumn
-                                        inlineLabel
-                                        width={"100%"}
-                                        component={DatePicker}
-                                        value={values.deliveryDate}
-
-                                    />
-                                </div>
-
-                                <div class="w-[22%]">
-                                    <Field
-                                        name="availabilityDate"
-                                        label="Pickup Date "
-                                        isColumn
-                                        inlineLabel
-                                        width={"100%"}
-                                        component={DatePicker}
-                                        value={values.availabilityDate}
-
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div class=" mt-3 flex justify-between">
-                                <div class="w-[40%]">
+                                <div class="mt-3">
                                     <Field
                                         name="comments"
                                         label="Notes"
@@ -296,95 +149,250 @@ function OrderStep1(props) {
                                         component={TextareaComponent}
                                     />
                                 </div>
-                                <div class="w-[40%]  ml-8 mt-8">
-                                    <StyledLabel><FormattedMessage
-                                        id="app.priority"
-                                        defaultMessage="Priority"
-                                    /></StyledLabel>
-                                    <div class="justify-between flex">
-                                        <div>
-                                            <Tooltip title={<FormattedMessage
-                                                id="app.high"
-                                                defaultMessage="High"
-                                            />}>
-                                                <Button
-                                                    // type="primary"
-                                                    shape="circle"
-                                                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                    onClick={() => handleButtonClick("High")}
-                                                    style={{
-                                                        backgroundColor:
-                                                            priority === "High"
-                                                                ? "red"
-                                                                : "white",
-                                                        borderRadius: "50%",
-                                                        width: "31px",
-                                                        height: "31px"
-                                                    }}
-                                                />
-                                            </Tooltip>
-                                            &nbsp;
-                                            <Tooltip title={<FormattedMessage
-                                                id="app.medium"
-                                                defaultMessage="Medium"
-                                            />}>
-                                                <Button
-                                                    // type="primary"
-                                                    shape="circle"
-                                                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                    onClick={() => handleButtonClick("Medium")}
-                                                    style={{
-                                                        backgroundColor:
-                                                            priority === "Medium"
-                                                                ? "Orange"
-                                                                : "white",
-                                                        borderRadius: "50%",
-                                                        width: "31px",
-                                                        height: "31px"
-                                                    }}
-                                                />
-                                            </Tooltip>
-                                            &nbsp;
-                                            <Tooltip title={<FormattedMessage
-                                                id="app.low"
-                                                defaultMessage="Low"
-                                            />}>
-                                                <Button
-                                                    // type="primary"
-                                                    shape="circle"
-                                                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                    onClick={() => handleButtonClick("Low")}
-                                                    style={{
-                                                        backgroundColor:
-                                                            priority === "Low"
-                                                                ? "teal"
-                                                                : "white",
-                                                        borderRadius: "50%",
-                                                        width: "31px",
-                                                        height: "31px"
-                                                    }}
-                                                ></Button>
-                                            </Tooltip>
-                                        </div>
+
+                            </div>
+                            <div class=" w-[47%]">
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="paymentInTerms"
+                                            label="Payment Terms (in Days)"
+                                            isColumn
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={["7", "15", "21", "30", "45", "60", "75", "90", "Custom"]}
+                                        />
+                                    </div>
+                                    {values.paymentInTerms === "Custom" &&
+                                        <div class="w-[45%]">
+                                            <Field
+                                                label={
+                                                    <FormattedMessage
+                                                        id="app.Custom Payment"
+                                                        defaultMessage="Custom Payment"
+                                                    />
+                                                }
+                                                name="customPayment"
+                                                component={InputComponent}
+                                                inlineLabel
+                                                width={"100%"}
+                                                isColumn
+                                            />
+                                        </div>}
+                                </div>
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="Total Phone"
+                                            name="totalPhoneCount"
+                                            component={InputComponent}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="Contact Person"
+                                            name="contactPersonId"
+                                            placeholder="Value"
+                                            component={SelectComponent}
+                                            options={Array.isArray(contactOption) ? contactOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
                                     </div>
                                 </div>
-                                <div class="w-[20%]  mt-[65px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
-                                    <Button
-                                        className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
-                                        htmlType="Submit"
-                                        loading={props.updatingOrderStep1}
-                                    >
-                                        <FormattedMessage
-                                            id="app.save"
-                                            defaultMessage="Save"
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            width={"100%"}
+                                            name="advancePayment"
+                                            label="Advance Payment(%)"
+                                            isColumn
+                                            inlineLabel
+                                            component={InputComponent}
                                         />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="orderCurrencyId"
+                                            label="Currency"
+                                            isColumn
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(currencyOption) ? currencyOption : []}
+                                        />
+                                    </div>
+                                </div>
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="availabilityDate"
+                                            label="Pickup Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+                                            component={DatePicker}
+                                            value={values.availabilityDate}
 
-                                    </Button>
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="deliveryDate"
+                                            label="Delivery Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+                                            component={DatePicker}
+                                            value={values.deliveryDate}
 
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div class=" mt-3 flex justify-between">
+                                    <div class="w-[46%]  ml-8 mt-2">
+                                        <StyledLabel><FormattedMessage
+                                            id="app.priority"
+                                            defaultMessage="Priority"
+                                        /></StyledLabel>
+                                        <div class="justify-between flex">
+                                            <div>
+                                                <Tooltip title={<FormattedMessage
+                                                    id="app.high"
+                                                    defaultMessage="High"
+                                                />}>
+                                                    <Button
+                                                        // type="primary"
+                                                        shape="circle"
+                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        onClick={() => handleButtonClick("High")}
+                                                        style={{
+                                                            backgroundColor:
+                                                                priority === "High"
+                                                                    ? "red"
+                                                                    : "white",
+                                                            borderRadius: "50%",
+                                                            width: "31px",
+                                                            height: "31px"
+                                                        }}
+                                                    />
+                                                </Tooltip>
+                                                &nbsp;
+                                                <Tooltip title={<FormattedMessage
+                                                    id="app.medium"
+                                                    defaultMessage="Medium"
+                                                />}>
+                                                    <Button
+                                                        // type="primary"
+                                                        shape="circle"
+                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        onClick={() => handleButtonClick("Medium")}
+                                                        style={{
+                                                            backgroundColor:
+                                                                priority === "Medium"
+                                                                    ? "Orange"
+                                                                    : "white",
+                                                            borderRadius: "50%",
+                                                            width: "31px",
+                                                            height: "31px"
+                                                        }}
+                                                    />
+                                                </Tooltip>
+                                                &nbsp;
+                                                <Tooltip title={<FormattedMessage
+                                                    id="app.low"
+                                                    defaultMessage="Low"
+                                                />}>
+                                                    <Button
+                                                        // type="primary"
+                                                        shape="circle"
+                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        onClick={() => handleButtonClick("Low")}
+                                                        style={{
+                                                            backgroundColor:
+                                                                priority === "Low"
+                                                                    ? "teal"
+                                                                    : "white",
+                                                            borderRadius: "50%",
+                                                            width: "31px",
+                                                            height: "31px"
+                                                        }}
+                                                    ></Button>
+                                                </Tooltip>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
+                                        <Button
+                                            className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
+                                            htmlType="Submit"
+                                            loading={props.addingOrder}
+                                        >
+                                            <FormattedMessage
+                                                id="app.save"
+                                                defaultMessage="Save"
+                                            />
+
+                                        </Button>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <div style={{ width: "47%" }}>
+                            <Field
+                                name="availabilityDate"
+                                label="Available Date "
+                                isColumn
+                                inlineLabel
+                                width={"100%"}
+                                disabledDate={(currentDate) => {
+                                    const date = new Date()
+                                    if (
+                                        moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
+                                    ) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
 
+                                }}
+                                component={DatePicker}
+                                value={values.availabilityDate}
+
+                            />
+                        </div>
+                        <div style={{ width: "47%" }}>
+                            <Field
+                                name="deliveryDate"
+                                label="Delivery Date "
+                                isColumn
+                                inlineLabel
+                                width={"100%"}
+                                component={DatePicker}
+                                value={values.deliveryDate}
+                                disabledDate={(currentDate) => {
+                                    if (values.availabilityDate) {
+                                        if (
+                                            moment(currentDate).isBefore(
+                                                moment(values.availabilityDate)
+                                            )
+                                        ) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                }}
+                            />
+                        </div>
+                    </div> */}
                     </Form>
                 </div>
             )}
@@ -395,7 +403,7 @@ function OrderStep1(props) {
 const mapStateToProps = ({ auth, distributor }) => ({
     contactDistributor: distributor.contactDistributor,
     userId: auth.userDetails.userId,
-    currencies: auth.currencies,
+    saleCurrencies: auth.saleCurrencies,
     setEdittingOrder: distributor.setEdittingOrder,
     updatingOrderStep1: distributor.updatingOrderStep1
 });
@@ -405,7 +413,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             updateOrderStep1,
             getContactDistributorList,
-            getCurrency
+            getSaleCurrency
         },
         dispatch
     );

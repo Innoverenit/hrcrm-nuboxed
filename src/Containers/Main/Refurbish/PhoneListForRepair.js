@@ -139,6 +139,7 @@ function PhoneListForRepair(props) {
                         /></div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[5rem]"></div>
+                        <div className="md:w-[5rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
@@ -283,6 +284,23 @@ function PhoneListForRepair(props) {
                                                                 handleExpand(item.phoneId);
                                                             }}
                                                         ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
+                                                    </Badge>
+                                                </Tooltip>
+
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <Tooltip title="Make Spare Packet">
+                                                    <Badge size="small" count={`${item.totalSpare} / ${item.checkedSpare}`} overflowCount={5000}>
+                                                        <Button
+                                                            style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                            type="primary"
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+
+                                                            }}
+                                                        >Spare Packet</Button>
                                                     </Badge>
                                                 </Tooltip>
 
