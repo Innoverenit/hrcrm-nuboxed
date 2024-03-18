@@ -255,3 +255,32 @@ export const getRegions = (orgId) => (dispatch) => {
         cb();
       });
   };
+
+
+
+
+  export const getTarget = (regionId,year) => (dispatch) => {
+    dispatch({
+      type: types.GET_TARGET_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/target/${regionId}/${year}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TARGET_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_TARGET_FAILURE,
+          payload: err,
+        });
+      });
+  };

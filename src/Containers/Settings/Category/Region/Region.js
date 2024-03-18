@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import {  Input} from "antd";
@@ -24,10 +24,15 @@ const data = [
 const Region = (props) => {
     const [regions, setRegions] = useState(props.regions);
     const [editingId, setEditingId] = useState(null);
+    const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
     const [addingRegion, setAddingRegion] = useState(false);
     const [newRegionName, setNewRegionName] = useState('');
     const [currentData, setCurrentData] = useState("");
     const [currentregionId, setCurrentRegionId] = useState("");
+    const [selectedYear, setSelectedYear] = useState(null);
+  const [sales, setSales] = useState({ amount: '', currency: "" });
+  const [fulfillment, setFulfillment] = useState({ amount: '' });
+  const [investment, setInvestment] = useState({ amount: '', currency: "" });
     useEffect(() => {
         props.getRegions(props.organizationId);  
     }, [])
@@ -113,6 +118,18 @@ setEditingId(null);
           console.error("Input is empty. Please provide a value.");
         }
       };
+      const yearSelectRef = useRef(null);
+
+      const resetData = () => {
+        setSelectedYear(null);
+        setSales({ amount: null, currency: null });
+        setFulfillment({ amount: null });
+        setInvestment({ amount: null, currency: null });
+       
+        if (yearSelectRef.current) {
+          yearSelectRef.current.value = ""; // Reset the value of the select element
+        }
+      };
 console.log(regions)
 if (props.fetchingRegions) {
     return <div><BundleLoader/></div>;
@@ -167,9 +184,10 @@ if (props.fetchingRegions) {
                   {/* Edit button */}
                   <MinusCircleOutlined
                    onClick={() => {
-                   
-                    props.handleRegionDrawerModal(true);
                     handleSetCurrentRegionId(region.regionsId)
+                    props.handleRegionDrawerModal(true);
+                    resetData();
+                    
                   }}
                   />
                   {editingId === region.regionsId ? (
@@ -193,6 +211,16 @@ if (props.fetchingRegions) {
         </div>
         <AddRegionModal
         currentregionId={currentregionId}
+        selectedYear={selectedYear}
+        setSelectedYear={setSelectedYear}
+        sales={sales}
+        setSales={setSales}
+        fulfillment={fulfillment}
+        years={years}
+        setFulfillment={setFulfillment}
+        yearSelectRef={yearSelectRef}
+        investment={investment}
+        setInvestment={setInvestment}
         addRegionModal={props.addRegionModal}
         handleRegionDrawerModal={props.handleRegionDrawerModal}
 

@@ -7,6 +7,11 @@ const initialState = {
   regions: [],
 
 
+  fetchingTargetRegion:false,
+  fetchingTargetRegionError:false,
+  targetRegion:{},
+
+
   addRegionModal:false,
 
   addingRegions:false,
@@ -168,6 +173,20 @@ case types.GET_DROPDOWN_REGIONS_REQUEST:
             };
           case types.ADD_TARGET_FAILURE:
             return { ...state, addingTarget: false, addingTargetError: true };
+
+
+
+            case types.GET_TARGET_REQUEST:
+      return { ...state, fetchingTargetRegion: true };
+    case types.GET_TARGET_SUCCESS:
+      return { ...state, fetchingTargetRegion: false, 
+        targetRegion: action.payload };
+    case types.GET_REGIONS_FAILURE:
+      return {
+        ...state,
+        fetchingTargetRegion: false,
+        fetchingTargetRegionError: true,
+      };
     default:
       return state;
   }
