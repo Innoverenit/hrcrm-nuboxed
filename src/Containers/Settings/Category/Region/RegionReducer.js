@@ -70,7 +70,7 @@ export const regionsReducer = (state = initialState, action) => {
       return {
         ...state,
         addingRegions: false,
-        regiondata:action.payload,
+        // regiondata:action.payload,
         regions:[action.payload,...state.regions],
         // documents: [...state.documents, action.payload],
       };
