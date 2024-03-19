@@ -9,8 +9,15 @@ const initialState = {
   addingServiceLine:false,
   addingServiceLineError:false,
 
+
+  fetchingServiceSearchData:false,
+  fetchingServiceSearchDataError:false,
   updatingServiceLine:false,
   updatingServiceLineError:false,
+
+
+  updatingDepartmentService:false,
+  updatingDepartmentService:false,
 
 
   fetchingServiceLineCount:false,
@@ -77,6 +84,20 @@ export const serviceLineReducer = (state = initialState, action) => {
 
 
 
+
+            case types.GET_SERVICE_SEARCH_REQUEST:
+        return { ...state, fetchingServiceSearchData: true };
+      case types.GET_SERVICE_SEARCH_SUCCESS:
+        return {
+          ...state,
+          fetchingServiceSearchData: false,
+          serviceLine: action.payload,
+        };
+      case types.GET_SERVICE_SEARCH_FAILURE:
+        return { ...state, fetchingServiceSearchDataError: true };
+
+
+
             case types.REMOVE_SERVICELINE_REQUEST:
                 return { ...state, removingServiceLine: true };
               case types.REMOVE_SERVICELINE_SUCCESS:
@@ -108,6 +129,29 @@ export const serviceLineReducer = (state = initialState, action) => {
                       fetchingServiceLineCount: false,
                       fetchingServiceLineCountError: true,
                     };
+
+
+
+                    case types.UPDATE_DEPARTMENT_SERVICE_REQUEST:
+                      return { ...state, updatingDepartmentService: true };
+                    case types.UPDATE_DEPARTMENT_SERVICE_SUCCESS:
+                      // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+                      return {
+                        ...state,
+                        updatingDepartmentService: false,
+                        // serviceLine: state.serviceLine.map((document) =>
+                        //   document.serviceLineId === action.payload.serviceLineId
+                        //     ? action.payload
+                        //     : document
+                        // ),
+                      };
+                    case types.UPDATE_DEPARTMENT_SERVICE_FAILURE:
+                      return {
+                        ...state,
+                        updatingDepartmentService: false,
+                        updatingDepartmentServiceError: true,
+                      };
+          
 
  
         

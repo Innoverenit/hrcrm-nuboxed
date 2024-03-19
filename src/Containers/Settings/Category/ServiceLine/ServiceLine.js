@@ -2,28 +2,48 @@ import React, { useState,useEffect } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {  Input} from "antd";
 import {
     getServiceLine,
     addServiceLine,
      removeServiceLine,
-     updateServiceLine
+     updateServiceLine,
+     updateDepartmentService,
+     searchServiceName
     // searchDocumentsName,
     // ClearReducerDataOfDocument
   } from "./ServiceLineAction";
+  import { Switch } from 'antd';
+  import {getDepartments} from "../../../Settings/Department/DepartmentAction";
 
 const data = [
     { id: 1, region: "Europe" },
     { id: 2, region: "Africa" },
     { id: 3, region: "Antartica" }
 ];
+const demo = [
+    {
+      department: "Sales",
+      id: "1",
+      serviceInd: false
+    },
+    {
+      department: "Management",
+      id: "2",
+      serviceInd: false
+    }
+  ];
 
 const ServiceLine = (props) => {
+    const [currentData, setCurrentData] = useState("");
+    const [departments, setDepartments] = useState(props.departments);
     const [serviceLine, setServiceLine] = useState(props.serviceLine);
     const [editingId, setEditingId] = useState(null);
     const [addingRegion, setAddingRegion] = useState(false);
     const [newServiceLineName, setNewServiceLineName] = useState('');
     useEffect(() => {
-        props.getServiceLine(props.organizationId);  
+        props.getServiceLine(props.organizationId);
+        props.getDepartments()  
     }, [])
 
     const editRegion = (serviceLineId, serviceLineName) => {
@@ -67,6 +87,25 @@ setEditingId(null);
         }
         props.addServiceLine(data)
     };
+    const handleChange = (e) => {
+        setCurrentData(e.target.value.trim());
+      
+    
+        if (e.target.value.trim() === "") {
+        //   setPage(pageNo + 1);
+        props.getServiceLine(props.organizationId);
+        //   props.ClearReducerDataOfLoad()
+        }
+      };
+
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.searchServiceName(currentData);
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
 
     const handleCancelAdd = () => {
         setNewServiceLineName('');
@@ -75,6 +114,16 @@ setEditingId(null);
     const cancelEdit = () => {
         setEditingId(null);
     };
+    const handleServiceChange = (checked, index) => {
+        const updatedDepartments = [...departments];
+        console.log(updatedDepartments)
+        updatedDepartments[index].serviceLineInd = checked;
+        setDepartments(updatedDepartments);
+        if (checked) {
+            props.updateDepartmentService(updatedDepartments[index].departmentId,checked)
+          console.log("liveInd:", checked, "id:", updatedDepartments[index].departmentId);
+        }
+      }
     useEffect(() => {
         
         if (props.serviceLine.length > 0) {
@@ -82,9 +131,40 @@ setEditingId(null);
             setServiceLine(props.serviceLine);
         }
       }, [props.serviceLine]);
+      useEffect(() => {
+        
+        if (props.departments.length > 0) {
+          
+            setDepartments(props.departments);
+        }
+      }, [props.departments]);
 // console.log(regions)
     return (
         <div>
+        <div style={{display:"flex"}}>
+             {departments.map((dept, index) => (
+        <div key={index} style={{marginLeft:"15px"}}>
+          <h2>{dept.departmentName}</h2>
+          <Switch
+            checked={dept.serviceLineInd}
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            onChange={(checked) => handleServiceChange(checked, index)}
+          />
+        </div>
+      ))}
+      </div>
+      <div class=" flex flex-row justify-between">
+      <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+            <Input
+         placeholder="Search by Name"
+        style={{width:"100%",marginLeft:"0.5rem"}}
+            // suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+            // value={currentData}
+          />
+            </div>
               <div className="add-region">
                 {addingRegion ? (
                     <div>
@@ -101,6 +181,7 @@ setEditingId(null);
                     <button  style={{backgroundColor:"tomato",color:"white"}}
                     onClick={handleAddRegion}> Add ServiceLine</button>
                 )}
+            </div>
             </div>
             {serviceLine.map(region => (
               <div className="card9" key={region.serviceLineId}>
@@ -140,8 +221,9 @@ setEditingId(null);
         </div>
     );
 };
-const mapStateToProps = ({ region,auth,serviceLines  }) => ({
+const mapStateToProps = ({ region,auth,serviceLines,departments  }) => ({
     serviceLine:serviceLines.serviceLine,
+    departments: departments.departments,
     // addingDocuments: document.addingDocuments,
     // addingDocumentsError: document.addingDocumentsError,
     // regions: region.regions,
@@ -159,7 +241,10 @@ const mapStateToProps = ({ region,auth,serviceLines  }) => ({
         getServiceLine,
         addServiceLine,
         updateServiceLine,
-        removeServiceLine
+        removeServiceLine,
+        getDepartments,
+        updateDepartmentService,
+        searchServiceName
         // addRegions,
         // updateRegions,
         // addDocuments,
