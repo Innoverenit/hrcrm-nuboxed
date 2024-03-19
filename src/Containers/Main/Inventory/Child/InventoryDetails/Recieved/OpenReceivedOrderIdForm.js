@@ -29,11 +29,9 @@ const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/
 
 function OpenReceivedOrderIdForm(props) {
 
-  const [page, setPage] = useState(0);
   useEffect(() => {
-    setPage(page + 1);
     props.getPhonelistByOrderId(props.rowData.orderPhoneId)
-  }, [])
+  }, [props.rowData.orderPhoneId])
 
   const [show, setShow] = useState(false);
   const handleMismatchItem = () => {
@@ -281,13 +279,16 @@ function OpenReceivedOrderIdForm(props) {
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.inspectionInd === 1 &&
                               <>
-                                <Button
-                                  onClick={() => {
-                                    props.updateRepairStatus()
-                                  }}>
-                                  Can't Repair
-                                </Button>
-                                <MotionPhotosOffIcon />
+                                {!item.cannotRepairInd ?
+                                  <Button
+                                    onClick={() => {
+                                      props.updateRepairStatus({
+                                        cannotRepairInd: true
+                                      }, item.phoneId)
+                                    }}>
+                                    Can't Repair
+                                  </Button> :
+                                  <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />}
                               </>}
                           </div>
                         </div>

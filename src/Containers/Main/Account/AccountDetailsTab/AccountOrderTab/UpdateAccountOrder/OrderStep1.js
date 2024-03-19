@@ -108,6 +108,7 @@ function OrderStep1(props) {
                 if (values.advancePayment < 100) {
                     props.updateOrderStep1({
                         ...values,
+                        orderSource: "erp",
                         priority: priority || "",
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
                     },

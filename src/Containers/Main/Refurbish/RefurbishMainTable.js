@@ -171,15 +171,18 @@ const ProductionOrderList = (props) => {
                                         <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 {item.qcStartInd === 1 ?
-                                                    <Tooltip title="Assign For QC">
-                                                        <Button
-                                                            className="bg-[#1685e6] text-white"
-                                                            onClick={() => {
-                                                                props.handleAssignOrderById(true);
-                                                                handleRowData(item);
-                                                            }}
-                                                        >Assign For QC </Button>
-                                                    </Tooltip> : item.qcStartInd === 2 ? <b>Assigned To Technician</b>
+                                                    <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
+                                                        <Tooltip title="Assign For QC">
+                                                            <Button
+                                                                className="bg-[#1685e6] text-white"
+                                                                onClick={() => {
+                                                                    props.handleAssignOrderById(true);
+                                                                    handleRowData(item);
+                                                                }}
+                                                            >Assign For QC </Button>
+                                                        </Tooltip>
+                                                    </Badge>
+                                                    : item.qcStartInd === 2 ? <b>Assigned To Technician</b>
                                                         : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>QC on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                             </div>
                                         </div>

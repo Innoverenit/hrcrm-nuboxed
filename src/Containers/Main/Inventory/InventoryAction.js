@@ -1546,7 +1546,7 @@ export const updateRepairStatus = (data, phoneId) => (dispatch) => {
     type: types.UPDATE_REPAIR_STATUS_REQUEST,
   });
   axios
-    .put(`${base_url2}/po/repair/${phoneId}`, data, {
+    .put(`${base_url2}/phone/canNotRepair/${phoneId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

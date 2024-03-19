@@ -34,6 +34,7 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
+import SubOrderList from './SubOrderList';
 
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
@@ -503,110 +504,8 @@ const AccountOrderTable = (props) => {
                                             </div>
 
                                             {checkAwb && (item.orderId === particularRowData.orderId) &&
-                                                <div class="h-[35vh]">
-                                                    {/* sub order part */}
-                                                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-3 z-10">
-                                                        <div className=" md:w-[12rem]">
-                                                            <FormattedMessage
-                                                                id="app.orderno"
-                                                                defaultMessage="Order No"
-                                                            />
-                                                        </div>
-                                                        <div className=" md:w-[9rem]">
-                                                            <FormattedMessage
-                                                                id="app.created"
-                                                                defaultMessage="Created"
-                                                            />
-                                                        </div>
-
-                                                        <div className="md:w-[9rem]">
-                                                            <FormattedMessage
-                                                                id="app.AWB"
-                                                                defaultMessage="AWB"
-                                                            />
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="overflow-x-auto h-[30vh]">
-                                                        {/* sub order card view */}
-                                                        {item.orderPhoneAWBs.length &&
-                                                            item.orderPhoneAWBs.map((item2) => {
-                                                                return (
-                                                                    <>
-
-                                                                        <div className="flex rounded-xl  mt-2 bg-slate-200 h-12 items-center p-3 font-bold" >
-                                                                            <div class="flex w-3/4">
-                                                                                <div className="ml-5 font-medium flex-col md:w-[12em] max-sm:flex-row w-full max-sm:justify-between">
-                                                                                    <div class=" text-xs text-cardBody font-poppins">
-                                                                                        <Badge
-                                                                                            class=" ml-2"
-                                                                                            size="small"
-                                                                                            count={item.totalPhone || 0}
-                                                                                            overflowCount={999}
-                                                                                        >
-                                                                                            <span
-                                                                                                class="underline cursor-pointer text-[#1890ff]"
-                                                                                            >{item2.orderNo}</span>
-                                                                                        </Badge>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                                        {/* <MultiAvatar2
-                                                                       primaryTitle={item.userName}
-                                                                       imageURL={item.imageURL}
-                                                                       imgWidth={"1.8rem"}
-                                                                       imgHeight={"1.8rem"}
-                                                                   /> */}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div className=" flex font-medium flex-col md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                                        {awbUpdate && (item2.orderPhoneAwbId === subRow.orderPhoneAwbId) ?
-                                                                                            <>
-                                                                                                <div class=" flex justify-around">
-                                                                                                    <Input
-                                                                                                        value={awbNo}
-                                                                                                        type='text'
-                                                                                                        onChange={(e) => handleAwbUpdate(e.target.value)} />
-                                                                                                    <div class=" flex justify-evenly">
-                                                                                                        <Button
-                                                                                                            type='primary'
-                                                                                                            loading={props.updatingSuborderAwb}
-                                                                                                            onClick={() => {
-                                                                                                                props.updateSubOrderAwb({
-                                                                                                                    awbNo: awbNo,
-                                                                                                                    userId: props.userId,
-                                                                                                                    orderPhoneId: item.orderId
-                                                                                                                }, item2.orderPhoneAwbId, props.distributorId)
-                                                                                                            }}>Save</Button>
-                                                                                                        <Button onClick={handleAwbNoField}>Cancel</Button>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </>
-                                                                                            : item2.awbNo}
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                                                                        <BorderColorIcon
-                                                                                            onClick={() => {
-                                                                                                handleAwbNoField();
-                                                                                                handleSubOrderData(item2)
-                                                                                            }}
-                                                                                            className=" !text-base cursor-pointer text-[tomato]"
-                                                                                        />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </>
-                                                                )
-                                                            })}
-                                                    </div>
-                                                </div>}
+                                                <SubOrderList orderId={particularRowData.orderId} />
+                                            }
                                         </div>
 
 
