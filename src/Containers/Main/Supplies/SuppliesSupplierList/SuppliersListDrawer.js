@@ -11,7 +11,7 @@ const SuppliersListDrawer = (props) => {
   return (
     <>
       <StyledDrawer 
-        title={`Suppliers list`}
+        title={`${particularDiscountData.suppliesName}`}
         width={drawerWidth}
         visible={suppliersListDrwr}
         destroyOnClose

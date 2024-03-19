@@ -5,13 +5,17 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import {
     TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
-import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder ,handleSuppleirSuppliesDrawer} from "../../../SuppliersAction"
+import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
+handleSuppleirSuppliesDrawer,handleSupplierContactModal} from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
-import PurchaseOrderTable from "./PurchaseOrderTable"
+import PurchaseOrderTable from "./PurchaseOrderTable";
+import ContactsIcon from '@mui/icons-material/Contacts';
 import { PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
 const SupplierSuppliesCardTable =lazy(()=>import("./SupplierSupplies/SupplierSuppliesCardTable"));
+const AddSupplierContactModal=lazy(()=>import("./SupplierContactTab/AddSupplierContactModal"));
+const SupplierContactTable=lazy(()=>import("./SupplierContactTab/SupplierContactTable"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -97,6 +101,42 @@ class SupplierDetailsTab extends Component {
                   />
                 </Suspense>
             </TabPane>
+            <TabPane
+              tab={
+                <>
+                  
+                  <ContactsIcon className="!text-base "/>
+                    <span style={{ marginLeft: "0.25em" }}>Contact</span>
+            
+                  {activeKey === "3" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          onClick={() =>
+                            this.props.handleSupplierContactModal(
+                              true
+                            )
+                          }
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip>
+                    
+                    </>
+                  )}
+                </>
+              }
+              key="3"
+            >
+                <Suspense fallback={"Loading ..."}>
+                  <SupplierContactTable
+                    supplier={this.props.supplier}
+                  /> 
+                </Suspense>
+            </TabPane>
                     </StyledTabs>
                     
                 </TabsWrapper>
@@ -110,6 +150,10 @@ class SupplierDetailsTab extends Component {
                 supplierSuppliesdrwr={this.props.supplierSuppliesdrwr}
                 handleSuppleirSuppliesDrawer={this.props.handleSuppleirSuppliesDrawer}
                 />
+                     <AddSupplierContactModal
+            addSupplierContactModal={this.props.addSupplierContactModal}
+            handleSupplierContactModal={this.props.handleSupplierContactModal}
+          />
             </>
         );
     }
@@ -118,7 +162,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
     poBySupplier: suppliers.poBySupplier,
     addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal,
-    supplierSuppliesdrwr:suppliers.supplierSuppliesdrwr
+    supplierSuppliesdrwr:suppliers.supplierSuppliesdrwr,
+    addSupplierContactModal: suppliers.addSupplierContactModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -126,7 +171,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             handleLinkSuppliersOrderConfigureModal,
             getTodayPurchaseOrder,
-            handleSuppleirSuppliesDrawer
+            handleSuppleirSuppliesDrawer,
+            handleSupplierContactModal
         },
         dispatch
     );

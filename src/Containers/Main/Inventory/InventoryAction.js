@@ -1645,3 +1645,11 @@ export const emptyInventory = () => (dispatch) => {
     type: types.EMPTY_INVENTORY_LIST,
   });
 };
+
+
+export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STOCK_USED_DRAWER,
+    payload: modalProps,
+  });
+};

@@ -262,6 +262,8 @@ const initialState = {
 
   fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: false,
   productionDispatchByLocsId: [],
+
+  stockUseDrwr:false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1331,6 +1333,12 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingRepairStatus: false,
         updatingRepairStatusError: true,
       };
+
+      
+      case types.HANDLE_STOCK_USED_DRAWER:
+        return { ...state, stockUseDrwr: action.payload };
+  
+
     default:
       return state;
   }

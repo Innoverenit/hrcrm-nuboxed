@@ -144,11 +144,11 @@ function SuppliersCardTable(props) {
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">*/}
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{!item.supplierSuppliesInd &&(
+
  <SuppliesCardToggle
 item={item}
 suppliesId={props.particularDiscountData.suppliesId}
- />)}
+ />
 </div>
 </div>
 {item.supplierSuppliesInd && (
@@ -159,8 +159,7 @@ suppliesId={props.particularDiscountData.suppliesId}
                     <ButtonGroup>
                       <RoleButton
                         type="A1"
-                        iconType="fas fa-mug-hot"
-                        // tooltip="Hot"
+                        // iconType="fas fa-mug-hot"
                         tooltip="A1"
                         role={item.type}
                         onClick={() => {
@@ -178,8 +177,7 @@ suppliesId={props.particularDiscountData.suppliesId}
                     <ButtonGroup>
                       <RoleButton1
                         type="A2"
-                        iconType="	fas fa-burn"
-                        // tooltip="Warm"
+                        // iconType="fas fa-burn"
                         tooltip="A2"
                         role={item.type}
                         onClick={() => {
@@ -197,7 +195,7 @@ suppliesId={props.particularDiscountData.suppliesId}
                     <ButtonGroup>
                       <RoleButton2
                         type="A3"
-                        iconType="far fa-snowflake"
+                        // iconType="far fa-snowflake"
                         tooltip="A3"
                         role={item.type}
                         onClick={() => {
@@ -260,12 +258,14 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         style={{
           padding: "0.37em",
           borderColor: "transparent",
-          color: role === type ? "red" : "grey",
+          color: role === type ? "black" : "grey",
+          background: role === type ? "chartreuse":null,
         }}
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i>
+        {/* <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i> */}
+        <div class="text-base">A1</div>
       </Button>
     </Tooltip>
   );
@@ -289,7 +289,8 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i>
+        {/* <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i> */}
+        <div class="text-base">A2</div>
       </Button>
     </Tooltip>
   );
@@ -313,7 +314,8 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i>
+        {/* <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i> */}
+        <div class="text-base">A3</div>
       </Button>
     </Tooltip>
   );
