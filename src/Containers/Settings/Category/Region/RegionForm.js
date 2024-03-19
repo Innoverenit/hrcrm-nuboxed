@@ -83,24 +83,57 @@ import {
     getTarget,
   
   } from "./RegionAction";
-  import { Select } from 'antd';
+  import { Tabs,Select } from 'antd';
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 
 
-
+const { TabPane } = Tabs;
 const { Option } = Select; 
 
 const YearHeaderInput = (props) => {
+  // const [activeTab, setActiveTab] = useState("");
+  const tab=[
+    "Q1","Q2","Q3","Q4"
+  ]
   const headers = ['Sales', 'Fulfillment', 'Investment'];
   const currencyOptions = props.saleCurrencies;
+  const handleTabClick = async(key) => {
+    props.setActiveTab(key);
+    try {
+      const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/regions/target/${props.currentregionId}/${props.selectedYear}/${key}`, {
+        headers: {
+          Authorization: `Bearer ${props.token}`
+        }
+      });
+      const data = response.data;
+      console.log(data);
+  
+      if (data !== null && data !== undefined) { // Change condition to handle 0 values
+       
+  
+        props.setSales({ amount: data.sales !== null ? data.sales : null, currency: data.salesCurrency || null });
+        props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null });
+        props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null });
+      } else {
+        // If there's no data for the selected year, reset all fields to null
+        props.setSales({ amount: null, currency: null });
+        props.setFulfillment({ amount: null });
+        props.setInvestment({ amount: null, currency: null });
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    
+  };
  
 
   const handleSalesInputChange = (field, value) => {
     props.setSales(prevState => ({ ...prevState, [field]: value }));
   };
 
-  const handleFulfillmentInputChange = (value) => {
+  const handleFulfillmentInputChange = (field,value) => {
     props.setFulfillment({ amount: value });
+   
   };
 
   const handleInvestmentInputChange = (field, value) => {
@@ -124,32 +157,7 @@ const handleYearChange = async (e) => {
   const year = parseInt(e.target.value);
   props.setSelectedYear(year);
 
-  try {
-    const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/regions/target/${props.currentregionId}/${year}`, {
-      headers: {
-        Authorization: `Bearer ${props.token}`
-      }
-    });
-    const data = response.data;
-    console.log(data);
-
-    if (data !== null && data !== undefined) { // Change condition to handle 0 values
-      // props.setSales({ amount: data.sales !== null ? data.sales : null, currency: data.salesCurrency || null });
-      // props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null });
-      // props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null });
-
-      props.setSales({ amount: data.sales !== null ? data.sales : null, currency: data.salesCurrency || null });
-      props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null });
-      props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null });
-    } else {
-      // If there's no data for the selected year, reset all fields to null
-      props.setSales({ amount: null, currency: null });
-      props.setFulfillment({ amount: null });
-      props.setInvestment({ amount: null, currency: null });
-    }
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
+ 
 };
 
 console.log(props.sales)
@@ -162,7 +170,8 @@ const handleSubmit = () => {
       investment: props.investment.amount,
       investmentCurrency: props.investment.currency,
       year: props.selectedYear,
-      regionsId:props.currentregionId
+      regionsId:props.currentregionId,
+      quarter:props.activeTab
     }
     props.addTarget(data)
     // console.log({
@@ -188,7 +197,20 @@ const handleSubmit = () => {
       </select>
       {props.selectedYear && (
         <div>
-         
+           <Tabs type="card" 
+           activeKey={props.activeTab} 
+          onChange={handleTabClick}
+           >
+      {tab.map((tabs) => (
+        <TabPane key={tabs} tab={tabs}>
+       
+       
+       
+        </TabPane>
+      ))}
+    </Tabs>
+    {props.activeTab&&(
+         <div>
           {headers.map(header => (
             <div key={header} style={{marginTop:"23px"}}>
               <h3>{header}</h3>
@@ -217,7 +239,7 @@ const handleSubmit = () => {
               //     <Select
               //     style={{ marginLeft: "21px" }}
               //     value={headers === 'Sales' ? props.sales.currency : props.investment.currency}
-              //     onChange={(value) => headers === 'Sales' ? handleSalesInputChange('currency', value) : handleInvestmentInputChange('currency', value)}
+              //     onChange={(value) => headers === 'Sales' ? handleSalesInputChange('currency', value) : handleInvestmentInputChange( value)}
               // >
               //     {currencyOptions.map((currencyOption) => (
               //         <Option key={currencyOption.currency_id} value={currencyOption.currency_id}>{currencyOption.currency_name}</Option>
@@ -228,6 +250,8 @@ const handleSubmit = () => {
             </div>
           ))}
           <button style={{float:"right",backgroundColor:"tomato"}}onClick={handleSubmit}>Submit</button>
+          </div>
+          )}
         </div>
       )}
     </div>

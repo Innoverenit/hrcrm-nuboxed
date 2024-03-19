@@ -163,3 +163,66 @@ export const getServiceLine = (orgId) => (dispatch) => {
         });
       });
   };
+
+
+
+
+  export const updateDepartmentService = (departmentId, liveInd, cb) => (dispatch) => {
+    // console.log(leadDocumentsId, DocumentsName);
+    dispatch({
+      type: types.UPDATE_DEPARTMENT_SERVICE_REQUEST,
+    });
+    axios
+      .put(
+        `${base_url}/serviceLine/department/update/${departmentId}/${liveInd}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+      
+        // message.success("Document has been updated successfully!");
+        console.log(res);
+        dispatch({
+          type: types.UPDATE_DEPARTMENT_SERVICE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_DEPARTMENT_SERVICE_FAILURE,
+        });
+      });
+  };
+
+
+
+  export const searchServiceName = (name) => (dispatch) => {
+    dispatch({
+      type: types.GET_SERVICE_SEARCH_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/search/${name}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        message.success(res.data.message);
+        dispatch({
+          type: types.GET_SERVICE_SEARCH_SUCCESS,
+          payload: res.data,
+        });
+      }
+      )
+      .catch((err) => {
+        dispatch({
+          type: types.GET_SERVICE_SEARCH_FAILURE,
+          payload: err,
+        });
+      });
+  };
