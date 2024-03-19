@@ -162,7 +162,7 @@ function InvestorAllCardList(props) {
                                               {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                               Name
                                               </div> */}
-                                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                              <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
                                               <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`investor/${item.investorId}`} title={item.name}>
         {item.name}
     </Link>                                                
@@ -172,7 +172,7 @@ function InvestorAllCardList(props) {
           >{item.name}</Link> */}
           &nbsp;&nbsp;
           {date === currentdate ? (
-            <span class="cursor-pointer text-[tomato]" 
+            <span class="cursor-pointer mt-[0.4rem] text-[tomato]" 
               
             >
               New
@@ -234,7 +234,7 @@ function InvestorAllCardList(props) {
                                       
                                       <span>
                 {item.assignedTo === null ? (
-                  "Not available"
+                  "No Data"
                 ) : (
                   <MultiAvatar2
                     primaryTitle={item.assignedTo}
@@ -462,7 +462,7 @@ function InvestorAllCardList(props) {
                                             {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                                
@@ -472,7 +472,7 @@ function InvestorAllCardList(props) {
         >{item.name}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="cursor-pointer text-[tomato]" 
+          <span class="cursor-pointer mt-[0.4rem] text-[tomato]" 
             
           >
             New
@@ -535,7 +535,7 @@ function InvestorAllCardList(props) {
                                     
                                     <span>
               {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <Tooltip title={item.assignedTo}> 
                 <MultiAvatar2

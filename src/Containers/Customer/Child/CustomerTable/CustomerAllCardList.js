@@ -196,14 +196,14 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-full flex items-center">
                         <Tooltip>
                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                              <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                   
            <Link
             toUrl={`customer/${item.customerId}`}
             title={`${item.name}`}
           >{item.name}</Link>&nbsp;&nbsp;
           {date === currentdate ? (
-            <div class="text-xs text-[tomato] font-bold"
+            <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
             >
               New
             </div>
@@ -588,7 +588,7 @@ const [rowdata, setrowdata] = useState("");
                       <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>                                   
@@ -598,7 +598,7 @@ const [rowdata, setrowdata] = useState("");
         >{item.name}</Link> */}
                &nbsp;&nbsp;
         {date === currentdate ? (
-    <div class="text-xs text-[tomato] font-bold"
+    <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
     >
             New
           </div>

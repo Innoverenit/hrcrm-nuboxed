@@ -78,8 +78,7 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Succefully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
         // cb && cb();
       })
@@ -195,8 +194,7 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Qualified Succefully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
       })
       .catch((err) => {

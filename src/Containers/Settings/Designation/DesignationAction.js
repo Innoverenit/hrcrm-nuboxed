@@ -53,8 +53,7 @@ export const addDesignations = (designation, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Designation has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
+         
           })
         //  message.success("Designation has been added successfully!");
         }
@@ -132,8 +131,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Designation has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
         // message.success("Designation has been updated successfully!");
         console.log(res);

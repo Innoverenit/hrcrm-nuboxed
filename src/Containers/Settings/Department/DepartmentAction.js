@@ -53,7 +53,7 @@ export const addDepartments = (departments, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Department has been added Succefully',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         })
       // message.success("Department has been added successfully!");
@@ -141,8 +141,6 @@ export const updateDepartments = (departmentId, departmentName, sectorId, sector
       Swal.fire({
         icon: 'success',
         title: 'Department has been updated Successfully',
-        showConfirmButton: false,
-        // timer: 1500
       })
     })
     .catch((err) => {

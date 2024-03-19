@@ -286,7 +286,7 @@ function CustomerCardList(props) {
 
                             <div>
                               {item.assignedTo === null ? (
-                                "Not available"
+                                "No Data"
                               ) : (
                                 <>
                                   {item.assignedTo === item.ownerName ? (
@@ -502,7 +502,7 @@ function CustomerCardList(props) {
                 defaultMessage="Name"
               />
             </div>
-            <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
@@ -532,8 +532,8 @@ function CustomerCardList(props) {
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
               <FormattedMessage
-                id="app.opportunity"
-                defaultMessage="Opportunity"
+                id="app.quotation"
+                defaultMessage="Quotation"
               />
 
             </div>
@@ -600,7 +600,7 @@ function CustomerCardList(props) {
                   // }}
                   >
                     <div class="flex">
-                      <div className=" flex font-medium flex-col w-[18rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-full">
+                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-full">
                         <div className="flex max-sm:w-full">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -618,7 +618,7 @@ function CustomerCardList(props) {
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
@@ -626,7 +626,7 @@ function CustomerCardList(props) {
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs text-[tomato] font-bold"
+                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                                     >
                                       New
                                     </div>
@@ -651,11 +651,11 @@ function CustomerCardList(props) {
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center  w-[7.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.phoneNumber}
+                         {`${item.countryDialCode} ${item.phoneNumber}`}
                         </div>
 
                       </div>
@@ -700,7 +700,8 @@ function CustomerCardList(props) {
                       {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                       <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {item.totalProposalValue}
+                     
+                        {`${item.currency} ${item.totalProposalValue}`}
 
                       </div>
                     </div>
@@ -719,7 +720,7 @@ function CustomerCardList(props) {
 
                         <div>
                           {item.assignedTo === null ? (
-                            "Not available"
+                            "No Data"
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (

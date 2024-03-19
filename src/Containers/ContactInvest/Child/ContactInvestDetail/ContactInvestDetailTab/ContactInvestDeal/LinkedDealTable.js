@@ -91,14 +91,14 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
         
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <div class="text-xs"
+          <div class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",

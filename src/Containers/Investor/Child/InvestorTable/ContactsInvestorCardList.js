@@ -246,7 +246,7 @@ class ContactInvestorCardList extends Component {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                 
@@ -256,7 +256,7 @@ class ContactInvestorCardList extends Component {
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
+          <span class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",

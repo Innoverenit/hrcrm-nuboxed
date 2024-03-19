@@ -142,7 +142,7 @@ function SalaryCard(props) {
                   </div>
 
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 font-bold">
                   Updated on{" "}
                   {moment(props.salary.creationDate).format("ll")} by{" "}
                   {props.salary.updatedBy}

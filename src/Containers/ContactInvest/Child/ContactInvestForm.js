@@ -28,7 +28,7 @@ const ContactSchema = Yup.object().shape({
   emailId: Yup.string()
     .required("Input needed!")
     .email("Enter a valid Email"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 class ContactInvestForm extends Component {

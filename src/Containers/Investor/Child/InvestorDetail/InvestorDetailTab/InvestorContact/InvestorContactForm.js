@@ -23,14 +23,14 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const ContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
   emailId: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  whatsappNumber: Yup.string()
-    .matches(phoneRegExp, "Whatsapp number is not valid")
-    .min(5, "Number is too short")
-    .max(10, "Number is too long"),
-  mobileNumber: Yup.string().required("Input needed!")
-    .matches(phoneRegExp, "Mobile number is not valid")
-    .min(8, "Minimum 8 digits")
-    .max(10, "Number is too long"),
+  // whatsappNumber: Yup.string()
+  //   .matches(phoneRegExp, "Whatsapp number is not valid")
+  //   .min(5, "Number is too short")
+  //   .max(10, "Number is too long"),
+  // mobileNumber: Yup.string().required("Input needed!")
+  //   .matches(phoneRegExp, "Mobile number is not valid")
+  //   .min(8, "Minimum 8 digits")
+  //   .max(10, "Number is too long"),
 });
 
 class InvestorContactForm extends Component {

@@ -442,7 +442,7 @@ export const LinkStageDeal = (data, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          showConfirmButton: false,
+       
         });
       }
 
@@ -456,11 +456,7 @@ export const LinkStageDeal = (data, cb) => (dispatch) => {
     .catch((err) => {
       console.log(err);
 message.error("Something went wrong")
-      // Swal.fire({
-      //   icon: 'error',
-      //   title: 'Something went wrong',
-      //   showConfirmButton: false,
-      // });
+   
 
       dispatch({
         type: types.LINK_DEAL_FAILURE,
@@ -814,8 +810,7 @@ export const deleteDealsData = (invOpportunityId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Deal Deleted Successfully',
-        showConfirmButton: false,
-        // timer: 1500
+      
       })
       dispatch({
         type: types.DELETE_DEAL_DATA_SUCCESS,

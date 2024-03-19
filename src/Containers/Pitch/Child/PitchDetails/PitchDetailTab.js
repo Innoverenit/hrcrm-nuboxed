@@ -93,8 +93,8 @@ class PitchDetailTab extends Component {
                     />
                     <span class=" ml-1">
                       <FormattedMessage
-                        id="app.opportunity"
-                        defaultMessage="Opportunity"
+                        id="app.quotation"
+                        defaultMessage="Quotation"
                       />
                     </span>
                   </span>

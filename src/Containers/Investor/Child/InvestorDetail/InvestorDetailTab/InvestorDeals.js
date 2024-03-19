@@ -144,14 +144,14 @@ console.log("investorDetails",props.investorDetails)
                                         <Tooltip>
                                           <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                                             
-                                            <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
                                                 
                                               {item.opportunityName}
                                               
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] font-bold"
+                                                 <span class="text-[tomato] mt-[0.4rem] font-bold"
                                             
                                                  >
                                                    New
@@ -253,7 +253,7 @@ strokeColor={"#005075"}
 
 <span>
 {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

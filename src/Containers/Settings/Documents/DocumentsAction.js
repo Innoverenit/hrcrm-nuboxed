@@ -137,8 +137,6 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Document has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("Document has been updated successfully!");
         console.log(res);

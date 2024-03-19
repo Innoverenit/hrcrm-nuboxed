@@ -44,8 +44,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Lead created Successfully!',
-          showConfirmButton: false,
-          // timer: 1500
+      
         })
         dispatch(getOpportunityRecord(userId));
         console.log(res);
@@ -153,8 +152,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Lead converted Successfully!',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
         dispatch(getLeads(userId));
         // dispatch(getLeadsRecords(userId));
@@ -268,8 +266,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Lead Info  updated Successfully!',
-        showConfirmButton: false,
-        // timer: 1500
+     
       })
       .catch((err) => {
         console.log(err);
@@ -1037,8 +1034,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Reinstated Successfully',
-          // showConfirmButton: false,
-          // timer: 4000
+      
         })
       })
       .catch((err) => {
