@@ -185,3 +185,29 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
       type: types.HANDLE_CLAER_REDUCER_DATA_SECTOR,
     });
   };
+
+  export const getSectorCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_SECTOR_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/sector/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SECTOR_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_SECTOR_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };

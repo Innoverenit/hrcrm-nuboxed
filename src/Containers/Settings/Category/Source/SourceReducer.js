@@ -7,6 +7,10 @@ const initialState = {
     fetchingSourcesError: false,
     sources: [],
 
+    fetchingSourceCount: false,
+    fetchingSourceCountError: false,
+    sourceCount:{},
+
     addingSources: false,
     addingSourcesError: false,
 
@@ -116,7 +120,20 @@ export const sourceReducer = (state = initialState, action) => {
             return { ...state, 
               sources: [], 
               // deletedTruck: [] 
-            };    
+            }; 
+            
+            
+            case types.GET_SOURCE_COUNT_REQUEST:
+              return { ...state, fetchingSourceCount: true };
+            case types.GET_SOURCE_COUNT_SUCCESS:
+              return { ...state, fetchingSourceCount: false, 
+                sourceCount: action.payload };
+            case types.GET_SOURCE_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingSourceCount: false,
+                fetchingSourceCountError: true,
+              };
 
     
     default:
