@@ -43,11 +43,14 @@ const Region = (props) => {
       
       }
 
-    const editRegion = (regionsId, regions) => {
+    const editRegion = (regionsId, regions,region) => {
+      console.log(regionsId)
+      console.log(regions)
+      console.log(region)
         setEditingId(regionsId);
         setNewRegionName(regions);
     };
-
+console.log(editingId)
     const deleteRegion = (id) => {
         const updatedRegions = regions.filter(region => region.id !== id);
         setRegions(updatedRegions);
@@ -200,7 +203,7 @@ if (props.fetchingRegions) {
                           <button onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined onClick={() => editRegion(region.regionsId, region.regions)} />
+                      <EditOutlined onClick={() => editRegion(region.regionsId, region.regions,region)} />
                   )}
 
                   {/* Delete button */}
