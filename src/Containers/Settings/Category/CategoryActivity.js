@@ -44,7 +44,7 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="far fa-calendar-check"></i>
-                    <span className="ml-1">Event</span>
+                    <span className="ml-1">Event <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span></span>
                   </>
                 }
                 key="1"
@@ -53,7 +53,7 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="fas fa-tasks"></i>
-                    <span className="ml-1">Task</span>
+                    <span className="ml-1">Task <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span></span>
                   </>
                 }
                 key="2"
@@ -69,7 +69,10 @@ class CategoryActivity extends Component {
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({events,tasks}) => ({
+  eventCount:events.eventCount,
+  taskCount:tasks.taskCount,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryActivity);

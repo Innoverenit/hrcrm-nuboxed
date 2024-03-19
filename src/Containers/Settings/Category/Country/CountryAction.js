@@ -154,4 +154,30 @@ import { message } from "antd"
     });
   };
 
+  export const getCountryCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_COUNTRY_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/countries/country/count`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_COUNTRY_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_COUNTRY_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
 

@@ -756,6 +756,7 @@ function EmployeeTable(props) {
 
     return (
       <>
+      
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                  
@@ -936,6 +937,7 @@ function EmployeeTable(props) {
          openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
                    </Suspense>
           </div>
+         
       </>
   )   
   }
@@ -943,6 +945,7 @@ function EmployeeTable(props) {
 
   return (
     <>
+     <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                 <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -1127,6 +1130,7 @@ function EmployeeTable(props) {
       currentEmployeeId={currentEmployeeId}
        openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
                  </Suspense>
+        </div>
         </div>
     </>
 )

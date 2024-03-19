@@ -158,3 +158,29 @@ export const ClearReducerDataOfEducation = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_EDUCATION,
   });
 };
+
+export const getEducationCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EDUCATION_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/educationType/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EDUCATION_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EDUCATION_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

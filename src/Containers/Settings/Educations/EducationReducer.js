@@ -7,6 +7,10 @@ const initialState = {
     fetchingEducationsError: false,
     educations: [],
 
+    fetchingEducationCount: false,
+    fetchingEducationCountError: false,
+    educationCount:{},
+
     addingEducations: false,
     addingEducationsError: false,
 
@@ -107,6 +111,20 @@ case types.GET_EDUCATION_REQUEST:
               educations: [], 
               // deletedTruck: [] 
             };
+
+
+
+            case types.GET_EDUCATION_COUNT_REQUEST:
+              return { ...state, fetchingEducationCount: true };
+            case types.GET_EDUCATION_COUNT_SUCCESS:
+              return { ...state, fetchingEducationCount: false, 
+                educationCount: action.payload };
+            case types.GET_EDUCATION_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingEducationCount: false,
+                fetchingEducationCountError: true,
+              };
 
 
     default:

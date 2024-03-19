@@ -8,6 +8,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getEducations,
+  getEducationCount,
   addEducations,
   removeEducation,
   updateEducations,
@@ -117,9 +118,10 @@ class Education extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getEducations } = this.props;
+    const { getEducations,getEducationCount,orgId } = this.props;
     console.log();
     getEducations();
+    getEducationCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -275,11 +277,12 @@ class Education extends Component {
   }
 }
 
-const mapStateToProps = ({ education }) => ({
+const mapStateToProps = ({ education ,auth}) => ({
   addingEducations: education.addingEducations,
   addingEducationsError: education.addingEducationsError,
   educations: education.educations,
-
+  educationCount:education.educationCount,
+  orgId: auth.userDetails.organizationId,
   removingEducations: education.removingEducations,
   removingEducationsError: education.removingEducationsError,
   fetchingEducations: education.fetchingEducations,
@@ -294,6 +297,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getEducations,
+      getEducationCount,
       addEducations,
       removeEducation,
       updateEducations,

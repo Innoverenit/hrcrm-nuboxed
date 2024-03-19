@@ -183,7 +183,7 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
       type: types.GET_EVENT_COUNT_REQUEST,
     });
     axios
-      .get(`${base_url}/department/count/${orgId}`, {
+      .get(`${base_url}/eventType/count/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
