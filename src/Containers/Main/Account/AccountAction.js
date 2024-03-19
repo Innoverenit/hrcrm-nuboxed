@@ -2033,7 +2033,7 @@ export const addLocationInOrder = (data, distributorId) => (dispatch) => {
       });
     });
 };
-export const updateSubOrderAwb = (data, orderPhoneAwbId, distributorId) => (dispatch) => {
+export const updateSubOrderAwb = (data, orderPhoneAwbId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_SUBORDER_AWB_REQUEST,
   });
@@ -2044,7 +2044,6 @@ export const updateSubOrderAwb = (data, orderPhoneAwbId, distributorId) => (disp
       },
     })
     .then((res) => {
-      dispatch(getDistributorOrderByDistributorId(distributorId, 0))
       dispatch({
         type: types.UPDATE_SUBORDER_AWB_SUCCESS,
         payload: res.data,
@@ -2271,6 +2270,33 @@ export const getSpareListByPhoneId = (phoneId) => (
     });
 };
 
+export const getSubOrderData = (orderId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_SUBORDER_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/awbPhoneList/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUBORDER_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUBORDER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const startQCStatus = (data) => (dispatch) => {
   // debugger;
   dispatch({ type: types.START_QC_STATUS_REQUEST });
@@ -3058,6 +3084,38 @@ export const updateSpareItem = (data, phoneSpareId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_SPARELIST_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleSuborderPhone = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUBORDER_PHONE,
+    payload: modalProps,
+  });
+};
+
+export const getSubOrderPhone = (orderPhoneAwbId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUB_ORDER_PHONE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/phoneDetailsByAwb/${orderPhoneAwbId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUB_ORDER_PHONE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SUB_ORDER_PHONE_LIST_FAILURE,
         payload: err,
       });
     });

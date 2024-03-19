@@ -30,7 +30,7 @@ function OrderStep2(props) {
                         {
                             ...values,
                             type: "Non-Catalogue",
-                            xlUpdateInd: xlUpdateInd ? false : true
+                            // xlUpdateInd: xlUpdateInd ? false : true
                         },
                         props.distributorId
                     );

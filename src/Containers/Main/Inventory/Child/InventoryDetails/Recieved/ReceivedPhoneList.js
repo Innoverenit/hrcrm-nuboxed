@@ -8,7 +8,7 @@ import { InputComponent } from "../../../../../../Components/Forms/Formik/InputC
 import moment from 'moment';
 
 function ReceivedPhoneList(props) {
-    console.log(props.phnId)
+    console.log(props.particularRowData)
 
     return (
         <>
@@ -16,26 +16,26 @@ function ReceivedPhoneList(props) {
                 initialValues={{
                     receivePhoneInd: true,
                     orderPhoneId: props.orderPhoneId,
-                    receiveCompany: props.phoneListData.receiveCompany === null ?
-                        props.phoneListData.company : props.phoneListData.receiveCompany,
+                    receiveCompany: props.particularRowData.receiveCompany === null ?
+                        props.particularRowData.company : props.particularRowData.receiveCompany,
 
-                    receiveModel: props.phoneListData.receiveModel === null ?
-                        props.phoneListData.model : props.phoneListData.receiveModel,
+                    receiveModel: props.particularRowData.receiveModel === null ?
+                        props.particularRowData.model : props.particularRowData.receiveModel,
 
-                    receiveIMEI: props.phoneListData.receiveIMEI === null ?
-                        props.phoneListData.imei : props.phoneListData.receiveIMEI,
+                    receiveIMEI: props.particularRowData.receiveIMEI === null ?
+                        props.particularRowData.imei : props.particularRowData.receiveIMEI,
 
-                    receiveGB: props.phoneListData.receiveGB === null ?
-                        props.phoneListData.gb : props.phoneListData.receiveGB,
+                    receiveGB: props.particularRowData.receiveGB === null ?
+                        props.particularRowData.gb : props.particularRowData.receiveGB,
 
-                    receiveColor: props.phoneListData.receiveColor === null ?
-                        props.phoneListData.color : props.phoneListData.receiveColor,
+                    receiveColor: props.particularRowData.receiveColor === null ?
+                        props.particularRowData.color : props.particularRowData.receiveColor,
 
-                    receiveCondition: props.phoneListData.receiveCondition === null ?
-                        props.phoneListData.conditions : props.phoneListData.receiveCondition,
+                    receiveCondition: props.particularRowData.receiveCondition === null ?
+                        props.particularRowData.conditions : props.particularRowData.receiveCondition,
 
-                    receiveOS: props.phoneListData.receiveOS === null ?
-                        props.phoneListData.os : props.phoneListData.receiveOS,
+                    receiveOS: props.particularRowData.receiveOS === null ?
+                        props.particularRowData.os : props.particularRowData.receiveOS,
                     mismatchInd: true,
                     mismatchOrderInd: true
                 }}
@@ -148,7 +148,9 @@ function ReceivedPhoneList(props) {
                                     inlineLabel
                                     isRequired
                                 />
-                                <Button type="primary" htmlType="submit">
+                                <Button
+                                    loading={props.updatingValidationInRecive}
+                                    type="primary" htmlType="submit">
                                     Submit
                                 </Button>
                             </div>
@@ -163,6 +165,7 @@ function ReceivedPhoneList(props) {
 const mapStateToProps = ({ inventory, auth }) => ({
     phoneListData: inventory.phoneListData,
     userId: auth.userDetails.userId,
+    updatingValidationInRecive: inventory.updatingValidationInRecive
 });
 
 const mapDispatchToProps = (dispatch) =>

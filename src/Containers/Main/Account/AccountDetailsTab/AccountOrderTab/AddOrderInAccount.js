@@ -99,6 +99,7 @@ function AddOrderInAccount(props) {
                 if (values.advancePayment < 100) {
                     props.addOrderForm({
                         ...values,
+                        orderSource: "erp",
                         priority: priority || "",
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 

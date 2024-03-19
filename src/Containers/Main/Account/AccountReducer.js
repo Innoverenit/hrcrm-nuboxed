@@ -209,6 +209,12 @@ const initialState = {
   fetchingRecordsByUserIdError: false,
   recordData: {},
 
+  fetchingSuborderPhone: false,
+  fetchingSuborderPhoneError: false,
+  subOrderPhoneList: [],
+
+  showSuborderPhoneList: false,
+
   fetchingPaymentMode: false,
   fetchingPaymentModeError: false,
   paymentModee: [],
@@ -360,6 +366,10 @@ const initialState = {
   fetchingCustomerByUser: false,
   fetchingCustomerByUserError: true,
   customerListByUser: [],
+
+  fetchingSuborderData: false,
+  fetchingSuborderDataError: false,
+  subOrderByOrderId: [],
 
   startingQcInStatus: false,
   startingQcInStatusError: false,
@@ -1775,6 +1785,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingSuborderAwb: false,
+        subOrderByOrderId: state.subOrderByOrderId.map((item) => {
+          if (item.orderPhoneAwbId == action.payload.orderPhoneAwbId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_SUBORDER_AWB_FAILURE:
       return {
@@ -1879,6 +1896,21 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingSpareListByPhoneId: false,
         fetchingSpareListByPhoneIdError: true,
+      };
+
+    case types.GET_SUBORDER_DATA_REQUEST:
+      return { ...state, fetchingSuborderData: true };
+    case types.GET_SUBORDER_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingSuborderData: false,
+        subOrderByOrderId: action.payload,
+      };
+    case types.GET_SUBORDER_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingSuborderData: false,
+        fetchingSuborderDataError: true,
       };
 
 
@@ -2326,6 +2358,25 @@ export const distributorReducer = (state = initialState, action) => {
         updatingSpareListItem: false,
         updatingSpareListItemError: true,
       };
+
+    case types.GET_SUB_ORDER_PHONE_LIST_REQUEST:
+      return { ...state, fetchingSuborderPhone: true };
+    case types.GET_SUB_ORDER_PHONE_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingSuborderPhone: false,
+        subOrderPhoneList: action.payload
+      };
+    case types.GET_SUB_ORDER_PHONE_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingSuborderPhone: false,
+        fetchingSuborderPhoneError: true,
+      };
+
+    case types.HANDLE_SUBORDER_PHONE:
+      return { ...state, showSuborderPhoneList: action.payload };
+
     default:
       return state;
   }
