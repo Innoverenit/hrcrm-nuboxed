@@ -191,7 +191,7 @@ return (
         title={`${item.fullName}`}
       >{item.fullName}</Link>&nbsp;&nbsp;
       {date === currentdate ? (
-        <span class="text-xs"
+        <span class="text-xs "
           style={{
             color: "tomato",
             fontWeight: "bold",
@@ -517,14 +517,14 @@ return (
           <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
-                                            <div class="text-sm text-blue-500 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
          <Link
           toUrl={`contact/${item.contactId}`}
           title={`${item.fullName}`}
         >{item.fullName}</Link>&nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
+          <span class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",

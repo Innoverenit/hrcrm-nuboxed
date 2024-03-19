@@ -55,8 +55,6 @@ export const addKpi = (sectors,departmentId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Kpi has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("KPI has been added successfully!");
         // }
@@ -96,8 +94,6 @@ export const removeKpi = ( performanceManagementId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'KPI Deleted Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("KPI has been deleted successfully!");
         console.log(res);
@@ -136,8 +132,6 @@ export const updateKpi = ( performanceManagementId,kpi,frequency,cb) => (dispatc
         Swal.fire({
           icon: 'success',
           title: 'Kpi has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("KPI has been updated successfully!");
         console.log(res);

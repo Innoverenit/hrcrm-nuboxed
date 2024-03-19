@@ -55,8 +55,6 @@ export const addShipBy = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'ShipBy has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
           })
         // message.success("shipBy has been added successfully!");
         }
@@ -130,8 +128,6 @@ export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'ShipBy has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("SHIPBY has been updated successfully!");
         console.log(res);

@@ -162,7 +162,7 @@ function CampaignCardView (props) {
               
                 <span>
                 {item.assignedToName === null ? (
-                  "Not available"
+                  "No Data"
                 ) : (
                   <>
                   {item.assignedToName === item.woner ? (
@@ -423,7 +423,7 @@ function CampaignCardView (props) {
               <SubTitle>
               <span>
               {item.assignedToName === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedToName === item.woner ? (

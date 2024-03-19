@@ -17,8 +17,6 @@ export const addBrandModel = (brand) => (dispatch) => {
             Swal.fire({
                 icon: 'success',
                 title: 'BrandModel has been added Successfully',
-                showConfirmButton: false,
-                // timer: 1500
               })
             console.log(res);
             dispatch({
@@ -82,8 +80,6 @@ export const updateBrandModel = (phoneMasterListId, brand, model) => (dispatch) 
             Swal.fire({
                 icon: 'success',
                 title: 'BrandModel has been Updated Successfully',
-                showConfirmButton: false,
-                // timer: 1500
               })
             dispatch({
                 type: types.UPDATE_BRAND_MODEL_SUCCESS,

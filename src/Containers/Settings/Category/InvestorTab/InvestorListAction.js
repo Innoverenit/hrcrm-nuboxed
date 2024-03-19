@@ -56,8 +56,7 @@ export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Investor Type has been added successfully!',
-            showConfirmButton: false,
-            // timer: 1500
+
           })
         // message.success("INVESTOR_ has been added successfully!");
         }
@@ -138,8 +137,6 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Investor Type has been updated successfully!',
-          showConfirmButton: false,
-          // timer: 1500
         })
       })
       .catch((err) => {

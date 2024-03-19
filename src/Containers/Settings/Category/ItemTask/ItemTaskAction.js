@@ -55,8 +55,6 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Type has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("ITEM_TASK has been added successfully!");
         // }
@@ -130,8 +128,6 @@ export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Type has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("ITEM_TASK has been updated successfully!");
         console.log(res);

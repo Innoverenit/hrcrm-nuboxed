@@ -163,7 +163,7 @@ const PitchTeamCardList = (props) => {
                                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
                                                 {/* <Link
                                                  toUrl={`customer/${item.customerId}`}
@@ -177,7 +177,7 @@ const PitchTeamCardList = (props) => {
                                                {/* </Link> */}
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] font-bold">
+                                                 <span class="text-[tomato] mt-[0.4rem] font-bold">
                                                    New
                                                  </span>
                                                ) : null}
@@ -256,7 +256,7 @@ const PitchTeamCardList = (props) => {
                            <div class="text-[0.82rem] text-cardBody font-poppins">
   {item.countryDialCode && item.phoneNumber
     ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'Not available'}
+    : 'No Data'}
 </div>
 
                        </div>
@@ -282,7 +282,7 @@ const PitchTeamCardList = (props) => {
                        <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins">
-                           {item.companyName || "Not Available"}
+                           {item.companyName || "No Data"}
 </div>
 
                        </div>

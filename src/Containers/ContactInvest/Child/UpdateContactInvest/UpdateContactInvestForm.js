@@ -23,7 +23,7 @@ const UpdateContactSchema = Yup.object().shape({
     .required("Input needed!")
     .email("Enter a valid Email"),
   firstName: Yup.string().required("Input needed!"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Minimum 8 digits").max(10,"Number is too long")
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Minimum 8 digits").max(10,"Number is too long")
 });
 
 class UpdateContactInvestForm extends Component {

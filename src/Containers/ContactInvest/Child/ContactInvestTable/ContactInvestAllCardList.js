@@ -169,7 +169,7 @@ if (isMobile){
                                             {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class="text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                 
@@ -179,7 +179,7 @@ if (isMobile){
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span
+          <span class=" mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -493,7 +493,7 @@ if (isMobile){
                                             {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class="text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                 
@@ -503,7 +503,7 @@ if (isMobile){
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span
+          <span class=" mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",

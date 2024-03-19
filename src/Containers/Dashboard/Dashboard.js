@@ -12,6 +12,7 @@ import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumps
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
 import DashFinanceJumpstart from "./Child/JumpStart/DashFinanceJumpstart";
+import InvestorFunnelTab from "./Child/InvestorFunnelTab";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -91,6 +92,8 @@ class Dashboard extends Component {
         activeButton={this.state.activeButton}
         />
         <Suspense fallback={<BundleLoader />}>
+        <MainWrapper style={{marginTop:"1rem",overflow:"hidden",height:"21rem"}}
+    >
           <div class=" h-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
@@ -108,8 +111,8 @@ class Dashboard extends Component {
              this.state.activeButton==="RecruitPro" ?
            (<DashboardJumpstartAll/>)
              : this.state.activeButton==="Investors" ?
-            //  (<DashboardInvestorsOrgJumpstart/>)
-            (<DashboardCustomerOrgJumpstart/>)
+             (<DashboardInvestorsOrgJumpstart/>)
+            // (<DashboardCustomerOrgJumpstart/>)
              :viewType==="ALL" || this.state.activeButton==="Customer" ?
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
@@ -128,8 +131,8 @@ class Dashboard extends Component {
        {this.state.activeButton==="Tasks" ? (
        <TaskOrganizationTab/>)
        :this.state.activeButton==="Investors" ?(
-        // <InvestorsPitchTab/>)
-        <CustomerLeadsTab/>)
+        <InvestorsPitchTab/>)
+        // <CustomerLeadsTab/>)
         :this.state.activeButton==="RecruitPro" ?(
           <StackedClosureChartAll/>)
         :this.state.activeButton==="Order" ?(
@@ -163,11 +166,13 @@ class Dashboard extends Component {
     <div className="flex justify-between">
   {viewType === "ME" ? (
     <StackedClosureChartAll />
-  ) : this.state.activeButton === "Investors" ? (
-    // <DashInvestorsChartTab />
-    <FunnelTab/>
+  )
+  //  : this.state.activeButton === "Investors" ? (
+  //   // <DashInvestorsChartTab />
+  //   <FunnelTab/>
   
-  ) : this.state.activeButton === "RecruitPro" ? (
+  // ) 
+  : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
     ) : this.state.activeButton === "Customer"  ? (
       <FunnelTab />
@@ -180,6 +185,7 @@ class Dashboard extends Component {
     null // Put your condition for StackedClosureChart here if needed
   ) : (
     this.state.activeButton === "Customer"   ? null : <StackedClosureChart />
+    // null
   )}
 </div>
 
@@ -206,7 +212,7 @@ class Dashboard extends Component {
              :null
             }
                             {this.state.activeButton==="Investors"&& 
-       <FunnelTab/>
+       <InvestorFunnelTab/>
              }
                   {this.state.activeButton==="Customer"&& 
        <FunnelTab/>
@@ -256,6 +262,7 @@ class Dashboard extends Component {
 
   
     </div>
+    </MainWrapper>
     <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
     >
     <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
@@ -275,6 +282,14 @@ class Dashboard extends Component {
                         <CustomerGoogleMap />)
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
+                          : this.state.activeButton === "test" ? (
+                            <StackedClosureChart />)
+                            : this.state.activeButton === "Tasks" ? (
+                              <StackedClosureChart />)
+                              : this.state.activeButton === "Order" ? (
+                                <StackedClosureChart />)
+                                : this.state.activeButton === "Finance" ? (
+                                  <StackedClosureChart />)
                   //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)
             
            

@@ -53,8 +53,6 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Identity has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
           })
         // message.success("Identity has been added successfully!");
         }
@@ -95,8 +93,6 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Identity has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("Identity has been updated successfully!");
         console.log(res);

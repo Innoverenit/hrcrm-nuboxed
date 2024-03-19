@@ -142,7 +142,7 @@ const PitchCardList = (props) => {
                                               {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                               Name
                                               </div> */}
-                                              <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                   
                                                   {/* <Link
                                                    toUrl={`customer/${item.customerId}`}
@@ -156,7 +156,7 @@ const PitchCardList = (props) => {
                                                  {/* </Link> */}
                                                  &nbsp;&nbsp;
                                                  {date === currentdate ? (
-                                                   <span class="text-[tomato] font-bold" >
+                                                   <span class="text-[tomato] mt-[0.4rem] font-bold" >
                                                      New
                                                    </span>
                                                  ) : null}
@@ -236,7 +236,7 @@ const PitchCardList = (props) => {
                              <div class="text-[0.82rem] text-cardBody font-poppins">
     {item.countryDialCode && item.phoneNumber
       ? `${item.countryDialCode} ${item.phoneNumber}`
-      : 'Not available'}
+      : 'No Data'}
   </div>
   
                          </div>
@@ -255,7 +255,7 @@ const PitchCardList = (props) => {
                          <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            
                              <div className="text-[0.82rem] text-cardBody font-poppins">
-                             {item.companyName || "Not Available"}
+                             {item.companyName || "No Data"}
   </div>
   
                          </div>
@@ -291,7 +291,7 @@ const PitchCardList = (props) => {
                                       
                                       <span>
                         {item.assignedTo === null ? (
-                  "Not available"
+                  "No Data"
                 ) : (
                   <>
                   {item.assignedTo === item.ownerName ? (
@@ -584,7 +584,7 @@ const PitchCardList = (props) => {
                                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
                                                 
                                                 {/* <Link
                                                  toUrl={`customer/${item.customerId}`}
@@ -598,7 +598,7 @@ const PitchCardList = (props) => {
                                                {/* </Link> */}
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] font-bold" >
+                                                 <span class="text-[tomato] mt-[0.4rem] font-bold" >
                                                    New
                                                  </span>
                                                ) : null}
@@ -678,7 +678,7 @@ const PitchCardList = (props) => {
                            <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
   {item.countryDialCode && item.phoneNumber
     ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'Not available'}
+    : 'No Data'}
 </div>
 
                        </div>
@@ -697,21 +697,21 @@ const PitchCardList = (props) => {
                        <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[5.1rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.companyName || "Not Available"}
+                           {item.companyName || "No Data"}
 </div>
 
                        </div>
                        <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.source || "Not Available"}
+                           {item.source || "No Data"}
 </div>
 
                        </div>
                        <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.sector || "Not Available"}
+                           {item.sector || "No Data"}
 </div>
 
                        </div>
@@ -731,7 +731,7 @@ const PitchCardList = (props) => {
                                     
                                     <span>
                       {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

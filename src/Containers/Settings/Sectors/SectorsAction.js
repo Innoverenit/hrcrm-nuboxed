@@ -55,8 +55,6 @@ export const addSectors = (sectors, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Sector has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
           })
         // message.success("Sector has been added successfully!");
         }
@@ -130,8 +128,6 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Sector has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("Sector has been updated successfully!");
         console.log(res);

@@ -74,9 +74,13 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect created Successfully!',
-        showConfirmButton: false,
-        // timer: 1500
       })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
       console.log(res);
       // dispatch(
       //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
@@ -470,7 +474,7 @@ export const updateCustomer = (data, customerId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect Info updated Successfully!',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       console.log(res);
@@ -666,7 +670,7 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         });
       } else {
@@ -674,7 +678,7 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
         Swal.fire({
           icon: 'success',
           title: 'Contact created Successfully',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         });
       }

@@ -132,7 +132,7 @@ const PitchAllCardList = (props) => {
                                           <Tooltip>
                                             
                                               
-                                              <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                   
                                                  
                                                  {item.firstName}
@@ -144,7 +144,7 @@ const PitchAllCardList = (props) => {
                                                  &nbsp;&nbsp;
                                                  {date === currentdate ? (
                                                    <span
-                                                   class="text-[tomato] font-bold">
+                                                   class="text-[tomato] mt-[0.4rem] font-bold">
                                                      New
                                                    </span>
                                                  ) : null}
@@ -223,7 +223,7 @@ const PitchAllCardList = (props) => {
                              <div class="text-[0.82rem] text-cardBody font-poppins">
     {item.countryDialCode && item.phoneNumber
       ? `${item.countryDialCode} ${item.phoneNumber}`
-      : 'Not available'}
+      : 'No Data'}
   </div>
   
                          
@@ -242,7 +242,7 @@ const PitchAllCardList = (props) => {
                          
                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                              <div className="text-[0.82rem] text-cardBody font-poppins">
-                             {item.companyName || "Not Available"}
+                             {item.companyName || "No Data"}
   </div>
   
                          
@@ -556,7 +556,7 @@ const PitchAllCardList = (props) => {
                                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-[0.82rem] text-blue-500 text-cardBody max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-poppins font-semibold  cursor-pointer">
                                                 
                                                 {/* <Link
                                                  toUrl={`customer/${item.customerId}`}
@@ -571,7 +571,7 @@ const PitchAllCardList = (props) => {
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
                                                  <span
-                                                 class="text-[tomato] font-bold">
+                                                 class="text-[tomato] mt-[0.4rem] font-bold">
                                                    New
                                                  </span>
                                                ) : null}
@@ -650,7 +650,7 @@ const PitchAllCardList = (props) => {
                            <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
   {item.countryDialCode && item.phoneNumber
     ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'Not available'}
+    : 'No Data'}
 </div>
 
                        </div>
@@ -669,21 +669,21 @@ const PitchAllCardList = (props) => {
                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.companyName || "Not Available"}
+                           {item.companyName || "No Data"}
 </div>
 
                        </div>
                        <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.source || "Not Available"}
+                           {item.source || "No Data"}
 </div>
 
                        </div>
                        <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.sector || "Not Available"}
+                           {item.sector || "No Data"}
 </div>
 
                        </div>
@@ -708,7 +708,7 @@ const PitchAllCardList = (props) => {
                                     
                                     <span>
                         {item.assignedTo === null ? (
-                  "Not available"
+                  "No Data"
                 ) : (
                   <>
                   {item.assignedTo === item.ownerName ? (

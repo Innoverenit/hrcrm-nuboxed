@@ -132,8 +132,8 @@ class ContactDetailTab extends Component {
                     <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
                       <FormattedMessage
-                        id="app.opportunity"
-                        defaultMessage="Opportunity"
+                        id="app.quotation"
+                        defaultMessage="Quotation"
                       />
                     </span>
                   </span>

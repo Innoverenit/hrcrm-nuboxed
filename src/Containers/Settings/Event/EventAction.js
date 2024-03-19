@@ -53,8 +53,7 @@ export const addEvents = (event, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Event has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
+
           })
         // message.success("Event has been added successfully!");
         }
@@ -132,8 +131,6 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Event has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("Event has been updated successfully!");
         console.log(res);

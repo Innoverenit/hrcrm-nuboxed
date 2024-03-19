@@ -93,8 +93,8 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
+          // showConfirmButton: false,
+          // timer: 1500
         })
       })
       .catch((err) => {
@@ -135,8 +135,8 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Updated Successfully',
-          showConfirmButton: false,
-          timer: 1500
+          // showConfirmButton: false,
+          // timer: 1500
         })
       })
       .catch((err) => {
@@ -320,16 +320,15 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            showConfirmButton: false,
-            // timer: 1500
+            // showConfirmButton: false,
+            // // timer: 1500
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Contact created Successfully',
-            showConfirmButton: false,
-            // timer: 1500
+         
           });
         }
         const startDate = dayjs()
@@ -376,8 +375,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
+     
         })
         cb();
       })
@@ -661,7 +659,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Call has been added successfully!',
-          timer: 1500
+        
         })
         console.log(res);
         dispatch({
@@ -697,7 +695,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Meeting has been added successfully!',
-          timer: 1500
+        
         })
         console.log(res);
         dispatch({
@@ -730,7 +728,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Task has been added successfully!',
-          timer: 1500
+          // timer: 1500
         })
         console.log(res);
         dispatch({

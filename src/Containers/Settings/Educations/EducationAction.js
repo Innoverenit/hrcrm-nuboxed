@@ -47,8 +47,6 @@ export const addEducations = (education, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Education has been added Successfully',
-        showConfirmButton: false,
-        // timer: 1500
       })
       // message.success("Education has been added successfully!");
       // dispatch(getEducations());
@@ -87,8 +85,6 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Education has been updated Successfully',
-        showConfirmButton: false,
-        // timer: 1500
       })
       // message.success("Education has been updated successfully!");
       console.log(res);
