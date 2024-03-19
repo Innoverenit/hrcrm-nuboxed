@@ -10,6 +10,7 @@ import { MainWrapper } from "../../../../Components/UI/Layout";
 import { TextInput, } from "../../../../Components/UI/Elements";
 import {
   getSources,
+  getSourceCount,
   searchSourceName,
   ClearReducerDataOfSource,
   addSources,
@@ -126,9 +127,10 @@ class Source extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getSources,orgId } = this.props;
+    const { getSources,orgId,getSourceCount } = this.props;
     console.log();
     getSources(orgId);
+    getSourceCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -277,6 +279,7 @@ const mapStateToProps = ({ source,auth }) => ({
   addingSources: source.addingSources,
   addingSourcesError: source.addingSourcesError,
 sources: source.sources,
+sourceCount:source.sourceCount,
 orgId:auth.userDetails.organizationId,
 userId:auth.userDetails.userId,
 removingSources: source.removingSources,
@@ -292,6 +295,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSources,
+      getSourceCount,
       addSources,
       removeSource,
       updateSource,

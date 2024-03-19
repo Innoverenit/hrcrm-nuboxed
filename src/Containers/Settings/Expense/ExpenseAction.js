@@ -165,3 +165,29 @@ export const ClearReducerDataOfExpense = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_EXPENSE,
   });
 };
+
+export const getExpenseCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EXPENSE_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/expenseType/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EXPENSE_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EXPENSE_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

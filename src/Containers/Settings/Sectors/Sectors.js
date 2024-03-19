@@ -10,6 +10,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getSectors,
+  getSectorCount,
   addSectors,
   removeSectors,
   updateSectors,
@@ -117,9 +118,10 @@ class Sectors extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getSectors } = this.props;
+    const { getSectors,getSectorCount,orgId } = this.props;
     console.log();
     getSectors();
+    getSectorCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -259,11 +261,12 @@ class Sectors extends Component {
   }
 }
 
-const mapStateToProps = ({ sector }) => ({
+const mapStateToProps = ({ sector,auth }) => ({
   addingSectors: sector.addingSectors,
   addingSectorsError: sector.addingSectorsError,
   sectors: sector.sectors,
-
+  sectorCount:sector.sectorCount,
+  orgId: auth.userDetails.organizationId,
   removingSectors: sector.removingSectors,
   removingSectorsError: sector.removingSectorsError,
   fetchingSectors: sector.fetchingSectors,
@@ -277,6 +280,7 @@ const mapStateToProps = ({ sector }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      getSectorCount,
       getSectors,
       addSectors,
       removeSectors,

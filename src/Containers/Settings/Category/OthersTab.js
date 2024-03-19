@@ -94,7 +94,7 @@ class OthersTab extends Component {
                     <RememberMeIcon 
                     // icon={solid('id-card-clip')}
                      />
-                    <span class=" ml-1" >Identity</span>
+                    <span class=" ml-1" >Identity <span className="text-red-500 font-bold">{this.props.idProofCount.IdProofTypeCount}</span></span>
                   </>
                 }
                 key="2"
@@ -116,7 +116,7 @@ class OthersTab extends Component {
                   <>  
                   <ReceiptIcon  />
                     <span class=" ml-1" >
-                    Expense
+                    Expense <span className="text-red-500 font-bold">{this.props.expenseCount.IdProofTypeCount}</span>
                      </span>
                   </>
                 }
@@ -174,9 +174,11 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines
+  region,auth,serviceLines,idProof,expenses
 }
 ) => ({
+  idProofCount:idProof.idProofCount,
+  expenseCount:expenses.expenseCount,
   organizationId: auth.userDetails.organizationId,
   regionCount:region.regionCount,
   serviceLineCount:serviceLines.serviceLineCount,

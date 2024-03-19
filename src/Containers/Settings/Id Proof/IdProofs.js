@@ -8,6 +8,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getIdProofs,
+  getIdProofCount,
   addIdProofs,
   removeIdProof,
   updateIdProofs,
@@ -100,9 +101,10 @@ class IdProofs extends Component {
     this.setState({ IdProofType: "", singleIdProof: "",editInd:true });
   }; 
   componentDidMount() {
-    const { getIdProofs } = this.props;
+    const { getIdProofs ,getIdProofCount,orgId} = this.props;
     console.log();
     getIdProofs(getIdProofs);
+    getIdProofCount(orgId)
   }
   render() {
     const {
@@ -223,8 +225,10 @@ class IdProofs extends Component {
   }
 }
 
-const mapStateToProps = ({ idProof }) => ({
+const mapStateToProps = ({ idProof,auth }) => ({
   addingIdProofs: idProof.addingIdProofs,
+  idProofCount:idProof.idProofCount,
+  orgId: auth.userDetails.organizationId,
   addingIdProofsError: idProof.addingIdProofsError,
   idProofs: idProof.idProofs,    
   fetchingIdProofs: idProof.fetchingIdProofs,
@@ -236,6 +240,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getIdProofs,
+      getIdProofCount,
       addIdProofs ,
       updateIdProofs,
       searchIdProofName,
