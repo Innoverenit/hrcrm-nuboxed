@@ -3,6 +3,7 @@ import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import moment from "moment";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 
 export const setSuppliesViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_SUPPLIES_VIEW_TYPE, payload: viewType });
@@ -605,10 +606,15 @@ export const setSuppliesSupplierType = (data) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
+     
       dispatch({
         type: types.SET_SUPPLIES_SUPPLIER_SUCCESS,
         payload: res.data,
       });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
     })
     .catch((err) => {
       console.log(err);

@@ -288,6 +288,13 @@ const initialState = {
   fetchingSupplierSupplies: false,
   fetchingSupplierSuppliesError: false,
   supplierSuppliesList:[],
+
+  fetchingSupplierCount: false,
+ fetchingSupplierCountError:false,
+ countSupplier:{},
+ fetchingAllSupplierCount: false,
+ fetchingAllSupplierCountError:false,
+ allCountSupplier:{},
   
 };
 const newDateRange = (dateRange, newDate) =>
@@ -1262,10 +1269,39 @@ export const suppliersReducer = (state = initialState, action) => {
                 }
               }),
             };
-          case types.SET_SUPPLIER_SUPPLIES_FAILURE:
+            case types.SET_SUPPLIER_SUPPLIES_FAILURE:
             return { ...state };
 
 
+            case types.GET_SUPPLIER_COUNT_REQUEST:
+              return { ...state, fetchingSupplierCount: true };
+            case types.GET_SUPPLIER_COUNT_SUCCESS:
+              return {
+                ...state,
+                fetchingSupplierCount: false,
+                countSupplier: action.payload,
+              };
+            case types.GET_SUPPLIER_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingSupplierCount: false,
+                fetchingSupplierCountError: true,
+              };
+
+              case types.GET_ALL_SUPPLIER_COUNT_REQUEST:
+                return { ...state, fetchingAllSupplierCount: true };
+              case types.GET_ALL_SUPPLIER_COUNT_SUCCESS:
+                return {
+                  ...state,
+                  fetchingAllSupplierCount: false,
+                  allCountSupplier: action.payload,
+                };
+              case types.GET_ALL_SUPPLIER_COUNT_FAILURE:
+                return {
+                  ...state,
+                  fetchingAllSupplierCount: false,
+                  fetchingAllSupplierCountError: true,
+                };
     default:
       return state;
   }

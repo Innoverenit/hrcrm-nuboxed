@@ -1367,15 +1367,66 @@ export const setSupplierSuppliesType = (data) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
+     
       dispatch({
         type: types.SET_SUPPLIER_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_SUPPLIER_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getSupplierCount = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/count/${userId}`, {headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },})
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_SUCCESS,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.SET_SUPPLIER_SUPPLIES_FAILURE,
+        type: types.GET_SUPPLIER_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getSupplierAllCount = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/count/${userId}`, {headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },})
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_SUPPLIER_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_SUPPLIER_COUNT_FAILURE,
         payload: err,
       });
     });

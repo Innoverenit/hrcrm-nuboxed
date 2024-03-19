@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import { getGrnListOfaPoInStock, handleSTockItemModal } from "../../../InventoryAction"
+import { Tooltip } from "antd";
+import { getGrnListOfaPoInStock, handleSTockItemModal,handleStockUsedDrawer } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
+import TheStockUsedDrawer from "./TheStockUsedDrawer";
 
 const GrnListOfPO = (props) => {
     useEffect(() => {
-        props.getGrnListOfaPoInStock(props.locationDetailsId)
+        props.getGrnListOfaPoInStock(props.locationDetailsId);
     }, [])
 
     const [row, setRow] = useState({})
@@ -101,6 +103,23 @@ const GrnListOfPO = (props) => {
                                                 {item.remark}
                                             </div>
                                         </div>
+                                        <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+            
+                      <div>
+                        <Tooltip title="">
+                        <i class="far fa-share-square"
+                        //    className="!text-base cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.handleStockUsedDrawer(true);
+                            }}
+                            style={{cursor:"pointer"}}
+                          />
+                        </Tooltip>
+                      </div>
+                   
+                    
+                    <div></div>
+                  </div>
 
                                     </div>
 
@@ -115,6 +134,11 @@ const GrnListOfPO = (props) => {
                 handleSTockItemModal={props.handleSTockItemModal}
                 showStockItem={props.showStockItem}
             />
+            <TheStockUsedDrawer
+            row={row}
+            stockUseDrwr={props.stockUseDrwr}
+            handleStockUsedDrawer={props.handleStockUsedDrawer}
+            />
         </>
     );
 }
@@ -125,14 +149,16 @@ const mapStateToProps = ({ inventory, auth }) => ({
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     poGrnList: inventory.poGrnList,
     showStockItem: inventory.showStockItem,
-    fetchingGrnListOfAPo: inventory.fetchingGrnListOfAPo
+    fetchingGrnListOfAPo: inventory.fetchingGrnListOfAPo,
+    stockUseDrwr:inventory.stockUseDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getGrnListOfaPoInStock,
-            handleSTockItemModal
+            handleSTockItemModal,
+            handleStockUsedDrawer
         },
         dispatch
     );

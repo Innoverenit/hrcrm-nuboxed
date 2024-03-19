@@ -124,7 +124,7 @@ function SuppliesTable(props) {
                             {item.subCategoryName}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                        <div className=" flex font-medium flex-col md:w-28 max-sm:justify-between w-full max-sm:flex-row ">
                           <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                             {item.attributeName} {item.subAttributeName}
                           </div>

@@ -79,11 +79,10 @@ function SuppliersCardList(props) {
                     return (
                       <>
                         <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3"
-                >
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3">
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                             <div className="font-medium  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}

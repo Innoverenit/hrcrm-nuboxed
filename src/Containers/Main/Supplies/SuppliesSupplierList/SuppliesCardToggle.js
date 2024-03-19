@@ -1,32 +1,69 @@
 import React,{useState} from "react";
-import { Switch} from "antd";
+import { Switch,Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSuppliesSupplierType } from "../SuppliesAction";
 
 function SuppliesCardToggle (props) {
+  const [toggle, setToggle] = React.useState(props.item.supplierSuppliesInd)
 
-    const [checked, setChecked] = useState(false);
-    const handleToggle = () => {
-      setChecked(prevChecked => !prevChecked);
+  console.log("sssp",props.item.supplierSuppliesInd,toggle)
 
-      if (!checked) {
+  function handleToggleCollection(item) {
+      if (props.item.supplierSuppliesInd) {
         props.setSuppliesSupplierType(
-                    {
-                        supplierId:props.item.supplierId,
-                        supplierSuppliesInd:"true",
-                        suppliesId:props.suppliesId,
-    
-                    },);
+          {
+              supplierId:props.item.supplierId,
+              suppliesId:props.suppliesId,
+              supplierSuppliesInd: props.item.supplierSuppliesInd ? false : true,
+            },
+       
+          );
+          setToggle( props.item.supplierSuppliesInd ? false : true);
+      } else {
+          props.setSuppliesSupplierType(
+              {
+                supplierId:props.item.supplierId,
+              suppliesId:props.suppliesId,
+              supplierSuppliesInd: props.item.supplierSuppliesInd ? false : true,
+              },
+             
+          );
+          setToggle( props.item.supplierSuppliesInd ? false : true);
       }
-    };
-  
-    return (
-      <div>
-        <Switch checked={checked} onChange={handleToggle} />
-      </div>
-    );
+  }
+
+  function handleCancel() {
+      if (props.item.supplierSuppliesInd) {
+          setToggle(true);
+      } else {
+          setToggle(false);
+      }
+  }
+
+  return (
+      <>
+          <div>
+              <Popconfirm
+                  title="Confirm status change?"
+                  onConfirm={() => handleToggleCollection()}
+                  onCancel={handleCancel}
+                  okText="Ok"
+                  cancelText="Cancel"
+              >
+                  <Switch
+                      checked={toggle || props.item.supplierSuppliesInd}
+                      // disabled={props.status}
+                      isLoading={true}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                  />
+              </Popconfirm>
+          </div>
+      </>
+  );
 }
+   
 
 const mapStateToProps = ({ auth }) => ({
     userId: auth.userDetails.userId,
