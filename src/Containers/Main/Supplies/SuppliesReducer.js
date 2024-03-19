@@ -91,11 +91,11 @@ const initialState = {
     deletingSuppliesData: false,
     deletingSuppliesDataError: false,
 
-    suppliersListDrwr:false,
+    suppliersListDrwr: false,
 
     fetchingSupplieSupplerList: false,
-    fetchingSupplieSupplerListError:false,
-    supplieSupplerList:[]
+    fetchingSupplieSupplerListError: false,
+    supplieSupplerList: []
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -113,7 +113,11 @@ export const suppliesReducer = (state = initialState, action) => {
         case types.ADD_SUPPLIES_REQUEST:
             return { ...state, addingPurchase: true };
         case types.ADD_SUPPLIES_SUCCESS:
-            return { ...state, addingPurchase: false, addSuppliesModal: false };
+            return {
+                ...state, addingPurchase: false,
+                purchaseList: [action.payload, ...state.purchaseList],
+                addSuppliesModal: false
+            };
         case types.ADD_SUPPLIES_FAILURE:
             return {
                 ...state,
@@ -320,7 +324,15 @@ export const suppliesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 addingMasterList: false,
-                addBrandModel: false
+                addBrandModel: false,
+                brandModel: [],
+                purchaseList: state.purchaseList.map((item) => {
+                    if (item.suppliesId == action.payload.suppliesId) {
+                        return action.payload;
+                    } else {
+                        return item;
+                    }
+                }),
             };
         case types.ADD_MASTER_LIST_FAILURE:
             return {
@@ -465,40 +477,40 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesDataError: true,
             };
 
-            case types.HANDLE_SUPPLIERSLIST_DRAWER:
-                return { ...state, suppliersListDrwr: action.payload };
-    
-                case types.GET_SUPPLIES_SUPPLIERS_REQUEST:
-                    return { ...state, fetchingSupplieSupplerList: true };
-                case types.GET_SUPPLIES_SUPPLIERS_SUCCESS:
-                    return {
-                        ...state,
-                        fetchingSupplieSupplerList: false,
-                        supplieSupplerList: action.payload,
-                    };
-                case types.GET_SUPPLIES_SUPPLIERS_FAILURE:
-                    return {
-                        ...state,
-                        fetchingSupplieSupplerList: false,
-                        fetchingSupplieSupplerListError: true,
-                    };
+        case types.HANDLE_SUPPLIERSLIST_DRAWER:
+            return { ...state, suppliersListDrwr: action.payload };
 
-                    case types.SET_SUPPLIES_SUPPLIER_REQUEST:
-                        return { ...state };
-                      case types.SET_SUPPLIES_SUPPLIER_SUCCESS:
-                        return {
-                          ...state,
-                          supplieSupplerList: state.supplieSupplerList.map(
-                            (item) =>{
-                            if (item.supplierId === action.payload.supplierId) {
-                              return action.payload;
-                            } else {
-                              return item;
-                            }
-                          }),
-                        };
-                      case types.SET_SUPPLIES_SUPPLIER_FAILURE:
-                        return { ...state };
+        case types.GET_SUPPLIES_SUPPLIERS_REQUEST:
+            return { ...state, fetchingSupplieSupplerList: true };
+        case types.GET_SUPPLIES_SUPPLIERS_SUCCESS:
+            return {
+                ...state,
+                fetchingSupplieSupplerList: false,
+                supplieSupplerList: action.payload,
+            };
+        case types.GET_SUPPLIES_SUPPLIERS_FAILURE:
+            return {
+                ...state,
+                fetchingSupplieSupplerList: false,
+                fetchingSupplieSupplerListError: true,
+            };
+
+        case types.SET_SUPPLIES_SUPPLIER_REQUEST:
+            return { ...state };
+        case types.SET_SUPPLIES_SUPPLIER_SUCCESS:
+            return {
+                ...state,
+                supplieSupplerList: state.supplieSupplerList.map(
+                    (item) => {
+                        if (item.supplierId === action.payload.supplierId) {
+                            return action.payload;
+                        } else {
+                            return item;
+                        }
+                    }),
+            };
+        case types.SET_SUPPLIES_SUPPLIER_FAILURE:
+            return { ...state };
 
 
         default:
