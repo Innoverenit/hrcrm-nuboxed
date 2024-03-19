@@ -119,14 +119,14 @@ const DealsAllCardList = (props) => {
                         <Tooltip>
 
 
-                          <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                          <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
 
                             {item.opportunityName}
 
                             &nbsp;&nbsp;
                             {date === currentdate ? (
-                              <span class="text-[tomato] font-bold"
+                              <span class="text-[tomato] mt-[0.4rem] font-bold"
 
                               >
                                 New
@@ -228,7 +228,7 @@ const DealsAllCardList = (props) => {
 
                         <span>
                           {item.assignedTo === null ? (
-                            "Not available"
+                            "No Data"
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (
@@ -378,7 +378,7 @@ const DealsAllCardList = (props) => {
                               {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                              <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
                                 {/* <Link
                                                  toUrl={`customer/${item.customerId}`}
@@ -388,7 +388,7 @@ const DealsAllCardList = (props) => {
                                 {/* </Link> */}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <span class="text-[tomato] font-bold"
+                                  <span class="text-[tomato] mt-[0.4rem] font-bold"
 
                                   >
                                     New
@@ -490,7 +490,7 @@ const DealsAllCardList = (props) => {
 
                         <span>
                           {item.assignedTo === null ? (
-                            "Not available"
+                            "No Data"
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (

@@ -124,12 +124,12 @@ if (isMobile){
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <h4 class="text-[0.82rem] text-cardBody font-semibold  font-poppins cursor-pointer">
+                                      <h4 class="text-[0.82rem] flex text-cardBody font-semibold  font-poppins cursor-pointer">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
     <span
-    class="text-xs text-[tomato] font-bold"
+    class="text-xs text-[tomato] mt-[0.4rem] font-bold"
     >
       New
     </span>
@@ -209,7 +209,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
-"Not Available"
+"No Data"
 )} 
                     
                      </h4>
@@ -226,8 +226,8 @@ props.updateTypeForLead(item.leadsId,typ)
                  <div class="flex justify-between items-center w-wk "> 
                  <div className=" flex font-medium flex-col justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
                      <h4 class=" text-[0.82rem] text-cardBody font-semibold  font-poppins">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "Not Available"}>
-{item.companyName || "Not Available"}
+                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
+{item.companyName || "No Data"}
 </Link>
 
                      </h4>
@@ -264,7 +264,7 @@ props.updateTypeForLead(item.leadsId,typ)
                               
                               <div>
                       {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -460,11 +460,11 @@ Resinstate
                                   <Tooltip>
                                     <div class="max-sm:w-full justify-between flex md:flex-col">
                                      
-                                      <div class="text-[0.82rem] text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
+                                      <div class="text-[0.82rem] flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                                       {item.name}
                                      &nbsp;&nbsp;
                                      {date === currentdate ? (
-    <div class="text-xs text-[tomato] font-bold" 
+    <div class="text-xs text-[tomato] mt-[0.4rem] font-bold" 
       
     >
       New
@@ -546,7 +546,7 @@ props.updateTypeForLead(item.leadsId,typ)
                      {item.countryDialCode && item.phoneNumber ? (
 `${item.countryDialCode} ${item.phoneNumber}`
 ) : (
-"Not Available"
+"No Data"
 )} 
                     
                      </div>
@@ -563,8 +563,8 @@ props.updateTypeForLead(item.leadsId,typ)
                  <div class="flex"> 
                  <div className=" flex font-medium flex-col justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
                      <div class=" text-[0.82rem] text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "Not Available"}>
-{item.companyName || "Not Available"}
+                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "No Data"}>
+{item.companyName || "No Data"}
 </Link>
 
                      </div>

@@ -26,10 +26,10 @@ const ContactSchema = Yup.object().shape({
     .matches(phoneRegExp, "Whatsapp number is not valid")
     .min(8, "Minimum 8 digits")
     .max(10, "Number is too long"),
-  mobileNumber: Yup.string()
-    .matches(phoneRegExp, "Mobile number is not valid")
-    .min(8, "Minimum 8 digits")
-    .max(10, "Number is too long"),
+  // mobileNumber: Yup.string()
+  //   .matches(phoneRegExp, "Mobile number is not valid")
+  //   .min(8, "Minimum 8 digits")
+  //   .max(10, "Number is too long"),
 });
 
 class ContactForm extends Component {

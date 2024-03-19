@@ -49,8 +49,7 @@ export const addTasks = (task, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Task has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
+     
         })
       // message.success("Task has been added successfully!");
       }
@@ -91,8 +90,7 @@ export const updateTasks = (taskTypeId, taskType, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Task has been updated Successfully',
-        showConfirmButton: false,
-        // timer: 1500
+     
       })
       // message.success("Task has been updated successfully!");
       console.log(res);

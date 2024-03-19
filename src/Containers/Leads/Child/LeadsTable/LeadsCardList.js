@@ -157,11 +157,11 @@ const LeadsCardList = (props) => {
                         <div class="w-full flex items-center">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col">
-                              <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer ">
+                              <div class="text-sm text-cardBody flex font-semibold  font-poppins cursor-pointer ">
                                 {item.name}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <div class="text-xs text-[tomato] font-bold"
+                                  <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
                                   >
                                     New
                                   </div>
@@ -244,7 +244,7 @@ const LeadsCardList = (props) => {
                       <div class=" text-xs text-cardBody font-poppins">
                         {item.countryDialCode && item.phoneNumber
                           ? `${item.countryDialCode} ${item.phoneNumber}`
-                          : "Not Available"}
+                          : "No Data"}
                         
                       </div>
                     </div>
@@ -261,7 +261,7 @@ const LeadsCardList = (props) => {
                     <div className=" flex font-medium flex-col  ">
                      
                       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {item.companyName || "Not Available"}
+                        {item.companyName || "No Data"}
                       </div>
                     </div>
                     <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
@@ -303,7 +303,7 @@ const LeadsCardList = (props) => {
                       <div class=" text-xs text-cardBody font-poppins">
                       <div>
                       {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -568,11 +568,11 @@ const LeadsCardList = (props) => {
                       <div class="max-sm:w-full md:flex items-center">
                         <Tooltip>
                           <div class="max-sm:w-full justify-between flex md:flex-col">
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
+                            <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <div class="text-xs text-[tomato] font-bold"
+                                <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                                   
                                 >
                                   New
@@ -654,7 +654,7 @@ const LeadsCardList = (props) => {
                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                       {item.countryDialCode && item.phoneNumber
                         ? `${item.countryDialCode} ${item.phoneNumber}`
-                        : "Not Available"}
+                        : "No Data"}
                  
                     </div>
                   </div>
@@ -671,7 +671,7 @@ const LeadsCardList = (props) => {
                 <div class="flex">
                   <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
                     <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
-                      {item.companyName || "Not Available"}
+                      {item.companyName || "No Data"}
                     </div>
                   </div>
                   <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
@@ -709,7 +709,7 @@ const LeadsCardList = (props) => {
                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                       <div>
                       {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (

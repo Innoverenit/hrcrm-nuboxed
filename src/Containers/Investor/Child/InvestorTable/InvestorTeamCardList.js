@@ -172,7 +172,7 @@ function InvestorTeamCardList(props) {
                                             {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </h4> */}
-                                            <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
+                                            <h4 class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
 
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
@@ -184,7 +184,7 @@ function InvestorTeamCardList(props) {
         >{item.name}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span
+          <span class="mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -250,7 +250,7 @@ function InvestorTeamCardList(props) {
                                     
                                     <span>
               {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <MultiAvatar2
                   primaryTitle={item.assignedTo}

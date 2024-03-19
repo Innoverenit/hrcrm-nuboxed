@@ -56,8 +56,6 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Sector has been added successfully!',
-            showConfirmButton: false,
-            // timer: 1500
           })
         //  message.success("source has been added successfully!");
         }
@@ -139,8 +137,6 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Sector has been updated successfully!',
-          showConfirmButton: false,
-          // timer: 1500
         })
       })
       .catch((err) => {

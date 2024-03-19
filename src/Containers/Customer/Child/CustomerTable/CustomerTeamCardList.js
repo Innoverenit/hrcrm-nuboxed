@@ -197,14 +197,14 @@ const [rowdata, setrowdata] = useState("");
                         <div class="flex items-center" >
                         <Tooltip>
                                             <div >
-                                              <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                              <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                   
            <Link
             toUrl={`customer/${item.customerId}`}
             title={`${item.name}`}
           >{item.name}</Link>&nbsp;&nbsp;
           {date === currentdate ? (
-            <span class="text-xs text-[tomato] font-bold"
+            <span class="text-xs text-[tomato] mt-[0.4rem] font-bold"
             >
               New
             </span>
@@ -544,14 +544,14 @@ const [rowdata, setrowdata] = useState("");
                       <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>
     &nbsp;&nbsp;
         {date === currentdate ? (
-    <span class="text-xs text-[tomato] font-bold"
+    <span class="text-xs text-[tomato] mt-[0.4rem] font-bold"
     >
             New
           </span>

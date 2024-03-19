@@ -11,7 +11,7 @@ const AddPitchOpportunityModal = (props) => {
     <>
       <StyledDrawer
         title={
-          <FormattedMessage id="app.opportunity" defaultMessage="Opportunity" />
+          <FormattedMessage id="app.quotation" defaultMessage="Quotation" />
         }
         width="60%"
         visible={props.addPitchOpportunityModal}

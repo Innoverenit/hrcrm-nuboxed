@@ -56,8 +56,6 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Type has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
           })
         // message.success("Type has been added successfully!");
         }
@@ -131,8 +129,6 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Type has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("CUSTOMER has been updated successfully!");
         console.log(res);

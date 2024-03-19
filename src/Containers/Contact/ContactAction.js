@@ -85,7 +85,7 @@ export const addContact = (contact) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact created Successfully!',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       console.log(res);
@@ -387,7 +387,7 @@ export const addContactDocument = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       dispatch({
@@ -537,7 +537,7 @@ export const addContactOpportunity = (opportunity, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       console.log(res);
@@ -599,7 +599,7 @@ export const updateContact = (data, contactId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact Info Updated Successfully!',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
     })
@@ -758,7 +758,7 @@ export const addLinkContactByOpportunityId = (contact, opportunityId) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
     })
@@ -848,7 +848,7 @@ export const shareContactPartnerPermission = (data, userId, a) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
     })

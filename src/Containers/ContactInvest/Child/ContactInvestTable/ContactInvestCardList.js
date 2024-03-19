@@ -469,7 +469,7 @@ function ContactInvestCardList(props) {
                                         <Tooltip>
                                           <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                             
-                                            <div class="text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
@@ -479,7 +479,7 @@ function ContactInvestCardList(props) {
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-[tomato] font-bold"
+          <span class="text-[tomato] mt-[0.4rem] font-bold"
            
           >
             New

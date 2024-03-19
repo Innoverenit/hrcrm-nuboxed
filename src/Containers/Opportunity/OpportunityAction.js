@@ -347,7 +347,7 @@ export const addOpportunity = (opportunity, cb) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity created Successfully!',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       console.log(res);
@@ -579,7 +579,7 @@ export const setEditOpportunity = (name) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Info updated Successfully!',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       console.log(res);
@@ -797,7 +797,7 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Deleted Successfully',
-        showConfirmButton: false,
+        // showConfirmButton: false,
         // timer: 1500
       })
       // if (res.data) {
@@ -2502,7 +2502,7 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         });
       } else {
@@ -2869,7 +2869,7 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         });
       } else {
@@ -2877,7 +2877,7 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
         Swal.fire({
           icon: 'error',
           title: 'Not updated',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           // timer: 1500
         });
       }

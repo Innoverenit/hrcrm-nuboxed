@@ -49,8 +49,7 @@ export const getRoles = (orgId) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Role has been added Successfully',
-            showConfirmButton: false,
-            // timer: 1500
+        
           })
         // message.success("Role has been added successfully!");
         }
@@ -103,8 +102,7 @@ export const getRoles = (orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Role has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
+        
         })
         // message.success("Role has been updated successfully!");
         console.log(res);
@@ -215,8 +213,7 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Role has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
       // message.success("Role has been added successfully!");
       }
@@ -262,8 +259,7 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
       Swal.fire({
         icon: 'success',
         title: 'Role has been updated Successfully',
-        showConfirmButton: false,
-        // timer: 1500
+     
       })
       // message.success("Role has been updated successfully!");
       console.log(res);

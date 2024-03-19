@@ -49,8 +49,6 @@ export const addExpenses = (expense, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Expense has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
       // message.success("Expense has been added successfully!");
       }
@@ -90,8 +88,6 @@ export const updateExpenses = (expenseTypeId, expenseType, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Expense has been updated Successfully',
-        showConfirmButton: false,
-        // timer: 1500
       })
       // message.success("Expense has been updated successfully!");
       console.log(res);

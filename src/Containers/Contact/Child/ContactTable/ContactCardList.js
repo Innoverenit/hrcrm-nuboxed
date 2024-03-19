@@ -518,21 +518,18 @@ function ContactCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins  font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins  font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                               
         
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
+       <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                  
+       >
             New
-          </span>
+          </div>
         ) : null}
        
                                             </div>

@@ -150,11 +150,11 @@ const LeadsTeamCardList = (props) => {
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col">
                              
-                              <h4 class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                              <h4 class="text-sm text-cardBody font-semibold flex  font-poppins cursor-pointer">
                                 {item.name}
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
-                                  <span class="text-xs text-[tomato] font-bold"
+                                  <span class="text-xs text-[tomato] mt-[0.4rem] font-bold"
                                   >
                                     New
                                   </span>
@@ -236,7 +236,7 @@ const LeadsTeamCardList = (props) => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.countryDialCode && item.phoneNumber
                           ? `${item.countryDialCode} ${item.phoneNumber}`
-                          : "Not Available"}
+                          : "No Data"}
                        
                       </h4>
                     </div>
@@ -253,7 +253,7 @@ const LeadsTeamCardList = (props) => {
                     <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
                      
                       <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {item.companyName || "Not Available"}
+                        {item.companyName || "No Data"}
                       </h4>
                     </div>
                     <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
@@ -289,7 +289,7 @@ const LeadsTeamCardList = (props) => {
                       <div class=" text-xs text-cardBody font-poppins">
                       <div>
                       {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -544,11 +544,11 @@ const LeadsTeamCardList = (props) => {
                             {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden">
                               Name
                             </div> */}
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                            <div class="text-sm text-cardBody font-semibold flex  font-poppins cursor-pointer">
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <span class="text-xs text-[tomato] font-bold"
+                                <span class="text-xs text-[tomato] mt-[0.4rem] font-bold"
                                   
                                 >
                                   New
@@ -634,7 +634,7 @@ const LeadsTeamCardList = (props) => {
                     <div class=" text-xs text-cardBody font-poppins">
                       {item.countryDialCode && item.phoneNumber
                         ? `${item.countryDialCode} ${item.phoneNumber}`
-                        : "Not Available"}
+                        : "No Data"}
                       {/* {`${item.countryDialCode} ${item.phoneNumber}`} */}
                     </div>
                   </div>
@@ -656,7 +656,7 @@ const LeadsTeamCardList = (props) => {
                       Company{" "}
                     </div> */}
                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                      {item.companyName || "Not Available"}
+                      {item.companyName || "No Data"}
                     </div>
                   </div>
                   <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">

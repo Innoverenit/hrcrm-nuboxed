@@ -55,8 +55,6 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Payment has been added Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("PAYMENT has been added successfully!");
         // }
@@ -130,8 +128,6 @@ export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Payment has been updated Successfully',
-          showConfirmButton: false,
-          // timer: 1500
         })
         // message.success("PAYMENT has been updated successfully!");
         console.log(res);
