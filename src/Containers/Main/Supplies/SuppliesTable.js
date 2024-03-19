@@ -31,7 +31,7 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
-const SuppliersListDrawer=lazy(()=>import("./SuppliesSupplierList/SuppliersListDrawer"));
+const SuppliersListDrawer = lazy(() => import("./SuppliesSupplierList/SuppliersListDrawer"));
 
 function SuppliesTable(props) {
 
@@ -163,7 +163,7 @@ function SuppliesTable(props) {
 
 
                         <div>
-                          <Tooltip>
+                          {props.repairInd && <Tooltip title="Brand Model">
                             <PhoneFilled
                               onClick={() => {
                                 props.handleBrandModel(true);
@@ -172,14 +172,15 @@ function SuppliesTable(props) {
                               style={{ color: "blue", cursor: "pointer" }}
                             />
                           </Tooltip>
+                          }
                         </div>
-                        <div>
+                        {/* <div>
 
                           <InventoryIcon
                             style={{ cursor: "pointer", fontSize: "1rem", }}
                           />
 
-                        </div>
+                        </div> */}
 
 
                         <div>
@@ -334,19 +335,19 @@ function SuppliesTable(props) {
                     </div> */}
                           <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
                             <div>
-                              
+
                             </div>
                           </div>
                           <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
                             <div>
-                             
+
                             </div>
                             <div>
                             </div>
                           </div>
                           <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
                             <div>
-                            <Tooltip title="Material Builder">
+                              <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
                                   className="cursor-pointer text-base"
                                   onClick={() => {
@@ -356,8 +357,8 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
-                            <div>  
-                            {props.orderCreatRepairInd && <Tooltip>
+                            <div>
+                              {props.repairInd && <Tooltip title="Tag Brand">
                                 <PhoneFilled
                                   onClick={() => {
                                     props.handleBrandModel(true);
@@ -380,8 +381,8 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
-                            <div>  
-                                <InventoryIcon className=" !text-base cursor-pointer" />
+                            <div>
+                              <InventoryIcon className=" !text-base cursor-pointer" />
                             </div>
                           </div>
                           <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
@@ -435,9 +436,9 @@ function SuppliesTable(props) {
           handleMaterialBuilderDrawer={handleMaterialBuilderDrawer}
         />
         <SuppliersListDrawer
-         particularDiscountData={particularDiscountData}
-         suppliersListDrwr={props.suppliersListDrwr}
-         handleSuppliersListDrawer={props.handleSuppliersListDrawer}
+          particularDiscountData={particularDiscountData}
+          suppliersListDrwr={props.suppliersListDrwr}
+          handleSuppliersListDrawer={props.handleSuppliersListDrawer}
         />
       </Suspense>
 
@@ -453,8 +454,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   addBrandModel: supplies.addBrandModel,
   materialBuildrawer: supplies.materialBuildrawer,
-  orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
-  suppliersListDrwr:supplies.suppliersListDrwr
+  repairInd: auth.userDetails.repairInd,
+  suppliersListDrwr: supplies.suppliersListDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
