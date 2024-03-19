@@ -220,7 +220,7 @@ const handleSubmit = () => {
                  style={{marginLeft:"12px"}}
                   type="number"
                   value={header === 'Sales' ? props.sales.amount : header === 'Fulfillment' ? props.fulfillment.amount : props.investment.amount}
-                  onChange={(e) => header === 'Sales' ? handleSalesInputChange('amount', e.target.value) : header === 'Fulfillment' ? handleFulfillmentInputChange(e.target.value) : handleInvestmentInputChange('amount', e.target.value)}
+                  onChange={(e) => header === 'Sales' ? handleSalesInputChange('amount', e.target.value) : header === 'Fulfillment' ? handleFulfillmentInputChange('amount',e.target.value) : handleInvestmentInputChange('amount', e.target.value)}
                 />
                 {header !== 'Fulfillment' && (
                   <select
