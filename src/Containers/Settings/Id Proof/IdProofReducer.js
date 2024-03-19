@@ -6,6 +6,10 @@ const initialState = {
   fetchingIdProofsError: false,
   idProofs: [],
 
+  fetchingIdProofCount: false,
+  fetchingIdProofCountError: false,
+  idProofCount:{},
+
   addingIdProofs: false,
   addingIdProofsError: false,
 
@@ -109,6 +113,19 @@ export const idProofsReducer = (state = initialState, action) => {
           idProofs: [], 
           // deletedTruck: [] 
         };
+
+
+        case types.GET_ID_PROOF_COUNT_REQUEST:
+          return { ...state, fetchingIdProofCount: true };
+        case types.GET_ID_PROOF_COUNT_SUCCESS:
+          return { ...state, fetchingIdProofCount: false, 
+            idProofCount: action.payload };
+        case types.GET_ID_PROOF_COUNT_FAILURE:
+          return {
+            ...state,
+            fetchingIdProofCount: false,
+            fetchingIdProofCountError: true,
+          };
 
     default:
       return state;

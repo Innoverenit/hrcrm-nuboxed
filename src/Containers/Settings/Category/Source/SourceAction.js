@@ -182,3 +182,29 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
       type: types.HANDLE_CLAER_REDUCER_DATA_SOURCE,
     });
   };
+
+  export const getSourceCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_SOURCE_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/source/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SOURCE_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_SOURCE_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };

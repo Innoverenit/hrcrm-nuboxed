@@ -22,6 +22,7 @@ const data = [
 ];
 
 const Region = (props) => {
+  const [activeTab, setActiveTab] = useState("");
     const [regions, setRegions] = useState(props.regions);
     const [editingId, setEditingId] = useState(null);
     const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
@@ -93,6 +94,8 @@ setEditingId(null);
             regions:newRegionName
         }
         props.addRegions(data)
+        console.log(regions)
+        // setRegions(props.regiondata.length>0?props.regiondata:null);
     };
 
     const handleCancelAdd = () => {
@@ -122,6 +125,7 @@ setEditingId(null);
 
       const resetData = () => {
         setSelectedYear(null);
+        setActiveTab(null)
         setSales({ amount: null, currency: null });
         setFulfillment({ amount: null });
         setInvestment({ amount: null, currency: null });
@@ -216,6 +220,8 @@ if (props.fetchingRegions) {
         sales={sales}
         setSales={setSales}
         fulfillment={fulfillment}
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
         years={years}
         setFulfillment={setFulfillment}
         yearSelectRef={yearSelectRef}
@@ -235,6 +241,7 @@ const mapStateToProps = ({ region,auth  }) => ({
     addRegionModal:region.addRegionModal,
     fetchingRegions:region.fetchingRegions,
     organizationId: auth.userDetails.organizationId,
+    regiondata:region.regiondata,
     // removingDocuments: document.removingDocuments,
     // removingDocumentsError: document.removingDocumentsError,
     //   updatingDocuments: document.updatingDocuments,

@@ -8,6 +8,7 @@ import { TextInput,  } from "../../../Components/UI/Elements";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getExpenses,
+  getExpenseCount,
   addExpenses,
   removeExpense,
   updateExpenses,
@@ -119,10 +120,11 @@ class Expense extends Component {
   // };
   componentDidMount() {
     const { 
-      getExpenses
+      getExpenses,getExpenseCount,orgId
      } = this.props;
     console.log();
     getExpenses();
+    getExpenseCount(orgId)
     // this.getLinkedSources();
   }
   render() {
@@ -273,11 +275,12 @@ class Expense extends Component {
   }
 }
 
-const mapStateToProps = ({ expenses}) => ({
+const mapStateToProps = ({ expenses,auth}) => ({
   addingExpenses: expenses.addingExpenses,
   addingExpensesError: expenses.addingExpensesError,
      expenses: expenses.expenses,
-
+     orgId: auth.userDetails.organizationId,
+     expenseCount:expenses.expenseCount,
 //   removingEducations: expense.removingEducations,
 //   removingEducationsError: expense.removingEducationsError,
   fetchingExpenses: expenses.fetchingExpenses,
@@ -290,6 +293,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getExpenses,
+      getExpenseCount,
      addExpenses,
      removeExpense,
      updateExpenses,

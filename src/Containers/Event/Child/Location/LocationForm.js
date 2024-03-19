@@ -184,7 +184,7 @@ class LocationForm extends Component {
                   </div>
                   <div class=" w-[45%] max-sm:w-[30%]">
                       <Field
-                        name="region"
+                        name="regionsId"
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}

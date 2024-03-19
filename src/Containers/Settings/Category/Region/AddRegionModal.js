@@ -27,6 +27,8 @@ class AddRegionDrawerModal extends Component {
       
         
       <RegionForm
+       setActiveTab={this.props.setActiveTab}
+       activeTab={this.props.activeTab}
        currentregionId={this.props.currentregionId}
        selectedYear={this.props.selectedYear}
        setSelectedYear={this.props.setSelectedYear}

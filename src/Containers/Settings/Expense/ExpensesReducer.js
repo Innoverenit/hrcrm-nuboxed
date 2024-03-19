@@ -6,6 +6,11 @@ const initialState = {
   fetchingExpensesError: false,
   expenses: [],
 
+
+  fetchingExpenseCount: false,
+  fetchingExpenseCountError: false,
+  expenseCount:{},
+
   addingExpenses: false,
   addingExpensesError: false,
 
@@ -103,6 +108,19 @@ export const expensesReducer = (state = initialState, action) => {
           expenses: [], 
           // deletedTruck: [] 
         };
+
+
+        case types.GET_EXPENSE_COUNT_REQUEST:
+          return { ...state, fetchingExpenseCount: true };
+        case types.GET_EXPENSE_COUNT_SUCCESS:
+          return { ...state, fetchingExpenseCount: false, 
+            expenseCount: action.payload };
+        case types.GET_EXPENSE_COUNT_FAILURE:
+          return {
+            ...state,
+            fetchingExpenseCount: false,
+            fetchingExpenseCountError: true,
+          };
 
     default:
       return state;

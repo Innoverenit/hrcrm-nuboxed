@@ -75,7 +75,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <FactoryIcon />
                       <span class=" ml-1">
-                        Sector
+                        Sector <span className="text-red-500 font-bold">{this.props.sectorCount.SectorCount}</span>
                       </span>
                     </>
                   }
@@ -90,7 +90,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <SourceIcon />
                       <span class=" ml-1">
-                        Source
+                        Source<span className="text-red-500 font-bold">{this.props.sourceCount.SourceCount}</span>
                       </span>
                     </>
                   }
@@ -158,7 +158,10 @@ class CustomerSectorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ }) => ({});
+const mapStateToProps = ({ sector,source}) => ({
+  sectorCount:sector.sectorCount,
+  sourceCount:source.sourceCount,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerSectorTab);
