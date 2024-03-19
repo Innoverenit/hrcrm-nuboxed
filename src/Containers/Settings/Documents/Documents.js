@@ -9,6 +9,7 @@ import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput, } from "../../../Components/UI/Elements";
 import {
   getDocuments,
+  getDocumentCount,
   addDocuments,
   removeDocuments,
   updateDocuments,
@@ -102,9 +103,10 @@ class Documents extends Component {
     this.setState({ documentTypeName: "", singleDocument: "" });
   };
   componentDidMount() {
-    const { getDocuments } = this.props;
+    const { getDocuments,getDocumentCount,orgId } = this.props;
     console.log();
     getDocuments(getDocuments);
+    getDocumentCount(orgId)
   }
   render() {
     const {
@@ -234,10 +236,12 @@ class Documents extends Component {
   }
 }
 
-const mapStateToProps = ({ document }) => ({
+const mapStateToProps = ({ document ,auth}) => ({
   addingDocuments: document.addingDocuments,
   addingDocumentsError: document.addingDocumentsError,
   documents: document.documents,
+  documentCount:document.documentCount,
+  orgId: auth.userDetails.organizationId,
   removingDocuments: document.removingDocuments,
   removingDocumentsError: document.removingDocumentsError,
     updatingDocuments: document.updatingDocuments,
@@ -249,6 +253,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDocuments,
+      getDocumentCount,
       addDocuments,
       removeDocuments,
       updateDocuments,

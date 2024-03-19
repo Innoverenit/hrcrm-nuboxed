@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { getCountry,
+  getCountryCount,
   searchCountryName,
   allCountryMandatory,ClearReducerDataOfCountry} from "../Country/CountryAction";
 import { Button,Input } from "antd";
@@ -74,9 +75,11 @@ class Country extends Component {
     this.setState({ [name]: value });
 
   componentDidMount() {
-    const { getCountry,getCountryRecords } = this.props;
+    const { getCountry,getCountryRecords,
+      getCountryCount } = this.props;
     console.log();
     getCountry(getCountry);
+    getCountryCount(getCountryCount);
    
   }
   render() {
@@ -178,11 +181,13 @@ class Country extends Component {
 const mapStateToProps = ({ countrys, auth }) => ({
   fetchingCountry: countrys.fetchingCountry,
   country: countrys.country,
+  countryCount:countrys.countryCount,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getCountry,
+      getCountryCount,
       searchCountryName,
       ClearReducerDataOfCountry,
         allCountryMandatory,

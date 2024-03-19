@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { getCurrencyList ,
   allCurrencyMandatory,
+  getCurrencyCount,
   searchCurrencyName,
   ClearReducerDataOfCurrency
 } from "../Currency/CurrencyAction";
@@ -76,9 +77,10 @@ class Currency extends Component {
     this.setState({ [name]: value });
 
   componentDidMount() {
-    const { getCurrencyList,getCountryRecords } = this.props;
+    const { getCurrencyList,getCountryRecords,getCurrencyCount,orgId } = this.props;
     console.log();
     getCurrencyList(getCurrencyList);
+    getCurrencyCount(orgId);
    
   }
   render() {
@@ -179,11 +181,14 @@ class Currency extends Component {
 const mapStateToProps = ({ currency, auth }) => ({
     fetchingCurrencyList: currency.fetchingCurrencyList,
   currencyList: currency.currencyList,
+  currencyCount:currency.currencyCount,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getCurrencyList,
+        getCurrencyCount,
         searchCurrencyName,
         ClearReducerDataOfCurrency,
         allCurrencyMandatory,

@@ -188,6 +188,20 @@ function General(props) {
                             />
                               </div>
                           </div>
+
+                          <div class=" flex flex-row justify-between mt-2 ml-4">
+                          <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
+                          <div>
+                            <Field
+                              // name="typeInd"
+                              component={SwitchComponent}
+                              data={values.typeInd}
+                              checkedChildren={"Yes"}
+                              unCheckedChildren={"No"}
+                              width={"7em"}
+                            />
+                              </div>
+                          </div>
                       
                         </>
                       } 
@@ -234,6 +248,19 @@ function General(props) {
                         />
                         </div>
                       </div>
+                      <div class=" flex flex-row justify-between mt-2">
+                          <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
+                          <div>
+                            <Field
+                              // name="typeInd"
+                              component={SwitchComponent}
+                              data={values.typeInd}
+                              checkedChildren={"Yes"}
+                              unCheckedChildren={"No"}
+                              width={"7em"}
+                            />
+                              </div>
+                          </div>
                       <div class=" flex flex-row justify-between mt-3">
                       <div class=" text-sm  ml-2 font-bold ">CRM</div>
                       </div>

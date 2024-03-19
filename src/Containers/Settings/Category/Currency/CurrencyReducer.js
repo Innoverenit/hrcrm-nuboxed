@@ -7,6 +7,10 @@ const initialState = {
     fetchingCurrencyListError: false,
     currencyList: [],
 
+    fetchingCurrencyCount: false,
+    fetchingCurrencyCountError: false,
+    currencyCount:{},
+
     addingInvestorCurrencyToggle: false,
     addingInvestorCurrencyToggleError: false,
 
@@ -152,6 +156,20 @@ export const currencyReducer = (state = initialState, action) => {
                         addingInvestorCurrencyToggle: false,
                         addingInvestorCurrencyToggleError: true,
                       };
+
+
+
+                      case types.GET_CURRENCY_COUNT_REQUEST:
+                        return { ...state, fetchingCurrencyCount: true };
+                      case types.GET_CURRENCY_COUNT_SUCCESS:
+                        return { ...state, fetchingCurrencyCount: false, 
+                          currencyCount: action.payload };
+                      case types.GET_CURRENCY_COUNT_FAILURE:
+                        return {
+                          ...state,
+                          fetchingCurrencyCount: false,
+                          fetchingCurrencyCountError: true,
+                        };
 
      
     default:

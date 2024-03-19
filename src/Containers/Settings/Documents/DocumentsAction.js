@@ -302,31 +302,31 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
   };
 
 
-  // export const getDocumentCount = (orgId) => (dispatch) => {
-  //   dispatch({
-  //     type: types.GET_DOCUMENT_COUNT_REQUEST,
-  //   });
-  //   axios
-  //     .get(`${base_url}/department/count/${orgId}`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       dispatch({
-  //         type: types.GET_DOCUMENT_COUNT_SUCCESS,
-  //         payload: res.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       dispatch({
-  //         type: types.GET_DOCUMENT_COUNT_FAILURE,
-  //         payload: err,
-  //       });
-  //     });
-  // };
+  export const getDocumentCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_DOCUMENT_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/documentType/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_DOCUMENT_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_DOCUMENT_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
 
 
  

@@ -10,6 +10,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {
   getTasks,
+  getTaskCount,
   addTasks,
   removeTask,
   updateTasks,
@@ -121,9 +122,10 @@ class Task extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getTasks } = this.props;
+    const { getTasks,getTaskCount,orgId } = this.props;
     console.log();
     getTasks();
+    getTaskCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -251,11 +253,12 @@ class Task extends Component {
   }
 }
 
-const mapStateToProps = ({ tasks }) => ({
+const mapStateToProps = ({ tasks,auth }) => ({
   addingTasks: tasks.addingTasks,
   addingTasksError: tasks.addingTasksError,
   tasks: tasks.tasks,
-
+  taskCount:tasks.taskCount,
+  orgId: auth.userDetails.organizationId,
   // removingTasks: tasks.removingTasks,
   // removingTasksError: tasks.removingTasksError,
   
@@ -270,6 +273,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getTasks,
+      getTaskCount,
       addTasks,
       removeTask,
       updateTasks,

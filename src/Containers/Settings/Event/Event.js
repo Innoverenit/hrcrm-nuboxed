@@ -8,6 +8,7 @@ import { TextInput, } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {
   getEvents,
+  getEventCount,
   addEvents,
    removeEvents,
   updateEvents,
@@ -116,9 +117,10 @@ class Event extends Component {
   //     });
   // };
   componentDidMount() {
-    const { getEvents } = this.props;
+    const { getEvents,getEventCount,orgId } = this.props;
     console.log();
     getEvents();
+    getEventCount(orgId)
   }
   render() {
     // const eventData = events && events.length > 0
@@ -250,22 +252,24 @@ class Event extends Component {
   }
 }
 
-const mapStateToProps = ({ events }) => ({
+const mapStateToProps = ({ events,auth }) => ({
   addingEvents: events.addingEvents,
   addingEventsError: events.addingEventsError,
   events: events.events,
-
+  orgId: auth.userDetails.organizationId,
   // removingEvents: event.removingEvents,
   // removingEventsError: event.removingEventsError,
      updatingEvents: events.updatingEvents,
      updatingEventsError: events.updatingEventsError,
   fetchingEvents: events.fetchingEvents,
+  eventCount:events.eventCount,
   fetchingEventsError: events.fetchingEventsError,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getEvents,
+      getEventCount,
       addEvents,
        removeEvents,
        updateEvents,

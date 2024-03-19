@@ -82,7 +82,7 @@ class OthersTab extends Component {
                 tab={
                   <>
                   <InsertDriveFileIcon/>
-                    <span class=" ml-1">Documents</span>
+                    <span class=" ml-1">Documents <span className="text-red-500 font-bold">{this.props.documentCount.DocumentTypeCount}</span></span>
                   </>
                 }
                 key="1"
@@ -104,7 +104,7 @@ class OthersTab extends Component {
                 tab={
                   <>
                     <i class="fa fa-graduation-cap"></i>
-                    <span class=" ml-1">Education</span>
+                    <span class=" ml-1">Education <span className="text-red-500 font-bold">{this.props.educationCount.EducationTypeCount}</span></span>
                   </>
                 }
                 key="3"
@@ -116,7 +116,7 @@ class OthersTab extends Component {
                   <>  
                   <ReceiptIcon  />
                     <span class=" ml-1" >
-                    Expense <span className="text-red-500 font-bold">{this.props.expenseCount.IdProofTypeCount}</span>
+                    Expense <span className="text-red-500 font-bold">{this.props.expenseCount.ExpenseCount}</span>
                      </span>
                   </>
                 }
@@ -127,7 +127,7 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <LanguageIcon/>
-                    <span class=" ml-1">Country</span>
+                    <span class=" ml-1">Country <span className="text-red-500 font-bold">{this.props.countryCount.CountryCount}</span></span>
                   </>
                 }
                 key="5"
@@ -137,7 +137,7 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <MonetizationOnIcon/>
-                    <span class=" ml-1">Currency</span>
+                    <span class=" ml-1">Currency  <span className="text-red-500 font-bold">{this.props.currencyCount.CurrencyCount}</span></span>
                   </>
                 }
                 key="6"
@@ -174,10 +174,14 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines,idProof,expenses
+  region,auth,serviceLines,currency,countrys,education,idProof,expenses,document
 }
 ) => ({
+  documentCount:document.documentCount,
+  currencyCount:currency.currencyCount,
+  educationCount:education.educationCount,
   idProofCount:idProof.idProofCount,
+  countryCount:countrys.countryCount,
   expenseCount:expenses.expenseCount,
   organizationId: auth.userDetails.organizationId,
   regionCount:region.regionCount,

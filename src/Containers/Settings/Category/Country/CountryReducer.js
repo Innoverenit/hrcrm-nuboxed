@@ -6,6 +6,11 @@ const initialState = {
     fetchingCountry: false,
     fetchingCountryError: false,
     country: [],
+
+    fetchingCountryCount: false,
+    fetchingCountryCountError: false,
+    countryCount:{},
+
     fetchingCountrySearchData: false,
     fetchingCountrySearchDataError: false,
 
@@ -123,6 +128,19 @@ export const countryReducer = (state = initialState, action) => {
                     country: [], 
                     // deletedTruck: [] 
                   };
+
+
+                  case types.GET_COUNTRY_COUNT_REQUEST:
+                    return { ...state, fetchingCountryCount: true };
+                  case types.GET_COUNTRY_COUNT_SUCCESS:
+                    return { ...state, fetchingCountryCount: false, 
+                      countryCount: action.payload };
+                  case types.GET_COUNTRY_COUNT_FAILURE:
+                    return {
+                      ...state,
+                      fetchingCountryCount: false,
+                      fetchingCountryCountError: true,
+                    };
 
      
     default:
