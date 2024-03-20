@@ -14,6 +14,7 @@ const Option = StyledSelect.Option;
 
 const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const dummy = ["cloud", "azure", "fgfdg"];
   const {
@@ -43,16 +44,18 @@ const LeadsActionLeft = (props) => {
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
       setPage(pageNo + 1);
       props.getLeads(props.userId, pageNo, "creationdate");
       props.ClearReducerDataOfLead()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.inputLeadsDataSearch(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }

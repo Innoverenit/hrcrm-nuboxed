@@ -1002,7 +1002,7 @@ export const addOrganizationDocument =
       })
       .then((res) => {
         console.log(res);
-        dispatch(getRepositoryDocuments(orgId));
+        dispatch(getRepositoryDocuments(userId));
         const startDate = dayjs().startOf("month").toISOString();
         const endDate = dayjs().endOf("month").toISOString();
         // dispatch(getRecords(userId));
@@ -1025,12 +1025,12 @@ export const addOrganizationDocument =
       });
   };
 
-export const getRepositoryDocuments = (orgId) => (dispatch) => {
+export const getRepositoryDocuments = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_REPOSITORY_DOCUMENTS_REQUEST,
   });
   axios
-    .get(`${base_url}/organization/document/organization/${orgId}`, {
+    .get(`${base_url}/organization/document/user/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -41,11 +41,11 @@ class OrganizationDocumentList extends Component {
         };
       }
   componentDidMount() {
-    this.props.getRepositoryDocuments(this.props.orgId);
+    this.props.getRepositoryDocuments(this.props.userId);
   }
   handleCallBack1 = (status, data) => {
     if (status === "Success") {
-       this.props.getRepositoryDocuments(this.props.orgId);
+       this.props.getRepositoryDocuments(this.props.userId);
       this.setState({ currentProcess: data });
     }
   };
@@ -212,6 +212,7 @@ const mapStateToProps = ({ location, auth }) => ({
   repositoryData: auth.repositoryData,
   fetchingRepositoryDocuments:auth.fetchingRepositoryDocuments,
   orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
   user: auth.userDetails,
 });
 

@@ -1,7 +1,8 @@
 import React, { useState,useEffect,useRef } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
-import {  Input} from "antd";
+import {  Input,Popconfirm} from "antd";
+import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
 import {
     getRegions,
@@ -200,14 +201,26 @@ if (props.fetchingRegions) {
                   )}
 
                   {/* Delete button */}
+                  <Popconfirm
+                          title="Do you want to delete?"
+                          okText="Yes"
+                          cancelText="No"
+                          onConfirm={() =>  props.removeRegions(region.regionsId)}
+                        >
                   <DeleteOutlined 
-                onClick={() => 
-                    props.removeRegions(region.regionsId)
-                }
+                   style={{
+                    
+                    color: "red",
+                  }}
+                // onClick={() => 
+                //     props.removeRegions(region.regionsId)
+                // }
                    />
+                   </Popconfirm>
               </div>
           </div>
             ))}
+             <div class=" font-bold">Updated on {dayjs(props.regions && props.regions.length && props.regions[0].updationDate).format('YYYY-MM-DD')} by {props.regions && props.regions.length && props.regions[0].updatedBy}</div>
         </div>
         <AddRegionModal
         currentregionId={currentregionId}

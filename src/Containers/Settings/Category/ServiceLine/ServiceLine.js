@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import dayjs from "dayjs";
 import {  Input} from "antd";
 import {
     getServiceLine,
@@ -13,7 +14,7 @@ import {
     // searchDocumentsName,
     // ClearReducerDataOfDocument
   } from "./ServiceLineAction";
-  import { Switch } from 'antd';
+  import { Switch,Popconfirm } from 'antd';
   import {getDepartments} from "../../../Settings/Department/DepartmentAction";
 import { BundleLoader } from '../../../../Components/Placeholder';
 
@@ -218,14 +219,26 @@ if (props.fetchingServiceLine) {
                   )}
 
                   {/* Delete button */}
+                  <Popconfirm
+                          title="Do you want to delete?"
+                          okText="Yes"
+                          cancelText="No"
+                          onConfirm={() =>  props.removeServiceLine(region.serviceLineId)}
+                        >
                   <DeleteOutlined 
-                onClick={() => 
-                    props.removeServiceLine(region.serviceLineId)
-                 }
+                    style={{
+                    
+                      color: "red",
+                    }}
+                // onClick={() => 
+                //     props.removeServiceLine(region.serviceLineId)
+                //  }
                    />
+                   </Popconfirm>
               </div>
           </div>
             ))}
+             <div class=" font-bold">Updated on {dayjs(props.serviceLine && props.serviceLine.length && props.serviceLine[0].updationDate).format('YYYY-MM-DD')} by {props.serviceLine && props.serviceLine.length && props.serviceLine[0].updatedBy}</div>
         </div>
     );
 };
