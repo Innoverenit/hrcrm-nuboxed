@@ -111,30 +111,58 @@ function NavMenu(props) {
         selectedKeys={[selectedMenuItem]}
       >
         {/* dashboard */}
-        {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
+        {user.dashboardRegionalInd === true ? (
+  <>
+ <Menu.Item key="/dashboard#" style={{ height: "1.7rem", 
+paddingLeft: "1rem" ,
+color: selectedMenuItem === '/dashboard#' ? 'tomato' : '#4bc076',}}>
+  <Link to="/dashboard#" onClick={() => handleSelect('/dashboard#')}>
+    <DashboardIcon
 
-          <Menu.Item key="/dashboard" style={{ height: "1.7rem", 
-          paddingLeft: "1rem" ,
-          color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
-            <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
-              <DashboardIcon
+      style={{ fontSize: "large" }}
+    />
 
-                style={{ fontSize: "large" }}
-              />
+    <span class="text-white text-ls ml-1">
+      <FormattedMessage
+          id="app.dashboard"
+          defaultMessage="Dashboard"
+        />
+      {/* {translatedMenuItems[0]} */}
+      {/* Dashboard */}
+      {/* RecruitProBoard */}
+    </span>
+  </Link>
+</Menu.Item>
+  </>
+) : (
+  <>
+          {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
 
-              <span class="text-white text-ls ml-1">
-                <FormattedMessage
-                    id="app.dashboard"
-                    defaultMessage="Dashboard"
-                  />
-                {/* {translatedMenuItems[0]} */}
-                {/* Dashboard */}
-                {/* RecruitProBoard */}
-              </span>
-            </Link>
-          </Menu.Item>
+<Menu.Item key="/dashboard" style={{ height: "1.7rem", 
+paddingLeft: "1rem" ,
+color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
+  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
+    <DashboardIcon
 
-        )}
+      style={{ fontSize: "large" }}
+    />
+
+    <span class="text-white text-ls ml-1">
+      <FormattedMessage
+          id="app.dashboard"
+          defaultMessage="Dashboard"
+        />
+      {/* {translatedMenuItems[0]} */}
+      {/* Dashboard */}
+      {/* RecruitProBoard */}
+    </span>
+  </Link>
+</Menu.Item>
+
+)}
+  </>
+)}
+
       
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
           <Menu.Item key="/planner" style={{ height: "1.7rem", 

@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { Timeline } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import dayjs from 'dayjs';
+import moment from 'moment';
  import { getCustomerActivityTimeline,getCustomerActivityRecords } from '../../CustomerAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
@@ -16,7 +16,7 @@ const CustomerActivityTable = (props) => {
   }, []);
 
   const { customerActivityTimeline, ratingValue } = props;
-  const currentDate = dayjs().format("DD/MM/YYYY");
+  const currentDate = moment().format("DD/MM/YYYY");
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
     <>
@@ -28,11 +28,11 @@ const CustomerActivityTable = (props) => {
                 <div>               
                 <div>                
                 
-{currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
+{currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
                       <span className="text-xs text-[tomato] font-bold">
                         New
                       </span>
-                    ) : null}    {status.category} {status.activityType} Completed by {dayjs(status.endDate).format('DD/MM/YYYY')}
+                    ) : null}    {status.category} {status.activityType} Completed by {moment(status.endDate).format('DD/MM/YYYY')}
                   </div>
            
                 </div>

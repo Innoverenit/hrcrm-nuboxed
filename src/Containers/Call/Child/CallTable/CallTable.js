@@ -291,7 +291,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         dataLength={callListRangeByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingCallListRangeByUserId?<div class="flex items-center">Loading...</div>:null}
+        loader={fetchingCallListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >

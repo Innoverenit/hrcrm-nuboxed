@@ -47,6 +47,8 @@ const initialState = {
 
   addDrawerTaskProjectModal:false,
 
+  addProspectConfirmationModal:false,
+
   approvedPartner: false,
   approvedPartnerError: false,
   rejectPartner: false,
@@ -80,6 +82,9 @@ const initialState = {
   fetchingApproveTaskTable: false,
   fetchingApproveTaskTableError: false,
   approvalTaskTable:[],
+
+  linkingProspectStatus: false,
+  linkingProspectStatusError: false,
 
 
   fetchingProjectTaskList:false,
@@ -896,7 +901,31 @@ export const TaskReducer = (state = initialState, action) => {
                                 ...state,
                                 fetchingOpportunityRecord: false,
                                 fetchingOpportunityRecordError: true,
-                              };            
+                              };   
+                              
+                              
+                              case types.HANDLE_PROSPECT_CONFIRMATION_MODAL:
+                                return { ...state, addProspectConfirmationModal: action.payload };
+
+
+                                case types.CONVERT_PROSPECT_STATUS_REQUEST:
+                                  return { ...state, linkingProspectStatus: true };
+                                case types.CONVERT_PROSPECT_STATUS_SUCCESS:
+                                  return {
+                                    ...state,
+                                    linkingProspectStatus: false,
+                                    addProspectConfirmationModal:false,
+                                    approvalTaskTable: state.approvalTaskTable.filter(
+                                      (item) => item.taskId !== action.payload
+                                    ),
+                                  };
+                                case types.CONVERT_PROSPECT_STATUS_FAILURE:
+                                  return {
+                                    ...state,
+                                    linkingProspectStatus: false,
+                                    linkingProspectStatusError: true,
+                                  };
+                          
 
         default:
       return state;

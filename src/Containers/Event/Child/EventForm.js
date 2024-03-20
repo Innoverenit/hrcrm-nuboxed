@@ -508,8 +508,8 @@ const {
                  isColumnWithoutNoCreate
                  label={
                    <FormattedMessage
-                     id="app.customer"
-                     defaultMessage="customer"
+                     id="app.prospect"
+                     defaultMessage="Prospect"
                    />
                  }
                  //component={SearchSelect}

@@ -519,7 +519,7 @@ const LeadsCardList = (props) => {
            { !fetchingLeads && leadsAllData.length === 0 ?<NodataFoundPage />:leadsAllData.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          const countryCode = item.address[0].country_alpha2_code
+          const countryCode = item.address[0].country_alpha2_code;
           console.log(countryCode)
           const diff = Math.abs(
             dayjs().diff(dayjs(item.lastRequirementOn), "days")

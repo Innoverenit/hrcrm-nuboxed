@@ -13,7 +13,8 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import styled from 'styled-components'
 import { BundleLoader } from "../../../Components/Placeholder";
-import { getreportingManager,handleperformanceDrawerModal } from "./TeamsAction";
+import { getreportingManager,handleperformanceDrawerModal,handleTeamsPulseDrawerModal } from "./TeamsAction";
+import HandlePulseDrawerModal from "./TeamsCard.js/HandlePulseDrawerModal";
 const HandleperformanceModal = lazy(() => import("./HandleperformanceModal"));
 
 
@@ -53,15 +54,11 @@ function handleSetCurrentEmployeeId(employeeId,) {
   setCurrentEmployeeId(employeeId,);
  
 }
-  if (props.fetchingEmployee) {
-    return <BundleLoader/>
-  
-    
-;
-  }
+
   const {
     fetchingEmployee,
     type,
+    fetchingRepoting,
     user,
     filteredData,
     fetchingEmployeeError,
@@ -69,6 +66,12 @@ function handleSetCurrentEmployeeId(employeeId,) {
     handleEmployeeDrawerForAdmin,
     employeeDrawerVisibleForAdmin,
   } = props;
+  if (fetchingRepoting) {
+    return <BundleLoader/>
+  
+    
+;
+  }
 
     return (
       
@@ -151,13 +154,13 @@ function handleSetCurrentEmployeeId(employeeId,) {
           <div class=" font-normal text-xs text-cardBody font-poppins ">
           <span
               style={{ cursor: "pointer" }}
-            //   onClick={() => {
-                
-            //      props.getEmployeeDocument(item.employeeId);
-            //      props.getEmployeeTreeMap(item.employeeId);
-            //     props.handleEmployeePulseDrawerModal(true);
-            //     handleSetCurrentEmployeeId(item)
-            //   }}
+              onClick={() => {
+               
+                props.handleTeamsPulseDrawerModal(true);
+                handleSetCurrentCustomer(item);
+               handleRowData(item);
+              }}
+          
             >
               <MonitorHeartIcon  style={{ fontSize: "1rem", color: "#df9697" }}/>
      </span>
@@ -241,6 +244,12 @@ function handleSetCurrentEmployeeId(employeeId,) {
          handleperformanceDrawerModal={props.handleperformanceDrawerModal}
          handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
+                <HandlePulseDrawerModal
+                 rowdata={rowdata}
+                 addDrawerTeamsPulseModal={props.addDrawerTeamsPulseModal}
+                 handleTeamsPulseDrawerModal={props.handleTeamsPulseDrawerModal}
+         handleSetCurrentCustomer={handleSetCurrentCustomer}
+      />
 
             </>
       
@@ -252,6 +261,8 @@ function handleSetCurrentEmployeeId(employeeId,) {
 const mapStateToProps = ({ auth,teams }) => ({
     reportingManger:teams.reportingManger,
     reptMngrId:auth.userDetails.userId,
+    addDrawerTeamsPulseModal:teams.addDrawerTeamsPulseModal,
+    fetchingRepoting:teams.fetchingRepoting,
     addDrawerPerformanceModal:teams.addDrawerPerformanceModal
 })
 
@@ -259,7 +270,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getreportingManager,
-        handleperformanceDrawerModal   
+        handleperformanceDrawerModal ,
+        handleTeamsPulseDrawerModal  
     },
     dispatch,
   )

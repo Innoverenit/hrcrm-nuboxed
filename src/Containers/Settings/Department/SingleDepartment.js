@@ -353,7 +353,7 @@ const SingleDepartment = (props) => {
                   </div>
                   {/* {mandetoryInd === true && ( */}
   <>
-                    {/* <div class=" text-sm  ml-2">Mandatory</div> */}
+                    {/* <div class=" text-xs  ml-2">Mandatory</div> */}
                     <div   class=" w-[15%] ml-2">
                     
                     <DepartmentStatusToggle
@@ -385,7 +385,7 @@ const SingleDepartment = (props) => {
   
 {moduleMapper.erpInd === true && (
   <>
-    <div class="text-sm w-[2rem] ml-4">ERP</div>
+    <div class="text-xs w-[2rem] ml-4">ERP</div>
     <div class="w-[7%] ml-2">
       <Popconfirm
         title="Do you wish to change Status?"
@@ -406,7 +406,7 @@ const SingleDepartment = (props) => {
 )}
 {moduleMapper.financeInd === true && (
   <>
-                    <div class=" text-sm w-[5rem] ml-4">Accounting</div>
+                    <div class=" text-xs w-[5rem] ml-4">Accounting</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -428,7 +428,7 @@ const SingleDepartment = (props) => {
 )}
 {moduleMapper.crmInd === true && (
   <>
-                  <div class=" text-sm w-[2rem] ml-4 ">CRM</div>
+                  <div class=" text-xs w-[2rem] ml-4 ">CRM</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -451,7 +451,7 @@ const SingleDepartment = (props) => {
 )}
 {moduleMapper.imInd === true && (
   <>
-                    <div class=" text-sm w-[2rem] ml-4">IM</div>
+                    <div class=" text-xs w-[2rem] ml-4">IM</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
         title="Do you wish to change Status?"
@@ -472,7 +472,7 @@ const SingleDepartment = (props) => {
 )}
 {moduleMapper.recruitProInd === true && (
   <>
-                    <div class=" text-sm w-[5rem] ml-4">Rcruitpro</div>
+                    <div class=" text-xs w-[5rem] ml-4">Rcruitpro</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -495,7 +495,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.hrInd === true && (
   <>
 
-                    <div class=" text-sm w-[2rem] ml-4">HR</div>
+                    <div class=" text-xs w-[2rem] ml-4">HR</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -518,7 +518,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.elearningInd === true && (
   <>
 
-                    <div class=" text-sm w-[5rem]  ml-4">Elearning</div>
+                    <div class=" text-xs w-[5rem]  ml-4">Elearning</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -544,7 +544,7 @@ const SingleDepartment = (props) => {
 
 {/* {accountInd === true && (
   <>
-                    <div class=" text-sm  ml-2">Account</div>
+                    <div class=" text-xs  ml-2">Account</div>
                     <div   class=" w-[7%] ml-2">
                  
                         <Switch
@@ -561,7 +561,7 @@ const SingleDepartment = (props) => {
 {/* {recruitOppsInd === true && (
   <>
 
-                    <div class=" text-sm  ml-2">RecruitOpps</div>
+                    <div class=" text-xs  ml-2">RecruitOpps</div>
                     <div   class=" w-[7%] ml-2">
                   
                         <Switch
@@ -579,7 +579,7 @@ const SingleDepartment = (props) => {
 {moduleMapper.productionInd === true && erpStatus && (
   <>
 
-                    <div class=" text-sm w-[5rem] ml-4">Production</div>
+                    <div class=" text-xs w-[5rem] ml-4">Production</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -602,7 +602,7 @@ const SingleDepartment = (props) => {
 
 {moduleMapper.repairInd === true && erpStatus && (
   <>
-                    <div class=" text-sm w-[5rem]  ml-4">Repair</div>
+                    <div class=" text-xs w-[3rem]  ml-4">Repair</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -624,7 +624,7 @@ const SingleDepartment = (props) => {
 )}
 {/* {inventoryInd === true && (
   <>
-                    <div class=" text-sm  ml-2">Inventory</div>
+                    <div class=" text-xs  ml-2">Inventory</div>
                     <div   class=" w-[7%] ml-2">
                 
                         <Switch
@@ -640,7 +640,7 @@ const SingleDepartment = (props) => {
 )} */}
 {moduleMapper.orderManagementInd === true && erpStatus && (
   <>
-                    <div class=" text-sm w-[9rem] ml-4">Order Management</div>
+                    <div class=" text-xs w-[9rem] ml-4">Order Management</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -664,7 +664,7 @@ const SingleDepartment = (props) => {
 
 {moduleMapper.logisticsInd === true && erpStatus && (
   <>
-                    <div class=" text-sm w-[5rem]  ml-4">Logistics</div>
+                    <div class=" text-xs w-[5rem]  ml-4">Logistics</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
@@ -686,7 +686,7 @@ const SingleDepartment = (props) => {
 )}
 {moduleMapper.procurementInd === true && erpStatus && (
   <>
-                    <div class=" text-sm w-[6rem] ml-4">Procurement</div>
+                    <div class=" text-xs w-[6rem] ml-4">Procurement</div>
                     <div   class=" w-[7%] ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
