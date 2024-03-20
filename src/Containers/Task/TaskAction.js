@@ -18,7 +18,12 @@ export const handleTaskNotesDrawerModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
-
+export const handleTaskImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleTaskFeedbackDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_FEEDBACK_DRAWER_MODAL,

@@ -1,13 +1,71 @@
 
+// import React, { useState } from 'react';
+// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+// const CustomerGoogleMap = ({ apiKey }) => {
+//   const [selectedCountry, setSelectedCountry] = useState(null);
+//   console.log(selectedCountry)
+
+//   const handleMapClick = (event) => {
+    
+//     const geocoder = new window.google.maps.Geocoder();
+//     const latlng = {
+//       lat: event.latLng.lat(),
+//       lng: event.latLng.lng(),
+//     };
+
+//     geocoder.geocode({ location: latlng }, (results, status) => {
+//       if (status === 'OK' && results[0]) {
+//         const country = results[0].address_components.find(
+//           (component) => component.types.includes('country')
+//         );
+
+//         if (country) {
+//           setSelectedCountry(country.long_name);
+//         }
+//       }
+//     });
+//   };
+
+//   return (
+    
+//       <GoogleMap
+//       mapContainerStyle={{ height: '17.5rem',overflow:"hidden",marginTop:"0.2rem", width: '44rem' }}
+//         zoom={4}
+//         center={{ lat: 0, lng: 0 }}
+//         onClick={handleMapClick}
+//       >
+//         {selectedCountry && (
+//           <Marker position={{ lat: 0, lng: 0 }} label={selectedCountry} />
+//         )}
+//       </GoogleMap>
+    
+//   );
+// };
+
+// export default CustomerGoogleMap;
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const CustomerGoogleMap = ({ apiKey }) => {
+const CustomerGoogleMap = (props) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
-  console.log(selectedCountry)
+  const data = {
+    address: [
+      {
+        latitude: "52.3791283",
+        longitude: "4.900272"
+      }
+    ]
+  };
+const{latitude,longitude}=props.address[0]
+  const center = {
+    lat: parseFloat(latitude),
+    lng: parseFloat(longitude)
+  };
 
   const handleMapClick = (event) => {
-    
     const geocoder = new window.google.maps.Geocoder();
     const latlng = {
       lat: event.latLng.lat(),
@@ -28,22 +86,38 @@ const CustomerGoogleMap = ({ apiKey }) => {
   };
 
   return (
-    
+   
       <GoogleMap
-      mapContainerStyle={{ height: '17.5rem',overflow:"hidden",marginTop:"0.2rem", width: '44rem' }}
+        mapContainerStyle={{ height: '17.5rem', overflow: "hidden", marginTop: "0.2rem", width: '44rem' }}
         zoom={4}
-        center={{ lat: 0, lng: 0 }}
+        center={center}
         onClick={handleMapClick}
       >
+        {/* Marker at the center */}
+        <Marker position={center} />
+
+        {/* Marker for selected country */}
         {selectedCountry && (
           <Marker position={{ lat: 0, lng: 0 }} label={selectedCountry} />
         )}
       </GoogleMap>
-    
+  
   );
 };
+const mapStateToProps = ({ dashboard, auth }) => ({
+  
+  address: auth.userDetails.address,
 
-export default CustomerGoogleMap;
+});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // setDashboardViewType
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerGoogleMap);
+
+
+
+
 
 
 
