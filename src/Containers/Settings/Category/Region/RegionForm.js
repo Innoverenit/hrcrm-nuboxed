@@ -92,12 +92,14 @@ const { Option } = Select;
 
 const YearHeaderInput = (props) => {
   // const [activeTab, setActiveTab] = useState("");
+  const [loading, setLoading] = useState(false);
   const tab=[
     "Q1","Q2","Q3","Q4"
   ]
   const headers = ['Sales', 'Fulfillment', 'Investment'];
   const currencyOptions = props.saleCurrencies;
   const handleTabClick = async(key) => {
+    setLoading(true);
     props.setActiveTab(key);
     try {
       const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/regions/target/${props.currentregionId}/${props.selectedYear}/${key}`, {
@@ -122,7 +124,10 @@ const YearHeaderInput = (props) => {
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-    }
+    
+  } finally {
+    setLoading(false); 
+  }
     
   };
  
@@ -211,6 +216,8 @@ const handleSubmit = () => {
     </Tabs>
     {props.activeTab&&(
          <div>
+          {loading ? <div>Loading...</div>:
+          <div>
           {headers.map(header => (
             <div key={header} style={{marginTop:"23px"}}>
               <h3>{header}</h3>
@@ -249,6 +256,8 @@ const handleSubmit = () => {
               </div>
             </div>
           ))}
+          </div>
+                    }
           <button style={{float:"right",backgroundColor:"tomato"}}onClick={handleSubmit}>Submit</button>
           </div>
           )}

@@ -1,7 +1,8 @@
 import React, { lazy, Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Tooltip, Icon } from "antd";
+
+import { Button, Switch, Tooltip, Icon,Select } from "antd";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import {addOrganizationDocument} from "../Auth/AuthAction"
 // import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
@@ -13,6 +14,7 @@ import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
+import {getAssignedToList}  from "../Employees/EmployeeAction"
 import * as Yup from "yup";
 import {getDocuments} from "../Settings/Documents/DocumentsAction"
 // import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
@@ -23,6 +25,8 @@ import LazySelect from "../../Components/Forms/Formik/LazySelect";
 import { FormattedMessage } from "react-intl";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
+
+const { Option } = Select;
 // const documentSchema = Yup.object().shape({
 // documentName: Yup.string().required("This field is required !"),
 // documentId: Yup.string().required("Input needed !"),
@@ -39,11 +43,15 @@ class AddOrgDocumentForm extends Component {
     this.state = {
       documentshare: false,
       approvalAbove: false,
+      showUserList: false,
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
     };
   }
+  handleSwitchChange = checked => {
+    this.setState({ showUserList: checked });
+  };
   handleButtonClick = () => {
     console.log(length);
     let length = this.state.data.length;
@@ -77,9 +85,11 @@ class AddOrgDocumentForm extends Component {
   componentDidMount() {
    this.props.getDocuments();
     this.props.getDepartments();
+    this.props.getAssignedToList(this.props.orgId)
   }
 
   render() {
+   
     const documentNameOption = this.props.documents.map((item) => {
       return {
           label: `${item.documentTypeName|| ""}`,
@@ -120,6 +130,17 @@ class AddOrgDocumentForm extends Component {
     };
   });
 
+  const employeesData =this.props.assignedToList.map((item) => {
+    return {
+      label: `${item.empName}`,
+      // label: `${item.salutation || ""} ${item.firstName ||
+      //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
+      value: item.employeeId,
+    };
+  });
+
+ 
+  const { showUserList } = this.state;
     return (
       <>
        
@@ -130,6 +151,7 @@ class AddOrgDocumentForm extends Component {
               
                 name: "", //input
                 description: "",
+                included: [],
                 documentId:"",
                 department:"",
                 catagory:"",
@@ -283,13 +305,37 @@ class AddOrgDocumentForm extends Component {
                         <StyledLabel>Share</StyledLabel>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
-                          onChange={this.handleChange}
-                          checked={this.state.documentshare}
+                          checked={showUserList}
+                          onChange={this.handleSwitchChange}
+                
                           checkedChildren="Public"
                           unCheckedChildren="Private"
                         />
                       </FlexContainer>
-                   
+                      {!showUserList && (
+          <div class="mt-1">
+          <Field
+            name="included"
+            // label="Include"
+            label={
+              <FormattedMessage
+                id="app.include"
+                defaultMessage="include"
+              />
+            }
+            mode
+            placeholder="Select"
+            component={SelectComponent}
+            options={Array.isArray(employeesData) ? employeesData : []}
+            value={values.included}
+            // defaultValue={{
+            //   label: `${empName || ""} `,
+            //   value: employeeId,
+            // }}
+          />
+         </div>
+        )}
+
                      
                     </div>
                   </div>
@@ -318,11 +364,12 @@ class AddOrgDocumentForm extends Component {
 
 // }
 
-const mapStateToProps = ({ document, settings, departments,auth }) => ({
+const mapStateToProps = ({ document, settings,employee, departments,auth }) => ({
     addingOrganizationDocument:auth.addingOrganizationDocument,
     departments: departments.departments,
     documents: document.documents,
     orgId: auth.userDetails.organizationId,
+    assignedToList:employee.assignedToList,
     userId: auth.userDetails.userId,
 });
 
@@ -331,7 +378,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         addOrganizationDocument,
         getDepartments,
-        getDocuments
+        getDocuments,
+        getAssignedToList
     //   handleDocumentUploadModal,
     //   addOpportunityDocument,
     //   getOpportunityDocument,
