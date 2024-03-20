@@ -856,7 +856,7 @@ const TaskCardList = (props) => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-base cursor-pointer text-[green]"
+                className="!text-xl cursor-pointer text-[green]"
               />
            </Tooltip>
   
@@ -864,7 +864,7 @@ const TaskCardList = (props) => {
           {/* {props.userId === item.userId && ( */}
                       <DownloadForOfflineIcon
                         // type="edit"
-                        className="!text-base cursor-pointer"
+                        className="!text-xl cursor-pointer"
                         onClick={() => {
                           handleSetCurrentProcessName(item)
                           handleDownloadTaskModal(true);
@@ -880,7 +880,7 @@ const TaskCardList = (props) => {
           {props.userId === item.userId && (
                       <BorderColorIcon
                         type="edit"
-                        className="!text-base cursor-pointer"                   
+                        className="!text-xl cursor-pointer"                   
                         onClick={() => {
                           props.setEditTask(item);
                           handleUpdateTaskModal(true);
@@ -905,7 +905,7 @@ const TaskCardList = (props) => {
                                 <Tooltip title="Delete">
                             <DeleteOutlined
                               type="delete"
-                              className="!text-base cursor-pointer text-[red]"
+                              className="!text-xl cursor-pointer text-[red]"
                               
                             />
                             </Tooltip>
