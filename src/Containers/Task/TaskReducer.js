@@ -114,6 +114,9 @@ const initialState = {
   fetchingTasksAssignedError: false,
   taskAssigned: "",
 
+
+  addTaskImportModal:false,
+
    linkingTaskStatus: false,
    linkingTaskStatusError:false,
 
@@ -299,6 +302,8 @@ export const TaskReducer = (state = initialState, action) => {
         fetchingHighPriorityTaskCompleted: false,
         fetchingHighPriorityTaskCompletedError: true,
       };
+      case types.HANDLE_TASK_IMPORT_MODAL:
+      return { ...state, addTaskImportModal: action.payload };
 
     case types.GET_TASK_VELOCITY_REQUEST:
       return { ...state, fetchingTasksVelocity: true };
