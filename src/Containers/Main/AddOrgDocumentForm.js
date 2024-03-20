@@ -156,7 +156,7 @@ class AddOrgDocumentForm extends Component {
                 department:"",
                 catagory:"",
                 userId:this.props.userId,
-                documentTypeId: this.props.documentTypeId,
+                documentType: "",
                 // shareInd:"",
                 //opportunityId:this.props.opportunity.opportunityId,
               }}
@@ -167,7 +167,7 @@ class AddOrgDocumentForm extends Component {
                   // values.documentId,
                   {
                     ...values,
-                    shareInd:this.state.documentshare?true:false,
+                    shareInd:this.state.showUserList,
                   },
                   this.props.orgId,
                   this.callback
@@ -207,7 +207,7 @@ class AddOrgDocumentForm extends Component {
                       )}
                       <Spacer />
                       <Field
-                    name="documentTypeId"
+                    name="documentType"
                     type="text"
                     //label="Type"
                     label={

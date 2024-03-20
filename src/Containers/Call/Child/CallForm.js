@@ -819,6 +819,7 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
                  <Field
                  name="customerId"
+                 type="text"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
                  label={

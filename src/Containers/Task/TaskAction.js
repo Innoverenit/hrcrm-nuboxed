@@ -1316,3 +1316,10 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
       });
     });
 };
+
+export const handleTaskImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};

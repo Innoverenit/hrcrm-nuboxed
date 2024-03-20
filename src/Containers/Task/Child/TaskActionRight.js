@@ -1,9 +1,10 @@
 import React, { Component,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddTaskImportModal from "../Child/AddTaskImportModal"
 import Button from "antd/lib/button";
 import { Tooltip } from "antd";
-import { handleTaskModal, getTaskListRangeByUserId } from "../TaskAction";
+import { handleTaskModal, handleTaskImportModal,getTaskListRangeByUserId } from "../TaskAction";
 const TaskSharedForm = lazy(() => import("./TaskSharedForm"));
 
 const TaskActionRight = (props) => {
@@ -22,6 +23,7 @@ const TaskActionRight = (props) => {
     handleCustomerModal,
   } = props;
   return (
+    <>
     <div class=" flex items-center" >
         {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.taskFullListInd === true &&(
          <TaskSharedForm/>
@@ -37,13 +39,29 @@ const TaskActionRight = (props) => {
         </Button>
       </Tooltip>
 :null}
+
+<Button
+          type="primary"
+       
+        onClick={() => props.handleTaskImportModal(true)}
+        >
+          Import
+        </Button>
+     
     </div>
+    <AddTaskImportModal
+    handleTaskImportModal={props.handleTaskImportModal}
+    addTaskImportModal={props.addTaskImportModal}
+
+    />
+    </>
   );
 };
 
 const mapStateToProps = ({ task, auth }) => ({
   userDetails: auth.userDetails,
   user: auth.userDetails,
+  addTaskImportModal:task.addTaskImportModal,
   taskListRangeByUserId: task.taskListRangeByUserId,
 });
 const mapDispatchToProps = (dispatch) =>
@@ -51,6 +69,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       handleTaskModal,
       getTaskListRangeByUserId,
+      handleTaskImportModal
     },
     dispatch
   );
