@@ -110,6 +110,7 @@ class LocationForm extends Component {
             orgId: this.props.orgId,
             groupId: this.props.groupId,
             locationtypeId: undefined,
+            regionsId:"",
             productionInd: this.state.production ? "true" : "false",
             billingInd: this.state.billing ? "true" : "false",
             inventoryInd: this.state.inventory ? "true" : "false",
@@ -182,7 +183,7 @@ class LocationForm extends Component {
                       isRequired
                     />
                   </div>
-                  <div class=" w-[45%] max-sm:w-[30%]">
+                  <div class=" w-[45%] mt-3 max-sm:w-[30%]">
                       <Field
                         name="regionsId"
                         selectType="DRegion"
@@ -274,7 +275,7 @@ class LocationForm extends Component {
                       />
                     </div>
                   </FlexContainer> */}
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-2">Functions</div>
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">Functions</div>
                   <div class=" flex ">
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
