@@ -7,10 +7,10 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { getAssignedToList } from "../../../../../Employees/EmployeeAction";
 import {
-    getAllCustomerData,
+   
     getContactListByCustomerId,
     getOpportunityListByCustomerId,
-    addCustomerCampaignEvent
+    addCustomerEvent
   } from "../../../../CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -60,19 +60,30 @@ function CampaignForm (props) {
   };
   useEffect(()=> {
     props.getAssignedToList(props.orgId);
-   props.getAllCustomerData(userId)
    props.getOpportunityListByCustomerId(props.customer.customerId);
    props.getContactListByCustomerId(props.customer.customerId);
   },[])
   
-    const employeesData =props.sales.map((item) => {
+  const sortedEmployee =props.assignedToList.sort((a, b) => {
+    const nameA = a.empName.toLowerCase();
+    const nameB = b.empName.toLowerCase();
+    // Compare department names
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  
+    const employeesData =sortedEmployee.map((item) => {
       return {
-        label: `${item.fullName}`,
-        // label: `${item.salutation || ""} ${item.firstName ||
-        //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
+        label: `${item.empName}`,
         value: item.employeeId,
       };
     });
+
     const filteredEmployeesData = employeesData.filter(
       (item) => item.value !== props.user.userId
     );
@@ -88,34 +99,15 @@ function CampaignForm (props) {
         value: item.contactId,
       };
     });
-    const customerNameOption = props.allCustomerData
-    .sort((a, b) => {
-      const libraryNameA = a.name && a.name.toLowerCase();
-      const libraryNameB = b.name && b.name.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    })
-    .map((item) => {
-      return {
-        label: `${item.name || ""}`,
-        value: item.customerId,
-      };
-    });
+    
 const selectedOption = props.assignedToList.find((item) => item.empName === selected);
    
 const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingCustomerCampaignEvent,
-      addCustomerCampaignEvent,
+      addingCustomerEvent,
+      addCustomerEvent,
       deletingEvent,
       deleteEvent,
       startDate,
@@ -180,8 +172,8 @@ const {
                       longitude: "",
                     },
                   ],
-                  // employeesIds: [],
-                  // ownerIds: [],
+                  employeesIds: [],
+                  ownerIds: [],
                 }
           }
           validationSchema={EventSchema}
@@ -262,14 +254,14 @@ const {
                   },
                   handleCallback
                 )
-              : addCustomerCampaignEvent(
+              : addCustomerEvent(
                   {
                     ...values,
-                    contact: values.contact,
-                    // contact: values.contactId,
+             
+                    contact: values.contactId,
                     opportunity: values.opportunity,
-                    // customer: props.customer.customerId,
-                    // ownerIds: userId === userId ? [userId] : [],
+                    customer: props.customer.customerId,
+                    ownerIds: userId === userId ? [userId] : [],
                     startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
@@ -554,7 +546,7 @@ const {
                     options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
-                      label: `${fullName || ""} `,
+                      label: `${empName || ""} `,
                       value: employeeId,
                     }}
                   />
@@ -575,9 +567,11 @@ const {
                 component={SearchSelect}
                 isColumn
                 value={values.customerId}
-                isDisabled={defaultCustomers}
-              
-                defaultValue={defaultCustomers ? defaultCustomers : null}
+                isDisabled
+                defaultValue={{
+                  label:`${props.customer.name}`,
+                }}
+                
                 // defaultValue={
                 //   defaultCustomers ? defaultCustomers : null
                 // }
@@ -763,7 +757,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingEvent : addingCustomerCampaignEvent}
+                  loading={isEditing ? updatingEvent : addingCustomerEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -781,11 +775,10 @@ const {
     );
 }
 const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingCustomerCampaignEvent: customer.addingCustomerCampaignEvent,
+  addingCustomerEvent: customer.addingCustomerEvent,
   assignedToList:employee.assignedToList,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
-  allCustomerData:customer.allCustomerData,
   updatingEvent: event.updatingEvent,
   user: auth.userDetails,
   orgId: auth.userDetails.organizationId,
@@ -798,7 +791,7 @@ const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, c
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addCustomerCampaignEvent,
+      addCustomerEvent,
       deleteEvent,
       updateEvent,
       getAssignedToList,
@@ -806,7 +799,6 @@ const mapDispatchToProps = (dispatch) =>
       handleEventModal,
       getOpportunityListByCustomerId,
       getContactListByCustomerId,
-      getAllCustomerData,
       setClearbitCandidateData,
     },
     dispatch

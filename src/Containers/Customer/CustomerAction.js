@@ -2554,7 +2554,36 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       payload: modalProps,
     });
   };
+  export const addCustomerEvent = (event) => (dispatch, getState) => {
+    dispatch({
+      type: types.ADD_CUSTOMER_EVENT_REQUEST,
+    });
   
+    axios
+      .post(`${base_url}/event`, event, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Event has been created successfully!',
+        })
+        console.log(res);
+        dispatch({
+          type: types.ADD_CUSTOMER_EVENT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_CUSTOMER_EVENT_FAILURE,
+          payload: err,
+        });;
+      });
+  };
   export const addCustomerCampaignEvent = (event) => (dispatch, getState) => {
     dispatch({
       type: types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST,

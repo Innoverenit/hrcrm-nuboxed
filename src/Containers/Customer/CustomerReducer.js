@@ -434,6 +434,8 @@ const initialState = {
   allCustomers: [],
 
   openCampaigndrwr: false,
+  addingCustomerEvent: false,
+  addingCustomerEventError: false,
 
   addingCustomerCampaignEvent: false,
   addingCustomerCampaignEventError: false,
@@ -1909,6 +1911,26 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CAMPAIGN_DRAWER:
       return { ...state, openCampaigndrwr: action.payload };
 
+      case types.ADD_CUSTOMER_EVENT_REQUEST:
+        return {
+          ...state,
+          addingCustomerEvent: true,
+        };
+      case types.ADD_CUSTOMER_EVENT_SUCCESS:
+        return {
+          ...state,
+          openCampaigndrwr:false,
+          addingCustomerEvent: false,
+          addingCustomerEventError: false,
+          customerCampaign:[action.payload,...state.customerCampaign],
+        };
+      case types.ADD_CUSTOMER_EVENT_FAILURE:
+        return {
+          ...state,
+          addingCustomerEvent: false,
+          addingCustomerEventError: true,
+        };
+
       case types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
         return {
           ...state,
@@ -1940,7 +1962,7 @@ export const customerReducer = (state = initialState, action) => {
             ...state,
             fetchingCustomerCampaign: false,
             fetchingCustomerCampaignError: false,
-            customerCampaign: action.payload,
+            customerCampaign:[...state.customerCampaign, ...action.payload],
           };
         case types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
           return {
