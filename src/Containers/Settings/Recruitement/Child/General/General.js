@@ -50,6 +50,10 @@ function General(props) {
           trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
           partNoInd:props.requirementDuration.partNoInd,
           typeInd: props.requirementDuration.typeInd,
+          repairOrdInd: props.requirementDuration.repairOrdInd,
+          
+          proInd: props.requirementDuration.proInd,
+          
           processInd: props.requirementDuration.processInd,
           fifoInd: props.requirementDuration.fifoInd,
 
@@ -69,11 +73,13 @@ function General(props) {
         }}
       >
         {({ values }) => (
-          <MainWrapper style={{  width: "",  }}>
-            <div class=" flex flex-row ">
+          <MainWrapper style={{  width: "",overflow:"auto"  }}>
+            <div class=" flex flex-row   ">
+            <div class=" h-h86 overflow-auto overflow-x-hidden">
+
               <Form className="form-background">
 
-                <div class=" flex justify-between w-[31rem]"
+                <div class=" flex justify-between w-[31rem] "
 
                 >
                   <div class=" mt-[0.625em] ml-[1em]"
@@ -193,9 +199,9 @@ function General(props) {
                           <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
                           <div>
                             <Field
-                              // name="typeInd"
+                               name="proInd"
                               component={SwitchComponent}
-                              data={values.typeInd}
+                              data={values.proInd}
                               checkedChildren={"Yes"}
                               unCheckedChildren={"No"}
                               width={"7em"}
@@ -252,9 +258,9 @@ function General(props) {
                           <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
                           <div>
                             <Field
-                              // name="typeInd"
+                               name="repairOrdInd"
                               component={SwitchComponent}
-                              data={values.typeInd}
+                              data={values.repairOrdInd}
                               checkedChildren={"Yes"}
                               unCheckedChildren={"No"}
                               width={"7em"}
@@ -315,6 +321,7 @@ function General(props) {
 
 
               </Form>
+              </div>
               <Notifications />
             </div>
           </MainWrapper>

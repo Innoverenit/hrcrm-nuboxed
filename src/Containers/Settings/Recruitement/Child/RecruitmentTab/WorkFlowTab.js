@@ -24,7 +24,7 @@ function WorkFlow(props) {
               <RecruitmentTab />
             </div>
           </TabPane> */}
-          <TabPane tab={`Opportunity`} key="2">
+          <TabPane tab={`Quotation`} key="2">
             <div  class=" mt-[10px]" >
               <HiringTab />
             </div>

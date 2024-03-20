@@ -21,6 +21,27 @@ class TeamsActionLeft extends React.Component {
       <>
         <FlexContainer alignItems="center">
           {/* {user.functionName !== "Customer Care" && ( */}
+          <Tooltip title="Performance Management">
+          <Badge
+          size="small"
+          count={
+            (this.props.viewType === "client" &&
+              this.props.performancerecordData.EmployeeListByReptMngrId) ||
+            0
+          }
+          overflowCount={999}
+        >
+            <span
+              onClick={() => setTeamsViewType("client")}
+              style={{
+                marginRight: "0.5rem",
+                color: viewType === "client" && "#1890ff",
+              }}
+            >
+              <ManageAccountsIcon className="!text-2xl cursor-pointer" />
+            </span>
+            </Badge>
+          </Tooltip>
             <Tooltip title="List View">
               <Badge size="small">
                 <span
@@ -50,27 +71,7 @@ class TeamsActionLeft extends React.Component {
             </Tooltip>
           {/* )} */}
 
-          <Tooltip title="Performance Management">
-          <Badge
-          size="small"
-          count={
-            (this.props.viewType === "client" &&
-              this.props.performancerecordData.EmployeeListByReptMngrId) ||
-            0
-          }
-          overflowCount={999}
-        >
-            <span
-              onClick={() => setTeamsViewType("client")}
-              style={{
-                marginRight: "0.5rem",
-                color: viewType === "client" && "#1890ff",
-              }}
-            >
-              <ManageAccountsIcon className="!text-2xl cursor-pointer" />
-            </span>
-            </Badge>
-          </Tooltip>
+       
 
           {/* <Tooltip title="Inventory">
             <span

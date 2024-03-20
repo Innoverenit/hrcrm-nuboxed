@@ -4,7 +4,7 @@ import moment from "moment";
 import { Spacer,SubTitle } from "../../../Components/UI/Elements";
 const NotesWrapper = styled.div``;
 export default function SingleNote(props) {
-  console.log(creationDate);
+ 
   const {
     notes,
     creationDate,
@@ -14,7 +14,9 @@ export default function SingleNote(props) {
     //   creatorDetails: { firstName, lastName }
     // }
   } = props;
+  console.log(creationDate);
   return (
+
     <NotesWrapper>
       {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
                 {description}

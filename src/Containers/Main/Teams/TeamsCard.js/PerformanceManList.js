@@ -4,22 +4,22 @@ import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-// import {getUserKpiList,} from "../../../EmployeeAction"
-import {getKpis} from "../../../../Settings/Category/KPI/KPIAction"
+// import {getUserKpiList,} from "../../../Employees/EmployeeAction"
 import { Button } from 'antd';
+import {getKpis} from "../../../Settings/Category/KPI/KPIAction"
 import { FormattedMessage } from "react-intl";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function UserKpiList(props) {
+function PerformanceManList(props) {
 
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
 
   useEffect(() => {
-    props.getKpis(props.employeeName.departmentId)
+    props.getKpis(props.rowdata.departmentId)
   }, []);
 
 
@@ -162,9 +162,10 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getKpis,
+        // getUserKpiList,
+        getKpis
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(UserKpiList);
+export default connect(mapStateToProps, mapDispatchToProps)(PerformanceManList);
 

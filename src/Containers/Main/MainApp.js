@@ -33,6 +33,7 @@ import { getPresentNotifications } from "../Notification/NotificationAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
 import FAQPage from "./FAQ/FAQPage";
+import DashboardPage from "../DashboardPage/DashboardPage";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -607,6 +608,7 @@ function MainApp(props) {
                     <Switch>
                       <Route exact path="/planner" component={Planner} />
                       <Route exact path="/dashboard" component={Dashboard} />
+                      <Route exact path="/dashboard#" component={DashboardPage} />
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/Invoice" component={Invoice} />
                       <Route

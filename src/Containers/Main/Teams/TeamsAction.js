@@ -848,3 +848,10 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
       });
     });
 };
+
+export const handleTeamsPulseDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TEAMS_PULSE_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};

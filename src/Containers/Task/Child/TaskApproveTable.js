@@ -9,6 +9,7 @@ import {
   CloseCircleOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -22,6 +23,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {
   getAprrovalTaskTable,
   deleteTask,
+  handleProspectConfirmationModal,
   approveTaskByTaskId,
   rejectTaskByTaskId,
   handleUpdateTaskModal,
@@ -35,6 +37,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
+import AddConfirmProspectStatusModal from "./AddConfirmProspectStatusModal";
 
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
@@ -42,6 +45,7 @@ const ButtonGroup = Button.Group;
 
 const TaskApproveTable = (props) => {
   const [data, setData] = useState("");
+  const [rowdata, setrowData] = useState("");
   const [data1, setData1] = useState("");
   const [currentNameId, setCurrentNameId] = useState("");
   const tab = document.querySelector('.ant-layout-sider-children');
@@ -56,6 +60,9 @@ const TaskApproveTable = (props) => {
     setPage(page + 1);
     props.getAprrovalTaskTable(props.employeeId,page);
   }, []);
+  const handleRowData = (data) => {
+    setrowData(data);
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -484,51 +491,68 @@ const TaskApproveTable = (props) => {
                    </div>
                    <div class="flex w-44 ">
                    <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
-                    <div class=" w-36">
-                    {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
+                   <div class="w-36">
+  {item.taskType === "ProspectConvertToCustomer" ? (
     <>
-      <div>
-        <Button
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
-        >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
-        </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
+       <Tooltip title="Qualify? Prospect will move to Customer section!">
+        <ConnectWithoutContactIcon
+          onClick={() => {
+            handleRowData(item)
+            props.handleProspectConfirmationModal(true);
           }}
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
-        </Button>
-      </div>
+          className="!text-base cursor-pointer text-[blue]"
+        />
+      </Tooltip>
     </>
   ) : (
     <>
-       {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
-          type="check-circle"
-          theme="twoTone"
-          twoToneColor="#52c41a"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-        ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
-          type="close-circle"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
+      {item.filterTaskInd === true && item.approvedInd === "Pending" ? (
+        <>
+          <div>
+            <Button
+              onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+              style={{ backgroundColor: "teal", color: "white" }}
+            >
+              <FormattedMessage id="app.approve" defaultMessage="Approve" />
+            </Button>
+            <Button
+              style={{
+                backgroundColor: "rgb(233, 79, 79)",
+                color: "white",
+              }}
+              onClick={() => rejectTaskByTaskId(item.taskId)}
+            >
+              <FormattedMessage id="app.reject" defaultMessage="Reject" />
+            </Button>
+          </div>
+        </>
       ) : (
-        <></>
+        <>
+          {item.filterTaskInd === true && item.approvedInd === "Approved" ? (
+            <CheckCircleOutlined
+              type="check-circle"
+              theme="twoTone"
+              twoToneColor="#52c41a"
+              size={140}
+              style={{ fontSize: "1rem" }}
+            />
+          ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
+            <CloseCircleOutlined
+              type="close-circle"
+              theme="twoTone"
+              twoToneColor="red"
+              size={140}
+              style={{ fontSize: "1rem" }}
+            />
+          ) : (
+            <></>
+          )}
+        </>
       )}
     </>
   )}
-  </div>
+</div>
+
 </div>
 
                           
@@ -576,6 +600,14 @@ handleSetTaskNameId={handleSetTaskNameId}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
 />
+<AddConfirmProspectStatusModal
+handleRowData={handleRowData}
+handleProspectConfirmationModal={props.handleProspectConfirmationModal}
+addProspectConfirmationModal={props.addProspectConfirmationModal}
+rowdata={rowdata}
+  // taskName={currentprocessName.taskName} // Pass taskName as a prop
+
+/>
 
 </>
 );
@@ -586,6 +618,7 @@ handleSetTaskNameId={handleSetTaskNameId}
     userDetails: auth.userDetails,
     addDrawerTaskNotesModal: task.addDrawerTaskNotesModal,
     userId: auth.userDetails.userId,
+    addProspectConfirmationModal:task.addProspectConfirmationModal,
     approvalTaskTable:task.approvalTaskTable,
     employeeId: auth.userDetails.employeeId,
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
@@ -600,6 +633,7 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     bindActionCreators(
       {
         getAprrovalTaskTable,
+        handleProspectConfirmationModal,
         handleTaskProjectDrawerModal,
         deleteTask,
         handleTaskNotesDrawerModal,
@@ -682,6 +716,56 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
           color: blue;
         }
       `;
+
+
+//       <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
+//       <div class=" w-36">
+//       {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
+// <>
+// <div>
+// <Button
+// onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+// style={{ backgroundColor: "teal", color: "white" }}
+// >
+// <FormattedMessage id="app.approve" defaultMessage="Approve" />
+// </Button>
+// <Button
+// style={{
+// backgroundColor: "rgb(233, 79, 79)",
+// color: "white",
+// }}
+// onClick={() => rejectTaskByTaskId(item.taskId)}
+// >
+// <FormattedMessage id="app.reject" defaultMessage="Reject" />
+// </Button>
+// </div>
+// </>
+// ) : (
+// <>
+// {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
+// <CheckCircleOutlined
+// type="check-circle"
+// theme="twoTone"
+// twoToneColor="#52c41a"
+// size={140}
+// style={{ fontSize: "1rem" }}
+// />
+// ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
+// <CloseCircleOutlined
+// type="close-circle"
+// theme="twoTone"
+// twoToneColor="red"
+// size={140}
+// style={{ fontSize: "1rem" }}
+// />
+// ) : (
+// <></>
+// )}
+// </>
+// )}
+// </div>
+// </div>
+
 
 
     //   {approvalTaskTable.map((item) => { 

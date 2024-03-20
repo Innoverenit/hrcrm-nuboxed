@@ -15,11 +15,7 @@ const AddConfirmLedsStatusModal = (props) => {
           defaultMessage="Convert as Prospect"
         />}
         width={drawerWidth}
-        style={{marginTop:"3rem"}}
         visible={props.addLeadsConfirmationModal}
-        closable
-        destroyOnClose
-        maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
         onClose={() => props.handleLeadsConfirmationModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
