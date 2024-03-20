@@ -121,10 +121,10 @@ const TaskCardList = (props) => {
     userDetails: { employeeId },
   } = props;
 
-  if (fetchingTaskListRangeByUserId) 
-  {
-   return <BundleLoader/>
-  }
+  // if (fetchingTaskListRangeByUserId) 
+  // {
+  //  return <BundleLoader/>
+  // }
 
   if (isMobile){
     return (
@@ -541,7 +541,7 @@ const TaskCardList = (props) => {
         dataLength={taskListRangeByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingTaskListRangeByUserId?<div class="flex items-center" >Loading...</div>:null}
+        loader={fetchingTaskListRangeByUserId?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >

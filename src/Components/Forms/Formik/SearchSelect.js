@@ -11,8 +11,8 @@ import ValidationError from "../../UI/Elements/ValidationError";
 import {
   getContactListByUserId,
 } from "../../../Containers/Contact/ContactAction";
-import { getContactListByCustomerId, getAllCustomerListByUserId } from "../../../Containers/Customer/CustomerAction";
-import { getAllCandidateListByUserId } from "../../../Containers/Candidate/CandidateAction";
+import { getContactListByCustomerId, getAllCustomerListByUserId,getAllCustomerData } from "../../../Containers/Customer/CustomerAction";
+import { getAllCandidateListByUserId,getFilteredEmailContact } from "../../../Containers/Candidate/CandidateAction";
 import { getAllUsersByOrganizationId } from "../../../Containers/Call/CallAction";
 import { getCountries } from "../../../Containers/Auth/AuthAction";
 import { getTimeZone, getAllDialCodeList } from "../../../Containers/Auth/AuthAction";
@@ -25,6 +25,7 @@ import { getPartnerListByUserId, getAllPartnerListByUserId } from "../../../Cont
 import {
   getDesignations,
 } from "../../../Containers/Settings/Designation/DesignationAction";
+import{getAllOpportunityData} from "../../../Containers/Opportunity/OpportunityAction";
 import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
 import { getExpenses } from "../../../Containers/Settings/Expense/ExpenseAction";
 import { getEvents } from "../../../Containers/Settings/Event/EventAction";
@@ -45,6 +46,7 @@ class SearchSelect extends Component {
       getAllPartnerListByUserId,
       getContactListByCustomerId,
       getAllCustomerListByUserId,
+      getAllCustomerData,
       getAllCandidateListByUserId,
       getAccounts,
       getAllUsersByOrganizationId,
@@ -65,6 +67,7 @@ class SearchSelect extends Component {
       getDepartments,
       getDepartment,
       getLeadsAccounts,
+      getFilteredEmailContact,
       getDocuments,
       getSectors,
       getRoles,
@@ -76,6 +79,7 @@ class SearchSelect extends Component {
       getExpenses,
       getEvents,
       getEducations,
+      getAllOpportunityData,
     } = this.props;
     console.log(opportunityId);
     if (selectType === "contactList") {
@@ -100,6 +104,16 @@ class SearchSelect extends Component {
     if (selectType === "name") {
       getAllCustomerListByUserId(userId);
     }
+    if (selectType === "customerName") {
+      getAllCustomerData(userId);
+    }
+    if (selectType === "allOppoName") {
+      getAllOpportunityData(userId);
+    }
+    if (selectType === "contactsName") {
+      getFilteredEmailContact(userId);
+    }
+    
     if (selectType === "department") {
       getDepartment();
     }
@@ -303,6 +317,8 @@ class SearchSelect extends Component {
       contacts,
       accounts,
       departments,
+      filteredContact,
+      allCustomerData,
       department,
       opportunities,
       sources,
@@ -319,6 +335,7 @@ class SearchSelect extends Component {
       currencies,
       products,
       selectType,
+      allOpportunityData,
       defaultValue,
       placeholder,
       width,
@@ -708,9 +725,35 @@ class SearchSelect extends Component {
           label: item.name,
           color: "#FF8B00",
         }));
-
-      // const customOption = ({ label, value }) => <h3>{`${label}----${value}`}</h3>
     }
+    if (selectType === "customerName") {
+      options = allCustomerData
+        .sort((a, b) => (a.customerName < b.customerName ? -1 : 1))
+        .map((item, i) => ({
+          value: item.customerId,
+          label: item.name,
+          color: "#FF8B00",
+        }));
+    }
+    if (selectType === "allOppoName") {
+      options = allOpportunityData
+        .sort((a, b) => (a.allOppoName < b.allOppoName ? -1 : 1))
+        .map((item, i) => ({
+          label: `${item.opportunityName || ""}`,
+          value: item.opportunityId,
+          color: "#FF8B00",
+        }));
+    }
+    if (selectType === "contactsName") {
+      options = filteredContact
+        .sort((a, b) => (a.contactsName < b.contactsName ? -1 : 1))
+        .map((item, i) => ({
+          label: `${item.fullName || ""}`,
+          value: item.contactId,
+          color: "#FF8B00",
+        }));
+    }
+
     if (selectType === "DRegion") {
       options = regionsDropDown
         .sort((a, b) => (a.name < b.name ? -1 : 1))
@@ -1226,7 +1269,7 @@ class SearchSelect extends Component {
 }
 
 
-const mapStateToProps = ({ auth, call, document, source, role, functions, contact,region, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
+const mapStateToProps = ({ auth, call, document, source, role, functions, contact,region,opportunity, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
   countries: auth.countries,
   currencies: auth.currencies,
   fetchingCountries: auth.fetchingCountries,
@@ -1259,6 +1302,9 @@ const mapStateToProps = ({ auth, call, document, source, role, functions, contac
   sources: source.sources,
   dialcodeList: auth.dialcodeList,
   regionsDropDown: region.regionsDropDown,
+  allCustomerData:customer.allCustomerData,
+  allOpportunityData:opportunity.allOpportunityData,
+  filteredContact: candidate.filteredContact,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1295,7 +1341,10 @@ const mapDispatchToProps = (dispatch) =>
       getExpenses,
       getEvents,
       getEducations,
-      getFunctions
+      getFunctions,
+      getAllCustomerData,
+      getAllOpportunityData,
+      getFilteredEmailContact
     },
     dispatch
   );
