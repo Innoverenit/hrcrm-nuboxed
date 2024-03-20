@@ -413,7 +413,7 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
     })
     .then((res) => {
       dispatch(getNoOfPhoneById(id));
-      dispatch(getProductionOrderId(locationDetailsId))
+      // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
         title: 'Items Assigned To Technician',
