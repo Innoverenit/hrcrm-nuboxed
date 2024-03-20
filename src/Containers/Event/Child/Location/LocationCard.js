@@ -58,7 +58,7 @@ const handleLoadMore = () => {
         loader={props.fetchingLocationData?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"75vh"}
       >
-      <div className=" flex justify-between w-[85%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[10.5rem]">Name</div>
         <div className=" md:w-[9.1rem]">Country</div>
         <div className=" md:w-[11.1rem] ">Address</div>
@@ -69,12 +69,13 @@ const handleLoadMore = () => {
         <div className="md:w-[8.51rem]">Corporate</div>
         <div className="md:w-[8.3rem]">Project</div>
         <div className="md:w-[8.9rem]">Retail</div>
+        <div className="md:w-[8.9rem]">Regions</div>
       </div>
-      <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+      <div class="">
           {props.showLocation.map((item) => {
             return (
-              <div class="w-wk">
-                <div class=" flex rounded-xl justify-between bg-white mt-[0.5rem]  h-[2.75rem] items-center p-3">
+              <div >
+                <div class=" flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 ">
                   <div class="flex">
                     <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                      
@@ -84,7 +85,7 @@ const handleLoadMore = () => {
                       </div>
                    
 
-                    <div className=" flex font-medium flex-col md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
@@ -107,7 +108,8 @@ const handleLoadMore = () => {
 </span>            </div>
                     </div>
                   </div>
-                
+                </div>
+
                     <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
@@ -188,7 +190,7 @@ const handleLoadMore = () => {
                         />
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[7.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex font-medium flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <Switch
@@ -201,7 +203,7 @@ const handleLoadMore = () => {
                         />
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[7.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex font-medium flex-row md:w-[5.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <Switch
@@ -213,8 +215,14 @@ const handleLoadMore = () => {
                         />
                       </div>
                     </div>
-                    <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                      <div>
+                    <div className=" font-medium flex-row md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                      
+                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                       {item.regions}
+                      </div>
+                    </div>
+                    <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div>
                         <Tooltip title="Shift">
                           <FilterTiltShiftIcon
                           className="!text-base cursor-pointer"
@@ -226,21 +234,6 @@ const handleLoadMore = () => {
                           />
                         </Tooltip>
                       </div>
-                      {/* <div>
-                        <StyledPopconfirm
-            title="Do you want to delete?"
-            onConfirm={() => deleteLeadsData(item.leadsId)}
-          >
-     
-            <DeleteIcon
-              type="delete"
-              style={{ cursor: "pointer", color: "red" ,fontSize: "1rem",}}
-            />
-          </StyledPopconfirm>
-                        </div> */}
-                      <div></div>
-                    </div>
-                    <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
                       <div>
                         <Tooltip title="Customer">
                           <AcUnitIcon
@@ -252,7 +245,11 @@ const handleLoadMore = () => {
                           />
                         </Tooltip>
                       </div>
-                      {/* <div>
+                      </div>
+                    
+                    {/* <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
+                     
+                      <div>
                       <Tooltip title="Supplier">
                           <InventoryIcon
                             style={{ cursor: "pointer", fontSize: "1rem" }}
@@ -262,11 +259,11 @@ const handleLoadMore = () => {
                             }}
                           />
                          </Tooltip>
-                      </div> */}
+                      </div> 
                       <div></div>
-                    </div>
-                    <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                      <div>
+                    </div> */}
+                     <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                        <div>
                         <Tooltip title="Edit">
                           <BorderColorIcon
                             className="!text-base cursor-pointer"
@@ -276,8 +273,8 @@ const handleLoadMore = () => {
                             }}
                           />
                         </Tooltip>
-                      </div>
-                      <div class=" ml-4">
+                        </div>
+                        <div>
                         <StyledPopconfirm
                           title="Do you want to delete?"
                           onConfirm={() => props.deleteLocation(item.locationDetailsId)}
@@ -289,12 +286,12 @@ const handleLoadMore = () => {
                           />
                           </Tooltip>
                         </StyledPopconfirm>
+
+                        </div>
                       </div>
-                      <div></div>
-                    </div>
+                   
                     </div>
                 </div>
-              </div>
             );
           })}
         </div>

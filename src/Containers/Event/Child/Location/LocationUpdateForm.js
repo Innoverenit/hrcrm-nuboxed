@@ -144,6 +144,7 @@ handleInventory = () => {
             locationName:this.props.storedLoc.locationName || "",
             management:this.props.storedLoc.management || "",
             productionManager:this.props.storedLoc.productionManager || "",
+            regionsId:this.props.storedLoc.regions || "",
             userId: this.props.userId,
             orgId: this.props.orgId,
             groupId: this.props.groupId,
@@ -222,9 +223,9 @@ handleInventory = () => {
                       isRequired
                     />
                   </div>
-                  <div class=" w-[45%] max-sm:w-[30%]">
+                  <div class=" w-[45%] mt-3 max-sm:w-[30%]">
                       <Field
-                        name="region"
+                        name="regionsId"
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}
@@ -236,14 +237,14 @@ handleInventory = () => {
                           />
                         }
                         isColumn
-                        // defaultValue={{
-                        //   label:`+${props.user.countryDialCode}`,
-                        // }}
+                        defaultValue={{
+                          label:`${this.props.storedLoc.regions}`,
+                        }}
                         inlineLabel
                       />
                     </div>
                     
-                  <div class="font-bold mt-2" >Functions</div>
+                  <div class="font-bold mt-3" >Functions</div>
                   <div class=" flex ">
                     <div  class=" w-[47%] mt-2">
                       <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
