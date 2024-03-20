@@ -6,9 +6,6 @@ import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
-import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
-import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
-import {getAllCustomerData} from "../../Customer/CustomerAction"
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -37,6 +34,7 @@ import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
 import moment from "moment";
 import { Listbox } from '@headlessui/react';
+import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 
 const { Option } = Select;
 
@@ -202,36 +200,13 @@ const [priority,setpriority]=useState(props.selectedTask
   };
 
 
-  const opportunityNameOption = props.allOpportunityData
-  .sort((a, b) => {
-    const libraryNameA = a.opportunityName && a.opportunityName.toLowerCase();
-    const libraryNameB = b.opportunityName && b.opportunityName.toLowerCase();
-    if (libraryNameA < libraryNameB) {
-      return -1;
-    }
-    if (libraryNameA > libraryNameB) {
-      return 1;
-    }
-
-    // names must be equal
-    return 0;
-  })
-  .map((item) => {
-    return {
-      label: `${item.opportunityName || ""}`,
-      value: item.opportunityId,
-    };
-  });
  
-
-  
-
   useEffect(()=> {
     props.getAssignedToList(props.orgId);
       props.getTaskForStages();
-      props.getAllCustomerData(userId)
-      props.getAllOpportunityData(userId)
-      props.getFilteredEmailContact(userId);
+      // props.getAllCustomerData(userId)
+      // props.getAllOpportunityData(userId)
+      // props.getFilteredEmailContact(userId);
     props.getProjectTaskList(props.orgId);
     props.getTasks();
     props.getUnits(props.orgId);
@@ -264,47 +239,6 @@ const [priority,setpriority]=useState(props.selectedTask
         };
       });
       
-    const customerNameOption = props.allCustomerData
-    .sort((a, b) => {
-      const libraryNameA = a.name && a.name.toLowerCase();
-      const libraryNameB = b.name && b.name.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    })
-    .map((item) => {
-      return {
-        label: `${item.name || ""}`,
-        value: item.customerId,
-      };
-    });
-
-    const ContactData = props.filteredContact
-    .sort((a, b) => {
-      const libraryNameA = a.fullName && a.fullName.toLowerCase();
-      const libraryNameB = b.fullName && b.fullName.toLowerCase();
-      if (libraryNameA < libraryNameB) {
-        return -1;
-      }
-      if (libraryNameA > libraryNameB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-    })
-    .map((item) => {
-      return {
-        label: `${item.fullName || ""}`,
-        value: item.contactId,
-      };
-    });
   
     const today = dayjs();
     var todayDate = new Date();
@@ -569,14 +503,11 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div class="flex">
                             <Tooltip title="High">
                               <Button
-                                type="primary"
+                                
                                  shape="circle"
                                 onClick={() => handleButtonClick("High")}
                                 style={{
-                                  backgroundColor:
-                                    priority === "High"
-                                      ? "red"
-                                      : "white",
+                                  backgroundColor:"red",
                                       borderRadius: "50%", 
                                       width: "31px", 
                                       height: "31px"
@@ -586,15 +517,12 @@ const [priority,setpriority]=useState(props.selectedTask
                             &nbsp;
                             <Tooltip title="Medium">
                               <Button
-                                type="primary"
+                                
                                  shape="circle"
                   
                                 onClick={() => handleButtonClick("Medium")}
                                 style={{
-                                  backgroundColor:
-                                    priority === "Medium"
-                                      ? "Orange"
-                                      : "white",
+                                  backgroundColor:"orange",
                                       borderRadius: "50%", 
                                       width: "31px", 
                                       height: "31px",
@@ -604,15 +532,12 @@ const [priority,setpriority]=useState(props.selectedTask
                             &nbsp;
                             <Tooltip title="Low">
                               <Button
-                                type="primary"
+                                
                                  shape="circle"
                         
                                 onClick={() => handleButtonClick("Low")}
                                 style={{
-                                  backgroundColor:
-                                    priority === "Low"
-                                      ? "teal"
-                                      : "white",
+                                  backgroundColor:"teal",
                                       borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
                                       width: "31px", // Adjust the width as needed
                                       height: "31px"
@@ -1371,20 +1296,21 @@ const [priority,setpriority]=useState(props.selectedTask
                  isColumnWithoutNoCreate
                  label={
                    <FormattedMessage
-                     id="app.customer"
-                     defaultMessage="customer"
+                     id="app.prospect"
+                     defaultMessage="Prospect"
                    />
                  }
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(customerNameOption)
-                     ? customerNameOption
-                     : []
-                 }
+                 selectType="customerName"
+                 component={SearchSelect}
+                 value={values.customerId}
+                //  component={SelectComponent}
+                //  options={
+                //    Array.isArray(customerNameOption)
+                //      ? customerNameOption
+                //      : []
+                //  }
                  isColumn
                  margintop={"0"}
-                 value={values.customerId}
                  inlineLabel
                />
                   )} 
@@ -1402,9 +1328,10 @@ const [priority,setpriority]=useState(props.selectedTask
                         defaultMessage="contact"
                       />
                     }
-                    component={SelectComponent}
+                    selectType="contactsName"
+                    component={SearchSelect}
                     isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
+                    // options={Array.isArray(ContactData) ? ContactData : []}
                     value={values.contactId}
                     // isDisabled={defaultContacts}
                     defaultValue={{
@@ -1420,7 +1347,6 @@ const [priority,setpriority]=useState(props.selectedTask
                   {props.user.crmInd === true &&(
                  <Field
                  name="opportunityId"
-                 // selectType="customerList"
                  isColumnWithoutNoCreate
                  label={
                    <FormattedMessage
@@ -1428,13 +1354,14 @@ const [priority,setpriority]=useState(props.selectedTask
                      defaultMessage="opportunity"
                    />
                  }
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(opportunityNameOption)
-                     ? opportunityNameOption
-                     : []
-                 }
+                 selectType="allOppoName"
+                 component={SearchSelect}
+                   //  component={SelectComponent}
+                //  options={
+                //    Array.isArray(opportunityNameOption)
+                //      ? opportunityNameOption
+                //      : []
+                //  }
                  isColumn
                  margintop={"0"}
                  value={values.opportunityId}
@@ -1602,9 +1529,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addTask,
-      getAllCustomerData,
-      getAllOpportunityData,
-      getFilteredEmailContact,
+      // getAllCustomerData,
+      // getAllOpportunityData,
       getTasks,
       handleChooserModal,
       getCandidateTaskFilterList,
