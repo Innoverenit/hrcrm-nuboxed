@@ -95,6 +95,7 @@
     "react-speech-recognition": "^3.9.1",
     "react-spring": "^7.2.8",
     "react-stripe-elements": "^5.1.0",
+    "react-to-print": "^2.15.1",
     "react-tree-graph": "^4.0.1",
     "react-wordcloud": "^1.2.7",
     "recharts": "^2.4.3",

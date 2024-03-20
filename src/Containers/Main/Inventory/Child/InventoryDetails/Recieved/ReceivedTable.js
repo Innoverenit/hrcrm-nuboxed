@@ -95,7 +95,7 @@ const ReceivedTable = (props) => {
               height={"75vh"}
             >
               {props.allReceivedUser.length ? <>
-                {props.allReceivedUser.map((item) => {
+                {props.allReceivedUser.map((item, key) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
                   return (
@@ -199,7 +199,7 @@ const ReceivedTable = (props) => {
                                   <Button onClick={handlelocation}>Cancel</Button>
                                 </div>
                               </>
-                              : item.locationName}
+                              : item.productionLocationName}
                           </div>
                         </div>
                         <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -255,20 +255,20 @@ const ReceivedTable = (props) => {
                           </div>
                         </div>
                         <div class="flex flex-col md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
-                          {/* {item.mismatchOrderInd && */}
-                          <div>
-                            <Tooltip title="Mismatch Phones">
-                              <LabelOffIcon
-                                class=" text-red-700"
-                                onClick={() => {
-                                  handleRowData(item);
-                                  props.handleMismatchPhoneModal(true)
-                                }}
-                              />
+                          {item.mismatchOrderInd &&
+                            <div>
+                              <Tooltip title="Mismatch Phones">
+                                <LabelOffIcon
+                                  class=" text-red-700"
+                                  onClick={() => {
+                                    handleRowData(item);
+                                    props.handleMismatchPhoneModal(true)
+                                  }}
+                                />
 
-                            </Tooltip>
-                          </div>
-                          {/* } */}
+                              </Tooltip>
+                            </div>
+                          }
                         </div>
                       </div>
                     </div>

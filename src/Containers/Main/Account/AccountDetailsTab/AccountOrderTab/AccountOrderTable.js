@@ -35,6 +35,8 @@ import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import SubOrderList from './SubOrderList';
+import { PrinterFilled } from '@ant-design/icons';
+import CardContainer from './CardContainer';
 
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
@@ -53,6 +55,10 @@ const AccountOrderTable = (props) => {
         props.getDistributorOrderByDistributorId(props.distributorId, page)
     }, [])
 
+    const [print, setprint] = useState(false);
+    const handlePrint = () => {
+        setprint(!print)
+    }
     const [particularRowData, setParticularRowData] = useState({});
     const [locationChange, setLocationChange] = useState(false);
     const [locationValue, setLocationValue] = useState("");
@@ -120,7 +126,7 @@ const AccountOrderTable = (props) => {
 
     return (
         <>
-            <div div className=' flex justify-end sticky top-28 z-auto'>
+            <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[1.56rem]"> </div>
@@ -498,6 +504,14 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
+                                                        <div>
+                                                            <Tooltip title="Print">
+                                                                <PrinterFilled onClick={() => {
+                                                                    props.handleInventoryLocationInOrder(true)
+                                                                }} />
+                                                            </Tooltip>
+
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -514,6 +528,7 @@ const AccountOrderTable = (props) => {
                             </> : !props.distributorOrder.length && !props.fetchingDistributorByDistributorId ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
                     {/* </div> */}
+
                 </div>
             </div >
             <Suspense fallback={<BundleLoader />}>
@@ -551,6 +566,7 @@ const AccountOrderTable = (props) => {
                     handleUpdateOrder={props.handleUpdateOrder}
                     updateOrderModal={props.updateOrderModal}
                 />
+
             </Suspense>
         </>
     )

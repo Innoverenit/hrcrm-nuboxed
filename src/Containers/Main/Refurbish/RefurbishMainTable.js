@@ -103,7 +103,7 @@ const ProductionOrderList = (props) => {
                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                         <div class="flex">
                                             <div className=" flex font-medium  md:w-[10.6rem] max-sm:w-full ">
-                                                <Badge size="small" count={`${item.totalReceiveQuantity} / ${item.phoneCount}`} overflowCount={5000}>
+                                                <Badge size="small" count={`${item.totalReceiveCount} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class="underline text-[#1890ff] cursor-pointer w-[7rem] flex"
                                                         onClick={() => {
@@ -129,9 +129,6 @@ const ProductionOrderList = (props) => {
 
                                             </div>
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-
                                                 <div class=" text-sm text-cardBody font-poppins">
 
                                                     <MultiAvatar
@@ -171,17 +168,17 @@ const ProductionOrderList = (props) => {
                                         <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 {item.qcStartInd === 1 ?
-                                                    <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
-                                                        <Tooltip title="Assign For QC">
-                                                            <Button
-                                                                className="bg-[#1685e6] text-white"
-                                                                onClick={() => {
-                                                                    props.handleAssignOrderById(true);
-                                                                    handleRowData(item);
-                                                                }}
-                                                            >Assign For QC </Button>
-                                                        </Tooltip>
-                                                    </Badge>
+                                                    // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
+                                                    <Tooltip title="Assign For QC">
+                                                        <Button
+                                                            className="bg-[#1685e6] text-white"
+                                                            onClick={() => {
+                                                                props.handleAssignOrderById(true);
+                                                                handleRowData(item);
+                                                            }}
+                                                        >Assign For QC </Button>
+                                                    </Tooltip>
+                                                    // </Badge>
                                                     : item.qcStartInd === 2 ? <b>Assigned To Technician</b>
                                                         : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>QC on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                             </div>

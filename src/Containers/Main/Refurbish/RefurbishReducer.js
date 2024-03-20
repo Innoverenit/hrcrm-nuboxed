@@ -486,6 +486,11 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingtechnicianByPhone: false,
         assignOrderById: false,
+        productionOrder: state.productionOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_TECHNICIAN_BY_PHONE_FAILURE:
       return {

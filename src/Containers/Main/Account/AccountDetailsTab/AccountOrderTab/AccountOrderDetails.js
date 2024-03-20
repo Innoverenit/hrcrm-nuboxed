@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
@@ -12,12 +12,19 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PrintOutlined } from "@mui/icons-material";
+import { useReactToPrint } from 'react-to-print';
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
 const QRCodeModal = lazy(() => import("../../../../../Components/UI/Elements/QRCodeModal"));
 
 function DistributorPauseForm(props) {
+    const [dimensions, setDimensions] = React.useState({ width: 500, height: 500 });
+
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -160,7 +167,7 @@ function DistributorPauseForm(props) {
 
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                    <div ref={componentRef} class=" text-xs text-cardBody font-poppins">
                                                         {item.imei}
                                                     </div>
                                                 </div>
@@ -319,6 +326,7 @@ function DistributorPauseForm(props) {
                                                             defaultMessage="Print"
                                                         />}>
                                                             <PrintOutlined
+                                                                onClick={handlePrint}
                                                                 className="!text-base cursor-pointer"
                                                             />
                                                         </Tooltip>

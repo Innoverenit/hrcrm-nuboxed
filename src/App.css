@@ -1075,7 +1075,11 @@ h1{
 }
 
 
-
+@media print {
+  .print-content {
+    font-size: 2rem; /* adjust as needed */
+  }
+}
 
 
 
