@@ -53,10 +53,8 @@ export const getRegions = (orgId) => (dispatch) => {
         console.log(res);
         dispatch({
           type: types.ADD_REGIONS_SUCCESS,
-          payload: { 
-            ...documents, 
-            // leadDocumentId: res.data 
-          },
+          payload: res.data
+          
         });
         cb();
       })

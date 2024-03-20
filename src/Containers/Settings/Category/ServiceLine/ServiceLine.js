@@ -48,6 +48,8 @@ const ServiceLine = (props) => {
     }, [])
 
     const editRegion = (serviceLineId, serviceLineName) => {
+      console.log(serviceLineName)
+      console.log(serviceLineName)
         setEditingId(serviceLineId);
         setNewServiceLineName(serviceLineName);
     };

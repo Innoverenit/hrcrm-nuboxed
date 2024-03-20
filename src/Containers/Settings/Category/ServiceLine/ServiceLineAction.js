@@ -53,10 +53,8 @@ export const getServiceLine = (orgId) => (dispatch) => {
         console.log(res);
         dispatch({
           type: types.ADD_SERVICELINE_SUCCESS,
-          payload: { 
-            ...documents, 
-            // leadDocumentId: res.data 
-          },
+          payload: res.data
+         
         });
         cb();
       })

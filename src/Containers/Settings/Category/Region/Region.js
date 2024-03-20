@@ -91,7 +91,7 @@ setEditingId(null);
         props.addRegions(data)
         setAddingRegion(false); 
         console.log(regions)
-        // setRegions(props.regiondata.length>0?props.regiondata:null);
+        // setRegions(...props.regions);
     };
 
     const handleCancelAdd = () => {
