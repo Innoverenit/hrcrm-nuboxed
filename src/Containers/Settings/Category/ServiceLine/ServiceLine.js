@@ -15,6 +15,7 @@ import {
   } from "./ServiceLineAction";
   import { Switch } from 'antd';
   import {getDepartments} from "../../../Settings/Department/DepartmentAction";
+import { BundleLoader } from '../../../../Components/Placeholder';
 
 const data = [
     { id: 1, region: "Europe" },
@@ -58,6 +59,7 @@ const ServiceLine = (props) => {
 
     const handleAddRegion = () => {
         setAddingRegion(true);
+        setNewServiceLineName("")
     };
 
     const handleUpdateRegion=(region)=>{
@@ -86,6 +88,7 @@ setEditingId(null);
             serviceLineName:newServiceLineName,
         }
         props.addServiceLine(data)
+        setAddingRegion(false)
     };
     const handleChange = (e) => {
         setCurrentData(e.target.value.trim());
@@ -139,6 +142,9 @@ setEditingId(null);
         }
       }, [props.departments]);
 // console.log(regions)
+if (props.fetchingServiceLine) {
+  return <div><BundleLoader/></div>;
+}
     return (
         <div>
         <div style={{display:"flex"}}>
@@ -224,6 +230,7 @@ setEditingId(null);
 const mapStateToProps = ({ region,auth,serviceLines,departments  }) => ({
     serviceLine:serviceLines.serviceLine,
     departments: departments.departments,
+    fetchingServiceLine:serviceLines.fetchingServiceLine,
     // addingDocuments: document.addingDocuments,
     // addingDocumentsError: document.addingDocumentsError,
     // regions: region.regions,

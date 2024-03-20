@@ -58,6 +58,7 @@ console.log(editingId)
 
     const handleAddRegion = () => {
         setAddingRegion(true);
+        setNewRegionName('');
     };
 
     const handleChange = (e) => {
@@ -83,20 +84,12 @@ setEditingId(null);
     }
 
     const handleSaveRegion = () => {
-        // if (newRegionName.trim() !== '') {
-        //     console.log("New Region:", newRegionName);
-        //     const newRegion = {
-        //         id: Date.now(),
-        //         region: newRegionName
-        //     };
-        //     setRegions([...regions, newRegion]);
-        //     setNewRegionName('');
-        //     setAddingRegion(false);
-        // }
+  
         let data={
             regions:newRegionName
         }
         props.addRegions(data)
+        setAddingRegion(false); 
         console.log(regions)
         // setRegions(props.regiondata.length>0?props.regiondata:null);
     };
