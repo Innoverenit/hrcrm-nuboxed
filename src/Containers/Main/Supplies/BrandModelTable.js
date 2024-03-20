@@ -55,6 +55,7 @@ const BrandModelTable = (props) => {
                 <Button
                     type="primary"
                 onClick={handleSubmit}
+                loading={props.addingMasterList}
                 >
                     Submit
                 </Button>
@@ -64,6 +65,7 @@ const BrandModelTable = (props) => {
 }
 const mapStateToProps = ({ supplies}) => ({
     brandModel: supplies.brandModel,
+    addingMasterList:supplies.addingMasterList
 });
 
 const mapDispatchToProps = (dispatch) =>

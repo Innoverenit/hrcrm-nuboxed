@@ -54,7 +54,7 @@ export const addKpi = (sectors,departmentId, cb) => (dispatch) => {
         //   message.success(res.data.message):
         Swal.fire({
           icon: 'success',
-          title: 'Kpi has been added Successfully',
+          title: 'KPI Created Successfully',
         })
         // message.success("KPI has been added successfully!");
         // }
@@ -131,7 +131,7 @@ export const updateKpi = ( performanceManagementId,kpi,frequency,cb) => (dispatc
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Kpi has been updated Successfully',
+          title: 'KPI updated Successfully',
         })
         // message.success("KPI has been updated successfully!");
         console.log(res);

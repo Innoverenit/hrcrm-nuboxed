@@ -15,12 +15,7 @@ class AddLeadsNotesDrawerModal extends Component {
         // title="Notes"
           title={this.props.rowdata.name}
           width="64%"
-          style={{ marginTop: "5rem" }}
           visible={this.props.addDrawerLeadsNotesModal}
-          closable
-          placement="right"
-          destroyOnClose
-          maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
           onClose={() => this.props.handleLeadsNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>

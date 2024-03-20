@@ -1,7 +1,8 @@
 import * as types from "./TaskActionTypes";
 import axios from "axios";
 import { message } from "antd";
-import { base_url } from "../../Config/Auth";
+import Swal from 'sweetalert2'
+import { base_url,base_url2 } from "../../Config/Auth";
 import { getTasksListByUserId } from "../Auth/AuthAction";
 
 export const setTaskViewType = (viewType) => (dispatch) => {
@@ -1317,9 +1318,56 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
     });
 };
 
-export const handleTaskImportModal = (modalProps) => (dispatch) => {
+export const handleProspectConfirmationModal = (modalProps) => (dispatch) => {
   dispatch({
-    type: types.HANDLE_TASK_IMPORT_MODAL,
+    type: types.HANDLE_PROSPECT_CONFIRMATION_MODAL,
     payload: modalProps,
   });
+};
+
+
+export const convertProspectStatus = (data,taskId,) => (
+  dispatch,
+  getState
+) => {
+  // debugger;
+  const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.CONVERT_PROSPECT_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/customer/account/assginToUser/${userId}/${taskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect converted Successfully!',
+     
+      })
+      dispatch(getAprrovalTaskTable(userId,0));
+      // dispatch(getLeadsRecords(userId));
+      dispatch({
+        type: types.CONVERT_PROSPECT_STATUS_SUCCESS,
+        payload: taskId,
+      });
+      // Swal.fire({
+      //   icon: 'success',
+      //   fontSize:"2rem",
+      //   title: 'Lead Qualified Succefully!',
+      //   showConfirmButton: false,
+      //   timer: 4000
+      // })
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CONVERT_PROSPECT_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
+    });
 };

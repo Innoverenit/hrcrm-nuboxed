@@ -5,17 +5,17 @@ import { Formik, Form, } from "formik";
 import {
   Select,
   StyledLabel,
-} from "../../../../Components/UI/Elements";
-import { MainWrapper } from "../../../../Components/UI/Elements";
+} from "../../../Components/UI/Elements";
+import { MainWrapper } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
 import {
     getDepartmentwiserUser,
-} from "../../../Settings/SettingsAction";
-import {convertCustomerStatus} from "../../LeadsAction";
-import {getDepartments} from "../../../Settings/Department/DepartmentAction"
+} from "../../Settings/SettingsAction";
+import {convertProspectStatus} from "../TaskAction";
+import {getDepartments} from "../../Settings/Department/DepartmentAction"
 const { Option } = Select;
-function LeadsConfirmStatusForm(props) {
+function ProspectConfirmStatusForm(props) {
 
     const [single, setSingle] = useState(false);
     const [selectedDept, setSelectedDept] = useState('');
@@ -41,6 +41,7 @@ const handleDeptChange = (event) => {
     const selectedUser = event.target.value;
     setSelectedUser(selectedUser);
   };
+  console.log(selectedUser)
   // const filteredUser = props.departmentwiseUser.filter((item) => item.departmentId === selectedDept);
   const employeesData = props.departmentwiseUser.map((item) => {
     return {
@@ -52,26 +53,27 @@ const handleDeptChange = (event) => {
   return (
     <>
       <Formik
-        enableReinitialize
+        // enableReinitialize
         initialValues={{
           // multyAsignedTOId: [],
-          type:"lead",
-        //   timePeriod: props.distributionAutomation.timePeriod === 0 ? "Not Applicable" :props.distributionAutomation.timePeriod|| "",
-        //   orderTimePeriod: props.distributionAutomation.orderTimePeriod === 0 ? "Not Applicable" :props.distributionAutomation.orderTimePeriod || "",
-          userId: props.userId,
+          type:"ProspectConvertToCustomer",
+
+        //   userId: props.userId,
           orgId: props.organizationId,
         }}
         onSubmit={(values) => {
           console.log(values)
        
-          props.convertCustomerStatus(
+          props.convertProspectStatus(
             {
               ...values,
               departmentId: selectedDept,
               // singleMultiInd: single ? true : false,
             },
-            props.rowdata.leadsId,
-          single === false?selectedUser:props.userId,
+            props.rowdata.taskId,
+          selectedUser,
+        
+        
           );
         }}
       >
@@ -85,29 +87,8 @@ const handleDeptChange = (event) => {
             
         
              
-              <div class=" flex justify-between w-[74%] "
-              >
-              
-                <div>
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleAppClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      > */}
-                      <StyledLabel>Assign To</StyledLabel>
-                        <Switch
-                          style={{ width: "5em" }}
-                          onChange={handleSingleMultiple}
-                          checked={single}
-                          checkedChildren="Self"
-                          unCheckedChildren="Select"
-                        />
-                      {/* </Popconfirm> */}
-                    </div>
-              </div>
-              {single === false &&(
+            
+             
               <div class=" flex justify-between" >
                                                     <div class=" w-[35%] mt-4" >
                                                     <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
@@ -150,7 +131,7 @@ const handleDeptChange = (event) => {
         )}                                                  
                                                 </div>
                                            
-                                           )}
+                                       
             </div>
           </div>
         
@@ -159,9 +140,9 @@ const handleDeptChange = (event) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={props.linkingCustomerStatus}
+                  loading={props.linkingProspectStatus}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
                   {/* Update */}
                 </Button>
               </div>
@@ -174,21 +155,20 @@ const handleDeptChange = (event) => {
   );
 }
 
-const mapStateToProps = ({ settings,leads, departments, auth }) => ({
-  userId: auth.userDetails.userId,
-  linkingCustomerStatus:leads.linkingCustomerStatus,
+const mapStateToProps = ({ settings,leads,task, departments, auth }) => ({
+//   userId: auth.userDetails.userId,
+  linkingProspectStatus:task.linkingProspectStatus,
   departmentwiseUser:settings.departmentwiseUser,
   distributionAutomation: settings.distributionAutomation,
   orgId: auth.userDetails.organizationId,
   departments:departments.departments,
-  linkingLeads:leads.linkingLeads,
   updateWebsiteSingleError: settings.updateWebsiteSingleError,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      convertCustomerStatus,
+        convertProspectStatus,
         getDepartments,
         getDepartmentwiserUser,
         // getDistributionAutomation,
@@ -196,4 +176,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeadsConfirmStatusForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectConfirmStatusForm);

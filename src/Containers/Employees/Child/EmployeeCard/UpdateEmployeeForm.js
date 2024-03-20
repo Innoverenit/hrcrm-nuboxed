@@ -812,7 +812,7 @@ name="departmentId"
                       </div>
                     </div>
 
-                    <div class=" flex " >
+                    <div class=" flex mt-2" >
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                           <FormattedMessage

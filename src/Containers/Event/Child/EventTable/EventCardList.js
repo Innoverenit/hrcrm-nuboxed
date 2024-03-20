@@ -354,7 +354,7 @@ function EventCardList (props) {
         dataLength={eventListRangeByUserId.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingEventListRangeByUserId?<div class="flex items-center">Loading...</div>:null}
+        loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       >
       {eventListRangeByUserId.map((item) => { 

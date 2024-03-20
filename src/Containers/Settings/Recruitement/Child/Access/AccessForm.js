@@ -14,7 +14,7 @@ const materialOptions = ['Access', 'Create', 'Update', 'Delete',];
 const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const defaultCheckedList=['Full List'];
  const melCheckedList=['Full List','Access'];
- const dashboardCheckedList=['Access','Full List'];
+ const dashboardCheckedList=['Access','Full List','Regional'];
  const refurbishCheckedList=['Workshop','Adminview','Adminassign'];
  const settingsCheckedList=['Access'];
  const accountingCheckedList=['Access'];
@@ -81,6 +81,7 @@ const AccessForm = (props) => {
     setCheckedAccessmentList(props.departmentAcces.assessment)
     setCheckedTopicList(props.departmentAcces.topic)
     setCheckedReportList(props.departmentAcces.report)
+    setCheckedDataRoomList(props.departmentAcces.dataRoom)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -131,6 +132,7 @@ const AccessForm = (props) => {
   props.departmentAcces.topic,
   props.departmentAcces.production,
   props.departmentAcces.report,
+  props.departmentAcces.dataRoom,
  
   
   
@@ -780,6 +782,24 @@ const AccessForm = (props) => {
     setCheckAllDeal(e.target.checked);
   };
 
+  
+    //Data Room
+    const [checkedDataRoomList, setCheckedDataRoomList] = useState(props.departmentAcces.dataRoom);
+    const [indeterminateDataRoom, setIndeterminateDataRoom] = useState(true);
+    const [checkAllDataRoom, setCheckAllDataRoom] = useState(false);
+  
+    const onDataRoomChange = (list) => {
+      setCheckedDataRoomList(list);
+      setIndeterminateDataRoom(!!list.length && list.length < plainOptions.length);
+      setCheckAllDataRoom(list.length === plainOptions.length);
+    };
+  
+    const onCheckAllDataRoomChange = (e) => {
+      setCheckedDataRoomList(e.target.checked ? plainOptions : []);
+      setIndeterminateDataRoom(false);
+      setCheckAllDataRoom(e.target.checked);
+    };
+
   //Pitch
   const [checkedPitchList, setCheckedPitchList] = useState(props.departmentAcces.pitch);
   const [indeterminatePitch, setIndeterminatePitch] = useState(true);
@@ -1072,6 +1092,7 @@ const onCheckAllTeamsChange = (e) => {
       holiday:checkedHolidayList || [],
       topic:checkedTopicList || [],
       report:checkedReportList || [],
+      dataRoom:checkedDataRoomList || [],
       
       
       departmentId: props.departmentId,
@@ -1632,6 +1653,23 @@ const onCheckAllTeamsChange = (e) => {
                   <CheckboxGroup options={plainOptions} value={checkedPulseList} onChange={onPulseChange} />
 
                 </div> */}
+              </div>
+
+
+              <div class=" flex justify-around mt-8" >
+              <div >
+                  <div class="text-sm font-semibold">Data Room</div>
+                  <Checkbox indeterminate={indeterminateDataRoom} onChange={onCheckAllDataRoomChange} checked={checkAllDataRoom}>
+                  <div class="text-xs">  Check all </div>
+                  </Checkbox>
+                  <Divider />
+                  <CheckboxGroup options={plainOptions} value={checkedDataRoomList} onChange={onDataRoomChange} />
+
+                </div>
+       
+             
+            
+              
               </div>
              
               </div> 

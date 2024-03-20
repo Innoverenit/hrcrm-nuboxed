@@ -134,13 +134,13 @@ function CampaignCardView (props) {
                   >
                   {item.included &&
                     item.included.map((candidate, i) => {
-                       const data1 = candidate.fullName
+                       const data1 = candidate.empName
                        .slice(0,2)
                       //  .split("")[0]
                        .toUpperCase();
                      console.log("datas", data1);
                       return (
-                        <Tooltip title={candidate.fullName} key={i}>
+                        <Tooltip title={candidate.empName} key={i}>
                         <Avatar style={{ backgroundColor: "#f56a00" }}>
                         {data1}
                       
@@ -280,22 +280,22 @@ function CampaignCardView (props) {
     return (
       <>
       <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-5 p-2 w-[94%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
    
          <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[8.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
                 /></div>
-        <div className=" md:w-[13.23rem]"><FormattedMessage
+        <div className=" md:w-[7.23rem]"><FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /></div>
-        <div className=" md:w-[9.25rem] "><FormattedMessage
+        <div className=" md:w-[7.25rem] "><FormattedMessage
                   id="app.start"
                   defaultMessage="start"
                 /></div>
-        <div className=" md:w-[13.43rem] "><FormattedMessage
+        <div className=" md:w-[5.43rem] "><FormattedMessage
                   id="app.end"
                   defaultMessage="end"
                 /></div>
@@ -344,7 +344,7 @@ function CampaignCardView (props) {
                                     // borderBottom: "3px dotted #515050"
                                 }}>
                                      <div class="flex md:w-[22rem]">
-                                <div className=" flex font-medium flex-col w-[8.98rem] max-sm:w-full ">
+                                <div className=" flex font-medium flex-col w-[6.98rem] max-sm:w-full ">
 <div className="flex max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -362,7 +362,7 @@ function CampaignCardView (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  md:w-[12.26rem] max-sm:flex-row  w-full ">
+                                <div className=" flex font-medium flex-col  md:w-[8.26rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">   
                                     {item.eventSubject}
@@ -370,20 +370,17 @@ function CampaignCardView (props) {
                                 </div>
                                 </div>
                                 <div class="flex  items-center md:w-[55rem]">
-                                <div className=" flex font-medium flex-col md:w-[8.9rem] max-sm:flex-row  w-full">
+                                <div className=" flex font-medium flex-col md:w-[6.9rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[5.32rem] max-sm:flex-row  w-full">
+                                <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-[9.32rem] max-sm:flex-row  w-full">
-                                   
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[7.31rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Include</div> */}
@@ -395,13 +392,13 @@ function CampaignCardView (props) {
                 >
                 {item.included &&
                   item.included.map((candidate, i) => {
-                     const data1 = candidate.fullName
+                     const data1 = candidate.empName
                      .slice(0,2)
                     //  .split("")[0]
                      .toUpperCase();
                    console.log("datas", data1);
                     return (
-                      <Tooltip title={candidate.fullName} key={i}>
+                      <Tooltip title={candidate.empName} key={i}>
                       <Avatar style={{ backgroundColor: "#f56a00" }}>
                       {data1}
                     
