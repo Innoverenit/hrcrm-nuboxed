@@ -49,16 +49,16 @@ export const addDocuments = (documents, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // {res.data.message?  
-        //   message.success(res.data.message):
-        //   Swal.fire({
-        //     icon: 'success',
-        //     title: 'Document has been added Successfully',
-        //     showConfirmButton: false,
-        //     // timer: 1500
-        //   })
-        // // message.success("Document has been added successfully!");
-        // }
+        {res.data.message?  
+          message.success(res.data.message):
+          Swal.fire({
+            icon: 'success',
+            title: 'Document Type added Successfully!',
+            showConfirmButton: false,
+            // timer: 1500
+          })
+        // message.success("Document  added successfully!");
+        }
         // dispatch(getDocuments());
         console.log(res);
         dispatch({
@@ -97,7 +97,7 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Document has been deleted successfully!");
+        message.success("Document  deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DOCUMENTS_SUCCESS,
@@ -136,9 +136,9 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Document has been updated Successfully',
+          title: 'DocumentType  updated Successfully!',
         })
-        // message.success("Document has been updated successfully!");
+        // message.success("Document  updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_DOCUMENTS_SUCCESS,

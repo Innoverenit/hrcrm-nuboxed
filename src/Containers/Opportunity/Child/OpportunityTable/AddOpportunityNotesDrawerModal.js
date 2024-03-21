@@ -16,6 +16,9 @@ class AddOpportunityNotesDrawerModal extends Component {
           title={this.props.opportunityData.opportunityName}
           width="64%"
           visible={this.props.addDrawerOpportunityNotesModal}
+          destroyOnClose
+          closable
+          placement="right"
           onClose={() => this.props.handleOpportunityNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>

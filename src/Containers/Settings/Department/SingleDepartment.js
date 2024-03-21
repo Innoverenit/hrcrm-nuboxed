@@ -756,7 +756,7 @@ const SingleDepartment = (props) => {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingDepartments}
+                    loading={updatingDepartments}
                     disabled={!value}
                     onClick={() => {
                       console.log(value); // Log the 'value' before calling handleUpdateSector

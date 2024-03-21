@@ -48,7 +48,7 @@ export const addTasks = (task, cb) => (dispatch) => {
         message.success(res.data.message):
         Swal.fire({
           icon: 'success',
-          title: 'Task has been added Successfully',
+          title: 'Task added Successfully!',
      
         })
       // message.success("Task has been added successfully!");
@@ -89,7 +89,7 @@ export const updateTasks = (taskTypeId, taskType, cb) => (
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Task has been updated Successfully',
+        title: 'Task updated Successfully!',
      
       })
       // message.success("Task has been updated successfully!");

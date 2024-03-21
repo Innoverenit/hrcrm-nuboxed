@@ -44,15 +44,23 @@ export const getRoles = (orgId) => (dispatch) => {
       })
       .then((res) => {
         // message.error(roleType.message)
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'Role has been added Successfully',
-        
-          })
-        // message.success("Role has been added successfully!");
+            title: 'Role added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
+  
         // dispatch(getRoles(orgId));
         console.log(res);
         dispatch({
@@ -101,10 +109,10 @@ export const getRoles = (orgId) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Role has been updated Successfully',
+          title: 'Role updated Successfully!',
         
         })
-        // message.success("Role has been updated successfully!");
+        // message.success("Role updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ROLES_SUCCESS,
@@ -154,7 +162,7 @@ export const getRoles = (orgId) => (dispatch) => {
           },
         })
         .then((res) => {
-          message.success("Role has been deleted successfully!");
+          message.success("Role deleted successfully!");
             console.log(res);
             dispatch({
                 type: types.REMOVE_ROLE_SUCCESS,
@@ -208,14 +216,21 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      {res.data.message?  
-        message.success(res.data.message):
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
         Swal.fire({
           icon: 'success',
-          title: 'Role has been added Successfully',
-       
-        })
-      // message.success("Role has been added successfully!");
+          title: 'Role added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
       }
       console.log(res);
       dispatch({
@@ -258,10 +273,10 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Role has been updated Successfully',
+        title: 'Role updated Successfully!',
      
       })
-      // message.success("Role has been updated successfully!");
+      // message.success("Role updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_TALENT_ROLES_SUCCESS,
@@ -288,7 +303,7 @@ export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Role has been deleted successfully!");
+        message.success("Role deleted successfully!");
           console.log(res);
           dispatch({
               type: types.REMOVE_TALENT_ROLE_SUCCESS,

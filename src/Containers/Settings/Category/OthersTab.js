@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import LanguageIcon from '@mui/icons-material/Language';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ReceiptIcon from '@mui/icons-material/Receipt';
@@ -82,7 +83,14 @@ class OthersTab extends Component {
                 tab={
                   <>
                   <InsertDriveFileIcon/>
-                    <span class=" ml-1">Documents <span className="text-red-500 font-bold">{this.props.documentCount.DocumentTypeCount}</span></span>
+                  <Badge
+                count={this.props.documentCount.DocumentTypeCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Documents 
+                    {/* <span className="text-red-500 font-bold">{this.props.documentCount.DocumentTypeCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="1"
@@ -94,7 +102,14 @@ class OthersTab extends Component {
                     <RememberMeIcon 
                     // icon={solid('id-card-clip')}
                      />
-                    <span class=" ml-1" >Identity <span className="text-red-500 font-bold">{this.props.idProofCount.IdProofTypeCount}</span></span>
+                         <Badge
+                count={this.props.idProofCount.IdProofTypeCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1" >Identity 
+                    {/* <span className="text-red-500 font-bold">{this.props.idProofCount.IdProofTypeCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="2"
@@ -104,7 +119,14 @@ class OthersTab extends Component {
                 tab={
                   <>
                     <i class="fa fa-graduation-cap"></i>
-                    <span class=" ml-1">Education <span className="text-red-500 font-bold">{this.props.educationCount.EducationTypeCount}</span></span>
+                    <Badge
+                count={this.props.educationCount.EducationTypeCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Education 
+                    {/* <span className="text-red-500 font-bold">{this.props.educationCount.EducationTypeCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="3"
@@ -116,7 +138,13 @@ class OthersTab extends Component {
                   <>  
                   <ReceiptIcon  />
                     <span class=" ml-1" >
-                    Expense <span className="text-red-500 font-bold">{this.props.expenseCount.ExpenseCount}</span>
+                    <Badge
+                count={this.props.expenseCount.ExpenseCount}
+                overflowCount={999}
+              >
+                    Expense 
+                    {/* <span className="text-red-500 font-bold">{this.props.expenseCount.ExpenseCount}</span> */}
+                    </Badge>
                      </span>
                   </>
                 }
@@ -127,7 +155,15 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <LanguageIcon/>
-                    <span class=" ml-1">Country <span className="text-red-500 font-bold">{this.props.countryCount.CountryCount}</span></span>
+                 <Badge
+                count={this.props.countryCount.CountryCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Country 
+                    {/* <span className="text-red-500 font-bold">{this.props.countryCount.CountryCount}</span> */}
+                 
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="5"
@@ -137,7 +173,14 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <MonetizationOnIcon/>
-                    <span class=" ml-1">Currency  <span className="text-red-500 font-bold">{this.props.currencyCount.CurrencyCount}</span></span>
+                 <Badge
+                count={this.props.currencyCount.CurrencyCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Currency 
+                     {/* <span className="text-red-500 font-bold">{this.props.currencyCount.CurrencyCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="6"
@@ -146,7 +189,14 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <MonetizationOnIcon/>
-                    <span class=" ml-1">Region {this.props.regionCount.RegionsCount}</span>
+                 <Badge
+                count={this.props.regionCount.RegionsCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Region 
+                    {/* {this.props.regionCount.RegionsCount} */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="7"
@@ -156,7 +206,14 @@ class OthersTab extends Component {
                 tab={
                   <>
                  <MonetizationOnIcon/>
-                    <span class=" ml-1">Service Line {this.props.serviceLineCount.ServiceLineCount} </span>
+                 <Badge
+                count={this.props.serviceLineCount.ServiceLineCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">Service Line 
+                    {/* {this.props.serviceLineCount.ServiceLineCount} */}
+                     </span>
+                    </Badge>
                   </>
                 }
                 key="8"
