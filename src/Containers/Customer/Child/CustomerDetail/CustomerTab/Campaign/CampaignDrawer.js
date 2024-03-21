@@ -13,6 +13,8 @@ const CampaignDrawer = (props) => {
         title={<FormattedMessage id="app.campaign" defaultMessage="Campaign" />}
         width="60%"
         visible={props.openCampaigndrwr}
+        destroyOnClose
+        closable
         onClose={() => props.handleCampaignDrawer(false)}
         footer={null}
       >

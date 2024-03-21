@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip,  Avatar } from "antd";
+import { Tooltip,Input,Button,Avatar,Select } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
 import {
   deleteEvent,
@@ -15,24 +15,61 @@ import {
 } from "../../../../../Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { getCurrency } from "../../../../../Auth/AuthAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import {geCustomerCampaignEvent} from "../../../../CustomerAction";
+import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 // const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
+
+const { Option } = Select;
 
 function CampaignCardView (props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-
+  const [data, setData] = useState([]);
  
   useEffect(() => {
          props.geCustomerCampaignEvent(props.customer.customerId,page);
         setPage(page + 1);
+        props.getCurrency();
+}, []);
 
-  }, []);
- ;
+  useEffect(() => {
+    setData(props.customerCampaign.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.customerCampaign]);
+
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value } : row
+    );
+    setData(updatedData);
+  };
+  const handleSelectChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value, currency_id: value } : row
+    );
+    setData(updatedData);
+  };
+
+  const handleSave = (key) => {
+    console.log(key)
+    const targetRow = data.find((row) => row.key === key);
+    if (targetRow) {
+      const {eventId,  budgetValue,currency_id} = targetRow;
+     
+      const result = {
+        eventId:eventId,
+        budgetValue:budgetValue,
+        currencyId: currency_id,
+        customerId:props.customer.customerId,
+  };
+      props.addCustomerCampaignEvent(result)
+    }
+  };
+
  useEffect(() => {
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
@@ -56,6 +93,10 @@ function CampaignCardView (props) {
 
       userDetails: { employeeId },
     } = props;
+
+if(fetchingCustomerCampaign){
+  return <BundleLoader/>
+}
 
     if (isMobile){
       return (
@@ -313,14 +354,7 @@ function CampaignCardView (props) {
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
-                   {/* <div className="md:w-[5%]"><FormattedMessage
-                  id="app.rating"
-                  defaultMessage="rating"
-                /></div>
-        <div className="w-12"><FormattedMessage
-                  id="app.action"
-                  defaultMessage="action"
-                /></div> */}
+                   
       </div>
       <InfiniteScroll
         dataLength={props.customerCampaign.length}
@@ -329,16 +363,9 @@ function CampaignCardView (props) {
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
         height={"75vh"}
       >
-      {props.customerCampaign.map((item) => { 
-            const handleCopyClick = () => {
-              const textToCopy = item.eventDescription;
-              navigator.clipboard.writeText(textToCopy)
-                .then(() => setIsCopied(true))
-                .catch((err) => console.error('Unable to copy text', err));
-               
-            };
+      {data.map((item) => { 
                     return (
-                        <div>
+                        <div key={item.eventId}>
                             <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
@@ -362,7 +389,7 @@ function CampaignCardView (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  md:w-[8.26rem] max-sm:flex-row  w-full ">
+                                <div className=" flex font-medium flex-col  md:w-[7.26rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">   
                                     {item.eventSubject}
@@ -413,22 +440,21 @@ function CampaignCardView (props) {
                                     </div>
                                 </div>
                                 <div className="flex font-medium flex-col md:w-[4.69rem] max-sm:flex-row  w-full ">
-                                    {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned To</div> */}
 
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
-                                    {/* <Tooltip title={item.assignedToName}> */}
+                                  
+                                  
               <SubTitle>
               <span>
-              {item.assignedToName === null ? (
+              {item.assignedTo === null ? (
                 "No Data"
               ) : (
                 <>
-                {item.assignedToName === item.woner ? (
+                {item.assignedTo === item.woner ? (
                   
                   null
                 ) : (
                 <MultiAvatar2
-                  primaryTitle={item.assignedToName}
+                  primaryTitle={item.assignedTo}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />
@@ -437,18 +463,12 @@ function CampaignCardView (props) {
               )}
             </span>
               </SubTitle>
-             {/* </Tooltip> */}
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="flex md:w-[14rem]">
-                               
-                                <div className="flex font-medium flex-col md:w-[4.12rem] max-sm:flex-row  w-full ">
-                       
-                       {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
+                                   
+                                </div>
+                                <div className="flex font-medium flex-col md:w-[4.12rem] max-sm:flex-row  w-full ">
                    <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.woner}> */}
+
             <SubTitle>
               <MultiAvatar2
               primaryTitle={item.woner}
@@ -458,86 +478,51 @@ function CampaignCardView (props) {
                 imgHeight={"1.8rem"}
               />
             </SubTitle>
-          {/* </Tooltip> */}
+        
           </div>
                    </div>
+                                </div>
+
+                                <div class="flex md:w-[14rem]">
+                               
                              
-                      </div>
-                      <div class="flex md:w-[14rem]">
-                      <div class="flex  md: max-sm:flex-row items-center justify-between w-full">
-                    <div class="">
-                    {item.rating === 0 ? (<StarBorderIcon
-                     className="!text-base cursor-pointer text-[#eeeedd]"
-                />)
-                : (
-                  <span>
-                    {item.rating}{<StarBorderIcon 
-                    className="!text-base cursor-pointer text-[#FFD700]"/>}
-                  </span>)}
-                        </div>
-                        <div>
-                        {item.completionInd === false ? (
-                <CheckCircleIcon 
-                className="!text-base cursor-pointer text-[#eeeedd]"
-                  />
-              ) : (
-                <span><CheckCircleIcon 
-                className="!text-base cursor-pointer text-[#67d239]"
-                 />
-                </span>
-              )}
-        
-                        </div>
-                        {/* <div>
-                     
-                         <Tooltip title={
-      <div>
-        {item.eventDescription}
-        <br />
-        <FileCopyIcon
-          className={`!text-base cursor-pointer ${isCopied ? 'text-white' : ''}`}
-          onClick={handleCopyClick}
-        />
-       
-      </div>
-    }>
-      <EventNoteIcon className="!text-base cursor-pointer" />
-    </Tooltip>
-                    </div> */}
+                   <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
+                                    
+                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    {/* {item.budgetValue} */}
+                                    <Input
+  style={{ width: "5rem" }}
+  value={item.budgetValue}
+  onChange={(e) => handleInputChange(e.target.value, item.key, 'budgetValue')}
+/>
                     </div>
-                    
-                    {/* <div class="flex flex-col md: max-sm:flex-row justify-evenly items-center w-full">
-       
-          <Tooltip title="Edit">
-              <BorderColorIcon
-                type="edit"
-                className="!text-base cursor-pointer text-[tomato]"
-                onClick={() => {
-                  props.setEditEvents(item);
-                  handleUpdateEventModal(true);
-                }}
-              />
-            </Tooltip>
-          
-            <div>
-           
-            <StyledPopconfirm
-              // title="Do you want to delete?"
-              title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
-              onConfirm={() => deleteEvent(item.eventId, employeeId)}
-            >
-               <Tooltip title="Delete">
-              <DeleteOutlined  type="delete"
-                className="!text-base cursor-pointer text-[red]"
-              />
-              </Tooltip>
-            </StyledPopconfirm>
-      
-            </div>
-                      </div>    */}
+  </div>
+  <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
+                                    
+                                    <div class="text-[0.82rem] text-cardBody font-poppins">
+                                    
+                                    <Select
+                        classNames="w-32"
+                        value={item.currencyName}
+                        onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
+                      >
+                        {props.currencies.map((s) => (
+                          <Option key={s.currency_id} value={s.currency_id}>
+                            {s.currency_name}
+                          </Option>
+                        ))}
+                      </Select>
+                    </div>
+  </div>
+  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <Button type="primary" onClick={() => handleSave(item.key)}>
+          Save
+        </Button>
+                                    </div>
+                                </div>     
                       </div>
                             </div>
-                        </div>
+                       
 
 
                     )
@@ -560,15 +545,16 @@ const mapStateToProps = ({ auth,customer}) => ({
   fetchingCustomerCampaignError:
   customer.fetchingCustomerCampaignError,
   customerCampaign: customer.customerCampaign,
+  currencies: auth.currencies,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       geCustomerCampaignEvent,
       deleteEvent,
-  
+      addCustomerCampaignEvent,
       setEditEvents,
-
+      getCurrency
     },
     dispatch
   );

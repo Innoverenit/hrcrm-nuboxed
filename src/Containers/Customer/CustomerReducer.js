@@ -1922,7 +1922,7 @@ export const customerReducer = (state = initialState, action) => {
           openCampaigndrwr:false,
           addingCustomerEvent: false,
           addingCustomerEventError: false,
-          customerCampaign:[action.payload,...state.customerCampaign],
+          // customerCampaign:[action.payload,...state.customerCampaign],
         };
       case types.ADD_CUSTOMER_EVENT_FAILURE:
         return {
@@ -1954,15 +1954,13 @@ export const customerReducer = (state = initialState, action) => {
         case types.GET_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
           return {
             ...state,
-            fetchingWonCusmWeightedValue: true,
-            fetchingWonINVWeightedValueError: false,
+            fetchingCustomerCampaign: true,
           };
         case types.GET_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
           return {
             ...state,
             fetchingCustomerCampaign: false,
-            fetchingCustomerCampaignError: false,
-            customerCampaign:[...state.customerCampaign, ...action.payload],
+            customerCampaign:action.payload,
           };
         case types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
           return {
