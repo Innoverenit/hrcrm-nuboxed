@@ -25,6 +25,9 @@ const AddCallTaskModal = (props) => {
         />}
         width={drawerWidth}
         visible={addCallTaskModal}
+        destroyOnClose
+        closable
+        placement="right"
         onClose={() => handleLeadCallModal(false)}
         footer={null}
       >
