@@ -152,11 +152,11 @@ class UpdateRepositoryDocumentForm extends Component {
                 name: this.props.setEditingRepository.name, //input
                 description: this.props.setEditingRepository.description,
                 included:[] ,
-                documentId:this.props.setEditingRepository.documentId,
-                department:this.props.setEditingRepository.department,
-                catagory:this.props.setEditingRepository.catagory,
+                documentId:this.props.setEditingRepository.documentId||"",
+                department:this.props.setEditingRepository.department||"",
+                catagory:this.props.setEditingRepository.catagory||"",
                 userId:this.props.userId,
-                documentType: this.props.setEditingRepository.documentType,
+                documentType: this.props.setEditingRepository.documentType||"",
                 // shareInd:"",
                 //opportunityId:this.props.opportunity.opportunityId,
               }}
@@ -168,7 +168,7 @@ class UpdateRepositoryDocumentForm extends Component {
                   {
                     ...values,
                     shareInd:this.state.showUserList,
-                    department:this.props.setEditingRepository.departmentId,
+                    // department:this.props.setEditingRepository.departmentId,
                   },
                   this.props.setEditingRepository.organizationDocumentLinkId,
                 //   this.props.orgId,
