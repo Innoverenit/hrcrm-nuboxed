@@ -1,24 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip, Badge, Avatar } from "antd";
+import { Tooltip, Badge, Avatar,Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
+import { AudioOutlined } from '@ant-design/icons';
 import { getSuppliesCount } from "./SuppliesAction";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
-class SuppliesActionLeft extends React.Component {
+function SuppliesActionLeft (props) {
 
-    componentDidMount() {
-        this.props.getSuppliesCount();
-    }
-    render() {
+    useEffect(() => {
+        props.getSuppliesCount();
+    }, [props.viewType, props.userId]);
+   
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
+    const [pageNo, setPage] = useState(0);
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+
         const {
             viewType,
             setSuppliesViewType,
             suppliesCount,
-        } = this.props;
+        } = props;
+
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+              setPage(pageNo + 1);
+            //   props.getLeads(props.userId, pageNo, "creationdate");
+            //   props.ClearReducerDataOfLead()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+            //   props.inputLeadsDataSearch(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const suffix = (
+            <AudioOutlined
+              onClick={SpeechRecognition.startListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
 
         return (
+            <>
+         
             <div class="flex items-center">
 
                 <Tooltip title="All Materials">
@@ -58,9 +110,20 @@ class SuppliesActionLeft extends React.Component {
                         </span>
                     </Badge>
                 </Tooltip>
+
+                <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by Name or Sector"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
             </div>
+            </div> 
+</>
         );
-    }
 }
 const mapStateToProps = ({ supplies }) => ({
     suppliesCount: supplies.suppliesCount

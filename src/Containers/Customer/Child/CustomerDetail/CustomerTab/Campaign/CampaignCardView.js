@@ -324,7 +324,7 @@ if(fetchingCustomerCampaign){
       <div class="rounded-lg m-5 p-2 w-[94%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
    
          <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[8.8rem]"><FormattedMessage
+        <div className=" md:w-[6.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
                 /></div>
@@ -346,7 +346,7 @@ if(fetchingCustomerCampaign){
                   defaultMessage="include"
                 /></div>
      
-        <div className="md:w-[8.15rem]"><FormattedMessage
+        <div className="md:w-[6.15rem]"><FormattedMessage
                   id="app.assignedto"
                   defaultMessage="assignedto"
                 /></div>
