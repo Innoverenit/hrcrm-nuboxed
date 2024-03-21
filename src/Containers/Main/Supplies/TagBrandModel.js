@@ -13,7 +13,7 @@ function TagBrandModel(props) {
     return (
         <div>
             <StyledDrawer
-                title={`Tag Brand - ${props.particularDiscountData.suppliesName}  ${particularDiscountData.attributeName}`}
+                title={`Tag Brand - ${props.particularDiscountData.suppliesName}  ${props.particularDiscountData.attributeName}`}
                 width="60%"
                 visible={addBrandModel}
                 onClose={() => handleBrandModel(false)}
