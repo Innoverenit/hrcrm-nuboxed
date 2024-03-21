@@ -179,7 +179,7 @@ class Designation extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!designationType}
-                  Loading={addingDesignations}
+                  loading={addingDesignations}
                   onClick={this.handleAddDesignation}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -197,7 +197,7 @@ class Designation extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingDesignations}
+                    loading={addingDesignations}
                     onClick={this.toggleInput}
                   >
                     Add More

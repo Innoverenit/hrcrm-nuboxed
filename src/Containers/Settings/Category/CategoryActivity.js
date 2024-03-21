@@ -1,6 +1,7 @@
 
 import React, { Component, Suspense, lazy } from "react";
 import { bindActionCreators } from "redux";
+import {  Badge } from "antd";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
@@ -44,7 +45,14 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="far fa-calendar-check"></i>
-                    <span className="ml-1">Event <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span></span>
+                    <Badge
+                count={this.props.eventCount.EventTypeCount}
+                overflowCount={999}
+              >
+                    <span className="ml-1">Event 
+                    {/* <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="1"
@@ -53,7 +61,14 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="fas fa-tasks"></i>
-                    <span className="ml-1">Task <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span></span>
+                    <Badge
+                count={this.props.taskCount.TaskTypeCount}
+                overflowCount={999}
+              >
+                    <span className="ml-1">Task 
+                    {/* <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span> */}
+                    </span>
+                    </Badge>
                   </>
                 }
                 key="2"

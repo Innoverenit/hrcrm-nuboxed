@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 const Designation = lazy(() => import("../Designation/Designation"));
@@ -54,7 +55,14 @@ class Category extends Component {
     tab={
         <>
             <i className="fas fa-building"></i>
-            <span className="ml-1">Department <span className="text-red-500 font-bold">{this.props.departmentCount.DepartmentCount}</span></span>
+            <Badge
+                count={this.props.departmentCount.DepartmentCount}
+                overflowCount={999}
+              >
+            <span className="ml-1">Department 
+            {/* <span className="text-red-500 font-bold">{this.props.departmentCount.DepartmentCount}</span> */}
+            </span>
+            </Badge>
         </>
     }
     key="4"
@@ -65,7 +73,14 @@ class Category extends Component {
                   tab={
                     <>
                       <AccessibilityIcon />
-                      <span className="ml-1">Role (Internal)  <span className="text-red-500 font-bold">{this.props.roleCount.RoleTypeCount}</span></span>
+                      <Badge
+                count={this.props.roleCount.RoleTypeCount}
+                overflowCount={999}
+              >
+                      <span className="ml-1">Role (Internal)  
+                      {/* <span className="text-red-500 font-bold">{this.props.roleCount.RoleTypeCount}</span> */}
+                      </span>
+                      </Badge>
                     </>
                   }
                   key="5"
@@ -74,7 +89,14 @@ class Category extends Component {
                   tab={
                     <>
                       <AccessibilityIcon />
-                      <span className="ml-1">Role (External) <span className="text-red-500 font-bold">{this.props.externalRoleCount.RoleTypeExternalCount}</span></span>
+                      <Badge
+                count={this.props.externalRoleCount.RoleTypeExternalCount}
+                overflowCount={999}
+              >
+                      <span className="ml-1">Role (External) 
+                      {/* <span className="text-red-500 font-bold">{this.props.externalRoleCount.RoleTypeExternalCount}</span> */}
+                      </span>
+                      </Badge>
                     </>
                   }
                   key="6"
@@ -83,7 +105,14 @@ class Category extends Component {
                   tab={
                     <>
                       <i className="fab fa-artstation"></i>
-                      <span className="ml-1">Designation <span className="text-red-500 font-bold">{this.props.designationCount.DesignationCount}</span></span>
+                      <Badge
+                count={this.props.designationCount.DesignationCount}
+                overflowCount={999}
+              >
+                      <span className="ml-1">Designation 
+                      {/* <span className="text-red-500 font-bold">{this.props.designationCount.DesignationCount}</span> */}
+                      </span>
+                      </Badge>
                     </>
                   }
                   key="7"

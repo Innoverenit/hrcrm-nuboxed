@@ -208,7 +208,7 @@ class Department extends Component {
                     type="primary"
                     htmlType="submit"
                     disabled={!departmentName}
-                    Loading={addingDepartments}
+                    loading={addingDepartments}
                     onClick={this.handleAddDepartment}
                   // style={{ marginRight: "0.125em" }}
                   >
@@ -226,7 +226,7 @@ class Department extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingDepartments}
+                    loading={addingDepartments}
                     onClick={this.toggleInput}                
                   >
                    <label class="text-white"> Add More</label>

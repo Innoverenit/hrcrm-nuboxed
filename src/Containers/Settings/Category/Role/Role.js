@@ -264,7 +264,7 @@ class Department extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!roleType}
-                  Loading={addingRoles}
+                  loading={addingRoles}
                   onClick={this.handleAddRole}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -282,7 +282,7 @@ class Department extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingRoles}
+                    loading={addingRoles}
                     onClick={this.toggleInput}
                   >
                     Add More

@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import SourceIcon from '@mui/icons-material/Source';
 import PaymentIcon from '@mui/icons-material/Payment';
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -74,9 +75,16 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <FactoryIcon />
+                      <Badge
+                count={this.props.sectorCount.SectorCount}
+                overflowCount={999}
+              >
+                
                       <span class=" ml-1">
-                        Sector <span className="text-red-500 font-bold">{this.props.sectorCount.SectorCount}</span>
+                   Sector 
+                        {/* <span className="text-red-500 font-bold">{this.props.sectorCount.SectorCount}</span> */}
                       </span>
+                      </Badge>
                     </>
                   }
                   key="0"
@@ -89,9 +97,16 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.sourceCount.SourceCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
-                        Source<span className="text-red-500 font-bold">{this.props.sourceCount.SourceCount}</span>
+             
+                        Source
+                        {/* <span className="text-red-500 font-bold">{this.props.sourceCount.SourceCount}</span> */}
                       </span>
+                      </Badge>
                     </>
                   }
                   key="1"
