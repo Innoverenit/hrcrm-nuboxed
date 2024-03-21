@@ -137,7 +137,7 @@ const {
                   eventSubject: "",
                   eventVenue: "",
                   remindAt: "",
-                  // opportunity:"",
+                  campaignInd:true,
                   // contact:"",
                   notificationEmail: false,
                   eventDescription: "",
@@ -149,9 +149,7 @@ const {
                   assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   note: "",
                   eventStatus: "",
-                  allDayInd: true,
-                  // candidateId: "",
-                  included: [],
+                 included: [],
                   fullName: "",
                 
                   repeatStartDate: "",
@@ -269,6 +267,7 @@ const {
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
+                  props.customer.customerId,
                   handleCallback
                 );
             !isEditing && resetForm();
@@ -551,7 +550,7 @@ const {
                     }}
                   />
                   </div>
-                  <div class=" mt-3">
+                  {/* <div class=" mt-3">
                   {props.user.crmInd === true &&(
                 <Field
                 name="customerId"
@@ -571,14 +570,10 @@ const {
                 defaultValue={{
                   label:`${props.customer.name}`,
                 }}
-                
-                // defaultValue={
-                //   defaultCustomers ? defaultCustomers : null
-                // }
                 inlineLabel
               />
                   )} 
-                  </div>
+                  </div> */}
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
                   <Field

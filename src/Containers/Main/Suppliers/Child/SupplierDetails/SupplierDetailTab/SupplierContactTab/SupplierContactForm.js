@@ -11,15 +11,15 @@ import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSel
 import AddressFieldArray from "../../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
-import Upload from "../../../../../../../Components/Forms/Formik/Upload";
+import PostImageUpld from "../../../../../../../Components/Forms/Formik/PostImageUpld";
 import { StyledLabel } from "../../../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import moment from "moment";
 import { addSupplierContact } from "../../../../SuppliersAction";
-// import { getDesignations } from "../../../../Settings/Designation/DesignationAction";
-// import { getDepartments } from "../../../../Settings/Department/DepartmentAction";
+import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
+import { getDepartments } from "../../../../../../Settings/Department/DepartmentAction";
 
 const { Option } = Select;
 /**
@@ -33,24 +33,24 @@ const ContactSchema = Yup.object().shape({
 
 class SupplierContactForm extends Component {
     componentDidMount() {
-        // this.props.getDesignations();
-        // this.props.getDepartments();
+        this.props.getDesignations();
+        this.props.getDepartments();
     }
 
     render() {
-        // const designation = this.props.designations.map((item) => {
-        //     return {
-        //         label: item.designationName || "",
-        //         value: item.designationId,
-        //     };
-        // });
+        const designation = this.props.designations.map((item) => {
+            return {
+                label: item.designationType || "",
+                value: item.designationTypeId,
+            };
+        });
 
-        // const department = this.props.departments.map((item) => {
-        //     return {
-        //         label: item.departmentName || "",
-        //         value: item.departmentId,
-        //     };
-        // });
+        const department = this.props.departments.map((item) => {
+            return {
+                label: item.departmentName || "",
+                value: item.departmentId,
+            };
+        });
         return (
             <>
                 <Formik
@@ -118,10 +118,10 @@ class SupplierContactForm extends Component {
                                     }}
                                 >
                                     <FlexContainer flexWrap="no-wrap">
-                                        <FastField name="imageId" component={Upload} />
+                                        <FastField name="imageId" component={PostImageUpld} />
                                         <div>
                                             <FlexContainer justifyContent="space-between">
-                                                <div style={{ width: "35%" }}>
+                                                {/* <div style={{ width: "35%" }}>
                                                     <FastField
                                                         name="salutation"
                                                         type="text"
@@ -137,7 +137,7 @@ class SupplierContactForm extends Component {
                                                             marginTop: "0em",
                                                         }}
                                                     />
-                                                </div>
+                                                </div> */}
                                                 <div style={{ width: "63%" }}>
                                                     <FastField
                                                         isRequired
@@ -334,8 +334,8 @@ class SupplierContactForm extends Component {
                                                 name="designationId"
                                                 placeholder="Designation"
                                                 label="Designation"
-                                                component={InputComponent}
-                                                // options={Array.isArray(designation) ? designation : []}
+                                                component={SelectComponent}
+                                                options={Array.isArray(designation) ? designation : []}
                                                 style={{
                                                     borderRadius: "2px",
                                                     width: "100%"
@@ -347,8 +347,8 @@ class SupplierContactForm extends Component {
                                                 name="departmentId"
                                                 // placeholder="Designation"
                                                 label="Department"
-                                                component={InputComponent}
-                                                // options={Array.isArray(department) ? department : []}
+                                                component={SelectComponent}
+                                                options={Array.isArray(department) ? department : []}
                                                 style={{
                                                     borderRadius: "2px",
                                                     width: "100%"
@@ -392,13 +392,13 @@ class SupplierContactForm extends Component {
     }
 }
 
-const mapStateToProps = ({ auth, suppliers, designation, department }) => ({
+const mapStateToProps = ({ auth, suppliers, designations, departments }) => ({
     addingContactSupplier: suppliers.addingContactSupplier,
     user: auth.userDetails,
     userId: auth.userDetails.userId,
     supplierId: suppliers.supplierDetailById.supplierId,
-    // designations: designation.designations,
-    // departments: department.departments,
+    departments: departments.departments,
+    designations: designations.designations,
 
 });
 
@@ -406,8 +406,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             addSupplierContact,
-            // getDesignations,
-            // getDepartments,
+            getDesignations,
+            getDepartments,
         },
         dispatch
     );
