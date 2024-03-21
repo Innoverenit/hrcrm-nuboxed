@@ -277,18 +277,20 @@ function OpenReceivedOrderIdForm(props) {
 
                         <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.inspectionInd === 1 && item.receivePhoneInd &&
+                            {item.inspectionInd !== 0 && item.receivePhoneInd &&
                               <>
-                                {!item.cannotRepairInd ?
+                                {!item.cannotRepairInd && item.inspectionInd !== 3 ?
                                   <Button
                                     onClick={() => {
                                       props.updateRepairStatus({
-                                        cannotRepairInd: true
+                                        cannotRepairInd: true,
+                                        orderPhoneId: props.rowData.orderPhoneId
                                       }, item.phoneId)
                                     }}>
                                     Can't Repair
-                                  </Button> :
-                                  <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />}
+                                  </Button> : item.inspectionInd === 3 && item.cannotRepairInd === false ? null :
+                                    <Tooltip title="Can't Repair">
+                                      <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" /></Tooltip>}
                               </>}
                           </div>
                         </div>

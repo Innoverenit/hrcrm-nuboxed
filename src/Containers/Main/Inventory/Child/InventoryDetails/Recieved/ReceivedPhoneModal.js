@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 const ReceivedPhoneList = lazy(() => import("./ReceivedPhoneList"))
 
-const ReceivedModal = (props) => {
+const ReceivedPhoneModal = (props) => {
     const { ...formProps } = props;
     console.log(props.phnId)
     return (
@@ -14,7 +14,7 @@ const ReceivedModal = (props) => {
                 height="100vh"
                 visible={props.addReceivePhone}
 
-                onCancel={() => props.handlereceivePhoneModal(false)}
+                onClose={() => props.handlereceivePhoneModal(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
@@ -27,4 +27,4 @@ const ReceivedModal = (props) => {
     );
 };
 
-export default ReceivedModal;
+export default ReceivedPhoneModal;

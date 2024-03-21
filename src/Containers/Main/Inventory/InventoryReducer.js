@@ -75,7 +75,7 @@ const initialState = {
 
   //add dispatch
 
-  phoneListData: {},
+  setEdittingPhone: {},
 
   addingDispatch: false,
   addingDispatchError: false,
@@ -263,7 +263,7 @@ const initialState = {
   fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: false,
   productionDispatchByLocsId: [],
 
-  stockUseDrwr:false,
+  stockUseDrwr: false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1046,7 +1046,8 @@ export const inventoryReducer = (state = initialState, action) => {
       };
 
     case types.SET_PHONELIST_EDIT:
-      return { ...state, phoneListData: action.payload };
+      return { ...state, setEdittingPhone: action.payload };
+
 
     case types.SET_DISPATCH_PHONELIST_EDIT:
       return { ...state, dispatchPhoneData: action.payload };
@@ -1334,10 +1335,10 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingRepairStatusError: true,
       };
 
-      
-      case types.HANDLE_STOCK_USED_DRAWER:
-        return { ...state, stockUseDrwr: action.payload };
-  
+
+    case types.HANDLE_STOCK_USED_DRAWER:
+      return { ...state, stockUseDrwr: action.payload };
+
 
     default:
       return state;
