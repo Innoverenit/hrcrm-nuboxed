@@ -899,7 +899,7 @@ case types.HANDLE_LEADS_MODAL:
           case types.ADD_LEADS_ACTIVITY_EVENT_SUCCESS:
             return { ...state, addingLeadsActivityEvent: false,
               addCallTaskModal: false,
-              callTimeline:[action.payload,...state.callTimeline]
+              // callTimeline:[action.payload,...state.callTimeline]
              };
           case types.ADD_LEADS_ACTIVITY_EVENT_FAILURE:
             return {
@@ -913,7 +913,7 @@ case types.HANDLE_LEADS_MODAL:
             case types.ADD_LEADS_ACTIVITY_TASK_SUCCESS:
               return { ...state, addingLeadsActivityTask: false,
                 addCallTaskModal: false,
-                callTimeline:[action.payload,...state.callTimeline]
+                // callTimeline:[action.payload,...state.callTimeline]
                };
             case types.ADD_LEADS_ACTIVITY_TASK_FAILURE:
               return {
@@ -928,7 +928,7 @@ case types.HANDLE_LEADS_MODAL:
               case types.ADD_LEADS_ACTIVITY_CALL_SUCCESS:
                 return { ...state, addingLeadsActivityCall: false,
                   addCallTaskModal: false,
-                   callTimeline:[action.payload,...state.callTimeline]
+                  //  callTimeline:[action.payload,...state.callTimeline]
                  };
               case types.ADD_LEADS_ACTIVITY_CALL_FAILURE:
                 return {

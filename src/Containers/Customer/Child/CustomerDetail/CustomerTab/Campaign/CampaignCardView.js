@@ -409,7 +409,7 @@ if(fetchingCustomerCampaign){
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[7.31rem] max-sm:flex-row  w-full ">
+                                <div className=" flex font-medium flex-col md:w-[5.31rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">

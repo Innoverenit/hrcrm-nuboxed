@@ -1,19 +1,23 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
     setTimeRange,getSupplierCount,getSupplierAllCount
-
 } from "./SuppliersAction";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
 import { FormattedMessage } from "react-intl";
+import { AudioOutlined } from "@ant-design/icons"
 
 const Option = StyledSelect.Option;
 
 function SuppliersActionLeft (props) {
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+    const [pageNo, setPage] = useState(0);
 
     useEffect(() => {
         if (props.viewType === "card") {
@@ -28,6 +32,48 @@ function SuppliersActionLeft (props) {
             viewType,
             setSuppliersViewType,
         } = props;
+const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+              setPage(pageNo + 1);
+            //   props.getLeads(props.userId, pageNo, "creationdate");
+            //   props.ClearReducerDataOfLead()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.inputDataSearch(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const suffix = (
+            <AudioOutlined
+              onClick={SpeechRecognition.startListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
 
         return (
             <div class="flex items-center">
@@ -73,15 +119,15 @@ function SuppliersActionLeft (props) {
 
                 &nbsp;&nbsp;
                 <div class=" ml-6 h-6 w-60">
-                    <Input
-                        //   placeholder={<FormattedMessage id="app.searchByname" defaultMessage="Search By Name" />}
-                        placeholder="Search By Name"
-                        width={"100%"}
-                    // suffix={suffix}
-                    // onPressEnter={handleSearch}  
-                    // onChange={handleChange}
-                    // value={currentData}
-                    />
+                <Input
+          placeholder="Search by Name or Sector"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+                  
 
                 </div>
 
