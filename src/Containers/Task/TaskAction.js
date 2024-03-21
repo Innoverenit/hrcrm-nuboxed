@@ -1331,12 +1331,12 @@ export const handleProspectConfirmationModal = (modalProps) => (dispatch) => {
 };
 
 
-export const convertProspectStatus = (data,taskId,) => (
+export const convertProspectStatus = (data,userId,taskId,) => (
   dispatch,
   getState
 ) => {
   // debugger;
-  const { userId } = getState("auth").auth.userDetails;
+  // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.CONVERT_PROSPECT_STATUS_REQUEST,
   });

@@ -351,7 +351,7 @@ const TaskApproveTable = (props) => {
         dataLength={approvalTaskTable.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingApproveTaskTable?<div class="flex items-center" >Loading...</div>:null}
+        loader={fetchingApproveTaskTable?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >

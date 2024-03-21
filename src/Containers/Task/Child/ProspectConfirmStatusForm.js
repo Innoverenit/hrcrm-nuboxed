@@ -17,31 +17,39 @@ import {getDepartments} from "../../Settings/Department/DepartmentAction"
 const { Option } = Select;
 function ProspectConfirmStatusForm(props) {
 
-    const [single, setSingle] = useState(false);
-    const [selectedDept, setSelectedDept] = useState('');
-  const [selectedUser, setSelectedUser] = useState('');
-console.log("single",single)
-    const handleSingleMultiple = (checked) =>{
-        setSingle(checked)
-    }
+  const [department, setDepartment] = useState("");
+  const [user, setUser] = useState("")
+// console.log("single",single)
+//     const handleSingleMultiple = (checked) =>{
+//         setSingle(checked)
+//     }
   useEffect(() => {
   
     props.getDepartments();
     
   }, []);
 
+  const handleDepartment = (val) => {
+    setDepartment(val)
+    props.getDepartmentwiserUser(val);
+  }
 
-const handleDeptChange = (event) => {
-    const selectedDept = event.target.value;
-    setSelectedDept(selectedDept);
-    setSelectedUser("");
-    props.getDepartmentwiserUser(selectedDept) // Assuming you want to pass the selected department and filtered roles to a parent component
-  };
-  const handleUserChange = (event) => {
-    const selectedUser = event.target.value;
-    setSelectedUser(selectedUser);
-  };
-  console.log(selectedUser)
+  const handlereportingManager = (val) => {
+    setUser(val)
+  }
+
+
+// const handleDeptChange = (event) => {
+//     const selectedDept = event.target.value;
+//     setSelectedDept(selectedDept);
+//     setSelectedUser("");
+//     props.getDepartmentwiserUser(selectedDept) // Assuming you want to pass the selected department and filtered roles to a parent component
+//   };
+  // const handleUserChange = (event) => {
+  //   const selectedUser = event.target.value;
+  //   setSelectedUser(selectedUser);
+  // };
+  // console.log(selectedUser)
   // const filteredUser = props.departmentwiseUser.filter((item) => item.departmentId === selectedDept);
   const employeesData = props.departmentwiseUser.map((item) => {
     return {
@@ -67,11 +75,14 @@ const handleDeptChange = (event) => {
           props.convertProspectStatus(
             {
               ...values,
-              departmentId: selectedDept,
+              departmentId: department,
+              userId: user,
+              taskId: props.rowdata.taskId,
               // singleMultiInd: single ? true : false,
             },
+            user,
             props.rowdata.taskId,
-          selectedUser,
+          
         
         
           );
@@ -92,37 +103,30 @@ const handleDeptChange = (event) => {
               <div class=" flex justify-between" >
                                                     <div class=" w-[35%] mt-4" >
                                                     <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
-                      <select   className="customize-select"
-                   
-                      onChange={handleDeptChange}>
-          <option value="">Select Department</option>
-          {props.departments.map((item, index) => (
-            <option 
-           
-            key={index} value={item.departmentId}>
-              {item.departmentName}
-            </option>
-          ))}
-        </select>
+                                                    <Select
+                        className="w-[250px]"
+                        value={department}
+                        onChange={(value) => handleDepartment(value)}
+                      >
+                        {props.departments.map((a) => {
+                          return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                        })}
+                      </Select>
         </div>
-        {selectedDept && (
+        {department && (
           <>                                           
 
 <div class=" w-[35%] mt-4" >
             <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>User</label>
-            <select   className="customize-select"
-                 onChange={handleUserChange}
-              >
-    <option value="">select user</option>
-    {props.departmentwiseUser.map((item, index) => (
-      <option key={index}
-      // disabled
-      // disabled={selectedDept}
-       value={item.employeeId}>
-        {item.empName}
-      </option>
-    ))}
-  </select>
+        <Select
+                        className="w-[250px]"
+                        value={user}
+                        onChange={(value) => handlereportingManager(value)}
+                      >
+                        {props.departmentwiseUser.map((a) => {
+                          return <Option value={a.employeeId}>{a.empName}</Option>;
+                        })}
+                      </Select>
   </div> 
 
 
@@ -140,6 +144,13 @@ const handleDeptChange = (event) => {
                 <Button
                   type="primary"
                   htmlType="submit"
+                  // onClick={()=>{
+                  //   // const data={
+                  //   //     recommendedInd:!slr.recommendedInd ? true :false
+                  //   // }
+                  //   console.log("taskId:", props.rowdata.taskId);
+                  //   console.log("user:", user);
+                  //   props.convertProspectStatus(props.rowdata.taskId,user)}}
                   loading={props.linkingProspectStatus}
                 >
                   <FormattedMessage id="app.submit" defaultMessage="Submit" />
