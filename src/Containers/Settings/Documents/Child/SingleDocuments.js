@@ -142,7 +142,7 @@ class SingleDocuments extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingDocuments}
+                    loading={updatingDocuments}
                     disabled={!value}
                     onClick={() =>
                       handleUpdateDocument(

@@ -49,15 +49,21 @@ export const addDocuments = (documents, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
             title: 'Document Type added Successfully!',
-            showConfirmButton: false,
+            // showConfirmButton: false,
             // timer: 1500
-          })
-        // message.success("Document  added successfully!");
+          });
         }
         // dispatch(getDocuments());
         console.log(res);

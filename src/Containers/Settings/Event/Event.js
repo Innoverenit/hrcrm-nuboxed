@@ -187,7 +187,7 @@ class Event extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!eventType}
-                  Loading={addingEvents}
+                  loading={addingEvents}
                   onClick={this.handleAddEvent}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -205,7 +205,7 @@ class Event extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingEvents}
+                    loading={addingEvents}
                     onClick={this.toggleInput}
                   >
                     Add More

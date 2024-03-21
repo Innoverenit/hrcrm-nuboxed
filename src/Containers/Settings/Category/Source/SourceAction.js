@@ -50,14 +50,21 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getSources(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'Sector added successfully!',
-          })
-        //  message.success("source has been added successfully!");
+            title: 'Source added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({

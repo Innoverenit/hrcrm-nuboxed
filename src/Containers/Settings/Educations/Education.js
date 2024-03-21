@@ -181,7 +181,7 @@ class Education extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!educationType}
-                  Loading={addingEducations}
+                  loading={addingEducations}
                   onClick={this.handleAddEducations}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -201,7 +201,7 @@ class Education extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingEducations}
+                    loading={addingEducations}
                     onClick={this.toggleInput}
                   >
                     {/* Add More */}

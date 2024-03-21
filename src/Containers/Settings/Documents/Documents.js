@@ -162,7 +162,7 @@ class Documents extends Component {
                   type="primary"
                   disabled={!documentTypeName}
                   htmlType="submit"
-                  Loading={addingDocuments}
+                  loading={addingDocuments}
                   onClick={this.handleAddDocument}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -189,7 +189,7 @@ class Documents extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingDocuments}
+                    loading={addingDocuments}
                     onClick={this.toggleInput}
                   >
                    Add More 

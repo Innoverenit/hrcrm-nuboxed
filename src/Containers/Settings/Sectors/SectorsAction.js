@@ -50,13 +50,21 @@ export const addSectors = (sectors, cb) => (dispatch) => {
       })
       .then((res) => {
         // dispatch(getSectors());
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
             title: 'Sector added Successfully!',
-          })
-        // message.success("Sector has been added successfully!");
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
