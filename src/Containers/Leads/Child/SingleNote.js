@@ -10,17 +10,11 @@ export default function SingleNote(props) {
     creationDate,
     userId,
     creatorId,
-    // metaData: {
-    //   creatorDetails: { firstName, lastName }
-    // }
   } = props;
   console.log(creationDate);
   return (
 
     <NotesWrapper>
-      {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
-                {description}
-            </SubTitle> */}
       <div dangerouslySetInnerHTML={{ __html: notes }} />
       <SubTitle
         fontSize="0.875em"
@@ -28,15 +22,9 @@ export default function SingleNote(props) {
         style={{ color: "#a7b2bc", marginTop: "-0.75em" }}
       >
         <Spacer />
-        {`${moment.utc(creationDate).fromNow()}`}
-        {/* <b>
-          {userId !== creatorId
-            ? ` by ${firstName || ""} ${lastName || ""}`
-            : ""}
-        </b> */}
-        <div>
-        {props.ownerName}
-        </div>
+        {`${moment.utc(creationDate).fromNow()}`}  {props.ownerName}
+       
+        
       </SubTitle>
     </NotesWrapper>
   );

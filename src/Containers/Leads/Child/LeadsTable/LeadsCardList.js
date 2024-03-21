@@ -62,10 +62,10 @@ const LeadsCardList = (props) => {
     };
   }, []);
   const [currentLeadsId, setCurrentLeadsId] = useState("");
-  const [rowdata, setrowData] = useState("");
+  const [rowdata, setrowData] = useState({});
 
-  const handleRowData = (data) => {
-    setrowData(data);
+  const handleRowData = (item) => {
+    setrowData(item);
   };
   const handleLoadMore = () => {
    
@@ -769,12 +769,13 @@ const LeadsCardList = (props) => {
                     <div>
                       <Tooltip title="Notes">
                         <NoteAltIcon
+                         className=" !text-base cursor-pointer text-green-800"
                           onClick={() => {
                             handleRowData(item);
                             handleLeadsNotesDrawerModal(true);
                          
                           }}
-                          className=" !text-base cursor-pointer text-green-800"
+                         
                         />
                       </Tooltip>
                     </div>
