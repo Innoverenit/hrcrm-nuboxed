@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Badge, Avatar } from "antd";
+import { Tooltip, Badge, Avatar,Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { inputDataSearch, getRecords, getAccountRecords, getAllRecords, getDistributorCount } from "./AccountAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined,AudioOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
 const AccountActionLeft = (props) => {
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+    const [pageNo, setPage] = useState(0);
+
     const { user, } = props;
     useEffect(() => {
         if (props.viewType === "list") {
@@ -19,6 +24,49 @@ const AccountActionLeft = (props) => {
             props.getAccountRecords();
         }
     }, [props.viewType, props.userId]);
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+              setPage(pageNo + 1);
+            //   props.getLeads(props.userId, pageNo, "creationdate");
+            //   props.ClearReducerDataOfLead()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.inputDataSearch(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const suffix = (
+            <AudioOutlined
+              onClick={SpeechRecognition.startListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
 
     return (
         <div class="flex items-center" >
@@ -80,7 +128,15 @@ const AccountActionLeft = (props) => {
                 </Badge>
             </Tooltip>
 
-
+<div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by Name or Sector"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        /></div>
             {/* &nbsp; &nbsp;
             {props.viewType === "table" ?
                 (

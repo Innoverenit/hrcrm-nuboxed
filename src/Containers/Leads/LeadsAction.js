@@ -1209,7 +1209,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
 
-  export const addLeadsActivityCall = (call,leadsId, cb) => (dispatch, getState) => {
+  export const addLeadsActivityCall = (call,leadsId) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
     const { userId } = getState("auth").auth.userDetails;
@@ -1225,17 +1225,16 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getCallTimeline(leadsId));
-        Swal({
-          icon: 'success',
-          title: 'Call has been added successfully!',
-        })
-       
+        dispatch(getCallTimeline(leadsId));    
         dispatch({
           type: types.ADD_LEADS_ACTIVITY_CALL_SUCCESS,
           payload: res.data,
         });
-        cb();
+        Swal({
+          icon: 'success',
+          title: 'Call has been added successfully!',
+        })
+        // cb();
       })
       .catch((err) => {
         console.log(err);
@@ -1243,7 +1242,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.ADD_LEADS_ACTIVITY_CALL_FAILURE,
           payload: err,
         });
-        cb();
+        // cb();
       });
   };
 
@@ -1262,10 +1261,6 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        Swal({
-          icon: 'success',
-          title: 'Meeting has been added successfully!',
-        })
         console.log(res);
         dispatch(getCallTimeline(leadsId));
         // dispatch(getEventListRangeByUserId(userId,0));
@@ -1273,7 +1268,10 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.ADD_LEADS_ACTIVITY_EVENT_SUCCESS,
           payload: res.data,
         });
-        // cb();
+        Swal({
+          icon: 'success',
+          title: 'Meeting has been added successfully!',
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -1286,9 +1284,6 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
   export const addLeadsActivityTask = (event,leadsId, cb) => (dispatch, getState) => {
-    const { userId } = getState("auth").auth.userDetails;
-    // const { startDate, endDate } = getState("dashboard").dashboard;
-    console.log("inside addEvent");
     dispatch({
       type: types.ADD_LEADS_ACTIVITY_TASK_REQUEST,
     });
@@ -1300,15 +1295,15 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        Swal({
-          icon: 'success',
-          title: 'Task has been added successfully!',
-        })
         dispatch(getCallTimeline(leadsId));
         dispatch({
           type: types.ADD_LEADS_ACTIVITY_TASK_SUCCESS,
           payload: res.data,
         });
+        Swal({
+          icon: 'success',
+          title: 'Task has been added successfully!',
+        })
         // cb();
       })
       .catch((err) => {
