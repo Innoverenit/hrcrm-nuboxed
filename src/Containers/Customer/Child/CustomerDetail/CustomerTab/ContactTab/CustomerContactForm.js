@@ -288,7 +288,8 @@ class ContactForm extends Component {
                     </div>
                     <div class=" w-2/5">
                       <FastField
-                        type="text"
+                      // inputMode="numeric" 
+                        type="number"
                         name="mobileNumber"
                         //placeholder="Mobile #"
                         label={
