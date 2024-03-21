@@ -15,6 +15,9 @@ class AddLeadsNotesDrawerModal extends Component {
         // title="Notes"
           title={this.props.rowdata.name}
           width="64%"
+          destroyOnClose
+          closable
+          placement="right"
           visible={this.props.addDrawerLeadsNotesModal}
           onClose={() => this.props.handleLeadsNotesDrawerModal(false)}
         >

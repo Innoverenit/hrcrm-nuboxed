@@ -794,8 +794,8 @@ class SearchSelect extends Component {
 
     if (selectType === "timeZone") {
       options = timeZone.map((item, i) => ({
-        label: `${item.zone_name}`,
-        value: `${item.zone_name}`,
+        label: `${item.zoneName}`,
+        value: `${item.zoneName}`,
       }));
       // options.filter((item, i) => options.indexOf())
       options = uniqBy(options, "value");

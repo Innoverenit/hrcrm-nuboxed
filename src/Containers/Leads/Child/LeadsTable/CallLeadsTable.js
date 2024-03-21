@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { Timeline } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import dayjs from 'dayjs';
+import moment from 'moment';
 import { getCallTimeline } from '../../LeadsAction';
 import { Tooltip } from "antd";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
+import { BundleLoader } from '../../../../Components/Placeholder';
 
 const CallLeadsTable = (props) => {
   useEffect(() => {
@@ -13,6 +14,8 @@ const CallLeadsTable = (props) => {
   }, []);
 
   const { callTimeline, ratingValue } = props;
+  const currentDate = moment().format("DD/MM/YYYY");
+  if (props.fetchingCallTimelineStatus) return <BundleLoader/>;
   return (
     <>
         <div className="mt-4">
@@ -21,7 +24,11 @@ const CallLeadsTable = (props) => {
             callTimeline.map((status, i) => (
               <Timeline.Item key={i}>
                 <div>
-                <div>{status.category} - {status.activityType} on {dayjs(status.startDate).format('DD/MM/YYYY')} - {status.woner !==props.fullName ?  <Tooltip title={status.woner}> 
+                <div>{currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
+                      <span className="text-xs text-[tomato] font-bold">
+                        New
+                      </span>
+                    ) : null} {status.category} - {status.activityType} on {moment.utc(status.startDate).format('DD/MM/YYYY')} - {status.woner !==props.fullName ?  <Tooltip title={status.woner}> 
                             <MultiAvatar
                               primaryTitle={status.woner}
                               imgWidth={"1.8rem"}
@@ -48,6 +55,7 @@ const CallLeadsTable = (props) => {
 const mapStateToProps = ({ leads, auth }) => ({
   userId: auth.userDetails.userId,
   callTimeline: leads.callTimeline,
+  fetchingCallTimelineStatus:leads.fetchingCallTimelineStatus,
   fullName:auth.userDetails.fullName
 });
 
