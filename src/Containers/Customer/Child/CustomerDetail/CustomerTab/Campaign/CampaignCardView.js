@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip,Input,Button,Avatar } from "antd";
+import { Tooltip,  Avatar } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
 import {
   deleteEvent,
@@ -17,8 +17,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
-import { BundleLoader } from "../../../../../../Components/Placeholder";
+import {geCustomerCampaignEvent} from "../../../../CustomerAction";
 // const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
 function CampaignCardView (props) {
@@ -26,39 +25,14 @@ function CampaignCardView (props) {
   const [hasMore, setHasMore] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-  const [data, setData] = useState([]);
+
  
   useEffect(() => {
          props.geCustomerCampaignEvent(props.customer.customerId,page);
         setPage(page + 1);
 
-  }, []);;
-  useEffect(() => {
-    setData(props.customerCampaign.map((item, index) => ({ ...item, key: String(index) })));
-  }, [props.customerCampaign]);
-
-  const handleInputChange = (value, key, dataIndex) => {
-    const updatedData = data.map((row) =>
-      row.key === key ? { ...row, [dataIndex]: value } : row
-    );
-    setData(updatedData);
-  };
-
-  const handleSave = (key) => {
-    console.log(key)
-    const targetRow = data.find((row) => row.key === key);
-    if (targetRow) {
-      const {eventId,  budgetValue} = targetRow;
-     
-      const result = {
-        eventId:eventId,
-        budgetValue:budgetValue,
-        customerId:props.customer.customerId,
-            };
-      props.addCustomerCampaignEvent(result)
-    }
-  };
-
+  }, []);
+ ;
  useEffect(() => {
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
@@ -82,10 +56,6 @@ function CampaignCardView (props) {
 
       userDetails: { employeeId },
     } = props;
-
-if(fetchingCustomerCampaign){
-  return <BundleLoader/>
-}
 
     if (isMobile){
       return (
@@ -359,7 +329,7 @@ if(fetchingCustomerCampaign){
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
         height={"75vh"}
       >
-      {data.map((item) => { 
+      {props.customerCampaign.map((item) => { 
             const handleCopyClick = () => {
               const textToCopy = item.eventDescription;
               navigator.clipboard.writeText(textToCopy)
@@ -368,7 +338,7 @@ if(fetchingCustomerCampaign){
                
             };
                     return (
-                        <div key={item.eventId}>
+                        <div>
                             <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
@@ -474,8 +444,11 @@ if(fetchingCustomerCampaign){
                                 <div class="flex md:w-[14rem]">
                                
                                 <div className="flex font-medium flex-col md:w-[4.12rem] max-sm:flex-row  w-full ">
-                   <div class="max-sm:flex justify-end">
+                       
+                       {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
+                   <div class="max-sm:flex justify-end">
+              {/* <Tooltip title={item.woner}> */}
             <SubTitle>
               <MultiAvatar2
               primaryTitle={item.woner}
@@ -485,29 +458,86 @@ if(fetchingCustomerCampaign){
                 imgHeight={"1.8rem"}
               />
             </SubTitle>
-        
+          {/* </Tooltip> */}
           </div>
                    </div>
-                   <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
-                                    
-                                    <div class="text-[0.82rem] text-cardBody font-poppins">
-                                    {/* {item.budgetValue} */}
-                                    <Input
-  style={{ width: "11em" }}
-  value={item.budgetValue}
-  onChange={(e) => handleInputChange(e.target.value, item.key, 'budgetValue')}
-/>
+                             
+                      </div>
+                      <div class="flex md:w-[14rem]">
+                      <div class="flex  md: max-sm:flex-row items-center justify-between w-full">
+                    <div class="">
+                    {item.rating === 0 ? (<StarBorderIcon
+                     className="!text-base cursor-pointer text-[#eeeedd]"
+                />)
+                : (
+                  <span>
+                    {item.rating}{<StarBorderIcon 
+                    className="!text-base cursor-pointer text-[#FFD700]"/>}
+                  </span>)}
+                        </div>
+                        <div>
+                        {item.completionInd === false ? (
+                <CheckCircleIcon 
+                className="!text-base cursor-pointer text-[#eeeedd]"
+                  />
+              ) : (
+                <span><CheckCircleIcon 
+                className="!text-base cursor-pointer text-[#67d239]"
+                 />
+                </span>
+              )}
+        
+                        </div>
+                        {/* <div>
+                     
+                         <Tooltip title={
+      <div>
+        {item.eventDescription}
+        <br />
+        <FileCopyIcon
+          className={`!text-base cursor-pointer ${isCopied ? 'text-white' : ''}`}
+          onClick={handleCopyClick}
+        />
+       
+      </div>
+    }>
+      <EventNoteIcon className="!text-base cursor-pointer" />
+    </Tooltip>
+                    </div> */}
                     </div>
-  </div>
-  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-  <Button type="primary" onClick={() => handleSave(item.key)}>
-          Save
-        </Button>
-                                    </div>
-                                </div>     
+                    
+                    {/* <div class="flex flex-col md: max-sm:flex-row justify-evenly items-center w-full">
+       
+          <Tooltip title="Edit">
+              <BorderColorIcon
+                type="edit"
+                className="!text-base cursor-pointer text-[tomato]"
+                onClick={() => {
+                  props.setEditEvents(item);
+                  handleUpdateEventModal(true);
+                }}
+              />
+            </Tooltip>
+          
+            <div>
+           
+            <StyledPopconfirm
+              // title="Do you want to delete?"
+              title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
+              onConfirm={() => deleteEvent(item.eventId, employeeId)}
+            >
+               <Tooltip title="Delete">
+              <DeleteOutlined  type="delete"
+                className="!text-base cursor-pointer text-[red]"
+              />
+              </Tooltip>
+            </StyledPopconfirm>
+      
+            </div>
+                      </div>    */}
                       </div>
                             </div>
-                       
+                        </div>
 
 
                     )
@@ -536,7 +566,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       geCustomerCampaignEvent,
       deleteEvent,
-      addCustomerCampaignEvent,
+  
       setEditEvents,
 
     },
