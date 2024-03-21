@@ -110,6 +110,11 @@ const initialState = {
   addingActionNotifications: false,
   addingActionNotificationsError: false,
 
+  fetchingProspectLifetime:false,
+  fetchingProspectLifetimeError:false,
+
+  prospectLifeTime:{},
+
   updatingTodoTask: false,
   updatingTodoTaskError: false,
 
@@ -300,6 +305,10 @@ const initialState = {
   fetchingLeadsAddedError: false,
   showAddedLeads: [],
 
+  fetchingProspectQuotation:false,
+  fetchingProspectQuotationError:false,
+  prospectQuotation:{},
+
   openOppoAdded: false,
   fetchingOppoAdded: false,
   fetchingOppoAddedError: false,
@@ -364,6 +373,10 @@ const initialState = {
   fetchingCompletedTaskTypes: false,
   fetchingCompletedTaskTypesError: false,
   completedtypeTasks: [],
+
+  fetchingProspectData:false,
+  fetchingProspectDataError:false,
+  prospectChart:{},
 
   fetchingJumpOrderCount: false,
   fetchingJumpOrderCountError: false,
@@ -528,6 +541,24 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingdashBoardCustomerChart: false,
         fetchingdashBoardCustomerChartError: true,
       };
+
+
+
+
+      case types.GET_PROSPECT_LIFETIME_REQUEST:
+        return { ...state, fetchingProspectLifetime: true };
+      case types.GET_PROSPECT_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectLifetime: false,
+          prospectLifeTime: action.payload,
+        };
+      case types.GET_PROSPECT_LIFETIME_FAILURE:
+        return {
+          ...state,
+          fetchingProspectLifetime: false,
+          fetchingProspectLifetimeError: true,
+        };
 
     case types.GET_DASHBOARD_CLOSURE_RATIO_REQUEST:
       return { ...state, fetchingdashBoardClosureRatio: true };
@@ -1691,6 +1722,41 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingorderDetailsError: true,
 
       };
+
+
+
+      case types.GET_PROSPECT_DATA_REQUEST:
+      return { ...state, fetchingProspectData: true };
+    case types.GET_PROSPECT_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingProspectData: false,
+        prospectChart: action.payload,
+      };
+    case types.GET_PROSPECT_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingProspectData: false,
+        fetchingProspectDataError: true,
+      };
+
+
+
+
+      case types.GET_PROSPECT_QUOTATION_REQUEST:
+        return { ...state, fetchingProspectQuotation: true };
+      case types.GET_PROSPECT_QUOTATION_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectQuotation: false,
+          prospectQuotation: action.payload,
+        };
+      case types.GET_PROSPECT_QUOTATION_FAILURE:
+        return {
+          ...state,
+          fetchingProspectQuotation: false,
+          fetchingProspectQuotationError: true,
+        };
 
     default:
       return state;
