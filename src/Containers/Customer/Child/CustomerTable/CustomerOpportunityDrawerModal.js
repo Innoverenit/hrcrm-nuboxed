@@ -19,6 +19,8 @@ class CustomerOpportunityDrawerModal extends Component {
         // title="Notes"
           title={this.props.customer.name}
           width="80%"
+          destroyOnClose
+          closable
           visible={this.props.addDrawerCustomerOpportunityModal}
           onClose={() => this.props.handleCustomerOpportunityDrawerModal(false)}
         >

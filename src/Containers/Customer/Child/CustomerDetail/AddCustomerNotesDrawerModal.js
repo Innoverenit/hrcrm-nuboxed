@@ -10,20 +10,19 @@ const LinkedNotes =lazy(()=> import("./CustomerTab/Notes/LinkedNotes"));
 
 class AddCustomerNotesDrawerModal extends Component {
   render() {
-    //  console.log("data5", this.props.currentNameId.taskName);
-console.log(this.props.rowdata)
     return (
       <div>
         <StyledDrawer
         // title="Notes"
-          title={this.props.customer.name}
+          title={this.props.rowdata.name}
           width="64%"
           visible={this.props.addDrawerCustomerNotesModal}
+          destroyOnClose
+          closable
           onClose={() => this.props.handleCustomerNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <LinkedNotes customer={this.props.customer} 
-            customerId={this.props.customer.customerId} 
+            <LinkedNotes 
             rowdata={this.props.rowdata}
             />
           </Suspense>
