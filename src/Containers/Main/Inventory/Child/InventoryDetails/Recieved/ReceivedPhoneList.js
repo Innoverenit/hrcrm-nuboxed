@@ -80,9 +80,8 @@ function ReceivedPhoneList(props) {
                                     name="receiveCompany"
                                     label="OEM"
                                     type="number"
-                                    placeholder={"Value"}
                                     isColumn
-                                    values={props.setEdittingPhone.receiveCompany}
+                                    values={props.setEdittingPhone.company}
                                     width={"100%"}
                                     component={InputComponent}
                                     inlineLabel
@@ -92,8 +91,7 @@ function ReceivedPhoneList(props) {
                                     name="receiveModel"
                                     label="Model"
                                     type="number"
-                                    placeholder={"Value"}
-                                    values={props.setEdittingPhone.receiveModel}
+                                    values={props.setEdittingPhone.model}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -104,8 +102,7 @@ function ReceivedPhoneList(props) {
                                     name="receiveIMEI"
                                     label="IMEI"
                                     type="number"
-                                    placeholder={"Value"}
-                                    values={props.setEdittingPhone.receiveIMEI}
+                                    values={props.setEdittingPhone.imei}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -116,8 +113,7 @@ function ReceivedPhoneList(props) {
                                     name="receiveGB"
                                     label="GB"
                                     type="number"
-                                    values={props.setEdittingPhone.receiveGB}
-                                    placeholder={"Value"}
+                                    values={props.setEdittingPhone.gb}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -131,8 +127,7 @@ function ReceivedPhoneList(props) {
                                     name="receiveColor"
                                     label="Color"
                                     type="number"
-                                    values={props.setEdittingPhone.receiveColor}
-                                    placeholder={"Value"}
+                                    values={props.setEdittingPhone.color}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -143,10 +138,9 @@ function ReceivedPhoneList(props) {
                                     name="receiveCondition"
                                     label="Condition"
                                     type="number"
-                                    placeholder={"Value"}
                                     isColumn
                                     width={"100%"}
-                                    values={props.setEdittingPhone.receiveCondition}
+                                    values={props.setEdittingPhone.conditions}
                                     component={InputComponent}
                                     inlineLabel
                                     isRequired
@@ -155,9 +149,8 @@ function ReceivedPhoneList(props) {
                                     name="receiveOS"
                                     label="OS"
                                     type="number"
-                                    placeholder={"Value"}
                                     isColumn
-                                    values={props.setEdittingPhone.receiveOS}
+                                    values={props.setEdittingPhone.os}
                                     width={"100%"}
                                     component={InputComponent}
                                     inlineLabel
