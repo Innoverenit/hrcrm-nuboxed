@@ -12,7 +12,7 @@ const RepositoryOrganizationModal = (props) => {
     <>
       <StyledDrawer
        title="Repository"
-        width="60%"
+        width="69%"
         visible={props.repositoryOrganizationModal}
         onClose={() => props.handleRepositoryOrganizationModal(false)}
       >
