@@ -114,7 +114,7 @@ function CustomerForm(props) {
       <Formik
         // enableReinitialize
         initialValues={{
-          // sectorId:"",
+          currencyId:"",
           // sectorName:"",
           partnerName: "",
           // sectorDescription:"",
@@ -125,7 +125,7 @@ function CustomerForm(props) {
           sectorId: "",
           country: props.user.country,
           email: "",
-          // sector: props.user.sectorName,
+          potentialValue:"",
           countryDialCode: props.user.countryDialCode,
           phoneNumber: "",
           fullName: "",
@@ -316,17 +316,35 @@ function CustomerForm(props) {
                         isColumn
                       />
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                  </div>
+                  <div class=" flex justify-between mt-3">
+                  <div class="flex justify-between w-w47.5 max-sm:w-wk">
+                    <div class="w-24">
                     <Field
-                      name="currency"
+                  name="potentialValue"
+                    label={
+                      <FormattedMessage
+                        id="app.potential"
+                        defaultMessage="Potential"
+                      />
+                    }
+                    isColumn
+                    width={"100%"}
+                    component={InputComponent}
+                    inlineLabel
+                    />
+                    </div>
+                    <div class=" w-16 max-sm:w-wk">
+                    <Field
+                      name="currencyId"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
                       }}
                       label={
                         <FormattedMessage
-                          id="app.potential"
-                          defaultMessage="Potential"
+                          id="app.currency"
+                          defaultMessage="Currency"
                         />
                       }
                       width="100%"
@@ -340,8 +358,9 @@ function CustomerForm(props) {
                       }
                     />
                   </div>
+                    </div>
+                   
                   </div>
-
 
                   <div class=" mt-3">
                     <Field

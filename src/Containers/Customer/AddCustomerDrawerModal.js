@@ -23,6 +23,8 @@ class AddCustomerDrawerModal extends Component {
  <StyledDrawer 
           title={name}
           width={400}
+          destroyOnClose
+          closable
           visible={this.props.addDrawerCustomerModal}
         onClose={() =>
           this.props.handleCustomerDrawerModal(this.props.customerDrawerProps, false)
