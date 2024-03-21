@@ -26,8 +26,8 @@ export default function SingleNote(props) {
         style={{ color: "#a7b2bc", marginTop: "-0.75em" }}
       >
         <Spacer />
-        {`${moment(creationDate).fromNow()}`}&nbsp;
-        {props.ownerName}
+        {`${moment(creationDate).fromNow()}`}  {props.ownerName}
+     
         {/* <b>
           {userId !== creatorId
             ? ` by ${firstName || ""} ${lastName || ""}`

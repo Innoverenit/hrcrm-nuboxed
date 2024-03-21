@@ -477,7 +477,6 @@ function CustomerCardList(props) {
 
 
         <AddCustomerNotesDrawerModal
-          customer={currentCustomer}
           rowdata={rowdata}
           addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
           handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
@@ -563,7 +562,12 @@ function CustomerCardList(props) {
                 id="app.owner"
                 defaultMessage="Owner"
               />
-
+            </div>
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage
+                id="app.customer"
+                defaultMessage="Customer"
+              />
             </div>
             <div className="w-[3.8rem]"></div>
 
@@ -720,7 +724,7 @@ function CustomerCardList(props) {
 
                         <div>
                           {item.assignedTo === null ? (
-                            "No Data"
+                            <div class="text-xs text-cardBody font-poppins">No Data</div>
                           ) : (
                             <>
                               {item.assignedTo === item.ownerName ? (
@@ -767,12 +771,9 @@ function CustomerCardList(props) {
                             <Button type="primary"
                               style={{ width: "8rem" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                                <FormattedMessage
-                                  id="app.addascustomer"
-                                  defaultMessage="Add as Customer"
-                                />
-
-
+                               {item.convertInd===0 && "Convert"}
+                               {item.convertInd===1 && "In progress"}
+                               {item.convertInd===2 && "Converted"}
                               </div>
                             </Button>
                           )}
@@ -972,7 +973,6 @@ function CustomerCardList(props) {
 
 
       <AddCustomerNotesDrawerModal
-        customer={currentCustomer}
         rowdata={rowdata}
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}

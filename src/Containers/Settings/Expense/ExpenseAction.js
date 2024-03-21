@@ -48,9 +48,9 @@ export const addExpenses = (expense, cb) => (dispatch) => {
         message.success(res.data.message):
         Swal.fire({
           icon: 'success',
-          title: 'Expense has been added Successfully',
+          title: 'Expense added Successfully!',
         })
-      // message.success("Expense has been added successfully!");
+      // message.success("Expense added successfully!");
       }
       // dispatch(getExpenses());
       console.log(res);
@@ -87,7 +87,7 @@ export const updateExpenses = (expenseTypeId, expenseType, cb) => (
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Expense has been updated Successfully',
+        title: 'Expense updated Successfully!',
       })
       // message.success("Expense has been updated successfully!");
       console.log(res);

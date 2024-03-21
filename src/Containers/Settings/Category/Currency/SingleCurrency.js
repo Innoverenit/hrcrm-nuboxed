@@ -39,6 +39,45 @@ class SingleCurrency extends Component {
 
 <div class=" text-sm text-cardBody font-medium font-poppins">
 
+  Currency
+
+</div>
+
+
+<div class=" font-normal text-sm text-cardBody font-poppins">
+<div style={{width:"70%"}}>
+<div class=" basis-11/12 font-semibold">
+{currency_name}
+</div>
+</div>
+</div>
+
+</div>
+<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+
+<div class=" text-sm text-cardBody font-medium font-poppins">
+
+Operations
+
+</div>
+
+
+<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" w-2/6">
+<CurrencyStatusToggle
+editInd={editInd}
+mandatoryInd={mandatoryInd}
+currency_name={currency_name}
+currency_id={currency_id}
+/>  
+</div>
+</div>
+
+</div>
+                <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+
+<div class=" text-sm text-cardBody font-medium font-poppins">
+
 Sales
 </div>
 
@@ -80,24 +119,7 @@ currency_id={currency_id}
 </div>
 
 </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
-
-                      Currency
-
-                    </div>
-
-
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
-                    <div style={{width:"70%"}}>
-  <div class=" basis-11/12 font-semibold">
-    {currency_name}
-  </div>
-  </div>
-                    </div>
-
-                  </div>
+                
                   {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                     <div class=" text-sm text-cardBody font-medium font-poppins">
@@ -133,27 +155,7 @@ Currency
 </div>
 
 </div> */}
-                 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-
-                    <div class=" text-sm text-cardBody font-medium font-poppins">
-
-                 Operations
-
-                    </div>
-
-
-                    <div class=" font-normal text-sm text-cardBody font-poppins">
-                    <div class=" w-2/6">
-    <CurrencyStatusToggle
-  editInd={editInd}
-  mandatoryInd={mandatoryInd}
-      currency_name={currency_name}
-      currency_id={currency_id}
-    />  
-    </div>
-                    </div>
-
-                  </div>
+               
                   {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" text-sm text-cardBody font-medium font-poppins">

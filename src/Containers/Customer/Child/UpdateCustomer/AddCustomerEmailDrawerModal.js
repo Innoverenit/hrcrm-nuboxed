@@ -69,6 +69,8 @@ class AddCustomerEmailDrawerModal extends Component {
         <StyledDrawer
           title={name}
           width={"40%"}
+          destroyOnClose
+          closable
           visible={this.props.addDrawerCustomerEmailModal}
           onClose={() => this.props.handleCustomerEmailDrawerModal(false)}
         >

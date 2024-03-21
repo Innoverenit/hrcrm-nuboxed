@@ -46,9 +46,9 @@ export const addEducations = (education, cb) => (dispatch) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Education has been added Successfully',
+        title: 'Education added Successfully!',
       })
-      // message.success("Education has been added successfully!");
+      // message.success("Education added successfully!");
       // dispatch(getEducations());
       console.log(res);
       dispatch({
@@ -84,9 +84,9 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Education has been updated Successfully',
+        title: 'Education updated Successfully!',
       })
-      // message.success("Education has been updated successfully!");
+      // message.success("Education updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_EDUCATION_SUCCESS,
@@ -138,7 +138,7 @@ export const removeEducation = (educationTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Education has been deleted successfully!");
+      message.success("Education deleted successfully!");
       console.log(res);
       dispatch({
         type: types.REMOVE_EDUCATION_SUCCESS,

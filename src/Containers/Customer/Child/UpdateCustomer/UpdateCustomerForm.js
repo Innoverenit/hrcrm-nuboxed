@@ -89,9 +89,10 @@ function UpdateCustomerForm (props) {
             phoneNumber: setEditingCustomer.phoneNumber || "",
             userId: userId,
             source:setEditingCustomer.source  || "",
-            currency: setEditingCustomer.currency || "",
+            currencyId: setEditingCustomer.currency || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
             notes: setEditingCustomer.notes || "",
+            potentialValue:setEditingCustomer.potentialValue || "",
             address: [
               {
                 // country:setEditingCustomer.country || "",
@@ -272,17 +273,35 @@ function UpdateCustomerForm (props) {
                           inlineLabel
                         />
            </div>
-           <div class=" w-w47.5 max-sm:w-wk">
+           </div>
+           <div class=" flex justify-between mt-3">
+           <div class="flex justify-between w-w47.5 max-sm:w-wk">
+           <div class="w-24">
                     <Field
-                      name="currency"
+                  name="potentialValue"
+                    label={
+                      <FormattedMessage
+                        id="app.potential"
+                        defaultMessage="Potential"
+                      />
+                    }
+                    isColumn
+                    width={"100%"}
+                    component={InputComponent}
+                    inlineLabel
+                    />
+                    </div>
+                    <div class="w-16 max-sm:w-wk">
+                    <Field
+                      name="currencyId"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
                       }}
                       label={
                         <FormattedMessage
-                          id="app.potential"
-                          defaultMessage="Potential"
+                          id="app.currency"
+                          defaultMessage="Currency"
                         />
                       }
                       width="100%"
@@ -296,6 +315,8 @@ function UpdateCustomerForm (props) {
                       }
                     />
                   </div>
+                    </div>
+         
                  </div>
                 
            <div class=" mt-3">

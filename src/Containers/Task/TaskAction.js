@@ -1341,17 +1341,26 @@ export const convertProspectStatus = (data,userId,taskId,) => (
     type: types.CONVERT_PROSPECT_STATUS_REQUEST,
   });
   axios
-    .put(`${base_url2}/customer/account/assginToUser/${userId}/${taskId}`, data, {
+    .put(`${base_url2}/api/v1/customer/account/assginToUser/${userId}/${taskId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Prospect converted Successfully!',
+  
+      if (res.data) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } 
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect converted Successfully!',
      
-      })
+      // })
       dispatch(getAprrovalTaskTable(userId,0));
       // dispatch(getLeadsRecords(userId));
       dispatch({

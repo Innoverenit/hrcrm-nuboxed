@@ -48,16 +48,23 @@ export const addDepartments = (departments, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      {res.data.message?  
-        message.success(res.data.message):
+      if (res.data.message) {
         Swal.fire({
-          icon: 'success',
-          title: 'Department has been added Succefully',
+          icon: 'error',
+          title: res.data.message,
           // showConfirmButton: false,
           // timer: 1500
-        })
-      // message.success("Department has been added successfully!");
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Department added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
       }
+    
       dispatch(getDepartments());
       console.log(res);
       dispatch({
@@ -140,7 +147,7 @@ export const updateDepartments = (departmentId, departmentName, sectorId, sector
       });
       Swal.fire({
         icon: 'success',
-        title: 'Department has been updated Successfully',
+        title: 'Department updated Successfully!',
       })
     })
     .catch((err) => {

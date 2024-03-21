@@ -110,7 +110,7 @@ class SingleDesignation extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingDesignations}
+                    loading={updatingDesignations}
                     disabled={!value}
                     onClick={() =>
                       handleUpdateDesignation(

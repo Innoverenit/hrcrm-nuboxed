@@ -120,7 +120,7 @@ class SingleRole extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingRoles}
+                    loading={updatingRoles}
                     disabled={!value}
                     onClick={() =>
                       handleUpdateRole(

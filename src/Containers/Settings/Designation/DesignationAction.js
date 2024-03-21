@@ -48,15 +48,23 @@ export const addDesignations = (designation, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'Designation has been added Successfully',
-         
-          })
-        //  message.success("Designation has been added successfully!");
+            title: 'Designation added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
+     
         // dispatch(getDesignations());
         console.log(res);
         dispatch({
@@ -130,7 +138,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Designation has been updated Successfully',
+          title: 'Designation updated Successfully!',
        
         })
         // message.success("Designation has been updated successfully!");

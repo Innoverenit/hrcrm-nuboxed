@@ -55,7 +55,7 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
           message.success(res.data.message):
           Swal.fire({
             icon: 'success',
-            title: 'Sector has been added successfully!',
+            title: 'Sector added successfully!',
           })
         //  message.success("source has been added successfully!");
         }
@@ -136,7 +136,7 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Sector has been updated successfully!',
+          title: 'Sector updated successfully!',
         })
       })
       .catch((err) => {

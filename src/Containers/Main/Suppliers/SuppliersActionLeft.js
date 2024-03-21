@@ -36,7 +36,7 @@ function SuppliersActionLeft (props) {
                     title={<FormattedMessage id="app.cardview" defaultMessage="Card View" />}>
 <Badge
           size="small"
-        //   count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+          count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
           overflowCount={999}
         >
                     <span class=" md:mr-2 text-sm cursor-pointer"
@@ -55,7 +55,7 @@ function SuppliersActionLeft (props) {
                 <Tooltip title="ALL Suppliers">
                 <Badge
           size="small"
-        //   count={(props.viewType === "all" && props.leadsCountData.LeadsDetails) || 0}
+          count={(props.viewType === "all" && props.allCountSupplier.supplierCount) || 0}
           overflowCount={999}
         >
                     <span class=" md:mr-2 text-sm cursor-pointer"

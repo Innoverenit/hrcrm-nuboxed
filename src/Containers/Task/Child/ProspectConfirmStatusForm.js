@@ -132,15 +132,9 @@ function ProspectConfirmStatusForm(props) {
 
                        
 </> 
-        )}                                                  
-                                                </div>
-                                           
-                                       
-            </div>
-          </div>
+        )}     
         
-             
-              <div class=" flex justify-end mt-3" >
+        <div class=" flex justify-end mt-[2rem] " >
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -156,7 +150,15 @@ function ProspectConfirmStatusForm(props) {
                   <FormattedMessage id="app.submit" defaultMessage="Submit" />
                   {/* Update */}
                 </Button>
-              </div>
+              </div>                         
+                                                </div>
+                                  
+                                       
+            </div>
+          </div>
+        
+             
+            
   
         </Form>
       </MainWrapper>

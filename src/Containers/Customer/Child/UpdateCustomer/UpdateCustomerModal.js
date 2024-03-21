@@ -16,6 +16,8 @@ const UpdateCustomerModal = (props) => {
         title={props.setEditingCustomer.name}
         width={drawerWidth}
         visible={props.updateCustomerModal}
+        destroyOnClose
+        closable
         onClose={() => props.handleUpdateCustomerModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
