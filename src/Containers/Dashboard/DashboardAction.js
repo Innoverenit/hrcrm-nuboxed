@@ -2232,3 +2232,84 @@ export const getJumpFinanceDetail = (orgId, type) => (dispatch) => {
       });
     });
 };
+
+
+export const getProspectsData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/customer/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getProspectLifeTime = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_LIFETIME_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_LIFETIME_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_LIFETIME_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getOpenQuotation = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_QUOTATION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/open/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_QUOTATION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_QUOTATION_FAILURE,
+        payload: err,
+      });
+    });
+};
