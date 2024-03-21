@@ -44,14 +44,21 @@ export const addTasks = (task, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      {res.data.message?  
-        message.success(res.data.message):
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
         Swal.fire({
           icon: 'success',
           title: 'Task added Successfully!',
-     
-        })
-      // message.success("Task has been added successfully!");
+          // showConfirmButton: false,
+          // timer: 1500
+        });
       }
       // dispatch(getTasks());
       console.log(res);

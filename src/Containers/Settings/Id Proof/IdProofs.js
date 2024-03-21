@@ -161,7 +161,7 @@ class IdProofs extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!IdProofType}
-                  Loading={addingIdProofs}
+                  loading={addingIdProofs}
                   onClick={this.handleAddIdProofs}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -179,7 +179,7 @@ class IdProofs extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingIdProofs}
+                    loading={addingIdProofs}
                     onClick={this.toggleInput}
                   >
                     Add More

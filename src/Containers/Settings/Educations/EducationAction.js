@@ -44,10 +44,22 @@ export const addEducations = (education, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Education added Successfully!',
-      })
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Education added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       // message.success("Education added successfully!");
       // dispatch(getEducations());
       console.log(res);

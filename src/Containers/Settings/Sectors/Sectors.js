@@ -180,7 +180,7 @@ class Sectors extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!sectorName}
-                  Loading={addingSectors}
+                  loading={addingSectors}
                   onClick={this.handleAddSector}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -200,7 +200,7 @@ class Sectors extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingSectors}
+                    loading={addingSectors}
                     onClick={this.toggleInput}
                   >
                     {/* Add More */}
