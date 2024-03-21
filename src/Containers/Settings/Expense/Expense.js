@@ -183,7 +183,7 @@ class Expense extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!expenseType}
-                  Loading={addingExpenses}
+                  loading={addingExpenses}
                   onClick={this.handleAddExpenses}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -203,7 +203,7 @@ class Expense extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                   Loading={addingExpenses}
+                   loading={addingExpenses}
                     onClick={this.toggleInput}
                   >
                     {/* Add More */}

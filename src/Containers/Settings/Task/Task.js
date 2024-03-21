@@ -185,7 +185,7 @@ class Task extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!taskType}
-                  Loading={addingTasks}
+                  loading={addingTasks}
                   onClick={this.handleAddTasks}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -205,7 +205,7 @@ class Task extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingTasks}
+                    loading={addingTasks}
                     onClick={this.toggleInput}
                   >
                     {/* Add More */}

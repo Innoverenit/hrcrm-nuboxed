@@ -110,7 +110,7 @@ class SingleEvent extends Component {
                     type="primary"
                     htmlType="submit"
                     disabled={!value}
-                    Loading={updatingEvents}
+                    loading={updatingEvents}
                   onClick={() => handleUpdateEvent(eventTypeId, value, toggleViewType())}
                   >
                     {/* Save */}

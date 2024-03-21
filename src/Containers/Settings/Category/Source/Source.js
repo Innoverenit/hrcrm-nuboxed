@@ -202,7 +202,7 @@ class Source extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!name}
-                  Loading={addingSources}
+                  loading={addingSources}
                   onClick={this.handleAddSource}
                   style={{ marginRight: "0.125em",marginLeft:"0.5rem" }}
                 >
