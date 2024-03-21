@@ -75,6 +75,9 @@ const initialState = {
   fetchingCurrencyError: false,
   currencies: [],
 
+
+  addDrawerRepositoryDocumentModal:false,
+
   faqModal: false,
 
   fetchingIncludedTask: false,
@@ -114,6 +117,10 @@ const initialState = {
   fetchingOpportunityIncludedCount: false,
   fetchingOpportunityIncludedCountError: false,
   oppIncludedCount: {},
+
+
+  updateRepositoryDocument:false,
+  updateRepositoryDocumentError:false,
 
   fetchingDealsIncludedCount: false,
   fetchingDealsIncludedCountError: false,
@@ -266,6 +273,10 @@ export const authReducer = (state = initialState, action) => {
       return { ...state };
     case types.VALIDATE_EMAIL_FAILURE:
       return { ...state };
+
+
+      case types.SET_REPOSITORY_EDIT:
+        return { ...state, setEditingRepository: action.payload };
 
     case types.SET_PASSWORD_REQUEST:
       return { ...state, settingPassword: true, settingPasswordError: false };
@@ -761,8 +772,12 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOrganizationDocument: false,
-        updateOrganizationModal: false,
+        // updateOrganizationModal: false,
         organizationDocumentDrawer: false,
+        repositoryData: [
+          action.payload,
+          ...state.repositoryData,
+         ],
 
       };
     case types.ADD_ORGANIZATION_DOCUMENT_FAILURE:
@@ -828,6 +843,9 @@ export const authReducer = (state = initialState, action) => {
 
     case types.HANDLE_ORGANIZATION_DOCUMENT_DRAWER:
       return { ...state, organizationDocumentDrawer: action.payload };
+
+      case types.HANDLE_REPOSITORY_DOCUMENT_DRAWER_MODAL:
+        return { ...state, addDrawerRepositoryDocumentModal: action.payload };
 
     case types.DELETE_ORG_DOC_DATA_REQUEST:
       return { ...state, deletingOrgDocData: true };
@@ -1134,6 +1152,32 @@ export const authReducer = (state = initialState, action) => {
         doResetpasswordError: false,
       };
     case types.FORGOT_PASSWORD_FAILURE:
+
+
+
+    case types.UPDATE_REPOSITORY_DOCUMENT_REQUEST:
+      return { ...state, updateRepositoryDocument: true };
+    case types.UPDATE_REPOSITORY_DOCUMENT_SUCCESS:
+      return {
+        ...state,
+        updateRepositoryDocument: false,
+        addDrawerRepositoryDocumentModal: false,
+      
+        repositoryData: state.repositoryData.map((item) => {
+          if (item.organizationDocumentLinkId === action.payload.organizationDocumentLinkId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+       
+      };
+    case types.UPDATE_REPOSITORY_DOCUMENT_FAILURE:
+      return {
+        ...state,
+        updateRepositoryDocument: false,
+        updateRepositoryDocumentError: true,
+      };
 
 
 

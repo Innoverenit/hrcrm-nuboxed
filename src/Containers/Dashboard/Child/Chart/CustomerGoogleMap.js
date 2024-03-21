@@ -89,7 +89,7 @@ const{latitude,longitude}=props.address[0]
    
       <GoogleMap
         mapContainerStyle={{ height: '17.5rem', overflow: "hidden", marginTop: "0.2rem", width: '44rem' }}
-        zoom={4}
+        zoom={10}
         center={center}
         onClick={handleMapClick}
       >

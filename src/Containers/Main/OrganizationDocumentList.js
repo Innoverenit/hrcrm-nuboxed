@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { StyledPopconfirm} from "../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-import { getRepositoryDocuments ,deleteOrgDocata,LinkOrgDocPublish,LinkOrgDocPrivate} from "../Auth/AuthAction";
+import AddRepositoryDocumentDrawerModal from "./AddRepositoryDocumentDrawerModal"
+import { getRepositoryDocuments ,setEditRepositoryList,deleteOrgDocata,LinkOrgDocPublish,LinkOrgDocPrivate,handleRepositoryDocumentDrawerModal} from "../Auth/AuthAction";
 import { base_url } from "../../Config/Auth";
-import {  Button} from "antd";
+import {  Button,Avatar,Tooltip} from "antd";
 import DownloadIcon from "@mui/icons-material/Download";
 import { DeleteOutlined } from "@ant-design/icons";
+import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import { BundleLoader } from '../../Components/Placeholder';
 
 class OrganizationDocumentList extends Component {
@@ -14,8 +16,10 @@ class OrganizationDocumentList extends Component {
         super(props);
         this.formRef = null;
         this.state = {
+          
           fields: {},
           activeKey: "0",
+          editedIndex: -1,
           // viewAll:false,
           // setIsViewAll:false,
           change: true,
@@ -27,6 +31,7 @@ class OrganizationDocumentList extends Component {
           days: null,
           visible: false,
           isViewAll: false,
+          data: [],
           currentProcess: [],
           currentProcessItem:{},
           currentProcessItem1:{},
@@ -42,6 +47,8 @@ class OrganizationDocumentList extends Component {
       }
   componentDidMount() {
     this.props.getRepositoryDocuments(this.props.userId);
+    this.props.getDepartments();
+    this.setState({ data: this.props.repositoryData });
   }
   handleCallBack1 = (status, data) => {
     if (status === "Success") {
@@ -83,16 +90,45 @@ this.setState({
     this.props.LinkOrgDocPrivate(data, this.handleCallBack1);
 };
 
+handleEdit = (index, field, value) => {
+  const newData = [...this.state.data];
+  newData[index][field] = value;
+  this.setState({ data: newData });
+};
+
+saveChanges = () => {
+  // this.setState({ editedIndex: -1 });
+  const { repositoryData } = this.props;
+  const { editedIndex, fields } = this.state;
+  const editedItem = repositoryData[editedIndex];
+
+  console.log("Changes made:");
+  console.log("Before:", editedItem);
+
+  const newData = repositoryData.map((item, index) => {
+    if (index === editedIndex) {
+      return { ...item, ...fields }; // Merge edited fields into the item
+    }
+    return item;
+  });
+
+  console.log("After:", newData[editedIndex]);
+
+  this.setState({ editedIndex: -1 });
+};
+
   render() {
      console.log("karisma",this.state.currentProcessItem1)
     const{user,fetchingRepositoryDocuments}=this.props;
     if (fetchingRepositoryDocuments) return <BundleLoader/>;
     return (
+    <>
       <div className="overflow-y-auto h-[60vh] overflow-x-hidden">
+       
      <div className="flex flex-col justify-center flex-wrap w-full max-sm:justify-between max-sm:items-center">
-          {this.props.repositoryData.map((item) => (
+          {this.props.repositoryData.map((item,index) => (
             <>
-            {item.shareInd === true &&(
+           
             <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[3rem] 
             text-[#444444] m-3 p-1 w-wk flex flex-col  "
             
@@ -106,6 +142,11 @@ this.setState({
                     </div>
                     <div className="font-normal text-sm text-cardBody font-poppins">
                       {item.name}
+                      {/* {this.state.editedIndex === index ? (
+                <input value={item.name} onChange={(e) => this.handleEdit(index, 'name', e.target.value)} />
+              ) : (
+                item.name
+              )} */}
                     </div>
                   </div>
                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
@@ -114,6 +155,17 @@ this.setState({
                     </div>
                     <div className="font-normal text-sm text-cardBody font-poppins">
                       {item.catagory}
+                      {/* {this.state.editedIndex === index ? (
+                <select value={item.catagory} onChange={(e) => this.handleEdit(index, 'catagory', e.target.value)}>
+                  <option value="Document">Document</option>
+                  <option value="Spreadsheet">Spreadsheet</option>
+                  <option value="Presentation">Presentation</option>
+                  <option value="Image">Image</option>
+                 
+                </select>
+              ) : (
+                item.catagory
+              )} */}
                     </div>
                   </div>
                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
@@ -122,6 +174,20 @@ this.setState({
                     </div>
                     <div className="font-normal text-sm text-cardBody font-poppins">
                       {item.department}
+                      {/* {this.state.editedIndex === index ? (
+                <select value={item.department} onChange={(e) => this.handleEdit(index, 'department', e.target.value)}>
+                 
+                 {this.props.departments.map((item)=>{
+                  return(
+                    <option value={item.departmentId}>{item.departmentName}</option>
+                  )
+                 })}
+                 
+              
+                </select>
+              ) : (
+                item.department
+              )} */}
                     </div>
                   </div>
                   <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
@@ -130,6 +196,41 @@ this.setState({
                     </div>
                     <div className="font-normal text-sm text-cardBody font-poppins">
                       {item.description}
+                      {/* {this.state.editedIndex === index ? (
+                <input value={item.description} onChange={(e) => this.handleEdit(index, 'description', e.target.value)} />
+              ) : (
+                item.description
+              )} */}
+                    </div>
+                  </div>
+                  <div className="flex font-medium flex-col md:w-40 max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
+                      Include
+                    </div>
+                    <div className="font-normal text-sm text-cardBody font-poppins">
+                      {/* {item.description} */}
+                      <Avatar.Group
+                   maxCount={7}
+                  maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                >
+                    {item.includeds &&
+                  item.includeds.map((candidate, i) => {
+                    
+                    const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                    return (
+                      <Tooltip title={candidate.empName} key={i}>
+                      <Avatar style={{ backgroundColor: "#f56a00" }}>
+                      {data1}
+                    
+                    </Avatar>
+                    </Tooltip>
+                     
+
+                   
+                    );
+                  })}
+
+            </Avatar.Group>
                     </div>
                   </div>
                   <div class="flex">
@@ -137,20 +238,7 @@ this.setState({
                     <div className="text-sm text-cardBody font-semibold font-poppins max-sm:hidden">
                  
                     </div>
-                  {/* {(item.userId === "EMP16818052295222021" && item.shareInd === true && user.repositoryCreateInd ===true  || user.role === "ADMIN")  ? (
-                      <Button
-                        
-                        onClick={() => {
-                        
-                          this.handlePublishClick(item);
-                        }}
-                      >
-                       
-                        {item.publishInd
-                          ? "Unpublish"
-                          : "Publish"}
-                      </Button>
-                    ):null}  */}
+                 
                   </div>
                   <div className=" flex font-medium flex-col  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                   {(item.userId === "EMP16818052295222021" && item.shareInd === true && user.repositoryCreateInd ===true || user.role === "ADMIN") ? (
@@ -182,7 +270,7 @@ this.setState({
                         <div>
                         <a
                 href={`${base_url}/document/${item.documentId}`}
-                target="_blank"
+                target="_self"
               >
             {/* {user.opportunityDeleteInd ===true && ( */}
             <DownloadIcon
@@ -194,26 +282,45 @@ this.setState({
             {/* )} */}
        
                         </div>
+                        <div style={{ flex: 1 }}>
+            
+                <button 
+                onClick={() => {
+                this.props.setEditRepositoryList(item)
+                 this.props.handleRepositoryDocumentDrawerModal(true)
+                }}
+                  >Edit</button>
+              
+            </div>
                 </div>
               </div>
                
             </div>
-            )}
+            
                </>
           ))}
        
         </div>
       </div>
+      
+      <AddRepositoryDocumentDrawerModal
+ addDrawerRepositoryDocumentModal={this.props.addDrawerRepositoryDocumentModal}
+ handleRepositoryDocumentDrawerModal={this.props.handleRepositoryDocumentDrawerModal}
+    />
+    </>
     );
   }
 }
 
-const mapStateToProps = ({ location, auth }) => ({
+const mapStateToProps = ({ location, auth,departments }) => ({
   repositoryData: auth.repositoryData,
   fetchingRepositoryDocuments:auth.fetchingRepositoryDocuments,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
+  addDrawerRepositoryDocumentModal:auth.addDrawerRepositoryDocumentModal,
   user: auth.userDetails,
+  departments: departments.departments,
+ 
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -222,7 +329,10 @@ const mapDispatchToProps = (dispatch) =>
       getRepositoryDocuments,
       deleteOrgDocata,
       LinkOrgDocPublish,
-      LinkOrgDocPrivate
+      LinkOrgDocPrivate,
+      setEditRepositoryList,
+      getDepartments,
+      handleRepositoryDocumentDrawerModal
     },
     dispatch
   );

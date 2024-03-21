@@ -421,6 +421,22 @@ export const setFiscalTimeIntervalReport = (data) => (dispatch) => {
   });
 };
 
+
+export const handleRepositoryDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REPOSITORY_DOCUMENT_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const setEditRepositoryList = (name) => (dispatch) => {
+  dispatch({
+    type: types.SET_REPOSITORY_EDIT,
+    payload: name,
+  });
+};
+
 // export const setFiscalTimeIntervalTeam = (data) => (dispatch) => {
 //   //////////debugger;
 //   dispatch({
@@ -1002,7 +1018,7 @@ export const addOrganizationDocument =
       })
       .then((res) => {
         console.log(res);
-        dispatch(getRepositoryDocuments(userId));
+        //dispatch(getRepositoryDocuments(userId));
         const startDate = dayjs().startOf("month").toISOString();
         const endDate = dayjs().endOf("month").toISOString();
         // dispatch(getRecords(userId));
@@ -1605,4 +1621,36 @@ export const handleFAQModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_FAQ_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+
+export const updateRepositoryDocument = (data, organizationDocumentLinkId) => (
+  dispatch,
+) => {
+  
+  dispatch({ type: types.UPDATE_REPOSITORY_DOCUMENT_REQUEST });
+  axios
+    .put(`${base_url}/organization/document/${organizationDocumentLinkId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+      console.log(res);
+      //  dispatch(getOpportunityListByUserId(userId,0));
+      dispatch({
+        type: types.UPDATE_REPOSITORY_DOCUMENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_REPOSITORY_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
 };
