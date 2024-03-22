@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-// import OpenReceivedOrderIdForm from "./OpenReceivedOrderIdForm";
 const OpenReceivedOrderIdForm = lazy(() => import("./OpenReceivedOrderIdForm.js"));
 
 
@@ -16,10 +15,12 @@ class OpenReceivedOrderIdModal extends Component {
             <>
                 <StyledDrawer
                     title={`Order No - ${this.props.rowData.newOrderNo}`}
-                    width="80%"
+                    width="90%"
                     visible={receivedOrdeIdModal}
                     onClose={() => handleReceivedOrderIdModal(false)}
                     footer={null}
+                    maskClosable={false}
+                    destroyOnClose
                 >
                     <Suspense fallback={<BundleLoader />}>
                         <OpenReceivedOrderIdForm

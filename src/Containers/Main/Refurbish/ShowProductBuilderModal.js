@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-const InspectedPhoneByOrder =lazy(()=>import("./InspectedPhoneByOrder"));
+const InspectedPhoneByOrder = lazy(() => import("./InspectedPhoneByOrder"));
 
 const ShowProductBuilderModal = (props) => {
     const { RowData, ...formProps } = props;
@@ -13,7 +13,7 @@ const ShowProductBuilderModal = (props) => {
                 title={`Order No-${props.rowData.newOrderNo}`}
                 width="60%"
                 visible={props.productBuilderList}
-                closable
+                maskClosable={false}
                 destroyOnClose
                 onClose={() => props.handleProductBuilder(false)}
                 footer={null}

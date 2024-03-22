@@ -959,6 +959,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         receivedOrdeIdModal: action.payload,
+        phoneListById: []
       };
 
     case types.HANDLE_INVENTORY_RECEIVED_NOTE_ORDER_MODAL:

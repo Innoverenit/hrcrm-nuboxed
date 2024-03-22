@@ -17,33 +17,26 @@ function ReceivedPhoneList(props) {
                 initialValues={{
                     receivePhoneInd: true,
                     orderPhoneId: props.orderPhoneId,
-                    receiveCompany: props.setEdittingPhone.receiveCompany,
-                    // === null ?
-                    // props.setEdittingPhone.company : props.setEdittingPhone.receiveCompany,
+                    receiveCompany: props.setEdittingPhone.receiveCompany === null ?
+                        props.setEdittingPhone.company : props.setEdittingPhone.receiveCompany,
 
-                    receiveModel: props.setEdittingPhone.receiveModel,
-                    //  === null ?
-                    //     props.setEdittingPhone.model : props.setEdittingPhone.receiveModel,
+                    receiveModel: props.setEdittingPhone.receiveModel === null ?
+                        props.setEdittingPhone.model : props.setEdittingPhone.receiveModel,
 
-                    receiveIMEI: props.setEdittingPhone.receiveIMEI,
-                    // === null ?
-                    // props.setEdittingPhone.imei : props.setEdittingPhone.receiveIMEI,
+                    receiveIMEI: props.setEdittingPhone.receiveIMEI === null ?
+                        props.setEdittingPhone.imei : props.setEdittingPhone.receiveIMEI,
 
-                    receiveGB: props.setEdittingPhone.receiveGB,
-                    //  === null ?
-                    //     props.setEdittingPhone.gb : props.setEdittingPhone.receiveGB,
+                    receiveGB: props.setEdittingPhone.receiveGB === null ?
+                        props.setEdittingPhone.gb : props.setEdittingPhone.receiveGB,
 
-                    receiveColor: props.setEdittingPhone.receiveColor,
-                    //  === null ?
-                    //     props.setEdittingPhone.color : props.setEdittingPhone.receiveColor,
+                    receiveColor: props.setEdittingPhone.receiveColor === null ?
+                        props.setEdittingPhone.color : props.setEdittingPhone.receiveColor,
 
-                    receiveCondition: props.setEdittingPhone.receiveCondition,
-                    //  === null ?
-                    //     props.setEdittingPhone.conditions : props.setEdittingPhone.receiveCondition,
+                    receiveCondition: props.setEdittingPhone.receiveCondition === null ?
+                        props.setEdittingPhone.conditions : props.setEdittingPhone.receiveCondition,
 
-                    receiveOS: props.setEdittingPhone.receiveOS,
-                    //  === null ?
-                    //     props.setEdittingPhone.os : props.setEdittingPhone.receiveOS,
+                    receiveOS: props.setEdittingPhone.receiveOS === null ?
+                        props.setEdittingPhone.os : props.setEdittingPhone.receiveOS,
                     mismatchInd: true,
                     mismatchOrderInd: true
                 }}

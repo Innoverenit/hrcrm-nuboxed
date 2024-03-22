@@ -20,6 +20,8 @@ class AccountOrderDetailsModal extends Component {
                     width="87%"
                     visible={addOrderDetailsModal}
                     onClose={() => handleOrderDetailsModal(false)}
+                    maskClosable={false}
+                    destroyOnClose
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, lazy, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -23,7 +22,6 @@ import ReceivedModal from "./ReceivedPhoneModal";
 import dayjs from "dayjs";
 import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/AccountOrderTab/AccountPhoneTaskTable";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-
 
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 
@@ -60,57 +58,62 @@ function OpenReceivedOrderIdForm(props) {
           <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" md:w-[2rem]"></div>
-              <div className=" md:w-[8.1rem]"><FormattedMessage
+              <div className=" md:w-[6.7rem]"><FormattedMessage
                 id="app.oem"
                 defaultMessage="OEM"
               /></div>
-              <div className=" md:w-[8.1rem]"><FormattedMessage
+              <div className=" md:w-[6.7rem]"><FormattedMessage
                 id="app.model"
                 defaultMessage="model"
               /></div>
-              <div className=" md:w-[7.8rem] "><FormattedMessage
+              <div className=" md:w-[6.7rem] "><FormattedMessage
                 id="app.imei"
                 defaultMessage="imei"
               /></div>
-              <div className="md:w-[4.6rem]"><FormattedMessage
+              <div className="md:w-[6.7rem]"><FormattedMessage
                 id="app.os"
                 defaultMessage="os"
               /> </div>
-              <div className="md:w-[5.8rem]"><FormattedMessage
+              <div className="md:w-[6.7rem]"><FormattedMessage
                 id="app.gb"
                 defaultMessage="gb"
               /></div>
-              <div className="md:w-[7.7rem]"><FormattedMessage
+              <div className="md:w-[6.7rem]"><FormattedMessage
                 id="app.color"
                 defaultMessage="color"
               /></div>
-              <div className="md:w-[5.9rem]"><FormattedMessage
+              <div className="md:w-[6.7rem]"><FormattedMessage
                 id="app.conditions"
                 defaultMessage="conditions"
               /></div>
-              <div className="md:w-[4rem]">
+              <div className="md:w-[8rem]"><FormattedMessage
+                id="app.issue"
+                defaultMessage="Issue"
+              /></div>
+              <div className="md:w-[3rem]">
                 {/* QR */}
               </div>
-              <div className="md:w-[4rem]">
+              <div className="md:w-[2rem]">
                 {/* task */}
               </div>
-              <div className="md:w-[4rem]">
+              <div className="md:w-[2rem]">
                 {/* notes */}
               </div>
-              <div className="md:w-[4rem]">
+              <div className="md:w-[8rem]">
                 <FormattedMessage
                   id="app.Received"
                   defaultMessage="Receive"
                 />
               </div>
-              <div className="md:w-[4rem]">
+              <div className="md:w-[8.4rem]">
                 <FormattedMessage
                   id="app.Received"
                   defaultMessage="Received "
                 />
               </div>
-              <div className="md:w-[3rem]">
-
+              <div className="md:w-[2rem]">
+              </div>
+              <div className="md:w-[7rem]">
               </div>
             </div>
             <div class="overflow-y-auto h-[65vh]">
@@ -135,17 +138,17 @@ function OpenReceivedOrderIdForm(props) {
                               } />
                             </div>}
                           </div>
-                          <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
+                          <div className=" flex font-medium  md:w-[5rem] max-sm:w-full  ">
                             {item.company}
                           </div>
 
-                          <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.model}
                             </div>
 
                           </div>
-                          <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex font-medium  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                             <div class=" text-sm text-cardBody font-poppins">
 
                               {item.imei}
@@ -153,31 +156,34 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[4.52rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
 
                             {item.os}
-
-
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.gb}
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.color}
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.conditions}
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-poppins text-center">
+                            {item.issue}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <SubTitle>
                               {item.qrCodeId ? (
@@ -196,7 +202,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip title="Task">
                               <FileDoneOutlined style={{ color: "black", fontSize: "1rem" }} type="file-done"
@@ -209,7 +215,7 @@ function OpenReceivedOrderIdForm(props) {
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip title="Notes">
                               <NoteAltIcon
@@ -224,7 +230,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip>
                               {item.inspectionInd === 1 &&
@@ -238,7 +244,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.receivePhoneUserName !== null &&
                               <>
@@ -258,7 +264,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.inspectionInd === 1 && item.receivePhoneInd && (
                               <EditOutlined
@@ -275,7 +281,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.inspectionInd !== 0 && item.receivePhoneInd &&
                               <>

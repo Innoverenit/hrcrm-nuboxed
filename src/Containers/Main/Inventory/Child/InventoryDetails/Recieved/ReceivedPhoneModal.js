@@ -13,7 +13,8 @@ const ReceivedPhoneModal = (props) => {
                 width="50%"
                 height="100vh"
                 visible={props.addReceivePhone}
-
+                maskClosable={false}
+                destroyOnClose
                 onClose={() => props.handlereceivePhoneModal(false)}
                 footer={null}
             >
