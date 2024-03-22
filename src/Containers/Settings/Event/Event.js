@@ -17,6 +17,7 @@ import {
   searchEventName,
   ClearReducerDataOfEvent
 } from "./EventAction";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const Event = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -108,7 +109,7 @@ setEditingId(null);
     }, [props.events]);
 
 // console.log(regions)
-if (props.fetchingItemTask) {
+if (props.fetchingEvents) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -145,11 +146,7 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {events.length ? (
-  events
-    .slice() 
-    .sort((a, b) => a.eventType.localeCompare(b.eventType)) 
-    .map((region, i) => (
+          {!props.fetchingEvents && events.length === 0 ? <NodataFoundPage /> : events.slice().sort((a, b) => a.eventType.localeCompare(b.eventType)).map((region, index) => (
             <div className="card9" key={region.eventTypeId}>
             {/* Region name display or input field */}
             
@@ -200,10 +197,7 @@ return <div><BundleLoader/></div>;
                  </Popconfirm>
             </div>
         </div>
-        ))
-        ) : (
-            <p>No Data Available</p>
-          )}
+      ))}
   <div class=" font-bold">Updated on {dayjs(props.events && props.events.length && props.events[0].updationDate).format('YYYY-MM-DD')} by {props.events && props.events.length && props.events[0].name}</div>
       </div>
   );

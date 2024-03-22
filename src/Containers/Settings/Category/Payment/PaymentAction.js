@@ -123,7 +123,7 @@ export const removePayment = ( paymentCatagoryId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
+export const updatePayment = (data, paymentCatagoryId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_PAYMENT_REQUEST,
@@ -131,7 +131,7 @@ export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/paymentCategory/update/${paymentCatagoryId}`,
-        { name,paymentCatagoryId,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

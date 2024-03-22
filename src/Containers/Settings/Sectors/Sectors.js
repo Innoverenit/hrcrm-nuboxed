@@ -18,6 +18,7 @@ import {
   searchSectorName,
   ClearReducerDataOfSector
 } from "./SectorsAction";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 const Sectors = (props) => {
@@ -110,7 +111,7 @@ setEditingId(null);
     }, [props.sectors]);
 
 // console.log(regions)
-if (props.fetchingItemTask) {
+if (props.fetchingSectors) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -146,11 +147,7 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {sectors.length ? (
-  sectors
-    .slice() 
-    .sort((a, b) => a.sectorName.localeCompare(b.sectorName)) 
-    .map((region, i) => (
+          {!props.fetchingSectors && sectors.length === 0 ? <NodataFoundPage /> : sectors.slice().sort((a, b) => a.sectorName.localeCompare(b.sectorName)).map((region, index) => (
             <div className="card9" key={region.sectorId}>
             {/* Region name display or input field */}
             
@@ -200,10 +197,8 @@ return <div><BundleLoader/></div>;
                  </Popconfirm>
             </div>
         </div>
-        ))
-        ) : (
-            <p>No Data Available</p>
-          )}
+        ))}
+      
   <div class=" font-bold">Updated on {dayjs(props.sectors && props.sectors.length && props.sectors[0].updationDate).format('YYYY-MM-DD')} by {props.sectors && props.sectors.length && props.sectors[0].updatedBy}</div>
       </div>
   );

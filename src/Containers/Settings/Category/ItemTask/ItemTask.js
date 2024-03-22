@@ -17,6 +17,7 @@ import {
     removeItemTask,
     updateItemTask
 } from "../ItemTask/ItemTaskAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 const ItemTask = (props) => {
@@ -145,7 +146,7 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {itemTaskListData.map(region => (
+          {!props.fetchingItemTask && itemTaskListData.length === 0 ? <NodataFoundPage /> : itemTaskListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.itemTaskId}>
             {/* Region name display or input field */}
             {editingId === region.itemTaskId ? (

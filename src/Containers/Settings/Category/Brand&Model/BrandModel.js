@@ -10,6 +10,7 @@ import {
     addBrandModel,
 } from "./BrandModelAction";
 import dayjs from "dayjs"; 
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const BrandModel = (props) => {
     const [currentData, setCurrentData] = useState("");
@@ -107,7 +108,7 @@ const BrandModel = (props) => {
       }, [props.brandModel]);
   
   // console.log(regions)
-  if (props.fetchingItemTask) {
+  if (props.fetchingBrandModel) {
   return <div><BundleLoader/></div>;
   }
     return (
@@ -151,12 +152,8 @@ const BrandModel = (props) => {
                 )}
             </div>
             </div>
-            
-            {brandModel.length ? (
-  brandModel
-    .slice() 
-    .sort((a, b) => a.brand.localeCompare(b.brand)) 
-    .map((region, i) => (
+            {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.slice().sort((a, b) => a.brand.localeCompare(b.brand)).map((region, index) => (
+     
               <div className="card9" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
@@ -218,10 +215,8 @@ const BrandModel = (props) => {
                    </Popconfirm> */}
               </div>
           </div>
-         ))
-         ) : (
-             <p>No Data Available</p>
-           )}
+         ))}
+
     <div class=" font-bold">Updated on {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} by {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
         </div>
     );
