@@ -192,7 +192,7 @@ import { message } from "antd"
       type: types.GET_CURRENCY_COUNT_REQUEST,
     });
     axios
-      .get(`${base_url}/countries/currency/count/${orgId}`, {
+      .get(`${base_url}/countries/currency/count`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

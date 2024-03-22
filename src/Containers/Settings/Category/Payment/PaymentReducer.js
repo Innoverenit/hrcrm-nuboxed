@@ -6,6 +6,11 @@ const initialState = {
     fetchingPaymentError: false,
     paymentsListData: [],
 
+
+    fetchingPaymentCount: false,
+    fetchingPaymentCountError: false,
+    paymentCount:{},
+
      addingPayment: false,
      addingPaymentError: false,
 
@@ -117,7 +122,20 @@ export const catgPaymentReducer = (state = initialState, action) => {
             return { ...state, 
                 paymentsListData: [], 
               // deletedTruck: [] 
-            };    
+            };   
+            
+            
+            case types.GET_PAYMENT_COUNT_REQUEST:
+              return { ...state, fetchingPaymentCount: true };
+            case types.GET_PAYMENT_COUNT_SUCCESS:
+              return { ...state, fetchingPaymentCount: false, 
+                paymentCount: action.payload };
+            case types.GET_PAYMENT_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingPaymentCount: false,
+                fetchingPaymentCountError: true,
+              };
     
     default:
         return state;

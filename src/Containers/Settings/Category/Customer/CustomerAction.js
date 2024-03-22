@@ -51,13 +51,21 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
       })
       .then((res) => {
         // dispatch(getCustomer(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'Type has been added Successfully',
-          })
-        // message.success("Type has been added successfully!");
+            title: 'Type added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
@@ -128,7 +136,7 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Type has been updated Successfully',
+          title: 'Type updated Successfully!',
         })
         // message.success("CUSTOMER has been updated successfully!");
         console.log(res);
@@ -182,6 +190,34 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
     });
   };
 
+
+  export const getCustomerCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CUSTOMER_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customerType/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CUSTOMER_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_CUSTOMER_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  
 
 
   

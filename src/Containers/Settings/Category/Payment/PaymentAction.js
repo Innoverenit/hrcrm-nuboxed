@@ -49,13 +49,22 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getPayments(orgId));
-        // {res.data.message?  
-        //   message.success(res.data.message):
-        Swal.fire({
-          icon: 'success',
-          title: 'Payment has been added Successfully',
-        })
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Payment added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        }
         // message.success("PAYMENT has been added successfully!");
         // }
         console.log(res);
@@ -127,7 +136,7 @@ export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Payment has been updated Successfully',
+          title: 'Payment updated Successfully!',
         })
         // message.success("PAYMENT has been updated successfully!");
         console.log(res);
@@ -179,6 +188,32 @@ export const updatePayment = ( paymentCatagoryId,name,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_PAYMENT,
     });
+  };
+
+  export const getPaymentCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_PAYMENT_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/paymentCategory/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PAYMENT_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_PAYMENT_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };
 
   

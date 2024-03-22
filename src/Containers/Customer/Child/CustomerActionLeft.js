@@ -28,21 +28,24 @@ const { Search } = Input;
 const CustomerActionLeft = (props) => {
   const[filter,setFilter]=useState("creationdate")
   const [page, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(page + 1);
       props.getCustomerListByUserId(props.userId, page,"creationdate");
-      props.ClearReducerDataOfCustomer()
+      props.ClearReducerDataOfCustomer();
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.inputCustomerDataSearch(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -62,6 +65,13 @@ const CustomerActionLeft = (props) => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
   console.log(transcript);
 function  handleFilterChange(data){
     setFilter(data)
@@ -223,7 +233,7 @@ function  handleFilterChange(data){
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+            value={currentData}
           />
         </div>
         <div class="w-[40%] mt-2 ml-2 max-sm:w-[45%]">
