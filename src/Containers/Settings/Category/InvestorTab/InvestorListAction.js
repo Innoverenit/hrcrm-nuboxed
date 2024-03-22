@@ -50,15 +50,22 @@ export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getInvestorList(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
+        dispatch(getInvestorCount(orgId));
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'Investor Type has been added successfully!',
-
-          })
-        // message.success("INVESTOR_ has been added successfully!");
+            title: 'Investor Type added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
@@ -93,7 +100,11 @@ export const removeInvestor = ( investorCategoryId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Investor has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Investor Type deleted successfully!',
+        })
+        // message.success("Investor has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_INVESTOR_SUCCESS,
@@ -111,7 +122,7 @@ export const removeInvestor = ( investorCategoryId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
+export const updateInvestor = (data, investorCategoryId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_INVESTOR_REQUEST,
@@ -119,7 +130,7 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/investorCategory/${investorCategoryId}`,
-        {investorCategoryId, name,editInd:true },
+        data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -136,7 +147,7 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Investor Type has been updated successfully!',
+          title: 'Investor Type updated successfully!',
         })
       })
       .catch((err) => {
@@ -204,6 +215,32 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
       .catch((err) => {
         dispatch({
           type: types.GET_INVESTORTYPE_SEARCH_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getInvestorCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTOR_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorCategory/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVESTOR_COUNT_FAILURE,
           payload: err,
         });
       });

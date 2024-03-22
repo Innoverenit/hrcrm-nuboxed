@@ -36,7 +36,7 @@ import { message } from "antd";
   /**
  * add a new DESIGNATIONS
  */
-export const addDesignations = (designation, cb) => (dispatch) => {
+export const addDesignations = (designation,orgId, cb) => (dispatch) => {
     console.log(designation);
     dispatch({
       type: types.ADD_DESIGNATIONS_REQUEST,
@@ -65,7 +65,7 @@ export const addDesignations = (designation, cb) => (dispatch) => {
           });
         }
      
-        // dispatch(getDesignations());
+        dispatch(getDesignationCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_DESIGNATIONS_SUCCESS,
@@ -100,7 +100,12 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Designation has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Designation deleted Successfully!',
+       
+        })
+        // message.success("Designation has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DESIGNATIONS_SUCCESS,
@@ -166,7 +171,12 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success(res.data.message);
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+       
+        })
+        // message.success(res.data.message);
         dispatch({
           type: types.GET_DESIGNATION_SEARCH_SUCCESS,
           payload: res.data,

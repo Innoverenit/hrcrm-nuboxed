@@ -13,6 +13,10 @@ const initialState = {
   removingInvestor: false,
   removingInvestorError: false,
 
+  fetchingInvestorCount: false,
+  fetchingInvestorCountError: false,
+  investorCount:{},
+
   updatingInvestor: false,
   updatingInvestorError: false,
 
@@ -130,7 +134,20 @@ export const investorListReducer = (state = initialState, action) => {
               return { ...state, 
                 investorListData: [], 
                 // deletedTruck: [] 
-              };   
+              }; 
+              
+              
+              case types.GET_INVESTOR_COUNT_REQUEST:
+              return { ...state, fetchingInvestorCount: true };
+            case types.GET_INVESTOR_COUNT_SUCCESS:
+              return { ...state, fetchingInvestorCount: false, 
+                investorCount: action.payload };
+            case types.GET_INVESTOR_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingInvestorCount: false,
+                fetchingInvestorCountError: true,
+              };
     
     default:
         return state;

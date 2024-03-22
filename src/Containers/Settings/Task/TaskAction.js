@@ -32,7 +32,7 @@ export const getTasks = (userId) => (dispatch) => {
     });
 };
 
-export const addTasks = (task, cb) => (dispatch) => {
+export const addTasks = (task,orgId, cb) => (dispatch) => {
   console.log(task);
   dispatch({
     type: types.ADD_TASK_REQUEST,
@@ -60,7 +60,7 @@ export const addTasks = (task, cb) => (dispatch) => {
           // timer: 1500
         });
       }
-      // dispatch(getTasks());
+      dispatch(getTaskCount(orgId));
       console.log(res);
       dispatch({
         type: types.ADD_TASK_SUCCESS,
@@ -76,7 +76,7 @@ export const addTasks = (task, cb) => (dispatch) => {
     });
 };
 
-export const updateTasks = (taskTypeId, taskType, cb) => (
+export const updateTasks = (data,taskTypeId, cb) => (
   dispatch
 ) => {
   dispatch({
@@ -85,8 +85,7 @@ export const updateTasks = (taskTypeId, taskType, cb) => (
   axios
     .put(
       `${base_url}/taskType`,
-      { taskType, taskTypeId ,editInd:"true" 
-    },
+    data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -150,7 +149,12 @@ export const removeTask = ( taskTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Task has been deleted successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Task deleted Successfully!',
+     
+      })
+      // message.success("Task has been deleted successfully!");
       console.log(res);
       dispatch({
         type: types.REMOVE_TASK_SUCCESS,

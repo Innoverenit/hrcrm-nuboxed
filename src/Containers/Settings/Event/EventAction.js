@@ -36,7 +36,7 @@ import { message } from "antd";
   /**
  * add a new EVENTS
  */
-export const addEvents = (event, cb) => (dispatch) => {
+export const addEvents = (event,orgId, cb) => (dispatch) => {
     console.log(event);
     dispatch({
       type: types.ADD_EVENTS_REQUEST,
@@ -64,7 +64,7 @@ export const addEvents = (event, cb) => (dispatch) => {
             // timer: 1500
           });
         }
-        // dispatch(getEvents());
+        dispatch(getEventCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_EVENTS_SUCCESS,
@@ -99,7 +99,11 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Event has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Event deleted Successfully!',
+        })
+        // message.success("Event has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_EVENTS_SUCCESS,
@@ -119,7 +123,7 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
 /**
  *update label of EVENTS
  */
- export const updateEvents = (eventTypeId, eventType, editInd, cb) => (dispatch) => {
+ export const updateEvents = (data,eventTypeId, editInd, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_EVENTS_REQUEST,
@@ -127,7 +131,7 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
     axios
       .put(
         `${base_url}/eventType`,
-        { eventTypeId, eventType, editInd:"true" },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

@@ -30,7 +30,7 @@ export const getRoles = (orgId) => (dispatch) => {
       });
   };
 
-  export const addRoles = (roleType,cb) => (dispatch,getState) => {
+  export const addRoles = (roleType,orgId,cb) => (dispatch,getState) => {
     const orgId = getState().auth.userDetails.organizationId;
     dispatch({
       type: types.ADD_ROLES_REQUEST,
@@ -61,7 +61,7 @@ export const getRoles = (orgId) => (dispatch) => {
           });
         }
   
-        // dispatch(getRoles(orgId));
+        dispatch(getRoleCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_ROLES_SUCCESS,
@@ -162,7 +162,13 @@ export const getRoles = (orgId) => (dispatch) => {
           },
         })
         .then((res) => {
-          message.success("Role deleted successfully!");
+          
+          Swal.fire({
+            icon: 'success',
+            title: 'Role deleted Successfully!',
+          
+          })
+          // message.success("Role deleted successfully!");
             console.log(res);
             dispatch({
                 type: types.REMOVE_ROLE_SUCCESS,
@@ -203,7 +209,7 @@ export const getTalentRoles = (orgId) => (dispatch) => {
     });
 };
 
-export const addTalentRoles = (roleType,cb) => (dispatch) => {
+export const addTalentRoles = (roleType,orgId,cb) => (dispatch) => {
   // console.log(departments);
   dispatch({
     type: types.ADD_TALENT_ROLES_REQUEST,
@@ -216,6 +222,8 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getExternalRoleCount(orgId));
+      
       if (res.data.message) {
         Swal.fire({
           icon: 'error',
@@ -303,7 +311,12 @@ export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Role deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Role deleted Successfully!',
+        
+        })
+        // message.success("Role deleted successfully!");
           console.log(res);
           dispatch({
               type: types.REMOVE_TALENT_ROLE_SUCCESS,

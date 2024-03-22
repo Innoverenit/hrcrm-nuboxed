@@ -64,7 +64,7 @@ function ProspectConfirmStatusForm(props) {
         // enableReinitialize
         initialValues={{
           // multyAsignedTOId: [],
-          type:"ProspectConvertToCustomer",
+          type:"ProspectToCustomer",
 
         //   userId: props.userId,
           orgId: props.organizationId,

@@ -32,7 +32,7 @@ export const getEducations = () => (dispatch) => {
     });
 };
 
-export const addEducations = (education, cb) => (dispatch) => {
+export const addEducations = (education,orgId, cb) => (dispatch) => {
   console.log(education);
   dispatch({
     type: types.ADD_EDUCATION_REQUEST,
@@ -61,7 +61,7 @@ export const addEducations = (education, cb) => (dispatch) => {
         });
       }
       // message.success("Education added successfully!");
-      // dispatch(getEducations());
+      dispatch(getEducationCount(orgId));
       console.log(res);
       dispatch({
         type: types.ADD_EDUCATION_SUCCESS,
@@ -150,7 +150,11 @@ export const removeEducation = (educationTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Education deleted successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Education deleted Successfully!',
+      })
+      // message.success("Education deleted successfully!");
       console.log(res);
       dispatch({
         type: types.REMOVE_EDUCATION_SUCCESS,

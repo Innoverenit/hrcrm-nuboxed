@@ -36,7 +36,7 @@ import { message } from "antd";
   /**
  * add a new DESIGNATIONS
  */
-export const addIdProofs = (idProofs, cb) => (dispatch) => {
+export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
     console.log(idProofs);
     dispatch({
       type: types.ADD_ID_PROOF_REQUEST,
@@ -64,7 +64,7 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
             // timer: 1500
           });
         }
-        // dispatch(getIdProofs());
+        dispatch(getIdProofCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_ID_PROOF_SUCCESS,
@@ -155,7 +155,11 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Identity has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Identity deleted Successfully!',
+        })
+        // message.success("Identity has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_ID_PROOF_SUCCESS,

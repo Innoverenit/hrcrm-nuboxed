@@ -14,10 +14,22 @@ export const addBrandModel = (brand) => (dispatch) => {
             },
         })
         .then((res) => {
-            Swal.fire({
-                icon: 'success',
-                title: 'BrandModel has been added Successfully',
-              })
+            if (res.data.message) {
+                Swal.fire({
+                  icon: 'error',
+                  title: res.data.message,
+                  // showConfirmButton: false,
+                  // timer: 1500
+                });
+              } else {
+               
+                Swal.fire({
+                  icon: 'success',
+                  title: 'BrandModel added Successfully!',
+                  // showConfirmButton: false,
+                  // timer: 1500
+                });
+              }
             console.log(res);
             dispatch({
                 type: types.ADD_BRAND_MODEL_SUCCESS,
@@ -79,7 +91,7 @@ export const updateBrandModel = (phoneMasterListId, brand, model) => (dispatch) 
         .then((res) => {
             Swal.fire({
                 icon: 'success',
-                title: 'BrandModel has been Updated Successfully',
+                title: 'BrandModel Updated Successfully!',
               })
             dispatch({
                 type: types.UPDATE_BRAND_MODEL_SUCCESS,

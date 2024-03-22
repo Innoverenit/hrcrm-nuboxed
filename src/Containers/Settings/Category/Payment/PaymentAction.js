@@ -49,6 +49,7 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getPaymentCount(orgId));
         if (res.data.message) {
           Swal.fire({
             icon: 'error',
@@ -100,7 +101,11 @@ export const removePayment = ( paymentCatagoryId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("PAYMENT has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment deleted Successfully!',
+        })
+        // message.success("PAYMENT has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_PAYMENT_SUCCESS,

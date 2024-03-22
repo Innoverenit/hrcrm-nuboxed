@@ -50,7 +50,7 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getCustomer(orgId));
+        dispatch(getCustomerCount(orgId));
         if (res.data.message) {
           Swal.fire({
             icon: 'error',
@@ -100,7 +100,11 @@ export const removeCustomer = ( customerTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("CUSTOMER has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type deleted Successfully!',
+        })
+        // message.success("CUSTOMER has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_CUSTOMER_SUCCESS,

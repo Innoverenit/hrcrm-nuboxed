@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 const InvestorList = lazy(() =>
   import("./InvestorList")
@@ -46,9 +47,14 @@ class InvestorTab extends Component {
                   tab={
                     <>
                       <MonetizationOnIcon />
+                      <Badge
+                count={this.props.investorCount.InvestorCategoryCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1" >
                         Type
                       </span>
+                      </Badge>
                     </>
                   }
                   key="0"
@@ -68,7 +74,9 @@ class InvestorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ }) => ({});
+const mapStateToProps = ({investorList }) => ({
+  investorCount:investorList.investorCount,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvestorTab);

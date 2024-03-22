@@ -492,7 +492,7 @@ const TaskApproveTable = (props) => {
                    <div class="flex w-44 ">
                    <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
                    <div class="w-36">
-  {item.taskType === "ProspectConvertToCustomer" ? (
+  {item.taskType === "ProspectToCustomer" ? (
     <>
        <Tooltip title="Qualify? Prospect will move to Customer section!">
         <ConnectWithoutContactIcon
