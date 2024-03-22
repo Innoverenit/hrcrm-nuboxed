@@ -14,6 +14,7 @@ function DashboardProspectJumpstart(props) {
 //   useEffect(() => {
 //     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
 //   }, [props.timeRangeType])
+console.log(props.prospectChart)
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -28,7 +29,7 @@ function DashboardProspectJumpstart(props) {
               />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
-            // value={props.financeDetail.qualifiedInvestorLeadsList}
+             value={props.prospectChart.opportunityCountByCountry}
             // isLoading={props.user.fetchingJumpstartInvestor}
             />
 

@@ -7,7 +7,7 @@ import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
-import {setDashboardViewType} from "./DashboardAction";
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
@@ -70,7 +70,31 @@ class Dashboard extends Component {
       visible: false,
     });
   };
+  handleMapClick = (event) => {
+    const geocoder = new window.google.maps.Geocoder();
+    const latlng = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
+
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const country = results[0].address_components.find(
+          (component) => component.types.includes('country')
+        );
+
+        if (country) {
+          this.props.getProspectsData(country.long_name)
+          this.props.getProspectLifeTime(country.long_name)
+          this.props.getOpenQuotation(country.long_name)
+          // setSelectedCountry(country.long_name);
+          console.log(country.long_name)
+        }
+      }
+    });
+  };
   render() {
+    console.log(this.props.prospectChart)
     const {
       viewType,
       setDashboardViewType,
@@ -277,6 +301,7 @@ class Dashboard extends Component {
               
                  
                     { viewType==="ALL" || this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
+                    handleMapClick={this.handleMapClick}
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)
@@ -311,7 +336,11 @@ class Dashboard extends Component {
        <CustomerDashJumpstart/>
              }
                   {this.state.activeButton==="Customer"&&
-       <DashboardProspectJumpstart/>
+       <DashboardProspectJumpstart
+       prospectChart={this.props.prospectChart}
+       prospectQuotation={this.props.prospectQuotation}
+       prospectLifeTime={this.props.prospectLifeTime}
+       />
              }
                       {this.state.activeButton==="Investors"&&
        <DashboardProspectJumpstart/>
@@ -355,10 +384,16 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
+  prospectLifeTime:dashboard.prospectLifeTime,
+  prospectChart:dashboard.prospectChart,
+  prospectQuotation:dashboard.prospectQuotation,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  setDashboardViewType
+  setDashboardViewType,
+  getProspectLifeTime,
+  getProspectsData,
+  getOpenQuotation
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 

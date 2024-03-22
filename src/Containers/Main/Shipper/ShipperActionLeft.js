@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -13,10 +13,12 @@ import {
   setShipperDashboardType,
   setSelectedTimeInterval,
   setTimeRange,
+  getShipperByUserId
 } from "./ShipperAction";
 import {
-  DeleteOutlined,
+  DeleteOutlined,AudioOutlined
 } from "@ant-design/icons";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { StyledRangePicker } from "../../../Components/UI/Antd";
 import { TimeInterval } from "../../../Utils";
 import moment from "moment";
@@ -25,6 +27,11 @@ import { FormattedMessage } from "react-intl";
 const { Search } = Input;
 
 const ShipperActionLeft = (props) => {
+
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+  const [pageNo, setPage] = useState(0);
+
   const {
     user,
     setShipperDashboardType,
@@ -44,6 +51,48 @@ const ShipperActionLeft = (props) => {
     }
   }, [props.viewType, props.userId]);
 
+const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+  
+      if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+        
+        props.getShipperByUserId(props.userId);
+        props.ClearReducerDataOfLead()
+        setSearchOnEnter(false);
+      }
+    };
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.inputDataSearch(currentData);
+        setSearchOnEnter(true);  //Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+    const suffix = (
+      <AudioOutlined
+        onClick={SpeechRecognition.startListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
   return (
     <FlexContainer alignItems="center">
       <Tooltip title="List View">
@@ -123,7 +172,15 @@ const ShipperActionLeft = (props) => {
       )}
       &nbsp;&nbsp;
       <div class="ml-[2.5rem] max-sm:w-20">
-        <Search
+      <Input
+          placeholder="Search by Name or Sector"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        /></div>
+        {/* <Search
           placeholder="Search By Name"
           onSearch={(value) => {
             props.inputDataSearch(value);
@@ -140,7 +197,8 @@ const ShipperActionLeft = (props) => {
       >
         <FormattedMessage id="app.clear" defaultMessage="Clear"/>
         
-      </Button>
+      </Button> */}
+      
       {/* &nbsp; &nbsp;
       {props.viewType === "table" ? (
         <div style={{ fontSize: "15px", fontWeight: "bold", color: "tomato" }}>
@@ -174,7 +232,8 @@ const mapDispatchToProps = (dispatch) =>
       setShipperDashboardType,
       setSelectedTimeInterval,
       setTimeRange,
-      getShipperRecords
+      getShipperRecords,
+      getShipperByUserId
 
     },
     dispatch

@@ -857,7 +857,12 @@ export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
   axios
-    .post(`${base_url}/contactPerson`, supplier)
+    .post(`${base_url2}/contactPerson`, supplier,
+    {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch(getSupplierContactList(supplierId));
@@ -865,6 +870,10 @@ export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
         type: types.ADD_SUPPLIER_CONTACT_SUCCESS,
         payload: res.data,
       });
+      Swal.fire({
+        icon: 'success',
+        title: 'Contact created Successfully!',
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -882,7 +891,9 @@ export const getSupplierContactList = (supplierId) => (dispatch) => {
     type: types.GET_SUPPLIER_CONTACT_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url}/supplier/contactPerson/${supplierId}`, {})
+    .get(`${base_url2}/supplier/contactPerson/${supplierId}`, {headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },})
     .then((res) => {
       console.log(res);
       dispatch({
