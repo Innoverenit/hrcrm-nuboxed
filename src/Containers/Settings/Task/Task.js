@@ -19,6 +19,7 @@ import {
   ClearReducerDataOfTask
 } from "./TaskAction";
 import TaskConnetToggle from "./TaskConnetToggle";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const Task = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -110,7 +111,7 @@ setEditingId(null);
     }, [props.tasks]);
 
 // console.log(regions)
-if (props.fetchingItemTask) {
+if (props.fetchingTasks) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -147,11 +148,7 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {tasks.length ? (
-  tasks
-    .slice() 
-    .sort((a, b) => a.taskType.localeCompare(b.taskType)) 
-    .map((region, i) => (
+          {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
             <div className="card9" key={region.taskTypeId}>
             {/* Region name display or input field */}
             
@@ -212,10 +209,7 @@ return <div><BundleLoader/></div>;
                  </Popconfirm>
             </div>
         </div>
-        ))
-        ) : (
-            <p>No Data Available</p>
-          )}
+        ))}
   <div class=" font-bold">Updated on {dayjs(props.tasks && props.tasks.length && props.tasks[0].updationDate).format('YYYY-MM-DD')} by {props.tasks && props.tasks.length && props.tasks[0].name}</div>
       </div>
   );

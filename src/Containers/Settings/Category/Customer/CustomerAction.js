@@ -122,7 +122,7 @@ export const removeCustomer = ( customerTypeId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
+export const updateCustomer = ( data,customerTypeId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_CUSTOMER_REQUEST,
@@ -130,7 +130,7 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/customerType/${customerTypeId}`,
-        { name,customerTypeId,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

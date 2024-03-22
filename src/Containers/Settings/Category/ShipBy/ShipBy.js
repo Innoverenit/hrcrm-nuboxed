@@ -17,6 +17,7 @@ import {
   removeShipBy,
   updateShipBy
 } from "../ShipBy/ShipByAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ShipBy = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -108,7 +109,7 @@ setEditingId(null);
     }, [props.ShipByData]);
 
 // console.log(regions)
-if (props.fetchingItemTask) {
+if (props.fetchingShipBy) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -144,7 +145,7 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {ShipByData.map(region => (
+          {!props.fetchingShipBy && ShipByData.length === 0 ? <NodataFoundPage /> : ShipByData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.shipById}>
             {/* Region name display or input field */}
             

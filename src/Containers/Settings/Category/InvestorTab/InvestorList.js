@@ -17,6 +17,7 @@ import {
     removeInvestor,
   updateInvestor
 } from "../InvestorTab/InvestorListAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 
@@ -110,7 +111,7 @@ setEditingId(null);
     }, [props.investorListData]);
 
 // console.log(regions)
-if (props.fetchingItemTask) {
+if (props.fetchingInvestorList) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -146,11 +147,8 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          {investorListData.length ? (
-  investorListData
-    .slice() 
-    .sort((a, b) => a.name.localeCompare(b.name)) 
-    .map((region, i) => (
+          {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
+
             <div className="card9" key={region.investorCategoryId}>
             {/* Region name display or input field */}
             
@@ -200,10 +198,8 @@ return <div><BundleLoader/></div>;
                  </Popconfirm>
             </div>
         </div>
-        ))
-        ) : (
-            <p>No Data Available</p>
-          )}
+        ))}
+
   <div class=" font-bold">Updated on {dayjs(props.investorListData && props.investorListData.length && props.investorListData[0].updationDate).format('YYYY-MM-DD')} by {props.investorListData && props.investorListData.length && props.investorListData[0].updatedBy}</div>
       </div>
   );
