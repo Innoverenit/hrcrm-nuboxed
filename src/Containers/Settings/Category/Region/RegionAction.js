@@ -35,7 +35,7 @@ export const getRegions = (orgId) => (dispatch) => {
 
 
 
-  export const addRegions = (documents, cb) => (dispatch) => {
+  export const addRegions = (documents,orgId, cb) => (dispatch) => {
     console.log(documents);
     dispatch({
       type: types.ADD_REGIONS_REQUEST,
@@ -50,6 +50,7 @@ export const getRegions = (orgId) => (dispatch) => {
       
         
         // dispatch(getDocuments());
+        dispatch(getRegionCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_REGIONS_SUCCESS,

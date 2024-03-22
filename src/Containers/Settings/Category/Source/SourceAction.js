@@ -5,9 +5,6 @@ import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
 import Swal from 'sweetalert2'
 
-/**
- * get all the Sector
- */
  export const getSources = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_SOURCE_REQUEST,
@@ -50,6 +47,7 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getSourceCount(orgId));
         if (res.data.message) {
           Swal.fire({
             icon: 'error',
@@ -100,7 +98,11 @@ export const removeSource = ( sourceId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("source has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Source deleted successfully!',
+        })
+        // message.success("source has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_SOURCE_SUCCESS,
@@ -135,7 +137,7 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
       )
       .then((res) => {
         
-        // message.success("Sector has been updated successfully!");
+        // message.success(" has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_SOURCE_SUCCESS,
@@ -143,7 +145,7 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Sector updated successfully!',
+          title: 'Source updated successfully!',
         })
       })
       .catch((err) => {

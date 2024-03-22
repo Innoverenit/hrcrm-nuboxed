@@ -37,7 +37,7 @@ import { message } from "antd";
   /**
  * add a new document
  */
-export const addDocuments = (documents, cb) => (dispatch) => {
+export const addDocuments = (documents, orgId,cb) => (dispatch) => {
     console.log(documents);
     dispatch({
       type: types.ADD_DOCUMENTS_REQUEST,
@@ -65,7 +65,7 @@ export const addDocuments = (documents, cb) => (dispatch) => {
             // timer: 1500
           });
         }
-        // dispatch(getDocuments());
+        dispatch(getDocumentCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_DOCUMENTS_SUCCESS,
@@ -103,7 +103,11 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Document  deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Document Type deleted Successfully!',
+        })
+        // message.success("Document  deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DOCUMENTS_SUCCESS,
@@ -142,7 +146,7 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'DocumentType  updated Successfully!',
+          title: 'Document Type updated Successfully!',
         })
         // message.success("Document  updated successfully!");
         console.log(res);

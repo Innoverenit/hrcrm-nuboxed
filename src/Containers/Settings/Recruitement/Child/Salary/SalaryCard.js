@@ -19,12 +19,17 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 
 const { Option } = Select;
 function SalaryCard(props) {
-
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     props.getSalary(props.roleTypeId);
   }, []);
 
+  const calculateTotal = (values) => {
+    const { basic, transportation, housing, others } = values;
+    const totalValue = parseFloat(basic) + parseFloat(transportation) + parseFloat(housing) + parseFloat(others);
+    setTotal(totalValue);
+  };
 
   return (
     <>
@@ -43,19 +48,22 @@ function SalaryCard(props) {
         }}
         onSubmit={(values) => {
           console.log(values)
-        
+          calculateTotal(values); // Calculate total before submitting
           props.addSalary(
             {
               ...values,
-              
+              departmentId:props.departmentId,
               // timePeriod: values.timePeriod === "Not Applicable" ? "0" : values.timePeriod,
               // oppTimePeriod: values.oppTimePeriod === "Not Applicable" ? "0" : values.oppTimePeriod,
             },
             props.orgId
           );
         }}
+      
       >
-        {({ values }) => (
+        {({ values,
+        // setFieldValue
+         }) => (
           <MainWrapper style={{  width: "",  }}>
             <div class=" flex flex-row ">
               <Form className="form-background">
@@ -75,7 +83,10 @@ function SalaryCard(props) {
     <Field
       style={{ width: "7rem" }}
       name="basic"
-
+  //  onChange={(e) => {
+  //                     setFieldValue("basic", e.target.value);
+  //                     calculateTotal({ ...values, basic: e.target.value });
+  //                   }}
       component={InputComponent}
       // options={["1", "2", "3", "4", "5", "Not Applicable"]}
       isColumn
@@ -84,7 +95,7 @@ function SalaryCard(props) {
   </div>
 </div>
 
-                    <div class=" flex justify-between w-[74%] mt-4"
+                    <div class=" flex justify-between w-[74%] "
 
                     >
                         <div class=" text-sm  ml-2 w-[25rem] ">Transportation (in %)</div>
@@ -104,7 +115,7 @@ function SalaryCard(props) {
                     <div class=" flex justify-between w-[74%] "
 
 >
- <div class=" text-sm  ml-2 w-[25rem] ">Housing</div>
+ <div class=" text-sm  ml-2 w-[25rem] ">Housing (in %)</div>
 
   <div>
     <Field
@@ -119,10 +130,10 @@ function SalaryCard(props) {
   </div>
 </div>
 
-                    <div class=" flex justify-between w-[74%] mt-4"
+                    <div class=" flex justify-between w-[74%] "
 
                     >
-                        <div class=" text-sm  ml-2 w-[25rem] ">Others</div>
+                        <div class=" text-sm  ml-2 w-[25rem] ">Others (in %)</div>
       
                       <div>
                         <Field
@@ -135,9 +146,12 @@ function SalaryCard(props) {
                         />
                       </div>
                     </div>
-                   
+        
                   
-                  
+                    <div className="flex flex-row justify-between w-[74%] mt-2">
+                      <div className="text-sm ml-2 w-[20rem]">Total</div>
+                      <div>{total}</div>
+                    </div>
 
                   </div>
 

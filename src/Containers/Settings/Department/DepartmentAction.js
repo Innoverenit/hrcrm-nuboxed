@@ -36,7 +36,7 @@ export const getDepartments = () => (dispatch) => {
 /**
 * add a new DEPARTMENTS
 */
-export const addDepartments = (departments, cb) => (dispatch) => {
+export const addDepartments = (departments,orgId, cb) => (dispatch) => {
   console.log(departments);
   dispatch({
     type: types.ADD_DEPARTMENTS_REQUEST,
@@ -48,6 +48,7 @@ export const addDepartments = (departments, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getDepartmentCount(orgId));
       if (res.data.message) {
         Swal.fire({
           icon: 'error',
@@ -66,6 +67,8 @@ export const addDepartments = (departments, cb) => (dispatch) => {
       }
     
       dispatch(getDepartments());
+    
+      
       console.log(res);
       dispatch({
         type: types.ADD_DEPARTMENTS_SUCCESS,
@@ -103,7 +106,11 @@ export const removeDepartments = (departmentId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Department has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Department deleted Successfully!',
+        })
+        // message.success("Department has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DEPARTMENTS_SUCCESS,

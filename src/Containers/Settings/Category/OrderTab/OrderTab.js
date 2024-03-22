@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import SourceIcon from '@mui/icons-material/Source';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 const ItemTask = lazy(() =>
@@ -60,9 +61,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <MonetizationOnIcon />
+                      <Badge
+                count={this.props.itemTaskCount.ItemTaskCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1" >
                       Repair Task
                       </span>
+                      </Badge>
                     </>
                   }
                   key="0"
@@ -74,9 +80,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.shipByCount.shipByCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                         Ship By
                       </span>
+                      </Badge>
                     </>
                   }
                   key="1"
@@ -111,8 +122,10 @@ class OrderTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth }) => ({
+const mapStateToProps = ({auth ,itemTask,shipBy}) => ({
   user: auth.userDetails,
+  itemTaskCount:itemTask.itemTaskCount,
+  shipByCount:shipBy.shipByCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

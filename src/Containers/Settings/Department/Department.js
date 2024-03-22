@@ -3,6 +3,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Input } from "antd";
+import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput,  } from "../../../Components/UI/Elements";
@@ -132,10 +133,10 @@ class Department extends Component {
   // };
 
   componentDidMount() {
-    const { getDepartments, getDepartmentCount,getSectors } = this.props;
+    const { getDepartments, getDepartmentCount,orgId,getSectors } = this.props;
     console.log();
     getDepartments(getDepartments);
-    getDepartmentCount(this.props.orgId)
+    getDepartmentCount(orgId)
     // getSectors();
   }
   render() {
@@ -212,11 +213,11 @@ class Department extends Component {
                     onClick={this.handleAddDepartment}
                   // style={{ marginRight: "0.125em" }}
                   >
-                    <label class="text-white"> Save</label>
+                  <FormattedMessage id="app.save" defaultMessage="Save" />
                   </Button>
                   &nbsp;
                   <Button type="cancel"  onClick={this.toggleInput}>
-                  <label class="text-white"> Cancel</label>
+                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>
               </div>
             ) : (

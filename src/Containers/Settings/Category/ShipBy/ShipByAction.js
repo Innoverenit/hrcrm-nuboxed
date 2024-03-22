@@ -50,14 +50,23 @@ export const addShipBy = (sectors,orgId, cb) => (dispatch) => {
       })
       .then((res) => {
         // dispatch(getShipByData(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
           Swal.fire({
             icon: 'success',
-            title: 'ShipBy has been added Successfully',
-          })
-        // message.success("shipBy has been added successfully!");
+            title: 'ShipBy added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
+        dispatch(getShipByCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_SHIPBY_SUCCESS,
@@ -91,7 +100,12 @@ export const removeShipBy = ( shipById) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Sector has been deleted successfully!");
+     
+        Swal.fire({
+          icon: 'success',
+          title: 'ShipBy deleted Successfully!',
+        })
+        // message.success("Sector has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_SHIPBY_SUCCESS,
@@ -109,7 +123,7 @@ export const removeShipBy = ( shipById) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
+export const updateShipBy = ( data,shipById,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_SHIPBY_REQUEST,
@@ -117,7 +131,7 @@ export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/shipBy/${shipById}`,
-        { name,shipById,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -127,7 +141,7 @@ export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'ShipBy has been updated Successfully',
+          title: 'ShipBy updated Successfully!',
         })
         // message.success("SHIPBY has been updated successfully!");
         console.log(res);
@@ -179,4 +193,30 @@ export const updateShipBy = ( shipById,name,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_SHIPBY,
     });
+  };
+
+  export const getShipByCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_SHIPBY_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/shipBy/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SHIPBY_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_SHIPBY_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };

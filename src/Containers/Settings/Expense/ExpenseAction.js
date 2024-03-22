@@ -32,7 +32,7 @@ export const getExpenses = () => (dispatch) => {
     });
 };
 
-export const addExpenses = (expense, cb) => (dispatch) => {
+export const addExpenses = (expense,orgId, cb) => (dispatch) => {
   console.log(expense);
   dispatch({
     type: types.ADD_EXPENSE_REQUEST,
@@ -60,7 +60,7 @@ export const addExpenses = (expense, cb) => (dispatch) => {
           // timer: 1500
         });
       }
-      // dispatch(getExpenses());
+      dispatch(getExpenseCount(orgId));
       console.log(res);
       dispatch({
         type: types.ADD_EXPENSE_SUCCESS,
@@ -149,7 +149,11 @@ export const removeExpense = ( expenseTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Expense has been deleted successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Expense deleted Successfully!',
+      })
+      // message.success("Expense has been deleted successfully!");
       console.log(res);
       dispatch({
         type: types.REMOVE_EXPENSE_SUCCESS,

@@ -7,6 +7,10 @@ const initialState = {
     fetchingShipByError: false,
     ShipByData: [],
 
+    fetchingShipByCount: false,
+    fetchingShipByCountError: false,
+    shipByCount:{},
+
     addingShipBy: false,
     addingShipByError: false,
 
@@ -118,6 +122,19 @@ export const shipByReducer = (state = initialState, action) => {
               ShipByData: [], 
               // deletedTruck: [] 
             };  
+
+
+            case types.GET_SHIPBY_COUNT_REQUEST:
+              return { ...state, fetchingShipByCount: true };
+            case types.GET_SHIPBY_COUNT_SUCCESS:
+              return { ...state, fetchingShipByCount: false, 
+                shipByCount: action.payload };
+            case types.GET_SHIPBY_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingShipByCount: false,
+                fetchingShipByCountError: true,
+              };
     
     default:
         return state;

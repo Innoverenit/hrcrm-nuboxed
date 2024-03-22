@@ -35,7 +35,7 @@ export const getServiceLine = (orgId) => (dispatch) => {
 
 
 
-  export const addServiceLine = (documents, cb) => (dispatch) => {
+  export const addServiceLine = (documents,orgId, cb) => (dispatch) => {
     console.log(documents);
     dispatch({
       type: types.ADD_SERVICELINE_REQUEST,
@@ -49,7 +49,7 @@ export const getServiceLine = (orgId) => (dispatch) => {
       .then((res) => {
       
         
-        // dispatch(getDocuments());
+        dispatch(getServiceLineCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_SERVICELINE_SUCCESS,

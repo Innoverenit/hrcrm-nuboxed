@@ -37,7 +37,7 @@ import { message } from "antd"
   // /**
 //  * add a new sector 
 //  */
-export const addSectors = (sectors, cb) => (dispatch) => {
+export const addSectors = (sectors,orgId,cb) => (dispatch) => {
     console.log(sectors);
     dispatch({
       type: types.ADD_SECTORS_REQUEST,
@@ -49,7 +49,7 @@ export const addSectors = (sectors, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getSectors());
+        dispatch(getSectorCount(orgId));
         if (res.data.message) {
           Swal.fire({
             icon: 'error',
@@ -99,7 +99,10 @@ export const removeSectors = ( sectorId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Sector has been deleted successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sector deleted Successfully!',
+        })
         console.log(res);
         dispatch({
           type: types.REMOVE_SECTORS_SUCCESS,
@@ -117,7 +120,7 @@ export const removeSectors = ( sectorId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
+export const updateSectors = (data, sectorId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_SECTORS_REQUEST,
@@ -125,7 +128,7 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/sector/update`,
-        { sectorName,sectorId,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

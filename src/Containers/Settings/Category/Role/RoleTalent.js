@@ -226,9 +226,10 @@ class RoleTalent extends Component {
             </div>
          
           </MainWrapper>
-          <div class=" font-bold">Updated on {dayjs(this.props.talentRoles && this.props.talentRoles.length && this.props.talentRoles[0].updationDate).format('YYYY-MM-DD')} by {this.props.talentRoles && this.props.talentRoles.length && this.props.talentRoles[0].name}</div>
+          
    
         </div>
+        <div class=" font-bold">Updated on {dayjs(this.props.talentRoles && this.props.talentRoles.length && this.props.talentRoles[0].updationDate).format('YYYY-MM-DD')} by {this.props.talentRoles && this.props.talentRoles.length && this.props.talentRoles[0].name}</div>
       </>
     );
   }
