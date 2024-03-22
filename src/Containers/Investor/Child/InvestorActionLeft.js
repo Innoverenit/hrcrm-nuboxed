@@ -20,20 +20,23 @@ const { Search } = Input;
 const InvestorActionLeft = (props) => {
   const[filter,setFilter]=useState("creationdate")
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getInvestorsbyId(props.userId, pageNo,"creationdate");
       props.ClearReducerDataOfInvestor()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.searchInvestorName(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -64,7 +67,13 @@ const InvestorActionLeft = (props) => {
 // useEffect(() => {
 //   props.getInvestor(props.userId)
 //   }, [props.userId]);
-
+useEffect(() => {
+  // props.getCustomerRecords();
+  if (transcript) {
+    console.log(">>>>>>>", transcript);
+    setCurrentData(transcript);
+  }
+  }, [ transcript]);
   useEffect(() => {
     if (props.viewType === "list") {
       props.getInvestor(props.userId);
@@ -72,11 +81,11 @@ const InvestorActionLeft = (props) => {
       props.getInvestorTeam(props.userId);
     } 
    
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      props.setCurrentData(transcript);
-    }
-  }, [props.viewType, props.userId, transcript]);
+    // if (transcript) {
+    //   console.log(">>>>>>>", transcript);
+    //   props.setCurrentData(transcript);
+    // }
+  }, [props.viewType, props.userId]);
 
   return (
     <div class=" flex items-center">
@@ -190,7 +199,7 @@ const InvestorActionLeft = (props) => {
           suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
         />
         </div>
         {/* <Button

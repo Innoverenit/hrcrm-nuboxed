@@ -25,20 +25,23 @@ const { Search } = Input;
 const ContactInvestActionLeft = (props) => {
   const[filter,setFilter]=useState("creationdate")
   const [page, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [currentData, setCurrentData] = useState("");
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(page + 1);
       props.getContactInvestByUserId(props.userId,page,"creationdate");
       props.ClearReducerDataOfContactInvest()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.searchInvestorContactName(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -60,6 +63,13 @@ const ContactInvestActionLeft = (props) => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
   console.log(transcript);
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
   function  handleFilterChange(data){
     setFilter(data)
     props.getContactInvestByUserId(props.userId, page,data);
@@ -76,11 +86,11 @@ const ContactInvestActionLeft = (props) => {
       props.getTeamContactInvest(props.userId);
     } 
    
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      props.setCurrentData(transcript);
-    }
-  }, [props.viewType, props.userId, transcript]);
+    // if (transcript) {
+    //   console.log(">>>>>>>", transcript);
+    //   props.setCurrentData(transcript);
+    // }
+  }, [props.viewType, props.userId]);
    
  
   const { user } = props;
@@ -173,7 +183,7 @@ const ContactInvestActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
           />
       </div>
       {/* <Button
