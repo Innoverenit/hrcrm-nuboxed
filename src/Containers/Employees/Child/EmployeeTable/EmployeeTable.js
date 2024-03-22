@@ -927,6 +927,7 @@ function EmployeeTable(props) {
            employeeTreeMap={props.employeeTreeMap}
           //  currentData={rowData}
           employeeName={currentEmployeeId}
+          
           documentsByEmployeeId={props.documentsByEmployeeId}
           addDrawerEmployeePulseModal={props.addDrawerEmployeePulseModal}
           handleEmployeePulseDrawerModal={props.handleEmployeePulseDrawerModal}

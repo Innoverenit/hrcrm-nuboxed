@@ -395,6 +395,14 @@ export const getTodosCount = (userId, startDate, endDate) => (dispatch) => {
     });
 };
 
+
+export const handleProspectDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROSPECT_DRAWER,
+    payload: modalProps,
+  });
+};
+
 export const getavgHour = (userId, startDate, endDate) => (dispatch) => {
   dispatch({ type: types.GET_AVG_HOUR_REQUEST });
 
@@ -2337,6 +2345,54 @@ export const getOpenQuotationThisYear = (country) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_OPEN_QUOTATION_YEAR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const handleQuotationYear = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUOTATION_YEAR_DRAWER,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const handleQuotationLife = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUOTATION_LIFE_DRAWER,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const getProspectTableData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_TABLE_DATA_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/customer/country/list/${country}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_PROSPECT_TABLE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_PROSPECT_TABLE_DATA_FAILURE,
         payload: err,
       });
     });

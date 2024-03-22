@@ -40,7 +40,7 @@ const OrdersDashTab=lazy(()=>import("./OrdersDashTab"));
 const DashboardFinanceJumpstart= lazy(()=>import("./Child/JumpStart/DashboardFinanceJumpstart"));
 const FinanceDashTab=lazy(()=>import("./FinanceDashTab"));
 class Dashboard extends Component {
-  state = { visible: false,activeButton:"test" };
+  state = { visible: false,activeButton:"test",selectedCountry:"" };
 
    handleButtonClick=(buttonName)=>{
     this.setState({activeButton:buttonName});
@@ -89,6 +89,7 @@ class Dashboard extends Component {
           this.props.getOpenQuotation(country.long_name)
           this.props.getOpenQuotationThisYear(country.long_name)
           // setSelectedCountry(country.long_name);
+          this.setState({selectedCountry:country.long_name});
           console.log(country.long_name)
         }
       }
@@ -340,6 +341,7 @@ class Dashboard extends Component {
              }
                   {this.state.activeButton==="Customer"&&
        <DashboardProspectJumpstart
+       selectedCountry={this.state.selectedCountry}
        fetchingProspectQuotation={this.props.fetchingProspectQuotation}
        fetchingProspectData={this.props.fetchingProspectData}
        openQuotationYear={this.props.openQuotationYear}

@@ -36,6 +36,11 @@ const initialState = {
   fetchingEmployeeError: false,
   employees: [],
 
+
+  fetchingUserSalary:false,
+  fetchingUserSalaryError:false,
+  usersalary:[],
+
   addDrawerEmployeeDocumentModal:false,
 
   fetchingEmployeeData: false,
@@ -451,6 +456,24 @@ export const EmployeeReducer = (state = initialState, action) => {
         employeeStatus: false,
         employeeStatusError: true,
       };
+
+
+
+      case types.GET_USER_SALARY_REQUEST:
+    return { ...state,  fetchingUserSalary: true };
+  case types.GET_USER_SALARY_SUCCESS:
+    return {
+      ...state,
+      fetchingUserSalary: false,
+       usersalary: action.payload,
+    };
+  case types.GET_USER_SALARY_FAILURE:
+    return {
+      ...state,
+      fetchingUserSalary: false,
+      fetchingUserSalaryError: true,
+    };
+
 
     case types.LINK_EMPLOYEE_STATUS_REQUEST:
       return { ...state, defultStatus: true };
