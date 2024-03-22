@@ -11,6 +11,8 @@ const OrderPhoneModal = (props) => {
                 title={(`Order# - ${rowData.newOrderNo}`)}
                 width="90%"
                 visible={showPhoneList}
+                maskClosable={false}
+                destroyOnClose
                 onClose={() => handleOrderPhoneModal(false)}
                 footer={null}
             >

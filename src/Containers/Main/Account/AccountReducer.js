@@ -708,7 +708,7 @@ export const distributorReducer = (state = initialState, action) => {
      * Pause modal
      */
     case types.HANDLE_PAUSE_BUTTON_MODAL:
-      return { ...state, addOrderDetailsModal: action.payload };
+      return { ...state, addOrderDetailsModal: action.payload, phoneListById: [] };
 
     /**
      * post renwal form

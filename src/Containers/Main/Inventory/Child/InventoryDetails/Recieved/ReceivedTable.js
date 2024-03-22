@@ -313,6 +313,7 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   receivedOrdeIdModal: inventory.receivedOrdeIdModal,
   invenReceivedNoteOrderModal: inventory.invenReceivedNoteOrderModal,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   inventory: inventory.inventory,
   mismatchPhoneModal: inventory.mismatchPhoneModal
 });

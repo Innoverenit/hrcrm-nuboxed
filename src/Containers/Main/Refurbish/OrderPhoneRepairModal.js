@@ -12,7 +12,7 @@ const OrderPhoneRepairModal = (props) => {
                 title={(`Order # - ${rowData.newOrderNo}`)}
                 width="90%"
                 visible={showRepairPhoneList}
-                closable
+                maskClosable={false}
                 destroyOnClose
                 onClose={() => handleRepairPhone(false)}
                 footer={null}

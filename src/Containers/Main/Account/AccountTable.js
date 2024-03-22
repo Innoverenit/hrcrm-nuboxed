@@ -89,6 +89,10 @@ function AccountTable(props) {
               id="app.pincode"
               defaultMessage="pincode"
             /></div>
+            <div className="md:w-[4.8rem]"><FormattedMessage
+              id="app.owner"
+              defaultMessage="Owner"
+            /></div>
             <div class="w-[2rem]"></div>
             <div class="w-[2rem]"></div>
           </div>
@@ -203,6 +207,20 @@ function AccountTable(props) {
                           <div className=" flex font-medium flex-col  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               {item.address && item.address.length && item.address[0].postalCode}
+
+                            </div>
+
+                          </div>
+                          <div className=" flex font-medium flex-col  md:w-[4.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins">
+
+                              <MultiAvatar
+                                primaryTitle={item.salesExecutive}
+                                imageId={item.imageId}
+                                imageURL={item.imageURL}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
                             </div>
 
                           </div>

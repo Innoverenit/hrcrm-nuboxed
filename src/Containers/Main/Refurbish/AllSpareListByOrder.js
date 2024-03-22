@@ -4,14 +4,14 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const ApproveSpareTable = lazy(() => import("./ApproveSpareTable"));
 
 const AllSpareListByOrder = (props) => {
-    const { approveSpareModal, handleAllSpareList,rowData, ...formProps } = props;
+    const { approveSpareModal, handleAllSpareList, rowData, ...formProps } = props;
     return (
         <>
             <StyledDrawer
                 title={(`Approve Spares for Order # -${rowData.newOrderNo} `)}
                 width="60%"
                 visible={approveSpareModal}
-                closable
+                maskClosable={false}
                 destroyOnClose
                 onClose={() => handleAllSpareList(false)}
                 footer={null}

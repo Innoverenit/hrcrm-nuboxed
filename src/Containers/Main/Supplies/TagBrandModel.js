@@ -16,6 +16,8 @@ function TagBrandModel(props) {
                 title={`Tag Brand - ${props.particularDiscountData.suppliesName}  ${props.particularDiscountData.attributeName}`}
                 width="60%"
                 visible={addBrandModel}
+                maskClosable={false}
+                destroyOnClose
                 onClose={() => handleBrandModel(false)}
                 footer={null}
             >

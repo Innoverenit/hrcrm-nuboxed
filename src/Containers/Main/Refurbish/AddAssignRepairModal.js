@@ -12,7 +12,7 @@ const AddAssignRepairModal = (props) => {
                 title={`Assign for repair- ${props.rowData.newOrderNo}`}
                 width="60%"
                 visible={showAssignRepairModal}
-                closable
+                maskClosable={false}
                 destroyOnClose
                 onClose={() => handleAssignRepairModal(false)}
                 footer={null}

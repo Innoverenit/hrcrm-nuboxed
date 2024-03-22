@@ -1,27 +1,27 @@
-import React, { Component, Suspense,lazy } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledDrawer} from "../../../Components/UI/Antd";
+import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-const UpdateSuppliesForm =lazy(()=>import("./UpdateSuppliesForm"));
+const UpdateSuppliesForm = lazy(() => import("./UpdateSuppliesForm"));
 
 
 class UpdateSuppliesFormDrawer extends Component {
     render() {
-        const { updateSuppliesDrawer, handleUpdateSupplieDrawer,particularDiscountData } = this.props;
+        const { updateSuppliesDrawer, handleUpdateSupplieDrawer, particularDiscountData } = this.props;
         return (
             <div>
                 <StyledDrawer
                     title="Update Material"
-                    width="60%"                   
+                    width="60%"
                     visible={updateSuppliesDrawer}
-                    destroyOnClose
                     maskClosable={false}
+                    destroyOnClose
                     onClose={() => handleUpdateSupplieDrawer(false)}
                     footer={null}
                 >
-                    <Suspense fallback={<BundleLoader/>}>
-                    <UpdateSuppliesForm particularDiscountData={particularDiscountData}/>
+                    <Suspense fallback={<BundleLoader />}>
+                        <UpdateSuppliesForm particularDiscountData={particularDiscountData} />
                     </Suspense>
                 </StyledDrawer>
             </div>
