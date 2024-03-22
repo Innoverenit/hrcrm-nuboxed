@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getHotColdWarm,handleLeadHCWdrawer} from "../../Containers/Dashboard/DashboardAction";
+import { BundleLoader } from "../Placeholder";
 
 function Piechart1(props) {
   useEffect(()=> {
@@ -19,9 +20,12 @@ function Piechart1(props) {
 
   useEffect(() => {
     setStudentsubject(["Hot", "Warm", "Cold"]);
-    setStudentMarks([80, 90, 75]);
+    setStudentMarks([1, 1, 2]);
   }, []);
-
+console.log(props.showHotColdWarm)
+if(props.gettingHotColdWarm){
+  return <BundleLoader/>
+}
   return (
     <React.Fragment>
       <div className="container-fluid mb-3">
@@ -30,7 +34,7 @@ function Piechart1(props) {
           type="pie"
           width={500}
           height={170}
-          series={studentMarks} 
+          series={props.showHotColdWarm} 
           options={{
             labels: stdudentSubject, 
           }}
@@ -46,6 +50,8 @@ const mapStateToProps = ({ dashboard,auth }) => ({
   timeRangeType:dashboard.timeRangeType,
   startDate: dashboard.startDate,
   endDate: dashboard.endDate,
+  gettingHotColdWarm:dashboard.gettingHotColdWarm,
+  showHotColdWarm:dashboard.showHotColdWarm,
   openLeadHCWdrawer:dashboard.openLeadHCWdrawer
 });
 const mapDispatchToProps = (dispatch) =>

@@ -7,7 +7,7 @@ import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
-import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation} from "./DashboardAction";
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
@@ -87,14 +87,17 @@ class Dashboard extends Component {
           this.props.getProspectsData(country.long_name)
           this.props.getProspectLifeTime(country.long_name)
           this.props.getOpenQuotation(country.long_name)
+          this.props.getOpenQuotationThisYear(country.long_name)
           // setSelectedCountry(country.long_name);
           console.log(country.long_name)
         }
       }
     });
   };
+
   render() {
-    console.log(this.props.prospectChart)
+    console.log(this.props.prospectLifeTime)
+    console.log(this.props.prospectChart.customerCountByCountry)
     const {
       viewType,
       setDashboardViewType,
@@ -337,7 +340,12 @@ class Dashboard extends Component {
              }
                   {this.state.activeButton==="Customer"&&
        <DashboardProspectJumpstart
+       fetchingProspectQuotation={this.props.fetchingProspectQuotation}
+       fetchingProspectData={this.props.fetchingProspectData}
+       openQuotationYear={this.props.openQuotationYear}
+       fetchingOpenQuotationYear={this.props.fetchingOpenQuotationYear}
        prospectChart={this.props.prospectChart}
+       fetchingProspectLifetime={this.props.fetchingProspectLifetime}
        prospectQuotation={this.props.prospectQuotation}
        prospectLifeTime={this.props.prospectLifeTime}
        />
@@ -384,14 +392,20 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
+  fetchingProspectData:dashboard.fetchingProspectData,
   prospectLifeTime:dashboard.prospectLifeTime,
+  fetchingProspectLifetime:dashboard.fetchingProspectLifetime,
   prospectChart:dashboard.prospectChart,
   prospectQuotation:dashboard.prospectQuotation,
+  openQuotationYear:dashboard.openQuotationYear,
+  fetchingProspectQuotation:dashboard.fetchingProspectQuotation,
+  fetchingOpenQuotationYear:dashboard.fetchingOpenQuotationYear
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,
   getProspectLifeTime,
+  getOpenQuotationThisYear,
   getProspectsData,
   getOpenQuotation
 }, dispatch);
