@@ -9,6 +9,7 @@ import { MainWrapper, } from "../../../../Components/UI/Layout";
 import { TextInput, } from "../../../../Components/UI/Elements";
 import {
     getCustomer,
+    getCustomerCount,
     addCustomer,
     searchCustomerName,
     ClearReducerDataOfCustomer,
@@ -107,9 +108,10 @@ class Customer extends Component {
   };
 
   componentDidMount() {
-    const {   getCustomer,orgId } = this.props;
+    const {   getCustomer,getCustomerCount,orgId } = this.props;
     console.log();
        getCustomer(orgId);
+       getCustomerCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -168,7 +170,7 @@ class Customer extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!name}
-                  Loading={addingCustomer}
+                  loading={addingCustomer}
                   onClick={this.handleAddCustomer}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -247,6 +249,7 @@ const mapStateToProps = ({ catgCustomer,auth }) => ({
   addingCustomerError: catgCustomer.addingCustomerError,
   customerListData: catgCustomer.customerListData,
 orgId:auth.userDetails.organizationId,
+customerCount:catgCustomer.customerCount,
 userId:auth.userDetails.userId,
 removingCustomer: catgCustomer.removingCustomer,
 removingCustomerError: catgCustomer.removingCustomerError,
@@ -261,6 +264,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getCustomer,
+        getCustomerCount,
         ClearReducerDataOfCustomer,
         searchCustomerName,
         addCustomer,

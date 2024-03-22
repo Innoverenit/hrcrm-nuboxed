@@ -9,6 +9,7 @@ import { MainWrapper, } from "../../../../Components/UI/Layout";
 import { TextInput, } from "../../../../Components/UI/Elements";
 import {
     getPayments,
+    getPaymentCount,
     addPayment,
     searchPaymentName,
     ClearReducerDataOfPayment,
@@ -106,9 +107,10 @@ class Payment extends Component {
   };
 
   componentDidMount() {
-    const {   getPayments,orgId } = this.props;
+    const {   getPayments,getPaymentCount,orgId } = this.props;
     console.log();
     getPayments(orgId);
+    getPaymentCount(orgId);
     // this.getLinkedSources();
   }
   render() {
@@ -167,7 +169,7 @@ class Payment extends Component {
                   type="primary"
                   htmlType="submit"
                   disabled={!name}
-                  Loading={addingPayment}
+                  loading={addingPayment}
                   onClick={this.handleAddPayment}
                   style={{ marginRight: "0.125em" }}
                 >
@@ -241,6 +243,7 @@ class Payment extends Component {
 
 const mapStateToProps = ({ payments,auth }) => ({
     addingPayment: payments.addingPayment,
+    paymentCount:payments.paymentCount,
     addingPaymentError: payments.addingPaymentError,
     paymentsListData: payments.paymentsListData,
 orgId:auth.userDetails.organizationId,
@@ -258,6 +261,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getPayments,
+        getPaymentCount,
         ClearReducerDataOfPayment,
         searchPaymentName,
         addPayment,

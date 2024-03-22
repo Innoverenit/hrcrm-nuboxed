@@ -119,9 +119,14 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.customerCount.CustomerTypeCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                       Type
                       </span>
+                     </Badge>
                     </>
                   }
                   key="2"
@@ -151,9 +156,14 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <PaymentIcon />
+                      <Badge
+                count={this.props.paymentCount.ServiceLineCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                       <FormattedMessage id="app.payment" defaultMessage="Payment" />
                       </span>
+                      </Badge>
                     </>
                   }
                   key="4"
@@ -173,9 +183,11 @@ class CustomerSectorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ sector,source}) => ({
+const mapStateToProps = ({ sector,source,catgCustomer,payments}) => ({
   sectorCount:sector.sectorCount,
   sourceCount:source.sourceCount,
+  paymentCount:payments.paymentCount,
+  customerCount:catgCustomer.customerCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

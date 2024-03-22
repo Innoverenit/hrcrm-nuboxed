@@ -28,10 +28,11 @@ const { Search } = Input;
 const ContactActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getContactListByUserId(props.userId, pageNo,"creationdate");
       props.ClearReducerDataOfContact()
@@ -41,6 +42,7 @@ const ContactActionLeft = (props) => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.inputContactDataSearch(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -60,6 +62,14 @@ const ContactActionLeft = (props) => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+  console.log(transcript);
   console.log(transcript);
   useEffect(() => {
     // props.getContactRecord(props.userId);
@@ -207,7 +217,7 @@ const ContactActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
           />
         {/* <Input
           placeholder="Search by Name, Company"
