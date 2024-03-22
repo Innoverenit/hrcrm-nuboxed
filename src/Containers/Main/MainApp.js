@@ -34,6 +34,7 @@ import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
 import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
+import DataRoom from "../Data Room/DataRoom";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -659,6 +660,7 @@ function MainApp(props) {
                       <Route exact path="/collection" component={Collection} />
                       <Route exact path="/task" component={Task} />
                       <Route exact path="/event" component={Event} />
+                      <Route exact path="/dataroom" component={DataRoom} />
                       <Route
                         exact
                         path="/employee/:id"

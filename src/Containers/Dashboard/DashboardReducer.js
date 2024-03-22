@@ -7,6 +7,10 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingProspectTableData:false,
+  fetchingProspectTableDataError:false,
+  prospectTableData:[],
+
   fetchingThisMonthTaskGantt: false,
   fetchingThisMonthTaskGanttError: false,
 
@@ -184,6 +188,11 @@ const initialState = {
   fetchingJumpstartBulb3: false,
   fetchingJumpstartBulb3Error: false,
   jumpstartBulb3Count: [],
+
+
+  prospectQuotationYearModal:false,
+
+  prospectQuotationLifeModal:false,
 
   dateRangeList: [
     {
@@ -392,6 +401,9 @@ const initialState = {
   fetchingorderDetailsError: false,
   orderinDashboard: [],
 
+
+  prospectDrawerModal:false,
+
   fetchingJumpstartFinanceDetail: false,
   fetchingJumpstartFinanceDetailError: false,
   financeDetail: []
@@ -416,6 +428,9 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingSkillsCloud: false,
         fetchingSkillsCloudError: true,
       };
+
+      case types.HANDLE_QUOTATION_YEAR_DRAWER:
+        return { ...state, prospectQuotationYearModal: action.payload };
     case types.CHANGE_SELECTED_TIME_INTERVAL_REPORT:
       return {
         ...state,
@@ -566,6 +581,13 @@ export const dashboardReducer = (state = initialState, action) => {
           fetchingProspectLifetimeError: true,
         };
 
+
+        case types.HANDLE_PROSPECT_DRAWER:
+          return { ...state, prospectDrawerModal: action.payload };
+
+          case types.HANDLE_QUOTATION_LIFE_DRAWER:
+            return { ...state, prospectQuotationLifeModal: action.payload };
+
     case types.GET_DASHBOARD_CLOSURE_RATIO_REQUEST:
       return { ...state, fetchingdashBoardClosureRatio: true };
     case types.GET_DASHBOARD_CLOSURE_RATIO_SUCCESS:
@@ -580,6 +602,24 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingdashBoardClosureRatio: false,
         fetchingdashBoardClosureRatioError: true,
       };
+
+
+
+      case types.GET_PROSPECT_TABLE_DATA_REQUEST:
+      return { ...state, fetchingProspectTableData: true };
+    case types.GET_PROSPECT_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingProspectTableData: false,
+        prospectTableData: action.payload,
+      };
+    case types.GET_PROSPECT_TABLE_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingProspectTableData: false,
+        fetchingProspectTableDataError: true,
+      };
+
 
     case types.GET_DASHBOARD_SUMMARY_CHART_REQUEST:
       return { ...state, fetchingdashBoardSummaryChart: true };

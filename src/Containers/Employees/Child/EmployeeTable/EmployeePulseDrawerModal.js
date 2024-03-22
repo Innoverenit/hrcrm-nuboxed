@@ -2,6 +2,7 @@ import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SalaryForm from "../EmployeeTable/SalaryForm"
 import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import EmployeeTreeMap from "./EmployeeTreeMap";
@@ -141,6 +142,59 @@ class EmployeePulseDrawerModal extends Component {
                 <EmployeeTreeMap
           employeeTreeMap={this.props.employeeTreeMap}
           />
+              </Suspense>
+            </TabPane>
+
+
+
+            <TabPane
+              tab={
+                <>
+                  <span>
+ <ContactsIcon style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                      Salary
+                    </span>
+                  </span>
+                  {/* {activeKey === "1" && (
+                    <>
+                      <Tooltip 
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
+                      
+                          <PlusOutlined
+                            type="plus"
+                           
+                            tooltiptitle={
+                              <FormattedMessage
+                                id="app.Create"
+                                defaultMessage="Create"
+                              />
+                            }
+                            onClick={() => {
+                              handleInvestorContactModal(true);
+                            }}
+                            size="0.875em"
+                          />
+                       
+                      </Tooltip>
+                    </>
+                  )} */}
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <SalaryForm
+                 employeeName={this.props.employeeName}
+                />
+                {/* <UserKpiList employeeName={this.props.employeeName}/> */}
               </Suspense>
             </TabPane>
             

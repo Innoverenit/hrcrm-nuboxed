@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getJumpFinanceDetail } from "../../DashboardAction"
+import AddProspectQuotationLifeTime from "../JumpStart/AddProspectQuotationLifeTime"
+import AddProspectQuotationYear from "../JumpStart/AddProspectQuotationYear"
+import AddProspectDrawerModal from "../JumpStart/AddProspectDrawerModal"
+import { getJumpFinanceDetail ,handleQuotationLife,handleQuotationYear,handleProspectDrawer} from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 
 function DashboardProspectJumpstart(props) {
@@ -28,8 +31,8 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                 id="app.prospects"
                 defaultMessage="Prospects"
               />}
-            // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
-            // cursorData={"pointer"}
+            jumpstartClick={()=>props.handleProspectDrawer(true)}
+            cursorData={"pointer"}
              value={props.prospectChart.customerCountByCountry}
             isLoading={props.fetchingProspectData}
             />
@@ -41,8 +44,8 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                 id="app.opertunitiesThisYear"
                 defaultMessage="Quotations this Year"
               />}
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
+            jumpstartClick={()=>props.handleQuotationYear(true)}
+             cursorData={"pointer"}
             value={props.openQuotationYear.yearlyOpportunityCountByCountry}
           isLoading={props.fetchingOpenQuotationYear}
             />
@@ -56,8 +59,8 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                 defaultMessage="Quotations Life Time"
               />}
               value={props.prospectLifeTime.opportunityCountByCountry}
-            // jumpstartClick={()=>handleDealAddedDrawer(true)}
-            // cursorData={"pointer"}
+            jumpstartClick={()=>props.handleQuotationLife(true)}
+            cursorData={"pointer"}
             // value={props.financeDetail.opportunityAdded}
             isLoading={props.fetchingProspectLifetime}
             />
@@ -77,7 +80,29 @@ console.log(props.prospectLifeTime.customerCountByCountry)
           </div>
         </div>
       </div>
+<AddProspectDrawerModal
+selectedCountry={props.selectedCountry}
+prospectDrawerModal={props.prospectDrawerModal}
+handleProspectDrawer={props.handleProspectDrawer}
+/>
 
+
+<AddProspectQuotationYear
+handleQuotationYear={props.handleQuotationYear}
+prospectQuotationYearModal={props.prospectQuotationYearModal}
+// prospectDrawerModal={props.prospectDrawerModal}
+// handleProspectDrawer={props.handleProspectDrawer}
+/>
+
+
+<AddProspectQuotationLifeTime
+handleQuotationLife={props.handleQuotationLife}
+prospectQuotationLifeModal={props.prospectQuotationLifeModal}
+// handleQuotationYear={props.handleQuotationYear}
+// prospectQuotationYearModal={props.prospectQuotationYearModal}
+// prospectDrawerModal={props.prospectDrawerModal}
+// handleProspectDrawer={props.handleProspectDrawer}
+/>
 
     </>
 
@@ -88,6 +113,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   role: auth.userDetails.role,
   financeDetail: dashboard.financeDetail,
   orgId: auth.userDetails.organizationId,
+  prospectDrawerModal:dashboard.prospectDrawerModal,
   showSalesDatelist: dashboard.showSalesDatelist,
   fetchingSalesDatewiseReport: dashboard.fetchingSalesDatewiseReport,
   fetchingSalesDatewiseReportError: dashboard.fetchingSalesDatewiseReportError,
@@ -98,12 +124,17 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   timeRangeType: dashboard.timeRangeType,
   startDate: dashboard.startDate,
   endDate: dashboard.endDate,
+  prospectQuotationLifeModal:dashboard.prospectQuotationLifeModal,
+  prospectQuotationYearModal:dashboard.prospectQuotationYearModal
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getJumpFinanceDetail
+      getJumpFinanceDetail,
+      handleProspectDrawer,
+      handleQuotationYear,
+      handleQuotationLife
       //   getJumpInvestorlist,
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,

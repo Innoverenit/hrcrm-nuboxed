@@ -381,6 +381,23 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
+
+
+          <Menu.Item key="/dataroom " style={{ height: "1.7rem",
+           paddingLeft: "1rem", color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
+            <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
+              <FilePresentIcon
+                style={{ fontSize: "large" }}
+              />
+              <span class="text-white text-ls ml-1">
+              Data Room
+                {/* {translatedMenuItems[13]} */}
+                &nbsp;&nbsp;&nbsp;
+                
+              </span>
+            </Link>
+          </Menu.Item>
+       
         {(user.imInd === true && user.dealAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
           <Menu.Item key="/deal " style={{ height: "1.7rem", 
           paddingLeft: "1rem",  color: selectedMenuItem === '/deal' ? 'tomato' : '#4bc076' }}>

@@ -1262,3 +1262,34 @@ export const addEmployeeWorkflow = (data,employeeId,) => (dispatch) => {
     });
 };
 
+
+
+
+
+export const getUserSalary = (employeeId) => (dispatch) => {
+  dispatch({
+    type: types.GET_USER_SALARY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/employee/salary-breckOut/${employeeId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_USER_SALARY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_USER_SALARY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
