@@ -15,6 +15,7 @@ function DashboardProspectJumpstart(props) {
 //     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
 //   }, [props.timeRangeType])
 console.log(props.prospectChart)
+console.log(props.prospectLifeTime.customerCountByCountry)
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -29,8 +30,8 @@ console.log(props.prospectChart)
               />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
             // cursorData={"pointer"}
-             value={props.prospectChart.opportunityCountByCountry}
-            // isLoading={props.user.fetchingJumpstartInvestor}
+             value={props.prospectChart.customerCountByCountry}
+            isLoading={props.fetchingProspectData}
             />
 
             <JumpStartBox
@@ -42,8 +43,8 @@ console.log(props.prospectChart)
               />}
             // jumpstartClick={()=>handlePitchAddedDrawer(true)}
             // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
+            value={props.openQuotationYear.yearlyOpportunityCountByCountry}
+          isLoading={props.fetchingOpenQuotationYear}
             />
           </div>
           <div class="flex w-wk">
@@ -54,10 +55,11 @@ console.log(props.prospectChart)
                 id="app.financeclosed"
                 defaultMessage="Quotations Life Time"
               />}
+              value={props.prospectLifeTime.opportunityCountByCountry}
             // jumpstartClick={()=>handleDealAddedDrawer(true)}
             // cursorData={"pointer"}
             // value={props.financeDetail.opportunityAdded}
-            // isLoading={props.fetchingJumpstartInvestor3}
+            isLoading={props.fetchingProspectLifetime}
             />
             <JumpStartBox
                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -66,10 +68,11 @@ console.log(props.prospectChart)
                 id="app.financecancelled"
                 defaultMessage="Open Quotations"
               />}
+              value={props.prospectQuotation.openOpportunityCountByCountry}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
             // value={ props.financeDetail.closedOpportunity}
-            // isLoading={props.fetchingJumpstartInvestor4}
+          isLoading={props.fetchingProspectQuotation}
             />
           </div>
         </div>

@@ -2313,3 +2313,31 @@ export const getOpenQuotation = (country) => (dispatch) => {
       });
     });
 };
+
+
+
+export const getOpenQuotationThisYear = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_OPEN_QUOTATION_YEAR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/year/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPEN_QUOTATION_YEAR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_OPEN_QUOTATION_YEAR_FAILURE,
+        payload: err,
+      });
+    });
+};

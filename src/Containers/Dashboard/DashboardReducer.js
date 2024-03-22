@@ -103,6 +103,12 @@ const initialState = {
   fetchingTaskDashboardGanttError: false,
   tasksdashboardGantt: [],
 
+
+
+  fetchingOpenQuotationYear:false,
+  fetchingOpenQuotationYearError:false,
+  openQuotationYear:{},
+
   fetchingTaskper: false,
   fetchingTaskperError: false,
   taskperCount: {},
@@ -547,7 +553,7 @@ export const dashboardReducer = (state = initialState, action) => {
 
       case types.GET_PROSPECT_LIFETIME_REQUEST:
         return { ...state, fetchingProspectLifetime: true };
-      case types.GET_PROSPECT_DATA_SUCCESS:
+      case types.GET_PROSPECT_LIFETIME_SUCCESS:
         return {
           ...state,
           fetchingProspectLifetime: false,
@@ -1490,6 +1496,25 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingPitchQualified: false,
         fetchingPitchQualifiedError: true,
       };
+
+
+
+
+      case types.GET_OPEN_QUOTATION_YEAR_REQUEST:
+        return { ...state, fetchingOpenQuotationYear: true };
+      case types.GET_OPEN_QUOTATION_YEAR_SUCCESS:
+        return {
+          ...state,
+          fetchingOpenQuotationYear: false,
+          openQuotationYear: action.payload,
+        };
+      case types.GET_OPEN_QUOTATION_YEAR_FAILURE:
+        return {
+          ...state,
+          fetchingOpenQuotationYear: false,
+          fetchingOpenQuotationYearError: true,
+        };
+  
 
     case types.HANDLE_PITCH_ADDED_DRAWER:
       return { ...state, openPitchAdded: action.payload };
