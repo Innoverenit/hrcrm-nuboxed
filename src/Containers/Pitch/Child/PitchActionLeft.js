@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from '@mui/icons-material/People';
 import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { } from 'react-speech-recognition';
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { Input, Tooltip,Badge,Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount,searchPitchName} from "../PitchAction";
@@ -16,25 +16,41 @@ const Option = StyledSelect.Option;
 
 const PitchActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getPitch(props.userId,pageNo,"creationdate");
       props.ClearReducerDataOfPitch()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.searchPitchName(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
   };
   const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
   useEffect(() => {
     if (props.viewType === "card") {
       props.getPitchCount(props.userId);
@@ -162,7 +178,7 @@ const PitchActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
         
           />
         </div>
