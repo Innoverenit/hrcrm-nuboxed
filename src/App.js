@@ -43,9 +43,9 @@ class App extends Component {
 
               {/* <Route exact path="/login/:username?/:password?" component={Login} /> */}
               {/* CELL TECH */}
-              {/* <Route exact path="/login" component={Login} /> */}
+              <Route exact path="/login" component={Login} />
               {/* NUBOX */}
-              <Route exact path="/login" component={LoginHr} />
+              {/* <Route exact path="/login" component={LoginHr} /> */}
               <Route exact path="/mobilelogin" component={AppLoginMessage} />
               <Route
                 exact
