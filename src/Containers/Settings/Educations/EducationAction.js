@@ -77,7 +77,7 @@ export const addEducations = (education,orgId, cb) => (dispatch) => {
     });
 };
 
-export const updateEducations = (educationTypeId, educationType, cb) => (
+export const updateEducations = (data,educationTypeId, cb) => (
   dispatch
 ) => {
   dispatch({
@@ -86,7 +86,7 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
   axios
     .put(
       `${base_url}/educationType/update`,
-      { educationType, educationTypeId, editInd: "true" },
+     data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

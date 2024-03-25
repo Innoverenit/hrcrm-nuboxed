@@ -75,16 +75,18 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <FactoryIcon />
+            
+                      <span class="font-poppins ml-1 ">
                       <Badge
                 count={this.props.sectorCount.SectorCount}
                 overflowCount={999}
               >
                 
-                      <span class=" ml-1">
                    Sector 
                         {/* <span className="text-red-500 font-bold">{this.props.sectorCount.SectorCount}</span> */}
+                        </Badge>
                       </span>
-                      </Badge>
+                    
                     </>
                   }
                   key="0"
@@ -97,16 +99,17 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
-                      <Badge
+             
+                          <span class="font-poppins ml-1 ">
+                          <Badge
                 count={this.props.sourceCount.SourceCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1">
-             
                         Source
                         {/* <span className="text-red-500 font-bold">{this.props.sourceCount.SourceCount}</span> */}
+                        </Badge>
                       </span>
-                      </Badge>
+                    
                     </>
                   }
                   key="1"
@@ -119,14 +122,16 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
-                      <Badge
+            
+                        <span class="font-poppins ml-1 ">
+                        <Badge
                 count={this.props.customerCount.CustomerTypeCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1">
                       Type
+                      </Badge>
                       </span>
-                     </Badge>
+                  
                     </>
                   }
                   key="2"
@@ -141,7 +146,7 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
-                      <span class=" ml-1">
+                      <span class="font-poppins ml-1 ">
                         Vat
                       </span>
                     </>
@@ -156,14 +161,16 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <PaymentIcon />
-                      <Badge
+            
+                         <span class="font-poppins ml-1 ">
+                         <Badge
                 count={this.props.paymentCount.ServiceLineCount}
                 overflowCount={999}
               >
-                      <span class=" ml-1">
                       <FormattedMessage id="app.payment" defaultMessage="Payment" />
-                      </span>
                       </Badge>
+                      </span>
+                     
                     </>
                   }
                   key="4"

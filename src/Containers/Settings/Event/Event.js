@@ -1,12 +1,13 @@
 import React, {  useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { base_url } from "../../../Config/Auth";
+import { Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Input } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
+import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import {
   getEvents,
@@ -112,7 +113,13 @@ setEditingId(null);
 if (props.fetchingEvents) {
 return <div><BundleLoader/></div>;
 }
+const {
+  userId,
+  user,
+ 
+} = props;
   return (
+ 
       <div>
     <div class=" flex flex-row justify-between">
     <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
@@ -125,6 +132,14 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
+          <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/user/customer/${userId}`}>
+<DownloadIcon 
+   className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -207,6 +222,7 @@ const mapStateToProps = ({ events,auth }) => ({
   addingEvents: events.addingEvents,
   addingEventsError: events.addingEventsError,
   events: events.events,
+  userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   // removingEvents: event.removingEvents,
   // removingEventsError: event.removingEventsError,

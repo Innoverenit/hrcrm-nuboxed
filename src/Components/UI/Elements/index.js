@@ -26,6 +26,8 @@ export { default as StyledCreatable } from "./StyledCreatable";
 export { default as StyledAsync } from "./StyledAsync";
 export { default as NoData } from "./NoData";
 export { default as JumpStartBox } from "./JumpStartBox";
+export { default as JumpStartColor } from "./JumpStartColor";
+
 export { default as Select } from "./SelectInput";
 export { default as StyledCalendar } from "./StyledCalendar";
 export { default as Spacer } from "./Spacer";

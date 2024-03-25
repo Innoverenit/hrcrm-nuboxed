@@ -40,6 +40,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 const SubMenu = Menu.SubMenu;
 
 function NavMenu(props) {
+  const { user } = props;
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   console.log("abv", props.selectedLanguage)
   // useEffect(() => {
@@ -78,7 +79,9 @@ function NavMenu(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
+  // const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
+  const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboardRegional");
+
   useEffect(() => {
     const storedMenuItem = localStorage.getItem('selectedMenuItem');
     if (storedMenuItem) {
@@ -92,7 +95,7 @@ function NavMenu(props) {
   };
 
   console.log("Oppo", props.opportunityRecord);
-  const { user } = props;
+
   let path = window.location.href.split("/")[3];
   console.log("path", path);
   console.log(user);
@@ -113,10 +116,10 @@ function NavMenu(props) {
         {/* dashboard */}
         {user.dashboardRegionalInd === true ? (
   <>
- <Menu.Item key="/dashboard#" style={{ height: "1.7rem", 
+ <Menu.Item key="/dashboardRegional" style={{ height: "1.7rem", 
 paddingLeft: "1rem" ,
-color: selectedMenuItem === '/dashboard#' ? 'tomato' : '#4bc076',}}>
-  <Link to="/dashboard#" onClick={() => handleSelect('/dashboard#')}>
+color: selectedMenuItem === '/dashboardRegional' ? 'tomato' : '#4bc076',}}>
+  <Link to="/dashboardRegional" onClick={() => handleSelect('/dashboardRegional')}>
     <DashboardIcon
 
       style={{ fontSize: "large" }}
@@ -382,7 +385,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
 
-
+{(user.imInd === true && user.dataRoomAccessInd === true || user.role === "ADMIN" && user.imInd === true ) && (
           <Menu.Item key="/dataroom " style={{ height: "1.7rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
             <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
@@ -397,7 +400,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               </span>
             </Link>
           </Menu.Item>
-       
+)}
         {(user.imInd === true && user.dealAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
           <Menu.Item key="/deal " style={{ height: "1.7rem", 
           paddingLeft: "1rem",  color: selectedMenuItem === '/deal' ? 'tomato' : '#4bc076' }}>
