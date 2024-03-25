@@ -125,7 +125,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
 /**
  *update label of DESIGNATIONS
  */
- export const updateDesignations = (designationTypeId, designationType, cb) => (dispatch) => {
+ export const updateDesignations = (data,designationTypeId, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_DESIGNATIONS_REQUEST,
@@ -133,7 +133,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
     axios
       .put(
         `${base_url}/designation`,
-        { designationTypeId, designationType,editInd:"true" },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

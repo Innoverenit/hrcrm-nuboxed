@@ -127,7 +127,7 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
 /**
  *update label of document
  */
- export const updateDocuments = (documentTypeId, documentTypeName, cb) => (dispatch) => {
+ export const updateDocuments = (data,documentTypeId, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_DOCUMENTS_REQUEST,
@@ -135,8 +135,9 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
     axios
       .put(
         `${base_url}/document`,
-        { documentTypeName,documentTypeId,editInd:"true"
-        },
+        // { documentTypeName,documentTypeId,editInd:"true"
+        // },
+        data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

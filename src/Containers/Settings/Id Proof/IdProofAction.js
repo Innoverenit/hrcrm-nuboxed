@@ -82,7 +82,7 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
   };
 
 
- export const updateIdProofs = (IdProofTypeId, IdProofType, cb) => (dispatch) => {
+ export const updateIdProofs = (data,IdProofTypeId, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_ID_PROOF_REQUEST,
@@ -90,7 +90,7 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/idProofType/update`,
-        { IdProofType,IdProofTypeId,editInd:"true" },
+      data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",

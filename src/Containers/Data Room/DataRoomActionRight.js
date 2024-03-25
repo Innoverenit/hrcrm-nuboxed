@@ -40,6 +40,7 @@ class DataRoomActionRight extends React.Component {
                         defaultMessage="Add"
                       />
           </Button> */}
+           {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
 <Button
   type="primary"
 //   onClick={() => this.props.handlePitchModal(true)}
@@ -49,6 +50,7 @@ class DataRoomActionRight extends React.Component {
 >
   <FormattedMessage id="app.add" defaultMessage="Add" />
 </Button>
+   )} 
         </div>
     
       </>

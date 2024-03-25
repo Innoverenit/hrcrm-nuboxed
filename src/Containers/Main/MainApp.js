@@ -608,8 +608,13 @@ function MainApp(props) {
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
                       <Route exact path="/planner" component={Planner} />
-                      <Route exact path="/dashboard" component={Dashboard} />
-                      <Route exact path="/dashboard#" component={DashboardPage} />
+                    
+                      <Route exact path="/dashboardRegional" component={DashboardPage} />
+                    
+                        <Route exact path="/dashboard" component={Dashboard} />
+                    
+               
+
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/Invoice" component={Invoice} />
                       <Route

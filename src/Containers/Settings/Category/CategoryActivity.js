@@ -49,7 +49,7 @@ class CategoryActivity extends Component {
                 count={this.props.eventCount.EventTypeCount}
                 overflowCount={999}
               >
-                    <span className="ml-1">Event 
+                    <span className="ml-1 font-poppins">Event 
                     {/* <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span> */}
                     </span>
                     </Badge>
@@ -65,7 +65,7 @@ class CategoryActivity extends Component {
                 count={this.props.taskCount.TaskTypeCount}
                 overflowCount={999}
               >
-                    <span className="ml-1">Task 
+                    <span className="ml-1 font-poppins">Task 
                     {/* <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span> */}
                     </span>
                     </Badge>

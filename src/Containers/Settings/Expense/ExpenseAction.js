@@ -76,7 +76,7 @@ export const addExpenses = (expense,orgId, cb) => (dispatch) => {
     });
 };
 
-export const updateExpenses = (expenseTypeId, expenseType, cb) => (
+export const updateExpenses = (data,expenseTypeId, cb) => (
   dispatch
 ) => {
   dispatch({
@@ -85,7 +85,7 @@ export const updateExpenses = (expenseTypeId, expenseType, cb) => (
   axios
     .put(
       `${base_url}/expenseType`,
-      { expenseType, expenseTypeId ,editInd:"true"},
+    data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
