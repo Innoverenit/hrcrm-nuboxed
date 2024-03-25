@@ -1385,3 +1385,45 @@ export const convertProspectStatus = (data,userId,taskId,) => (
       // cb && cb("failuer");
     });
 };
+
+
+export const addTaskImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TASK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/organization/document`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getRepositoryDocuments(userId));
+      // const startDate = dayjs().startOf("month").toISOString();
+      // const endDate = dayjs().endOf("month").toISOString();
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_TASK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TASK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
