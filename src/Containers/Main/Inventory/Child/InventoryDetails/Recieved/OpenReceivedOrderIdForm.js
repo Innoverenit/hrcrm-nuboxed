@@ -18,10 +18,10 @@ import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import ReceiveValidationToggle from "./ReceiveValidationToggle";
-import ReceivedModal from "./ReceivedPhoneModal";
 import dayjs from "dayjs";
 import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/AccountOrderTab/AccountPhoneTaskTable";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import ReceivedPhoneModal from "./ReceivedPhoneModal";
 
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 
@@ -381,7 +381,7 @@ function OpenReceivedOrderIdForm(props) {
               phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
               handleReceivedOrderIdPhoneNoteModal={props.handleReceivedOrderIdPhoneNoteModal}
             />
-            <ReceivedModal
+            <ReceivedPhoneModal
               handlereceivePhoneModal={props.handlereceivePhoneModal}
               addReceivePhone={props.addReceivePhone}
               orderPhoneId={props.rowData.orderPhoneId}

@@ -91,15 +91,22 @@ const StatusOfOrder = (props) => (
                     status: 'progress',
                     description: <>
                         {/* {props.particularRowData.transferInd === 2 && */}
-                        <b>Arrived at {props.particularRowData.locationDetailsViewDTO
-                            && props.particularRowData.locationDetailsViewDTO.name || ""} on
-                            &nbsp;{moment(props.particularRowData.inventoryReceiveDate).format("DD-MM-YYYY")},
-                            Received by {props.particularRowData.inventoryReceiveUser} |
-                            Inspection started by {props.particularRowData.startInspectionUserName} on
-                            &nbsp;{moment(props.particularRowData.startInspectionDate).format("DD-MM-YYYY")} |
+                        {props.particularRowData.transferInd === 1 && <b>
+                            PickUp on {props.particularRowData.pickUpDate} by {props.particularRowData.inventoryUserName} Arrived at {props.particularRowData.locationName}   &nbsp;
+                        </b>}
+                        {props.particularRowData.inventoryReceiveInd && <b>
+                            On {moment(props.particularRowData.inventoryReceiveDate).format("DD-MM-YYYY")},
+                            Received by {props.particularRowData.inventoryReceiveUser} |  &nbsp;
+                        </b>}
+                        {props.particularRowData.inspectionInd === 1
+                            || props.particularRowData.inspectionInd === 2 && <b>
+                                Inspection started by {props.particularRowData.startInspectionUserName} on
+                                &nbsp;{moment(props.particularRowData.startInspectionDate).format("DD-MM-YYYY")} | &nbsp;
+                            </b>}
+                        {props.particularRowData.inspectionInd === 2 && <b>
                             Inspection completed by {props.particularRowData.stopInspectionUserName} on
                             &nbsp;{moment(props.particularRowData.stoptInspectionDate).format("DD-MM-YYYY")}
-                        </b>
+                        </b>}
                         {/* } */}
                     </>
                 },

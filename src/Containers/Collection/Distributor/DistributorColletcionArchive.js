@@ -1,4 +1,4 @@
-import React, { lazy,Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -7,139 +7,114 @@ import { DistributorCollectionArchiveToday } from "../CollectionAction";
 import moment from "moment";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
-const DistributorColletcionArchiveForm =lazy(()=>import("./DistributorColletcionArchiveForm"));
+const DistributorColletcionArchiveForm = lazy(() => import("./DistributorColletcionArchiveForm"));
 
 function DistributorColletcionArchive(props) {
 
   return (
     <>
-    <Suspense fallback={<BundleLoader/>}>
-    <DistributorColletcionArchiveForm/>
-    </Suspense>
- 
+      <Suspense fallback={<BundleLoader />}>
+        <DistributorColletcionArchiveForm />
+      </Suspense>
+
       <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
-        <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer"/></div>
-        <div className=" md:w-[5.1rem]"><FormattedMessage id="app.order" defaultMessage="Order #"/></div>
-        <div className=" md:w-[5.8rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID"/></div>
-        <div className="md:w-[7.8rem]"><FormattedMessage id="app.date" defaultMessage="Date"/></div>
-        <div className="md:w-[6.2rem]"><FormattedMessage id="app.amount" defaultMessage="Amount"/></div>
-        <div className="md:w-[11.3rem]"><FormattedMessage id="app.mode" defaultMessage="Mode"/></div>
-        <div className="w-[3.8rem]"><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+        <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+            <div className=" md:w-[8.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+            <div className=" md:w-[7rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
+            <div className="md:w-[6rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
+            <div className="md:w-[6rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
+            <div className="md:w-[7rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
+            <div className="md:w-[7rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
+            <div className="w-[6rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
+          </div>
 
-      </div>
-       
-      
-      {props.todayDisArchive.map((item) => { 
-                    return (
-                        <div>
-                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 "
-                    
-                                >
-                                   <div class="flex">
-                                   <div className=" flex font-medium flex-col md:w-40 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                           
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           {item.orderSourceName} 
-                           </div>
-                       
-                       </div> 
 
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                                  
-                                    <div class=" text-xs text-cardBody font-poppins">   
-                                    {item.orderId} 
-                                    </div>
-                                
-                                </div> 
-                             
-                                </div>
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
-                                   
+          {props.todayDisArchive.map((item) => {
+            return (
+              <div>
+                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
+                  <div class="flex">
+                    <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins">
+                        {item.orderSourceName}
+                      </div>
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.transactionNumber}
+                    </div>
 
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                                    
+                    <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins">
+                        {item.orderId}
+                      </div>
 
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.paymentType}
+                    </div>
 
-                                    </div>
-                                </div>
-                                </div>
-                               
-                             
-                                <div class="flex md:items-center"> 
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-               
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           {` ${moment(item.paymentDate).format("ll")}`}
-                           </div>
-                       
-                       </div> 
-                       <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                           
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           {item.paymentAmount}
-                           </div>
-                       
-                       </div> 
-                       </div>
-                       <div class="flex">
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
+                  </div>
+                  <div class="flex">
+                    <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                           <div class=" text-xs text-cardBody font-poppins">   
-                        
-                           </div>
-                       
-                       </div> 
-                       <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
 
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           {item.approveByFinanceInd}
-                           </div>
-                       
-                       </div> 
-                       </div>
-                       <div class="flex">
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-
-                           <div class=" text-xs text-cardBody font-poppins">   
-                           <span>
-                      <MultiAvatar
-                        primaryTitle={item.salesExecutive}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </span>
-                           </div>
-                       
-                       </div> 
-                
-                       </div>
+                      <div class=" text-xs text-cardBody font-poppins text-center">
+                        {item.transactionNumber}
 
                       </div>
-                            </div>
+                    </div>
+                    <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div class=" text-xs text-cardBody font-poppins text-center">
+                        {item.paymentType}
+
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div class=" text-xs text-cardBody font-poppins text-center">
+                      {` ${moment(item.date).format("DD-MM-YY")}`}
+
+                    </div>
+                  </div>
+
+                  <div class="flex md:items-center">
+                    <div class="flex">
+                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins">
+                          {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
+                      </div>
+                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins">
+                          {item.paymentModeName}
+                        </div>
 
-                    )
-                })}
-    
-      </OnlyWrapCard>
+                      </div>
+                    </div>
+
+                    <div class="flex">
+                      <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+
+                        <div class=" text-xs text-cardBody font-poppins">
+                          <span>
+                            <MultiAvatar
+                              primaryTitle={item.salesExecutive}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                          </span>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+
+        </OnlyWrapCard>
       </div>
     </>
   );

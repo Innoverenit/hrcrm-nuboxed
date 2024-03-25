@@ -1009,7 +1009,7 @@ export const handleOrderPaymentModal = (modalProps) => (dispatch) => {
 /**
  * Link paid in distributor
  */
-export const addPaidOrder = (data, orderId, distributorId) => (dispatch) => {
+export const addPaidOrder = (data, orderId,) => (dispatch) => {
   dispatch({ type: types.ADD_PAID_BY_DISTRIBUTOR_ID_REQUEST });
   axios
     .post(`${base_url2}/orderPayment/payment`, data, {
@@ -1019,20 +1019,22 @@ export const addPaidOrder = (data, orderId, distributorId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getDistributorOrderPayment(orderId));
-      dispatch(getDistributorOrderByDistributorId(distributorId, 0))
+      dispatch(getDistributorOrderPayment(orderId))
       dispatch({
         type: types.ADD_PAID_BY_DISTRIBUTOR_ID_SUCCESS,
         payload: res.data,
       });
-      message.success("Payment successful")
+      Swal.fire({
+        icon: 'success',
+        title: 'Payment Successful!',
+        showConfirmButton: true,
+      })
     })
     .catch((err) => {
       console.log(err);
       dispatch({
         type: types.ADD_PAID_BY_DISTRIBUTOR_ID_FAILURE,
       });
-      message.error("Something went wrong")
     });
 };
 
@@ -1616,19 +1618,22 @@ export const updatePaymentData = (data, paymentId, cb) => (dispatch) => {
     });
 };
 
-export const deleteOrderPaymentData = (paymentId, distributorId) => (dispatch) => {
+export const deleteOrderPaymentData = (data, paymentId) => (dispatch) => {
   dispatch({
     type: types.DELETE_ORDER_PAYMENT_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/order/deletePayment/${paymentId}`, {
+    .put(`${base_url2}/orderPayment/deletePayment/${paymentId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      dispatch(getDistributorOrderByDistributorId(distributorId, 0))
-      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Payment Deleted Successfully !',
+        showConfirmButton: true,
+      })
       dispatch({
         type: types.DELETE_ORDER_PAYMENT_DATA_SUCCESS,
         payload: paymentId,
@@ -2870,8 +2875,6 @@ export const updateOrderPayment = (data, paymentId) => (
         },
       })
     .then((res) => {
-      console.log(res);
-      // dispatch(getDistributorsByUserId(userId));
       dispatch({
         type: types.UPDATE_ORDER_PAYMENT_AMOUNT_SUCCESS,
         payload: res.data,
@@ -2890,6 +2893,7 @@ export const updateOrderPayment = (data, paymentId) => (
       });
     });
 };
+
 
 export const removeOrderAcc = (orderId) => (dispatch) => {
   dispatch({

@@ -99,7 +99,7 @@ function OrderPhoneListById(props) {
     return (
         <>
             <div className=' flex justify-end sticky flex-col z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg m-5 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[98.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[4.2rem]"><FormattedMessage
                             id="app.oem"
@@ -252,15 +252,15 @@ function OrderPhoneListById(props) {
                                                 <div class=" text-xs text-cardBody font-poppins text-center mr-2">
                                                     <Tooltip title="Spare">
 
-                                                        <span style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white", fontSize: "1rem" }} >
-                                                            <Button
-                                                                type="primary"
-                                                                onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                    hanldeSpare();
-                                                                }}>
-                                                                <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
-                                                        </span>
+
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                hanldeSpare();
+                                                            }}>
+                                                            <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
 
                                                     </Tooltip>
 
@@ -272,11 +272,10 @@ function OrderPhoneListById(props) {
                                                         <Button
                                                             type="primary"
                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                        //type="file-done"
-                                                        // onClick={() => {
-                                                        //     handleSetRowData(item);
-                                                        //     handleExpand(item.phoneId);
-                                                        // }}
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                handleExpand(item.phoneId);
+                                                            }}
                                                         ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
 
                                                     </Tooltip>

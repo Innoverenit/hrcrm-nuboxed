@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button} from "antd";
+import { Button } from "antd";
 import { OnlyWrapCard } from '../../../Components/UI/Layout'
 import { Formik, Form, Field } from "formik";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -15,6 +15,7 @@ import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import DistributorPaymentToggle from "./DistributorPaymentToggle";
 import DistributorProductHistory from "./DistributorProductHistory";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 function DistributorColletcionArchive(props) {
   useEffect(() => {
@@ -68,7 +69,7 @@ function DistributorColletcionArchive(props) {
                   isRequired
                   name="date"
                   width={"100%"}
-                  label={<FormattedMessage id="app.paymentdate" defaultMessage="Payment Date"/>}
+                  label={<FormattedMessage id="app.paymentdate" defaultMessage="Payment Date" />}
                   component={DatePicker}
                   value={values.date}
                   inlineLabel
@@ -84,7 +85,7 @@ function DistributorColletcionArchive(props) {
                   disabled={values.date ? false : true}
 
                 >
-                <FormattedMessage id="app.submit" defaultMessage="Submit"/>  
+                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
                 </Button>
               </div>
               <div class="w-[15%]">
@@ -97,32 +98,30 @@ function DistributorColletcionArchive(props) {
                     handleClear();
                   }}
                 >
-                  <FormattedMessage id="app.clear" defaultMessage="Clear"/>
+                  <FormattedMessage id="app.clear" defaultMessage="Clear" />
                 </Button>
               </div>
             </div>
 
 
-            
+
           </Form>
         )}
       </Formik>
 
-      <div className=' flex justify-end sticky top-28 z-auto'>
+      {props.fetchingTodayDistributor ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
         <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer"/></div>
-            <div className=" md:w-[8.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #"/></div>
-            <div className=" md:w-[5.8rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID"/></div>
-            <div className="md:w-[1.9rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
-            <div className="md:w-[5.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.amount" defaultMessage="Amount"/></div>
-            <div className="md:w-[3.3rem]"><FormattedMessage id="app.mode" defaultMessage="Mode"/></div>
-            <div className="w-[4.8rem]"><FormattedMessage id="app.received" defaultMessage="Received ?"/></div>
-            <div className="w-[4.9rem]"><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+            <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+            <div className=" md:w-[8.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+            <div className=" md:w-[7rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
+            <div className="md:w-[6rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
+            <div className="md:w-[6rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
+            <div className="md:w-[7rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
+            <div className="md:w-[7rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
+            <div className="w-[4.8rem]"><FormattedMessage id="app.received" defaultMessage="Received ?" /></div>
+            <div className="w-[6rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
           </div>
-
-
           {props.todayDistributor.map((item) => {
 
             return (
@@ -130,17 +129,13 @@ function DistributorColletcionArchive(props) {
                 <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-      
                       <div class=" text-xs text-cardBody font-poppins">
                         {item.orderSourceName}
                       </div>
 
                     </div>
 
-                    <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-      
+                    <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         {item.orderId}
                       </div>
@@ -149,26 +144,22 @@ function DistributorColletcionArchive(props) {
 
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                 
+                    <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+
 
                       <div class=" text-xs text-cardBody font-poppins text-center">
                         {item.transactionNumber}
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-          
-
+                    <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs text-cardBody font-poppins text-center">
                         {item.paymentType}
 
                       </div>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-       
-
+                  <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins text-center">
                       {` ${moment(item.date).format("DD-MM-YY")}`}
 
@@ -177,55 +168,41 @@ function DistributorColletcionArchive(props) {
 
                   <div class="flex md:items-center">
                     <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-
-                      
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {` ${moment(item.paymentDate).format("ll")}`}
-                        </div>
-
-                      </div>
-                      <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-
-                      
+                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
                       </div>
-                    </div>
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                       
+                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins">
-                          {/* {item.paymentMode} */}
-                        </div>
-
-                      </div>
-                      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-        
-                        <div class=" text-xs text-cardBody font-poppins">
-                         {user.collectionApproveInd === true && (
-                          <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType}/>
-                         )}
+                          {item.paymentModeName}
                         </div>
 
                       </div>
                     </div>
                     <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[6.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-        
+                      <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins">
-                        <span>
-                      <MultiAvatar
-                        primaryTitle={item.salesExecutive}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </span>
+                          {user.collectionApproveInd === true && (
+                            <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType} />
+                          )}
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+
+                        <div class=" text-xs text-cardBody font-poppins">
+                          <span>
+                            <MultiAvatar
+                              primaryTitle={item.salesExecutive}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                          </span>
                         </div>
 
                       </div>
@@ -240,7 +217,7 @@ function DistributorColletcionArchive(props) {
             )
           })}
         </OnlyWrapCard>
-      </div>
+      </div>}
       <DistributorProductHistory
         handleDistributorProductModal={props.handleDistributorProductModal}
         collectionDistributorOrder={props.collectionDistributorOrder}
