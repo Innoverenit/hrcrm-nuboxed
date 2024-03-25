@@ -132,14 +132,14 @@ function ContactAllCardList(props) {
      
       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" max-sm:hidden flex justify-between w-[98%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
-        <div className=" w-40 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
-        <div className=" w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Designation</div>
-        <div className="w-36 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Department</div>
-        <div className="w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Quotation</div>
-        <div className="w-28 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Pipeline</div>
-        <div className="w-20 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Portal Acess</div>
-        <div className="w-16 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
+        <div className=" w-[13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10rem]">Name</div>
+        <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[5rem]">Company</div>
+        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem] max-lg:w-[8.1rem] ">Designation</div>
+        <div className="w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[7.1rem]">Department</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem]">Quotation</div>
+        <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[5.12rem]">Pipeline</div>
+        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem]">Portal Acess</div>
+        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.1rem] max-lg:w-[4.2rem]">Owner</div>
         <div className="w-12"></div>
 
       </div>
@@ -218,19 +218,19 @@ function ContactAllCardList(props) {
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                                <div className=" flex font-medium flex-col max-sm:w-auto  w-48 max-sm:flex-row max-xl:w-[7rem]   max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col max-sm:w-auto  w-48 max-sm:flex-row max-xl:w-[7rem] max-lg:w-[5.21rem]   max-sm:justify-between ">
                                     
                                     <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium max-sm:w-auto flex-col w-36 max-sm:flex-row max-xl:w-[8rem]   max-sm:justify-between ">
+                                <div className=" flex font-medium max-sm:w-auto flex-col w-36 max-sm:flex-row max-xl:w-[8rem] max-lg:w-[5.1rem]   max-sm:justify-between ">
                                
                                     <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                          {item.designation}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium max-sm:w-auto flex-col w-36  max-sm:flex-row max-xl:w-[5rem]   max-sm:justify-between">
+                                <div className=" flex font-medium max-sm:w-auto flex-col w-36  max-sm:flex-row max-xl:w-[5rem] max-lg:w-[4.1rem]   max-sm:justify-between">
                                 
                                   <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                        {item.department}
@@ -238,13 +238,13 @@ function ContactAllCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                              <div className="flex font-medium max-sm:w-auto flex-col w-32 max-sm:flex-row   max-sm:justify-between ">
+                              <div className="flex font-medium max-sm:w-auto flex-col w-32 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row   max-sm:justify-between ">
 
   <div className="text-sm text-cardBody max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
     {item.oppNo}
   </div>
 </div>
-<div className=" flex font-medium flex-col w-36 max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex font-medium flex-col w-36 max-xl:w-[7rem] max-lg:w-[5rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                       
 
                                     <div class=" text-sm max-sm:text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -252,7 +252,7 @@ function ContactAllCardList(props) {
 
                                     </div>
                                 </div>
-                                <div className="flex max-sm:w-auto font-medium flex-col w-32 max-sm:flex-row  max-sm:justify-between ">
+                                <div className="flex max-sm:w-auto font-medium flex-col w-32 max-xl:w-[5rem] max-lg:w-[4.21rem] max-sm:flex-row  max-sm:justify-between ">
                
 
                                     <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -264,7 +264,7 @@ function ContactAllCardList(props) {
                                     </div>
                                 </div>
                                 </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className="flex font-medium  w-20 max-xl:w-[3rem] max-sm:w-wk   max-sm:flex-row  max-sm:justify-between">
                        
 
