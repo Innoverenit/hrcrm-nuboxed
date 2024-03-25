@@ -63,7 +63,7 @@ const handleStages = (val) => {
             ))}
           </select> */}
         </div>
-        {selectedWork && (
+        {/* {selectedWork && (
           <>                                           
           <div class="bg-white">
           <Steps direction="vertical" current={1}>
@@ -85,7 +85,7 @@ const handleStages = (val) => {
 
     </div>              
 </> 
-        )} 
+        )}  */}
        
        <Button
                     type='primary'
