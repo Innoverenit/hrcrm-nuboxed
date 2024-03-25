@@ -6,9 +6,9 @@ import { bindActionCreators } from 'redux';
 import { updateValidationInReceive } from "../../../InventoryAction"
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import moment from 'moment';
+import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 
 function ReceivedPhoneList(props) {
-    console.log(props.setEdittingPhone)
 
     return (
         <>
@@ -38,18 +38,21 @@ function ReceivedPhoneList(props) {
                     receiveOS: props.setEdittingPhone.receiveOS === null ?
                         props.setEdittingPhone.os : props.setEdittingPhone.receiveOS,
                     mismatchInd: true,
+                    receivePhoneUser: props.userId,
+                    receivePhoneDate: moment(),
                     mismatchOrderInd: true
                 }}
+
                 onSubmit={(values, { resetForm }) => {
-                    console.log(props.phoneId)
-                    props.updateValidationInReceive({
-                        ...values,
-                        receivePhoneUser: props.userId,
-                        receivePhoneDate: moment()
-                    },
-                        props.phoneListData.phoneId,
-                        props.orderPhoneId
+                    props.updateValidationInReceive(
+                        {
+                            ...values,
+
+                        },
+                        props.particularRowData.phoneId,
+                        props.distributorId,
                     );
+                    resetForm();
                 }}
             >
                 {({
@@ -72,9 +75,7 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveCompany"
                                     label="OEM"
-                                    type="number"
                                     isColumn
-                                    values={props.setEdittingPhone.company}
                                     width={"100%"}
                                     component={InputComponent}
                                     inlineLabel
@@ -83,8 +84,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveModel"
                                     label="Model"
-                                    type="number"
-                                    values={props.setEdittingPhone.model}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -94,8 +93,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveIMEI"
                                     label="IMEI"
-                                    type="number"
-                                    values={props.setEdittingPhone.imei}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -105,8 +102,7 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveGB"
                                     label="GB"
-                                    type="number"
-                                    values={props.setEdittingPhone.gb}
+
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -119,8 +115,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveColor"
                                     label="Color"
-                                    type="number"
-                                    values={props.setEdittingPhone.color}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -130,10 +124,8 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveCondition"
                                     label="Condition"
-                                    type="number"
                                     isColumn
                                     width={"100%"}
-                                    values={props.setEdittingPhone.conditions}
                                     component={InputComponent}
                                     inlineLabel
                                     isRequired
@@ -141,17 +133,19 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveOS"
                                     label="OS"
-                                    type="number"
                                     isColumn
-                                    values={props.setEdittingPhone.os}
+
                                     width={"100%"}
-                                    component={InputComponent}
+                                    options={["Andriod", "Apple"]}
+                                    component={SelectComponent}
                                     inlineLabel
                                     isRequired
                                 />
                                 <Button
-                                    loading={props.updatingValidationInRecive}
-                                    type="primary" htmlType="submit">
+                                    // loading={props.updatingValidationInRecive}
+                                    type="primary"
+                                    htmlType="submit"
+                                >
                                     Submit
                                 </Button>
                             </div>

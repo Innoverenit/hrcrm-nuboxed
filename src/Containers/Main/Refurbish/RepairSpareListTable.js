@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { getSpareListByPhoneId, updateSpareItem } from "../Account/AccountAction";
 import { BorderColorOutlined } from "@mui/icons-material";
@@ -54,6 +54,19 @@ function RepairSpareListTable(props) {
                 pagination={false}
                 loading={props.fetchingSpareListByPhoneId}
             />
+            <div class=" flex justify-end">
+                <Tooltip title="Make Spare Packet">
+
+                    <Button
+                        // style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                        type="primary"
+                    // onClick={() => {
+                    //     handleSetRowData(item);
+
+                    // }}
+                    >Spare Packet</Button>
+                </Tooltip>
+            </div>
         </>
     );
 }

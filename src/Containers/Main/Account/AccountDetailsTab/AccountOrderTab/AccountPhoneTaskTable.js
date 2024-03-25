@@ -31,7 +31,11 @@ function AccountPhoneTaskTable(props) {
             itemTaskId: task === "custom" ? "" : task,
             taskName: customName,
             userId: props.userId
-        }, props.phoneId)
+        }, props.phoneId, handleCallback())
+    }
+    function handleCallback() {
+        setCustomeName("")
+        setTask("")
     }
     return (
         <>
@@ -79,7 +83,7 @@ const mapStateToProps = ({ distributor, auth, refurbish }) => ({
     phoTasklist: distributor.phoTasklist,
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    addingTaskByPhoneById: distributor.addingTaskByPhoneById,
+    addingTaskByPhoneById: refurbish.addingTaskByPhoneById,
     taskListByPhone: refurbish.taskListByPhone
 });
 

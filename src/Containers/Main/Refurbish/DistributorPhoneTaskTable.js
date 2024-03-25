@@ -25,13 +25,17 @@ function DistributorPhoneTaskTable(props) {
     const handleCustomeName = (e) => {
         setCustomeName(e.target.value)
     }
+    const handleCallback = () => {
+        setCustomeName("")
+        setTask("")
+    }
     const handleSubmitTask = () => {
         props.addTaskByPhoneId({
             phoneId: props.phoneId,
             itemTaskId: task === "custom" ? "" : task,
             taskName: customName,
             userId: props.userId
-        }, props.phoneId)
+        }, props.phoneId, handleCallback())
     }
     return (
         <>
@@ -79,7 +83,8 @@ const mapStateToProps = ({ distributor, auth, refurbish }) => ({
     phoTasklist: distributor.phoTasklist,
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    taskListByPhone: refurbish.taskListByPhone
+    taskListByPhone: refurbish.taskListByPhone,
+    addingTaskByPhoneById: refurbish.addingTaskByPhoneById
 });
 
 const mapDispatchToProps = (dispatch) =>

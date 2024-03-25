@@ -1,102 +1,45 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getPhoneTasklist } from "../Account/AccountAction";
-import { addTaskByPhoneId, updateProcessTask, getTaskListByPhone } from "./RefurbishAction"
-import { Button, Input, Switch, Select } from "antd";
-import { BundleLoader } from "../../../Components/Placeholder";
-const RepairTaskList = lazy(() => import("./RepairTaskList"));
+import React, { useEffect } from 'react'
+import { getTaskByPhoneId } from "./RefurbishAction"
+import { MainWrapper } from '../../../Components/UI/Elements'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import QCPhoneTaskToggle from './QCPhoneTaskToggle'
 
-const { Option } = Select;
-
-function RepairTaskTable(props) {
+const RepairTaskTable = (props) => {
     useEffect(() => {
-        props.getPhoneTasklist(props.orgId);
-        props.getTaskListByPhone(props.phoneId)
-    }, [])
-    const [task, setTask] = useState("")
-    const [customName, setCustomeName] = useState("")
-    const [type, setType] = useState(false)
-
-
-    const handleTask = (value) => {
-        console.log(value)
-        setTask(value)
-    }
-    const handleCustomeName = (e) => {
-        setCustomeName(e.target.value)
-    }
-    const handleChangeType = () => {
-        setType(!type)
-    }
-    const handleSubmitTask = () => {
-        props.addTaskByPhoneId({
-            phoneId: props.phoneId,
-            itemTaskId: task === "custom" ? "" : task,
-            taskName: customName,
-            userId: props.userId
-        }, props.phoneId)
-    }
-
+        props.getTaskByPhoneId(props.phoneId)
+    })
     return (
-        <>
-            <div class="flex justify-around max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
-                    <div class="flex justify-between">
-                        <div class="w-[45%]">
-                            <Select onChange={handleTask}>
-                                <Option value={"custom"}>{"Custom"} </Option>
-                                {props.phoTasklist.map((a) => {
-                                    return <Option value={a.itemTaskId}>{a.name}</Option>;
-                                })}
-                                {props.taskListByPhone.map((a) => {
-                                    return <Option value={a.repairTaskId}>{a.taskName}</Option>;
-                                })}
-                            </Select>
+        <div>
+            <MainWrapper>
 
-                        </div>
-                        {task === "custom" &&
-                            <div class="w-[45%]">
-                                <Input type="text" value={customName} placeholder="Enter Custome Task" onChange={(value) => { handleCustomeName(value) }} />
+                {props.taskByPhone.map((item) => {
+                    return (
+                        <div class="cursor-pointer w-[18%] flex justify-center ">
+                            <div class="basis-[85%]">
+                                {item.taskName}
                             </div>
-                        }
-                    </div>
-
-                </div>
-                <div class=" h-full w-w47.5 max-sm:w-wk">
-                    <div class="flex justify-between">
-                        <div class="w-[48%]">
-                            <Button type="primary"
-                                loading={props.addingTaskByPhoneById}
-                                onClick={handleSubmitTask}>Add</Button>
+                            <div>
+                                <QCPhoneTaskToggle phoneTaskId={item.phoneTaskId} />
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <Suspense fallback={<BundleLoader />}>
-                <RepairTaskList phoneId={props.phoneId} />
-            </Suspense>
-
-        </>
-    );
+                    )
+                })}
+            </MainWrapper>
+        </div>
+    )
 }
-
-const mapStateToProps = ({ distributor, auth, refurbish }) => ({
-    phoTasklist: distributor.phoTasklist,
-    orgId: auth.userDetails.organizationId,
-    taskByPhone: refurbish.taskByPhone,
-    userId: auth.userDetails.userId,
+const mapStateToProps = ({ auth, refurbish }) => ({
+    taskByPhone: refurbish.taskByPhone
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getPhoneTasklist,
-            addTaskByPhoneId,
-            updateProcessTask,
-            getTaskListByPhone
+            getTaskByPhoneId,
         },
         dispatch
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepairTaskTable);
+

@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     advancePayment: Yup.string().required("Input needed!"),
     contactPersonId: Yup.string().required("Input needed!"),
+    orderCurrencyId: Yup.string().required("Input needed!"),
 })
 function OrderStep1(props) {
     const contactOption = props.contactDistributor.map((item) => {

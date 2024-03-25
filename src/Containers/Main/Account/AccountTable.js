@@ -216,8 +216,6 @@ function AccountTable(props) {
 
                               <MultiAvatar
                                 primaryTitle={item.salesExecutive}
-                                imageId={item.imageId}
-                                imageURL={item.imageURL}
                                 imgWidth={"1.8rem"}
                                 imgHeight={"1.8rem"}
                               />

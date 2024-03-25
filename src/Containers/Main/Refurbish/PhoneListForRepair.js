@@ -14,9 +14,10 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
+import RepairSpareListTable from "./RepairSpareListTable";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskTable = lazy(() => import('./RepairTaskTable'));
-const AddingRepairSpareList = lazy(() => import('./AddingRepairSpareList'));
+
 
 function PhoneListForRepair(props) {
     const [page, setPage] = useState(0);
@@ -102,7 +103,7 @@ function PhoneListForRepair(props) {
     return (
         <>
             <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
-                <div class="rounded-lg m-5 p-2 w-full] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class=" h-[75vh] rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[98.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[4.2rem]"><FormattedMessage
                             id="app.oem"
@@ -258,16 +259,18 @@ function PhoneListForRepair(props) {
                                         <div className=" flex font-medium md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center mr-2">
                                                 <Tooltip title="Spare">
-                                                    <Button
-                                                        type="primary"
-                                                        style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                    <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
 
-                                                        onClick={() => {
-                                                            handleSetRowData(item);
-                                                            hanldeSpare();
-                                                        }}>
-                                                        <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
-                                                    </Button>
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                hanldeSpare();
+                                                            }}>
+                                                            <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
+                                                        </Button>
+                                                    </Badge>
                                                 </Tooltip>
 
                                             </div>
@@ -289,23 +292,7 @@ function PhoneListForRepair(props) {
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
-                                                <Tooltip title="Make Spare Packet">
-                                                    <Badge size="small" count={`${item.totalSpare} / ${item.checkedSpare}`} overflowCount={5000}>
-                                                        <Button
-                                                            style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                            type="primary"
-                                                            onClick={() => {
-                                                                handleSetRowData(item);
 
-                                                            }}
-                                                        >Spare Packet</Button>
-                                                    </Badge>
-                                                </Tooltip>
-
-                                            </div>
-                                        </div>
                                         <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 <Tooltip title="Notes">
@@ -336,10 +323,11 @@ function PhoneListForRepair(props) {
                         onClick={handlePuaseButton}>{hide ? "Resume" : "Pause"}</Button>
                 </div>
                 {spares && (
-                    <AddingRepairSpareList
+                    <RepairSpareListTable
                         phoneId={phoneId}
                         RowData={RowData}
                     />
+
                 )}
                 {expand && (
                     <RepairTaskTable

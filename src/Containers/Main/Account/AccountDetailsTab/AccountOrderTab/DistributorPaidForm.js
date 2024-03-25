@@ -37,7 +37,7 @@ function DistributorPaidForm(props) {
       <Formik
         enableReinitialize
         initialValues={{
-          date: moment(),
+          date: "",
           paymentAmount: "",
           paymentMode: "",
           remarks: "",
@@ -45,19 +45,18 @@ function DistributorPaidForm(props) {
           userId: props.userId,
           orderPaymentType: "PhonePayment",
           transactionNumber: "",
-          orderCurrencyId: props.particularRowData.orderCurrencyName || "",
-          paymentMode: "",
+          orderCurrencyId: props.particularRowData.orderCurrencyId || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
           orderId: props.particularRowData.orderId,
         }}
 
         onSubmit={(values, { resetForm }) => {
-          let newEndDate = moment(values.date).format("YYYY-MM-DD");
+          // let newEndDate = moment(values.date).format("YYYY-MM-DD");
           props.addPaidOrder(
             {
               ...values,
-              date: `${newEndDate}T00:00:00Z`,
+              // date: `${newEndDate}T00:00:00Z`,
             },
             props.particularRowData.orderId,
             props.distributorId,
@@ -120,7 +119,9 @@ function DistributorPaidForm(props) {
                       width={"100%"}
                       component={DatePicker}
                       value={values.date}
+
                     />
+
                   </div>
                 </div>
                 <div class="w-full">

@@ -9,6 +9,7 @@ import SubOrderPhoneModal from "./SubOrderPhoneModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { MultiAvatar2 } from "../../../../../Components/UI/Elements";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 function SubOrderList(props) {
     useEffect(() => {
@@ -52,7 +53,7 @@ function SubOrderList(props) {
                         <div className=" md:w-[5rem] "></div>
 
                     </div>
-                    <div class="overflow-x-auto h-[30vh]">
+                    {props.fetchingSuborderData ? <BundleLoader /> : <div class="overflow-x-auto h-[30vh]">
                         <InfiniteScroll
                             dataLength={props.subOrderByOrderId.length}
                             loader={props.fetchingSuborderData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
@@ -137,7 +138,7 @@ function SubOrderList(props) {
                                 )
                             })}
                         </InfiniteScroll>
-                    </div>
+                    </div>}
                 </div>
             </div>
             <SubOrderPhoneModal

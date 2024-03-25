@@ -103,7 +103,7 @@ const ProductionOrderList = (props) => {
                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                         <div class="flex">
                                             <div className=" flex font-medium  md:w-[10.6rem] max-sm:w-full ">
-                                                <Badge size="small" count={`${item.totalReceiveCount} / ${item.phoneCount}`} overflowCount={5000}>
+                                                <Badge size="small" count={`${item.totalReceiveCanRepairQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class="underline text-[#1890ff] cursor-pointer w-[7rem] flex"
                                                         onClick={() => {

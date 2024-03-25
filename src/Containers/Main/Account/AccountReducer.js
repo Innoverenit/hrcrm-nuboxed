@@ -1060,7 +1060,6 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingPaidByDistributorId: false,
         addingPaidByDistributorIdError: true,
-        addPaidButtonModal: false,
       };
 
     /**
