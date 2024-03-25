@@ -18,6 +18,14 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     });
   };
 
+
+  export const handleLeadsImportModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_IMPORT_MODAL,
+      payload: modalProps,
+    });
+  };
+
   export const handleLeadsConfirmationModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_CONFIRMATION_MODAL,
@@ -1402,6 +1410,49 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.GET_LEADS_ACTIVITY_RECORDS_FAILURE,
           payload: err,
         });
+      });
+  };
+
+
+
+  export const addLeadsImportForm =
+  (customer, orgId) => (dispatch, getState) => {
+    const userId = getState().auth.userDetails.userId;
+
+    // const opportunityId = getState().opportunity.opportunity.opportunityId;
+    console.log("inside add customer");
+    dispatch({
+      type: types.ADD_LEADS_IMPORT_FORM_REQUEST,
+    });
+
+    axios
+      .post(`${base_url}/organization/document`, customer, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        //dispatch(getRepositoryDocuments(userId));
+        const startDate = dayjs().startOf("month").toISOString();
+        const endDate = dayjs().endOf("month").toISOString();
+        // dispatch(getRecords(userId));
+        // dispatch(getLatestCustomers(userId, startDate, endDate));
+        // dispatch(getCustomerListByUserId(userId));
+
+        dispatch({
+          type: types.ADD_LEADS_IMPORT_FORM_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_LEADS_IMPORT_FORM_FAILURE,
+          payload: err,
+        });
+        // cb && cb();
       });
   };
 

@@ -6,6 +6,8 @@ const initialState = {
   addTaskModal: false,
   addingTask: false,
   addingTaskError: false,
+  addingTaskImportForm:false,
+  addingTaskImportFormError:false,
   deleteTask: false,
   deleteTaskError: false,
   updatingTask: false,
@@ -333,6 +335,27 @@ export const TaskReducer = (state = initialState, action) => {
         ...state,
         fetchingTasksToStart: false,
         fetchingTasksToStartError: true,
+      };
+
+
+      case types.ADD_TASK_IMPORT_FORM_REQUEST:
+      return { ...state, addingTaskImportForm: true };
+    case types.ADD_TASK_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingTaskImportForm: false,
+        // // updateOrganizationModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_TASK_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingTaskImportForm: false,
+        // addCustomerModal: false 
       };
 
     case types.GET_TASKS_ASSIGNED_REQUEST:

@@ -138,6 +138,8 @@ const initialState = {
 
   leadsDocumentUploadModal:false,
 
+  addLeadsImportModal:false,
+
   updatingLeadsOpportunity: false,
   updatingLeadsOpportunityError: false,
   leadsOpportunityByUserId: [],
@@ -172,6 +174,10 @@ const initialState = {
 
   addSharingLeads: false,
   addSharingLeadsError: false,
+
+
+  addingLeadsImportForm:false,
+  addingLeadsImportFormError:false,
 
   updateTypeLeads: false,
   updateTypeLeadsError:false,
@@ -332,6 +338,9 @@ case types.HANDLE_LEADS_MODAL:
           updateLeadsById: false,
           updateLeadsByIdError: true,
         };
+
+        case types.HANDLE_LEADS_IMPORT_MODAL:
+      return { ...state, addLeadsImportModal: action.payload };
 
         case types.HANDLE_LEADS_EMAIL_DRAWER_MODAL:
                     return { ...state, addDrawerLeadsEmailModal: action.payload };
@@ -877,6 +886,29 @@ case types.HANDLE_LEADS_MODAL:
           linkingLeads: false,
           linkingLeadsError: true,
         };
+
+
+
+
+        case types.ADD_LEADS_IMPORT_FORM_REQUEST:
+      return { ...state, addingLeadsImportForm: true };
+    case types.ADD_LEADS_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingLeadsImportForm: false,
+        // // updateOrganizationModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_LEADS_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingLeadsImportForm: false,
+        // addCustomerModal: false 
+      };
 
         case types.GET_TEAM_LEADS_REQUEST:
           return { ...state, fetchingTeamLeads: true };

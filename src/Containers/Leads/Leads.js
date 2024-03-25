@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
-import { setLeadsViewType, handleLeadsModal, } from "./LeadsAction";
+import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
+import { setLeadsViewType, handleLeadsModal,handleLeadsImportModal } from "./LeadsAction";
 const LeadsHeader=lazy(()=>import ("./Child/LeadsHeader"));
 const AddLeadsModal=lazy(()=>import ("./Child/AddLeadsModal"));
 const LeadsTeamCardList = lazy(()=>import("./Child/LeadsTable/LeadsTeamCardList"));
@@ -74,11 +75,16 @@ class Leads extends Component {
           handleChange={this.handleChange}
           handleClear={this.handleClear}
           currentData={this.state.currentData}
+          handleLeadsImportModal={this.props.handleLeadsImportModal}
           setCurrentData={this.setCurrentData}
         />
          <AddLeadsModal
           addLeadsModal={addLeadsModal}
           handleLeadsModal={handleLeadsModal}
+        />
+        <AddLeadsImportModal
+        handleLeadsImportModal={this.props.handleLeadsImportModal}
+        addLeadsImportModal={this.props.addLeadsImportModal}
         />
        
         {/* <LeadsTable/>  */}
@@ -102,6 +108,7 @@ const mapStateToProps = ({ leads,auth }) => ({
     addLeadsModal:leads.addLeadsModal,
    viewType: leads.viewType,
    userId: auth.userDetails.userId,
+   addLeadsImportModal:leads.addLeadsImportModal,
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -109,7 +116,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         setLeadsViewType,
          handleLeadsModal,
-         getLeads
+         getLeads,
+         handleLeadsImportModal
     
     },
     dispatch

@@ -1,16 +1,24 @@
-import React, { useEffect, lazy } from "react";
+import React, { useEffect, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDispatchUpdateList } from "../Inventory/InventoryAction"
 import { SubTitle } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
+import ReactToPrint from "react-to-print";
+import QRCode from "qrcode.react";
 
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
+
+    const componentRefs = useRef([]);
     useEffect(() => {
         props.getDispatchUpdateList(props.rowData.orderPhoneId)
     }, [props.rowData.orderPhoneId])
+
+    const handlePrint = () => {
+        window.print();
+      };
 
     return (
         <>
@@ -48,7 +56,7 @@ function InspectedPhoneByOrder(props) {
                         <div className="md:w-[7.2rem]"></div>
                     </div>
                     <div class="overflow-y-auto h-[50vh]">
-                        {props.updateDispatchList.map((item) => {
+                        {props.updateDispatchList.map((item,index) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
@@ -114,6 +122,41 @@ function InspectedPhoneByOrder(props) {
                                                         </span>
                                                     )}
                                                 </SubTitle>
+                                            </div>
+                                        </div>
+
+
+                                        <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                            <ReactToPrint
+            trigger={() => <button 
+                 onClick={handlePrint}
+                >
+                    Print</button>
+                    }
+             content={() => componentRefs.current[index]
+             }
+          />
+             <div style={{ display: "none" ,textAlign:"center"}}>
+           
+           <div
+ ref={(el) => (componentRefs.current[index] = el)}
+ style={{
+   fontSize: "16px",
+   marginBottom: "20px",
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+ }}
+>
+ <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Company: {item.company}</div>
+ <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
+ <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
+ <div style={{ marginBottom: "10px" }}>
+   <QRCode value={item.imei} size={128} />
+ </div>
+</div>
+         </div>
                                             </div>
                                         </div>
 

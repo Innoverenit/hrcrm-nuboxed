@@ -2,32 +2,34 @@ import React, { lazy, Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import {addTaskImportForm} from "../TaskAction"
-
 import { Button, Switch, Tooltip, Icon,Select } from "antd";
 
 // import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
 import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
-
-
-
-
-import * as Yup from "yup";
+import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import {addLeadsImportForm} from "../LeadsAction"
 
 // import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../../Components/Forms/Formik/LazySelect";
+import { leadsReducer } from "../LeadsReducer";
 
-import { FormattedMessage } from "react-intl";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
-const ButtonGroup = Button.Group;
 
 const { Option } = Select;
+// const documentSchema = Yup.object().shape({
+// documentName: Yup.string().required("This field is required !"),
+// documentId: Yup.string().required("Input needed !"),
+// documentDescription: Yup.string().required("This field is required !"),
+// stageId: Yup.string().required("This field is required !")
+// });
+// const documentSchema = Yup.object().shape({
 
-class TaskImportForm extends Component {
+// documentId: Yup.string().required("Input needed!"),
+// });
+class LeadsImportForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,16 +41,37 @@ class TaskImportForm extends Component {
       data: [1],
     };
   }
+ 
 
+ 
 
   render() {
    
-    
+   
+   const catagory=[
+    {
+      id:1,
+      name:"Document"  
+    },
+    {
+        id:2,
+        name:"Spreadsheet"  
+      },
+      {
+        id:3,
+        name:"Presentation"  
+      },
+      {
+        id:4,
+        name:"Image"  
+      },
+   ]
+
 
   
 
  
-
+ 
     return (
       <>
        
@@ -57,14 +80,29 @@ class TaskImportForm extends Component {
               // enableReinitialize
               initialValues={{
               
-              
+                name: "", //input
+                description: "",
+                included: [],
                 documentId:"",
-               
+                department:"",
+                catagory:"",
+                // userId:this.props.userId,
+                documentType: "",
+                // shareInd:"",
+                //opportunityId:this.props.opportunity.opportunityId,
               }}
             //    validationSchema={documentSchema}
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
-               
+                // this.props.addOrganizationDocument(
+                //   // values.documentId,
+                //   {
+                //     ...values,
+                //     shareInd:this.state.showUserList,
+                //   },
+                //   this.props.orgId,
+                //   this.callback
+                // );
                 resetForm();
               }}
             >
@@ -99,28 +137,11 @@ class TaskImportForm extends Component {
                         </p>
                       )}
                       <Spacer />
-                 
-                  <Spacer />
-                
-                    </div>
-                    <div
-                      style={{
-                        height: "100%",
-                        width: "45%",
-                      }}
-                    >
                   
-                      <Spacer />
+                  <Spacer />
                    
-
-
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
-
-                
-      
-
-                     
                     </div>
+                    
                   </div>
 
                   <Spacer />
@@ -128,7 +149,7 @@ class TaskImportForm extends Component {
                     <Button
                       htmlType="submit"
                       type="primary"
-                     Loading={this.props.addingTaskImportForm}
+                    Loading={this.props.addingLeadsImportForm}
                     >
                       Submit
                     </Button>
@@ -147,15 +168,15 @@ class TaskImportForm extends Component {
 
 // }
 
-const mapStateToProps = ({ document, settings,employee, task,departments,auth }) => ({
-  addingTaskImportForm:task.addingTaskImportForm,
+const mapStateToProps = ({ document, settings,leads,employee, departments,auth }) => ({
+    addingLeadsImportForm:leads.addingLeadsImportForm
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addTaskImportForm
+        addLeadsImportForm
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(TaskImportForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LeadsImportForm);
