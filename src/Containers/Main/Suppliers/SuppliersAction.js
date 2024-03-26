@@ -820,7 +820,7 @@ export const getDeletedPurchaseById = () => (dispatch) => {
 export const getSupplierDocument = (supplierId) => (dispatch) => {
   dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url}/documnet`, {
+    .get(`${base_url2}/suppliers/document/${supplierId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

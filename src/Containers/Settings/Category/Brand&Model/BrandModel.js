@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, message, Input } from "antd";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
     getBrandModel,
@@ -112,9 +113,11 @@ const BrandModel = (props) => {
   return <div><BundleLoader/></div>;
   }
     return (
-        <div>
-      <div class=" flex flex-row justify-between">
-      <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+      <>
+      <div class="" >
+       
+       <div class="flex flex-row justify-between">
+             <div class=" flex w-[18vw]" >
             <Input
          placeholder="Search by Name"
         style={{width:"100%",marginLeft:"0.5rem"}}
@@ -124,7 +127,7 @@ const BrandModel = (props) => {
             // value={currentData}
           />
             </div>
-              <div className="add-region">
+            <div className="add-region">
                 {addingRegion ? (
                     <div>
                         <input 
@@ -152,6 +155,13 @@ const BrandModel = (props) => {
                 )}
             </div>
             </div>
+
+    
+            
+
+            <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.slice().sort((a, b) => a.brand.localeCompare(b.brand)).map((region, index) => (
      
               <div className="card9" key={region.phoneMasterListId}>
@@ -216,10 +226,13 @@ const BrandModel = (props) => {
               </div>
           </div>
          ))}
-
-    <div class=" font-bold">Updated on {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} by {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
+</MainWrapper>
+            </div>
+   
         </div>
-    );
+         <div class=" font-bold">Updated on {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} by {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
+    </>
+         );
   };
 
 

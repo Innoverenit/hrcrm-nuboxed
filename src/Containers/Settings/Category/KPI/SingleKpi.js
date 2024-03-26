@@ -45,7 +45,7 @@ class SingleKpi extends Component {
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <div class=" flex justify-between" >
-                <div class=" flex  flex-col w-[8rem] justify-between ml-4">
+                <div class=" flex  flex-col w-48 justify-between ml-4">
                  <div class=" flex text-base text-[#40A9FF]">KPI</div>
                  <div class=" font-semibold" >
                   {kpi}&nbsp;&nbsp;&nbsp;
