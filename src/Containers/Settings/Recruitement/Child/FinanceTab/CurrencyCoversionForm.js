@@ -8,8 +8,15 @@ import { Formik, Form, Field,} from "formik";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import { createCurrencyConversion } from "../../../SettingsAction";
 import { Select, StyledLabel } from "../../../../../Components/UI/Elements";
+import * as Yup from "yup";
 
 const { Option } = Select;
+
+const currSchema = Yup.object().shape({
+    reportingCurrency: Yup.string().required("Input needed!"),
+    conversionCurrency: Yup.string().required("Input needed!"),
+    conversionFactor: Yup.string().required("Input needed!"),
+  });
 
 const CurrencyCoversionForm = (props) => {
     useEffect(()=>{
@@ -44,6 +51,7 @@ const CurrencyCoversionForm = (props) => {
                         userId:props.userId,
                         orgId:props.orgId
                     }}
+                    validationSchema={currSchema}
                     onSubmit={(values, { resetForm }) => {
                         props.createCurrencyConversion({
                             ...values,
@@ -71,7 +79,7 @@ const CurrencyCoversionForm = (props) => {
 
                                     <div class="flex justify-between">
                                     <div class=" w-[18%]">
-                                        <StyledLabel>Reporting Currency</StyledLabel>
+                                        <StyledLabel>From - Currency</StyledLabel>
         <Select value={reportingCurrency} onChange={handleSelect1Change}>
           {reportCurr.map((option) => {
           return   <Option key={option.currency_id} value={option.currency_name}>
@@ -82,7 +90,7 @@ const CurrencyCoversionForm = (props) => {
         </div>
 
         <div class=" w-[18%]">
-        <StyledLabel>Conversion Currency</StyledLabel>
+        <StyledLabel>To - Currency</StyledLabel>
         <Select value={conversionCurrency} onChange={handleSelect2Change}>
           
           {convoCurr.map((option) => {

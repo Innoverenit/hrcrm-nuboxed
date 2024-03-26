@@ -121,7 +121,7 @@ const SingleDocuments = ({
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={updatingDocuments}
+                  // loading={props.updatingDocuments}
                   disabled={!value}
                   onClick={() => handleUpdateDocument(documentTypeId, value, toggleViewType())}
                 >

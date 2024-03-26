@@ -6,7 +6,8 @@ import {
     TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
 import { handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
-handleSuppleirSuppliesDrawer,handleSupplierContactModal} from "../../../SuppliersAction"
+handleSuppleirSuppliesDrawer,handleSupplierContactModal,
+handleSupplierDocumentUploadModal,handleSuppliersActivityModal} from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
 import PurchaseOrderTable from "./PurchaseOrderTable";
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -16,6 +17,9 @@ import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
 const SupplierSuppliesCardTable =lazy(()=>import("./SupplierSupplies/SupplierSuppliesCardTable"));
 const AddSupplierContactModal=lazy(()=>import("./SupplierContactTab/AddSupplierContactModal"));
 const SupplierContactTable=lazy(()=>import("./SupplierContactTab/SupplierContactTable"));
+const SupplierDocumentTable=lazy(()=>import("./SupplierDocumentTab/SupplierDocumentTable"));
+const AddSupplierDocumentModal=lazy(()=>import("./SupplierDocumentTab/AddSupplierDocumentModal"));
+const AddSuppliersActivityModal=lazy(()=>import("./SuppliersActivityTab/AddSuppliersActivityModal"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -137,6 +141,74 @@ class SupplierDetailsTab extends Component {
                   /> 
                 </Suspense>
             </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <i class="far fa-file"></i>
+                    <span style={{ marginLeft: "0.25em" }}>Documents</span>
+                  </span>
+                  {activeKey === "4" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          // type="plus"
+                          // tooltipTitle="Create"
+                          onClick={() =>
+                            this.props.handleSupplierDocumentUploadModal(true)
+                          }
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <SupplierDocumentTable supplier={this.props.supplier}/>
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <i class="far fa-file"></i>
+                    <span style={{ marginLeft: "0.25em" }}>Activity</span>
+                  </span>
+                  {activeKey === "5" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          // type="plus"
+                          // tooltipTitle="Create"
+                          onClick={() =>
+                            this.props.handleSuppliersActivityModal(true)
+                          }
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="5"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <SupplierDocumentTable supplier={this.props.supplier}/>
+              </Suspense>
+            </TabPane>
                     </StyledTabs>
                     
                 </TabsWrapper>
@@ -154,6 +226,20 @@ class SupplierDetailsTab extends Component {
             addSupplierContactModal={this.props.addSupplierContactModal}
             handleSupplierContactModal={this.props.handleSupplierContactModal}
           />
+          <AddSupplierDocumentModal
+           supplier={this.props.supplier}
+            supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
+            handleSupplierDocumentUploadModal={
+              this.props.handleSupplierDocumentUploadModal
+            }
+          />
+            <AddSuppliersActivityModal
+             supplier={this.props.supplier}
+            addSuppliersActivityModal={this.props.addSuppliersActivityModal}
+            handleSuppliersActivityModal={
+              this.props.handleSuppliersActivityModal
+            }
+          />
             </>
         );
     }
@@ -164,6 +250,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
     addLinkSuppliersOrderConfigureModal: suppliers.addLinkSuppliersOrderConfigureModal,
     supplierSuppliesdrwr:suppliers.supplierSuppliesdrwr,
     addSupplierContactModal: suppliers.addSupplierContactModal,
+    supplierDocumentUploadModal:suppliers.supplierDocumentUploadModal,
+    addSuppliersActivityModal:suppliers.addSuppliersActivityModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -172,7 +260,9 @@ const mapDispatchToProps = (dispatch) =>
             handleLinkSuppliersOrderConfigureModal,
             getTodayPurchaseOrder,
             handleSuppleirSuppliesDrawer,
-            handleSupplierContactModal
+            handleSupplierContactModal,
+            handleSupplierDocumentUploadModal,
+            handleSuppliersActivityModal
         },
         dispatch
     );
