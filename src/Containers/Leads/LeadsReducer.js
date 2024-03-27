@@ -896,7 +896,7 @@ case types.HANDLE_LEADS_MODAL:
       return {
         ...state,
         addingLeadsImportForm: false,
-        // // updateOrganizationModal: false,
+        addLeadsImportModal: false,
         // organizationDocumentDrawer: false,
         // repositoryData: [
         //   action.payload,

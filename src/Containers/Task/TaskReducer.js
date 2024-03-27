@@ -344,7 +344,7 @@ export const TaskReducer = (state = initialState, action) => {
       return {
         ...state,
         addingTaskImportForm: false,
-        // // updateOrganizationModal: false,
+        addTaskImportModal: false,
         // organizationDocumentDrawer: false,
         // repositoryData: [
         //   action.payload,

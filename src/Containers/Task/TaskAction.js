@@ -1398,7 +1398,7 @@ export const addTaskImportForm =
   });
 
   axios
-    .post(`${base_url}/organization/document`, customer, {
+    .post(`${base_url}/import/task`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

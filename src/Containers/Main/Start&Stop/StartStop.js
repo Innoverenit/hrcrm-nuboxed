@@ -67,6 +67,11 @@ const[country,setAllCountry]=useState("");
     const data = {
       userId: props.userId,
       startInd: !startInd, 
+      attendanceId:props.attendanceByList.attendanceId,
+      country:mandatorCountry?mandatorCountry:null,
+      location:drop1?drop1:null,
+      other:country?country:null,
+      returnDate:returnDate,
     };
     props.addAttendence(data, props.userId);
   };
@@ -167,13 +172,7 @@ useEffect(()=>{
        okText="Yes"
      cancelText="No"
      > */}
-     <div>
-       <Button 
-        type="primary"
-       style={{backgroundColor:!startInd?"#77dd77" : "#ff7158bf"}} onClick={handleClick}>
-        {!startInd ? "Start" : "Stop"}
-      </Button>
-      </div>
+     
       {/* </Popconfirm> */}
       <div class="ml-[22px] mt-[0.2rem] max-sm:ml-1">
       <select
@@ -237,10 +236,17 @@ onChange={handleMandatoryCountry}
       </select>
       </div>:null
 }
+<div>
+       <Button 
+        type="primary"
+       style={{backgroundColor:!startInd?"#77dd77" : "#ff7158bf"}} onClick={handleClick}>
+        {!startInd ? "Start" : "Stop"}
+      </Button>
+      </div>
 
-<div class="ml-2">
+{/* <div class="ml-2">
   <Button onClick={handleSubmit}>Submit</Button>
-</div>
+</div> */}
      
     </div>
    

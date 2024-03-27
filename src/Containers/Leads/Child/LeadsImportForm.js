@@ -16,6 +16,7 @@ import {addLeadsImportForm} from "../LeadsAction"
 import { FlexContainer } from "../../../Components/UI/Layout";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
 import { leadsReducer } from "../LeadsReducer";
+import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 
 
 const { Option } = Select;
@@ -80,29 +81,24 @@ class LeadsImportForm extends Component {
               // enableReinitialize
               initialValues={{
               
-                name: "", //input
-                description: "",
-                included: [],
-                documentId:"",
-                department:"",
-                catagory:"",
-                // userId:this.props.userId,
-                documentType: "",
+               
+                excelId:"",
+               
                 // shareInd:"",
                 //opportunityId:this.props.opportunity.opportunityId,
               }}
             //    validationSchema={documentSchema}
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
-                // this.props.addOrganizationDocument(
-                //   // values.documentId,
-                //   {
-                //     ...values,
-                //     shareInd:this.state.showUserList,
-                //   },
-                //   this.props.orgId,
-                //   this.callback
-                // );
+                this.props.addLeadsImportForm(
+                  // values.documentId,
+                  {
+                    ...values,
+                    //shareInd:this.state.showUserList,
+                  },
+                  // this.props.orgId,
+                  this.callback
+                );
                 resetForm();
               }}
             >
@@ -126,9 +122,9 @@ class LeadsImportForm extends Component {
                       }}
                     >
                       <Field
-                        name="documentId"
+                        name="excelId"
                         isRequired
-                        component={DragableUpload}
+                        component={ImportTaskUpload}
                         // component={DocumentUpload}
                       />
                       {errors.documentId && (
@@ -169,7 +165,8 @@ class LeadsImportForm extends Component {
 // }
 
 const mapStateToProps = ({ document, settings,leads,employee, departments,auth }) => ({
-    addingLeadsImportForm:leads.addingLeadsImportForm
+    addingLeadsImportForm:leads.addingLeadsImportForm,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
