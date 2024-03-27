@@ -1,27 +1,38 @@
 import React, { useEffect } from 'react'
-import { getTaskByPhoneId } from "./RefurbishAction"
+import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
 import { MainWrapper } from '../../../Components/UI/Elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
+import { Popconfirm } from "antd";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const RepairTaskTable = (props) => {
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
-    })
+    }, [])
     return (
         <div>
             <MainWrapper>
 
                 {props.taskByPhone.map((item) => {
                     return (
-                        <div class="cursor-pointer w-[18%] flex justify-center ">
-                            <div class="basis-[85%]">
+                        <div class="cursor-pointer w-[30%] flex justify-center ">
+                            <div class="w-[70%]">
                                 {item.taskName}
                             </div>
-                            <div>
-                                <QCPhoneTaskToggle phoneTaskId={item.phoneTaskId} />
+                            <div class="w-[30%] flex justify-between">
+                                <QCPhoneTaskToggle item={item} />
+                                <Popconfirm
+                                    title="Do you want to delete?"
+                                    onConfirm={() => props.deleteTaskList({}, item.phoneTaskId)}
+                                >
+                                    <DeleteIcon
+                                        className=" !text-base cursor-pointer text-[red]"
+                                    />
+                                </Popconfirm>
                             </div>
+
                         </div>
                     )
                 })}
@@ -37,6 +48,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getTaskByPhoneId,
+            deleteTaskList
         },
         dispatch
     );

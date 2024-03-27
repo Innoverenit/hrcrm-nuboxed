@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, useState } from "react";
+import React, { useEffect, lazy, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -22,10 +22,16 @@ import dayjs from "dayjs";
 import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/AccountOrderTab/AccountPhoneTaskTable";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ReceivedPhoneModal from "./ReceivedPhoneModal";
+import ReactToPrint from "react-to-print";
 
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 
 function OpenReceivedOrderIdForm(props) {
+  const componentRefs = useRef([]);
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   useEffect(() => {
     props.getPhonelistByOrderId(props.rowData.orderPhoneId)
@@ -124,7 +130,7 @@ function OpenReceivedOrderIdForm(props) {
                 // loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                 height={"65vh"}
               >
-                {props.phoneListById.map((item) => {
+                {props.phoneListById.map((item, index) => {
                   return (
                     <div>
                       <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
@@ -300,6 +306,24 @@ function OpenReceivedOrderIdForm(props) {
                               </>}
                           </div>
                         </div>
+                        <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins">
+                            <Tooltip title={<FormattedMessage
+                              id="app.Print"
+                              defaultMessage="Print"
+                            />}>
+                              {/* <PrintOutlined
+                                                                            // onClick={handlePrint}
+                                                                            className="!text-base cursor-pointer"
+                                                                        /> */}
+                              <ReactToPrint
+                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                content={() => componentRefs.current[index]}
+                              />
+                            </Tooltip>
+
+                          </div>
+                        </div>
                       </div>
                       {/* 2nd part */}
                       {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-3 " >
@@ -345,6 +369,34 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
                       </div>}
+                      <div style={{ display: "none", textAlign: "center" }}>
+
+                        <div
+                          ref={(el) => (componentRefs.current[index] = el)}
+                          style={{
+                            fontSize: "16px",
+                            marginBottom: "20px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+                          {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Company:</span> {item.company}</div> */}
+
+                          {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Model:</span> {item.model}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
+                          <div style={{ fontSize: "5rem" }}>
+                            <QRCodeModal
+                              qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                              imgHeight={"5em"}
+                              imgWidth={"5em"}
+                              size={100} />
+                          </div>
+                          <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                        </div>
+                      </div>
                     </div>
                   )
                 })}

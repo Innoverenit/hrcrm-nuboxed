@@ -111,6 +111,8 @@ function OrderStep1(props) {
                         ...values,
                         orderSource: "erp",
                         priority: priority || "",
+                        orgId: props.orgId,
+                        distributorId: props.distributorId,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
                     },
                         props.setEdittingOrder.orderId,
@@ -407,7 +409,8 @@ const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     setEdittingOrder: distributor.setEdittingOrder,
-    updatingOrderStep1: distributor.updatingOrderStep1
+    updatingOrderStep1: distributor.updatingOrderStep1,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

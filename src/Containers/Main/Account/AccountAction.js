@@ -2246,6 +2246,36 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       cb && cb();
     });
 };
+export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SPARE_LIST_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneSpare/deleteSpare/${phoneSpareId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_SPARE_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Spare Deleted Successfully',
+        showConfirmButton: true,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SPARE_LIST_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong");
+    });
+};
 
 export const getSpareListByPhoneId = (phoneId) => (
   dispatch

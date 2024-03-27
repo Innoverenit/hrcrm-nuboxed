@@ -1543,3 +1543,36 @@ export const gettASKItemCounts = (phoneId) => (dispatch) => {
 export const closeRepairModal = (close) => (dispatch) =>
   dispatch({ type: types.SET_CLOSE_REPAIR_MODAL, payload: close });
 
+
+
+export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_TASK_LIST_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/itemTask/deleteTaskInd/${phoneTaskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_TASK_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Task Deleted Successfully',
+        showConfirmButton: true,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_TASK_LIST_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong");
+    });
+};
+

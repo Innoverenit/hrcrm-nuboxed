@@ -31,7 +31,8 @@ const StatusOfOrder = (props) => (
                         defaultMessage="progress"
                     />,
                     description: <>
-                        <b>On {moment(props.particularRowData.creationDate).format("DD-MM-YYYY")} By {props.particularRowData.userName}</b>
+                        <b>On {moment(props.particularRowData.creationDate).format("DD-MM-YYYY")}
+                            by {props.particularRowData.userName}</b>
                     </>
                 },
                 {
@@ -69,7 +70,7 @@ const StatusOfOrder = (props) => (
                                             Approve QC
                                         </Button>
                                         : <b> QC approved on {moment(props.particularRowData.qcStartDate).format("DD-MM-YYYY")}
-                                            By {props.particularRowData.qcStartUser}</b>},
+                                            &nbsp;  by {props.particularRowData.qcStartUser}</b>} |
                                 <b>Advance as per Order - {props.particularRowData.advancePayment} % </b>
                                 <b>Received - {props.particularRowData.receivePayment || 0} % </b>
                             </div>
@@ -92,7 +93,8 @@ const StatusOfOrder = (props) => (
                     description: <>
                         {/* {props.particularRowData.transferInd === 2 && */}
                         {props.particularRowData.transferInd === 1 && <b>
-                            PickUp on {props.particularRowData.pickUpDate} by {props.particularRowData.inventoryUserName} Arrived at {props.particularRowData.locationName}   &nbsp;
+                            Picked Up on {moment(props.particularRowData.pickUpDate).format("DD-MM-YYYY")}
+                            by {props.particularRowData.inventoryUserName} Arrived at {props.particularRowData.locationName}   &nbsp;
                         </b>}
                         {props.particularRowData.inventoryReceiveInd && <b>
                             On {moment(props.particularRowData.inventoryReceiveDate).format("DD-MM-YYYY")},

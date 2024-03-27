@@ -14,9 +14,9 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
-import RepairSpareListTable from "./RepairSpareListTable";
+import AddSpareInRepair from "./AddSpareInRepair";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
-const RepairTaskTable = lazy(() => import('./RepairTaskTable'));
+const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
 
 function PhoneListForRepair(props) {
@@ -278,7 +278,7 @@ function PhoneListForRepair(props) {
                                         <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 <Tooltip title="Task">
-                                                    <Badge size="small" count={`${item.taskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
+                                                    <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
                                                         <Button
                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
                                                             type="primary"
@@ -317,20 +317,20 @@ function PhoneListForRepair(props) {
                         })}
                     </InfiniteScroll>
                 </div>
-                <div class="flex justify-end">
+                {/* <div class="flex justify-end">
                     <Button
                         type="primary"
                         onClick={handlePuaseButton}>{hide ? "Resume" : "Pause"}</Button>
-                </div>
+                </div> */}
                 {spares && (
-                    <RepairSpareListTable
+                    <AddSpareInRepair
                         phoneId={phoneId}
                         RowData={RowData}
                     />
 
                 )}
                 {expand && (
-                    <RepairTaskTable
+                    <RepairTaskList
                         phoneId={phoneId}
                         RowData={RowData} />
                 )}

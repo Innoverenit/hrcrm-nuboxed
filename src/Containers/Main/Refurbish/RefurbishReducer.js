@@ -98,6 +98,9 @@ const initialState = {
 
   showPhoneList: false,
 
+  deletingTaskList: false,
+  deletingTaskListError: false,
+
   fetchingNoOfPhoneInRepair: false,
   fetchingNoOfPhoneInRepairError: true,
   repairPhoneByTechId: [],
@@ -1119,9 +1122,13 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingProcessTask: false,
-        taskByPhone: state.taskByPhone.filter(
-          (item) => item.phoneTaskId !== action.payload.phoneTaskId
-        ),
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_PROCESS_TASK_FAILURE:
       return {
@@ -1146,6 +1153,25 @@ export const refurbishReducer = (state = initialState, action) => {
       };
 
 
+
+    case types.DELETE_TASK_LIST_REQUEST:
+      return { ...state, deletingTaskList: true };
+    case types.DELETE_TASK_LIST_SUCCESS:
+      return {
+        ...state,
+        deletingTaskList: false,
+        taskByPhone: state.taskByPhone.filter(
+          (item) => item.phoneTaskId !== action.payload.phoneTaskId
+        ),
+
+
+      };
+    case types.DELETE_TASK_LIST_FAILURE:
+      return {
+        ...state,
+        deletingTaskList: false,
+        deletingTaskListError: true,
+      };
     default:
       return state;
   }

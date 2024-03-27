@@ -59,7 +59,7 @@ const CollectionActionLeft = (props) => {
             marginRight: "0.5rem",
             color: props.viewType === "distributor" && "#1890ff",
           }}
-        ><TocIcon/>&nbsp; <FormattedMessage id="app.distributor" defaultMessage="Distributor"/>
+        ><TocIcon />&nbsp;
         </span>
       </Tooltip>
       {/* <Tooltip

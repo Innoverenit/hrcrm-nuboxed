@@ -179,7 +179,7 @@ const ProductionOrderList = (props) => {
                                                         >Assign For QC </Button>
                                                     </Tooltip>
                                                     // </Badge>
-                                                    : item.qcStartInd === 2 ? <b>Assigned To Technician</b>
+                                                    : item.qcStartInd === 2 ? <b>QC Assigned</b>
                                                         : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>QC on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@ const ProductionOrderList = (props) => {
                                                             }}
                                                         >Assign For Repair</Button>
                                                     </Tooltip>
-                                                    : item.qcRepairInd === 2 ? <b>QC Assigned </b>
+                                                    : item.qcRepairInd === 2 ? <b>Repair Assigned</b>
                                                         : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair on {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                             </div>
                                         </div>

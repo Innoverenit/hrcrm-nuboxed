@@ -78,9 +78,9 @@ const ReceivedTable = (props) => {
               <div className=" md:w-[11rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" md:w-[8rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="md:w-[6rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              <div className="md:w-[7rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="md:w-[6rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
               <div className="md:w-[5rem]"></div>
-              <div className="md:w-[7rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="md:w-[7rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
               <div className="md:w-[7rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
               <div className="md:w-[7rem]"></div>
@@ -138,7 +138,11 @@ const ReceivedTable = (props) => {
                             />
                           </div>
                         </div>
-
+                        <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                            {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
+                          </div>
+                        </div>
                         <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-semibold  font-poppins">
                             <MultiAvatar
@@ -154,11 +158,7 @@ const ReceivedTable = (props) => {
                             {item.phoneReceiveCount}/{item.phoneCount}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                            {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
-                          </div>
-                        </div>
+
                         <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div>
                             {item.inspectionInd === 0 ? <ReceivedOrderToggle
@@ -236,7 +236,7 @@ const ReceivedTable = (props) => {
                                     type="primary"
                                     onClick={handlePauseResume}>
                                     {pause ? "Resume Inspection" : "Pause Inspection"}
-                                  </Button> : item.inventoryReceiveInd ? <b>Store locator</b> : null}
+                                  </Button> : item.inventoryReceiveInd ? <b>Sent To Facility</b> : null}
                           </div>
                         </div>
 

@@ -11,8 +11,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { PrintOutlined } from "@mui/icons-material";
-import { useReactToPrint } from 'react-to-print';
+import ReactToPrint from "react-to-print";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
 const AddingSpareList = lazy(() => import("./AddingSpareList"));
@@ -21,21 +20,11 @@ const QRCodeModal = lazy(() => import("../../../../../Components/UI/Elements/QRC
 function DistributorPauseForm(props) {
     const [dimensions, setDimensions] = React.useState({ width: 500, height: 500 });
 
-    const componentRef = useRef();
-    const handlePrint = useReactToPrint({
-        content: () => componentRef.current,
-        documentTitle: 'Phone Details',
-        pageStyle: `
-        @page {
-          size: A4; /* Set the page size */
-          margin: 1cm; /* Set the page margin */
-        }
-        body {
-          font-size: 16px; /* Set font size */
-        }
-      `,
+    const componentRefs = useRef([]);
 
-    });
+    const handlePrint = () => {
+        window.print();
+    };
 
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -99,7 +88,7 @@ function DistributorPauseForm(props) {
             <div>
                 {props.fetchingPhoneListById ? <BundleLoader /> :
                     <>
-                        <div ref={componentRef} className=' flex justify-end sticky flex-col z-auto'>
+                        <div className=' flex justify-end sticky flex-col z-auto'>
                             <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                                 <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
                                     <div className=" md:w-[4.2rem]"><FormattedMessage
@@ -165,7 +154,7 @@ function DistributorPauseForm(props) {
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                                         height={"65vh"}
                                     >
-                                        {props.phoneListById.map((item) => {
+                                        {props.phoneListById.map((item, index) => {
                                             return (
                                                 <div>
                                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
@@ -346,9 +335,13 @@ function DistributorPauseForm(props) {
                                                                         id="app.Print"
                                                                         defaultMessage="Print"
                                                                     />}>
-                                                                        <PrintOutlined
+                                                                        {/* <PrintOutlined
                                                                             // onClick={handlePrint}
                                                                             className="!text-base cursor-pointer"
+                                                                        /> */}
+                                                                        <ReactToPrint
+                                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                                            content={() => componentRefs.current[index]}
                                                                         />
                                                                     </Tooltip>
 
@@ -356,6 +349,34 @@ function DistributorPauseForm(props) {
                                                             </div>
                                                         </div>
 
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                        <div
+                                                            ref={(el) => (componentRefs.current[index] = el)}
+                                                            style={{
+                                                                fontSize: "16px",
+                                                                marginBottom: "20px",
+                                                                display: "flex",
+                                                                flexDirection: "column",
+                                                                alignItems: "center",
+                                                            }}
+                                                        >
+                                                            {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Company:</span> {item.company}</div> */}
+
+                                                            {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Model:</span> {item.model}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
+                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
+                                                            <div style={{ fontSize: "5rem" }}>
+                                                                <QRCodeModal
+                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                                    imgHeight={"5em"}
+                                                                    imgWidth={"5em"}
+                                                                    size={100} />
+                                                            </div>
+                                                            <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )

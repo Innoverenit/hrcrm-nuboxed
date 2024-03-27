@@ -9,7 +9,7 @@ const AddLocationInOrder = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Select Repair Facility For Order # - ${props.particularRowData.newOrderNo}`}
+                title="Print"
                 width="40vw"
                 visible={props.addInventoryInOrder}
                 onClose={() => props.handleInventoryLocationInOrder(false)}

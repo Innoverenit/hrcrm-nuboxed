@@ -563,6 +563,7 @@ const AccountOrderTable = (props) => {
                 />
                 <UpdateOrderModal
                     particularRowData={particularRowData}
+                    distributorId={props.distributorId}
                     handleUpdateOrder={props.handleUpdateOrder}
                     updateOrderModal={props.updateOrderModal}
                 />

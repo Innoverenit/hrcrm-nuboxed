@@ -395,6 +395,9 @@ const initialState = {
   fetchingNotesInOrdersError: false,
   notesInOrders: [],
 
+  deletingSpareList: false,
+  deletingSpareListError: false,
+
   fetchingProductById: false,
   fetchingProductByIdError: false,
   catalogueById: [],
@@ -2336,6 +2339,24 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCTION_PAYMENT_MODAL:
       return { ...state, showPaymentListModal: action.payload };
+
+    case types.DELETE_SPARE_LIST_REQUEST:
+      return { ...state, deletingSpareList: true };
+    case types.DELETE_SPARE_LIST_SUCCESS:
+      return {
+        ...state,
+        deletingSpareList: false,
+        spareList: state.spareList.filter(
+          (item) => item.phoneSpareId !== action.payload.phoneSpareId
+        ),
+
+      };
+    case types.DELETE_SPARE_LIST_FAILURE:
+      return {
+        ...state,
+        deletingSpareList: false,
+        deletingSpareListError: true,
+      };
 
     case types.UPDATE_SPARELIST_ITEM_REQUEST:
       return { ...state, updatingSpareListItem: true };
