@@ -23,6 +23,7 @@ import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 
 import { FormattedMessage } from "react-intl";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 const ButtonGroup = Button.Group;
 
 const { Option } = Select;
@@ -58,12 +59,21 @@ class TaskImportForm extends Component {
               initialValues={{
               
               
-                documentId:"",
+                excelId:"",
                
               }}
             //    validationSchema={documentSchema}
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
+                this.props.addTaskImportForm(
+                  // values.documentId,
+                  {
+                    ...values,
+                    // shareInd:this.state.showUserList,
+                  },
+                  this.props.orgId,
+                  this.callback
+                );
                
                 resetForm();
               }}
@@ -88,9 +98,9 @@ class TaskImportForm extends Component {
                       }}
                     >
                       <Field
-                        name="documentId"
+                        name="excelId"
                         isRequired
-                        component={DragableUpload}
+                        component={ImportTaskUpload}
                         // component={DocumentUpload}
                       />
                       {errors.documentId && (
