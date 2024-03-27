@@ -8,7 +8,6 @@ import { Spacer, StyledLabel } from "../../../../../../../Components/UI/Elements
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../../../../../Components/Forms/Formik/TimePicker";
-
 import {
   addSuppliersActivityCall,
 } from "../../../../SuppliersAction";
@@ -98,9 +97,9 @@ class SuppliersActivityCallForm extends Component {
             startTime: startDate || null,
             endDate: endDate || null,
             endTime: endDate || null,
-            timeZone: timeZone,
+            // timeZone: timeZone,
             description: "",
-            suppliersId: this.props.suppliersSuppliersId,
+            supplierId: this.props.supplier.supplierId,
             userId: this.props.userId,
           }}
           validationSchema={FormSchema}
@@ -453,19 +452,16 @@ class SuppliersActivityCallForm extends Component {
 }
 
 const mapStateToProps = ({ auth, suppliers }) => ({
-  //   customerId: customer.customer.contactId,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
   addingSuppliersActivityCall: suppliers.addingSuppliersActivityCall,
-  // suppliersSuppliersId:
-  //     suppliers.suppliersDetailsBySuppliersId.suppliersId,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addSuppliersActivityCall,
-      // getActivityListBySuppliersId,
     },
     dispatch
   );

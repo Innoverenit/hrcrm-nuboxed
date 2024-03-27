@@ -3,27 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon, Tooltip } from "antd";
 import { EditOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
-
-import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
-// import {
-//     getActivityListByDistributorId,
-//     handleUpdateEventModal,
-//     handleUpdateTaskModal,
-//     handleUpdateCallModal
-// } from "../../../../DistributorAction";
-// import { setEditCall } from "../../../../../Call/CallAction";
-// import { setEditEvents } from "../../../../../Event/EventAction";
-// import { setEditTask } from "../../../../../Task/TaskAction";
+import {  StyledTable } from "../../../../../../../Components/UI/Antd";
 import moment from "moment";
-// import DistributorCallUpdateModal from "./DistributorCallUpdateModal";
-// import DistributorEventUpdateModal from "./DistributorEventUpdateModal";
-// import DistributorTaskUpdateModal from "./DistributorTaskUpdateModal";
+import {getActivityListBySupplierId} from "../../../../SuppliersAction";
 
 class SuppliersActivityTable extends Component {
     componentDidMount() {
-        // this.props.getActivityListByDistributorId(this.props.distributorId);
+        this.props.getActivityListBySupplierId(this.props.supplier.supplierId);
     }
-
     render() {
         const {
             handleUpdateEventModal,
@@ -141,8 +128,8 @@ class SuppliersActivityTable extends Component {
                     <StyledTable
                         rowKey=""
                         columns={columns}
-                        dataSource={this.props.activityDistributor}
-                        // loading={this.props.fetchingActivityDistributor}
+                        dataSource={this.props.activitySupplier}
+                        loading={this.props.fetchingActivitySupplier}
                         scroll={{ y: 320 }}
                         pagination={{
                             defaultPageSize: 15,
@@ -181,25 +168,16 @@ class SuppliersActivityTable extends Component {
     }
 }
 
-const mapStateToProps = ({ distributor, auth }) => ({
-    activityDistributor: distributor.activityDistributor,
-    fetchingActivityDistributor: distributor.fetchingActivityDistributor,
-    // distributorDistributorId: distributor.distributorDetailsByDistributorId.distributorId,
-    updateEventModal: distributor.updateEventModal,
-    updateCallModal: distributor.updateCallModal,
-    updateTaskModal: distributor.updateTaskModal,
+const mapStateToProps = ({ suppliers, auth }) => ({
+    activitySupplier: suppliers.activitySupplier,
+    fetchingActivitySupplier: suppliers.fetchingActivitySupplier,
+   
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // getActivityListByDistributorId,
-            // handleUpdateEventModal,
-            // handleUpdateCallModal,
-            // handleUpdateTaskModal,
-            // setEditCall,
-            // setEditEvents,
-            // setEditTask
+            getActivityListBySupplierId
         },
         dispatch
     );

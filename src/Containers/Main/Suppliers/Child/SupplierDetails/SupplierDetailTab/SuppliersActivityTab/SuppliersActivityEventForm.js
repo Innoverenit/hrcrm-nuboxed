@@ -49,7 +49,7 @@ class SuppliersActivityEventForm extends Component {
   render() {
     const eventType = this.props.events.map((item) => {
       return {
-          label: item.eventTypeName || "",
+          label: item.eventType || "",
           value: item.eventTypeId,
       };
     });
@@ -79,7 +79,7 @@ class SuppliersActivityEventForm extends Component {
         <Formik
           enableReinitialize
           initialValues={{
-            distributorId: this.props.distributorDistributorId,
+            supplierId: this.props.supplier.supplierId,
             userId: this.props.userId,
             eventTypeId: "",
             topic: "",
@@ -202,7 +202,6 @@ class SuppliersActivityEventForm extends Component {
                 >
                      <Field
                     name="eventTypeId"
-                    // placeholder="Designation"
                     label="Type"
                     component={SelectComponent}
                     options={Array.isArray(eventType) ? eventType : []}
@@ -405,12 +404,9 @@ class SuppliersActivityEventForm extends Component {
 }
 
 const mapStateToProps = ({ auth, suppliers, events }) => ({
-  //   distributorId: distributor.distributor.contactId,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
   addingSuppliersActivityEvent: suppliers.addingSuppliersActivityEvent,
-  // distributorDistributorId:
-  //   distributor.distributorDetailsByDistributorId.distributorId,
   events: events.events,
 
 });
@@ -419,7 +415,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addSuppliersActivityEvent,
-      // getActivityListByDistributorId,
       getEvents,
 
     },

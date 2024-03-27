@@ -15,6 +15,7 @@ class AddSuppliersActivityModal extends Component {
         const {
             addSuppliersActivityModal,
             handleSuppliersActivityModal,
+            supplier
         } = this.props;
         return (
             <div>
@@ -30,17 +31,17 @@ class AddSuppliersActivityModal extends Component {
                     <StyledTabs defaultActiveKey="1">
                         <TabPane tab={`Call`} key="1">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityCallForm />
+                                <SuppliersActivityCallForm supplier={supplier}/>
                             </div>
                         </TabPane>
                         <TabPane tab={`Event`} key="2">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityEventForm />
+                                <SuppliersActivityEventForm supplier={supplier}/>
                             </div>
                         </TabPane>
                         <TabPane tab={`Task`} key="3">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityTaskForm />
+                                <SuppliersActivityTaskForm supplier={supplier}/>
                             </div>
                         </TabPane>
                     </StyledTabs>

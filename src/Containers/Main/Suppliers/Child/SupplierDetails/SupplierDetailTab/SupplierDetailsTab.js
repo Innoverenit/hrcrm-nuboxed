@@ -20,6 +20,7 @@ const SupplierContactTable=lazy(()=>import("./SupplierContactTab/SupplierContact
 const SupplierDocumentTable=lazy(()=>import("./SupplierDocumentTab/SupplierDocumentTable"));
 const AddSupplierDocumentModal=lazy(()=>import("./SupplierDocumentTab/AddSupplierDocumentModal"));
 const AddSuppliersActivityModal=lazy(()=>import("./SuppliersActivityTab/AddSuppliersActivityModal"));
+const SuppliersActivityTable = lazy(()=>import("./SuppliersActivityTab/SuppliersActivityTable"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -206,7 +207,7 @@ class SupplierDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SupplierDocumentTable supplier={this.props.supplier}/>
+                <SuppliersActivityTable supplier={this.props.supplier}/>
               </Suspense>
             </TabPane>
                     </StyledTabs>

@@ -2215,11 +2215,11 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
     });
 };
 
-export const getJumpFinanceDetail = (orgId, type) => (dispatch) => {
+export const getJumpFinanceDetail = (orgId, type,orderType) => (dispatch) => {
   dispatch({ type: types.GET_JUMPSTART_FINANCE_DETAIL_REQUEST });
   axios
     .get(
-      `${base_url2}/order/finance/${orgId}/${type}`,
+      `${base_url2}/order/finance/${orgId}/${type}/${orderType}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

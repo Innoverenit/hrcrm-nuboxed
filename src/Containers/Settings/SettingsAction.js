@@ -1,5 +1,5 @@
 import * as types from "./SettingsActionTypes";
-import { base_url, base_url2 } from "../../Config/Auth";
+import { base_url,login_url, base_url2 } from "../../Config/Auth";
 import axios from "axios";
 import { UPDATE_RECRUITMENT_ADVANCE_SUCCESS } from "../Auth/AuthTypes";
 import { message } from "antd";
@@ -5340,6 +5340,56 @@ export const addSalary = (process, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.ADD_SALARY_FAILURE,
+      });
+
+    });
+};
+
+export const getLangWords = (word) => (dispath) => {
+  dispath({ type: types.GET_LANG_WORDS_REQUEST });
+  axios
+    .get(`${login_url}/words/allWords`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispath({
+        type: types.GET_LANG_WORDS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_LANG_WORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const AddLangWords = (word) => (dispatch) => {
+  dispatch({ type: types.ADD_LANG_WORDS_REQUEST });
+
+  axios
+    .post(`${login_url}/words `, word, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getLangWords())
+      dispatch({
+        type: types.ADD_LANG_WORDS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LANG_WORDS_FAILURE,
       });
 
     });

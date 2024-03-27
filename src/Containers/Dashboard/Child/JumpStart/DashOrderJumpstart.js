@@ -4,16 +4,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
-  getJumpOrderCount,
-  getJumpOrderDetail
+  getJumpFinanceDetail
 } from "../../DashboardAction";
 
 function DashOrderJumpstart(props) {
 
   useEffect(() => {
-    props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    props.getJumpFinanceDetail(props.orgId,props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
+
   return (
     <>
    
@@ -28,9 +27,9 @@ function DashOrderJumpstart(props) {
                 defaultMessage="Receivables Added"
               />}
             // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.qualifiedInvestorLeadsList}
-            // isLoading={props.user.fetchingJumpstartInvestor}
+            cursorData={"pointer"}
+            value={props.financeDetail.totalPayableAmount}
+            isLoading={props.fetchingJumpstartFinanceDetail}
             />
 
            
@@ -44,9 +43,9 @@ function DashOrderJumpstart(props) {
                 defaultMessage="Receivables Closed"
               />}
             // jumpstartClick={()=>handleDealAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.opportunityAdded}
-            // isLoading={props.fetchingJumpstartInvestor3}
+            cursorData={"pointer"}
+            value={props.financeDetail.outstanding}
+            isLoading={props.fetchingJumpstartFinanceDetail}
             />
             <JumpStartBox
                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -56,38 +55,23 @@ function DashOrderJumpstart(props) {
                 defaultMessage="Receivables Cancelled"
               />}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={ props.financeDetail.closedOpportunity}
-            // isLoading={props.fetchingJumpstartInvestor4}
+            cursorData={"pointer"}
+            value={ props.financeDetail.orderValue}
+            isLoading={props.fetchingJumpstartFinanceDetail}
             />
           </div>
         </div>
       </div>
-      {/* <PitchQualifiedDrawer
-      openPitchQualified={openPitchQualified}
-      handlePitchQualifiedDrawer={handlePitchQualifiedDrawer}
-      />
-       <PitchAddedDrawer
-      openPitchAdded={openPitchAdded}
-      handlePitchAddedDrawer={handlePitchAddedDrawer}
-      />
-      <DealsAddedDrawer 
-     openDealAdded={openDealAdded}
-     handleDealAddedDrawer={handleDealAddedDrawer}
-    />
-    <DealsClosedDrawer 
-     openDealClosed={openDealClosed}
-     handleDealClosedDrawer={handleDealClosedDrawer}
-    /> */}
+      
     </>
 
   );
 }
 const mapStateToProps = ({ dashboard, auth }) => ({
   user: auth.userDetails,
-  orderinDashboard: dashboard.orderinDashboard,
+  financeDetail: dashboard.financeDetail,
   orgId: auth.userDetails.organizationId,
-  fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
+  fetchingJumpstartFinanceDetail: dashboard.fetchingJumpstartFinanceDetail,
   userId: auth.userDetails.employeeId,
   timeRangeType: dashboard.timeRangeType,
 
@@ -96,8 +80,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getJumpOrderCount,
-      getJumpOrderDetail
+      getJumpFinanceDetail
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

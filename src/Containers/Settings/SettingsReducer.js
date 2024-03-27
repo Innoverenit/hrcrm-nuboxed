@@ -627,7 +627,14 @@ const initialState = {
 
   fetchingCurrencyConversion: false,
   fetchingCurrencyConversionError: false,
-  conversionCurrencies:[]
+  conversionCurrencies:[],
+  
+  fetchingLangWords: false,
+  fetchingLangWordsError:false,
+  langWords:[],
+
+  addingLangWords: false,
+  addingLangWordsError:false,
 
 };
 export const settingsReducer = (state = initialState, action) => {
@@ -3955,8 +3962,36 @@ export const settingsReducer = (state = initialState, action) => {
                                                       };
                     
 
+                                                      case types.GET_LANG_WORDS_REQUEST:
+                                                        return { ...state, fetchingLangWords: true };
+                                                      case types.GET_LANG_WORDS_SUCCESS:
+                                                        return {
+                                                          ...state,
+                                                          fetchingLangWords: false,
+                                                          langWords: action.payload,
+                                                          
+                                                        };
+                                                      case types.GET_LANG_WORDS_FAILURE:
+                                                        return {
+                                                          ...state,
+                                                          fetchingLangWords: false,
+                                                          fetchingLangWordsError: true,
+                                                        };
 
-                                          
+                                                        case types.ADD_LANG_WORDS_REQUEST:
+                                                          return { ...state, addingLangWords: true };
+                                                        case types.ADD_LANG_WORDS_SUCCESS:
+                                                          return {
+                                                            ...state,
+                                                            addingLangWords: false,
+                                                            // langWords: [action.payload,...state.langWords]
+                                                          };
+                                                        case types.ADD_LANG_WORDS_FAILURE:
+                                                          return {
+                                                            ...state,
+                                                            addingLangWords: false,
+                                                            addingLangWordsError: true,
+                                                          };              
                     
         
           

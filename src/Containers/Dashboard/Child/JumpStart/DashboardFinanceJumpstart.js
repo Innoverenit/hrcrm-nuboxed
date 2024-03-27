@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
-  getJumpOrderCount,
   getJumpOrderDetail
 } from "../../DashboardAction";
 
 function DashboardFinanceJumpstart(props) {
 
   useEffect(() => {
-    props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
   return (
@@ -24,7 +23,7 @@ function DashboardFinanceJumpstart(props) {
               noProgress
               title={<FormattedMessage
                 id="app.ordersAdded"
-                defaultMessage="Orders Added"
+                defaultMessage="Refurbish Added"
               />}
               // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
               cursorData={"pointer"}
@@ -37,7 +36,7 @@ function DashboardFinanceJumpstart(props) {
               noProgress
               title={<FormattedMessage
                 id="app.ordersopen"
-                defaultMessage="Orders Open"
+                defaultMessage="Refurbish Open"
               />}
               // jumpstartClick={()=>handlePitchAddedDrawer(true)}
               cursorData={"pointer"}
@@ -51,7 +50,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.ordersclosed"
-                defaultMessage="Orders Closed"
+                defaultMessage="Refurbish Closed"
               />}
               // jumpstartClick={()=>handleDealAddedDrawer(true)}
               cursorData={"pointer"}
@@ -63,7 +62,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={<FormattedMessage
                 id="app.orderscancelled"
-                defaultMessage="Orders Cancelled"
+                defaultMessage="Refurbish Cancelled"
               />}
               // jumpstartClick={()=>handleDealClosedDrawer(true)}
               cursorData={"pointer"}
@@ -124,8 +123,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getJumpOrderCount,
-      getJumpOrderDetail
+      // getJumpOrderDetail
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,
