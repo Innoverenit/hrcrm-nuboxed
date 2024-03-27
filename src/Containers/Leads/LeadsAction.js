@@ -1426,14 +1426,14 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     });
 
     axios
-      .post(`${base_url}/organization/document`, customer, {
+      .post(`${base_url}/excel/import/leads`, customer, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
         console.log(res);
-        //dispatch(getRepositoryDocuments(userId));
+      dispatch(getLeads(userId));
         const startDate = dayjs().startOf("month").toISOString();
         const endDate = dayjs().endOf("month").toISOString();
         // dispatch(getRecords(userId));
