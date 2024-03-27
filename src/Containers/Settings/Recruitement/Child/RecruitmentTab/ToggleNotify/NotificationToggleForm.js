@@ -290,6 +290,11 @@ function NotificationToggleForm(props) {
     { tab: 'Contact' },
     { tab: 'Deals' },
     { tab: 'Investor' },
+    { tab: 'Call' },
+    { tab: 'Event' },
+    { tab: 'Task' },
+{ tab: 'Supplier' },
+{ tab: 'Shipper' },
   ];
 
   useEffect(() => {
@@ -322,10 +327,12 @@ function NotificationToggleForm(props) {
           <p>Country: {item.country_name}</p>
           <p>ID: {item.country_id}</p>
         </Card> */}
+         {props.gettingNotificationConfig ? <div style={{textAlign:"center"}}>Loading...</div>:
        <NottificationToggleTab
        activeTab={activeTab}
        notificationConfig={props.notificationConfig}
        />
+      }
       </TabPane>
     ))}
   </Tabs>
@@ -333,7 +340,8 @@ function NotificationToggleForm(props) {
 }
 
 const mapStateToProps = ({ auth,settings }) => ({
-  notificationConfig:settings.notificationConfig
+  notificationConfig:settings.notificationConfig,
+  gettingNotificationConfig:settings.gettingNotificationConfig
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
