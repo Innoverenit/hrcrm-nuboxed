@@ -70,14 +70,14 @@ const AccountActionLeft = (props) => {
 
     return (
         <div class="flex items-center" >
-            <div class="max-sm:hidden">
+            <div class="">
                 {user.functionName !== "Customer Care" && (
 
                     <Tooltip title="List View">
                         <Badge size="small"
                             count={props.accountRecordData.distributor || 0}
                         >
-                            <span class=" md:mr-2 text-sm cursor-pointer"
+                            <span class=" mr-2 text-sm cursor-pointer"
                                 onClick={() => props.setDistributorViewType("list")}
                                 style={{
                                     color: props.viewType === "list" && "#1890ff",
@@ -98,7 +98,7 @@ const AccountActionLeft = (props) => {
                     <Badge size="small"
                         count={props.accountRecordData.distributor || 0}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" mr-2 text-sm cursor-pointer"
                             onClick={() => props.setDistributorViewType("all")}
                             style={{
                                 color: props.viewType === "all" && "#1890ff",
@@ -115,7 +115,7 @@ const AccountActionLeft = (props) => {
                 <Badge size="small"
                 // count={props.accountRecordData.distributor || 0}
                 >
-                    <span class=" md:mr-2 text-sm cursor-pointer"
+                    <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => props.setDistributorViewType("dashboard")}
                         style={{
                             color: props.viewType === "dashboard" && "#1890ff",

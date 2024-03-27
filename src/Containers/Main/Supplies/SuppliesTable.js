@@ -67,191 +67,19 @@ function SuppliesTable(props) {
   }
 
   const { updateSuppliesDrawer, handleUpdateSupplieDrawer, materialBuildrawer, handleMaterialBuilderDrawer } = props;
-  if (isMobile) {
-    return (
-      <>
-        <div className=" flex justify-end sticky top-28 z-auto">
-          <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-
-            {props.purchaseList.map((item) => {
-              return (
-                <>
-                  <div
-                    className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
-                  >
-                    <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                      <div class="flex justify-between w-wk items-center ">
-
-                        <div className="flex max-sm:w-full ">
-                          <div>
-
-                            <MultiAvatar
-                              // primaryTitle={item.name}
-                              imageId={item.imageId}
-                              // imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
-
-                          </div>
-                          <div class="w-[4%]"></div>
-
-                          <div class="max-sm:w-full md:flex items-center">
-
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                                {item.hsn}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.suppliesName}
-                        </div>
-
-                      </div>
-                      <div class="flex justify-between w-wk items-center ">
-                        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                          <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                            {item.categoryName}
-                          </div>
-                        </div>
-
-                        <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                          <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                            {item.subCategoryName}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col md:w-28 max-sm:justify-between w-full max-sm:flex-row ">
-                          <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                            {item.attributeName} {item.subAttributeName}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="flex justify-between w-wk items-center ">
-
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {item.reorder}
-                        </div>
-
-
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          {`${moment(item.creationDate).format("ll")}`}
-                        </div>
-
-
-                        <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                          <QrCode />
-                        </div>
-
-                      </div>
-                      <div class="flex justify-between w-wk items-center ">
-
-                        <div>
-                          <Tooltip title="Material Builder">
-                            <ViewQuiltIcon
-                              className="cursor-pointer text-base"
-                              onClick={() => {
-                                props.handleMaterialBuilderDrawer(true);
-                                handleParticularRowData(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-
-
-                        <div>
-                          {props.repairInd && <Tooltip title="Brand Model">
-                            <PhoneFilled
-                              onClick={() => {
-                                props.handleBrandModel(true);
-                                handleParticularRowData(item);
-                              }}
-                              style={{ color: "blue", cursor: "pointer" }}
-                            />
-                          </Tooltip>
-                          }
-                        </div>
-                        {/* <div>
-
-                          <InventoryIcon
-                            style={{ cursor: "pointer", fontSize: "1rem", }}
-                          />
-
-                        </div> */}
-
-
-                        <div>
-                          <Tooltip title="Edit">
-                            <BorderColorIcon
-                              onClick={() => {
-                                handleUpdateSupplieDrawer(true);
-                                handleParticularRowData(item);
-                              }}
-                              style={{
-                                color: "grey",
-                                cursor: "pointer",
-                                fontSize: "1rem",
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <Popconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => props.deletePurchaseData(item.suppliesId)}
-                          >
-                            <DeleteFilled
-                              style={{ cursor: "pointer", color: "red" }}
-                            />
-                          </Popconfirm>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </div>
-
-        <Suspense fallback={<BundleLoader />}>
-          <TagBrandModel
-            addBrandModel={props.addBrandModel}
-            handleBrandModel={props.handleBrandModel}
-            particularDiscountData={particularDiscountData}
-          />
-          <UpdateSuppliesFormDrawer
-            particularDiscountData={particularDiscountData}
-            updateSuppliesDrawer={updateSuppliesDrawer}
-            handleUpdateSupplieDrawer={handleUpdateSupplieDrawer}
-          />
-          <MaterialBuilderDrawer
-            particularDiscountData={particularDiscountData}
-            materialBuildrawer={materialBuildrawer}
-            handleMaterialBuilderDrawer={handleMaterialBuilderDrawer}
-          />
-        </Suspense>
-
-      </>
-    );
-  }
   return (
     <>
       <div className=" flex justify-end sticky top-28 z-auto">
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[1rem]"></div>
-            <div className=" md:w-[6.1rem]">HSN</div>
-            <div className=" md:w-[5.1rem]">Name</div>
-            <div className=" md:w-[6.2rem] ">Category</div>
-            <div className="md:w-[6.1rem]">Sub Category</div>
-            <div className="md:w-[4.8rem]">Attribute</div>
-            <div className="md:w-[6.1rem]">Re-order level</div>
-            <div className="md:w-[4.2rem]">Created</div>
+        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[1rem] max-xl:w-[2rem]"></div>
+            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">HSN</div>
+            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+            <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Category</div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sub Category</div>
+            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
+            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
             <div className="w-[3.8rem]"></div>
           </div>
@@ -268,10 +96,11 @@ function SuppliesTable(props) {
                 {props.purchaseList.map((item) => {
                   return (
                     <>
-                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3">
+                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                          <div className=" flex font-medium flex-col w-[17rem]   max-sm:w-full">
-                            <div className="flex max-sm:w-full ">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[15.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                            <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
 
                                 <MultiAvatar
@@ -283,69 +112,63 @@ function SuppliesTable(props) {
                                 />
 
                               </div>
-                              <div class="w-[4%]">
+                              <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
 
                               </div>
 
-                              <div class="max-sm:w-full md:flex items-center">
+                              <div class="max-sm:w-auto flex items-center">
 
-                                <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                                  <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                                <div className=" flex font-medium flex-col w-[10rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                  <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {item.hsn}
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div className=" flex font-medium flex-col w-[10.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.suppliesName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          </div>
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.categoryName}
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div className=" flex font-medium flex-col w-[9.23rem] max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.subCategoryName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div className=" flex font-medium flex-col w-[10.32rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.attributeName} {item.subAttributeName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          </div>
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[9.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.reorder}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                          <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {`${moment(item.creationDate).format("ll")}`}
                             </div>
+                          </div>
                           </div>
                           {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <QrCode />
                       </div>
                     </div> */}
-                          <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
-                            <div>
-
-                            </div>
-                          </div>
-                          <div class="flex flex-col w-[3%] justify-center max-sm:flex-row max-sm:w-[10%]">
-                            <div>
-
-                            </div>
-                            <div>
-                            </div>
-                          </div>
-                          <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
@@ -369,7 +192,7 @@ function SuppliesTable(props) {
                               </Tooltip>}
                             </div>
                           </div>
-                          <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
                             <div>
                               <Tooltip title="Suppliers">
                                 <CategoryIcon
@@ -385,7 +208,7 @@ function SuppliesTable(props) {
                               <InventoryIcon className=" !text-base cursor-pointer" />
                             </div>
                           </div>
-                          <div class="flex flex-col justify-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
                             <div>
                               <Tooltip title="Edit">
                                 <BorderColorIcon
@@ -406,6 +229,7 @@ function SuppliesTable(props) {
                                 <DeleteOutlined className=" !text-base cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
+                          </div>
                           </div>
                         </div>
                       </div>
