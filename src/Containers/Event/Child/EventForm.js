@@ -173,7 +173,7 @@ const {
     return (
       <>
         <Formik
-          enableReinitialize
+          // enableReinitialize
           initialValues={
             isEditing
               ? prefillEvent

@@ -94,7 +94,8 @@ class NoteFile extends Component {
         <Formik
           enableReinitialize
           initialValues={{
-            // comment: ""
+            // comment: "",
+            // notes: "",
             taskId:this.props.taskId,
             providerId:this.props.userId,
             orgId:this.props.organizationId,
@@ -145,11 +146,11 @@ class NoteFile extends Component {
                   placeholder={placeholder || "Type here"}
                   toolbar={toolbarOption}
                 />
-                <div class=" flex ">
+                {/* <div class=" flex ">
                   <Button
                     type="primary"
                     htmlType="submit"
-                    // disabled={this.state.edit}
+                 
                     style={{
                       marginTop: "3.8125em",
                       marginBottom: "0.3125em",
@@ -160,9 +161,9 @@ class NoteFile extends Component {
                       id="app.notify"
                       defaultMessage="Notify"
                     />
-                    {/* Notify */}
+               
                   </Button>
-                </div>
+                </div> */}
                 <div class=" flex justify-end">
                   <Button
                     type="primary"

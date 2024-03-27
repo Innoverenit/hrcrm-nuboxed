@@ -336,12 +336,12 @@ const TaskApproveTable = (props) => {
                           defaultMessage="submittedby"
                         /></div>
         <div className="md:w-16"><FormattedMessage
-                          id="app.deviation"
-                          defaultMessage="deviation"
+                          id="app.ageing"
+                          defaultMessage="Ageing"
                         /></div>
         <div className="md:w-28"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
+                          id="app.assignedOn"
+                          defaultMessage="Assigned On"
                         /></div>
         <div className="md:w-28"></div>
         <div className="md:w-[3%]"></div>
@@ -402,7 +402,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium  items-center  md:w-[33.3rem] max-sm:flex-row w-full ">
+                                <div className=" flex font-medium  items-center  md:w-[9.3rem] max-sm:flex-row w-full ">
                                     {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">   
                                     <span   

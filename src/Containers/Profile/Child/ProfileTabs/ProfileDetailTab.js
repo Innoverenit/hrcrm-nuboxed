@@ -117,7 +117,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <MailOutlined type="mail" />
+                    <span class=" ml-1">
                     Performance
+                  </span>
                   </span>
                  
                    
@@ -136,7 +138,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <CustomerServiceOutlined type="customer-service" />
+                    <span class=" ml-1">
                     Training
+                  </span>
                   </span>
                   {activeKey === "2" && (
                     <>
@@ -163,7 +167,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <i class="fa fa-graduation-cap"></i>
-                    &nbsp; Education
+                    <span class=" ml-1">
+                    Education
+                  </span>
                   </span>
                   {activeKey === "3" && (
                     <>
@@ -202,7 +208,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <BankOutlined type="bank" />
+                    <span class=" ml-1">
                     Employment
+                  </span>
                   </span>
                   {activeKey === "4" && (
                     <>
@@ -230,7 +238,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <PhoneOutlined type="phone" />
+                    <span class=" ml-1">
                     Emergency
+                    </span>
                   </span>
                   {activeKey === "5" && (
                     <>
@@ -258,7 +268,10 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-credit-card"></i>&nbsp; Bank Details
+                    <i class="fa fa-credit-card"></i> 
+                     <span class=" ml-1"> 
+                    Bank Details
+                  </span>
                   </span>
                   {activeKey === "6" && (
                     <>
@@ -285,7 +298,10 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-id-card"></i>&nbsp; Personal Details
+                    <i class="fa fa-id-card"></i>
+                    <span class=" ml-1"> 
+                     Personal Details
+                  </span>
                   </span>
                   {activeKey === "7" && (
                     <>
@@ -312,7 +328,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <i className="fas fa-file-signature"></i>
-                    &nbsp; Signature
+                    <span class=" ml-1"> 
+                    Signature
+                  </span>
                   </span>
                 </>
               }
@@ -328,7 +346,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <MailOutlined type="mail" />
+                    <span class=" ml-1"> 
                     Email
+                  </span>
                   </span>
                   {activeKey === "9" && (
                     <>

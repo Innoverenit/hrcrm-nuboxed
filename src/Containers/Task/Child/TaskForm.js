@@ -238,13 +238,36 @@ const [priority,setpriority]=useState(props.selectedTask
           value: item.customerId,
         };
       });
+      const sortedEmployee =props.assignedToList.sort((a, b) => {
+        const nameA = a.empName.toLowerCase();
+        const nameB = b.empName.toLowerCase();
+        // Compare department names
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
       
+      const employeesData =sortedEmployee.map((item) => {
+        return {
+          label: `${item.empName}`,
+          // label: `${item.salutation || ""} ${item.firstName ||
+          //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
+          value: item.employeeId,
+        };
+      });
   
+      const filteredEmployeesData = employeesData.filter(
+        (item) => item.value !== props.user.userId
+      );
     const today = dayjs();
     var todayDate = new Date();
     console.log(today);
     const {
-      user: { userId, firstName, fullName, middleName, lastName, timeZone },
+      user: { userId, firstName, fullName,empName, middleName, lastName, timeZone },
       addingTask,
       isEditing,
       prefillTask,
@@ -266,12 +289,7 @@ const [priority,setpriority]=useState(props.selectedTask
       employeeId,
       taskTypeId,
     } = props;
-    const employeesData = props.employees.map((item) => {
-      return {
-        label: `${item.fullName}`,
-        value: item.employeeId,
-      };
-    });
+
 
     // const unitData = props.units.map((item) => {
     //   return {
@@ -312,7 +330,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   assignedDate: assignedDate || dayjs(),
                   customerId: "",
                   projectName: "",
-                  included: [],
+               
                   taskChecklistId: "",
                   taskDescription: "",
                   timeZone: timeZone,
@@ -320,6 +338,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   startDate: startDate || dayjs(),
                   endDate: endDate || null,
                   endDate: dayjs(),
+                  included: [],
                   taskStatus: active,
 
                   priority: priority,
@@ -1287,7 +1306,27 @@ const [priority,setpriority]=useState(props.selectedTask
                     }}
                   /> */}
               
-                 
+              <div class="mt-1">
+                  <Field
+                    name="included"
+                    // label="Include"
+                    label={
+                      <FormattedMessage
+                        id="app.include"
+                        defaultMessage="include"
+                      />
+                    }
+                    mode
+                    placeholder="Select"
+                    component={SelectComponent}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
+                    value={values.included}
+                    defaultValue={{
+                      label: `${empName || ""} `,
+                      value: employeeId,
+                    }}
+                  />
+                 </div>
               <div class="mt-3">
                   {props.user.crmInd === true &&(
                  <Field
@@ -1473,7 +1512,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingTask : addingTask}
+                  loading={isEditing ? updatingTask : addingTask}
                 >
                   {isEditing ? (
                     "Update"

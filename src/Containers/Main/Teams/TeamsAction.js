@@ -678,7 +678,7 @@ export const getKpilist = (departmentId) => (dispatch) => {
     });
 };
 
-export const addKpi = (data) => (dispatch) => {
+export const addKpi = (data,employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.ADD_KPI_REQUEST,
   });
@@ -689,7 +689,6 @@ export const addKpi = (data) => (dispatch) => {
       },
     })
     .then((res) => {
-     
       dispatch({
         type: types.ADD_KPI_SUCCESS,
         payload: res.data,
@@ -706,12 +705,12 @@ export const addKpi = (data) => (dispatch) => {
     });
 };
 
-export const getEmployeeKpiList = (employeeId) => (dispatch) => {
+export const getEmployeeKpiList = (employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_KPI_LIST_REQUEST,
   });
     axios
-  .get(`${base_url}/employee/kpi-list/${employeeId}`, {
+  .get(`${base_url}/employee/kpi-list/${employeeId}/${year}/${quarter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

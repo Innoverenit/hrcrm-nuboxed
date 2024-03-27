@@ -113,7 +113,7 @@ export const removeKpi = ( performanceManagementId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateKpi = ( performanceManagementId,kpi,frequency,cb) => (dispatch) => {
+export const updateKpi = ( data,performanceManagementId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_KPI_REQUEST,
@@ -121,7 +121,7 @@ export const updateKpi = ( performanceManagementId,kpi,frequency,cb) => (dispatc
     axios
       .put(
         `${base_url}/performanceManagement/${performanceManagementId}`,
-        { kpi,performanceManagementId,frequency,editInd:true },
+        data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
