@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
+import { Tabs,Select } from 'antd';
 import {getKpilist,addKpi, } from "./TeamsAction";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
-
+const { TabPane } = Tabs;
 
 /**
  * yup validation scheme for creating a Team
@@ -20,7 +21,27 @@ const TeamsSchema = Yup.object().shape({
 });
 
 function KpiList(props) {
+  const tab=[
+    "Q1","Q2","Q3","Q4"
+  ]
+  const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
   const [selected, setSelected] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("");
+  const [selectedYear, setSelectedYear] = useState(null);
+  const yearSelectRef = useRef(null);
+
+  const resetData = () => {
+    setSelectedYear(null);
+    setActiveTab(null)
+    // setSales({ amount: null, currency: null });
+    // setFulfillment({ amount: null });
+    // setInvestment({ amount: null, currency: null });
+   
+    if (yearSelectRef.current) {
+      yearSelectRef.current.value = ""; // Reset the value of the select element
+    }
+  };
     useEffect(()=>{
         props.getKpilist(props.rowdata.departmentId)
         // props.getEmployeeKpiList(props.rowdata.employeeId)
@@ -29,6 +50,25 @@ function KpiList(props) {
   function handleReset(resetForm) {
     resetForm();
   }
+
+  const handleYearChange = async (e) => {
+    const year = parseInt(e.target.value);
+    setSelectedYear(year);
+  
+   
+  };
+  const handleTabClick = async (key) => {
+    setActiveTab(key);
+    setLoading(true); 
+    await loadKPIsForTab(selectedYear, key);
+  
+    setLoading(false); 
+  };
+  
+  const loadKPIsForTab = async (year, tabKey) => {
+    await props.getKpilist(props.rowdata.departmentId);
+  };
+  
 
   const handleWorkflowChange = (event) => {
     const selected = event.target.value;
@@ -53,11 +93,15 @@ function KpiList(props) {
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
           assignedValue:"",
+          year: selectedYear,
+          quarter:activeTab,
       
         }}
         // validationSchema={TeamsSchema}
         onSubmit={(values, { resetForm }) => {
-          props.addKpi(values, () => handleReset(resetForm));
+          props.addKpi(values,
+            
+             () => handleReset(resetForm));
         }}
       >
         {({
@@ -70,9 +114,38 @@ function KpiList(props) {
           ...rest
         }) => (
             <Form className="form-background">
-            <div class="flex justify-between  pr-2 max-sm:flex-col">
-            <div class=" w-w47.5 max-sm:w-wk">
-            <label class=" text-[#444] font-bold text-[0.75rem]" >KPI</label>&nbsp;
+            <div class="flex flex-col justify-between  pr-2 max-sm:flex-col">
+              <div class=" w-[15%]">
+            <select 
+      ref={yearSelectRef}
+      onChange={handleYearChange}>
+        <option value="">Select Year</option>
+        {years.map((year) => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
+      </div>
+      {selectedYear && (
+        <div class=" w-full flex flex-col mt-4">
+           <Tabs type="card" 
+           activeKey={activeTab} 
+          onChange={handleTabClick}
+           >
+      {tab.map((tabs) => (
+        <TabPane key={tabs} tab={tabs}>
+       
+       
+       
+        </TabPane>
+      ))}
+    </Tabs>
+    </div> 
+    )}
+     </div>
+    <div class=" flex flex-row mt-2 justify-between">
+    {activeTab && (
+            <div class=" w-[25%] mt-[1.2rem]  max-sm:w-wk">
+            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >KPI</label>&nbsp;
                       <select  className="customize-select"
                        
                       onChange={handleWorkflowChange}>
@@ -104,9 +177,11 @@ function KpiList(props) {
             />  */}
     
       </div>
+      )}
       {selected && (
           <>                                           
-        <div class=" w-[45%]" >
+        <div class=" w-[85%]" >
+        <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
                           <FastField
                             // isRequired
                             name="assignedValue"
@@ -120,24 +195,32 @@ function KpiList(props) {
                         </div>               
 </> 
         )}   
+        </div>
+        {activeTab && (
      <div class="flex justify-end w-wk  ">
           <Button
             htmlType="submit"
             type="primary"
-            Loading={addingKpi}
+            loading={addingKpi}
           >
             Submit
           </Button>
         </div>
+        )}
         
-        </div>
+       
        
        
       </Form>
    
         )}
       </Formik>
-      <AssigenedKpiCardList  rowdata={props.rowdata}/>
+      {activeTab && (
+      <AssigenedKpiCardList  rowdata={props.rowdata}
+      selectedYear={selectedYear}
+      activeTab={activeTab}
+      />
+      )}
     </>
   );
 }

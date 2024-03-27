@@ -1,13 +1,14 @@
-import React, { Component,lazy } from "react";
+import React, { useEffect,lazy,useState ,Component} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Input } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { MainWrapper } from "../../../../Components/UI/Layout";
+import { TextInput, } from "../../../../Components/UI/Elements";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { Popconfirm,Button, Input ,Tooltip} from "antd";
 import dayjs from "dayjs";
 import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { MainWrapper, } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
 import {
     getKpis,
     addKpi,
@@ -16,9 +17,10 @@ import {
     removeKpi,
     updateKpi
 } from "../KPI/KPIAction";
-const SingleKpi = lazy(() =>
-  import("./SingleKpi")
-);
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import SingleKpi from "./SingleKpi";
+import { FormattedMessage } from "react-intl";
+
 
 class KPIList extends Component {
   constructor(props) {

@@ -1,18 +1,48 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'antd';
+import { Tabs,Select } from 'antd';
 import {getEmployeeKpiList,updateCompletedValue} from "../../../../Main/Teams/TeamsAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+const { TabPane } = Tabs;
 const PerformanceTable = (props) => {
   const { translatedMenuItems } = props;
-
+  const [loading, setLoading] = useState(false);
+  const [selectedYear, setSelectedYear] = useState(null);
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
-
-  useEffect(() => {
-    props.getEmployeeKpiList(props.employeeId)
-  }, []);
+  const yearSelectRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("");
+  const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
+  const tab=[
+    "Q1","Q2","Q3","Q4"
+  ]
+  // useEffect(() => {
+  //   props.getEmployeeKpiList(props.employeeId)
+  // }, []);
+  const resetData = () => {
+    setSelectedYear(null);
+    setActiveTab(null)
+    // setSales({ amount: null, currency: null });
+    // setFulfillment({ amount: null });
+    // setInvestment({ amount: null, currency: null });
+   
+    if (yearSelectRef.current) {
+      yearSelectRef.current.value = ""; // Reset the value of the select element
+    }
+  };
+  const handleTabClick = async (key) => {
+    setActiveTab(key);
+    setLoading(true); 
+    await loadKPIsForTab(selectedYear, key);
+  
+    setLoading(false); 
+  };
+  
+  const loadKPIsForTab = async (year, tabKey) => {
+    await props.getEmployeeKpiList(props.employeeId,selectedYear,tabKey);
+  };
 
   const handleChange = (userKpiLinkId, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -46,10 +76,45 @@ const PerformanceTable = (props) => {
       setEditContactId(null);
     
   };
+  const handleYearChange = async (e) => {
+    const year = parseInt(e.target.value);
+    setSelectedYear(year);
+  
+   
+  };
   
 
   return (
     <>
+           <div class="flex flex-col justify-between  pr-2 max-sm:flex-col">
+              <div class=" w-[15%]">
+            <select 
+      ref={yearSelectRef}
+      onChange={handleYearChange}>
+        <option value="">Select Year</option>
+        {years.map((year) => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
+      </div>
+      {selectedYear && (
+        <div class=" w-full flex flex-col mt-4">
+           <Tabs type="card" 
+           activeKey={activeTab} 
+          onChange={handleTabClick}
+           >
+      {tab.map((tabs) => (
+        <TabPane key={tabs} tab={tabs}>
+       
+       
+       
+        </TabPane>
+      ))}
+    </Tabs>
+    </div> 
+    )}
+     </div>
+     {activeTab&&(
       <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         {props.employeeKpiList.map((item) => (
             <div key={item.id}>
@@ -57,7 +122,7 @@ const PerformanceTable = (props) => {
             //   style={{ borderBottom: '3px dotted #515050' }}
               >
                 <div className="flex justify-between w-2/3">
-{/*                  
+                 
                   <div className="Ccard__title w-40">
                     <div className="text-base text-cardBody font-medium font-poppins">
                     Name
@@ -65,7 +130,7 @@ const PerformanceTable = (props) => {
                   
                       <div className="font-normal text-sm text-cardBody font-poppins">{item.kpiName}</div>
                    
-                  </div> */}
+                  </div>
                 
                   {/* <div className="Ccard__title w-28">
                     <div className="text-base text-cardBody font-medium font-poppins">
@@ -81,7 +146,7 @@ const PerformanceTable = (props) => {
                   </div> */}
                   <div className="Ccard__title w-36">
                     <div className="text-base text-cardBody font-medium font-poppins">
-                    Assigned Value
+                    Assigned
                     </div>
                    
                       <div className="font-normal text-sm text-cardBody font-poppins">{item.assignedValue}</div>
@@ -89,7 +154,7 @@ const PerformanceTable = (props) => {
                   </div>
                   <div className="Ccard__title w-[9rem]">
                     <div className="text-base text-cardBody font-medium font-poppins">
-                    Completed Value
+                    Achieved 
                     </div>
                     {editContactId === item.userKpiLinkId ? (
                       <input
@@ -102,6 +167,14 @@ const PerformanceTable = (props) => {
                         <span>{item.completedValue}</span>
                       </div>
                     )}
+                  </div>
+                  <div className="Ccard__title w-36">
+                    <div className="text-base text-cardBody font-medium font-poppins">
+                    Actual
+                    </div>
+                   
+                      <div className="font-normal text-sm text-cardBody font-poppins">{item.actualCompletedValue}</div>
+                  
                   </div>
                   <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                     {editContactId === item.userKpiLinkId ? (
@@ -128,6 +201,7 @@ const PerformanceTable = (props) => {
             </div>
           ))}
       </div>
+     )}
     </>
   );
 };

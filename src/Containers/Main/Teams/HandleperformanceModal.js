@@ -14,9 +14,12 @@ console.log(this.props.rowdata)
     return (
       <div>
         <StyledDrawer
-        title="KPI List"
+        title={this.props.rowdata.fullName}
           width="70%"
           visible={this.props.addDrawerPerformanceModal}
+          destroyOnClose
+          closable
+          placement="right"
           onClose={() => this.props.handleperformanceDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>

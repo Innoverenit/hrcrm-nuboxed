@@ -1183,13 +1183,13 @@ export const deleteEmployeeData = (userId,orgId) => (dispatch, getState) => {
     });
 };
 
-export const getUserKpiList = (employeeId) => (dispatch) => {
+export const getUserKpiList = (employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.GET_USER_KPI_LIST_REQUEST,
   });
 
   axios
-  .get(`${base_url}/employee/kpi-list/${employeeId}`, {
+  .get(`${base_url}/employee/kpi-list/${employeeId}/${year}/${quarter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1289,6 +1289,37 @@ export const getUserSalary = (employeeId) => (dispatch) => {
       dispatch({
         type: types.GET_USER_SALARY_FAILURE,
         payload: err,
+      });
+    });
+};
+
+export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_ACTUAL_VALUE_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/employee/kpi-actual-completed-value/save`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      message.success("Value has been updated successfully!");
+      console.log(res);
+       dispatch(getUserKpiList(employeeId,year,quarter));
+      dispatch({
+        type: types.UPDATE_ACTUAL_VALUE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACTUAL_VALUE_FAILURE,
       });
     });
 };

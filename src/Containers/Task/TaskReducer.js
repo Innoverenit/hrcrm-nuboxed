@@ -411,7 +411,9 @@ export const TaskReducer = (state = initialState, action) => {
       return { ...state, addingTask: false,
          addTaskModal: false,
          callActivityModal:false,
-         addPitchactivityModal:false, };
+         addPitchactivityModal:false,
+         taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
+        };
     case types.ADD_TASK_FAILURE:
       return {
         ...state,
@@ -796,7 +798,7 @@ export const TaskReducer = (state = initialState, action) => {
         case types.ADD_TASK_NOTES_SUCCESS:
           return {
             ...state,
-            addDrawerTaskNotesModal:false,
+            // addDrawerTaskNotesModal:false,
             addingNotesByTaskId: false,
 
           };
