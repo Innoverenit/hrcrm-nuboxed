@@ -21,7 +21,7 @@ function OrderStep2(props) {
                     excelId: "",
                     userId: props.userId,
                     awbNo: "",
-                    distributorId: props.distributorId,
+
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -30,7 +30,8 @@ function OrderStep2(props) {
                         {
                             ...values,
                             type: "Non-Catalogue",
-                            // xlUpdateInd: xlUpdateInd ? false : true
+                            orgId: props.orgId,
+                            distributorId: props.distributorId,
                         },
                         props.distributorId
                     );
@@ -92,7 +93,8 @@ function OrderStep2(props) {
 }
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
-    addingCar: distributor.addingCar
+    addingCar: distributor.addingCar,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

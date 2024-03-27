@@ -14,10 +14,7 @@ class PaidButtonModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={<FormattedMessage
-                        id="app.collection"
-                        defaultMessage="Collection"
-                       />}
+                    title={`Collection - ${this.props.particularRowData.newOrderNo}`}
                     width="70%"
                     visible={addPaidButtonModal}
                     destroyOnClose

@@ -19,6 +19,8 @@ class SubOrderPhoneModal extends Component {
                     visible={showSuborderPhoneList}
                     onClose={() => handleSuborderPhone(false)}
                     footer={null}
+                    destroyOnClose
+                    maskClosable={false}
                 >
                     <Suspense fallback={<BundleLoader />}>
                         <SubOrderDetailsList subRow={subRow} />

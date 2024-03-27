@@ -137,7 +137,7 @@ function DistributorColletcionArchive(props) {
 
                     <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
-                        {item.orderId}
+                        {item.newOrderNo}
                       </div>
 
                     </div>

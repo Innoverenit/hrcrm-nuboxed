@@ -2,17 +2,17 @@ import React from "react";
 import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateProcessTask } from "./RefurbishAction";
+import { updateSpareItem } from "../Account/AccountAction";
 
-function QCPhoneTaskToggle(props) {
+function RepairSpareApproveToggle(props) {
 
     function handleToggleCollection(item) {
-        props.updateProcessTask(
+        props.updateSpareItem(
             {
-                completeTaskInd: props.item.completeTaskInd ? false : true,
+                spareUseInd: props.item.spareUseInd ? false : true,
 
             },
-            props.item.phoneTaskId,
+            props.item.phoneSpareId,
         );
     }
 
@@ -27,7 +27,7 @@ function QCPhoneTaskToggle(props) {
                     cancelText="Cancel"
                 >
                     <Switch
-                        checked={props.item.completeTaskInd}
+                        checked={props.item.spareUseInd}
                         isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -46,8 +46,8 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            updateProcessTask
+            updateSpareItem
         },
         dispatch
     );
-export default connect(mapStateToProps, mapDispatchToProps)(QCPhoneTaskToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(RepairSpareApproveToggle);

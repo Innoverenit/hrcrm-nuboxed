@@ -1,9 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { BundleLoader } from '../../../Components/Placeholder';
-const AddMultipleQCSpare = lazy(() => import("./AddMultipleQCSpare"));
-const QCSpareListTable = lazy(() => import("./QCSpareListTable"));
 
-const AddingQCSpareList = (props) => {
+const AddMultipleQCSpare = lazy(() => import("./AddMultipleQCSpare"));
+const RepairSpareListTable = lazy(() => import("./RepairSpareListTable"));
+
+const AddSpareInRepair = (props) => {
     return (
         <>
             <Suspense fallback={<BundleLoader />}>
@@ -11,8 +12,8 @@ const AddingQCSpareList = (props) => {
                     <div class="w-[30%]">
                         <AddMultipleQCSpare RowData={props.RowData} />
                     </div>
-                    <div class="w-[60%]">
-                        <QCSpareListTable
+                    <div class="w-[65%]">
+                        <RepairSpareListTable
                             phoneId={props.phoneId}
                             RowData={props.RowData}
                         />
@@ -23,4 +24,4 @@ const AddingQCSpareList = (props) => {
     )
 }
 
-export default AddingQCSpareList
+export default AddSpareInRepair

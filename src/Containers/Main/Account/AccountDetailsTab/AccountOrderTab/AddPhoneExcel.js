@@ -17,7 +17,6 @@ function AddPhoneExcel(props) {
                     orderPhoneId: props.orderDetailsId.orderId,
                     excelId: "",
                     userId: props.userId,
-                    distributorId: props.distributorId,
                     orgId: props.orgId,
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -26,6 +25,7 @@ function AddPhoneExcel(props) {
 
                         {
                             ...values,
+                            distributorId: props.distributorId,
                             type: "Non-Catalogue"
                         },
                         props.distributorId
