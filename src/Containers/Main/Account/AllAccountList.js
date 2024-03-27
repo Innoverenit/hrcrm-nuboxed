@@ -1,64 +1,83 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,lazy } from 'react'
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAllDistributorsList } from "./AccountAction"
+import { getAllDistributorsList,
+  handleUpdateAccountModal,
+
+} from "./AccountAction"
 import dayjs from "dayjs";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from '../../../Components/UI/Elements';
 import { Link } from "../../../Components/Common";
 import { Tooltip } from 'antd';
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
+const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 const AllAccountList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [RowData, setRowData] = useState("");
   useEffect(() => {
     props.getAllDistributorsList(page);
     setPage(page + 1);
   }, []);
-
+  function handleCurrentRowData(datas) {
+    setRowData(datas);
+  }
   const handleLoadMore = () => {
     setPage(page + 1);
     props.getAllDistributorsList(page);
   };
+  const {
+    handleUpdateAccountModal,
+  } = props;
   return (
     <>
       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[15rem]">  <FormattedMessage
+      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=" flex max-sm:hidden  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="name"
             /></div>
-            <div className=" md:w-[8.1rem]"><FormattedMessage
+            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]"><FormattedMessage
               id="app.work#"
               defaultMessage="work#"
             /></div>
-            <div className=" md:w-[9rem] "><FormattedMessage
+            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] "><FormattedMessage
               id="app.website"
               defaultMessage="website"
             /></div>
-            <div className="md:w-[7.5rem]"><FormattedMessage
+            <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]"><FormattedMessage
               id="app.type"
               defaultMessage="type"
             /></div>
-            <div className="md:w-[7.8rem]"><FormattedMessage
+            <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]"><FormattedMessage
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
-            <div className="md:w-[5rem]"><FormattedMessage
+            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]"><FormattedMessage
               id="app.vat"
               defaultMessage="vat"
             /></div>
-            <div className="md:w-[16rem]"><FormattedMessage
+            <div className="w-[14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
             /></div>
-            <div className="md:w-[5rem]"><FormattedMessage
+            <div className="w-[5.83rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.83rem]"><FormattedMessage
               id="app.pincode"
               defaultMessage="pincode"
             /></div>
+            <div className="w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[0.5rem] max-lg:w-[1.5rem]"><FormattedMessage
+              id="app.owner"
+              defaultMessage="Owner"
+            /></div>
+            <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
+            <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
           <InfiniteScroll
             dataLength={props.allDistributors.length}
@@ -83,85 +102,142 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 `;
                   return (
                     <div>
-                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 "                                >
-                        <div class="flex">
-                          <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
-                            <div className="flex max-sm:w-full">
-                              <div>
-                                <MultiAvatar
-                                  primaryTitle={item.name}
-                                  imageId={item.imageId}
-                                  imageURL={item.imageURL}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                              </div>
-                              <div class="w-[1rem]"></div>
-                              <div class="max-sm:w-full md:flex items-center">
-                                <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                    <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                          <div className="flex max-sm:w-auto">
+                            <div>
+                              <MultiAvatar
+                                primaryTitle={item.name}
+                                imageId={item.imageId}
+                                imageURL={item.imageURL}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                            </div>
+                            <div class="w-[0.25rem]"></div>
+                            <div class="max-sm:w-auto flex items-center">
+                              <Tooltip>
+                                <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                  <div class=" text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer" title={item.name}>
-                                        {item.name}
-                                      </Link>  &nbsp;&nbsp;
-                                      {date === currentdate ? (
-                                        <div class="text-xs text-[tomato] font-bold" >
-                                          New
-                                        </div>
-                                      ) : null}
+                                    <Link
+                                      class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                                      to={`distributor/${item.distributorId}`}
+                                      title={`${item.name}`}>
+                                      {item.name}
+                                    </Link>  &nbsp;&nbsp;
+                                    {date === currentdate ? (
+                                      <div class="text-xs text-[tomato] font-bold" >
+                                        New
+                                      </div>
+                                    ) : null}
 
-                                    </div>
                                   </div>
-                                </Tooltip>
-                              </div>
+                                </div>
+                              </Tooltip>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        </div>
+                        <div className=" flex font-medium  items-center  w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
-                            <div class=" text-xs text-cardBody font-poppins">
-                              {item.dialCode} {item.phoneNo}
-                            </div>
-
+                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
+                            {item.dialCode} {item.phoneNo}
                           </div>
 
                         </div>
 
-                        <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.url}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.clientName}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.payment}
-                          </div>
-                        </div>
-                        <div class="flex md:items-center">
-                          <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              {item.countryValue}
-                            </div>
-                          </div>
-                          <div className=" flex font-medium flex-col  md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              {dataLoc}
-                            </div>
-                          </div>
-                          <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              {item.address && item.address.length && item.address[0].postalCode}
-                            </div>
+                      </div>
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[6.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          {item.url}
 
-                          </div>
                         </div>
                       </div>
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          {item.clientName}
+
+                        </div>
+                      </div>
+
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          {item.payment}
+
+                        </div>
+                      </div>
+</div>
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+
+                        <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {item.countryValue}
+                          </div>
+
+                        </div>
+                        <div className=" flex font-medium flex-col max-sm:w-auto  w-[14rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {dataLoc}
+                          </div>
+
+                        </div>
+
+                        <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {item.address && item.address.length && item.address[0].postalCode}
+
+                          </div>
+
+                        </div>
+                       
+                      </div>
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col  w-[6.81rem] max-xl:w-[2.01rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins ">
+
+                            <MultiAvatar
+                              primaryTitle={item.salesExecutive}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                          </div>
+
+                        </div>
+                      <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins">
+                          <Tooltip title="Pulse">
+                            <MonitorHeartIcon
+                              onClick={() => {
+                                props.handleAccountPulse(true);
+                                handleCurrentRowData(item);
+                              }}
+                              className=" !text-base cursor-pointer text-[#df9697]"
+                            />
+                          </Tooltip>
+                        </div>
+                      </div>
+                      <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins">
+                          <Tooltip title="Edit">
+                            <BorderColorIcon
+                              className=" !text-base cursor-pointer text-[tomato]"
+                              onClick={() => {
+                                props.setEditDistributor(item)
+                                handleUpdateAccountModal(true);
+                                handleCurrentRowData(item);
+                              }}
+                            />
+
+                          </Tooltip>
+                        </div>
+
+
+                      </div>
+                      </div>
                     </div>
+                  </div>
                   )
                 })}
               </> : !props.allDistributors.length
@@ -170,19 +246,33 @@ ${(item.address && item.address.length && item.address[0].country) || ""
           </InfiniteScroll>
         </div>
       </div>
+      <UpdateAccountModal
+        RowData={RowData}
+        updateAccountModal={props.updateAccountModal}
+        handleUpdateAccountModal={handleUpdateAccountModal}
+      />
+      <AccountPulseModal
+        RowData={RowData}
+        handleAccountPulse={props.handleAccountPulse}
+        showPulseModal={props.showPulseModal}
+      />
     </>
   )
 }
 
 const mapStateToProps = ({ distributor }) => ({
   allDistributors: distributor.allDistributors,
-  fetchingAllDistributors: distributor.fetchingAllDistributors
+  fetchingAllDistributors: distributor.fetchingAllDistributors,
+  showPulseModal: distributor.showPulseModal,
+  updateAccountModal: distributor.updateAccountModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getAllDistributorsList
+      getAllDistributorsList,
+      handleUpdateAccountModal,
+
     },
     dispatch
   );
