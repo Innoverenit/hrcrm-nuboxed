@@ -22,13 +22,13 @@ const[country,setAllCountry]=useState("");
   console.log(drop1)
 
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
 
   const handleDateChange = (date) => {
 
     if (date) {
-      // setSelectedDate(dayjs(date).format("YYYY-MM-DD"))
-       setSelectedDate(date.format("YYYY-MM-DD"))
+      setSelectedDate(moment(date).format("YYYY-MM-DD"));
+      //  setSelectedDate(date.format("YYYY-MM-DD"))
       console.log("Selected date:", date.format("YYYY-MM-DD"));
     } else {
       console.log("No date selected");
