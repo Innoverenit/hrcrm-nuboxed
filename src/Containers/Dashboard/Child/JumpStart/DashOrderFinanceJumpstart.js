@@ -5,14 +5,14 @@ import { bindActionCreators } from "redux";
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 
-function DashboardFinanceJumpstart(props) {
+function DashOrderFinanceJumpstart(props) {
 
   const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
 
   useEffect(() => {
-    props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
+    // props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
   }, [props.timeRangeType])
   return (
     <>
@@ -99,7 +99,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getJumpFinanceDetail
+      // getJumpFinanceDetail
       //   getJumpInvestorlist,
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
@@ -116,4 +116,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardFinanceJumpstart);
+)(DashOrderFinanceJumpstart);

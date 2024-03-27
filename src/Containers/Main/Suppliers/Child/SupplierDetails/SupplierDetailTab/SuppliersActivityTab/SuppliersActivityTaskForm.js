@@ -12,7 +12,6 @@ import { InputComponent } from "../../../../../../../Components/Forms/Formik/Inp
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import {
   addSuppliersActivityTask,
-  // getActivityListByDistributorId,
 } from "../../../../SuppliersAction";
 import { StyledLabel } from "../../../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
@@ -26,9 +25,9 @@ const FormSchema = Yup.object().shape({
   startDate: Yup.string()
     .nullable()
     .required("Input needed!"),
-  endDate: Yup.string()
-    .nullable()
-    .required("Input needed!"),
+  // endDate: Yup.string()
+  //   .nullable()
+  //   .required("Input needed!"),
 });
 
 class SuppliersActivityTaskForm extends Component {
@@ -68,7 +67,7 @@ class SuppliersActivityTaskForm extends Component {
   render() {
     const taskType = this.props.tasks.map((item) => {
       return {
-        label: item.taskTypeName || "",
+        label: item.taskType || "",
         value: item.taskTypeId,
       };
     });
@@ -94,7 +93,7 @@ class SuppliersActivityTaskForm extends Component {
             startDate: startDate || moment(),
             endDate: endDate || null,
             description: "",
-            distributorId: this.props.distributorDistributorId,
+            supplierId: this.props.supplier.supplierId,
             userId: this.props.userId,
           }}
           validationSchema={FormSchema}
@@ -399,7 +398,6 @@ class SuppliersActivityTaskForm extends Component {
 }
 
 const mapStateToProps = ({ auth, distributor, suppliers, tasks }) => ({
-  //   customerId: customer.customer.contactId,
   addingSuppliersActivityTask: suppliers.addingSuppliersActivityTask,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
@@ -413,7 +411,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addSuppliersActivityTask,
-      // getActivityListByDistributorId,
       getTasks,
 
     },

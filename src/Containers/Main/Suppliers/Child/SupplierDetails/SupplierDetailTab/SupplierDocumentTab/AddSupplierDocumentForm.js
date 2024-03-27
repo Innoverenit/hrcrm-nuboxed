@@ -101,7 +101,7 @@ class AddSupplierDocumentForm extends Component {
             documentName: "", //input
             documentDescription: "",
             documentId: "",
-            supplierId: this.props.supplier.supplierId,
+            supplierId: this.props.supplierId,
             userId:this.props.userId,
           }}
           //   validationSchema={documentSchema}
@@ -147,16 +147,9 @@ class AddSupplierDocumentForm extends Component {
                   )}
                   <Spacer />
                   <Field
-                    name="documentTypeId"
-                    selectType="documentType"
+                    name="documentId"
+                    selectType="documentTypeName"
                     label="Type"
-                    //   label={
-                    //     <FormattedMessage
-                    //       id="app.documentId"
-                    //       defaultMessage="Type"
-                    //     />
-                    //   }
-                    // isRequired
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
