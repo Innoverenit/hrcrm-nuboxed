@@ -907,6 +907,7 @@ case types.HANDLE_LEADS_MODAL:
     case types.ADD_LEADS_IMPORT_FORM_FAILURE:
       return {
         ...state, addingLeadsImportForm: false,
+        addingLeadsImportFormError:true,
         // addCustomerModal: false 
       };
 
