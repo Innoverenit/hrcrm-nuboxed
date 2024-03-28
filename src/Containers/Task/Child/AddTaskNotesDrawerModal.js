@@ -14,6 +14,9 @@ class AddTaskNotesDrawerModal extends Component {
         // title="Notes"
           title={`${this.props.currentNameId.taskName} by ${this.props.currentNameId.ownerName}`}
           width="64%"
+          destroyOnClose
+          closable
+          placement="right"
           visible={this.props.addDrawerTaskNotesModal}
           onClose={() => this.props.handleTaskNotesDrawerModal(false)}
         >

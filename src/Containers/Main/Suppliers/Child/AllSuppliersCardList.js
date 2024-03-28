@@ -35,31 +35,31 @@ function AllSuppliersCardList(props) {
 return(
 <>
 <div className=' flex justify-end sticky top-28 z-auto'>
-<div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-<div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[8.1rem]">  <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      /></div>
-        <div className=" md:w-[5.1rem]">
-        <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+<div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
+              id="app.name"
+              defaultMessage="Name"
+            /></div>
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
+            </div>
+            <div className=" w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage id="app.address" defaultMessage="Address" />
+
+            </div>
+            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage id="app.city" defaultMessage="City" />
+
+            </div>
+            <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
+
+            </div>
+            <div className="w-[3.8rem]">
+            </div>
           </div>
-        <div className=" md:w-[6.8rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
-        <div className="md:w-[7.8rem]">
-        <FormattedMessage id="app.address" defaultMessage="Address" />
-          
-          </div>
-        <div className="md:w-[7.9rem]">
-        <FormattedMessage id="app.city" defaultMessage="City" />
-          
-          </div>
-        <div className="md:w-[5.2rem]">
-        <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
-          
-          </div>
-        <div className="w-[3.8rem]">
-          </div>
-        </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
         next={handleLoadMore}
@@ -70,63 +70,71 @@ return(
 {props.allSupplierList.map((item) => {
   return (
     <>
-     <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"    
-      
-                >
- <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
- <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
-        <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
+     <div
+                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
+                          <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
+                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div className="font-medium  w-[13.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
+                              
+ <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
-</div>
+                              </div>
 
-</div>
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            </div>
 
-
-
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{item.dialCode} {item.phoneNo}
-</div>
-
-</div>
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{item.emailId} 
-</div>
-
-</div>
+                            
+                            <div className=" flex font-medium flex-col w-[13.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
 
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{`${(item.address && item.address.length && item.address[0].address1) || ""}
+
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                {item.dialCode} {item.phoneNo}
+                              </div>
+
+                            </div>
+                            </div>
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div className=" flex font-medium flex-col w-[13.21rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                {item.emailId}
+                              </div>
+
+                            </div>
+
+
+                            <div className=" flex font-medium flex-col w-[13.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
-</div>
+                              </div>
 
-</div>
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            </div>
+                            </div>
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div className=" flex font-medium flex-col w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.address &&
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
                                   ""}
-</div>
+                              </div>
 
-</div>
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.address &&
+                            </div>
+                            <div className=" flex font-medium flex-col w-[12.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||
                                   ""}
-</div>
+                              </div>
 
-</div>
-{/* <div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                            </div>
+                            </div>
+                            {/* <div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
  <div>
 <Tooltip title="Edit">
             <EditOutlined
@@ -154,12 +162,12 @@ return(
             </div> */}
 
 
- </div>
+                          </div>
 
 
 
 
-                </div>
+                        </div>
     </>
   )
 })}

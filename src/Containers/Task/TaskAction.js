@@ -372,7 +372,7 @@ export const addTask = (task, cb) => (dispatch, getState) => {
       console.log(res);
       dispatch(getOpportunityRecord(userId));
       // dispatch(getTasksListByUserId(userId));
-      dispatch(getTaskListRangeByUserId(employeeId,0));
+      // dispatch(getTaskListRangeByUserId(employeeId,0));
       dispatch({
         type: types.ADD_TASK_SUCCESS,
         payload: res.data,

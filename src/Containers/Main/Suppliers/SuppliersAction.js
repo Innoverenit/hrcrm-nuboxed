@@ -481,7 +481,11 @@ export const addSuppliersActivityCall = (call, cb) => (dispatch) => {
     type: types.ADD_SUPPLIERS_ACTIVITY_CALL_REQUEST,
   });
   axios
-    .post(`${base_url}/call`, call)
+    .post(`${base_url2}/call`, call,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -509,7 +513,7 @@ export const addSuppliersActivityEvent = (event, cb) => (dispatch) => {
     type: types.ADD_SUPPLIERS_ACTIVITY_EVENT_REQUEST,
   });
   axios
-    .post(`${base_url}/event`, event, {})
+    .post(`${base_url2}/event`, event, {})
     .then((res) => {
       console.log(res);
       dispatch({
@@ -536,7 +540,7 @@ export const addSuppliersActivityTask = (task, cb) => (dispatch) => {
     type: types.ADD_SUPPLIERS_ACTIVITY_TASK_REQUEST,
   });
   axios
-    .post(`${base_url}/task`, task, {})
+    .post(`${base_url2}/task`, task, {})
     .then((res) => {
       console.log(res);
       // dispatch(getActivityListByDistributorId(distributorId));
@@ -670,7 +674,7 @@ export const addSupplierDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_SUPPLIER_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/supplier/supplierDocument`, data, {
+    .post(`${base_url}/supplier/suppliers/document/`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -820,7 +824,7 @@ export const getDeletedPurchaseById = () => (dispatch) => {
 export const getSupplierDocument = (supplierId) => (dispatch) => {
   dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url2}/suppliers/document/${supplierId}`, {
+    .get(`${base_url2}/supplier/suppliers/document/${supplierId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1065,7 +1069,9 @@ export const getActivityListBySupplierId = (supplierId) => (dispatch) => {
     type: types.GET_ACTIVITY_LIST_BY_SUPPLIERID_REQUEST,
   });
   axios
-    .get(`${base_url}/activity/shipper/${supplierId}`, {})
+    .get(`${base_url2}/activity/supplier/${supplierId}`, {headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },})
     .then((res) => {
       console.log(res);
       dispatch({

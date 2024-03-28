@@ -24,16 +24,10 @@ const[country,setAllCountry]=useState("");
 
   const [selectedDate, setSelectedDate] = useState("");
 
-  const handleDateChange = (date) => {
-
-    if (date) {
-      setSelectedDate(moment(date).format("YYYY-MM-DD"));
-      //  setSelectedDate(date.format("YYYY-MM-DD"))
-      console.log("Selected date:", date.format("YYYY-MM-DD"));
-    } else {
-      console.log("No date selected");
-    }
-    // setSelectedDate(date);
+  const handleDateChange = (event) => {
+    console.log(event.target.value)
+    setSelectedDate(event.target.value);
+    // You can perform any additional actions with the updated date here
   };
 
   // const handleLogDate = () => {
@@ -146,7 +140,7 @@ useEffect(()=>{
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
       setmandatoryCountry(props.attendanceByList.country)
-      setSelectedDate(dayjs(props.attendanceByList.returnDate))
+      setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
      
     }
   }, [props.attendanceByList.startInd]);
@@ -176,11 +170,13 @@ useEffect(()=>{
 
       {drop1==="On Travel" ?  
      <div class="mt-[0.2rem] ml-3" >
-     <DatePicker 
-       placeholder='Return date'
-      // value={selectedDate}
-     onChange={handleDateChange}/>
-      </div>:null
+     <input 
+        type="date" 
+        value={selectedDate} 
+        onChange={handleDateChange} 
+      />
+      </div>
+      :null
      }
      {drop1==="On Travel" ?  
      <div class="mt-[0.2rem] ml-3" >

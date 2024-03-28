@@ -19,8 +19,8 @@ function AssigenedKpiCardList(props) {
   const [editContactId, setEditContactId] = useState(null);
 
   useEffect(() => {
-    props.getEmployeeKpiList(props.rowdata.employeeId)
-  }, []);
+    props.getEmployeeKpiList(props.rowdata.employeeId, props.selectedYear, props.activeTab);
+  }, [props.rowdata.employeeId, props.selectedYear, props.activeTab]);
 
 
   const handleChange = (userKpiLinkId, fieldName, value) => {
@@ -74,13 +74,18 @@ function AssigenedKpiCardList(props) {
                   id="app.Frequency"
                   defaultMessage="Frequency"
                 /></div>
-                 <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.completedValue"
-                  defaultMessage="Completed Value"
+                
+                       <div className=" md:w-[13.1rem]"><FormattedMessage
+                  id="app.assigned"
+                  defaultMessage="Assigned"
                 /></div>
-                       <div className=" md:w-[8.1rem]"><FormattedMessage
-                  id="app.assignedValue"
-                  defaultMessage="Assigned Value"
+                 <div className="md:w-[10.1rem]"><FormattedMessage
+                  id="app.achieved"
+                  defaultMessage="Achieved"
+                /></div>
+                      <div className="md:w-[10.1rem]"><FormattedMessage
+                  id="app.actual"
+                  defaultMessage="Actual"
                 /></div>
        
         
@@ -126,18 +131,13 @@ function AssigenedKpiCardList(props) {
                                   </div>
                               </div>
 
-                              <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
-                                <div class="text-sm text-cardBody font-poppins">
-                                {item.completedValue}
-                                </div>
-                            </div>
-                            <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            
+                            <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
                                    <div class="text-sm text-cardBody font-poppins">
                                    {editContactId === item.userKpiLinkId ? (
                      <input
-                     style={{border:"2px solid black"}}
+                     style={{border:"2px solid black",width:"90%"}}
                        value={editedFields[item.userKpiLinkId]?.assignedValue !== undefined ? editedFields[item.userKpiLinkId].assignedValue : item.assignedValue}
                        onChange={(e) => handleChange(item.userKpiLinkId, 'assignedValue', e.target.value)}
                      />
@@ -148,6 +148,18 @@ function AssigenedKpiCardList(props) {
                    )}
                                    </div>
                                </div>
+                               <div className=" flex font-medium flex-col md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                
+                                <div class="text-sm text-cardBody font-poppins">
+                                {item.completedValue}
+                                </div>
+                            </div>
+                              <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                
+                                  <div class="text-sm text-cardBody font-poppins">
+                                  {item.actualCompletedValue}
+                                  </div>
+                              </div>
                               </div>
                               <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                     {editContactId === item.userKpiLinkId ? (

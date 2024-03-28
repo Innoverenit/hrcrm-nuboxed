@@ -18,7 +18,7 @@ import {
 import ProductPublishToggle from "./ProductPublishToggle";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import { Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
@@ -82,193 +82,18 @@ function ProductCardList(props) {
     priceOpenDrawer
   } = props;
 
-  if (isMobile) {
-    return (
-      <>
-        <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-
-            <InfiniteScroll
-              dataLength={products.length}
-              next={handleLoadMore}
-              hasMore={hasMore}
-              loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-              height={"75vh"}
-              endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-            >
-              {products.length ?
-                <>
-                  {products.map((item) => {
-                    return (
-                      <div>
-                        <div
-                          className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
-                        >
-                          <div class="flex justify-between items-center w-wk ">
-                            <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
-                              <div className="flex max-sm:w-full ">
-                                <div>
-
-                                  <SubTitle>
-                                    {item.imageId ? (
-                                      <MultiAvatar
-                                        imageId={item.imageId ? item.imageId : ''}
-                                        imgHeight={"1.8em"}
-                                        imgWidth={"1.8em"}
-                                        imgRadius={20}
-                                      />
-                                    ) : (
-                                      <div class="font-bold text-xs" >
-                                        No Image
-                                      </div>
-                                    )}
-                                  </SubTitle>
-
-                                </div>
-                                <div class="w-[4%]"></div>
-
-                                <div class="w-full flex items-center">
-                                  <Tooltip>
-                                    <div class="max-sm:w-full justify-between flex md:flex-col">
-                                      <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer w-28">
-                                        {item.articleNo}
-                                      </div>
-                                    </div>
-                                  </Tooltip>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="flex justify-between items-center w-full ">
-                            <div className=" flex font-medium f ">
-
-                              <div class=" text-xs text-cardBody font-poppins">
-                                {item.name}
-
-                              </div>
-                            </div>
-                            <div className=" flex font-medium ">
-
-                              <div class=" text-xs text-cardBody font-poppins">
-                                {item.categoryName}
-                              </div>
-                            </div>
-                          </div>
-                          <div class="flex justify-between items-center w-wk ">
-                            <div className=" flex font-medium flex-col  ">
-
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                {item.subCategoryName}
-                              </div>
-                            </div>
-                            <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
-                              {item.attributeName}
-                            </div>
-
-                            <div className=" flex font-medium flex-col ">
-
-                              <div class=" text-xs text-cardBody font-poppins">
-                                <QrGenerate />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="flex justify-between items-center w-wk ">
-                            <div className=" flex font-medium   ">
-
-
-                              <div class=" text-xs text-cardBody font-poppins">
-                                <div>
-                                  <ProductPublishToggle item={item} />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className=" flex font-medium  ">
-
-                              <div class=" text-xs text-cardBody font-poppins"></div>
-                              <div>
-                                <Tooltip title="Add Price">
-                                  <EuroIcon
-                                    className="!text-base cursor-pointer text-[blue]"
-                                    onClick={() => {
-                                      props.handlePriceDrawer(true);
-                                      handleParticularRowData(item);
-                                    }}
-                                  />
-                                </Tooltip>
-
-                              </div>
-                            </div>
-
-                            <div>
-                              <Tooltip title="Product Builder">
-                                <ViewQuiltIcon
-                                  className="!text-base cursor-pointer text-[#4bc076]"
-                                  onClick={() => {
-                                    props.handleProductBuilderDrawer(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                />
-                              </Tooltip>
-                            </div>
-                            <div>
-                              <Tooltip title="Edit">
-                                <BorderColorIcon
-                                  className="!text-base cursor-pointer text-[tomato]"
-                                  onClick={() => {
-                                    props.setEditProducts(item);
-                                    handleUpdateProductModal(true);
-                                  }}
-                                />
-                              </Tooltip>
-                            </div>
-
-                            <div></div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}</>
-                : !products.length && !props.fetchingProducts
-                  ? <NodataFoundPage /> : null}
-            </InfiniteScroll>
-          </div>
-        </div>
-
-        <Suspense fallback={"Loading"}>
-          <UpdateProductModal
-            updateProductModal={updateProductModal}
-            handleUpdateProductModal={handleUpdateProductModal}
-          />
-
-          <ProductBuilderDrawer
-            particularDiscountData={particularDiscountData}
-            proBuilderDrawer={proBuilderDrawer}
-            handleProductBuilderDrawer={handleProductBuilderDrawer}
-          />
-          <PriceDrawer
-            particularDiscountData={particularDiscountData}
-            handlePriceDrawer={handlePriceDrawer}
-            priceOpenDrawer={priceOpenDrawer}
-          />
-        </Suspense>
-
-      </>
-    );
-  }
   return (
     <>
 
       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=""></div>
-            <div className=" md:w-[7%]">Article #</div>
-            <div className=" md:w-[6.1rem]">Name</div>
-            <div className=" md:w-[4.2rem] ">Category</div>
-            <div className="md:w-[5.8rem]">Sub</div>
-            <div className="md:w-[8.5rem]">Attribute</div>
-            <div className="md:w-[5.2rem]">Website</div>
+        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          
+            <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
+            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Name</div>
+            <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">Category</div>
+            <div className="w-[2.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.4rem]">Sub</div>
+            <div className="w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
+            <div className="w-[5.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
             <div className="w-12"></div>
           </div>
           <InfiniteScroll
@@ -282,9 +107,9 @@ function ProductCardList(props) {
             {products.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:w-full  ">
+                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col w-[4.1rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
@@ -300,57 +125,58 @@ function ProductCardList(props) {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-                        <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                      <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                        <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs text-cardBody font-poppins">
+                        <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
                         </div>
 
                       </div>
 
                     </div>
-
-                    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" text-xs text-cardBody font-poppins">
+                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    <div className=" flex font-medium flex-col w-[10.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div class=" text-xs text-cardBody max-sm:text-sm font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.subCategoryName}
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <div class=" text-xs text-cardBody max-sm:text-sm font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}
                       </div>
                     </div>
+</div>
+                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                    <div class="flex md:items-center">
-
-                      <div className=" flex font-medium flex-col  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                        <QrGenerate />
+                      <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        {/* <QrGenerate /> */}
+                        <Button type="primary" >
+                                <div class="max-sm:text-sm"> Print QR Code</div>
+                                </Button>
                       </div>
-                      <div className=" flex font-medium flex-col  md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[13.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-
-                    </div>
-                    <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
+                      <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
@@ -375,7 +201,7 @@ function ProductCardList(props) {
                         </Tooltip>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
@@ -390,6 +216,8 @@ function ProductCardList(props) {
 
 
                     </div>
+                    </div>
+                   
                   </div>
                 </div>
               );

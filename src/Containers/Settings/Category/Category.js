@@ -12,7 +12,6 @@ const Designation = lazy(() => import("../Designation/Designation"));
 const Department = lazy(() => import("../Department/Department"));
 const Role = lazy(() => import("./Role/Role"));
 const RoleTalent = lazy(() => import("./Role/RoleTalent"));
-const Words = lazy(() => import("./Words/Words"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -36,8 +35,7 @@ class Category extends Component {
         return <RoleTalent />;
       case "7":
         return <Designation />;
-        case "8":
-        return <Words />;
+        
       default:
         return null;
     }
@@ -121,21 +119,7 @@ class Category extends Component {
                   }
                   key="7"
                 />
-                <TabPane
-    tab={
-        <>
-            <i className="fas fa-building"></i>
-            <Badge
-                // count={this.props.departmentCount.DepartmentCount}
-                overflowCount={999}
-              >
-            <span className="ml-1"> Words 
-            </span>
-            </Badge>
-        </>
-    }
-    key="8"
-/>
+                
               </StyledTabs>
 
               <Suspense fallback={<div class="flex justify-center">Loading...</div>}>

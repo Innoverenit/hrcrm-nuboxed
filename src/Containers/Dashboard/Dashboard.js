@@ -11,7 +11,7 @@ import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotati
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
-import DashFinanceJumpstart from "./Child/JumpStart/DashFinanceJumpstart";
+import DashOrderFinanceJumpstart from "./Child/JumpStart/DashOrderFinanceJumpstart";
 import InvestorFunnelTab from "./Child/InvestorFunnelTab";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
@@ -145,6 +145,7 @@ class Dashboard extends Component {
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
              (<DashboardOrderJumpstart/>)
+           
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart/>)
              : this.state.activeButton==="Accounts" ?
@@ -233,7 +234,7 @@ class Dashboard extends Component {
        <DashOrderJumpstart/>
              }
              {this.state.activeButton==="Finance"&& 
-       <DashFinanceJumpstart/>
+       <DashOrderFinanceJumpstart/>
              }
              {viewType==="bulb" ? (<SourceChart/>)
             

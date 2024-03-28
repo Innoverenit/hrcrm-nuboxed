@@ -2,6 +2,7 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -123,13 +124,13 @@ function EventCardList (props) {
                                   
                                     
                                       <div class="text-[0.82rem] text-cardBody font-poppins">
-                                      {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
+                                      {` ${moment.utc(item.startDate).format('YYYY-MM-DD')}`}
                                       </div>
                                  
                                  
                                       
                                       <div class="text-[0.82rem] text-cardBody font-poppins">
-                                      {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
+                                      {` ${moment.utc(item.endDate).format('YYYY-MM-DD')}`}
                                       </div>
                                  
                                  
@@ -401,13 +402,13 @@ function EventCardList (props) {
                                 <div className=" flex font-medium flex-col md:w-[8.9rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
-                                    {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
+                                    {` ${moment.utc(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[5.32rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
-                                    {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
+                                    {` ${moment.utc(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-[9.32rem] max-sm:flex-row  w-full">

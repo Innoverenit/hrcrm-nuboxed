@@ -63,6 +63,9 @@ const initialState = {
   addOnboadingEmpl: false,
   addOnboadingEmplError: false,
 
+  updatingActualValue: false,
+   updatingActualValueError: false, 
+
   fetchingProcessDropdownForOnboarding: false,
   fetchingProcessDropdownForOnboardingError: false,
   onboardingDropdownProcess:[],
@@ -937,6 +940,22 @@ case types.GET_ADMIN_USER_FAILURE:
                       addWorkflowEmployee: false,
                       addWorkflowEmployeeError: true,
                     };
+
+
+                    case types.UPDATE_ACTUAL_VALUE_REQUEST:
+                      return { ...state, updatingActualValue: true };
+                    case types.UPDATE_ACTUAL_VALUE_SUCCESS:
+                      // return { ...state, updatingDepartments: false, Departments: [...state.Departments, action.payload] };
+                      return {
+                        ...state,
+                        updatingActualValue: false,
+                        userKpiList: state.userKpiList.map((equipment) =>
+                        equipment.userKpiLinkId === action.payload.userKpiLinkId ? action.payload : equipment
+                        ),
+                      };
+                    case types.UPDATE_ACTUAL_VALUE_FAILURE:
+                      return { ...state, updatingActualValue: false, updatingActualValueError: true };
+              
 
 
     default:

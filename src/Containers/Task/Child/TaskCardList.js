@@ -7,6 +7,7 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
 } from "@ant-design/icons";
+import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -201,7 +202,7 @@ const TaskCardList = (props) => {
                  </span>
                                       </div>
                                       <div class="text-xs text-cardBody font-poppins"> 
-                          {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
+                          {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
                                   </div>
 
                                   <div class="flex items-center justify-between">
@@ -521,8 +522,8 @@ const TaskCardList = (props) => {
                         /></div>
              <div className=" md:w-28 "></div>
         <div className="md:w-36"><FormattedMessage
-                          id="app.deviation"
-                          defaultMessage="deviation"
+                          id="app.ageing"
+                          defaultMessage="Ageing"
                         /></div>
         <div className="md:w-[6.2rem]"><FormattedMessage
                           id="app.assignedto"
@@ -610,7 +611,7 @@ const TaskCardList = (props) => {
                        
                       
                        <div class="text-xs text-cardBody font-poppins"> 
-                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
+                        {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex flex-col w-20">
                                   

@@ -29,7 +29,7 @@ function DashboardOrderJumpstart(props) {
               // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+            isLoading={props.fetchingorderDetails}
             />
 
             <JumpStartBox
@@ -42,7 +42,7 @@ function DashboardOrderJumpstart(props) {
               // jumpstartClick={()=>handlePitchAddedDrawer(true)}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+            isLoading={props.fetchingorderDetails}
             />
           </div>
           <div class="flex w-wk">
@@ -56,7 +56,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               // jumpstartClick={()=>handleDealAddedDrawer(true)}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+            isLoading={props.fetchingorderDetails}
             />
             <JumpStartBox
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -68,7 +68,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               // jumpstartClick={()=>handleDealClosedDrawer(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.cancelOrder}
-            // isLoading={props.fetchingJumpOrderCount}
+            isLoading={props.fetchingorderDetails}
             />
 
 
@@ -115,7 +115,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   user: auth.userDetails,
   orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
-  fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
+  fetchingorderDetails: dashboard.fetchingorderDetails,
   userId: auth.userDetails.employeeId,
   timeRangeType: dashboard.timeRangeType,
 

@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import {getAllCustomerData} from "../../Customer/CustomerAction"
 import { Button, Tooltip, Switch } from "antd";
-import { getEmployeelist } from "../../../Containers/Employees/EmployeeAction";
+import { getEmployeelist,getAssignedToList } from "../../../Containers/Employees/EmployeeAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
 import moment from "moment";
@@ -34,6 +34,10 @@ import { Select } from "antd";
 const { Option } = Select;
 
 function UpdateTaskForm(props) {
+  const includeOption = props.setEditingTask.included===null?[]: props.setEditingTask.included.map((item) => {
+    return item.fullName
+  })
+  const [includeNames, setInclude] = useState(includeOption);
   const candidateNameOption =
     props.setEditingTask.candidates === null
       ? []
@@ -141,8 +145,13 @@ function UpdateTaskForm(props) {
     return candidateOptions;
   }
 
+  function handleChangeInclude(value) {
+    setInclude(value)
+  }
+
   useEffect(() => {
     //props.getEmployeelist();
+    props.getAssignedToList(props.orgId);
     props.getFilteredEmailContact(props.userId);
     props.getAllOpportunityData(props.userId)
     props.getProjectTaskList(props.orgId);
@@ -155,11 +164,25 @@ function UpdateTaskForm(props) {
     props.getEmployeelist(props.userId);
   }, []);
 
+  useEffect(() => {
+    console.log("helo")
+    const includeOption = props.setEditingTask.included===null?[]: props.setEditingTask.included.map((item) => {
+      return item.fullName
+    })
+
+    
+   
+    setInclude(includeOption)
+    console.log("test", includeOption)
+  
+  }, [props.setEditingTask]);
+  console.log(includeNames)
+
   const today = moment();
   var todayDate = new Date();
   console.log(today);
   const {
-    user: { userId, firstName, middleName, lastName, timeZone },
+    user: { userId, firstName, middleName,fullName, lastName, timeZone },
     addingTask,
     isEditing,
     prefillTask,
@@ -229,9 +252,9 @@ function UpdateTaskForm(props) {
     };
   });
 
-  const employeeOption = props.employees.map((item) => {
+  const employeeOption = props.assignedToList.map((item) => {
     return {
-      label: item.fullName,
+      label: item.empName,
       value: item.employeeId,
     };
   });
@@ -286,6 +309,7 @@ function UpdateTaskForm(props) {
             value: props.setEditingTask.value || "",
             taskDescription: props.setEditingTask.taskDescription || "",
             timeZone: timeZone,
+            included: includeNames,
             // taskClosureDate: "",
             startDate: startDate || dayjs(),
             endDate: endDate || null,
@@ -393,6 +417,7 @@ function UpdateTaskForm(props) {
             props.setEditingTask.taskId,
             {
               ...values,
+              included: includeNames,
               candidateId: candidate,
               taskType: type,
               // taskStatus: active,
@@ -930,6 +955,35 @@ function UpdateTaskForm(props) {
                   // }}
                   inlineLabel
                 />
+
+<div class="w-full mt-3">
+                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Include</div> 
+  
+                     <Select
+  name="included"
+  mode="multiple"
+  style={{ width: '100%' }}
+  placeholder="Select"
+  defaultValue={includeNames}
+  onChange={handleChangeInclude}
+>
+  {props.assignedToList.map((item) => {
+    const isCurrentUser = item.employeeId === props.user.userId;
+
+    if (!isCurrentUser) {
+      return (
+        <Option key={item.employeeId} value={item.employeeId}>
+          {item.empName}
+        </Option>
+      );
+    }
+
+    return null; // Skip rendering for the current user
+  })}
+</Select>
+
+  
+                    </div>
         
                 {/* {values.taskTypeId === "TSK52434477391272022" && (
                  
@@ -1155,7 +1209,7 @@ function UpdateTaskForm(props) {
               <Button
                 type="primary"
                 htmlType="submit"
-                Loading={isEditing ? updatingTask : addingTask}
+                loading={isEditing ? updatingTask : addingTask}
               >
                 {isEditing ? (
                   "Update"
@@ -1175,7 +1229,9 @@ function UpdateTaskForm(props) {
 
 const mapStateToProps = ({ auth,candidate, opportunity,task,customer,settings, unit, tasks, employee }) => ({
   // addingTask: task.addingTask,
+  assignedToList:employee.assignedToList,
   user: auth.userDetails,
+  orgId: auth.userDetails.organizationId,
   allOpportunityData:opportunity.allOpportunityData,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
@@ -1197,6 +1253,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getAllCustomerData,
+      getAssignedToList,
       getFilteredEmailContact,
       handleChooserModal,
       updateTask,

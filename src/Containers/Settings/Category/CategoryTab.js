@@ -32,6 +32,7 @@ const InvestorTab = lazy(() =>
 const ModuleTab = lazy(() =>
   import("./Module/ModuleTab")
 );
+const Words =lazy(()=>import("./Words/Words"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -79,11 +80,11 @@ function CategoryTab (props) {
               ruleId: "8",
               component:<PerformanceManagementTab />,
             },
-            // {
-            //   rulesName: "Assessment",
-            //   ruleId: "4",
-            //   component:<AssessmentTab/>,
-            // },
+            {
+              rulesName: "Words",
+              ruleId: "9",
+              component:<Words/>,
+            },
 
           ];
           const [rules, setRules] = useState(name);

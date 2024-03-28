@@ -20,7 +20,7 @@ const ProductActionLeft = (props) => {
     <FlexContainer alignItems="center">
       <Tooltip title="Product List">
         <div
-          class=" md:mr-2 text-sm cursor-pointer"
+          class=" mr-2 text-sm cursor-pointer"
           style={{
 
             color: props.viewType === "table" && "red",
@@ -34,10 +34,10 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-      <Tooltip
+      {/* <Tooltip
         title="Category"
       >
-        <span class=" md:mr-2 text-sm cursor-pointer">
+        <span class=" mr-2 text-sm cursor-pointer">
           <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
             <AlipayOutlined
               className="!text-2xl cursor-pointer"
@@ -47,7 +47,7 @@ const ProductActionLeft = (props) => {
               }} />
           </Avatar>
         </span>
-      </Tooltip>
+      </Tooltip> */}
 
       <Tooltip title="Suspended Product">
         <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>

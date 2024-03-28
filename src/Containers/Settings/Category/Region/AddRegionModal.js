@@ -18,7 +18,9 @@ class AddRegionDrawerModal extends Component {
           title="Target"
           width={"60%"}
           visible={this.props.addRegionModal}
-      
+          destroyOnClose
+          closable
+          placement="right"
         onClose={() => this.props.handleRegionDrawerModal(false)}
       
         
