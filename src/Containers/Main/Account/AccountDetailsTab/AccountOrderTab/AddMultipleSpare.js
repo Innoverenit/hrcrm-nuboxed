@@ -118,7 +118,7 @@ const AddMultipleSpare = (props) => {
                                 // placeholder={`select`}
                                 >
                                     {props.spareByBrand.map((a) => {
-                                        return <Option value={a.suppliesId}>{a.name}</Option>;
+                                        return <Option value={a.suppliesId}>{a.suppliesName}</Option>;
                                     })}
                                 </Select>
 

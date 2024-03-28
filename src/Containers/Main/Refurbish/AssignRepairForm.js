@@ -168,7 +168,7 @@ const AssignRepairForm = (props) => {
                 pagination={false}
                 columns={column}
                 rowSelection={rowSelection}
-                loading={props.fetchingNoOfPhonesById}
+                loading={props.fetchingRepairPhoneById}
             />
             <div class="flex justify-end mt-1">
                 <Button
@@ -200,7 +200,7 @@ const mapStateToProps = ({ auth, refurbish, departments }) => ({
     noOfPhoneById: refurbish.noOfPhoneById,
     showAssignRepairModal: refurbish.showAssignRepairModal,
     locationId: auth.userDetails.locationId,
-    fetchingNoOfPhonesById: refurbish.fetchingNoOfPhonesById,
+    fetchingRepairPhoneById: refurbish.fetchingRepairPhoneById,
     userId: auth.userDetails.userId,
     departments: departments.departments,
     updatingTechnicianForRepair: refurbish.updatingTechnicianForRepair

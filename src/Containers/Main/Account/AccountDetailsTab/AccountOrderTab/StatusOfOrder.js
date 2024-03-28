@@ -247,6 +247,12 @@ const StatusOfOrder = (props) => (
                 {
                     title: 'Order Dispatch',
                     status: 'progress',
+                    description: <>
+                        {props.particularRowData.completeOrderInd &&
+                            <b>Dispatched By {props.particularRowData.dispatchCompleteUserName}
+                                On {moment(props.particularRowData.dispatchReceivedDate).format("DD-MM-YYYY")}</b>
+                        }
+                    </>
 
                 },
                 {

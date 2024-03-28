@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getRepairPhoneByUser, updaterepairStatus, getCatalogueByUser, handleRepairPhoneNotesOrderModal } from "./RefurbishAction";
@@ -12,15 +12,23 @@ import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
+import NotStartedIcon from '@mui/icons-material/NotStarted';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
 import AddSpareInRepair from "./AddSpareInRepair";
+import ReactToPrint from "react-to-print";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
 
 function PhoneListForRepair(props) {
     const [page, setPage] = useState(0);
+
+    const componentRefs = useRef([]);
+
+    const handlePrint = () => {
+        window.print();
+    };
     useEffect(() => {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
@@ -150,7 +158,7 @@ function PhoneListForRepair(props) {
                         loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
                     >
-                        {props.repairPhone.map((item) => {
+                        {props.repairPhone.map((item, index) => {
 
                             const starttimme = dayjs(item.qcStartTime).add(5, 'hours').add(30, 'minutes');
                             //  const endtimme = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
@@ -213,6 +221,7 @@ function PhoneListForRepair(props) {
                                                             handleSetRowData(item)
                                                         }}
                                                     />
+                                                    <NotStartedIcon />
                                                     <StatusIcon
                                                         type="Complete"
                                                         iconType="fa-hourglass"
@@ -309,8 +318,43 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
 
+                                        <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                <Tooltip title={<FormattedMessage
+                                                    id="app.Print"
+                                                    defaultMessage="Print"
+                                                />}>
 
+                                                    <ReactToPrint
+                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                        content={() => componentRefs.current[index]}
+                                                    />
+                                                </Tooltip>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                        <div
+                                            ref={(el) => (componentRefs.current[index] = el)}
+                                            style={{
+                                                fontSize: "16px",
+                                                marginBottom: "20px",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                alignItems: "center",
+                                            }}
+                                        ><div style={{ fontSize: "5rem" }}>
+                                                <QRCodeModal
+                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                    imgHeight={"5em"}
+                                                    imgWidth={"5em"}
+                                                    size={100} />
+                                            </div>
+
+                                            <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                        </div>
                                     </div>
                                 </div>
                             )

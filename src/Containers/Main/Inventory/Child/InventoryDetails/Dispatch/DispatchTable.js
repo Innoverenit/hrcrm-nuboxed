@@ -78,7 +78,7 @@ function DispatchTable(props) {
                         <div class="flex">
 
                           <div className=" flex font-medium flex-col md:w-[7%] max-sm:w-full  ">
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -127,7 +127,11 @@ function DispatchTable(props) {
                           <div class=" text-xs text-cardBody font-semibold  font-poppins">
                             {item.dispatchInspectionInd === 0 ?
                               <Button
-                                onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)}
+                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
+                                onClick={() => {
+                                  handleRowData(item);
+                                  props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
+                                }}
                                 style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
                                 Start
                               </Button>
@@ -172,7 +176,7 @@ function DispatchTable(props) {
                         </div>
                         <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                            {item.newAwbNo === "null" ? <Button type="primary"
+                            {item.unloadingAddresses && item.unloadingAddresses[0].city ? <Button type="primary"
                               onClick={() => {
                                 handleRowData(item);
                                 props.handleCreateAWB(true)
@@ -235,6 +239,7 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
   allDispatchList: inventory.allDispatchList,
   allShipper: shipper.allShipper,
   openPickupDateModal: inventory.openPickupDateModal,
+  updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   pickUpModal: inventory.pickUpModal,
   userId: auth.userDetails.userId,
   fetchingDispatchList: inventory.fetchingDispatchList,

@@ -732,7 +732,12 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingTechnicianForRepair: false,
-        showAssignRepairModal: false
+        showAssignRepairModal: false,
+        productionOrder: state.productionOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_FAILURE:
       return {
@@ -810,6 +815,11 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingRepairInspectionButton: false,
+        repairOrder: state.repairOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_REPAIR_INSPECTION_BUTTON_FAILURE:
       return {

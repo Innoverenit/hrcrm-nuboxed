@@ -1,4 +1,4 @@
-import React, {lazy,  useState } from "react";
+import React, { lazy, useState } from "react";
 import { Switch } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -28,6 +28,7 @@ function DispatchValidationToggle(props) {
             <PickUpDateModal
                 contactPersonId={props.item.contactPersonId}
                 orderPhoneId={props.item.orderPhoneId}
+                completeOrderInd={props.item.completeOrderInd}
                 locationDetailsId={props.locationDetailsId}
                 handlePickupModal={props.handlePickupModal}
                 pickUpModal={props.pickUpModal}

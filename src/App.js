@@ -43,9 +43,9 @@ class App extends Component {
 
               {/* <Route exact path="/login/:username?/:password?" component={Login} /> */}
               {/* CELL TECH */}
-              <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/login" component={Login} /> */}
               {/* NUBOX */}
-              {/* <Route exact path="/login" component={LoginHr} /> */}
+              <Route exact path="/login" component={LoginHr} />
               <Route exact path="/mobilelogin" component={AppLoginMessage} />
               <Route
                 exact
@@ -61,12 +61,12 @@ class App extends Component {
               {/* <Route exact path="/onboardUser" component={OnBoardUserPage}  /> */}
               <Route exact path="/onboard" component={OnBoardOrganizationPage} />
               <Route exact path="/forgotPassword" component={ForgotPassword} />
-              
+
               {fetchingUserDetails ? (
                 <BundleLoader />
               ) : (
-                  <PrivateRoute path="/" component={MainApp} />
-                )}
+                <PrivateRoute path="/" component={MainApp} />
+              )}
             </Switch>
           </Suspense>
         </AppErrorBoundary>
