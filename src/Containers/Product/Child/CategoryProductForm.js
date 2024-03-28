@@ -6,7 +6,7 @@ import { Formik, Form, Field, FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-// import { addProduct } from "../ProductAction";
+ import { addCategory } from "../ProductAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
@@ -83,7 +83,7 @@ class CategoryProductForm extends Component {
     
   }
   render() {
-    const { addingProduct, addProduct } = this.props;
+    const { addingCategory, addCategory } = this.props;
 
    
 
@@ -97,12 +97,13 @@ class CategoryProductForm extends Component {
       <>
         <Formik
           initialValues={{
+            categoryName:"",
             imageId: "",
           }}
           // validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            addProduct(
+            addCategory(
               {
                 ...values,
                 
@@ -129,7 +130,7 @@ class CategoryProductForm extends Component {
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-1/2 max-sm:w-full">
                           <Field
-                            name="category"
+                            name="categoryName"
                             label="Category"
                             placeholder="Category"
                             isColumn
@@ -151,7 +152,7 @@ class CategoryProductForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={addingProduct}
+                  loading={addingCategory}
                 >
                   Create
                 </Button>
@@ -174,12 +175,14 @@ const mapStateToProps = ({ auth, product, production }) => ({
   groupId: auth.userDetails.groupId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
+  addingCategory:product.addingCategory,
+  addingCategoryError:product.addingCategoryError,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   addProduct,
+      addCategory
     //   getCurrency,
     //   getWorkflowList
     },

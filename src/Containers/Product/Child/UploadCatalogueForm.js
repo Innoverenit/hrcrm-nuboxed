@@ -15,6 +15,7 @@ function UploadCatalogueForm(props) {
                 initialValues={{
                     excelId: "",
                     userId: props.userId,
+                    orgId:props.orgId,
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -66,6 +67,7 @@ function UploadCatalogueForm(props) {
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     orderDetailsId: distributor.orderDetailsId,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
