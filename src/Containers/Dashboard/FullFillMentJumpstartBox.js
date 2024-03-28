@@ -20,7 +20,14 @@ function FullFillMentJumpstartBox(props) {
   useEffect(() => {
     props.getRegions(props.organizationId);
   }, []);
+  const colors = [
+    // "linear-gradient(270deg,#F15753,orange)", 
+    "linear-gradient(270deg, #d83062, #94a4b2)",
 
+    "linear-gradient(270deg,#ff8f57,#ffd342)",
+    "linear-gradient(270deg,#5786ea,#20dbde)",
+   
+  ];
   return (
     <>
 
@@ -30,8 +37,9 @@ function FullFillMentJumpstartBox(props) {
         {props.regions.map((region, index) => (
           <div key={index} className="flex w-wk">
             <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
+              // bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
+              bgColor={colors[index % colors.length]} 
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
             />

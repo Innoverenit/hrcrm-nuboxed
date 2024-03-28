@@ -17,6 +17,13 @@ function RegionalSales(props) {
     props.getRegions(props.organizationId);
   }, []);
 
+  const colors = [
+    "linear-gradient(270deg,#F15753,orange)", 
+    "linear-gradient(270deg,#3db8b5,#41e196)",
+    "linear-gradient(270deg,#5786ea,#20dbde)",
+    // "linear-gradient(270deg,#ff8f57,#ffd342)",
+  ];
+
   return (
     <>
      
@@ -26,7 +33,7 @@ function RegionalSales(props) {
         {props.regions.map((region, index) => (
           <div key={index} className="flex w-wk">
             <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
+           bgColor={colors[index % colors.length]} 
               noProgress
               // onClick={() => handleSalesModal(true)}
               
