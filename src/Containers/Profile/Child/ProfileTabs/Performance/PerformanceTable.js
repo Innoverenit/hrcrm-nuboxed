@@ -128,7 +128,9 @@ const PerformanceTable = (props) => {
                     Name
                     </div>
                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">{item.kpiName}</div>
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        {item.kpiName}
+                        </div>
                    
                   </div>
                 
@@ -148,8 +150,11 @@ const PerformanceTable = (props) => {
                     <div className="text-base text-cardBody font-medium font-poppins">
                     Assigned
                     </div>
-                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">{item.assignedValue}</div>
+                    {item.assignedValue && (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                       {` ${item.assignedValue} ${item.userCurrency}`}
+                        </div>
+                    )}
                   
                   </div>
                   <div className="Ccard__title w-[9rem]">
@@ -163,17 +168,24 @@ const PerformanceTable = (props) => {
                         onChange={(e) => handleChange(item.userKpiLinkId, 'completedValue', e.target.value)}
                       />
                     ) : (
+                      <>
+                      {item.completedValue && (
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <span>{item.completedValue}</span>
+                        <span> {` ${item.completedValue} ${item.userCurrency}`}</span>
                       </div>
+                      )}
+                      </>
                     )}
                   </div>
                   <div className="Ccard__title w-36">
                     <div className="text-base text-cardBody font-medium font-poppins">
                     Actual
                     </div>
-                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">{item.actualCompletedValue}</div>
+                    {item.actualCompletedValue && (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+  {` ${item.actualCompletedValue} ${item.userCurrency}`}
+                        </div>
+                          )} 
                   
                   </div>
                   <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
