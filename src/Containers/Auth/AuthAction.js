@@ -246,7 +246,11 @@ export const login =
           sessionStorage.setItem("token", res.data.token);
 
           dispatch(getUserDetails(res.data.token));
-
+          // if(res.data.dashboardRegionalInd === true){
+          //   history.push("/dashboardRegional"); 
+          // }else{
+          //   history.push("/dashboard"); 
+          // }
           history.push("/dashboard");
           dispatch({
             type: types.LOGIN_SUCCESS,

@@ -6,6 +6,10 @@ const initialState = {
     fetchingKpiError: false,
     kpiListData: [],
 
+    fetchingKpiName: false,
+    fetchingKpiNameError: false,
+    kpiNames:[],
+
      addingKpi: false,
      addingKpiError: false,
 
@@ -117,7 +121,22 @@ export const kpiReducer = (state = initialState, action) => {
             return { ...state, 
                 kpiListData: [], 
               // deletedTruck: [] 
-            };    
+            };  
+            
+            case types.GET_KPI_NAME_REQUEST:
+              return { ...state,  fetchingKpiName: true };
+            case types.GET_KPI_NAME_SUCCESS:
+              return {
+                ...state,
+                fetchingKpiName: false,
+                 kpiNames: action.payload,
+              };
+            case types.GET_KPI_NAME_FAILURE:
+              return {
+                ...state,
+                fetchingKpiName: false,
+                fetchingKpiNameError: true,
+              };
     
     default:
         return state;

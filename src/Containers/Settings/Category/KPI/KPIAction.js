@@ -7,12 +7,12 @@ import Swal from 'sweetalert2'
 /**
  * get all the Sector
  */
- export const getKpis = (departmentId) => (dispatch) => {
+ export const getKpis = (departmentId,roleTypeId) => (dispatch) => {
     dispatch({
       type: types.GET_KPI_REQUEST,
     });
     axios
-    .get(`${base_url}/performanceManagement/department/${departmentId}`, {
+    .get(`${base_url}/performanceManagement/department/${departmentId}/${roleTypeId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -183,6 +183,33 @@ export const updateKpi = ( data,performanceManagementId,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_KPI,
     });
+  };
+
+  export const getKpiName = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_KPI_NAME_REQUEST,
+    });
+    axios
+    .get(`${base_url}/performanceManagement/All/drop-down/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+      
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_KPI_NAME_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_KPI_NAME_FAILURE,
+          payload: err,
+        });
+      });
   };
 
   

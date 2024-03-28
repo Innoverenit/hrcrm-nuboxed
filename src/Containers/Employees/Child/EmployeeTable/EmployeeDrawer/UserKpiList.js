@@ -202,7 +202,7 @@ function UserKpiList(props) {
                               </div>
 
                             
-                            <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className=" flex font-medium flex-col md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
                                    <div class="text-sm text-cardBody font-poppins">
               
