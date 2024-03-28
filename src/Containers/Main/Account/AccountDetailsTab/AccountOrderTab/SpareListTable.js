@@ -9,34 +9,42 @@ function SpareListTable(props) {
         props.getSpareListByPhoneId(props.RowData.phoneId)
     }, [])
 
-  
+
 
     return (
         <>
-        <div className='flex justify-end sticky top-0 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className='flex justify-end sticky top-0 z-auto'>
+                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[8.1rem]"><FormattedMessage
-                        id="app.spare"
-                        defaultMessage="Spare"
-                      /></div>
+                            id="app.spare"
+                            defaultMessage="Spare"
+                        /></div>
+                        <div className=" md:w-[8.1rem]"><FormattedMessage
+                            id="app.category"
+                            defaultMessage="category"
+                        /></div>
+                        <div className=" md:w-[8.1rem]"><FormattedMessage
+                            id="app.attribute"
+                            defaultMessage="attribute"
+                        /></div>
                         <div className=" md:w-[10.1rem]"><FormattedMessage
-                        id="app.units"
-                        defaultMessage="Units"
-                      /></div>
+                            id="app.units"
+                            defaultMessage="Units"
+                        /></div>
                         <div className=" md:w-[5.8rem] "><FormattedMessage
-                        id="app.hours"
-                        defaultMessage="Hours"
-                      /></div>
+                            id="app.hours"
+                            defaultMessage="Hours"
+                        /></div>
                         <div className="md:w-[4.6rem]"><FormattedMessage
-                        id="app.cost"
-                        defaultMessage="Cost"
-                      /></div>
-                            <div className="md:w-[4.6rem]"><FormattedMessage
-                        id="app.total"
-                        defaultMessage="Total"
-                      /></div>
-                        
+                            id="app.cost"
+                            defaultMessage="Cost"
+                        /></div>
+                        <div className="md:w-[4.6rem]"><FormattedMessage
+                            id="app.total"
+                            defaultMessage="Total"
+                        /></div>
+
                     </div>
                     {props.spareList.map((item) => {
                         return (
@@ -44,9 +52,19 @@ function SpareListTable(props) {
                                 <div className="flex rounded-xl  mt-4 bg-white h-10 items-center p-3 " >
                                     <div class="flex">
                                         <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
-                                                {item.suppliesName}
+                                            {item.suppliesName}
                                         </div>
+                                        <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <h4 class=" text-xs text-cardBody font-poppins">
+                                                {item.categoryName} {item.subCategoryName}
+                                            </h4>
 
+                                        </div>
+                                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-sm text-cardBody font-poppins">
+                                                {item.attribute} {item.subAttribute}
+                                            </h4>
+                                        </div>
                                         <div className=" flex font-medium   md:w-[10.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <h4 class=" text-xs text-cardBody font-poppins">
                                                 {item.noOfSpare}
@@ -67,7 +85,7 @@ function SpareListTable(props) {
                                     </div>
                                     <div className=" flex font-medium  md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs text-cardBody font-poppins text-center">
-                                           {item.total}
+                                            {item.total}
                                         </div>
                                     </div>
 

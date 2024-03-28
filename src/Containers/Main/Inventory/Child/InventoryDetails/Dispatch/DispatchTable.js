@@ -78,7 +78,7 @@ function DispatchTable(props) {
                         <div class="flex">
 
                           <div className=" flex font-medium flex-col md:w-[7%] max-sm:w-full  ">
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
