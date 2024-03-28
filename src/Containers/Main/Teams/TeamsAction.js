@@ -792,7 +792,7 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
     type: types.UPDATE_COMPLETED_VALUE_REQUEST,
   });
   axios
-    .post(
+    .put(
       `${base_url}/employee/kpi-completed-value/save`,data,
       {
         headers: {
@@ -803,7 +803,7 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
     .then((res) => {
       message.success("Value has been updated successfully!");
       console.log(res);
-       dispatch(getEmployeeKpiList(employeeId));
+      //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
         type: types.UPDATE_COMPLETED_VALUE_SUCCESS,
         payload: res.data,
@@ -823,7 +823,7 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
     type: types.UPDATE_ASSIGNED_VALUE_REQUEST,
   });
   axios
-    .post(
+    .put(
       `${base_url}/employee/kpi-assigned-value/save`,data,
       {
         headers: {
@@ -834,7 +834,7 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
     .then((res) => {
       message.success("Value has been updated successfully!");
       console.log(res);
-       dispatch(getEmployeeKpiList(employeeId));
+      //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
         type: types.UPDATE_ASSIGNED_VALUE_SUCCESS,
         payload: res.data,

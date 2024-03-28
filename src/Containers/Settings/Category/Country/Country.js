@@ -6,7 +6,9 @@ import { getCountry,
   getCountryCount,
   searchCountryName,
   allCountryMandatory,ClearReducerDataOfCountry} from "../Country/CountryAction";
-import { Button,Input } from "antd";
+import { Button,Input,Tooltip } from "antd";
+import { base_url } from "../../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const SingleCountry = lazy(() =>
   import("./SingleCountry")
@@ -130,6 +132,16 @@ class Country extends Component {
           {this.state.selected ? "Clear All" : "Select All"}
         </Button>
         </div>
+        <div class=" ml-4">
+        <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/country/All`}>
+<DownloadIcon 
+   className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
+</div>
         </div>
         &nbsp;
                  {/* {country.length &&
