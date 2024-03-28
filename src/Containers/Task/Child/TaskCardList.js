@@ -2,10 +2,12 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import AddTaskDocumentDrawerModal from "../Child/AddTaskDocumentDrawerModal"
 import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
+WeiboSquareOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -30,7 +32,8 @@ import {
   handleTaskNotesDrawerModal,
   handleTaskFeedbackDrawerModal,
   handleTaskProjectDrawerModal,
-  handleTaskopenModal
+  handleTaskopenModal,
+  handleTaskDocumentDrawerModal
 } from "../TaskAction";
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -449,6 +452,19 @@ const TaskCardList = (props) => {
               </div>
                         
                         </div> 
+
+
+
+
+                        
+
+
+
+
+                        
+
+
+                       
   
                               </div>
                           </div>
@@ -536,6 +552,7 @@ const TaskCardList = (props) => {
         <div className="md:w-24"></div>
         <div className="md:w-[3%]"></div>
         <div className="md:w-[5%]"></div>
+        <div className="w-12"></div>
         <div className="w-12"></div>
       </div>
       <InfiniteScroll
@@ -797,6 +814,25 @@ const TaskCardList = (props) => {
 
      
      </div> 
+
+
+     <div className="flex font-medium flex-col md:w-20 max-sm:flex-row  w-full  justify-center ">
+           
+                         <Tooltip title="Document">
+                         <FeedbackIcon
+                                  onClick={() => {
+                                    props.handleTaskDocumentDrawerModal(true);
+                                    handleSetTaskNameId(item);
+                                  }}
+                                  className="!text-base cursor-pointer"
+                                 
+                                />
+                             </Tooltip>
+              
+              
+
+     
+     </div> 
   
                    </div>
                    <div class="flex w-44 ">
@@ -914,6 +950,8 @@ const TaskCardList = (props) => {
                         )}
       
             </div>
+
+          
                       </div>   
                       </div> 
 
@@ -964,6 +1002,11 @@ addDrawerTaskFeedbackModal={props.addDrawerTaskFeedbackModal}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
 />
+<AddTaskDocumentDrawerModal
+ currentNameId={currentNameId}
+handleTaskDocumentDrawerModal={props.handleTaskDocumentDrawerModal}
+addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
+/>
 
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
@@ -980,10 +1023,12 @@ addDrawerTaskFeedbackModal={props.addDrawerTaskFeedbackModal}
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
     updateTaskModal: task.updateTaskModal,
     downloadTaskModal:task.downloadTaskModal,
+    addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal,
     noOfPages: task.taskListRangeByUserId.length && task.taskListRangeByUserId[0].noOfPages || "",
       fetchingTaskListRangeByUserId: task.fetchingTaskListRangeByUserId,
   fetchingTaskListRangeByUserIdError:task.fetchingTaskListRangeByUserIdError,
   taskListRangeByUserId: task.taskListRangeByUserId,
+  addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal
 
   });
   
@@ -996,6 +1041,7 @@ addDrawerTaskFeedbackModal={props.addDrawerTaskFeedbackModal}
         linkTaskStatus,
         handleTaskFeedbackDrawerModal,
         handleTaskNotesDrawerModal,
+        handleTaskDocumentDrawerModal,
         approveTaskByTaskId,
         rejectTaskByTaskId,
         setEditTask,
