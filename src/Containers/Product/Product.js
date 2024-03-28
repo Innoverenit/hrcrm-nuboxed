@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import ProductHeader from "./Child/ProductHeader";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
+const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
 const ProductListingTable =lazy(()=>import("./Child/ProductTable/ProductListingTable"));
 const ProductCardList =lazy(()=>import("./Child/ProductTable/ProductCardList"));
 const ConfigureModal=lazy(()=>import("./Child/ConfigureModal"));
@@ -39,6 +40,8 @@ class Product extends Component {
             //   <SuspendProductList />) :
               this.props.viewType === "table" ? (
                 <ProductCardList />) :
+                this.props.viewType === "category" ? (
+                  <ProductCategory />) :
                 null}
 
         </Suspense>

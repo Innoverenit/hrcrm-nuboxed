@@ -1343,3 +1343,9 @@ export const PstoProductionBuilder = (data) => (dispatch) => {
     });
 };
 
+export const handleCategoryModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CATEGORY_MODAL,
+    payload: modalProps,
+  });
+};

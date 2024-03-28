@@ -116,6 +116,8 @@ const initialState = {
 
   updateProductModal: false,
 
+  categoryProductModal:false,
+
   addDiscountModal: false,
 
   addHistoryModal: false,
@@ -446,6 +448,9 @@ export const productReducer = (state = initialState, action) => {
      */
     case types.HANDLE_UPDATE_PRODUCT_MODAL:
       return { ...state, updateProductModal: action.payload };
+
+      case types.HANDLE_CATEGORY_MODAL:
+      return { ...state, categoryProductModal: action.payload };
 
     case types.HANDLE_DISCOUNT_BUTTON_MODAL:
       return { ...state, addDiscountModal: action.payload };
