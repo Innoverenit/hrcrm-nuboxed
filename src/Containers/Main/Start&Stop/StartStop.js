@@ -140,7 +140,8 @@ useEffect(()=>{
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
       setmandatoryCountry(props.attendanceByList.country)
-      setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
+      // setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
+      setSelectedDate(props.attendanceByList.returnDate)
      
     }
   }, [props.attendanceByList.startInd]);
