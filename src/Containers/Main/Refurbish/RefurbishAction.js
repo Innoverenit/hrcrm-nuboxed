@@ -447,7 +447,7 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
     })
     .then((res) => {
       dispatch(getRepairPhoneById(id))
-      dispatch(getProductionOrderId(locationDetailsId))
+      // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
         title: 'Items Assigned To Technician',
@@ -923,7 +923,7 @@ export const qcInspectionButton = (data, orderPhoneId, locationDetailsId, userId
     });
 };
 
-export const repairInspectionButton = (data, orderPhoneId, locationDetailsId, userId, cb) => (dispatch) => {
+export const repairInspectionButton = (data, orderPhoneId, cb) => (dispatch) => {
   // debugger;
   dispatch({
     type: types.UPDATE_REPAIR_INSPECTION_BUTTON_REQUEST,
@@ -935,7 +935,7 @@ export const repairInspectionButton = (data, orderPhoneId, locationDetailsId, us
       },
     })
     .then((res) => {
-      dispatch(getRepairOrderByUser(locationDetailsId, userId))
+      // dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_REPAIR_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,

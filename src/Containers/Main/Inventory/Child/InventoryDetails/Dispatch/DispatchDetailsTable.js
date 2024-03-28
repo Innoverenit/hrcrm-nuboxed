@@ -182,6 +182,7 @@ function OpenReceivedOrderIdForm(props) {
         {props.rowData.dispatchInspectionInd === 1 &&
           <div class=" ml-[10px]" >
             <Button
+              loading={props.updatingDispatchInspectionButton}
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
@@ -200,6 +201,7 @@ function OpenReceivedOrderIdForm(props) {
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updateDispatchList: inventory.updateDispatchList,
+  updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
   userId: auth.userDetails.userId

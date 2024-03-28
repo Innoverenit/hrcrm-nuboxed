@@ -15,11 +15,14 @@ function PickUpForm(props) {
           orderId: props.orderPhoneId,
           dispatchReceivedInd: true,
           dispatchReceivedDate: "",
+
         }}
         onSubmit={(values) => {
 
           props.addPickupDate({
             ...values,
+            userId: props.userId,
+            completeOrderInd: props.completeOrderInd ? false : true,
             contactPersonId: props.contactPersonId
           },
             props.locationDetailsId);
