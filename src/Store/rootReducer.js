@@ -93,6 +93,7 @@ import { currencyReducer } from "../Containers/Settings/Category/Currency/Curren
 import { subscriptionReducer } from "../Containers/Subscription/SubscriptionReducer";
 import { productionReducer } from "../Containers/Production/ProductionReducer";
 import { regionalDashReducer } from "../Containers/DashboardPage/RegionalDashReducer";
+import { masterKpiReducer } from "../Containers/Settings/Category/KpiMasterList/KpiMasterListReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -182,6 +183,7 @@ const appReducer = combineReducers({
   subscription:subscriptionReducer,
   production:productionReducer,
   dashboardRegional:regionalDashReducer,
+  masterKpi:masterKpiReducer,
 });
 
 const rootReducer = (state, action) => {

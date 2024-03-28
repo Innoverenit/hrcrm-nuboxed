@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 const initialState = {
   viewType: "card",
 
+  addSalesModal:false,
+
 //   fetchingCo2: false,
 //   fetchingCo2Error: false,
 //   co2List:[],
@@ -80,6 +82,10 @@ case types.CHANGE_SELECTED_REGIONAL_TIME_INTERVAL_REPORT:
       endDate: action.payload.endDate,
       timeRangeType: action.payload.type,
     };
+
+
+    case types.HANDLE_SALES_MODAL:
+      return { ...state, addSalesModal: action.payload };
 
 // case types.GET_CO2_TABLE_VIEW_REQUEST:
 //       return { ...state, fetchingCo2: true };

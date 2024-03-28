@@ -124,7 +124,7 @@ function AssigenedKpiCardList(props) {
 
                              
                               
-                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                   <div class="text-sm text-cardBody font-poppins">
                                   {item.frequency}
@@ -143,22 +143,30 @@ function AssigenedKpiCardList(props) {
                      />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
-                       <span>{item.assignedValue}</span>
+                         {item.assignedValue && (
+                       <span>
+                       
+                        {` ${item.assignedValue} ${item.userCurrency}`}
+                        </span>
+                         )}
                      </div>
                    )}
                                    </div>
                                </div>
-                               <div className=" flex font-medium flex-col md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
+                               <div className=" flex font-medium flex-col md:w-[9.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                               {item.completedValue && (
                                 <div class="text-sm text-cardBody font-poppins">
-                                {item.completedValue}
+                            
+                                {` ${item.completedValue} ${item.userCurrency}`}
                                 </div>
+                               )}
                             </div>
                               <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
+                              {item.actualCompletedValue && (
                                   <div class="text-sm text-cardBody font-poppins">
-                                  {item.actualCompletedValue}
+                                  {` ${item.actualCompletedValue} ${item.userCurrency}`}
                                   </div>
+                                  )} 
                               </div>
                               </div>
                               <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >

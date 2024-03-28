@@ -2,19 +2,15 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {handleSalesModal} from "../RegionalDashAction"
 import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
+import AddSalesDrawerModal from "./AddSalesDrawerModal";
 
 function RegionalSales(props) {
   const {
-    openPitchQualified,
-    handlePitchQualifiedDrawer,
-    openPitchAdded,
-    handlePitchAddedDrawer,
-    openDealAdded,
-    handleDealAddedDrawer,
-    openDealClosed,
-    handleDealClosedDrawer
+    handleSalesModal,
+    addSalesModal
   } = props;
 
   useEffect(() => {
@@ -32,6 +28,8 @@ function RegionalSales(props) {
             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
+              // onClick={() => handleSalesModal(true)}
+              
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
             />
@@ -40,13 +38,18 @@ function RegionalSales(props) {
         ))}
       </div>
     </div>
+    <AddSalesDrawerModal
+        addSalesModal={addSalesModal}
+        handleSalesModal={handleSalesModal}
+      />
     </>
   );
 }
 
-const mapStateToProps = ({ dashboard, region, auth }) => ({
+const mapStateToProps = ({ dashboard, region,dashboardRegional, auth }) => ({
   user: auth.userDetails,
   regions: region.regions,
+  addSalesModal:dashboardRegional.addSalesModal,
   organizationId: auth.userDetails.organizationId,
   timeRangeType: dashboard.timeRangeType,
   startDate: dashboard.startDate,
@@ -56,7 +59,8 @@ const mapStateToProps = ({ dashboard, region, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRegions
+      getRegions,
+      handleSalesModal
     },
     dispatch
   );

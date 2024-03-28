@@ -134,7 +134,7 @@ const {
           </div>
           <Tooltip placement="left" title="XL">
 
-<a href={`${base_url}/excel/export/user/customer/${userId}`}>
+          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"eventType"}`}>
 <DownloadIcon 
    className=" !text-base cursor-pointer text-[green]"/>
 </a>
