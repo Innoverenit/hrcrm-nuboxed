@@ -12,7 +12,7 @@ import styled from "styled-components";
 import inno from "../../Assets/Images/logo_22.png"; //inn
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
-// import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
+import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 /**
  * yup validation scheme for set Password
@@ -81,7 +81,7 @@ class ForgotPassword extends Component {
               >
                 <img
                   className="big-logo"
-                  src={FWLogo}
+                  src={FWLogo2}
                   style={{ width: 200 }}
                   alt="Tekorero logo"
                 />
