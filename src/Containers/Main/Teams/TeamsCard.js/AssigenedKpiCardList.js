@@ -75,7 +75,7 @@ function AssigenedKpiCardList(props) {
                   defaultMessage="Frequency"
                 /></div>
                 
-                       <div className=" md:w-[8.1rem]"><FormattedMessage
+                       <div className=" md:w-[13.1rem]"><FormattedMessage
                   id="app.assigned"
                   defaultMessage="Assigned"
                 /></div>
@@ -132,12 +132,12 @@ function AssigenedKpiCardList(props) {
                               </div>
 
                             
-                            <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
                                    <div class="text-sm text-cardBody font-poppins">
                                    {editContactId === item.userKpiLinkId ? (
                      <input
-                     style={{border:"2px solid black"}}
+                     style={{border:"2px solid black",width:"90%"}}
                        value={editedFields[item.userKpiLinkId]?.assignedValue !== undefined ? editedFields[item.userKpiLinkId].assignedValue : item.assignedValue}
                        onChange={(e) => handleChange(item.userKpiLinkId, 'assignedValue', e.target.value)}
                      />
@@ -148,13 +148,13 @@ function AssigenedKpiCardList(props) {
                    )}
                                    </div>
                                </div>
-                               <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                               <div className=" flex font-medium flex-col md:w-[13.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                 <div class="text-sm text-cardBody font-poppins">
                                 {item.completedValue}
                                 </div>
                             </div>
-                              <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                   <div class="text-sm text-cardBody font-poppins">
                                   {item.actualCompletedValue}

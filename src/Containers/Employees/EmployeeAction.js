@@ -1310,7 +1310,7 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
     .then((res) => {
       message.success("Value has been updated successfully!");
       console.log(res);
-       dispatch(getUserKpiList(employeeId,year,quarter));
+      //  dispatch(getUserKpiList(employeeId,year,quarter));
       dispatch({
         type: types.UPDATE_ACTUAL_VALUE_SUCCESS,
         payload: res.data,
