@@ -124,19 +124,19 @@ function InvestorCardList(props) {
   
   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between max-sm:hidden  w-[90%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem]"><FormattedMessage
+        <div className=" w-[13.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
                   id="app.name"
                   defaultMessage="Name"
                 /></div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem]"><FormattedMessage
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]"><FormattedMessage
                   id="app.sector"
                   defaultMessage="Sector"
                 /></div>
-        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] "><FormattedMessage
+        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "><FormattedMessage
                   id="app.country"
                   defaultMessage="Country"
                 /></div>
-        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem]"># <FormattedMessage
+        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># <FormattedMessage
                   id="app.deals"
                   defaultMessage="Deals"
                 /></div>
@@ -156,7 +156,7 @@ function InvestorCardList(props) {
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
-        <div className="w-[7.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem]">
+        <div className="w-[7.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         <FormattedMessage
                   id="app.source"
                   defaultMessage="Source"
@@ -198,7 +198,7 @@ function InvestorCardList(props) {
                                
                                 >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[12.8rem] max-xl:w-[7.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium  w-[12.8rem] max-xl:w-[7.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -240,7 +240,7 @@ function InvestorCardList(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[14.1rem] max-xl:w-[8.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center  w-[14.1rem] max-xl:w-[8.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -252,7 +252,7 @@ function InvestorCardList(props) {
                                 
                                 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium flex-col w-[7.21rem] max-xl:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[7.21rem] max-xl:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -269,7 +269,7 @@ function InvestorCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                <div className=" flex font-medium flex-col w-[3.1rem] max-xl:w-[3.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[8.1rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -277,7 +277,7 @@ function InvestorCardList(props) {
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col w-[12.124rem] max-xl:w-[4.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[8.124rem] max-xl:w-[4.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -285,7 +285,7 @@ function InvestorCardList(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[6.1rem] max-xl:w-[6.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -313,7 +313,7 @@ function InvestorCardList(props) {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
