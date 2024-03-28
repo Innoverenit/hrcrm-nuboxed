@@ -21,10 +21,10 @@ console.log(props.currentNameId)
   return (
     <>
         <div className="mt-4 ml-4">
-            Hello
-        {/* <Timeline>
-          {customerActivityTimeline &&
-            customerActivityTimeline.map((status, i) => (       
+          
+        <Timeline>
+          {props.taskTimeline &&
+            props.taskTimeline.map((status, i) => (       
               <Timeline.Item key={i}>               
                 <div>               
                 <div>                
@@ -33,7 +33,7 @@ console.log(props.currentNameId)
                       <span className="text-xs text-[tomato] font-bold">
                         New
                       </span>
-                    ) : null}    {status.category} {status.activityType} Completed by {moment(status.endDate).format('DD/MM/YYYY')}
+                    ) : null}    {status.documentName}  Uploaded by {status.uploadedBy}
                   </div>
            
                 </div>
@@ -45,7 +45,7 @@ console.log(props.currentNameId)
               </Timeline.Item>
        
             ))}
-        </Timeline> */}
+        </Timeline>
         
       </div>
     </>
