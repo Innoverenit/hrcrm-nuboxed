@@ -94,6 +94,14 @@ export const getTaskInProgress = (userId, startDate, endDate) => (dispatch) => {
 };
 
 
+export const handleTaskDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_DOCUMENT_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const handleTaskProjectDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_PROJECT_DRAWER_MODAL,
@@ -1387,6 +1395,35 @@ export const convertProspectStatus = (data,userId,taskId,) => (
 };
 
 
+
+export const getTaskTimeline = (taskId) => (dispatch) => {
+  dispatch({
+      type: types.GET_TASK_TIMELINE_REQUEST,
+  });
+
+  axios
+      .get(`${base_url}/task/document/${taskId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_TASK_TIMELINE_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_TASK_TIMELINE_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
 export const addTaskImportForm =
 (customer, orgId) => (dispatch, getState) => {
   const userId = getState().auth.userDetails.userId;
@@ -1425,5 +1462,60 @@ export const addTaskImportForm =
         payload: err,
       });
       // cb && cb();
+    });
+};
+
+
+
+export const getNotesListTask = (taskId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NOTES_LIST_TASK_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url}/task/note/${taskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_NOTES_LIST_TASK_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NOTES_LIST_TASK_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addTaskNote = (note, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_TASK_NOTES_LIST_REQUEST });
+  axios
+    .post(`${base_url}/task/notes`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_TASK_NOTES_LIST_SUCCESS,
+        payload: res.note,
+      });
+      console.log(res);
+      cb && cb();
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_TASK_NOTES_LIST_FAILURE,
+        payload: err,
+      });
+      console.log(err);
+      cb && cb();
     });
 };

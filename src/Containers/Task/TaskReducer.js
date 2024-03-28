@@ -105,6 +105,9 @@ const initialState = {
   fetchingTasksVelocityError: false,
   taskVelocity: 0,
 
+  addingNotesList:false,
+  addingNotesListError:false,
+
   addingNotesByTaskId: false,
   addingNotesByTaskIdError: false,
 
@@ -121,6 +124,10 @@ const initialState = {
 
    linkingTaskStatus: false,
    linkingTaskStatusError:false,
+
+   fetchingTaskTimeline:false,
+   fetchingTaskTimelineError:false,
+   taskTimeline:[],
 
    addDrawerTaskNotesModal:false,
 
@@ -149,6 +156,9 @@ const initialState = {
   fetchingTimeZoneError: false,
   timeZone: [],
 
+
+  addDocumentTaskDrawerModal:false,
+
   fetchingTaskDelete:false,
   fetchingTaskDeleteError:false,
   taskDeleteList:[],
@@ -166,6 +176,11 @@ const initialState = {
   fetchingGrantTask: false,
   fetchingGrantTaskError:false,
   grantTask:[],
+
+  fetchingNotesList:false,
+  fetchingNotesListError:false,
+
+  notesList:[]
 };
 export const TaskReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -701,6 +716,23 @@ export const TaskReducer = (state = initialState, action) => {
             fetchingCandidateTaskListError: true,
           };
 
+
+
+          case types.GET_TASK_TIMELINE_REQUEST:
+      return { ...state, fetchingTaskTimeline: true };
+    case types.GET_TASK_TIMELINE_SUCCESS:
+      return {
+        ...state,
+        fetchingTaskTimeline: false,
+        taskTimeline: action.payload,
+      };
+    case types.GET_TASK_TIMELINE_FAILURE:
+      return {
+        ...state,
+        fetchingTaskTimeline: false,
+        fetchingTaskTimelineError: true,
+      };
+
       
       case types.SET_TASK_EDIT:
         return { ...state, setEditingTask: action.payload };
@@ -788,6 +820,9 @@ export const TaskReducer = (state = initialState, action) => {
 
         case types.HANDLE_TASK_FEEDBACK_DRAWER_MODAL:
           return { ...state, addDrawerTaskFeedbackModal: action.payload };
+
+          case types.HANDLE_TASK_DOCUMENT_DRAWER_MODAL:
+          return { ...state, addDocumentTaskDrawerModal: action.payload };
     
 
         case types.ADD_TASK_NOTES_REQUEST:
@@ -955,6 +990,47 @@ export const TaskReducer = (state = initialState, action) => {
                                     linkingProspectStatus: false,
                                     linkingProspectStatusError: true,
                                   };
+
+
+
+
+                                  case types.GET_NOTES_LIST_TASK_ID_REQUEST:
+                                    return { ...state, fetchingNotesList: true };
+                                  case types.GET_NOTES_LIST_TASK_ID_SUCCESS:
+                                    return {
+                                      ...state,
+                                    fetchingNotesList: false,
+                                    notesList: action.payload,
+                                    };
+                                  case types.GET_NOTES_LIST_TASK_ID_FAILURE:
+                                    return {
+                                      ...state,
+                                      fetchingNotesList: false,
+                                      fetchingNotesListError: true,
+                                    };
+
+
+
+
+                                    case types.ADD_TASK_NOTES_LIST_REQUEST:
+                                      return {
+                                        ...state,
+                                        addingNotesList: true,          
+                                      };
+                                    case types.ADD_TASK_NOTES_LIST_SUCCESS:
+                                      return {
+                                        ...state,
+                                        // addDrawerTaskNotesModal:false,
+                                        addingNotesList: false,
+                            
+                                      };
+                                    case types.ADD_TASK_NOTES_LIST_FAILURE:
+                                      return {
+                                        ...state,
+                                        addingNotesList: false,
+                                        addingNotesListError: true,
+                                      };  
+                            
                           
 
         default:

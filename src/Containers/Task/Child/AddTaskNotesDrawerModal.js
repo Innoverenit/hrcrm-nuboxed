@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import NotesTaskForm from "./NotesTaskForm";
 const NotesForm = lazy(() => import("./NotesForm"));
 class AddTaskNotesDrawerModal extends Component {
   render() {
@@ -21,7 +22,7 @@ class AddTaskNotesDrawerModal extends Component {
           onClose={() => this.props.handleTaskNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesForm currentNameId={this.props.currentNameId} 
+            <NotesTaskForm currentNameId={this.props.currentNameId} 
             taskId={this.props.currentNameId.taskId} 
             />
           </Suspense>
