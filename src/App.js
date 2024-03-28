@@ -61,12 +61,12 @@ class App extends Component {
               {/* <Route exact path="/onboardUser" component={OnBoardUserPage}  /> */}
               <Route exact path="/onboard" component={OnBoardOrganizationPage} />
               <Route exact path="/forgotPassword" component={ForgotPassword} />
-              
+
               {fetchingUserDetails ? (
                 <BundleLoader />
               ) : (
-                  <PrivateRoute path="/" component={MainApp} />
-                )}
+                <PrivateRoute path="/" component={MainApp} />
+              )}
             </Switch>
           </Suspense>
         </AppErrorBoundary>
