@@ -306,7 +306,7 @@ function OpenReceivedOrderIdForm(props) {
                               </>}
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium   md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title={<FormattedMessage
                               id="app.Print"

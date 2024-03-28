@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { getProductionUsersById, UpdateTechnicianByPhone, getNoOfPhoneById, closeRepairModal } from "./RefurbishAction"
 import { SubTitle } from '../../../Components/UI/Elements';
+import moment from 'moment'
 
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
@@ -14,7 +15,7 @@ const { Option } = Select;
 const AssignPhoneByTechnician = (props) => {
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState("")
+    const [department, setDepartment] = useState(props.rowData.defaultDepartmentId)
     const [selectedRow, setselectedRow] = useState([]);
 
 
@@ -42,7 +43,7 @@ const AssignPhoneByTechnician = (props) => {
     console.log(user)
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.departmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultDepartmentId, props.locationId);
         props.getNoOfPhoneById(props.rowData.orderPhoneId);
         props.getDepartments()
     }, [])
@@ -159,6 +160,17 @@ const AssignPhoneByTechnician = (props) => {
                         className="w-[250px]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
+                        disabledDate={(currentDate) => {
+                            const date = new Date()
+                            if (
+                                moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
+                            ) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+
+                        }}
                     />
                 </div>
             </div>

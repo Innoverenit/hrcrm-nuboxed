@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
@@ -12,12 +12,20 @@ import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
+import ReactToPrint from "react-to-print";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
 
 function OrderPhoneListById(props) {
     const [page, setPage] = useState(0);
+
+    const componentRefs = useRef([]);
+
+    const handlePrint = () => {
+        window.print();
+    };
+
     useEffect(() => {
         setPage(page + 1);
         props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
@@ -148,7 +156,7 @@ function OrderPhoneListById(props) {
                             loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
                         >
-                            {props.orderPhoneList.map((item) => {
+                            {props.orderPhoneList.map((item, index) => {
 
                                 const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
@@ -298,9 +306,48 @@ function OrderPhoneListById(props) {
 
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins">
+                                                    <Tooltip title={<FormattedMessage
+                                                        id="app.Print"
+                                                        defaultMessage="Print"
+                                                    />}>
+                                                        {/* <PrintOutlined
+                                                                            // onClick={handlePrint}
+                                                                            className="!text-base cursor-pointer"
+                                                                        /> */}
+                                                        <ReactToPrint
+                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                            content={() => componentRefs.current[index]}
+                                                        />
+                                                    </Tooltip>
+
+                                                </div>
+                                            </div>
 
 
+                                        </div>
+                                        <div style={{ display: "none", textAlign: "center" }}>
 
+                                            <div
+                                                ref={(el) => (componentRefs.current[index] = el)}
+                                                style={{
+                                                    fontSize: "16px",
+                                                    marginBottom: "20px",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                }}
+                                            ><div style={{ fontSize: "5rem" }}>
+                                                    <QRCodeModal
+                                                        qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                        imgHeight={"5em"}
+                                                        imgWidth={"5em"}
+                                                        size={100} />
+                                                </div>
+
+                                                <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 )
