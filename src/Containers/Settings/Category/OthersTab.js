@@ -15,6 +15,7 @@ import Region from "./Region/Region"
 import ServiceLine from "./ServiceLine/ServiceLine"
 import {getRegionCount} from "../Category/Region/RegionAction"
 import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
+import KpiMasterList from "./KpiMasterList/KpiMasterList";
 const Documents = lazy(() =>
   import("../Documents/Documents")
 );
@@ -64,6 +65,8 @@ class OthersTab extends Component {
         case "7":
         return   <Region />;
         case "8":
+          return   <KpiMasterList />;
+        case "9":
           return   <ServiceLine />;
         
       default:
@@ -201,6 +204,22 @@ class OthersTab extends Component {
                 }
                 key="7"
               />
+                <TabPane
+                tab={
+                  <>
+                 <MonetizationOnIcon/>
+                 <Badge
+                count={this.props.masterKpiCount.PerformanceManagementCount}
+                overflowCount={999}
+              >
+                    <span class=" ml-1">KPI MasterList 
+                    {/* {this.props.regionCount.RegionsCount} */}
+                    </span>
+                    </Badge>
+                  </>
+                }
+                key="8"
+              />
 
 <TabPane
                 tab={
@@ -216,7 +235,7 @@ class OthersTab extends Component {
                     </Badge>
                   </>
                 }
-                key="8"
+                key="9"
               />
               
             </StyledTabs>
@@ -231,10 +250,11 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines,currency,countrys,education,idProof,expenses,document
+  region,auth,serviceLines,masterKpi,currency,countrys,education,idProof,expenses,document
 }
 ) => ({
   documentCount:document.documentCount,
+  masterKpiCount:masterKpi.masterKpiCount,
   currencyCount:currency.currencyCount,
   educationCount:education.educationCount,
   idProofCount:idProof.idProofCount,

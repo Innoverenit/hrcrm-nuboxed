@@ -8,7 +8,9 @@ import { getCurrencyList ,
   searchCurrencyName,
   ClearReducerDataOfCurrency
 } from "../Currency/CurrencyAction";
-import { Button,Input } from "antd";
+import DownloadIcon from '@mui/icons-material/Download';
+import { Button,Input,Tooltip } from "antd";
+import { base_url } from "../../../../Config/Auth";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const SingleCurrency = lazy(() =>
   import("./SingleCurrency")
@@ -130,6 +132,16 @@ class Currency extends Component {
           {this.state.selected ? "Clear All" : "Select All"}
         </Button>
         </div>
+        <div class=" ml-4">
+        <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/currency/All`}>
+<DownloadIcon 
+   className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
+</div>
         </div>
         &nbsp;
                  {/* {country.length &&

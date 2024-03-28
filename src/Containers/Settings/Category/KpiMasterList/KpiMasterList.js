@@ -1,65 +1,63 @@
-
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { base_url } from "../../../Config/Auth";
-import DownloadIcon from '@mui/icons-material/Download';
-import { Tooltip } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Input} from "antd";
-import { BundleLoader } from "../../../Components/Placeholder";
-
+import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
+import { MainWrapper } from "../../../../Components/UI/Layout";
+import { TextInput, } from "../../../../Components/UI/Elements";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import {
-  getTasks,
-  getTaskCount,
-  addTasks,
-  removeTask,
-  updateTasks,
-  searchTaskName,
-  ClearReducerDataOfTask
-} from "./TaskAction";
-import TaskConnetToggle from "./TaskConnetToggle";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+    getMasterKpi,
+   getMasterKpiCount,
+  addMasterKpi,
+     removeMasterKpi,
+     updateMasterKpi,
+   searchMasterKpiName,
+   ClearReducerDataOfMasterKpi
+} from "../KpiMasterList/KpiMasterListAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
-const Task = (props) => {
+
+const KpiMasterList = (props) => {
   const [currentData, setCurrentData] = useState("");
-  const [tasks, setEvents] = useState(props.tasks);
+  const [masterKpiList, setMasterListData] = useState(props.masterKpiList);
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
-  const [newTaskName, setTaskName] = useState('');
+  const [newMasterKpiName, setMasterKpiName] = useState('');
   useEffect(() => {
-      props.getTasks(); 
-      props.getTaskCount(props.orgId) 
+      props.getMasterKpi(props.orgId); 
+       props.getMasterKpiCount(props.orgId) 
   }, [])
 
-  const editRegion = (taskTypeId, name) => {
+  const editRegion = (performanceManagementId, name) => {
     console.log(name)
     console.log(name)
-      setEditingId(taskTypeId);
-      setTaskName(name);
+      setEditingId(performanceManagementId);
+      setMasterKpiName(name);
   };
 
 
 
-  const handleAddTask = () => {
+  const handleAddMasterKpi = () => {
       setAddingRegion(true);
-      setTaskName("")
+      setMasterKpiName("")
   };
 
-  const handleUpdateTask=(region)=>{
+  const handleUpdateMasterKpi=(region)=>{
       console.log(region)
       let data={
-        taskTypeId:region.taskTypeId,
-        taskType:newTaskName
+        performanceManagementId:region.performanceManagementId,
+        kpi:newMasterKpiName
        
       }
-props.updateTasks(data,region.taskTypeId)
+props.updateMasterKpi(data,region.performanceManagementId)
 setEditingId(null);
   }
 
-  const handleTask = () => {
+  const handleMasterKpi = () => {
       // if (newRegionName.trim() !== '') {
       //     console.log("New Region:", newRegionName);
       //     const newRegion = {
@@ -71,10 +69,10 @@ setEditingId(null);
       //     setAddingRegion(false);
       // }
       let data={
-        taskType:newTaskName,
+        kpi:newMasterKpiName,
         orgId:props.orgId,
       }
-      props.addTasks(data,props.orgId)
+      props.addMasterKpi(data,props.orgId)
       setAddingRegion(false)
   };
   const handleChange = (e) => {
@@ -83,7 +81,7 @@ setEditingId(null);
   
       if (e.target.value.trim() === "") {
       //   setPage(pageNo + 1);
-      props.getTasks();
+      props.getMasterKpi(props.orgId);
       //   props.ClearReducerDataOfLoad()
       }
     };
@@ -91,14 +89,14 @@ setEditingId(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.searchTaskName(currentData);
+         props.searchMasterKpiName(currentData);
       } else {
         console.error("Input is empty. Please provide a value.");
       }
     };
 
   const handleCancelAdd = () => {
-    setTaskName('');
+    setMasterKpiName('');
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -106,14 +104,14 @@ setEditingId(null);
   };
   useEffect(() => {
       
-      if (props.tasks.length > 0) {
+      if (props.masterKpiList.length > 0) {
         
-        setEvents(props.tasks);
+        setMasterListData(props.masterKpiList);
       }
-    }, [props.tasks]);
+    }, [props.masterKpiList]);
 
 // console.log(regions)
-if (props.fetchingTasks) {
+if (props.fetchingMasterKpi) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -129,75 +127,57 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"taskType"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
+                      placeholder="Add KPI"
                       style={{border:"2px solid black"}}
                           type="text" 
-                          placeholder="Task"
-                          value={newTaskName} 
-                          onChange={(e) => setTaskName(e.target.value)} 
+                          value={newMasterKpiName} 
+                          onChange={(e) => setMasterKpiName(e.target.value)} 
                       />
                       <button 
-                         loading={props.addingItemTask}
-                      onClick={handleTask}>Save</button>
+                         loading={props.addingMasterKpi}
+                      onClick={handleMasterKpi}>Save</button>
                       <button onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
                   <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddTask}> Add More</button>
+                  onClick={handleAddMasterKpi}> Add More</button>
               )}
           </div>
           </div>
-          {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
-            <div className="card9" key={region.taskTypeId}>
+          {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
+            <div className="card9" key={region.performanceManagementId}>
             {/* Region name display or input field */}
             
-            {editingId === region.taskTypeId ? (
+            {editingId === region.performanceManagementId ? (
                 <input
+                placeholder="Update KPI"
                 style={{border:"2px solid black"}}
                     type="text"
-                    placeholder="Task"
-                    value={newTaskName}
-                    onChange={(e) => setTaskName(e.target.value)}
+                    value={newMasterKpiName}
+                    onChange={(e) => setMasterKpiName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.taskType}&nbsp;&nbsp;&nbsp;
+                <div className="region">{region.kpi}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
                                       </span> : null}</div>
             )}
-  <div class="flex w-60">
-                  <div class="ml-2 w-20">Workflow</div>
-                 
-                  <div class="ml-4 w-[25rem]">
-                    <TaskConnetToggle 
-                        taskType={region.taskType}
-                        taskTypeId={region.taskTypeId}
-                  taskCheckListInd={region.taskCheckListInd}
-                    />  
-                    </div>
-                    </div>
+
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.taskTypeId ? (
+                {editingId === region.performanceManagementId ? (
                     <div>
-                        <button onClick={() => handleUpdateTask(region)}>Save</button>
+                        <button onClick={() => handleUpdateMasterKpi(region)}>Save</button>
                         <button onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.taskTypeId, region.taskType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
                 )}
 
                 {/* Delete button */}
@@ -205,7 +185,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeTask(region.taskTypeId)}
+                        onConfirm={() =>  props.removeMasterKpi(region.performanceManagementId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -213,46 +193,45 @@ className=" !text-base cursor-pointer text-[green]"/>
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.taskTypeId)
+              //     props.removeServiceLine(item.performanceManagementId)
               //  }
                  />
                  </Popconfirm>
             </div>
         </div>
         ))}
-  <div class=" font-bold">Updated on {dayjs(props.tasks && props.tasks.length && props.tasks[0].updationDate).format('YYYY-MM-DD')} by {props.tasks && props.tasks.length && props.tasks[0].name}</div>
+      
+  <div class=" font-bold">Updated on {dayjs(props.masterKpiList && props.masterKpiList.length && props.masterKpiList[0].updationDate).format('YYYY-MM-DD')} by {props.masterKpiList && props.masterKpiList.length && props.masterKpiList[0].updatedBy}</div>
       </div>
   );
 };
 
-
-const mapStateToProps = ({ tasks,auth }) => ({
-  addingTasks: tasks.addingTasks,
-  addingTasksError: tasks.addingTasksError,
-  tasks: tasks.tasks,
-  taskCount:tasks.taskCount,
+const mapStateToProps = ({ masterKpi,auth }) => ({
+    addingMasterKpi: masterKpi.addingMasterKpi,
+    addingMasterKpiError: masterKpi.addingMasterKpiError,
+  masterKpiList: masterKpi.masterKpiList,
+  masterKpiCount:masterKpi.masterKpiCount,
   orgId: auth.userDetails.organizationId,
-  // removingTasks: tasks.removingTasks,
-  // removingTasksError: tasks.removingTasksError,
-  
-  fetchingTasks:tasks.fetchingTasks,
-  fetchingTasksError: tasks.fetchingTasksError,
+  removingMasterKpi: masterKpi.removingMasterKpi,
+  removingMasterKpiError: masterKpi.removingMasterKpiError,
+  fetchingMasterKpi: masterKpi.fetchingMasterKpi,
+  fetchingMasterKpiError: masterKpi.fetchingMasterKpiError,
 
-  updatingTasks: tasks.updatingTasks,
-  updatingTasksError: tasks.updatingTasksError,
+  updatingMasterKpi: masterKpi.updatingMasterKpi,
+  updatingMasterKpiError: masterKpi.updatingMasterKpiError,
   
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getTasks,
-      getTaskCount,
-      addTasks,
-      removeTask,
-      updateTasks,
-      searchTaskName,
-      ClearReducerDataOfTask
+      getMasterKpiCount,
+      getMasterKpi,
+      addMasterKpi,
+      removeMasterKpi,
+      updateMasterKpi,
+      searchMasterKpiName,
+      ClearReducerDataOfMasterKpi
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(Task);
+export default connect(mapStateToProps, mapDispatchToProps)(KpiMasterList);

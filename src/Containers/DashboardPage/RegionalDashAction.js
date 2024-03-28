@@ -18,6 +18,13 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
     });
   };
 
+  export const handleSalesModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_SALES_MODAL,
+      payload: modalProps,
+    });
+  };
+
 //   export const getCo2 = (pageNo) => (dispatch) => {
 //     dispatch({
 //       type: types.GET_CO2_TABLE_VIEW_REQUEST,

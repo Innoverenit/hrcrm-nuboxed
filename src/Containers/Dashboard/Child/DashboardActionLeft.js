@@ -1,4 +1,4 @@
-import { Badge, Tag,Tooltip,Avatar } from "antd";
+import { Badge, Tag,Tooltip,Avatar, Button } from "antd";
 import React, { useState } from "react";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
@@ -19,8 +19,10 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DashboardShareForm from "./DashboardShareForm";
+import DashboardPage from "../../DashboardPage/DashboardPage";
 
 const DashboardActionLeft = (props) => {
+  const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
   const [showShareForm, setShowShareForm] = useState(false);
   const {
     setSelectedTimeIntervalReport,
@@ -33,6 +35,12 @@ const DashboardActionLeft = (props) => {
   } = props;
   const toggleShareForm = () => {
     setShowShareForm(!showShareForm);
+  };
+  const handleRegionalButtonClick = () => {
+    setDashboardRegionalVisible(true);
+    // Navigate to the dashboardRegional page here (you can use React Router or any other navigation library)
+    // Example using React Router:
+    // history.push('/dashboardRegional');
   };
   return (
     <>
@@ -67,6 +75,7 @@ const DashboardActionLeft = (props) => {
                 /> */}
               </Tag>
             )}
+         
          {viewType === "ALL" && showShareForm && <DashboardShareForm />}
            
     

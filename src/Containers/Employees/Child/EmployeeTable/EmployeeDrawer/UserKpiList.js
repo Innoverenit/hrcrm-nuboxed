@@ -207,16 +207,21 @@ function UserKpiList(props) {
                                    <div class="text-sm text-cardBody font-poppins">
               
                      <div className="font-normal text-sm text-cardBody font-poppins">
-                       <span>{item.assignedValue}</span>
+                     {item.assignedValue && (
+                       <span>
+                          {` ${item.assignedValue} ${item.userCurrency}`}
+                        </span>
+                           )}
                      </div>
                 
                                    </div>
                                </div>
                                <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
+                               {item.completedValue && (
                                 <div class="text-sm text-cardBody font-poppins">
-                                {item.completedValue}
+                                {` ${item.completedValue} ${item.userCurrency}`}
                                 </div>
+                               )}
                             </div>
                             <div className="Ccard__title w-[9rem]">
                     {editContactId === item.userKpiLinkId ? (
@@ -226,9 +231,17 @@ function UserKpiList(props) {
                         onChange={(e) => handleChange(item.userKpiLinkId, 'actualCompletedValue', e.target.value)}
                       />
                     ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <span>{item.actualCompletedValue}</span>
+                      <>
+                    
+                                          <div className="font-normal text-sm text-cardBody font-poppins">
+                                          {item.actualCompletedValue && (
+                        <span>
+                        {` ${item.actualCompletedValue} ${item.userCurrency}`}
+                          </span>
+                          )} 
                       </div>
+                      </>
+  
                     )}
                   </div>
 

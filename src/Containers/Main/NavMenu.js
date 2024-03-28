@@ -79,8 +79,9 @@ function NavMenu(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
-  // const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
-  const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboardRegional");
+  //  const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
+  const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
+
 
   useEffect(() => {
     const storedMenuItem = localStorage.getItem('selectedMenuItem');
@@ -104,6 +105,7 @@ function NavMenu(props) {
     <div style={{ marginLeft: "-1.1875em" }}>
 
       <Menu
+      //  defaultSelectedKeys={[selectedMenuItem]}
         defaultSelectedKeys={["/" + path]}
         defaultOpenKeys={[]}
         mode="inline"
