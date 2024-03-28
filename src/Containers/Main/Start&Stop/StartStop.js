@@ -134,17 +134,39 @@ useEffect(()=>{
 },[])
 
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if (props.attendanceByList.startInd !== undefined&&props.attendanceByList.location !== undefined&&props.attendanceByList.country !== undefined) {
+  //   if (props.attendanceByList.startInd !== undefined&&props.attendanceByList.location !== undefined&&props.attendanceByList.country !== undefined) {
+  //     setStartInd(props.attendanceByList.startInd);
+  //     setDrop1(props.attendanceByList.location);
+  //     setmandatoryCountry(props.attendanceByList.country)
+  //     // setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
+  //     setSelectedDate(props.attendanceByList.returnDate)
+     
+  //   }
+  // }, [props.attendanceByList.startInd]);
+
+
+  useEffect(() => {
+    if (
+      props.attendanceByList.startInd !== undefined &&
+      props.attendanceByList.location !== undefined &&
+      props.attendanceByList.country !== undefined &&
+      props.attendanceByList.returnDate !== null // Check if returnDate is not null
+    ) {
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
-      setmandatoryCountry(props.attendanceByList.country)
-      // setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
-      setSelectedDate(props.attendanceByList.returnDate)
-     
+      setmandatoryCountry(props.attendanceByList.country);
+      
+      // Perform a null check before accessing substring
+      if (props.attendanceByList.returnDate.length >= 10) {
+        setSelectedDate(props.attendanceByList.returnDate.substring(0, 10));
+      } else {
+        setSelectedDate(props.attendanceByList.returnDate);
+      }
     }
-  }, [props.attendanceByList.startInd]);
+  }, [props.attendanceByList.startInd, props.attendanceByList.returnDate]);
+  
 
   if (isLoading) {
     return <BundleLoader />;
