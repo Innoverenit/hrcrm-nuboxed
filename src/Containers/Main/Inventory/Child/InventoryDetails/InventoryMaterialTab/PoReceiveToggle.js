@@ -10,6 +10,7 @@ function ReceiveValidationToggle(props) {
     function onChange() {
         props.updateReceivedDamagedUnit({
             poReceivedInd: true,
+            userId: props.userId
         },
             props.poSupplierDetailsId,
             props.suppliesId
