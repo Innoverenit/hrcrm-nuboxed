@@ -10,6 +10,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
+import { handleOrderDetailsModal } from "../Account/AccountAction";
 import {
   getOrderById,
   handleNotesModalInOrder,
@@ -22,6 +23,8 @@ import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import StatusOfOrderDrawer from "./StatusOfOrderDrawer";
 import PaidButtonDrawer from "./PaidButtonDrawer";
+import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
+import { MultiAvatar2 } from "../../../Components/UI/Elements";
 
 function OrderTableByUserID(props) {
   const [page, setPage] = useState(0);
@@ -154,8 +157,6 @@ function OrderTableByUserID(props) {
           <div className="md:w-32">#Phone</div>
           <div className="md:w-[16rem]">Creation Date</div>
           <div className="md:w-24"></div>
-
-
         </div>
         <InfiniteScroll
           dataLength={props.orderShowById.length}
@@ -200,9 +201,11 @@ function OrderTableByUserID(props) {
                         <div class="w-60">
                           <Badge size="small" count={item.productNum}>
                             <span
+                              class="underline cursor-pointer text-[#1890ff]"
                               onClick={() => {
                                 handleOrder(item.orderId);
                                 handleSetParticularOrderData(item);
+                                props.handleOrderDetailsModal(true);
                               }}
 
                             >{`${item.newOrderNo} `}
@@ -236,7 +239,13 @@ function OrderTableByUserID(props) {
 
                     <div class="flex flex-row items-center md:w-44 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
-                        {item.contactPersonName}
+                        <MultiAvatar2
+                          primaryTitle={item.contactPersonName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
                       </div>
 
 
@@ -245,13 +254,11 @@ function OrderTableByUserID(props) {
                   </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
-
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.noOfPhones}
                       </h4>
                     </div>
                     <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-
                       <span>{date}</span>
                     </div>
                   </div>
@@ -346,6 +353,10 @@ function OrderTableByUserID(props) {
         handlePaidModal={props.handlePaidModal}
         particularRowData={particularRowData}
       />
+      <AccountOrderDetailsModal
+        particularRowData={particularRowData}
+        handleOrderDetailsModal={props.handleOrderDetailsModal}
+        addOrderDetailsModal={props.addOrderDetailsModal} />
     </>
   );
 
@@ -353,7 +364,7 @@ function OrderTableByUserID(props) {
 
 }
 
-const mapStateToProps = ({ order, auth }) => ({
+const mapStateToProps = ({ order, auth, distributor }) => ({
   allOrderList: order.allOrderList,
   addPaidButtonModal: order.addPaidButtonModal,
   addStatusOfOrder: order.addStatusOfOrder,
@@ -361,6 +372,7 @@ const mapStateToProps = ({ order, auth }) => ({
   fetchingOrderByIdError: order.fetchingOrderByIdError,
   fetchingOrderById: order.fetchingOrderById,
   userId: auth.userDetails.userId,
+  addOrderDetailsModal: distributor.addOrderDetailsModal,
   orderShowById: order.orderShowById,
 });
 
@@ -370,7 +382,8 @@ const mapDispatchToProps = (dispatch) =>
       getOrderById,
       handleNotesModalInOrder,
       handleStatusOfOrder,
-      handlePaidModal
+      handlePaidModal,
+      handleOrderDetailsModal
     },
     dispatch
   );

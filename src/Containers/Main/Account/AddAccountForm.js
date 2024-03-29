@@ -130,6 +130,7 @@ const AddAccountForm = ({
           addDistributor(
             {
               ...values,
+              orgId: orgId,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
             },

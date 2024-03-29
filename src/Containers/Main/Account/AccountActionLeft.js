@@ -1,11 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Badge, Avatar,Input } from "antd";
+import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch, getRecords, getAccountRecords, getAllRecords, getDistributorCount } from "./AccountAction";
-import { DeleteOutlined,AudioOutlined } from "@ant-design/icons";
+import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
 const AccountActionLeft = (props) => {
@@ -30,47 +30,47 @@ const AccountActionLeft = (props) => {
         listening,
         resetTranscript,
         browserSupportsSpeechRecognition
-      } = useSpeechRecognition();
-      useEffect(() => {
+    } = useSpeechRecognition();
+    useEffect(() => {
         // props.getCustomerRecords();
         if (transcript) {
-          console.log(">>>>>>>", transcript);
-          setCurrentData(transcript);
+            console.log(">>>>>>>", transcript);
+            setCurrentData(transcript);
         }
-        }, [ transcript]);
-        const handleChange = (e) => {
-            setCurrentData(e.target.value);
-        
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-              setPage(pageNo + 1);
+    }, [transcript]);
+    const handleChange = (e) => {
+        setCurrentData(e.target.value);
+
+        if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+            setPage(pageNo + 1);
             //   props.getLeads(props.userId, pageNo, "creationdate");
             //   props.ClearReducerDataOfLead()
-              setSearchOnEnter(false);
-            }
-          };
-          const handleSearch = () => {
-            if (currentData.trim() !== "") {
-              // Perform the search
-              props.inputDataSearch(currentData);
-              setSearchOnEnter(true);  //Code for Search
-            } else {
-              console.error("Input is empty. Please provide a value.");
-            }
-          };
-          const suffix = (
-            <AudioOutlined
-              onClick={SpeechRecognition.startListening}
-              style={{
+            setSearchOnEnter(false);
+        }
+    };
+    const handleSearch = () => {
+        if (currentData.trim() !== "") {
+            // Perform the search
+            props.inputDataSearch(currentData);
+            setSearchOnEnter(true);  //Code for Search
+        } else {
+            console.error("Input is empty. Please provide a value.");
+        }
+    };
+    const suffix = (
+        <AudioOutlined
+            onClick={SpeechRecognition.startListening}
+            style={{
                 fontSize: 16,
                 color: '#1890ff',
-              }}
-        
-            />
-          );
+            }}
+
+        />
+    );
 
     return (
         <div class="flex items-center" >
-            <div class="">
+            <div class=" m-3">
                 {user.functionName !== "Customer Care" && (
 
                     <Tooltip title="List View">
@@ -94,22 +94,24 @@ const AccountActionLeft = (props) => {
             </div>
 
             {user.accountFullListInd === true && user.erpInd === true && (
-                <Tooltip title="All Customers">
-                    <Badge size="small"
-                        count={props.accountRecordData.distributor || 0}
-                    >
-                        <span class=" mr-2 text-sm cursor-pointer"
-                            onClick={() => props.setDistributorViewType("all")}
-                            style={{
-                                color: props.viewType === "all" && "#1890ff",
-                            }}
+                <div class=" m-3">
+                    <Tooltip title="All Customers">
+                        <Badge size="small"
+                            count={props.accountRecordData.distributor || 0}
                         >
-                            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">ALL</div></Avatar>
+                            <span class=" mr-2 text-sm cursor-pointer"
+                                onClick={() => props.setDistributorViewType("all")}
+                                style={{
+                                    color: props.viewType === "all" && "#1890ff",
+                                }}
+                            >
+                                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                    <div className="text-white">ALL</div></Avatar>
 
-                        </span>
-                    </Badge>
-                </Tooltip>
+                            </span>
+                        </Badge>
+                    </Tooltip>
+                </div>
             )}
             <Tooltip title="Deleted Distributor">
                 <Badge size="small"
@@ -128,15 +130,15 @@ const AccountActionLeft = (props) => {
                 </Badge>
             </Tooltip>
 
-<div class=" w-64 max-sm:w-24">
-        <Input
-          placeholder="Search by Name or Sector"
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChange}
-        value={currentData}
-        /></div>
+            <div class=" w-64 max-sm:w-24">
+                <Input
+                    placeholder="Search by Name or Sector"
+                    width={"100%"}
+                    suffix={suffix}
+                    onPressEnter={handleSearch}
+                    onChange={handleChange}
+                    value={currentData}
+                /></div>
             {/* &nbsp; &nbsp;
             {props.viewType === "table" ?
                 (

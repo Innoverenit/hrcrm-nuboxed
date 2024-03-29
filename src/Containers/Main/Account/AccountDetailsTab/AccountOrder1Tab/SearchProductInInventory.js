@@ -7,8 +7,9 @@ import {
     searchItemInLocation,
     getLocationByProductId
 } from "../../AccountAction"
-import { Select } from 'antd';
+import { Input, Select } from 'antd';
 import SearchedListItems from './SearchedListItems';
+import { BundleLoader } from '../../../../../Components/Placeholder';
 const { Option } = Select;
 
 const SearchProductInInventory = (props) => {
@@ -42,37 +43,39 @@ const SearchProductInInventory = (props) => {
     console.log(locationsName)
     return (
         <>
-            <div class=" flex justify-around">
-                <div class=" w-2/5">
-                    <label>Product</label>
-                    <Select
-                        value={product}
-                        onChange={(value) =>
-                            handleSetProduct(value)
-                        }
-                    // placeholder={`select`}
-                    >
-                        {props.productionOrderDetail.map((a) => {
-                            return <Option value={a.productId}>{a.name}</Option>;
-                        })}
-                    </Select>
-                </div>
-                <div class=" w-2/5">
-                    <label>Location</label>
-                    <Select
-                        value={location}
-                        onChange={(value) =>
-                            handleSetLocation(value)
-                        }
-                    // placeholder={`select`}
-                    >
-                        {props.locationByProduct.map((a) => {
-                            return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                        })}
-                    </Select>
-                </div>
-            </div>
-            <SearchedListItems />
+            {props.fetchingProductionDetailById ? <BundleLoader /> :
+                <>
+                    <div class=" flex justify-around">
+                        <div class=" w-2/5">
+                            <label>Product</label>
+                            <Select
+                                value={product}
+                                onChange={(value) =>
+                                    handleSetProduct(value)
+                                }
+                            >
+                                {props.productionOrderDetail.map((a) => {
+                                    return <Option value={a.productId}>{`${a.productFullName} - ${a.quantity}`}</Option>;
+                                })}
+                            </Select>
+                        </div>
+                        <div class=" w-2/5">
+                            <label>Location</label>
+                            <Select
+                                value={location}
+                                onChange={(value) =>
+                                    handleSetLocation(value)
+                                }
+                            // placeholder={`select`}
+                            >
+                                {props.locationByProduct.map((a) => {
+                                    return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                })}
+                            </Select>
+                        </div>
+                    </div>
+                </>}
+            <SearchedListItems orderId={props.particularRowData.orderId} />
         </>
 
     )
@@ -82,7 +85,8 @@ const mapStateToProps = ({ distributor, auth }) => ({
     productionOrderDetail: distributor.productionOrderDetail,
     orgId: auth.userDetails.organizationId,
     locationlist: distributor.locationlist,
-    locationByProduct: distributor.locationByProduct
+    locationByProduct: distributor.locationByProduct,
+    fetchingProductionDetailById: distributor.fetchingProductionDetailById
 });
 
 const mapDispatchToProps = (dispatch) =>

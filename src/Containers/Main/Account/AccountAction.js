@@ -3055,7 +3055,7 @@ export const searchItemInLocation = (data, cb) => (dispatch) => {
     });
 };
 
-export const movetoProductionArchieve = (data, productionProductId) => (
+export const movetoProductionArchieve = (data, productionProductId, orderId) => (
   dispatch
 ) => {
   dispatch({ type: types.MOVE_TO_PRODUCTION_ARCHIEVE_REQUEST });
@@ -3064,6 +3064,13 @@ export const movetoProductionArchieve = (data, productionProductId) => (
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
+    })
+    .then((res) => {
+      dispatch(getProductionOrderDetails(orderId))
+      dispatch({
+        type: types.MOVE_TO_PRODUCTION_ARCHIEVE_SUCCESS,
+        payload: res.data,
+      });
     })
     .catch((err) => {
       dispatch({

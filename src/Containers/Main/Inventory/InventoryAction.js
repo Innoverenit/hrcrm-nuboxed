@@ -1381,6 +1381,33 @@ export const getDispatchProductionsbyLocId = (locationDetailsId, pageNo) => (dis
     });
 };
 
+export const getArchieveProductionbyLocId = (locationDetailsId, userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/archieve/${locationDetailsId}/${userId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const generateGrnForPo = (data) => (dispatch) => {
   dispatch({
     type: types.GENERATE_GRN_FOR_PO_REQUEST,

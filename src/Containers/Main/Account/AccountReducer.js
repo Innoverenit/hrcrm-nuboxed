@@ -2067,7 +2067,11 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOpportunityRecordError: true,
       };
     case types.HANDLE_ADD_ORDER_MODAL:
-      return { ...state, addCatalogueOrderModal: action.payload, productByDistributor: [] };
+      return {
+        ...state, addCatalogueOrderModal: action.payload,
+        productByDistributor: [],
+        productionOrderId: []
+      };
 
     case types.HANDLE_UPDATE_ORDER_MODAL:
       return { ...state, updateOrderModal: action.payload };

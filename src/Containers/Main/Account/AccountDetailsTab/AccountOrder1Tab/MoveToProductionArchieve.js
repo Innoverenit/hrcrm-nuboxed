@@ -8,8 +8,9 @@ function MoveToProductionArchieve(props) {
 
     function onChange() {
         props.movetoProductionArchieve({
-            dispatchInd: props.dispatchInd ? false : true
-        }, props.productionProductId)
+            dispatchInd: props.dispatchInd ? false : true,
+            orderProductLinkId: props.orderProductLinkId
+        }, props.productionProductId, props.orderId)
     };
     return (
         <>

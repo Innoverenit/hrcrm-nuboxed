@@ -264,6 +264,10 @@ const initialState = {
   productionDispatchByLocsId: [],
 
   stockUseDrwr: false,
+
+  fetchingArchieveProductionLocId: false,
+  fetchingArchieveProductionLocIdError: true,
+  archieveInProduction: []
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1180,6 +1184,24 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, fetchingDispatchProductionLocId: false, productionDispatchByLocsId: action.payload };
     case types.GET_DISPATCH_PRODUCTION_BYLOC_ID_FAILURE:
       return { ...state, fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: true };
+
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_REQUEST:
+      return {
+        ...state,
+        fetchingArchieveProductionLocId: true, fetchingArchieveProductionLocIdError: false
+      };
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_SUCCESS:
+      return {
+        ...state, fetchingArchieveProductionLocId: false,
+        archieveInProduction: action.payload
+      };
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_FAILURE:
+      return {
+        ...state, fetchingArchieveProductionLocId: false,
+        fetchingArchieveProductionLocIdError: true,
+
+      };
+
 
     case types.GENERATE_GRN_FOR_PO_REQUEST:
       return { ...state, generatingGrnForPo: true };
