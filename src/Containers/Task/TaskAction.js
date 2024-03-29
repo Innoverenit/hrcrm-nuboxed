@@ -12,6 +12,14 @@ export const setTaskViewType = (viewType) => (dispatch) => {
   });
 };
 
+
+export const handleUpdateDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_DOCUMENT_TASK_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleTaskNotesDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_NOTES_DRAWER_MODAL,
@@ -1426,7 +1434,7 @@ export const getTaskTimeline = (taskId) => (dispatch) => {
 
 export const addTaskImportForm =
 (customer, orgId) => (dispatch, getState) => {
-  const userId = getState().auth.userDetails.userId;
+  const employeeId = getState().auth.userDetails.employeeId;
 
   // const opportunityId = getState().opportunity.opportunity.opportunityId;
   console.log("inside add customer");
@@ -1442,7 +1450,7 @@ export const addTaskImportForm =
     })
     .then((res) => {
       console.log(res);
-      //dispatch(getRepositoryDocuments(userId));
+      dispatch(getTaskListRangeByUserId(employeeId,"0"));
       // const startDate = dayjs().startOf("month").toISOString();
       // const endDate = dayjs().endOf("month").toISOString();
       // dispatch(getRecords(userId));
@@ -1517,5 +1525,48 @@ export const addTaskNote = (note, cb) => (dispatch) => {
       });
       console.log(err);
       cb && cb();
+    });
+};
+
+
+
+export const updateTaskImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const employeeId = getState().auth.userDetails.employeeId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.UPDATE_TASK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/task/document`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getTaskListRangeByUserId(employeeId,"0"));
+      // const startDate = dayjs().startOf("month").toISOString();
+      // const endDate = dayjs().endOf("month").toISOString();
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.UPDATE_TASK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_TASK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
     });
 };

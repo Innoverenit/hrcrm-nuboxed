@@ -8,6 +8,8 @@ const initialState = {
   addingTaskError: false,
   addingTaskImportForm:false,
   addingTaskImportFormError:false,
+
+  addUpdatedocumentTaskModal:false,
   deleteTask: false,
   deleteTaskError: false,
   updatingTask: false,
@@ -92,6 +94,10 @@ const initialState = {
   fetchingProjectTaskList:false,
   fetchingProjectTaskListError:false,
   projectTaskList:[],
+
+
+  updatingTaskImportForm:false,
+  updatingTaskImportFormError:false,
 
   fetchingHighPriorityTaskCompleted: false,
   fetchingHighPriorityTaskCompletedError: false,
@@ -717,7 +723,8 @@ export const TaskReducer = (state = initialState, action) => {
           };
 
 
-
+          case types.HANDLE_UPDATE_DOCUMENT_TASK_DRAWER_MODAL:
+            return { ...state, addUpdatedocumentTaskModal: action.payload };
           case types.GET_TASK_TIMELINE_REQUEST:
       return { ...state, fetchingTaskTimeline: true };
     case types.GET_TASK_TIMELINE_SUCCESS:
@@ -858,6 +865,28 @@ export const TaskReducer = (state = initialState, action) => {
               fetchingNotesListByTaskId: false,
               fetchingNotesListByTaskIdError: true,
             };
+
+
+
+            case types.UPDATE_TASK_IMPORT_FORM_REQUEST:
+              return { ...state, updatingTaskImportForm: true };
+            case types.UPDATE_TASK_IMPORT_FORM_SUCCESS:
+              return {
+                ...state,
+                updatingTaskImportForm: false,
+                addUpdatedocumentTaskModal: false,
+                // organizationDocumentDrawer: false,
+                // repositoryData: [
+                //   action.payload,
+                //   ...state.repositoryData,
+                //  ],
+        
+              };
+            case types.UPDATE_TASK_IMPORT_FORM_FAILURE:
+              return {
+                ...state, updatingTaskImportForm: false,
+                // addCustomerModal: false 
+              };
 
             case types.GET_APPROVAL_TASK_TABLE_REQUEST:
               return { ...state, fetchingApproveTaskTable: true };
