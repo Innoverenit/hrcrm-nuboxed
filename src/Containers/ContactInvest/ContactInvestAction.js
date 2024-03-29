@@ -282,6 +282,37 @@ export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
     });
 };
 
+export const getTeamsContactInvest = (pageNo) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_TEAMS_CONTACT_INVEST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investor/contact/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAMS_CONTACT_INVEST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TEAMS_CONTACT_INVEST_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
+    });
+};
+
 export const handleContactInvestActivityModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CONTACT_INVEST_ACTIVITY_MODAL,
