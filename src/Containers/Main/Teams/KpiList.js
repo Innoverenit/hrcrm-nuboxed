@@ -182,10 +182,16 @@ function KpiList(props) {
           <>                                           
         <div class=" w-[37%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
-                          <FastField
+                          <Field
                             // isRequired
                             name="assignedValue"
-                            type="text"
+                            type="number"
+                            validate={(value) => {
+                              if (!value || isNaN(Number(value))) {
+                                return 'Assigned Value must be a number';
+                              }
+                              return null;
+                            }} 
                             // width={"100%"}
                             isColumn
                             component={InputComponent}
@@ -195,10 +201,16 @@ function KpiList(props) {
                         </div>  
                         <div class=" w-[37%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Weitage</label>&nbsp;
-                          <FastField
+                          <Field
                             // isRequired
                             name="weitageValue"
-                            type="text"
+                            type="number"
+                            validate={(value) => {
+                              if (!value || isNaN(Number(value))) {
+                                return 'Weitage value must be a number';
+                              }
+                              return null;
+                            }}
                             // width={"100%"}
                             isColumn
                             component={InputComponent}
