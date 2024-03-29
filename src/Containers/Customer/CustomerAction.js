@@ -895,7 +895,7 @@ export const getCustomerTeamRecords = (userId) => (dispatch) => {
     type: types.GET_CUSTOMER_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/customer/team/count/${userId}`, {
+    .get(`${base_url}/customer/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2244,13 +2244,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
-  export const getTeamCustomer = (userId,pageNo,filter) => (dispatch) => {
+  export const getTeamCustomer = (userId,pageNo) => (dispatch) => {
  
     dispatch({
       type: types.GET_TEAM_CUSTOMER_REQUEST,
     });
     axios
-      .get(`${base_url}/customer/team/${userId}/${pageNo}/${filter}`, {
+      .get(`${base_url}/customer/teams/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -2268,6 +2268,10 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
           type: types.GET_TEAM_CUSTOMER_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 

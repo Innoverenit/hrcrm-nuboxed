@@ -35,6 +35,10 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
           type: types.GET_INVESTORS_BY_ID_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -583,6 +587,10 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.GET_ALL_INVESTORS_BY_ID_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
