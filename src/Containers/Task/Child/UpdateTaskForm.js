@@ -733,8 +733,8 @@ function UpdateTaskForm(props) {
                         name="customerId"
                         label={
                           <FormattedMessage
-                            id="app.customer"
-                            defaultMessage="customer"
+                            id="app.prospect"
+                            defaultMessage="Prospect"
                           />
                         }
                         isColumn
@@ -1062,8 +1062,8 @@ function UpdateTaskForm(props) {
                  isColumnWithoutNoCreate
                  label={
                    <FormattedMessage
-                     id="app.customer"
-                     defaultMessage="customer"
+                     id="app.prospect"
+                     defaultMessage="Prospect"
                    />
                  }
                  //component={SearchSelect}

@@ -33,9 +33,9 @@ const Region = (props) => {
     const [currentData, setCurrentData] = useState("");
     const [currentregionId, setCurrentRegionId] = useState("");
     const [selectedYear, setSelectedYear] = useState(null);
-  const [sales, setSales] = useState({ amount: '', currency: "" });
-  const [fulfillment, setFulfillment] = useState({ amount: '' });
-  const [investment, setInvestment] = useState({ amount: '', currency: "" });
+  const [sales, setSales] = useState({ amount: '', currency: "",kpi:"" });
+  const [fulfillment, setFulfillment] = useState({ amount: '',kpi:"" });
+  const [investment, setInvestment] = useState({ amount: '', currency: "",kpi:"" });
     useEffect(() => {
         props.getRegions(props.organizationId); 
         props.getRegionCount(props.orgId) 
@@ -125,9 +125,9 @@ setEditingId(null);
       const resetData = () => {
         setSelectedYear(null);
         setActiveTab(null)
-        setSales({ amount: null, currency: null });
-        setFulfillment({ amount: null });
-        setInvestment({ amount: null, currency: null });
+        setSales({ amount: null, currency: null,kpi:null });
+        setFulfillment({ amount: null,kpi:null });
+        setInvestment({ amount: null, currency: null,kpi:null });
        
         if (yearSelectRef.current) {
           yearSelectRef.current.value = ""; // Reset the value of the select element

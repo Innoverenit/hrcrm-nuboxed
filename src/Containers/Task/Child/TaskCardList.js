@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
+  UploadOutlined,
 WeiboSquareOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
@@ -23,6 +24,7 @@ import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import {
   getTaskListRangeByUserId,
   deleteTask,
+  handleUpdateDocumentDrawerModal,
   linkTaskStatus,
   approveTaskByTaskId,
   rejectTaskByTaskId,
@@ -35,6 +37,7 @@ import {
   handleTaskopenModal,
   handleTaskDocumentDrawerModal
 } from "../TaskAction";
+import UpdateDocumentDrawerModal from "../Child/UpdateDocumentDrawerModal"
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
@@ -554,6 +557,7 @@ const TaskCardList = (props) => {
         <div className="md:w-[5%]"></div>
         <div className="w-12"></div>
         <div className="w-12"></div>
+        <div className="w-12"></div>
       </div>
       <InfiniteScroll
         dataLength={taskListRangeByUserId.length}
@@ -694,6 +698,17 @@ const TaskCardList = (props) => {
             )}
                     </div> */}
                     </div>
+                    <div className=" flex font-medium justify-center flex-col  md:w-32 max-sm:flex-row w-full ">
+                                    {/* <div class=" text-sm text-cardBody font-sm font-poppins max-sm:hidden"> Name </div> */}
+                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">   
+             
+
+                 {/* {`${item.taskName} `} &nbsp; */}
+
+
+              
+                                    </div>
+                                </div>
                     <div className="flex font-medium flex-col md:w-24 max-sm:flex-row  w-full ">
                        
                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
@@ -818,17 +833,13 @@ const TaskCardList = (props) => {
 
      <div className="flex font-medium flex-col md:w-20 max-sm:flex-row  w-full  justify-center ">
            
-                         <Tooltip title="Document">
-                         <FeedbackIcon
-                                  onClick={() => {
-                                    props.handleTaskDocumentDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-base cursor-pointer"
-                                 
-                                />
-                             </Tooltip>
-              
+                      
+          <UploadOutlined
+              onClick={() => {
+                props.handleUpdateDocumentDrawerModal(true);
+                handleSetTaskNameId(item);
+              }}
+          />    
               
 
      
@@ -897,18 +908,28 @@ const TaskCardList = (props) => {
               />
            </Tooltip>
   
-   <Tooltip title="Document">
+   
           {/* {props.userId === item.userId && ( */}
-                      <DownloadForOfflineIcon
+                      {/* <DownloadForOfflineIcon
                         // type="edit"
                         className="!text-xl cursor-pointer"
                         onClick={() => {
                           handleSetCurrentProcessName(item)
                           handleDownloadTaskModal(true);
                         }}
-                      />
+                      /> */}
+                         <Tooltip title="Document">
+                         <DownloadForOfflineIcon
+                                  onClick={() => {
+                                    props.handleTaskDocumentDrawerModal(true);
+                                    handleSetTaskNameId(item);
+                                  }}
+                                  className="!text-base cursor-pointer"
+                                 
+                                />
+                             </Tooltip>
                     {/* )} */}
-            </Tooltip>
+        
             </div>
                     <div class="flex flex-col w-6 justify-evenly ">
    
@@ -1008,6 +1029,12 @@ handleTaskDocumentDrawerModal={props.handleTaskDocumentDrawerModal}
 addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
 />
 
+<UpdateDocumentDrawerModal
+ currentNameId={currentNameId}
+ handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
+ addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
+/>
+
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>
@@ -1023,6 +1050,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
     updateTaskModal: task.updateTaskModal,
     downloadTaskModal:task.downloadTaskModal,
+    addUpdatedocumentTaskModal:task.addUpdatedocumentTaskModal,
     addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal,
     noOfPages: task.taskListRangeByUserId.length && task.taskListRangeByUserId[0].noOfPages || "",
       fetchingTaskListRangeByUserId: task.fetchingTaskListRangeByUserId,
@@ -1039,6 +1067,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
         handleTaskProjectDrawerModal,
         deleteTask,
         linkTaskStatus,
+        handleUpdateDocumentDrawerModal,
         handleTaskFeedbackDrawerModal,
         handleTaskNotesDrawerModal,
         handleTaskDocumentDrawerModal,
