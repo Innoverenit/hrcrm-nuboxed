@@ -4,6 +4,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { getDepartmentList } from "../../SettingsAction"
+import KPIRole from "./KPIRole";
 const KPIList = lazy(() =>
   import("../KPI/KPIList")
 );
@@ -54,7 +55,7 @@ class PerformanceManagementTab extends Component {
 
                                     {this.state.departmentData.departmentId && (
                                         <Suspense fallback={"Loading..."}>
-                                            <KPIList 
+                                            <KPIRole 
                                      departmentId={this.state.departmentData.departmentId} 
                                                 />
                                             {/* <AccessForm 

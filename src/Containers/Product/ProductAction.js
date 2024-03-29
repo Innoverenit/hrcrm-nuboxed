@@ -1041,6 +1041,33 @@ export const addProduct = (product, cb) => (dispatch) => {
     });
 };
 
+export const addCategory = (product, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_CATEGORY_REQUEST });
+  axios
+    .post(`${base_url2}/product/productcategory`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
 export const handleProductBuilderDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCT_BUILDER_DRAWER,
@@ -1348,4 +1375,31 @@ export const handleCategoryModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_CATEGORY_MODAL,
     payload: modalProps,
   });
+};
+
+export const getCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/allProductCatagory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CATEGORY_FAILURE,
+        payload: err,
+      });
+    });
 };

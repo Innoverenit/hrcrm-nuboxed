@@ -17,6 +17,7 @@ import {
 } from "../../ProductAction";
 import ProductPublishToggle from "./ProductPublishToggle";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import { Button, Tooltip } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -88,11 +89,13 @@ function ProductCardList(props) {
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          
-            <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
+            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Name</div>
             <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">Category</div>
             <div className="w-[2.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.4rem]">Sub</div>
-            <div className="w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
+            <div className="w-[5.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
+            <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
+            <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
             <div className="w-[5.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
             <div className="w-12"></div>
           </div>
@@ -125,13 +128,13 @@ function ProductCardList(props) {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                      <div className=" flex font-medium flex-col w-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[5.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
@@ -141,13 +144,13 @@ function ProductCardList(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[10.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[8.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs text-cardBody max-sm:text-sm font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -155,11 +158,25 @@ function ProductCardList(props) {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs text-cardBody max-sm:text-sm font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}
+                      </div>
+                    </div>
+</div>
+<div class="flex max-sm:justify-between max-sm:w-wk items-center">
+<div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+
+                        {item.brand}
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col w-[4.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+
+                        {item.model}
                       </div>
                     </div>
 </div>
@@ -171,7 +188,7 @@ function ProductCardList(props) {
                                 <div class="max-sm:text-sm"> Print QR Code</div>
                                 </Button>
                       </div>
-                      <div className=" flex font-medium flex-col  w-[13.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
@@ -211,6 +228,15 @@ function ProductCardList(props) {
                               handleUpdateProductModal(true);
                             }}
                           />
+                        </Tooltip>
+                      </div>
+
+
+                    </div>
+                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title={item.description}>
+                        <ContactSupportIcon/>
                         </Tooltip>
                       </div>
 

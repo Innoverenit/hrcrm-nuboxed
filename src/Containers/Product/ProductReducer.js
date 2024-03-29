@@ -80,6 +80,10 @@ const initialState = {
   fetchingProductsError: false,
   products: [],
 
+  fetchingCategory:false,
+  fetchingCategoryError:false,
+  categoryProducts:[],
+
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
   allproducts: [],
@@ -219,6 +223,9 @@ const initialState = {
 
   addingProduct: false,
   addingProductError: false,
+
+  addingCategory: false,
+  addingCategoryError: false,
 
   proBuilderDrawer: false,
 
@@ -361,6 +368,13 @@ export const productReducer = (state = initialState, action) => {
       return { ...state, fetchingProducts: false, products: action.payload };
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
+
+      case types.GET_CATEGORY_REQUEST:
+      return { ...state, fetchingCategory: true, fetchingCategoryError: false };
+    case types.GET_CATEGORY_SUCCESS:
+      return { ...state, fetchingCategory: false, categoryProducts: action.payload };
+    case types.GET_CATEGORY_FAILURE:
+      return { ...state, fetchingCategory: false, fetchingCategoryError: true };
 
     case types.GET_SERVICE_REQUEST:
       return { ...state, fetchingService: true, fetchingServiceError: false };
@@ -889,6 +903,24 @@ export const productReducer = (state = initialState, action) => {
         addingProductError: true,
         addConfigureModal: false,
       };
+
+
+      case types.ADD_CATEGORY_REQUEST:
+        return { ...state, addingCategory: true };
+      case types.ADD_CATEGORY_SUCCESS:
+        return {
+          ...state, addingCategory: false, 
+          categoryProductModal:false,
+          categoryProducts: [action.payload, ...state.categoryProducts]
+        };
+      case types.ADD_CATEGORY_FAILURE:
+        return {
+          ...state,
+          addingCategory: false,
+          addingCategoryError: true,
+          categoryProductModal:false,
+          
+        };
 
     case types.HANDLE_PRODUCT_BUILDER_DRAWER:
       return { ...state, proBuilderDrawer: action.payload };

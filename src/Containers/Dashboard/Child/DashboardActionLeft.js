@@ -4,6 +4,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import { Input,Tabs } from "antd";
 import {
   setSelectedTimeIntervalReport,
   setTimeRangeReport,
@@ -20,8 +21,12 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DashboardShareForm from "./DashboardShareForm";
 import DashboardPage from "../../DashboardPage/DashboardPage";
-
+const { TabPane } = Tabs;
 const DashboardActionLeft = (props) => {
+    const tab=[
+    "Q1","Q2","Q3","Q4"
+  ]
+  const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
   const [showShareForm, setShowShareForm] = useState(false);
   const {
@@ -86,7 +91,7 @@ const DashboardActionLeft = (props) => {
               {/* Your Badge components here */}
               {/* Example: */}
        
-   
+
    
 {user.crmInd === true && (
     <Badge
@@ -138,7 +143,29 @@ const DashboardActionLeft = (props) => {
     </Badge>
 )}
 
- 
+{user.dashboardRegionalInd === true && (
+     <Badge
+     size="small"
+     // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+     // overflowCount={999}
+   >
+    <span class="cursor-pointer mr-1"
+    onClick={() => handleButtonClick("Regional")} 
+    style={{
+      color:activeButton === "Regional" && "tomato",
+      
+    }}
+    >
+      <Tooltip title="Regional">
+      <Avatar style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}>     
+      <ReceiptIcon className="text-white"
+            
+          />
+            </Avatar>
+      </Tooltip>
+    </span>
+    </Badge>
+)} 
 {user.orderManagementInd === true  && (
   <Badge
   size="small"
@@ -300,7 +327,7 @@ const DashboardActionLeft = (props) => {
           </Tooltip>
     </span>
 </Badge>
-   
+
 {user.crmInd === true && (
     <Badge
     size="small"
@@ -351,7 +378,29 @@ const DashboardActionLeft = (props) => {
     </span>
     </Badge>
 )}
-
+{user.dashboardRegionalInd === true && (
+     <Badge
+     size="small"
+     // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+     // overflowCount={999}
+   >
+    <span class="cursor-pointer mr-1"
+    onClick={() => handleButtonClick("Regional")} 
+    style={{
+      color:activeButton === "Regional" && "tomato",
+      
+    }}
+    >
+      <Tooltip title="Regional">
+      <Avatar style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}>     
+      <ReceiptIcon className="text-white"
+            
+          />
+            </Avatar>
+      </Tooltip>
+    </span>
+    </Badge>
+)} 
  
 {user.orderManagementInd === true  && (
   <Badge
@@ -450,12 +499,24 @@ const DashboardActionLeft = (props) => {
         </div>
    
       <>
-      <div class="ml-[4rem] max-sm:hidden" >
-    <TimeInterval
+      <div class="ml-[9rem] mt-[0.75rem] max-sm:hidden" >
+      <Tabs type="card" 
+           activeKey={activeTab} 
+          // onChange={handleTabClick}
+           >
+      {tab.map((tabs) => (
+        <TabPane key={tabs} tab={tabs}>
+       
+       
+       
+        </TabPane>
+      ))}
+    </Tabs>
+    {/* <TimeInterval
     style={{fontSize:"0.67"}}
           times={dateRangeList}
           handleClick={setSelectedTimeIntervalReport}
-        />
+        /> */}
         </div>
         {/* <Popover>
           <StyledRangePicker

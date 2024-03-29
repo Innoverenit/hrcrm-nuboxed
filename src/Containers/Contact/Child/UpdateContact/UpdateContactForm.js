@@ -158,6 +158,8 @@ class UpdateContactForm extends Component {
             phoneNumber: this.props.setEditingContact.phoneNumber || "",
             mobileNumber: this.props.setEditingContact.mobileNumber || "",
             emailId: this.props.setEditingContact.emailId || "",
+            alternateEmail: this.props.setEditingContact.alternateEmail || "",
+            
             customerId:this.props.setEditingContact.customerId||"",
             linkedinPublicUrl:
               this.props.setEditingContact.linkedinPublicUrl || "",
@@ -300,6 +302,28 @@ class UpdateContactForm extends Component {
                       />
                     </div>
                   </div>
+                  <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
+                  </div>  
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">
                       <FastField
