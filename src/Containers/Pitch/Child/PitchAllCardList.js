@@ -6,12 +6,14 @@ import { bindActionCreators } from "redux";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
-    getAllPitch
+    getAllPitch,
+    deletePitchData
 } from "../PitchAction";
 import dayjs from "dayjs";
 import AddchartIcon from '@mui/icons-material/Addchart';  
@@ -72,429 +74,50 @@ const PitchAllCardList = (props) => {
     return <BundleLoader />;
   }
 
-  if (isMobile){
-    return (
-      <>
-   <div class="rounded-lg  p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-    
-        <InfiniteScroll
-          dataLength={props.allPitchData.length}
-          next={handleLoadMore}
-          hasMore={hasMore}
-          loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
-          height={"75vh"}
-        >
-     {props.allPitchData.map((item) => { 
-   const currentdate = dayjs().format("DD/MM/YYYY");
-   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-   const countryCode = item.address[0].country_alpha2_code   
-           const diff = Math.abs(
-            dayjs().diff(dayjs(item.lastRequirementOn), "days")
-            );
-            const dataLoc = ` Address : ${
-              item.address && item.address.length && item.address[0].address1
-            } 
-                 Street : ${
-                   item.address && item.address.length && item.address[0].street
-                 }   
-                State : ${
-                  item.address && item.address.length && item.address[0].state
-                }
-               Country : ${
-                 (item.address && item.address.length && item.address[0].country) ||
-                 ""
-               } 
-                 PostalCode : ${
-                   item.address && item.address.length && item.address[0].postalCode
-                 } `;
-                      return (
-                          <div>
-                              <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
-                >
-                                       <div class="flex justify-between">
-                                 
-                                  <div className="flex max-sm:w-full items-center"> 
-  <div>
-
-              <MultiAvatar
-                primaryTitle={item.name}
-                imageId={item.imageId}
-                imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
-              />
-           
-  </div>
-                                    
-  
-                                          <div class="max-sm:w-full" >
-                                          <Tooltip>
-                                            
-                                              
-                                              <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                                  
-                                                 
-                                                 {item.firstName}
-                                                 &nbsp;
-                                                 {item.middleName}
-                                                 &nbsp;
-                                                 {item.lastName}
-                                                 {/* </Link> */}
-                                                 &nbsp;&nbsp;
-                                                 {date === currentdate ? (
-                                                   <span
-                                                   class="text-[tomato] mt-[0.4rem] font-bold">
-                                                     New
-                                                   </span>
-                                                 ) : null}
-                                                
-                                                                                     </div>
-                                             
-                                          </Tooltip>
-                                          </div>
-                                          </div>
-                                  
-                                  
-  
-  <div><ButtonGroup>
-  <RoleButton
-   type="Warm"
-   iconType="	fas fa-burn"
-   // tooltip="Warm"
-   tooltip={<FormattedMessage
-     id="app.warm"
-     defaultMessage="Warm"
-   />}
-   role={item.type}
-   onClick={() =>{
-   const typ="Warm"
-     props.updateTypeForPitch(item.investorLeadsId,typ)
-   }}
-  />
-  </ButtonGroup></div>
-  
-    
-  
-  
-       <div>
-       <ButtonGroup>
-  <RoleButton
-   type="Hot"
-   iconType="fas fa-mug-hot"
-   // tooltip="Hot"
-   tooltip={<FormattedMessage
-     id="app.hot"
-     defaultMessage="Hot"
-   />}
-   role={item.type}
-   onClick={() =>{
-    const typ="Hot"
-     props.updateTypeForPitch(item.investorLeadsId,typ)
-   }}
-  />
-  </ButtonGroup>
-  </div>
-       <div>
-  <ButtonGroup>
-  <RoleButton
-   type="Cold"
-   iconType="far fa-snowflake"
-   // tooltip="Cold"
-   tooltip={<FormattedMessage
-     id="app.cold"
-     defaultMessage="Cold"
-   />}
-   role={item.type}
-   onClick={() => {
-    const typ="Cold"
-     props.updateTypeForPitch(item.investorLeadsId,typ)
-   }}
-  />
-  </ButtonGroup>
-  </div>
-  
-
-       </div>  
-                                  <div class="flex justify-between md:ml-4">
-                                 
-                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
-  
-                             <div class="text-[0.82rem] text-cardBody font-poppins">
-    {item.countryDialCode && item.phoneNumber
-      ? `${item.countryDialCode} ${item.phoneNumber}`
-      : 'No Data'}
-  </div>
-  
-                         
-                         
-                                    
-  
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins">
-                                    <CountryFlag1 countryCode={countryCode} />
-                        &nbsp;
-                        {countryCode}
-                                      </div>
-                                
-                                </div>
-                         <div class="flex justify-between  max-sm:mb-2 ">
-                         
-                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                             <div className="text-[0.82rem] text-cardBody font-poppins">
-                             {item.companyName || "No Data"}
-  </div>
-  
-                         
-                        
-                      {item.url !== null ? (
-                <Tooltip title={item.url}>
-                  <span class="cursor-pointer"
-                    //type="edit"
-                    onClick={() => {}}
-                  >
-                    {" "}
-                    <a href={`item.url`} target="_blank">
-                      <ExploreIcon
-                        style={{ cursor: "pointer", color: "green" ,fontSize: "1rem",}}
-                      />
-                    </a>
-                  </span>
-                </Tooltip>
-              ) : null}
-                         
-                                  
-                                  </div>
-                                 
-            
-       
-       <div class="flex justify-between max-sm:mb-1 md:items-center">
-      
-      
-                                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
-  
-                                      <div class=" text-[0.82rem] text-cardBody font-poppins">
-                                      
-                                      <span>
-                {item.assignedTo === null ? (
-                  "None"
-                ) : (
-                  <MultiAvatar
-                    primaryTitle={item.assignedTo}
-                    imgWidth={"1.8em"}
-                    imgHeight={"1.8em"}
-                  />
-                )}
-              </span>
-               
-                                      </div>
-                                 
-      
-                         
-                         {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
-  
-                         <span>
-                <MultiAvatar
-                  primaryTitle={item.ownerName}
-                  imageId={item.ownerImageId}
-                  imageURL={item.imageURL}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-              </span>
-                    
-                                 
-                           
-                    
-                                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Qualify</div> */}
-  
-                                      <div class=" text-[0.82rem] text-cardBody font-poppins">
-                  {/* qual */}
-                                      </div>
-                                      <div>
-  <StatusPitchToggle
-              type={props.convertInd ? "primary" : "danger"}
-              investorLeadsId={item.investorLeadsId}
-              convertInd={item.convertInd}
-            />
-  </div>
-                                  
-                                 
-                                  <div >
-                      <Tooltip title="Notes">
-         <NoteAltIcon
-                  onClick={() => {
-                    props.handlePitchNotesDrawerModal(true);
-                    handleSetCurrentLeadsId(item);
-                  }}
-                  className="!text-base cursor-pointer text-[green]"
-                />
-             </Tooltip>
-  
-              </div>
-              <div>
-  <Tooltip
-          title={
-            <FormattedMessage id="app.activity" defaultMessage="Activity" />
-          }
-        >
-  <AddchartIcon
-  className="!text-base cursor-pointer text-blue-500"
-  onClick={()=>{
-    props.handleAssimodal(true)
-    handleRowData(item)
-    }}
-  />
-  </Tooltip>
-  </div>
-  
-                                  
-                                  
-                                 
-                                  <div class="flex flex-col w-6 max-sm:flex-row">
-                                  {user.imInd === true  &&  user.pitchUpdateInd === true && (  
-                                  <div>
-              <Tooltip title="Edit">
-                <BorderColorIcon
-                   className="!text-base cursor-pointer text-[tomato]"
-                  onClick={() => {
-                     props.setEditPitch(item);
-                     props.handleUpdatePitchModal(true);
-                  handleSetCurrentLeadsId(item);
-                    
-                  }}
-                />
-              </Tooltip>
-          
-              </div>
-                                  )}
-                                 
-                          <div>
-                          <StyledPopconfirm
-              title="Do you want to delete?"
-              // onConfirm={() => deletePitchData(item.investorleadsId)}
-            >
-              <Tooltip title="Delete">
-               {user.imInd === true  &&  user.plantDeleteInd === true && ( 
-              <DeleteOutlined
-                type="delete"
-                className="!text-base text-[red] cursor-pointer"
-              />
-               )} 
-               </Tooltip>
-            </StyledPopconfirm>
-                          </div>
-                              
-                          <div>
-              
-  
-                      </div>
-                      </div>
-                      <div class="flex flex-col w-6 max-sm:flex-row">
-                        <div>
-                      <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-              <span class="cursor-pointer"
-               
-              >
-              <LocationOnIcon  className="!text-base cursor-pointer text-[#960a0a]"/>
-              </span>
-            </Tooltip>
-            </div>
-            <div>
-            <Tooltip title={item.email}>
-                <MailOutlineIcon
-                  type="mail"
-                  className="!text-base cursor-pointer text-green-400"
-                  // onClick={() => {
-                  //   handleSetCurrentLeadsId(item);
-                  //   props.handleLeadsEmailDrawerModal(true);
-                  // }}
-                />
-              </Tooltip> </div>
-             
-                        </div> 
-                      
-                      
-                      </div>
-                        </div>
-                              </div>
-                           
-  
-  
-                      )
-                  })}
-                    </InfiniteScroll>
-        </div>
-        <UpdateLPitchModal
-          item={currentLeadsId}
-          updatePitchModal={props.updatePitchModal}
-          // updateLeadsModal={updateLeadsModal}
-          handleUpdatePitchModal={props.handleUpdatePitchModal}
-          // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        />
-        {/* <AddLeadsEmailDrawerModal
-          item={currentLeadsId}
-          handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-          addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-          handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-        /> */}
-        <OpenASSimodal 
-          rowdata={rowdata}
-          openASSImodal={props.openASSImodal}
-        handleAssimodal={props.handleAssimodal}
-        />
-           <AddPitchNotesDrawerModal 
-         item={currentLeadsId}
-          addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
-          handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
-        />
-      </>
-    );
-
-  }
+ 
 
   return (
     <>
- <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-  <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+ <div class="rounded-lg max-lg:w-wk max-sm:w-wk max-sm:m-1 m-5 p-2 w-[97%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+ <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" w-[4.5rem]"></div>
-        <div className=" w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                  id="app.phoneno#"
-                  defaultMessage="phoneno#"
+        <div className=" w-[3.5rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[6.5rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                  id="app.mobile#"
+                  defaultMessage="mobile#"
                 /></div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.country"
                   defaultMessage="country"
                 /></div>
-        <div className="w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
-                     <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
                 /></div>
-                     <div className="w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                     <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
                 /></div>
-        <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.assignedto"
                   defaultMessage="assignedto"
                 /></div>
-        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
-                  defaultMessage="owner"
+                  defaultMessage="owner" 
                 /></div>
-        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
                 /></div>
-        {/* <div className="w-12">Action</div> */}
+
 
       </div>
       <InfiniteScroll
@@ -503,6 +126,7 @@ const PitchAllCardList = (props) => {
         hasMore={hasMore}
         loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
+        style={{overflowX:"hidden"}}
       >
   { !fetchingAllPitch && props.allPitchData.length === 0 ?<NodataFoundPage />:props.allPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
@@ -528,226 +152,225 @@ const PitchAllCardList = (props) => {
                  item.address && item.address.length && item.address[0].postalCode
                } `;
                     return (
-                        <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-1"
-                               
-                                >
-                                     <div class="flex justify-between">
-                                <div className=" flex font-medium flex-col w-[11.5rem]   max-sm:w-full">
-                                <div className="flex max-sm:w-full items-center"> 
+                      <div>
+                      <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                          
+                          >
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
-            <MultiAvatar
-              primaryTitle={item.name}
-              imageId={item.imageId}
-              imageURL={item.imageURL}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
-            />
-        
+      <MultiAvatar
+        primaryTitle={item.name}
+        imageId={item.imageId}
+        imageURL={item.imageURL}
+        imgWidth={"1.8em"}
+        imgHeight={"1.8em"}
+      />
+    
 </div>
-                                   <div class="w-[4%]">
+                             <div class="w-[4%]">
 
-                                   </div>
+                             </div>
 
-                                        <div class="max-sm:w-full" >
-                                        <Tooltip>
-                                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
-                                            Name
-                                            </div> */}
-                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-poppins font-semibold  cursor-pointer">
-                                                
-                                                {/* <Link
-                                                 toUrl={`customer/${item.customerId}`}
-                                                 title={`${item.name}`} 
-                                               > */}
-                                               {item.firstName}
-                                               &nbsp;
-                                               {item.middleName}
-                                               &nbsp;
-                                               {item.lastName}
-                                               {/* </Link> */}
-                                               &nbsp;&nbsp;
-                                               {date === currentdate ? (
-                                                 <span
-                                                 class="text-[tomato] mt-[0.4rem] font-bold">
-                                                   New
-                                                 </span>
-                                               ) : null}
-                                              
-                                                                                   </div>
-                                            </div>
-                                        </Tooltip>
-                                        </div>
-                                        </div>
-                                </div>
-                                <div class="flex flex-row items-center md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                                  <div class="max-sm:w-full" >
+                                  <Tooltip>
+                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
+                                      Name
+                                      </div> */}
+                                      <div class=" text-[0.82rem] max-sm:text-[0.82rem] flex text-blue-500 text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                          
+                                          {/* <Link
+                                           toUrl={`customer/${item.customerId}`}
+                                           title={`${item.name}`} 
+                                         > */}
+                                         {item.firstName}
+                                         &nbsp;
+                                         {item.middleName}
+                                         &nbsp;
+                                         {item.lastName}
+                                         {/* </Link> */}
+                                         &nbsp;&nbsp;
+                                         {date === currentdate ? (
+                                           <span class="text-[tomato] mt-[0.4rem] font-bold" >
+                                             New
+                                           </span>
+                                         ) : null}
+                                        
+                                                                             </div>
+                                      </div>
+                                  </Tooltip>
+                                  </div>
+                                  </div>
+                          </div>
+                          <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 
-<div><ButtonGroup>
+
+
+
+
+
+<div>
+<ButtonGroup>
 <RoleButton
- type="Warm"
- iconType="	fas fa-burn"
- // tooltip="Warm"
- tooltip={<FormattedMessage
-   id="app.warm"
-   defaultMessage="Warm"
- />}
- role={item.type}
- onClick={() =>{
- const typ="Warm"
-   props.updateTypeForPitch(item.investorLeadsId,typ)
- }}
-/>
-</ButtonGroup></div>
-
-  
-
-
-     <div>
-     <ButtonGroup>
-<RoleButton
- type="Hot"
- iconType="fas fa-mug-hot"
- // tooltip="Hot"
- tooltip={<FormattedMessage
-   id="app.hot"
-   defaultMessage="Hot"
- />}
- role={item.type}
- onClick={() =>{
-  const typ="Hot"
-   props.updateTypeForPitch(item.investorLeadsId,typ)
- }}
+type="Hot"
+iconType="fas fa-mug-hot"
+// tooltip="Hot"
+tooltip={<FormattedMessage
+id="app.hot"
+defaultMessage="Hot"
+/>}
+role={item.type}
+onClick={() =>{
+const typ="Hot"
+props.updateTypeForPitch(item.investorLeadsId,typ)
+}}
 />
 </ButtonGroup>
 </div>
-     <div>
+<div><ButtonGroup>
+<RoleButton1
+type="Warm"
+iconType="	fas fa-burn"
+// tooltip="Warm"
+tooltip={<FormattedMessage
+id="app.warm"
+defaultMessage="Warm"
+/>}
+role={item.type}
+onClick={() =>{
+const typ="Warm"
+props.updateTypeForPitch(item.investorLeadsId,typ)
+}}
+/>
+</ButtonGroup></div>
+<div>
 <ButtonGroup>
-<RoleButton
- type="Cold"
- iconType="far fa-snowflake"
- // tooltip="Cold"
- tooltip={<FormattedMessage
-   id="app.cold"
-   defaultMessage="Cold"
- />}
- role={item.type}
- onClick={() => {
-  const typ="Cold"
-   props.updateTypeForPitch(item.investorLeadsId,typ)
- }}
+<RoleButton2
+type="Cold"
+iconType="far fa-snowflake"
+// tooltip="Cold"
+tooltip={<FormattedMessage
+id="app.cold"
+defaultMessage="Cold"
+/>}
+role={item.type}
+onClick={() => {
+const typ="Cold"
+props.updateTypeForPitch(item.investorLeadsId,typ)
+}}
 />
 </ButtonGroup>
 </div>
 
 </div>  
-     </div>  
-                                <div class="flex justify-between md:ml-4">
-                                <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
+</div>  
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col  w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
 
-                           <div class="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-  {item.countryDialCode && item.phoneNumber
-    ? `${item.countryDialCode} ${item.phoneNumber}`
-    : 'No Data'}
+                     <div class="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+{item.countryDialCode && item.phoneNumber
+? `${item.countryDialCode} ${item.phoneNumber}`
+: 'No Data'}
 </div>
 
-                       </div>
-                       <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                  
+                 </div>
+                 <div className=" flex font-medium flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                            
 
-                                  {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                  <CountryFlag1 countryCode={countryCode} />
-                      &nbsp;
-                      {countryCode}
-                                    </div>
+                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
+                            <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <CountryFlag1 countryCode={countryCode} />
+                &nbsp;
+                {countryCode}
                               </div>
+                        </div>
+                        <div className=" flex font-medium flex-col  w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.companyName || "No Data"}
+</div>
+
+                 </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                
+                 <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.source || "No Data"}
+</div>
+
+                 </div>
+                 <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
+                     <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     {item.sector || "No Data"}
+</div>
+
+                 </div>
+                 <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+
+                              <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              
+                              <span>
+                {item.assignedTo === null ? (
+          "No Data"
+        ) : (
+          <>
+          {item.assignedTo === item.ownerName ? (
+            
+            null
+          ) : (
+            <Tooltip title={item.assignedTo}> 
+                    <MultiAvatar
+                      primaryTitle={item.assignedTo}
+                      imgWidth={"1.8rem"}
+                      imgHeight={"1.8rem"}
+                    />
+                        </Tooltip>
+                  )}
+                  </>
+        )}
+                </span>
+       
                               </div>
-                       <div class="flex justify-between  max-sm:mb-2 ">
-                       <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                           <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.companyName || "No Data"}
-</div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                 
+                 {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
-                       </div>
-                       <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                           <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.source || "No Data"}
-</div>
-
-                       </div>
-                       <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                           {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
-                           <div className="text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {item.sector || "No Data"}
-</div>
-
-                       </div>
-                    
-                                {/* <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                           
-                                    <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Sector </div>
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins">   
-                                    {item.sector}
-                                    </div>
-                                </div> */}
-                                </div>
-                               
-          
-     <div class="md:w-[1%]"></div>
-     <div class="flex justify-between max-sm:mb-1 md:items-center">
-     <div class="flex justify-between items-center max-sm:w-[50%] ">
-     <div className=" flex font-medium flex-col md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
-
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    
-                                    <span>
-                        {item.assignedTo === null ? (
-                  "No Data"
-                ) : (
-                  <>
-                  {item.assignedTo === item.ownerName ? (
-                    
-                    null
-                  ) : (
-                    <Tooltip title={item.assignedTo}> 
-                            <MultiAvatar
-                              primaryTitle={item.assignedTo}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
-                            </Tooltip>
-                          )}
-                          </>
-                )}
-                        </span>
-             
-                                    </div>
-                                </div>
-     <div className=" flex font-medium flex-col md:w-[3.5rem]  max-sm:flex-row w-full max-sm:justify-between">
-                       
-                       {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
-
-                       <span>
-                       <Tooltip title={item.ownerName}> 
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                // imageURL={item.imageURL}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-                    </Tooltip>
-            </span>
-                   </div>
-                               
+                 <span>
+                 <Tooltip title={item.ownerName}>
+          <div class="max-sm:flex justify-end">
+          <Tooltip title={item.ownerName}>
+        <MultiAvatar
+          primaryTitle={item.ownerName}
+          imageId={item.ownerImageId}
+          imgWidth={"1.9rem"}
+          imgHeight={"1.9rem"}
+        />
+      </Tooltip>
+      </div>
+    </Tooltip>
+      </span>
+             </div>
+                          </div>
+                          
+                          
                          
-                   <div className=" flex font-medium flex-col md:w-16 max-sm:flex-row w-full max-sm:justify-between ">
+    
+<div class="md:w-[1%]"></div>
+<div class="flex max-sm:justify-between max-sm:w-wk items-center">
+<div class="flex justify-between items-center max-sm:w-[50%] ">
+
+
+                         
+<div className=" flex font-medium flex-col md:w-16 max-sm:flex-row w-full max-sm:justify-between ">
                    <div class="rounded-full bg-white  h-5 cursor-pointer w-8">
                     {item.url !== null ? (
               <Tooltip title={item.url}>
@@ -776,105 +399,138 @@ const PitchAllCardList = (props) => {
           />
 </div>
                                 </div>
-                                <div class="flex flex-col justify-evenly w-6 max-sm:flex-row max-sm:w-[10%]">
-                                <div >
-                    <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  props.handlePitchNotesDrawerModal(true);
-                  handleSetCurrentLeadsId(item);
-                }}
-                className="!text-base cursor-pointer text-[green]"
-              />
-           </Tooltip>
+             <div className=" flex font-medium flex-col w-[1.75rem] max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                              
+   
+                  
+                              <div class=" text-[0.82rem] text-cardBody font-poppins">
+          
+                              </div>
+                              <div>
+                              {item.companyName ? (
+                              <Tooltip title="Qualify? Pitch will move to Investor section!">
+                  <ConnectWithoutContactIcon
+                    onClick={() => {
+                      handleRowData(item);
+                      props.handlePitchConvertModal(true);
+                   
+                    }}
+                    className="!text-base cursor-pointer text-[blue]"
+                  />
+                </Tooltip>
+                  ) : (
+                    <Tooltip title="Company name is required to enable qualification action">
+                      <ConnectWithoutContactIcon
+                        className="!text-base cursor-not-allowed text-gray-400"
+                      />
+                    </Tooltip>
+                  )}
+{/* <StatusPitchToggle
+      type={props.convertInd ? "primary" : "danger"}
+      investorLeadsId={item.investorLeadsId}
+      convertInd={item.convertInd}
+    /> */}
+</div>
+                          </div>
+                          <div class="flex flex-col justify-evenly w-6 max-xl:w-[1.5rem] max-sm:flex-row max-sm:w-[10%]">
+                          <div >
+              <Tooltip title="Notes">
+ <NoteAltIcon
+          onClick={() => {
+            props.handlePitchNotesDrawerModal(true);
+            handleSetCurrentLeadsId(item);
+          }}
+          className="!text-base cursor-pointer text-[green]"
+        />
+     </Tooltip>
 
-            </div>
-            <div>
+      </div>
+      <div>
 <Tooltip
-        title={
-          <FormattedMessage id="app.activity" defaultMessage="Activity" />
-        }
-      >
+  title={
+    <FormattedMessage id="app.activity" defaultMessage="Activity" />
+  }
+>
 <AddchartIcon
-style={{fontSize: "1rem",cursor: 'pointer',}}
+className="!text-base cursor-pointer text-blue-500"
+
 onClick={()=>{
-  props.handleAssimodal(true)
-  handleRowData(item)
-  }}
+props.handleAssimodal(true)
+handleRowData(item)
+}}
 />
 </Tooltip>
 </div>
 </div>
-                                </div>
-                                <div class="flex max-sm:flex-row   md:w-20 max-sm:w-[25%] ">
-{/*                                
-                                <div class="flex flex-col w-6 max-sm:flex-row">
-                                {user.imInd === true  &&  user.pitchUpdateInd === true && (  
-                                <div>
-            <Tooltip title="Edit">
-              <BorderColorIcon
-                className="!text-base cursor-pointer text-[tomato]"
-                onClick={() => {
-                   props.setEditPitch(item);
-                   props.handleUpdatePitchModal(true);
-                handleSetCurrentLeadsId(item);
-                  
-                }}
-              />
-            </Tooltip>
-        
-            </div>
-                                )}
-                               
-                        <div>
-                        <StyledPopconfirm
-            title="Do you want to delete?"
-            // onConfirm={() => deletePitchData(item.investorleadsId)}
-          >
-            <Tooltip title="Delete">
-             {user.imInd === true  &&  user.plantDeleteInd === true && ( 
-            <DeleteOutlined
-              type="delete"
-              className="!text-base text-[red] cursor-pointer"
-            />
-             )} 
-             </Tooltip>
-          </StyledPopconfirm>
-                        </div>
-                            
-                        <div>
+                          </div>
+                          <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
+                         
+                          <div class="flex flex-col w-6 max-sm:flex-row">
+                          {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                          <div>
+      <Tooltip title="Edit">
+        <BorderColorIcon
+          className="!text-base cursor-pointer text-[tomato]"
+          onClick={() => {
+             props.setEditPitch(item);
+             props.handleUpdatePitchModal(true);
+          handleSetCurrentLeadsId(item);
             
+          }}
+        />
+      </Tooltip>
+  
+      </div>
+                          )}
+                         
+                  <div>
 
-                    </div>
-                    </div> */}
-                    <div class="flex flex-col w-6 max-sm:flex-row">
-                      <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer"
-             
-            >
-            <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
-          <div>
-          <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                className="!text-base cursor-pointer text-green-400"
-                // onClick={() => {
-                //   handleSetCurrentLeadsId(item);
-                //   props.handleLeadsEmailDrawerModal(true);
-                // }}
-              />
-            </Tooltip> </div>
-           
-                      </div> 
-                    
-                    </div>
-                    </div>
+                  <StyledPopconfirm
+      title="Do you want to delete?"
+      onConfirm={() => deletePitchData(item.investorleadsId)}
+    > <Tooltip title="Delete">
+       {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+      <DeleteOutlined
+        type="delete"
+        className="!text-base text-[red] cursor-pointer"
+        
+      />
+       )} 
+       </Tooltip>
+    </StyledPopconfirm>
+                  </div>
+                      
+                  <div>
+      
+
+              </div>
+              </div>
+              <div class="flex flex-col w-6 max-sm:flex-row">
+                <div>
+              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+      <span class="cursor-pointer" >
+      <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
+      </span>
+    </Tooltip>
+    </div>
+    <div>
+    <Tooltip title={item.email}>
+        <MailOutlineIcon
+          type="mail"
+          className="!text-base cursor-pointer text-green-400"
+          // onClick={() => {
+          //   handleSetCurrentLeadsId(item);
+          //   props.handleLeadsEmailDrawerModal(true);
+          // }}
+        />
+      </Tooltip> </div>
+     
+                </div> 
+                
+              </div>
+              </div>
+                </div>
                       </div>
-                            </div>
                          
 
 
@@ -923,7 +579,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getAllPitch,
-        // deletePitchData,
+         deletePitchData,
         // handleUpdatePitchModal,
         // setEditPitch,
         // updateTypeForPitch,
@@ -949,12 +605,60 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         style={{
           padding: "0.37em",
           borderColor: "transparent",
-          color: role === type ? "#1890ff" : "grey",
+          color: role === type ? "red" : "grey",
         }}
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+       <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "orange" : "grey",
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "blue" : "grey",
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

@@ -74,7 +74,7 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'OTP is not matching with input!',
+          title: 'Something went wrong , reach out to support!',
         })
       });};
 
@@ -275,6 +275,10 @@ export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
         type: types.GET_ALL_CONTACT_INVEST_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 

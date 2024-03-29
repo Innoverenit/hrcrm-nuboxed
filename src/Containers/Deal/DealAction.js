@@ -35,6 +35,10 @@ export const setDealViewType = (viewType) => (dispatch) => {
           type: types.GET_DEAL_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -543,6 +547,10 @@ export const getWonDeals = (userId,pageNo) => (dispatch) => {
         type: types.GET_WON_DEALS_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -652,6 +660,10 @@ export const getAllDeals = (userId,pageNo) => (dispatch) => {
         type: types.GET_ALL_DEALS_DATA_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -906,5 +918,9 @@ export const getLostDeals = (userId,pageNo) => (dispatch) => {
         type: types.GET_LOST_DEALS_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
