@@ -139,7 +139,10 @@ class Productform extends Component {
             customerMarginInd: this.state.marginCustomer ? false : true,
             distributorMarginInd: this.state.marginDistributor ? true : false,
             subscriptionInd: this.state.subscriptionAvailable ? true : false,
-          }}
+            orgId:this.props.orgId,
+            brand:"",
+            model:""
+,          }}
           // validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
             //debugger;
@@ -294,6 +297,37 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
+                </div>
+                <div class="h-full w-[45%]">
+                <div class="flex justify-between ">
+                <div class="w-[48%]">
+                      <Field
+                        isRequired
+                        name="brand"
+                        label="Brand"
+                        placeholder="Search or Create"
+                        optionLabel="categoryName"
+                        optionValue="categoryName"
+                        url={`${base_url2}/product/category`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
+
+                    <div class="w-[47%]">
+                      <Field
+                        name="model"
+                        label="Model"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel
+                        width={"100%"}
+                   
+                      />
+                    </div>
+                    </div>
                 </div>
               </div>
 
