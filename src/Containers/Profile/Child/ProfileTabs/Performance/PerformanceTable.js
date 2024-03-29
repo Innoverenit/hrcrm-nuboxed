@@ -170,19 +170,43 @@ const PerformanceTable = (props) => {
                       style={{border:"2px solid black"}}
                       placeholder="Month1"
                         value={editedFields[item.userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1CompletedValue : item.month1CompletedValue}
-                        onChange={(e) => handleChange(item.userKpiLinkId, 'month1CompletedValue', e.target.value)}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month1CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
                       />
                       <input
                       placeholder="Month2"
                       style={{border:"2px solid black"}}
                         value={editedFields[item.userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2CompletedValue : item.month2CompletedValue}
-                        onChange={(e) => handleChange(item.userKpiLinkId, 'month2CompletedValue', e.target.value)}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month2CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
                       />
                       <input
                       placeholder="Month3"
                       style={{border:"2px solid black"}}
                         value={editedFields[item.userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3CompletedValue : item.month3CompletedValue}
-                        onChange={(e) => handleChange(item.userKpiLinkId, 'month3CompletedValue', e.target.value)}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month3CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
                       />
                       {/* </div> */}
                       </>

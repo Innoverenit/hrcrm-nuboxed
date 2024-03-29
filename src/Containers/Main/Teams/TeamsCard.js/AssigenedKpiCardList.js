@@ -146,7 +146,15 @@ function AssigenedKpiCardList(props) {
                      <input
                      style={{border:"2px solid black",width:"90%"}}
                        value={editedFields[item.userKpiLinkId]?.assignedValue !== undefined ? editedFields[item.userKpiLinkId].assignedValue : item.assignedValue}
-                       onChange={(e) => handleChange(item.userKpiLinkId, 'assignedValue', e.target.value)}
+                       onChange={(e) => {
+                        const inputValue = e.target.value;
+                        if (!isNaN(inputValue)) { 
+                            handleChange(item.userKpiLinkId, 'assignedValue', inputValue);
+                        } else {
+                          alert("Please enter number.");
+                       
+                        }
+                    }}
                      />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
@@ -179,11 +187,19 @@ function AssigenedKpiCardList(props) {
                                    
                                    <div class="text-sm text-cardBody font-poppins">
                                    {editContactId === item.userKpiLinkId ? (
-                     <input
-                     style={{border:"2px solid black",width:"90%"}}
-                       value={editedFields[item.userKpiLinkId]?.weitageValue !== undefined ? editedFields[item.userKpiLinkId].weitageValue : item.weitageValue}
-                       onChange={(e) => handleChange(item.userKpiLinkId, 'weitageValue', e.target.value)}
-                     />
+                    <input
+                    style={{border:"2px solid black", width:"90%"}}
+                    value={editedFields[item.userKpiLinkId]?.weitageValue !== undefined ? editedFields[item.userKpiLinkId].weitageValue : item.weitageValue}
+                    onChange={(e) => {
+                        const inputValue = e.target.value;
+                        if (!isNaN(inputValue)) { // Check if the input is a number
+                            handleChange(item.userKpiLinkId, 'weitageValue', inputValue);
+                        } else {
+                          alert("Please enter  number.");
+                       
+                        }
+                    }}
+                />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
                          {item.weitageValue && (
