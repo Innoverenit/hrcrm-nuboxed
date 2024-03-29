@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
 import {
     getRegions,
+    getRegionCount,
     addRegions,
     removeRegions,
     updateRegions,
@@ -36,7 +37,8 @@ const Region = (props) => {
   const [fulfillment, setFulfillment] = useState({ amount: '' });
   const [investment, setInvestment] = useState({ amount: '', currency: "" });
     useEffect(() => {
-        props.getRegions(props.organizationId);  
+        props.getRegions(props.organizationId); 
+        props.getRegionCount(props.orgId) 
     }, [])
 
     function handleSetCurrentRegionId(regionsId) {
@@ -89,7 +91,7 @@ setEditingId(null);
         let data={
             regions:newRegionName
         }
-        props.addRegions(data)
+        props.addRegions(data,props.orgId)
         setAddingRegion(false); 
         console.log(regions)
         // setRegions(...props.regions);
@@ -205,7 +207,7 @@ if (props.fetchingRegions) {
                           title="Do you want to delete?"
                           okText="Yes"
                           cancelText="No"
-                          onConfirm={() =>  props.removeRegions(region.regionsId)}
+                          onConfirm={() =>  props.removeRegions(region.regionsId,props.orgId)}
                         >
                   <DeleteOutlined 
                    style={{
@@ -250,7 +252,9 @@ const mapStateToProps = ({ region,auth  }) => ({
     addRegionModal:region.addRegionModal,
     fetchingRegions:region.fetchingRegions,
     organizationId: auth.userDetails.organizationId,
+    orgId: auth.userDetails.organizationId,
     regiondata:region.regiondata,
+    regionCount:region.regionCount,
     // removingDocuments: document.removingDocuments,
     // removingDocumentsError: document.removingDocumentsError,
     //   updatingDocuments: document.updatingDocuments,
@@ -263,6 +267,7 @@ const mapStateToProps = ({ region,auth  }) => ({
       {
         getRegions,
         addRegions,
+        getRegionCount,
         updateRegions,
         // addDocuments,
         removeRegions,

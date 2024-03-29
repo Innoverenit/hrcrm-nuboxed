@@ -1,8 +1,8 @@
-import { Badge, Tag,Tooltip,Avatar, Button } from "antd";
+import { Badge, Tag,Tooltip,Avatar,Button } from "antd";
 import React, { useState } from "react";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
-import { FormattedMessage } from "react-intl";
+// import Button from '@mui/material/Button';
 import { connect } from "react-redux";
 import { Input,Tabs } from "antd";
 import {
@@ -91,7 +91,29 @@ const DashboardActionLeft = (props) => {
               {/* Your Badge components here */}
               {/* Example: */}
        
-
+              {user.dashboardRegionalInd === true && (
+  <Badge
+    size="small"
+    // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+    // overflowCount={999}
+  >
+    <span class="cursor-pointer mr-1"
+      onClick={() => handleButtonClick("Regional")} 
+      style={{
+        color: activeButton === "Regional" && "tomato",
+      }}
+    >
+      <Tooltip title="Region">
+        <Button
+          style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
+         
+        >
+          <span class=" text-white">Region</span>
+        </Button>
+      </Tooltip>
+    </span>
+  </Badge>
+)}
    
 {user.crmInd === true && (
     <Badge
@@ -143,29 +165,7 @@ const DashboardActionLeft = (props) => {
     </Badge>
 )}
 
-{user.dashboardRegionalInd === true && (
-     <Badge
-     size="small"
-     // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-     // overflowCount={999}
-   >
-    <span class="cursor-pointer mr-1"
-    onClick={() => handleButtonClick("Regional")} 
-    style={{
-      color:activeButton === "Regional" && "tomato",
-      
-    }}
-    >
-      <Tooltip title="Regional">
-      <Avatar style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}>     
-      <ReceiptIcon className="text-white"
-            
-          />
-            </Avatar>
-      </Tooltip>
-    </span>
-    </Badge>
-)} 
+
 {user.orderManagementInd === true  && (
   <Badge
   size="small"
@@ -275,6 +275,29 @@ const DashboardActionLeft = (props) => {
             </>
           ) : (
             <>
+            {user.dashboardRegionalInd === true && (
+  <Badge
+    size="small"
+    // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+    // overflowCount={999}
+  >
+    <span class="cursor-pointer mr-1"
+      onClick={() => handleButtonClick("Regional")} 
+      style={{
+        color: activeButton === "Regional" && "tomato",
+      }}
+    >
+      <Tooltip title="Region">
+        <Button
+          style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
+        
+        >
+          <span class=" text-white">Region</span>
+        </Button>
+      </Tooltip>
+    </span>
+  </Badge>
+)}
             <Badge size="small">
               <span
                 className="cursor-pointer mr-1"
@@ -378,29 +401,9 @@ const DashboardActionLeft = (props) => {
     </span>
     </Badge>
 )}
-{user.dashboardRegionalInd === true && (
-     <Badge
-     size="small"
-     // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-     // overflowCount={999}
-   >
-    <span class="cursor-pointer mr-1"
-    onClick={() => handleButtonClick("Regional")} 
-    style={{
-      color:activeButton === "Regional" && "tomato",
-      
-    }}
-    >
-      <Tooltip title="Regional">
-      <Avatar style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}>     
-      <ReceiptIcon className="text-white"
-            
-          />
-            </Avatar>
-      </Tooltip>
-    </span>
-    </Badge>
-)} 
+
+
+
  
 {user.orderManagementInd === true  && (
   <Badge
@@ -499,6 +502,7 @@ const DashboardActionLeft = (props) => {
         </div>
    
       <>
+      {activeButton === "Regional" && (
       <div class="ml-[9rem] mt-[0.75rem] max-sm:hidden" >
       <Tabs type="card" 
            activeKey={activeTab} 
@@ -518,6 +522,7 @@ const DashboardActionLeft = (props) => {
           handleClick={setSelectedTimeIntervalReport}
         /> */}
         </div>
+        )}
         {/* <Popover>
           <StyledRangePicker
             style={{width:"30%"}}

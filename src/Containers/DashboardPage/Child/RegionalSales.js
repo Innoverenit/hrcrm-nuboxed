@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleSalesModal} from "../RegionalDashAction"
+import {getRegionRecords} from "../../Dashboard/DashboardAction"
 import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
 import AddSalesDrawerModal from "./AddSalesDrawerModal";
@@ -15,6 +16,7 @@ function RegionalSales(props) {
 
   useEffect(() => {
     props.getRegions(props.organizationId);
+    props.getRegionRecords();
   }, []);
 
   const colors = [
@@ -56,6 +58,7 @@ function RegionalSales(props) {
 const mapStateToProps = ({ dashboard, region,dashboardRegional, auth }) => ({
   user: auth.userDetails,
   regions: region.regions,
+  regionRecords:dashboard.regionRecords,
   addSalesModal:dashboardRegional.addSalesModal,
   organizationId: auth.userDetails.organizationId,
   timeRangeType: dashboard.timeRangeType,
@@ -67,6 +70,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getRegions,
+      getRegionRecords,
       handleSalesModal
     },
     dispatch

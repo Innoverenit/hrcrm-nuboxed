@@ -1,7 +1,9 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Input } from "antd";
+import { Button,Tooltip, Input } from "antd";
+import { base_url } from "../../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { TextInput, } from "../../../../Components/UI/Elements";
 import dayjs from "dayjs";
@@ -228,6 +230,14 @@ class Department extends Component {
             // value={currentData}
           />
             </div>
+            <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"roleType"}`}>
+<DownloadIcon 
+className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             {isTextInputOpen ? (
               <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
             

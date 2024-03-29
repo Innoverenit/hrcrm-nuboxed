@@ -138,7 +138,7 @@ export const searchEducationsName = (name) => (dispatch) => {
       });
     });
 };
-export const removeEducation = (educationTypeId) => (dispatch) => {
+export const removeEducation = (educationTypeId,orgId) => (dispatch) => {
   // console.log(typeId);
   dispatch({
     type: types.REMOVE_EDUCATION_REQUEST,
@@ -150,6 +150,7 @@ export const removeEducation = (educationTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getEducationCount(orgId));
       Swal.fire({
         icon: 'success',
         title: 'Education deleted Successfully!',

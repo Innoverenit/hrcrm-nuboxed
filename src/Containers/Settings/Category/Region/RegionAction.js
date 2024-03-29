@@ -131,7 +131,7 @@ export const getRegions = (orgId) => (dispatch) => {
 
 
 
-  export const removeRegions = (regionsId) => (dispatch) => {
+  export const removeRegions = (regionsId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_REGIONS_REQUEST,
@@ -143,6 +143,7 @@ export const getRegions = (orgId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getRegionCount(orgId));
         //message.success("Document has been deleted successfully!");
         console.log(res);
         dispatch({

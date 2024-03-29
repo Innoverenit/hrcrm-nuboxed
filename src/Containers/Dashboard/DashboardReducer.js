@@ -7,6 +7,10 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingRegionRecordsCount: false,
+  fetchingRegionRecordsCountError: false,
+  regionRecords:[],
+
   fetchingProspectTableData:false,
   fetchingProspectTableDataError:false,
   prospectTableData:[],
@@ -1822,6 +1826,19 @@ export const dashboardReducer = (state = initialState, action) => {
           fetchingProspectQuotation: false,
           fetchingProspectQuotationError: true,
         };
+
+
+        case types.GET_REGION_RECORDS_REQUEST:
+          return { ...state, fetchingRegionRecordsCount: true };
+        case types.GET_REGION_RECORDS_SUCCESS:
+          return { ...state, fetchingRegionRecordsCount: false, 
+            regionRecords: action.payload };
+        case types.GET_REGION_RECORDS_FAILURE:
+          return {
+            ...state,
+            fetchingRegionRecordsCount: false,
+            fetchingRegionRecordsCountError: true,
+          };
 
     default:
       return state;

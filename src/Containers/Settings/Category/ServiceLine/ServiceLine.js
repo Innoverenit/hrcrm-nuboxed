@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import {  Input} from "antd";
 import {
     getServiceLine,
+    getServiceLineCount,
     addServiceLine,
      removeServiceLine,
      updateServiceLine,
@@ -45,6 +46,7 @@ const ServiceLine = (props) => {
     const [newServiceLineName, setNewServiceLineName] = useState('');
     useEffect(() => {
         props.getServiceLine(props.organizationId);
+        props.getServiceLineCount(props.Id);
         props.getDepartments()  
     }, [])
 
@@ -90,7 +92,7 @@ setEditingId(null);
         let data={
             serviceLineName:newServiceLineName,
         }
-        props.addServiceLine(data)
+        props.addServiceLine(data,props.orgId)
         setAddingRegion(false)
     };
     const handleChange = (e) => {
@@ -223,7 +225,7 @@ if (props.fetchingServiceLine) {
                           title="Do you want to delete?"
                           okText="Yes"
                           cancelText="No"
-                          onConfirm={() =>  props.removeServiceLine(region.serviceLineId)}
+                          onConfirm={() =>  props.removeServiceLine(region.serviceLineId,props.orgId)}
                         >
                   <DeleteOutlined 
                     style={{
@@ -245,11 +247,13 @@ if (props.fetchingServiceLine) {
 const mapStateToProps = ({ region,auth,serviceLines,departments  }) => ({
     serviceLine:serviceLines.serviceLine,
     departments: departments.departments,
+    serviceLineCount:serviceLines.serviceLineCount,
     fetchingServiceLine:serviceLines.fetchingServiceLine,
     // addingDocuments: document.addingDocuments,
     // addingDocumentsError: document.addingDocumentsError,
     // regions: region.regions,
      organizationId: auth.userDetails.organizationId,
+     orgId: auth.userDetails.organizationId,
     // removingDocuments: document.removingDocuments,
     // removingDocumentsError: document.removingDocumentsError,
     //   updatingDocuments: document.updatingDocuments,
@@ -261,6 +265,7 @@ const mapStateToProps = ({ region,auth,serviceLines,departments  }) => ({
     bindActionCreators(
       {
         getServiceLine,
+        getServiceLineCount,
         addServiceLine,
         updateServiceLine,
         removeServiceLine,

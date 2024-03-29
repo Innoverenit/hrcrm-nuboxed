@@ -105,7 +105,7 @@ export const getServiceLine = (orgId) => (dispatch) => {
 
 
 
-  export const removeServiceLine = (serviceLineId) => (dispatch) => {
+  export const removeServiceLine = (serviceLineId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_SERVICELINE_REQUEST,
@@ -117,6 +117,7 @@ export const getServiceLine = (orgId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getServiceLineCount(orgId));
         //message.success("Document has been deleted successfully!");
         console.log(res);
         dispatch({

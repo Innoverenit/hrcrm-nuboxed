@@ -91,7 +91,7 @@ export const addDocuments = (documents, orgId,cb) => (dispatch) => {
 /**
  * remove a new document
  */
-export const removeDocuments = (documentTypeId) => (dispatch) => {
+export const removeDocuments = (documentTypeId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_DOCUMENTS_REQUEST,
@@ -103,6 +103,7 @@ export const removeDocuments = (documentTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getDocumentCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Document Type deleted Successfully!',
