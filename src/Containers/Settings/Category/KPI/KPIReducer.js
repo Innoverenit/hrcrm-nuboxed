@@ -52,7 +52,7 @@ export const kpiReducer = (state = initialState, action) => {
     return {
       ...state,
       addingKpi: false,
-      kpiListData:[action.payload,...state.kpiListData]
+      // kpiListData:[action.payload,...state.kpiListData]
       // kpiListData: [...state.kpiListData, action.payload],
       
     };

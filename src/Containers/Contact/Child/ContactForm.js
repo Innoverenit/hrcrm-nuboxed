@@ -170,6 +170,7 @@ class ContactForm extends Component {
             phoneNumber: "",
             mobileNumber: "",
             emailId: "",
+            alternateEmail:"",
             linkedinPublicUrl: "",
             whatsapp: this.state.whatsapp ? "Different" : "Same",
             address: [
@@ -317,6 +318,29 @@ class ContactForm extends Component {
                         isRequired
                       />
                     </div>
+                  
+                  </div>  
+                  <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
                   </div>               
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">

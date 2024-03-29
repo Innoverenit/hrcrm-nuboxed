@@ -79,8 +79,8 @@ function NavMenu(props) {
 
   //   fetchMenuTranslations();
   // }, [props.selectedLanguage]);
-  //  const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
-  const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
+   const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
+  // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
 
 
   useEffect(() => {
@@ -116,31 +116,8 @@ function NavMenu(props) {
         selectedKeys={[selectedMenuItem]}
       >
         {/* dashboard */}
-        {user.dashboardRegionalInd === true ? (
-  <>
- <Menu.Item key="/dashboardRegional" style={{ height: "1.7rem", 
-paddingLeft: "1rem" ,
-color: selectedMenuItem === '/dashboardRegional' ? 'tomato' : '#4bc076',}}>
-  <Link to="/dashboardRegional" onClick={() => handleSelect('/dashboardRegional')}>
-    <DashboardIcon
-
-      style={{ fontSize: "large" }}
-    />
-
-    <span class="text-white text-ls ml-1">
-      <FormattedMessage
-          id="app.dashboard"
-          defaultMessage="Dashboard"
-        />
-      {/* {translatedMenuItems[0]} */}
-      {/* Dashboard */}
-      {/* RecruitProBoard */}
-    </span>
-  </Link>
-</Menu.Item>
-  </>
-) : (
-  <>
+ 
+ 
           {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
 
 <Menu.Item key="/dashboard" style={{ height: "1.7rem", 
@@ -165,8 +142,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 </Menu.Item>
 
 )}
-  </>
-)}
+
 
       
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (

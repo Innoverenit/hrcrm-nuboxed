@@ -161,6 +161,8 @@ class UpdateContactInvestForm extends Component {
             phoneNumber: contactiData.phoneNumber || "",
             mobileNumber: contactiData.mobileNumber || "",
             emailId: contactiData.emailId || "",
+            alternateEmail: contactiData.alternateEmail || "",
+            
             customerId:contactiData.customerId||"",
             linkedinPublicUrl:
               contactiData.linkedinPublicUrl || "",
@@ -301,6 +303,28 @@ class UpdateContactInvestForm extends Component {
                       />
                     </div>
                   </div>
+                  <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
+                  </div>  
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">
                     <FastField
