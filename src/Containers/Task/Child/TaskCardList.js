@@ -557,7 +557,7 @@ const TaskCardList = (props) => {
         <div className="md:w-[5%]"></div>
         <div className="w-12"></div>
         <div className="w-12"></div>
-        <div className="w-12"></div>
+        {/* <div className="w-12"></div> */}
       </div>
       <InfiniteScroll
         dataLength={taskListRangeByUserId.length}
@@ -698,17 +698,7 @@ const TaskCardList = (props) => {
             )}
                     </div> */}
                     </div>
-                    <div className=" flex font-medium justify-center flex-col  md:w-32 max-sm:flex-row w-full ">
-                                    {/* <div class=" text-sm text-cardBody font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">   
-             
-
-                 {/* {`${item.taskName} `} &nbsp; */}
-
-
-              
-                                    </div>
-                                </div>
+                   
                     <div className="flex font-medium flex-col md:w-24 max-sm:flex-row  w-full ">
                        
                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
@@ -790,8 +780,8 @@ const TaskCardList = (props) => {
                                     </div>
                                 </div> */}
                        
-
-
+<div>
+{item.taskStatus==="Completed"&&(
                    <div className="flex font-medium flex-col md:w-20 max-sm:flex-row  w-full justify-center ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
@@ -800,9 +790,12 @@ const TaskCardList = (props) => {
             className=" !text-2xl text-[#eeeedd]"/>)
               : (
                 <span>
-                  {item.feedbackRating}{<StarBorderIcon
+                  {item.feedbackRating}
+                 
+                  {<StarBorderIcon
                   className=" !text-2xl text-[#FFD700]"
                     />}
+                
                 </span>)}
              
                 </Tooltip>
@@ -812,6 +805,8 @@ const TaskCardList = (props) => {
 
      
      </div> 
+     )}
+     </div>
      <div className="flex font-medium flex-col md:w-20 max-sm:flex-row  w-full  justify-center ">
              {item.assignedToName !== item.submittedBy ? 
                          <Tooltip title="Feedback">
