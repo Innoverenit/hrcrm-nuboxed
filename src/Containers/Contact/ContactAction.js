@@ -901,12 +901,12 @@ export const shareContactCustomerPermission = (data, userId, a) => (
     });
 };
 
-export const getRecords = (userId,type) => (dispatch) => {
+export const getRecords = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/record/count/${userId}/${type}`, {
+    .get(`${base_url}/contact/teams/count/${userId}`, {
                     
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1213,13 +1213,13 @@ export const getAllContact = (pageNo,filter) => (dispatch) => {
     });
 };
 
-export const getTeamContact = (userId,pageNo,filter) => (dispatch) => {
+export const getTeamContact = (userId,pageNo) => (dispatch) => {
  
   dispatch({
     type: types.GET_TEAM_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/team/${userId}/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/teams/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1237,6 +1237,10 @@ export const getTeamContact = (userId,pageNo,filter) => (dispatch) => {
         type: types.GET_TEAM_CONTACT_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 

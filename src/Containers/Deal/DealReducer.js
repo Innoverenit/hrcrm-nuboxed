@@ -16,6 +16,10 @@ const initialState = {
   fetchingDealError:false,
   dealsByuserId:[],
 
+  fetchingTeamsDealsData: false,
+  fetchingTeamsDealsDataError: false,
+  teamsDealsData:[],
+
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
@@ -504,6 +508,22 @@ export const dealReducer = (state = initialState, action) => {
                           ...state,
                           fetchingAllDealsData: false,
                           fetchingAllDealsDataError: true,
+                        };
+
+                        case types.GET_TEAMS_DEALS_DATA_REQUEST:
+
+                        return { ...state, fetchingTeamsDealsData: true };
+                      case types.GET_TEAMS_DEALS_DATA_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingTeamsDealsData: false,
+                          teamsDealsData: action.payload,
+                        };
+                      case types.GET_TEAMS_DEALS_DATA_FAILURE:
+                        return {
+                          ...state,
+                          fetchingTeamsDealsData: false,
+                          fetchingTeamsDealsDataError: true,
                         };
 
                         case types.UPDATE_DEAL_DRAG_STAGE_REQUEST:

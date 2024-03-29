@@ -27,6 +27,10 @@ const initialState = {
     fetchingAllContactInvestError: false,
     allContactInvestData:[],
 
+    fetchingTeamsContactInvest: false,
+    fetchingTeamsContactInvestError: false,
+    teamsContactInvestData:[],
+
     contactInvestorActivityModal:false,
 
     addDrawerContactInvestNotesModal:false,
@@ -212,6 +216,22 @@ export const contactInvestReducer = (state = initialState, action) => {
       ...state,
       fetchingAllContactInvest: false,
       fetchingAllContactInvestError: true,
+    };
+
+    case types.GET_TEAMS_CONTACT_INVEST_REQUEST:
+
+    return { ...state, fetchingTeamsContactInvest: true };
+  case types.GET_TEAMS_CONTACT_INVEST_SUCCESS:
+    return {
+      ...state,
+      fetchingTeamsContactInvest: false,
+      teamsContactInvestData: action.payload,
+    };
+  case types.GET_TEAMS_CONTACT_INVEST_FAILURE:
+    return {
+      ...state,
+      fetchingTeamsContactInvest: false,
+      fetchingTeamsContactInvestError: true,
     };
   
     case types.HANDLE_CONTACT_INVEST_ACTIVITY_MODAL:

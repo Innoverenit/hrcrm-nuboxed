@@ -1189,13 +1189,13 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const getTeamLeads = (userId,pageNo,filter) => (dispatch) => {
+  export const getTeamLeads = (userId,pageNo) => (dispatch) => {
  
     dispatch({
       type: types.GET_TEAM_LEADS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/team/${userId}/${pageNo}/${filter}`, {
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -1213,6 +1213,10 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.GET_TEAM_LEADS_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -1354,7 +1358,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       type: types.GET_LEADS_TEAM_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/team/count/${userId}`, {
+      .get(`${base_url}/leads/teams/count/${userId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

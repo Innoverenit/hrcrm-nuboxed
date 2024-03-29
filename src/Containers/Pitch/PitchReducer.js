@@ -15,6 +15,10 @@ const initialState = {
     fetchingAllPitchRecordsError: false,
     pitchAllRecord:{},
 
+    fetchingTeamsPitchCount: false,
+    fetchingTeamsPitchCountError: false,
+    teamsPitchCount:{},
+
     fetchingAllPitch: false,
       fetchingAllPitchError: false,
       allPitchData:[],
@@ -470,6 +474,21 @@ case types.GET_PITCH_REQUEST:
               ...state,
               fetchingPitchCount: false,
               fetchingPitchCountError: true,
+            };
+
+            case types.GET_TEAMSPITCH_COUNT_REQUEST:
+            return { ...state, fetchingTeamsPitchCount: true };
+          case types.GET_TEAMSPITCH_COUNT_SUCCESS:
+            return {
+              ...state,
+              fetchingTeamsPitchCount: false,
+              teamsPitchCount: action.payload,
+            };
+          case types.GET_TEAMSPITCH_COUNT_FAILURE:
+            return {
+              ...state,
+              fetchingTeamsPitchCount: false,
+              fetchingTeamsPitchCountError: true,
             };
 
             case types.SET_PITCH_VIEW_TYPE:
