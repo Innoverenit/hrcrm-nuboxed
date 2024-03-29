@@ -44,12 +44,12 @@ export const addSuppliers = (data, userId) => (dispatch) => {
 
 // get suppliers
 
-export const getSuppliersList = (userId) => (dispatch) => {
+export const getSuppliersList = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_SUPPLIERS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/user/${userId}`, {
+    .get(`${base_url2}/supplier/user/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -560,12 +560,12 @@ export const addSuppliersActivityTask = (task, cb) => (dispatch) => {
     });
 };
 
-export const getAllSuppliersList = (orgId) => (dispatch) => {
+export const getAllSuppliersList = (orgId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIERS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/all-suppliers/${orgId}`, {
+    .get(`${base_url2}/supplier/all-suppliers/${orgId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

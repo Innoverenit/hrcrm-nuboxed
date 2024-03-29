@@ -15,15 +15,19 @@ import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from "react-intl";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function AllShipperList(props) {
-  useEffect(() => {
-    props.getAllShipperList();
-  }, []);
-
   const { handleUpdateShipperModal, updateShipperModal } = props;
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    setPage(page + 1);
+    props.getAllShipperList(props.orgId,page);
+  }, []);
 
   const handleRowData = (data) => {
     setrowData(data);
@@ -32,6 +36,26 @@ function AllShipperList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
+  const handleLoadMore = () => {
+    const PageMapd = props.allShipper && props.allShipper.length &&props.allShipper[0].pageCount
+    setTimeout(() => {
+      const {
+        getAllShipperList,
+        orgId
+      } = props;
+      if  (props.allShipper)
+      {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getAllShipperList(orgId, page);
+      }
+      if (page === PageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+
 
   return (
     <>
@@ -48,6 +72,13 @@ function AllShipperList(props) {
             <div className="md:w-[5.2rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
 
           </div>
+          <InfiniteScroll
+        dataLength={props.allShipper.length}
+        next={handleLoadMore}
+        hasMore={hasMore}
+        loader={props.fetchingAllShipper?<div class="text-center font-semibold text-xs">Loading...</div>:null}
+        height={"75vh"}
+      >
           {props.allShipper.map((item) => {
             return (
               <>
@@ -176,7 +207,7 @@ Phone #
               </>
             )
           })}
-
+</InfiniteScroll>
         </div>
       </div>
       <UpdateShipperModal
@@ -204,11 +235,12 @@ Phone #
 const mapStateToProps = ({ shipper, auth }) => ({
   allShipper: shipper.allShipper,
   userId: auth.userDetails.userId,
-  fetchingShipperByUserId: shipper.fetchingShipperByUserId,
-  fetchingShipperByUserIdError: shipper.fetchingShipperByUserIdError,
+  fetchingAllShipper: shipper.fetchingAllShipper,
+  fetchingAllShipperError: shipper.fetchingAllShipperError,
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
+  orgId:auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

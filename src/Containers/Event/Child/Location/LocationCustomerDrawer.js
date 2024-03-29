@@ -18,6 +18,8 @@ const LocationCustomerDrawer = (props) => {
         />}
         width={drawerWidth}
         visible={locationCustomerdrawr}
+        destroyOnClose
+          closable
         onClose={() => handleLocationCustomerDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>

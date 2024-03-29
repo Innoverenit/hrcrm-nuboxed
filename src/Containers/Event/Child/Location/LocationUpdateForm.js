@@ -238,7 +238,7 @@ handleInventory = () => {
                         }
                         isColumn
                         defaultValue={{
-                          label:`${this.props.storedLoc.regions}`,
+                          label:`${this.props.storedLoc.regions===null?"Select":this.props.storedLoc.regions}`,
                         }}
                         inlineLabel
                       />
