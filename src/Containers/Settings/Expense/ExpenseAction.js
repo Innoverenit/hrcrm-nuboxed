@@ -137,7 +137,7 @@ export const searchExpenseName = (name) => (dispatch) => {
       });
     });
 };
-export const removeExpense = ( expenseTypeId) => (dispatch) => {
+export const removeExpense = ( expenseTypeId,orgId) => (dispatch) => {
   // console.log(typeId);
   dispatch({
     type: types.REMOVE_EXPENSE_REQUEST,
@@ -149,6 +149,7 @@ export const removeExpense = ( expenseTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getExpenseCount(orgId));
       Swal.fire({
         icon: 'success',
         title: 'Expense deleted Successfully!',

@@ -2,10 +2,11 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
+import { base_url } from "../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, message,Input } from "antd";
-import { MainWrapper, } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
+import { Popconfirm,Tooltip, message,Input } from "antd";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getEducations,
@@ -130,6 +131,14 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
+          <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"educationType"}`}>
+<DownloadIcon 
+className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -192,7 +201,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeEducation(region.educationTypeId)}
+                        onConfirm={() =>  props.removeEducation(region.educationTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{

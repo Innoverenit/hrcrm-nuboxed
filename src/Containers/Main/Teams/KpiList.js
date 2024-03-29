@@ -5,9 +5,8 @@ import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { Tabs,Select } from 'antd';
-import {getKpilist,addKpi, } from "./TeamsAction";
-import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import {addKpi, } from "./TeamsAction";
+import {getKpis} from "../../Settings/Category/KPI/KPIAction"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
 const { TabPane } = Tabs;
@@ -43,7 +42,7 @@ function KpiList(props) {
     }
   };
     useEffect(()=>{
-        props.getKpilist(props.rowdata.departmentId)
+        props.getKpis(props.rowdata.departmentId,props.rowdata.roleType)
         // props.getEmployeeKpiList(props.rowdata.employeeId)
     },[]);
 
@@ -66,7 +65,7 @@ function KpiList(props) {
   };
   
   const loadKPIsForTab = async (year, tabKey) => {
-    await props.getKpilist(props.rowdata.departmentId);
+    await props.getKpis(props.rowdata.departmentId,props.rowdata.roleType);
   };
   
 
@@ -149,8 +148,8 @@ function KpiList(props) {
                       <select  className="customize-select"
                        
                       onChange={handleWorkflowChange}>
-          <option value="">Select Kpi</option>
-          {props.kpiList.map((item, index) => (
+          <option value="">Select</option>
+          {props.kpiListData.map((item, index) => (
             <option 
            
             key={index} value={item.performanceManagementId}>
@@ -225,16 +224,17 @@ function KpiList(props) {
   );
 }
 
-const mapStateToProps = ({ teams, auth, area }) => ({
+const mapStateToProps = ({ teams, auth, kpi }) => ({
     userDetails: auth.userDetails,
     kpiList:teams.kpiList,
+    kpiListData:kpi.kpiListData,
     employeeKpiList:teams.employeeKpiList,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getKpilist,
+        getKpis,
         addKpi,
       
     },

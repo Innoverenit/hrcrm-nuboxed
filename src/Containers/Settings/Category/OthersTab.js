@@ -13,8 +13,8 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import Currency from "./Currency/Currency";
 import Region from "./Region/Region"
 import ServiceLine from "./ServiceLine/ServiceLine"
-import {getRegionCount} from "../Category/Region/RegionAction"
-import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
+// import {getRegionCount} from "../Category/Region/RegionAction"
+// import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -42,10 +42,10 @@ class OthersTab extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getRegionCount(this.props.organizationId)
-    this.props.getServiceLineCount(this.props.organizationId)
-  }
+  // componentDidMount() {
+  //   this.props.getRegionCount(this.props.organizationId)
+  //   this.props.getServiceLineCount(this.props.organizationId)
+  // }
   
   handleTabChange = (key) => this.setState({ activeKey: key });
   renderTabContent = (key) => {
@@ -266,8 +266,8 @@ const mapStateToProps = ({
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getRegionCount,
-  getServiceLineCount
+  // getRegionCount,
+  // getServiceLineCount
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(OthersTab);

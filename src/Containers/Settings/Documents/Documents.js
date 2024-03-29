@@ -4,10 +4,10 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import dayjs from "dayjs";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../Config/Auth";
 import { Popconfirm,Input,Select,Tooltip } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
 import {
   getDocuments,
   getDocumentCount,
@@ -139,6 +139,14 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
+          <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
+<DownloadIcon 
+className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -225,7 +233,7 @@ return <div><BundleLoader/></div>;
             title="Do you want to delete?"
             okText="Yes"
             cancelText="No"
-            onConfirm={() => props.removeDocuments(region.documentTypeId)}
+            onConfirm={() => props.removeDocuments(region.documentTypeId,props.orgId)}
           >
             <DeleteOutlined
               style={{

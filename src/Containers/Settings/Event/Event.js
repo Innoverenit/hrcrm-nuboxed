@@ -198,7 +198,7 @@ const {
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeEvents(region.eventTypeId)}
+                        onConfirm={() =>  props.removeEvents(region.eventTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
