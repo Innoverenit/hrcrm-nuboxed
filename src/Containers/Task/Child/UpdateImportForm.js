@@ -104,7 +104,7 @@ class UpdateImportForm extends Component {
                       <Field
                         name="documentId"
                         isRequired
-                        component={ImportTaskUpload}
+                        component={DragableUpload}
                         // component={DocumentUpload}
                       />
                       {errors.documentId && (
