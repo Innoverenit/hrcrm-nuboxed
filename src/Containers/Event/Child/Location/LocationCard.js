@@ -16,6 +16,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import RefurbishToggle from "./RefurbishToggle";
+import ProductionToggle from "./ProductionToggle";
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
 const LocationSupplierDrawer = lazy(() => import("./LocationSupplierDrawer"));
 const LocationShiftDrawer = lazy(() => import("./LocationShiftDrawer"));
@@ -114,21 +115,6 @@ const handleLoadMore = () => {
                      
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        onConfirm={() => handleRefurbishClick(!refurbish)}
-                        // onCancel={handleCrmCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                          className="toggle-clr"
-                          checked={refurbish || item.productionInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                        </Popconfirm> */}
                         <RefurbishToggle
                         locationDetailsId={item.locationDetailsId}
                         productionInd={item.productionInd}
@@ -138,13 +124,9 @@ const handleLoadMore = () => {
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
-                          className="toggle-clr"
-                          checked={item.prodmanufInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.productionInd}
+                        <ProductionToggle
+                        locationDetailsId={item.locationDetailsId}
+                        prodManufactureInd={item.prodManufactureInd}
                         />
                       </div>
                     </div>

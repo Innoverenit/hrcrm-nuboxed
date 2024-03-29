@@ -21,18 +21,21 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 function ShipperCardList(props) {
-  useEffect(() => {
-    props.getShipperByUserId(props.userId);
-  }, []);
+
 
   const [hasMore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
 
   const { handleUpdateShipperModal, updateShipperModal } = props;
 
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
+
+
+  useEffect(() => {
+    setPage(page + 1);
+    props.getShipperByUserId(props.userId,page);
+  }, []);
 
   const handleRowData = (data) => {
     setrowData(data);
@@ -41,13 +44,26 @@ function ShipperCardList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
-  const handleLoadMore = () => {
 
-    setPage(page + 1);
-    props.getShipperByUserId(
-      props.userId
-    );
-  };
+    const handleLoadMore = () => {
+      const PageMapd = props.shipperByUserId && props.shipperByUserId.length &&props.shipperByUserId[0].pageCount
+      setTimeout(() => {
+        const {
+          getShipperByUserId,
+          userId
+        } = props;
+        if  (props.shipperByUserId)
+        {
+          if (page < PageMapd) {
+            setPage(page + 1);
+            getShipperByUserId(userId, page);
+        }
+        if (page === PageMapd){
+          setHasMore(false)
+        }
+      }
+      }, 100);
+    };
 
 
   return (

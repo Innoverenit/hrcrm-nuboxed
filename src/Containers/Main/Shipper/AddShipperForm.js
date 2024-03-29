@@ -51,7 +51,7 @@ function AddShipperForm(props) {
         initialValues={{
           userId: props.userId,
           name: "",
-
+          orgId: props.orgId,
           dialCode: "",
           phoneNo: "",
           emailId: "",
@@ -290,7 +290,7 @@ const mapStateToProps = ({ auth, shipper, employee, shipBy }) => ({
   addingShipper: shipper.addingShipper,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   fullName: auth.userDetails.fullName,
-  orgId: auth.userDetails.organizationId,
+  orgId:auth.userDetails.organizationId,
   ShipByData: shipBy.ShipByData,
   employeeAsErp: shipper.employeeAsErp
 });

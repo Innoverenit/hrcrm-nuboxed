@@ -83,8 +83,8 @@ const initialState = {
             case types.UPDATE_LOCATIONS_SUCCESS:
               return {
                 ...state,
-                updatingLocations: false,
                 locationUpdatedrawr: false,
+                updatingLocations: false,
                 showLocation: state.showLocation.map((LOCS) =>
                 LOCS.locationDetailsId === action.payload.locationDetailsId
                   ? action.payload
