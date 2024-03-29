@@ -3,8 +3,8 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleSalesModal} from "../RegionalDashAction"
-import {getRegionRecords} from "../../Dashboard/DashboardAction"
-import { getRegions } from "../../Settings/Category/Region/RegionAction";
+
+ import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
 import AddSalesDrawerModal from "./AddSalesDrawerModal";
 
@@ -15,8 +15,9 @@ function RegionalSales(props) {
   } = props;
 
   useEffect(() => {
+    const currentYear = new Date().getFullYear();
     props.getRegions(props.organizationId);
-    props.getRegionRecords();
+    // props.getRegionRecords(currentYear);
   }, []);
 
   const colors = [
@@ -32,13 +33,14 @@ function RegionalSales(props) {
     <div className="flex flex-row w-full">
          
       <div className="flex w-full max-sm:flex-col">
-        {props.regions.map((region, index) => (
+        {props.regionRecords.map((region, index) => (
           <div key={index} className="flex w-wk">
             <JumpStartBox
            bgColor={colors[index % colors.length]} 
               noProgress
-              // onClick={() => handleSalesModal(true)}
-              
+              jumpstartClick={()=>handleSalesModal(true)}
+              cursorData={"pointer"}
+              value={region.sales}
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
             />
@@ -70,7 +72,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getRegions,
-      getRegionRecords,
       handleSalesModal
     },
     dispatch

@@ -1,20 +1,15 @@
 import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
+import {handleFullFillmentModal} from "../DashboardPage/RegionalDashAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getRegions } from "../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../Components/UI/Elements";
+import AddFullFillmentDrawerModal from "./AddFullFillmentDrawerModal";
 
 function FullFillMentJumpstartBox(props) {
   const {
-    openPitchQualified,
-    handlePitchQualifiedDrawer,
-    openPitchAdded,
-    handlePitchAddedDrawer,
-    openDealAdded,
-    handleDealAddedDrawer,
-    openDealClosed,
-    handleDealClosedDrawer
+    handleFullFillmentModal,
+    addFullFillmentModal
   } = props;
 
   useEffect(() => {
@@ -32,11 +27,14 @@ function FullFillMentJumpstartBox(props) {
     <div className="flex flex-row w-full">
          
       <div className="flex w-full max-sm:flex-col">
-        {props.regions.map((region, index) => (
+        {props.regionRecords.map((region, index) => (
           <div key={index} className="flex w-wk">
             <JumpStartBox
               // bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
+              jumpstartClick={()=>handleFullFillmentModal(true)}
+              cursorData={"pointer"}
+              value={region.fulfilment}
               bgColor={colors[index % colors.length]} 
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
@@ -46,13 +44,19 @@ function FullFillMentJumpstartBox(props) {
         ))}
       </div>
     </div>
+    <AddFullFillmentDrawerModal
+        addFullFillmentModal={addFullFillmentModal}
+        handleFullFillmentModal={handleFullFillmentModal}
+      />
     </>
   );
 }
 
-const mapStateToProps = ({ dashboard, region, auth }) => ({
+const mapStateToProps = ({ dashboard, region,dashboardRegional, auth }) => ({
   user: auth.userDetails,
   regions: region.regions,
+  addFullFillmentModal:dashboardRegional.addFullFillmentModal,
+  regionRecords:dashboard.regionRecords,
   organizationId: auth.userDetails.organizationId,
   timeRangeType: dashboard.timeRangeType,
   startDate: dashboard.startDate,
@@ -62,7 +66,8 @@ const mapStateToProps = ({ dashboard, region, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRegions
+      getRegions,
+      handleFullFillmentModal
     },
     dispatch
   );

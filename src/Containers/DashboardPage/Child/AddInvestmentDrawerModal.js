@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 // import NotesForm from "./NotesForm";
 
-class AddSalesDrawerModal extends Component {
+class AddInvestmentDrawerModal extends Component {
   render() {
     //  console.log("data5", this.props.currentNameId.taskName);
 
@@ -18,8 +18,8 @@ class AddSalesDrawerModal extends Component {
           destroyOnClose
           closable
           placement="right"
-          visible={this.props.addSalesModal}
-          onClose={() => this.props.handleSalesModal(false)}
+          visible={this.props.addInvestmentModal}
+          onClose={() => this.props.handleInvestmentModal(false)}
         >
           {/* <Suspense fallback={<BundleLoader />}>
             <NotesForm rowdata={this.props.rowdata} 
@@ -38,4 +38,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddSalesDrawerModal);
+)(AddInvestmentDrawerModal);

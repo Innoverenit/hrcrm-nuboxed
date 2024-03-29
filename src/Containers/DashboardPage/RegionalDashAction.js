@@ -25,6 +25,20 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
     });
   };
 
+  export const handleFullFillmentModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_FULLFILLMENT_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const handleInvestmentModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTMENT_MODAL,
+      payload: modalProps,
+    });
+  };
+
 //   export const getCo2 = (pageNo) => (dispatch) => {
 //     dispatch({
 //       type: types.GET_CO2_TABLE_VIEW_REQUEST,
