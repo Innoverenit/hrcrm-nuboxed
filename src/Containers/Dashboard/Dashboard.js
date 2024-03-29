@@ -8,7 +8,7 @@ import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
-import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear} from "./DashboardAction";
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
@@ -44,11 +44,33 @@ const OrdersDashTab=lazy(()=>import("./OrdersDashTab"));
 const DashboardFinanceJumpstart= lazy(()=>import("./Child/JumpStart/DashboardFinanceJumpstart"));
 const FinanceDashTab=lazy(()=>import("./FinanceDashTab"));
 class Dashboard extends Component {
-  state = { visible: false,activeButton:"test",selectedCountry:"" };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      activeTab: "Q1",
+      loading: false,
+      tab: ["Q1", "Q2", "Q3", "Q4"],
+      activeButton: "test",
+      selectedCountry: ""
+    };
+  }
    handleButtonClick=(buttonName)=>{
     this.setState({activeButton:buttonName});
   }
+
+  handleTabClick = async (key) => {
+    this.setState({ activeTab: key, loading: true });
+    await this.loadKPIsForTab(this.props.selectedYear, key);
+    this.setState({ loading: false });
+  };
+
+  loadKPIsForTab = async (year, tabKey) => {
+    const currentYear = new Date().getFullYear();
+    await this.props.getRegionRecords(currentYear, tabKey
+   
+    );
+  };
 
   showModal = () => {
     this.setState({
@@ -101,6 +123,7 @@ class Dashboard extends Component {
   };
 
   render() {
+    const { activeTab, loading, tab } = this.state;
     console.log(this.props.prospectLifeTime)
     console.log(this.props.prospectChart.customerCountByCountry)
     const {
@@ -118,6 +141,9 @@ class Dashboard extends Component {
    
 
         <Dashboardheader 
+        activeTab={activeTab}
+        tab={tab}
+        handleTabClick={this.handleTabClick}
         viewType={viewType}
         setDashboardViewType={setDashboardViewType}
         handleButtonClick={this.handleButtonClick}
@@ -155,10 +181,10 @@ class Dashboard extends Component {
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart/>)
 
-             : this.state.activeButton === "Regional" ? (
+             : this.state.activeButton === "Regional" && activeTab  ? (
               <CardElement>
                 <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
-                <RegionalSales />
+                <RegionalSales regionRecords={this.props.regionRecords}/>
               </CardElement>
             ) 
             // : viewType==="ALL" ? (
@@ -186,7 +212,7 @@ class Dashboard extends Component {
           <OrdersDashTab/>)
           :this.state.activeButton==="Finance" ?(
             <FinanceDashTab/>)
-            :this.state.activeButton==="Regional" ?(
+            :this.state.activeButton==="Regional" && activeTab ?(
               null)
             
        :  this.state.activeButton==="Customer" ?(
@@ -231,7 +257,7 @@ class Dashboard extends Component {
     null
     ) : this.state.activeButton === "Accounts" ? (
       null
-      ) : viewType==="ALL" || this.state.activeButton === "Regional"  ? (
+      ) : viewType==="ALL" || this.state.activeButton === "Regional" && activeTab  ? (
         null
   ) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
@@ -276,10 +302,10 @@ class Dashboard extends Component {
         <FunnelTab />
     )}
 
-    {this.state.activeButton === "Regional" && (
+    {this.state.activeButton === "Regional" && activeTab && (
         <CardElement>
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-            <FullFillMentJumpstartBox />
+            <FullFillMentJumpstartBox regionRecords={this.props.regionRecords}/>
         </CardElement>
     )}
 
@@ -336,10 +362,10 @@ class Dashboard extends Component {
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)
-                        : this.state.activeButton === "Regional"  ?
+                        : this.state.activeButton === "Regional" && activeTab  ?
                           <CardElement>
                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-                          <InvestorRegionalJumpstartBox />
+                          <InvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
                           </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
@@ -426,6 +452,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
+  regionRecords:dashboard.regionRecords,
   fetchingProspectData:dashboard.fetchingProspectData,
   prospectLifeTime:dashboard.prospectLifeTime,
   fetchingProspectLifetime:dashboard.fetchingProspectLifetime,
@@ -439,6 +466,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,
   getProspectLifeTime,
+  getRegionRecords,
   getOpenQuotationThisYear,
   getProspectsData,
   getOpenQuotation

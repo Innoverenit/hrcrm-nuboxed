@@ -2,19 +2,15 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {handleInvestmentModal} from "../RegionalDashAction"
 import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
+import AddInvestmentDrawerModal from "./AddInvestmentDrawerModal";
 
 function InvestorRegionalJumpstartBox(props) {
   const {
-    openPitchQualified,
-    handlePitchQualifiedDrawer,
-    openPitchAdded,
-    handlePitchAddedDrawer,
-    openDealAdded,
-    handleDealAddedDrawer,
-    openDealClosed,
-    handleDealClosedDrawer
+    handleInvestmentModal,
+    addInvestmentModal
   } = props;
 
   useEffect(() => {
@@ -31,11 +27,14 @@ function InvestorRegionalJumpstartBox(props) {
       {/* <div className="font-bold flex-col justify-center flex text-lg">Investment</div> */}
       <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
-          {props.regions.map((region, index) => (
+          {props.regionRecords.map((region, index) => (
             <div key={index} className="flex w-wk">
               <JumpStartBox
                 // bgColor="linear-gradient(270deg,#F15753,orange)"
                 noProgress
+                value={region.investment}
+                jumpstartClick={()=>handleInvestmentModal(true)}
+                cursorData={"pointer"}
                 bgColor={colors[index % colors.length]} 
                 title={region.regions}
                 isLoading={props.user.fetchingJumpstartInvestor}
@@ -44,13 +43,19 @@ function InvestorRegionalJumpstartBox(props) {
           ))}
         </div>
       </div>
+      <AddInvestmentDrawerModal
+        addInvestmentModal={addInvestmentModal}
+        handleInvestmentModal={handleInvestmentModal}
+      />
     </>
   );
 }
 
-const mapStateToProps = ({ dashboard, region, auth }) => ({
+const mapStateToProps = ({ dashboard, region,dashboardRegional, auth }) => ({
   user: auth.userDetails,
   regions: region.regions,
+  addInvestmentModal:dashboardRegional.addInvestmentModal,
+  regionRecords:dashboard.regionRecords,
   organizationId: auth.userDetails.organizationId,
   timeRangeType: dashboard.timeRangeType,
   startDate: dashboard.startDate,
@@ -60,7 +65,8 @@ const mapStateToProps = ({ dashboard, region, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRegions
+      getRegions,
+      handleInvestmentModal
     },
     dispatch
   );

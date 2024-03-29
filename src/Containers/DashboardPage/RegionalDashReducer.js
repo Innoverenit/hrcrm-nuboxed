@@ -6,6 +6,10 @@ const initialState = {
 
   addSalesModal:false,
 
+  addInvestmentModal:false,
+
+  addFullFillmentModal:false,
+
 //   fetchingCo2: false,
 //   fetchingCo2Error: false,
 //   co2List:[],
@@ -86,6 +90,13 @@ case types.CHANGE_SELECTED_REGIONAL_TIME_INTERVAL_REPORT:
 
     case types.HANDLE_SALES_MODAL:
       return { ...state, addSalesModal: action.payload };
+
+      case types.HANDLE_FULLFILLMENT_MODAL:
+        return { ...state, addFullFillmentModal: action.payload };
+
+
+      case types.HANDLE_INVESTMENT_MODAL:
+        return { ...state, addInvestmentModal: action.payload };
 
 // case types.GET_CO2_TABLE_VIEW_REQUEST:
 //       return { ...state, fetchingCo2: true };

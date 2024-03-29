@@ -23,10 +23,10 @@ import DashboardShareForm from "./DashboardShareForm";
 import DashboardPage from "../../DashboardPage/DashboardPage";
 const { TabPane } = Tabs;
 const DashboardActionLeft = (props) => {
-    const tab=[
-    "Q1","Q2","Q3","Q4"
-  ]
-  const [activeTab, setActiveTab] = useState("");
+  //   const tab=[
+  //   "Q1","Q2","Q3","Q4"
+  // ]
+  // const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
   const [showShareForm, setShowShareForm] = useState(false);
   const {
@@ -505,10 +505,10 @@ const DashboardActionLeft = (props) => {
       {activeButton === "Regional" && (
       <div class="ml-[9rem] mt-[0.75rem] max-sm:hidden" >
       <Tabs type="card" 
-           activeKey={activeTab} 
-          // onChange={handleTabClick}
+           activeKey={props.activeTab} 
+          onChange={props.handleTabClick}
            >
-      {tab.map((tabs) => (
+      {props.tab.map((tabs) => (
         <TabPane key={tabs} tab={tabs}>
        
        
