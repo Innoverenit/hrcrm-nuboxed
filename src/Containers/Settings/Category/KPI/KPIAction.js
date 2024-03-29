@@ -37,13 +37,13 @@ import Swal from 'sweetalert2'
   // /**
 //  * add a new sector 
 //  */
-export const addKpi = (sectors,departmentId, cb) => (dispatch) => {
-    console.log(sectors);
+export const addKpi = (data,departmentId, cb) => (dispatch) => {
+    // console.log(sectors);
     dispatch({
       type: types.ADD_KPI_REQUEST,
     });
     axios
-      .post(`${base_url}/performanceManagement`, sectors, {
+      .post(`${base_url}/performanceManagement/department`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -61,7 +61,7 @@ export const addKpi = (sectors,departmentId, cb) => (dispatch) => {
         console.log(res);
         dispatch({
           type: types.ADD_KPI_SUCCESS,
-          payload: { ...sectors, },
+          payload: res.data,
         });
         cb();
       })

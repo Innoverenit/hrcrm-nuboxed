@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import styled from 'styled-components';
 import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
@@ -13,6 +14,9 @@ import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
 import DashOrderFinanceJumpstart from "./Child/JumpStart/DashOrderFinanceJumpstart";
 import InvestorFunnelTab from "./Child/InvestorFunnelTab";
+import RegionalSales from "../DashboardPage/Child/RegionalSales";
+import FullFillMentJumpstartBox from "./FullFillMentJumpstartBox";
+import InvestorRegionalJumpstartBox from "../DashboardPage/Child/InvestorRegionalJumpstartBox";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -141,7 +145,7 @@ class Dashboard extends Component {
              : this.state.activeButton==="Investors" ?
              (<DashboardInvestorsOrgJumpstart/>)
             // (<DashboardCustomerOrgJumpstart/>)
-             :viewType==="ALL" || this.state.activeButton==="Customer" ?
+             :viewType === "ALL" && this.state.activeButton==="Customer" ?
              (<DashboardCustomerOrgJumpstart/>)
              : this.state.activeButton==="Order" ?
              (<DashboardOrderJumpstart/>)
@@ -150,6 +154,20 @@ class Dashboard extends Component {
              (<DashboardFinanceJumpstart/>)
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart/>)
+
+             : this.state.activeButton === "Regional" ? (
+              <CardElement>
+                <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
+                <RegionalSales />
+              </CardElement>
+            ) 
+            // : viewType==="ALL" ? (
+            //   <CardElement>
+            //     <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
+            //     <RegionalSales />
+            //   </CardElement>
+            // ) 
+            
              :
              (
               <DashboardJumpstart />
@@ -168,6 +186,9 @@ class Dashboard extends Component {
           <OrdersDashTab/>)
           :this.state.activeButton==="Finance" ?(
             <FinanceDashTab/>)
+            :this.state.activeButton==="Regional" ?(
+              null)
+            
        :  this.state.activeButton==="Customer" ?(
         <CustomerLeadsTab/>)
         :  viewType==="ALL" ?(
@@ -210,6 +231,8 @@ class Dashboard extends Component {
     null
     ) : this.state.activeButton === "Accounts" ? (
       null
+      ) : viewType==="ALL" || this.state.activeButton === "Regional"  ? (
+        null
   ) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
   ) : (
@@ -224,59 +247,62 @@ class Dashboard extends Component {
 
      <div class="w-[47%] max-sm:w-wk">
      <div class=" flex flex-col" >
-       <div class=" flex justify-between" >
-       {this.state.activeButton ==="test" && viewType !=="ALL" && (
-            <TodoDashboardTab
-            viewType={viewType}
-            />)}
+     <div className="flex justify-between">
+    {this.state.activeButton === "test" && viewType !== "ALL" && (
+        <TodoDashboardTab viewType={viewType} />
+    )}
 
-{this.state.activeButton==="Order"&& 
-       <DashOrderJumpstart/>
-             }
-             {this.state.activeButton==="Finance"&& 
-       <DashOrderFinanceJumpstart/>
-             }
-             {viewType==="bulb" ? (<SourceChart/>)
-            
-             :null
-            }
-                            {this.state.activeButton==="Investors"&& 
-       <InvestorFunnelTab/>
-             }
-                  {this.state.activeButton==="Customer"&& 
-       <FunnelTab/>
-             }
-                           {this.state.activeButton==="Accounts"&& 
-       <FunnelTab/>
-             }
-                  {/* {this.state.activeButton==="Customer"&&
-       <PieChart/>
-             } */}
-             {this.state.activeButton==="Tasks"&&
-       <GantChartTab/>
-             }
-                  {this.state.activeButton==="RecruitPro"&&
-       <FunnelChartAll/>
-             }
-                  {/* {this.state.activeButton==="RecruitPro"&&
-       <GantChartTab/>
-             } */}
+    {this.state.activeButton === "Order" && (
+        <DashOrderJumpstart />
+    )}
 
-{/* {viewType==="ALL"  &&
-       <FunnelTab/>
-             } */}
-   
-      </div>
+    {this.state.activeButton === "Finance" && (
+        <DashOrderFinanceJumpstart />
+    )}
+
+    {viewType === "bulb" && (
+        <SourceChart />
+    )}
+
+    {this.state.activeButton === "Investors" && (
+        <InvestorFunnelTab />
+    )}
+
+    {this.state.activeButton === "Customer" && (
+        <FunnelTab />
+    )}
+
+    {this.state.activeButton === "Accounts" && (
+        <FunnelTab />
+    )}
+
+    {this.state.activeButton === "Regional" && (
+        <CardElement>
+            <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
+            <FullFillMentJumpstartBox />
+        </CardElement>
+    )}
+
+    {this.state.activeButton === "Tasks" && (
+        <GantChartTab />
+    )}
+
+    {this.state.activeButton === "RecruitPro" && (
+        <FunnelChartAll />
+    )}
+</div>
+
+
 
          <div class=" flex justify-between" >
                 {/* {this.state.activeButton==="Customer"&&
        <PieChart/>
              } */}
          
-                  {this.state.activeButton==="RecruitPro"&&
-      <DashboardCustomerTab
+                  {this.state.activeButton==="RecruitPro"?
+     (<DashboardCustomerTab
       viewType={viewType}
-      />
+      />) :null
              }
 
 
@@ -305,11 +331,16 @@ class Dashboard extends Component {
                 
               
                  
-                    { viewType==="ALL" || this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
+                    { viewType==="ALL" && this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                     handleMapClick={this.handleMapClick}
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)
+                        : this.state.activeButton === "Regional"  ?
+                          <CardElement>
+                          <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
+                          <InvestorRegionalJumpstartBox />
+                          </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
                           : this.state.activeButton === "test" ? (
@@ -414,4 +445,21 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
-
+const CardElement = styled.div`
+ 
+border-radius: 0.75rem;
+    border: 3px solid #EEEEEE;
+    background-color: rgb(255,255,255);
+    box-shadow: 0 0.25em 0.62em #aaa;
+    height: 18rem;
+    color: rgb(68,68,68);
+    margin: 1em;
+    padding: 0.2rem;
+    width: 42vw;
+    display: flex;
+    flex-direction: column;
+  @media only screen and (max-width: 600px) {
+    width:  -webkit-fill-available;
+    
+  }
+`
