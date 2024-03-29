@@ -99,8 +99,6 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Info Updated Succefully',
-          showConfirmButton: false,
-          timer: 1500
         })
         cb();
       })

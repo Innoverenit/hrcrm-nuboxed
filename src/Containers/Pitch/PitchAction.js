@@ -29,6 +29,10 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
           type: types.GET_PITCH_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -634,6 +638,10 @@ export const getAllPitch = (pageNo,filter) => (dispatch) => {
         type: types.GET_ALL_PITCH_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
   

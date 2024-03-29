@@ -54,9 +54,9 @@ export const addKpi = (data,departmentId, cb) => (dispatch) => {
         //   message.success(res.data.message):
         Swal.fire({
           icon: 'success',
-          title: 'KPI Created Successfully',
+          title: 'KPI Added Successfully',
         })
-        // message.success("KPI has been added successfully!");
+        //  message.success("KPI  added successfully!");
         // }
         console.log(res);
         dispatch({

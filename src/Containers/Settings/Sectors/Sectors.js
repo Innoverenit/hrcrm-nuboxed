@@ -1,13 +1,12 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, Input } from "antd";
+import { Popconfirm, Input,Tooltip } from "antd";
 import dayjs from "dayjs";
-import Swal from 'sweetalert2'
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getSectors,
@@ -127,6 +126,14 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
+          <Tooltip placement="left" title="XL">
+
+<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
+<DownloadIcon 
+className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>

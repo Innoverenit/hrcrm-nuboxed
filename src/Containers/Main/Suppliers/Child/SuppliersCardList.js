@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function SuppliersCardList(props) {
-  useEffect(() => {
-    props.getSuppliersList(props.userId);
-  }, []);
 
   const [hasMore, setHasMore] = useState(true);
-
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
 
-  const { handleUpdateShipperModal } = props;
+
+  useEffect(() => {
+    setPage(page + 1);
+    props.getSuppliersList(props.userId,page);
+  }, []);
 
 
   const handleRowData = (data) => {
@@ -29,7 +29,23 @@ function SuppliersCardList(props) {
     setCurrentShipperId(shipperId);
   }
   const handleLoadMore = () => {
-    setPage(page + 1);
+    const PageMapd = props.supplierList && props.supplierList.length &&props.supplierList[0].pageCount
+    setTimeout(() => {
+      const {
+        getSuppliersList,
+        userId
+      } = props;
+      if  (props.supplierList)
+      {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getSuppliersList(userId, page);
+      }
+      if (page === PageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
 
   useEffect(() => {

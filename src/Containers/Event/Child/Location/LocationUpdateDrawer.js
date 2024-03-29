@@ -16,6 +16,8 @@ const LocationUpdateDrawer = (props) => {
           id="app.updateLocation"
           defaultMessage="Update Location"
         />}
+        destroyOnClose
+          closable
         width={drawerWidth}
         visible={locationUpdatedrawr}
         onClose={() => handleUpdateLocationDrawer(false)}

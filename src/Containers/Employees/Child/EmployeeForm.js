@@ -6,7 +6,9 @@ import { FormattedMessage } from "react-intl";
 import { getDepartmentwiserUser } from "../../Settings/SettingsAction"
 import { getCurrency } from "../../Auth/AuthAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
-import { getCountries, getTimeZone } from "../../Auth/AuthAction"
+import { getCountries, 
+  // getTimeZone
+ } from "../../Auth/AuthAction"
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -175,14 +177,16 @@ function EmployeeForm(props) {
   });
 
   useEffect(() => {
-    const { getCountries, getDepartments, getTimeZone, getCurrency, getAssignedToList, getRoles, getlocation, } = props;
+    const { getCountries, getDepartments,
+      //  getTimeZone,
+        getCurrency, getAssignedToList, getRoles, getlocation, } = props;
     getRoles(props.organizationId);
     getCountries(getCountries);
     getlocation(props.orgId);
     getCurrency();
     getDepartments();
     getAssignedToList(props.orgId)
-    getTimeZone();
+    // getTimeZone();
   }, []);
 
   const WorkflowOptions = props.departments.map((item) => {
@@ -224,6 +228,7 @@ function EmployeeForm(props) {
     return StagesOptions;
   }
   const {
+    user: { firstName,empName, middleName, fullName, lastName, timeZone },
     userId,
   } = props;
 
@@ -248,7 +253,7 @@ function EmployeeForm(props) {
     };
   });
 
-
+ 
   const { addEmployee, addingEmployee } = props;
   const selectedOption = props.assignedToList.find((item) => item.empName === selected);
   return (
@@ -266,7 +271,7 @@ function EmployeeForm(props) {
           dateOfJoining: dayjs(),
           dob: dayjs(),
           mobileNo: "",
-          timeZone: "",
+          timeZone: timeZone,
           country: "",
           location: "",
           designationTypeId: "",
@@ -598,19 +603,24 @@ function EmployeeForm(props) {
 
                 <div class=" w-[47.5%] max-sm:w-wk ">
                   <div class=" w-full mt-2">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Time Zone</div>
                     <Field
-                      name="timeZone"
-                      type="text"
-                      placeholder="Select Time Zone"
-                      noLabel
-                      // disabled={!values.productionInd && !values.inventoryInd}
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(timeZoneOption) ? timeZoneOption : []
-                      }
-                    />
+                    isRequired
+                    defaultValue={{ label: timeZone, value: userId }}
+                    name="timeZone"
+                    isColumnWithoutNoCreate
+                    //label="TimeZone "
+                    label={
+                      <FormattedMessage
+                        id="app.timeZone"
+                        defaultMessage="time Zone"
+                      />
+                    }
+                    selectType="timeZone"
+                    isColumn
+                    value={values.timeZone}
+                    component={SearchSelect}
+                    inlineLabel
+                  />
                   </div>
                   {/* <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
@@ -1054,6 +1064,7 @@ function EmployeeForm(props) {
 const mapStateToProps = ({ auth, role, location, currency, settings, employee, designations, departments }) => ({
   userDetails: auth.userDetails,
   roles: role.roles,
+  user: auth.userDetails,
   currencies: auth.currencies,
   timeZone: auth.timeZone,
   fullName: auth.userDetails.fullName,
@@ -1079,7 +1090,7 @@ const mapDispatchToProps = (dispatch) =>
     getRoles,
     getlocation,
     getCurrency,
-    getTimeZone,
+    // getTimeZone,
     getAssignedToList,
   }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

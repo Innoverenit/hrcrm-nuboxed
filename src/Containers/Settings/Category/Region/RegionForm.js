@@ -84,6 +84,7 @@ import {
   
   } from "./RegionAction";
   import { Tabs,Select } from 'antd';
+  import { getKpiName } from "../KPI/KPIAction";
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 
 
@@ -137,7 +138,7 @@ const YearHeaderInput = (props) => {
   };
 
   const handleFulfillmentInputChange = (field,value) => {
-    props.setFulfillment({ amount: value });
+    props.setFulfillment({ amount: value ,kpi:value});
    
   };
 
@@ -147,6 +148,7 @@ const YearHeaderInput = (props) => {
   useEffect(() => {
     
     props.getSaleCurrency()
+    props.getKpiName(props.orgId)
     // props.getTarget(props.currentregionId,"2023")
 }, [])
 
@@ -176,7 +178,11 @@ const handleSubmit = () => {
       investmentCurrency: props.investment.currency,
       year: props.selectedYear,
       regionsId:props.currentregionId,
-      quarter:props.activeTab
+      quarter:props.activeTab,
+      kpiSales:props.sales.kpi,
+      kpiFullfillment:props.fulfillment.kpi,
+      kpiInvestment:props.investment.kpi,
+
     }
     props.addTarget(data)
     // console.log({
@@ -253,6 +259,23 @@ const handleSubmit = () => {
               //     ))}
               // </Select>
                 )}
+
+
+                  <select
+                  style={{marginLeft:"21px"}}
+                 // value={header === 'Sales' ? props.sales.currency : props.investment.currency}
+                    //value={header === 'Sales' ? props.sales.currency : props.investment.currency}
+                    onChange={(e) => header === 'Sales' ? handleSalesInputChange('kpi', e.target.value) : header === 'Fulfillment' ? handleFulfillmentInputChange('kpi',e.target.value) : handleInvestmentInputChange('kpi', e.target.value)}
+                  >
+                    <option value="">Select</option>
+                    {props.kpiNames.map((kpiOption) => (
+                      <option 
+                       key={kpiOption.performanceManagementId} 
+                      value={kpiOption.performanceManagementId}>{kpiOption.kpi}</option>
+                    ))}
+                  </select>
+             
+                
               </div>
             </div>
           ))}
@@ -268,10 +291,12 @@ const handleSubmit = () => {
 };
 
 
-const mapStateToProps = ({ homeStepper, auth, distributor }) => ({
+const mapStateToProps = ({ homeStepper, auth,kpi, distributor }) => ({
     
     saleCurrencies: auth.saleCurrencies,
-    token: auth.token 
+    token: auth.token,
+    orgId: auth.userDetails.organizationId, 
+    kpiNames: kpi.kpiNames,
    
 });
 
@@ -281,7 +306,8 @@ const mapDispatchToProps = (dispatch) =>
        
             getSaleCurrency,
             addTarget,
-            getTarget
+            getTarget,
+            getKpiName
            
         },
         dispatch

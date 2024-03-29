@@ -7,17 +7,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 
 function AllSuppliersCardList(props) {
-  useEffect(() => {
-    props.getAllSuppliersList(props.orgId);
-  }, []);
 
   const [hasMore, setHasMore] = useState(true);
-
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
 
-  const { handleUpdateShipperModal } = props;
+  useEffect(() => {
+    setPage(page + 1);
+    props.getAllSuppliersList(props.orgId,page);
+  }, []);
 
 
   const handleRowData = (data) => {
@@ -28,7 +27,23 @@ function AllSuppliersCardList(props) {
     setCurrentShipperId(shipperId);
   }
   const handleLoadMore = () => {
-      setPage(page + 1);
+    const PageMapd = props.allSupplierList && props.allSupplierList.length &&props.allSupplierList[0].pageCount
+    setTimeout(() => {
+      const {
+        getAllSuppliersList,
+        orgId
+      } = props;
+      if  (props.allSupplierList)
+      {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getAllSuppliersList(orgId, page);
+      }
+      if (page === PageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
 
   
@@ -102,8 +117,6 @@ return(
                               </div>
 
                             </div>
-
-
                             <div className=" flex font-medium flex-col w-[13.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}

@@ -2397,3 +2397,29 @@ export const getProspectTableData = (country) => (dispatch) => {
       });
     });
 };
+
+export const getRegionRecords = (year,quarter) => (dispatch) => {
+  dispatch({
+    type: types.GET_REGION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/regions/target/dash-board/${year}/${quarter}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REGION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REGION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

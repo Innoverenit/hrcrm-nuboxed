@@ -2,8 +2,10 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
+import { base_url } from "../../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, Input } from "antd";
+import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
 import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -129,6 +131,14 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
+                   <Tooltip placement="left" title="XL">
+
+          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"source"}`}>
+<DownloadIcon 
+   className=" !text-base cursor-pointer text-[green]"/>
+</a>
+
+</Tooltip>
             <div className="add-region">
               {addingRegion ? (
                   <div>

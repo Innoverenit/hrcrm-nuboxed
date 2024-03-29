@@ -55,12 +55,12 @@ export const addShipper = (shipper, userId) => (dispatch) => {
 /**
  * get all the SHIPPER of the user
  */
-export const getShipperByUserId = (userId) => (dispatch) => {
+export const getShipperByUserId = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_SHIPPER_BY_USER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/user/${userId}`,
+    .get(`${base_url2}/shipper/user/${userId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -809,12 +809,12 @@ export const getOrderDetailsById = (orderId) => (dispatch) => {
 /**
  * get all the Shipper
  */
-export const getAllShipperList = () => (dispatch) => {
+export const getAllShipperList = (orgId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SHIPPER_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/all-shipper`, {
+    .get(`${base_url2}/shipper/all-shipper/${orgId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

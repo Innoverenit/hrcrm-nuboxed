@@ -14,6 +14,8 @@ const LocationShiftDrawer = (props) => {
         title={`${storedLoc.locationName}`}
         width={drawerWidth}
         visible={locShiftDrawer}
+        destroyOnClose
+          closable
         onClose={() => handleLocationShiftDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>

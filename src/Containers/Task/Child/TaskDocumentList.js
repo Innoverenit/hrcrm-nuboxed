@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { Timeline } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { base_url } from "../../../Config/Auth";
 import moment from 'moment';
  import { getTaskTimeline } from '../TaskAction';
 //import { BundleLoader } from '../../../../Components/Placeholder';
@@ -33,7 +34,13 @@ console.log(props.currentNameId)
                       <span className="text-xs text-[tomato] font-bold">
                         New
                       </span>
-                    ) : null}    {status.documentName}  Uploaded by {status.uploadedBy}
+                    ) : null}  
+                                        <a
+            href={`${base_url}/document/${status.documentId}`}
+            // target="_blank"
+          >  
+                    {status.documentName}  Uploaded by {status.uploadedBy}
+                    </a>
                   </div>
            
                 </div>

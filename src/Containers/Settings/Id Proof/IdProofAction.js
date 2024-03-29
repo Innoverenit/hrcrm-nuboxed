@@ -143,7 +143,7 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
       });
   }; 
 
-  export const removeIdProof= ( idProofTypeId) => (dispatch) => {
+  export const removeIdProof= ( idProofTypeId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_ID_PROOF_REQUEST,
@@ -155,6 +155,7 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getIdProofCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Identity deleted Successfully!',

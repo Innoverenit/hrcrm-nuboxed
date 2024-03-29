@@ -8,7 +8,9 @@ import { getlocation } from "../../../Event/Child/Location/LocationAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCurrency } from "../../../Auth/AuthAction"
-import { getTimeZone, getCountries } from "../../../Auth/AuthAction"
+import { 
+  // getTimeZone,
+   getCountries } from "../../../Auth/AuthAction"
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { updateEmployee, } from "../../EmployeeAction";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -53,9 +55,11 @@ class UpdateEmployeeForm extends Component {
 
 
   componentDidMount() {
-    const { getCountries, getEmployeelist, getDepartments, getTimeZone, getCurrency, getRoles, getlocation, } = this.props;
+    const { getCountries, getEmployeelist, getDepartments,
+      //  getTimeZone
+        getCurrency, getRoles, getlocation, } = this.props;
     getRoles(this.props.organizationId);
-    getTimeZone();
+    // getTimeZone();
     getlocation(this.props.orgId);
     getCountries(getCountries);
     getDepartments();
@@ -243,7 +247,10 @@ class UpdateEmployeeForm extends Component {
     });
 
 
-
+    const {
+      user: { firstName,empName, middleName, fullName, lastName, timeZone },
+      userId,
+    } = this.props;
 
     const { clearbit, currentEmployeeId } = this.props;
     console.log(currentEmployeeId)
@@ -257,7 +264,8 @@ class UpdateEmployeeForm extends Component {
             lastName: currentEmployeeId.lastName || "",
             emailId: currentEmployeeId.emailId || "",
             salary: currentEmployeeId.salary || "",
-            timeZone: currentEmployeeId.timeZone || "",
+            // timeZone: currentEmployeeId.timeZone || "",
+            timeZone: timeZone,
             countryDialCode: currentEmployeeId.countryDialCode || "",
             countryDialCode1: currentEmployeeId.countryDialCode1 || "",
             phoneNo: currentEmployeeId.phoneNo || "",
@@ -266,6 +274,7 @@ class UpdateEmployeeForm extends Component {
             dateOfJoining: dayjs(),
             dob: dayjs(),
             mobileNo: currentEmployeeId.mobileNo || "",
+            currency:currentEmployeeId.currency || "",
             country: currentEmployeeId.country || "",
             workplace: currentEmployeeId.workplace || "",
             location: currentEmployeeId.location || "",
@@ -595,19 +604,24 @@ class UpdateEmployeeForm extends Component {
                   </div>
                   <div class="  w-[47.5%] max-sm:w-wk ">
                     <div class=" w-full mt-4" >
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Time Zone</div>
-                      <Field
-                        name="timeZone"
-                        type="text"
-                        placeholder="Select Time Zone"
-                        noLabel
-                        // disabled={!values.productionInd && !values.inventoryInd}
-                        isRequired
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(timeZoneOption) ? timeZoneOption : []
-                        }
+                    <Field
+                    isRequired
+                    defaultValue={{ label: timeZone, value: userId }}
+                    name="timeZone"
+                    isColumnWithoutNoCreate
+                    //label="TimeZone "
+                    label={
+                      <FormattedMessage
+                        id="app.timeZone"
+                        defaultMessage="time Zone"
                       />
+                    }
+                    selectType="timeZone"
+                    isColumn
+                    value={values.timeZone}
+                    component={SearchSelect}
+                    inlineLabel
+                  />
                     </div>
 
                     <div class=" flex justify-between max-sm:flex-col" >
@@ -931,6 +945,7 @@ const mapStateToProps = ({ auth, role, settings, location, currency, employee, d
   userDetails: auth.userDetails,
   roles: role.roles,
   timeZone: auth.timeZone,
+  user: auth.userDetails,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
   countries: auth.countries,
@@ -946,7 +961,7 @@ const mapStateToProps = ({ auth, role, settings, location, currency, employee, d
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({
     updateEmployee,
-    getTimeZone,
+    // getTimeZone,
     getCurrency,
     getDepartments,
     getDepartmentwiserUser,
