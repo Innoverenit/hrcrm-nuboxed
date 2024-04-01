@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
 import DealLostCard from './Child/DealTable/DealLostCard';
 import {setDealViewType,handleDealModal}from "./DealAction";
+const DealsTeamCardList=lazy(()=>import ("./DealsTeamCardList"));
 const DealsBoard=lazy(()=>import ("./Child/DealsBoard"));
 const DealHeader = lazy(()=>import("./Child/DealHeader"));
 const DealCardList = lazy(()=>import("./Child/DealTable/DealCardList"));
@@ -41,7 +42,9 @@ function Deal (props) {
              <DealsBoard/>
              :
              viewType === "all" ?
-             <DealsAllCardList/>
+             <DealsAllCardList/>:
+             viewType === "teams" ?
+             <DealsTeamCardList/>
              :
         viewType === "won" ?
         

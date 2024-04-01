@@ -777,6 +777,10 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.GET_TEAM_INVESTOR_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
   export const ClearReducerDataOfInvestor = () => (dispatch) => {

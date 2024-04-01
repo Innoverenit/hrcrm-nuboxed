@@ -3,28 +3,27 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
 import "jspdf-autotable";
-import { OnlyWrapCard } from '../../../../../Components/UI/Layout'
 import {
-  getAllDeals
-} from "../../../DealAction";
-import { CurrencySymbol } from "../../../../../Components/Common";
+  getTeamsDeals
+} from "./DealAction";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../../../../Components/Placeholder";
+import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { CurrencySymbol } from "../../Components/Common";
+import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
-const DealsAllCardList = (props) => {
+const DealsTeamCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
-    props.getAllDeals("all", page);
+    props.getTeamsDeals(props.userId,page);
     setPage(page + 1);
     // props.getSectors();
     // props.getCountries();
@@ -46,7 +45,7 @@ const DealsAllCardList = (props) => {
   };
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getAllDeals("all", page);
+    props.getTeamsDeals("all", page);
     setPage(page + 1);
   }
   function handleSetCurrentLeadsId(item) {
@@ -99,13 +98,13 @@ const DealsAllCardList = (props) => {
 
         </div>
         <InfiniteScroll
-          dataLength={props.allDealsData.length}
+          dataLength={props.teamsDealsData.length}
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
           height={"75vh"}
         >
-          {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
+          {!fetchingAllDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -349,12 +348,13 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   addDrawerPitchNotesModal: pitch.addDrawerPitchNotesModal,
   updatePitchModal: pitch.updatePitchModal,
   openASSImodal: pitch.openASSImodal,
-  allDealsData: deal.allDealsData
+  allDealsData: deal.allDealsData,
+  teamsDealsData:deal.teamsDealsData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getAllDeals,
+        getTeamsDeals,
       // deletePitchData,
       // handleUpdatePitchModal,
       // setEditPitch,
@@ -366,7 +366,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(DealsAllCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(DealsTeamCardList);
 function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);

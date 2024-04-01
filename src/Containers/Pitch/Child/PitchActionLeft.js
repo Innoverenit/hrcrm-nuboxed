@@ -9,7 +9,7 @@ import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { Input, Tooltip,Badge,Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount,searchPitchName} from "../PitchAction";
+import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount, getTeamsPitchCount,searchPitchName} from "../PitchAction";
 import { FormattedMessage } from "react-intl";
 const { Search } = Input;
 const Option = StyledSelect.Option;
@@ -56,6 +56,8 @@ const PitchActionLeft = (props) => {
       props.getPitchCount(props.userId);
     } else if (props.viewType === "all") {
       props.getPitchAllRecords();
+    } else if (props.viewType === "teams") {
+      props.getTeamsPitchCount(props.userId);
     }
   }, [props.viewType, props.userId]);
   // useEffect(() => {
@@ -109,7 +111,7 @@ const PitchActionLeft = (props) => {
       >
           <Badge
         size="small"
-        // count={(props.viewType === "card" && props.pitchCount.InvestorLeadsDetails) || 0}
+         count={(props.viewType === "card" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
         
         overflowCount={999}
       >
@@ -214,6 +216,7 @@ const PitchActionLeft = (props) => {
 const mapStateToProps = ({pitch,auth}) => ({
   pitchRecord:pitch.pitchRecord,
   pitchCount:pitch.pitchCount,
+  teamsPitchCount:pitch.teamsPitchCount,
   userId: auth.userDetails.userId,
   user:auth.userDetails,
   pitchAllRecord:pitch.pitchAllRecord,
@@ -225,7 +228,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getPitch,
   getPitchCount,
   searchPitchName,
-  getPitchAllRecords
+  getPitchAllRecords,
+  getTeamsPitchCount
 }, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(PitchActionLeft));

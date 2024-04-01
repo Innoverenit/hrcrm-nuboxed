@@ -62,11 +62,13 @@ const PerformanceTable = (props) => {
     setEditContactId(null);
   };
 
-  const handleUpdateContact = (userKpiLinkId,  completedValue) => {
+  const handleUpdateContact = (userKpiLinkId,  month1CompletedValue,month2CompletedValue,month3CompletedValue) => {
     const data = {
         userKpiLinkId: userKpiLinkId, 
        employeeId: props.employeeId,
-    completedValue: editedFields[userKpiLinkId]?.completedValue !== undefined ? editedFields[userKpiLinkId].completedValue : completedValue,
+       month1CompletedValue: editedFields[userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[userKpiLinkId].month1CompletedValue : month1CompletedValue,
+       month2CompletedValue: editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue,
+       month3CompletedValue: editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue,
     };
   
     props.updateCompletedValue(data, props.employeeId,)
@@ -162,18 +164,62 @@ const PerformanceTable = (props) => {
                     Achieved 
                     </div>
                     {editContactId === item.userKpiLinkId ? (
+                      <>
+                      {/* <div class=" flex flex-row"> */}
                       <input
                       style={{border:"2px solid black"}}
-                        value={editedFields[item.userKpiLinkId]?.completedValue !== undefined ? editedFields[item.userKpiLinkId].completedValue : item.completedValue}
-                        onChange={(e) => handleChange(item.userKpiLinkId, 'completedValue', e.target.value)}
+                      placeholder="Month1"
+                        value={editedFields[item.userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1CompletedValue : item.month1CompletedValue}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month1CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
                       />
+                      <input
+                      placeholder="Month2"
+                      style={{border:"2px solid black"}}
+                        value={editedFields[item.userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2CompletedValue : item.month2CompletedValue}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month2CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
+                      />
+                      <input
+                      placeholder="Month3"
+                      style={{border:"2px solid black"}}
+                        value={editedFields[item.userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3CompletedValue : item.month3CompletedValue}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          if (!isNaN(inputValue)) { // Check if the input is a number
+                              handleChange(item.userKpiLinkId, 'month3CompletedValue', inputValue);
+                          } else {
+                            alert("Please enter  number.");
+                         
+                          }
+                      }}
+                      />
+                      {/* </div> */}
+                      </>
                     ) : (
                       <>
-                      {item.completedValue && (
+                      {/* {item.completedValue && ( */}
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <span> {` ${item.completedValue} ${item.userCurrency}`}</span>
+                        <span> {` ${item.month1CompletedValue}${item.month2CompletedValue} ${item.month3CompletedValue} 
+                        `}
+                       
+                        </span>
                       </div>
-                      )}
+                      {/* )} */}
                       </>
                     )}
                   </div>
@@ -191,7 +237,7 @@ const PerformanceTable = (props) => {
                   <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                     {editContactId === item.userKpiLinkId ? (
                         <>
-                      <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.completedValue)}>
+                      <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1CompletedValue,item.month2CompletedValue,item.month3CompletedValue)}>
                         Save
                       </Button>
                         <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>

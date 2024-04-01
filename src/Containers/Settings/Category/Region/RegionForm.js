@@ -114,14 +114,14 @@ const YearHeaderInput = (props) => {
       if (data !== null && data !== undefined) { // Change condition to handle 0 values
        
   
-        props.setSales({ amount: data.sales !== null ? data.sales : null, currency: data.salesCurrency || null });
-        props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null });
-        props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null });
+        props.setSales({ amount: data.sales !== null ? data.sales : null, currency: data.salesCurrency || null,kpi: data.kpiSalesName !== null ? data.kpiSalesName : null });
+        props.setFulfillment({ amount: data.fulfilment !== null ? data.fulfilment : null,kpi: data.kpiFullfillmentName !== null ? data.kpiFullfillmentName : null });
+        props.setInvestment({ amount: data.investment !== null ? data.investment : null, currency: data.investmentCurrency || null,kpi: data.kpiInvestmentName !== null ? data.kpiInvestmentName : null });
       } else {
         // If there's no data for the selected year, reset all fields to null
-        props.setSales({ amount: null, currency: null });
-        props.setFulfillment({ amount: null });
-        props.setInvestment({ amount: null, currency: null });
+        props.setSales({ amount: null, currency: null,kpi:null });
+        props.setFulfillment({ amount: null,kpi:null });
+        props.setInvestment({ amount: null, currency: null,kpi:null });
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -137,9 +137,12 @@ const YearHeaderInput = (props) => {
     props.setSales(prevState => ({ ...prevState, [field]: value }));
   };
 
-  const handleFulfillmentInputChange = (field,value) => {
-    props.setFulfillment({ amount: value ,kpi:value});
+  // const handleFulfillmentInputChange = (field,value) => {
+  //   props.setFulfillment({ amount: value ,kpi:value});
    
+  // };
+  const handleFulfillmentInputChange = (field, value) => {
+    props.setFulfillment(prevState => ({ ...prevState, [field]: value }));
   };
 
   const handleInvestmentInputChange = (field, value) => {
@@ -263,11 +266,13 @@ const handleSubmit = () => {
 
                   <select
                   style={{marginLeft:"21px"}}
+                  // placeholder="Select Kpi"
+                  value={header === 'Sales' ? props.sales.kpi : header === 'Fulfillment' ? props.fulfillment.kpi : props.investment.kpi}
                  // value={header === 'Sales' ? props.sales.currency : props.investment.currency}
                     //value={header === 'Sales' ? props.sales.currency : props.investment.currency}
                     onChange={(e) => header === 'Sales' ? handleSalesInputChange('kpi', e.target.value) : header === 'Fulfillment' ? handleFulfillmentInputChange('kpi',e.target.value) : handleInvestmentInputChange('kpi', e.target.value)}
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Kpi</option>
                     {props.kpiNames.map((kpiOption) => (
                       <option 
                        key={kpiOption.performanceManagementId} 

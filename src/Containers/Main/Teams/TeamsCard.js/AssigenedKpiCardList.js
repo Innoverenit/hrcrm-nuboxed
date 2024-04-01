@@ -43,11 +43,14 @@ function AssigenedKpiCardList(props) {
 
 
 
-  const handleUpdateAssigned = (userKpiLinkId,  assignedValue) => {
+  const handleUpdateAssigned = (userKpiLinkId,  assignedValue,weitageValue) => {
     const data = {
         userKpiLinkId: userKpiLinkId, 
        employeeId: props.rowdata.employeeId,
+
        assignedValue: editedFields[userKpiLinkId]?.assignedValue !== undefined ? editedFields[userKpiLinkId].assignedValue : assignedValue,
+              
+       weitageValue: editedFields[userKpiLinkId]?.weitageValue !== undefined ? editedFields[userKpiLinkId].weitageValue : weitageValue,
     };
   
     props.updateAssignedValue(data, props.rowdata.employeeId,)
@@ -86,6 +89,10 @@ function AssigenedKpiCardList(props) {
                       <div className="md:w-[10.1rem]"><FormattedMessage
                   id="app.actual"
                   defaultMessage="Actual"
+                /></div>
+                       <div className="md:w-[10.1rem]"><FormattedMessage
+                  id="app.weitage"
+                  defaultMessage="Weitage"
                 /></div>
        
         
@@ -139,7 +146,15 @@ function AssigenedKpiCardList(props) {
                      <input
                      style={{border:"2px solid black",width:"90%"}}
                        value={editedFields[item.userKpiLinkId]?.assignedValue !== undefined ? editedFields[item.userKpiLinkId].assignedValue : item.assignedValue}
-                       onChange={(e) => handleChange(item.userKpiLinkId, 'assignedValue', e.target.value)}
+                       onChange={(e) => {
+                        const inputValue = e.target.value;
+                        if (!isNaN(inputValue)) { 
+                            handleChange(item.userKpiLinkId, 'assignedValue', inputValue);
+                        } else {
+                          alert("Please enter number.");
+                       
+                        }
+                    }}
                      />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
@@ -168,11 +183,40 @@ function AssigenedKpiCardList(props) {
                                   </div>
                                   )} 
                               </div>
+                              <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                   
+                                   <div class="text-sm text-cardBody font-poppins">
+                                   {editContactId === item.userKpiLinkId ? (
+                    <input
+                    style={{border:"2px solid black", width:"90%"}}
+                    value={editedFields[item.userKpiLinkId]?.weitageValue !== undefined ? editedFields[item.userKpiLinkId].weitageValue : item.weitageValue}
+                    onChange={(e) => {
+                        const inputValue = e.target.value;
+                        if (!isNaN(inputValue)) { // Check if the input is a number
+                            handleChange(item.userKpiLinkId, 'weitageValue', inputValue);
+                        } else {
+                          alert("Please enter  number.");
+                       
+                        }
+                    }}
+                />
+                   ) : (
+                     <div className="font-normal text-sm text-cardBody font-poppins">
+                         {item.weitageValue && (
+                       <span>
+                       
+                        {` ${item.weitageValue} ${item.userCurrency}`}
+                        </span>
+                         )}
+                     </div>
+                   )}
+                                   </div>
+                               </div>
                               </div>
                               <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                     {editContactId === item.userKpiLinkId ? (
                         <>
-                      <Button onClick={() => handleUpdateAssigned(item.userKpiLinkId, item.assignedValue)}>
+                      <Button onClick={() => handleUpdateAssigned(item.userKpiLinkId, item.assignedValue,item.weitageValue)}>
                         Save
                       </Button>
                         <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>

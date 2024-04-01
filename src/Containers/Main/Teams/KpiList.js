@@ -92,6 +92,7 @@ function KpiList(props) {
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
           assignedValue:"",
+          weitageValue:"",
           year: selectedYear,
           quarter:activeTab,
       
@@ -179,19 +180,44 @@ function KpiList(props) {
       )}
       {selected && (
           <>                                           
-        <div class=" w-[85%]" >
+        <div class=" w-[37%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
-                          <FastField
+                          <Field
                             // isRequired
                             name="assignedValue"
-                            type="text"
+                            type="number"
+                            validate={(value) => {
+                              if (!value || isNaN(Number(value))) {
+                                return 'Assigned Value must be a number';
+                              }
+                              return null;
+                            }} 
                             // width={"100%"}
                             isColumn
                             component={InputComponent}
                             inlineLabel
                           />
                           {/* <input value={this.state.value} onChange={this.onNumber}/> */}
-                        </div>               
+                        </div>  
+                        <div class=" w-[37%]" >
+        <label class=" text-[#444] font-bold text-[0.75rem]" >Weitage</label>&nbsp;
+                          <Field
+                            // isRequired
+                            name="weitageValue"
+                            type="number"
+                            validate={(value) => {
+                              if (!value || isNaN(Number(value))) {
+                                return 'Weitage value must be a number';
+                              }
+                              return null;
+                            }}
+                            // width={"100%"}
+                            isColumn
+                            component={InputComponent}
+                            inlineLabel
+                          />
+                          {/* <input value={this.state.value} onChange={this.onNumber}/> */}
+                        </div>                  
 </> 
         )}   
         </div>

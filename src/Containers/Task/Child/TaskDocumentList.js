@@ -39,7 +39,7 @@ console.log(props.currentNameId)
             href={`${base_url}/document/${status.documentId}`}
             // target="_blank"
           >  
-                    {status.documentName}  Uploaded by {status.uploadedBy}
+                    {status.documentName}  Uploaded by {status.uploadedBy} on {`${moment.utc(status.creationDate).format("YYYY/MM/DD")}`}
                     </a>
                   </div>
            
