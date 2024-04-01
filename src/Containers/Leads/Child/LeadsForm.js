@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button,Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
 import * as Yup from "yup";
@@ -18,6 +18,7 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
+const { Option } = Select; 
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -54,16 +55,91 @@ props. getCrm();
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
 
+    const [source, setSource] = useState([]);
+    const [sector, setSector] = useState([]);
+    const [touched, setTouched] = useState(false);
+  const [touchedSector, setTouchedSector] = useState(false);
+    const [selectedSector, setSelectedSector] = useState(null);
+    const [selectedSource, setSelectedSource] = useState(null);
+    const [isLoadingSector, setIsLoadingSector] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const fetchSource = async () => {
+      setIsLoading(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSource(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     
+  const handleSelectChange = (value) => {
+    setSelectedSource(value)
+    console.log('Selected user:', value);
+  };
+
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchSource();
+      // fetchSector();
+
+      setTouched(true);
+    }
+  };
+
+  const fetchSector = async () => {
+    setIsLoadingSector(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setSector(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingSector(false);
+    }
+  };
+
+  const handleSelectSector = (value) => {
+    setSelectedSector(value)
+    console.log('Selected user:', value);
+  };
+  const handleSelectSectorFocus = () => {
+    if (!touchedSector) {
+     
+      fetchSector();
+
+      setTouchedSector(true);
+    }
+  };
     return (
       <>
         <Formik
           // enableReinitialize
           initialValues={{
             partnerName: "",
-            source: "",
+            source: selectedSource,
             url: "",
-            sectorId: "",
+            sectorId: selectedSector,
             email: "",
             phoneNumber: "",
             fullName:"",
@@ -313,9 +389,9 @@ props. getCrm();
                          
                  
                   <div class=" flex justify-between mt-3">
-                   <div class=" w-w47.5">
+                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                
-                      <FastField
+                      {/* <FastField
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"
@@ -328,27 +404,46 @@ props. getCrm();
                         isColumn
                         component={SearchSelect}
                         value={values.sectorId}
-                      />
+                      /> */}
+
+<label>Sector</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select sector"
+        optionFilterProp="children"
+        loading={isLoadingSector}
+        onFocus={handleSelectSectorFocus}
+        onChange={handleSelectSector}
+      >
+        {sector.map(sectors => (
+          <Option key={sectors.sectorId} value={sectors.sectorId}>
+            {sectors.sectorName}
+          </Option>
+        ))}
+      </Select>
                     
                     </div>
-                    <div class=" w-w47.5">
-                          <FastField
-                            name="source"
-                            type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
-                            isColumnWithoutNoCreate
-                            selectType="sourceName"
-                            component={SearchSelect}
-                            value={values.source}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
+                    <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                          
+                          <label>Source</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select source"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {source.map(sources => (
+          <Option key={sources.sourceId} value={sources.sourceId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
                         </div>
                     </div>
                
@@ -553,8 +648,10 @@ const mapStateToProps = ({ auth, leads }) => ({
   addingLeadsError: leads.addingLeadsError,
    clearbit: leads.clearbit,
   user: auth.userDetails,
+  organizationId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
+  token: auth.token,
 
 });
 
