@@ -19,6 +19,7 @@ class AccountOrder1Stepper extends Component {
         this.state = {
             current: 0,
             thirdPageData: {},
+            showProceed: false,
         };
     }
     handleSubmit = (data) => {
@@ -39,6 +40,7 @@ class AccountOrder1Stepper extends Component {
     };
 
     render() {
+        console.log(this.props.orderId)
         const steps = [
             {
                 title: <FormattedMessage
@@ -90,17 +92,16 @@ class AccountOrder1Stepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
-
                                         >
                                             <FormattedMessage
                                                 id="app.proceed"
                                                 defaultMessage="Proceed"
                                             />
-                                        </Button>
+                                        </Button>}
                                     </>
                                 )}
                             </>
@@ -123,6 +124,7 @@ class AccountOrder1Stepper extends Component {
 
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+    orderId: distributor.productionOrderId.orderId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

@@ -89,10 +89,7 @@ function AccountTable(props) {
               id="app.pincode"
               defaultMessage="pincode"
             /></div>
-            <div className="w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[0.5rem] max-lg:w-[1.5rem]"><FormattedMessage
-              id="app.owner"
-              defaultMessage="Owner"
-            /></div>
+
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
@@ -123,7 +120,7 @@ function AccountTable(props) {
                   return (
                     <div>
                       <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
@@ -169,26 +166,26 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[6.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.url}
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[6.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.url}
 
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.clientName}
+
+                            </div>
+                          </div>
+
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.payment}
+
+                            </div>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.clientName}
-
-                          </div>
-                        </div>
-
-                        <div className=" flex font-medium flex-col max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.payment}
-
-                          </div>
-                        </div>
-</div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -211,50 +208,40 @@ function AccountTable(props) {
                             </div>
 
                           </div>
-                         
+
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col  w-[6.81rem] max-xl:w-[2.01rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins ">
 
-                              <MultiAvatar
-                                primaryTitle={item.salesExecutive}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
+                          <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins">
+                              <Tooltip title="Pulse">
+                                <MonitorHeartIcon
+                                  onClick={() => {
+                                    props.handleAccountPulse(true);
+                                    handleCurrentRowData(item);
+                                  }}
+                                  className=" !text-base cursor-pointer text-[#df9697]"
+                                />
+                              </Tooltip>
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins">
+                              <Tooltip title="Edit">
+                                <BorderColorIcon
+                                  className=" !text-base cursor-pointer text-[tomato]"
+                                  onClick={() => {
+                                    props.setEditDistributor(item)
+                                    handleUpdateAccountModal(true);
+                                    handleCurrentRowData(item);
+                                  }}
+                                />
+
+                              </Tooltip>
                             </div>
 
-                          </div>
-                        <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
-                            <Tooltip title="Pulse">
-                              <MonitorHeartIcon
-                                onClick={() => {
-                                  props.handleAccountPulse(true);
-                                  handleCurrentRowData(item);
-                                }}
-                                className=" !text-base cursor-pointer text-[#df9697]"
-                              />
-                            </Tooltip>
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
-                            <Tooltip title="Edit">
-                              <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
-                                onClick={() => {
-                                  props.setEditDistributor(item)
-                                  handleUpdateAccountModal(true);
-                                  handleCurrentRowData(item);
-                                }}
-                              />
 
-                            </Tooltip>
                           </div>
-
-
-                        </div>
                         </div>
                       </div>
                     </div>

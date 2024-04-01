@@ -109,6 +109,7 @@ const ReceivedDetailCard = (props) => {
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Unit" defaultMessage="Units" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Received" defaultMessage="Received" /></div>
+                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Received" defaultMessage="Receive" /></div>
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.Damaged" defaultMessage="Damaged" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.Remark" defaultMessage="Remark" /></div>
@@ -169,7 +170,7 @@ const ReceivedDetailCard = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-
+                                                {item.userName}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">

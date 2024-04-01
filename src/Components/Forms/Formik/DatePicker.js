@@ -13,6 +13,7 @@ export const DatePicker = ({
   isRequired,
   width,
   height,
+  disabledDate,
   isColumn,
   noLabel,
   inlineLabel,
@@ -34,6 +35,7 @@ export const DatePicker = ({
           {...field}
           {...props}
           width={width}
+          disabledDate={disabledDate}
           isRequired={isRequired}
           onChange={(date, dateString) =>
             setFieldValue(field.name, dayjs(dateString))
@@ -66,9 +68,10 @@ export const DatePicker = ({
             width={width}
             isRequired={isRequired}
             defaultValue={defaultValue}
+            disabledDate={disabledDate}
             onChange={(date, dateString) =>
-            setFieldValue(field.name, dayjs(dateString))
-          }
+              setFieldValue(field.name, dayjs(dateString))
+            }
             value={value}
             // height="38px"
             onBlur={() => setFieldTouched(field.name, true)}

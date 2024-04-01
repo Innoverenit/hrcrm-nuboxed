@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { addOrderForm, getContactDistributorList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
+import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     advancePayment: Yup.string().required("Input needed!"),
     contactPersonId: Yup.string().required("Input needed!"),
@@ -43,6 +44,10 @@ function AddOrderInAccount(props) {
             value: item.currency_id,
         };
     });
+    const disabledDate = current => {
+        // Disable past dates
+        return current && current < dayjs().startOf('day');
+    };
     return (
         <Formik
             initialValues={{
@@ -174,7 +179,7 @@ function AddOrderInAccount(props) {
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
-                                            label="Total Phone"
+                                            label="Units"
                                             name="totalPhoneCount"
                                             component={InputComponent}
                                             inlineLabel
@@ -184,7 +189,7 @@ function AddOrderInAccount(props) {
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
-                                            label="Contact Person"
+                                            label="Contact"
                                             name="contactPersonId"
                                             placeholder="Value"
                                             component={SelectComponent}
@@ -225,6 +230,8 @@ function AddOrderInAccount(props) {
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
+
+                                            disabledDate={disabledDate}
                                             component={DatePicker}
                                             value={values.availabilityDate}
 
@@ -237,7 +244,21 @@ function AddOrderInAccount(props) {
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
+                                            disable={!values.availabilityDate}
                                             component={DatePicker}
+                                            disabledDate={(currentDate) => {
+                                                if (values.availabilityDate) {
+                                                    if (
+                                                        dayjs(currentDate).isBefore(
+                                                            dayjs(values.availabilityDate)
+                                                        )
+                                                    ) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            }}
                                             value={values.deliveryDate}
 
                                         />
@@ -346,7 +367,7 @@ function AddOrderInAccount(props) {
                                     disabledDate={(currentDate) => {
                                         const date = new Date()
                                         if (
-                                            moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
+                                            dayjs(currentDate).isBefore(dayjs(date).subtract(1, 'days'))
                                         ) {
                                             return true;
                                         } else {
@@ -371,8 +392,8 @@ function AddOrderInAccount(props) {
                                     disabledDate={(currentDate) => {
                                         if (values.availabilityDate) {
                                             if (
-                                                moment(currentDate).isBefore(
-                                                    moment(values.availabilityDate)
+                                                dayjs(currentDate).isBefore(
+                                                    dayjs(values.availabilityDate)
                                                 )
                                             ) {
                                                 return true;

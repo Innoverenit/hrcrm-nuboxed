@@ -15,6 +15,8 @@ import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
+import { HistoryOutlined } from "@ant-design/icons";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -37,11 +39,21 @@ function AccountDetailsTab(props) {
     }, []);
     const [activeKey, setactiveKey] = useState("1")
     const [breadCumb, setBreadCumb] = useState(false)
+    const [openOrder, setOpenOrder] = useState(false)
 
-    const handleOrderCreateClick = (data) => {
-        setBreadCumb(data);
+    const handleOrderCreateClick = () => {
+        setBreadCumb(true);
+    };
+    const handleOrderClick = () => {
+        setBreadCumb(true);
+        setOpenOrder(false)
     };
 
+
+    const handleOpenOrder = () => {
+        setBreadCumb(false);
+        setOpenOrder(true)
+    };
     const handleTabChange = (key) => setactiveKey(key);
     console.log(props.productionInd)
     return (
@@ -84,13 +96,25 @@ function AccountDetailsTab(props) {
                                     count={(props.orderRecordData.order) || 0}
                                     overflowCount={999}
                                 >
-                                    <span >
-                                        <DynamicFeedIcon
-                                            className="!text-base cursor-pointer"
-                                        />
-                                        <span class="ml-1">Repair</span>
+                                    <span onClick={() => handleOrderClick(false)}>
+                                        <Tooltip title="Orders">
+                                            <DynamicFeedIcon
+                                                className="!text-base cursor-pointer"
+                                            />
+                                            <span class="ml-1">Repair</span>
+                                        </Tooltip>
                                     </span>
                                 </Badge>
+                                &nbsp;
+                                {activeKey === "2" && (
+                                    <Tooltip title="Complete Orders">
+                                        <HistoryOutlined
+                                            fontSize="small"
+                                            onClick={handleOpenOrder}
+                                        />
+                                    </Tooltip>
+                                )}
+                                &nbsp;
                                 {activeKey === "2" && (
                                     <>
                                         <Tooltip title="Add Order">
@@ -105,13 +129,17 @@ function AccountDetailsTab(props) {
                                         </Tooltip>
                                     </>
                                 )}
+
                             </>
                         }
                         key="2"
                     >
 
                         <Suspense fallback={"Loading ..."}>
-                            <AccountOrderTable distributorId={props.distributorData.distributorId} />
+                            {openOrder ?
+                                <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" /> :
+                                <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" />
+                            }
                         </Suspense>
                     </TabPane>}
                     <TabPane

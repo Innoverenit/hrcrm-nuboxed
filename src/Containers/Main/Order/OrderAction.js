@@ -1,5 +1,5 @@
 import * as types from "./OrderActionTypes";
-import { base_url, base_url2} from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import moment from "moment";
 
@@ -173,13 +173,17 @@ export const SubmitCustomerOrderId = (payment) => (dispatch) => {
       });
     });
 };
-
-export const getAllOrderList = (pageNo) => (dispatch) => {
+export const emptyOrders = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_ORDERS_LIST,
+  });
+};
+export const getAllOrderList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_ORDER_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/allphoneOrders/${pageNo}`, {
+    .get(`${base_url2}/phoneOrder/allphoneOrders/${orgId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -200,12 +204,38 @@ export const getAllOrderList = (pageNo) => (dispatch) => {
     });
 };
 
-export const getOrderById = (userId,pageNo) => (dispatch) => {
+export const getAllComepleteOrderList = (orgId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_COMPLETE_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeOrders/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_COMPLETE_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_COMPLETE_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getOrderById = (userId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/phoneOrders/${userId}/${pageNo}`,{
+    .get(`${base_url2}/phoneOrder/phoneOrders/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -226,6 +256,31 @@ export const getOrderById = (userId,pageNo) => (dispatch) => {
     });
 };
 
+export const getCompleteOrders = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completePhoneOrders/${userId}/${pageNo} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getOrderCount = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_COUNT_REQUEST,

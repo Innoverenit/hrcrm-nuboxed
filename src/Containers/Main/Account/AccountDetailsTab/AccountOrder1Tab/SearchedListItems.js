@@ -74,6 +74,8 @@ const SearchedListItems = (props) => {
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
 
                                                         <MoveToProductionArchieve
+                                                            orderId={props.orderId}
+                                                            orderProductLinkId={item.orderProductLinkId}
                                                             dispatchInd={item.dispatchInd}
                                                             productionProductId={item.productionProductId}
                                                         />

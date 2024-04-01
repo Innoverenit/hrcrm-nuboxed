@@ -469,6 +469,35 @@ export const getDistributorOrderByDistributorId = (distributorId, pageNo) => (
     });
 };
 
+export const getCompleteOrders = (distributorId, pageNo) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/complete-phoneOrders/${distributorId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  * renewal button
  */
@@ -3055,7 +3084,7 @@ export const searchItemInLocation = (data, cb) => (dispatch) => {
     });
 };
 
-export const movetoProductionArchieve = (data, productionProductId) => (
+export const movetoProductionArchieve = (data, productionProductId, orderId) => (
   dispatch
 ) => {
   dispatch({ type: types.MOVE_TO_PRODUCTION_ARCHIEVE_REQUEST });
@@ -3064,6 +3093,13 @@ export const movetoProductionArchieve = (data, productionProductId) => (
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
+    })
+    .then((res) => {
+      dispatch(getProductionOrderDetails(orderId))
+      dispatch({
+        type: types.MOVE_TO_PRODUCTION_ARCHIEVE_SUCCESS,
+        payload: res.data,
+      });
     })
     .catch((err) => {
       dispatch({

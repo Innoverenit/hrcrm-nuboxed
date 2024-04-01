@@ -43,7 +43,7 @@ function DistributorPaidForm(props) {
           remarks: "",
           docId: "",
           userId: props.userId,
-          orderPaymentType: "PhonePayment",
+          orderPaymentType: "Repair",
           transactionNumber: "",
           orderCurrencyId: props.particularRowData.orderCurrencyId || "",
           orgId: props.orgId,

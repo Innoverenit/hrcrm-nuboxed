@@ -130,6 +130,7 @@ const AddAccountForm = ({
           addDistributor(
             {
               ...values,
+              orgId: orgId,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
             },
@@ -185,7 +186,7 @@ const AddAccountForm = ({
                       defaultMessage="name"
                     />}
                     width={"100%"}
-                    // component={InputComponent}
+                    // isColumnWithoutNoCreate
                     setClearbitData={setClearbitData}
                     component={ClearbitImage}
                     accounts={accounts}
