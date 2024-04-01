@@ -19,6 +19,7 @@ import {
 } from "./EducationAction";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
 
 
@@ -131,14 +132,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"educationType"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"educationType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -160,6 +162,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingEducations && educations.length === 0 ? <NodataFoundPage /> : educations.slice().sort((a, b) => a.educationType.localeCompare(b.educationType)).map((region, index) => (
             <div className="card9" key={region.educationTypeId}>
             {/* Region name display or input field */}
@@ -186,7 +191,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.educationTypeId ? (
                     <div>
                         <button onClick={() => handleUpdateEducation(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                   <>
@@ -216,6 +221,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+        </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.educations && props.educations.length && props.educations[0].updationDate).format('YYYY-MM-DD')} by {props.educations && props.educations.length && props.educations[0].name}</div>
       </div>

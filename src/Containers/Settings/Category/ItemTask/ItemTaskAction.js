@@ -87,7 +87,7 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeItemTask = ( itemTaskId) => (dispatch) => {
+export const removeItemTask = ( itemTaskId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_ITEM_TASK_REQUEST,
@@ -99,6 +99,7 @@ export const removeItemTask = ( itemTaskId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getItemTaskCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Type deleted Successfully!',

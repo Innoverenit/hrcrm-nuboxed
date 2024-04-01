@@ -18,6 +18,7 @@ import {
   ClearReducerDataOfSector
 } from "./SectorsAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
 
 const Sectors = (props) => {
@@ -126,18 +127,20 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
+                        placeholder="Add Sector"
                       style={{border:"2px solid black"}}
                           type="text" 
                           value={newSectorName} 
@@ -154,12 +157,16 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingSectors && sectors.length === 0 ? <NodataFoundPage /> : sectors.slice().sort((a, b) => a.sectorName.localeCompare(b.sectorName)).map((region, index) => (
             <div className="card9" key={region.sectorId}>
             {/* Region name display or input field */}
             
             {editingId === region.sectorId ? (
                 <input
+                placeholder="Update Sector"
                 style={{border:"2px solid black"}}
                     type="text"
                     value={newSectorName}
@@ -179,7 +186,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.sectorId ? (
                     <div>
                         <button onClick={() => handleUpdateSector(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
@@ -190,7 +197,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId)}
+                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -205,6 +212,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+        </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.sectors && props.sectors.length && props.sectors[0].updationDate).format('YYYY-MM-DD')} by {props.sectors && props.sectors.length && props.sectors[0].updatedBy}</div>
       </div>

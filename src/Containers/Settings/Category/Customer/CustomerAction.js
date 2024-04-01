@@ -88,7 +88,7 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeCustomer = ( customerTypeId) => (dispatch) => {
+export const removeCustomer = ( customerTypeId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_CUSTOMER_REQUEST,
@@ -100,6 +100,7 @@ export const removeCustomer = ( customerTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getCustomerCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Type deleted Successfully!',

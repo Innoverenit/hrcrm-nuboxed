@@ -18,6 +18,7 @@ import {
   updateInvestor
 } from "../InvestorTab/InvestorListAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 
 
 
@@ -127,18 +128,20 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"investorCategory"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"investorCategory"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
+                            placeholder="Add Investor"
                       style={{border:"2px solid black"}}
                           type="text" 
                           value={newInvestorName} 
@@ -155,6 +158,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
 
             <div className="card9" key={region.investorCategoryId}>
@@ -162,6 +168,7 @@ className=" !text-base cursor-pointer text-[green]"/>
             
             {editingId === region.investorCategoryId ? (
                 <input
+                placeholder="Update Investor"
                 style={{border:"2px solid black"}}
                     type="text"
                     value={newInvestorName}
@@ -181,7 +188,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.investorCategoryId ? (
                     <div>
                         <button onClick={() => handleUpdateInvestor(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.investorCategoryId, region.name)} />
@@ -192,7 +199,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeInvestor(region.investorCategoryId)}
+                        onConfirm={() =>  props.removeInvestor(region.investorCategoryId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -207,6 +214,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+        </MainWrapper>
+            </div>
 
   <div class=" font-bold">Updated on {dayjs(props.investorListData && props.investorListData.length && props.investorListData[0].updationDate).format('YYYY-MM-DD')} by {props.investorListData && props.investorListData.length && props.investorListData[0].updatedBy}</div>
       </div>

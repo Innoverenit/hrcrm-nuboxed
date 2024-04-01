@@ -10,7 +10,6 @@ import dayjs from "dayjs";
 import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
 import {
   getSources,
   getSourceCount,
@@ -131,14 +130,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-                   <Tooltip placement="left" title="XL">
-
-          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"source"}`}>
-<DownloadIcon 
-   className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"source"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -160,6 +160,9 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingSources && sources.length === 0 ? <NodataFoundPage /> : sources.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.sourceId}>
             {/* Region name display or input field */}
@@ -186,7 +189,7 @@ return <div><BundleLoader/></div>;
                 {editingId === region.sourceId ? (
                     <div>
                         <button onClick={() => handleUpdateSource(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.sourceId, region.name)} />
@@ -197,7 +200,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeSource(region.sourceId)}
+                        onConfirm={() =>  props.removeSource(region.sourceId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -212,6 +215,8 @@ return <div><BundleLoader/></div>;
             </div>
         </div>
           ))}
+          </MainWrapper>
+            </div>
   <div class=" font-bold">Updated on {dayjs(props.sources && props.sources.length && props.sources[0].updationDate).format('YYYY-MM-DD')} by {props.sources && props.sources.length && props.sources[0].updatedBy}</div>
       </div>
   );

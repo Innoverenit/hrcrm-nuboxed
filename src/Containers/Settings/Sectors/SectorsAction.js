@@ -87,7 +87,7 @@ export const addSectors = (sectors,orgId,cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeSectors = ( sectorId) => (dispatch) => {
+export const removeSectors = ( sectorId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_SECTORS_REQUEST,
@@ -99,6 +99,7 @@ export const removeSectors = ( sectorId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getSectorCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Sector deleted Successfully!',

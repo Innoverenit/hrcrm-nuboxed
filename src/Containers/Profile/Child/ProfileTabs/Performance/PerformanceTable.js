@@ -1,8 +1,8 @@
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState,useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button } from 'antd';
-import { Tabs,Select } from 'antd';
+import { Tabs,Tooltip,Button } from 'antd';
+import { FormattedMessage } from "react-intl";
 import {getEmployeeKpiList,updateCompletedValue} from "../../../../Main/Teams/TeamsAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 const { TabPane } = Tabs;
@@ -66,13 +66,15 @@ const PerformanceTable = (props) => {
     const data = {
         userKpiLinkId: userKpiLinkId, 
        employeeId: props.employeeId,
-       month1CompletedValue: editedFields[userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[userKpiLinkId].month1CompletedValue : month1CompletedValue,
-       month2CompletedValue: editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue,
-       month3CompletedValue: editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue,
+       month1CompletedValue: parseFloat(editedFields[userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[userKpiLinkId].month1CompletedValue : month1CompletedValue),
+      //  month1CompletedValue: editedFields[userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[userKpiLinkId].month1CompletedValue : month1CompletedValue,
+      //  month2CompletedValue: editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue,
+       month2CompletedValue: parseFloat(editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue),
+       month3CompletedValue: parseFloat(editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue),
+      //  month3CompletedValue: editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue,
     };
   
     props.updateCompletedValue(data, props.employeeId,)
-     
      
       setEditedFields((prevFields) => ({ ...prevFields, [userKpiLinkId]: undefined }));
       setEditContactId(null);
@@ -117,148 +119,195 @@ const PerformanceTable = (props) => {
     )}
      </div>
      {activeTab&&(
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        {props.employeeKpiList.map((item) => (
-            <div key={item.id}>
-              <div className="flex justify-between mt-4" 
-            //   style={{ borderBottom: '3px dotted #515050' }}
-              >
-                <div className="flex justify-between w-2/3">
-                 
-                  <div className="Ccard__title w-40">
-                    <div className="text-base text-cardBody font-medium font-poppins">
-                    Name
-                    </div>
-                  
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        {item.kpiName}
-                        </div>
+        <div className=' flex  justify-center  sticky top-28 z-auto'>
+      <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+      <div className=" md:w-[4.5rem]">
+    <FormattedMessage
+              id="app.name"
+              defaultMessage="Name"
+            /></div>
+<div className=" md:w-[12.1rem]"><FormattedMessage
+              id="app.assigned"
+              defaultMessage="Assigned"
+            /></div>
+             <div className="md:w-[10.1rem]"><FormattedMessage
+              id="app.achieved"
+              defaultMessage="Achieved"
+            /></div>
+                  <div className="md:w-[10.1rem]"><FormattedMessage
+              id="app.actual"
+              defaultMessage="Actual"
+            /></div>
+   
+    
+    {/* <div className="w-[10.2rem]"></div> */}
+
+  </div>
+
+    
+  {props.employeeKpiList.map((item) => { 
+    
+    
+                return (
+                    <div>
+                        <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            >
+                                 
+                                 <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+<div className="flex max-sm:w-full items-center"> 
+
+      <div class="max-sm:w-full">
+                                    <Tooltip>
+                                      <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                      
+                                        <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            
+  {item.kpiName}
+ 
+   
+                                        </div>
+                                        </div>
+                                    </Tooltip>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="flex">
+
+                        
+                        <div className=" flex font-medium flex-col md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                               
+                               <div class="text-sm text-cardBody font-poppins">
+  
+                 <div className="font-normal text-sm text-cardBody font-poppins">
+                     {item.assignedValue && (
+                   <span>
                    
-                  </div>
-                
-                  {/* <div className="Ccard__title w-28">
-                    <div className="text-base text-cardBody font-medium font-poppins">
-                    Frequency
-                    </div>
-                
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <span>
-                          {item.frequency} 
-                        </span>
-                      </div>
-                  
-                  </div> */}
-                  <div className="Ccard__title w-36">
-                    <div className="text-base text-cardBody font-medium font-poppins">
-                    Assigned
-                    </div>
-                    {item.assignedValue && (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                       {` ${item.assignedValue} ${item.userCurrency}`}
-                        </div>
-                    )}
-                  
-                  </div>
-                  <div className="Ccard__title w-[9rem]">
-                    <div className="text-base text-cardBody font-medium font-poppins">
-                    Achieved 
-                    </div>
-                    {editContactId === item.userKpiLinkId ? (
-                      <>
-                      {/* <div class=" flex flex-row"> */}
-                      <input
-                      style={{border:"2px solid black"}}
-                      placeholder="Month1"
-                        value={editedFields[item.userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1CompletedValue : item.month1CompletedValue}
-                        onChange={(e) => {
-                          const inputValue = e.target.value;
-                          if (!isNaN(inputValue)) { // Check if the input is a number
-                              handleChange(item.userKpiLinkId, 'month1CompletedValue', inputValue);
-                          } else {
-                            alert("Please enter  number.");
-                         
-                          }
-                      }}
-                      />
-                      <input
-                      placeholder="Month2"
-                      style={{border:"2px solid black"}}
-                        value={editedFields[item.userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2CompletedValue : item.month2CompletedValue}
-                        onChange={(e) => {
-                          const inputValue = e.target.value;
-                          if (!isNaN(inputValue)) { // Check if the input is a number
-                              handleChange(item.userKpiLinkId, 'month2CompletedValue', inputValue);
-                          } else {
-                            alert("Please enter  number.");
-                         
-                          }
-                      }}
-                      />
-                      <input
-                      placeholder="Month3"
-                      style={{border:"2px solid black"}}
-                        value={editedFields[item.userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3CompletedValue : item.month3CompletedValue}
-                        onChange={(e) => {
-                          const inputValue = e.target.value;
-                          if (!isNaN(inputValue)) { // Check if the input is a number
-                              handleChange(item.userKpiLinkId, 'month3CompletedValue', inputValue);
-                          } else {
-                            alert("Please enter  number.");
-                         
-                          }
-                      }}
-                      />
-                      {/* </div> */}
-                      </>
-                    ) : (
-                      <>
-                      {/* {item.completedValue && ( */}
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <span> {` ${item.month1CompletedValue}${item.month2CompletedValue} ${item.month3CompletedValue} 
-                        `}
-                       
-                        </span>
-                      </div>
-                      {/* )} */}
-                      </>
-                    )}
-                  </div>
-                  <div className="Ccard__title w-36">
-                    <div className="text-base text-cardBody font-medium font-poppins">
-                    Actual
-                    </div>
-                    {item.actualCompletedValue && (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-  {` ${item.actualCompletedValue} ${item.userCurrency}`}
-                        </div>
-                          )} 
-                  
-                  </div>
-                  <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
-                    {editContactId === item.userKpiLinkId ? (
-                        <>
-                      <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1CompletedValue,item.month2CompletedValue,item.month3CompletedValue)}>
-                        Save
-                      </Button>
-                        <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <BorderColorIcon
-                        tooltipTitle="Edit"
-                        iconType="edit"
-                        onClick={() => handleEditClick(item.userKpiLinkId)}
-                        style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-                      />
-                    )}
-                  </div>
-                </div>
+                    {` ${item.assignedValue} ${item.userCurrency}`}
+                    </span>
+                     )}
+                 </div>
+           
+                               </div>
+                           </div>
+                           <div className=" flex font-medium flex-col md:w-[18.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                               
+                               <div class="text-sm text-cardBody font-poppins">
+                               {editContactId === item.userKpiLinkId ? (
+              <>
+              <div class=" flex flex-row">
+              <input
+              style={{border:"2px solid black",width:"6rem"}}
+              placeholder="Month1"
+                value={editedFields[item.userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1CompletedValue : item.month1CompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month1CompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+              &nbsp;
+              <input
+              placeholder="Month2"
+              style={{border:"2px solid black",width:"6rem"}}
+                value={editedFields[item.userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2CompletedValue : item.month2CompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month2CompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+                 &nbsp;
+              <input
+              placeholder="Month3"
+              style={{border:"2px solid black",width:"6rem"}}
+                value={editedFields[item.userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3CompletedValue : item.month3CompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month3CompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+                 &nbsp;
               </div>
-            </div>
-          ))}
-      </div>
+              </>
+            ) : (
+              <>
+              {/* {item.completedValue && ( */}
+              <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
+              <div class=" flex flex-col">
+    <span className='mr-2'>Month 1</span>
+    <span>{`${item.month1CompletedValue}`}</span>
+  </div>
+  <div class=" flex flex-col">
+    <span className='mr-2'>Month 2</span>
+    <span className='ml-2'>{`${item.month2CompletedValue}`}</span>
+  </div>
+  <div class=" flex flex-col">
+    <span className='mr-2'>Month 3</span>
+    <span className='ml-2'>{`${item.month3CompletedValue}`}</span>
+  </div>
+              </div>
+              
+              {/* )} */}
+              </>
+            )}
+                               </div>
+                           </div>
+                          <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                          {item.actualCompletedValue && (
+              <div className="font-normal text-sm text-cardBody font-poppins">
+{` ${item.actualCompletedValue} ${item.userCurrency}`}
+                </div>
+                  )} 
+                          </div>
+                        
+                          </div>
+                          <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
+                {editContactId === item.userKpiLinkId ? (
+                    <>
+                   <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1CompletedValue,item.month2CompletedValue,item.month3CompletedValue)}>
+                Save
+              </Button>
+                    <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
+                    Cancel
+                  </Button>
+                  </>
+                  
+                ) : (
+                  <BorderColorIcon
+                    tooltipTitle="Edit"
+                    iconType="edit"
+                     onClick={() => handleEditClick(item.userKpiLinkId)}
+                    style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}
+                  />
+                )}
+              </div>
+                         
+
+                          
+                         
+                        </div>
+                    </div>
+
+
+                )
+            })}
+                
+  </div>
+  </div>
      )}
     </>
   );

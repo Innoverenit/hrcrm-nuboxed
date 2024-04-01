@@ -184,6 +184,7 @@ function KpiList(props) {
         <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
                           <Field
                             // isRequired
+                            onChange={(e) => setFieldValue("assignedValue", parseFloat(e.target.value))}
                             name="assignedValue"
                             type="number"
                             validate={(value) => {
@@ -202,6 +203,7 @@ function KpiList(props) {
                         <div class=" w-[37%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Weitage</label>&nbsp;
                           <Field
+                            onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
                             // isRequired
                             name="weitageValue"
                             type="number"
@@ -254,6 +256,7 @@ const mapStateToProps = ({ teams, auth, kpi }) => ({
     userDetails: auth.userDetails,
     kpiList:teams.kpiList,
     kpiListData:kpi.kpiListData,
+    addingKpi:teams.addingKpi,
     employeeKpiList:teams.employeeKpiList,
 });
 

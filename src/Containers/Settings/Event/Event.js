@@ -19,6 +19,7 @@ import {
   ClearReducerDataOfEvent
 } from "./EventAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
 const Event = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -132,14 +133,15 @@ const {
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-          <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"eventType"}`}>
-<DownloadIcon 
-   className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[20rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"eventType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -161,6 +163,9 @@ const {
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingEvents && events.length === 0 ? <NodataFoundPage /> : events.slice().sort((a, b) => a.eventType.localeCompare(b.eventType)).map((region, index) => (
             <div className="card9" key={region.eventTypeId}>
             {/* Region name display or input field */}
@@ -187,7 +192,7 @@ const {
                 {editingId === region.eventTypeId ? (
                     <div>
                         <button onClick={() => handleUpdateEvent(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.eventTypeId, region.eventType)} />
@@ -213,6 +218,8 @@ const {
             </div>
         </div>
       ))}
+      </MainWrapper>
+            </div>
   <div class=" font-bold">Updated on {dayjs(props.events && props.events.length && props.events[0].updationDate).format('YYYY-MM-DD')} by {props.events && props.events.length && props.events[0].name}</div>
       </div>
   );

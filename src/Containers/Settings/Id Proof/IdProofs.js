@@ -18,6 +18,7 @@ import {
   ClearReducerDataOfIdproof
 } from "./IdProofAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 const SingleIdProof = lazy(() =>
   import("./SingleIdProof")
 );
@@ -129,14 +130,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"idProofType"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"idProofType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -158,6 +160,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingIdProofs && idProofs.length === 0 ? <NodataFoundPage /> : idProofs.slice().sort((a, b) => a.IdProofType.localeCompare(b.IdProofType)).map((region, index) => (
             <div className="card9" key={region.IdProofTypeId}>
             {/* Region name display or input field */}
@@ -184,7 +189,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.IdProofTypeId ? (
                     <div>
                         <button onClick={() => handleUpdateIdProof(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                   <>
@@ -214,6 +219,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+        </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.idProofs && props.idProofs.length && props.idProofs[0].updationDate).format('YYYY-MM-DD')} by {props.idProofs && props.idProofs.length && props.idProofs[0].name}</div>
       </div>

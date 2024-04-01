@@ -19,6 +19,7 @@ import {
   ClearReducerDataOfDocument
 } from "./DocumentsAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 const DocumentStatusToggle = lazy(() =>
   import("../Documents/Child/DocumentStatusToggle")
 );
@@ -139,14 +140,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -168,6 +170,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDocuments && documents.length === 0 ? <NodataFoundPage /> : documents.slice().sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)).map((region, index) => (
             <div className="card9" key={region.documentTypeId}>
             {/* Region name display or input field */}
@@ -217,7 +222,7 @@ className=" !text-base cursor-pointer text-[green]"/>
   {editingId === region.documentTypeId ? (
     <div>
       <button onClick={() => handleUpdateDocument(region)}>Save</button>
-      <button onClick={cancelEdit}>Cancel</button>
+      <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
     </div>
   ) : (
     <>
@@ -252,6 +257,8 @@ className=" !text-base cursor-pointer text-[green]"/>
 
         </div>
         ))}
+        </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.documents && props.documents.length && props.documents[0].updationDate).format('YYYY-MM-DD')} by {props.documents && props.documents.length && props.documents[0].name}</div>
       </div>

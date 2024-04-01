@@ -16,6 +16,7 @@ import {
   } from "./RegionAction";
 import AddRegionModal from './AddRegionModal';
 import { BundleLoader } from '../../../../Components/Placeholder';
+import { MainWrapper } from '../../../../Components/UI/Layout';
 
 const data = [
     { id: 1, region: "Europe" },
@@ -168,6 +169,9 @@ if (props.fetchingRegions) {
                 )}
            
             </div>
+            <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
             {regions.map(region => (
               <div className="card9" key={region.regionsId}>
               {/* Region name display or input field */}
@@ -196,7 +200,7 @@ if (props.fetchingRegions) {
                   {editingId === region.regionsId ? (
                       <div>
                           <button onClick={() => handleUpdateRegion(region)}>Save</button>
-                          <button onClick={cancelEdit}>Cancel</button>
+                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
                       <EditOutlined onClick={() => editRegion(region.regionsId, region.regions,region)} />
@@ -222,6 +226,8 @@ if (props.fetchingRegions) {
               </div>
           </div>
             ))}
+            </MainWrapper>
+            </div>
              <div class=" font-bold">Updated on {dayjs(props.regions && props.regions.length && props.regions[0].updationDate).format('YYYY-MM-DD')} by {props.regions && props.regions.length && props.regions[0].updatedBy}</div>
         </div>
         <AddRegionModal

@@ -18,6 +18,7 @@ import {
   ClearReducerDataOfDesignation
 } from "./DesignationAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
 
 const Designation = (props) => {
@@ -128,14 +129,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"designation"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"designation"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -157,6 +159,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDesignations && designations.length === 0 ? <NodataFoundPage /> : designations.slice().sort((a, b) => a.designationType.localeCompare(b.designationType)).map((region, index) => (
             <div className="card9" key={region.designationTypeId}>
             {/* Region name display or input field */}
@@ -183,7 +188,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.designationTypeId ? (
                     <div>
                         <button onClick={() => handleUpdateDesignation(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                   <>
@@ -198,7 +203,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeDesignations(region.designationTypeId)}
+                        onConfirm={() =>  props.removeDesignations(region.designationTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -213,6 +218,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+        </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.designations && props.designations.length && props.designations[0].updationDate).format('YYYY-MM-DD')} by {props.designations && props.designations.length && props.designations[0].name}</div>
       </div>

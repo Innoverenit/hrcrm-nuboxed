@@ -89,7 +89,7 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removePayment = ( paymentCatagoryId) => (dispatch) => {
+export const removePayment = ( paymentCatagoryId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_PAYMENT_REQUEST,
@@ -101,6 +101,7 @@ export const removePayment = ( paymentCatagoryId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getPaymentCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Payment deleted Successfully!',

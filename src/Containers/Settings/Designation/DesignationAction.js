@@ -88,7 +88,7 @@ export const addDesignations = (designation,orgId, cb) => (dispatch) => {
 /**
  * remove a new DESIGNATIONS
  */
-export const removeDesignations = (designationTypeId) => (dispatch) => {
+export const removeDesignations = (designationTypeId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_DESIGNATIONS_REQUEST,
@@ -100,6 +100,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getDesignationCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Designation deleted Successfully!',

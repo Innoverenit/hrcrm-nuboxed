@@ -88,7 +88,7 @@ export const addShipBy = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeShipBy = ( shipById) => (dispatch) => {
+export const removeShipBy = ( shipById,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_SHIPBY_REQUEST,
@@ -100,7 +100,7 @@ export const removeShipBy = ( shipById) => (dispatch) => {
         },
       })
       .then((res) => {
-     
+        dispatch(getShipByCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'ShipBy deleted Successfully!',

@@ -86,7 +86,7 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeSource = ( sourceId) => (dispatch) => {
+export const removeSource = ( sourceId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_SOURCE_REQUEST,
@@ -98,6 +98,7 @@ export const removeSource = ( sourceId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getSourceCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Source deleted successfully!',
