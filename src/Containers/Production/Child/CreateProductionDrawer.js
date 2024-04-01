@@ -19,6 +19,8 @@ class CreateProductionDrawer extends Component {
 
           width={drawerWidth}
           visible={openProductiondrawer}
+          destroyOnClose
+          closable
           onClose={() => handleCreateProduction(false)}
           footer={null}
         >

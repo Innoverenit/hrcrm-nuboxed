@@ -27,7 +27,10 @@ const initialState = {
 
   fetchingArchieveProduction: false,
   fetchingArchieveProductionError: false,
-  archieveProduction: []
+  archieveProduction: [],
+  updateProductionStatus:false,
+  updateProductionStatusError:false,
+
 
 };
 export const productionReducer = (state = initialState, action) => {
@@ -153,6 +156,23 @@ export const productionReducer = (state = initialState, action) => {
         fetchingArchieveProduction: false,
         fetchingArchieveProductionError: true,
       };
+
+      case types.UPDATE_PRODCUTION_STATUS_REQUEST:
+        return { ...state,updateProductionStatus: true };
+      case types.UPDATE_PRODCUTION_STATUS_SUCCESS:
+        return {
+          ...state,
+          updateProductionStatus: false,
+             productionByLocsId: state.productionByLocsId.map((item) => {
+            if (item.productionProductId === action.payload.productionProductId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_PRODCUTION_STATUS_FAILURE:
+        return { ...state, updateProductionStatus: false,updateProductionStatusError:true, };
 
 
     default:

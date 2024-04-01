@@ -215,3 +215,30 @@ export const getArchieveListOfProduction = (locationDetailsId, userId, pageNo) =
       });
     });
 };
+export const updateProStatus = (data,productionProductId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PRODCUTION_STATUS_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/updateStatus/${productionProductId}`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PRODCUTION_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_PRODCUTION_STATUS_FAILURE,
+        payload:err
+      });
+    });
+};
