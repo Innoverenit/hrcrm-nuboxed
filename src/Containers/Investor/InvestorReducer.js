@@ -94,6 +94,10 @@ const initialState = {
   fetchingInvestorDetailsByIdError: false,
   investorDetails: {},
 
+  fetchingInvestorAllRecords: false,
+  fetchingInvestorAllRecordsError: false,
+  allinvestorRecord:{},
+
   fetchingINVWeightedValue: false,
   fetchingINVWeightedValueError: false,
   InvWeightedValue: {},
@@ -452,6 +456,21 @@ export const investorReducer = (state = initialState, action) => {
                               ...state,
                               fetchingInvestorRecords: false,
                               fetchingInvestorRecordsError: true,
+                            };
+
+                            case types.GET_INVESTOR_ALL_RECORDS_REQUEST:
+                            return { ...state, fetchingInvestorAllRecords: true };
+                          case types.GET_INVESTOR_ALL_RECORDS_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingInvestorAllRecords: false,
+                              allinvestorRecord: action.payload,
+                            };
+                          case types.GET_INVESTOR_ALL_RECORDS_FAILURE:
+                            return {
+                              ...state,
+                              fetchingInvestorAllRecords: false,
+                              fetchingInvestorAllRecordsError: true,
                             };
 
                             

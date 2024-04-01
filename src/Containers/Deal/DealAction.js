@@ -397,12 +397,12 @@ export const getdealsTeamRecord = (userId) => (dispatch) => {
     });
 };
 
-export const getdealsAllRecord = (userId) => (dispatch) => {
+export const getdealsAllRecord = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_DEALS_ALL_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunity/record/count/${userId}`, {
+    .get(`${base_url}/investorOpportunity/all/record/count/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

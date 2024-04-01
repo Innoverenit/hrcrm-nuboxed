@@ -424,12 +424,12 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       });
   };
 
-  export const getPitchAllRecords = (userId) => (dispatch) => {
+  export const getPitchAllRecords = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_PITCH_ALL_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/investorleads/all/count`, {
+      .get(`${base_url}/investorleads/all/record/count/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

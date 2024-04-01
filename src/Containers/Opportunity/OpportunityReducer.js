@@ -265,6 +265,10 @@ const initialState = {
   linkingProfileToOpportunityError: false,
   profileRecruit:[],
 
+  fetchingTeamOpportunity: false,
+  fetchingTeamOpportunityError: false,
+  teamOpportunity:[],
+
   addingRecruitmentProfile: false,
   addingRecruitmentProfileError: false,
 
@@ -2498,6 +2502,21 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                               fetchingAllOpportunity: false,
                                               fetchingAllOpportunityError: true,
                                             };
+
+                                            case types.GET_TEAM_OPPORTUNITY_REQUEST:
+                                              return { ...state, fetchingTeamOpportunity: true };
+                                            case types.GET_TEAM_OPPORTUNITY_SUCCESS:
+                                              return {
+                                                ...state,
+                                                fetchingTeamOpportunity: false,
+                                                teamOpportunity: action.payload,
+                                              };
+                                            case types.GET_TEAM_OPPORTUNITY_FAILURE:
+                                              return {
+                                                ...state,
+                                                fetchingTeamOpportunity: false,
+                                                fetchingTeamOpportunityError: true,
+                                              };
 
                                             case types.EMPTY_OPPORTUNITY_LIST:
         return { ...state, opportunityByUserId: [] }; 

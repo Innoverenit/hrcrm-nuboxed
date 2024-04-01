@@ -63,6 +63,7 @@ class ContactActionRight extends React.Component {
           Import
         </Button>
         )} */}
+        <div className="max-sm:hidden">
            <Tooltip placement="left" title="Import">
             {user.contactCreateInd === true &&  user.crmInd === true && (
           <Button 
@@ -72,6 +73,7 @@ class ContactActionRight extends React.Component {
           </Button>
              )}
         </Tooltip>
+        </div>
         {/* {this.props.viewType === "table" ? ( */}
           
         <Tooltip placement="left" title="Create">
