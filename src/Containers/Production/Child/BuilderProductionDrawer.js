@@ -14,6 +14,8 @@ class BuilderProductionDrawer extends Component {
       <>
         <StyledDrawer
           title={`Product Builder for ${particularDiscountData.manufactureId}`}
+          destroyOnClose
+          closable
           width={drawerWidth}
           visible={openbUILDERProductiondrawer}
           onClose={() => handleBuilderProduction(false)}

@@ -25,6 +25,7 @@ function TagBrandModel(props) {
                     {props.particularDiscountData.mainInd ?
                         <TaggedBrandTable particularDiscountData={props.particularDiscountData} />
                         : <BrandModelTable particularDiscountData={props.particularDiscountData} />}
+                       
                 </Suspense>
 
             </StyledDrawer>

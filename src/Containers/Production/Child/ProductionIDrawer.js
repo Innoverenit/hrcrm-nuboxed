@@ -16,7 +16,8 @@ class ProductionIDrawer extends Component {
             id="app.production"
             defaultMessage="Production Id"
           />}
-
+          destroyOnClose
+          closable
           width={drawerWidth}
           visible={clickedProductionIdrwr}
           onClose={() => handleProductionIDrawer(false)}

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm } from "antd";
+import { Tooltip, Button, Popconfirm,Switch } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import dayjs from "dayjs";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
-import { getProductionsbyLocId, handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
+import { getProductionsbyLocId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import PrintIcon from '@mui/icons-material/Print';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -44,11 +45,9 @@ function ProductionCardView(props) {
         }, 100);
     };
 
-    function StatusIcon({ type, size, iconType, tooltip, status, id, onClick, productId, indStatus }) {
-        const start = type;
-        console.log(start);
-        //////debugger;
-        if (status === type) {
+    function StatusIcon({ type, role, iconType, tooltip,size, status, id, onClick, productId, indStatus }) {
+       
+        if (role === type) {
             size = "30px";
         } else {
             size = "16px";
@@ -57,9 +56,9 @@ function ProductionCardView(props) {
             <Tooltip title={tooltip}>
                 <Button
                     className="p-[6px] border-transparent"
-                    ghost={status !== type}
+                    ghost={role !== type}
                     style={{
-                        color: indStatus === type ? "orange" : "grey",
+                        color: role === type ? "orange" : "grey",
                     }}
                     onClick={onClick}
                 >
@@ -69,20 +68,6 @@ function ProductionCardView(props) {
         );
     }
 
-    const [active, setActive] = useState("To Start")
-
-    function handleQCStatus(type, item) {
-        setActive(type)
-
-        // const data = {
-        //     qcStatus: type,
-        //     orderproductId: props.rowData.orderId,
-        //     productId: item.productId,
-        //     qcTechnicianId: props.userId,
-        //     qcInspectionInd: type === "Complete" ? 2 : 1
-        // }
-        // props.updateQCStatus(data, item.productId, props.rowData.orderproductId, handleCallBack)
-    }
     const handleCallBack = () => {
         // props.getPhoneOrderIdByUser(props.rowData.orderproductId, props.userId)
         // props.getOrderByUser(props.locationId, props.userId)
@@ -99,7 +84,8 @@ function ProductionCardView(props) {
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[10rem]">Id</div>
+                        <div className=" md:w-[10rem]">ID</div>
+                        <div className=" md:w-[7rem]">Created</div>
                         <div className=" md:w-[7rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
                         <div className="md:w-[5rem]">Attribute</div>
@@ -125,6 +111,8 @@ function ProductionCardView(props) {
                         {productionByLocsId.length ?
                             <>
                                 {productionByLocsId.map((item) => {
+                                     const currentdate = dayjs().format("DD/MM/YYYY");
+                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
@@ -138,6 +126,20 @@ function ProductionCardView(props) {
                                                             }}
                                                         >
                                                             {item.manufactureId}
+                                                            &nbsp;&nbsp;
+                                {date === currentdate ? (
+                                  <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
+                                  >
+                                    New
+                                  </div>
+                                ) : null}
+                                                        </div>
+
+                                                    </div>
+                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            {date}
                                                         </div>
 
                                                     </div>
@@ -186,26 +188,25 @@ function ProductionCardView(props) {
                                                                 type="In Progress"
                                                                 iconType="fa-hourglass-half"
                                                                 tooltip="In Progress"
-                                                                id={item.productId}
-                                                                indStatus={item.qcStatus}
-                                                                // productId={RowData.productId}
-                                                                status={active}
+                                                                role={item.status}
                                                                 onClick={() => {
-                                                                    handleQCStatus("In Progress", item);
-                                                                }}
+                                                                    props.updateProStatus({ 
+                                                                        status:"In Progress",
+                                                                  },item.productionProductId);
+                                                                  }}
                                                             />
+                                                            {item.status==="Complete" ? 
                                                             <StatusIcon
                                                                 type="Complete"
                                                                 iconType="fa-hourglass"
                                                                 tooltip="Complete"
-                                                                indStatus={item.qcStatus}
-                                                                status={active}
-                                                                id={item.productId}
-                                                                // productId={RowData.productId}
+                                                                role={item.status}
                                                                 onClick={() => {
-                                                                    handleQCStatus("Complete", item);
-                                                                }}
-                                                            />
+                                                                    props.updateProStatus({ 
+                                                                        status:"Complete",
+                                                                  },item.productionProductId);
+                                                                  }}
+                                                            />:null}
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
@@ -215,7 +216,7 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-
+                                                {item.status==="Complete" ? 
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         <Button
                                                             type="primary"
@@ -226,11 +227,15 @@ function ProductionCardView(props) {
                                                         >
                                                             Add Parts
                                                         </Button>
-                                                    </div>
+                                                    </div>:null}
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
+                                                    <Switch
+        checkedChildren="Yes"
+        unCheckedChildren="No"
+        // checked={checked} onChange={handleToggle}
+         />
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -297,7 +302,8 @@ const mapStateToProps = ({ production, auth, }) => ({
     locationId: auth.userDetails.locationId,
     user: auth.userDetails,
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
-    clickedProductionIdrwr: production.clickedProductionIdrwr
+    clickedProductionIdrwr: production.clickedProductionIdrwr,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -305,7 +311,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getProductionsbyLocId,
             handleBuilderProduction,
-            handleProductionIDrawer
+            handleProductionIDrawer,
+            updateProStatus
         },
         dispatch
     );

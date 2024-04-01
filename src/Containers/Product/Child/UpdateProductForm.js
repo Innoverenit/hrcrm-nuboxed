@@ -313,7 +313,7 @@ class Productform extends Component {
                         placeholder="Search or Create"
                         optionLabel="categoryName"
                         optionValue="categoryName"
-                        url={`${base_url2}/product/category`}
+                        url={`${base_url2}/masterlist/masterList`}
                         component={LazySelect}
                         isColumn
                         inlineLabel
