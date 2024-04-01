@@ -18,14 +18,14 @@ const DealActionLeft = (props) => {
     if (props.viewType === "table") {
       props.getdealsRecord(props.userId);
     } else if (props.viewType === "all") {
-      props.getdealsAllRecord(props.userId);
+      props.getdealsAllRecord(props.orgId);
     } else if (props.viewType === "lost") {
       props.getlostRecords(props.userId);
       
     } else if (props.viewType === "teams") {
       props.getdealsTeamRecord(props.userId);
     } 
-  }, [props.viewType, props.userId]);
+  }, [props.viewType, props.userId,props.orgId]);
   
   const {
     viewType,
@@ -304,6 +304,7 @@ const mapStateToProps = ({ deal, auth, opportunity }) => ({
   user: auth.userDetails,
   recordData: opportunity.recordData,
   lostDealData:deal.lostDealData,
+  orgId: auth.userDetails.organizationId,
   dealsTeamRecord:deal.dealsTeamRecord,
   dealsAllRecord:deal.dealsAllRecord,
   userId: auth.userDetails.userId,

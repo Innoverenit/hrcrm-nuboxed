@@ -32,12 +32,13 @@ class LeadsActionRight extends React.Component {
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
             Add
           </Button>
+          <div className="max-sm:hidden">
           <Button type="primary"  
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
             Import
           </Button>
-        
+          </div>
         </div>
         )} 
          

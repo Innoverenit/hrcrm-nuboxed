@@ -55,11 +55,11 @@ const PitchActionLeft = (props) => {
     if (props.viewType === "card") {
       props.getPitchCount(props.userId);
     } else if (props.viewType === "all") {
-      props.getPitchAllRecords();
+      props.getPitchAllRecords(props.orgId);
     } else if (props.viewType === "teams") {
       props.getTeamsPitchCount(props.userId);
     }
-  }, [props.viewType, props.userId]);
+  }, [props.viewType, props.userId,props.orgId]);
   // useEffect(() => {
   //   props.getPitchCount(props.userId)
   //   props.getPitchAllRecords
@@ -219,6 +219,7 @@ const mapStateToProps = ({pitch,auth}) => ({
   teamsPitchCount:pitch.teamsPitchCount,
   userId: auth.userDetails.userId,
   user:auth.userDetails,
+  orgId: auth.userDetails.organizationId,
   pitchAllRecord:pitch.pitchAllRecord,
 
 });

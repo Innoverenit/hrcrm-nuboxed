@@ -140,7 +140,7 @@ function OpportunityCardList(props) {
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7rem] 
-                  text-[#444444] m-3 p-1 w-[15vw] flex flex-col  ">
+                  text-[#444444] m-3 p-1 w-[15vw] max-sm:w-wk flex flex-col  ">
         <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar
@@ -165,7 +165,7 @@ title={`${item.opportunityName}`}>
           </div> 
           </div>
         </div>
-        <div className="flex justify-around">
+        <div className="flex justify-around max-sm:justify-between">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -192,7 +192,7 @@ title={`${item.opportunityName}`}>
           </div>
           </div>
           </div>
-          <div className="flex justify-around mt-1">      
+          <div className="flex justify-around mt-1 max-sm:justify-between">      
 <div>
 <span>
 <Dropdown

@@ -6,6 +6,7 @@ import {
   handleOpportunityModal,
   setOpportunityViewType,
 } from "./OpportunityAction";
+const OpportunityTeamsCard = lazy(() => import("./Child/OpportunityTable/OpportunityTeamsCard"));
 const OpportunityBoard = lazy(() => import("./Child/OpportunityBoard"));
 const OpportunityWonCard = lazy(() => import("./Child/OpportunityTable/OpportunityWonCard"));
 const OpportunityCardView = lazy(() => import("./OpportunityCardView"));
@@ -79,6 +80,10 @@ class Opportunity extends Component {
              this.props.viewType === "close" ?
                     // <OpportunityCloseTable/>
                     <OpportunityCloseCard/>
+                     :
+                     this.props.viewType === "teams" ?
+                    // <OpportunityCloseTable/>
+                    <OpportunityTeamsCard/>
                      :
              this.props.viewType === "lost" ?
              (  <OpportunityLostCard/> )

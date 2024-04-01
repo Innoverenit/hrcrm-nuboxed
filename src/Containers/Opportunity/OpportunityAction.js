@@ -3206,6 +3206,33 @@ export const getFullOpportunity = (pageNo) => (dispatch) => {
     });
 };
 
+export const getTeamOpportunity = (pageNo) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_TEAM_OPPORTUNITY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/all/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAM_OPPORTUNITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TEAM_OPPORTUNITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const emptyOpportunity = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_OPPORTUNITY_LIST, 
