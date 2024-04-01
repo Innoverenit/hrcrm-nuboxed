@@ -477,7 +477,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       type: types.GET_INVESTOR_TEAM_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/team/count/${userId}`, {
+      .get(`${base_url}/investor/teams/count/${userId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -753,13 +753,13 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
-  export const getTeamInvestor = (userId,pageNo,filter) => (dispatch) => {
+  export const getTeamInvestor = (userId,pageNo) => (dispatch) => {
  
     dispatch({
       type: types.GET_TEAM_INVESTOR_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/team/${userId}/${pageNo}/${filter}`, {
+      .get(`${base_url}/investor/teams/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

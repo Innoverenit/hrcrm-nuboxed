@@ -190,7 +190,7 @@ export const getTeamContactInvest = (userId) => (dispatch) => {
     type: types.GET_TEAM_CONTACTINVEST_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investor/contact/team/count/${userId}`, {
+    .get(`${base_url}/investor/contact/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -251,13 +251,13 @@ export const handleContactInvestNotesDrawerModal = (modalProps) => (dispatch) =>
 };
 
 
-export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
+export const getAllContactInvest = (pageNo,type) => (dispatch) => {
  
   dispatch({
     type: types.GET_ALL_CONTACT_INVEST_REQUEST,
   });
   axios
-    .get(`${base_url}/investor/contact/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/all/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -282,13 +282,13 @@ export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
     });
 };
 
-export const getTeamsContactInvest = (pageNo) => (dispatch) => {
+export const getTeamsContactInvest = (userId,pageNo) => (dispatch) => {
  
   dispatch({
     type: types.GET_TEAMS_CONTACT_INVEST_REQUEST,
   });
   axios
-    .get(`${base_url}/investor/contact/${pageNo}`, {
+    .get(`${base_url}/investor/contact/teams/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

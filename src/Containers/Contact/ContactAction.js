@@ -1119,7 +1119,7 @@ export const getContactTeamRecord = (userId) => (dispatch) => {
     type: types.GET_CONTACT_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/team/count/${userId}`, {
+    .get(`${base_url}/contact/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1187,12 +1187,12 @@ export const handleContactPulseDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const getAllContact = (pageNo,filter) => (dispatch) => {
+export const getAllContact = (pageNo,type) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/all/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
