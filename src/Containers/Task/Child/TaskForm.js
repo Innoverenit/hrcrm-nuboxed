@@ -1,7 +1,7 @@
 import React, {useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip, Switch } from "antd";
+import { Button, Tooltip, Switch ,Select} from "antd";
 import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
@@ -31,7 +31,7 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import { Select } from "antd";
+
 import moment from "moment";
 import { Listbox } from '@headlessui/react';
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
@@ -309,6 +309,137 @@ const [priority,setpriority]=useState(props.selectedTask
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.assignedToList.find((item) => item.empName === selected);
+    const [customer, setCustomer] = useState([]);
+    const [selectedCustomer, setSelectedCustomer] = useState(null);
+    const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
+    const [touchedCustomer, setTouchedCustomer] = useState(false);
+ 
+    const [contact, setContact] = useState([]);
+    const [selectedContact, setSelectedContact] = useState(null);
+    const [isLoadingContact, setIsLoadingContact] = useState(false);
+    const [touchedContact, setTouchedContact] = useState(false);
+ 
+ 
+    const [opportunity, setOpportunity] = useState([]);
+    const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
+ 
+ 
+    const fetchCustomer = async () => {
+     setIsLoadingCustomer(true);
+     try {
+       const apiEndpoint = `
+       https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+       const response = await fetch(apiEndpoint,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${props.token}`,
+           'Content-Type': 'application/json',
+           // Add any other headers if needed
+         },
+       });
+       const data = await response.json();
+       setCustomer(data);
+     } catch (error) {
+       console.error('Error fetching users:', error);
+     } finally {
+       setIsLoadingCustomer(false);
+     }
+   };
+ 
+   const handleSelectChangeCustomer = (value) => {
+     setSelectedCustomer(value)
+     console.log('Selected user:', value);
+   };
+ 
+   const handleSelectCustomerFocus = () => {
+     if (!touchedCustomer) {
+      
+       fetchCustomer();
+ 
+       setTouchedCustomer(true);
+     }
+   };
+ 
+ 
+ 
+   const fetchContact = async () => {
+     setIsLoadingContact(true);
+     try {
+       const apiEndpoint = `
+       https://develop.tekorero.com/employeePortal/api/v1/contact/user/${props.userId}`;
+       const response = await fetch(apiEndpoint,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${props.token}`,
+           'Content-Type': 'application/json',
+           // Add any other headers if needed
+         },
+       });
+       const data = await response.json();
+       setContact(data);
+     } catch (error) {
+       console.error('Error fetching users:', error);
+     } finally {
+       setIsLoadingContact(false);
+     }
+   };
+ 
+ 
+   const handleSelectChangeContact = (value) => {
+     setSelectedContact(value)
+     console.log('Selected user:', value);
+   };
+ 
+   const handleSelectContactFocus = () => {
+     if (!touchedContact) {
+      
+       fetchContact();
+ 
+       setTouchedContact(true);
+     }
+   };
+ 
+ 
+ 
+   const fetchOpportunity = async () => {
+     setIsLoadingOpportunity(true);
+     try {
+       const apiEndpoint = `
+       
+ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/${props.userId}`;
+       const response = await fetch(apiEndpoint,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${props.token}`,
+           'Content-Type': 'application/json',
+           // Add any other headers if needed
+         },
+       });
+       const data = await response.json();
+       setOpportunity(data);
+     } catch (error) {
+       console.error('Error fetching users:', error);
+     } finally {
+       setIsLoadingOpportunity(false);
+     }
+   };
+ 
+ 
+   const handleSelectChangeOpportunity = (value) => {
+     setSelectedOpportunity(value)
+     console.log('Selected user:', value);
+   };
+ 
+   const handleSelectOpportunityFocus = () => {
+     if (!touchedOpportunity) {
+      
+       fetchOpportunity();
+ 
+       setTouchedOpportunity(true);
+     }
+   };
    console.log("workflow",selectedWorkflow);
    console.log("recruitWorkflowTask",props.recruitWorkflowTask);
     return (
@@ -323,12 +454,14 @@ const [priority,setpriority]=useState(props.selectedTask
                   taskTypeId: "",
                   taskName: "",
                   documentId:"",
+                  contactId: selectedContact,
+                  opportunityId:selectedOpportunity,
                   link:"",
                   taskTypeId:selectedTaskType,
                   taskChecklistId:selectedWorkflow,
                   fullName: "",
                   assignedDate: assignedDate || dayjs(),
-                  customerId: "",
+                  customerId: selectedCustomer,
                   projectName: "",
                
                   taskChecklistId: "",
@@ -1328,85 +1461,97 @@ const [priority,setpriority]=useState(props.selectedTask
                     }}
                   />
                  </div>
-              <div class="mt-3">
+                 <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="customerId"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.prospect"
-                     defaultMessage="Prospect"
-                   />
-                 }
-                 selectType="customerName"
-                 component={SearchSelect}
-                 value={values.customerId}
-                //  component={SelectComponent}
-                //  options={
-                //    Array.isArray(customerNameOption)
-                //      ? customerNameOption
-                //      : []
-                //  }
-                 isColumn
-                 margintop={"0"}
-                 inlineLabel
-               />
+              
+     <>        
+<label>Prospect</label>
+
+<Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select prospect"
+        optionFilterProp="children"
+        loading={isLoadingCustomer}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleSelectChangeCustomer}
+      >
+        {customer.map(customers => (
+          <Option key={customers.customerId} value={customers.customerId}>
+            {customers.name}
+          </Option>
+        ))}
+      </Select>
+      </> 
                   )} 
                   </div>
-                  <div class="mt-3">
+                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
                   {props.user.crmInd === true &&(
-                  <Field
-                    name="contactId"
-                    //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
-                    selectType="contactsName"
-                    component={SearchSelect}
-                    isColumn
-                    // options={Array.isArray(ContactData) ? ContactData : []}
-                    value={values.contactId}
-                    // isDisabled={defaultContacts}
-                    // defaultValue={{
-                    //   label: `${fullName || ""} `,
-                    //   value: contactId,
-                    // }}
-                    inlineLabel
-                  />
+                  
+                  <>
+                  <label>Contact</label>
+
+<Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select contact"
+        optionFilterProp="children"
+        loading={isLoadingContact}
+        onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeContact}
+      >
+        {contact.map(contacts => (
+          <Option key={contacts.contactId} value={contacts.contactId}>
+            {contacts.fullName}
+          </Option>
+        ))}
+      </Select>
+      </>
                   )} 
                   </div>
               
                   <div class="mt-3">
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="opportunityId"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="opportunity"
-                   />
-                 }
-                 selectType="allOppoName"
-                 component={SearchSelect}
-                   //  component={SelectComponent}
-                //  options={
-                //    Array.isArray(opportunityNameOption)
-                //      ? opportunityNameOption
-                //      : []
-                //  }
-                 isColumn
-                 margintop={"0"}
-                 value={values.opportunityId}
-                 inlineLabel
-               />
+              //    <Field
+              //    name="opportunityId"
+              //    // selectType="customerList"
+              //    isColumnWithoutNoCreate
+              //    label={
+              //      <FormattedMessage
+              //        id="app.opportunity"
+              //        defaultMessage="opportunity"
+              //      />
+              //    }
+              //    //component={SearchSelect}
+              //    component={SelectComponent}
+              //    options={
+              //      Array.isArray(opportunityNameOption)
+              //        ? opportunityNameOption
+              //        : []
+              //    }
+              //    isColumn
+              //    margintop={"0"}
+              //    value={values.opportunityId}
+              //    inlineLabel
+              //  />
+              <>
+<label>Opportunity</label>
+              <Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select opportunity"
+        optionFilterProp="children"
+        loading={isLoadingOpportunity}
+        onFocus={handleSelectOpportunityFocus}
+        onChange={handleSelectChangeOpportunity}
+      >
+        {opportunity.map(opp => (
+          <Option key={opp.opportunityId} value={opp.opportunityId}>
+            {opp.opportunityName}
+          </Option>
+        ))}
+      </Select>
+      </>
                   )} 
                   </div>
                 
