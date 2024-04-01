@@ -58,7 +58,7 @@ function ContactInvestTeamsCardList(props) {
         }
       }
     })
-    props.getTeamsContactInvest(pageNo);
+    props.getTeamsContactInvest(props.userId,pageNo);
     setPage(pageNo + 1);
   }, []);
 
@@ -83,7 +83,6 @@ function ContactInvestTeamsCardList(props) {
   const handleLoadMore = () => {
             setPage(pageNo + 1);
             props.getTeamsContactInvest(props.currentUser?props.currentUser:pageNo,
-                props.filter?props.filter:"creationdate"
             )  ; 
             setPage(pageNo + 1);
   }

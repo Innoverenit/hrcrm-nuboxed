@@ -65,7 +65,7 @@ function InvestorTeamCardList(props) {
         }
       }
     })
-    props.getTeamInvestor(props.userId, page,"creationdate");
+    props.getTeamInvestor(props.userId, page);
     setPage(page + 1);
   }, []);
 
@@ -85,7 +85,6 @@ function InvestorTeamCardList(props) {
       props.getTeamInvestor(
         props.currentUser ? props.currentUser : props.userId,
         page,
-        props.filter?props.filter:"creationdate"
       );
   };
 

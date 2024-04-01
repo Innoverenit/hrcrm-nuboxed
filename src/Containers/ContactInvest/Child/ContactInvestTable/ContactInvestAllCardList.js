@@ -58,7 +58,7 @@ function ContactInvestAllCardList(props) {
         }
       }
     })
-    props.getAllContactInvest(pageNo,"creationdate");
+    props.getAllContactInvest(pageNo,"Investor");
     setPage(pageNo + 1);
   }, []);
 
@@ -83,7 +83,7 @@ function ContactInvestAllCardList(props) {
   const handleLoadMore = () => {
             setPage(pageNo + 1);
             props.getAllContactInvest(props.currentUser?props.currentUser:pageNo,
-                props.filter?props.filter:"creationdate"
+              "Investor"
             )  ; 
             setPage(pageNo + 1);
   }

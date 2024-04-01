@@ -62,7 +62,7 @@ function ContactAllCardList(props) {
         }
       }
     })
-    props.getAllContact(page,"creationdate");
+    props.getAllContact(page,"Customer");
     setPage(page + 1);
   }, []);
 
@@ -94,7 +94,7 @@ function ContactAllCardList(props) {
   const handleLoadMore = () => {
             setPage(page + 1);
             props.getAllContact(page,
-              props.filter?props.filter:"creationdate"
+              "Customer"
               );
   }
 
