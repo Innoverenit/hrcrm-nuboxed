@@ -202,7 +202,7 @@ function OrderPhoneListById(props) {
                                             <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     {props.rowData.qcInspectionInd === 1 && <ButtonGroup>
-                                                        <StatusIcon
+                                                        {item.qcStatus === "In Progress" ? null : <StatusIcon
                                                             type="In Progress"
                                                             iconType="fa-hourglass-half"
                                                             tooltip="In Progress"
@@ -213,8 +213,8 @@ function OrderPhoneListById(props) {
                                                             onClick={() => {
                                                                 handleQCStatus("In Progress", item);
                                                             }}
-                                                        />
-                                                        <StatusIcon
+                                                        />}
+                                                        {item.qcStatus === "To Start" ? null : <StatusIcon
                                                             type="Complete"
                                                             iconType="fa-hourglass"
                                                             tooltip="Complete"
@@ -225,7 +225,7 @@ function OrderPhoneListById(props) {
                                                             onClick={() => {
                                                                 handleQCStatus("Complete", item);
                                                             }}
-                                                        />
+                                                        />}
                                                     </ButtonGroup>}
 
                                                 </div>

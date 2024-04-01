@@ -186,7 +186,7 @@ const AddAccountForm = ({
                       defaultMessage="name"
                     />}
                     width={"100%"}
-                    // component={InputComponent}
+                    // isColumnWithoutNoCreate
                     setClearbitData={setClearbitData}
                     component={ClearbitImage}
                     accounts={accounts}

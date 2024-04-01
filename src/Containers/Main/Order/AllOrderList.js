@@ -14,7 +14,8 @@ import {
   getAllOrderList,
   handleNotesModalInOrder,
   handleStatusOfOrder,
-  handlePaidModal
+  handlePaidModal,
+  emptyOrders
 } from "./OrderAction";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -30,7 +31,7 @@ function AllOrderList(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
-    props.getAllOrderList(page);
+    props.getAllOrderList(props.orgId, page);
     setPage(page + 1);
   }, []);
 
@@ -46,12 +47,12 @@ function AllOrderList(props) {
   }
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getAllOrderList(props.currentUser ? props.currentUser : page,
-
-
-    );
+    props.getAllOrderList(props.orgId, props.currentUser ? props.currentUser : page);
   }
 
+  useEffect(() => {
+    return () => props.emptyOrders();
+  }, []);
   function handleSetParticularOrderData(item, data) {
     console.log(item);
     setParticularRowData(item);
@@ -393,6 +394,7 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
   fetchingAllOrderList: order.fetchingAllOrderList,
   userId: auth.userDetails.userId,
   addOrderDetailsModal: distributor.addOrderDetailsModal,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -402,6 +404,7 @@ const mapDispatchToProps = (dispatch) =>
       handleNotesModalInOrder,
       handleStatusOfOrder,
       handlePaidModal,
+      emptyOrders,
       handleOrderDetailsModal
     },
     dispatch

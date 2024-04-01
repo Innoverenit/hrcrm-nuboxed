@@ -14,6 +14,7 @@ import { updateOrderStep1, getContactDistributorList } from '../../../AccountAct
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
 import { FormattedMessage } from 'react-intl';
+
 import dayjs from "dayjs";
 
 const FormSchema = Yup.object().shape({
@@ -35,6 +36,10 @@ function OrderStep1(props) {
     console.log(props.setEdittingOrder)
     const [priority, setPriority] = useState(props.setEdittingOrder.priority)
 
+    const disabledDate = current => {
+        // Disable past dates
+        return current && current < dayjs().startOf('day');
+    };
     function handleButtonClick(type) {
         console.log(type)
         setPriority(type)
@@ -239,6 +244,7 @@ function OrderStep1(props) {
                                             inlineLabel
                                             width={"100%"}
                                             component={DatePicker}
+                                            disabledDate={disabledDate}
                                             value={values.availabilityDate}
 
                                         />
@@ -252,7 +258,19 @@ function OrderStep1(props) {
                                             width={"100%"}
                                             component={DatePicker}
                                             value={values.deliveryDate}
-
+                                            disabledDate={(currentDate) => {
+                                                if (values.availabilityDate) {
+                                                    if (
+                                                        dayjs(currentDate).isBefore(
+                                                            dayjs(values.availabilityDate)
+                                                        )
+                                                    ) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            }}
                                         />
                                     </div>
 

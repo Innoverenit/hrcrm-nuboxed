@@ -3,6 +3,9 @@ import axios from "axios";
 import { get } from "lodash";
 import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { setClearbitData } from "../../../Containers/Main/Account/AccountAction"
 
 class ClearbitImage extends Component {
     loadOptions = (value) => {
@@ -11,7 +14,7 @@ class ClearbitImage extends Component {
         }
         const url = `https://autocomplete.clearbit.com/v1/companies/suggest?query=${value}`;
         return axios
-            .get(url)
+            .get(url, {})
             .then((res) => {
                 return res.data.map((opt) => ({
                     label: opt.name,
@@ -44,11 +47,39 @@ class ClearbitImage extends Component {
             isRequired,
             inlineLabel,
             isColumn,
+            isColumnWithoutNoCreate,
             defaultValue,
             form: { touched, errors, setFieldValue, setFieldTouched },
             field,
             ...rest
         } = this.props;
+        if (isColumnWithoutNoCreate) {
+            return (
+                <>
+                    <StyledLabel style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</StyledLabel>
+                    <StyledAsync
+                        formatCreateLabel={() => undefined}
+                        isRequired={isRequired}
+                        classNamePrefix="sales"
+                        defaultValue={defaultValue}
+                        placeholder={placeholder}
+                        cacheOptions
+                        loadOptions={this.loadOptions}
+                        defaultOptions
+                        onInputChange={this.handleInputChange}
+                        onBlur={this.handleBlur}
+                        onChange={(option) => this.handleOnChange(option)}
+                        styles={{ width: 600 }}
+
+                    // components={this.renderOptions}
+                    />
+
+                    {get(touched, field.name) && get(errors, field.name) && (
+                        <ValidationError>{get(errors, field.name)}</ValidationError>
+                    )}
+                </>
+            );
+        }
         if (isColumn) {
             return (
                 <>
@@ -105,4 +136,17 @@ class ClearbitImage extends Component {
     }
 }
 
-export default ClearbitImage;
+const mapStateToProps = ({ auth, customer }) => ({
+    user: auth.userDetails,
+});
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            setClearbitData,
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClearbitImage);
+

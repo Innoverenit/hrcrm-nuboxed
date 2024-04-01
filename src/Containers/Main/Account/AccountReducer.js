@@ -431,6 +431,10 @@ const initialState = {
   fetchingLocationByOrderIdError: false,
   locationByProduct: [],
 
+  fetchingCompleteOrders: false,
+  fetchingCompleteOrdersError: true,
+  completeOrder: [],
+
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
 };
@@ -442,7 +446,7 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, viewType: action.payload };
 
     case types.HANDLE_DISTRIBUTOR_MODAL:
-      return { ...state, addDistributorModal: action.payload };
+      return { ...state, addDistributorModal: action.payload, clearbit: {} };
 
     /**
      * Add a distributor
@@ -513,6 +517,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addLinkDistributorOrderConfigureModal: action.payload,
+        orderDetailsId: {}
       };
     /**
      * link product
@@ -2070,7 +2075,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state, addCatalogueOrderModal: action.payload,
         productByDistributor: [],
-        productionOrderId: []
+        productionOrderId: {}
       };
 
     case types.HANDLE_UPDATE_ORDER_MODAL:
@@ -2309,6 +2314,24 @@ export const distributorReducer = (state = initialState, action) => {
 
       };
 
+    case types.GET_COMPLETE_ORDERS_REQUEST:
+      return { ...state, fetchingCompleteOrders: true };
+    case types.GET_COMPLETE_ORDERS_SUCCESS:
+      return {
+        ...state,
+        fetchingCompleteOrders: false,
+        completeOrder: [
+          ...state.completeOrder,
+          ...action.payload]
+      };
+    case types.GET_COMPLETE_ORDERS_FAILURE:
+      return {
+        ...state,
+        fetchingCompleteOrders: false,
+        fetchingCompleteOrdersError: true,
+
+
+      };
     case types.SEARCH_ITEM_IN_LOCATION_REQUEST:
       return { ...state, searchingItemInLocation: true };
     case types.SEARCH_ITEM_IN_LOCATION_SUCCESS:

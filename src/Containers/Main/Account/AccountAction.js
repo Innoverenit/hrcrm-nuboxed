@@ -469,6 +469,35 @@ export const getDistributorOrderByDistributorId = (distributorId, pageNo) => (
     });
 };
 
+export const getCompleteOrders = (distributorId, pageNo) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/complete-phoneOrders/${distributorId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  * renewal button
  */

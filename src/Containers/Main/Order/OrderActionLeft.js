@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { TableOutlined, AudioOutlined } from "@ant-design/icons";
+import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
 import { getOrderCount, getAllOrderCount } from "../Order/OrderAction";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import TocIcon from '@mui/icons-material/Toc';
@@ -91,7 +91,28 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           </Badge>
         </Tooltip>
       </div>
+      <div className=" mr-4">
+        <Tooltip title="Complete Orders">
+          <Badge
+            size="small"
+            // count={(viewType === "complete" && orderCount.order) || 0}
 
+            overflowCount={999}
+          >
+
+            <span class=" mr-2 text-sm cursor-pointer"
+              onClick={() => setOrderViewType("complete")}
+              style={{
+                color: viewType === "complete" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "complete" ? "#f279ab" : "#4bc076" }}>
+                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+      </div>
       <div className=" mr-4">
         <Tooltip title="ALL">
           <Badge
@@ -109,6 +130,28 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             >
               <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
                 <div className="text-white">ALL</div></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+      </div>
+      <div className=" mr-4">
+        <Tooltip title="All Complete Orders">
+          <Badge
+            size="small"
+            // count={(viewType === "allcomplete" && orderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-2 text-sm cursor-pointer"
+              onClick={() => setOrderViewType("allcomplete")}
+              style={{
+                color: viewType === "allcomplete" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
+                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
 
             </span>
           </Badge>

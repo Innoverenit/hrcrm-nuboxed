@@ -89,12 +89,10 @@ class AccountStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {!this.props.addingOrder && <Button
-                                            style={{ marginRight: "3rem", marginTop: "43px" }}
-                                            className=" w-16 absolute top-2/3 right-0"
+                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                            className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
-                                        // disabled={this.props.addingOrder}
                                         >
                                             <FormattedMessage
                                                 id="app.proceed"
@@ -126,7 +124,8 @@ class AccountStepper extends Component {
 
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
-    addingOrder: distributor.addingOrder
+    addingOrder: distributor.addingOrder,
+    orderId: distributor.orderDetailsId.orderId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

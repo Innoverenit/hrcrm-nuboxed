@@ -23,8 +23,13 @@ class PaidButtonModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <DistributorPaidForm particularRowData={this.props.particularRowData} />
-                        <OrderPaymentTable particularRowData={this.props.particularRowData} />
+
+                        {this.props.type === "incomplete" ?
+                            <>
+                                <DistributorPaidForm particularRowData={this.props.particularRowData} />
+                                <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                            </> :
+                            <OrderPaymentTable particularRowData={this.props.particularRowData} />}
                     </Suspense>
                 </StyledDrawer>
             </>

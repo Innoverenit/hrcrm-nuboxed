@@ -7,25 +7,11 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import DeleteIcon from '@mui/icons-material/Delete';
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
-    getDistributorOrderByDistributorId,
-    handleInventoryLocationInOrder,
+    getCompleteOrders,
     handleOrderDetailsModal,
-    handleNotesModalInOrder,
-    handlePaidModal,
     handleStatusOfOrder,
-    updateOfferPrice,
-    handleAccountProduction,
-    handleUpdateOrder,
-    setEditOrder,
-    removeOrderAcc,
-    deleteDistributorData,
-    getLocationList,
-    addLocationInOrder,
-    updateSubOrderAwb
+    handlePaidModal
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -35,78 +21,31 @@ import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import SubOrderList from './SubOrderList';
-import { PrinterFilled } from '@ant-design/icons';
-import CardContainer from './CardContainer';
-
-const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
 const StatusOfOrderModal = lazy(() => import('./StatusOfOrderModal'));
-const AddNotesOrderModal = lazy(() => import('./AddNotesOrderModal'));
 const PaidButtonModal = lazy(() => import('./PaidButtonModal'));
-const AccountproductionModal = lazy(() => import('./AccountProductionModal'));
-const UpdateOrderModal = lazy(() => import('./UpdateAccountOrder/UpdateOrderModal'));
-const { Option } = Select;
 
-const AccountOrderTable = (props) => {
+const CompleteOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getLocationList(props.orgId);
-        props.getDistributorOrderByDistributorId(props.distributorId, page)
+        props.getCompleteOrders(props.distributorId, page)
     }, [])
-
-    const [print, setprint] = useState(false);
-    const handlePrint = () => {
-        setprint(!print)
-    }
-    const [particularRowData, setParticularRowData] = useState({});
-    const [locationChange, setLocationChange] = useState(false);
-    const [locationValue, setLocationValue] = useState("");
-
-    function handleSetParticularOrderData(item) {
-        setParticularRowData(item);
-    }
-    function handleChangeLocation(id) {
-        setLocationValue(id)
-    }
-    function handlelocation() {
-        setLocationChange(!locationChange);
-    }
-    function handleCallback() {
-        setLocationChange(false)
-        setLocationValue("")
-    }
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getDistributorOrderByDistributorId(props.distributorId, page)
+        props.getCompleteOrders(props.distributorId, page)
     };
-    const [visible, setVisible] = useState(false)
-    const handleUpdateRevisePrice = () => {
-        setVisible(!visible)
-    }
-    const [price, setPrice] = useState(particularRowData.offerPrice)
+
     const [checkAwb, setCheckAwb] = useState(false)
+    const [particularRowData, setParticularRowData] = useState({});
 
     const handleCheckAwb = () => {
         setCheckAwb(!checkAwb)
     }
-    const handleChange = (val) => {
-        setPrice(val)
+    function handleSetParticularOrderData(item) {
+        setParticularRowData(item);
     }
-    const handleSubmitPrice = () => {
-        props.updateOfferPrice(
-            {
-                offerPrice: price,
-                orderPhoneId: particularRowData.orderId,
-                customerPriceInd: true
-            },
-            particularRowData.orderId,
-            props.distributorId,
-        );
-        setVisible(false)
-    }
-
 
     return (
         <>
@@ -165,15 +104,15 @@ const AccountOrderTable = (props) => {
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
                     <InfiniteScroll
-                        dataLength={props.distributorOrder.length}
+                        dataLength={props.completeOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingDistributorByDistributorId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingCompleteOrders ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
                     >
-                        {props.distributorOrder.length ?
+                        {props.completeOrder.length ?
                             <>
-                                {props.distributorOrder.map((item) => {
+                                {props.completeOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -283,108 +222,18 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
-                                                                <Input
-                                                                    type='text'
-                                                                    value={price}
-                                                                    onChange={(e) => handleChange(e.target.value)}
-                                                                />
-                                                                : item.offerPrice}
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {item.offerPrice}
                                                         </div>
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
 
-                                                        {visible && (item.orderId === particularRowData.orderId) ? (
-                                                            <>
-                                                                <div className=" flex justify-between flex-col">
-                                                                    <Button onClick={() => {
-                                                                        handleSubmitPrice()
-                                                                    }} >
-                                                                        <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
-                                                                        />
-                                                                    </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
-                                                                    /></Button>
-                                                                </div>
-                                                            </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
-                                                            id="app.updaterevisedprice"
-                                                            defaultMessage="Update Revised Price"
-                                                        />}>
-                                                            <PublishedWithChangesIcon
-                                                                onClick={() => {
-                                                                    handleUpdateRevisePrice()
-                                                                    handleSetParticularOrderData(item)
-                                                                }}
-                                                                className="!text-base cursor-pointer"
-                                                            />
-                                                        </Tooltip> : null}
-
-                                                    </div>
-
-                                                </div>
                                                 <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        {locationChange && (item.orderId === particularRowData.orderId) ?
-                                                            <>
-                                                                <Select
-                                                                    value={locationValue}
-                                                                    onChange={(value) =>
-                                                                        handleChangeLocation(value)
-                                                                    }
-                                                                >
-                                                                    {props.locationlist.map((a) => {
-                                                                        return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                                                    })}
-                                                                </Select>
-                                                                <div>
-                                                                    <Button
-                                                                        type='primary'
-                                                                        loading={props.addingLocationInOrder}
-                                                                        onClick={() => {
-                                                                            props.addLocationInOrder({
-                                                                                transferInd: 1,
-                                                                                locationId: locationValue,
-                                                                                userId: props.userId,
-                                                                                orderPhoneId: item.orderId
-                                                                            }, props.distributorId, handleCallback())
-                                                                        }}>Save</Button>
-                                                                    <Button onClick={handlelocation}>Cancel</Button>
-                                                                </div>
-                                                            </>
-                                                            : item.locationName}
+                                                        {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col  md:w-[6.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    {item.inventoryReceiveInd ? null :
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.selectinventorylocation"
-                                                            defaultMessage="Select Inventory Location"
-                                                        />}>
-                                                            <Button
-                                                                type='primary'
-                                                                className="cursor-pointer text-sm bg-[#3096e9] text-white"
-                                                                onClick={() => {
-                                                                    handlelocation()
-                                                                    handleSetParticularOrderData(item);
-                                                                    // props.handleInventoryLocationInOrder(true);
-                                                                }}
-                                                            >
-                                                                <FormattedMessage
-                                                                    id="app.orderpickup"
-                                                                    defaultMessage="Pickup"
-                                                                />
 
-                                                            </Button>
-                                                        </Tooltip>}
-                                                </div>
                                                 <div class="flex justify-end">
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
@@ -435,21 +284,7 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.updateorder"
-                                                                defaultMessage="Update Order"
-                                                            />}>
-                                                                <BorderColorIcon
-                                                                    className=" !text-base cursor-pointer text-[tomato]"
-                                                                    onClick={() => {
-                                                                        props.setEditOrder(item)
-                                                                        props.handleUpdateOrder(true)
-                                                                        handleSetParticularOrderData(item)
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                        </div>
+
                                                     </div>
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
@@ -475,28 +310,7 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                        <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.delete"
-                                                                defaultMessage="Detele"
-                                                            />}>
-                                                                <DeleteIcon
-                                                                    className="!text-base cursor-pointer text-[red]"
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId) }}
-                                                                />
-                                                            </Tooltip>
 
-                                                        </div>
-                                                        <div>
-                                                            <Tooltip title="Print">
-                                                                <PrinterFilled onClick={() => {
-                                                                    props.handleInventoryLocationInOrder(true)
-                                                                }} />
-                                                            </Tooltip>
-
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                             </div>
@@ -509,23 +323,14 @@ const AccountOrderTable = (props) => {
 
                                     )
                                 })}
-                            </> : !props.distributorOrder.length && !props.fetchingDistributorByDistributorId ? <NodataFoundPage /> : null}
+                            </> : !props.completeOrder.length && !props.fetchingCompleteOrders ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
                     {/* </div> */}
 
                 </div>
             </div >
             <Suspense fallback={<BundleLoader />}>
-                <AddLocationInOrder
-                    particularRowData={particularRowData}
-                    addInventoryInOrder={props.addInventoryInOrder}
-                    handleInventoryLocationInOrder={props.handleInventoryLocationInOrder}
-                />
-                <AddNotesOrderModal
-                    particularRowData={particularRowData}
-                    addNotesInOrder={props.addNotesInOrder}
-                    handleNotesModalInOrder={props.handleNotesModalInOrder}
-                />
+
                 <AccountOrderDetailsModal
                     particularRowData={particularRowData}
                     handleOrderDetailsModal={props.handleOrderDetailsModal}
@@ -541,55 +346,25 @@ const AccountOrderTable = (props) => {
                     handlePaidModal={props.handlePaidModal}
                     particularRowData={particularRowData}
                 />
-                <AccountproductionModal
-                    particularRowData={particularRowData}
-                    accountOrderProduction={props.accountOrderProduction}
-                    handleAccountProduction={props.handleAccountProduction}
-                />
-                <UpdateOrderModal
-                    particularRowData={particularRowData}
-                    distributorId={props.distributorId}
-                    handleUpdateOrder={props.handleUpdateOrder}
-                    updateOrderModal={props.updateOrderModal}
-                />
-
             </Suspense>
         </>
     )
 }
 const mapStateToProps = ({ distributor, auth, inventory }) => ({
-    accountOrderProduction: distributor.accountOrderProduction,
-    distributorOrder: distributor.distributorOrder,
-    addNotesInOrder: distributor.addNotesInOrder,
-    inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
-    addInventoryInOrder: distributor.addInventoryInOrder,
+    orgId: auth.userDetails.organizationId,
+    userId: auth.userDetails.userId,
     addOrderDetailsModal: distributor.addOrderDetailsModal,
     addStatusOfOrder: distributor.addStatusOfOrder,
-    updateOrderModal: distributor.updateOrderModal,
     addPaidButtonModal: distributor.addPaidButtonModal,
-    orgId: auth.userDetails.organizationId,
-    locationlist: distributor.locationlist,
-    userId: auth.userDetails.userId,
-    updatingSuborderAwb: distributor.updatingSuborderAwb,
-    addingLocationInOrder: distributor.addingLocationInOrder,
-    fetchingDistributorByDistributorId: distributor.fetchingDistributorByDistributorId,
+    completeOrder: distributor.completeOrder,
+    fetchingCompleteOrders: distributor.fetchingCompleteOrders
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-    getDistributorOrderByDistributorId,
-    handleInventoryLocationInOrder,
+    getCompleteOrders,
     handleOrderDetailsModal,
     handleStatusOfOrder,
-    handlePaidModal,
-    handleNotesModalInOrder,
-    updateOfferPrice,
-    handleAccountProduction,
-    handleUpdateOrder,
-    setEditOrder,
-    removeOrderAcc,
-    deleteDistributorData,
-    getLocationList,
-    addLocationInOrder,
-    updateSubOrderAwb
+    handlePaidModal
+
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);
+export default connect(mapStateToProps, mapDispatchToProps)(CompleteOrderTable);
