@@ -88,7 +88,7 @@ export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeInvestor = ( investorCategoryId) => (dispatch) => {
+export const removeInvestor = ( investorCategoryId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_INVESTOR_REQUEST,
@@ -100,6 +100,7 @@ export const removeInvestor = ( investorCategoryId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getInvestorCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Investor Type deleted successfully!',

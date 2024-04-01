@@ -128,24 +128,27 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"itemTask"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"itemTask"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
                       style={{border:"2px solid black"}}
                           type="text" 
+                          placeholder="Add Repair Task"
                           value={newItemTaskName} 
                           onChange={(e) => setItemTaskName(e.target.value)} 
                       />
                       <button 
+                    
                          loading={props.addingItemTask}
                       onClick={handleItemTaskLine}>Save</button>
                       <button onClick={handleCancelAdd}>Cancel</button>
@@ -156,11 +159,15 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingItemTask && itemTaskListData.length === 0 ? <NodataFoundPage /> : itemTaskListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.itemTaskId}>
             {/* Region name display or input field */}
             {editingId === region.itemTaskId ? (
                 <input
+                placeholder="Update Repair Task"
                 style={{border:"2px solid black"}}
                     type="text"
                     value={newItemTaskName}
@@ -180,7 +187,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.itemTaskId ? (
                     <div>
                         <button onClick={() => handleUpdateRegion(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.itemTaskId, region.name)} />
@@ -191,7 +198,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeItemTask(region.itemTaskId)}
+                        onConfirm={() =>  props.removeItemTask(region.itemTaskId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -206,6 +213,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
           ))}
+          </MainWrapper>
+            </div>
            <div class=" font-bold">Updated on {dayjs(props.itemTaskListData && props.itemTaskListData.length && props.itemTaskListData[0].updationDate).format('YYYY-MM-DD')} by {props.itemTaskListData && props.itemTaskListData.length && props.itemTaskListData[0].updatedBy}</div>
       </div>
   );

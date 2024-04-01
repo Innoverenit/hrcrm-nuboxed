@@ -90,7 +90,7 @@ export const getRoles = (orgId) => (dispatch) => {
   };
 
 
-  export const updateRoles = (roleTypeId, roleType,departmentId,departmentName, cb) => (dispatch) => {
+  export const updateRoles = (data,roleTypeId,  cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_ROLES_REQUEST,
@@ -98,8 +98,7 @@ export const getRoles = (orgId) => (dispatch) => {
     axios
       .put(
         `${base_url}/roleType`,
-        { roleType, roleTypeId,departmentId,departmentName,editInd:"true"
-        },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -151,7 +150,7 @@ export const getRoles = (orgId) => (dispatch) => {
         });
       });
   };
-  export const removeRole = (roleTypeId, cb) => (dispatch) => {    
+  export const removeRole = (roleTypeId,orgId, cb) => (dispatch) => {    
     dispatch({
         type: types.REMOVE_ROLE_REQUEST,
     });
@@ -162,7 +161,7 @@ export const getRoles = (orgId) => (dispatch) => {
           },
         })
         .then((res) => {
-          
+          dispatch(getRoleCount(orgId));
           Swal.fire({
             icon: 'success',
             title: 'Role deleted Successfully!',
@@ -262,7 +261,7 @@ export const addTalentRoles = (roleType,orgId,cb) => (dispatch) => {
 };
 
 
-export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,departmentId, cb) => (dispatch) => {
+export const updateTalentRoles = (data,roleTypeExternalId, cb) => (dispatch) => {
   // console.log(leadDocumentsId, DocumentsName);
   dispatch({
     type: types.UPDATE_TALENT_ROLES_REQUEST,
@@ -270,8 +269,7 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
   axios
     .put(
       `${base_url}/roleTypeExternal`,
-      { roleType, roleTypeExternalId,editInd:"true"
-      },
+      data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -300,7 +298,7 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
 };
 
 
-export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {    
+export const removeTalentRole = (roleTypeExternalId,orgId, cb) => (dispatch) => {    
   dispatch({
       type: types.REMOVE_TALENT_ROLE_REQUEST,
   });
@@ -311,6 +309,7 @@ export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getExternalRoleCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Role deleted Successfully!',

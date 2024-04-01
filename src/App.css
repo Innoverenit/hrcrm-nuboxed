@@ -1081,6 +1081,17 @@ h1{
   }
 }
 
+.circle-icon {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Adjust the background color as needed */
+}
+
+
 
 
 

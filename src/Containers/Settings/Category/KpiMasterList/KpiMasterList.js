@@ -18,6 +18,7 @@ import {
    ClearReducerDataOfMasterKpi
 } from "../KpiMasterList/KpiMasterListAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 
 
 const KpiMasterList = (props) => {
@@ -126,14 +127,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"performanceManagement"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"performanceManagement"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -155,6 +157,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
             <div className="card9" key={region.performanceManagementId}>
             {/* Region name display or input field */}
@@ -181,7 +186,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.performanceManagementId ? (
                     <div>
                         <button onClick={() => handleUpdateMasterKpi(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
@@ -207,6 +212,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
         ))}
+         </MainWrapper>
+            </div>
       
   <div class=" font-bold">Updated on {dayjs(props.masterKpiList && props.masterKpiList.length && props.masterKpiList[0].updationDate).format('YYYY-MM-DD')} by {props.masterKpiList && props.masterKpiList.length && props.masterKpiList[0].updatedBy}</div>
       </div>

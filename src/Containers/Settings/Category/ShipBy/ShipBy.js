@@ -127,20 +127,22 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
                       style={{border:"2px solid black"}}
                           type="text" 
+                          placeholder="Add ShipBy"
                           value={newShipByName} 
                           onChange={(e) => setShipByName(e.target.value)} 
                       />
@@ -155,6 +157,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingShipBy && ShipByData.length === 0 ? <NodataFoundPage /> : ShipByData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.shipById}>
             {/* Region name display or input field */}
@@ -163,6 +168,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 <input
                 style={{border:"2px solid black"}}
                     type="text"
+                    placeholder="Update ShipBy"
                     value={newShipByName}
                     onChange={(e) => setShipByName(e.target.value)}
                 />
@@ -180,7 +186,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.shipById ? (
                     <div>
                         <button onClick={() => handleUpdateShipBy(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.shipById, region.name)} />
@@ -191,7 +197,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeShipBy(region.shipById)}
+                        onConfirm={() =>  props.removeShipBy(region.shipById,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -206,6 +212,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
           ))}
+          </MainWrapper>
+            </div>
   <div class=" font-bold">Updated on {dayjs(props.ShipByData && props.ShipByData.length && props.ShipByData[0].updationDate).format('YYYY-MM-DD')} by {props.ShipByData && props.ShipByData.length && props.ShipByData[0].updatedBy}</div>
       </div>
   );

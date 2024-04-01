@@ -18,6 +18,7 @@ import {
   import { Switch,Popconfirm } from 'antd';
   import {getDepartments} from "../../../Settings/Department/DepartmentAction";
 import { BundleLoader } from '../../../../Components/Placeholder';
+import { MainWrapper } from '../../../../Components/UI/Layout';
 
 const data = [
     { id: 1, region: "Europe" },
@@ -194,6 +195,9 @@ if (props.fetchingServiceLine) {
                 )}
             </div>
             </div>
+            <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
             {serviceLine.map(region => (
               <div className="card9" key={region.serviceLineId}>
               {/* Region name display or input field */}
@@ -214,7 +218,7 @@ if (props.fetchingServiceLine) {
                   {editingId === region.serviceLineId ? (
                       <div>
                           <button onClick={() => handleUpdateRegion(region)}>Save</button>
-                          <button onClick={cancelEdit}>Cancel</button>
+                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
                       <EditOutlined onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} />
@@ -240,6 +244,8 @@ if (props.fetchingServiceLine) {
               </div>
           </div>
             ))}
+            </MainWrapper>
+            </div>
              <div class=" font-bold">Updated on {dayjs(props.serviceLine && props.serviceLine.length && props.serviceLine[0].updationDate).format('YYYY-MM-DD')} by {props.serviceLine && props.serviceLine.length && props.serviceLine[0].updatedBy}</div>
         </div>
     );

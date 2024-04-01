@@ -198,7 +198,7 @@ const BrandModel = (props) => {
                   {/* {editingId === region.phoneMasterListId ? (
                       <div>
                           <button onClick={() => handleUpdateBrandModel(region)}>Save</button>
-                          <button onClick={cancelEdit}>Cancel</button>
+                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
                       <BorderColorIcon   style={{fontSize:"1rem"}} 

@@ -18,6 +18,7 @@ import {
     updatePayment
 } from "../Payment/PaymentAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 const SinglePayment = lazy(() =>
   import("./SinglePayment")
 );
@@ -128,14 +129,15 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <Tooltip placement="left" title="XL">
-
-<a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"payment"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+          <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"payment"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -149,7 +151,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                       <button 
                          loading={props.addingItemTask}
                       onClick={handlePayment}>Save</button>
-                      <button onClick={handleCancelAdd}>Cancel</button>
+                      <button  onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
                   <button  style={{backgroundColor:"tomato",color:"white"}}
@@ -157,6 +159,9 @@ className=" !text-base cursor-pointer text-[green]"/>
               )}
           </div>
           </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingPayment && paymentsListData.length === 0 ? <NodataFoundPage /> : paymentsListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="card9" key={region.paymentCatagoryId}>
             {/* Region name display or input field */}
@@ -183,7 +188,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                 {editingId === region.paymentCatagoryId ? (
                     <div>
                         <button onClick={() => handleUpdatePayment(region)}>Save</button>
-                        <button onClick={cancelEdit}>Cancel</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.paymentCatagoryId, region.name)} />
@@ -194,7 +199,7 @@ className=" !text-base cursor-pointer text-[green]"/>
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removePayment(region.paymentCatagoryId)}
+                        onConfirm={() =>  props.removePayment(region.paymentCatagoryId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -209,6 +214,8 @@ className=" !text-base cursor-pointer text-[green]"/>
             </div>
         </div>
           ))}
+          </MainWrapper>
+            </div>
   <div class=" font-bold">Updated on {dayjs(props.paymentsListData && props.paymentsListData.length && props.paymentsListData[0].updationDate).format('YYYY-MM-DD')} by {props.paymentsListData && props.paymentsListData.length && props.paymentsListData[0].updatedBy}</div>
       </div>
   );

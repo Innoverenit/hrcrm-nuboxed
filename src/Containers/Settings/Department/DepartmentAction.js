@@ -94,7 +94,7 @@ export const addDepartments = (departments,orgId, cb) => (dispatch) => {
 /**
  * remove a new DEPARTMENT
  */
-export const removeDepartments = (departmentId) => (dispatch) => {
+export const removeDepartments = (departmentId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_DEPARTMENTS_REQUEST,
@@ -106,6 +106,7 @@ export const removeDepartments = (departmentId) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getDepartmentCount(orgId));
         Swal.fire({
           icon: 'success',
           title: 'Department deleted Successfully!',

@@ -98,7 +98,7 @@ class Department extends Component {
     //     "Can't create as another departmentName exists with same name!"
     //   );
     // } else {
-      addDepartments(department, () => console.log("add department callback"));
+      addDepartments(department,this.props.orgId, () => console.log("add department callback"));
     // }
 
     this.setState({
@@ -111,7 +111,7 @@ class Department extends Component {
     });
   };
   handleDeleteDepartment = (departmentId={departmentId}) => {
-    this.props.removeDepartments(departmentId);
+    this.props.removeDepartments(departmentId,);
     this.setState({ departmentName: "", singleDepartment: "" });
   };
   handleUpdateDepartment = (departmentId, departmentName, sectorId, sectorName, editInd, cb) => {
@@ -183,14 +183,18 @@ class Department extends Component {
             // value={currentData}
           />
         </div>
-        <Tooltip placement="left" title="XL">
+    
+        <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"department"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
 
-<a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"department"}`}>
-<DownloadIcon 
-className=" !text-base cursor-pointer text-[green]"/>
-</a>
-
-</Tooltip>
+ 
         {isTextInputOpen ? (
             <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
             
@@ -246,7 +250,10 @@ className=" !text-base cursor-pointer text-[green]"/>
                
               </>
             )}
+
              </div>
+             
+
             <div class=" flex flex-col" >
             <MainWrapper className="!h-[69vh] !mt-2" >
               {departments.length ? (
