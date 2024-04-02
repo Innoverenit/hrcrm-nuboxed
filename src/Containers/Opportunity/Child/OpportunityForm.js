@@ -41,12 +41,12 @@ const OpportunitySchema = Yup.object().shape({
   oppWorkflow: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
   oppStage: Yup.string().required("Input needed!"),
-  customerId:Yup.string().required("Input needed!"),
+  //customerId:Yup.string().required("Input needed!"),
 });
 function OpportunityForm(props) {
   useEffect(() => {
-    props.getContactData(props.userId);
-    props.getCustomerData(props.userId);
+    // props.getContactData(props.userId);
+    // props.getCustomerData(props.userId);
     props.getInitiative(props.userId);
      props.getOppLinkedStages(props.orgId);
      props.getOppLinkedWorkflow(props.orgId);
@@ -65,6 +65,81 @@ function OpportunityForm(props) {
   const [selectedValues, setSelectedValues] = useState([]);
 
 
+  const [customers, setCustomers] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+
+  // useEffect(() => {
+  //   fetchCustomers();
+  // }, []);
+
+
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+  const fetchContacts = async (customerId) => {
+    setIsLoadingContacts(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    fetchContacts(customerId);
+  };
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
   const fetchInclude = async () => {
     setIsLoading(true);
     try {
@@ -256,7 +331,7 @@ const filteredEmployeesData = AllEmplo.filter(
           currency: props.user.currency,
           orgId: props.organizationId,
           userId: props.userId,
-          customerId: undefined,
+          // customerId: undefined,
           oppWorkflow: "",
           contactId: undefined,
           oppInnitiative: "",
@@ -342,6 +417,8 @@ const filteredEmployeesData = AllEmplo.filter(
           props.addOpportunity(
             {
               ...values,
+              customerId:selectedCustomer,
+              contactId:selectedContact,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
               included: selectedValues,
@@ -631,7 +708,7 @@ const filteredEmployeesData = AllEmplo.filter(
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
 <div class=" w-w47.5 max-sm:w-wk">
-                  <Field
+                  {/* <Field
                     name="customerId"
                     // selectType="customerList"
                     isColumnWithoutNoCreate
@@ -652,12 +729,27 @@ const filteredEmployeesData = AllEmplo.filter(
                     margintop={"0"}
                     value={values.customerId}
                     inlineLabel
-                  />
+                  /> */}
+
+<label>Customer</label>
+      <Select
+        style={{ width: 200 }}
+        placeholder="Select Customer"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.customerId} value={customer.customerId}>
+            {customer.name}
+          </Option>
+        ))}
+      </Select>
           
             </div>
             <div class=" w-w47.5 max-sm:w-wk">
             <StyledLabel>
-                  <Field
+                  {/* <Field
                     name="contactId"
                     // selectType="contactListFilter"
                     isColumnWithoutNoCreate
@@ -684,7 +776,22 @@ const filteredEmployeesData = AllEmplo.filter(
                     disabled={!values.customerId}
                     isColumn
                     inlineLabel
-                  />
+                  /> */}
+
+<label>Contact</label>
+      <Select
+        style={{ width: 200 }}
+        placeholder="Select Contact"
+        loading={isLoadingContacts}
+        onChange={handleContactChange}
+        disabled={!selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select>
                 </StyledLabel>
                 </div>
                         </div>
