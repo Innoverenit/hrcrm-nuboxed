@@ -58,7 +58,7 @@ function EventForm (props) {
   setRemider(checked);
   };
   useEffect(()=> {
-    props.getAssignedToList(props.orgId);
+    // props.getAssignedToList(props.orgId);
   //  props.getAllCustomerData(userId)
   //  props.getAllOpportunityData(userId)
   //  props.getFilteredEmailContact(userId);
@@ -162,6 +162,49 @@ const [customer, setCustomer] = useState([]);
    const [selectedOpportunity, setSelectedOpportunity] = useState(null);
    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
+
+
+   const [include, setInclude] = useState([]);
+  const [isLoadingInclude, setIsLoadingInclude] = useState(false);
+  const [touchedInclude, setTouchedInclude] = useState(false);
+  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
+
+
+
+  const fetchInclude = async () => {
+    setIsLoadingInclude(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInclude(false);
+    }
+  };
+
+
+
+  const handleSelectChangeInclude = (values) => {
+    setSelectedIncludeValues(values); // Update selected values
+  };
+
+
+  const handleSelectIncludeFocus = () => {
+    if (!touchedInclude) {
+      fetchInclude();
+      setTouchedInclude(true);
+    }
+  };
 
 
    const fetchCustomer = async () => {
@@ -328,7 +371,7 @@ const {
                   eventStatus: "",
                   allDayInd: true,
                   candidateId: "",
-                  included: [],
+                  // included: [],
                   fullName: "",
                  
                   repeatStartDate: "",
@@ -431,6 +474,7 @@ const {
               : addEvent(
                   {
                     ...values,
+                    included:selectedIncludeValues,
                     ownerIds: userId === userId ? [userId] : [],
                     startDate: `${newStartDate}T20:00:00Z`,
                     endDate: `${newEndDate}T20:00:00Z`,
@@ -641,7 +685,7 @@ const {
                   {props.user.crmInd === true &&(
               
      <>        
-<label>Prospect</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
 
 <Select
         showSearch
@@ -665,7 +709,7 @@ const {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label>Contact</label>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
 
 <Select
         showSearch
@@ -710,7 +754,7 @@ const {
               //    inlineLabel
               //  />
               <>
-<label>Opportunity</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
               <Select
         showSearch
         style={{ width: 417 }}
@@ -838,7 +882,7 @@ const {
       </Listbox>
       </div>
       <div class="mt-1">
-                  <Field
+                  {/* <Field
                     name="included"
                     // label="Include"
                     label={
@@ -856,7 +900,26 @@ const {
                       label: `${empName || ""} `,
                       value: employeeId,
                     }}
-                  />
+                  /> */}
+
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                   <Select
+          showSearch
+          style={{ width: 415 }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoadingInclude}
+          onFocus={handleSelectIncludeFocus}
+          onChange={handleSelectChangeInclude}
+          defaultValue={selectedIncludeValues} 
+          mode="multiple" 
+        >
+          {include.map(includes => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
                  </div>
                  
                   <FieldArray

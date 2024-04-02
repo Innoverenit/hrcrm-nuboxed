@@ -993,7 +993,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
                       value: employeeId,
                     }}
                   /> */}
-                  <label>Include</label>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
                    <Select
           showSearch
           style={{ width: 415 }}
@@ -1016,7 +1016,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
                   {props.user.crmInd === true &&(
               
      <>        
-<label>Prospect</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
 
 <Select
         showSearch
@@ -1041,7 +1041,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
                   {props.user.crmInd === true &&(
                   
                   <>
-                  <label>Contact</label>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
 
 <Select
         showSearch
@@ -1087,7 +1087,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
               //    inlineLabel
               //  />
               <>
-<label>Opportunity</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
               <Select
         showSearch
         style={{ width: 417 }}

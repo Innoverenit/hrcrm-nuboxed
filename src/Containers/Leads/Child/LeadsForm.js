@@ -406,7 +406,7 @@ props. getCrm();
                         value={values.sectorId}
                       /> */}
 
-<label>Sector</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
 
 <Select
         showSearch
@@ -427,7 +427,7 @@ props. getCrm();
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                           
-                          <label>Source</label>
+                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
 
 <Select
         showSearch

@@ -467,7 +467,7 @@ console.log(selectedSource)
                         inlineLabel
                       /> */}
 
-<label>Dial code</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Dial code</label>
 
 <Select
         showSearch
@@ -529,7 +529,7 @@ country_dial_code
                           Array.isArray(sectorOption) ? sectorOption : []
                         }
                       /> */}
-                      <label>Sector</label>
+                      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
 
 <Select
         showSearch
@@ -566,7 +566,7 @@ country_dial_code
                         isColumn
                       /> */}
 
-<label>Source</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
 
 <Select
         showSearch
@@ -625,7 +625,7 @@ country_dial_code
                           : []
                       }
                     /> */}
-                    <label>Currency</label>
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
 
 <Select
         showSearch
