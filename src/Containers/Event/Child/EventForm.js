@@ -311,7 +311,7 @@ const {
               ? prefillEvent
               : {
                   eventType: "",
-                  customerId:selectedCustomer,
+                 
                   eventTypeId: "",
                   eventSubject: "",
                   eventVenue: "",
@@ -330,8 +330,7 @@ const {
                   candidateId: "",
                   included: [],
                   fullName: "",
-                  contactId: selectedContact,
-                  opportunityId:selectedOpportunity,
+                 
                   repeatStartDate: "",
                   complitionInd: "Incomplete",
                   repeatEndDate: "",
@@ -424,6 +423,7 @@ const {
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
                     endTime: 0,
+                   
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
                   handleCallback
@@ -436,6 +436,9 @@ const {
                     endDate: `${newEndDate}T20:00:00Z`,
                     startTime: 0,
                     endTime: 0,
+                    contactId: selectedContact,
+                    opportunityId:selectedOpportunity,
+                    customerId:selectedCustomer,
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },

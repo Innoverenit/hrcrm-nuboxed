@@ -410,7 +410,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
                 callCategory:category,
 
                 callPurpose: "",
-                customerId:selectedCustomer,
+                // customerId:selectedCustomer,
                 fullName: "",
                 timeZone: timeZone,
                 remindInd: reminder ? true : false,
@@ -427,8 +427,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
 
                 included: [],
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                contactId: selectedContact,
-                opportunityId:selectedOpportunity,
+              
                 candidateId: "",
               }
              
@@ -527,6 +526,9 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
                   ...values,
                   callCategory: category,
                   callType: Type,
+                  customerId:selectedCustomer,
+                  contactId: selectedContact,
+                  opportunityId:selectedOpportunity,
                   startTime: values.startTime?values.startTime:null,
                   startDate: `${newStartDate}T20:00:00Z`,
                   endDate: `${newEndDate}T20:00:00Z`,
