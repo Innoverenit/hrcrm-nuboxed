@@ -75,17 +75,17 @@ const ReceivedTable = (props) => {
         <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className=" md:w-[11rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className=" md:w-[8rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className="md:w-[6rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
-              <div className="md:w-[7rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
-              <div className="md:w-[6rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
-              <div className="md:w-[5rem]"></div>
-              <div className="md:w-[7rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
-              <div className="md:w-[7rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
-              <div className="md:w-[7rem]"></div>
-              <div className="md:w-[2rem]"></div>
-              <div className="md:w-[2rem]"></div>
+              <div className=" w-[11rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" w-[8rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className="w-[6.1rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              <div className="w-[7.1rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
+              <div className="w-[6.2rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
+              <div className="w-[5.2rem]"></div>
+              <div className="w-[7.12rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
+              <div className="w-[7.21rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
+              <div className="w-[7.31rem]"></div>
+              <div className="w-[2.1rem]"></div>
+              <div className="w-[2.01rem]"></div>
             </div>
             <InfiniteScroll
               dataLength={props.allReceivedUser.length}
@@ -104,7 +104,7 @@ const ReceivedTable = (props) => {
 
                         <div className=" flex font-medium flex-col md:w-[11rem] max-sm:w-full  ">
                           <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
-                            <div class=" flex justify-evenly">
+                            <div class=" flex justify-between">
                               <span
                                 onClick={() => {
                                   handleRowData(item);
