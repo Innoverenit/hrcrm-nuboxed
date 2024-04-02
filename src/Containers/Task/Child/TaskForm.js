@@ -202,7 +202,7 @@ const [priority,setpriority]=useState(props.selectedTask
 
  
   useEffect(()=> {
-    props.getAssignedToList(props.orgId);
+    // props.getAssignedToList(props.orgId);
       props.getTaskForStages();
       // props.getAllCustomerData(userId)
       // props.getAllOpportunityData(userId)
@@ -313,6 +313,12 @@ const [priority,setpriority]=useState(props.selectedTask
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
     const [touchedCustomer, setTouchedCustomer] = useState(false);
+
+
+    const [include, setInclude] = useState([]);
+  const [isLoadingInclude, setIsLoadingInclude] = useState(false);
+  const [touchedInclude, setTouchedInclude] = useState(false);
+  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
  
     const [contact, setContact] = useState([]);
     const [selectedContact, setSelectedContact] = useState(null);
@@ -440,6 +446,41 @@ const [priority,setpriority]=useState(props.selectedTask
        setTouchedOpportunity(true);
      }
    };
+
+
+
+
+   const fetchInclude = async () => {
+    setIsLoadingInclude(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInclude(false);
+    }
+  };
+
+  const handleSelectChangeInclude = (values) => {
+    setSelectedIncludeValues(values); // Update selected values
+  };
+
+  const handleSelectIncludeFocus = () => {
+    if (!touchedInclude) {
+      fetchInclude();
+      setTouchedInclude(true);
+    }
+  };
    console.log("workflow",selectedWorkflow);
    console.log("recruitWorkflowTask",props.recruitWorkflowTask);
     return (
@@ -471,7 +512,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   startDate: startDate || dayjs(),
                   endDate: endDate || null,
                   endDate: dayjs(),
-                  included: [],
+                  // included: [],
                   taskStatus: active,
 
                   priority: priority,
@@ -594,6 +635,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     ...values,
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
+                    included:selectedIncludeValues,
                     taskStatus: active,
                     priority: priority,
                     complexity: complexity,
@@ -1440,8 +1482,8 @@ const [priority,setpriority]=useState(props.selectedTask
                     }}
                   /> */}
               
-              <div class="mt-1">
-                  <Field
+              <div class="mt-1" style={{display:"flex",flexDirection:"column"}}>
+                  {/* <Field
                     name="included"
                     // label="Include"
                     label={
@@ -1459,7 +1501,26 @@ const [priority,setpriority]=useState(props.selectedTask
                       label: `${empName || ""} `,
                       value: employeeId,
                     }}
-                  />
+                  /> */}
+
+<label>Include</label>
+                   <Select
+          showSearch
+          style={{ width: 415 }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoadingInclude}
+          onFocus={handleSelectIncludeFocus}
+          onChange={handleSelectChangeInclude}
+          defaultValue={selectedIncludeValues} 
+          mode="multiple" 
+        >
+          {include.map(includes => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
                  </div>
                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
                   {props.user.crmInd === true &&(
@@ -1689,6 +1750,7 @@ const mapStateToProps = ({
 }) => ({
   addingTask: task.addingTask,
   assignedToList:employee.assignedToList,
+  userId: auth.userDetails.userId,
   allOpportunityData:opportunity.allOpportunityData,
   filteredContact: candidate.filteredContact,
   allCustomerData:customer.allCustomerData,
@@ -1702,6 +1764,7 @@ const mapStateToProps = ({
   units: unit.units,
   recruitTask: settings.recruitTask,
   deletingTask: task.deleteTask,
+  token: auth.token,
   recruitTaskStages:settings.recruitTaskStages,
   employees: employee.employees,
   tasks: tasks.tasks,
