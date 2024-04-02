@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,Select } from "antd";
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -27,7 +27,7 @@ const InvestorSchema = Yup.object().shape({
  // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
   //  phoneNumber: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long")
 });
-
+const { Option } = Select; 
 function InvesterForm(props) {
 
    const[checked,setChecked]=useState(true);
@@ -46,7 +46,7 @@ function InvesterForm(props) {
     );
   };
   useEffect(() => {
-    props.getSectors();
+    // props.getSectors();
      props.getAllEmployeelist();
      props.getCountries();
      props.getDialCode();
@@ -123,6 +123,87 @@ function InvesterForm(props) {
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.allEmployeeList.find((item) => item.empName === selected);
+
+    const [source, setSource] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [touched, setTouched] = useState(false);
+    const [selectedSource, setSelectedSource] = useState(null);
+
+    const [sector, setSector] = useState([]);
+    const [selectedSector, setSelectedSector] = useState(null);
+    const [isLoadingSector, setIsLoadingSector] = useState(false);
+    const [touchedSector, setTouchedSector] = useState(false);
+    const fetchSource = async () => {
+      setIsLoading(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSource(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    const handleSelectChange = (value) => {
+      setSelectedSource(value)
+      console.log('Selected user:', value);
+    };
+
+    const handleSelectFocus = () => {
+      if (!touched) {
+        fetchSource();
+        // fetchSector();
+  
+        setTouched(true);
+      }
+    };
+
+
+    
+    const fetchSector = async () => {
+      setIsLoadingSector(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSector(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoadingSector(false);
+      }
+    };
+
+    const handleSelectSector = (value) => {
+      setSelectedSector(value)
+      console.log('Selected user:', value);
+    };
+
+
+    const handleSelectSectorFocus = () => {
+      if (!touchedSector) {
+       
+        fetchSector();
+  
+        setTouchedSector(true);
+      }
+    };
     return (
       <>
         <Formik
@@ -132,10 +213,10 @@ function InvesterForm(props) {
             url: "",
             gst:"",
             investorCategoryId:"",
-            sectorId: "",
+            sectorId: selectedSector,
             country: props.user.country,
             email: "",
-            source: "",
+            source: selectedSource,
             countryDialCode:  user.countryDialCode || "",
             phoneNumber: "",
             fullName:"",
@@ -285,8 +366,8 @@ function InvesterForm(props) {
 
                   
                   <div class=" flex justify-between mt-3">
-                  <div class=" w-w47.5">
-                  <Field                     
+                  <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                  {/* <Field                     
                             name="sectorId"
                             label={
                               <FormattedMessage
@@ -304,10 +385,27 @@ function InvesterForm(props) {
                             ? sectorOption
                             : []
                         }
-                          />
+                          /> */}
+                             <label>Sector</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select sector"
+        optionFilterProp="children"
+        loading={isLoadingSector}
+        onFocus={handleSelectSectorFocus}
+        onChange={handleSelectSector}
+      >
+        {sector.map(sectors => (
+          <Option key={sectors.sectorId} value={sectors.sectorId}>
+            {sectors.sectorName}
+          </Option>
+        ))}
+      </Select>
                     </div>
-                    <div class=" w-w47.5">
-                    <FastField
+                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                    {/* <FastField
                             name="source"
                              label={
                               <FormattedMessage
@@ -320,7 +418,24 @@ function InvesterForm(props) {
                             component={SearchSelect}
                             value={values.source}
                             isColumn
-                          />
+                          /> */}
+                          <label>Source</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select source"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {source.map(sources => (
+          <Option key={sources.sourceId} value={sources.sourceId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
                         </div>
                   </div>
                   <div class=" flex justify-between">
@@ -523,9 +638,11 @@ const mapStateToProps = ({ auth,investor, customer,employee ,investorList,sector
   allCustomerEmployeeList:employee.allCustomerEmployeeList,
   userId: auth.userDetails.userId,
   sectors: sector.sectors,
+  token: auth.token, 
   fullName: auth.userDetails.fullName,
   investorListData: investorList.investorListData,
-  orgId:auth.userDetails.organizationId,
+  organizationId: auth.userDetails.organizationId,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

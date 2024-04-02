@@ -1,7 +1,7 @@
 import React, {  useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button, Select} from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -25,7 +25,7 @@ const CustomerSchema = Yup.object().shape({
   email: Yup.string().required("Input needed!").email("Enter a valid Email"),
   //  phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8,"Minimum 8 digits").max(10,"Number is too long")
 });
-
+const { Option } = Select; 
 function PitchForm (props) {
   
  const handleReset = (resetForm) => {
@@ -36,7 +36,7 @@ function PitchForm (props) {
 props.getAllEmployeelist();
 props.getSources(props.orgId);
 props.getDialCode();
-props.getSectors();
+// props.getSectors();
   },[]);
   const sourceOption = props.sources.map((item) => {
     return {
@@ -78,6 +78,91 @@ props.getSectors();
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.allEmployeeList.find((item) => item.empName === selected);
 
+    const [sector, setSector] = useState([]);
+    const [source, setSource] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [touched, setTouched] = useState(false);
+    const [selectedSource, setSelectedSource] = useState(null);
+    const [selectedSector, setSelectedSector] = useState(null);
+    const [isLoadingSector, setIsLoadingSector] = useState(false);
+    const [touchedSector, setTouchedSector] = useState(false);
+
+
+
+
+
+    const fetchSector = async () => {
+      setIsLoadingSector(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSector(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoadingSector(false);
+      }
+    };
+
+    const handleSelectSector = (value) => {
+      setSelectedSector(value)
+      console.log('Selected user:', value);
+    };
+
+
+    const handleSelectSectorFocus = () => {
+      if (!touchedSector) {
+       
+        fetchSector();
+  
+        setTouchedSector(true);
+      }
+    };
+
+
+    const fetchSource = async () => {
+      setIsLoading(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSource(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const handleSelectChange = (value) => {
+      setSelectedSource(value)
+      console.log('Selected user:', value);
+    };
+
+    const handleSelectFocus = () => {
+      if (!touched) {
+        fetchSource();
+        // fetchSector();
+  
+        setTouched(true);
+      }
+    };
+
     return (
       <>
         <Formik
@@ -86,7 +171,7 @@ props.getSectors();
             partnerName: "",
             companyName: "",
             url: "",
-            sectorId: "",
+            sectorId: selectedSector,
             email: "",
             phoneNumber: "",
             countryDialCode:user.countryDialCode || "",
@@ -102,7 +187,7 @@ props.getSectors();
             lastName:"",
             proposalValue:"",
             opportunityName:"",
-            source:"",
+            source:selectedSource,
             address: [
               {
                 address1: "",
@@ -367,8 +452,8 @@ props.getSectors();
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                  <div class=" w-w47.5">
-                      <Field
+                  <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                      {/* <Field
                         name="sectorId"
                         isColumnWithoutNoCreate
                         // selectType="sectorName"
@@ -383,10 +468,27 @@ props.getSectors();
                         options={
                           Array.isArray(sectorOption) ? sectorOption : []
                         }
-                      />
+                      /> */}
+                                            <label>Sector</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select sector"
+        optionFilterProp="children"
+        loading={isLoadingSector}
+        onFocus={handleSelectSectorFocus}
+        onChange={handleSelectSector}
+      >
+        {sector.map(sectors => (
+          <Option key={sectors.sectorId} value={sectors.sectorId}>
+            {sectors.sectorName}
+          </Option>
+        ))}
+      </Select>
                     </div>
-                    <div class=" w-w47.5">
-                          <Field
+                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                          {/* <Field
                             name="source"
                              label={
                               <FormattedMessage
@@ -400,7 +502,25 @@ props.getSectors();
                               Array.isArray(sourceOption) ? sourceOption : []
                             }
                             isColumn
-                          />
+                          /> */}
+
+<label>Source</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select source"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {source.map(sources => (
+          <Option key={sources.sourceId} value={sources.sourceId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
                         </div>
                     </div>
                 </div>
@@ -536,6 +656,8 @@ orgId:auth.userDetails.organizationId,
   allEmployeeList:investor.allEmployeeList,
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
+  token: auth.token,
+  organizationId: auth.userDetails.organizationId,
   // countryDialCode:auth.userDetails.countryDialCode,
   sectors: sector.sectors,
 });

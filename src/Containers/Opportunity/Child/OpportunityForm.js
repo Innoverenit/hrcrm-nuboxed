@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Select } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
@@ -35,7 +35,7 @@ import { getAllEmployeelist } from "../../Investor/InvestorAction";
 /**
  * yup validation scheme for creating a opportunity
  */
-
+const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Input needed!"),
   oppWorkflow: Yup.string().required("Input needed!"),
@@ -51,13 +51,52 @@ function OpportunityForm(props) {
      props.getOppLinkedStages(props.orgId);
      props.getOppLinkedWorkflow(props.orgId);
      props.getCrm();
-     props.getAssignedToList(props.orgId);
+    //  props.getAssignedToList(props.orgId);
      props.getAllEmployeelist();
      props.getCurrency();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
+
+  const [include, setInclude] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [selectedValues, setSelectedValues] = useState([]);
+
+
+  const fetchInclude = async () => {
+    setIsLoading(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.organizationId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  const handleSelectChange = (values) => {
+    setSelectedValues(values); // Update selected values
+  };
+
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchInclude();
+      setTouched(true);
+    }
+  };
 
   const sortedCurrency =props.currencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
@@ -201,7 +240,7 @@ const filteredEmployeesData = AllEmplo.filter(
     endDate,
   } = props;
   const selectedOption = props.crmAllData.find((item) => item.empName === selected);
-  
+  console.log(selectedValues)
   return (
     <>
       <Formik
@@ -223,7 +262,7 @@ const filteredEmployeesData = AllEmplo.filter(
           oppInnitiative: "",
           oppStage: "",
           salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
-          included: [],
+          // included: selectedValues,
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -305,6 +344,7 @@ const filteredEmployeesData = AllEmplo.filter(
               ...values,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
+              included: selectedValues,
               description: transcript ? transcript : text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
             },
@@ -550,8 +590,8 @@ const filteredEmployeesData = AllEmplo.filter(
         )}
       </Listbox>
 
-       <div class=" mt-2">
-       <Field
+       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>
+       {/* <Field
                     name="included"
                     // label="Include"
                     label={
@@ -569,7 +609,25 @@ const filteredEmployeesData = AllEmplo.filter(
                       label: `${empName || ""} `,
                       value: employeeId,
                     }}
-                  />
+                  /> */}
+                  <label>Include</label>
+                   <Select
+          showSearch
+          style={{ width: 415 }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoading}
+          onFocus={handleSelectFocus}
+          onChange={handleSelectChange}
+          defaultValue={selectedValues} 
+          mode="multiple" 
+        >
+          {include.map(includes => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
 <div class=" w-w47.5 max-sm:w-wk">
@@ -770,7 +828,9 @@ const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact
   customerByUserId: customer.customerByUserId,
   initiatives: opportunity.initiatives,
   workflow:opportunity.workflow,
+  token: auth.token,
   oppLinkWorkflow: opportunity.oppLinkWorkflow,
+  organizationId: auth.userDetails.organizationId,
   customerData: customer.customerData,
   contactData: contact.contactData,
   fullName: auth.userDetails.fullName,
