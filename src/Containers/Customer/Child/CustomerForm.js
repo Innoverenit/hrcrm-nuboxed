@@ -13,6 +13,7 @@ import {
   addCustomer,
   setClearbitData
 } from "../CustomerAction";
+import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
 import { Listbox } from '@headlessui/react';
 import {getCurrency} from "../../Auth/AuthAction";
@@ -49,6 +50,7 @@ function CustomerForm(props) {
     );
   };
   useEffect(() => {
+    props.getCustomer(props.orgId); 
     // props.getAllCustomerEmployeelist();
     // props.getSectors();
     props.getCrm();
@@ -315,6 +317,25 @@ console.log(selectedSource)
       setTouchedCode(true);
     }
   };
+
+  const sortedType =props.customerListData.sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    // Compare department names
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  const typeOption = sortedType.map((item) => {
+    return {
+      label: `${item.name}`,
+      value: item.customerTypeId,
+    };
+  });
   console.log(selectedSector)
   return (
     <>
@@ -324,6 +345,7 @@ console.log(selectedSource)
           currencyId:selectedCurrency,
           // sectorName:"",
           partnerName: "",
+          type:"",
           // sectorDescription:"",
           name: "",
           url: "",
@@ -782,7 +804,7 @@ country_dial_code
                   </div>
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                    <div class=" w-2/5 max-sm:w-wk">
+                  <div class="w-w47.5">
                       <Field
                         name="vatNo"
                         type="text"
@@ -799,7 +821,7 @@ country_dial_code
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[10rem] max-sm:w-wk">
+                    <div class="w-w47.5">
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -816,6 +838,32 @@ country_dial_code
                         inlineLabel
                       />
                     </div>
+                  </div>
+
+                  <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
+                  <div class="w-w47.5">
+                      <Field
+                        name="type"
+                        // type="text"
+                        // label="VAT Number"
+                        label={
+                          <FormattedMessage
+                            id="app.type"
+                            defaultMessage="Type"
+                          />
+                        }
+                        isColumn
+                        width={"100%"}
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(typeOption)
+                            ? typeOption
+                            : []
+                        }
+                        inlineLabel
+                      />
+                    </div>
+                
                   </div>
 
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
@@ -888,15 +936,17 @@ country_dial_code
 }
 
 
-const mapStateToProps = ({ auth, customer,employee ,investor,sector,leads}) => ({
+const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
+  customerListData: catgCustomer.customerListData,
   clearbit: customer.clearbit,
   user: auth.userDetails,
   token: auth.token,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
+  orgId: auth.userDetails.organizationId,
   sectors: sector.sectors,
   fullName: auth.userDetails.fullName,
   crmAllData:leads.crmAllData,
@@ -911,7 +961,8 @@ const mapDispatchToProps = (dispatch) =>
       getSectors,
       getAllCustomerEmployeelist,
       getCrm,
-      getCurrency
+      getCurrency,
+      getCustomer
     },
     dispatch
   );

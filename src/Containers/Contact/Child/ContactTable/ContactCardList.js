@@ -329,19 +329,7 @@ function ContactCardList(props) {
               />
            </Tooltip>
            </div>
-           {/* <div>
-           <Tooltip title="Pulse">
-       <MonitorHeartIcon
-       className=" !text-base cursor-pointer text-[#df9697]"
-                onClick={() => {
-                  handleContactPulseDrawerModal(true);
-                  handleSetCurrentContact(item);
-                }}
-                
-              />
-           </Tooltip>
-
-</div> */}
+ 
 <div>
                       <Tooltip
                         title={
@@ -458,7 +446,20 @@ function ContactCardList(props) {
       
             </div>
               )}
-                      </div>    
+                      </div>  
+                      <div>
+           <Tooltip title="Pulse">
+       <MonitorHeartIcon
+       className=" !text-base cursor-pointer text-[#df9697]"
+                onClick={() => {
+                  handleContactPulseDrawerModal(true);
+                  handleSetCurrentContact(item);
+                }}
+                
+              />
+           </Tooltip>
+
+</div>
          
                       </div>
                             </div>

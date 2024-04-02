@@ -104,7 +104,9 @@ function UserKpiList(props) {
   return (
     <>
        <div class="flex flex-col justify-between  pr-2 max-sm:flex-col">
-              <div class=" w-[15%]">
+              <div class=" w-[20%] flex flex-row">
+                <span class=" flex font-semibold">Fiscal Year</span>
+                &nbsp;&nbsp;
             <select 
       ref={yearSelectRef}
       onChange={handleYearChange}>
@@ -140,10 +142,7 @@ function UserKpiList(props) {
                   defaultMessage="Name"
                 /></div>
  
-        <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.Frequency"
-                  defaultMessage="Frequency"
-                /></div>
+
                          <div className=" md:w-[8.1rem]"><FormattedMessage
                   id="app.assigned"
                   defaultMessage="Assigned"
@@ -191,15 +190,6 @@ function UserKpiList(props) {
                                         </div>
                                 </div>
                                 <div class="flex">
-
-                             
-                              
-                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
-                                  <div class="text-sm text-cardBody font-poppins">
-                                  {item.frequency}
-                                  </div>
-                              </div>
 
                             
                             <div className=" flex font-medium flex-col md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">

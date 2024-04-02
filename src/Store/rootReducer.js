@@ -94,6 +94,7 @@ import { subscriptionReducer } from "../Containers/Subscription/SubscriptionRedu
 import { productionReducer } from "../Containers/Production/ProductionReducer";
 import { regionalDashReducer } from "../Containers/DashboardPage/RegionalDashReducer";
 import { masterKpiReducer } from "../Containers/Settings/Category/KpiMasterList/KpiMasterListReducer";
+import { lobReducer } from "../Containers/Settings/Category/LOB/LOBReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -184,6 +185,7 @@ const appReducer = combineReducers({
   production:productionReducer,
   dashboardRegional:regionalDashReducer,
   masterKpi:masterKpiReducer,
+  lob:lobReducer,
 });
 
 const rootReducer = (state, action) => {

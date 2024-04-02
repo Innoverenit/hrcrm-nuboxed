@@ -72,11 +72,6 @@ function AssigenedKpiCardList(props) {
                   id="app.name"
                   defaultMessage="Name"
                 /></div>
- 
-        <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.Frequency"
-                  defaultMessage="Frequency"
-                /></div>
                 
                        <div className=" md:w-[13.1rem]"><FormattedMessage
                   id="app.assigned"
@@ -129,14 +124,7 @@ function AssigenedKpiCardList(props) {
                                 </div>
                                 <div class="flex">
 
-                             
-                              
-                                <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                
-                                  <div class="text-sm text-cardBody font-poppins">
-                                  {item.frequency}
-                                  </div>
-                              </div>
+
 
                             
                             <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">

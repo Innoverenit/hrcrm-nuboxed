@@ -27,9 +27,10 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   handleContactInvestNotesDrawerModal,
   getContactInvestByUserId,
-  emptyContactInvest,handleUpdateContactInvestModal} from "../../ContactInvestAction";
+  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -92,6 +93,8 @@ function ContactInvestCardList(props) {
     updateContactInvestModal,
     addDrawerContactInvestNotesModal,
     handleUpdateContactInvestModal,
+    addDrawerContactInvestPulseModal,
+    handleContactInvestPulseDrawerModal,
     handleContactInvestNotesDrawerModal
   } = props;
 
@@ -658,6 +661,16 @@ function ContactInvestCardList(props) {
                 className="text-green-500 cursor-pointer !text-base"
               />
            </Tooltip>
+           <Tooltip title="Pulse">
+       <MonitorHeartIcon
+       className=" !text-base cursor-pointer text-[#df9697]"
+                onClick={() => {
+                  handleContactInvestPulseDrawerModal(true);
+                  handleCurrentContactIdata(item);
+                }}
+                
+              />
+           </Tooltip>
 
             </div>
                             </div>
@@ -676,11 +689,18 @@ function ContactInvestCardList(props) {
         handleUpdateContactInvestModal={handleUpdateContactInvestModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
+
+<AddContactInvestPulseModal
+        contactiData={contactiData}
+        addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
+        handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
+        handleCurrentContactIdata={handleCurrentContactIdata}
+      />
       
       <AddContactInvestNotesDrawerModal
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
-        handleContactInvestNotesDrawerModal={handleContactInvestNotesDrawerModal}
+        handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />
     
@@ -698,6 +718,7 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   contactByUserId: contact.contactByUserId,
   user: auth.userDetails,
+  addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,
   fetchingContactsInvest: contactinvest.fetchingContactsInvest,
   fetchingContactsInvestError: contactinvest.fetchingContactsInvestError,
@@ -724,6 +745,7 @@ const mapDispatchToProps = (dispatch) =>
       handleContactEmailDrawerModal,
       emptyContactInvest,
       handleUpdateContactInvestModal,
+      handleContactInvestPulseDrawerModal,
       handleContactInvestNotesDrawerModal
     },
     dispatch

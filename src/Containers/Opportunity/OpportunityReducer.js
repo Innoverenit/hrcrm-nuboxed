@@ -103,6 +103,10 @@ const initialState = {
   fetchingOpportunityDetailsByIdError: false,
   opportunity: {},
 
+  fetchingAllRecords: false,
+  fetchingAllRecordsError: false,
+  allOpportunityRecords:{},
+
   documentUploadModal: false,
   addSponsorModal: false,
 
@@ -2030,6 +2034,21 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                               fetchingCloseRecords: false,
                                               fetchingCloseRecordsError: true,
                                             };
+
+                                            case types.GET_ALL_RECORDS_REQUEST:
+                                              return { ...state, fetchingAllRecords: true };
+                                            case types.GET_ALL_RECORDS_SUCCESS:
+                                              return {
+                                                ...state,
+                                                fetchingAllRecords: false,
+                                                allOpportunityRecords: action.payload,
+                                              };
+                                            case types.GET_ALL_RECORDS_FAILURE:
+                                              return {
+                                                ...state,
+                                                fetchingAllRecords: false,
+                                                fetchingAllRecordsError: true,
+                                              };
 
                                             case types.GET_LOST_RECORDS_REQUEST:
                                               return { ...state, fetchingLostRecords: true };

@@ -161,6 +161,10 @@ class ContactDetailTab extends Component {
                               handleCustomerOpportunityModal(true);
                             }}
                             size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
                           />
                         )}
                       </Tooltip>
@@ -213,6 +217,10 @@ class ContactDetailTab extends Component {
                               handleCustomerContactModal(true);
                             }}
                             size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
                           />
                         )}
                       </Tooltip>
@@ -258,10 +266,18 @@ class ContactDetailTab extends Component {
                   </span>
                   {activeKey === "5" && (
                     <>
+                     <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                          id="app.uploaddocument"
+                          defaultMessage="Upload Document"
+                        />
+                        }
+                      >
                       <PlusOutlined
                         type="plus"
                         //tooltipTitle="Upload Document"
-                        title={
+                        tooltiptitle={
                           <FormattedMessage
                             id="app.uploaddocument"
                             defaultMessage="Upload Document"
@@ -273,7 +289,9 @@ class ContactDetailTab extends Component {
                           marginLeft: "0.3125em",
                           verticalAlign: "center",
                         }}
+                       
                       />
+                     </Tooltip>
                     </>
                   )}
                 </>
@@ -338,6 +356,14 @@ class ContactDetailTab extends Component {
                   </Badge>
                   {activeKey === "7" && (
                     <>
+                      <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
                       <PlusOutlined
                         type="plus"
                         title={
@@ -353,6 +379,7 @@ class ContactDetailTab extends Component {
                           verticalAlign: "center",
                         }}
                       />
+                      </Tooltip>
                     </>
                   )}
                 
@@ -430,6 +457,14 @@ class ContactDetailTab extends Component {
                   </Badge>
                   {activeKey === "9" && (
                     <>
+                        <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
                       <PlusOutlined
                         type="plus"
                         title={
@@ -445,6 +480,7 @@ class ContactDetailTab extends Component {
                           verticalAlign: "center",
                         }}
                       />
+                      </Tooltip>
                     </>
                   )}
                 

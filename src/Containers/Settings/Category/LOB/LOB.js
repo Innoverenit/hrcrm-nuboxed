@@ -2,65 +2,62 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { base_url } from "../../../../Config/Auth";
-import DownloadIcon from '@mui/icons-material/Download';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
-import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { MainWrapper } from "../../../../Components/UI/Layout";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../../Config/Auth";
 import {
-  getSources,
-  getSourceCount,
-  searchSourceName,
-  ClearReducerDataOfSource,
-  addSources,
-  removeSource,
-  updateSource
-} from "./SourceAction";
+    getLob,
+    getLobCount,
+    addLob,
+    searchLobName,
+    ClearReducerDataOfLob,
+    removeLob,
+    updateLob
+} from "../LOB/LOBAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-const SingleSource = lazy(() =>
-  import("./SingleSource")
-);
+import { MainWrapper } from "../../../../Components/UI/Layout";
 
-const Source = (props) => {
+
+const LOB = (props) => {
   const [currentData, setCurrentData] = useState("");
-  const [sources, setSourceData] = useState(props.sources);
+  const [lobListData, setLobData] = useState(props.lobListData);
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
-  const [newSourceName, setSourceName] = useState('');
+  const [newLobName, setLobName] = useState('');
   useEffect(() => {
-      props.getSources(props.orgId); 
-      props.getSourceCount(props.orgId) 
+      props.getLob(props.orgId); 
+      props.getLobCount(props.orgId) 
   }, [])
 
-  const editRegion = (sourceId, name) => {
+  const editRegion = (lobId, name) => {
     console.log(name)
     console.log(name)
-      setEditingId(sourceId);
-      setSourceName(name);
+      setEditingId(lobId);
+      setLobName(name);
   };
 
 
 
-  const handleAddSource = () => {
+  const handleAddLob = () => {
       setAddingRegion(true);
-      setSourceName("")
+      setLobName("")
   };
 
-  const handleUpdateSource=(region)=>{
+  const handleUpdateLob=(region)=>{
       console.log(region)
       let data={
-        sourceId:region.sourceId,
-        name:newSourceName
+        lobId:region.lobId,
+        name:newLobName
        
       }
-props.updateSource(data,region.sourceId)
+props.updateLob(data,region.lobId)
 setEditingId(null);
   }
 
-  const handleSource = () => {
+  const handleLob = () => {
       // if (newRegionName.trim() !== '') {
       //     console.log("New Region:", newRegionName);
       //     const newRegion = {
@@ -72,10 +69,10 @@ setEditingId(null);
       //     setAddingRegion(false);
       // }
       let data={
-        name:newSourceName,
+        name:newLobName,
         orgId:props.orgId,
       }
-      props.addSources(data,props.orgId)
+      props.addLob(data,props.orgId)
       setAddingRegion(false)
   };
   const handleChange = (e) => {
@@ -84,7 +81,7 @@ setEditingId(null);
   
       if (e.target.value.trim() === "") {
       //   setPage(pageNo + 1);
-      props.getSources(props.orgId);
+      props.getLob(props.orgId);
       //   props.ClearReducerDataOfLoad()
       }
     };
@@ -92,14 +89,14 @@ setEditingId(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.searchSourceName(currentData);
+        props.searchLobName(currentData);
       } else {
         console.error("Input is empty. Please provide a value.");
       }
     };
 
   const handleCancelAdd = () => {
-    setSourceName('');
+    setLobName('');
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -107,14 +104,14 @@ setEditingId(null);
   };
   useEffect(() => {
       
-      if (props.sources.length > 0) {
+      if (props.lobListData.length > 0) {
         
-        setSourceData(props.sources);
+        setLobData(props.lobListData);
       }
-    }, [props.sources]);
+    }, [props.lobListData]);
 
 // console.log(regions)
-if (props.fetchingSources) {
+if (props.fetchingLob) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -131,7 +128,7 @@ return <div><BundleLoader/></div>;
         />
           </div>
           <div class="w-[18rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"source"}`}>
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"lob"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
         <DownloadIcon />
@@ -145,35 +142,35 @@ return <div><BundleLoader/></div>;
                       <input 
                       style={{border:"2px solid black",width:"55%"}}
                           type="text" 
-                          placeholder="Add Source"
-                          value={newSourceName} 
-                          onChange={(e) => setSourceName(e.target.value)} 
+                          placeholder="Add LOB"
+                          value={newLobName} 
+                          onChange={(e) => setLobName(e.target.value)} 
                       />
                       <button 
-                         loading={props.addingItemTask}
-                      onClick={handleSource}>Save</button>
-                      <button onClick={handleCancelAdd}>Cancel</button>
+                         loading={props.addingLob}
+                      onClick={handleLob}>Save</button>
+                      <button  onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
                   <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddSource}> Add More</button>
+                  onClick={handleAddLob}> Add More</button>
               )}
           </div>
           </div>
           <div class=" flex flex-col" >
          
          <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingSources && sources.length === 0 ? <NodataFoundPage /> : sources.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.sourceId}>
+          {!props.fetchingLob && lobListData.length === 0 ? <NodataFoundPage /> : lobListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
+            <div className="card9" key={region.lobId}>
             {/* Region name display or input field */}
             
-            {editingId === region.sourceId ? (
+            {editingId === region.lobId ? (
                 <input
                 style={{border:"2px solid black"}}
                     type="text"
-                    placeholder="Update Source"
-                    value={newSourceName}
-                    onChange={(e) => setSourceName(e.target.value)}
+                    placeholder="Update LOB"
+                    value={newLobName}
+                    onChange={(e) => setLobName(e.target.value)}
                 />
             ) : (
                 <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
@@ -186,13 +183,13 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.sourceId ? (
+                {editingId === region.lobId ? (
                     <div>
-                        <button onClick={() => handleUpdateSource(region)}>Save</button>
+                        <button onClick={() => handleUpdateLob(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.sourceId, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.lobId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -200,7 +197,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeSource(region.sourceId,props.orgId)}
+                        onConfirm={() =>  props.removeLob(region.lobId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -208,7 +205,7 @@ return <div><BundleLoader/></div>;
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.sourceId)
+              //     props.removeServiceLine(item.lobId)
               //  }
                  />
                  </Popconfirm>
@@ -217,38 +214,39 @@ return <div><BundleLoader/></div>;
           ))}
           </MainWrapper>
             </div>
-  <div class=" font-bold">Updated on {dayjs(props.sources && props.sources.length && props.sources[0].updationDate).format('YYYY-MM-DD')} by {props.sources && props.sources.length && props.sources[0].updatedBy}</div>
+  <div class=" font-bold">Updated on {dayjs(props.lobListData && props.lobListData.length && props.lobListData[0].updationDate).format('YYYY-MM-DD')} by {props.lobListData && props.lobListData.length && props.lobListData[0].updatedBy}</div>
       </div>
   );
 };
 
-const mapStateToProps = ({ source,auth }) => ({
-  addingSources: source.addingSources,
-  addingSourcesError: source.addingSourcesError,
-sources: source.sources,
-sourceCount:source.sourceCount,
+const mapStateToProps = ({ lob,auth }) => ({
+    addingLob: lob.addingLob,
+    lobCount:lob.lobCount,
+    addingLobError: lob.addingLobError,
+    lobListData: lob.lobListData,
 orgId:auth.userDetails.organizationId,
 userId:auth.userDetails.userId,
-removingSources: source.removingSources,
-removingSourcesError: source.removingSourcesError,
-fetchingSources: source.fetchingSources,
-fetchingSourcesError: source.fetchingSourcesError,
+removingLob: lob.removingLob,
+removingLobError: lob.removingLobError,
+fetchingLob: lob.fetchingLob,
+fetchingLobError: lob.fetchingLobError,
 
-updatingSources: source.updatingSources,
-updatingSourcesError: source.updatingSourcesError,
+updatingLob: lob.updatingLob,
+updatingLobError: lob.updatingLobError,
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getSources,
-      getSourceCount,
-      addSources,
-      removeSource,
-      updateSource,
-      ClearReducerDataOfSource,
-      searchSourceName
+        getLob,
+        getLobCount,
+        ClearReducerDataOfLob,
+        searchLobName,
+        addLob,
+        removeLob,
+        updateLob,
+
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(Source);
+export default connect(mapStateToProps, mapDispatchToProps)(LOB);

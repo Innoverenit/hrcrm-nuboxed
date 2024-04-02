@@ -100,8 +100,13 @@ function LinkedContact(props) {
                   id="app.Designation"
                   defaultMessage="Designation"
                 /></div>
+                
         
         <div className="w-[10.2rem]"></div>
+        <div className="md:w-[7.2rem]"><FormattedMessage
+                  id="app.Portal"
+                  defaultMessage="Portal"
+                /></div>
 
       </div>
    
@@ -290,6 +295,7 @@ function LinkedContact(props) {
                                    
                                 </div>
                                 <div class=" text-sm text-cardBody font-poppins text-center">
+                            
                                     <span>
               {item.thirdPartyAccessInd === true && (
                 <CustomerContactActiveToggle

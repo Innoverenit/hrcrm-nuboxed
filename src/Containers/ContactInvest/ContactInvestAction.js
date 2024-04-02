@@ -468,3 +468,36 @@ export const ClearReducerDataOfContactInvest = () => (dispatch) => {
     type: types.HANDLE_CLAER_REDUCER_DATA_CONTACT_INVEST,
   });
 };
+
+export const handleContactInvestPulseDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_INVEST_PULSE_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getContactInvestAllRecord = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_INVEST_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/contact/all/record/count/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_INVEST_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_INVEST_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

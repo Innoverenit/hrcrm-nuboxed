@@ -141,18 +141,20 @@ return <div><BundleLoader/></div>;
                   <div>
                       <input 
                         placeholder="Add Sector"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"55%"}}
                           type="text" 
                           value={newSectorName} 
                           onChange={(e) => setSectorName(e.target.value)} 
                       />
                       <button 
-                         loading={props.addingItemTask}
+                         loading={props.addingSectors}
                       onClick={handleSector}>Save</button>
                       <button onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
-                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  <button 
+                  loading={props.addingSectors}
+                   style={{backgroundColor:"tomato",color:"white"}}
                   onClick={handleAddSector}> Add More</button>
               )}
           </div>
