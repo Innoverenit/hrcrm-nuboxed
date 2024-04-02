@@ -41,11 +41,11 @@ const ProfileMenu = ({ logout, history }) => (
             Setting
           </a>
         </StyledMenuItem> */}
-        <StyledMenuItem key="2">
+        {/* <StyledMenuItem key="2">
           <a href="#" onClick={() => history.push("/Permissions")}>
             Permission
           </a>
-        </StyledMenuItem>
+        </StyledMenuItem> */}
         <StyledMenuItem key="3">
           <a href="#" onClick={() => history.push("/change-password")}>
             <FormattedMessage
@@ -61,7 +61,7 @@ const ProfileMenu = ({ logout, history }) => (
         <Menu.Divider />
       </StyledMenu>
       {/* <ServerCheckbox /> */}
-      <Theme />
+      {/* <Theme /> */}
     </MainWrapper>
   </ApplicationWrapper>
 );
