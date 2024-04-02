@@ -10,7 +10,7 @@ function QCPhoneTaskToggle(props) {
         props.updateProcessTask(
             {
                 completeTaskInd: props.item.completeTaskInd ? false : true,
-
+                userId: props.userId
             },
             props.item.phoneTaskId,
         );

@@ -15,7 +15,7 @@ class SubOrderPhoneModal extends Component {
             <>
                 <StyledDrawer
                     title={`Sub Order`}
-                    width="60%"
+                    width="70%"
                     visible={showSuborderPhoneList}
                     onClose={() => handleSuborderPhone(false)}
                     footer={null}

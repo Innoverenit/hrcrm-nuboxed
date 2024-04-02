@@ -7,12 +7,16 @@ import { bindActionCreators } from 'redux'
 import { getProductionUsersById, getRepairPhoneById, closeRepairModal, UpdateTechnicianForRepairPhone } from "./RefurbishAction"
 import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
 import { SubTitle } from '../../../Components/UI/Elements';
+import dayjs from "dayjs";
 
 const { Option } = Select;
 const AssignRepairForm = (props) => {
+
+    let depaVal = props.rowData.defaultDepartmentId === "null" ? "" : props.rowData.defaultDepartmentId
+
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState("")
+    const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
 
     const rowSelection = {
@@ -55,6 +59,13 @@ const AssignRepairForm = (props) => {
             props.closeRepairModal()
         }
     }
+
+    const disabledDate = current => {
+        // Replace 'start' and 'end' with your desired start and end dates
+        const startDate = dayjs(props.rowData.availabilityDate);
+        const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
+        return current && (current < startDate || current > endDate);
+    };
     const column = [
         {
             title: "",
@@ -159,6 +170,7 @@ const AssignRepairForm = (props) => {
                         className="w-[250px]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
+                        disabledDate={disabledDate}
                     />
                 </div>
             </div>
@@ -171,7 +183,7 @@ const AssignRepairForm = (props) => {
                 loading={props.fetchingRepairPhoneById}
             />
             <div class="flex justify-end mt-1">
-                <Button
+                {department && technician && dueDate && checkedValue && <Button
                     type='primary'
                     loading={props.updatingTechnicianForRepair}
                     onClick={() => props.UpdateTechnicianForRepairPhone({
@@ -187,7 +199,7 @@ const AssignRepairForm = (props) => {
                         handleCallback()
                     )}>
                     Submit
-                </Button>
+                </Button>}
             </div>
         </div>
     )

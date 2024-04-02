@@ -207,13 +207,12 @@ export const getProductionOutputList = (locationDetailsId) => (dispatch) => {
     });
 };
 
-export const getShifts = (userId) => (dispatch) => {
-  console.log(userId);
+export const getPhoneDetails = (phoneId) => (dispatch) => {
   dispatch({
-    type: types.GET_SHIFTS_REQUEST,
+    type: types.GET_PHONE_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url2}/shift/getShiftList/${userId}`, {
+    .get(`${base_url2}/phone/phoneData/${phoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -221,14 +220,14 @@ export const getShifts = (userId) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({
-        type: types.GET_SHIFTS_SUCCESS,
+        type: types.GET_PHONE_DETAILS_SUCCESS,
         payload: [res.data],
       });
     })
     .catch((err) => {
       console.log(err.response);
       dispatch({
-        type: types.GET_SHIFTS_FAILURE,
+        type: types.GET_PHONE_DETAILS_FAILURE,
         payload: err,
       });
     });
@@ -309,9 +308,9 @@ export const deleteProductionOutput = (productionProductId) => (dispatch) => {
     });
 };
 
-export const handleSplitOutputModal = (modalProps) => (dispatch) => {
+export const handlePhoneDetails = (modalProps) => (dispatch) => {
   dispatch({
-    type: types.HANDLE_SPLIT_OUTPUT_MODAL,
+    type: types.HANDLE_PHONE_DETAILS_MODAL,
     payload: modalProps,
   });
 };
@@ -399,6 +398,12 @@ export const handlePhoneNotesProductionModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   })
 }
+
+export const emptyRefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_REFURBISH_LIST,
+  });
+};
 
 export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatch) => {
   // debugger;
@@ -1279,12 +1284,12 @@ export const addCatalogueByTechnician = (data, id) => (dispatch) => {
     });
 };
 // get catalogue in production
-export const getCatalogueByTechnician = (userId) => (dispatch) => {
+export const getCatalogueByTechnician = (pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_CATALOGUE_BY_TECHNICIAN_REQUEST,
   });
   axios
-    .get(`${base_url2}/inventory/productRepurbish/${userId}`, {
+    .get(`${base_url2}/product/productList/pagewise/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

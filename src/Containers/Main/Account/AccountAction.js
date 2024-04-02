@@ -2038,7 +2038,7 @@ export const applyForLoginInContact = (data, contactPersonId, id, userId) => (di
     });
 };
 
-export const addLocationInOrder = (data, distributorId) => (dispatch) => {
+export const addLocationInOrder = (data, distributorId, cb) => (dispatch) => {
   dispatch({
     type: types.ADD_LOCATION_IN_ORDER_REQUEST,
   });
@@ -2058,6 +2058,7 @@ export const addLocationInOrder = (data, distributorId) => (dispatch) => {
         type: types.ADD_LOCATION_IN_ORDER_SUCCESS,
         payload: res.data,
       });
+      cb()
     })
     .catch((err) => {
       console.log(err);
@@ -2405,7 +2406,7 @@ export const startRepairInStatus = (data, id) => (dispatch) => {
         showConfirmButton: true,
       })
 
-      dispatch(getDistributorOrderByDistributorId(id, 0));
+      // dispatch(getDistributorOrderByDistributorId(id, 0));
       dispatch({
         type: types.START_REPAIR_IN_STATUS_SUCCESS,
         payload: res.data,

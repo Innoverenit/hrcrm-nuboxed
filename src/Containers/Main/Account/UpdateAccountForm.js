@@ -149,6 +149,7 @@ const UpdateAccountForm = ({
                   isRequired
                   name="name"
                   type="text"
+                  disable
                   label={<FormattedMessage
                     id="app.name"
                     defaultMessage="name"

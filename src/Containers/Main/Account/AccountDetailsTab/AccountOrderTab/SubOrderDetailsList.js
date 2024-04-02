@@ -6,6 +6,7 @@ import { SubTitle } from "../../../../../Components/UI/Elements";
 import { getSubOrderPhone } from "../../AccountAction"
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 function SubOrderDetailsList(props) {
     useEffect(() => {
@@ -14,45 +15,45 @@ function SubOrderDetailsList(props) {
 
     return (
         <>
-            <div className='flex justify-end sticky top-0 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[4.1rem]"><FormattedMessage
-                            id="app.OEM"
-                            defaultMessage="OEM"
-                        /></div>
-                        <div className=" md:w-[4.9rem]"><FormattedMessage
-                            id="app.model"
-                            defaultMessage="Model"
-                        /></div>
-                        <div className="md:w-[6rem]"><FormattedMessage
-                            id="app.IMEI"
-                            defaultMessage="IMEI"
-                        /></div>
-                        <div className=" md:w-[5rem]"><FormattedMessage
-                            id="app.os"
-                            defaultMessage="OS"
-                        /></div>
-                        <div className=" md:w-[3.1rem]"><FormattedMessage
-                            id="app.gb"
-                            defaultMessage="GB"
-                        /></div>
-                        <div className=" md:w-[3.1rem]"><FormattedMessage
-                            id="app.color"
-                            defaultMessage="Color"
-                        /></div>
-                        <div className=" md:w-[5.1rem]"><FormattedMessage
-                            id="app.condition"
-                            defaultMessage="Condition"
-                        /></div>
+            {props.fetchingSuborderPhone ? <BundleLoader /> :
+                <div className='flex justify-end sticky top-0 z-auto'>
+                    <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                        <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.OEM"
+                                defaultMessage="OEM"
+                            /></div>
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.model"
+                                defaultMessage="Model"
+                            /></div>
+                            <div className="md:w-[7rem]"><FormattedMessage
+                                id="app.IMEI"
+                                defaultMessage="IMEI"
+                            /></div>
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.os"
+                                defaultMessage="OS"
+                            /></div>
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.gb"
+                                defaultMessage="GB"
+                            /></div>
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.color"
+                                defaultMessage="Color"
+                            /></div>
+                            <div className=" md:w-[7rem]"><FormattedMessage
+                                id="app.condition"
+                                defaultMessage="Condition"
+                            /></div>
 
-                        <div className=" md:w-[2rem]"></div>
+                            <div className=" md:w-[2rem]"></div>
 
-                    </div>
-                    <div class="overflow-x-auto h-[70vh]">
+                        </div>
                         <InfiniteScroll
                             dataLength={props.subOrderPhoneList.length}
-                            loader={props.fetchingSuborderPhone ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            // loader={props.fetchingSuborderPhone ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
                         >
                             {props.subOrderPhoneList.map((item) => {
@@ -60,39 +61,39 @@ function SubOrderDetailsList(props) {
                                     <div>
                                         <div className="flex rounded-xl  mt-4 bg-white h-10 items-center p-3 " >
                                             <div class="flex">
-                                                <div className=" flex font-medium   md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.company}
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.os}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.gb}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.color}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins">
                                                         {item.condition}
                                                     </div>
@@ -123,8 +124,7 @@ function SubOrderDetailsList(props) {
                             })}
                         </InfiniteScroll>
                     </div>
-                </div>
-            </div>
+                </div>}
 
         </>
     );

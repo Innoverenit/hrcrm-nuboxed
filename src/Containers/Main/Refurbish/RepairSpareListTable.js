@@ -78,7 +78,9 @@ function RepairSpareListTable(props) {
                 return (
                     <Popconfirm
                         title="Do you want to delete?"
-                        onConfirm={() => props.deleteSpareList({}, item.phoneSpareId)}
+                        onConfirm={() => props.deleteSpareList({
+                            userId: props.userId
+                        }, item.phoneSpareId)}
                     ><DeleteIcon
                             className="text-base cursor-pointer text-[red]"
                         />
@@ -115,9 +117,10 @@ function RepairSpareListTable(props) {
     );
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor, auth }) => ({
     fetchingSpareListByPhoneId: distributor.fetchingSpareListByPhoneId,
     spareList: distributor.spareList,
+    userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>

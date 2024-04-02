@@ -58,99 +58,6 @@ function AllOrderList(props) {
     setParticularRowData(item);
   }
 
-  function getColumnSearchProps(dataIndex) {
-    return {
-      filterDropdown: ({
-        setSelectedKeys,
-        selectedKeys,
-        confirm,
-        clearFilters,
-      }) => (
-        <div style={{ padding: 8 }}>
-          <Input
-            // ref={node => {
-            //   this.searchInput = node;
-            // }}
-            placeholder={`Search ${dataIndex}`}
-            value={selectedKeys[0]}
-            onChange={(e) =>
-              setSelectedKeys(e.target.value ? [e.target.value] : [])
-            }
-            onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            style={{ width: 240, marginBottom: 8, display: "block" }}
-          />
-          <Space>
-            <Button
-              type="primary"
-              onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              icon={<SearchOutlined />}
-              size="small"
-              style={{ width: 90 }}
-            >
-              Search
-            </Button>
-            <Button
-              onClick={() => handleReset(clearFilters)}
-              size="small"
-              style={{ width: 90 }}
-            >
-              Reset
-            </Button>
-            <Button
-              type="link"
-              size="small"
-              onClick={() => {
-                confirm({ closeDropdown: false });
-                setSearchText(selectedKeys[0]);
-                setSearchedColumn(dataIndex);
-              }}
-            >
-              Filter
-            </Button>
-          </Space>
-        </div>
-      ),
-      filterIcon: (filtered) => (
-        <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-      ),
-      onFilter: (value, record) =>
-        record[dataIndex]
-          .toString()
-          .toLowerCase()
-          .includes(value.toLowerCase()),
-      onFilterDropdownVisibleChange: (visible) => {
-        if (visible) {
-          // setTimeout(() => this.searchInput.select());
-        }
-      },
-      render: (text) =>
-        searchedColumn === dataIndex ? (
-          <Highlighter
-            highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-            searchWords={[searchText]}
-            autoEscape
-            textToHighlight={text.toString()}
-          />
-        ) : (
-          text
-        ),
-    };
-  }
-
-  function handleSearch(selectedKeys, confirm, dataIndex) {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  }
-
-  function handleReset(clearFilters) {
-    clearFilters();
-    setSearchText("");
-  }
-
-
-
-
 
   return (
     <>
@@ -167,15 +74,15 @@ function AllOrderList(props) {
 
         </div>
         <InfiniteScroll
-          dataLength={props.allOrderList.length}
+          dataLength={props.allCompleteOrder.length}
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"75vh"}
         >
-          {props.allOrderList.length ?
+          {props.allCompleteOrder.length ?
             <>
-              {props.allOrderList.map((item) => {
+              {props.allCompleteOrder.map((item) => {
                 const currentdate = moment().format("DD/MM/YYYY");
                 const date = moment(item.creationDate).format("DD/MM/YYYY");
 
@@ -359,7 +266,7 @@ function AllOrderList(props) {
                 );
               })}
             </> :
-            !props.allOrderList.length && !props.fetchingAllOrderList ? <NodataFoundPage /> : null}
+            !props.allCompleteOrder.length && !props.fetchingAllOrderList ? <NodataFoundPage /> : null}
         </InfiniteScroll>
       </OnlyWrapCard>
       <AddNotesOrderDrawer
@@ -387,7 +294,7 @@ function AllOrderList(props) {
 }
 
 const mapStateToProps = ({ order, auth, distributor }) => ({
-  allOrderList: order.allOrderList,
+  allCompleteOrder: order.allCompleteOrder,
   addPaidButtonModal: order.addPaidButtonModal,
   addStatusOfOrder: order.addStatusOfOrder,
   addNotesInOrder: order.addNotesInOrder,

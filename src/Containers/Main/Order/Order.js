@@ -41,11 +41,9 @@ class Order extends Component {
           ) : this.props.viewType === "all" ? (
             <AllOrderList />
           ) : this.props.viewType === "complete" ? (
-            // <CompleteOrder />
-            <p>all</p>
+            <CompleteOrder />
           ) : this.props.viewType === "allcomplete" ? (
-            <p>all</p>
-            // <AllCompleteOrderList />
+            <AllCompleteOrderList />
           ) : null}
         </Suspense>
       </React.Fragment>

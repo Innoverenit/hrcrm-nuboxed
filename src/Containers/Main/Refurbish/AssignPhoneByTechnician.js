@@ -6,16 +6,18 @@ import { bindActionCreators } from 'redux'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { getProductionUsersById, UpdateTechnicianByPhone, getNoOfPhoneById, closeRepairModal } from "./RefurbishAction"
 import { SubTitle } from '../../../Components/UI/Elements';
-import moment from 'moment'
+import dayjs from "dayjs";
 
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
 const { Option } = Select;
 
 const AssignPhoneByTechnician = (props) => {
+
+    let depaVal = props.rowData.defaultDepartmentId === "null" ? "" : props.rowData.defaultDepartmentId
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState(props.rowData.defaultDepartmentId)
+    const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
 
 
@@ -58,6 +60,12 @@ const AssignPhoneByTechnician = (props) => {
             props.closeRepairModal()
         }
     }
+    const disabledDate = current => {
+        // Replace 'start' and 'end' with your desired start and end dates
+        const startDate = dayjs(props.rowData.availabilityDate);
+        const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
+        return current && (current < startDate || current > endDate);
+    };
     const column = [
         {
             title: "",
@@ -157,20 +165,11 @@ const AssignPhoneByTechnician = (props) => {
                 <div>
                     <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
                     <DatePicker
-                        className="w-[250px]"
+                        className="w-[300]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={(currentDate) => {
-                            const date = new Date()
-                            if (
-                                moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
-                            ) {
-                                return true;
-                            } else {
-                                return false;
-                            }
+                        disabledDate={disabledDate}
 
-                        }}
                     />
                 </div>
             </div>
@@ -186,10 +185,10 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                <Button
+                {department && technician && dueDate && checkedValue && <Button
                     loading={props.updatingtechnicianByPhone}
                     type='primary'
-                    disabled={!department && !technician}
+                    // disabled={!department && !technician && !dueDate && !checkedValue}
                     onClick={() => props.UpdateTechnicianByPhone({
                         phoneDetailsList: checkedValue,
                         orderPhoneId: props.rowData.orderPhoneId,
@@ -203,7 +202,7 @@ const AssignPhoneByTechnician = (props) => {
                         handleCallback()
                     )}>
                     Submit
-                </Button>
+                </Button>}
             </div>
         </div>
     )

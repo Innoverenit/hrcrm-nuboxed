@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
 import { Button, Tooltip } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
+import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
+import QRCode from "qrcode.react";
 import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
@@ -81,6 +82,11 @@ function OrderPhoneListById(props) {
     }
 
     const [active, setActive] = useState("To Start")
+    const [backToComplete, setBackComplete] = useState(false)
+
+    const handleChangeBack = () => {
+        setBackComplete(true)
+    }
 
     function handleQCStatus(type, item) {
         setActive(type)
@@ -94,6 +100,9 @@ function OrderPhoneListById(props) {
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
         props.updateQCStatus(data, item.phoneId, props.locationId, props.userId)
+        if (type === "Complete") {
+            setBackComplete(false)
+        }
     }
     // const handleCallBack = () => {
     //     props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
@@ -201,32 +210,62 @@ function OrderPhoneListById(props) {
                                             </div>
                                             <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {props.rowData.qcInspectionInd === 1 && <ButtonGroup>
-                                                        {item.qcStatus === "In Progress" ? null : <StatusIcon
-                                                            type="In Progress"
-                                                            iconType="fa-hourglass-half"
-                                                            tooltip="In Progress"
-                                                            id={item.phoneId}
-                                                            indStatus={item.qcStatus}
-                                                            phoneId={RowData.phoneId}
-                                                            status={active}
-                                                            onClick={() => {
-                                                                handleQCStatus("In Progress", item);
-                                                            }}
-                                                        />}
-                                                        {item.qcStatus === "To Start" ? null : <StatusIcon
-                                                            type="Complete"
-                                                            iconType="fa-hourglass"
-                                                            tooltip="Complete"
-                                                            indStatus={item.qcStatus}
-                                                            status={active}
-                                                            id={item.phoneId}
-                                                            phoneId={RowData.phoneId}
-                                                            onClick={() => {
-                                                                handleQCStatus("Complete", item);
-                                                            }}
-                                                        />}
-                                                    </ButtonGroup>}
+                                                    <div>
+                                                        {props.rowData.qcInspectionInd === 1 ?
+                                                            <ButtonGroup>
+                                                                {item.qcStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                                    type="In Progress"
+                                                                    iconType="fa-hourglass-half"
+                                                                    tooltip="In Progress"
+                                                                    id={item.phoneId}
+                                                                    indStatus={item.qcStatus}
+                                                                    phoneId={RowData.phoneId}
+                                                                    status={active}
+                                                                    onClick={() => {
+                                                                        handleQCStatus("In Progress", item)
+
+                                                                    }}
+                                                                />}
+                                                                {item.qcStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                                    type="Complete"
+                                                                    iconType="fa-hourglass"
+                                                                    tooltip="Complete"
+                                                                    indStatus={item.qcStatus}
+                                                                    status={active}
+                                                                    id={item.phoneId}
+                                                                    phoneId={RowData.phoneId}
+                                                                    onClick={() => {
+                                                                        handleQCStatus("Complete", item);
+                                                                    }}
+                                                                />}
+                                                            </ButtonGroup> :
+                                                            (item.qcStatus === "Complete" && backToComplete === false)
+                                                                ?
+                                                                <div>
+                                                                    <Tooltip title="Back To Process">
+                                                                        <RollbackOutlined
+                                                                            onClick={handleChangeBack}
+                                                                            style={{ marginRight: "0.3rem", color: "#1890ff" }} />
+                                                                    </Tooltip>
+                                                                </div>
+                                                                : null}
+
+                                                        {backToComplete && props.RowData.phoneId === item.phoneId &&
+                                                            <StatusIcon
+                                                                type="Complete"
+                                                                iconType="fa-hourglass"
+                                                                tooltip="Complete"
+                                                                indStatus={item.qcStatus}
+                                                                status={active}
+                                                                id={item.phoneId}
+                                                                phoneId={RowData.phoneId}
+                                                                onClick={() => {
+                                                                    handleQCStatus("Complete", item);
+                                                                }}
+                                                            />
+                                                        }
+
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -338,15 +377,11 @@ function OrderPhoneListById(props) {
                                                     flexDirection: "column",
                                                     alignItems: "center",
                                                 }}
-                                            ><div style={{ fontSize: "5rem" }}>
-                                                    <QRCodeModal
-                                                        qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                        imgHeight={"5em"}
-                                                        imgWidth={"5em"}
-                                                        size={100} />
+                                            >
+                                                <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                    <QRCode size={150} value={item.imei} />
                                                 </div>
-
-                                                <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                             </div>
                                         </div>
                                     </div>

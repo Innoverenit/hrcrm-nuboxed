@@ -49,7 +49,7 @@ const OrderPhoneTab = (props) => {
                                 </span>
                                 &nbsp;&nbsp;
                                 <span onClick={handleOpenQc}>
-                                    <HandymanIcon className="text-base"/>
+                                    <HandymanIcon className="text-base" />
                                 </span>
 
                             </>
@@ -63,12 +63,12 @@ const OrderPhoneTab = (props) => {
                     tab={
                         <>
                             <span onClick={handleMainRepair}>
-                   
+
                                 Process
                             </span>
                             &nbsp;&nbsp;
                             <span onClick={handleOpenRepair}>
-                                <HandymanIcon className="text-base"/>
+                                <HandymanIcon className="text-base" />
                             </span>
 
                         </>
@@ -84,7 +84,7 @@ const OrderPhoneTab = (props) => {
                         tab={
                             <>
                                 <span>
-                       
+
                                     Production
                                 </span>
                             </>
@@ -95,7 +95,8 @@ const OrderPhoneTab = (props) => {
                         </Suspense>
 
 
-                    </TabPane>}
+                    </TabPane>
+                }
             </StyledTabs>
         </div>
     )

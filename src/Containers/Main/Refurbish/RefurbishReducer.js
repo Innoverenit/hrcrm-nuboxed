@@ -71,6 +71,10 @@ const initialState = {
   fetchingNoOfPhoneInQcByIdError: false,
   phoneByTechId: [],
 
+  fetchingPhoneDetails: false,
+  fetchingPhoneDetailsError: false,
+  phoneDetails: [],
+
   fetchingShiftsByUserId: false,
   fetchingShiftsByUserIdError: false,
   shiftsData: [],
@@ -229,6 +233,8 @@ const initialState = {
   approvingSpare: false,
   approvingSpareError: false,
 
+  showPhoneData: false,
+
   updatingProcessTask: false,
   updatingProcessTaskError: false,
 
@@ -354,19 +360,20 @@ export const refurbishReducer = (state = initialState, action) => {
         addingProductionOutputError: true,
       };
 
-    case types.GET_SHIFTS_REQUEST:
-      return { ...state, fetchingShiftsByUserId: true };
-    case types.GET_SHIFTS_SUCCESS:
+    case types.GET_PHONE_DETAILS_REQUEST:
+      return { ...state, fetchingPhoneDetails: true };
+    case types.GET_PHONE_DETAILS_SUCCESS:
       return {
         ...state,
-        fetchingShiftsByUserId: false,
-        shiftsData: action.payload,
+        fetchingPhoneDetails: false,
+        phoneDetails: action.payload,
       };
-    case types.GET_SHIFTS_FAILURE:
+    case types.GET_PHONE_DETAILS_FAILURE:
       return {
         ...state,
-        fetchingShiftsByUserId: false,
-        fetchingShiftsByUserIdError: true,
+        fetchingPhoneDetails: false,
+        fetchingPhoneDetailsError: true,
+
       };
 
     //transfer output
@@ -380,6 +387,14 @@ export const refurbishReducer = (state = initialState, action) => {
             ? action.payload
             : item
         ),
+      };
+
+    case types.EMPTY_REFURBISH_LIST:
+      return {
+        ...state,
+        productionOrder: [],
+        orderByUser: [],
+        repairOrder: [],
       };
     case types.TRANSFER_PRODUCTION_OUTPUT_TO_INVENTORY_FAILURE:
       return { ...state };
@@ -586,6 +601,10 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.HANDLE_PHONE_BY_TECHNICIAN_MODAL:
       return { ...state, phoneByTechnician: action.payload };
+
+    case types.HANDLE_PHONE_DETAILS_MODAL:
+      return { ...state, showPhoneData: action.payload };
+
 
     case types.HANDLE_ASSIGN_REPAIR_MODAL:
       return { ...state, showAssignRepairModal: action.payload, catalogueInRefurbish: [] };

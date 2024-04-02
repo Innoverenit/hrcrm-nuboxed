@@ -19,6 +19,7 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 import { getCurrency } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
 import { FormattedMessage } from "react-intl";
+import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -48,7 +49,6 @@ const AddAccountForm = ({
   getCustomer,
   getCurrency,
 }) => {
-  const [vatInd, setVatInd] = useState(false);
 
   useEffect(() => {
     getCountry();
@@ -58,9 +58,6 @@ const AddAccountForm = ({
 
   }, []);
 
-  const handleVatCheckBox = () => {
-    setVatInd(true);
-  };
 
   const CountryOptions = countries.map((item) => {
     return {
@@ -104,7 +101,7 @@ const AddAccountForm = ({
           payment: "",
           customPayment: "",
           groupId: groupId,
-          vatInd: vatInd,
+          vatInd: false,
           insuranceGrade: "",
           countryValue: "",
           currencyPrice: "",
@@ -131,6 +128,7 @@ const AddAccountForm = ({
             {
               ...values,
               orgId: orgId,
+              vatInd: values.vatInd ? true : false,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
             },
@@ -243,6 +241,7 @@ const AddAccountForm = ({
                   width={"100%"}
                   component={InputComponent}
                   isColumn
+                  disable
                   inlineLabel
                 />
                 <div class="flex  mt-4" >
@@ -251,10 +250,15 @@ const AddAccountForm = ({
                       id="app.vatvalidity"
                       defaultMessage="vatvalidity"
                     /></b>
-                    <Checkbox
-                      checked={vatInd}
-                      onChange={handleVatCheckBox}
+                    <Field
+                      name="vatInd"
+                      component={SwitchComponent}
+                      data={values.vatInd}
+                      checkedChildren={"Yes"}
+                      unCheckedChildren={"No"}
+                      width={"5em"}
                     />
+
                   </div>
                 </div>
 

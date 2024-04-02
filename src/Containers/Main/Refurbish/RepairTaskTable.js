@@ -25,7 +25,9 @@ const RepairTaskTable = (props) => {
                                 <QCPhoneTaskToggle item={item} />
                                 <Popconfirm
                                     title="Do you want to delete?"
-                                    onConfirm={() => props.deleteTaskList({}, item.phoneTaskId)}
+                                    onConfirm={() => props.deleteTaskList({
+                                        userId: props.userId
+                                    }, item.phoneTaskId)}
                                 >
                                     <DeleteIcon
                                         className=" !text-base cursor-pointer text-[red]"
@@ -41,7 +43,8 @@ const RepairTaskTable = (props) => {
     )
 }
 const mapStateToProps = ({ auth, refurbish }) => ({
-    taskByPhone: refurbish.taskByPhone
+    taskByPhone: refurbish.taskByPhone,
+    userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
