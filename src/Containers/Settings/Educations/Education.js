@@ -146,7 +146,7 @@ return <div><BundleLoader/></div>;
                   <div>
                       <input 
                         placeholder="Add Education"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"52%"}}
                           type="text" 
                           value={newEducationName} 
                           onChange={(e) => setEducationName(e.target.value)} 

@@ -1460,3 +1460,29 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getLeadsAllRecords = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_LEADS_ALL_RECORDS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/record/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_ALL_RECORDS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_ALL_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+

@@ -15,7 +15,8 @@ import {
   getDeleteRecords,
   getcloseRecords,
   getlostRecords,
-  getWonRecords
+  getWonRecords,
+  getAllRecords
 } from "../OpportunityAction";
 import PeopleIcon from '@mui/icons-material/People';
 import { StopTwoTone, TableOutlined } from "@ant-design/icons";
@@ -35,13 +36,17 @@ const OpportunityActionLeft = (props) => {
       props.getlostRecords(props.userId);
     } else if (props.viewType === "won") {
       props.getWonRecords(props.userId);
+     
+      
     } else if (props.viewType === "teams") {
       props.getOpportunityTeamRecords(props.userId);
     }
     else if (props.viewType === "stage") {
       props.getRecords(props.userId);
     }
-    
+    else if (props.viewType === "all") {
+      props.getAllRecords(props.orgId);
+    }
   }, [props.viewType, props.userId]);
 
   const {
@@ -224,7 +229,7 @@ const OpportunityActionLeft = (props) => {
         >
                        <Badge
         size="small"
-        // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
+         count={(viewType === "all" && props.allOpportunityRecords.opportunity) || 0}
         overflowCount={999}
       >
           <span
@@ -305,11 +310,13 @@ const mapStateToProps = ({ account, auth, opportunity }) => ({
   user: auth.userDetails,
   recordData: opportunity.recordData,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   opportunityTeamRecordData:opportunity.opportunityTeamRecordData,
   recorddeleteOpportunityData: opportunity.recorddeleteOpportunityData,
   closeOpportunityData: opportunity.closeOpportunityData,
   lostOpportunityData: opportunity.lostOpportunityData,
   wonOpportunityData: opportunity.wonOpportunityData,
+  allOpportunityRecords:opportunity.allOpportunityRecords,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -319,6 +326,7 @@ const mapDispatchToProps = (dispatch) =>
       getcloseRecords,
       getlostRecords,
       getWonRecords,
+      getAllRecords,
       getRecords,
       getOpportunityTeamRecords,
     },

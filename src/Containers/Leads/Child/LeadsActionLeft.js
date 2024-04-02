@@ -8,7 +8,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
+import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
@@ -39,6 +39,10 @@ const LeadsActionLeft = (props) => {
     } else if (props.viewType === "teams") {
       props.getLeadsTeamRecords(props.userId);
     }
+    else if (props.viewType === "all") {
+      props.getLeadsAllRecords(props.orgId);
+    }
+    
   }, [props.viewType, props.userId]);
 
   const handleChange = (e) => {
@@ -129,7 +133,10 @@ const LeadsActionLeft = (props) => {
           <Tooltip
             title="All"
           >
-            <Badge>
+            <Badge
+               size="small"
+               count={(props.viewType === "all" && props.leadsAllCountData.leadsDetails) || 0}
+               overflowCount={999}>
               <span class=" md:mr-1 text-sm cursor-pointer"
                 onClick={() => props.setLeadsViewType("all")}
                 style={{
@@ -206,7 +213,9 @@ const mapStateToProps = ({ leads, auth }) => ({
   leadsTeamCountData: leads.leadsTeamCountData,
   leadsCountJunked: leads.leadsCountJunked,
   userId: auth.userDetails.userId,
+  leadsAllCountData:leads.leadsAllCountData,
   user: auth.userDetails,
+  orgId: auth.userDetails.organizationId,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -215,7 +224,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   ClearReducerDataOfLead,
   getLeads,
   getJunkedLeadsRecords,
-  getLeadsTeamRecords
+  getLeadsTeamRecords,
+  getLeadsAllRecords
 }, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LeadsActionLeft));

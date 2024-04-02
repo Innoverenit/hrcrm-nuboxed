@@ -1658,3 +1658,25 @@ export const updateRepositoryDocument = (data, organizationDocumentLinkId) => (
       });
     });
 };
+
+export const getInvestorCurrency = () => (dispatch) => {
+  dispatch({
+    type: types.GET_INVESTOR_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/currencies/investor`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVESTOR_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVESTOR_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};

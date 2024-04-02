@@ -21,7 +21,7 @@ import {
 } from "../OpportunityAction";
 import {getAssignedToList} from "../../Employees/EmployeeAction"
 import { getCrm} from "../../Leads/LeadsAction";
-import {getCurrency} from "../../Auth/AuthAction"
+import {getSaleCurrency} from "../../Auth/AuthAction"
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -53,7 +53,7 @@ function OpportunityForm(props) {
      props.getCrm();
     //  props.getAssignedToList(props.orgId);
      props.getAllEmployeelist();
-     props.getCurrency();
+     props.getSaleCurrency();
   }, []);
 
   const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -173,7 +173,7 @@ function OpportunityForm(props) {
     }
   };
 
-  const sortedCurrency =props.currencies.sort((a, b) => {
+  const sortedCurrency =props.saleCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -944,6 +944,7 @@ const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact
   allEmployeeList:investor.allEmployeeList,
   assignedToList:employee.assignedToList,
   currencies: auth.currencies,
+  saleCurrencies: auth.saleCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -958,7 +959,7 @@ const mapDispatchToProps = (dispatch) =>
       getCrm,
       getAllEmployeelist,
       getAssignedToList,
-      getCurrency
+      getSaleCurrency
     },
     dispatch
   );

@@ -3,28 +3,28 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import ContactPulseJumpstart from "./ContactPulseJumpstart";
+import ContactInvestPulseJumpstart from "./ContactInvestPulseJumpstart";
 
 
-class AddContactPulseDrawerModal extends Component {
+class AddContactInvestPulseModal extends Component {
   render() {
     //   console.log("data5", this.props.contactData.contactId);
 
     return (
       <div>
         <StyledDrawer
-        title={this.props.contactData.fullName}
+        title={this.props.contactiData.fullName}
           width="64%"
-          visible={this.props.addDrawerContactPulseModal}
+          visible={this.props.addDrawerContactInvestPulseModal}
           closable
           placement="right"
           destroyOnClose
         
-          onClose={() => this.props.handleContactPulseDrawerModal(false)}
+          onClose={() => this.props.handleContactInvestPulseDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-          <ContactPulseJumpstart 
-            contactData={this.props.contactData}
+          <ContactInvestPulseJumpstart 
+            contactiData={this.props.contactiData}
             />
           </Suspense>
         </StyledDrawer>
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddContactPulseDrawerModal);
+)(AddContactInvestPulseModal);

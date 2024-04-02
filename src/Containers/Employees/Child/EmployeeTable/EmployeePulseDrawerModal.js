@@ -63,7 +63,7 @@ class EmployeePulseDrawerModal extends Component {
                   <span>
  <ContactsIcon style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      Performance Mangement
+                      Performance
                     </span>
                   </span>
                   {/* {activeKey === "1" && (

@@ -61,6 +61,10 @@ const initialState = {
   fetchingCustomerRequirementError: false,
   customerRequirement: [],
 
+  fetchingCustomerAllRecords: false,
+  fetchingCustomerAllRecordsError: false,
+  customerAllRecordData:{},
+
   callActivityModal: false,
 
   fetchingCustomers: false,
@@ -1968,6 +1972,21 @@ export const customerReducer = (state = initialState, action) => {
             fetchingCustomerCampaign: false,
             fetchingCustomerCampaignError: true,
           };
+
+          case types.GET_CUSTOMER_ALL_RECORDS_REQUEST:
+            return { ...state, fetchingCustomerAllRecords: true };
+          case types.GET_CUSTOMER_ALL_RECORDS_SUCCESS:
+            return {
+              ...state,
+              fetchingCustomerAllRecords: false,
+              customerAllRecordData: action.payload,
+            };
+          case types.GET_CUSTOMER_ALL_RECORDS_FAILURE:
+            return {
+              ...state,
+              fetchingCustomerAllRecords: false,
+              fetchingCustomerAllRecordsError: true,
+            };
 
     default:
       return state;

@@ -1464,3 +1464,29 @@ export const getContactActivityRecords = (contactId) => (dispatch) => {
       });
     });
 };
+
+export const getContactAllRecord = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/contact/all/record/count/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

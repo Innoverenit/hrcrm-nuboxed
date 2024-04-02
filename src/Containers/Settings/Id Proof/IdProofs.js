@@ -144,7 +144,7 @@ return <div><BundleLoader/></div>;
                   <div>
                       <input 
                         placeholder="Add Identity"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"50%"}}
                           type="text" 
                           value={newIdProofName} 
                           onChange={(e) => setIdProofName(e.target.value)} 

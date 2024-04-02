@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import {getCurrency} from "../../Auth/AuthAction"
+import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Button, Tooltip,message } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
@@ -45,7 +45,7 @@ const OpportunitySchema = Yup.object().shape({
 });
 function InvestorDealForm(props) {
   useEffect(() => {
-    props.getCurrency();
+    props.getInvestorCurrency();
     props.getRecruiterName();
     props.getAllEmployeelist();
     props.getAssignedToList(props.orgId);
@@ -129,7 +129,7 @@ function InvestorDealForm(props) {
   const filteredEmployeesData = AllEmplo.filter(
     (item) => item.value !== props.user.userId
   );
-  const sortedCurrency =props.currencies.sort((a, b) => {
+  const sortedCurrency =props.investorCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -233,7 +233,7 @@ function InvestorDealForm(props) {
           userId: props.userId,
           description: "",
           proposalAmount: "",
-          currency: props.user.currency,
+          currency: "",
           orgId: props.organizationId,
           userId: props.userId,
           customerId: undefined,
@@ -433,9 +433,9 @@ function InvestorDealForm(props) {
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
-                      defaultValue={{
-                        value: props.user.currency,
-                      }}
+                      // defaultValue={{
+                      //   value: props.user.currency,
+                      // }}
                       label={
                         <FormattedMessage
                           id="app.currency"
@@ -515,7 +515,7 @@ function InvestorDealForm(props) {
                           defaultMessage="assignedto"
                         />
             </Listbox.Label>
-            <div className="relative mt-1">
+            <div className="relative ">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} >
                 {selected}
               </Listbox.Button>
@@ -577,7 +577,7 @@ function InvestorDealForm(props) {
           </>
         )}
       </Listbox>
-<div>
+<div class=" mt-[0.25rem]">
 <Field
                     name="included"
                     // label="Include"
@@ -628,26 +628,6 @@ function InvestorDealForm(props) {
             </div>
                 <div class=" w-w47.5 max-sm:w-wk">
                 <Field
-                            name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="source"
-                              />
-                            }
-                            isColumnWithoutNoCreate
-                            component={SelectComponent}
-                    options={
-                      Array.isArray(SourceOptions)
-                        ? SourceOptions
-                        : []
-                    }
-                            isColumn
-                          />
-                        </div>
-                        </div>
-                        <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <Field
                     name="contactId"
                     // selectType="contactListFilter"
                     isColumnWithoutNoCreate
@@ -675,6 +655,29 @@ function InvestorDealForm(props) {
                     isColumn
                     inlineLabel
                   />
+              
+                        </div>
+                        </div>
+                        <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                        <div class=" w-w47.5 max-sm:w-wk">
+                        <Field
+                            name="source"
+                             label={
+                              <FormattedMessage
+                                id="app.source"
+                                defaultMessage="source"
+                              />
+                            }
+                            isColumnWithoutNoCreate
+                            component={SelectComponent}
+                    options={
+                      Array.isArray(SourceOptions)
+                        ? SourceOptions
+                        : []
+                    }
+                            isColumn
+                          />
+                           </div>
                 </div>
                 {/* <StyledLabel>
                   <Field
@@ -806,6 +809,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   allEmployeeList:investor.allEmployeeList,
   dealStages: deal.dealStages,
   currencies: auth.currencies,
+  investorCurrencies:auth.investorCurrencies,
   contactByUserId: contact.contactByUserId,
   customerByUserId: customer.customerByUserId,
   initiatives: opportunity.initiatives,
@@ -826,7 +830,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         InvestorcreateDeals,
-      getCurrency,
+        getInvestorCurrency,
       getdealsContactdata,
       getRecruiterName,
       getAllEmployeelist,

@@ -2,7 +2,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import { base_url } from "../../../../../../Config/Auth";
 import {
@@ -12,7 +12,8 @@ import { SearchOutlined } from "@ant-design/icons";
 import {
   Tooltip,
   Button,
-  Input
+  Input,
+  Popconfirm
 } from "antd";
 import {
   MultiAvatar,
@@ -147,7 +148,7 @@ class LinkedDocuments extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-scroll  shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-5 p-2 w-[98%]   shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           
         <div className=" md:w-[5rem]">
@@ -196,7 +197,7 @@ class LinkedDocuments extends Component {
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm  text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -274,19 +275,19 @@ class LinkedDocuments extends Component {
             />
           </a>            </div>
           <div>
-          <StyledPopconfirm
-            title={
-              <FormattedMessage
-                id="app.doyouwanttodelete?"
-                defaultMessage="Do you want to delete?"
-              />
-            }
-            onConfirm={() => deleteDocument(item.documentId)}
-          >
-            <DeleteIcon
+          <Popconfirm
+                        title="Do you want to delete?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() => deleteDocument(item.documentId)}
+                      >
+                         <Tooltip title="Delete">
+      
+            <DeleteOutlined
 className="cursor-pointer !text-base text-[red]"
             />
-          </StyledPopconfirm>
+            </Tooltip>
+          </Popconfirm>
             </div>
                           </div>
                       </div>

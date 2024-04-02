@@ -2432,6 +2432,32 @@ export const getcloseRecords = (userId) => (dispatch) => {
     });
 };
 
+export const getAllRecords = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/all/record/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getlostRecords = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_LOST_RECORDS_REQUEST,

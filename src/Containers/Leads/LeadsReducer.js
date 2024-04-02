@@ -63,6 +63,10 @@ const initialState = {
 
   addLeadsOpportunityModal:false,
 
+  fetchingLeadsAllRecords: false,
+  fetchingLeadsAllRecordsError: false,
+  leadsAllCountData:{},
+
   clearbit: {},
 
   addingNotesByLeadsId: false,
@@ -1005,6 +1009,21 @@ case types.HANDLE_LEADS_MODAL:
                           fetchingLeadsActivityCount: false,
                           fetchingLeadsActivityCountError: true,
                         };
+
+                        case types.GET_LEADS_ALL_RECORDS_REQUEST:
+                          return { ...state, fetchingLeadsAllRecords: true };
+                        case types.GET_LEADS_ALL_RECORDS_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingLeadsAllRecords: false,
+                            leadsAllCountData: action.payload,
+                          };
+                        case types.GET_LEADS_ALL_RECORDS_FAILURE:
+                          return {
+                            ...state,
+                            fetchingLeadsAllRecords: false,
+                            fetchingLeadsAllRecordsError: true,
+                          };
 
 default:
 return state;

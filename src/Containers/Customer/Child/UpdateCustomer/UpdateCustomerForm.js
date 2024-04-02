@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button} from "antd";
+import {getCustomer} from "../../../Settings/Category/Customer/CustomerAction"
 import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitImage";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
@@ -29,6 +30,7 @@ function UpdateCustomerForm (props) {
   
   useEffect(() => {
     props.getCrm();
+    props.getCustomer(props.orgId); 
     props.getCurrency();
   }, []);
 
@@ -72,6 +74,24 @@ function UpdateCustomerForm (props) {
         value: item.currency_name,
       };
     });
+    const sortedType =props.customerListData.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const typeOption = sortedType.map((item) => {
+      return {
+        label: `${item.name}`,
+        value: item.customerTypeId,
+      };
+    });
     
     return (
       <>
@@ -83,6 +103,8 @@ function UpdateCustomerForm (props) {
             sectorId: setEditingCustomer.sectorId  ,
             vatNo:setEditingCustomer.vatNo  ,
             email: setEditingCustomer.email || "",
+            type: setEditingCustomer.type || "",
+            
             country:setEditingCustomer.country || "",
             businessRegistration:setEditingCustomer.businessRegistration ||"",
             countryDialCode: setEditingCustomer.countryDialCode || user.countryDialCode,
@@ -410,7 +432,7 @@ function UpdateCustomerForm (props) {
                     </div>
               
                     <div class=" flex justify-between max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">
+                    <div class="w-w47.5">
                       <Field
                         name="vatNo"
                         type="text" 
@@ -427,7 +449,7 @@ function UpdateCustomerForm (props) {
                         inlineLabel
                         />
                     </div>
-                    <div class=" w-[10rem] max-sm:w-wk">
+                    <div class="w-w47.5">
                       <Field
                         name="businessRegistration"
                         type="text"
@@ -445,6 +467,31 @@ function UpdateCustomerForm (props) {
                       />
                     </div>                    
                     </div>
+                    <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
+                  <div class="w-w47.5">
+                      <Field
+                        name="type"
+                        // type="text"
+                        // label="VAT Number"
+                        label={
+                          <FormattedMessage
+                            id="app.type"
+                            defaultMessage="Type"
+                          />
+                        }
+                        isColumn
+                        width={"100%"}
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(typeOption)
+                            ? typeOption
+                            : []
+                        }
+                        inlineLabel
+                      />
+                    </div>
+                
+                  </div>
                  
                   <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
@@ -513,7 +560,7 @@ function UpdateCustomerForm (props) {
 
 }
 
-const mapStateToProps = ({ auth, customer,employee,leads }) => ({
+const mapStateToProps = ({ auth, customer,catgCustomer,employee,leads }) => ({
   setEditingCustomer: customer.setEditingCustomer,
   clearbit: customer.clearbit,
   updateCustomerById: customer.updateCustomerById,
@@ -522,8 +569,10 @@ const mapStateToProps = ({ auth, customer,employee,leads }) => ({
   userId: auth.userDetails.userId,
   allCustomerEmployeeList:employee.allCustomerEmployeeList,
   organizationId: auth.userDetails.organizationId,
+  orgId: auth.userDetails.organizationId,
   employees: employee.employees,
   crmAllData:leads.crmAllData,
+  customerListData: catgCustomer.customerListData,
   currencies: auth.currencies,
 });
 
@@ -534,6 +583,7 @@ const mapDispatchToProps = (dispatch) =>
       setClearbitData,
       setEditCustomer,
       getCrm,
+      getCustomer,
       getCurrency
     },
     dispatch

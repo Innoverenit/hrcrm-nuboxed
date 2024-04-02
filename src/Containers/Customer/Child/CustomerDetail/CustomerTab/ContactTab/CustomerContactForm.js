@@ -126,7 +126,7 @@ class ContactForm extends Component {
             description: "",
             // department: undefined,
             departmentDetails: "",
-            departmentId: this.props.departmentId,
+            departmentId: "",
             userId: this.props.userId,
             // tagWithCompany: tagWithCompany ? tagWithCompany : "",
             tagWithCompany: "",
@@ -449,7 +449,7 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class=" w-full">
+                  <div class="  w-w47.5">
                     <FastField
                       name="departmentId"
                       //label="Department"
@@ -459,11 +459,12 @@ class ContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
-                      component={SearchSelect}
-                      value={values.departmentId}
-                      selectType="departmentName"
+                      component={InputComponent}
+                      // value={values.departmentId}
+                      // selectType="departmentName"
                       inlineLabel
                     />
                   </div>

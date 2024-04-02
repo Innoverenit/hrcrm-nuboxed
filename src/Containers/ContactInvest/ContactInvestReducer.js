@@ -6,8 +6,15 @@ const initialState = {
     addingContactInvest: false, 
     addContactInvestModal: false,
 
+    addDrawerContactInvestPulseModal:false,
+
     addingContactinvestActivityEvent: false,
     addingContactinvestActivityEventError: false,
+
+
+    fetchingContactInvestAllRecords: false,
+    fetchingContactInvestAllRecordsError: false,
+    contactInvestAllRecord:{},
 
 
     addingContactinvestActivityCall:false,
@@ -312,6 +319,26 @@ export const contactInvestReducer = (state = initialState, action) => {
                     contactiNVESTbyId: [], 
                     // deletedTruck: [] 
                   };
+
+                  case types.HANDLE_CONTACT_INVEST_PULSE_DRAWER_MODAL:
+                    return { ...state, addDrawerContactInvestPulseModal: action.payload }; 
+                    
+                    
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_REQUEST:
+                      return { ...state, fetchingContactInvestAllRecords: true };
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingContactInvestAllRecords: false,
+                        contactInvestAllRecord: action.payload,
+                      };
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_FAILURE:
+                      return {
+                        ...state,
+                        fetchingContactInvestAllRecords: false,
+                        fetchingContactInvestAllRecordsError: true,
+                      };
+
      
       
       default:

@@ -15,6 +15,7 @@ import {
   getContactInvest,
   getTeamContactInvest,
   searchInvestorContactName,
+  getContactInvestAllRecord,
   getContactInvestByUserId,
   ClearReducerDataOfContactInvest
 } from "../ContactInvestAction";
@@ -85,6 +86,10 @@ const ContactInvestActionLeft = (props) => {
     } else if (props.viewType === "teams") {
       props.getTeamContactInvest(props.userId);
     } 
+    else if (props.viewType === "all") {
+      props.getContactInvestAllRecord(props.orgId,"Investor");
+    } 
+    
    
     // if (transcript) {
     //   console.log(">>>>>>>", transcript);
@@ -155,7 +160,7 @@ const ContactInvestActionLeft = (props) => {
           size="small"
           count={
             (props.viewType === "all" &&
-              props.contactInvest.contactDetails) ||
+              props.contactInvestAllRecord.contact) ||
             0
           }
           overflowCount={5000}
@@ -216,8 +221,10 @@ const ContactInvestActionLeft = (props) => {
 
 const mapStateToProps = ({ auth, contactinvest }) => ({
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   contactInvest:contactinvest.contactInvest,
   teamContactInvest:contactinvest.teamContactInvest,
+  contactInvestAllRecord:contactinvest.contactInvestAllRecord,
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -225,6 +232,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getContactInvest,
       getContactInvestByUserId,
+      getContactInvestAllRecord,
       ClearReducerDataOfContactInvest,
       getTeamContactInvest,
       searchInvestorContactName

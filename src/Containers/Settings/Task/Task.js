@@ -143,7 +143,7 @@ return <div><BundleLoader/></div>;
               {addingRegion ? (
                   <div>
                       <input 
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"54%"}}
                           type="text" 
                           placeholder="Task"
                           value={newTaskName} 

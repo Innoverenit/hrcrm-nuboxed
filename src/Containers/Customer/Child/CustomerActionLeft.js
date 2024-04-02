@@ -18,6 +18,7 @@ import {
   getRecords,
   ClearReducerDataOfCustomer,
   getCustomerTeamRecords,
+  getCustomerAllRecords,
   getCategoryRecords,
 } from "../CustomerAction";
 import { Input } from "antd";
@@ -85,6 +86,10 @@ function  handleFilterChange(data){
     } else if (props.viewType === "teams") {
       props.getCustomerTeamRecords(props.userId);
     } 
+    else if (props.viewType === "all") {
+      props.getCustomerAllRecords(props.orgId);
+    } 
+    
     else if (props.viewType === "table") {
       props.getRecords(props.userId);
     } else if (props.viewType === "dashboard") {
@@ -164,7 +169,7 @@ function  handleFilterChange(data){
    <Tooltip title="All">
         <Badge
           size="All"
-          // count={(props.viewType === "all" && props.recordData.customer) || 0}
+           count={(props.viewType === "all" && props.customerAllRecordData.customer) || 0}
           overflowCount={999}
         >
           <span
@@ -257,11 +262,13 @@ function  handleFilterChange(data){
 const mapStateToProps = ({ customer, auth, candidate }) => ({
   user: auth.userDetails,
   recordData: customer.recordData,
+  customerAllRecordData:customer.customerAllRecordData,
   customerTeamRecordData:customer.customerTeamRecordData,
   recordCategoryData: customer.recordCategoryData,
   recordCategoryDataBlue: customer.recordCategoryDataBlue,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -270,6 +277,7 @@ const mapDispatchToProps = (dispatch) =>
       getRecords,
       ClearReducerDataOfCustomer,
       getCustomerTeamRecords,
+      getCustomerAllRecords,
       getCategoryRecords,
       getCustomerListByUserId
     },

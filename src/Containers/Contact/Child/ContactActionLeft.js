@@ -17,6 +17,7 @@ import {
   ClearReducerDataOfContact,
   getContactListByUserId,
   getContactTeamRecord,
+  getContactAllRecord,
   getCustomerRecords,
   getContactRecord,
 } from "../ContactAction";
@@ -81,6 +82,10 @@ const ContactActionLeft = (props) => {
       } else if (props.viewType === "teams") {
         props.getContactTeamRecord(props.userId);
       } 
+      else if (props.viewType === "all") {
+        props.getContactAllRecord(props.orgId,"Customer");
+      }
+      
      
       if (transcript) {
         console.log(">>>>>>>", transcript);
@@ -170,11 +175,11 @@ const ContactActionLeft = (props) => {
       >
         <Badge
           size="small"
-          // count={
-          //   (props.viewType === "all" &&
-          //     props.contactRecord.customerContactCount) ||
-          //   0
-          // }
+          count={
+            (props.viewType === "all" &&
+              props.contactAllRecord.contact) ||
+            0
+          }
           overflowCount={5000}
         >
           <span
@@ -260,12 +265,14 @@ const mapStateToProps = ({ auth, contact,departments }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   recordData: contact.recordData,
+  contactAllRecord:contact.contactAllRecord,
   contactRecord:contact.contactRecord,
   contactTeamRecord:contact.contactTeamRecord,
   customerRecordData: contact.customerRecordData,
   contactByUserId: contact.contactByUserId,
   fetchingContactInputSearchData: contact.fetchingContactInputSearchData,
   departments: departments.departments,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -275,6 +282,7 @@ const mapDispatchToProps = (dispatch) =>
       ClearReducerDataOfContact,
       getContactListByUserId,
       getContactTeamRecord,
+      getContactAllRecord,
       getCustomerRecords,
       getContactRecord,
       getDepartments

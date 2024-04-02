@@ -23,6 +23,10 @@ const initialState = {
   linkingOrgDocsPrivate: false,
   linkingOrgDocsPrivateError: false,
 
+  fetchingInvestorCurrency: false,
+  fetchingInvestorCurrencyError: false,
+  investorCurrencies:[],
+
   addDrawerActionModal: false,
 
   addingOrganization: false,
@@ -1178,6 +1182,18 @@ export const authReducer = (state = initialState, action) => {
         updateRepositoryDocument: false,
         updateRepositoryDocumentError: true,
       };
+
+      case types.GET_INVESTOR_CURRENCY_REQUEST:
+        return { ...state, fetchingInvestorCurrency: true };
+      case types.GET_INVESTOR_CURRENCY_SUCCESS:
+        return { ...state, fetchingInvestorCurrency: false, investorCurrencies: action.payload };
+      case types.GET_INVESTOR_CURRENCY_FAILURE:
+        return {
+          ...state,
+          fetchingInvestorCurrency: false,
+          fetchingInvestorCurrencyError: true,
+  
+        };
 
 
 

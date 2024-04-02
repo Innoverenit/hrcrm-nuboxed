@@ -128,7 +128,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          <div class="w-[20rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"investorCategory"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -142,7 +142,7 @@ return <div><BundleLoader/></div>;
                   <div>
                       <input 
                             placeholder="Add Investor"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"55%"}}
                           type="text" 
                           value={newInvestorName} 
                           onChange={(e) => setInvestorName(e.target.value)} 

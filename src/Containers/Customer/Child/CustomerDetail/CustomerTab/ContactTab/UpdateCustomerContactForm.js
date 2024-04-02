@@ -384,7 +384,7 @@ class UpdateCustomerContactForm extends Component {
                 
 
                     <div class=" flex justify-between mt-3">
-                      <div class=" w-2/5">
+                    <div class="  w-w47.5">
                         <>
                         <Field
                     name="customerId"
@@ -407,7 +407,12 @@ class UpdateCustomerContactForm extends Component {
                   />
                         </>
                       </div>
-                      <div class=" w-2/5">
+                    
+                   
+                    </div>
+
+                    <div class=" flex justify-between">
+                    <div class="  w-w47.5">
                         <FastField
                          name="designationTypeId"
                          //label="Designation"
@@ -425,7 +430,7 @@ class UpdateCustomerContactForm extends Component {
                          inlineLabel
                         />
                      </div>
-                     <div class=" w-2/5">
+                     <div class="w-w47.5">
                       <FastField
                         name="departmentId"
                         //label="Department"
