@@ -687,7 +687,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       value: employeeId,
                     }}
                   /> */}
-                  <label>Include</label>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
                    <Select
           showSearch
           style={{ width: 415 }}
@@ -731,7 +731,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     inlineLabel
                   /> */}
 
-<label>Customer</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
       <Select
         style={{ width: 200 }}
         placeholder="Select Customer"
@@ -778,7 +778,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     inlineLabel
                   /> */}
 
-<label>Contact</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
       <Select
         style={{ width: 200 }}
         placeholder="Select Contact"
