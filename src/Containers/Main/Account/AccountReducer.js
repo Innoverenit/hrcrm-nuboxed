@@ -2376,7 +2376,13 @@ export const distributorReducer = (state = initialState, action) => {
         spareList: state.spareList.filter(
           (item) => item.phoneSpareId !== action.payload.phoneSpareId
         ),
-
+        orderPhoneList: state.orderPhoneList.map((item) => {
+          if (item.phoneId == action.payload.phoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.DELETE_SPARE_LIST_FAILURE:
       return {

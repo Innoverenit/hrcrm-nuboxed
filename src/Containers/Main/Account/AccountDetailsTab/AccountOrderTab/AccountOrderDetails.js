@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
 import { getPhonelistById, handlePhoneNotesOrderModal } from "../../AccountAction";
 import { Button, Tooltip } from "antd";
+import QRCode from "qrcode.react";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
@@ -368,14 +369,11 @@ function DistributorPauseForm(props) {
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
-                                                            <div style={{ fontSize: "5rem" }}>
-                                                                <QRCodeModal
-                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                    imgHeight={"5em"}
-                                                                    imgWidth={"5em"}
-                                                                    size={100} />
+                                                            <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                                <QRCode size={150} value={item.imei} />
+
                                                             </div>
-                                                            <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                                         </div>
                                                     </div>
                                                 </div>

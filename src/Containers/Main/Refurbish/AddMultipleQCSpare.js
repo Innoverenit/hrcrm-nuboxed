@@ -21,6 +21,7 @@ const AddMultipleQCSpare = (props) => {
 
     function buttonOnClick() {
         let data = {
+            userId: props.userId,
             spareList: rows,
             phoneId: props.RowData.phoneId,
             orderPhoneId: props.RowData.orderPhoneId,
@@ -195,6 +196,7 @@ const AddMultipleQCSpare = (props) => {
 const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
+    userId: auth.userDetails.userId,
     currencies: auth.currencies,
 });
 

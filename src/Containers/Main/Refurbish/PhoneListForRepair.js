@@ -3,11 +3,18 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getRepairPhoneByUser, updaterepairStatus, getCatalogueByUser, handleRepairPhoneNotesOrderModal } from "./RefurbishAction";
+import {
+    getRepairPhoneByUser,
+    updaterepairStatus,
+    getCatalogueByUser,
+    handleRepairPhoneNotesOrderModal,
+    handlePhoneDetails
+} from "./RefurbishAction";
 import { Button, Tooltip, Badge } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
+import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import ButtonGroup from "antd/lib/button/button-group";
+import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
@@ -17,6 +24,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
 import AddSpareInRepair from "./AddSpareInRepair";
 import ReactToPrint from "react-to-print";
+import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -92,10 +100,16 @@ function PhoneListForRepair(props) {
     function handlePuaseButton() {
         setHide(hide)
     }
+    const [backToComplete, setBackComplete] = useState(false)
+
+    const handleChangeBack = () => {
+        setBackComplete(true)
+    }
 
 
     function handleQCRepairStatus(type, item) {
         setActive(type)
+
         console.log(type)
         console.log(item)
         const data = {
@@ -106,6 +120,9 @@ function PhoneListForRepair(props) {
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
         props.updaterepairStatus(data, item.phoneId, props.rowData.orderPhoneId, props.locationId, props.userId)
+        if (type === "Complete") {
+            setBackComplete(false)
+        }
     }
 
     return (
@@ -190,12 +207,18 @@ function PhoneListForRepair(props) {
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 <SubTitle>
                                                     {item.qrCodeId ? (
-                                                        <QRCodeModal
-                                                            qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                            imgHeight={"2.8em"}
-                                                            imgWidth={"2.8em"}
-                                                            imgRadius={20}
-                                                        />
+                                                        <span onClick={() => {
+                                                            props.handlePhoneDetails(true)
+                                                            handleSetRowData(item);
+                                                        }}>
+                                                            <QRCodeModal
+                                                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                                imgHeight={"2.8em"}
+                                                                imgWidth={"2.8em"}
+                                                                imgRadius={20}
+                                                            />
+                                                        </span>
+
                                                     ) : (
                                                         <span class="text-[0.6rem] font-bold">
                                                             No QR
@@ -207,35 +230,63 @@ function PhoneListForRepair(props) {
 
                                         <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {props.rowData.repairInspectionInd === 1 && <ButtonGroup>
-                                                    <StatusIcon
-                                                        type="In Progress"
-                                                        iconType="fa-hourglass-half"
-                                                        tooltip="In Progress"
-                                                        id={item.phoneId}
-                                                        indStatus={item.repairStatus}
-                                                        phoneId={RowData.phoneId}
-                                                        status={active}
-                                                        onClick={() => {
-                                                            handleQCRepairStatus("In Progress", item);
-                                                            handleSetRowData(item)
-                                                        }}
-                                                    />
-                                                    <NotStartedIcon />
-                                                    <StatusIcon
-                                                        type="Complete"
-                                                        iconType="fa-hourglass"
-                                                        tooltip="Complete"
-                                                        status={active}
-                                                        id={item.phoneId}
-                                                        indStatus={item.repairStatus}
-                                                        phoneId={RowData.phoneId}
-                                                        onClick={() => {
-                                                            handleQCRepairStatus("Complete", item);
-                                                            handleSetRowData(item)
-                                                        }}
-                                                    />
-                                                </ButtonGroup>}
+                                                <div>
+                                                    {props.rowData.repairInspectionInd === 1 ?
+                                                        <ButtonGroup>
+                                                            {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                                type="In Progress"
+                                                                iconType="fa-hourglass-half"
+                                                                tooltip="In Progress"
+                                                                id={item.phoneId}
+                                                                indStatus={item.repairStatus}
+                                                                phoneId={RowData.phoneId}
+                                                                status={active}
+                                                                onClick={() => {
+                                                                    handleQCRepairStatus("In Progress", item)
+
+                                                                }}
+                                                            />}
+                                                            {item.repairStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                                type="Complete"
+                                                                iconType="fa-hourglass"
+                                                                tooltip="Complete"
+                                                                indStatus={item.repairStatus}
+                                                                status={active}
+                                                                id={item.phoneId}
+                                                                phoneId={RowData.phoneId}
+                                                                onClick={() => {
+                                                                    handleQCRepairStatus("Complete", item);
+                                                                }}
+                                                            />}
+                                                        </ButtonGroup> :
+                                                        item.repairStatus === "Complete" && backToComplete === false
+                                                            ?
+                                                            <div>
+                                                                <RollbackOutlined
+                                                                    onClick={() => {
+                                                                        handleChangeBack();
+                                                                        handleSetRowData(item);
+                                                                    }}
+                                                                    style={{ marginRight: "0.3rem", color: "#1890ff" }} />
+                                                            </div>
+                                                            : null}
+
+                                                    {backToComplete === true && item.phoneId === RowData.phoneId &&
+                                                        <StatusIcon
+                                                            type="Complete"
+                                                            iconType="fa-hourglass"
+                                                            tooltip="Complete"
+                                                            indStatus={item.repairStatus}
+                                                            status={active}
+                                                            id={item.phoneId}
+                                                            phoneId={RowData.phoneId}
+                                                            onClick={() => {
+                                                                handleQCRepairStatus("Complete", item);
+                                                            }}
+                                                        />
+                                                    }
+
+                                                </div>
 
                                             </div>
                                         </div>
@@ -318,7 +369,7 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.Print"
@@ -329,6 +380,23 @@ function PhoneListForRepair(props) {
                                                         trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
                                                         content={() => componentRefs.current[index]}
                                                     />
+                                                </Tooltip>
+
+                                            </div>
+                                        </div>
+
+                                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                <Tooltip title={<FormattedMessage
+                                                    id="app.scan"
+                                                    defaultMessage="scan"
+                                                />}>
+
+                                                    <Button
+                                                        class=" bg-green-600 cursor-pointer text-gray-50"
+                                                    >
+                                                        Scan </Button>
+
                                                 </Tooltip>
 
                                             </div>
@@ -345,15 +413,11 @@ function PhoneListForRepair(props) {
                                                 flexDirection: "column",
                                                 alignItems: "center",
                                             }}
-                                        ><div style={{ fontSize: "5rem" }}>
-                                                <QRCodeModal
-                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                    imgHeight={"5em"}
-                                                    imgWidth={"5em"}
-                                                    size={100} />
+                                        >
+                                            <div style={{ fontSize: "5rem" }}>
+                                                <QRCode size={150} value={item.imei} />
                                             </div>
-
-                                            <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -384,6 +448,11 @@ function PhoneListForRepair(props) {
                     phoNotesRepairOrderModal={props.phoNotesRepairOrderModal}
                     handleRepairPhoneNotesOrderModal={props.handleRepairPhoneNotesOrderModal}
                 />
+                <PhoneDetailsModal
+                    handlePhoneDetails={props.handlePhoneDetails}
+                    showPhoneData={props.showPhoneData}
+                    RowData={RowData}
+                />
             </div>
         </>
     )
@@ -396,7 +465,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     locationId: auth.userDetails.locationId,
     phoNotesRepairOrderModal: refurbish.phoNotesRepairOrderModal,
     itemTaskcount: refurbish.itemTaskcount,
-    fetchingRepairPhoneByUser: refurbish.fetchingRepairPhoneByUser
+    fetchingRepairPhoneByUser: refurbish.fetchingRepairPhoneByUser,
+    showPhoneData: refurbish.showPhoneData
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -406,7 +476,7 @@ const mapDispatchToProps = (dispatch) =>
             updaterepairStatus,
             getCatalogueByUser,
             handleRepairPhoneNotesOrderModal,
-
+            handlePhoneDetails
         },
         dispatch
     );

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
+import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
   updateInspection,
@@ -23,6 +24,7 @@ import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/Account
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ReceivedPhoneModal from "./ReceivedPhoneModal";
 import ReactToPrint from "react-to-print";
+import { base_url2 } from "../../../../../../Config/Auth";
 
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 
@@ -387,14 +389,13 @@ function OpenReceivedOrderIdForm(props) {
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
                                                             <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
-                          <div style={{ fontSize: "5rem" }}>
-                            <QRCodeModal
-                              qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                              imgHeight={"5em"}
-                              imgWidth={"5em"}
-                              size={100} />
+                          <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                            <QRCode
+                              size={150}
+                              value={`${base_url2}/supplies/masterName/${item.company}/${item.model}`}
+                            />
                           </div>
-                          <div style={{ fontSize: "2rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                          <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                         </div>
                       </div>
                     </div>
