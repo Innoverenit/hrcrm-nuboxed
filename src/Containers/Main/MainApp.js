@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
 import HelpIcon from '@mui/icons-material/Help';
+import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 
 import {
@@ -253,6 +254,11 @@ function MainApp(props) {
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
+  const [data, setData] = useState('');
+  const [scanning, setScanning] = useState(false);
+  const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
     props.getActionRequiredCount(props.userId)
@@ -328,6 +334,45 @@ function MainApp(props) {
     // primaryTitle={organizationName}
     />
   );
+
+
+
+  const handleError = (error) => {
+    console.error('Error with the QR scanner:', error);
+    setScanning(false);
+    setShouldRenderCamera(false);
+    setModalVisible(false);
+};
+
+const startScanning = () => {
+    setData('');
+    setScanning(true);
+    setShouldRenderCamera(true);
+    setModalVisible(true);
+};
+
+const stopScanning = () => {
+    setScanning(false);
+    setShouldRenderCamera(false);
+    setModalVisible(false);
+};
+const handleScan = async (result, error) => {
+  try {
+      if (result && result.text) {
+          setData(result.text);
+      } else if (result instanceof MediaStream) {
+      }
+
+      if (error) {
+          throw new Error(error);
+      }
+  } catch (error) {
+      console.error('Error in QR code scanner:', error);
+
+      // Additional handling based on the error, if needed
+
+  }
+};
 
   return (
 
@@ -420,13 +465,23 @@ function MainApp(props) {
                   </div>
                 </div>
                 <StartStop />
-                <Button
-                  // onClick={() => {
-                  //   props.handleInTagDrawer(true)
-                  // }}
+                {/* <Button
+                  onClick={() => {
+                    props.handleInTagDrawer(true)
+                  }}
                   class=" bg-green-600 cursor-pointer text-gray-50"
                 >
-                  Scan </Button>
+                  Scan </Button> */}
+                   <QRCodeList
+                        handleScan={handleScan}
+                        stopScanning={stopScanning}
+                        startScanning={startScanning}
+                        handleError={handleError}
+                        modalVisible={modalVisible}
+                        scanning={scanning}
+                        data={data}
+                        shouldRenderCamera={shouldRenderCamera}
+                    />
                 {/* <Popconfirm
                 title="Stop"
                 visible={visible}
@@ -859,10 +914,10 @@ function MainApp(props) {
       // responseData={this.state.responseData}
       />
 
-      {/* <TagInDrawer
+      <TagInDrawer
         clickTagInDrawr={props.clickTagInDrawr}
         handleInTagDrawer={props.handleInTagDrawer}
-      /> */}
+      />
     </>
   );
 }

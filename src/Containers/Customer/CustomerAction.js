@@ -2672,3 +2672,12 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         });
       });
   };
+
+
+
+  export const handleCustomerNoteDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };

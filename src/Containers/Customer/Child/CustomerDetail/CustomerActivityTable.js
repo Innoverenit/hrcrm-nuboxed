@@ -1,12 +1,14 @@
 
 
 
-import React, { useEffect } from 'react';
-import { Timeline } from 'antd';
+import React, { useEffect,useState } from 'react';
+import { Timeline,Button } from 'antd';
 import { connect } from 'react-redux';
+import AddCustomerNotesListDrawerModal from "../CustomerDetail/AddCustomerNotesListDrawerModal"
 import { bindActionCreators } from 'redux';
+import NotesProspectForm from "../CustomerDetail/NotesProspectForm"
 import moment from 'moment';
- import { getCustomerActivityTimeline,getCustomerActivityRecords } from '../../CustomerAction';
+ import { getCustomerActivityTimeline,getCustomerActivityRecords,handleCustomerNoteDrawerModal } from '../../CustomerAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
 const CustomerActivityTable = (props) => {
@@ -16,6 +18,11 @@ const CustomerActivityTable = (props) => {
   }, []);
 
   const { customerActivityTimeline, ratingValue } = props;
+  const [expandedRow, setExpandedRow] = useState(null);
+
+  const handleEditClick = (index) => {
+    setExpandedRow(expandedRow === index ? null : index);
+  };
   const currentDate = moment().format("DD/MM/YYYY");
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
@@ -23,8 +30,10 @@ const CustomerActivityTable = (props) => {
         <div className="mt-4 ml-4">
         <Timeline>
           {customerActivityTimeline &&
-            customerActivityTimeline.map((status, i) => (       
-              <Timeline.Item key={i}>               
+            customerActivityTimeline.map((status, index) => ( 
+              <React.Fragment key={status}>
+              <>    
+              <Timeline.Item key={index} style={{display:"flex"}}>               
                 <div>               
                 <div>                
                 
@@ -38,13 +47,50 @@ const CustomerActivityTable = (props) => {
                 </div>
                 <div>
                 
-                 
+                <Button
+                  type="link"
+                  style={{ margin: '0 8px', padding: 0 }}
+                  onClick={() => {
+                    props.handleCustomerNoteDrawerModal(true);
+                    // handleSetTaskNameId(item);
+                  }}
+                >
+                  Note
+                </Button>
                  
                 </div>
               </Timeline.Item>
+              </> 
+               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</React.Fragment>
        
             ))}
+           
+           
         </Timeline>
+        {/* {expandedRow !== null && (
+                //  <div>Hello</div>
+                <NotesProspectForm/>
+                )} */}
+       <AddCustomerNotesListDrawerModal
+       addCustomerNoteDrawerModal={props.addCustomerNoteDrawerModal}
+       handleCustomerNoteDrawerModal={props.handleCustomerNoteDrawerModal}
+       />
         
       </div>
     </>
@@ -53,6 +99,7 @@ const CustomerActivityTable = (props) => {
 
 const mapStateToProps = ({ customer, auth }) => ({
   userId: auth.userDetails.userId,
+  addCustomerNoteDrawerModal:customer.addCustomerNoteDrawerModal,
   customerActivityTimeline: customer.customerActivityTimeline,
   customerActivityCount:customer.customerActivityCount,
 });
@@ -61,7 +108,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getCustomerActivityTimeline,
-        getCustomerActivityRecords
+        getCustomerActivityRecords,
+        handleCustomerNoteDrawerModal
     },
     dispatch
   );

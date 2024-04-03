@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
+import { emptyInventory } from "../../InventoryAction"
+import { RollbackOutlined } from "@ant-design/icons";
+import { Link } from 'react-router-dom';
 class InventoryDetailActionLeft extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +26,17 @@ class InventoryDetailActionLeft extends Component {
         <FlexContainer alignItems="center">
 
           {/* {user.designation === "Manager" && */}
+          <Link to="/inventory">
+          <Tooltip title="Back">
+                        <RollbackOutlined
+                            style={{ marginRight: "0.3rem", color: "#1890ff" }}
+                            // onClick={() => {
+                            //     this.props.history.goBack();
+                            //     this.props.emptyInventory()
+                            // }}
+                        />
+                    </Tooltip>
+                    </Link>
           <Tooltip title="Material">
             <div
               className=" mr-2 cursor-pointer font-medium text-sm"
@@ -31,7 +45,7 @@ class InventoryDetailActionLeft extends Component {
               }}
               onClick={() => setInventoryDetailViewType("material")}
             >
-              Material
+             <Button type="primary"> Material</Button>
             </div>
 
           </Tooltip>
@@ -44,7 +58,7 @@ class InventoryDetailActionLeft extends Component {
               }}
               onClick={() => setInventoryDetailViewType("production")}
             >
-              Production
+             <Button type="primary"> Production</Button>
             </div>
           </Tooltip>}
           {this.props.repairInd && <Tooltip title="Repair">
@@ -55,7 +69,7 @@ class InventoryDetailActionLeft extends Component {
               }}
               onClick={() => setInventoryDetailViewType("repair")}
             >
-              Repair
+               <Button type="primary">Repair</Button>
             </div>
           </Tooltip>}
 
@@ -71,7 +85,7 @@ const mapStateToProps = ({ auth, production }) => ({
   productionInd: auth.userDetails.productionInd,
   repairInd: auth.userDetails.repairInd,
 });
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({emptyInventory}, dispatch);
 
 export default connect(
   mapStateToProps,
