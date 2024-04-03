@@ -23,7 +23,7 @@ const AllAccountList = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [RowData, setRowData] = useState("");
   useEffect(() => {
-    props.getAllDistributorsList(page);
+    props.getAllDistributorsList(props.orgId,page);
     setPage(page + 1);
   }, []);
   function handleCurrentRowData(datas) {
@@ -31,7 +31,7 @@ const AllAccountList = (props) => {
   }
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getAllDistributorsList(page);
+    props.getAllDistributorsList(props.orgId,page);
   };
   const {
     handleUpdateAccountModal,
@@ -261,11 +261,12 @@ ${(item.address && item.address.length && item.address[0].country) || ""
   )
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,auth }) => ({
   allDistributors: distributor.allDistributors,
   fetchingAllDistributors: distributor.fetchingAllDistributors,
   showPulseModal: distributor.showPulseModal,
   updateAccountModal: distributor.updateAccountModal,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

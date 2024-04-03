@@ -64,12 +64,12 @@ function AllOrderList(props) {
       <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[12rem]">Order ID</div>
-          <div className=" md:w-28">Customer</div>
-          <div className=" md:w-28 ">Contact</div>
-          <div className="md:w-32">#Phone</div>
-          <div className="md:w-32">Owner</div>
-          <div className="md:w-[16rem]">Creation Date</div>
-          <div className="md:w-24"></div>
+          <div className=" md:w-[10.4rem]">Customer</div>
+          <div className=" md:w-[12.01rem] ">Contact</div>
+          <div className="md:w-[8.12rem]">#Units</div>
+          <div className="md:w-[4rem]">Owner</div>
+          <div className="md:w-[7.1rem]">Creation Date</div>
+          <div className="md:w-[37rem]">Revised</div>
 
 
         </div>
@@ -115,7 +115,7 @@ function AllOrderList(props) {
                       <div class="flex">
                         <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
                           <div className="flex max-sm:w-full">
-                            <div class="w-60">
+                            <div class="w-[9.1rem]">
                               <Badge size="small" count={item.productNum}>
                                 <span
                                   class="underline cursor-pointer text-[#1890ff]"
@@ -141,9 +141,9 @@ function AllOrderList(props) {
                                 </span>
                               </Badge>
                             </div>
-                            <div class="w-[4%]"></div>
+                           
 
-                            <div class="max-sm:w-full md:w-44">
+                            <div class="max-sm:w-full md:w-[11.1rem]">
                               <Tooltip>
                                 <div class="max-sm:w-full justify-between flex md:flex-col">
                                   {item.distributorName}
@@ -154,7 +154,7 @@ function AllOrderList(props) {
                           </div>
                         </div>
 
-                        <div class="flex flex-row items-center md:w-44 max-sm:flex-row w-full max-sm:justify-between">
+                        <div class="flex flex-row items-center md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div>
                             <MultiAvatar2
                               primaryTitle={item.contactPersonName}
@@ -170,13 +170,13 @@ function AllOrderList(props) {
                         </div>
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                           <h4 class=" text-xs text-cardBody font-poppins">
                             {item.noOfPhones}
                           </h4>
                         </div>
-                        <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium flex-col  md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <h4 class=" text-xs text-cardBody font-poppins">
                             <MultiAvatar2
                               primaryTitle={item.userName}
@@ -186,10 +186,14 @@ function AllOrderList(props) {
                             />
                           </h4>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium flex-col md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                           <span>{date}</span>
                         </div>
+                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+<span>{item.payableOfferPrice}</span>
+</div>
                       </div>
                       <div class="flex">
                         <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -201,7 +205,7 @@ function AllOrderList(props) {
                         <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
                           {item.orderStatus}
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
                           {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
                           <h4 class=" text-xs text-cardBody font-poppins">
@@ -222,7 +226,7 @@ function AllOrderList(props) {
                         </div>
 
 
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <h4 class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
@@ -238,7 +242,7 @@ function AllOrderList(props) {
 
 
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <h4 class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon

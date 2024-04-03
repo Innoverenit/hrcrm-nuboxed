@@ -69,7 +69,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
 
   return (
     <FlexContainer alignItems="center">
-      <div className=" mr-4">
+      <div className="">
         <Tooltip title="List View">
           <Badge
             size="small"
@@ -91,7 +91,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           </Badge>
         </Tooltip>
       </div>
-      <div className=" mr-4">
+      <div className=" ">
         <Tooltip title="Complete Orders">
           <Badge
             size="small"
@@ -113,7 +113,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           </Badge>
         </Tooltip>
       </div>
-      <div className=" mr-4">
+      <div className=" ">
         <Tooltip title="ALL">
           <Badge
             size="small"
@@ -135,7 +135,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           </Badge>
         </Tooltip>
       </div>
-      <div className=" mr-4">
+      <div className=" ">
         <Tooltip title="All Complete Orders">
           <Badge
             size="small"

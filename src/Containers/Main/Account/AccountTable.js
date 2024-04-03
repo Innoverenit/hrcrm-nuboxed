@@ -57,23 +57,23 @@ function AccountTable(props) {
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
+            <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="name"
             /></div>
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]"><FormattedMessage
+            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]"><FormattedMessage
               id="app.work#"
               defaultMessage="work#"
             /></div>
-            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] "><FormattedMessage
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] "><FormattedMessage
               id="app.website"
               defaultMessage="website"
             /></div>
-            <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]"><FormattedMessage
+            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]"><FormattedMessage
               id="app.type"
               defaultMessage="type"
             /></div>
-            <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]"><FormattedMessage
+            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]"><FormattedMessage
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
@@ -81,11 +81,11 @@ function AccountTable(props) {
               id="app.vat"
               defaultMessage="vat"
             /></div>
-            <div className="w-[14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
+            <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
             /></div>
-            <div className="w-[5.83rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.83rem]"><FormattedMessage
+            <div className="w-[6.83rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.83rem]"><FormattedMessage
               id="app.pincode"
               defaultMessage="pincode"
             /></div>
@@ -121,7 +121,7 @@ function AccountTable(props) {
                     <div>
                       <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                          <div className=" flex font-medium flex-col w-[15rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -156,7 +156,7 @@ function AccountTable(props) {
                               </div>
                             </div>
                           </div>
-                          <div className=" flex font-medium  items-center  w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                          <div className=" flex font-medium  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
                               {item.dialCode} {item.phoneNo}
@@ -166,7 +166,7 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[6.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[8.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.url}
 
@@ -194,7 +194,7 @@ function AccountTable(props) {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[14rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[15rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {dataLoc}
                             </div>

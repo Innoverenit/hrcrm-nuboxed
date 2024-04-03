@@ -70,7 +70,7 @@ const AccountActionLeft = (props) => {
 
     return (
         <div class="flex items-center" >
-            <div class=" m-3">
+            <div class=" ">
                 {user.functionName !== "Customer Care" && (
 
                     <Tooltip title="List View">
@@ -94,7 +94,7 @@ const AccountActionLeft = (props) => {
             </div>
 
             {user.accountFullListInd === true && user.erpInd === true && (
-                <div class=" m-3">
+                <div class=" ">
                     <Tooltip title="All Customers">
                         <Badge size="small"
                             count={props.accountRecordData.distributor || 0}

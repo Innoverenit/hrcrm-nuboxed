@@ -43,23 +43,22 @@ function DispatchTable(props) {
     <>
       {props.fetchingDispatchList ? <BundleLoader /> :
         <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-            <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className=""></div>
-              <div className=" md:w-[7%]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className=" md:w-[5rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className=" md:w-[5rem] "><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
-              <div className="md:w-[3rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
-              <div className="md:w-[6rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
-              <div className="md:w-[5rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
-              <div className="md:w-[5rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
+          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+              <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.01rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className=" w-[5.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.22rem] "><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
+              <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
+              <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
+              <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
 
-              <div className=" md:w-[5rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
-              < div className=" md:w-[3.5rem]"><FormattedMessage id="app.pickup" defaultMessage="pickup" /></div>
-              <div className=" md:w-[5rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
-              <div className=" md:w-[5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
-              <div className="md:w-[4rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
-              <div className="md:w-[2%]"></div>
+              <div className=" w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
+              < div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.pickup" defaultMessage="pickup" /></div>
+              <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
+              <div className=" w-[4.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
+              <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
+              <div className="w-[2%]"></div>
             </div>
             <InfiniteScroll
               dataLength={props.allDispatchList.length}
@@ -74,11 +73,11 @@ function DispatchTable(props) {
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
                   return (
                     <div>
-                      <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 ">
-                        <div class="flex">
+                      <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex font-medium flex-col md:w-[7%] max-sm:w-full  ">
-                            <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
+                          <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                            <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -92,11 +91,7 @@ function DispatchTable(props) {
                               ) : null}
                             </div>
                           </div>
-
-
-                        </div>
-
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col w-[7.4rem] max-xl:w-[3.4rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <MultiAvatar2
                               primaryTitle={item.distributorName}
@@ -106,7 +101,7 @@ function DispatchTable(props) {
                             />
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium flex-col w-[6.1rem] max-xl:w-[3.41rem] max-lg:w-[2.41rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-semibold  font-poppins">
                             <MultiAvatar2
                               primaryTitle={item.contactPersonName}
@@ -117,14 +112,18 @@ function DispatchTable(props) {
                           </div>
                         </div>
 
+                        </div>
 
-                        <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+
+
+                        <div className=" flex font-medium flex-col w-[4.6rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dispatchInspectionInd === 0 ?
                               <Button
                                 loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -149,13 +148,15 @@ function DispatchTable(props) {
                                   null}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[6.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium flex-col w-[6.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                               null : <DispatchPackedToggle
                                 locationDetailsId={props.locationDetailsId}
@@ -164,18 +165,20 @@ function DispatchTable(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipperName === "null" ? "" : item.shipperName}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[3.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium flex-col w-[6.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.unloadingAddresses && item.unloadingAddresses[0].city ? <Button type="primary"
                               onClick={() => {
                                 handleRowData(item);
@@ -183,13 +186,13 @@ function DispatchTable(props) {
                               }}>Create AWB</Button> : item.newAwbNo}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.status === "null" ? "" : item.status}
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                        <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                               <DispatchValidationToggle
                                 locationDetailsId={props.locationDetailsId}
@@ -197,7 +200,7 @@ function DispatchTable(props) {
                               />}
                           </div>
                         </div>
-                        <div class="flex flex-col md:w-[2%] max-sm:flex-row max-sm:w-[6%]">
+                        <div class="flex flex-col md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
                           <div>
                             <Tooltip title="Notes">
                               <NoteAltIcon
@@ -207,7 +210,7 @@ function DispatchTable(props) {
                             </Tooltip>
                           </div>
                         </div>
-
+                        </div>
                       </div>
                     </div>
                   );

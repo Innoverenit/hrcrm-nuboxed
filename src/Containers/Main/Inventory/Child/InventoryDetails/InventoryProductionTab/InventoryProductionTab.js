@@ -61,7 +61,7 @@ class InventoryProductionTab extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <i class="fab fa-linode"></i>  &nbsp; Archieve
+                                    <i class="fab fa-linode"></i>  &nbsp; Archive
                                 </>
                             }
                             key="3"
