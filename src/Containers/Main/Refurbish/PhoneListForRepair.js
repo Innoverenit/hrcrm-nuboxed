@@ -27,6 +27,7 @@ import AddSpareInRepair from "./AddSpareInRepair";
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import TagInDrawer from "./ProductionTab/TagInDrawer";
+import { base_url2 } from "../../../Config/Auth";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -232,7 +233,7 @@ function PhoneListForRepair(props) {
 
                                         <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                <div>
+                                                {/* <div>
                                                     {props.rowData.repairInspectionInd === 1 ?
                                                         <ButtonGroup>
                                                             {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
@@ -260,7 +261,8 @@ function PhoneListForRepair(props) {
                                                                     handleQCRepairStatus("Complete", item);
                                                                 }}
                                                             />}
-                                                        </ButtonGroup> :
+                                                        </ButtonGroup> 
+                                                        :
                                                         item.repairStatus === "Complete" && backToComplete === false
                                                             ?
                                                             <div>
@@ -288,7 +290,35 @@ function PhoneListForRepair(props) {
                                                         />
                                                     }
 
-                                                </div>
+                                                </div> */}
+                                                {props.rowData.repairInspectionInd === 1 &&
+                                                    <ButtonGroup>
+                                                        {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                            type="In Progress"
+                                                            iconType="fa-hourglass-half"
+                                                            tooltip="In Progress"
+                                                            id={item.phoneId}
+                                                            indStatus={item.repairStatus}
+                                                            phoneId={RowData.phoneId}
+                                                            status={active}
+                                                            onClick={() => {
+                                                                handleQCRepairStatus("In Progress", item)
+
+                                                            }}
+                                                        />}
+                                                        {item.repairStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                            type="Complete"
+                                                            iconType="fa-hourglass"
+                                                            tooltip="Complete"
+                                                            indStatus={item.repairStatus}
+                                                            status={active}
+                                                            id={item.phoneId}
+                                                            phoneId={RowData.phoneId}
+                                                            onClick={() => {
+                                                                handleQCRepairStatus("Complete", item);
+                                                            }}
+                                                        />}
+                                                    </ButtonGroup>}
 
                                             </div>
                                         </div>
@@ -421,7 +451,9 @@ function PhoneListForRepair(props) {
                                             }}
                                         >
                                             <div style={{ fontSize: "5rem" }}>
-                                                <QRCode size={150} value={item.imei} />
+                                                <QRCode
+                                                    size={150}
+                                                    value={item.phoneId} />
                                             </div>
                                             <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                         </div>

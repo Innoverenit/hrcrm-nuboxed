@@ -39,6 +39,8 @@ import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
+import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
+
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -342,37 +344,37 @@ function MainApp(props) {
     setScanning(false);
     setShouldRenderCamera(false);
     setModalVisible(false);
-};
+  };
 
-const startScanning = () => {
+  const startScanning = () => {
     setData('');
     setScanning(true);
     setShouldRenderCamera(true);
     setModalVisible(true);
-};
+  };
 
-const stopScanning = () => {
+  const stopScanning = () => {
     setScanning(false);
     setShouldRenderCamera(false);
     setModalVisible(false);
-};
-const handleScan = async (result, error) => {
-  try {
+  };
+  const handleScan = async (result, error) => {
+    try {
       if (result && result.text) {
-          setData(result.text);
+        setData(result.text);
       } else if (result instanceof MediaStream) {
       }
 
       if (error) {
-          throw new Error(error);
+        throw new Error(error);
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error in QR code scanner:', error);
 
       // Additional handling based on the error, if needed
 
-  }
-};
+    }
+  };
 
   return (
 
@@ -472,16 +474,16 @@ const handleScan = async (result, error) => {
                   class=" bg-green-600 cursor-pointer text-gray-50"
                 >
                   Scan </Button> */}
-                   <QRCodeList
-                        handleScan={handleScan}
-                        stopScanning={stopScanning}
-                        startScanning={startScanning}
-                        handleError={handleError}
-                        modalVisible={modalVisible}
-                        scanning={scanning}
-                        data={data}
-                        shouldRenderCamera={shouldRenderCamera}
-                    />
+                <QRCodeList
+                  handleScan={handleScan}
+                  stopScanning={stopScanning}
+                  startScanning={startScanning}
+                  handleError={handleError}
+                  modalVisible={modalVisible}
+                  scanning={scanning}
+                  data={data}
+                  shouldRenderCamera={shouldRenderCamera}
+                />
                 {/* <Popconfirm
                 title="Stop"
                 visible={visible}
@@ -756,7 +758,11 @@ const handleScan = async (result, error) => {
                         path="/leads/:leadsId"
                         component={LeadDetails}
                       />
-
+                      <Route
+                        exact
+                        path="/scan/:phoneId"
+                        component={PhoneScanner}
+                      />
                       <Route
                         exact
                         path="/course/:courseId"
