@@ -2,9 +2,9 @@ import React from "react";
 import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateSpareItem } from "../Account/AccountAction";
+import { updateSpareItem } from "../../Account/AccountAction";
 
-function RepairSpareApproveToggle(props) {
+function ToggleForSpare(props) {
 
     function handleToggleCollection(item) {
         props.updateSpareItem(
@@ -28,7 +28,7 @@ function RepairSpareApproveToggle(props) {
                     cancelText="Cancel"
                 >
                     <Switch
-                        checked={props.item.spareUseInd}
+                        checked={props.spareUseInd}
                         isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch) =>
         },
         dispatch
     );
-export default connect(mapStateToProps, mapDispatchToProps)(RepairSpareApproveToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleForSpare);

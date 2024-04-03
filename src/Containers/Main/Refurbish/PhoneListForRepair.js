@@ -27,6 +27,7 @@ import AddSpareInRepair from "./AddSpareInRepair";
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import TagInDrawer from "./ProductionTab/TagInDrawer";
+import { base_url2 } from "../../../Config/Auth";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -450,7 +451,9 @@ function PhoneListForRepair(props) {
                                             }}
                                         >
                                             <div style={{ fontSize: "5rem" }}>
-                                                <QRCode size={150} value={item.imei} />
+                                                <QRCode
+                                                    size={150}
+                                                    value={item.phoneId} />
                                             </div>
                                             <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                         </div>

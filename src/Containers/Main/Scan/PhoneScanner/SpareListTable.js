@@ -3,16 +3,16 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
-import { StyledTable } from "../../../Components/UI/Antd";
-import { getSpareListByPhoneId, deleteSpareList } from "../Account/AccountAction";
-import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
+import { StyledTable } from "../../../../Components/UI/Antd";
+import { getSpareListByPhoneId, deleteSpareList } from "../../Account/AccountAction";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Popconfirm } from "antd";
+import ToggleForSpare from "./ToggleForSpare";
 
 
-function RepairSpareListTable(props) {
+function SpareListTable(props) {
     useEffect(() => {
-        props.getSpareListByPhoneId(props.RowData.phoneId)
+        props.getSpareListByPhoneId(props.phoneId)
     }, [])
 
     const columns = [
@@ -64,7 +64,7 @@ function RepairSpareListTable(props) {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <RepairSpareApproveToggle
+                    <ToggleForSpare
                         spareUseInd={item.spareUseInd}
                         phoneSpareId={item.phoneSpareId}
                     />
@@ -105,10 +105,10 @@ function RepairSpareListTable(props) {
                 <Tooltip title="Make Spare Packet">
 
                     <Button
-                        // style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                        // style={{ color: expand && item.phoneId === phoneDetails.phoneId ? "red" : "white" }}
                         type="primary"
                     // onClick={() => {
-                    //     handleSetRowData(item);
+                    //     handleSetphoneDetails(item);
 
                     // }}
                     >Spare Packet</Button>
@@ -133,4 +133,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(RepairSpareListTable);
+export default connect(mapStateToProps, mapDispatchToProps)(SpareListTable);

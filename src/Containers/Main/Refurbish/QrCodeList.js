@@ -1,12 +1,12 @@
-import 'webrtc-adapter'; 
+import 'webrtc-adapter';
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'antd';
 import { QrReader } from 'react-qr-reader';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const QRCodeListScanner = (props) => {
- 
+
 
   return (
     <>
@@ -17,16 +17,25 @@ const QRCodeListScanner = (props) => {
         visible={props.modalVisible}
         onCancel={props.stopScanning}
         destroyOnClose={true}
-        // footer={[
-        //   <Button key="send" type="primary" onClick={sendToApi}>
-        //     Send
-        //   </Button>,
-        // ]}
+      // footer={[
+      //   <Button key="send" type="primary" onClick={sendToApi}>
+      //     Send
+      //   </Button>,
+      // ]}
       >
         {props.shouldRenderCamera && props.scanning && (
           <div className={`qr-code-scanner-container`}>
-            <QrReader onResult={props.handleScan} onError={props.handleError} onClose={props.stopScanning} />
-            <p>{props.data}</p>
+            <QrReader
+              onResult={props.handleScan}
+              onError={props.handleError}
+              onClose={props.stopScanning} />
+            <span onClick={props.stopScanning}>
+              <Link
+                to={`scan/${props.data}`}>
+                {props.data ? "See Phone Details" : null}
+              </Link>
+            </span>
+
           </div>
         )}
       </Modal>
