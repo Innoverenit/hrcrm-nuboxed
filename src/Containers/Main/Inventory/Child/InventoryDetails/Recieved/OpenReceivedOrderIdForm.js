@@ -11,7 +11,8 @@ import {
   setEditPhoneData,
   handlereceivePhoneModal,
   getPhonelistByOrderId,
-  updateRepairStatus
+  updateRepairStatus,
+
 } from "../../../InventoryAction";
 import MotionPhotosOffIcon from '@mui/icons-material/MotionPhotosOff';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
@@ -25,7 +26,9 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ReceivedPhoneModal from "./ReceivedPhoneModal";
 import ReactToPrint from "react-to-print";
 import { base_url2 } from "../../../../../../Config/Auth";
-
+import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsModal";
+import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
+import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 
 function OpenReceivedOrderIdForm(props) {
@@ -195,12 +198,17 @@ function OpenReceivedOrderIdForm(props) {
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <SubTitle>
                               {item.qrCodeId ? (
-                                <QRCodeModal
-                                  qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                  imgHeight={"2.8rem"}
-                                  imgWidth={"2.8rem"}
-                                  imgRadius={20}
-                                />
+                                <span onClick={() => {
+                                  props.handlePhoneDetails(true)
+                                  handleSetParticularOrderData(item);
+                                }}>
+                                  <QRCodeModal
+                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                    imgHeight={"2.8rem"}
+                                    imgWidth={"2.8rem"}
+                                    imgRadius={20}
+                                  />
+                                </span>
                               ) : (
                                 <span class="text-xs font-bold">
                                   No QR
@@ -326,6 +334,26 @@ function OpenReceivedOrderIdForm(props) {
 
                           </div>
                         </div>
+                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins">
+                            <Tooltip title={<FormattedMessage
+                              id="app.scan"
+                              defaultMessage="scan"
+                            />}>
+
+                              <Button
+                                onClick={() => {
+                                  props.handleInTagDrawer(true)
+                                  handleSetParticularOrderData(item);
+                                }}
+                                class=" bg-green-600 cursor-pointer text-gray-50"
+                              >
+                                Scan </Button>
+
+                            </Tooltip>
+
+                          </div>
+                        </div>
                       </div>
                       {/* 2nd part */}
                       {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-3 " >
@@ -383,12 +411,7 @@ function OpenReceivedOrderIdForm(props) {
                             alignItems: "center",
                           }}
                         >
-                          {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Company:</span> {item.company}</div> */}
 
-                          {/* <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Model:</span> {item.model}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>OS:</span> {item.os}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>GB:</span> {item.gb}</div>
-                                                            <div style={{ marginBottom: "1.5rem", fontSize: "1.7rem" }}><span style={{ fontWeight: "bold" }}>Color:</span> {item.color}</div> */}
                           <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
                             <QRCode
                               size={150}
@@ -440,6 +463,16 @@ function OpenReceivedOrderIdForm(props) {
               orderPhoneId={props.rowData.orderPhoneId}
               particularRowData={particularRowData}
             />
+            <PhoneDetailsModal
+              handlePhoneDetails={props.handlePhoneDetails}
+              showPhoneData={props.showPhoneData}
+              phoneId={particularRowData.phoneId}
+            />
+            <TagInDrawer
+              RowData={particularRowData}
+              clickTagInDrawr={props.clickTagInDrawr}
+              handleInTagDrawer={props.handleInTagDrawer}
+            />
           </div>
 
         </div>}
@@ -447,13 +480,14 @@ function OpenReceivedOrderIdForm(props) {
   )
 }
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory, auth, refurbish }) => ({
   phoneListById: inventory.phoneListById,
   fetchingPhoneListById: inventory.fetchingPhoneListById,
   updatingInspection: inventory.updatingInspection,
   phoneListData: inventory.phoneListData,
   userId: auth.userDetails.userId,
   addReceivePhone: inventory.addReceivePhone,
+  showPhoneData: refurbish.showPhoneData,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal
 });
 
@@ -465,7 +499,9 @@ const mapDispatchToProps = (dispatch) =>
       updateInspection,
       setEditPhoneData,
       handlereceivePhoneModal,
-      updateRepairStatus
+      updateRepairStatus,
+      handlePhoneDetails,
+      handleInTagDrawer
     },
     dispatch
   );

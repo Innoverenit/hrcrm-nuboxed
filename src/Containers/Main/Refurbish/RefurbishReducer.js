@@ -73,7 +73,7 @@ const initialState = {
 
   fetchingPhoneDetails: false,
   fetchingPhoneDetailsError: false,
-  phoneDetails: [],
+  phoneDetails: {},
 
   fetchingShiftsByUserId: false,
   fetchingShiftsByUserIdError: false,

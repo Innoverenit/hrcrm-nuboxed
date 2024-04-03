@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy,Suspense } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { Button, Input, Select } from 'antd';
 import { addTagInProcess } from "../RefurbishAction";
 import { bindActionCreators } from 'redux';
@@ -7,7 +7,7 @@ import { getBuilderByProId } from "../../../Product/ProductAction";
 import { connect } from 'react-redux';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
-const TagInListTable=lazy(()=>import('./TagInListTable'));
+const TagInListTable = lazy(() => import('./TagInListTable'));
 
 const { Option } = Select;
 
@@ -32,53 +32,53 @@ const TagInList = (props) => {
     }
     const handleClick = () => {
         props.addTagInProcess({
-            productRepurbishId:props.RowData.productRepurbishId,
-productId:props.RowData.productId,
-suppliesId: partName,
-cartNo: data?data:partNo,
+            productRepurbishId: props.RowData.productRepurbishId,
+            productId: props.RowData.productId,
+            suppliesId: partName,
+            cartNo: data ? data : partNo,
             userId: props.userId
-        },props.RowData.productRepurbishId)
+        }, props.RowData.productRepurbishId)
         setPartName("")
         setPartNo("")
     }
 
     const handleScan = async (result, error) => {
         try {
-          if (result && result.text) {
-            setData(result.text);
-          } else if (result instanceof MediaStream) {
-          }
-    
-          if (error) {
-            throw new Error(error);
-          }
+            if (result && result.text) {
+                setData(result.text);
+            } else if (result instanceof MediaStream) {
+            }
+
+            if (error) {
+                throw new Error(error);
+            }
         } catch (error) {
-          console.error('Error in QR code scanner:', error);
-    
-          // Additional handling based on the error, if needed
-        
+            console.error('Error in QR code scanner:', error);
+
+            // Additional handling based on the error, if needed
+
         }
-      };
-    
-      const handleError = (error) => {
+    };
+
+    const handleError = (error) => {
         console.error('Error with the QR scanner:', error);
         setScanning(false);
         setShouldRenderCamera(false);
         setModalVisible(false);
-      };
-    
-      const startScanning = () => {
+    };
+
+    const startScanning = () => {
         setData('');
         setScanning(true);
         setShouldRenderCamera(true);
         setModalVisible(true);
-      };
-    
-      const stopScanning = () => {
+    };
+
+    const stopScanning = () => {
         setScanning(false);
         setShouldRenderCamera(false);
         setModalVisible(false);
-      };
+    };
     return (
         <>
             <div class="m-[10px] flex justify-between">
@@ -95,32 +95,32 @@ cartNo: data?data:partNo,
                     </Select>
                 </div>
                 <div class="mt-[21px] ml-[12px]">
-                <QRCodeList
-                handleScan={handleScan}
-                stopScanning={stopScanning}
-                startScanning={startScanning}
-                handleError={handleError}
-                modalVisible={modalVisible}
-                scanning={scanning}
-                data={data}
-                shouldRenderCamera={shouldRenderCamera}
-                />
+                    <QRCodeList
+                        handleScan={handleScan}
+                        stopScanning={stopScanning}
+                        startScanning={startScanning}
+                        handleError={handleError}
+                        modalVisible={modalVisible}
+                        scanning={scanning}
+                        data={data}
+                        shouldRenderCamera={shouldRenderCamera}
+                    />
                 </div>
                 <div class="w-[35%] ml-[10px]">
                     <label className="text-xs font-semibold m-[10px]">
                         Part No </label>
-                    <Input 
-                    value={data?data:partNo}
+                    <Input
+                        value={data ? data : partNo}
 
                         type='text' onChange={(value) => handlePartNo(value)} />
                 </div>
-                <div class = "w-[20%] flex items-center">
+                <div class="w-[20%] flex items-center">
                     <Button type='primary' onClick={handleClick}>Add</Button>
                 </div>
             </div>
-            <Suspense fallback={<BundleLoader/>}>
-            <TagInListTable RowData={props.RowData} />
-                </Suspense>
+            <Suspense fallback={<BundleLoader />}>
+                <TagInListTable RowData={props.RowData} />
+            </Suspense>
 
         </>
     )

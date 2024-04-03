@@ -192,6 +192,7 @@ const AssignRepairForm = (props) => {
                         productionRepairDispatchId: "",
                         technicianId: technician,
                         userId: props.userId,
+                        defaultRepairDepartmentId: department,
                         repairDueDate: dueDate
                     },
                         props.rowData.orderPhoneId,

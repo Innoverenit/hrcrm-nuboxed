@@ -13,11 +13,11 @@ const PhoneDetailsModal = (props) => {
                 visible={showPhoneData}
                 maskClosable={false}
                 destroyOnClose
-                onClose={() => handlePhoneDetails(false)}
+                onCancel={() => handlePhoneDetails(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <PhoneDetailsByPhoneId RowData={props.RowData} />
+                    <PhoneDetailsByPhoneId phoneId={props.phoneId} />
                 </Suspense>
             </StyledModal>
         </>

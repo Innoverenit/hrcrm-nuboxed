@@ -195,7 +195,8 @@ const AssignPhoneByTechnician = (props) => {
                         productionDispatchId: "",
                         technicianId: technician,
                         userId: props.userId,
-                        dueDate: dueDate
+                        dueDate: dueDate,
+                        defaultQcDepartmentId: department
                     },
                         props.rowData.orderPhoneId,
                         props.locationId,
