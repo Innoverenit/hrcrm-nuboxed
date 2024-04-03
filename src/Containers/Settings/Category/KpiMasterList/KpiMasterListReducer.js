@@ -11,6 +11,9 @@ const initialState = {
     fetchingPerformanceCountError: false,
     masterKpiCount:{},
 
+    addingMasterCurrencyToggle: false,
+    addingMasterCurrencyToggleError: false,
+
 
     addingMasterKpi: false,
     addingMasterKpiError: false,
@@ -139,6 +142,28 @@ export const masterKpiReducer = (state = initialState, action) => {
               fetchingPerformanceCountError: true,
             };
 
+
+            case types.LINK_MASTER_CURRENCY_TOGGLE_REQUEST:
+              return { ...state, addingMasterCurrencyToggle: true };
+            case types.LINK_MASTER_CURRENCY_TOGGLE_SUCCESS:
+              return {
+                ...state,
+                addingMasterCurrencyToggle: false,
+                masterKpiList: state.masterKpiList.map((item) => {
+                  if (item.performanceManagementId === action.payload.performanceManagementId) {
+                    return action.payload;
+                  } else {
+                    return item;
+                  }
+                }),
+              };
+            case types.LINK_MASTER_CURRENCY_TOGGLE_FAILURE:
+              return {
+                ...state,
+                addingMasterCurrencyToggle: false,
+                addingMasterCurrencyToggleError: true,
+              };
+    
 
 
         

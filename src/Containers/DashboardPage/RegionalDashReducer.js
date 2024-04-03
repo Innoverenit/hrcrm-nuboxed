@@ -6,6 +6,12 @@ const initialState = {
 
   addSalesModal:false,
 
+  addSalesPlanModal:false,
+
+  fetchingRegionalSalesList: false,
+  fetchingRegionalSalesListError: false,
+  regionSalesList:[],
+
   addInvestmentModal:false,
 
   addFullFillmentModal:false,
@@ -91,6 +97,10 @@ case types.CHANGE_SELECTED_REGIONAL_TIME_INTERVAL_REPORT:
     case types.HANDLE_SALES_MODAL:
       return { ...state, addSalesModal: action.payload };
 
+      case types.HANDLE_SALES_PLAN_DRAWER_MODAL:
+        return { ...state, addSalesPlanModal: action.payload };
+  
+
       case types.HANDLE_FULLFILLMENT_MODAL:
         return { ...state, addFullFillmentModal: action.payload };
 
@@ -115,6 +125,22 @@ case types.CHANGE_SELECTED_REGIONAL_TIME_INTERVAL_REPORT:
 //         fetchingCo2: false,
 //         fetchingCo2Error: true,
 //       };
+
+
+case types.GET_REGION_SALES_LIST_REQUEST:
+  return { ...state, fetchingRegionalSalesList: true };
+case types.GET_REGION_SALES_LIST_SUCCESS:
+  return {
+    ...state,
+    fetchingRegionalSalesList: false,
+    regionSalesList: action.payload,
+  };
+case types.GET_REGION_SALES_LIST_FAILURE:
+  return {
+    ...state,
+    fetchingRegionalSalesList: false,
+    fetchingRegionalSalesListError: true,
+  };
 
 
 default:

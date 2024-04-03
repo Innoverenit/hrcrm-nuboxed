@@ -19,6 +19,7 @@ import {
 } from "../KpiMasterList/KpiMasterListAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MainWrapper } from "../../../../Components/UI/Layout";
+import PerformaneCurrencyToggle from "./PerformaneCurrencyToggle";
 
 
 const KpiMasterList = (props) => {
@@ -179,7 +180,18 @@ return <div><BundleLoader/></div>;
                                         New
                                       </span> : null}</div>
             )}
+    <div className=" w-[40rem]">
+    <div class=" text-sm text-cardBody font-medium font-poppins">
 
+Currency
+</div>
+                    <PerformaneCurrencyToggle
+                      kpi={region.kpi}
+                      currencyInd={region.currencyInd}
+                      region={region}
+                      performanceManagementId={region.performanceManagementId}
+                    />
+                  </div>
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}

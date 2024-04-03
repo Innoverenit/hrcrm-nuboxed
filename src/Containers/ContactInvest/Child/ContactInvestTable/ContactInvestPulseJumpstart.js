@@ -71,11 +71,13 @@ render() {
             //   this.props.OppValue.CustomerOppertunityDetails
 
             // }
-            bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
+            bgColor="#33FFD4 " 
+         
             // isLoading={this.props.fetchingOppValue} 
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
+          
   
        
           <JumpStartBox
@@ -86,7 +88,7 @@ render() {
                 defaultMessage="Pipe line value"
               />
             }
-            bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
+            bgColor="#2a3439"
             // value={
             //   pipeLineValue
 
@@ -108,7 +110,26 @@ render() {
         //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
 
         // }
-        bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
+         bgColor="#35CD7A"
+        // isLoading={this.props.fetchingWonCustomerOppValue} 
+        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+      
+      />
+
+      
+<JumpStartBox
+        noProgress
+        title={
+          <FormattedMessage
+            id="app.activity"
+            defaultMessage="Activity"
+          />
+        }
+        // value={
+        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+
+        // }
+        bgColor="#FF4C33"
         // isLoading={this.props.fetchingWonCustomerOppValue} 
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
       

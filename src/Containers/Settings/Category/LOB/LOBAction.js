@@ -89,13 +89,13 @@ export const addLob = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeLob = ( lobId,orgId) => (dispatch) => {
+export const removeLob = ( lobDetailsId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_LOB_REQUEST,
     });
     axios
-      .delete(`${base_url}/lob/delete/${lobId}`, {
+      .delete(`${base_url}/lob/delete/${lobDetailsId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -110,7 +110,7 @@ export const removeLob = ( lobId,orgId) => (dispatch) => {
         console.log(res);
         dispatch({
           type: types.REMOVE_LOB_SUCCESS,
-          payload:lobId,
+          payload:lobDetailsId,
         });
       })
       .catch((err) => {
@@ -124,14 +124,14 @@ export const removeLob = ( lobId,orgId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateLob = (data, lobId,cb) => (dispatch) => {
+export const updateLob = (data, lobDetailsId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_LOB_REQUEST,
     });
     axios
       .put(
-        `${base_url}/lob/update/${lobId}`,
+        `${base_url}/lob/update/${lobDetailsId}`,
        data,
         {
           headers: {
