@@ -7,14 +7,14 @@ import { getBuilderByProId } from "../../../Product/ProductAction";
 import { connect } from 'react-redux';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
-const TagInListTable = lazy(() => import('./TagInListTable'));
+// const TagInListTable = lazy(() => import('./TagInListTable'));
 
 const { Option } = Select;
 
 const TagInList = (props) => {
-    useEffect(() => {
-        props.getBuilderByProId(props.RowData.productId);
-    }, []);
+    // useEffect(() => {
+    //     props.getBuilderByProId(props.RowData.productId);
+    // }, []);
 
     const [partName, setPartName] = useState("")
     const [partNo, setPartNo] = useState("")
@@ -118,9 +118,9 @@ const TagInList = (props) => {
                     <Button type='primary' onClick={handleClick}>Add</Button>
                 </div>
             </div>
-            <Suspense fallback={<BundleLoader />}>
+            {/* <Suspense fallback={<BundleLoader />}>
                 <TagInListTable RowData={props.RowData} />
-            </Suspense>
+            </Suspense> */}
 
         </>
     )
@@ -135,7 +135,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             addTagInProcess,
-            getBuilderByProId
+            // getBuilderByProId
         },
         dispatch
     );
