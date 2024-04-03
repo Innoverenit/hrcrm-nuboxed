@@ -399,6 +399,9 @@ const initialState = {
   updatingCustomerOpportunityError: false,
   addCustomerOpportunityModal: false,
 
+
+  addCustomerNoteDrawerModal:false,
+
   addCustomerProjectDrawer: false,
   customeropportunityByUserId: [],
   addUpdateCustomerOpportunityModal: false,
@@ -1636,6 +1639,11 @@ export const customerReducer = (state = initialState, action) => {
         fetchingCusActivityTimelineStatus: false,
         fetchingCusActivityTimelineStatusError: true,
       };
+
+
+
+      case types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL:
+        return { ...state, addCustomerNoteDrawerModal: action.payload };
 
     case types.CUSTOMER_TO_ACCOUNT_CONVERT_REQUEST:
       return {
