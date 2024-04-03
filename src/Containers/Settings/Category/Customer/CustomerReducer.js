@@ -17,6 +17,11 @@ const initialState = {
      removingCustomer: false,
      removingCustomerError: false,
 
+
+fetchingCustomerNote:false,
+fetchingCustomerNoteError:false,
+     customerNoteList:[],
+
       updatingCustomer: false,
       updatingCustomerError: false,
 
@@ -63,6 +68,9 @@ export const catgCustomerReducer = (state = initialState, action) => {
        addingCustomer: false,
        addingCustomerError: true,
     };
+
+
+   
 
      // remove sector
 

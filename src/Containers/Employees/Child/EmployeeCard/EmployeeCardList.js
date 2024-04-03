@@ -288,6 +288,7 @@ function handleSetCurrentCandidateId(candidateId) {
 const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
     userId: auth.userDetails.userId,
     employees: employee.employees,
+    
     user: auth.userDetails,
     roles: role.roles,
     employeeTreeMap:employee.employeeTreeMap,

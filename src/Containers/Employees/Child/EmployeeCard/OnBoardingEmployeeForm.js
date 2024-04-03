@@ -4,6 +4,7 @@ import { Button,Select,Steps,Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
+import styled from "styled-components";
  import { getProcessForOnboarding ,getProcessStagesForOnboarding} from '../../../Settings/SettingsAction';
 import { Field } from 'formik';
 import {addOnboardingEmployee,addEmployeeWorkflow,getUserStageList} from "../../../Employees/EmployeeAction"
@@ -11,19 +12,77 @@ import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 const { Option } = Select;
 
+const Container = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.color};
+  display: flex;
+  border-bottom: 0.06em solid lightgrey;
+  position: absolute;
+height:26rem;
+  // overflow-x: auto;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+const StageColumn = styled.div`
+  background-color: whitesmoke;
+  color: ${(props) => props.theme.color};
+  float: left;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 26rem;
+  width: 250px;
+  margin-top: 3.75em;
+  overflow-y: auto;
+  border-right: 0.06em solid #d2cfcf;
+  /* background-color: ${(props) => props.theme.applicationBackground}; */
+  /* color: ${(props) => props.theme.color}; */
+  /* min-height: 43.12em; */
+`;
+
+
+const StageHeader = styled.div`
+  background-color: rgb(14, 149, 144);
+  color: white;
+  font-size: 0.93em;
+  width: 250px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 0.06em solid ${(props) => props.theme.backgroundColor};
+  padding: 0.5rem;
+  border-bottom: 2px solid ${(props) => props.theme.borderColor};
+  /* position:fixed; */
+`;
+
 const OnBoardingEmployeeForm = (props) => {
   const [selectedWork, setSelectedWork] = useState("");
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
   useEffect(() => {
     props.getProcessForOnboarding(props.orgId);
-    // props.getUserStageList(props.employeeName.employeeId);
+    props.getUserStageList(props.employeeName.employeeId);
   }, []);
+
+
+  useEffect(() => {
+    // Check if data is available
+    if (props.userStageList.length > 0) {
+      // Update activeTab when data is available
+      // setActiveTab(props.organizationDetailsList[0]?.organizationId);
+    }
+  }, [props.userStageList]);
+  console.log(props.userStageList)
 
   const { onboardingProcess, ratingValue } = props;
   const handleWorkflowChange = (val) => {
     setSelectedWork(val)
-    props.getProcessStagesForOnboarding(val);
+    // props.getProcessStagesForOnboarding(val);
 } 
 
 const handleStages = (val) => {
@@ -92,8 +151,8 @@ const handleStages = (val) => {
                     onClick={() => props.addEmployeeWorkflow({
                       
                         employeeId: props.employeeName.employeeId,
-                        workflowId: selectedWork,
-                        stageId: selectedStage,
+                        unboardingWorkflowDetailsId: selectedWork,
+                        // stageId: selectedStage,
                     
                     },
                         // props.rowData.orderPhoneId,
@@ -114,6 +173,69 @@ const handleStages = (val) => {
           }}
           >Onboarding Completed</Button>
              </Tooltip>
+             <div class="flex flex-no-wrap justify-center" >
+              {/* <DragDropContext
+                 onDragEnd={onDragEnd}
+                type="stage"
+                 onDragStart={dragStart}
+              > */}
+                <Container style={{ marginTop: "0.75em" }}>
+                  <>
+                    {props.userStageList.
+                      
+                      stageList&&props.userStageList.
+                      
+                      stageList.map((stage, index) => (
+                      
+                          
+                            <>
+                            
+                            <div class=" flex"
+                                >
+                                  <StageHeader style={{ position: "absolute" }}>
+                                    <div>{stage.stageName}</div>
+                                    <div>
+                                    </div>
+                                  </StageHeader>
+                                  {/* <Spin
+                                    tip="Loading..."
+                                    spinning={udatingOpp ? true : false}
+                                  >
+                                    <StageColumn
+                                      ref={provided.innerRef}
+                                      isDraggingOver={snapshot.isDraggingOver}
+                                      {...provided.droppableProps}
+                                      droppableProps={{ hello: "world" }}
+                                      className="scrollbar"
+                                      id="style-3"
+                                    >
+                                      {props.opportunityByUserId
+                                        .filter(
+                                          (opp, index) =>
+                                            opp.opportunityStagesId === stage.opportunityStagesId
+                                        )
+                                        .map((opp, index) => {
+                                          return (
+                                            <StageColumns1
+                                              key={index}
+                                              opportunity={opp}
+                                              index={index}
+                                              history={props.history}
+                                            />
+                                          );
+                                        })}
+                                    </StageColumn>
+                                  </Spin> */}
+                                </div>
+                              
+                            </>
+                        
+                     
+                      ))}
+                  </>
+                </Container>
+              {/* </DragDropContext> */}
+            </div>
         </div>
     </>
   );

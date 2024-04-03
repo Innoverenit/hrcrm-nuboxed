@@ -8,7 +8,7 @@ import AddCustomerNotesListDrawerModal from "../CustomerDetail/AddCustomerNotesL
 import { bindActionCreators } from 'redux';
 import NotesProspectForm from "../CustomerDetail/NotesProspectForm"
 import moment from 'moment';
- import { getCustomerActivityTimeline,getCustomerActivityRecords,handleCustomerNoteDrawerModal } from '../../CustomerAction';
+ import { getCustomerActivityTimeline,getCustomerNoteList,getCustomerActivityRecords,handleCustomerNoteDrawerModal } from '../../CustomerAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
 const CustomerActivityTable = (props) => {
@@ -52,6 +52,7 @@ const CustomerActivityTable = (props) => {
                   style={{ margin: '0 8px', padding: 0 }}
                   onClick={() => {
                     props.handleCustomerNoteDrawerModal(true);
+                    props.getCustomerNoteList(status.category,status.callId)
                     // handleSetTaskNameId(item);
                   }}
                 >
@@ -99,6 +100,7 @@ const CustomerActivityTable = (props) => {
 
 const mapStateToProps = ({ customer, auth }) => ({
   userId: auth.userDetails.userId,
+  customerNoteList:customer.customerNoteList,
   addCustomerNoteDrawerModal:customer.addCustomerNoteDrawerModal,
   customerActivityTimeline: customer.customerActivityTimeline,
   customerActivityCount:customer.customerActivityCount,
@@ -109,7 +111,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         getCustomerActivityTimeline,
         getCustomerActivityRecords,
-        handleCustomerNoteDrawerModal
+        handleCustomerNoteDrawerModal,
+        getCustomerNoteList
     },
     dispatch
   );

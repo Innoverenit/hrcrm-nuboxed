@@ -318,6 +318,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
         handleUpdateEmployeeModal={props.handleUpdateEmployeeModal}
       />
                <StepperEmployeeModal
+               userStageList={props.userStageList}
                currentEmployeeId={currentEmployeeId}
                employeeName={currentEmployeeId}
               //  singleEmployee={props.singleEmployee}
@@ -370,6 +371,7 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
     designations: designations.designations,
     departments:departments.departments,
     employeeTreeMap:employee.employeeTreeMap,
+    userStageList:employee.userStageList,
     documentsByEmployeeId: employee.documentsByEmployeeId,
     addDrawerEmployeePulseModal:employee.addDrawerEmployeePulseModal,
     addDrawerEmployeeDocumentModal:employee.addDrawerEmployeeDocumentModal,

@@ -2175,6 +2175,35 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+
+  export const getCustomerNoteList = (type,id) => (dispatch) => {
+    dispatch({
+        type: types.GET_CUSTOMER_NOTE_LIST_REQUEST,
+    });
+  
+    axios
+        .get(`${base_url}/todo/activity/notes/${type}/${id}`, {
+            headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+        })
+        .then((res) => {
+            console.log(res);
+            dispatch({
+                type: types.GET_CUSTOMER_NOTE_LIST_SUCCESS,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({
+                type: types.GET_CUSTOMER_NOTE_LIST_FAILURE,
+                payload: err,
+            });
+        });
+  };
+
   export const addCustomerActivityEvent = (event,customerId, cb) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;
     // const { startDate, endDate } = getState("dashboard").dashboard;
