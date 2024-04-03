@@ -232,7 +232,7 @@ function PhoneListForRepair(props) {
 
                                         <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                <div>
+                                                {/* <div>
                                                     {props.rowData.repairInspectionInd === 1 ?
                                                         <ButtonGroup>
                                                             {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
@@ -260,7 +260,8 @@ function PhoneListForRepair(props) {
                                                                     handleQCRepairStatus("Complete", item);
                                                                 }}
                                                             />}
-                                                        </ButtonGroup> :
+                                                        </ButtonGroup> 
+                                                        :
                                                         item.repairStatus === "Complete" && backToComplete === false
                                                             ?
                                                             <div>
@@ -288,7 +289,35 @@ function PhoneListForRepair(props) {
                                                         />
                                                     }
 
-                                                </div>
+                                                </div> */}
+                                                {props.rowData.repairInspectionInd === 1 &&
+                                                    <ButtonGroup>
+                                                        {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                            type="In Progress"
+                                                            iconType="fa-hourglass-half"
+                                                            tooltip="In Progress"
+                                                            id={item.phoneId}
+                                                            indStatus={item.repairStatus}
+                                                            phoneId={RowData.phoneId}
+                                                            status={active}
+                                                            onClick={() => {
+                                                                handleQCRepairStatus("In Progress", item)
+
+                                                            }}
+                                                        />}
+                                                        {item.repairStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                            type="Complete"
+                                                            iconType="fa-hourglass"
+                                                            tooltip="Complete"
+                                                            indStatus={item.repairStatus}
+                                                            status={active}
+                                                            id={item.phoneId}
+                                                            phoneId={RowData.phoneId}
+                                                            onClick={() => {
+                                                                handleQCRepairStatus("Complete", item);
+                                                            }}
+                                                        />}
+                                                    </ButtonGroup>}
 
                                             </div>
                                         </div>
