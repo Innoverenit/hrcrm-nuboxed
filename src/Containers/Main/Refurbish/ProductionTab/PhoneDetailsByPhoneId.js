@@ -6,13 +6,20 @@ import { connect } from 'react-redux';
 const PhoneDetailsByPhoneId = (props) => {
 
     useEffect(() => {
-        props.getPhoneDetails(props.RowData.phoneId)
+        props.getPhoneDetails(props.phoneId)
     }, [])
 
-
+    console.log(props.phoneDetails)
     return (
         <>
-            phone detaisl
+            <div>OEM :{props.phoneDetails.company}</div>
+            <div>Model :{props.phoneDetails.model}</div>
+            <div>IMEI :{props.phoneDetails.imei}</div>
+            <div>OS :{props.phoneDetails.os}</div>
+            <div>GB :{props.phoneDetails.gb}</div>
+            <div>Color :{props.phoneDetails.color}</div>
+            <div>Condition :{props.phoneDetails.condition}</div>
+            <div>Issue :{props.phoneDetails.issue}</div>
         </>
     );
 }

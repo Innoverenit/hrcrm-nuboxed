@@ -79,24 +79,24 @@ const OrderPhoneTab = (props) => {
                             openRepair ? <OpenRepairTable /> : null}
                     </Suspense>
                 </TabPane>
-                {props.inspectionRequiredInd &&
-                    <TabPane
-                        tab={
-                            <>
-                                <span>
+                {/* {props.inspectionRequiredInd && */}
+                <TabPane
+                    tab={
+                        <>
+                            <span>
 
-                                    Production
-                                </span>
-                            </>
-                        }
-                        key="3">
-                        <Suspense fallback={<BundleLoader />}>
-                            <AddCatalogueInProduction />
-                        </Suspense>
+                                Production
+                            </span>
+                        </>
+                    }
+                    key="3">
+                    <Suspense fallback={<BundleLoader />}>
+                        <AddCatalogueInProduction />
+                    </Suspense>
 
 
-                    </TabPane>
-                }
+                </TabPane>
+                {/* } */}
             </StyledTabs>
         </div>
     )

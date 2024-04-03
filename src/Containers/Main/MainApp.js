@@ -9,6 +9,7 @@ import {
 import { bindActionCreators } from "redux";
 
 import {
+  Button,
   Layout,
   message,
   Tooltip
@@ -20,7 +21,8 @@ import {
   NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
-import { updateUserById,handleActionDrawerModal,getActionRequiredCount } from "../Auth/AuthAction";
+import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
+import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
 import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
@@ -35,6 +37,7 @@ import AddActionModal from "./AddActionModal";
 import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
+import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -236,11 +239,11 @@ const ContactInvestDetail = lazy(() => import("../ContactInvest/Child/ContactInv
 const DealDetail = lazy(() => import("../Deal/Child/DealDetail/DealDetail"));
 const Product = lazy(() => import("../Product/Product"));
 const Collection = lazy(() => import("../Collection/Collection"));
-const Plant =lazy(()=>import("../Plant/Plant"));
-const PlantDetail =lazy(()=>import("../Plant/Child/PlantDetail/PlantDetail"));
-const Procurement =lazy(()=>import("../Procurement/Procurement"));
-const Subscription=lazy(()=>import("../Subscription/Subscription"));
-const Production=lazy(()=>import("../Production/Production"));
+const Plant = lazy(() => import("../Plant/Plant"));
+const PlantDetail = lazy(() => import("../Plant/Child/PlantDetail/PlantDetail"));
+const Procurement = lazy(() => import("../Procurement/Procurement"));
+const Subscription = lazy(() => import("../Subscription/Subscription"));
+const Production = lazy(() => import("../Production/Production"));
 
 function MainApp(props) {
   const [visible, setVisible] = useState(false);
@@ -319,7 +322,7 @@ function MainApp(props) {
 
   const organizationLogo = (
     <MultiAvatar
-    // style={{width:"8rem"}}
+      // style={{width:"8rem"}}
       imageId={imageId}
     //marginLeft="30px"
     // primaryTitle={organizationName}
@@ -327,9 +330,9 @@ function MainApp(props) {
   );
 
   return (
-    
+
     <>
-    
+
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
           <div class="max-sm:hidden overflow-x-auto">
@@ -355,12 +358,12 @@ function MainApp(props) {
             }}
           > */}
               <div class="  h-3 ml-[2.5rem] "
-                 className="logo1"
+                className="logo1"
                 style={{
-                  display:"flex",
-                  width:"-webkit-fill-available",
+                  display: "flex",
+                  width: "-webkit-fill-available",
                   justifyContent: !collapsed ? "center" : "center",
-               
+
                 }}
               >
                 {collapsed && organizationLogo}
@@ -406,17 +409,24 @@ function MainApp(props) {
                 <div class=" flex items-center h-full self-start "
                 >
                   <div class=" ml-3 max-sm:hidden " >
-                  <Select
-                    value={props.preferedLanguage}
-                    style={{ width: "3.8rem" }}
-                    onChange={(value) => handleLanguageSelect(value)}
-                  >
-                    <Option value="English">EN</Option>
-                    <Option value="Dutch">NL</Option>
-                  </Select>
-                </div>
+                    <Select
+                      value={props.preferedLanguage}
+                      style={{ width: "3.8rem" }}
+                      onChange={(value) => handleLanguageSelect(value)}
+                    >
+                      <Option value="English">EN</Option>
+                      <Option value="Dutch">NL</Option>
+                    </Select>
+                  </div>
                 </div>
                 <StartStop />
+                <Button
+                  // onClick={() => {
+                  //   props.handleInTagDrawer(true)
+                  // }}
+                  class=" bg-green-600 cursor-pointer text-gray-50"
+                >
+                  Scan </Button>
                 {/* <Popconfirm
                 title="Stop"
                 visible={visible}
@@ -539,15 +549,15 @@ function MainApp(props) {
                     />
                   </FloatButton.Group> */}
 
-               
+
                   {/* <Subscription /> */}
-                  <div  class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
-                      onClick={() => {
-                        // handleRowData(item);
-                        props.handleActionDrawerModal(true);
-                     
-                      }}
-            >Action Required <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span></div>
+                  <div class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
+                    onClick={() => {
+                      // handleRowData(item);
+                      props.handleActionDrawerModal(true);
+
+                    }}
+                  >Action Required <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span></div>
                   <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
@@ -581,23 +591,23 @@ function MainApp(props) {
                   </div>
                   {/* <Subscription /> */}
                   <div class=" flex items-center h-0">
-                  {user.settingsAccessInd === true || user.role === "ADMIN" ?
-  <SettingsDropdown />
-  : null
-}
-                  <a href="#" style={{  marginRight: 10 }}>
-                    <div  class=" flex items-center "
-                    >
-                      <NotificationPopover />
-                    </div>
-                  </a>
-       
-                    <RepositoryData />
-                     <FAQPage />
+                    {user.settingsAccessInd === true || user.role === "ADMIN" ?
+                      <SettingsDropdown />
+                      : null
+                    }
+                    <a href="#" style={{ marginRight: 10 }}>
+                      <div class=" flex items-center "
+                      >
+                        <NotificationPopover />
+                      </div>
+                    </a>
 
-                     </div>
+                    <RepositoryData />
+                    <FAQPage />
+
+                  </div>
                   <ProfileDropdown />
-                  
+
                   {/* <Theme /> */}
                 </div>
               </Header>
@@ -608,12 +618,12 @@ function MainApp(props) {
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
                       <Route exact path="/planner" component={Planner} />
-                    
+
                       <Route exact path="/dashboardRegional" component={DashboardPage} />
-                    
-                        <Route exact path="/dashboard" component={Dashboard} />
-                    
-               
+
+                      <Route exact path="/dashboard" component={Dashboard} />
+
+
 
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/Invoice" component={Invoice} />
@@ -631,7 +641,7 @@ function MainApp(props) {
                       <Route exact path="/account" component={Account} />
                       <Route exact path="/location" component={Location} />
                       <Route exact path="/plant" component={Plant} />
-                      <Route exact path="/plant/:plantId" component={PlantDetail}/>
+                      <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
@@ -733,8 +743,8 @@ function MainApp(props) {
                         path="/opportunity"
                         component={Opportunity}
                       />
-                      <Route exact path="/candidate" 
-                      component={Candidate}   
+                      <Route exact path="/candidate"
+                        component={Candidate}
                       />
 
                       {/* <Route
@@ -765,7 +775,7 @@ function MainApp(props) {
                         path="/shipper/:shipperId"
                         component={ShipperDetails}
                       />
-                       <Route
+                      <Route
                         exact
                         path="/supplier/:supplierId"
                         component={SupplierDetails}
@@ -802,7 +812,7 @@ function MainApp(props) {
                         path="/requirement"
                         component={Requirement}
                       />
-                       <Route
+                      <Route
                         exact
                         path="/procurement"
                         component={Procurement}
@@ -817,9 +827,9 @@ function MainApp(props) {
                       <Route exact path="/contactinvest/:contactId" component={ContactInvestDetail} />
                       <Route exact path="/dealDetails/:invOpportunityId" component={DealDetail} />
                       <Route exact path="/product" component={Product} />
-                      <Route exact path="/subscription" component={Subscription}/>
-                      <Route exact path="/production" component={Production}/>
-                      
+                      <Route exact path="/subscription" component={Subscription} />
+                      <Route exact path="/production" component={Production} />
+
                       <Route path="**" component={PageNotFound} />
                     </Switch>
                   </Suspense>
@@ -848,6 +858,11 @@ function MainApp(props) {
       // handleResponseData={this.handleResponseData}
       // responseData={this.state.responseData}
       />
+
+      {/* <TagInDrawer
+        clickTagInDrawr={props.clickTagInDrawr}
+        handleInTagDrawer={props.handleInTagDrawer}
+      /> */}
     </>
   );
 }
@@ -856,7 +871,7 @@ function MainApp(props) {
 const mapStateToProps = ({
   auth,
   theme,
-  customer,
+  refurbish,
   call,
   task,
   event,
@@ -870,7 +885,7 @@ const mapStateToProps = ({
   language: language.language,
   user: auth.userDetails,
   userDetails: auth.userDetails,
-  addDrawerActionModal:auth.addDrawerActionModal,
+  addDrawerActionModal: auth.addDrawerActionModal,
   addMessageModal: opportunity.addMessageModal,
   // employeeId: auth.userDetails.employeeId,
   userId: auth.userDetails.employeeId,
@@ -902,7 +917,8 @@ const mapStateToProps = ({
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
   user: auth.userDetails,
-  actionCount:auth.actionCount,
+  actionCount: auth.actionCount,
+  clickTagInDrawr: refurbish.clickTagInDrawr,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -917,6 +933,7 @@ const mapDispatchToProps = (dispatch) =>
       getActionRequiredCount,
       handleMessageModal,
       handleActionDrawerModal,
+      handleInTagDrawer,
     },
     dispatch
   );

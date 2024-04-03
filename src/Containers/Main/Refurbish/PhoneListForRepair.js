@@ -8,7 +8,8 @@ import {
     updaterepairStatus,
     getCatalogueByUser,
     handleRepairPhoneNotesOrderModal,
-    handlePhoneDetails
+    handlePhoneDetails,
+    handleInTagDrawer
 } from "./RefurbishAction";
 import { Button, Tooltip, Badge } from "antd";
 import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
@@ -25,6 +26,7 @@ import { SubTitle } from "../../../Components/UI/Elements";
 import AddSpareInRepair from "./AddSpareInRepair";
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
+import TagInDrawer from "./ProductionTab/TagInDrawer";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -393,6 +395,10 @@ function PhoneListForRepair(props) {
                                                 />}>
 
                                                     <Button
+                                                        // onClick={() => {
+                                                        //     props.handleInTagDrawer(true)
+                                                        //     handleSetRowData(item)
+                                                        // }}
                                                         class=" bg-green-600 cursor-pointer text-gray-50"
                                                     >
                                                         Scan </Button>
@@ -451,8 +457,13 @@ function PhoneListForRepair(props) {
                 <PhoneDetailsModal
                     handlePhoneDetails={props.handlePhoneDetails}
                     showPhoneData={props.showPhoneData}
-                    RowData={RowData}
+                    phoneId={RowData.phoneId}
                 />
+                {/* <TagInDrawer
+                    RowData={RowData}
+                    clickTagInDrawr={props.clickTagInDrawr}
+                    handleInTagDrawer={props.handleInTagDrawer}
+                /> */}
             </div>
         </>
     )
@@ -466,7 +477,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     phoNotesRepairOrderModal: refurbish.phoNotesRepairOrderModal,
     itemTaskcount: refurbish.itemTaskcount,
     fetchingRepairPhoneByUser: refurbish.fetchingRepairPhoneByUser,
-    showPhoneData: refurbish.showPhoneData
+    showPhoneData: refurbish.showPhoneData,
+    clickTagInDrawr: refurbish.clickTagInDrawr,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -474,6 +486,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getRepairPhoneByUser,
             updaterepairStatus,
+            handleInTagDrawer,
             getCatalogueByUser,
             handleRepairPhoneNotesOrderModal,
             handlePhoneDetails

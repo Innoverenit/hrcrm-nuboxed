@@ -221,7 +221,7 @@ export const getPhoneDetails = (phoneId) => (dispatch) => {
       console.log(res);
       dispatch({
         type: types.GET_PHONE_DETAILS_SUCCESS,
-        payload: [res.data],
+        payload: res.data,
       });
     })
     .catch((err) => {
