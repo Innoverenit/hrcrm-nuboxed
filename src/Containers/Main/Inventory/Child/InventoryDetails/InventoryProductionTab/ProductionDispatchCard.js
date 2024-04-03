@@ -53,12 +53,10 @@ function ProductionDispatchCard(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=""></div>
-                        <div className=" md:w-[7%]">Name</div>
-                        <div className=" md:w-[6.1rem]">Category</div>
-                        <div className=" md:w-[6rem]">SubCategory</div>
-                        <div className=" md:w-[4.2rem] ">Attribute</div>
-                        <div className="md:w-[5.8rem]">Sub Attribute</div>
+                        <div className="w-[7rem]">Manufacture ID</div>
+                        <div className=" w-[7.01rem]">Name</div>
+                        <div className=" w-[8.1rem]">Category</div>
+                        <div className=" w-[21.2rem] ">Attribute</div>                                        
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -74,7 +72,13 @@ function ProductionDispatchCard(props) {
                                 <div>
                                     <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                         <div class="flex">
+                                        <div className=" flex font-medium flex-col  w-[14.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
+<div class=" text-xs text-cardBody font-poppins">
+    {item.manufactureId}
+</div>
+
+</div>
                                             <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs text-cardBody font-poppins">
@@ -85,26 +89,26 @@ function ProductionDispatchCard(props) {
 
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins">
 
-                                                {item.categoryName}
+                                            {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.subCategoryName}
+                                            {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        {/* <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                 {item.attributeName}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title="Edit">
@@ -120,12 +124,12 @@ function ProductionDispatchCard(props) {
 
 
                                         </div>
-                                        <div className=" flex font-medium   md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title="Print">
 
                                                     <ReactToPrint
-                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
                                                         content={() => componentRefs.current[index]}
                                                     />
                                                 </Tooltip>

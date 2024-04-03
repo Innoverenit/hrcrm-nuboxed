@@ -768,12 +768,12 @@ export const getCustomerByUser = (userId, pageNo) => (dispatch) => {
 /**
  * get all the distributor
  */
-export const getAllDistributorsList = (pageNo) => (dispatch) => {
+export const getAllDistributorsList = (orgId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_DISTRIBUTORS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/all-distributors/${pageNo}`,
+    .get(`${base_url2}/distributor/all-distributors/${orgId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
