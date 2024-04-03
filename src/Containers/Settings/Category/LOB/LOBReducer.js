@@ -73,7 +73,7 @@ export const lobReducer = (state = initialState, action) => {
           ...state,
           removingLob: false,
           lobListData: state.lobListData.filter(
-            (item) => item.lobId !== action.payload
+            (item) => item.lobDetsilsId !== action.payload
         ), 
         };
       case types.REMOVE_LOB_FAILURE:
@@ -93,7 +93,7 @@ export const lobReducer = (state = initialState, action) => {
           ...state,
           updatingLob: false,
           lobListData: state.lobListData.map((sector) =>
-            sector.lobId === action.payload.lobId
+            sector.lobDetailsId === action.payload.lobDetailsId
               ? action.payload
               : sector
           ),

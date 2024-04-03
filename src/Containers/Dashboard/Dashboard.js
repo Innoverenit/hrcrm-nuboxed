@@ -65,6 +65,7 @@ class Dashboard extends Component {
     this.setState({ loading: false });
   };
 
+
   loadKPIsForTab = async (year, tabKey) => {
     const currentYear = new Date().getFullYear();
     await this.props.getRegionRecords(currentYear, tabKey
@@ -184,7 +185,12 @@ class Dashboard extends Component {
              : this.state.activeButton === "Regional" && activeTab  ? (
               <CardElement>
                 <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
-                <RegionalSales regionRecords={this.props.regionRecords}/>
+                <RegionalSales 
+                 tab={tab}
+                 tabKey={this.state.activeTab}
+                
+                 handleTabClick={this.handleTabClick}
+                regionRecords={this.props.regionRecords}/>
               </CardElement>
             ) 
             // : viewType==="ALL" ? (

@@ -24,6 +24,13 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
       payload: modalProps,
     });
   };
+  export const handleSalesPlanDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_SALES_PLAN_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+  
 
   export const handleFullFillmentModal = (modalProps) => (dispatch) => {
     dispatch({
@@ -37,6 +44,33 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
       type: types.HANDLE_INVESTMENT_MODAL,
       payload: modalProps,
     });
+  };
+
+  export const getRegionSalesList = (year,quarter,regionsId,type) => (dispatch) => {
+  
+    dispatch({
+      type: types.GET_REGION_SALES_LIST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/regions/target/dash-board/${year}/${quarter}/${regionsId}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REGION_SALES_LIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_REGION_SALES_LIST_FAILURE,
+          payload: err,
+        });
+      });
   };
 
 //   export const getCo2 = (pageNo) => (dispatch) => {

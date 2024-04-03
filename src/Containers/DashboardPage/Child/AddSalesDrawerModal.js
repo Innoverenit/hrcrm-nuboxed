@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import RegionSalesList from "./RegionSalesList";
 // import NotesForm from "./NotesForm";
 
 class AddSalesDrawerModal extends Component {
@@ -21,11 +22,14 @@ class AddSalesDrawerModal extends Component {
           visible={this.props.addSalesModal}
           onClose={() => this.props.handleSalesModal(false)}
         >
-          {/* <Suspense fallback={<BundleLoader />}>
-            <NotesForm rowdata={this.props.rowdata} 
-            leadsId={this.props.rowdata.leadsId} 
+          <Suspense fallback={<BundleLoader />}>
+            <RegionSalesList 
+             tabKey={this.props.tabKey}
+             handleTabClick={this.props.handleTabClick}
+             rowdata={this.props.rowdata} 
+            // leadsId={this.props.rowdata.leadsId} 
             />
-          </Suspense> */}
+          </Suspense>
         </StyledDrawer>
       </div>
     );

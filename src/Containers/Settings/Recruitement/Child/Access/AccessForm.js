@@ -82,6 +82,7 @@ const AccessForm = (props) => {
     setCheckedTopicList(props.departmentAcces.topic)
     setCheckedReportList(props.departmentAcces.report)
     setCheckedDataRoomList(props.departmentAcces.dataRoom)
+    setCheckedScannerList(props.departmentAcces.scanner)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -133,6 +134,7 @@ const AccessForm = (props) => {
   props.departmentAcces.production,
   props.departmentAcces.report,
   props.departmentAcces.dataRoom,
+  props.departmentAcces.scanner,
  
   
   
@@ -657,6 +659,25 @@ const AccessForm = (props) => {
                          };
 
 
+                                       // Scanner
+
+                                       const [checkedScannerList, setCheckedScannerList] = useState(props.departmentAcces.scanner              );
+                                       const [indeterminateScanner, setIndeterminateScanner] = useState(true);
+                                       const [checkAllScanner, setCheckAllScanner] = useState(false);
+                                     
+                                       const onScannerChange = (list) => {
+                                         setCheckedScannerList(list);
+                                         setIndeterminateScanner(!!list.length && list.length < settingsCheckedList.length);
+                                         setCheckAllScanner(list.length === settingsCheckedList.length);
+                                       };
+                                     
+                                       const onCheckAllScannerChange = (e) => {
+                                         setCheckedScannerList(e.target.checked ? settingsCheckedList : []);
+                                         setIndeterminateScanner(false);
+                                         setCheckAllScanner(e.target.checked);
+                                       };
+
+
                                 // Basic
 
                                 const [checkedBasicList, setCheckedBasicList] = useState(props.departmentAcces.basic              );
@@ -1093,6 +1114,7 @@ const onCheckAllTeamsChange = (e) => {
       topic:checkedTopicList || [],
       report:checkedReportList || [],
       dataRoom:checkedDataRoomList || [],
+      scanner:checkedScannerList || [],
       
       
       departmentId: props.departmentId,
@@ -1497,6 +1519,16 @@ const onCheckAllTeamsChange = (e) => {
               </Checkbox>
               <Divider />
               <CheckboxGroup options={materialOptions} value={checkedProductionList} onChange={onProductionChange} />
+
+            </div>
+
+            <div >
+              <div class="text-sm font-semibold">Scanner</div>
+              <Checkbox indeterminate={indeterminateScanner} onChange={onCheckAllScannerChange} checked={checkAllScanner}>
+               <div class="text-xs"> Check all</div>
+              </Checkbox>
+              <Divider />
+              <CheckboxGroup options={settingsCheckedList} value={checkedScannerList} onChange={onScannerChange} />
 
             </div>
              

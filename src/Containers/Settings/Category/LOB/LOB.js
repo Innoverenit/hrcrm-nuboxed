@@ -32,10 +32,10 @@ const LOB = (props) => {
       props.getLobCount(props.orgId) 
   }, [])
 
-  const editRegion = (lobId, name) => {
+  const editRegion = (lobDetsilsId, name) => {
     console.log(name)
     console.log(name)
-      setEditingId(lobId);
+      setEditingId(lobDetsilsId);
       setLobName(name);
   };
 
@@ -49,11 +49,11 @@ const LOB = (props) => {
   const handleUpdateLob=(region)=>{
       console.log(region)
       let data={
-        lobId:region.lobId,
+        lobDetsilsId:region.lobDetsilsId,
         name:newLobName
        
       }
-props.updateLob(data,region.lobId)
+props.updateLob(data,region.lobDetsilsId)
 setEditingId(null);
   }
 
@@ -161,10 +161,10 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingLob && lobListData.length === 0 ? <NodataFoundPage /> : lobListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.lobId}>
+            <div className="card9" key={region.lobDetsilsId}>
             {/* Region name display or input field */}
             
-            {editingId === region.lobId ? (
+            {editingId === region.lobDetsilsId ? (
                 <input
                 style={{border:"2px solid black"}}
                     type="text"
@@ -183,13 +183,13 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.lobId ? (
+                {editingId === region.lobDetsilsId ? (
                     <div>
                         <button onClick={() => handleUpdateLob(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.lobId, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.lobDetsilsId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -197,7 +197,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeLob(region.lobId,props.orgId)}
+                        onConfirm={() =>  props.removeLob(region.lobDetsilsId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -205,7 +205,7 @@ return <div><BundleLoader/></div>;
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.lobId)
+              //     props.removeServiceLine(item.lobDetsilsId)
               //  }
                  />
                  </Popconfirm>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -9,6 +9,11 @@ import { JumpStartBox } from "../../../Components/UI/Elements";
 import AddSalesDrawerModal from "./AddSalesDrawerModal";
 
 function RegionalSales(props) {
+
+  const [rowdata, setrowdata] = useState("");
+  const handleRowData = (data) => {
+    setrowdata(data);
+  };
   const {
     handleSalesModal,
     addSalesModal
@@ -38,7 +43,13 @@ function RegionalSales(props) {
             <JumpStartBox
            bgColor={colors[index % colors.length]} 
               noProgress
-              jumpstartClick={()=>handleSalesModal(true)}
+              jumpstartClick={() => {
+                handleSalesModal(true);
+             
+                handleRowData(region);
+              }}
+              // jumpstartClick={()=>handleSalesModal(true);
+              //   handleRowData(item);}
               cursorData={"pointer"}
               value={region.sales}
               title={region.regions}
@@ -50,6 +61,10 @@ function RegionalSales(props) {
       </div>
     </div>
     <AddSalesDrawerModal
+      rowdata={rowdata}
+      tabKey={props.tabKey}
+      handleTabClick={props.handleTabClick}
+      handleRowData={handleRowData}
         addSalesModal={addSalesModal}
         handleSalesModal={handleSalesModal}
       />

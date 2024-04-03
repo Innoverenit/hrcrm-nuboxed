@@ -218,6 +218,36 @@ export const updateMasterKpi = (data, performanceManagementId,cb) => (dispatch) 
       });
   };
 
+  export const linkMasterCurrencyToggle = ( data,performanceManagementId,cb) => (dispatch, getState) => {
+    //console.log(permissions, userId);
+    const orgId = getState().auth.userDetails.organizationId;
+    dispatch({
+      type: types.LINK_MASTER_CURRENCY_TOGGLE_REQUEST,
+    });
+    axios
+    .put(`${base_url}/performanceManagement/currency-ind/update/${performanceManagementId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  
+      .then((res) => {
+        console.log(res);
+        // dispatch(getThirdPartyAccess(orgId))
+        dispatch({
+          type: types.LINK_MASTER_CURRENCY_TOGGLE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_MASTER_CURRENCY_TOGGLE_FAILURE,
+          payload: err,
+        });
+      })
+  };
+
 
 
  
