@@ -274,6 +274,11 @@ const initialState = {
   linkedProjectTaskError: false,
   linkedcustomerProjectTask: [],
 
+
+  fetchingCustomerNoteList:false,
+  fetchingCustomerNoteListError:false,
+  customerNoteList:[],
+
   addingCommercials: false,
   addingCommercialsError: false,
 
@@ -1379,6 +1384,27 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         fetchingCustomerCloser: false,
         fetchingCustomerCloserError: true,
+      };
+
+
+
+
+      case types.GET_CUSTOMER_NOTE_LIST_REQUEST:
+      return {
+        ...state,
+        fetchingCustomerNoteList: true,
+      };
+    case types.GET_CUSTOMER_NOTE_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerNoteList: false,
+        customerNoteList: action.payload,
+      };
+    case types.GET_CUSTOMER_NOTE_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingCustomerNoteList: false,
+        fetchingCustomerNoteListError: true,
       };
 
     case types.UPDATE_CUSTOMER_INITIATIVE_REQUEST:
