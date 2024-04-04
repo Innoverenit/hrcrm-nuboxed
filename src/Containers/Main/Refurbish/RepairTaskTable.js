@@ -17,7 +17,7 @@ const RepairTaskTable = (props) => {
 
                 {props.taskByPhone.map((item) => {
                     return (
-                        <div class="cursor-pointer w-[30%] flex justify-center ">
+                        <div class="cursor-pointer w-[30%] flex justify-center max-sm:w-auto mt-2 ">
                             <div class="w-[70%]">
                                 {item.taskName}
                             </div>
