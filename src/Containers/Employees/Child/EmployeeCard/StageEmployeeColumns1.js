@@ -12,33 +12,29 @@ class StageEmployeeColumns1 extends Component {
     const { employee, index, history } = this.props;
     return (
       
-    //   <Draggable
-    //   draggableId={opportunity.opportunityId}
-    //   index={index}
-    //   type="stage"
-    // >
-    //   {(provided, snapshot) => (
-    //     <div
-    //       ref={provided.innerRef}
-    //       {...provided.draggableProps}
-    //       {...provided.dragHandleProps}
-    //     >
-    employee.onboardingEmpName===null?"":
+      <Draggable
+      draggableId={employee.unboardingWorkflowDetailsId}
+      index={index}
+      type="stage"
+    >
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+    {employee.onboardingEmpName===null?"":
             <EmployeeGroupCard
-            //   isDragging={snapshot.isDragging}
+              isDragging={snapshot.isDragging}
             //   opportunityId={opportunity.opportunityId}
               primaryTitle={`${elipsize(employee.onboardingEmpName, 60)}`} 
-            //   secondaryTitle={`${opportunity.proposalAmount} `}
-            //   currencyType={opportunity.currency}
-            //   customerName={opportunity.customer}
-            //   contactName={opportunity.contactName}
-            //   user={this.props.user}
+            
              
             />
-             
-         
-            // )}
-                //  </Draggable>
+      }
+         </div>
+             )}
+             </Draggable>
             
     );
   }
