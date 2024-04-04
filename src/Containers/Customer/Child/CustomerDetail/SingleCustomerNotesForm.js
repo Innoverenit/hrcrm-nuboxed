@@ -6,30 +6,30 @@ import { Spacer,SubTitle } from "../../../../Components/UI/Elements";
 const NotesWrapper = styled.div``;
 export default function SingleCustomerNoteForm(props) {
 
-//   const {
-//     comment,
-//     notes,
-//     creationDate,
-//     ownerName,
-//     userId,
-//     creatorId,
+  const {
+    comment,
+    notes,
+    creationDate,
+    ownerName,
+    userId,
+    creatorId,
    
-//   } = props;
+  } = props;
 //   console.log(creationDate);
   return (
     <NotesWrapper>
       {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
                 {description}
             </SubTitle> */}
-      {/* <div dangerouslySetInnerHTML={{ __html: notes }} /> */}
+      <div dangerouslySetInnerHTML={{ __html: notes }} />
       <SubTitle
         fontSize="0.875em"
         fontFamily="poppins"
         style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
         <Spacer />
-        {/* {`${moment.utc(creationDate).fromNow()}`}  {ownerName} */}
-        Hello Ramesh How are You
+        {`${moment.utc(creationDate).fromNow()}`}  {ownerName}
+       
        
       </SubTitle>
     </NotesWrapper>
