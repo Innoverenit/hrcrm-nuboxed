@@ -16,10 +16,27 @@ const RepairTechnicianList = (props) => {
     }, [])
     const [row, setRow] = useState({})
     const [show, setShow] = useState(false)
+    const [complete, setComplete] = useState(false)
+    const [remaining, setRemaining] = useState(false)
 
+    const handleComplete = () => {
+        setComplete(!complete)
+        setRemaining(false)
+        setShow(false)
+    }
+    const handleRemaining = () => {
+        setComplete(false)
+        setShow(false)
+        setRemaining(!remaining)
+    }
+    const handleShow = () => {
+        setShow(!show)
+        setRemaining(false)
+        setComplete(false)
+    }
     const handleRowdata = (item) => {
         setRow(item)
-        setShow(!show)
+
     }
 
     if (props.fetchingNoOfRepairTechnicianById) {
@@ -67,13 +84,17 @@ const RepairTechnicianList = (props) => {
 
                     </div>
                     {props.repairByTechnician.map((item) => {
+                        let remain = Number(item.totalPhone) - Number(item.repairInProgressPhoneCount) - Number(item.repairCompletePhoneCount)
                         return (
                             <div>
                                 <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                     <div class="flex">
                                         <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
                                             <span
-                                                onClick={() => handleRowdata(item)}
+                                                onClick={() => {
+                                                    handleShow()
+                                                    handleRowdata(item)
+                                                }}
                                                 style={{
                                                     textDecoration: "underline",
                                                     color: show && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace",
@@ -86,7 +107,7 @@ const RepairTechnicianList = (props) => {
 
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-
+                                                {item.mobileNo}
                                             </div>
 
                                         </div>
@@ -97,20 +118,31 @@ const RepairTechnicianList = (props) => {
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.remaining || 0}
+                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                                <span
+                                                    onClick={() => {
+                                                        handleRemaining();
+                                                        handleRowdata(item)
+                                                    }}>
+                                                    {remain || 0}
+                                                </span>
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.inprogress || 0}
+                                                {item.repairInProgressPhoneCount || 0}
                                             </div>
 
                                         </div>
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.complete || 0}
+                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                                <span
+                                                    onClick={() => {
+                                                        handleComplete();
+                                                        handleRowdata(item)
+                                                    }}> {item.repairCompletePhoneCount || 0}
+                                                </span>
                                             </div>
 
                                         </div>
@@ -124,8 +156,8 @@ const RepairTechnicianList = (props) => {
 
             </div>
             {show && <RepairPhoneListByTechnician row={row} orderPhoneId={props.rowData.orderPhoneId} />}
-            <RemainingPhoneList />
-            <CompletedPhones />
+            {remaining && <RemainingPhoneList row={row} orderPhoneId={props.rowData.orderPhoneId} />}
+            {complete && <CompletedPhones row={row} orderPhoneId={props.rowData.orderPhoneId} />}
         </>
     )
 }

@@ -245,6 +245,16 @@ const initialState = {
   updatingProcessTask: false,
   updatingProcessTaskError: false,
 
+  reassigningPhones: false,
+  reassigningPhonesError: false,
+
+  fetchingCompletedPhones: false,
+  fetchingCompletedPhonesError: false,
+  completedPhone: [],
+
+  fetchingRemainingPhones: false,
+  fetchingRemainingPhonesError: false,
+  remainingPhones: [],
 
   fetchingItemTaskCount: false,
   fetchingItemTaskCountError: false,
@@ -1221,6 +1231,59 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         deletingTaskList: false,
         deletingTaskListError: true,
+      };
+
+    case types.GET_COMPLETED_PHONES_REQUEST:
+      return { ...state, fetchingCompletedPhones: true };
+    case types.GET_COMPLETED_PHONES_SUCCESS:
+      return {
+        ...state,
+        fetchingCompletedPhones: false,
+        completedPhone: action.payload,
+      };
+    case types.GET_COMPLETED_PHONES_FAILURE:
+      return {
+        ...state,
+        fetchingCompletedPhones: false,
+        fetchingCompletedPhonesError: true,
+
+      };
+
+    case types.REASSIGN_PHONES_REQUEST:
+      return { ...state, reassigningPhones: true };
+    case types.REASSIGN_PHONES_SUCCESS:
+      return {
+        ...state,
+        reassigningPhones: false,
+        // taskByPhone: state.taskByPhone.map((item) => {
+        //   if (item.phoneTaskId == action.payload.phoneTaskId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.REASSIGN_PHONES_FAILURE:
+      return {
+        ...state,
+        reassigningPhones: false,
+        reassigningPhonesError: true,
+      };
+
+    case types.GET_REMAINING_PHONES_REQUEST:
+      return { ...state, fetchingRemainingPhones: true };
+    case types.GET_REMAINING_PHONES_SUCCESS:
+      return {
+        ...state,
+        fetchingRemainingPhones: false,
+        remainingPhones: action.payload,
+      };
+    case types.GET_REMAINING_PHONES_FAILURE:
+      return {
+        ...state,
+        fetchingRemainingPhones: false,
+        fetchingRemainingPhonesError: true,
+
       };
     default:
       return state;

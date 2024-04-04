@@ -18,6 +18,7 @@ function RepairSpareListTable(props) {
 
     let data = props.spareList.every((item) => item.spareUseInd)
     console.log(data)
+    let phoneSpare = props.spareList.map((item) => item.phoneSpareId)
     const columns = [
         {
             title: "",
@@ -111,7 +112,10 @@ function RepairSpareListTable(props) {
                         type="primary"
                         onClick={() => {
                             props.updateSparePacket({
-
+                                sparePacketId: "",
+                                phoneId: props.RowData.phoneId,
+                                orderPhoneId: props.orderPhoneId,
+                                spareList: phoneSpare
                             });
                         }}
                     >Spare Packet</Button>

@@ -493,6 +493,7 @@ function PhoneListForRepair(props) {
                     <AddSpareInRepair
                         phoneId={phoneId}
                         RowData={RowData}
+                        orderPhoneId={props.rowData.orderPhoneId}
                     />
 
                 )}

@@ -1631,3 +1631,84 @@ export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
     });
 };
 
+export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETED_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/completeRepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const reassignPhonesToTechnician = (data) => (dispatch) => {
+  dispatch({
+    type: types.REASSIGN_PHONES_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/orderProduction/reAssignRepair/productionDispatch`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getTaskListRangeByUserId(userId));
+      dispatch({
+        type: types.REASSIGN_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REASSIGN_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRemainingPhones = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REMAINING_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/notStart/RepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
