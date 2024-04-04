@@ -499,7 +499,7 @@ export const addCustomerDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_CUSTOMER_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/customer/document`, data, {
+    .post(`${base_url}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

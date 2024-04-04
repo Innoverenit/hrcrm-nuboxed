@@ -55,11 +55,11 @@ function CreateProductionCard(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className="w-[7rem]">Manufacture ID</div>
-                        <div className=" w-[6.01rem]">Name</div>
-                        <div className=" w-[6.1rem]">Category</div>
-                        <div className=" w-[7.2rem] ">Attribute</div>   
-                        <div className=" w-[12.21rem] ">To Dispatch</div>                     
+                        <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Manufacture ID</div>
+                        <div className=" w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+                        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
+                        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Attribute</div>   
+                        <div className=" w-[12.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">To Dispatch</div>                     
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -84,7 +84,7 @@ function CreateProductionCard(props) {
 </div>
                                             <div className=" flex font-medium flex-col  w-[7.1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.productName}
                                                 </div>
 
@@ -93,7 +93,7 @@ function CreateProductionCard(props) {
                                         </div>
 
                                         <div className=" flex font-medium flex-col w-[7.5rem] max-sm:flex-row  max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                                 {item.categoryName}  {item.subCategoryName}
                                             </div>
@@ -101,7 +101,7 @@ function CreateProductionCard(props) {
                                         <div className=" flex font-medium flex-col w-[9.2rem] max-sm:flex-row  max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
@@ -114,7 +114,7 @@ function CreateProductionCard(props) {
                                         </div> */}
                                         <div className=" flex font-medium flex-col w-[3.2rem] max-sm:flex-row  max-sm:justify-between ">
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <MoveToggleProduction item={item} />
                                             </div>
                                         </div>
@@ -134,7 +134,7 @@ function CreateProductionCard(props) {
 
                                         </div>
                                         <div className=" flex font-medium   w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Print">
 
                                                     <ReactToPrint

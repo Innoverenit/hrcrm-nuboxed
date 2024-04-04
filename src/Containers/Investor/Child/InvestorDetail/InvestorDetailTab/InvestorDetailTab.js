@@ -11,18 +11,20 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {getContactListByInvestorId,handleInvestorContactModal,
-  handleInvestorDocumentUploadModal,
   handleActivityModal,
   handleDealModal
 } from "../../../InvestorAction";
+import {
+  handleDocumentUploadModal,
+} from "../../../../Customer/CustomerAction";
 import InvestorActivityModal from "../InvestorActivity/InvestorActivityModal";
 import InvestorTimeLine from "../InvestorActivity/InvestorTimeLine";
 import CreateDealModal from "../../../../Deal/Child/CreateDealModal";
 import InvestorDeals from "./InvestorDeals";
+import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 const InvestorLinkedContact =lazy(()=>import("./InvestorContact/InvestorLinkedContact"));
 const InvestorLinkedDocuments =lazy(()=>import("./InvestorDoc/InvestorLinkedDocuments"));
 const AddInvestorContactModal=lazy(()=>import("./InvestorContact/AddInvestorContactModal"));
-const InvestorDocumentModal=lazy(()=>import("./InvestorDoc/InvestorDocumentModal"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -80,7 +82,8 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
     const { activeKey } = this.state;
     const {
       investorDetails: { investorId, name },
-      handleInvestorDocumentUploadModal,
+      handleDocumentUploadModal,
+      documentUploadModal,
       handleActivityModal,
       opendocumentUploadModal,
       opencreateDealModal,
@@ -244,7 +247,7 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
                             defaultMessage="Upload Document"
                           />
                         }
-                        onClick={() => handleInvestorDocumentUploadModal(true)}
+                        onClick={() => handleDocumentUploadModal(true)}
                         size="0.875em"
                         style={{
                           marginLeft: "0.3125em",
@@ -447,10 +450,9 @@ investorDetails={this.props.investorDetails}
             investorId={{ value: investorId }}
             callback={() => getContactListByInvestorId(investorId)}
         />
-         <InvestorDocumentModal
-         investorDetails={this.props.investorDetails}
-            opendocumentUploadModal={opendocumentUploadModal}
-            handleInvestorDocumentUploadModal={handleInvestorDocumentUploadModal}
+          <AddDocumentModals
+            documentUploadModal={documentUploadModal}
+            handleDocumentUploadModal={handleDocumentUploadModal}
           />
           <CreateDealModal 
             investorDetails={this.props.investorDetails}
@@ -500,9 +502,10 @@ investorDetails={this.props.investorDetails}
     );
   }
 }
-const mapStateToProps = ({ auth, investor, contact, opportunity,deal }) => ({
+const mapStateToProps = ({ auth, investor, customer, opportunity,deal }) => ({
   opendocumentUploadModal: investor.opendocumentUploadModal,
   user: auth.userDetails,
+  documentUploadModal: customer.documentUploadModal,
   userId: auth.userDetails.userId,
   investorActivityCount:investor.investorActivityCount,
   investorActivityModal:investor.investorActivityModal,
@@ -512,12 +515,13 @@ opencreateDealModal:investor.opencreateDealModal
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      handleInvestorDocumentUploadModal,
+      
       handleActivityModal,
       handleDealModal,
       handleInvestorContactModal,
       // handleCustomerOpportunityModal,
 getContactListByInvestorId,
+handleDocumentUploadModal
       // getOpportunityListByCustomerId,
       // handleRecruitModal,
       // handlefileRecruitModal,
