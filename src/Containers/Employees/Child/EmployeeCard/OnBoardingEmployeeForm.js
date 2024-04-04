@@ -3,6 +3,7 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import { Button,Select,Steps,Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import moment from 'moment';
 import styled from "styled-components";
  import { getProcessForOnboarding ,getProcessStagesForOnboarding} from '../../../Settings/SettingsAction';
@@ -62,6 +63,7 @@ const StageHeader = styled.div`
 `;
 
 const OnBoardingEmployeeForm = (props) => {
+  const [isDragging, setIsDragging] = useState(false);
   const [selectedWork, setSelectedWork] = useState("");
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
@@ -98,6 +100,47 @@ const handleStages = (val) => {
   //    props.getProcessStagesForOnboarding(selectedWork) // Assuming you want to pass the selected department and filtered roles to a parent component
   // };
   console.log("cgdf",props.currentEmployeeId)
+
+  function onDragEnd(result) {
+    console.log(result);
+    setIsDragging(false);
+
+    if (!navigator.onLine) {
+      return;
+    }
+
+    if (!result.destination) {
+      return;
+    }
+
+    const { draggableId, destination, source } = result;
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
+    const {
+      updateOpportunitydragstage,
+
+    } = props;
+    let data={
+      opportunityStagesId:destination.droppableId,
+      opportunityId:result.draggableId,
+    }
+    // updateOpportunitydragstage(data,
+    //   source.droppableId,
+    //   destination.droppableId,
+    //   draggableId,
+
+    // );
+  }
+
+  function dragStart() {
+    setIsDragging(true);
+  }
   return (
     <>
       <div className="mt-4 flex">
@@ -177,11 +220,11 @@ const handleStages = (val) => {
             
         </div>
         <div class="flex flex-no-wrap justify-center" >
-              {/* <DragDropContext
+              <DragDropContext
                  onDragEnd={onDragEnd}
                 type="stage"
                  onDragStart={dragStart}
-              > */}
+              >
                 <Container style={{ marginTop: "0.75em" }}>
                   <>
                     {props.userStageList.
@@ -189,7 +232,13 @@ const handleStages = (val) => {
                       stageList&&props.userStageList.
                       
                       stageList.map((stage, index) => (
+                        <Droppable
+                        key={index}
+                        droppableId={stage.unboardingStagesId}
+                        type="stage"
                       
+                      >
+                        {(provided, snapshot) => (
                           
                             <>
                             
@@ -207,17 +256,17 @@ const handleStages = (val) => {
                                     //spinning={udatingOpp ? true : false}
                                   > */}
                                     <StageColumn
-                                      // ref={provided.innerRef}
-                                      // isDraggingOver={snapshot.isDraggingOver}
-                                      // {...provided.droppableProps}
-                                      // droppableProps={{ hello: "world" }}
-                                      // className="scrollbar"
+                                      ref={provided.innerRef}
+                                      isDraggingOver={snapshot.isDraggingOver}
+                                      {...provided.droppableProps}
+                                      droppableProps={{ hello: "world" }}
+                                      className="scrollbar"
                                       id="style-3"
                                     >
                                       
                                         
                                             <StageEmployeeColumns1
-                                              // key={index}
+                                               key={index}
                                               employee={stage}
                                               index={index}
                                               // history={props.history}
@@ -228,12 +277,12 @@ const handleStages = (val) => {
                                 </div>
                               
                             </>
-                        
-                     
+                         )}
+                        </Droppable>
                       ))}
                   </>
                 </Container>
-              {/* </DragDropContext> */}
+              </DragDropContext>
             </div>
     </>
   );
