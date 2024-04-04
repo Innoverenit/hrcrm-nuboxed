@@ -20,10 +20,10 @@ import {
 } from "./OrderAction";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import StatusOfOrderDrawer from "./StatusOfOrderDrawer";
-import PaidButtonDrawer from "./PaidButtonDrawer";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
+import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
+import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 
 function CompleteOrder(props) {
     const [page, setPage] = useState(0);
@@ -162,7 +162,7 @@ function CompleteOrder(props) {
                                         <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
                                             {item.orderStatus}
                                         </div>
-                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
                                             <h4 class=" text-xs text-cardBody font-poppins">
@@ -183,7 +183,7 @@ function CompleteOrder(props) {
                                         </div>
 
 
-                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <h4 class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title="Status">
                                                     <EventRepeatIcon
@@ -199,7 +199,7 @@ function CompleteOrder(props) {
 
 
                                         </div>
-                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <h4 class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title="Collection">
                                                     <PaidIcon
@@ -233,16 +233,17 @@ function CompleteOrder(props) {
                 addNotesInOrder={props.addNotesInOrder}
                 handleNotesModalInOrder={props.handleNotesModalInOrder}
             />
-            <StatusOfOrderDrawer
-                handleStatusOfOrder={props.handleStatusOfOrder}
-                addStatusOfOrder={props.addStatusOfOrder}
-                particularRowData={particularRowData}
-            />
-            <PaidButtonDrawer
-                addPaidButtonModal={props.addPaidButtonModal}
-                handlePaidModal={props.handlePaidModal}
-                particularRowData={particularRowData}
-            />
+            <StatusOfOrderModal
+                    handleStatusOfOrder={props.handleStatusOfOrder}
+                    addStatusOfOrder={props.addStatusOfOrder}
+                    particularRowData={particularRowData}
+                />
+            <PaidButtonModal
+                    type={props.type}
+                    addPaidButtonModal={props.addPaidButtonModal}
+                    handlePaidModal={props.handlePaidModal}
+                    particularRowData={particularRowData}
+                />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}

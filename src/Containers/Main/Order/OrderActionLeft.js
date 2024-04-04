@@ -78,7 +78,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             overflowCount={999}
           >
 
-            <span class=" mr-2 text-sm cursor-pointer"
+            <span class=" mr-1 text-sm cursor-pointer"
               onClick={() => setOrderViewType("list")}
               style={{
                 color: viewType === "list" && "#1890ff",
@@ -100,7 +100,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             overflowCount={999}
           >
 
-            <span class=" mr-2 text-sm cursor-pointer"
+            <span class=" mr-1 text-sm cursor-pointer"
               onClick={() => setOrderViewType("complete")}
               style={{
                 color: viewType === "complete" && "#1890ff",
@@ -122,7 +122,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             overflowCount={999}
           >
 
-            <span class=" mr-2 text-sm cursor-pointer"
+            <span class=" mr-1 text-sm cursor-pointer"
               onClick={() => setOrderViewType("all")}
               style={{
                 color: viewType === "all" && "#1890ff",
@@ -144,7 +144,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             overflowCount={999}
           >
 
-            <span class=" mr-2 text-sm cursor-pointer"
+            <span class=" mr-1 text-sm cursor-pointer"
               onClick={() => setOrderViewType("allcomplete")}
               style={{
                 color: viewType === "allcomplete" && "#1890ff",
