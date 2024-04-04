@@ -27,7 +27,7 @@ const QRCodeListScanner = (props) => {
         {props.shouldRenderCamera && props.scanning && (
           <div className={`qr-code-scanner-container`}>
             <QrReader
-            facingMode="environment"
+             facingMode="user"
             delay={300}
             onScan={props.handleScan}
               // onResult={props.handleScan}

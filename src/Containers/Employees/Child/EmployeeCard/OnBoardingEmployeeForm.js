@@ -10,6 +10,7 @@ import { Field } from 'formik';
 import {addOnboardingEmployee,addEmployeeWorkflow,getUserStageList} from "../../../Employees/EmployeeAction"
 import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
+import StageEmployeeColumns1 from './StageEmployeeColumns1';
 const { Option } = Select;
 
 const Container = styled.div`
@@ -195,7 +196,7 @@ const handleStages = (val) => {
                             <div class=" flex"
                                 >
                                   <StageHeader 
-                                  // style={{ position: "absolute" }}
+                                  style={{ position: "absolute" }}
                                   >
                                     <div>{stage.stageName}</div>
                                     <div>
@@ -203,33 +204,27 @@ const handleStages = (val) => {
                                   </StageHeader>
                                   {/* <Spin
                                     tip="Loading..."
-                                    spinning={udatingOpp ? true : false}
-                                  >
+                                    //spinning={udatingOpp ? true : false}
+                                  > */}
                                     <StageColumn
-                                      ref={provided.innerRef}
-                                      isDraggingOver={snapshot.isDraggingOver}
-                                      {...provided.droppableProps}
-                                      droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
+                                      // ref={provided.innerRef}
+                                      // isDraggingOver={snapshot.isDraggingOver}
+                                      // {...provided.droppableProps}
+                                      // droppableProps={{ hello: "world" }}
+                                      // className="scrollbar"
                                       id="style-3"
                                     >
-                                      {props.opportunityByUserId
-                                        .filter(
-                                          (opp, index) =>
-                                            opp.opportunityStagesId === stage.opportunityStagesId
-                                        )
-                                        .map((opp, index) => {
-                                          return (
-                                            <StageColumns1
-                                              key={index}
-                                              opportunity={opp}
+                                      
+                                        
+                                            <StageEmployeeColumns1
+                                              // key={index}
+                                              employee={stage}
                                               index={index}
-                                              history={props.history}
+                                              // history={props.history}
                                             />
-                                          );
-                                        })}
+                                       
                                     </StageColumn>
-                                  </Spin> */}
+                                  {/* </Spin> */}
                                 </div>
                               
                             </>
