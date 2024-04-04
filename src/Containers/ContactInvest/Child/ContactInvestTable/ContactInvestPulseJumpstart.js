@@ -71,7 +71,7 @@ render() {
             //   this.props.OppValue.CustomerOppertunityDetails
 
             // }
-            bgColor="#33FFD4 " 
+            bgColor="#33D7FF" 
          
             // isLoading={this.props.fetchingOppValue} 
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -88,7 +88,7 @@ render() {
                 defaultMessage="Pipe line value"
               />
             }
-            bgColor="#2a3439"
+            bgColor="#34495E "
             // value={
             //   pipeLineValue
 

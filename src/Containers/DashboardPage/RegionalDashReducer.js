@@ -6,6 +6,10 @@ const initialState = {
 
   addSalesModal:false,
 
+  fetchingRegionalTaskList: false,
+  fetchingRegionalTaskListError: false,
+  regionAllTaskList:[],
+
   addSalesPlanModal:false,
 
   fetchingRegionalSalesList: false,
@@ -140,6 +144,23 @@ case types.GET_REGION_SALES_LIST_FAILURE:
     ...state,
     fetchingRegionalSalesList: false,
     fetchingRegionalSalesListError: true,
+  };
+
+
+  
+case types.GET_REGION_TASK_LIST_REQUEST:
+  return { ...state, fetchingRegionalTaskList: true };
+case types.GET_REGION_TASK_LIST_SUCCESS:
+  return {
+    ...state,
+    fetchingRegionalTaskList: false,
+    regionAllTaskList: action.payload,
+  };
+case types.GET_REGION_TASK_LIST_FAILURE:
+  return {
+    ...state,
+    fetchingRegionalTaskList: false,
+    fetchingRegionalTaskListError: true,
   };
 
 

@@ -72,6 +72,11 @@ function AssigenedKpiCardList(props) {
                   id="app.name"
                   defaultMessage="Name"
                 /></div>
+                   <div className=" md:w-[13.5rem]">
+        <FormattedMessage
+                  id="app.lob"
+                  defaultMessage="LOB"
+                /></div>
                 
                        <div className=" md:w-[13.1rem]"><FormattedMessage
                   id="app.assigned"
@@ -122,6 +127,24 @@ function AssigenedKpiCardList(props) {
                                         </div>
                                         </div>
                                 </div>
+                                <div className=" flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+<div className="flex max-sm:w-full items-center"> 
+
+          <div class="max-sm:w-full">
+                                        <Tooltip>
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                          
+                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                
+      {item.lobName}
+     
+       
+                                            </div>
+                                            </div>
+                                        </Tooltip>
+                                        </div>
+                                        </div>
+                                </div>
                                 <div class="flex">
 
 
@@ -146,30 +169,31 @@ function AssigenedKpiCardList(props) {
                      />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
-                         {item.assignedValue && (
-                       <span>
-                       
-                        {` ${item.assignedValue} ${item.userCurrency}`}
-                        </span>
-                         )}
+                           {item.assignedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.assignedValue}
+                                        </span>
+                                    )}
                      </div>
                    )}
                                    </div>
                                </div>
-                               <div className=" flex font-medium flex-col md:w-[9.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                               <div className=" flex font-normal flex-col md:w-[9.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                {item.completedValue && (
-                                <div class="text-sm text-cardBody font-poppins">
-                            
-                                {` ${item.completedValue} ${item.userCurrency}`}
-                                </div>
-                               )}
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.completedValue}
+                                        </span>
+                                    )}
                             </div>
-                              <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex font-normal flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                               {item.actualCompletedValue && (
-                                  <div class="text-sm text-cardBody font-poppins">
-                                  {` ${item.actualCompletedValue} ${item.userCurrency}`}
-                                  </div>
-                                  )} 
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.actualCompletedValue}
+                                        </span>
+                                    )}
                               </div>
                               <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
@@ -190,12 +214,12 @@ function AssigenedKpiCardList(props) {
                 />
                    ) : (
                      <div className="font-normal text-sm text-cardBody font-poppins">
-                         {item.weitageValue && (
-                       <span>
-                       
-                        {` ${item.weitageValue} ${item.userCurrency}`}
-                        </span>
-                         )}
+                      {item.weitageValue && (
+                                        <span>
+                                            {/* {item.currencyInd && `${item.userCurrency} `} */}
+                                            {item.weitageValue}%
+                                        </span>
+                                    )}
                      </div>
                    )}
                                    </div>
