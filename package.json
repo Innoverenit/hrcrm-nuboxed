@@ -87,6 +87,7 @@
     "react-places-autocomplete": "^7.2.0",
     "react-player": "^1.10.0",
     "react-qr-reader": "^3.0.0-beta-1",
+    "react-qr-scanner": "^1.0.0-alpha.11",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^5.0.1",

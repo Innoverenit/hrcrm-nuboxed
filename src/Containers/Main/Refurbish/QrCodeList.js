@@ -1,7 +1,8 @@
 import 'webrtc-adapter';
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'antd';
-import { QrReader } from 'react-qr-reader';
+// import { QrReader } from 'react-qr-reader';
+import QrReader from 'react-qr-scanner';
 import { Link } from 'react-router-dom';
 
 
@@ -26,13 +27,16 @@ const QRCodeListScanner = (props) => {
         {props.shouldRenderCamera && props.scanning && (
           <div className={`qr-code-scanner-container`}>
             <QrReader
-              onResult={props.handleScan}
+            facingMode="environment"
+            delay={300}
+            onScan={props.handleScan}
+              // onResult={props.handleScan}
               onError={props.handleError}
               onClose={props.stopScanning} />
             <span onClick={props.stopScanning}>
               <Link
                 to={`scan/${props.data}`}>
-                {props.data ? "See Phone Details" : null}
+                {props.data}
               </Link>
             </span>
 

@@ -256,10 +256,11 @@ function MainApp(props) {
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
-  const [data, setData] = useState('');
+  const [data, setData] = useState('No result');
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
@@ -347,7 +348,7 @@ function MainApp(props) {
   };
 
   const startScanning = () => {
-    setData('');
+    setData('No result');
     setScanning(true);
     setShouldRenderCamera(true);
     setModalVisible(true);
@@ -358,23 +359,28 @@ function MainApp(props) {
     setShouldRenderCamera(false);
     setModalVisible(false);
   };
-  const handleScan = async (result, error) => {
-    try {
-      if (result && result.text) {
-        setData(result.text);
-      } else if (result instanceof MediaStream) {
-      }
-
-      if (error) {
-        throw new Error(error);
-      }
-    } catch (error) {
-      console.error('Error in QR code scanner:', error);
-
-      // Additional handling based on the error, if needed
-
+  const handleScan = async (result) => {
+    if (result) {
+      setData(result.text); 
     }
   };
+  // const handleScan = async (result, error) => {
+  //   try {
+  //     if (result && result.text) {
+  //       setData(result.text);
+  //     } else if (result instanceof MediaStream) {
+  //     }
+
+  //     if (error) {
+  //       throw new Error(error);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error in QR code scanner:', error);
+
+  //     // Additional handling based on the error, if needed
+
+  //   }
+  // };
 
   return (
 
