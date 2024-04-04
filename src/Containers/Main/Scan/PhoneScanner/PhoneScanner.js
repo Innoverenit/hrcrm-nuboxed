@@ -13,8 +13,9 @@ const PhoneScanner = (props) => {
     console.log(props.phoneDetails)
     return (
         <>
-            <div class=" bg-white">
-                <div className=' mt-4 ml-8'>
+            <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
+                <div className=' mt-2 ml-3 max-sm:flex flex md:flex-col max-sm:justify-between'>
+                    <div class="">
                     <div class=" flex mt-1">
                         <span className=' font-bold'>OEM :</span> {props.phoneDetails.company}
                     </div>
@@ -27,6 +28,8 @@ const PhoneScanner = (props) => {
                     <div class=" flex mt-1">
                         <span className=' font-bold'>OS :</span> {props.phoneDetails.os}
                     </div>
+                    </div>
+                    <div class="">
                     <div class=" flex mt-1">
                         <span className=' font-bold'>GB :</span> {props.phoneDetails.gb}
                     </div>
@@ -39,8 +42,9 @@ const PhoneScanner = (props) => {
                     <div class=" flex mt-1">
                         <span className=' font-bold'>Issue :</span> {props.phoneDetails.issue}
                     </div>
+                    </div>
                 </div>
-                <div class=" ml-8">
+                <div class=" ml-3">
                     <SpareTaskTab phoneDetails={props.phoneDetails} phoneId={props.match.params.phoneId} />
                 </div>
             </div>

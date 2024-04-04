@@ -39,7 +39,7 @@ function AddingTaskList(props) {
     }
     return (
         <>
-            <div class="flex justify-around max-sm:flex-col">
+            <div class="flex justify-around ">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
