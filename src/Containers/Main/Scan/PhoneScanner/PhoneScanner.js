@@ -14,7 +14,7 @@ const PhoneScanner = (props) => {
     return (
         <>
             <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
-                <div className=' mt-2 ml-3 max-sm:flex flex md:flex-col max-sm:justify-between'>
+                <div className=' mt-2 ml-3 max-sm:flex flex md:flex-col max-sm:justify-around'>
                     <div class="">
                     <div class=" flex mt-1">
                         <span className=' font-bold'>OEM :</span> {props.phoneDetails.company}
