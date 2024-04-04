@@ -7,8 +7,6 @@ import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 import moment from "moment";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import StatusOfOrderDrawer from "./StatusOfOrderDrawer";
-import PaidButtonDrawer from "./PaidButtonDrawer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
     emptyOrders,
@@ -26,6 +24,8 @@ import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
+import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
+import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 
 function AllCompleteOrderList(props) {
     const [page, setPage] = useState(0);
@@ -172,16 +172,17 @@ function AllCompleteOrderList(props) {
                 addNotesInOrder={props.addNotesInOrder}
                 handleNotesModalInOrder={props.handleNotesModalInOrder}
             />
-            <StatusOfOrderDrawer
-                handleStatusOfOrder={props.handleStatusOfOrder}
-                addStatusOfOrder={props.addStatusOfOrder}
-                particularRowData={particularRowData}
-            />
-            <PaidButtonDrawer
-                addPaidButtonModal={props.addPaidButtonModal}
-                handlePaidModal={props.handlePaidModal}
-                particularRowData={particularRowData}
-            />
+            <StatusOfOrderModal
+                    handleStatusOfOrder={props.handleStatusOfOrder}
+                    addStatusOfOrder={props.addStatusOfOrder}
+                    particularRowData={particularRowData}
+                />
+             <PaidButtonModal
+                    type={props.type}
+                    addPaidButtonModal={props.addPaidButtonModal}
+                    handlePaidModal={props.handlePaidModal}
+                    particularRowData={particularRowData}
+                />
             <AccountOrderDetailsModal
                 particularRowData={particularRowData}
                 handleOrderDetailsModal={props.handleOrderDetailsModal}

@@ -1226,7 +1226,7 @@ export const getRecords = (userId) => (dispatch) => {
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/today/record/count/${userId}`,
+    .get(`${base_url2}/distributor/record/count/${userId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

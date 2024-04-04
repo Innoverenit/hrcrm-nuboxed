@@ -75,7 +75,7 @@ const AccountActionLeft = (props) => {
 
                     <Tooltip title="List View">
                         <Badge size="small"
-                            count={props.accountRecordData.distributor || 0}
+                            count={props.recordData.distributor || 0}
                         >
                             <span class=" mr-2 text-sm cursor-pointer"
                                 onClick={() => props.setDistributorViewType("list")}
