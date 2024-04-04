@@ -173,7 +173,9 @@ const handleStages = (val) => {
           }}
           >Onboarding Completed</Button>
              </Tooltip>
-             <div class="flex flex-no-wrap justify-center" >
+            
+        </div>
+        <div class="flex flex-no-wrap justify-center" >
               {/* <DragDropContext
                  onDragEnd={onDragEnd}
                 type="stage"
@@ -192,7 +194,9 @@ const handleStages = (val) => {
                             
                             <div class=" flex"
                                 >
-                                  <StageHeader style={{ position: "absolute" }}>
+                                  <StageHeader 
+                                  // style={{ position: "absolute" }}
+                                  >
                                     <div>{stage.stageName}</div>
                                     <div>
                                     </div>
@@ -236,7 +240,6 @@ const handleStages = (val) => {
                 </Container>
               {/* </DragDropContext> */}
             </div>
-        </div>
     </>
   );
 };

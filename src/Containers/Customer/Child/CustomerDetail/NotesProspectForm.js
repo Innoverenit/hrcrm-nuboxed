@@ -12,7 +12,7 @@ class NotesProspectForm extends Component {
 //   }
 
   render() {
-    // const { fetchingNotesList, notesList } = this.props;
+    const { fetchingNotesList, customerNoteList } = this.props;
 // console.log(this.props.currentNameId.taskId);
     return (
       <>
@@ -34,18 +34,19 @@ class NotesProspectForm extends Component {
               <BundleLoader />
             ) : ( */}
                 <Timeline>
-                  {/* {notesList &&
-                    notesList.map((item, index) => ( */}
+                   {customerNoteList &&
+                    customerNoteList.map((item, index) => ( 
                       <Timeline.Item
-                        // key={index}
+                        key={index}
                         style={{ paddingBottom: "0.625em" }}
                       >
                         <SingleCustomerNotesForm 
-                        // {...item} userId={this.props.userId} 
+                        {...item} 
+                        // userId={this.props.userId} 
                         />
                         {/* Hello */}
                       </Timeline.Item>
-                    {/* ))} */}
+                     ))} 
                 </Timeline>
               {/* )} */}
           </div>

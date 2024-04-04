@@ -107,7 +107,7 @@ const initialState = {
 
   fetchingUserStageList: false, 
   fetchingUserStageListError: false,
-  userStageList:[],
+  userStageList:{},
 
   fetchingAllDocumentsByEmployeeId: false,
   fetchingAllDocumentsByEmployeeIdError: false,

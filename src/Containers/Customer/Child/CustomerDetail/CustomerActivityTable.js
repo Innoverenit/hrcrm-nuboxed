@@ -52,7 +52,7 @@ const CustomerActivityTable = (props) => {
                   style={{ margin: '0 8px', padding: 0 }}
                   onClick={() => {
                     props.handleCustomerNoteDrawerModal(true);
-                    props.getCustomerNoteList(status.category,status.callId)
+                    props.getCustomerNoteList(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null)
                     // handleSetTaskNameId(item);
                   }}
                 >
@@ -89,6 +89,7 @@ const CustomerActivityTable = (props) => {
                 <NotesProspectForm/>
                 )} */}
        <AddCustomerNotesListDrawerModal
+       customerNoteList={props.customerNoteList}
        addCustomerNoteDrawerModal={props.addCustomerNoteDrawerModal}
        handleCustomerNoteDrawerModal={props.handleCustomerNoteDrawerModal}
        />

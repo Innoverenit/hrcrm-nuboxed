@@ -34,7 +34,9 @@ class AddCustomerNotesListDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
 
-          <NotesProspectForm/>
+          <NotesProspectForm
+           customerNoteList={this.props.customerNoteList}
+          />
         </Suspense>
          
         </StyledDrawer>
