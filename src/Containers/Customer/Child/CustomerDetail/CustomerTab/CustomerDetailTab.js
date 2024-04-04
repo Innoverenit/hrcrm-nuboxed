@@ -30,7 +30,7 @@ const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
 const CustomerActivityTable = lazy(() => import("../CustomerActivityTable"));
 const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
+const AddDocumentModals = lazy(() => import("./Document/AddDocumentModals"));
 const AddCustomerContactModal = lazy(() =>
   import("../CustomerTab/ContactTab/AddCustomerContactModal")
 );
@@ -511,7 +511,7 @@ class ContactDetailTab extends Component {
             handleTagProfileModal={this.props.handleTagProfileModal}
           />
 
-          <AddDocumentModal
+          <AddDocumentModals
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

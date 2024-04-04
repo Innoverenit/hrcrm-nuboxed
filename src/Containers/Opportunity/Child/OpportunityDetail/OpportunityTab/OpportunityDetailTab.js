@@ -32,6 +32,7 @@ import {
 import LockIcon from '@mui/icons-material/Lock';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import ReactSpeechModal from "./ReactSpeechModal";
+import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 const RecruitmentTable = lazy(() => import("./Recruitment/RecruitmentTable"));
 const AddRecruitModal = lazy(() => import("./Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("./Recruitment/AddTagProfileModal"));
@@ -488,7 +489,7 @@ return  <BundleLoader />
             linkType="opportunity"
           />
 
-          <AddDocumentModal
+<AddDocumentModals
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />
