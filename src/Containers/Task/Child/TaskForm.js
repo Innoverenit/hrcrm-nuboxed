@@ -495,14 +495,13 @@ const [priority,setpriority]=useState(props.selectedTask
                   taskTypeId: "",
                   taskName: "",
                   documentId:"",
-                  contactId: selectedContact,
-                  opportunityId:selectedOpportunity,
+                  
                   link:"",
                   taskTypeId:selectedTaskType,
                   taskChecklistId:selectedWorkflow,
                   fullName: "",
                   assignedDate: assignedDate || dayjs(),
-                  customerId: selectedCustomer,
+                 
                   projectName: "",
                
                   taskChecklistId: "",
@@ -633,10 +632,13 @@ const [priority,setpriority]=useState(props.selectedTask
               : addTask(
                   {
                     ...values,
+                    contactId: selectedContact,
+                  opportunityId:selectedOpportunity,
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
                     included:selectedIncludeValues,
                     taskStatus: active,
+                    customerId: selectedCustomer,
                     priority: priority,
                     complexity: complexity,
                     ownerIds: userId === userId ? [userId] : [],
