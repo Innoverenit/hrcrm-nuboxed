@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import SalesTaskCardList from "./SalesTaskCardList";
 
 // const CustomerContactCardList = lazy(() =>
 //   import("./CustomerContactCardList")
@@ -16,18 +17,19 @@ class SalesPlanDrawerModal extends Component {
       <div>
         <StyledDrawer
         // title="Notes"
-        //   title={this.props.customer.name}
+          title={this.props.rowdata.employeeName}
           width="80%"
           visible={this.props.addSalesPlanModal}
           destroyOnClose
           closable
           onClose={() => this.props.handleSalesPlanDrawerModal(false)}
         >
-          {/* <Suspense fallback={<BundleLoader />}>
-            <CustomerContactCardList 
-            customer={this.props.customer}
+          <Suspense fallback={<BundleLoader />}>
+            <SalesTaskCardList 
+              tabKey={this.props.tabKey}
+            rowdata={this.props.rowdata}
             />
-          </Suspense> */}
+          </Suspense>
         </StyledDrawer>
       </div>
     );

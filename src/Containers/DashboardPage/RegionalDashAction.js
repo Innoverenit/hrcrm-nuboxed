@@ -73,6 +73,33 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getRegionTaskList = (userId,typeName,quarter,year,) => (dispatch) => {
+  
+    dispatch({
+      type: types.GET_REGION_TASK_LIST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/task/all-task/list/${userId}/${typeName}/${quarter}/${year}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REGION_TASK_LIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_REGION_TASK_LIST_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
 //   export const getCo2 = (pageNo) => (dispatch) => {
 //     dispatch({
 //       type: types.GET_CO2_TABLE_VIEW_REQUEST,

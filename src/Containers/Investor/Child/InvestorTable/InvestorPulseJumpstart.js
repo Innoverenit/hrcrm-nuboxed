@@ -72,7 +72,8 @@ render() {
                 defaultMessage=" # Opportunities"
               />
             }
-            bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
+            bgColor="#33D7FF" 
+            // bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             value={
               this.props.InvestOppValue.opportunity
 
@@ -85,7 +86,8 @@ render() {
        
           <JumpStartBox
             noProgress
-            bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
+            // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
+            bgColor="#34495E "
             title={
               <FormattedMessage
                 id="app.pipeLineValue"
@@ -103,7 +105,8 @@ render() {
           />
 
           <JumpStartBox
-          bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
+            bgColor="#35CD7A"
+          // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
             // title="Open Tasks"
             title={
@@ -121,6 +124,23 @@ render() {
           
             
           />
+          <JumpStartBox
+        noProgress
+        title={
+          <FormattedMessage
+            id="app.activity"
+            defaultMessage="Activity"
+          />
+        }
+        // value={
+        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+
+        // }
+        bgColor="#FF4C33"
+        // isLoading={this.props.fetchingWonCustomerOppValue} 
+        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+      
+      />
           <JumpStartBox
            bgColor="linear-gradient(270deg,black,grey)"
             noProgress

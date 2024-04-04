@@ -84,11 +84,14 @@ function UserKpiList(props) {
   
    
   };
-  const handleUpdateContact = (userKpiLinkId,  actualCompletedValue) => {
+  const handleUpdateContact = (userKpiLinkId,  month1ActualCompletedValue,month2ActualCompletedValue,month3ActualCompletedValue) => {
     const data = {
         userKpiLinkId: userKpiLinkId, 
        employeeId: props.employeeName.employeeId,
-       actualCompletedValue: editedFields[userKpiLinkId]?.actualCompletedValue !== undefined ? editedFields[userKpiLinkId].actualCompletedValue : actualCompletedValue,
+       month1ActualCompletedValue: parseFloat(editedFields[userKpiLinkId]?.month1ActualCompletedValue !== undefined ? editedFields[userKpiLinkId].month1ActualCompletedValue : month1ActualCompletedValue),
+       month2ActualCompletedValue: parseFloat(editedFields[userKpiLinkId]?.month2ActualCompletedValue !== undefined ? editedFields[userKpiLinkId].month2ActualCompletedValue : month2ActualCompletedValue),
+       month3ActualCompletedValue: parseFloat(editedFields[userKpiLinkId]?.month3ActualCompletedValue !== undefined ? editedFields[userKpiLinkId].month3ActualCompletedValue : month3ActualCompletedValue),
+      //  actualCompletedValue: editedFields[userKpiLinkId]?.actualCompletedValue !== undefined ? editedFields[userKpiLinkId].actualCompletedValue : actualCompletedValue,
     };
   
     props.updateActualValue(data, props.employeeName.employeeId,selectedYear,activeTab)
@@ -143,7 +146,7 @@ function UserKpiList(props) {
                 /></div>
  
 
-                         <div className=" md:w-[8.1rem]"><FormattedMessage
+                         <div className=" md:w-[7.1rem]"><FormattedMessage
                   id="app.assigned"
                   defaultMessage="Assigned"
                 /></div>
@@ -151,7 +154,7 @@ function UserKpiList(props) {
                   id="app.achieved"
                   defaultMessage="Achieved"
                 /></div>
-                     <div className="md:w-[10.1rem]"><FormattedMessage
+                     <div className="md:w-[14.1rem]"><FormattedMessage
                   id="app.actual"
                   defaultMessage="Actual"
                 /></div>
@@ -198,47 +201,120 @@ function UserKpiList(props) {
               
                      <div className="font-normal text-sm text-cardBody font-poppins">
                      {item.assignedValue && (
-                       <span>
-                          {` ${item.assignedValue} ${item.userCurrency}`}
-                        </span>
-                           )}
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.assignedValue}
+                                        </span>
+                                    )}
                      </div>
                 
                                    </div>
                                </div>
-                               <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                               <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                {item.completedValue && (
-                                <div class="text-sm text-cardBody font-poppins">
-                                {` ${item.completedValue} ${item.userCurrency}`}
-                                </div>
-                               )}
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.completedValue}
+                                        </span>
+                                    )}
                             </div>
-                            <div className="Ccard__title w-[9rem]">
-                    {editContactId === item.userKpiLinkId ? (
-                      <input
-                      style={{border:"2px solid black"}}
-                        value={editedFields[item.userKpiLinkId]?.actualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].actualCompletedValue : item.actualCompletedValue}
-                        onChange={(e) => handleChange(item.userKpiLinkId, 'actualCompletedValue', e.target.value)}
-                      />
-                    ) : (
-                      <>
-                    
-                                          <div className="font-normal text-sm text-cardBody font-poppins">
-                                          {item.actualCompletedValue && (
-                        <span>
-                        {` ${item.actualCompletedValue} ${item.userCurrency}`}
-                          </span>
-                          )} 
-                      </div>
-                      </>
-  
-                    )}
+                            <div className="Ccard__title w-[15rem]">
+                            <div class="text-sm text-cardBody font-poppins">
+                               {editContactId === item.userKpiLinkId ? (
+              <>
+              <div class=" flex flex-row">
+              <input
+              style={{border:"2px solid black",width:"6rem"}}
+              placeholder="Month1"
+                value={editedFields[item.userKpiLinkId]?.month1ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1ActualCompletedValue : item.month1ActualCompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month1ActualCompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+              &nbsp;
+              <input
+              placeholder="Month2"
+              style={{border:"2px solid black",width:"6rem"}}
+                value={editedFields[item.userKpiLinkId]?.month2ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2ActualCompletedValue : item.month2ActualCompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month2ActualCompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+                 &nbsp;
+              <input
+              placeholder="Month3"
+              style={{border:"2px solid black",width:"6rem"}}
+                value={editedFields[item.userKpiLinkId]?.month3ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3ActualCompletedValue : item.month3ActualCompletedValue}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  if (!isNaN(inputValue)) { // Check if the input is a number
+                      handleChange(item.userKpiLinkId, 'month3ActualCompletedValue', inputValue);
+                  } else {
+                    alert("Please enter  number.");
+                 
+                  }
+              }}
+              />
+                 &nbsp;
+              </div>
+              </>
+            ) : (
+              <>
+              {/* {item.completedValue && ( */}
+              <div className="font-normal flex  flex-row text-sm text-cardBody font-poppins">
+              <div class=" flex flex-col">
+    <span className='mr-2'>M1</span>
+    <span className='ml-2'>   {item.month1ActualCompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month1ActualCompletedValue}
+                                        </span>
+                                    )}</span>
+  </div>
+  <div class=" flex flex-col">
+    <span className='mr-2'>M2</span>
+    <span className='ml-2'>   {item.month2ActualCompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month2ActualCompletedValue}
+                                        </span>
+                                    )}</span>
+    {/* <span className='ml-2'>{`${item.month2CompletedValue}`}</span> */}
+  </div>
+  <div class=" flex flex-col">
+    <span className='mr-2'>M3</span>
+    <span className='ml-2'>   {item.month3ActualCompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month3ActualCompletedValue}
+                                        </span>
+                                    )}</span>
+    {/* <span className='ml-2'>{`${item.month3ActualCompletedValue}`}</span> */}
+  </div>
+              </div>
+              
+              {/* )} */}
+              </>
+            )}
+                               </div>
                   </div>
 
                   <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                     {editContactId === item.userKpiLinkId ? (
                         <>
-                      <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.actualCompletedValue)}>
+                      <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1ActualCompletedValue,item.month2ActualCompletedValue,item.month3ActualCompletedValue)}>
                         Save
                       </Button>
                         <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>

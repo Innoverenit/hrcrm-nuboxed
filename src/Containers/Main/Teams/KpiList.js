@@ -6,6 +6,7 @@ import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { Tabs,Select } from 'antd';
 import {addKpi, } from "./TeamsAction";
+import {getLob} from "../../Settings/Category/LOB/LOBAction"
 import {getKpis} from "../../Settings/Category/KPI/KPIAction"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
@@ -25,6 +26,7 @@ function KpiList(props) {
   ]
   const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
   const [selected, setSelected] = useState("");
+  const [lob, setLob] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("");
   const [selectedYear, setSelectedYear] = useState(null);
@@ -42,6 +44,7 @@ function KpiList(props) {
     }
   };
     useEffect(()=>{
+      props.getLob(props.orgId); 
         props.getKpis(props.rowdata.departmentId,props.rowdata.roleType)
         // props.getEmployeeKpiList(props.rowdata.employeeId)
     },[]);
@@ -75,6 +78,13 @@ function KpiList(props) {
     // setSelectedUser("");
     // props.getDepartmentwiserUser(selected) // Assuming you want to pass the selected department and filtered roles to a parent component
   };
+  const handleLobChange = (event) => {
+    const lob = event.target.value;
+    setLob(lob);
+    // setSelectedUser("");
+    // props.getDepartmentwiserUser(selected) // Assuming you want to pass the selected department and filtered roles to a parent component
+  };
+  
 
   const kpiNameOption = props.kpiList.map((item) => {
     return {
@@ -91,6 +101,7 @@ function KpiList(props) {
           // performanceManagementId:[],
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
+          lobDetsilsId: lob,
           assignedValue:"",
           weitageValue:"",
           year: selectedYear,
@@ -178,6 +189,26 @@ function KpiList(props) {
     
       </div>
       )}
+        {selected && (
+           <div class=" w-[25%] mt-[1.2rem]  max-sm:w-wk">
+            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >LOB</label>&nbsp;
+                      <select  className="customize-select"
+                       style={{width:"50%"}}
+                      onChange={handleLobChange}>
+          <option value="">Select</option>
+          {props.lobListData.map((item, index) => (
+            <option 
+           
+            key={index} value={item.lobDetsilsId}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        
+      
+    
+      </div>
+       )}  
       {selected && (
           <>                                           
         <div class=" w-[37%]" >
@@ -252,11 +283,13 @@ function KpiList(props) {
   );
 }
 
-const mapStateToProps = ({ teams, auth, kpi }) => ({
+const mapStateToProps = ({ teams, auth, kpi,lob }) => ({
     userDetails: auth.userDetails,
+    lobListData: lob.lobListData,
     kpiList:teams.kpiList,
     kpiListData:kpi.kpiListData,
     addingKpi:teams.addingKpi,
+    orgId:auth.userDetails.organizationId,
     employeeKpiList:teams.employeeKpiList,
 });
 
@@ -264,6 +297,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getKpis,
+        getLob,
         addKpi,
       
     },

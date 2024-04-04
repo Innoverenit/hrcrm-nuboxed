@@ -71,7 +71,7 @@ const PerformanceTable = (props) => {
       //  month2CompletedValue: editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue,
        month2CompletedValue: parseFloat(editedFields[userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[userKpiLinkId].month2CompletedValue : month2CompletedValue),
        month3CompletedValue: parseFloat(editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue),
-      //  month3CompletedValue: editedFields[userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[userKpiLinkId].month3CompletedValue : month3CompletedValue,
+      
     };
   
     props.updateCompletedValue(data, props.employeeId,)
@@ -180,12 +180,12 @@ const PerformanceTable = (props) => {
                                <div class="text-sm text-cardBody font-poppins">
   
                  <div className="font-normal text-sm text-cardBody font-poppins">
-                     {item.assignedValue && (
-                   <span>
-                   
-                    {` ${item.assignedValue} ${item.userCurrency}`}
-                    </span>
-                     )}
+                 {item.assignedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.assignedValue}
+                                        </span>
+                                    )}
                  </div>
            
                                </div>
@@ -249,15 +249,32 @@ const PerformanceTable = (props) => {
               <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
               <div class=" flex flex-col">
     <span className='mr-2'>Month 1</span>
-    <span>{`${item.month1CompletedValue}`}</span>
+    <span className='ml-2'>   {item.month1CompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month1CompletedValue}
+                                        </span>
+                                    )}</span>
   </div>
   <div class=" flex flex-col">
     <span className='mr-2'>Month 2</span>
-    <span className='ml-2'>{`${item.month2CompletedValue}`}</span>
+    <span className='ml-2'>   {item.month2CompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month2CompletedValue}
+                                        </span>
+                                    )}</span>
+    {/* <span className='ml-2'>{`${item.month2CompletedValue}`}</span> */}
   </div>
   <div class=" flex flex-col">
     <span className='mr-2'>Month 3</span>
-    <span className='ml-2'>{`${item.month3CompletedValue}`}</span>
+    <span className='ml-2'>   {item.month3CompletedValue && (
+                                        <span>
+                                            {item.currencyInd && `${item.userCurrency} `}
+                                            {item.month3CompletedValue}
+                                        </span>
+                                    )}</span>
+    {/* <span className='ml-2'>{`${item.month3CompletedValue}`}</span> */}
   </div>
               </div>
               
