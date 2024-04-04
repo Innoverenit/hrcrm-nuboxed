@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 const { Option } = Select;
 const AssignRepairForm = (props) => {
 
-    let depaVal = props.rowData.defaultDepartmentId === "null" ? "" : props.rowData.defaultDepartmentId
+    let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? "" : props.rowData.defaultRepairDepartmentId
 
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
@@ -36,14 +36,15 @@ const AssignRepairForm = (props) => {
         setTechnician(val)
     }
     const handleDepartment = (val) => {
-        setDepartment(val)
-        props.getProductionUsersById(val, props.locationId);
+        let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? val : props.rowData.defaultRepairDepartmentId
+        setDepartment(depaVal)
+        props.getProductionUsersById(depaVal, props.locationId);
     }
     console.log(user)
 
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.departmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultRepairDepartmentId, props.locationId);
         props.getRepairPhoneById(props.rowData.orderPhoneId)
         props.getDepartments()
     }, [])

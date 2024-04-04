@@ -28,7 +28,7 @@ function RepairSpareApproveToggle(props) {
                     cancelText="Cancel"
                 >
                     <Switch
-                        checked={props.item.spareUseInd}
+                        checked={props.spareUseInd}
                         isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"

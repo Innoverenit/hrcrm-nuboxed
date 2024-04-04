@@ -14,12 +14,12 @@ const { Option } = Select;
 
 const AssignPhoneByTechnician = (props) => {
 
-    let depaVal = props.rowData.defaultDepartmentId === "null" ? "" : props.rowData.defaultDepartmentId
+    let depaVal = props.rowData.defaultQcDepartmentId === "null" ? "" : props.rowData.defaultQcDepartmentId
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
     const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
-
+    console.log(department)
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -39,13 +39,16 @@ const AssignPhoneByTechnician = (props) => {
         setTechnician(val)
     }
     const handleDepartment = (val) => {
-        setDepartment(val)
-        props.getProductionUsersById(val, props.locationId);
+        let depaVal = props.rowData.defaultQcDepartmentId === "null" ? val : props.rowData.defaultQcDepartmentId
+        console.log(depaVal)
+        setDepartment(depaVal)
+
+        props.getProductionUsersById(depaVal, props.locationId);
     }
-    console.log(user)
+
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.defaultDepartmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultQcDepartmentId, props.locationId);
         props.getNoOfPhoneById(props.rowData.orderPhoneId);
         props.getDepartments()
     }, [])
