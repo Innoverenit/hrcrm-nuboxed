@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { StyledTable } from "../../../Components/UI/Antd";
+import { updateSparePacket } from "./RefurbishAction"
 import { getSpareListByPhoneId, deleteSpareList } from "../Account/AccountAction";
 import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,6 +16,8 @@ function RepairSpareListTable(props) {
         props.getSpareListByPhoneId(props.RowData.phoneId)
     }, [])
 
+    let data = props.spareList.every((item) => item.spareUseInd)
+    console.log(data)
     const columns = [
         {
             title: "",
@@ -101,25 +104,26 @@ function RepairSpareListTable(props) {
                 pagination={false}
                 loading={props.fetchingSpareListByPhoneId}
             />
-            <div class=" flex justify-end">
+            {data && <div class=" flex justify-end">
                 <Tooltip title="Make Spare Packet">
-
                     <Button
-                        // style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                        loading={props.updatingSparePacket}
                         type="primary"
-                    // onClick={() => {
-                    //     handleSetRowData(item);
+                        onClick={() => {
+                            props.updateSparePacket({
 
-                    // }}
+                            });
+                        }}
                     >Spare Packet</Button>
                 </Tooltip>
-            </div>
+            </div>}
         </>
     );
 }
 
-const mapStateToProps = ({ distributor, auth }) => ({
+const mapStateToProps = ({ distributor, refurbish, auth }) => ({
     fetchingSpareListByPhoneId: distributor.fetchingSpareListByPhoneId,
+    updatingSparePacket: refurbish.updatingSparePacket,
     spareList: distributor.spareList,
     userId: auth.userDetails.userId,
 });
@@ -128,7 +132,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getSpareListByPhoneId,
-            deleteSpareList
+            deleteSpareList,
+            updateSparePacket
         },
         dispatch
     );

@@ -52,6 +52,29 @@ export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dis
       });
     });
 };
+export const updatePauseStatus = (data) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_PAUSE_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/phone/start-pause/repairTime`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PAUSE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PAUSE_STATUS_FAILURE,
+      });
+    });
+};
 export const getTomorrowProduction = () => (dispatch) => {
   dispatch({
     type: types.GET_TOMORROW_PRODUCTION_REQUEST,
@@ -92,6 +115,33 @@ export const linkDateToProduction = (data) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.LINK_DATE_TO_PRODUCTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateSparePacket = (data) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SPARE_PACKET_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/phoneSpare/spare-packet-link`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getTaskListRangeByUserId(userId));
+      dispatch({
+        type: types.UPDATE_SPARE_PACKET_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SPARE_PACKET_FAILURE,
         payload: err,
       });
     });

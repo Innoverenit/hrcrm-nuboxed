@@ -9,7 +9,8 @@ import {
     getCatalogueByUser,
     handleRepairPhoneNotesOrderModal,
     handlePhoneDetails,
-    handleInTagDrawer
+    handleInTagDrawer,
+    updatePauseStatus
 } from "./RefurbishAction";
 import { Button, Tooltip, Badge } from "antd";
 import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
@@ -18,7 +19,7 @@ import ButtonGroup from "antd/lib/button/button-group";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
-import { NoteAddOutlined } from "@mui/icons-material";
+import { NoteAddOutlined, PauseCircleFilled } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -291,9 +292,10 @@ function PhoneListForRepair(props) {
                                                     }
 
                                                 </div> */}
-                                                {props.rowData.repairInspectionInd === 1 &&
-                                                    <ButtonGroup>
-                                                        {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                {/* {props.rowData.repairInspectionInd === 1 && */}
+                                                <ButtonGroup>
+                                                    {item.repairStatus === "To Start"
+                                                        && props.rowData.repairInspectionInd === 1 && backToComplete === false && <StatusIcon
                                                             type="In Progress"
                                                             iconType="fa-hourglass-half"
                                                             tooltip="In Progress"
@@ -306,7 +308,23 @@ function PhoneListForRepair(props) {
 
                                                             }}
                                                         />}
-                                                        {item.repairStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                    {item.repairStatus === "In Progress" &&
+                                                        props.rowData.repairInspectionInd === 1 &&
+                                                        <PauseCircleFilled
+
+                                                            onClick={() => {
+                                                                let data = {
+                                                                    phoneTimesId: "",
+                                                                    userId: props.userId,
+                                                                    phoneId: item.phoneId,
+                                                                    pauseInd: true
+                                                                }
+                                                                props.updatePauseStatus(data)
+                                                            }}
+                                                        />}
+                                                    {item.repairStatus === "In Progress" &&
+                                                        props.rowData.repairInspectionInd === 1
+                                                        && backToComplete === false && <StatusIcon
                                                             type="Complete"
                                                             iconType="fa-hourglass"
                                                             tooltip="Complete"
@@ -318,7 +336,10 @@ function PhoneListForRepair(props) {
                                                                 handleQCRepairStatus("Complete", item);
                                                             }}
                                                         />}
-                                                    </ButtonGroup>}
+                                                    {item.repairStatus === "Complete" &&
+                                                        <RollbackOutlined />}
+                                                </ButtonGroup>
+
 
                                             </div>
                                         </div>
@@ -521,7 +542,8 @@ const mapDispatchToProps = (dispatch) =>
             handleInTagDrawer,
             getCatalogueByUser,
             handleRepairPhoneNotesOrderModal,
-            handlePhoneDetails
+            handlePhoneDetails,
+            updatePauseStatus
         },
         dispatch
     );

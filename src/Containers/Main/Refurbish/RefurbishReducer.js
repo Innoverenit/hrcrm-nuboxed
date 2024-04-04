@@ -75,6 +75,13 @@ const initialState = {
   fetchingPhoneDetailsError: false,
   phoneDetails: {},
 
+  updatingPauseStatus: false,
+  updatingPauseStatusError: false,
+  pauseId: "",
+
+  updatingSparePacket: false,
+  updatingSparePacketError: false,
+
   fetchingShiftsByUserId: false,
   fetchingShiftsByUserIdError: false,
   shiftsData: [],
@@ -263,6 +270,20 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingTodayProduction: false,
         fetchingTodayProductionError: true,
+      };
+
+    case types.UPDATE_SPARE_PACKET_REQUEST:
+      return { ...state, updatingSparePacket: true };
+    case types.UPDATE_SPARE_PACKET_SUCCESS:
+      return {
+        ...state,
+        updatingSparePacket: false,
+      };
+    case types.UPDATE_SPARE_PACKET_FAILURE:
+      return {
+        ...state,
+        updatingSparePacket: false,
+        updatingSparePacketError: true,
       };
 
     case types.GET_TOMORROW_PRODUCTION_REQUEST:
