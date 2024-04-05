@@ -305,9 +305,11 @@ function CallForm(props) {
     }
   };
 
-  const handleSelectChangeCustomer = (value) => {
-    setSelectedCustomer(value)
-    console.log('Selected user:', value);
+  const handleSelectChangeCustomer = (customerId) => {
+    setSelectedCustomer(customerId)
+    fetchContact(customerId);
+    fetchOpportunity(customerId)
+    // console.log('Selected user:', value);
   };
 
   const handleSelectCustomerFocus = () => {
@@ -321,11 +323,11 @@ function CallForm(props) {
 
 
 
-  const fetchContact = async () => {
+  const fetchContact = async (customerId) => {
     setIsLoadingContact(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/contact/user/${props.userId}`;
+      https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -352,7 +354,7 @@ function CallForm(props) {
   const handleSelectContactFocus = () => {
     if (!touchedContact) {
      
-      fetchContact();
+      //fetchContact();
 
       setTouchedContact(true);
     }
@@ -360,12 +362,12 @@ function CallForm(props) {
 
 
 
-  const fetchOpportunity = async () => {
+  const fetchOpportunity = async (customerId) => {
     setIsLoadingOpportunity(true);
     try {
       const apiEndpoint = `
       
-https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/${props.userId}`;
+      https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/customer/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -392,7 +394,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
   const handleSelectOpportunityFocus = () => {
     if (!touchedOpportunity) {
      
-      fetchOpportunity();
+      //fetchOpportunity();
 
       setTouchedOpportunity(true);
     }
@@ -556,6 +558,9 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
               // endDate: `${newEndDate}T${newEndTime}`,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
+              contactId: selectedContact,
+              opportunityId:selectedOpportunity,
+              customerId: selectedCustomer,
               // startTime: values.startTime?values.startTime:null,
               startTime: 0,
               endTime: 0,
@@ -1051,6 +1056,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
         loading={isLoadingContact}
         onFocus={handleSelectContactFocus}
         onChange={handleSelectChangeContact}
+        disabled={!selectedCustomer} 
       >
         {contact.map(contacts => (
           <Option key={contacts.contactId} value={contacts.contactId}>
@@ -1094,6 +1100,7 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
+        disabled={!selectedCustomer}
         onFocus={handleSelectOpportunityFocus}
         onChange={handleSelectChangeOpportunity}
       >
