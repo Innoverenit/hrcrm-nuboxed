@@ -1658,7 +1658,7 @@ export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => 
     });
 };
 
-export const reassignPhonesToTechnician = (data) => (dispatch) => {
+export const reassignPhonesToTechnician = (data, orderPhoneId, technicianId) => (dispatch) => {
   dispatch({
     type: types.REASSIGN_PHONES_REQUEST,
   });
@@ -1671,7 +1671,8 @@ export const reassignPhonesToTechnician = (data) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
-      // dispatch(getTaskListRangeByUserId(userId));
+      dispatch(getRemainingPhones(orderPhoneId, technicianId));
+      dispatch(getNoOfRepairTechnicianById(orderPhoneId))
       dispatch({
         type: types.REASSIGN_PHONES_SUCCESS,
         payload: res.data,

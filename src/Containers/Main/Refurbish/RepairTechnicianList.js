@@ -120,6 +120,7 @@ const RepairTechnicianList = (props) => {
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
                                                 <span
+                                                    style={{ color: remaining && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
                                                         handleRemaining();
                                                         handleRowdata(item)
@@ -138,6 +139,7 @@ const RepairTechnicianList = (props) => {
                                         <div className=" flex font-medium   md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
                                                 <span
+                                                    style={{ color: complete && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace", }}
                                                     onClick={() => {
                                                         handleComplete();
                                                         handleRowdata(item)
@@ -156,7 +158,10 @@ const RepairTechnicianList = (props) => {
 
             </div>
             {show && <RepairPhoneListByTechnician row={row} orderPhoneId={props.rowData.orderPhoneId} />}
-            {remaining && <RemainingPhoneList row={row} orderPhoneId={props.rowData.orderPhoneId} />}
+            {remaining && <RemainingPhoneList
+                row={row}
+                rowData={props.rowData}
+                orderPhoneId={props.rowData.orderPhoneId} />}
             {complete && <CompletedPhones row={row} orderPhoneId={props.rowData.orderPhoneId} />}
         </>
     )

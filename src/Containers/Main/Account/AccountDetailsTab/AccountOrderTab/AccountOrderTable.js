@@ -21,11 +21,13 @@ import {
     handleAccountProduction,
     handleUpdateOrder,
     setEditOrder,
+    getUserByLocationDepartment,
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
     addLocationInOrder,
-    updateSubOrderAwb
+    updateSubOrderAwb,
+    addSupervisor
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -36,7 +38,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import SubOrderList from './SubOrderList';
 import { PrinterFilled } from '@ant-design/icons';
-import CardContainer from './CardContainer';
+import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
+import { PersonAddAlt1 } from '@mui/icons-material';
 
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
@@ -51,6 +54,7 @@ const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
+        props.getDepartments()
         props.getLocationList(props.orgId);
         props.getDistributorOrderByDistributorId(props.distributorId, page)
     }, [])
@@ -62,7 +66,20 @@ const AccountOrderTable = (props) => {
     const [particularRowData, setParticularRowData] = useState({});
     const [locationChange, setLocationChange] = useState(false);
     const [locationValue, setLocationValue] = useState("");
+    const [technician, setTechnician] = useState("")
+    const [department, setDepartment] = useState("")
+    const [departmentUser, setDepartmentUser] = useState(false);
 
+    const handleTechnician = (val) => {
+        setTechnician(val)
+        props.addSupervisor({ supervisorUserId: val }, particularRowData.orderId)
+        setDepartmentUser(false)
+    }
+    const handleDepartment = (val) => {
+        let location = particularRowData.locationDetailsViewDTO.locationDetailsId
+        setDepartment(val)
+        props.getUserByLocationDepartment(location, val);
+    }
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
@@ -71,6 +88,9 @@ const AccountOrderTable = (props) => {
     }
     function handlelocation() {
         setLocationChange(!locationChange);
+    }
+    function handleDepartmentuser() {
+        setDepartmentUser(!departmentUser)
     }
     function handleCallback() {
         setLocationChange(false)
@@ -362,8 +382,40 @@ const AccountOrderTable = (props) => {
                                                             : item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col  md:w-[6.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    {item.inventoryReceiveInd ? null :
+                                                <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    {item.inventoryReceiveInd ?
+                                                        <>
+                                                            {departmentUser && (item.orderId === particularRowData.orderId) ?
+                                                                <div class=" flex justify-between">
+                                                                    <div>
+                                                                        <Select
+                                                                            className="w-[200px]"
+                                                                            value={department}
+                                                                            onChange={(value) => { handleDepartment(value) }}
+                                                                        >
+                                                                            {props.departments.map((a) => {
+                                                                                return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                                                                            })}
+                                                                        </Select>
+                                                                    </div>
+
+                                                                    <div>
+
+                                                                        <Select
+                                                                            className="w-[200px]"
+                                                                            value={technician}
+                                                                            onChange={(value) => handleTechnician(value)}
+                                                                        >
+                                                                            {props.departmentUser.map((a) => {
+                                                                                return <Option value={a.employeeId}>{a.empName}</Option>;
+                                                                            })}
+                                                                        </Select>
+                                                                    </div>
+                                                                </div> :
+                                                                item.userSupervisor
+                                                            }
+                                                        </>
+                                                        :
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.selectinventorylocation"
                                                             defaultMessage="Select Inventory Location"
@@ -489,9 +541,10 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title="Print">
-                                                                <PrinterFilled onClick={() => {
-                                                                    props.handleInventoryLocationInOrder(true)
+                                                            <Tooltip title="Add Supervisor">
+                                                                <PersonAddAlt1 onClick={() => {
+                                                                    handleDepartmentuser();
+                                                                    handleSetParticularOrderData(item)
                                                                 }} />
                                                             </Tooltip>
 
@@ -557,7 +610,7 @@ const AccountOrderTable = (props) => {
         </>
     )
 }
-const mapStateToProps = ({ distributor, auth, inventory }) => ({
+const mapStateToProps = ({ distributor, auth, departments }) => ({
     accountOrderProduction: distributor.accountOrderProduction,
     distributorOrder: distributor.distributorOrder,
     addNotesInOrder: distributor.addNotesInOrder,
@@ -570,6 +623,8 @@ const mapStateToProps = ({ distributor, auth, inventory }) => ({
     orgId: auth.userDetails.organizationId,
     locationlist: distributor.locationlist,
     userId: auth.userDetails.userId,
+    departments: departments.departments,
+    departmentUser: distributor.departmentUser,
     updatingSuborderAwb: distributor.updatingSuborderAwb,
     addingLocationInOrder: distributor.addingLocationInOrder,
     fetchingDistributorByDistributorId: distributor.fetchingDistributorByDistributorId,
@@ -580,6 +635,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleOrderDetailsModal,
     handleStatusOfOrder,
     handlePaidModal,
+    getUserByLocationDepartment,
     handleNotesModalInOrder,
     updateOfferPrice,
     handleAccountProduction,
@@ -589,7 +645,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     deleteDistributorData,
     getLocationList,
     addLocationInOrder,
-    updateSubOrderAwb
+    updateSubOrderAwb,
+    getDepartments,
+    addSupervisor
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);
