@@ -133,6 +133,8 @@ const initialState = {
   fetchingallCustomerEmployeeListError:false,
   allCustomerEmployeeList:[],
 
+  updatingUserDragStage:false,
+
   fetchingEmployeeSkillExperince: false,
   fetchingEmployeeSkillExperinceError: false,
   employeeExperince:[],
@@ -158,6 +160,22 @@ const initialState = {
   fetchingUserAdminError:false,
   userAdminnoti:{},
 
+};
+
+const updatedDragUser = (item, newProps) => {
+  console.log("Author8",item);
+  return item.stageList.map((opp, index) => {
+    console.log("Author7",opp);
+    console.log("Author8",newProps);
+    const newData=newProps.stageList.map((item)=>{
+          return item.unboardingStagesId;
+    })
+    if (opp.unboardingStagesId === newData) {
+      console.log("inside opp");
+      opp.unboardingStagesId = newData;
+    }
+    return opp;
+  });
 };
 export const EmployeeReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -420,6 +438,25 @@ export const EmployeeReducer = (state = initialState, action) => {
         addSharingEmployee: false,
         addSharingEmployeeError: true,
       };
+
+
+
+      case types.UPDATE_USER_DRAG_STAGE_REQUEST:
+                                                return {
+                                                  ...state,
+                                                  updatingUserDragStage: true,
+                                                
+                                                  // candidateRequirement: action.payload,
+                                                };
+                                              case types.UPDATE_USER_DRAG_STAGE_SUCCESS:
+                                                return { ...state, 
+                                                  updatingUserDragStage: false ,
+                                                  //userStageList: updatedDragUser(state.userStageList, action.payload),
+                                                 // candidateRequirement: [action.payload]
+
+                                                };
+                                              case types.UPDATE_USER_DRAG_STAGE_FAILURE:
+                                                return { ...state };  
 
     case types.SUSPEND_STATUS_REQUEST:
       return { ...state, SuspendStatus: true };
@@ -924,6 +961,7 @@ case types.GET_ADMIN_USER_FAILURE:
                     return {
                       ...state,
                       addWorkflowEmployee: false,
+                      userStageList:action.payload
                       // onboardingEmployeeModal: false,
                       // employees: state.employees.map((item) => {
                       //   if (item.employeeId === action.payload.employeeId) {

@@ -8,10 +8,11 @@ import moment from 'moment';
 import styled from "styled-components";
  import { getProcessForOnboarding ,getProcessStagesForOnboarding} from '../../../Settings/SettingsAction';
 import { Field } from 'formik';
-import {addOnboardingEmployee,addEmployeeWorkflow,getUserStageList} from "../../../Employees/EmployeeAction"
+import {addOnboardingEmployee,addEmployeeWorkflow,getUserStageList,updateUserdragstage} from "../../../Employees/EmployeeAction"
 import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 import StageEmployeeColumns1 from './StageEmployeeColumns1';
+import { BundleLoader } from '../../../../Components/Placeholder';
 const { Option } = Select;
 
 const Container = styled.div`
@@ -64,7 +65,7 @@ const StageHeader = styled.div`
 
 const OnBoardingEmployeeForm = (props) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [selectedWork, setSelectedWork] = useState("");
+  const [selectedWork, setSelectedWork] = useState(props.userStageList.unboardingWorkflowDetailsName);
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
   useEffect(() => {
@@ -73,14 +74,30 @@ const OnBoardingEmployeeForm = (props) => {
   }, []);
 
 
+  // useEffect(() => {
+    
+  //   // Check if data is available
+  //   if (props.userStageList.length > 0) {
+  //     setSelectedWork(props.userStageList&&props.userStageList.unboardingWorkflowDetailsName)
+  //     // Update activeTab when data is available
+  //     // setActiveTab(props.organizationDetailsList[0]?.organizationId);
+  //   }
+  // }, [props.userStageList]);
+
   useEffect(() => {
-    // Check if data is available
-    if (props.userStageList.length > 0) {
-      // Update activeTab when data is available
-      // setActiveTab(props.organizationDetailsList[0]?.organizationId);
+    if (
+      props.userStageList.unboardingWorkflowDetailsName !== undefined 
+      
+    ) {
+      setSelectedWork( props.userStageList.unboardingWorkflowDetailsName);
+      
+      
+      // Perform a null check before accessing substring
+      
     }
-  }, [props.userStageList]);
+  }, [props.userStageList.unboardingWorkflowDetailsName, ]);
   console.log(props.userStageList)
+  console.log(props.userStageList.unboardingWorkflowDetailsName)
 
   const { onboardingProcess, ratingValue } = props;
   const handleWorkflowChange = (val) => {
@@ -127,19 +144,24 @@ const handleStages = (val) => {
 
     } = props;
     let data={
-      opportunityStagesId:destination.droppableId,
-      opportunityId:result.draggableId,
-    }
-    // updateOpportunitydragstage(data,
-    //   source.droppableId,
-    //   destination.droppableId,
-    //   draggableId,
+      unboardingStagesId:destination.droppableId,
+      unboardingWorkflowDetailsId:result.draggableId,
+      employeeId:props.employeeName.employeeId
+    } 
+    props.updateUserdragstage(data,
+      source.droppableId,
+      destination.droppableId,
+      draggableId,
+      props.employeeName.employeeId
 
-    // );
+    );
   }
 
   function dragStart() {
     setIsDragging(true);
+  }
+  if(props.fetchingUserStageList){
+    return <BundleLoader/>
   }
   return (
     <>
@@ -293,6 +315,7 @@ const mapStateToProps = ({ settings, employee,auth }) => ({
   orgId: auth.userDetails && auth.userDetails.organizationId,
   onboardingProcess: settings.onboardingProcess,
   userStageList:employee.userStageList,
+  fetchingUserStageList:employee.fetchingUserStageList,
   setEditingEmployee:employee.setEditingEmployee,
 });
 
@@ -304,6 +327,7 @@ const mapDispatchToProps = (dispatch) =>
       addOnboardingEmployee,
       getUserStageList,
       addEmployeeWorkflow,
+      updateUserdragstage
     },
     dispatch
   );
