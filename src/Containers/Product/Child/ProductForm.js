@@ -90,8 +90,8 @@ class Productform extends Component {
 
     const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
-        value: item.workflowId,
-        label: `${item.workflow || ""}`
+        value: item.productionWorkflowDetailsId,
+        label: `${item.workflowName || ""}`
       }
     })
 
@@ -305,11 +305,12 @@ class Productform extends Component {
                         isRequired
                         name="brand"
                         label="Brand"
-                        placeholder="Search or Create"
-                        optionLabel="categoryName"
-                        optionValue="categoryName"
-                        url={`${base_url2}/masterlist/masterList`}
-                        component={LazySelect}
+                        // placeholder="Search or Create"
+                        // optionLabel="categoryName"
+                        // optionValue="categoryName"
+                        // url={`${base_url2}/masterlist/masterList`}
+                        // component={LazySelect}
+                        component={InputComponent}
                         isColumn
                         inlineLabel
 
@@ -353,9 +354,8 @@ const mapStateToProps = ({ auth, product, production }) => ({
   workflowProduction: production.workflowProduction,
   addingProductError: product.addingProductError,
   addProductModal: product.addProductModal,
-  user: auth.userDetails,
-  userId: auth.userDetails.userId,
-  groupId: auth.userDetails.groupId,
+  user: auth.serviceDetails,
+  userId: auth.serviceDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
 });

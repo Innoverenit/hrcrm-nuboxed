@@ -17,8 +17,6 @@ function InventoryRoomRackModal(props) {
                 visible={props.addroomrackininventory}
                 destroyOnClose
                 maskClosable={false}
-                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                style={{ marginTop: "3rem" }}
                 onClose={() => props.handleInventoryRoomRackModal(false)}
                 footer={null}
             >
