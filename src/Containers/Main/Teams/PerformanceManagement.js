@@ -154,9 +154,15 @@ function handleSetCurrentEmployeeId(employeeId,) {
           <div class=" font-normal text-xs text-cardBody font-poppins ">
           <span
               style={{ cursor: "pointer" }}
+              // onClick={() => {
+               
+              //   props.handleTeamsPulseDrawerModal(true);
+              //   handleSetCurrentCustomer(item);
+              //  handleRowData(item);
+              // }}
               onClick={() => {
                
-                props.handleTeamsPulseDrawerModal(true);
+                props.handleperformanceDrawerModal(true);
                 handleSetCurrentCustomer(item);
                handleRowData(item);
               }}
@@ -169,12 +175,12 @@ function handleSetCurrentEmployeeId(employeeId,) {
           
           <span
               style={{ cursor: "pointer" }}
-              onClick={() => {
+              // onClick={() => {
                
-                props.handleperformanceDrawerModal(true);
-                handleSetCurrentCustomer(item);
-               handleRowData(item);
-              }}
+              //   props.handleperformanceDrawerModal(true);
+              //   handleSetCurrentCustomer(item);
+              //  handleRowData(item);
+              // }}
             >
                    {/* <Badge
                    style={{  fontSize:"0.75em",height:"18px" ,width:"5px"}}

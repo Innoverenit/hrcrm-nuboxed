@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import PerformanceManList from "./TeamsCard.js/PerformanceManList";
 const KpiList = lazy(() => import("./KpiList"));
 
 
@@ -23,6 +24,7 @@ console.log(this.props.rowdata)
           onClose={() => this.props.handleperformanceDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
+          <PerformanceManList rowdata={this.props.rowdata}/>
             <KpiList 
             rowdata={this.props.rowdata}
             />

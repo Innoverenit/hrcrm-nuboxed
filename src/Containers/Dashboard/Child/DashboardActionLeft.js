@@ -84,7 +84,7 @@ const DashboardActionLeft = (props) => {
          {viewType === "ALL" && showShareForm && <DashboardShareForm />}
            
     
-         <div className="flex w-[10rem] ml-4">
+         <div className="flex w-[10rem] ml-4 items-center">
           {viewType === "ALL" && showShareForm  ? (
             // Render all icons except "My Details"
             <>
@@ -503,14 +503,14 @@ const DashboardActionLeft = (props) => {
    
       <>
       {activeButton === "Regional" && (
-      <div class="ml-[9rem] mt-[0.75rem] max-sm:hidden" >
-      <Tabs type="card" 
+      <div class="ml-[9rem] mt-[1rem] max-sm:hidden" >
+      <Tabs  type="card" 
    
            activeKey={props.activeTab} 
           onChange={props.handleTabClick}
            >
       {props.tab.map((tabs) => (
-        <TabPane key={tabs} tab={tabs}
+        <TabPane  key={tabs} tab={tabs}
       
         >
        

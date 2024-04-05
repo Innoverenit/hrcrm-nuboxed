@@ -51,12 +51,12 @@ function ProductionDispatchCard(props) {
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className="w-[7rem]">Manufacture ID</div>
-                        <div className=" w-[7.01rem]">Name</div>
-                        <div className=" w-[8.1rem]">Category</div>
-                        <div className=" w-[21.2rem] ">Attribute</div>                                        
+                <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
+                        <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
+                        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
+                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div>                                        
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -70,35 +70,35 @@ function ProductionDispatchCard(props) {
                         {productionDispatchByLocsId.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
-                                        <div class="flex">
-                                        <div className=" flex font-medium flex-col  w-[14.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody font-poppins">
+<div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
     {item.manufactureId}
 </div>
 
 </div>
-                                            <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col  w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[5.9rem]  max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.productName}
                                                 </div>
 
                                             </div>
 
                                         </div>
-
-                                        <div className=" flex font-medium flex-col md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium flex-col w-[16.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                             {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col w-[18.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                             {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
@@ -109,8 +109,8 @@ function ProductionDispatchCard(props) {
                                                 {item.attributeName}
                                             </div>
                                         </div> */}
-                                        <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Edit">
                                                     <BorderColorIcon
                                                         className="!text-base cursor-pointer text-[tomato]"
@@ -124,8 +124,10 @@ function ProductionDispatchCard(props) {
 
 
                                         </div>
-                                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium  w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Print">
 
                                                     <ReactToPrint
@@ -137,7 +139,7 @@ function ProductionDispatchCard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div style={{ display: "none", textAlign: "center" }}>
+                                    <div  style={{ display: "none", textAlign: "center" }}>
 
                                         <div
                                             ref={(el) => (componentRefs.current[index] = el)}
@@ -152,6 +154,7 @@ function ProductionDispatchCard(props) {
                                             <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>
                                             <div style={{ fontSize: "2rem", marginTop: "10px" }}> {item.manufactureId}</div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             );
