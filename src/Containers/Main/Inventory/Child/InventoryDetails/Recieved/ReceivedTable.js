@@ -120,160 +120,168 @@ const ReceivedTable = (props) => {
                               </div>
                             </div>
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
-                                <MultiAvatar
-                                  primaryTitle={item.contactPersonName}
-                                  imageId={item.imageId}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                              </div>
-                            </div>
-                            <div className=" flex font-medium flex-col w-[8.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
-                              </div>
-                            </div>
-                            <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.inspectionInd !== 0 && <MultiAvatar
-                                  primaryTitle={item.startInspectionUserName}
-                                  imageId={item.imageId}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />}
-                              </div>
-                            </div>
-                            <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.phoneReceiveCount}/{item.phoneCount}
-                              </div>
+                          <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+
+                              {item.distributorName}
                             </div>
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div>
-                                {item.inspectionInd === 0 ? <ReceivedOrderToggle
-                                  orderId={item.orderPhoneId}
-                                  locationId={props.locationDetailsId}
-                                  inventoryReceiveInd={item.inventoryReceiveInd}
-                                /> : <b className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">Received</b>}
-                              </div>
-                            </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
-                            <div className=" flex font-medium flex-col  w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                              <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
-                                  <>
-                                    <Select
-                                      value={locationValue}
-                                      onChange={(value) =>
-                                        handleChangeLocation(value)
-                                      }
-                                    >
-                                      {productionLocation.map((a) => {
-                                        return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                      })}
-                                    </Select>
-                                    <div>
-                                      <Button
-                                        type='primary'
-                                        loading={props.addingLocationInOrder}
-                                        onClick={() => {
-                                          props.addDeliveryDate({
-                                            transferInd: 2,
-                                            inspectionInd: 3,
-                                            locationId: locationValue,
-                                            userId: props.userId,
-                                            orderPhoneId: item.orderPhoneId
-                                          }, handleCallback())
-                                        }}>Save</Button>
-                                      <Button onClick={handlelocation}>Cancel</Button>
-                                    </div>
-                                  </>
-                                  : item.productionLocationName}
-                              </div>
+                              <MultiAvatar
+                                primaryTitle={item.contactPersonName}
+                                imageId={item.imageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
                             </div>
-                            <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.inspectionInd === 0 && item.inventoryReceiveInd ?
+                          </div>
+                          <div className=" flex font-medium flex-col w-[8.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.inspectionInd !== 0 && <MultiAvatar
+                                primaryTitle={item.startInspectionUserName}
+                                imageId={item.imageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.phoneReceiveCount}/{item.phoneCount}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div>
+                              {item.inspectionInd === 0 ? <ReceivedOrderToggle
+                                orderId={item.orderPhoneId}
+                                locationId={props.locationDetailsId}
+                                inventoryReceiveInd={item.inventoryReceiveInd}
+                              /> : <b className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">Received</b>}
+                            </div>
+                          </div>
+
+                          <div className=" flex font-medium flex-col  w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
+                                <>
+                                  <Select
+                                    value={locationValue}
+                                    onChange={(value) =>
+                                      handleChangeLocation(value)
+                                    }
+                                  >
+                                    {productionLocation.map((a) => {
+                                      return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                    })}
+                                  </Select>
+                                  <div>
+                                    <Button
+                                      type='primary'
+                                      loading={props.addingLocationInOrder}
+                                      onClick={() => {
+                                        props.addDeliveryDate({
+                                          transferInd: 2,
+                                          inspectionInd: 3,
+                                          locationId: locationValue,
+                                          userId: props.userId,
+                                          orderPhoneId: item.orderPhoneId
+                                        }, handleCallback())
+                                      }}>Save</Button>
+                                    <Button onClick={handlelocation}>Cancel</Button>
+                                  </div>
+                                </>
+                                : item.productionLocationName}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.inspectionInd === 0 && item.inventoryReceiveInd ?
+                                <Button
+                                  loading={item.orderId === rowData.orderId && props.updatingInspection}
+                                  type="primary"
+                                  className="w-28 text-base"
+                                  onClick={() => {
+                                    handleRowData(item)
+                                    props.updateInspection({
+                                      inspectionInd: 1,
+                                      startInspectionUser: props.userId,
+                                      startInspectionDate: dayjs()
+                                    }, item.orderPhoneId, props.locationDetailsId)
+                                  }}
+                                >
+                                  Start Inspection
+                                </Button>
+                                : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
-                                    loading={item.orderId === rowData.orderId && props.updatingInspection}
-                                    type="primary"
-                                    className="w-28 text-base"
+                                    className="cursor-pointer text-base"
                                     onClick={() => {
                                       handleRowData(item)
-                                      props.updateInspection({
-                                        inspectionInd: 1,
-                                        startInspectionUser: props.userId,
-                                        startInspectionDate: dayjs()
-                                      }, item.orderPhoneId, props.locationDetailsId)
+                                      handlelocation();
                                     }}
                                   >
-                                    Start Inspection
-                                  </Button>
-                                  : item.inspectionInd === 2 && item.inventoryReceiveInd ?
+                                    Send To Store
+                                  </Button> :
+                                  item.inspectionInd === 1 && item.inventoryReceiveInd ?
                                     <Button
-                                      className="cursor-pointer text-base"
-                                      onClick={() => {
-                                        handleRowData(item)
-                                        handlelocation();
-                                      }}
-                                    >
-                                      Send To Store
-                                    </Button> :
-                                    item.inspectionInd === 1 && item.inventoryReceiveInd ?
-                                      <Button
-                                        className="w-28 text-base"
-                                        type="primary"
-                                        onClick={handlePauseResume}>
-                                        {pause ? "Resume Inspection" : "Pause Inspection"}
-                                      </Button> : item.inventoryReceiveInd ? <b>Sent To Facility</b> : null}
-                              </div>
+                                      className="w-28 text-base"
+                                      type="primary"
+                                      onClick={handlePauseResume}>
+                                      {pause ? "Resume Inspection" : "Pause Inspection"}
+                                    </Button> : item.inventoryReceiveInd ? <b>Sent To Facility</b> : null}
                             </div>
+                          </div>
 
-                            <div class="flex flex-col w-[3rem] max-sm:flex-row max-sm:w-auto">
+                          <div class="flex flex-col w-[3rem] max-sm:flex-row max-sm:w-auto">
+                            <div>
+                              <Tooltip title="Notes">
+                                <NoteAltIcon
+                                  className="!text-base cursor-pointer"
+                                  onClick={() => {
+                                    handleRowData(item);
+                                    props.handleInventoryReceivedNoteOrderModal(true);
+                                  }}
+                                />
+
+                              </Tooltip>
+                            </div>
+                          </div>
+                          <div class="flex flex-col w-[2rem] max-sm:flex-row max-sm:w-auto">
+                            {item.mismatchOrderInd &&
                               <div>
-                                <Tooltip title="Notes">
-                                  <NoteAltIcon
-                                    className="!text-base cursor-pointer"
+                                <Tooltip title="Mismatch Phones">
+                                  <LabelOffIcon
+                                    class=" text-red-700"
                                     onClick={() => {
                                       handleRowData(item);
-                                      props.handleInventoryReceivedNoteOrderModal(true);
+                                      props.handleMismatchPhoneModal(true)
                                     }}
                                   />
 
                                 </Tooltip>
                               </div>
-                            </div>
-                            <div class="flex flex-col w-[2rem] max-sm:flex-row max-sm:w-auto">
-                              {item.mismatchOrderInd &&
-                                <div>
-                                  <Tooltip title="Mismatch Phones">
-                                    <LabelOffIcon
-                                      class=" text-red-700"
-                                      onClick={() => {
-                                        handleRowData(item);
-                                        props.handleMismatchPhoneModal(true)
-                                      }}
-                                    />
-
-                                  </Tooltip>
-                                </div>
-                              }
-                            </div>
+                            }
                           </div>
                         </div>
                       </div>
-                      );
+                    </div>
+                  );
                 })}
-                    </> : !props.allReceivedUser.length
+              </> : !props.allReceivedUser.length
                 && !props.fetchingReceivedUserList ? <NodataFoundPage /> : null}
 
-              </InfiniteScroll>
+            </InfiniteScroll>
           </div>
         </div>}
 
