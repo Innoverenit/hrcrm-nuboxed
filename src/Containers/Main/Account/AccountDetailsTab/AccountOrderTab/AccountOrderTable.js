@@ -21,13 +21,11 @@ import {
     handleAccountProduction,
     handleUpdateOrder,
     setEditOrder,
-    getUserByLocationDepartment,
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
     addLocationInOrder,
     updateSubOrderAwb,
-    addSupervisor
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
@@ -37,8 +35,6 @@ import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import SubOrderList from './SubOrderList';
-import { PrinterFilled } from '@ant-design/icons';
-import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
 import { PersonAddAlt1 } from '@mui/icons-material';
 
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
@@ -54,7 +50,7 @@ const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getDepartments()
+
         props.getLocationList(props.orgId);
         props.getDistributorOrderByDistributorId(props.distributorId, page)
     }, [])
@@ -66,20 +62,9 @@ const AccountOrderTable = (props) => {
     const [particularRowData, setParticularRowData] = useState({});
     const [locationChange, setLocationChange] = useState(false);
     const [locationValue, setLocationValue] = useState("");
-    const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState("")
-    const [departmentUser, setDepartmentUser] = useState(false);
 
-    const handleTechnician = (val) => {
-        setTechnician(val)
-        props.addSupervisor({ supervisorUserId: val }, particularRowData.orderId)
-        setDepartmentUser(false)
-    }
-    const handleDepartment = (val) => {
-        let location = particularRowData.locationDetailsViewDTO.locationDetailsId
-        setDepartment(val)
-        props.getUserByLocationDepartment(location, val);
-    }
+
+
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
@@ -88,9 +73,6 @@ const AccountOrderTable = (props) => {
     }
     function handlelocation() {
         setLocationChange(!locationChange);
-    }
-    function handleDepartmentuser() {
-        setDepartmentUser(!departmentUser)
     }
     function handleCallback() {
         setLocationChange(false)
@@ -132,7 +114,7 @@ const AccountOrderTable = (props) => {
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex  w-[92%] pl-9 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[1.56rem]"> </div>
                         <div className=" md:w-[7.4rem]">
                             <FormattedMessage
@@ -175,10 +157,22 @@ const AccountOrderTable = (props) => {
                         </div>
                         <div className=" md:w-[5rem]">
                         </div>
-                        <div className=" md:w-[10.1rem]">
+                        <div className=" md:w-[8.1rem]">
                             <FormattedMessage
-                                id="app.location"
-                                defaultMessage="Location"
+                                id="app.received"
+                                defaultMessage="Received"
+                            />
+                        </div>
+                        <div className=" md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.assigned"
+                                defaultMessage="Assigned"
+                            />
+                        </div>
+                        <div className=" md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.repair"
+                                defaultMessage="Repair"
                             />
                         </div>
                     </div>
@@ -382,39 +376,18 @@ const AccountOrderTable = (props) => {
                                                             : item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    {item.inventoryReceiveInd ?
-                                                        <>
-                                                            {departmentUser && (item.orderId === particularRowData.orderId) ?
-                                                                <div class=" flex justify-between">
-                                                                    <div>
-                                                                        <Select
-                                                                            className="w-[200px]"
-                                                                            value={department}
-                                                                            onChange={(value) => { handleDepartment(value) }}
-                                                                        >
-                                                                            {props.departments.map((a) => {
-                                                                                return <Option value={a.departmentId}>{a.departmentName}</Option>;
-                                                                            })}
-                                                                        </Select>
-                                                                    </div>
-
-                                                                    <div>
-
-                                                                        <Select
-                                                                            className="w-[200px]"
-                                                                            value={technician}
-                                                                            onChange={(value) => handleTechnician(value)}
-                                                                        >
-                                                                            {props.departmentUser.map((a) => {
-                                                                                return <Option value={a.employeeId}>{a.empName}</Option>;
-                                                                            })}
-                                                                        </Select>
-                                                                    </div>
-                                                                </div> :
-                                                                item.userSupervisor
-                                                            }
-                                                        </>
+                                                <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        {item.supervisorUserName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        {item.productionLocationName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.selectinventorylocation"
@@ -540,10 +513,10 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        <div>
+                                                        <div class=" cursor-pointer">
                                                             <Tooltip title="Add Supervisor">
                                                                 <PersonAddAlt1 onClick={() => {
-                                                                    handleDepartmentuser();
+                                                                    props.handleInventoryLocationInOrder(true)
                                                                     handleSetParticularOrderData(item)
                                                                 }} />
                                                             </Tooltip>
@@ -623,8 +596,7 @@ const mapStateToProps = ({ distributor, auth, departments }) => ({
     orgId: auth.userDetails.organizationId,
     locationlist: distributor.locationlist,
     userId: auth.userDetails.userId,
-    departments: departments.departments,
-    departmentUser: distributor.departmentUser,
+
     updatingSuborderAwb: distributor.updatingSuborderAwb,
     addingLocationInOrder: distributor.addingLocationInOrder,
     fetchingDistributorByDistributorId: distributor.fetchingDistributorByDistributorId,
@@ -635,7 +607,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleOrderDetailsModal,
     handleStatusOfOrder,
     handlePaidModal,
-    getUserByLocationDepartment,
     handleNotesModalInOrder,
     updateOfferPrice,
     handleAccountProduction,
@@ -646,8 +617,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     getLocationList,
     addLocationInOrder,
     updateSubOrderAwb,
-    getDepartments,
-    addSupervisor
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);

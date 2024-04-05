@@ -2459,6 +2459,14 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingSupervisor: false,
+        addInventoryInOrder: false,
+        distributorOrder: state.distributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.ADD_SUPERVISOR_FAILURE:
       return {
