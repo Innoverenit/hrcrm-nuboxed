@@ -982,6 +982,67 @@ export const setEditEmployee = (name) => (dispatch) => {
   });
 };
 
+
+
+export const updateUserdragstage = (
+  data,
+    
+  unboardingStagesId,
+  unboardingWorkflowDetailsId,
+  draggableId,
+  employeeId,
+
+  cb
+) => (dispatch) => {
+  //console.log(sourceStageId, destinationStageId, opportunityId);
+  // if (destinationStageId === "won") {
+  //   message.success("stage is won");
+  // }
+  // if (destinationStageId === "loss") {
+  //   message.error("stage is loss");
+  // }
+  // getUserStageList
+  dispatch({
+    type: types.UPDATE_USER_DRAG_STAGE_REQUEST,
+    payload: {
+      unboardingStagesId,
+      unboardingWorkflowDetailsId,
+      // opportunityId,
+    },
+  });
+  axios
+    .put(
+      `${base_url}/employee/workflow/stage/update`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+dispatch(getUserStageList(employeeId));
+      dispatch({
+        type: types.UPDATE_USER_DRAG_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_USER_DRAG_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
 export const updateEmployee = (data, employeeId) => (dispatch) => {
   dispatch({ type: types.UPDATE_EMPLOYEE_REQUEST });
   axios

@@ -354,9 +354,11 @@ const [priority,setpriority]=useState(props.selectedTask
      }
    };
  
-   const handleSelectChangeCustomer = (value) => {
-     setSelectedCustomer(value)
-     console.log('Selected user:', value);
+   const handleSelectChangeCustomer = (customerId) => {
+     setSelectedCustomer(customerId)
+     fetchContact(customerId);
+     fetchOpportunity(customerId)
+    //  console.log('Selected user:', value);
    };
  
    const handleSelectCustomerFocus = () => {
@@ -370,11 +372,11 @@ const [priority,setpriority]=useState(props.selectedTask
  
  
  
-   const fetchContact = async () => {
+   const fetchContact = async (customerId) => {
      setIsLoadingContact(true);
      try {
        const apiEndpoint = `
-       https://develop.tekorero.com/employeePortal/api/v1/contact/user/${props.userId}`;
+       https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
        const response = await fetch(apiEndpoint,{
          method: 'GET',
          headers: {
@@ -401,7 +403,7 @@ const [priority,setpriority]=useState(props.selectedTask
    const handleSelectContactFocus = () => {
      if (!touchedContact) {
       
-       fetchContact();
+      //  fetchContact();
  
        setTouchedContact(true);
      }
@@ -409,12 +411,12 @@ const [priority,setpriority]=useState(props.selectedTask
  
  
  
-   const fetchOpportunity = async () => {
+   const fetchOpportunity = async (customerId) => {
      setIsLoadingOpportunity(true);
      try {
        const apiEndpoint = `
        
- https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/${props.userId}`;
+ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/customer/${customerId}`;
        const response = await fetch(apiEndpoint,{
          method: 'GET',
          headers: {
@@ -441,7 +443,7 @@ const [priority,setpriority]=useState(props.selectedTask
    const handleSelectOpportunityFocus = () => {
      if (!touchedOpportunity) {
       
-       fetchOpportunity();
+      //  fetchOpportunity();
  
        setTouchedOpportunity(true);
      }
@@ -1562,6 +1564,7 @@ const [priority,setpriority]=useState(props.selectedTask
         loading={isLoadingContact}
         onFocus={handleSelectContactFocus}
         onChange={handleSelectChangeContact}
+        disabled={!selectedCustomer} 
       >
         {contact.map(contacts => (
           <Option key={contacts.contactId} value={contacts.contactId}>
@@ -1605,6 +1608,7 @@ const [priority,setpriority]=useState(props.selectedTask
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
+        disabled={!selectedCustomer}
         onFocus={handleSelectOpportunityFocus}
         onChange={handleSelectChangeOpportunity}
       >
