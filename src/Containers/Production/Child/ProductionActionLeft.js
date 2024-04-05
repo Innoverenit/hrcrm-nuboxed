@@ -6,14 +6,24 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TocIcon from '@mui/icons-material/Toc';
+import {getProductRecords} from "../ProductionAction";
 
 const ProductionActionLeft = (props) => {
   const { setProductionViewType, viewType } = props
+  useEffect(() => {
+    if (props.viewType === "card") {
+      props.getProductRecords(props.locationId);
+    }
+  }, [props.viewType, props.locationId]);
   return (
     <div class="flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.cardview" defaultMessage="Card View" />}>
-
+        title={<FormattedMessage id="app.listView" defaultMessage="List View" />}>
+ <Badge
+          size="small"
+          count={(props.viewType === "card" && props.productrecordData.customer) || 0}
+          overflowCount={999}
+        >
         <span class=" md:mr-2 text-sm cursor-pointer"
           onClick={() => setProductionViewType("card")}
           style={{
@@ -24,9 +34,10 @@ const ProductionActionLeft = (props) => {
             <TocIcon className="text-white" /></Avatar>
 
         </span>
+        </Badge>
       </Tooltip>
 
-      <Tooltip title="Archieve List">
+      <Tooltip title="Archiev List">
         <span class=" md:mr-2 text-sm cursor-pointer"
           onClick={() => setProductionViewType("all")}
           style={{
@@ -45,15 +56,16 @@ const ProductionActionLeft = (props) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth,production }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-
+  locationId: auth.userDetails.locationId,
+  productrecordData:production.productrecordData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-
+      getProductRecords
     },
     dispatch
   );

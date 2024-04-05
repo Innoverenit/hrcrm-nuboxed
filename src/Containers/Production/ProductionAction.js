@@ -242,3 +242,30 @@ export const updateProStatus = (data,productionProductId) => (dispatch) => {
       });
     });
 };
+
+
+export const getProductRecords = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/production/product/count/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCT_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

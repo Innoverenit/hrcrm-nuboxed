@@ -91,8 +91,9 @@ const AddPurchaseOrder = (props) => {
                     ...rest
                 }) => (
                     <Form>
-                        <div class="justify-between flex">
-                            <div class="w-[33%]">
+                        <div class="flex w-wk">
+                        <div class=" flex flex-col w-wk">
+                            <div class="w-[47.5%]">
                                 <Field
                                     name="suppliesId"
                                     label={<FormattedMessage
@@ -114,7 +115,26 @@ const AddPurchaseOrder = (props) => {
                                     }}
                                 />
                             </div>
-                            <div class="w-[30%]">
+                            <div class="w-[47.5%]">
+                                <Field
+                                    name="unit"
+                                    label={<FormattedMessage
+                                        id="app.units"
+                                        defaultMessage="Units"
+                                    />}
+                                    isRequired
+                                    isColumn
+                                    inlineLabel
+                                    width={"100%"}
+                                    component={InputComponent}
+                                />
+                            </div>
+                           
+                        </div>
+                       
+                        <div class=" flex flex-col w-wk">
+                            <div class="flex w-wk justify-between">
+                        <div class="w-[47.5%]">
                                 <Field
                                     name="categoryName"
                                     label={<FormattedMessage
@@ -128,7 +148,7 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[30%]">
+                            <div class="w-[47.5%]">
                                 <Field
                                     name="subCategoryName"
                                     label={<FormattedMessage
@@ -142,9 +162,9 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                        </div>
-                        <div class="justify-between flex">
-                            <div class="w-[25%]">
+                            </div>
+                            <div class="flex w-wk justify-between">
+                            <div class="w-[47.5%]">
                                 <Field
                                     name="attributeName"
                                     label={<FormattedMessage
@@ -158,7 +178,7 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[25%]">
+                            <div class="w-[47.5%]">
                                 <Field
                                     name="subAttributeName"
                                     label={<FormattedMessage
@@ -172,19 +192,6 @@ const AddPurchaseOrder = (props) => {
                                     component={InputComponent}
                                 />
                             </div>
-                            <div class="w-[25%]">
-                                <Field
-                                    name="unit"
-                                    label={<FormattedMessage
-                                        id="app.unit"
-                                        defaultMessage="Unit"
-                                    />}
-                                    isRequired
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    component={InputComponent}
-                                />
                             </div>
                             <div class="w-[15%] mt-4">
                                 <Button
@@ -198,6 +205,7 @@ const AddPurchaseOrder = (props) => {
                                     />
                                 </Button>
                             </div>
+                        </div>
                         </div>
                     </Form>
                 )}
