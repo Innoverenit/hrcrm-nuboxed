@@ -107,7 +107,7 @@ const initialState = {
 
   fetchingUserStageList: false, 
   fetchingUserStageListError: false,
-  userStageList:{},
+  userStageList:[],
 
   fetchingAllDocumentsByEmployeeId: false,
   fetchingAllDocumentsByEmployeeIdError: false,
@@ -164,15 +164,15 @@ const initialState = {
 
 const updatedDragUser = (item, newProps) => {
   console.log("Author8",item);
-  return item.stageList.map((opp, index) => {
+  return item.map((opp, index) => {
     console.log("Author7",opp);
     console.log("Author8",newProps);
-    const newData=newProps.stageList.map((item)=>{
-          return item.unboardingStagesId;
-    })
-    if (opp.unboardingStagesId === newData) {
+    // const newData=newProps.stageList.map((item)=>{
+    //       return item.unboardingStagesId;
+    // })
+    if (opp.unboardingStagesId === newProps.unboardingStagesId) {
       console.log("inside opp");
-      opp.unboardingStagesId = newData;
+      opp.unboardingStagesId = newProps.unboardingStagesId;
     }
     return opp;
   });
