@@ -44,7 +44,7 @@ const RemainingPhoneList = (props) => {
 
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.departmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultRepairDepartmentId, props.locationId);
         props.getRemainingPhones(props.orderPhoneId, props.row.technicianId)
         props.getDepartments()
     }, [])
@@ -187,10 +187,13 @@ const RemainingPhoneList = (props) => {
                         productionRepairDispatchId: "",
                         technicianId: technician,
                         userId: props.userId,
+                        previouslyAssignByUserId: props.row.technicianId,
                         defaultRepairDepartmentId: department,
-                        repairDueDate: dueDate
-                    },
-
+                        repairDueDate: dueDate,
+                        reAssignDate: dayjs(),
+                        reAssignByUserId: props.row.userId,
+                    }, props.orderPhoneId,
+                        props.row.technicianId
                     )}>
                     Submit
                 </Button>}

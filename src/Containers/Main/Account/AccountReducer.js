@@ -385,6 +385,10 @@ const initialState = {
   fetchingProductionDetailByIdError: false,
   productionOrderDetail: [],
 
+  fetchingUsersByDepartmentAndLocation: false,
+  fetchingUsersByDepartmentAndLocationError: false,
+  departmentUser: [],
+
   productionOrderId: {},
 
   creatingOrderForProduction: false,
@@ -434,6 +438,9 @@ const initialState = {
   fetchingCompleteOrders: false,
   fetchingCompleteOrdersError: true,
   completeOrder: [],
+
+  addingSupervisor: false,
+  addingSupervisorError: false,
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
@@ -2296,6 +2303,22 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingProductionDetailByIdError: true,
       };
 
+    case types.GET_USERS_BY_DEPARTMENT_LOCATION_REQUEST:
+      return { ...state, fetchingUsersByDepartmentAndLocation: true };
+    case types.GET_USERS_BY_DEPARTMENT_LOCATION_SUCCESS:
+      return {
+        ...state,
+        fetchingUsersByDepartmentAndLocation: false,
+        departmentUser: action.payload
+      };
+    case types.GET_USERS_BY_DEPARTMENT_LOCATION_FAILURE:
+      return {
+        ...state,
+        fetchingUsersByDepartmentAndLocation: false,
+        fetchingUsersByDepartmentAndLocationError: true,
+
+      };
+
     case types.GET_CUSTOMER_BY_USER_REQUEST:
       return { ...state, fetchingCustomerByUser: true };
     case types.GET_CUSTOMER_BY_USER_SUCCESS:
@@ -2430,6 +2453,27 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_SUBORDER_PHONE:
       return { ...state, showSuborderPhoneList: action.payload };
 
+    case types.ADD_SUPERVISOR_REQUEST:
+      return { ...state, addingSupervisor: true };
+    case types.ADD_SUPERVISOR_SUCCESS:
+      return {
+        ...state,
+        addingSupervisor: false,
+        addInventoryInOrder: false,
+        distributorOrder: state.distributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.ADD_SUPERVISOR_FAILURE:
+      return {
+        ...state,
+        addingSupervisor: false,
+        addingSupervisorError: true,
+      };
     default:
       return state;
   }

@@ -100,8 +100,9 @@ const CompletedPhones = (props) => {
 }
 
 
-const mapStateToProps = ({ refurbish }) => ({
+const mapStateToProps = ({ refurbish, auth }) => ({
     completedPhone: refurbish.completedPhone,
+    locationId: auth.userDetails.locationId,
     fetchingCompletedPhones: refurbish.fetchingCompletedPhones
 });
 
