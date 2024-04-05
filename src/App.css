@@ -1091,7 +1091,13 @@ h1{
   background-color: #f0f0f0; /* Adjust the background color as needed */
 }
 
-
+:where(.css-dev-only-do-not-override-1k979oh).ant-tabs-card >.ant-tabs-nav .ant-tabs-tab, :where(.css-dev-only-do-not-override-1k979oh).ant-tabs-card >div>.ant-tabs-nav .ant-tabs-tab {
+  margin: 0;
+  padding: 1px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
 
 

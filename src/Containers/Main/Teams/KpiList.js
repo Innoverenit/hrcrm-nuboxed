@@ -125,8 +125,9 @@ function KpiList(props) {
           ...rest
         }) => (
             <Form className="form-background">
-            <div class="flex flex-col justify-between  pr-2 max-sm:flex-col">
-              <div class=" w-[15%]">
+            <div class="flex   items-center  pr-2 max-sm:flex-col">
+              <div class=" w-[21%] flex justify-between">
+                <div>Assesment Year</div>
             <select 
       ref={yearSelectRef}
       onChange={handleYearChange}>
@@ -137,7 +138,7 @@ function KpiList(props) {
       </select>
       </div>
       {selectedYear && (
-        <div class=" w-full flex flex-col mt-4">
+        <div class=" w-[30%] flex items-center flex-col mt-4">
            <Tabs type="card" 
            activeKey={activeTab} 
           onChange={handleTabClick}
@@ -156,7 +157,7 @@ function KpiList(props) {
     <div class=" flex flex-row mt-2 justify-between">
     {activeTab && (
             <div class=" w-[25%] mt-[1.2rem]  max-sm:w-wk">
-            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >KPI</label>&nbsp;
+            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >Assign KPI</label>&nbsp;
                       <select  className="customize-select"
                        
                       onChange={handleWorkflowChange}>
@@ -255,7 +256,7 @@ function KpiList(props) {
         )}   
         </div>
         {activeTab && (
-     <div class="flex justify-end w-wk  ">
+     <div class="flex justify-end w-[25%]  ">
           <Button
             htmlType="submit"
             type="primary"
