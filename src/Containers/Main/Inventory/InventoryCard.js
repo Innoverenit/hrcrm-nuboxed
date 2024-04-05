@@ -9,6 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 const InventoryRoomRackModal = lazy(() =>
   import("./InventoryRoomRackModal")
@@ -121,18 +122,17 @@ const InventoryCard = (props) => {
 
                         <div className=" flex font-medium justify-center flex-col max-sm:flex-row  ">
 
-                          <div class=" text-sm text-cardBody font-poppins"></div>
-
-                          <Button
-                            type="primary"
+                        <MeetingRoomIcon
+                         className=" !text-base cursor-pointer text-green-800"
                             onClick={() => {
                               setRowData(item);
                               handleInventoryRoomRackModal(true);
                             }}
-                          >
-                            <FormattedMessage id="app.confirgurestore" defaultMessage="Confirgure Store" />
-                          </Button>
+                          />
+                            
+                         
                         </div>
+                    
                       </div>
                     </div>
                   </div>
