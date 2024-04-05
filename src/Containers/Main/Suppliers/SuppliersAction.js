@@ -307,7 +307,7 @@ export const getPurchaseSuppliersList = (supplierId) => (dispatch) => {
     type: types.GET_PURCHASE_SUPPLIERS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/po/poSupplierList/${supplierId}`,
+    .get(`${base_url2}/supplies/supplies/${supplierId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

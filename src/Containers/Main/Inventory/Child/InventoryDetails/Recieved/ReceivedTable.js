@@ -103,7 +103,7 @@ const ReceivedTable = (props) => {
                       <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col w-[11rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
-                          <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <div class=" flex justify-between">
                               <span
                                 onClick={() => {
