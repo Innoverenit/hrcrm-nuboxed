@@ -37,13 +37,13 @@ const BussinessCard = (props) => {
           flexWrap="no-wrap"
           style={{ height: "3rem" }}
         >
-          {/* <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
+          <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
             <MultiAvatar
               primaryTitle={primaryTitle}
               imgHeight={"1.56em"}
               imgWidth={"1.56em"}
             />
-          </FlexContainer> */}
+          </FlexContainer>
           <FlexContainer
             flexDirection="column"
             style={{ flexBasis: "70%", overflow: "hidden" }}
