@@ -1321,7 +1321,7 @@ export const getAllProductList = () => (dispatch) => {
     type: types.GET_ALL_PRODUCT_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/all-product`, {
+    .get(`${base_url2}/product/productNew`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

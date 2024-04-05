@@ -91,8 +91,8 @@ function AssigenedKpiCardList(props) {
                   defaultMessage="Actual"
                 /></div>
                        <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.weitage"
-                  defaultMessage="Weitage"
+                  id="app.weightage"
+                  defaultMessage="weightage"
                 /></div>
        
         

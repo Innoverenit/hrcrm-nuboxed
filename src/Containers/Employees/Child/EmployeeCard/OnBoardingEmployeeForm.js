@@ -65,7 +65,10 @@ const StageHeader = styled.div`
 
 const OnBoardingEmployeeForm = (props) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [selectedWork, setSelectedWork] = useState(props.userStageList.unboardingWorkflowDetailsName);
+  const initialWork = props.userStageList[0];
+const defaultWork = initialWork ? initialWork.unboardingWorkflowDetailsName : '';
+const [selectedWork, setSelectedWork] = useState("");
+
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
   useEffect(() => {
@@ -74,28 +77,28 @@ const OnBoardingEmployeeForm = (props) => {
   }, []);
 
 
-  // useEffect(() => {
-    
-  //   // Check if data is available
-  //   if (props.userStageList.length > 0) {
-  //     setSelectedWork(props.userStageList&&props.userStageList.unboardingWorkflowDetailsName)
-  //     // Update activeTab when data is available
-  //     // setActiveTab(props.organizationDetailsList[0]?.organizationId);
-  //   }
-  // }, [props.userStageList]);
-
   useEffect(() => {
-    if (
-      props.userStageList.unboardingWorkflowDetailsName !== undefined 
-      
-    ) {
-      setSelectedWork( props.userStageList.unboardingWorkflowDetailsName);
-      
-      
-      // Perform a null check before accessing substring
-      
+    
+    // Check if data is available
+    if (props.userStageList.length > 0) {
+      setSelectedWork(props.userStageList[0]?.unboardingWorkflowDetailsName)
+      // Update activeTab when data is available
+      // setActiveTab(props.organizationDetailsList[0]?.organizationId);
     }
-  }, [props.userStageList.unboardingWorkflowDetailsName, ]);
+  }, [props.userStageList]);
+
+  // useEffect(() => {
+  //   if (
+  //     props.userStageList !== undefined 
+      
+  //   ) {
+  //     setSelectedWork( props.userStageList);
+      
+      
+  //     // Perform a null check before accessing substring
+      
+  //   }
+  // }, [props.userStageList, ]);
   console.log(props.userStageList)
   console.log(props.userStageList.unboardingWorkflowDetailsName)
 
@@ -249,11 +252,11 @@ const handleStages = (val) => {
               >
                 <Container style={{ marginTop: "0.75em" }}>
                   <>
-                    {props.userStageList.
+                    {props.userStageList
                       
-                      stageList&&props.userStageList.
+                      &&props.userStageList.
                       
-                      stageList.map((stage, index) => (
+                      map((stage, index) => (
                         <Droppable
                         key={index}
                         droppableId={stage.unboardingStagesId}
