@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
-import { getProductionsbyLocId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
+import { getAllProductionsbyOrgId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import PrintIcon from '@mui/icons-material/Print';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -14,13 +14,13 @@ import InpectProductionToggle from "./InpectProductionToggle";
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
-function ProductionCardView(props) {
+function ProductionAllCardView(props) {
 
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
-        props.getProductionsbyLocId(props.userId, page);
+        props.getAllProductionsbyOrgId(props.organizationId, page);
         setPage(page + 1);
     }, []);
 
@@ -32,12 +32,12 @@ function ProductionCardView(props) {
     }
 
     const handleLoadMore = () => {
-        const proPag = props.productionByLocsId && props.productionByLocsId.length && props.productionByLocsId[0].pageCount
+        const proPag = props.productionAllByOrgId && props.productionAllByOrgId.length && props.productionAllByOrgId[0].pageCount
         setTimeout(() => {
-            if (props.productionByLocsId) {
+            if (props.productionAllByOrgId) {
                 if (page < proPag) {
                     setPage(page + 1);
-                    props.getProductionsbyLocId(props.userId, page);
+                    props.getAllProductionsbyOrgId(props.locationId, page);
                 }
                 if (page === proPag) {
                     setHasMore(false)
@@ -74,8 +74,8 @@ function ProductionCardView(props) {
         // props.getOrderByUser(props.locationId, props.userId)
     }
     const {
-        fetchingProductionLocId,
-        productionByLocsId,
+        fetchingAllProductionOrgId,
+        productionAllByOrgId,
         user,
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
@@ -90,8 +90,8 @@ function ProductionCardView(props) {
                         <div className=" md:w-[7rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
                         <div className="md:w-[5rem]">Attribute</div>
-                        {/* <div className=" md:w-[5rem]">Start Date</div>
-                        <div className=" md:w-[5rem]">End Date</div> */}
+                        <div className=" md:w-[5rem]">Start Date</div>
+                        <div className=" md:w-[5rem]">End Date</div>
                         <div className="md:w-[5.2rem]">Workflow</div>
                         <div className="md:w-[5.2rem]"></div>
                         <div className=" md:w-[5rem] ">Status</div>
@@ -102,16 +102,16 @@ function ProductionCardView(props) {
                         <div className="md:w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
-                        dataLength={productionByLocsId.length}
+                        dataLength={productionAllByOrgId.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={fetchingProductionLocId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={fetchingAllProductionOrgId ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"75vh"}
                         endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
-                        {productionByLocsId.length ?
+                        {productionAllByOrgId.length ?
                             <>
-                                {productionByLocsId.map((item) => {
+                                {productionAllByOrgId.map((item) => {
                                      const currentdate = dayjs().format("DD/MM/YYYY");
                                      const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -165,7 +165,7 @@ function ProductionCardView(props) {
                                                         {item.attributeName}  {item.subAttributeName}
                                                     </div>
                                                 </div>
-                                                {/* <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
                                                         {item.startDate}
@@ -175,7 +175,7 @@ function ProductionCardView(props) {
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.endDate}
                                                     </div>
-                                                </div> */}
+                                                </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.workFlow}
@@ -185,7 +185,7 @@ function ProductionCardView(props) {
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                    
                                                         <ButtonGroup>
-                                                        {item.type==="null"  && (
+                                                        {item.type===null && item.type==="In Progress" && (
                                                             <StatusIcon
                                                                 type="In Progress"
                                                                 iconType="fa-hourglass-half"
@@ -213,7 +213,7 @@ function ProductionCardView(props) {
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
 
                                                     </div>
@@ -232,22 +232,10 @@ function ProductionCardView(props) {
                                                         </Button>
                                                     </div>:null}
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         <InpectProductionToggle item={item}/>
-                                                   {item.inspectedInd ? 
-                                                   <>
-                                                   <div class="flex-col">
-                                                    <div>
-                                                   {item.userId}
-                                                   </div>
-                                                   <div>
-                                                   {dayjs(item.creationDate).format("DD/MM/YYYY")}
-                                                   </div>
-                                                   </div>
-                                                </>
-                                                :null
-                                                   }
+                                                   
         
                                                     </div>
                                                 </div>
@@ -290,8 +278,8 @@ function ProductionCardView(props) {
                                     );
                                 })}
                             </>
-                            : !productionByLocsId.length
-                                && !fetchingProductionLocId ? <NodataFoundPage /> : null}
+                            : !productionAllByOrgId.length
+                                && !fetchingAllProductionOrgId ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
                 </div>
             </div>
@@ -312,20 +300,19 @@ function ProductionCardView(props) {
 
 
 const mapStateToProps = ({ production, auth, }) => ({
-    productionByLocsId: production.productionByLocsId,
-    fetchingProductionLocId: production.fetchingProductionLocId,
+    productionAllByOrgId: production.productionAllByOrgId,
+    fetchingAllProductionOrgId: production.fetchingAllProductionOrgId,
     locationId: auth.userDetails.locationId,
     user: auth.userDetails,
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     clickedProductionIdrwr: production.clickedProductionIdrwr,
-    organizationId:auth.userDetails.organizationId,
-    userId:auth.userDetails.userId
+    organizationId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getProductionsbyLocId,
+            getAllProductionsbyOrgId,
             handleBuilderProduction,
             handleProductionIDrawer,
             updateProStatus
@@ -336,4 +323,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductionCardView);
+)(ProductionAllCardView);

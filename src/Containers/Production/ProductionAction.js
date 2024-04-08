@@ -69,13 +69,13 @@ export const getSearchedProduction = (name) => (dispatch) => {
     });
 };
 
-export const getProductionsbyLocId = (locationDetailsId, pageNo) => (dispatch) => {
+export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_BYLOC_ID_REQUEST,
   });
   axios
     // .get(`${base_url2}/product`,
-    .get(`${base_url2}/production/product/${locationDetailsId}/${pageNo}`,
+    .get(`${base_url2}/production/product/${userId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -239,6 +239,61 @@ export const updateProStatus = (data,productionProductId) => (dispatch) => {
       dispatch({
         type: types.UPDATE_PRODCUTION_STATUS_FAILURE,
         payload:err
+      });
+    });
+};
+
+export const setInspectProdn = (data) => (dispatch) => {
+  dispatch({ type: types.SET_INSPECT_PRODN_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/inspectedUser`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.SET_INSPECT_PRODN_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Done',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.SET_INSPECT_PRODN_FAILURE,
+        payload:err
+      });
+    });
+};
+
+export const getAllProductionsbyOrgId = (orgId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_PRODUCTION_BYORG_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/productByOrgId/${orgId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_PRODUCTION_BYORG_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ALL_PRODUCTION_BYORG_ID_FAILURE,
+        payload: err,
       });
     });
 };
