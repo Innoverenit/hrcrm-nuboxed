@@ -5,6 +5,7 @@ import { getCurrency } from "../../../Auth/AuthAction";
 import { Button, Input, Select, } from "antd";
 import { getProductCurrency, createProductCurrency, handleDiscountModal, handleOfferModal } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import {getSaleCurrency} from "../../../Auth/AuthAction";
 
 const { Option } = Select;
 
@@ -16,7 +17,8 @@ function ProductbuilderTable(props) {
 
   useEffect(() => {
     props.getProductCurrency(props.particularDiscountData.productId);
-    props.getCurrency();
+    // props.getCurrency();
+    props.getSaleCurrency()
   }, []);
 
   useEffect(() => {
@@ -121,7 +123,7 @@ function ProductbuilderTable(props) {
                           value={item.currency_id}
                           onChange={(value) => handleSelectChange(value, item.key, 'currency_id')}
                         >
-                          {props.currencies.map((s) => (
+                          {props.saleCurrencies.map((s) => (
                             <Option key={s.currency_id} value={s.currency_id}>
                               {s.currency_name}
                             </Option>
@@ -218,7 +220,7 @@ function ProductbuilderTable(props) {
                         value={item.currencyName}
                         onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
                       >
-                        {props.currencies.map((s) => (
+                        {props.saleCurrencies.map((s) => (
                           <Option key={s.currency_id} value={s.currency_id}>
                             {s.currency_name}
                           </Option>
@@ -297,7 +299,9 @@ const mapStateToProps = ({ product, auth }) => ({
   addProductOfferModal: product.addProductOfferModal,
   currencies: auth.currencies,
   userId: auth.userDetails.userId,
-  fetchingProductCurrency: product.fetchingProductCurrency
+  fetchingProductCurrency: product.fetchingProductCurrency,
+  fetchingSaleCurrency:auth.fetchingSaleCurrency,
+  saleCurrencies:auth.saleCurrencies
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -307,7 +311,8 @@ const mapDispatchToProps = (dispatch) =>
       createProductCurrency,
       handleDiscountModal,
       handleOfferModal,
-      getCurrency
+      getCurrency,
+      getSaleCurrency
     },
     dispatch
   );

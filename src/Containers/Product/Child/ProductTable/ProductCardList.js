@@ -88,14 +88,15 @@ function ProductCardList(props) {
 
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          
+          <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">  
+          <div className="w-8"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
-            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Name</div>
+            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">Name</div>
             <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">Category</div>
-            <div className="w-[2.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.4rem]">Sub</div>
+            <div className="w-[6.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.4rem]">Sub-Category</div>
             <div className="w-[5.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">Attribute</div>
             <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
-            <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
+            <div className="w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
             <div className="w-[5.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
             <div className="w-12"></div>
           </div>
@@ -112,13 +113,13 @@ function ProductCardList(props) {
                 <div>
                   <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[4.1rem] max-sm:w-auto   ">
+                      <div className=" flex font-medium flex-col w-[4.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8em"}
-                              imgWidth={"1.8em"}
+                              imgHeight={"2.8rem"}
+                              imgWidth={"2.8rem"}
                               imgRadius={20}
                             />
                           ) : (
@@ -134,7 +135,7 @@ function ProductCardList(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[5.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[12.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
