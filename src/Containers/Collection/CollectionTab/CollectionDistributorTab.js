@@ -106,7 +106,7 @@ function CollectionDistributorTab(props) {
             </Suspense>
           </TabPane>
           
-          <TabPane
+          {/* <TabPane
             tab={
               <>
                 <span>
@@ -126,7 +126,7 @@ function CollectionDistributorTab(props) {
               {" "}
               <DistributorCollectionTableAll/>
             </Suspense>
-          </TabPane>
+          </TabPane> */}
 
      
         </StyledTabs>
