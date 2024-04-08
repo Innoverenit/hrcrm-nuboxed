@@ -38,15 +38,17 @@ class InventoryDetailActionLeft extends Component {
                     </Tooltip>
                     </Link>
           <Tooltip title="Material">
-            <div
-              className=" mr-2 cursor-pointer font-medium text-sm"
-              style={{
-                color: viewType1 === "material" && "#1890ff",
-              }}
-              onClick={() => setInventoryDetailViewType("material")}
-            >
-             <Button type="primary"> Material</Button>
-            </div>
+          <div
+      className="mr-2 cursor-pointer font-medium text-sm"
+      style={{
+        color: viewType1 === "material" ? "#1890ff" : "tomato",
+      }}
+      onClick={() => setInventoryDetailViewType("material")}
+    >
+      <Button type={viewType1 === "material" ? "primary" : ""} style={{ backgroundColor: viewType1 === "material" ? "" : "tomato" }}>
+        <label class="text-white">Material</label>
+      </Button>
+    </div>
 
           </Tooltip>
           {/* } */}
@@ -58,7 +60,9 @@ class InventoryDetailActionLeft extends Component {
               }}
               onClick={() => setInventoryDetailViewType("production")}
             >
-             <Button type="primary"> Production</Button>
+             {/* <Button type="primary">  */}
+             <Button type={viewType1 === "production" ? "primary" : ""} style={{ backgroundColor: viewType1 === "production" ? "" : "tomato" }}>
+             <label class="text-white">Production</label></Button>
             </div>
           </Tooltip>}
           {this.props.repairInd && <Tooltip title="Repair">
@@ -69,7 +73,9 @@ class InventoryDetailActionLeft extends Component {
               }}
               onClick={() => setInventoryDetailViewType("repair")}
             >
-               <Button type="primary">Repair</Button>
+              <Button type={viewType1 === "repair" ? "primary" : ""} style={{ backgroundColor: viewType1 === "repair" ? "" : "tomato" }}>
+                
+              <label class="text-white">Repair</label></Button>
             </div>
           </Tooltip>}
 

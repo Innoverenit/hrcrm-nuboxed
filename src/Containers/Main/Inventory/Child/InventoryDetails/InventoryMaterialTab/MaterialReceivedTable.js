@@ -37,7 +37,8 @@ const MaterialReceivedTable = (props) => {
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" md:w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" w-[11.122rem]">Supplier</div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -81,8 +82,15 @@ const MaterialReceivedTable = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
                                             <div class=" text-xs text-cardBody font-poppins">
+                                               
+                                            </div>
+
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[8.121rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 <ListAltOutlined
                                                     onClick={() => {
                                                         handleRow(item);
