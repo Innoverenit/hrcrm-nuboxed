@@ -772,7 +772,7 @@ function MainApp(props) {
                       />
                       <Route
                         exact
-                        path="/production"
+                        path="/scanproduction/:manufactureId"
                         component={ProductionScanner}
                       />
                       <Route
