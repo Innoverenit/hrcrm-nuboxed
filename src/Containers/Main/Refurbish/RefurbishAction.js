@@ -372,12 +372,12 @@ export const setEditOutputProduction = (name) => (dispatch) => {
   });
 };
 
-export const getProductionOrderId = (locationId) => (dispatch) => {
+export const getProductionOrderId = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_ORDER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-all/${locationId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -793,12 +793,12 @@ export const handleAllSpareList = (modalProps) => (dispatch) => {
   })
 }
 
-export const getOrderByUser = (locationId, userId) => (dispatch) => {
+export const getOrderByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-allOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-allOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -819,12 +819,12 @@ export const getOrderByUser = (locationId, userId) => (dispatch) => {
     });
 };
 
-export const getRepairOrderByUser = (locationId, userId) => (dispatch) => {
+export const getRepairOrderByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_ORDER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/get-allRepairPhoneOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/get-allRepairPhoneOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1008,12 +1008,12 @@ export const repairInspectionButton = (data, orderPhoneId, cb) => (dispatch) => 
     });
 };
 
-export const getOpenQcByUser = (locationId, userId) => (dispatch) => {
+export const getOpenQcByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_OPEN_QC_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProduction/get-allInCompleteQcOrder/${locationId}/${userId} `, {
+    .get(`${base_url2}/orderProduction/get-allInCompleteQcOrder/${userId} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1034,12 +1034,12 @@ export const getOpenQcByUser = (locationId, userId) => (dispatch) => {
     });
 };
 
-export const getOpenRepair = (locationId, userId) => (dispatch) => {
+export const getOpenRepair = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_OPEN_USER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/get-allRepairIncompletePhoneOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/get-allRepairIncompletePhoneOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

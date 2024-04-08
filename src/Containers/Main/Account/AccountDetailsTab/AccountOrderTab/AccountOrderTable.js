@@ -378,7 +378,9 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        {item.supervisorUserName}
+                                                        <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
+                                                            {item.supervisorUserName ? item.supervisorUserName : "No Data"}
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -513,15 +515,18 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        <div class=" cursor-pointer">
+                                                        {item.locationName && <div class=" cursor-pointer">
                                                             <Tooltip title="Add Supervisor">
-                                                                <PersonAddAlt1 onClick={() => {
-                                                                    props.handleInventoryLocationInOrder(true)
-                                                                    handleSetParticularOrderData(item)
-                                                                }} />
+                                                                <PersonAddAlt1
+                                                                    className="!text-base cursor-pointer"
+                                                                    style={{ color: item.supervisorUserName ? "green" : "red" }}
+                                                                    onClick={() => {
+                                                                        props.handleInventoryLocationInOrder(true)
+                                                                        handleSetParticularOrderData(item)
+                                                                    }} />
                                                             </Tooltip>
 
-                                                        </div>
+                                                        </div>}
                                                     </div>
                                                 </div>
 

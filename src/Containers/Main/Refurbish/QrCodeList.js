@@ -27,15 +27,21 @@ const QRCodeListScanner = (props) => {
         {props.shouldRenderCamera && props.scanning && (
           <div className={`qr-code-scanner-container`}>
             <QrReader
-            constraints={ {facingMode: 'environment'} }
-            delay={300}
-            // onScan={props.handleScan}
-               onResult={props.handleScan}
+              constraints={{ facingMode: 'environment' }}
+              delay={300}
+              // onScan={props.handleScan}
+              onResult={props.handleScan}
               onError={props.handleError}
               onClose={props.stopScanning} />
-            <span onClick={props.stopScanning}>
+            {props.data === "phoneId" && <span onClick={props.stopScanning}>
               <Link
                 to={`scan/${props.data}`}>
+                {props.data}
+              </Link>
+            </span>}
+            <span onClick={props.stopScanning}>
+              <Link
+                to={`production`}>
                 {props.data}
               </Link>
             </span>

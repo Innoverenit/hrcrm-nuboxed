@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
-import { MainWrapper } from '../../../Components/UI/Elements'
+import { MainWrapper, MultiAvatar } from '../../../Components/UI/Elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
@@ -21,9 +21,14 @@ const RepairTaskTable = (props) => {
                             <div class="w-[70%]">
                                 {item.taskName}
                             </div>
-                            <div class="w-[30%] flex justify-between">
+                            <div class="w-[40%] flex justify-between">
                                 <QCPhoneTaskToggle item={item} />
-                                <Popconfirm
+                                <MultiAvatar
+                                    primaryTitle={item.userName}
+                                    imgWidth={"2.1em"}
+                                    imgHeight={"2.1em"}
+                                />
+                                {!item.completeTaskInd && <Popconfirm
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteTaskList({
                                         userId: props.userId
@@ -32,7 +37,7 @@ const RepairTaskTable = (props) => {
                                     <DeleteIcon
                                         className=" !text-base cursor-pointer text-[red]"
                                     />
-                                </Popconfirm>
+                                </Popconfirm>}
                             </div>
 
                         </div>

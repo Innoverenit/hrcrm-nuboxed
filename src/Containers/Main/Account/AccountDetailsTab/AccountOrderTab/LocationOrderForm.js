@@ -5,6 +5,7 @@ import { addSupervisor, getUserByLocationDepartment } from "../../AccountAction"
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
 import * as Yup from "yup";
 import { Select } from "antd";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
 
 function LocationOrderForm(props) {
@@ -18,39 +19,41 @@ function LocationOrderForm(props) {
         setTechnician(val)
         props.addSupervisor({ supervisorUserId: val }, props.particularRowData.orderId)
     }
+    let location = props.particularRowData.locationDetailsViewDTO.locationDetailsId
+
     const handleDepartment = (val) => {
-        let location = props.particularRowData.locationDetailsViewDTO.locationDetailsId
         setDepartment(val)
         props.getUserByLocationDepartment(location, val);
     }
     return (
         <>
-            <div class=" flex justify-between">
-                <div className=" w-2/5">
-                    <Select
-                        className="w-[350px]"
-                        value={department}
-                        onChange={(value) => { handleDepartment(value) }}
-                    >
-                        {props.departments.map((a) => {
-                            return <Option value={a.departmentId}>{a.departmentName}</Option>;
-                        })}
-                    </Select>
-                </div>
+            {props.fetchingDepartments ? <BundleLoader /> :
+                <div class=" flex justify-between">
+                    <div className=" w-2/5">
+                        <Select
+                            className="w-[350px]"
+                            value={department}
+                            onChange={(value) => handleDepartment(value)}
+                        >
+                            {props.departments.map((a) => {
+                                return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                            })}
+                        </Select>
+                    </div>
 
-                <div className=" w-2/5">
+                    <div className=" w-2/5">
 
-                    <Select
-                        className="w-[350px]"
-                        value={technician}
-                        onChange={(value) => handleTechnician(value)}
-                    >
-                        {props.departmentUser.map((a) => {
-                            return <Option value={a.employeeId}>{a.empName}</Option>;
-                        })}
-                    </Select>
-                </div>
-            </div>
+                        <Select
+                            className="w-[350px]"
+                            value={technician}
+                            onChange={(value) => handleTechnician(value)}
+                        >
+                            {props.departmentUser.map((a) => {
+                                return <Option value={a.employeeId}>{a.empName}</Option>;
+                            })}
+                        </Select>
+                    </div>
+                </div>}
         </>
     );
 }
@@ -59,6 +62,7 @@ const mapStateToProps = ({ distributor, departments, auth }) => ({
     userId: auth.userDetails.userId,
     departments: departments.departments,
     departmentUser: distributor.departmentUser,
+    fetchingDepartments: departments.fetchingDepartments
 });
 
 const mapDispatchToProps = (dispatch) =>

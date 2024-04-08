@@ -40,6 +40,7 @@ import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
+import ProductionScanner from "./Scan/Production/ProductionScanner";
 
 const NavMenu = lazy(() =>
   import("./NavMenu")
@@ -361,7 +362,7 @@ function MainApp(props) {
   };
   const handleScan = async (result) => {
     if (result) {
-      setData(result.text); 
+      setData(result.text);
     }
   };
   // const handleScan = async (result, error) => {
@@ -768,6 +769,11 @@ function MainApp(props) {
                         exact
                         path="/scan/:phoneId"
                         component={PhoneScanner}
+                      />
+                      <Route
+                        exact
+                        path="/production"
+                        component={ProductionScanner}
                       />
                       <Route
                         exact
