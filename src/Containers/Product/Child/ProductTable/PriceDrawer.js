@@ -10,7 +10,8 @@ const PriceDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Price for ${props.particularDiscountData.articleNo} ${props.particularDiscountData.name}`}
+        title={`Price for ${props.particularDiscountData.articleNo ? `${props.particularDiscountData.articleNo}`: "" }
+         ${props.particularDiscountData.name ? `${props.particularDiscountData.name}`:""}`}
         width={drawerWidth}
         visible={priceOpenDrawer}
         destroyOnClose

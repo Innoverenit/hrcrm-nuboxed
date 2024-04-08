@@ -17,13 +17,13 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
-  subCategoryName: Yup.string().required("Please provide First Name"),
-  attributeName: Yup.string().required("Please provide First Name"),
-  subAttributeName: Yup.string().required("Please provide First Name"),
-  // name: Yup.string().required("Please provide First Name"),
-  price: Yup.string().required("Please provide First Name"),
-  distributorMaxMargin: Yup.string().required("Please provide First Name"),
-  tax: Yup.string().required("Please provide First Name"),
+  // subCategoryName: Yup.string().required("Please provide First Name"),
+  // attributeName: Yup.string().required("Please provide First Name"),
+  // subAttributeName: Yup.string().required("Please provide First Name"),
+  name: Yup.string().required("Please provide Name"),
+  // price: Yup.string().required("Please provide First Name"),
+  // distributorMaxMargin: Yup.string().required("Please provide First Name"),
+  // tax: Yup.string().required("Please provide First Name"),
 
 
 });
@@ -39,8 +39,8 @@ class Productform extends Component {
 
     const workFlowOption = this.props.workflowProduction.map((item) => {
       return {
-        value: item.workflowId,
-        label: `${item.workflow || ""}`
+        value: item.productionWorkflowDetailsId,
+        label: `${item.workflowName || ""}`
       }
     })
 
@@ -135,6 +135,7 @@ class Productform extends Component {
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
                         <Field
+                        isRequired
                     name="name"
                     label="Name"
                     isColumn
@@ -232,7 +233,8 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div class="flex justify-between mt-4">
+                  <div class="w-[47%]">
                     <Field
                       label="Workflow"
                       name="workflowId"
@@ -244,6 +246,20 @@ class Productform extends Component {
                       isColumn
                     />
                   </div>
+                  <div class="w-[47%]">
+                    <Field
+                      label="Stage"
+                      name="stage"
+                      placeholder="Value"
+                      component={InputComponent}
+                      // options={Array.isArray(workFlowOption) ? workFlowOption : []}
+
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>
+</div>
                   {/* <div class="flex justify-between mt-4">
                  <div class="w-[30%]">
                     <Field
@@ -304,17 +320,18 @@ class Productform extends Component {
                 <div class="flex justify-between ">
                 <div class="w-[48%]">
                       <Field
-                      defaultValue={{
-                        label: this.props.setEditingProducts.brand,
-                        value: this.props.setEditingProducts.brand,
-                      }}
+                      // defaultValue={{
+                      //   label: this.props.setEditingProducts.brand,
+                      //   value: this.props.setEditingProducts.brand,
+                      // }}
                         name="brand"
                         label="Brand"
-                        placeholder="Search or Create"
-                        optionLabel="categoryName"
-                        optionValue="categoryName"
-                        url={`${base_url2}/masterlist/masterList`}
-                        component={LazySelect}
+                        // placeholder="Search or Create"
+                        // optionLabel="categoryName"
+                        // optionValue="categoryName"
+                        // url={`${base_url2}/masterlist/masterList`}
+                        // component={LazySelect}
+                        component={InputComponent}
                         isColumn
                         inlineLabel
 

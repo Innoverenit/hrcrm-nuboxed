@@ -182,12 +182,12 @@ function ProductCardList(props) {
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                        {/* <QrGenerate /> */}
+                      {/* <div className=" flex font-medium flex-col  w-[7.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      
                         <Button type="primary" >
                                 <div class="max-sm:text-sm"> Print QR Code</div>
                                 </Button>
-                      </div>
+                      </div> */}
                       <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />

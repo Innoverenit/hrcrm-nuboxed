@@ -1061,7 +1061,11 @@ export const handleInventoryRoomRackModal = (modalProps) => (dispatch) => {
 export const addRoomAndRackInInventory = (data) => (dispatch) => {
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
-    .post(`${base_url}/roomrack`, data)
+    .post(`${base_url2}/roomrack`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch(getInventory())

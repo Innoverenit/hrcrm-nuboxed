@@ -13,6 +13,20 @@ import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComp
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import * as Yup from "yup";
+
+const ProductSchema = Yup.object().shape({
+  categoryName: Yup.string().required("Please provide First Name"),
+  // subCategoryName: Yup.string().required("Please provide First Name"),
+  // attributeName: Yup.string().required("Please provide First Name"),
+  // subAttributeName: Yup.string().required("Please provide First Name"),
+  name: Yup.string().required("Please provide Name"),
+  // price: Yup.string().required("Please provide First Name"),
+  // distributorMaxMargin: Yup.string().required("Please provide First Name"),
+  // tax: Yup.string().required("Please provide First Name"),
+
+
+});
 
 class Productform extends Component {
   constructor(props) {
@@ -143,7 +157,7 @@ class Productform extends Component {
             brand:"",
             model:""
 ,          }}
-          // validationSchema={ProductSchema}
+          validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
             //debugger;
             console.log(values);
@@ -195,6 +209,7 @@ class Productform extends Component {
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
                           <Field
+                          isRequired
                             name="name"
                             label="Name"
                             isColumn
@@ -271,7 +286,8 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div class="flex justify-between ">
+                  <div class="w-[47%]">
                     <Field
                       label="Workflow"
                       name="workflowId"
@@ -283,7 +299,20 @@ class Productform extends Component {
                       isColumn
                     />
                   </div>
+                  <div class="w-[47%]">
+                    <Field
+                      label="Stage"
+                      name="stage"
+                      placeholder="Value"
+                      component={InputComponent}
+                      // options={Array.isArray(workFlowOption) ? workFlowOption : []}
 
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>
+</div>
                   <div class="flex justify-between">
                     <div class="w-full">
                       <Field
@@ -302,7 +331,6 @@ class Productform extends Component {
                 <div class="flex justify-between ">
                 <div class="w-[48%]">
                       <Field
-                        isRequired
                         name="brand"
                         label="Brand"
                         // placeholder="Search or Create"
@@ -354,8 +382,8 @@ const mapStateToProps = ({ auth, product, production }) => ({
   workflowProduction: production.workflowProduction,
   addingProductError: product.addingProductError,
   addProductModal: product.addProductModal,
-  user: auth.serviceDetails,
-  userId: auth.serviceDetails.userId,
+  user: auth.userDetails,
+  userId: auth.userDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
 });

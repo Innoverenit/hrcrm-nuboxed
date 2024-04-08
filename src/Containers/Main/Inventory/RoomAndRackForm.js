@@ -25,17 +25,19 @@ const RoomAndRackForm = (props) => {
       setRows(updatedRows);
     };
     const handleSubmit = () => {
-      // Prepare data to send to the API
       const dataToSend = rows.map((row) => ({
-        english: row.input1,
-        dutch: row.input2,
-        locationtypeId: props.rowData.locationtypeId,
-        locationDetailsId: props.rowData.locationDetailsId,
+        zone: row.input1,
+        rack: row.input2,
+        userId: props.userId,
+        chamberList: ['A1', 'A2', 'A3'], 
       }));
-  
-      // Make the API call
-      props.addRoomAndRackInInventory(dataToSend);
-  setRows([{ input1: '', input2: '' }]);
+
+      const payload = {
+        locationDetailsId: props.rowData.locationDetailsId,
+        roomRackList: dataToSend,
+      };
+      props.addRoomAndRackInInventory(payload);
+      setRows([{ input1: '', input2: '' }]);
     };
     return (
         <>
@@ -53,7 +55,7 @@ const RoomAndRackForm = (props) => {
               /></Button>
                   </div>
               <div>
-              <label>Room</label>
+              <label>Zone</label>
              <div class="w-24">
             <Input
               type="text"
@@ -130,7 +132,8 @@ const RoomAndRackForm = (props) => {
 }
 
 const mapStateToProps = ({ inventory, auth, locations }) => ({
-    addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory
+    addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
+    userId:auth.userDetails.userId
 });
 
 const mapDispatchToProps = (dispatch) =>

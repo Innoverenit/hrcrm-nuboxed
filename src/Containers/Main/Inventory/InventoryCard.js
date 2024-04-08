@@ -122,14 +122,14 @@ const InventoryCard = (props) => {
 
                         <div className=" flex font-medium justify-center flex-col max-sm:flex-row  ">
 
-                        <MeetingRoomIcon
-                         className=" !text-base cursor-pointer text-green-800"
+                        <Button type="primary"
                             onClick={() => {
                               setRowData(item);
                               handleInventoryRoomRackModal(true);
                             }}
-                          />
-                            
+                          >
+                            Configure Store
+                            </Button>
                          
                         </div>
                     
