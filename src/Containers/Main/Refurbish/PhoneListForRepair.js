@@ -490,7 +490,7 @@ function PhoneListForRepair(props) {
                                                     size={150}
                                                     value={item.phoneId} />
                                             </div>
-                                            <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                            <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                         </div>
                                     </div>
                                 </div>
