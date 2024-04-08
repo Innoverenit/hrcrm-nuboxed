@@ -28,7 +28,10 @@ function FullFillMentJumpstartBox(props) {
          
       <div className="flex w-full max-sm:flex-col">
         {props.regionRecords.map((region, index) => (
-          <div key={index} className="flex w-wk">
+           <React.Fragment key={index}>
+             {region.fulfilment !== 0 && (
+          <div  className="flex w-wk">
+          
             <JumpStartBox
               // bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
@@ -39,9 +42,13 @@ function FullFillMentJumpstartBox(props) {
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
             />
-           
+          
           </div>
+            )}
+                </React.Fragment>
         ))}
+      
+          
       </div>
     </div>
     <AddFullFillmentDrawerModal

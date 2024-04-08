@@ -1,12 +1,15 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm,Switch } from "antd";
+import { Tooltip, Button, Popconfirm, Switch } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import { FormattedMessage } from "react-intl";
+import QRCode from "qrcode.react";
+import ReactToPrint from "react-to-print";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
-import { getProductionsbyLocId, updateProStatus,handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
+import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import PrintIcon from '@mui/icons-material/Print';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -30,7 +33,11 @@ function ProductionCardView(props) {
     function handleParticularRowData(item) {
         setParticularDiscountData(item);
     }
+    const componentRefs = useRef([]);
 
+    const handlePrint = () => {
+        window.print();
+    };
     const handleLoadMore = () => {
         const proPag = props.productionByLocsId && props.productionByLocsId.length && props.productionByLocsId[0].pageCount
         setTimeout(() => {
@@ -46,8 +53,8 @@ function ProductionCardView(props) {
         }, 100);
     };
 
-    function StatusIcon({ type, role, iconType, tooltip,size, status, id, onClick, productId, indStatus }) {
-       
+    function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, productId, indStatus }) {
+
         if (role === type) {
             size = "30px";
         } else {
@@ -111,9 +118,9 @@ function ProductionCardView(props) {
                     >
                         {productionByLocsId.length ?
                             <>
-                                {productionByLocsId.map((item) => {
-                                     const currentdate = dayjs().format("DD/MM/YYYY");
-                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                {productionByLocsId.map((item, index) => {
+                                    const currentdate = dayjs().format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div>
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
@@ -128,12 +135,12 @@ function ProductionCardView(props) {
                                                         >
                                                             {item.manufactureId}
                                                             &nbsp;&nbsp;
-                                {date === currentdate ? (
-                                  <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
-                                  >
-                                    New
-                                  </div>
-                                ) : null}
+                                                            {date === currentdate ? (
+                                                                <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
+                                                                >
+                                                                    New
+                                                                </div>
+                                                            ) : null}
                                                         </div>
 
                                                     </div>
@@ -183,33 +190,33 @@ function ProductionCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                   
-                                                        <ButtonGroup>
-                                                        {item.type==="null"  && (
-                                                            <StatusIcon
-                                                                type="In Progress"
-                                                                iconType="fa-hourglass-half"
-                                                                tooltip="In Progress"
-                                                                role={item.type}
-                                                                onClick={() => {
-                                                                    props.updateProStatus({ 
-                                                                        type:"In Progress",
-                                                                  },item.productionProductId);
-                                                                  }}
-                                                            />)}
 
-                                                            {item.type==="In Progress" ? 
-                                                            <StatusIcon
-                                                                type="Complete"
-                                                                iconType="fa-hourglass"
-                                                                tooltip="Complete"
-                                                                role={item.type}
-                                                                onClick={() => {
-                                                                    props.updateProStatus({ 
-                                                                        type:"Complete",
-                                                                  },item.productionProductId);
-                                                                  }}
-                                                            />:null}
+                                                        <ButtonGroup>
+                                                            {item.type === "null" && (
+                                                                <StatusIcon
+                                                                    type="In Progress"
+                                                                    iconType="fa-hourglass-half"
+                                                                    tooltip="In Progress"
+                                                                    role={item.type}
+                                                                    onClick={() => {
+                                                                        props.updateProStatus({
+                                                                            type: "In Progress",
+                                                                        }, item.productionProductId);
+                                                                    }}
+                                                                />)}
+
+                                                            {item.type === "In Progress" ?
+                                                                <StatusIcon
+                                                                    type="Complete"
+                                                                    iconType="fa-hourglass"
+                                                                    tooltip="Complete"
+                                                                    role={item.type}
+                                                                    onClick={() => {
+                                                                        props.updateProStatus({
+                                                                            type: "Complete",
+                                                                        }, item.productionProductId);
+                                                                    }}
+                                                                /> : null}
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
@@ -219,36 +226,36 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                {item.type==="Complete" ? 
-                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        <Button
-                                                            type="primary"
-                                                            onClick={() => {
-                                                                handleParticularRowData(item);
-                                                                handleBuilderProduction(true);
-                                                            }}
-                                                        >
-                                                            Add Parts
-                                                        </Button>
-                                                    </div>:null}
+                                                    {item.type === "Complete" ?
+                                                        <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                            <Button
+                                                                type="primary"
+                                                                onClick={() => {
+                                                                    handleParticularRowData(item);
+                                                                    handleBuilderProduction(true);
+                                                                }}
+                                                            >
+                                                                Add Parts
+                                                            </Button>
+                                                        </div> : null}
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        <InpectProductionToggle item={item}/>
-                                                   {item.inspectedInd ? 
-                                                   <>
-                                                   <div class="flex-col">
-                                                    <div>
-                                                   {item.userId}
-                                                   </div>
-                                                   <div>
-                                                   {dayjs(item.creationDate).format("DD/MM/YYYY")}
-                                                   </div>
-                                                   </div>
-                                                </>
-                                                :null
-                                                   }
-        
+                                                        <InpectProductionToggle item={item} />
+                                                        {item.inspectedInd ?
+                                                            <>
+                                                                <div class="flex-col">
+                                                                    <div>
+                                                                        {item.userId}
+                                                                    </div>
+                                                                    <div>
+                                                                        {dayjs(item.creationDate).format("DD/MM/YYYY")}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                            : null
+                                                        }
+
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -258,11 +265,17 @@ function ProductionCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        <Tooltip title="Print QR Code">
-                                                           <Button type="primary">
-                                                            Print QR 
-                                                           </Button>
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.Print"
+                                                            defaultMessage="Print"
+                                                        />}>
+
+                                                            <ReactToPrint
+                                                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
                                                         </Tooltip>
+
                                                     </div>
                                                 </div>
 
@@ -285,6 +298,26 @@ function ProductionCardView(props) {
 
                                                     </div>
                                                 )}
+                                            </div>
+                                            <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div
+                                                    ref={(el) => (componentRefs.current[index] = el)}
+                                                    style={{
+                                                        fontSize: "16px",
+                                                        marginBottom: "20px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        alignItems: "center",
+                                                    }}
+                                                >
+                                                    <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                        <QRCode
+                                                            size={150}
+                                                            value={item.manufactureId} />
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}> {item.manufactureId}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     );
@@ -318,8 +351,8 @@ const mapStateToProps = ({ production, auth, }) => ({
     user: auth.userDetails,
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     clickedProductionIdrwr: production.clickedProductionIdrwr,
-    organizationId:auth.userDetails.organizationId,
-    userId:auth.userDetails.userId
+    organizationId: auth.userDetails.organizationId,
+    userId: auth.userDetails.userId
 });
 
 const mapDispatchToProps = (dispatch) =>

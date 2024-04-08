@@ -21,7 +21,6 @@ import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
-import NotStartedIcon from '@mui/icons-material/NotStarted';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
 import AddSpareInRepair from "./AddSpareInRepair";

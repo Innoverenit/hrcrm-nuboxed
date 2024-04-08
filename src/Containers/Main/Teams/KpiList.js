@@ -101,7 +101,7 @@ function KpiList(props) {
           // performanceManagementId:[],
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
-          lobDetsilsId: lob,
+          lobDetailsId: lob,
           assignedValue:"",
           weitageValue:"",
           year: selectedYear,
@@ -212,7 +212,7 @@ function KpiList(props) {
        )}  
       {selected && (
           <>                                           
-        <div class=" w-[37%]" >
+        <div class=" w-[30%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
                           <Field
                             // isRequired
@@ -232,7 +232,7 @@ function KpiList(props) {
                           />
                           {/* <input value={this.state.value} onChange={this.onNumber}/> */}
                         </div>  
-                        <div class=" w-[37%]" >
+                        <div class=" w-[30%]" >
         <label class=" text-[#444] font-bold text-[0.75rem]" >Weitage</label>&nbsp;
                           <Field
                             onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}

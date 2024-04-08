@@ -39,7 +39,10 @@ function RegionalSales(props) {
          
       <div className="flex w-full max-sm:flex-col">
         {props.regionRecords.map((region, index) => (
+            <React.Fragment key={index}>
+              {region.sales !== 0 && (
           <div key={index} className="flex w-wk">
+       
             <JumpStartBox
            bgColor={colors[index % colors.length]} 
               noProgress
@@ -55,8 +58,10 @@ function RegionalSales(props) {
               title={region.regions}
            sLoading={props.user.fetchingJumpstartInvestor}
             />
-           
-          </div>
+             </div>
+            )}
+               </React.Fragment>
+         
         ))}
       </div>
     </div>
