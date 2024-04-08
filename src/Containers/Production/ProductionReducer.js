@@ -11,6 +11,10 @@ const initialState = {
   fetchingSearchedProductionError: false,
   searchedProduction: [],
 
+  fetchingProductRecords: false,
+  fetchingProductRecordsError: false,
+  productrecordData:{},
+
   fetchingProductionLocId: false, fetchingProductionLocIdError: false,
   productionByLocsId: [],
 
@@ -176,6 +180,7 @@ export const productionReducer = (state = initialState, action) => {
       case types.UPDATE_PRODCUTION_STATUS_FAILURE:
         return { ...state, updateProductionStatus: false,updateProductionStatusError:true, };
 
+
         case types.SET_INSPECT_PRODN_REQUEST:
           return { ...state,settingInpectdn: true };
         case types.SET_INSPECT_PRODN_SUCCESS:
@@ -194,7 +199,23 @@ export const productionReducer = (state = initialState, action) => {
           case types.GET_ALL_PRODUCTION_BYORG_ID_FAILURE:
             return { ...state, fetchingAllProductionOrgId: false, fetchingAllProductionOrgIdError: true };
       
-          
+         
+        case types.GET_PRODUCT_RECORDS_REQUEST:
+          return { ...state, fetchingProductRecords: true };
+        case types.GET_PRODUCT_RECORDS_SUCCESS:
+          return {
+            ...state,
+            fetchingProductRecords: false,
+            productrecordData: action.payload,
+          };
+        case types.GET_PRODUCT_RECORDS_FAILURE:
+          return {
+            ...state,
+            fetchingProductRecords: false,
+            fetchingProductRecordsError: true,
+          };
+
+
     default:
       return state;
   }

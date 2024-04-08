@@ -19,7 +19,7 @@ import ButtonGroup from "antd/lib/button/button-group";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
-import { NoteAddOutlined, PauseCircleFilled } from "@mui/icons-material";
+import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import NotStartedIcon from '@mui/icons-material/NotStarted';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -310,18 +310,22 @@ function PhoneListForRepair(props) {
                                                         />}
                                                     {item.repairStatus === "In Progress" &&
                                                         props.rowData.repairInspectionInd === 1 &&
-                                                        <PauseCircleFilled
+                                                        <>
+                                                            <PauseCircleFilled
+                                                                onClick={() => {
+                                                                    let data = {
+                                                                        phoneTimesId: "",
+                                                                        userId: props.userId,
+                                                                        phoneId: item.phoneId,
+                                                                        pauseInd: true
+                                                                    }
+                                                                    props.updatePauseStatus(data)
+                                                                }}
+                                                            />
+                                                            <PlayCircleFilled />
+                                                        </>
 
-                                                            onClick={() => {
-                                                                let data = {
-                                                                    phoneTimesId: "",
-                                                                    userId: props.userId,
-                                                                    phoneId: item.phoneId,
-                                                                    pauseInd: true
-                                                                }
-                                                                props.updatePauseStatus(data)
-                                                            }}
-                                                        />}
+                                                    }
                                                     {item.repairStatus === "In Progress" &&
                                                         props.rowData.repairInspectionInd === 1
                                                         && backToComplete === false && <StatusIcon

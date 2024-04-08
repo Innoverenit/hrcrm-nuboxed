@@ -498,6 +498,35 @@ export const getCompleteOrders = (distributorId, pageNo) => (
     });
 };
 
+
+export const getUserByLocationDepartment = (locationId, departmentId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_USERS_BY_DEPARTMENT_LOCATION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/employee/user/list/drop-down/${locationId}/${departmentId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_USERS_BY_DEPARTMENT_LOCATION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_USERS_BY_DEPARTMENT_LOCATION_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  * renewal button
  */
@@ -768,7 +797,7 @@ export const getCustomerByUser = (userId, pageNo) => (dispatch) => {
 /**
  * get all the distributor
  */
-export const getAllDistributorsList = (orgId,pageNo) => (dispatch) => {
+export const getAllDistributorsList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_DISTRIBUTORS_LIST_REQUEST,
   });
@@ -2064,6 +2093,32 @@ export const addLocationInOrder = (data, distributorId, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.ADD_LOCATION_IN_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addSupervisor = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SUPERVISOR_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/supervisor/assign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_SUPERVISOR_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SUPERVISOR_FAILURE,
         payload: err,
       });
     });

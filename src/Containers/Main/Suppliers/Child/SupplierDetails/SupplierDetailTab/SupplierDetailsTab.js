@@ -77,7 +77,7 @@ class SupplierDetailsTab extends Component {
                     <i class="fab fa-connectdevelop"></i>
                     <span style={{ marginLeft: "0.25em" }}>Materials</span>
             
-                  {activeKey === "2" && (
+                  {/* {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
                         <PlusOutlined
@@ -95,7 +95,7 @@ class SupplierDetailsTab extends Component {
                       </Tooltip>
                     
                     </>
-                  )}
+                  )} */}
                 </>
               }
               key="2"
