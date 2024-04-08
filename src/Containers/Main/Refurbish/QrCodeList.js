@@ -33,19 +33,12 @@ const QRCodeListScanner = (props) => {
               onResult={props.handleScan}
               onError={props.handleError}
               onClose={props.stopScanning} />
-            {props.data === "phoneId" && <span onClick={props.stopScanning}>
+            <span onClick={props.stopScanning}>
               <Link
                 to={`scan/${props.data}`}>
                 {props.data}
               </Link>
-            </span>}
-
-            {props.data === "manufactureId" && <span onClick={props.stopScanning}>
-              <Link
-                to={`scanproduction/${props.data}`}>
-                {props.data}
-              </Link>
-            </span>}
+            </span>
 
           </div>
         )}
