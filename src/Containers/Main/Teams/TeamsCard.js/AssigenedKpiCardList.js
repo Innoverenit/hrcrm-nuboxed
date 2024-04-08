@@ -67,7 +67,7 @@ function AssigenedKpiCardList(props) {
   
   <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[13.5rem]">
+          <div className=" md:w-[17.5rem]">
         <FormattedMessage
                   id="app.name"
                   defaultMessage="Name"
@@ -134,7 +134,7 @@ function AssigenedKpiCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm  text-cardBody font-poppins ">
                                                 
       {item.lobName}
      

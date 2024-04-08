@@ -26,23 +26,28 @@ function InvestorRegionalJumpstartBox(props) {
     <>
       {/* <div className="font-bold flex-col justify-center flex text-lg">Investment</div> */}
       <div className="flex flex-row w-full">
-        <div className="flex w-full max-sm:flex-col">
-          {props.regionRecords.map((region, index) => (
-            <div key={index} className="flex w-wk">
-              <JumpStartBox
-                // bgColor="linear-gradient(270deg,#F15753,orange)"
-                noProgress
-                value={region.investment}
-                jumpstartClick={()=>handleInvestmentModal(true)}
-                cursorData={"pointer"}
-                bgColor={colors[index % colors.length]} 
-                title={region.regions}
-                isLoading={props.user.fetchingJumpstartInvestor}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+  <div className="flex w-full max-sm:flex-col">
+    {props.regionRecords.map((region, index) => (
+      <React.Fragment key={index}>
+        {region.investment !== 0 && (
+          <div className="flex w-wk">
+            <JumpStartBox
+              // bgColor="linear-gradient(270deg,#F15753,orange)"
+              noProgress
+              value={region.investment}
+              jumpstartClick={() => handleInvestmentModal(true)}
+              cursorData={"pointer"}
+              bgColor={colors[index % colors.length]}
+              title={region.regions}
+              isLoading={props.user.fetchingJumpstartInvestor}
+            />
+          </div>
+        )}
+      </React.Fragment>
+    ))}
+  </div>
+</div>
+
       <AddInvestmentDrawerModal
         addInvestmentModal={addInvestmentModal}
         handleInvestmentModal={handleInvestmentModal}
