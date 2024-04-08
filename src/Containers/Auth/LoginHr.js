@@ -206,10 +206,10 @@ class LoginHr extends Component {
                     <Button
                       type="primary"
                       htmlType="submit"
-                      Loading={isSubmitting}
+                      loading={isSubmitting}
                       style={{ width: "100%", height: "2.5em" }}
                     >
-                      Log In
+                     {isSubmitting ? 'Logging In...' : 'Log In'}
                     </Button>
                   </Form>
                 )}
