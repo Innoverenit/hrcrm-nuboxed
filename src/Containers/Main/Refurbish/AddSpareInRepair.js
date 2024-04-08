@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react';
 import { BundleLoader } from '../../../Components/Placeholder';
-
 const AddMultipleQCSpare = lazy(() => import("./AddMultipleQCSpare"));
 const RepairSpareListTable = lazy(() => import("./RepairSpareListTable"));
 

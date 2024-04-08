@@ -14,19 +14,19 @@ function ProductionRepairOrder(props) {
     //     if (props.inspectionRequiredInd) {
     //         props.getOrderIdForCatalogueItem(props.userId)
     //     } else {
-    //         props.getRepairOrderByUser(props.locationId, props.userId)
+    //         props.getRepairOrderByUser( props.userId)
     //     }
     // }, [])
 
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getRepairOrderByUser(props.locationId, props.userId)
+        props.getRepairOrderByUser(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getRepairOrderByUser(props.locationId, props.userId)
+        props.getRepairOrderByUser(props.userId)
     };
 
     const [rowData, setRowData] = useState({})
@@ -125,7 +125,7 @@ function ProductionRepairOrder(props) {
                                                                     productionRepairDispatchId: item.productionRepairDispatchId
                                                                 },
                                                                     item.orderPhoneId,
-                                                                    props.locationId,
+
                                                                     props.userId)
                                                             }}
                                                         >Start Repair</Button> :

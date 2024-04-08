@@ -311,7 +311,8 @@ function PhoneListForRepair(props) {
                                                     {item.repairStatus === "In Progress" &&
                                                         props.rowData.repairInspectionInd === 1 &&
                                                         <>
-                                                            <PauseCircleFilled
+                                                            {!item.pauseInd ? <PauseCircleFilled
+                                                                class=" cursor-pointer"
                                                                 onClick={() => {
                                                                     let data = {
                                                                         phoneTimesId: "",
@@ -321,8 +322,18 @@ function PhoneListForRepair(props) {
                                                                     }
                                                                     props.updatePauseStatus(data)
                                                                 }}
-                                                            />
-                                                            <PlayCircleFilled />
+                                                            /> :
+                                                                <PlayCircleFilled
+                                                                    class=" cursor-pointer"
+                                                                    onClick={() => {
+                                                                        let data = {
+                                                                            phoneTimesId: "",
+                                                                            userId: props.userId,
+                                                                            phoneId: item.phoneId,
+                                                                            pauseInd: false
+                                                                        }
+                                                                        props.updatePauseStatus(data)
+                                                                    }} />}
                                                         </>
 
                                                     }

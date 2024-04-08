@@ -12,12 +12,12 @@ function OpenRepairTable(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getOpenRepair(props.locationId, props.userId)
+        props.getOpenRepair(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getOpenRepair(props.locationId, props.userId)
+        props.getOpenRepair(props.userId)
     };
 
     return (

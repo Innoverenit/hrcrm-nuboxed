@@ -1,4 +1,4 @@
-import { Button, Steps } from 'antd';
+import { Button, Steps, Popconfirm } from 'antd';
 import React from 'react';
 import {
     startQCStatus,
@@ -56,19 +56,28 @@ const StatusOfOrder = (props) => (
                                 </Button>
                                 {
                                     props.particularRowData.qcStartInd === 0 ?
-                                        <Button
-                                            loading={props.startingQcInStatus}
-                                            type='primary'
-                                            onClick={() => props.startQCStatus({
-                                                orderPhoneId: props.particularRowData.orderId || "",
-                                                qcStartInd: 1,
-                                                qcStartUserId: props.userId
-                                            },
-                                                props.distributorId
-                                            )}
-                                        >
-                                            Approve QC
-                                        </Button>
+                                        <>
+                                            <Popconfirm
+                                                title="Do you wish to approve ? "
+                                                onConfirm={() => props.startQCStatus({
+                                                    orderPhoneId: props.particularRowData.orderId || "",
+                                                    qcStartInd: 1,
+                                                    qcStartUserId: props.userId
+                                                },
+                                                    props.distributorId
+                                                )}
+                                                onCancel={null}
+                                                okText="Yes"
+                                                cancelText="No"
+                                            >
+                                                <Button
+                                                    loading={props.startingQcInStatus}
+                                                    type='primary'
+                                                >
+                                                    Approve QC
+                                                </Button>
+                                            </Popconfirm>
+                                        </>
                                         : <b> QC approved on {moment(props.particularRowData.qcStartDate).format("DD-MM-YYYY")}
                                             &nbsp;  by {props.particularRowData.qcStartUser}</b>} |
                                 <b>Advance as per Order - {props.particularRowData.advancePayment} % </b>
@@ -183,18 +192,30 @@ const StatusOfOrder = (props) => (
                         <>
                             {
                                 props.particularRowData.priceConfirmInd && props.particularRowData.qcRepairInd === 0 ?
-                                    (<Button
-                                        loading={props.startRepairingInStatus}
-                                        type='primary'
-                                        onClick={() => props.startRepairInStatus({
-                                            qcRepairInd: 1,
-                                            orderPhoneId: props.particularRowData.orderId || "",
-                                            qcRepairUserId: props.userId,
-                                            repairReason: "",
-                                            repairReasonInd: true
-                                        }, props.distributorId)}
-                                    >
-                                        Start Repair</Button>)
+                                    (
+                                        <>
+                                            <Popconfirm
+                                                title="Do you wish to start ? "
+                                                onConfirm={() => props.startRepairInStatus({
+                                                    qcRepairInd: 1,
+                                                    orderPhoneId: props.particularRowData.orderId || "",
+                                                    qcRepairUserId: props.userId,
+                                                    repairReason: "",
+                                                    repairReasonInd: true
+                                                }, props.distributorId)}
+                                                onCancel={null}
+                                                okText="Yes"
+                                                cancelText="No"
+                                            >
+                                                <Button
+                                                    loading={props.startRepairingInStatus}
+                                                    type='primary'
+
+                                                >
+                                                    Start Repair</Button>
+                                            </Popconfirm>
+                                        </>
+                                    )
                                     : !props.particularRowData.repairReasonInd && props.particularRowData.qcRepairInd === 0 && props.particularRowData.qcStartInd === 3 ?
                                         (<Button
                                             type='primary'

@@ -38,12 +38,12 @@ const ProductionOrderList = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getProductionOrderId(props.locationId)
+        props.getProductionOrderId(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getProductionOrderId(props.locationId)
+        props.getProductionOrderId(props.userId)
     };
     const [data, setData] = useState([]);
 
@@ -285,7 +285,7 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     assignOrderById: refurbish.assignOrderById,
     phoneByTechnician: refurbish.phoneByTechnician,
     showAssignRepairModal: refurbish.showAssignRepairModal,
-    locationId: auth.userDetails.locationId,
+    userId: auth.userDetails.userId,
     approveSpareModal: refurbish.approveSpareModal,
     productBuilderList: refurbish.productBuilderList
 });

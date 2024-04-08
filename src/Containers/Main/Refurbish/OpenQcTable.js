@@ -12,12 +12,12 @@ function OpenQcTable(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getOpenQcByUser(props.locationId, props.userId)
+        props.getOpenQcByUser(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getOpenQcByUser(props.locationId, props.userId)
+        props.getOpenQcByUser(props.userId)
     };
     return (
         <>

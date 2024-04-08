@@ -14,12 +14,12 @@ function ProductionOrderListById(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getOrderByUser(props.locationId, props.userId)
+        props.getOrderByUser(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getOrderByUser(props.locationId, props.userId)
+        props.getOrderByUser(props.userId)
     };
 
     const [rowData, setRowData] = useState({})
@@ -116,7 +116,7 @@ function ProductionOrderListById(props) {
                                                                     productionDispatchId: item.productionDispatchId,
                                                                     orderPhoneId: item.orderPhoneId,
                                                                     qcInspectionInd: 1
-                                                                }, item.orderPhoneId, props.locationId, props.userId)
+                                                                }, item.orderPhoneId, props.userId)
                                                             }}
                                                         >
                                                             Start Inspection
