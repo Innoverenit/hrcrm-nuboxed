@@ -56,7 +56,8 @@ function ProductionDispatchCard(props) {
                         <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
                         <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
                         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
-                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div>                                        
+                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div> 
+                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>                                       
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -103,12 +104,12 @@ function ProductionDispatchCard(props) {
                                             </div>
                                         </div>
 
-                                        {/* <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.attributeName}
+                                            <div class="text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.userName}
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                 <Tooltip title="Edit">

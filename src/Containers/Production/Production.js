@@ -7,6 +7,8 @@ import { BundleLoader } from "../../Components/Placeholder";
 import ProductionArchieveList from "./Child/ProductionArchieveList";
 const CreateProductionDrawer = lazy(() => import("./Child/CreateProductionDrawer"));
 const ProductionCardView = lazy(() => import("./Child/ProductionCardView"));
+const ProductionAllCardView=lazy(()=>import("./Child/ProductionAllCardView"));
+const ProductionBoard=lazy(()=>import("./Child/ProductionBoard"));
 
 function Production(props) {
 
@@ -22,17 +24,20 @@ function Production(props) {
         openProductiondrawer={props.openProductiondrawer}
         handleCreateProduction={props.handleCreateProduction}
       />
-
+<Suspense fallback={<BundleLoader />}>
       {props.viewType === "card" ?
-        <Suspense fallback={<BundleLoader />}>
+        
           <ProductionCardView viewType={props.viewType} />
-        </Suspense>
-        :
-        <Suspense fallback={<BundleLoader />}>
+       
+        : props.viewType === "arch" ?
           <ProductionArchieveList viewType={props.viewType} />
-        </Suspense>
-      }
 
+        : props.viewType === "all" ? 
+        <ProductionAllCardView viewType={props.viewType} /> :
+        props.viewType === "stage" ?
+        <ProductionBoard /> :
+          null}
+      </Suspense>
 
     </>
   )

@@ -46,7 +46,7 @@ function CreateProduction(props) {
                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Select Product</div>
                 <Select value={selectedValue} onChange={handleChange}>
                   {producs.map(option => {
-                    return <Option key={option.productId} value={option.productFullName}>{option.productFullName}</Option>
+                    return <Option key={option.productId} value={option.productName}>{option.productName}</Option>
                   })}
                 </Select>
               </div>

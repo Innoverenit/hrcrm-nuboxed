@@ -19,7 +19,8 @@ function ProductionSearchedToggle(props) {
           productId: props.item.productId,
           quantity: props.item.quantity,
           locationDetailsId: props.locationId,
-          userId: props.userId
+          userId: props.userId,
+          orgId:props.organizationId
         },);
     }
   };
@@ -39,6 +40,7 @@ function ProductionSearchedToggle(props) {
 const mapStateToProps = ({ auth }) => ({
   userId: auth.userDetails.userId,
   locationId: auth.userDetails.locationId,
+  organizationId: auth.userDetails.organizationId,
 
 });
 
