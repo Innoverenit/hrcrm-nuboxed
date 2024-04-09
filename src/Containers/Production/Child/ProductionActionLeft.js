@@ -37,7 +37,31 @@ const ProductionActionLeft = (props) => {
         </span>
         </Badge>
       </Tooltip>
-
+      <Tooltip
+          title={
+            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
+          }
+        >
+             <Badge
+        size="small"
+        // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
+        overflowCount={999}
+      >
+          <span
+            style={{
+              fontSize: "1.56em",
+              marginRight: "0.3rem",
+              cursor:"pointer",
+              color: props.viewType === "stage" && "#1890ff",
+            }}
+            onClick={() => props.setProductionViewType("stage")}
+          >
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
+           <TableOutlined/>
+           </Avatar>
+          </span>
+          </Badge>
+        </Tooltip>
       <Tooltip title="Archiev List">
         <span class=" md:mr-2 text-sm cursor-pointer"
           onClick={() => setProductionViewType("arch")}
@@ -69,31 +93,7 @@ const ProductionActionLeft = (props) => {
                         </span>
                     </Badge>
                 </Tooltip>
-                <Tooltip
-          title={
-            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
-          }
-        >
-             <Badge
-        size="small"
-        // count={(viewType === "stage" && recordData.opportunityDetails) || 0}
-        overflowCount={999}
-      >
-          <span
-            style={{
-              fontSize: "1.56em",
-              marginRight: "0.3rem",
-              cursor:"pointer",
-              color: props.viewType === "stage" && "#1890ff",
-            }}
-            onClick={() => props.setProductionViewType("stage")}
-          >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined/>
-           </Avatar>
-          </span>
-          </Badge>
-        </Tooltip>
+               
     </div>
   );
 };

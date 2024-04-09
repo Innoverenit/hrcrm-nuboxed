@@ -1,12 +1,17 @@
 import { Button, Input } from 'antd'
-import React, { useState } from 'react'
-import { addRoomAndRackInInventory } from "./InventoryAction"
+import React, { useState,useEffect } from 'react'
+import { addRoomAndRackInInventory,getRoomRackByLocId } from "./InventoryAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CloseOutlined } from "@ant-design/icons"
 import { FormattedMessage } from 'react-intl';
 
 const RoomAndRackForm = (props) => {
+
+  useEffect(()=>{
+props.getRoomRackByLocId(props.rowData.locationDetailsId)
+  },[]);
+
     const [rows, setRows] = useState([{ input1: '', input2: '' }]);
 
     const handleChange = (index, key, value) => {
@@ -66,7 +71,7 @@ const RoomAndRackForm = (props) => {
             </div>
             </div>
             <div>
-              <label>Rack</label>
+              <label>#Rack</label>
             <div class="w-24">
             <Input
               type="text"
@@ -139,7 +144,8 @@ const mapStateToProps = ({ inventory, auth, locations }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addRoomAndRackInInventory
+            addRoomAndRackInInventory,
+            getRoomRackByLocId
         },
         dispatch
     );

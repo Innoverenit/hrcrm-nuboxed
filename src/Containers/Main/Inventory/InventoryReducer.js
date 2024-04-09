@@ -267,7 +267,12 @@ const initialState = {
 
   fetchingArchieveProductionLocId: false,
   fetchingArchieveProductionLocIdError: true,
-  archieveInProduction: []
+  archieveInProduction: [],
+
+  roomRackbyLoc:[],
+  fetchingRoomRack: false,
+  fetchingRoomRackByIdError:false,
+  
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1362,6 +1367,20 @@ export const inventoryReducer = (state = initialState, action) => {
     case types.HANDLE_STOCK_USED_DRAWER:
       return { ...state, stockUseDrwr: action.payload };
 
+      case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
+        return { ...state, fetchingRoomRack: true };
+      case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          roomRackbyLoc: action.payload
+        };
+      case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          fetchingRoomRackByIdError: true,
+        };
 
     default:
       return state;

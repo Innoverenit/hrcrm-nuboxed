@@ -74,7 +74,6 @@ export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_BYLOC_ID_REQUEST,
   });
   axios
-    // .get(`${base_url2}/product`,
     .get(`${base_url2}/production/product/${userId}/${pageNo}`,
       {
         headers: {
