@@ -129,6 +129,10 @@ const initialState = {
   fetchingSuppliesListError: false,
   suppliesList: [],
 
+  fetchingSuppliesListById: false,
+  fetchingSuppliesListByIdError: false,
+  suppliesBySupplier: [],
+
   feedbackModal: false,
 
   fetchingFeedbackBySupplierId: false,
@@ -283,19 +287,19 @@ const initialState = {
   fetchingPurchaseOrderError: false,
   poBySupplier: [],
 
-  supplierSuppliesdrwr:false,
+  supplierSuppliesdrwr: false,
 
   fetchingSupplierSupplies: false,
   fetchingSupplierSuppliesError: false,
-  supplierSuppliesList:[],
+  supplierSuppliesList: [],
 
   fetchingSupplierCount: false,
- fetchingSupplierCountError:false,
- countSupplier:{},
- fetchingAllSupplierCount: false,
- fetchingAllSupplierCountError:false,
- allCountSupplier:{},
-  
+  fetchingSupplierCountError: false,
+  countSupplier: {},
+  fetchingAllSupplierCount: false,
+  fetchingAllSupplierCountError: false,
+  allCountSupplier: {},
+
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -391,6 +395,22 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         fetchingSupplierList: false,
         fetchingSupplierListError: true,
+      };
+
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST:
+      return { ...state, fetchingSuppliesListById: true };
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_SUCCESS:
+      return {
+        ...state,
+        fetchingSuppliesListById: false,
+        suppliesBySupplier: action.payload
+      };
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        fetchingSuppliesListById: false,
+        fetchingSuppliesListByIdError: true,
+
       };
 
     case types.GET_SUPPLIER_BY_SUPPLIER_ID_REQUEST:
@@ -1232,76 +1252,76 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
-      case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
-        return { ...state, supplierSuppliesdrwr: action.payload };
-  
-        case types.GET_SUPPLIER_SUPPLIES_REQUEST:
-          return {
-            ...state,
-            fetchingSupplierSupplies: true,
-            fetchingSupplierSuppliesError: false,
-          };
-        case types.GET_SUPPLIER_SUPPLIES_SUCCESS:
-          return {
-            ...state,
-            fetchingSupplierSupplies: false,
-            fetchingSupplierSuppliesError: false,
-            supplierSuppliesList: action.payload,
-          };
-        case types.GET_SUPPLIER_SUPPLIES_FAILURE:
-          return {
-            ...state,
-            fetchingSupplierSupplies: false,
-            fetchingSupplierSuppliesError: true,
-          };
+    case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
+      return { ...state, supplierSuppliesdrwr: action.payload };
 
-          case types.SET_SUPPLIER_SUPPLIES_REQUEST:
-            return { ...state };
-          case types.SET_SUPPLIER_SUPPLIES_SUCCESS:
-            return {
-              ...state,
-              supplierSuppliesList: state.supplierSuppliesList.map(
-                (item) =>{
-                if (item.suppliesId === action.payload.suppliesId) {
-                  return action.payload;
-                } else {
-                  return item;
-                }
-              }),
-            };
-            case types.SET_SUPPLIER_SUPPLIES_FAILURE:
-            return { ...state };
+    case types.GET_SUPPLIER_SUPPLIES_REQUEST:
+      return {
+        ...state,
+        fetchingSupplierSupplies: true,
+        fetchingSupplierSuppliesError: false,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierSupplies: false,
+        fetchingSupplierSuppliesError: false,
+        supplierSuppliesList: action.payload,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierSupplies: false,
+        fetchingSupplierSuppliesError: true,
+      };
+
+    case types.SET_SUPPLIER_SUPPLIES_REQUEST:
+      return { ...state };
+    case types.SET_SUPPLIER_SUPPLIES_SUCCESS:
+      return {
+        ...state,
+        supplierSuppliesList: state.supplierSuppliesList.map(
+          (item) => {
+            if (item.suppliesId === action.payload.suppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+      };
+    case types.SET_SUPPLIER_SUPPLIES_FAILURE:
+      return { ...state };
 
 
-            case types.GET_SUPPLIER_COUNT_REQUEST:
-              return { ...state, fetchingSupplierCount: true };
-            case types.GET_SUPPLIER_COUNT_SUCCESS:
-              return {
-                ...state,
-                fetchingSupplierCount: false,
-                countSupplier: action.payload,
-              };
-            case types.GET_SUPPLIER_COUNT_FAILURE:
-              return {
-                ...state,
-                fetchingSupplierCount: false,
-                fetchingSupplierCountError: true,
-              };
+    case types.GET_SUPPLIER_COUNT_REQUEST:
+      return { ...state, fetchingSupplierCount: true };
+    case types.GET_SUPPLIER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierCount: false,
+        countSupplier: action.payload,
+      };
+    case types.GET_SUPPLIER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierCount: false,
+        fetchingSupplierCountError: true,
+      };
 
-              case types.GET_ALL_SUPPLIER_COUNT_REQUEST:
-                return { ...state, fetchingAllSupplierCount: true };
-              case types.GET_ALL_SUPPLIER_COUNT_SUCCESS:
-                return {
-                  ...state,
-                  fetchingAllSupplierCount: false,
-                  allCountSupplier: action.payload,
-                };
-              case types.GET_ALL_SUPPLIER_COUNT_FAILURE:
-                return {
-                  ...state,
-                  fetchingAllSupplierCount: false,
-                  fetchingAllSupplierCountError: true,
-                };
+    case types.GET_ALL_SUPPLIER_COUNT_REQUEST:
+      return { ...state, fetchingAllSupplierCount: true };
+    case types.GET_ALL_SUPPLIER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingAllSupplierCount: false,
+        allCountSupplier: action.payload,
+      };
+    case types.GET_ALL_SUPPLIER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingAllSupplierCount: false,
+        fetchingAllSupplierCountError: true,
+      };
     default:
       return state;
   }

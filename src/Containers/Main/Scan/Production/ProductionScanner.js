@@ -2,8 +2,8 @@ import React from 'react'
 
 const ProductionScanner = () => {
     return (
-        <div>
-            Add manufactureId details here
+        <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
+            Add manufactureId details here.....
         </div>
     )
 }

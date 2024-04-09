@@ -9,6 +9,7 @@ import moment from "moment";
 // import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { getLocationList } from "../../../../Account/AccountAction"
 import { movePoToInventory } from "../../../SuppliersAction"
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 function AddLocationInPo(props) {
     useEffect(() => {
@@ -31,7 +32,7 @@ function AddLocationInPo(props) {
     });
     return (
         <>
-            <Formik
+            {props.fetchingLocationList ? <BundleLoader /> : <Formik
                 initialValues={{
                     locationId: "",
                     userId: props.userId,
@@ -81,7 +82,7 @@ function AddLocationInPo(props) {
                         </div>
                     </Form>
                 )}
-            </Formik>
+            </Formik>}
         </>
     );
 }
@@ -89,7 +90,8 @@ const mapStateToProps = ({ distributor, suppliers, auth }) => ({
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
     locationlist: distributor.locationlist,
-    moveToInventory: suppliers.moveToInventory
+    moveToInventory: suppliers.moveToInventory,
+    fetchingLocationList: distributor.fetchingLocationList
 });
 
 const mapDispatchToProps = (dispatch) =>

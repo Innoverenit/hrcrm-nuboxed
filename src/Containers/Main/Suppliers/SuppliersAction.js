@@ -44,7 +44,7 @@ export const addSuppliers = (data, userId) => (dispatch) => {
 
 // get suppliers
 
-export const getSuppliersList = (userId,pageNo) => (dispatch) => {
+export const getSuppliersList = (userId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_SUPPLIERS_LIST_REQUEST,
   });
@@ -307,7 +307,7 @@ export const getPurchaseSuppliersList = (supplierId) => (dispatch) => {
     type: types.GET_PURCHASE_SUPPLIERS_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/supplies/${supplierId}`,
+    .get(`${base_url2}/po/poSupplierList/${supplierId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -324,6 +324,33 @@ export const getPurchaseSuppliersList = (supplierId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_PURCHASE_SUPPLIERS_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSuppliesListBySupplier = (supplierId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/supplies/${supplierId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_LIST_BY_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_LIST_BY_SUPPLIER_FAILURE,
         payload: err,
       });
     });
@@ -481,7 +508,7 @@ export const addSuppliersActivityCall = (call, cb) => (dispatch) => {
     type: types.ADD_SUPPLIERS_ACTIVITY_CALL_REQUEST,
   });
   axios
-    .post(`${base_url2}/call`, call,{
+    .post(`${base_url2}/call`, call, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -560,7 +587,7 @@ export const addSuppliersActivityTask = (task, cb) => (dispatch) => {
     });
 };
 
-export const getAllSuppliersList = (orgId,pageNo) => (dispatch) => {
+export const getAllSuppliersList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIERS_LIST_REQUEST,
   });
@@ -862,11 +889,11 @@ export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
   });
   axios
     .post(`${base_url2}/contactPerson`, supplier,
-    {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       dispatch(getSupplierContactList(supplierId));
@@ -895,9 +922,11 @@ export const getSupplierContactList = (supplierId) => (dispatch) => {
     type: types.GET_SUPPLIER_CONTACT_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/contactPerson/${supplierId}`, {headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },})
+    .get(`${base_url2}/supplier/contactPerson/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1069,9 +1098,11 @@ export const getActivityListBySupplierId = (supplierId) => (dispatch) => {
     type: types.GET_ACTIVITY_LIST_BY_SUPPLIERID_REQUEST,
   });
   axios
-    .get(`${base_url2}/activity/supplier/${supplierId}`, {headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },})
+    .get(`${base_url2}/activity/supplier/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1374,17 +1405,17 @@ export const setSupplierSuppliesType = (data) => (dispatch) => {
   dispatch({ type: types.SET_SUPPLIER_SUPPLIES_REQUEST });
   axios
     .post(
-      `${base_url2}/supplies/link-with-supplier`,data,
+      `${base_url2}/supplies/link-with-supplier`, data,
       {
-    
+
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
-      
+
       })
     .then((res) => {
       console.log(res);
-     
+
       dispatch({
         type: types.SET_SUPPLIER_SUPPLIES_SUCCESS,
         payload: res.data,
@@ -1407,9 +1438,11 @@ export const getSupplierCount = (userId) => (dispatch) => {
     type: types.GET_SUPPLIER_COUNT_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/user/count/${userId}`, {headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },})
+    .get(`${base_url2}/supplier/user/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1430,9 +1463,11 @@ export const getSupplierAllCount = (userId) => (dispatch) => {
     type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/user/count/${userId}`, {headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },})
+    .get(`${base_url2}/supplier/user/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
