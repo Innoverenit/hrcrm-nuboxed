@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm, Switch } from "antd";
+import { Tooltip, Button, Popconfirm, Switch,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
@@ -9,23 +9,32 @@ import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
-import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer } from "../ProductionAction"
+import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer,updateRoomRackProduction } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import PrintIcon from '@mui/icons-material/Print';
+import { getRoomRackByLocId } from "../../Main/Inventory/InventoryAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InpectProductionToggle from "./InpectProductionToggle";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 const BuilderProductionDrawer = lazy(() => import("./BuilderProductionDrawer"));
 const ProductionIDrawer = lazy(() => import("./ProductionIDrawer"));
 
+const { Option } = Select;
+
 function ProductionCardView(props) {
 
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
+    const [selectedManufactureId, setSelectedManufactureId] = useState('');
+    const [selectedRoomRackId, setSelectedRoomRackId] = useState('');
+    const [selectedLocationDetailsId, setSelectedLocationDetailsId] = useState('');
+    const [selectedCreationDate, setSelectedCreationDate] = useState('');
+    
 
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
         setPage(page + 1);
+        props.getRoomRackByLocId(props.locationId)
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -77,16 +86,30 @@ function ProductionCardView(props) {
         );
     }
 
-    const handleCallBack = () => {
-        // props.getPhoneOrderIdByUser(props.rowData.orderproductId, props.userId)
-        // props.getOrderByUser(props.locationId, props.userId)
-    }
+
     const {
         fetchingProductionLocId,
         productionByLocsId,
         user,
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
+
+
+const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
+    const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
+  const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
+  if (selectedRoomRack && associatedProduction) {
+    const { locationDetailsId, creationDate } = selectedRoomRack;
+    const { productId, productName, categoryName } = associatedProduction;
+  const dataToSend = {
+      roomRackId: selectedRoomRackId,
+      manufactureId: manufactureId, 
+      locationDetailsId: locationDetailsId,
+      roomEntryDate: creationDate,
+    };
+props.updateRoomRackProduction(dataToSend);
+}};
+
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -98,8 +121,6 @@ function ProductionCardView(props) {
                         <div className=" md:w-[7rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
                         <div className="md:w-[5rem]">Attribute</div>
-                        {/* <div className=" md:w-[5rem]">Start Date</div>
-                        <div className=" md:w-[5rem]">End Date</div> */}
                         <div className="md:w-[5.2rem]">Workflow</div>
                         <div className=" md:w-[5rem] ">Status</div>
                         <div className="md:w-[5rem]"></div>
@@ -123,7 +144,7 @@ function ProductionCardView(props) {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
-                                        <div>
+                                        <div key={item.productionProductId}>
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 <div class="flex">
                                                     <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -227,7 +248,17 @@ function ProductionCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-
+                                                    <Select
+                        classNames="w-32"
+                        value={item.zone}
+                        onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
+                      >
+                        {props.roomRackbyLoc.map((s) => (
+                          <Option key={s.roomRackId} value={s.roomRackId}>
+                            {s.zone}
+                          </Option>
+                        ))}
+                      </Select>
                                                     </div>
                                                 </div>
                                                 <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -341,7 +372,7 @@ function ProductionCardView(props) {
 }
 
 
-const mapStateToProps = ({ production, auth, }) => ({
+const mapStateToProps = ({ production, auth,inventory }) => ({
     productionByLocsId: production.productionByLocsId,
     fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
@@ -349,7 +380,8 @@ const mapStateToProps = ({ production, auth, }) => ({
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     clickedProductionIdrwr: production.clickedProductionIdrwr,
     organizationId: auth.userDetails.organizationId,
-    userId: auth.userDetails.userId
+    userId: auth.userDetails.userId,
+    roomRackbyLoc:inventory.roomRackbyLoc
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -358,7 +390,9 @@ const mapDispatchToProps = (dispatch) =>
             getProductionsbyLocId,
             handleBuilderProduction,
             handleProductionIDrawer,
-            updateProStatus
+            updateProStatus,
+            getRoomRackByLocId,
+            updateRoomRackProduction
         },
         dispatch
     );

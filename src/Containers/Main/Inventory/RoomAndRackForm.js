@@ -138,7 +138,8 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
 
 const mapStateToProps = ({ inventory, auth, locations }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
-    userId:auth.userDetails.userId
+    userId:auth.userDetails.userId,
+    roomRackbyLoc:inventory.roomRackbyLoc
 });
 
 const mapDispatchToProps = (dispatch) =>
