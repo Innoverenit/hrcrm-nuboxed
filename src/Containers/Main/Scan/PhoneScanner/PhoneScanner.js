@@ -1,19 +1,25 @@
+
 import React, { useEffect } from 'react'
 import { getPhoneDetails } from "../../../../Containers/Main/Refurbish/RefurbishAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SpareTaskTab from './SpareTaskTab';
+import ProductionScanner from '../Production/ProductionScanner';
 
 const PhoneScanner = (props) => {
 
     useEffect(() => {
         props.getPhoneDetails(props.match.params.phoneId)
     }, [])
+    let str = props.match.params.phoneId
+    let phnstr = str.substring(0, 2) === "PH"
+    let prodstr = str.substring(0, 2) === "MF"
+
 
     console.log(props.phoneDetails)
     return (
         <>
-            <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
+            {phnstr ? <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
                 <div className=' mt-2 ml-3 max-sm:flex flex md:flex-col max-sm:justify-around'>
                     <div class="">
                         <div class=" flex mt-1">
@@ -47,7 +53,7 @@ const PhoneScanner = (props) => {
                 <div class=" ml-3">
                     <SpareTaskTab phoneDetails={props.phoneDetails} phoneId={props.match.params.phoneId} />
                 </div>
-            </div>
+            </div> : prodstr ? <ProductionScanner /> : " Search Valid Id"}
         </>
     );
 }

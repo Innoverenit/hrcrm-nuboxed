@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { BundleLoader } from '../../../../../../Components/Placeholder';
 import { getPurchaseOrderDetailsList, updatePriceOfPoItem } from "../../../SuppliersAction"
 import { Button, Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -38,7 +39,7 @@ function PoSupplierDetailsTable(props) {
     };
     return (
         <>
-            <div className=' flex justify-end sticky z-auto'>
+            {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[23.1rem]">
@@ -163,7 +164,7 @@ function PoSupplierDetailsTable(props) {
                         })}
                     </InfiniteScroll>
                 </div>
-            </div>
+            </div>}
 
         </>
     )
