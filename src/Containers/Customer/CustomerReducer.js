@@ -190,6 +190,8 @@ const initialState = {
 
   clearbit: {},
 
+  addCustomerWonOppJumpstartModal:false,
+
   fetchingAllCustomers: false,
   fetchingAllCustomersError: false,
   allcustomersByUserId: [],
@@ -232,6 +234,10 @@ const initialState = {
   fetchingCusActivityTimelineStatus: false,
   fetchingCusActivityTimelineStatusError: false,
   customerActivityTimeline: [],
+
+  fetchingCustWonOppJumpstart: false,
+  fetchingCustWonOppJumpstartError:false,
+  wonOppOfCustJumpstart: [],
 
   addDrawerCustomerOpportunityModal: false,
 
@@ -2047,6 +2053,9 @@ export const customerReducer = (state = initialState, action) => {
 
                 case types.HANDLE_CUSTOMER_OPEN_OPPORTUNITY_JUMPSTART_MODAL:
                   return { ...state, addCustomerOpenOppJumpstartModal: action.payload };
+
+                  case types.HANDLE_CUSTOMER_WON_OPPORTUNITY_JUMPSTART_MODAL:
+                    return { ...state, addCustomerWonOppJumpstartModal: action.payload };
   
 
               case types.GET_CONTACTS_OF_JUMPSTART_REQUEST:
@@ -2078,6 +2087,24 @@ export const customerReducer = (state = initialState, action) => {
                   };
                 case types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE:
                   return { ...state, fetchingCustOpenOppJumpstart: false, fetchingCustOpenOppJumpstartError: true };
+
+
+
+                  case types.GET_WON_OPP_OF_JUMPSTART_REQUEST:
+                    return { ...state, fetchingCustWonOppJumpstart: true };
+                  case types.GET_WON_OPP_OF_JUMPSTART_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingCustWonOppJumpstart: false,
+                      wonOppOfCustJumpstart: action.payload,
+                      // contactByUserId: [
+                      //   ...state.contactByUserId,
+                      //   ...action.payload],
+                    
+                    };
+                  case types.GET_WON_OPP_OF_JUMPSTART_FAILURE:
+                    return { ...state, fetchingCustWonOppJumpstart: false, fetchingCustWonOppJumpstartError: true };
+              
             
           
 
