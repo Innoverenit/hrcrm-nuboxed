@@ -91,6 +91,7 @@ const ReceivedDetailCard = (props) => {
     const show = props.receivedDetailData.some((item) => item.grnReceivedInd === false && item.allowGrnInd === true)
     const checkall = props.receivedDetailData.every((item) => item.grnReceivedInd === true)
     console.log(show)
+    console.log(props.grnNoByPo.length)
 
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
@@ -274,12 +275,12 @@ const ReceivedDetailCard = (props) => {
             </div>
             <div className=' flex justify-end mt-1'>
                 {show &&
-                 <Button
-                    type='primary'
-                    onClick={showModal}
-                >
-                    Generate GRN
-                </Button>}
+                    <Button
+                        type='primary'
+                        onClick={showModal}
+                    >
+                        Generate GRN
+                    </Button>}
                 <Modal
                     title=""
                     open={isModalOpen}

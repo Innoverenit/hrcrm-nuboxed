@@ -16,6 +16,8 @@ class ReceivedDetailModal extends Component {
                     title={`PO Details - ${this.props.row.newPoNumber}`}
                     width="90%"
                     visible={addMaterialReceived}
+                    maskClosable={false}
+                    destroyOnClose
                     onClose={() => handleMaterialReceived(false)}
                     footer={null}
                 >
