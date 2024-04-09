@@ -14,6 +14,7 @@ import ReceivedDetailModal from "./ReceivedDetailModal";
 import { ListAltOutlined } from "@mui/icons-material";
 import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Tooltip } from "antd";
 
 const MaterialReceivedTable = (props) => {
     useEffect(() => {
@@ -36,8 +37,8 @@ const MaterialReceivedTable = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" md:w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
+                        <div className=" w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" w-[11.122rem]">Supplier</div>
                     </div>
                     <InfiniteScroll
@@ -55,7 +56,7 @@ const MaterialReceivedTable = (props) => {
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                         <div class="flex">
 
-                                            <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
+                                            <div className=" flex font-medium flex-col w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
@@ -71,7 +72,7 @@ const MaterialReceivedTable = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <MultiAvatar
@@ -82,21 +83,23 @@ const MaterialReceivedTable = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
-                                               
+                                               {item.supplierName}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.121rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
+                                                <Tooltip title="GRN list">
                                                 <ListAltOutlined
                                                     onClick={() => {
                                                         handleRow(item);
                                                         props.handlegrnlistmodal(true)
                                                     }}
                                                 />
+                                                </Tooltip>
                                             </div>
 
                                         </div>

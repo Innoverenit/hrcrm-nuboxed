@@ -7,6 +7,7 @@ import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getDispatchProductionsbyLocId } from "../../../InventoryAction";
+import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 
 function ProductionDispatchCard(props) {
 
@@ -53,11 +54,11 @@ function ProductionDispatchCard(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
-                        <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
-                        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
-                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div> 
-                        <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>                                       
+                        <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
+                        <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
+                        <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
+                        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div> 
+                        <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>                                       
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -90,13 +91,13 @@ function ProductionDispatchCard(props) {
 
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium flex-col w-[16.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                                             {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col w-[18.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -104,10 +105,16 @@ function ProductionDispatchCard(props) {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
 
                                             <div class="text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.userName}
+                                                {/* {item.userName} */}
+                                                <MultiAvatar
+                                                  primaryTitle={item.userName}
+                                                  imageId={item.imageId}                  
+                                                  imgWidth={"1.8rem"}
+                                                  imgHeight={"1.8rem"}
+                                                     />
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
