@@ -206,6 +206,7 @@ contactInVestDetail={this.props.contactInVestDetail}
         <AddDocumentModals
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            contactId={contactId}
           />
                <ContactInvestorActivityModal
              contactInVestDetail={this.props.contactInVestDetail}
@@ -238,6 +239,7 @@ contactInVestDetail={this.props.contactInVestDetail}
 const mapStateToProps = ({ contact,contactinvest }) => ({
   //   addContactSpeechModal:contact.addContactSpeechModal,
     documentUploadModal: contact.documentUploadModal,
+    contactId:contact.contact.contactId,
     contactInvestorActivityModal:contactinvest.contactInvestorActivityModal,
   //   addContactOpportunityModal: contact.addContactOpportunityModal,
 });

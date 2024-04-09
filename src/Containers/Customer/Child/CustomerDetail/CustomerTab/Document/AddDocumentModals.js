@@ -519,11 +519,15 @@ function AddDocumentModal (props){
             documentDescription: "",
             contract: contract ? "true" : "false",
             documentId: "",
-            customerId: customer.customerId,
+            customerId: props.customerId,
+            contactId: props.contactId,
+            opportunityId: props.opportunityId,
+            invOpportunityId:props.invOpportunityId,
+            investorId:props.investorId
           }}
           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
-            addCustomerDocument({ ...values, contract: contract ? "true" : "false" }, callback);
+            addCustomerDocument({ ...values, included:selectedIncludeValues, contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}
         >
