@@ -4,6 +4,8 @@ const initialState = {
   viewType: "table",
   addCustomerModal: false,
 
+  addCustomerContactJumpstartModal:false,
+
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
@@ -25,6 +27,8 @@ const initialState = {
 
   customerProjectModal: false,
 
+  addCustomerActivityJumpstartModal:false,
+
   fetchingFilterCustomers: false,
   fetchingFilterCustomersError: false,
 
@@ -38,9 +42,21 @@ const initialState = {
   fetchingCustomerProjectError: false,
   customerProject: [],
 
+
+  fetchingCustOpenOppJumpstart: false,
+  fetchingCustOpenOppJumpstartError:false,
+  openOppOfCustJumpstart: [],
+
+  addCustomerOpenOppJumpstartModal:false,
+
   addingCustomerContact: false,
   addingCustomerContactError: false,
   addCustomerContactModal: false,
+
+
+  fetchingCustContactsJumpstart: false,
+  fetchingCustContactsJumpstartError:false,
+  contactOfCustJumpstart: [],
 
   fetchinglatestCustomer: false,
   fetchinglatestCustomerError: false,
@@ -2021,6 +2037,49 @@ export const customerReducer = (state = initialState, action) => {
               fetchingCustomerAllRecords: false,
               fetchingCustomerAllRecordsError: true,
             };
+
+
+            case types.HANDLE_CUSTOMER_CONTACT_JUMPSTART_MODAL:
+              return { ...state, addCustomerContactJumpstartModal: action.payload };
+
+              case types.HANDLE_CUSTOMER_ACTIVITY_JUMPSTART_MODAL:
+                return { ...state, addCustomerActivityJumpstartModal: action.payload };
+
+                case types.HANDLE_CUSTOMER_OPEN_OPPORTUNITY_JUMPSTART_MODAL:
+                  return { ...state, addCustomerOpenOppJumpstartModal: action.payload };
+  
+
+              case types.GET_CONTACTS_OF_JUMPSTART_REQUEST:
+                return { ...state, fetchingCustContactsJumpstart: true };
+              case types.GET_CONTACTS_OF_JUMPSTART_SUCCESS:
+                return {
+                  ...state,
+                  fetchingCustContactsJumpstart: false,
+                  contactOfCustJumpstart: action.payload,
+                  // contactByUserId: [
+                  //   ...state.contactByUserId,
+                  //   ...action.payload],
+                
+                };
+              case types.GET_CONTACTS_OF_JUMPSTART_FAILURE:
+                return { ...state, fetchingCustContactsJumpstart: false, fetchingCustContactsJumpstartError: true };
+
+                case types.GET_OPEN_OPP_OF_JUMPSTART_REQUEST:
+                  return { ...state, fetchingCustOpenOppJumpstart: true };
+                case types.GET_OPEN_OPP_OF_JUMPSTART_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingCustOpenOppJumpstart: false,
+                    openOppOfCustJumpstart: action.payload,
+                    // contactByUserId: [
+                    //   ...state.contactByUserId,
+                    //   ...action.payload],
+                  
+                  };
+                case types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE:
+                  return { ...state, fetchingCustOpenOppJumpstart: false, fetchingCustOpenOppJumpstartError: true };
+            
+          
 
     default:
       return state;
