@@ -2710,3 +2710,89 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       payload: modalProps,
     });
   };
+
+
+  export const handleCustomerContactJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_CONTACT_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
+  };
+  export const handleCustomerActivityJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_ACTIVITY_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const handleCustomerOpenOpportunityJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_OPEN_OPPORTUNITY_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
+  };
+  
+
+  export const getContactListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/contacts/user/${userId}`;
+    // } else {
+    //   api_url = `/contacts`;
+    // }
+    dispatch({
+      type: types.GET_CONTACTS_OF_JUMPSTART_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/contacts/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CONTACTS_OF_JUMPSTART_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_CONTACTS_OF_JUMPSTART_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getOpenOppListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/contacts/user/${userId}`;
+    // } else {
+    //   api_url = `/contacts`;
+    // }
+    dispatch({
+      type: types.GET_OPEN_OPP_OF_JUMPSTART_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/opportunity/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_OPEN_OPP_OF_JUMPSTART_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE,
+          payload: err,
+        });
+      });
+  };

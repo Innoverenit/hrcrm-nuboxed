@@ -4,11 +4,18 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import {getProspectWeightedValue,
+  getCustomerActivityRecords,
   getWonCustomerOppValue,
   getWonCustomerPipeLineValue,
   getWonCustomerWeightedValue,
+  handleCustomerContactJumpstartModal,
+  handleCustomerActivityJumpstartModal,
+  handleCustomerOpenOpportunityJumpstartModal,
   getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import AddCustomerContactJumpstartModal from "./AddCustomerContactJumpstartModal";
+import AddCustomerActivityJumpstartModal from "./AddCustomerActivityJumpstartModal";
+import AddCustomerOpenOppJumpstartModal from "./AddCustomerOpenOppJumpstartModal";
 class CustomerPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -35,7 +42,9 @@ componentDidMount() {
   this.props.getWonCustomerOppValue(this.props.customer.customerId)
   // const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
   // const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-  this.props.getProspectWeightedValue(this.props.customer.customerId)
+  this.props.getProspectWeightedValue(this.props.customer.customerId);
+  this.props.getCustomerActivityRecords(this.props.customer.customerId);
+  
     this.props.getProspectOppValue(this.props.customer.customerId);    
     this.props.getProspectContactValue(this.props.customer.customerId);
     this.props.getProspectPipeLineValue(this.props.customer.customerId);
@@ -54,6 +63,14 @@ render() {
 
   console.log(startDate)
   console.log(this.state.endDate.format("YYYY MM DD"))
+  const {
+    handleCustomerActivityJumpstartModal,
+    addCustomerOpenOppJumpstartModal,
+    handleCustomerOpenOpportunityJumpstartModal,
+    addCustomerActivityJumpstartModal,
+    handleCustomerContactJumpstartModal,
+    addCustomerContactJumpstartModal
+  } = this.props;
   return(
     <>
     <div class=" flex flex-row w-full" >
@@ -67,6 +84,13 @@ render() {
                 defaultMessage="#Open Opportunities"
               />
             }
+            jumpstartClick={() => {
+              handleCustomerOpenOpportunityJumpstartModal(true);
+           
+              // handleRowData(region);
+            }}
+      
+            cursorData={"pointer"}
             value={
               this.props.OppValue.CustomerOppertunityDetails
 
@@ -124,10 +148,17 @@ render() {
             defaultMessage="Activity"
           />
         }
-        // value={
-        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+        value={
+          this.props.customerActivityCount.count
 
-        // }
+        }
+        jumpstartClick={() => {
+          handleCustomerActivityJumpstartModal(true);
+       
+          // handleRowData(region);
+        }}
+  
+        cursorData={"pointer"}
         bgColor="#FF4C33"
         // isLoading={this.props.fetchingWonCustomerOppValue} 
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -141,6 +172,14 @@ render() {
                 defaultMessage="#Contacts "
               />
             }
+       
+            jumpstartClick={() => {
+              handleCustomerContactJumpstartModal(true);
+           
+              // handleRowData(region);
+            }}
+      
+            cursorData={"pointer"}
 
             value={
               this.props.contactValue.CustomerContactDetails
@@ -246,12 +285,30 @@ render() {
       <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
     </FlexContainer> */}
   </div>
+  <AddCustomerContactJumpstartModal
+       customer={this.props.customer}
+        addCustomerContactJumpstartModal={addCustomerContactJumpstartModal}
+        handleCustomerContactJumpstartModal={handleCustomerContactJumpstartModal}
+      />
+        <AddCustomerActivityJumpstartModal
+       customer={this.props.customer}
+       addCustomerActivityJumpstartModal={addCustomerActivityJumpstartModal}
+        handleCustomerActivityJumpstartModal={handleCustomerActivityJumpstartModal}
+      />
+           <AddCustomerOpenOppJumpstartModal
+       customer={this.props.customer}
+       addCustomerOpenOppJumpstartModal={addCustomerOpenOppJumpstartModal}
+       handleCustomerOpenOpportunityJumpstartModal={handleCustomerOpenOpportunityJumpstartModal}
+      />
   </>
   ); 
 }
 }
 const mapStateToProps = ({ customer,auth }) => ({
+  addCustomerOpenOppJumpstartModal:customer.addCustomerOpenOppJumpstartModal,
   contactValue:customer.contactValue,
+  addCustomerActivityJumpstartModal:customer.addCustomerActivityJumpstartModal,
+  addCustomerContactJumpstartModal:customer.addCustomerContactJumpstartModal,
   WonCustomerWeighted:customer.WonCustomerWeighted,
   fetchingWonCusmWeightedValue:customer.fetchingWonCusmWeightedValue,
   WonCustomerPipeline:customer.WonCustomerPipeline,
@@ -262,6 +319,7 @@ const mapStateToProps = ({ customer,auth }) => ({
   pipelineValue:customer.pipelineValue,
   fetchingPipelineValue:customer.fetchingPipelineValue,
   OppValue:customer.OppValue,
+  customerActivityCount:customer.customerActivityCount,
   fetchingOppValue:customer.fetchingOppValue,
   WeightedValue:customer.WeightedValue,
   fetchingWeightedValue:customer.fetchingWeightedValue
@@ -270,11 +328,15 @@ const mapStateToProps = ({ customer,auth }) => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getProspectWeightedValue,
   getProspectOppValue,
+  getCustomerActivityRecords,
   getWonCustomerWeightedValue,
   getWonCustomerPipeLineValue,
   getProspectPipeLineValue,
   getProspectContactValue,
-  getWonCustomerOppValue
+  getWonCustomerOppValue,
+  handleCustomerContactJumpstartModal,
+  handleCustomerActivityJumpstartModal,
+  handleCustomerOpenOpportunityJumpstartModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerPulseJumpStart);

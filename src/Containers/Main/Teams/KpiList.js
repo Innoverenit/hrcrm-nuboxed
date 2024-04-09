@@ -154,118 +154,92 @@ function KpiList(props) {
     </div> 
     )}
      </div>
-    <div class=" flex flex-row mt-2 justify-between">
-    {activeTab && (
-            <div class=" w-[25%] mt-[1.2rem]  max-sm:w-wk">
-            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >Assign KPI</label>&nbsp;
-                      <select  className="customize-select"
-                       
-                      onChange={handleWorkflowChange}>
-          <option value="">Select</option>
-          {props.kpiListData.map((item, index) => (
-            <option 
-           
-            key={index} value={item.performanceManagementId}>
-              {item.kpi}
-            </option>
-          ))}
-        </select>
-            {/* <Field
-              name="performanceManagementId"
-              isColumnWithoutNoCreate
-              label={
-                <FormattedMessage
-                  id="app.kpi"
-                  defaultMessage="KPI List"
-                />
-              } 
-              onChange={(selectedValue) => setSelected(selectedValue)}
-              component={SelectComponent}
-              options={kpiNameOption}
-              isColumn
-              margintop={"0"}
-              //value={values.customerId}
-              inlineLabel
-            />  */}
-    
+     <div className="flex flex-wrap justify-between mt-2">
+  {activeTab && (
+    <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
+      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+        Assign KPI
+      </label>
+      <select
+        className="customize-select"
+        onChange={handleWorkflowChange}
+      >
+        <option value="">Select</option>
+        {props.kpiListData.map((item, index) => (
+          <option key={index} value={item.performanceManagementId}>
+            {item.kpi}
+          </option>
+        ))}
+      </select>
+    </div>
+  )}
+  {selected && (
+    <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
+      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+        LOB
+      </label>
+      <select
+        className="customize-select"
+        style={{ width: "50%" }}
+        onChange={handleLobChange}
+      >
+        <option value="">Select</option>
+        {props.lobListData.map((item, index) => (
+          <option key={index} value={item.lobDetsilsId}>
+            {item.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  )}
+  {selected && (
+    <>
+      <div className="w-[15%]">
+        <label className="text-[#444] font-bold text-[0.75rem]">Assigned</label>
+        <Field
+          onChange={(e) => setFieldValue("assignedValue", parseFloat(e.target.value))}
+          name="assignedValue"
+          type="number"
+          validate={(value) => {
+            if (!value || isNaN(Number(value))) {
+              return 'Assigned Value must be a number';
+            }
+            return null;
+          }}
+          component={InputComponent}
+          inlineLabel
+        />
       </div>
-      )}
-        {selected && (
-           <div class=" w-[25%] mt-[1.2rem]  max-sm:w-wk">
-            <label class=" text-[#444] font-bold  flex-col text-[0.75rem]" >LOB</label>&nbsp;
-                      <select  className="customize-select"
-                       style={{width:"50%"}}
-                      onChange={handleLobChange}>
-          <option value="">Select</option>
-          {props.lobListData.map((item, index) => (
-            <option 
-           
-            key={index} value={item.lobDetsilsId}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        
-      
-    
+      <div className="w-[15%]">
+        <label className="text-[#444] font-bold text-[0.75rem]">Weightage</label>
+        <Field
+          onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
+          name="weitageValue"
+          type="number"
+          validate={(value) => {
+            if (!value || isNaN(Number(value))) {
+              return 'Weightage value must be a number';
+            }
+            return null;
+          }}
+          component={InputComponent}
+          inlineLabel
+        />
       </div>
-       )}  
-      {selected && (
-          <>                                           
-        <div class=" w-[30%]" >
-        <label class=" text-[#444] font-bold text-[0.75rem]" >Assigned</label>&nbsp;
-                          <Field
-                            // isRequired
-                            onChange={(e) => setFieldValue("assignedValue", parseFloat(e.target.value))}
-                            name="assignedValue"
-                            type="number"
-                            validate={(value) => {
-                              if (!value || isNaN(Number(value))) {
-                                return 'Assigned Value must be a number';
-                              }
-                              return null;
-                            }} 
-                            // width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
-                          {/* <input value={this.state.value} onChange={this.onNumber}/> */}
-                        </div>  
-                        <div class=" w-[30%]" >
-        <label class=" text-[#444] font-bold text-[0.75rem]" >Weitage</label>&nbsp;
-                          <Field
-                            onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
-                            // isRequired
-                            name="weitageValue"
-                            type="number"
-                            validate={(value) => {
-                              if (!value || isNaN(Number(value))) {
-                                return 'Weitage value must be a number';
-                              }
-                              return null;
-                            }}
-                            // width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
-                          {/* <input value={this.state.value} onChange={this.onNumber}/> */}
-                        </div>                  
-</> 
-        )}   
-        </div>
-        {activeTab && (
-     <div class="flex justify-end w-[25%]  ">
-          <Button
-            htmlType="submit"
-            type="primary"
-            loading={addingKpi}
-          >
-            Submit
-          </Button>
-        </div>
-        )}
+      <div className="flex items-end">
+      <Button
+        htmlType="submit"
+        type="primary"
+        loading={addingKpi}
+      >
+        Submit
+      </Button>
+    </div>
+    </>
+  )}
+
+</div>
+
         
        
        
