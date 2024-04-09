@@ -300,6 +300,7 @@ return  <BundleLoader />
           />
 */}
          <AddDocumentModals
+         invOpportunityId={invOpportunityId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

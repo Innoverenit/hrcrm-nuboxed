@@ -512,6 +512,7 @@ class ContactDetailTab extends Component {
           />
 
           <AddDocumentModals
+           customerId={customerId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

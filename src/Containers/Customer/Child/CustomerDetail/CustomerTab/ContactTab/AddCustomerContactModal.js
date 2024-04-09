@@ -15,6 +15,7 @@ const AddCustomerContactModal = (props) => {
     handleCustomerContactModal,
     ...formProps
   } = props;
+  console.log(props.opportunityId)
   return (
     <>
       <StyledDrawer
@@ -28,7 +29,8 @@ const AddCustomerContactModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CustomerContactForm {...formProps} />{" "}
+          <CustomerContactForm {...formProps} 
+          opportunityId={props.opportunityId} />{" "}
         </Suspense>
       </StyledDrawer>
     </>

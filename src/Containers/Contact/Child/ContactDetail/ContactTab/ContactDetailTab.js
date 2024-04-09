@@ -148,6 +148,7 @@ class ContactDetailTab extends Component {
         <AddDocumentModals
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            contactId={ contactId }
           />
           <AddContactOpportunityModal
             addContactOpportunityModal={addContactOpportunityModal}
