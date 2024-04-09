@@ -8,11 +8,7 @@ function InventoryRoomRackModal(props) {
     return (
         <>
             <StyledDrawer
-               title={<FormattedMessage
-                id="app.roomAndRack"
-                defaultMessage="Room And Rack"
-              />}
-                // title="Room And Rack"
+               title={props.rowData.locationName}
                 width="60%"
                 visible={props.addroomrackininventory}
                 destroyOnClose

@@ -47,6 +47,7 @@ const InventoryCard = (props) => {
             <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.country" defaultMessage="Country" /></div>
             <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
+            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div>
             <div className="w-[4.3rem]"></div>
           </div>
           <InfiniteScroll
@@ -128,7 +129,7 @@ const InventoryCard = (props) => {
                               handleInventoryRoomRackModal(true);
                             }}
                           >
-                            Configure Store
+                             Store Config
                             </Button>
                          
                         </div>

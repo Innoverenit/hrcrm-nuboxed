@@ -1068,7 +1068,7 @@ export const addRoomAndRackInInventory = (data) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getInventory())
+      // dispatch(getInventory())
       dispatch({
         type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_SUCCESS,
         payload: res.data,
@@ -1677,10 +1677,34 @@ export const emptyInventory = () => (dispatch) => {
   });
 };
 
-
 export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_STOCK_USED_DRAWER,
     payload: modalProps,
   });
+};
+
+export const getRoomRackByLocId = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ROOM_RACK_BY_LOCID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ROOM_RACK_BY_LOCID_FAILURE,
+        payload: err,
+      });
+    });
 };
