@@ -28,17 +28,17 @@ const GrnListOfPO = (props) => {
         <>
             <div className=' flex justify-end sticky z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.stock" defaultMessage="To Stock" /></div>
+                        <div className=" w-[27.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                        <div className=" w-[12.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
+                        <div className=" w-[12.05rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
+                        <div className=" w-[16.02rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
+                        <div className=" w-[13.01rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
+                        <div className=" w-[30.02rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
+                        <div className=" w-[18.03rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
+                        <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
+                        <div className=" w-[16.15rem]"><FormattedMessage id="app.stock" defaultMessage="To Stock" /></div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
@@ -46,48 +46,48 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"75vh"}
+                        height={"65vh"}
                     >
                         {props.receivedDetailData.map((item) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                                    <div className="flex rounded-xl justify-between  mt-2 bg-white h-12 items-center p-3 ">
                                         <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
+                                            <div className=" flex font-medium flex-col w-[12.3rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
-                                                    {item.suppliesFullName}
+                                                    {item.suppliesFullName.substring(0, 20)} 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.price}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[8.02rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[8.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[7.52rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[7.43rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {`${item.unitReceived - item.unitDamaged}`}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div className=" flex font-medium flex-col  w-[9.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 <ListAltRounded
                                                     onClick={() => {
                                                         handleRow(item)
@@ -96,17 +96,17 @@ const GrnListOfPO = (props) => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[6.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.grnNumber}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[8.24rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <TransferToStock
                                                     allowGrnInd={item.allowGrnInd}

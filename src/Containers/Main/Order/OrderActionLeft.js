@@ -73,6 +73,28 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="List View">
           <Badge
             size="small"
+            count={(viewType === "production" && orderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => setOrderViewType("production")}
+              style={{
+                color: viewType === "production" && "#1890ff",
+              }}
+            >
+              
+              <Button type={viewType === "production" ? "primary" : ""} style={{ backgroundColor: viewType === "production" ? "" : "tomato" }}>
+             <label class="text-white">Production</label></Button>
+            </span>
+          </Badge>
+        </Tooltip>
+      </div>
+      <div className="">
+        <Tooltip title="List View">
+          <Badge
+            size="small"
             count={(viewType === "list" && orderCount.order) || 0}
 
             overflowCount={999}
@@ -84,9 +106,11 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
                 color: viewType === "list" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                <TocIcon className="text-white" /></Avatar>
-
+              {/* <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                <TocIcon className="text-white" /></Avatar> */}
+<Button type={viewType === "list" ? "primary" : ""} style={{ backgroundColor: viewType === "list" ? "" : "tomato" }}>
+                
+                <label class="text-white">Repair</label></Button>
             </span>
           </Badge>
         </Tooltip>
