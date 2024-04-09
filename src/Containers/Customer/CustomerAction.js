@@ -660,7 +660,7 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url}/customer/contact`, contact, {
+    .post(`${base_url}/contact`, contact, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
