@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 const initialState = {
   viewType: "list",
 
+  addInvestorActivityJumpstartModal:false,
+
   fetchingInvestors: false,
   fetchingInvestorsError: false,
   investorsbyId: [],
@@ -97,6 +99,10 @@ const initialState = {
   fetchingInvestorAllRecords: false,
   fetchingInvestorAllRecordsError: false,
   allinvestorRecord:{},
+
+  fetchingInvestorActivityValue: false,
+  fetchingInvestorActivityValueError: false,
+  InvestActivityValue: {},
 
   fetchingINVWeightedValue: false,
   fetchingINVWeightedValueError: false,
@@ -785,6 +791,25 @@ export const investorReducer = (state = initialState, action) => {
 
                                         case types.HANDLE_DEAL_MODAL:
                                           return { ...state, opencreateDealModal: action.payload };
+
+
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_REQUEST:
+                                            return { ...state, fetchingInvestorActivityValue: true, fetchingInvestorOppValueError: false };
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingInvestorActivityValue: false,
+                                              fetchingInvestorActivityValueError: false,
+                                              InvestActivityValue: action.payload,
+                                            };
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_FAILURE:
+                                            return { ...state, fetchingInvestorActivityValue: false, fetchingInvestorActivityValueError: true };
+
+
+                                            case types.HANDLE_INVESTOR_ACTIVITY_JUMPSTART_MODAL:
+                                              return { ...state, addInvestorActivityJumpstartModal: action.payload };
+                              
+              
                               
 
 
