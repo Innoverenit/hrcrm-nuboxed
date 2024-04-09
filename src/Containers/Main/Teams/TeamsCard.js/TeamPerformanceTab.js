@@ -1,15 +1,18 @@
-import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SalaryForm from "../EmployeeTable/SalaryForm"
 import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import EmployeeTreeMap from "./EmployeeTreeMap";
+import EmployeeDocumentView from "./EmployeeDrawer/EmployeeDocumentView";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import PerformanceManList from "./PerformanceManList";
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import UserKpiList from "./EmployeeDrawer/UserKpiList";
 const TabPane = StyledTabs.TabPane;
-class HandlePulseDrawerModal extends Component {
+class EmployeePulseDrawerModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,14 +24,21 @@ class HandlePulseDrawerModal extends Component {
 
   };
   render() {
-   
+    const {
+      singleEmployee: { employeeId, middleName, lastName,candidateId },
+      toggleViewType,
+      singleEmployee,
+    } = this.props;
     return (
       <div>
  <StyledDrawer
-          title={this.props.rowdata.fullName}
-          width={"60%"}
-          visible={this.props.addDrawerTeamsPulseModal}
-        onClose={() => this.props.handleTeamsPulseDrawerModal(false)}
+          title={this.props.employeeName.fullName}
+          closable
+          maskClosable={false}
+          destroyOnClose
+          width={"70%"}
+          visible={this.props.addDrawerEmployeePulseModal}
+        onClose={() => this.props.handleEmployeePulseDrawerModal(false)}
         
         >
           <Suspense fallback={<BundleLoader />}>
@@ -43,41 +53,7 @@ class HandlePulseDrawerModal extends Component {
           <EmployeeTreeMap
           employeeTreeMap={this.props.employeeTreeMap}
           /> */}
-           <TabsWrapper>
-          <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-            
-            <TabPane
-              tab={
-                <>
-                  <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                      Performance Mangement
-                    </span>
-                  </span>
-                
-                      
-                      
-                </>
-              }
-              key="1"
-            >
-               
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <PerformanceManList rowdata={this.props.rowdata}/>
-              </Suspense>
-            </TabPane>
-
-           
-
-          
-            
-
-           
-          
-          </StyledTabs>
-        </TabsWrapper>
+        
         </Suspense>
          
         </StyledDrawer>
@@ -99,7 +75,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HandlePulseDrawerModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeePulseDrawerModal);
 const CardWrapper = styled.div`
 border-radius: 1.2rem;
 box-shadow: 0 0.5em 0.375em -0.375em rgb(46 44 44);
@@ -111,4 +87,8 @@ padding: 0.3rem;
 width: 8rem;
 }
   }
+
+
+
+
 `

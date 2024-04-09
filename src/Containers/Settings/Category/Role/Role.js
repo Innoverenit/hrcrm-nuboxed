@@ -65,6 +65,8 @@ const Role = (props) => {
       console.log(region)
       let data={
         roleTypeId:region.roleTypeId,
+        organizationId:props.organizationId,
+        userId:props.userId,
         roleType:newRoleName,
         departmentId:departmentId,
        
@@ -86,8 +88,10 @@ setEditingId(null);
       // }
       let data={
         roleType:newRoleName,
-        orgId:props.orgId,
+        organizationId:props.organizationId,
+        userId:props.userId,
         departmentId:departmentId,
+       
       }
       props.addRoles(data,props.organizationId)
       setAddingRegion(false)
@@ -227,6 +231,8 @@ return <div><BundleLoader/></div>;
                             ))}
                           </Select>
               ) : (
+                // <div className="region">
+                // {region.departmentName}</div>
                   <div className="region" style={{width:"39rem"}}>{region.departmentName}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >

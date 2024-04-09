@@ -1149,3 +1149,38 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
       });
   };
+
+  export const getInvestorActivityValue = (investorId, startDate, endDate) => (dispatch) => {
+    dispatch({ type: types.GET_INVESTOR_ACTIVITY_VALUE_REQUEST });
+  
+    axios
+      .get(
+        `${base_url}/investor/activity/record/${investorId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res)
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_VALUE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_VALUE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleInvestorActivityJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_ACTIVITY_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
+  };

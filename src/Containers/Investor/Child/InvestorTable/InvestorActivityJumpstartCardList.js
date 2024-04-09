@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { Tooltip, Select, } from "antd";
+import { Tooltip, Select,  } from "antd";
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
-import {getCustomerActivityTimeline} from "../../CustomerAction"
+// import {getCustomerActivityTimeline} from "../../CustomerAction"
+
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import moment from "moment";
@@ -18,7 +19,7 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function CustrActivityJumpstartCardList(props) {
+function InvestorActivityJumpstartCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const [hasMore, setHasMore] = useState(true);
@@ -26,10 +27,10 @@ function CustrActivityJumpstartCardList(props) {
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
 
-  useEffect(() => {
-    props.getCustomerActivityTimeline(props.customer.customerId);
+//   useEffect(() => {
+//     props.getCustomerActivityTimeline(props.customer.customerId);
    
-}, []);
+// }, []);
   const [rowdata, setrowdata] = useState("");
   const [currentCustomerId, setCurrentCustomerId] = useState("");
   const [currentCustomer, setCurrentCustomer] = useState("");
@@ -356,9 +357,9 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getCustomerActivityTimeline
+        // getCustomerActivityTimeline
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(CustrActivityJumpstartCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorActivityJumpstartCardList);
 
