@@ -323,3 +323,31 @@ export const getProductRecords = (locationDetailsId) => (dispatch) => {
       });
     });
 };
+
+export const updateRoomRackProduction = (data) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ROOM_RACK_PRODN_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/addRoomAndRack`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_PRODN_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Done',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_PRODN_FAILURE,
+        payload:err
+      });
+    });
+};
