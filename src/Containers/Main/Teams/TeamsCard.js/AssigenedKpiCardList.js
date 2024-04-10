@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import { DeleteOutlined } from "@ant-design/icons";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getEmployeeKpiList,deleteKpiData,updateAssignedValue} from "../TeamsAction"
 import { Button } from 'antd';
@@ -101,8 +102,8 @@ function AssigenedKpiCardList(props) {
         <div className="w-[4.2rem]"></div>
 
       </div>
-   
-        
+      <div class=" flex flex-col" >
+      <div className="!h-[20vh] !mt-2" >
       {props.employeeKpiList.map((item) => { 
         
         
@@ -342,6 +343,8 @@ function AssigenedKpiCardList(props) {
 
                     )
                 })}
+                   </div>
+                   </div>
                     
       </div>
      
