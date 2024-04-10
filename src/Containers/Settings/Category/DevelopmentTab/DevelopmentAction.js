@@ -60,7 +60,8 @@ export const getDevelopment = (orgId) => (dispatch) => {
             // timer: 1500
           });
         }
-  
+        
+        dispatch(getDevelopment(orgId));
         dispatch(getDevelopmentCount(orgId));
         console.log(res);
         dispatch({
@@ -125,12 +126,12 @@ export const getDevelopment = (orgId) => (dispatch) => {
         });
       });
   };
-  export const searchDevelopmentName = (name) => (dispatch) => {
+  export const searchDevelopmentName = (taskTypeId,value) => (dispatch) => {
     dispatch({
       type: types.GET_DEVELOPMENT_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/roleType/search/${name}`, {
+      .get(`${base_url}/development/${taskTypeId}/${value}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

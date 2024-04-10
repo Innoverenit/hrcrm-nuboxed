@@ -51,9 +51,12 @@ function General(props) {
           partNoInd:props.requirementDuration.partNoInd,
           typeInd: props.requirementDuration.typeInd,
           repairOrdInd: props.requirementDuration.repairOrdInd,
+          qcInd: props.requirementDuration.qcInd,
+          
           
           proInd: props.requirementDuration.proInd,
           
+          repairProcessInd: props.requirementDuration.repairProcessInd,
           processInd: props.requirementDuration.processInd,
           fifoInd: props.requirementDuration.fifoInd,
 
@@ -261,6 +264,32 @@ function General(props) {
                                name="repairOrdInd"
                               component={SwitchComponent}
                               data={values.repairOrdInd}
+                              checkedChildren={"Yes"}
+                              unCheckedChildren={"No"}
+                              width={"7em"}
+                            />
+                              </div>
+                          </div>
+                          <div class=" flex flex-row justify-between mt-2">
+                          <div class=" text-sm  ml-2 ">QC</div>
+                          <div>
+                            <Field
+                               name="qcInd"
+                              component={SwitchComponent}
+                              data={values.qcInd}
+                              checkedChildren={"Yes"}
+                              unCheckedChildren={"No"}
+                              width={"7em"}
+                            />
+                              </div>
+                          </div>
+                          <div class=" flex flex-row justify-between mt-2">
+                          <div class=" text-sm  ml-2 ">Process</div>
+                          <div>
+                            <Field
+                               name="repairProcessInd"
+                              component={SwitchComponent}
+                              data={values.repairProcessInd}
                               checkedChildren={"Yes"}
                               unCheckedChildren={"No"}
                               width={"7em"}

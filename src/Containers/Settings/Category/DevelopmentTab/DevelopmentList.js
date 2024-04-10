@@ -45,15 +45,16 @@ const DevelopmentList = (props) => {
       props.getDevelopmentCount(props.orgId) 
   }, [])
 
-  const editRegion = (roleTypeId, name) => {
-    console.log(name)
-    console.log(name)
-      setEditingId(roleTypeId);
+  const editRegion = (developmentId, name,) => {
+
+      setEditingId(developmentId);
       setDevelopmentName(name);
+      // setTaskTypeId(value);
   };
 
-  const handleTask = (value) => {
-    setTaskTypeId(value);
+  const handleTask = (event) => {
+    const taskTypeId = event.target.value;
+    setTaskTypeId(taskTypeId);
   };
 
   const handleAddDevelopment = () => {
@@ -64,22 +65,23 @@ const DevelopmentList = (props) => {
   const handleUpdateDevelopment=(region)=>{
       console.log(region)
       let data={
-        roleTypeId:region.roleTypeId,
+        department:props.departmentId,
+        roleType:region.roleTypeId,
         organizationId:props.organizationId,
         userId:props.userId,
         value:newDevelopmentName,
-        taskTypeId:taskTypeId,
+        taskType:taskTypeId,
        
       }
-props.updateDevelopment(data,region.roleTypeId)
+props.updateDevelopment(data,region.developmentId)
 setEditingId(null);
   }
 
   const handleDevelopment = () => {
  
       let data={
-        departmentId:props.departmentId,
-        roleTypeId:props.roleTypeId,
+        department:props.departmentId,
+        roleType:props.roleTypeId,
         value:newDevelopmentName,
         organizationId:props.organizationId,
         userId:props.userId,
@@ -103,7 +105,7 @@ setEditingId(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.searchDevelopmentName(currentData);
+        props.searchDevelopmentName(taskTypeId,currentData);
       } else {
         console.error("Input is empty. Please provide a value.");
       }
@@ -141,7 +143,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          {/* <div class="w-[20rem]">
+          <div class="w-[20rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"roleType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -149,27 +151,27 @@ return <div><BundleLoader/></div>;
       </Tooltip>
     </div>
   </a>
-</div> */}
+</div>
             <div className="add-region" style={{width:"45%"}}>
               {addingRegion ? (
                   <div>
       
-                      
-      <Select
-        isRequired
-        style={{ width: "35%" }}
-        placeholder="Task"
-        onChange={handleTask}
-      >
-        {props.tasks.map((item) => (
-          <Option value={item.taskTypeId} key={item.taskTypeId}>
+      <select 
+    className="customize-select"
+    onChange={handleTask}
+>
+    <option value="">Select Task</option>
+    {props.tasks.map((item) => (
+        <option 
+            key={item.taskTypeId} value={item.taskTypeId}>
             {item.taskType}
-          </Option>
-        ))}
-      </Select>
+        </option>
+    ))}
+</select>             
+     
       <input 
                         placeholder="Add"
-                      style={{border:"2px solid black",width: "35%"}}
+                      style={{border:"2px solid black",width: "35%",marginLeft:"2rem"}}
                           type="text" 
                           value={newDevelopmentName} 
                           onChange={(e) => setDevelopmentName(e.target.value)} 
@@ -190,63 +192,67 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingDevelopment && developmentList.length === 0 ? <NodataFoundPage /> : developmentList.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
-            <div className="card9" key={region.roleTypeId}>
+          {!props.fetchingDevelopment && developmentList.map((region, index) =>(
+            <div className="card9" key={region.developmentId}>
             {/* Region name display or input field */}
             
         
 
-{editingId === region.roleTypeId ? (
-                             <Select
-                             defaultValue={region.taskType}
-                            style={{ width: "30%" }}
-                            placeholder="Select Task"
-                            onChange={handleTask}
-                          >
-                            {props.tasks.map((item) => (
-                              <Option value={item.taskTypeId} key={item.taskTypeId}>
-                                {item.taskType}
-                              </Option>
-                            ))}
-                          </Select>
+{editingId === region.developmentId ? (
+                           
+                      
+                             <select 
+                            //  defaultValue={region.taskType}
+                             className="customize-select"
+                             onChange={handleTask}
+                         >
+                             <option value="">Select Task</option>
+                             {props.tasks.map((item) => (
+                                 <option 
+                                     key={item.taskTypeId} value={item.taskTypeId}>
+                                     {item.taskType}
+                                 </option>
+                             ))}
+                         </select> 
               ) : (
 
-                  <div className="region" style={{width:"39rem"}}>{region.taskType}&nbsp;&nbsp;&nbsp;
+                  <div className="region" style={{width:"20rem"}}>{region.taskType}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
                                         </span> : null}</div>
               )}
 
-{editingId === region.roleTypeId ? (
+{editingId === region.developmentId ? (
               <>
                 <input
-                placeholder="Update"
-                style={{border:"2px solid black"}}
-                    type="text"
-                    value={newDevelopmentName}
-                    onChange={(e) => setDevelopmentName(e.target.value)}
-                />
+            // defaultValue={region.value}
+            placeholder="Update"
+            style={{border:"2px solid black"}}
+            type="text"
+            value={newDevelopmentName}
+            onChange={(e) => setDevelopmentName(e.target.value)}
+        />
      
                 </>
             ) : (
-                <div className="region">
-                  {region.roleType}</div>
+                <div className="region" style={{width:"15rem"}}>
+                  {region.value}</div>
             )}
 
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.roleTypeId ? (
+                {editingId === region.developmentId ? (
                     <div>
                         <button onClick={() => handleUpdateDevelopment(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                   <>
-                  {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.roleTypeId, region.roleType)} />
-                    ) : null}
+                  {/* {region.editInd ? ( */}
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId,region.value, region.taskType,)} />
+                    {/* ) : null} */}
                     </>
                 )}
 
@@ -255,7 +261,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeDevelopment(region.roleTypeId,props.orgId)}
+                        onConfirm={() =>  props.removeDevelopment(region.developmentId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -263,7 +269,7 @@ return <div><BundleLoader/></div>;
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.roleTypeId)
+              //     props.removeServiceLine(item.developmentId)
               //  }
                  />
                  </Popconfirm>
@@ -283,6 +289,7 @@ const mapStateToProps = ({ development, auth, tasks }) => ({
   addingDevelopmentError: development.addingDevelopmentError,
   developmentList: development.developmentList,
   tasks: tasks.tasks,
+  developeCount:development.developeCount,
   updatingDevelopment: development.updatingDevelopment,
   userId: auth.userDetails.userId,
   updatingDevelopmentError: development.updatingDevelopmentError,

@@ -14,7 +14,7 @@ class AddSalesDrawerModal extends Component {
       <div>
         <StyledDrawer
         // title="Sales"
-        //   title={this.props.rowdata.name}
+          title={`${this.props.rowdata.regions}-Sales`}
           width="64%"
           destroyOnClose
           closable

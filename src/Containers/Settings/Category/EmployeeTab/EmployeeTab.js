@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import SourceIcon from '@mui/icons-material/Source';
 import DevelopmentTab from "../DevelopmentTab/DevelopmentTab";
@@ -52,9 +53,14 @@ class EmployeeTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.developeCount.DevelopeCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                       Development
                       </span>
+                      </Badge>
                     </>
                   }
                   key="0"
@@ -86,8 +92,9 @@ class EmployeeTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth ,itemTask,shipBy}) => ({
+const mapStateToProps = ({auth ,development,itemTask,shipBy}) => ({
   user: auth.userDetails,
+  developeCount:development.developeCount,
   itemTaskCount:itemTask.itemTaskCount,
   shipByCount:shipBy.shipByCount,
 });
