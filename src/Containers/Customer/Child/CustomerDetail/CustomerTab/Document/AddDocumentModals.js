@@ -397,6 +397,7 @@ import {
   handleDocumentUploadModal,
   addCustomerDocument,
   getCustomerDocument,
+  getselectdrop,
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
@@ -440,7 +441,9 @@ function AddDocumentModal (props){
     }
   };
 
- 
+  useEffect(() => {
+    props.getselectdrop(props.orgId);
+  }, [ props.orgId]);
 
   const handleSelectChangeInclude = (values) => {
     setSelectedIncludeValues(values); // Update selected values
@@ -626,7 +629,7 @@ function AddDocumentModal (props){
           defaultValue={selectedIncludeValues}
           mode="multiple"
         >
-          {include.map((includes) => (
+          {props.selectDrop.map((includes) => (
             <Option key={includes.employeeId} value={includes.employeeId}>
               {includes.empName}
             </Option>
@@ -731,6 +734,7 @@ const mapStateToProps = ({ customer, settings, auth }) => ({
   addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
   organization: auth.userDetails?.metaData?.organization,
   orgId: auth.userDetails.organizationId,
+  selectDrop:customer.selectDrop
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -739,6 +743,7 @@ const mapDispatchToProps = (dispatch) =>
       handleDocumentUploadModal,
       addCustomerDocument,
       getCustomerDocument,
+      getselectdrop
     },
     dispatch
   );

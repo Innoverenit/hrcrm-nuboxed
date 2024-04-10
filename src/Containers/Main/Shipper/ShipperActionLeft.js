@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import GridViewIcon from '@mui/icons-material/GridView';
 import { FlexContainer } from "../../../Components/UI/Layout";
 import TocIcon from '@mui/icons-material/Toc';
-import { Input, Button, Tooltip,Badge  } from "antd";
+import { Input, Button, Tooltip,Badge,Avatar  } from "antd";
 import {
   inputDataSearch,
   getRecords,
@@ -108,7 +108,9 @@ const {
           }}
           onClick={() => props.setShipperViewType("table")}
           >
-             <GridViewIcon className="!text-2xl cursor-pointer"  />
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+              <TocIcon className="text-white" />
+              </Avatar>
           </span>          
         </Badge>
       </Tooltip>
@@ -123,12 +125,16 @@ const {
               color: props.viewType === "all" && "#1890ff",
             }}
             onClick={() => props.setShipperViewType("all")}
-          >   <TocIcon className="!text-2xl cursor-pointer"   />
+          >  
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+          ALL
+          </Avatar>
           </span>
           </Badge>
         </Tooltip>
    )}
       <Tooltip title="Deleted Shipper">
+      <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#4bc076" }}>
         <DeleteOutlined
         className="!text-2xl cursor-pointer"
           style={{
@@ -136,6 +142,7 @@ const {
           }}
           onClick={() => props.setShipperViewType("grid")}
         />
+        </Avatar>
       </Tooltip>
       {/* <Tooltip title="Dashboard View">
         <AreaChartOutlined
