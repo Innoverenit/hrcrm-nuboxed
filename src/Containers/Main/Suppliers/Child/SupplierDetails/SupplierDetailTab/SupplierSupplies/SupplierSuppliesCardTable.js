@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSupplierSupplies,setSupplierSuppliesType  } from "../../../../SuppliersAction";
+import { getSupplierSupplies,setSupplierSuppliesType,getSupplierSuppliesQuality  } from "../../../../SuppliersAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { Tooltip,Button } from "antd";
+import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
+
+const { Option } = Select;
 
 const ButtonGroup = Button.Group;
 
@@ -18,7 +20,7 @@ function SupplierSuppliesCardTable(props) {
 
   const [hasMore, setHasMore] = useState(true);
 
-  const [currentShipperId, setCurrentShipperId] = useState("");
+  const [currentType, setCurrentType] = useState("");
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
 
@@ -29,15 +31,15 @@ function SupplierSuppliesCardTable(props) {
     setrowData(data);
   };
 
-  function handleSetCurrentShipperId(shipperId) {
-    setCurrentShipperId(shipperId);
+  function handleSetCurrentType(selectvlu) {
+    setCurrentType(selectvlu);
   }
   const handleLoadMore = () => {
     setPage(page + 1);
   };
 
   useEffect(() => {
-    // props.emptysUPPLIERS();
+    props.getSupplierSuppliesQuality();
   }, []);
 
 
@@ -46,10 +48,16 @@ function SupplierSuppliesCardTable(props) {
       <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[46.1rem]">  <FormattedMessage
+            <div className=" md:w-[7.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
+             <div className="md:w-[7.9rem]">
+              <FormattedMessage id="app.category" defaultMessage="Category" />
+              </div>
+              <div className="md:w-[7.9rem]">
+              <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+              </div>
             <div className=" md:w-[10.11rem]">  <FormattedMessage
               id="app.attachwithsuplier"
               defaultMessage="Attach with Supplier"
@@ -100,51 +108,20 @@ function SupplierSuppliesCardTable(props) {
                               </div>
 
                             </div>
-                            {/* <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-
-
+                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {item.dialCode} {item.phoneNo}
+                                {item.categoryName} {item.subCategoryName}
                               </div>
-
                             </div>
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {item.emailId}
+                              {item.attributeName} {item.subAttributeName}
                               </div>
 
                             </div>
 
-
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {`${(item.address && item.address.length && item.address[0].address1) || ""}
-          ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""}`}
-                              </div>
-
-                            </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].city) ||
-                                  ""}
-                              </div>
-
-                            </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].postalCode) ||
-                                  ""}
-                              </div>
-
-                            </div> */}
                             <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
                             
 <SupplierSuppliesToggle
@@ -154,66 +131,69 @@ supplierId={props.supplier.supplierId}
 
 
 </div>
+<div>   
 {item.supplierSuppliesInd &&( 
-<div class="flex flex-row items-center md:w-[6rem] max-sm:flex-row w-full max-sm:justify-end">
-                  
+  <>
+<div class="flex flex-row items-center md:w-[8rem] max-sm:flex-row w-full max-sm:justify-end">
+  {/* <div class="flex">                
+{props.supplierSuppliesQuality.map((dt)=>{
 
+  return (
+   
                   <div>
-                    <ButtonGroup>
-                      <RoleButton
-                        type="A1"
-                        // iconType="fas fa-mug-hot"
-                        tooltip="A1"
-                        role={item.type}
+                    <Tooltip title={dt.type}>
+                    <div 
+                        // type={dt.type}
+                        // role={item.type}
                         onClick={() => {
-                          props.setSupplierSuppliesType({ type:"A1",
+                          props.setSupplierSuppliesType({ type:currentType,
                           suppliesId:item.suppliesId,
                           supplierId:props.supplier.supplierId,
                           supplierSuppliesInd:"true"
                         });
                         }}
-                      />
-                    </ButtonGroup>
+                      >
+{dt.type}
+                    </div>
+                    </Tooltip>
                   </div>
-                  <div>
-                    <ButtonGroup>
-                      <RoleButton1
-                        type="A2"
-                        // iconType="	fas fa-burn"
-                        // tooltip="Warm"
-                        tooltip="A2"
-                        role={item.type}
+                 
+                  )})}
+  </div>          */}
+  <Select
+          showSearch
+          
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          // loading={isLoadingInclude}
+          // onFocus={handleSelectIncludeFocus}
+          onChange={handleSetCurrentType}
+          defaultValue={item.type} 
+          mode="multiple" 
+        >
+          {props.supplierSuppliesQuality.map(opt => (
+            <Option key={opt.typeId} value={opt.typeId}>
+              {opt.type}
+            </Option>
+          ))}
+        </Select>
+        <Button type="primary"
+                        // type={dt.type}
+                        // role={item.type}
                         onClick={() => {
-                      
-                          props.setSupplierSuppliesType({type:"A2",
+                          props.setSupplierSuppliesType({ type:currentType,
                           suppliesId:item.suppliesId,
                           supplierId:props.supplier.supplierId,
                           supplierSuppliesInd:"true"
                         });
                         }}
-                      />
-                    </ButtonGroup>
-                  </div>
-                  <div>
-                    <ButtonGroup>
-                      <RoleButton2
-                        type="A3"
-                        // iconType="far fa-snowflake"
-                        tooltip="A3"
-                        role={item.type}
-                        onClick={() => {
-                          props.setSupplierSuppliesType({
-                            type:"A3",
-                            supplierId:props.supplier.supplierId,
-suppliesId:item.suppliesId,
-supplierSuppliesInd:"true"
-                        });
-                        }}
-                      />
-                    </ButtonGroup>
-                  </div>
-                </div>)}
-
+                      >
+Save
+                    </Button>
+                </div>
+                </>
+              )}
+ </div>
                           </div>
 
 
@@ -238,14 +218,16 @@ supplierSuppliesInd:"true"
 const mapStateToProps = ({  suppliers, auth }) => ({
   supplierSuppliesList: suppliers.supplierSuppliesList,
   userId: auth.userDetails.userId,
-  fetchingSupplierSupplies:suppliers.fetchingSupplierSupplies
+  fetchingSupplierSupplies:suppliers.fetchingSupplierSupplies,
+  supplierSuppliesQuality:suppliers.supplierSuppliesQuality
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSupplierSupplies,
-      setSupplierSuppliesType
+      setSupplierSuppliesType,
+      getSupplierSuppliesQuality
     },
     dispatch
   );
@@ -273,7 +255,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         onClick={onClick}
       >
         {/* <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i> */}
-      <div class="text-base">A1</div>
+      <div class="text-base"></div>
       </Button>
     </Tooltip>
   );

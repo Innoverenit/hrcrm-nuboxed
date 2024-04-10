@@ -1458,12 +1458,12 @@ export const getSupplierCount = (userId) => (dispatch) => {
       });
     });
 };
-export const getSupplierAllCount = (userId) => (dispatch) => {
+export const getSupplierAllCount = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/user/count/${userId}`, {
+    .get(`${base_url2}/supplier/all-suppliers/count/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1479,6 +1479,31 @@ export const getSupplierAllCount = (userId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_ALL_SUPPLIER_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getSupplierSuppliesQuality = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quality/All`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_SUPPLIES_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIER_SUPPLIES_QUALITY_FAILURE,
         payload: err,
       });
     });

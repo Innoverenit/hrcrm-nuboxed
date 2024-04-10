@@ -300,6 +300,10 @@ const initialState = {
   fetchingAllSupplierCountError: false,
   allCountSupplier: {},
 
+  fetchingSupplierSuppliesQuality: false,
+  fetchingSupplierSuppliesQualityError: false,
+  supplierSuppliesQuality: [],
+
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1322,6 +1326,27 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingAllSupplierCount: false,
         fetchingAllSupplierCountError: true,
       };
+
+      case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
+        return {
+          ...state,
+          fetchingSupplierSuppliesQuality: true,
+          fetchingSupplierSuppliesQualityError: false,
+        };
+      case types.GET_SUPPLIER_SUPPLIES_QUALITY_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierSuppliesQuality: false,
+          fetchingSupplierSuppliesQualityError: false,
+          supplierSuppliesQuality: action.payload,
+        };
+      case types.GET_SUPPLIER_SUPPLIES_QUALITY_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierSuppliesQuality: false,
+          fetchingSupplierSuppliesQualityError: true,
+        };
+
     default:
       return state;
   }
