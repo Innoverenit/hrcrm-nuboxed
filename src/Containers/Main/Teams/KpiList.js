@@ -95,26 +95,38 @@ function KpiList(props) {
   const { addingKpi } = props;
   return (
     <>
-      <Formik
+
+<Formik
         enableReinitialize
         initialValues={{
           // performanceManagementId:[],
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
           lobDetailsId: lob,
-          assignedValue:"",
+          month1AssignedValue:"",
+          month2AssignedValue:"",
+          month3AssignedValue:"",
           weitageValue:"",
           year: selectedYear,
           quarter:activeTab,
-      
+        
         }}
-        // validationSchema={TeamsSchema}
-        onSubmit={(values, { resetForm }) => {
-          props.addKpi(values,
-            
-             () => handleReset(resetForm));
+        onSubmit={(values) => {
+          const month1AssignedValue = values.month1AssignedValue !== "" ? values.month1AssignedValue : 0;  
+          const month2AssignedValue = values.month2AssignedValue !== "" ? values.month2AssignedValue : 0;  
+          const month3AssignedValue = values.month3AssignedValue !== "" ? values.month3AssignedValue : 0;   
+          props.addKpi(
+            {
+              ...values,
+              month1AssignedValue:month1AssignedValue,
+              month2AssignedValue:month2AssignedValue,
+              month3AssignedValue:month3AssignedValue,
+            },
+            // props.orgId
+          );
         }}
       >
+   
         {({
           errors,
           touched,
@@ -194,23 +206,78 @@ function KpiList(props) {
   )}
   {selected && (
     <>
-      <div className="w-[15%]">
+      <div className="w-[35%]">
         <label className="text-[#444] font-bold text-[0.75rem]">Assigned</label>
+     
+<div class=" flex flex-row">
         <Field
-          onChange={(e) => setFieldValue("assignedValue", parseFloat(e.target.value))}
-          name="assignedValue"
-          type="number"
-          validate={(value) => {
-            if (!value || isNaN(Number(value))) {
-              return 'Assigned Value must be a number';
-            }
-            return null;
-          }}
-          component={InputComponent}
-          inlineLabel
-        />
+     
+     name="month1AssignedValue"
+     type="number"
+     placeholder="Month1"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+     
+     <Field
+     
+     name="month2AssignedValue"
+     type="number"
+     placeholder="Month2"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+        <Field
+     
+     name="month3AssignedValue"
+     type="number"
+     placeholder="Month3"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+                  </div>
+        {/* </div> */}
       </div>
-      <div className="w-[15%]">
+      <div className="w-[15%] ">
         <label className="text-[#444] font-bold text-[0.75rem]">Weightage</label>
         <Field
           onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}

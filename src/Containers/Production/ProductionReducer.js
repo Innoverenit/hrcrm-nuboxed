@@ -38,6 +38,9 @@ const initialState = {
   settingInpectdn: false,settingInpectdnError:false,
 
   fetchingAllProductionOrgId: false,productionAllByOrgId:[], fetchingAllProductionOrgIdError:false,
+
+  updatingroomrackProdn: false,updatingroomrackProdnError:false,
+
 };
 export const productionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -215,6 +218,22 @@ export const productionReducer = (state = initialState, action) => {
             fetchingProductRecordsError: true,
           };
 
+case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
+          return { ...state,updatingroomrackProdn: true };
+        case types.UPDATE_ROOM_RACK_PRODN_SUCCESS:
+          return {
+            ...state,
+            updatingroomrackProdn: false,
+            productionByLocsId: state.productionByLocsId.map((item) => {
+              if (item.productionProductId === action.payload.productionProductId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.UPDATE_ROOM_RACK_PRODN_FAILURE:
+          return { ...state, updatingroomrackProdn: false,updatingroomrackProdnError:true, };
 
     default:
       return state;

@@ -62,6 +62,7 @@ class HandlePulseDrawerModal extends Component {
               }
               key="1"
             >
+               
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <PerformanceManList rowdata={this.props.rowdata}/>

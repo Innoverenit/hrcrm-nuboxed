@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
+import StairsIcon from '@mui/icons-material/Stairs';
 import {
   getTaskListRangeByUserId,
   deleteTask,
@@ -268,6 +269,8 @@ const TaskCardList = (props) => {
                           <div class="text-xs text-cardBody font-poppins"> 
                          {item.taskStatus === "Completed" ? `${completeDeviation} Days` : `${incompleteDeviationDate} Days`}
                      </div>
+              
+   
                      <div class="text-xs text-cardBody font-poppins ">
                                     <span>
                 {item.assignedToName === null ? (
@@ -572,9 +575,10 @@ const TaskCardList = (props) => {
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
-        const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-        const completeDeviation = endDate.diff(completionDate, 'days');
-
+        // const incompleteDeviationDate = endDate.diff(currentDate, 'days');
+        // const completeDeviation = endDate.diff(completionDate, 'days');
+        const incompleteDeviationDate = currentDate.diff(endDate, 'days');
+        const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
                             <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3">
@@ -839,6 +843,14 @@ const TaskCardList = (props) => {
 
      
      </div> 
+     <div className="flex font-medium flex-col md:w-20 max-sm:flex-row  w-full  justify-center ">
+           
+                      
+     <StairsIcon  className="!text-xl cursor-pointer text-[green]"/>
+               
+ 
+      
+      </div> 
   
                    </div>
                    <div class="flex w-44 ">

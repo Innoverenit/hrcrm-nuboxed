@@ -660,7 +660,7 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url}/customer/contact`, contact, {
+    .post(`${base_url}/contact`, contact, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2731,6 +2731,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       payload: modalProps,
     });
   };
+  export const handleCustomerWonOpportunityJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_WON_OPPORTUNITY_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
+  };
+  
   
 
   export const getContactListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
@@ -2792,6 +2799,33 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         console.log(err.response);
         dispatch({
           type: types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getWonOppListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_WON_OPP_OF_JUMPSTART_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/won/opportunity/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_WON_OPP_OF_JUMPSTART_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_WON_OPP_OF_JUMPSTART_FAILURE,
           payload: err,
         });
       });

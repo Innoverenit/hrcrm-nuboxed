@@ -11,11 +11,13 @@ import {getProspectWeightedValue,
   handleCustomerContactJumpstartModal,
   handleCustomerActivityJumpstartModal,
   handleCustomerOpenOpportunityJumpstartModal,
+  handleCustomerWonOpportunityJumpstartModal,
   getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import AddCustomerContactJumpstartModal from "./AddCustomerContactJumpstartModal";
 import AddCustomerActivityJumpstartModal from "./AddCustomerActivityJumpstartModal";
 import AddCustomerOpenOppJumpstartModal from "./AddCustomerOpenOppJumpstartModal";
+import AddCustomerWonOppJumpstartModal from "./AddCustomerWonOppJumpstartModal";
 class CustomerPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -65,11 +67,13 @@ render() {
   console.log(this.state.endDate.format("YYYY MM DD"))
   const {
     handleCustomerActivityJumpstartModal,
+    addCustomerWonOppJumpstartModal,
     addCustomerOpenOppJumpstartModal,
     handleCustomerOpenOpportunityJumpstartModal,
     addCustomerActivityJumpstartModal,
     handleCustomerContactJumpstartModal,
-    addCustomerContactJumpstartModal
+    addCustomerContactJumpstartModal,
+    handleCustomerWonOpportunityJumpstartModal
   } = this.props;
   return(
     <>
@@ -134,6 +138,13 @@ render() {
           this.props.WonCustomerOpp.CustomerWonOppertunityDetails
 
         }
+        jumpstartClick={() => {
+          handleCustomerWonOpportunityJumpstartModal(true);
+       
+          // handleRowData(region);
+        }}
+  
+        cursorData={"pointer"}
         bgColor="#35CD7A"
         // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
         isLoading={this.props.fetchingWonCustomerOppValue} 
@@ -300,11 +311,17 @@ render() {
        addCustomerOpenOppJumpstartModal={addCustomerOpenOppJumpstartModal}
        handleCustomerOpenOpportunityJumpstartModal={handleCustomerOpenOpportunityJumpstartModal}
       />
+               <AddCustomerWonOppJumpstartModal
+       customer={this.props.customer}
+       addCustomerWonOppJumpstartModal={addCustomerWonOppJumpstartModal}
+       handleCustomerWonOpportunityJumpstartModal={handleCustomerWonOpportunityJumpstartModal}
+      />
   </>
   ); 
 }
 }
 const mapStateToProps = ({ customer,auth }) => ({
+  addCustomerWonOppJumpstartModal:customer.addCustomerWonOppJumpstartModal,
   addCustomerOpenOppJumpstartModal:customer.addCustomerOpenOppJumpstartModal,
   contactValue:customer.contactValue,
   addCustomerActivityJumpstartModal:customer.addCustomerActivityJumpstartModal,
@@ -336,7 +353,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getWonCustomerOppValue,
   handleCustomerContactJumpstartModal,
   handleCustomerActivityJumpstartModal,
-  handleCustomerOpenOpportunityJumpstartModal
+  handleCustomerOpenOpportunityJumpstartModal,
+  handleCustomerWonOpportunityJumpstartModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerPulseJumpStart);

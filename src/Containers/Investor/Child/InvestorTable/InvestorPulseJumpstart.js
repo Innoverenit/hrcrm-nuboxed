@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
  import {
   getInvestorWeightedValue,
+  handleInvestorActivityJumpstartModal,
+  getInvestorActivityValue,
   getWonInvestorWeightedValue,
   getInvestorOppValue,
   getWonInvestorOppValue,
@@ -13,6 +15,7 @@ import dayjs from "dayjs";
   getInvestorContactValue
 } from "../../InvestorAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import AddInvestorActivityJumpstartModal from "./AddInvestorActivityJumpstartModal";
 class InvestorPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -35,6 +38,8 @@ class InvestorPulseJumpStart extends React.Component{
 componentDidMount() {
   // const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
   // const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
+  
+  this.props.getInvestorActivityValue(this.props.RowData.investorId)
    this.props.getInvestorWeightedValue(this.props.RowData.investorId)
     this.props.getInvestorOppValue(this.props.RowData.investorId); 
     this.props.getWonInvestorWeightedValue(this.props.RowData.investorId);   
@@ -57,6 +62,10 @@ render() {
 
   console.log(startDate)
   console.log(this.state.endDate.format("YYYY MM DD"))
+  const {
+    handleInvestorActivityJumpstartModal,
+    addInvestorActivityJumpstartModal
+  } = this.props;
   return(
     <>
         <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
@@ -132,10 +141,15 @@ render() {
             defaultMessage="Activity"
           />
         }
-        // value={
-        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+        value={
+          this.props.InvestActivityValue.count
 
-        // }
+        }
+        jumpstartClick={() => {
+          handleInvestorActivityJumpstartModal(true);
+        }}
+  
+        cursorData={"pointer"}
         bgColor="#FF4C33"
         // isLoading={this.props.fetchingWonCustomerOppValue} 
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -255,13 +269,20 @@ render() {
               <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
             </FlexContainer> */}
           </div>
+
+          <AddInvestorActivityJumpstartModal
+       RowData={this.props.RowData}
+       addInvestorActivityJumpstartModal={addInvestorActivityJumpstartModal}
+       handleInvestorActivityJumpstartModal={handleInvestorActivityJumpstartModal}
+      />
           </>
     
   ); 
 }
 }
 const mapStateToProps = ({ investor,auth }) => ({
-
+  addInvestorActivityJumpstartModal:investor.addInvestorActivityJumpstartModal,
+  InvestActivityValue:investor.InvestActivityValue,
   WonInvWeighted:investor.WonInvWeighted,
   fetchingWonINVWeightedValue:investor.fetchingWonINVWeightedValue,
   WonInvestorPipeline:investor.WonInvestorPipeline,
@@ -280,12 +301,14 @@ const mapStateToProps = ({ investor,auth }) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getInvestorWeightedValue,
+  getInvestorActivityValue,
   getWonInvestorWeightedValue,
 getInvestorOppValue,
 getWonInvestorOppValue,
 getInvestorPipeLineValue, 
 getWonInvestorPipeLineValue, 
-getInvestorContactValue
+getInvestorContactValue,
+handleInvestorActivityJumpstartModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvestorPulseJumpStart);

@@ -451,6 +451,7 @@ investorDetails={this.props.investorDetails}
             callback={() => getContactListByInvestorId(investorId)}
         />
           <AddDocumentModals
+          investorId={investorId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

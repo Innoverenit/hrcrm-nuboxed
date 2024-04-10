@@ -1,27 +1,16 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import ContactsIcon from '@mui/icons-material/Contacts';
-import { getCountries } from "../../../Auth/AuthAction";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import { Tooltip, Select, } from "antd";
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
 import {getCustomerActivityTimeline} from "../../CustomerAction"
-
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { FormattedMessage } from "react-intl";
-import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import moment from "moment";
 const Option = Select;
