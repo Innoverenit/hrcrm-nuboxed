@@ -60,7 +60,7 @@ export const getRoles = (orgId) => (dispatch) => {
             // timer: 1500
           });
         }
-  
+        dispatch(getRoles(orgId));
         dispatch(getRoleCount(orgId));
         console.log(res);
         dispatch({

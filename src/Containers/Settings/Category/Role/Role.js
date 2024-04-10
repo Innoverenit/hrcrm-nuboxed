@@ -32,7 +32,7 @@ const documentSchema = Yup.object().shape({
 
 
 const Role = (props) => {
-  const [departmentId, setDepartmentId] = useState("");
+  const [selectedDept, setSelectedDept] = useState("");
   const [error, setError] = useState("");
   const [currentData, setCurrentData] = useState("");
   const [roles, setRoleData] = useState(props.roles);
@@ -52,8 +52,10 @@ const Role = (props) => {
       setRoleName(name);
   };
 
-  const handleDepartment = (value) => {
-    setDepartmentId(value);
+  const handleDeptChange = (event) => {
+    const selectedDept = event.target.value;
+    setSelectedDept(selectedDept);
+    
   };
 
   const handleAddRole = () => {
@@ -68,7 +70,7 @@ const Role = (props) => {
         organizationId:props.organizationId,
         userId:props.userId,
         roleType:newRoleName,
-        departmentId:departmentId,
+        departmentId:selectedDept,
        
       }
 props.updateRoles(data,region.roleTypeId)
@@ -90,7 +92,7 @@ setEditingId(null);
         roleType:newRoleName,
         organizationId:props.organizationId,
         userId:props.userId,
-        department:departmentId,
+        department:selectedDept,
        
       }
       props.addRoles(data,props.organizationId)
@@ -168,18 +170,19 @@ return <div><BundleLoader/></div>;
                           onChange={(e) => setRoleName(e.target.value)} 
                       />
                       
-      <Select
-        isRequired
-        style={{ width: "35%" }}
-        placeholder="Department"
-        onChange={handleDepartment}
-      >
-        {props.departments.map((item) => (
-          <Option value={item.departmentId} key={item.departmentId}>
+                      <select 
+    className="customize-select"
+    onChange={handleDeptChange}
+>
+    <option value="">Select Department</option>
+    {props.departments.map((item) => (
+        <option 
+            key={item.departmentId} value={item.departmentId}>
             {item.departmentName}
-          </Option>
-        ))}
-      </Select>
+        </option>
+    ))}
+</select>
+
       
       {error && <p style={{ color: "red" }}>{error}</p>}
    
@@ -218,21 +221,20 @@ return <div><BundleLoader/></div>;
             )}
 
 {editingId === region.roleTypeId ? (
-                             <Select
-                             defaultValue={region.departmentName}
-                            style={{ width: "30%" }}
-                            placeholder="Select Department"
-                            onChange={handleDepartment}
-                          >
-                            {props.departments.map((item) => (
-                              <Option value={item.departmentId} key={item.departmentId}>
-                                {item.departmentName}
-                              </Option>
-                            ))}
-                          </Select>
+                                  <select 
+                                  className="customize-select"
+                                  onChange={handleDeptChange}
+                              >
+                                  <option value="">Select Department</option>
+                                  {props.departments.map((item) => (
+                                      <option 
+                                          key={item.departmentId} value={item.departmentId}>
+                                          {item.departmentName}
+                                      </option>
+                                  ))}
+                              </select>
               ) : (
-                // <div className="region">
-                // {region.departmentName}</div>
+
                   <div className="region" style={{width:"39rem"}}>{region.department}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >

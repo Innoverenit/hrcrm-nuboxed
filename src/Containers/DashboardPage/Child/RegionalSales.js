@@ -67,6 +67,7 @@ function RegionalSales(props) {
     </div>
     <AddSalesDrawerModal
       rowdata={rowdata}
+      regionRecords={props.regionRecords}
       tabKey={props.tabKey}
       handleTabClick={props.handleTabClick}
       handleRowData={handleRowData}

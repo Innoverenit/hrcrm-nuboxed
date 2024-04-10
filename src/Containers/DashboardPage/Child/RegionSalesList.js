@@ -84,9 +84,8 @@ function RegionSalesList(props) {
               </div>
             </div>
   
-            {regionSalesList.map((regionItem, regionIndex) => (
-    <div key={regionIndex}>
-        {regionItem.useKpiList.map((item, index) => {
+            {employee.useKpiList.map((item, index) => {
+  
              const total = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue + item.month1CompletedValue + item.month2CompletedValue + item.month3CompletedValue + item.month1ActualCompletedValue + item.month2ActualCompletedValue + item.month3ActualCompletedValue );
              return (
               <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
@@ -230,9 +229,8 @@ function RegionSalesList(props) {
                 </div>
               </div>
              );
-                          })}
-                              </div>
-))}
+                       
+})}
           </div>
         </div>
       </div>
