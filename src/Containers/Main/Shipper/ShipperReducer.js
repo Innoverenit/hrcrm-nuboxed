@@ -84,11 +84,8 @@ const initialState = {
 
   fetchingAllShipper: false,
   fetchingAllShipperError: false,
-  allShipper: false,
+  allShipperList: [],
 
-  fetchingAllShipper: false,
-  fetchingAllShipperError: false,
-  allShipper: [],
 
   setEditingOrder: {},
   setEditingOrderDetail: {},
@@ -238,8 +235,8 @@ const initialState = {
   linkingRenewalByShipperIdError: false,
 
   // get all shipper
-  fetchingAllShipper: false,
-  fetchingAllShipperError: false,
+  fetchingAllShipperList: false,
+  fetchingAllShipperListError: false,
   allShipper: [],
 
   //ContactShipper
@@ -274,12 +271,12 @@ const initialState = {
   shipperDispatch: [],
 
   gettingCountRecordShipper: false,
-  gettingCountRecordShipperError:false,
-  shippeRecordCount:{},
+  gettingCountRecordShipperError: false,
+  shippeRecordCount: {},
 
   fetchingEmployeeAsErp: false,
-  fetchingEmployeeAsErpError:false,
-  employeeAsErp:[],
+  fetchingEmployeeAsErpError: false,
+  employeeAsErp: [],
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -920,18 +917,18 @@ export const shipperReducer = (state = initialState, action) => {
 
     /**get the list of all Shipper*/
     case types.GET_ALL_SHIPPER_LIST_REQUEST:
-      return { ...state, fetchingAllShipper: true };
+      return { ...state, fetchingAllShipperList: true };
     case types.GET_ALL_SHIPPER_LIST_SUCCESS:
       return {
         ...state,
-        fetchingAllShipper: false,
+        fetchingAllShipperList: false,
         allShipper: action.payload,
       };
     case types.GET_ALL_SHIPPER_LIST_FAILURE:
       return {
         ...state,
-        fetchingAllShipper: false,
-        fetchingAllShipperError: true,
+        fetchingAllShipperList: false,
+        fetchingAllShipperListError: true,
       };
 
     /**
@@ -1335,14 +1332,14 @@ export const shipperReducer = (state = initialState, action) => {
       };
 
 
-          //get all shipper
+    //get all shipper
     case types.GET_ALL_SHIPPER_REQUEST:
       return { ...state, fetchingAllShipper: true };
     case types.GET_ALL_SHIPPER_SUCCESS:
       return {
         ...state,
         fetchingAllShipper: false,
-        allShipper: action.payload,
+        allShipperList: action.payload,
       };
     case types.GET_ALL_SHIPPER_FAILURE:
       return {
@@ -1351,39 +1348,39 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingAllShipperError: true,
       };
 
-      case types.GET_SHIPPER_RECORDS_REQUEST:
-        return {
-          ...state,
-          gettingCountRecordShipper: true,
-        };
-      case types.GET_SHIPPER_RECORDS_SUCCESS:
-        return {
-          ...state,
-          gettingCountRecordShipper: false,
-          shippeRecordCount: action.payload,
-        };
-      case types.GET_SHIPPER_RECORDS_FAILURE:
-        return {
-          ...state,
-          gettingCountRecordShipper: false,
-          gettingCountRecordShipperError: true,
-        };
+    case types.GET_SHIPPER_RECORDS_REQUEST:
+      return {
+        ...state,
+        gettingCountRecordShipper: true,
+      };
+    case types.GET_SHIPPER_RECORDS_SUCCESS:
+      return {
+        ...state,
+        gettingCountRecordShipper: false,
+        shippeRecordCount: action.payload,
+      };
+    case types.GET_SHIPPER_RECORDS_FAILURE:
+      return {
+        ...state,
+        gettingCountRecordShipper: false,
+        gettingCountRecordShipperError: true,
+      };
 
-        case types.GET_EMPLOYEE_LIST_AS_ERP_REQUEST:
-          return { ...state, fetchingEmployeeAsErp: true };
-        case types.GET_EMPLOYEE_LIST_AS_ERP_SUCCESS:
-          return {
-            ...state,
-            fetchingEmployeeAsErp: false,
-            employeeAsErp: action.payload,
-          };
-        case types.GET_EMPLOYEE_LIST_AS_ERP_FAILURE:
-          return {
-            ...state,
-            fetchingEmployeeAsErp: false,
-            fetchingEmployeeAsErpError: true,
-          };
-    
+    case types.GET_EMPLOYEE_LIST_AS_ERP_REQUEST:
+      return { ...state, fetchingEmployeeAsErp: true };
+    case types.GET_EMPLOYEE_LIST_AS_ERP_SUCCESS:
+      return {
+        ...state,
+        fetchingEmployeeAsErp: false,
+        employeeAsErp: action.payload,
+      };
+    case types.GET_EMPLOYEE_LIST_AS_ERP_FAILURE:
+      return {
+        ...state,
+        fetchingEmployeeAsErp: false,
+        fetchingEmployeeAsErpError: true,
+      };
+
 
     default:
       return state;

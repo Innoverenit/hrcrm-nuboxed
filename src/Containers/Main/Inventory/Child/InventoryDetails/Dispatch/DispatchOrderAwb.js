@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
-import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Form, Field, FieldArray, FastField } from 'formik';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
@@ -8,7 +8,7 @@ import { StyledLabel } from '../../../../../../Components/UI/Elements';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import moment from 'moment';
 import { Button } from 'antd';
-import { getAllShipperList } from "../../../../Shipper/ShipperAction"
+import { getAllShipper } from "../../../../Shipper/ShipperAction"
 import { createAwbNo, handleAddAWB } from "../../../InventoryAction"
 import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 import AddressFieldArray2 from '../../../../../../Components/Forms/Formik/AddressFieldArray2';
@@ -16,7 +16,7 @@ import APIAwbNoModal from './APIAwbNoModal';
 
 const DispatchOrderAwb = (props) => {
     console.log(props.rowData.unloadingAddresses)
-    const shipperOption = props.allShipper.map((item) => {
+    const shipperOption = props.allShipperList.map((item) => {
 
         return {
             label: item.shipperName,
@@ -24,11 +24,11 @@ const DispatchOrderAwb = (props) => {
         }
     })
     useEffect(() => {
-        props.getAllShipperList()
+        props.getAllShipper(props.orgId)
     }, [])
 
     function handleSHipper(a, setFieldValue) {
-        return props.allShipper.map((item) => {
+        return props.allShipperList.map((item) => {
             if (item.shipperId === a) {
                 setFieldValue("api", item.api);
             }
@@ -137,6 +137,15 @@ const DispatchOrderAwb = (props) => {
                             <div class=" flex justify-between mt-4" >
 
                                 <div class=" w-[47%]"  >
+                                    {/* <FastField
+                                        name="shipperId"
+                                        isColumnWithoutNoCreate
+                                        label="Shipper"
+                                        isColumn
+                                        selectType="shipper"
+                                        component={SearchSelect}
+                                        inlineLabel
+                                    /> */}
                                     <Field
                                         label="Shipper"
                                         name="shipperId"
@@ -217,7 +226,8 @@ const DispatchOrderAwb = (props) => {
                                             loading={props.addingReceivedUser}
                                             htmlType="Submit"
                                         >Save</Button>
-                                        : <Button
+                                        :
+                                        <Button
                                             style={{
                                                 backgroundColor: "#3695cd",
                                                 color: "white",
@@ -248,11 +258,12 @@ const DispatchOrderAwb = (props) => {
         </>
     );
 }
-const mapStateToProps = ({ inventory, shipper }) => ({
+const mapStateToProps = ({ inventory, shipper, auth }) => ({
     addingReceivedUser: inventory.addingReceivedUser,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
-    allShipper: shipper.allShipper,
-    addAwbNo: inventory.addAwbNo
+    allShipperList: shipper.allShipperList,
+    addAwbNo: inventory.addAwbNo,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -260,7 +271,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             createAwbNo,
             handleAddAWB,
-            getAllShipperList
+            getAllShipper
         },
         dispatch
     );

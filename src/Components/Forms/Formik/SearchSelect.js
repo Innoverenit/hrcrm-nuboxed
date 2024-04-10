@@ -11,10 +11,11 @@ import ValidationError from "../../UI/Elements/ValidationError";
 import {
   getContactListByUserId,
 } from "../../../Containers/Contact/ContactAction";
-import { getContactListByCustomerId, getAllCustomerListByUserId,getAllCustomerData } from "../../../Containers/Customer/CustomerAction";
-import { getAllCandidateListByUserId,getFilteredEmailContact } from "../../../Containers/Candidate/CandidateAction";
+import { getContactListByCustomerId, getAllCustomerListByUserId, getAllCustomerData } from "../../../Containers/Customer/CustomerAction";
+import { getAllCandidateListByUserId, getFilteredEmailContact } from "../../../Containers/Candidate/CandidateAction";
 import { getAllUsersByOrganizationId } from "../../../Containers/Call/CallAction";
 import { getCountries } from "../../../Containers/Auth/AuthAction";
+import { getAllShipper } from "../../../Containers/Main/Shipper/ShipperAction"
 import { getTimeZone, getAllDialCodeList } from "../../../Containers/Auth/AuthAction";
 import { getCurrency } from "../../../Containers/Auth/AuthAction";
 import { getDocuments } from "../../../Containers/Settings/Documents/DocumentsAction";
@@ -25,7 +26,7 @@ import { getPartnerListByUserId, getAllPartnerListByUserId } from "../../../Cont
 import {
   getDesignations,
 } from "../../../Containers/Settings/Designation/DesignationAction";
-import{getAllOpportunityData} from "../../../Containers/Opportunity/OpportunityAction";
+import { getAllOpportunityData } from "../../../Containers/Opportunity/OpportunityAction";
 import { getTasks } from "../../../Containers/Settings/Task/TaskAction";
 import { getExpenses } from "../../../Containers/Settings/Expense/ExpenseAction";
 import { getEvents } from "../../../Containers/Settings/Event/EventAction";
@@ -58,6 +59,7 @@ class SearchSelect extends Component {
       getDropDownRegions,
       getOnlySalesUser,
       getAllDialCodeList,
+      getAllShipper,
       getProducts,
       getTimeZone,
       getProcess,
@@ -113,7 +115,7 @@ class SearchSelect extends Component {
     if (selectType === "contactsName") {
       getFilteredEmailContact(userId);
     }
-    
+
     if (selectType === "department") {
       getDepartment();
     }
@@ -164,6 +166,9 @@ class SearchSelect extends Component {
     }
     if (selectType === "dialCode") {
       getAllDialCodeList();
+    }
+    if (selectType === "shipper") {
+      getAllShipper(props.organizationId);
     }
     if (selectType === "currencyName") {
       getCurrency();
@@ -332,6 +337,7 @@ class SearchSelect extends Component {
       process,
       countries,
       dialcodeList,
+      allShipperList,
       currencies,
       products,
       selectType,
@@ -761,7 +767,8 @@ class SearchSelect extends Component {
           value: item.regionsId,
           label: item.regions,
           color: "#FF8B00",
-        }));}
+        }));
+    }
     if (selectType === "country") {
       debugger;
       options = countries.map((item, i) => ({
@@ -779,8 +786,13 @@ class SearchSelect extends Component {
       options = dialcodeList.map((item, i) => ({
         label: `+${item.country_dial_code}`,
         value: `+${item.country_dial_code}`,
-      }));
-      // options = uniqBy(options, "value");
+      }));;
+    }
+    if (selectType === "shipper") {
+      options = allShipperList.map((item, i) => ({
+        label: `+${item.shipperName}`,
+        value: `+${item.shipperId}`,
+      }));;
     }
     if (selectType === "currencyName") {
       options = currencies.map((item, i) => ({
@@ -1269,7 +1281,7 @@ class SearchSelect extends Component {
 }
 
 
-const mapStateToProps = ({ auth, call, document, source, role, functions, contact,region,opportunity, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
+const mapStateToProps = ({ shipper, auth, call, document, source, role, functions, contact, region, opportunity, customer, employee, partner, sector, candidate, designations, education, tasks, expenses, events, departments }) => ({
   countries: auth.countries,
   currencies: auth.currencies,
   fetchingCountries: auth.fetchingCountries,
@@ -1296,14 +1308,15 @@ const mapStateToProps = ({ auth, call, document, source, role, functions, contac
   tasks: tasks.tasks,
   expenses: expenses.expenses,
   events: events.events,
+  allShipperList: shipper.allShipperList,
   functions: functions.functions,
   departments: departments.departments,
   allcustomersByUserId: customer.allcustomersByUserId,
   sources: source.sources,
   dialcodeList: auth.dialcodeList,
   regionsDropDown: region.regionsDropDown,
-  allCustomerData:customer.allCustomerData,
-  allOpportunityData:opportunity.allOpportunityData,
+  allCustomerData: customer.allCustomerData,
+  allOpportunityData: opportunity.allOpportunityData,
   filteredContact: candidate.filteredContact,
 });
 
@@ -1331,7 +1344,7 @@ const mapDispatchToProps = (dispatch) =>
       getTimeZone,
       getAllDialCodeList,
       getDepartments,
-      // getDepartment,
+      getAllShipper,
       getDocuments,
       getEmployeelist,
       getSectors,

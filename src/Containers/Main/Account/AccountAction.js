@@ -1591,6 +1591,33 @@ export const getContactDistributorList = (distributorId) => (dispatch) => {
     });
 };
 
+export const getLobList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOB_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/lob/all/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOB_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOB_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const setEditDistributorContact = (name) => (dispatch) => {
   dispatch({
     type: types.SET_DISTRIBUTOR_CONTACT_EDIT,

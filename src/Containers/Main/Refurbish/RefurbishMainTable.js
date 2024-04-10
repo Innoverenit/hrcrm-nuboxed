@@ -71,9 +71,13 @@ const ProductionOrderList = (props) => {
                             defaultMessage="contact"
                         /></div>
                         <div className="md:w-[4.6rem]"><FormattedMessage
+                            id="app.assigned"
+                            defaultMessage="assign By"
+                        /> </div>
+                        <div className="md:w-[4.6rem]"><FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
-                        /> #</div>
+                        /> </div>
                         {/* <div className="md:w-[5.8rem]"><FormattedMessage
                         id="app.balance"
                         defaultMessage="balance"
@@ -138,11 +142,21 @@ const ProductionOrderList = (props) => {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium  md:w-[4.6rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins">
 
-                                                    {item.assignedUser && <MultiAvatar
-                                                        primaryTitle={item.assignedUser}
+                                                    {item.supervisorUserName && <MultiAvatar
+                                                        primaryTitle={item.supervisorUserName}
+                                                        imgWidth={"2.1em"}
+                                                        imgHeight={"2.1em"}
+                                                    />}
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  md:w-[4.6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-sm text-cardBody font-poppins">
+
+                                                    {item.userName && <MultiAvatar
+                                                        primaryTitle={item.userName}
                                                         imgWidth={"2.1em"}
                                                         imgHeight={"2.1em"}
                                                     />}

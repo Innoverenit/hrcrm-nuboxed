@@ -23,7 +23,7 @@ const ReceivedDetailCard = (props) => {
         props.getMaterialReceivedDetailData(props.row.poSupplierDetailsId)
         props.getGrnNoByPoId(props.row.poSupplierDetailsId)
     }, [])
-    const [existGrn, setExistGrn] = useState(true)
+    const [existGrn, setExistGrn] = useState(false)
     const handleChange = () => {
         setExistGrn(!existGrn)
     }
@@ -91,7 +91,6 @@ const ReceivedDetailCard = (props) => {
     const show = props.receivedDetailData.some((item) => item.grnReceivedInd === false && item.allowGrnInd === true)
     const checkall = props.receivedDetailData.every((item) => item.grnReceivedInd === true)
     console.log(show)
-    console.log(props.grnNoByPo.length)
 
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
