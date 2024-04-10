@@ -1,7 +1,10 @@
-import React, { useEffect,useRef } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { DndProvider, useDrag } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Tabs,Tooltip,Button } from 'antd';
+import { EnvironmentOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
@@ -12,6 +15,21 @@ import { BundleLoader } from '../../../Components/Placeholder';
 const { TabPane } = Tabs;
 const ButtonGroup = Button.Group;
 const SalesTaskCardList = (props) => {
+  const data = [
+    {
+      task: "test1",
+      endDate: "2024-04-10T09:42:05Z"
+    },
+    {
+      task: "test2",
+      endDate: "2024-04-25T09:42:05Z"
+    }
+  ];
+  const tasks=data
+  const numberOfWeeks=4
+  const [weeks, setWeeks] = useState([]);
+  const [showSmileCard, setShowSmileCard] = useState(true);
+  const [showHeartCard, setShowHeartCard] = useState(false);
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
@@ -19,19 +37,101 @@ const SalesTaskCardList = (props) => {
     props.getRegionTaskList(props.rowdata.employeeId,"Sales Plan",props.tabKey,currentYear)
   }, []);
 
+  useEffect(() => {
+    const getCurrentWeekNumber = () => {
+      const currentDate = new Date();
+      const currentWeekNumber = Math.ceil(
+        (currentDate - new Date(currentDate.getFullYear(), 0, 1)) / 604800000
+      );
+      return currentWeekNumber;
+    };
+
+    const generateWeekNumbers = () => {
+      const currentWeekNumber = getCurrentWeekNumber();
+      const weekNumbers = [];
+
+      for (let i = 0; i < numberOfWeeks; i++) {
+        weekNumbers.push(currentWeekNumber + i);
+      }
+
+      setWeeks(weekNumbers);
+    };
+
+    generateWeekNumbers();
+  }, [numberOfWeeks]);
+
  
   if (props.fetchingRegionalTaskList) return <BundleLoader/>;
 
+ 
+
+
+
+  const getWeekStartDate = (weekNumber) => {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const januaryFirst = new Date(currentYear, 0, 1);
+    const firstDayOfYear = januaryFirst.getDay() || 7; // Adjust for Sunday being 0
+    const startDate = new Date(currentYear, 0, (weekNumber - 1) * 7 + 1 - firstDayOfYear);
+    return startDate;
+  };
+
+  const getWeekEndDate = (weekNumber) => {
+    const startDate = getWeekStartDate(weekNumber);
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + 6); // 6 days later to get the end of the week
+    return endDate;
+  };
+
+  const filterTasksForWeek = (weekNumber) => {
+    const startDate = getWeekStartDate(weekNumber);
+    const endDate = getWeekEndDate(weekNumber);
+    return tasks.filter(task => {
+      const taskEndDate = new Date(task.endDate);
+      return taskEndDate >= startDate && taskEndDate <= endDate;
+    });
+  };
+  const handleSmileClick = () => {
+    setShowSmileCard(true);
+    setShowHeartCard(false);
+  };
+
+  const handleHeartClick = () => {
+    setShowHeartCard(true);
+    setShowSmileCard(false);
+  };
   return (
     <>
-    
+    <div>
+    <EnvironmentOutlined
+                  type="environment"
+                  style={{                   
+                    fontSize: "1.2em",
+                    margin: "0px 0.68em 0.42rem",
+                    placeSelf: "center",
+                  }}
+                  onClick={handleSmileClick}
+                />
+                   <EnvironmentOutlined
+                  type="environment"
+                  style={{                   
+                    fontSize: "1.2em",
+                    margin: "0px 0.68em 0.42rem",
+                    placeSelf: "center",
+                  }}
+                  onClick={handleHeartClick}
+                />
+    </div>
+    {showSmileCard && (
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[10.5rem]"><FormattedMessage
+        <div className=" md:w-[10.5rem]">
+          <FormattedMessage
                           id="app.type"
-                          defaultMessage="type"
-                        /></div>
+                          defaultMessage="types"
+                        />
+                        </div>
         <div className=" md:w-[12rem]"><FormattedMessage
                           id="app.name"
                           defaultMessage="name"
@@ -285,6 +385,51 @@ const SalesTaskCardList = (props) => {
                 
       </div>
 </div>
+    )}
+
+
+{showHeartCard && (
+  <DndProvider backend={HTML5Backend}>
+      <div>
+        <h2>Week Numbers</h2>
+        <div style={{display:"flex"}}>
+          {weeks.map((week, index) => {
+            const startDate = getWeekStartDate(week);
+            const endDate = getWeekEndDate(week);
+            const filteredTasks = filterTasksForWeek(week);
+            return (
+              <div key={index} >
+                <div style={{ textAlign: 'center' ,border:"1px solid black",  padding: '5px',
+        margin: '5px',}}>
+                  Week {week}
+                </div>
+                {filteredTasks.map((task, taskIndex) => (
+                    <div key={taskIndex} 
+                    // style={{ border: '1px solid gray', padding: '5px', margin: '5px' }}
+                    >
+                      {task.task} 
+                      {/* - 
+                      End Date: {task.endDate} */}
+                    </div>
+                  ))}
+                {/* <div style={{ marginLeft: '20px' }}> */}
+                  {/* <div>
+                    <strong>Start Date:</strong> {startDate.toLocaleDateString()}
+                  </div>
+                  <div>
+                    <strong>End Date:</strong> {endDate.toLocaleDateString()}
+                  </div> */}
+                {/* </div> */}
+                <div>
+               
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </DndProvider>
+)}
 
 
 
