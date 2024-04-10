@@ -101,7 +101,7 @@ const {
                 <Tooltip title="ALL Suppliers">
                 <Badge
           size="small"
-          count={(props.viewType === "all" && props.allCountSupplier.supplierCount) || 0}
+          count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
           overflowCount={999}
         >
                     <span class=" md:mr-2 text-sm cursor-pointer"

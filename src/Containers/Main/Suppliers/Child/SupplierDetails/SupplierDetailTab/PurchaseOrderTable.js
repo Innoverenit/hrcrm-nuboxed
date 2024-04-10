@@ -19,6 +19,8 @@ import { BorderColorRounded, TerminalSharp } from "@mui/icons-material";
 import TermsnConditionModal from "./TermsnConditionModal";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+
 const { Option } = Select;
 
 function PurchaseOrderTable(props) {
@@ -171,12 +173,15 @@ function PurchaseOrderTable(props) {
                                                                         }}>Save</Button>
                                                                         <Button onClick={handleCurrencyField}>Cancel</Button>
                                                                     </div> :
-                                                                    <BorderColorRounded
+                                                                   <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                                   <BorderColorIcon
+                                                                       className=" !text-base cursor-pointer text-[tomato]"
                                                                         onClick={() => {
                                                                             handleRowData(item);
                                                                             handleCurrencyField()
                                                                         }}
                                                                     />
+                                                                    </div>
                                                                 }
                                                             </Tooltip>
                                                         </div>

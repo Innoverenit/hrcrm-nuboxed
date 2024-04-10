@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd'
+import { Button, Input,Select } from 'antd'
 import React, { useState,useEffect } from 'react'
 import { addRoomAndRackInInventory,getRoomRackByLocId } from "./InventoryAction"
 import { bindActionCreators } from 'redux';
@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import { CloseOutlined } from "@ant-design/icons"
 import { FormattedMessage } from 'react-intl';
 
+const { Option } = Select;
+
 const RoomAndRackForm = (props) => {
 
   useEffect(()=>{
 props.getRoomRackByLocId(props.rowData.locationDetailsId)
   },[]);
 
-    const [rows, setRows] = useState([{ input1: '', input2: '' }]);
+    const [rows, setRows] = useState([{ zone: '', rack: '',zoneType:''}]);
+    const [zonetype, setZonetype]=useState("");
 
     const handleChange = (index, key, value) => {
       const updatedRows = [...rows];
@@ -21,7 +24,7 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
     };
   
     const handleAddRow = () => {
-      setRows([...rows, { input1: '', input2: '' }]);
+      setRows([...rows, { zone: '', rack: '',zoneType:'' }]);
     };
   
     const handleRemoveRow = (index) => {
@@ -31,9 +34,10 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
     };
     const handleSubmit = () => {
       const dataToSend = rows.map((row) => ({
-        zone: row.input1,
-        rack: row.input2,
+        zone: row.zone,
+        rack: row.rack,
         userId: props.userId,
+        zoneType:row.zoneType,
         chamberList: ['A1', 'A2', 'A3'], 
       }));
 
@@ -42,8 +46,25 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
         roomRackList: dataToSend,
       };
       props.addRoomAndRackInInventory(payload);
-      setRows([{ input1: '', input2: '' }]);
+      setRows([{ zone: '', rack: '',zoneType:''}]);
     };
+
+    useEffect(() => {
+      if (props.roomRackbyLoc) {
+        const initialRows = props.roomRackbyLoc.map((rack) => ({
+          zone: rack.zone,
+          rack: rack.rack.toString(),
+        }));
+        setRows(initialRows);
+      }
+    }, [props.roomRackbyLoc]);
+
+    const handleSelectChange = (index, value) => {
+      const updatedRows = [...rows];
+      updatedRows[index]['zoneType'] = value;
+      setRows(updatedRows);
+    };
+
     return (
         <>
       <div>
@@ -64,10 +85,23 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
              <div class="w-24">
             <Input
               type="text"
-              value={row.input1}
-              onChange={(e) => handleChange(index, 'input1', e.target.value)}
-              placeholder="Input 1"
+              value={row.zone}
+              onChange={(e) => handleChange(index, 'zone', e.target.value)}
+              placeholder="Zone"
             />
+            </div>
+            </div>
+            <div>
+              <label>Zone Type</label>
+             <div class="w-24">
+             <Select
+                  value={row.zoneType}
+                  onChange={(value) => handleSelectChange(index, value)}
+                >
+          <Option value="entry">Entry</Option>
+          <Option value="exit">Exit</Option>
+        </Select>
+           
             </div>
             </div>
             <div>
@@ -75,9 +109,9 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
             <div class="w-24">
             <Input
               type="text"
-              value={row.input2}
-              onChange={(e) => handleChange(index, 'input2', e.target.value)}
-              placeholder="Input 2"
+              value={row.rack}
+              onChange={(e) => handleChange(index, 'rack', e.target.value)}
+              placeholder="Rack"
             />
             </div>
             </div>
