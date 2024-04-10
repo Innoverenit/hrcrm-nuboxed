@@ -30,7 +30,7 @@ console.log(this.props.rowdata)
           onClose={() => this.props.handleperformanceDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-          <TabsWrapper style={{width:"100%"}}>
+          <TabsWrapper style={{width:"100%",overflowY:"auto"}}>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
             
             <TabPane

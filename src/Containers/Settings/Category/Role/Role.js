@@ -233,7 +233,7 @@ return <div><BundleLoader/></div>;
               ) : (
                 // <div className="region">
                 // {region.departmentName}</div>
-                  <div className="region" style={{width:"39rem"}}>{region.departmentName}&nbsp;&nbsp;&nbsp;
+                  <div className="region" style={{width:"39rem"}}>{region.departmentId}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                           New
