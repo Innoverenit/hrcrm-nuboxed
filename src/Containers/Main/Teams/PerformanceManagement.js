@@ -165,7 +165,9 @@ function handleSetCurrentEmployeeId(employeeId,) {
             
           
             >
-              <MonitorHeartIcon  style={{ fontSize: "1rem", color: "#df9697" }}/>
+                <Tooltip title="Pulse">
+              <MonitorHeartIcon   className=" !text-base cursor-pointer text-[#df9697]"/>
+              </Tooltip>
      </span>
            </div>
            <div class=" font-normal text-xs text-cardBody font-poppins ml-[0.15rem] ">

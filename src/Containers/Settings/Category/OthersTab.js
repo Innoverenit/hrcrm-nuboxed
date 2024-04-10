@@ -16,6 +16,7 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 // import {getRegionCount} from "../Category/Region/RegionAction"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
+
 const Documents = lazy(() =>
   import("../Documents/Documents")
 );
@@ -68,6 +69,7 @@ class OthersTab extends Component {
           return   <KpiMasterList />;
         case "9":
           return   <ServiceLine />;
+       
         
       default:
         return null;
@@ -237,6 +239,7 @@ class OthersTab extends Component {
                 }
                 key="9"
               />
+             
               
             </StyledTabs>
             <Suspense fallback={<div className="flex justify-center">Loading...</div>}>

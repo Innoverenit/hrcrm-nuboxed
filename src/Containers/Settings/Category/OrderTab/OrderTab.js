@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import {  Badge } from "antd";
 import SourceIcon from '@mui/icons-material/Source';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import Quality from "../Quality/Quality"
 const ItemTask = lazy(() =>
   import("../ItemTask/ItemTask")
 );
@@ -40,6 +41,8 @@ class OrderTab extends Component {
           return     <ShipBy/>;
           case "2":
             return     <BrandModel/>;
+            case "3":
+              return     <Quality/>;
 
       default:
         return null;
@@ -110,6 +113,19 @@ class OrderTab extends Component {
                   {/* <Suspense>
                     <BrandModel />
                   </Suspense> */}
+                </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <SourceIcon />
+                      <span class=" ml-1">
+                       Quality
+                      </span>
+                    </>
+                  }
+                  key="3"
+                >
+
                 </TabPane>
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
