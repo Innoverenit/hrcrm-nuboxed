@@ -25,7 +25,7 @@ const SalesTaskCardList = (props) => {
       endDate: "2024-04-25T09:42:05Z"
     }
   ];
-  const tasks=data
+  const tasks=props.regionAllTaskList
   const numberOfWeeks=4
   const [weeks, setWeeks] = useState([]);
   const [showSmileCard, setShowSmileCard] = useState(true);
@@ -405,9 +405,9 @@ const SalesTaskCardList = (props) => {
                 </div>
                 {filteredTasks.map((task, taskIndex) => (
                     <div key={taskIndex} 
-                    // style={{ border: '1px solid gray', padding: '5px', margin: '5px' }}
+                    style={{ border: '1px solid gray', padding: '5px', margin: '5px' }}
                     >
-                      {task.task} 
+                      {task.taskType} 
                       {/* - 
                       End Date: {task.endDate} */}
                     </div>
