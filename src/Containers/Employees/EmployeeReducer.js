@@ -170,13 +170,49 @@ const updatedDragUser = (item, newProps) => {
     // const newData=newProps.stageList.map((item)=>{
     //       return item.unboardingStagesId;
     // })
-    if (opp.unboardingStagesId === newProps.unboardingStagesId) {
+    if (opp.unboardingWorkflowDetailsId === newProps.unboardingWorkflowDetailsId) {
       console.log("inside opp");
       opp.unboardingStagesId = newProps.unboardingStagesId;
     }
     return opp;
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const EmployeeReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_EMPLOYEE_VIEW_TYPE:
