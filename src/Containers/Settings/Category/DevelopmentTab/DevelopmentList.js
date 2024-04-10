@@ -8,16 +8,16 @@ import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import {
-  getRoles,
-  getRoleCount,
-  addRoles,
-  updateRoles,
-  searchRoleName,removeRole,ClearReducerDataOfRole
-} from "./RoleAction";
+  getDevelopment,
+  getDevelopmentCount,
+  addDevelopment,
+  updateDevelopment,
+  searchDevelopmentName,removeDevelopment,ClearReducerDataOfDevelopment
+} from "./DevelopmentAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import * as Yup from "yup";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { getDepartments } from "../../Department/DepartmentAction";
+import { getTasks } from "../../Task/TaskAction";
 import { Select } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -31,69 +31,62 @@ const documentSchema = Yup.object().shape({
 });
 
 
-const Role = (props) => {
-  const [departmentId, setDepartmentId] = useState("");
+const DevelopmentList = (props) => {
+  const [taskTypeId, setTaskTypeId] = useState("");
   const [error, setError] = useState("");
   const [currentData, setCurrentData] = useState("");
-  const [roles, setRoleData] = useState(props.roles);
+  const [developmentList, setDevelopmentData] = useState(props.developmentList);
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
-  const [newRoleName, setRoleName] = useState('');
+  const [newDevelopmentName, setDevelopmentName] = useState('');
   useEffect(() => {
-      props.getRoles(props.organizationId); 
-      props.getDepartments();
-      props.getRoleCount(props.orgId) 
+      props.getDevelopment(props.orgId); 
+      props.getTasks();
+      props.getDevelopmentCount(props.orgId) 
   }, [])
 
   const editRegion = (roleTypeId, name) => {
     console.log(name)
     console.log(name)
       setEditingId(roleTypeId);
-      setRoleName(name);
+      setDevelopmentName(name);
   };
 
-  const handleDepartment = (value) => {
-    setDepartmentId(value);
+  const handleTask = (value) => {
+    setTaskTypeId(value);
   };
 
-  const handleAddRole = () => {
+  const handleAddDevelopment = () => {
       setAddingRegion(true);
-      setRoleName("")
+      setDevelopmentName("")
   };
 
-  const handleUpdateRole=(region)=>{
+  const handleUpdateDevelopment=(region)=>{
       console.log(region)
       let data={
         roleTypeId:region.roleTypeId,
         organizationId:props.organizationId,
         userId:props.userId,
-        roleType:newRoleName,
-        departmentId:departmentId,
+        value:newDevelopmentName,
+        taskTypeId:taskTypeId,
        
       }
-props.updateRoles(data,region.roleTypeId)
+props.updateDevelopment(data,region.roleTypeId)
 setEditingId(null);
   }
 
-  const handleRole = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+  const handleDevelopment = () => {
+ 
       let data={
-        roleType:newRoleName,
+        departmentId:props.departmentId,
+        roleTypeId:props.roleTypeId,
+        value:newDevelopmentName,
         organizationId:props.organizationId,
         userId:props.userId,
-        department:departmentId,
+        taskType:taskTypeId,
        
       }
-      props.addRoles(data,props.organizationId)
+      props.addDevelopment(data,props.orgId)
       setAddingRegion(false)
   };
   const handleChange = (e) => {
@@ -102,7 +95,7 @@ setEditingId(null);
   
       if (e.target.value.trim() === "") {
       //   setPage(pageNo + 1);
-      props.getRoles(props.organizationId); 
+      props.getDevelopment(props.orgId); 
       //   props.ClearReducerDataOfLoad()
       }
     };
@@ -110,14 +103,14 @@ setEditingId(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.searchRoleName(currentData);
+        props.searchDevelopmentName(currentData);
       } else {
         console.error("Input is empty. Please provide a value.");
       }
     };
 
   const handleCancelAdd = () => {
-    setRoleName('');
+    setDevelopmentName('');
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -125,14 +118,14 @@ setEditingId(null);
   };
   useEffect(() => {
       
-      if (props.roles.length > 0) {
+      if (props.developmentList.length > 0) {
         
-        setRoleData(props.roles);
+        setDevelopmentData(props.developmentList);
       }
-    }, [props.roles]);
+    }, [props.developmentList]);
 
 // console.log(regions)
-if (props.fetchingRoles) {
+if (props.fetchingDevelopment) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -148,7 +141,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          {/* <div class="w-[20rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"roleType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -156,59 +149,83 @@ return <div><BundleLoader/></div>;
       </Tooltip>
     </div>
   </a>
-</div>
-            <div className="add-region">
+</div> */}
+            <div className="add-region" style={{width:"45%"}}>
               {addingRegion ? (
                   <div>
-                      <input 
-                        placeholder="Add Role"
-                      style={{border:"2px solid black",width: "35%"}}
-                          type="text" 
-                          value={newRoleName} 
-                          onChange={(e) => setRoleName(e.target.value)} 
-                      />
+      
                       
       <Select
         isRequired
         style={{ width: "35%" }}
-        placeholder="Department"
-        onChange={handleDepartment}
+        placeholder="Task"
+        onChange={handleTask}
       >
-        {props.departments.map((item) => (
-          <Option value={item.departmentId} key={item.departmentId}>
-            {item.departmentName}
+        {props.tasks.map((item) => (
+          <Option value={item.taskTypeId} key={item.taskTypeId}>
+            {item.taskType}
           </Option>
         ))}
       </Select>
-      
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <input 
+                        placeholder="Add"
+                      style={{border:"2px solid black",width: "35%"}}
+                          type="text" 
+                          value={newDevelopmentName} 
+                          onChange={(e) => setDevelopmentName(e.target.value)} 
+                      />
+  
    
                       <button 
                       className=" ml-2"
-                         loading={props.addingRoles}
-                      onClick={handleRole}>Save</button>
+                         loading={props.addingDevelopment}
+                      onClick={handleDevelopment}>Save</button>
                       <button onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
                   <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddRole}> Add More</button>
+                  onClick={handleAddDevelopment}> Add More</button>
               )}
           </div>
           </div>
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingRoles && roles.length === 0 ? <NodataFoundPage /> : roles.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
+          {!props.fetchingDevelopment && developmentList.length === 0 ? <NodataFoundPage /> : developmentList.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
             <div className="card9" key={region.roleTypeId}>
             {/* Region name display or input field */}
             
-            {editingId === region.roleTypeId ? (
+        
+
+{editingId === region.roleTypeId ? (
+                             <Select
+                             defaultValue={region.taskType}
+                            style={{ width: "30%" }}
+                            placeholder="Select Task"
+                            onChange={handleTask}
+                          >
+                            {props.tasks.map((item) => (
+                              <Option value={item.taskTypeId} key={item.taskTypeId}>
+                                {item.taskType}
+                              </Option>
+                            ))}
+                          </Select>
+              ) : (
+
+                  <div className="region" style={{width:"39rem"}}>{region.taskType}&nbsp;&nbsp;&nbsp;
+                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                        >
+                                          New
+                                        </span> : null}</div>
+              )}
+
+{editingId === region.roleTypeId ? (
               <>
                 <input
-                placeholder="Update Role"
+                placeholder="Update"
                 style={{border:"2px solid black"}}
                     type="text"
-                    value={newRoleName}
-                    onChange={(e) => setRoleName(e.target.value)}
+                    value={newDevelopmentName}
+                    onChange={(e) => setDevelopmentName(e.target.value)}
                 />
      
                 </>
@@ -217,35 +234,12 @@ return <div><BundleLoader/></div>;
                   {region.roleType}</div>
             )}
 
-{editingId === region.roleTypeId ? (
-                             <Select
-                             defaultValue={region.departmentName}
-                            style={{ width: "30%" }}
-                            placeholder="Select Department"
-                            onChange={handleDepartment}
-                          >
-                            {props.departments.map((item) => (
-                              <Option value={item.departmentId} key={item.departmentId}>
-                                {item.departmentName}
-                              </Option>
-                            ))}
-                          </Select>
-              ) : (
-                // <div className="region">
-                // {region.departmentName}</div>
-                  <div className="region" style={{width:"39rem"}}>{region.department}&nbsp;&nbsp;&nbsp;
-                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
-                                        >
-                                          New
-                                        </span> : null}</div>
-              )}
-
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
                 {editingId === region.roleTypeId ? (
                     <div>
-                        <button onClick={() => handleUpdateRole(region)}>Save</button>
+                        <button onClick={() => handleUpdateDevelopment(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
@@ -261,7 +255,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeRole(region.roleTypeId,props.orgId)}
+                        onConfirm={() =>  props.removeDevelopment(region.roleTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -279,36 +273,36 @@ return <div><BundleLoader/></div>;
         </MainWrapper>
             </div>
       
-  <div class=" font-bold">Updated on {dayjs(props.roles && props.roles.length && props.roles[0].updationDate).format('YYYY-MM-DD')} by {props.roles && props.roles.length && props.roles[0].name}</div>
+  <div class=" font-bold">Updated on {dayjs(props.developmentList && props.developmentList.length && props.developmentList[0].updationDate).format('YYYY-MM-DD')} by {props.developmentList && props.developmentList.length && props.developmentList[0].name}</div>
       </div>
   );
 };
 
-const mapStateToProps = ({ role, auth, departments }) => ({
-  addingRoles: role.addingRoles,
-  addingRolesError: role.addingRolesError,
-  roles: role.roles,
-  departments: departments.departments,
-  updatinRoles: role.updatingRoles,
+const mapStateToProps = ({ development, auth, tasks }) => ({
+  addingDevelopment: development.addingDevelopment,
+  addingDevelopmentError: development.addingDevelopmentError,
+  developmentList: development.developmentList,
+  tasks: tasks.tasks,
+  updatingDevelopment: development.updatingDevelopment,
   userId: auth.userDetails.userId,
-  updatingRolesError: role.updatingRolesError,
-  fetchingRoles: role.fetchingRoles,
-  fetchingRolesError: role.fetchingRolesError,
+  updatingDevelopmentError: development.updatingDevelopmentError,
+  fetchingDevelopment: development.fetchingDevelopment,
+  fetchingDevelopmentError: development.fetchingDevelopmentError,
   orgId: auth.userDetails.organizationId,
   organizationId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRoles,
-      getRoleCount,
-      addRoles,
-      updateRoles,
-      getDepartments,
-      searchRoleName,
-      removeRole,
-      ClearReducerDataOfRole
+      getDevelopment,
+      getDevelopmentCount,
+      addDevelopment,
+      updateDevelopment,
+      getTasks,
+      searchDevelopmentName,
+      removeDevelopment,
+      ClearReducerDataOfDevelopment
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(Role);
+export default connect(mapStateToProps, mapDispatchToProps)(DevelopmentList);

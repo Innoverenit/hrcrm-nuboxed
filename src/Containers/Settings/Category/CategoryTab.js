@@ -2,6 +2,7 @@ import React, { useState,lazy} from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
+import EmployeeTab from "./EmployeeTab/EmployeeTab";
 const PerformanceManagementTab = lazy(() =>
   import("./PerformanceManagementTab/PerformanceManagementTab")
 );
@@ -84,6 +85,11 @@ function CategoryTab (props) {
               rulesName: "Words",
               ruleId: "9",
               component:<Words/>,
+            },
+            {
+              rulesName: "Employee",
+              ruleId: "10",
+              component:<EmployeeTab/>,
             },
 
           ];
