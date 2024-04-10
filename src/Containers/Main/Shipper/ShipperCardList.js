@@ -69,16 +69,16 @@ function ShipperCardList(props) {
   return (
     <>
       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[8.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-            <div className=" md:w-[5.1rem]"><FormattedMessage id="app.phones" defaultMessage="Phones #" /></div>
-            <div className=" md:w-[6.8rem] "><FormattedMessage id="app.email" defaultMessage="Email" /></div>
-            <div className="md:w-[5.9rem]"><FormattedMessage id="app.shipby" defaultMessage="Ship By" /></div>
-            <div className="md:w-[7.8rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
-            <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code" /></div>
-            <div className="md:w-[4.24rem]">API</div>
+        <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phone #" /></div>
+            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.shipby" defaultMessage="Ship By" /></div>
+            <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
+            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
+            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code" /></div>
+            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
             dataLength={props.shipperByUserId.length}
@@ -92,13 +92,14 @@ function ShipperCardList(props) {
                 return (
                   <>
                     <div  >
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                        <div className=" flex font-medium flex-col md:w-[13.6rem] max-sm:w-full  ">
+                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                             <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"
+                              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                 to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                 {item.shipperName}
                               </Link>
@@ -106,53 +107,58 @@ function ShipperCardList(props) {
 
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[6.2rem] max-sm:justify-between w-full max-sm:flex-row ">
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                        <div className=" flex font-medium  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dialCode} {item.phoneNo}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[14.3rem] max-sm:justify-between w-full max-sm:flex-row ">
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium  w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.emailId}
                           </div>
 
                         </div>
 
-                        <div className=" flex font-medium  md:w-[11.12rem] max-sm:justify-between w-full max-sm:flex-row ">
+                        <div className=" flex font-medium  w-[9.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[11.31rem] max-sm:justify-between w-full max-sm:flex-row ">
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium  w-[12.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                            {`${(item.addresses && item.addresses.length && item.addresses[0].address1) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].state) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].street) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].city) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].pinCode) || ""}`}
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {`${(item.address && item.address.length && item.address[0].address1) || ""}
+          ${(item.address && item.address.length && item.address[0].state) || ""}
+         
+        `}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[11.21rem] max-sm:justify-between w-full max-sm:flex-row ">
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                            {(item.addresses &&
-                              item.addresses.length &&
-                              item.addresses[0].city) ||
+                        <div className=" flex font-medium  w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {(item.address &&
+                              item.address.length &&
+                              item.address[0].city) ||
                               ""}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[11.45rem] max-sm:justify-between w-full max-sm:flex-row ">
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-                            {(item.addresses &&
-                              item.addresses.length &&
-                              item.addresses[0].pinCode) ||
+                          <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            {(item.address &&
+                              item.address.length &&
+                              item.address[0].postalCode) ||
                               ""}
                           </div>
 
@@ -166,7 +172,7 @@ function ShipperCardList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex flex-col w-[3%] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                        <div class="flex flex-col w-[1rem] ml-1 max-sm:flex-row max-sm:w-auto">
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
@@ -193,7 +199,7 @@ function ShipperCardList(props) {
                             </Popconfirm>
                           </div>
                         </div>
-
+</div>
 
 
                       </div>

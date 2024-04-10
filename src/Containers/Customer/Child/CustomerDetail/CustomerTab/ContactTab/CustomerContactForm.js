@@ -165,6 +165,7 @@ class ContactForm extends Component {
                 ...values,
                 customerId: this.props.customerId,
                 opportunityId:this.props.opportunityId,
+                investorId:this.props.investorId,
                 whatsapp: this.state.whatsapp ? "Different" : "Same",
               },
               this.props.userId,

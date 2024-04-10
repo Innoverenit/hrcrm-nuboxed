@@ -10,6 +10,10 @@ const initialState = {
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
 
+  fetchingSelectdrop: false,
+  fetchingSelectdropError: false,
+  selectDrop:[],
+
   addingCustomerActivityEvent: false,
   addingCustomerActivityEventError: false,
 
@@ -559,6 +563,21 @@ export const customerReducer = (state = initialState, action) => {
         fetchingCustomerDetailsById: false,
         fetchingCustomerDetailsByIdError: true,
       };
+
+      case types.GET_SELECT_DROP_REQUEST:
+        return { ...state, fetchingSelectdrop: true };
+      case types.GET_SELECT_DROP_SUCCESS:
+        return {
+          ...state,
+          fetchingSelectdrop: false,
+          selectDrop: action.payload,
+        };
+      case types.GET_SELECT_DROP_FAILURE:
+        return {
+          ...state,
+          fetchingSelectdrop: false,
+          fetchingSelectdropError: true,
+        };
 
     case types.HANDLE_DOCUMENT_UPLOAD_MODAL:
       return { ...state, documentUploadModal: action.payload };

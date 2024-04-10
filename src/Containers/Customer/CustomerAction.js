@@ -549,6 +549,31 @@ export const getCustomerDocument = (customerId) => (dispatch) => {
     });
 };
 
+export const getselectdrop = (orgId) => (dispatch) => {
+  dispatch({ type: types.GET_SELECT_DROP_REQUEST });
+  axios
+    .get(`${base_url}/employee/active/user/drop-down/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SELECT_DROP_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SELECT_DROP_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /*request for adding a customer  opportunity */
 export const addCustomerOpportunity = (opportunity,userId, cb) => (
   dispatch,
