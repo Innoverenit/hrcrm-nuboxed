@@ -77,7 +77,6 @@ const initialState = {
 
   updatingPauseStatus: false,
   updatingPauseStatusError: false,
-  pauseId: "",
 
   updatingSparePacket: false,
   updatingSparePacketError: false,
@@ -1284,6 +1283,26 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingRemainingPhones: false,
         fetchingRemainingPhonesError: true,
 
+      };
+
+    case types.UPDATE_PAUSE_STATUS_REQUEST:
+      return { ...state, updatingPauseStatus: true };
+    case types.UPDATE_PAUSE_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingPauseStatus: false,
+        repairPhone: state.repairPhone.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
+      };
+    case types.UPDATE_PAUSE_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingPauseStatus: false,
+        updatingPauseStatusError: true,
       };
     default:
       return state;

@@ -117,7 +117,7 @@ function PhoneListForRepair(props) {
         console.log(item)
         const data = {
             repairStatus: type,
-            orderPhoneId: props.rowData.orderId,
+            orderPhoneId: props.rowData.orderPhoneId,
             phoneId: item.phoneId,
             repairTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
@@ -179,11 +179,9 @@ function PhoneListForRepair(props) {
                         height={"75vh"}
                     >
                         {props.repairPhone.map((item, index) => {
-
-                            const starttimme = dayjs(item.qcStartTime).add(5, 'hours').add(30, 'minutes');
-                            //  const endtimme = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
+                            console.log(item.pauseInd)
+                            console.log(item.repairStatus)
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
-                            const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                             return (
                                 <div>
                                     <div className="flex rounded-xl  w-full  mt-4 bg-white h-12 items-center p-3 "
@@ -233,127 +231,62 @@ function PhoneListForRepair(props) {
 
                                         <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {/* <div>
-                                                    {props.rowData.repairInspectionInd === 1 ?
-                                                        <ButtonGroup>
-                                                            {item.repairStatus === "To Start" && backToComplete === false && <StatusIcon
-                                                                type="In Progress"
-                                                                iconType="fa-hourglass-half"
-                                                                tooltip="In Progress"
-                                                                id={item.phoneId}
-                                                                indStatus={item.repairStatus}
-                                                                phoneId={RowData.phoneId}
-                                                                status={active}
-                                                                onClick={() => {
-                                                                    handleQCRepairStatus("In Progress", item)
 
-                                                                }}
-                                                            />}
-                                                            {item.repairStatus === "In Progress" && backToComplete === false && <StatusIcon
-                                                                type="Complete"
-                                                                iconType="fa-hourglass"
-                                                                tooltip="Complete"
-                                                                indStatus={item.repairStatus}
-                                                                status={active}
-                                                                id={item.phoneId}
-                                                                phoneId={RowData.phoneId}
-                                                                onClick={() => {
-                                                                    handleQCRepairStatus("Complete", item);
-                                                                }}
-                                                            />}
-                                                        </ButtonGroup> 
-                                                        :
-                                                        item.repairStatus === "Complete" && backToComplete === false
-                                                            ?
-                                                            <div>
-                                                                <RollbackOutlined
-                                                                    onClick={() => {
-                                                                        handleChangeBack();
-                                                                        handleSetRowData(item);
-                                                                    }}
-                                                                    style={{ marginRight: "0.3rem", color: "#1890ff" }} />
-                                                            </div>
-                                                            : null}
+                                                {/* <ButtonGroup> */}
+                                                {item.repairStatus === "To Start" && <StatusIcon
+                                                    type="In Progress"
+                                                    iconType="fa-hourglass-half"
+                                                    tooltip="In Progress"
+                                                    id={item.phoneId}
+                                                    indStatus={item.repairStatus}
+                                                    phoneId={RowData.phoneId}
+                                                    status={active}
+                                                    onClick={() => {
+                                                        handleQCRepairStatus("In Progress", item)
 
-                                                    {backToComplete === true && item.phoneId === RowData.phoneId &&
-                                                        <StatusIcon
-                                                            type="Complete"
-                                                            iconType="fa-hourglass"
-                                                            tooltip="Complete"
-                                                            indStatus={item.repairStatus}
-                                                            status={active}
-                                                            id={item.phoneId}
-                                                            phoneId={RowData.phoneId}
+                                                    }}
+                                                />}
+                                                {item.repairStatus === "In Progress" && item.pauseInd === false ?
+
+                                                    <PauseCircleFilled
+                                                        class=" cursor-pointer text-orange-400"
+                                                        onClick={() => {
+                                                            let data = {
+                                                                userId: props.userId,
+                                                                phoneId: item.phoneId,
+                                                                pauseInd: true
+                                                            }
+                                                            props.updatePauseStatus(data)
+                                                        }}
+                                                    />
+                                                    : item.repairStatus === "In Progress" && item.pauseInd === true ?
+                                                        <PlayCircleFilled
+                                                            class=" cursor-pointer text-green-600"
                                                             onClick={() => {
-                                                                handleQCRepairStatus("Complete", item);
-                                                            }}
-                                                        />
-                                                    }
-
-                                                </div> */}
-                                                {/* {props.rowData.repairInspectionInd === 1 && */}
-                                                <ButtonGroup>
-                                                    {item.repairStatus === "To Start"
-                                                        && props.rowData.repairInspectionInd === 1 && backToComplete === false && <StatusIcon
-                                                            type="In Progress"
-                                                            iconType="fa-hourglass-half"
-                                                            tooltip="In Progress"
-                                                            id={item.phoneId}
-                                                            indStatus={item.repairStatus}
-                                                            phoneId={RowData.phoneId}
-                                                            status={active}
-                                                            onClick={() => {
-                                                                handleQCRepairStatus("In Progress", item)
-
-                                                            }}
-                                                        />}
-                                                    {item.repairStatus === "In Progress" &&
-                                                        props.rowData.repairInspectionInd === 1 &&
-                                                        <>
-                                                            {!item.pauseInd ? <PauseCircleFilled
-                                                                class=" cursor-pointer"
-                                                                onClick={() => {
-                                                                    let data = {
-                                                                        phoneTimesId: "",
-                                                                        userId: props.userId,
-                                                                        phoneId: item.phoneId,
-                                                                        pauseInd: true
-                                                                    }
-                                                                    props.updatePauseStatus(data)
-                                                                }}
-                                                            /> :
-                                                                <PlayCircleFilled
-                                                                    class=" cursor-pointer"
-                                                                    onClick={() => {
-                                                                        let data = {
-                                                                            phoneTimesId: "",
-                                                                            userId: props.userId,
-                                                                            phoneId: item.phoneId,
-                                                                            pauseInd: false
-                                                                        }
-                                                                        props.updatePauseStatus(data)
-                                                                    }} />}
-                                                        </>
-
-                                                    }
-                                                    {item.repairStatus === "In Progress" &&
-                                                        props.rowData.repairInspectionInd === 1
-                                                        && backToComplete === false && <StatusIcon
-                                                            type="Complete"
-                                                            iconType="fa-hourglass"
-                                                            tooltip="Complete"
-                                                            indStatus={item.repairStatus}
-                                                            status={active}
-                                                            id={item.phoneId}
-                                                            phoneId={RowData.phoneId}
-                                                            onClick={() => {
-                                                                handleQCRepairStatus("Complete", item);
-                                                            }}
-                                                        />}
-                                                    {item.repairStatus === "Complete" &&
-                                                        <RollbackOutlined />}
-                                                </ButtonGroup>
-
+                                                                let data = {
+                                                                    userId: props.userId,
+                                                                    phoneId: item.phoneId,
+                                                                    pauseInd: false
+                                                                }
+                                                                props.updatePauseStatus(data)
+                                                            }} />
+                                                        : null
+                                                }
+                                                {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
+                                                    type="Complete"
+                                                    iconType="fa-hourglass"
+                                                    tooltip="Complete"
+                                                    indStatus={item.repairStatus}
+                                                    status={active}
+                                                    id={item.phoneId}
+                                                    phoneId={RowData.phoneId}
+                                                    onClick={() => {
+                                                        handleQCRepairStatus("Complete", item);
+                                                    }}
+                                                />}
+                                                {item.repairStatus === "Complete" &&
+                                                    <RollbackOutlined />}
+                                                {/* </ButtonGroup> */}
 
                                             </div>
                                         </div>

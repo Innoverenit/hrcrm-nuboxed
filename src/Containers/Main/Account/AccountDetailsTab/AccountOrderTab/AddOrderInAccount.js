@@ -8,10 +8,10 @@ import { StyledLabel } from '../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message } from 'antd';
+import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
-import { addOrderForm, getContactDistributorList } from '../../AccountAction'
+import { addOrderForm, getContactDistributorList, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
@@ -30,10 +30,15 @@ function AddOrderInAccount(props) {
     useEffect(() => {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
+        props.getLobList(props.orgId)
     }, [])
 
     const [priority, setPriority] = useState("High")
+    const [bulkQr, setBulkQr] = useState(false)
 
+    function handleBulkQr(checked) {
+        setBulkQr(checked)
+    }
     function handleButtonClick(type) {
         console.log(type)
         setPriority(type)
@@ -42,6 +47,12 @@ function AddOrderInAccount(props) {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
+        };
+    });
+    const lobOption = props.lobList.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.lobDetsilsId,
         };
     });
     const disabledDate = current => {
@@ -67,6 +78,7 @@ function AddOrderInAccount(props) {
                 orderId: "",
                 priority: priority || "",
                 orgId: props.orgId,
+                bulkQrInd: bulkQr,
                 loadingAddress: [
                     {
                         address1: "",
@@ -175,6 +187,27 @@ function AddOrderInAccount(props) {
                                                 isColumn
                                             />
                                         </div>}
+                                </div>
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="LOB"
+                                            name="lobDetsilsId"
+                                            component={SelectComponent}
+                                            options={Array.isArray(lobOption) ? lobOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <label>Required bulk QR code</label>
+                                        <Switch
+                                            onChange={handleBulkQr}
+                                            checked={bulkQr}
+                                            checkedChildren="Yes"
+                                            unCheckedChildren="No" />
+                                    </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
@@ -417,6 +450,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor }) => ({
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingOrder: distributor.addingOrder,
+    lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
 });
 
@@ -425,6 +459,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             addOrderForm,
             getSaleCurrency,
+            getLobList,
             getContactDistributorList
         },
         dispatch

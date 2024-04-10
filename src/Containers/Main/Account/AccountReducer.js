@@ -152,6 +152,10 @@ const initialState = {
 
   feedbackModal: false,
 
+  fetchingLobList: false,
+  fetchingLobListError: false,
+  lobList: [],
+
   fetchingFeedbackByOrderId: false,
   fetchingFeedbackByOrderIdError: false,
   orderFeedbacks: [],
@@ -2473,6 +2477,22 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingSupervisor: false,
         addingSupervisorError: true,
+      };
+
+    case types.GET_LOB_LIST_REQUEST:
+      return { ...state, fetchingLobList: true };
+    case types.GET_LOB_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingLobList: false,
+        lobList: action.payload
+      };
+    case types.GET_LOB_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingLobList: false,
+        fetchingLobListError: true,
+
       };
     default:
       return state;

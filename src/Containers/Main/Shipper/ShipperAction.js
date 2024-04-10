@@ -55,7 +55,7 @@ export const addShipper = (shipper, userId) => (dispatch) => {
 /**
  * get all the SHIPPER of the user
  */
-export const getShipperByUserId = (userId,pageNo) => (dispatch) => {
+export const getShipperByUserId = (userId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_SHIPPER_BY_USER_ID_REQUEST,
   });
@@ -89,7 +89,7 @@ export const getShipperByShipperId = (id) => (dispatch) => {
     type: types.GET_SHIPPER_BY_SHIPPER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/${id}`,{
+    .get(`${base_url2}/shipper/${id}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -502,7 +502,7 @@ export const getShipperHistory = (shipperId) => (dispatch) => {
     type: types.GET_SHIPPER_HISTORY_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/history/${shipperId}`,{
+    .get(`${base_url2}/shipper/history/${shipperId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -597,7 +597,7 @@ export const getShipperOrderByShipperId = (shipperId) => (dispatch) => {
     type: types.GET_SHIPPER_ORDER_BY_SHIPPER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/order/shipper/${shipperId}`,{
+    .get(`${base_url2}/order/shipper/${shipperId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -625,7 +625,7 @@ export const fetchingNewShipperOrder = (shipperId) => (dispatch) => {
     type: types.FETCHING_NEW_SHIPPER_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/dispatch/${shipperId}`,{
+    .get(`${base_url2}/shipper/dispatch/${shipperId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -809,7 +809,7 @@ export const getOrderDetailsById = (orderId) => (dispatch) => {
 /**
  * get all the Shipper
  */
-export const getAllShipperList = (orgId,pageNo) => (dispatch) => {
+export const getAllShipperList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SHIPPER_LIST_REQUEST,
   });
@@ -830,6 +830,32 @@ export const getAllShipperList = (orgId,pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_ALL_SHIPPER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllShipper = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_SHIPPER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/all/shipper/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_SHIPPER_FAILURE,
         payload: err,
       });
     });
@@ -1357,7 +1383,7 @@ export const getShipperDispatch = (shipperId) => (dispatch) => {
     type: types.GET_SHIPPER_DISPATCH_REQUEST,
   });
   axios
-    .get(`${base_url2}/shipper/dispatch/${shipperId}`,{
+    .get(`${base_url2}/shipper/dispatch/${shipperId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1378,31 +1404,6 @@ export const getShipperDispatch = (shipperId) => (dispatch) => {
     });
 };
 
-export const getAllShipper = () => (dispatch) => {
-  dispatch({
-    type: types.GET_ALL_SHIPPER_REQUEST,
-  });
-  axios
-    .get(`${base_url2}/shipper/all-shipper`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.GET_ALL_SHIPPER_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.GET_ALL_SHIPPER_FAILURE,
-        payload: err,
-      });
-    });
-};
 
 export const getShipperRecords = (userId) => (dispatch) => {
   dispatch({
@@ -1435,11 +1436,11 @@ export const getEmployeelistAsErp = () => (dispatch) => {
     type: types.GET_EMPLOYEE_LIST_AS_ERP_REQUEST,
   });
   axios
-     .get(`${base_url}/employee/user-list/drop-down/erp`, {
-     headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-    },
-  })
+    .get(`${base_url}/employee/user-list/drop-down/erp`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({

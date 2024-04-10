@@ -23,7 +23,7 @@ const ReceivedDetailCard = (props) => {
         props.getMaterialReceivedDetailData(props.row.poSupplierDetailsId)
         props.getGrnNoByPoId(props.row.poSupplierDetailsId)
     }, [])
-    const [existGrn, setExistGrn] = useState(true)
+    const [existGrn, setExistGrn] = useState(false)
     const handleChange = () => {
         setExistGrn(!existGrn)
     }
@@ -274,12 +274,12 @@ const ReceivedDetailCard = (props) => {
             </div>
             <div className=' flex justify-end mt-1'>
                 {show &&
-                 <Button
-                    type='primary'
-                    onClick={showModal}
-                >
-                    Generate GRN
-                </Button>}
+                    <Button
+                        type='primary'
+                        onClick={showModal}
+                    >
+                        Generate GRN
+                    </Button>}
                 <Modal
                     title=""
                     open={isModalOpen}
