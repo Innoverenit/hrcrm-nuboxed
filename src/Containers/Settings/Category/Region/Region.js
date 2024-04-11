@@ -1,8 +1,10 @@
 import React, { useState,useEffect,useRef } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
-import {  Input,Popconfirm} from "antd";
+import {  Input,Tooltip,Popconfirm} from "antd";
 import dayjs from "dayjs";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import {
     getRegions,
@@ -152,6 +154,15 @@ if (props.fetchingRegions) {
             // value={currentData}
           />
             </div>
+            <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"region"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
                 {addingRegion ? (
                     <div>
                         <input 

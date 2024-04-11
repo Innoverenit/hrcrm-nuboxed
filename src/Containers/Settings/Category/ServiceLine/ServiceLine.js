@@ -2,8 +2,10 @@ import React, { useState,useEffect } from 'react';
 import { EditOutlined, DeleteOutlined,PlusOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../../Config/Auth";
 import dayjs from "dayjs";
-import {  Input} from "antd";
+import { Tooltip, Input} from "antd";
 import {
     getServiceLine,
     getServiceLineCount,
@@ -177,6 +179,15 @@ if (props.fetchingServiceLine) {
             // value={currentData}
           />
             </div>
+            <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"serviceLine"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
               <div className="add-region">
                 {addingRegion ? (
                     <div>

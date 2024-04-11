@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Tooltip, Input } from "antd";
+import { Popconfirm,Tooltip,Button, Input } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
 import {
   getInvestorList,
+  handleInvestorImportModal,
   getInvestorCount,
   searchInvestorTypeName,
   ClearReducerDataOfInvestorType,
@@ -19,6 +20,7 @@ import {
 } from "../InvestorTab/InvestorListAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MainWrapper } from "../../../../Components/UI/Layout";
+import AddInvestorImportModal from "./AddInvestorImportModal";
 
 
 
@@ -116,6 +118,7 @@ if (props.fetchingInvestorList) {
 return <div><BundleLoader/></div>;
 }
   return (
+    <>
       <div>
     <div class=" flex flex-row justify-between">
     <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
@@ -137,6 +140,15 @@ return <div><BundleLoader/></div>;
     </div>
   </a>
 </div>
+<div class="w-[5rem]">
+<Button
+          type="primary"
+       
+        onClick={() => props.handleInvestorImportModal(true)}
+        >
+          Import
+        </Button>
+        </div>
             <div className="add-region">
               {addingRegion ? (
                   <div>
@@ -219,6 +231,12 @@ return <div><BundleLoader/></div>;
 
   <div class=" font-bold">Updated on {dayjs(props.investorListData && props.investorListData.length && props.investorListData[0].updationDate).format('YYYY-MM-DD')} by {props.investorListData && props.investorListData.length && props.investorListData[0].updatedBy}</div>
       </div>
+       <AddInvestorImportModal
+       handleInvestorImportModal={props.handleInvestorImportModal}
+       addInvestorImportModal={props.addInvestorImportModal}
+   
+       /> 
+       </>
   );
 };
 
@@ -229,6 +247,7 @@ const mapStateToProps = ({ investorList,auth }) => ({
   investorCount:investorList.investorCount,
 orgId:auth.userDetails.organizationId,
 userId:auth.userDetails.userId,
+addInvestorImportModal:investorList.addInvestorImportModal,
 removingInvestor: investorList.removingInvestor,
 removingInvestorError: investorList.removingInvestorError,
 fetchingInvestorList: investorList.fetchingInvestorList,
@@ -248,6 +267,7 @@ const mapDispatchToProps = (dispatch) =>
         addInvestorData,
         removeInvestor,
       updateInvestor,
+      handleInvestorImportModal,
 
     },
     dispatch

@@ -246,3 +246,47 @@ export const updateInvestor = (data, investorCategoryId,cb) => (dispatch) => {
         });
       });
   };
+
+  export const handleInvestorImportModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_IMPORT_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const addInvestorImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const employeeId = getState().auth.userDetails.employeeId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_INVESTOR_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/excel/import/category/?type=${"investorCategory"}`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getTaskListRangeByUserId(employeeId,"0"));
+   
+
+      dispatch({
+        type: types.ADD_INVESTOR_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_INVESTOR_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};

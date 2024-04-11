@@ -46,11 +46,11 @@ const DevelopmentList = (props) => {
       props.getDevelopmentCount(props.orgId) 
   }, [])
 
-  const editRegion = (developmentId, name,option) => {
+  const editRegion = (developmentId, name,developmentType) => {
 
       setEditingId(developmentId);
       setDevelopmentName(name);
-      setSelectedOption(option);
+      setSelectedOption(developmentType);
       // setTaskTypeId(value);
   };
 
@@ -77,7 +77,7 @@ const DevelopmentList = (props) => {
         userId:props.userId,
         value:newDevelopmentName,
         taskType:taskTypeId,
-        option: selectedOption 
+        developmentType: selectedOption 
        
       }
 props.updateDevelopment(data,region.developmentId)
@@ -93,7 +93,7 @@ setEditingId(null);
         organizationId:props.organizationId,
         userId:props.userId,
         taskType:taskTypeId,
-        option: selectedOption 
+        developmentType: selectedOption 
        
       }
       props.addDevelopment(data,props.orgId)
@@ -264,7 +264,7 @@ return <div><BundleLoader/></div>;
                 </>
             ) : (
                 <div className="region" style={{width:"15rem"}}>
-                  {region.value} {region.option}</div>
+                  {region.value} {region.developmentType}</div>
             )}
 
             {/* Action buttons */}
@@ -278,7 +278,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {/* {region.editInd ? ( */}
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.option)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.developmentType)} />
                     {/* ) : null} */}
                     </>
                 )}
