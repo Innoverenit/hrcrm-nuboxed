@@ -168,7 +168,7 @@ class SearchSelect extends Component {
       getAllDialCodeList();
     }
     if (selectType === "shipper") {
-      getAllShipper(props.organizationId);
+      getAllShipper(organizationId);
     }
     if (selectType === "currencyName") {
       getCurrency();
