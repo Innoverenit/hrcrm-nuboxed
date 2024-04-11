@@ -4,7 +4,7 @@ const initialState = {
   viewType: "table",
   addCustomerModal: false,
 
-  addCustomerContactJumpstartModal:false,
+  addCustomerContactJumpstartModal: false,
 
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
@@ -12,7 +12,7 @@ const initialState = {
 
   fetchingSelectdrop: false,
   fetchingSelectdropError: false,
-  selectDrop:[],
+  selectDrop: [],
 
   addingCustomerActivityEvent: false,
   addingCustomerActivityEventError: false,
@@ -31,7 +31,7 @@ const initialState = {
 
   customerProjectModal: false,
 
-  addCustomerActivityJumpstartModal:false,
+  addCustomerActivityJumpstartModal: false,
 
   fetchingFilterCustomers: false,
   fetchingFilterCustomersError: false,
@@ -48,10 +48,10 @@ const initialState = {
 
 
   fetchingCustOpenOppJumpstart: false,
-  fetchingCustOpenOppJumpstartError:false,
+  fetchingCustOpenOppJumpstartError: false,
   openOppOfCustJumpstart: [],
 
-  addCustomerOpenOppJumpstartModal:false,
+  addCustomerOpenOppJumpstartModal: false,
 
   addingCustomerContact: false,
   addingCustomerContactError: false,
@@ -59,7 +59,7 @@ const initialState = {
 
 
   fetchingCustContactsJumpstart: false,
-  fetchingCustContactsJumpstartError:false,
+  fetchingCustContactsJumpstartError: false,
   contactOfCustJumpstart: [],
 
   fetchinglatestCustomer: false,
@@ -83,7 +83,7 @@ const initialState = {
 
   fetchingCustomerAllRecords: false,
   fetchingCustomerAllRecordsError: false,
-  customerAllRecordData:{},
+  customerAllRecordData: {},
 
   callActivityModal: false,
 
@@ -194,7 +194,7 @@ const initialState = {
 
   clearbit: {},
 
-  addCustomerWonOppJumpstartModal:false,
+  addCustomerWonOppJumpstartModal: false,
 
   fetchingAllCustomers: false,
   fetchingAllCustomersError: false,
@@ -240,7 +240,7 @@ const initialState = {
   customerActivityTimeline: [],
 
   fetchingCustWonOppJumpstart: false,
-  fetchingCustWonOppJumpstartError:false,
+  fetchingCustWonOppJumpstartError: false,
   wonOppOfCustJumpstart: [],
 
   addDrawerCustomerOpportunityModal: false,
@@ -301,9 +301,9 @@ const initialState = {
   linkedcustomerProjectTask: [],
 
 
-  fetchingCustomerNoteList:false,
-  fetchingCustomerNoteListError:false,
-  customerNoteList:[],
+  fetchingCustomerNoteList: false,
+  fetchingCustomerNoteListError: false,
+  customerNoteList: [],
 
   addingCommercials: false,
   addingCommercialsError: false,
@@ -431,7 +431,7 @@ const initialState = {
   addCustomerOpportunityModal: false,
 
 
-  addCustomerNoteDrawerModal:false,
+  addCustomerNoteDrawerModal: false,
 
   addCustomerProjectDrawer: false,
   customeropportunityByUserId: [],
@@ -479,7 +479,7 @@ const initialState = {
   addingCustomerCampaignEventError: false,
   fetchingCustomerCampaign: false,
   fetchingCustomerCampaignError: false,
-  customerCampaign:[],
+  customerCampaign: [],
 };
 
 export const customerReducer = (state = initialState, action) => {
@@ -521,8 +521,6 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCustomers: false,
-        // customerByUserId: action.payload,
-
         customerByUserId: [...state.customerByUserId, ...action.payload],
         clearbit: null,
       };
@@ -564,20 +562,20 @@ export const customerReducer = (state = initialState, action) => {
         fetchingCustomerDetailsByIdError: true,
       };
 
-      case types.GET_SELECT_DROP_REQUEST:
-        return { ...state, fetchingSelectdrop: true };
-      case types.GET_SELECT_DROP_SUCCESS:
-        return {
-          ...state,
-          fetchingSelectdrop: false,
-          selectDrop: action.payload,
-        };
-      case types.GET_SELECT_DROP_FAILURE:
-        return {
-          ...state,
-          fetchingSelectdrop: false,
-          fetchingSelectdropError: true,
-        };
+    case types.GET_SELECT_DROP_REQUEST:
+      return { ...state, fetchingSelectdrop: true };
+    case types.GET_SELECT_DROP_SUCCESS:
+      return {
+        ...state,
+        fetchingSelectdrop: false,
+        selectDrop: action.payload,
+      };
+    case types.GET_SELECT_DROP_FAILURE:
+      return {
+        ...state,
+        fetchingSelectdrop: false,
+        fetchingSelectdropError: true,
+      };
 
     case types.HANDLE_DOCUMENT_UPLOAD_MODAL:
       return { ...state, documentUploadModal: action.payload };
@@ -1430,7 +1428,7 @@ export const customerReducer = (state = initialState, action) => {
 
 
 
-      case types.GET_CUSTOMER_NOTE_LIST_REQUEST:
+    case types.GET_CUSTOMER_NOTE_LIST_REQUEST:
       return {
         ...state,
         fetchingCustomerNoteList: true,
@@ -1709,8 +1707,8 @@ export const customerReducer = (state = initialState, action) => {
 
 
 
-      case types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL:
-        return { ...state, addCustomerNoteDrawerModal: action.payload };
+    case types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL:
+      return { ...state, addCustomerNoteDrawerModal: action.payload };
 
     case types.CUSTOMER_TO_ACCOUNT_CONVERT_REQUEST:
       return {
@@ -1990,142 +1988,142 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CAMPAIGN_DRAWER:
       return { ...state, openCampaigndrwr: action.payload };
 
-      case types.ADD_CUSTOMER_EVENT_REQUEST:
-        return {
-          ...state,
-          addingCustomerEvent: true,
-        };
-      case types.ADD_CUSTOMER_EVENT_SUCCESS:
-        return {
-          ...state,
-          openCampaigndrwr:false,
-          addingCustomerEvent: false,
-          addingCustomerEventError: false,
-          // customerCampaign:[action.payload,...state.customerCampaign],
-        };
-      case types.ADD_CUSTOMER_EVENT_FAILURE:
-        return {
-          ...state,
-          addingCustomerEvent: false,
-          addingCustomerEventError: true,
-        };
+    case types.ADD_CUSTOMER_EVENT_REQUEST:
+      return {
+        ...state,
+        addingCustomerEvent: true,
+      };
+    case types.ADD_CUSTOMER_EVENT_SUCCESS:
+      return {
+        ...state,
+        openCampaigndrwr: false,
+        addingCustomerEvent: false,
+        addingCustomerEventError: false,
+        // customerCampaign:[action.payload,...state.customerCampaign],
+      };
+    case types.ADD_CUSTOMER_EVENT_FAILURE:
+      return {
+        ...state,
+        addingCustomerEvent: false,
+        addingCustomerEventError: true,
+      };
 
-      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
-        return {
-          ...state,
-          addingCustomerCampaignEvent: true,
-          fetchingWonInvPipelineValueError: false,
-        };
-      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
-        return {
-          ...state,
-          addingCustomerCampaignEvent: false,
-          addingCustomerCampaignEventError: false,
-         
-        };
-      case types.ADD_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
-        return {
-          ...state,
-          addingCustomerCampaignEvent: false,
-          addingCustomerCampaignEventError: true,
-        };
+    case types.ADD_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
+      return {
+        ...state,
+        addingCustomerCampaignEvent: true,
+        fetchingWonInvPipelineValueError: false,
+      };
+    case types.ADD_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
+      return {
+        ...state,
+        addingCustomerCampaignEvent: false,
+        addingCustomerCampaignEventError: false,
 
-        case types.GET_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
-          return {
-            ...state,
-            fetchingCustomerCampaign: true,
-          };
-        case types.GET_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
-          return {
-            ...state,
-            fetchingCustomerCampaign: false,
-            customerCampaign:action.payload,
-          };
-        case types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
-          return {
-            ...state,
-            fetchingCustomerCampaign: false,
-            fetchingCustomerCampaignError: true,
-          };
+      };
+    case types.ADD_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
+      return {
+        ...state,
+        addingCustomerCampaignEvent: false,
+        addingCustomerCampaignEventError: true,
+      };
 
-          case types.GET_CUSTOMER_ALL_RECORDS_REQUEST:
-            return { ...state, fetchingCustomerAllRecords: true };
-          case types.GET_CUSTOMER_ALL_RECORDS_SUCCESS:
-            return {
-              ...state,
-              fetchingCustomerAllRecords: false,
-              customerAllRecordData: action.payload,
-            };
-          case types.GET_CUSTOMER_ALL_RECORDS_FAILURE:
-            return {
-              ...state,
-              fetchingCustomerAllRecords: false,
-              fetchingCustomerAllRecordsError: true,
-            };
+    case types.GET_CUSTOMER_CAMPAIGN_EVENT_REQUEST:
+      return {
+        ...state,
+        fetchingCustomerCampaign: true,
+      };
+    case types.GET_CUSTOMER_CAMPAIGN_EVENT_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerCampaign: false,
+        customerCampaign: action.payload,
+      };
+    case types.GET_CUSTOMER_CAMPAIGN_EVENT_FAILURE:
+      return {
+        ...state,
+        fetchingCustomerCampaign: false,
+        fetchingCustomerCampaignError: true,
+      };
 
-
-            case types.HANDLE_CUSTOMER_CONTACT_JUMPSTART_MODAL:
-              return { ...state, addCustomerContactJumpstartModal: action.payload };
-
-              case types.HANDLE_CUSTOMER_ACTIVITY_JUMPSTART_MODAL:
-                return { ...state, addCustomerActivityJumpstartModal: action.payload };
-
-                case types.HANDLE_CUSTOMER_OPEN_OPPORTUNITY_JUMPSTART_MODAL:
-                  return { ...state, addCustomerOpenOppJumpstartModal: action.payload };
-
-                  case types.HANDLE_CUSTOMER_WON_OPPORTUNITY_JUMPSTART_MODAL:
-                    return { ...state, addCustomerWonOppJumpstartModal: action.payload };
-  
-
-              case types.GET_CONTACTS_OF_JUMPSTART_REQUEST:
-                return { ...state, fetchingCustContactsJumpstart: true };
-              case types.GET_CONTACTS_OF_JUMPSTART_SUCCESS:
-                return {
-                  ...state,
-                  fetchingCustContactsJumpstart: false,
-                  contactOfCustJumpstart: action.payload,
-                  // contactByUserId: [
-                  //   ...state.contactByUserId,
-                  //   ...action.payload],
-                
-                };
-              case types.GET_CONTACTS_OF_JUMPSTART_FAILURE:
-                return { ...state, fetchingCustContactsJumpstart: false, fetchingCustContactsJumpstartError: true };
-
-                case types.GET_OPEN_OPP_OF_JUMPSTART_REQUEST:
-                  return { ...state, fetchingCustOpenOppJumpstart: true };
-                case types.GET_OPEN_OPP_OF_JUMPSTART_SUCCESS:
-                  return {
-                    ...state,
-                    fetchingCustOpenOppJumpstart: false,
-                    openOppOfCustJumpstart: action.payload,
-                    // contactByUserId: [
-                    //   ...state.contactByUserId,
-                    //   ...action.payload],
-                  
-                  };
-                case types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE:
-                  return { ...state, fetchingCustOpenOppJumpstart: false, fetchingCustOpenOppJumpstartError: true };
+    case types.GET_CUSTOMER_ALL_RECORDS_REQUEST:
+      return { ...state, fetchingCustomerAllRecords: true };
+    case types.GET_CUSTOMER_ALL_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerAllRecords: false,
+        customerAllRecordData: action.payload,
+      };
+    case types.GET_CUSTOMER_ALL_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingCustomerAllRecords: false,
+        fetchingCustomerAllRecordsError: true,
+      };
 
 
+    case types.HANDLE_CUSTOMER_CONTACT_JUMPSTART_MODAL:
+      return { ...state, addCustomerContactJumpstartModal: action.payload };
 
-                  case types.GET_WON_OPP_OF_JUMPSTART_REQUEST:
-                    return { ...state, fetchingCustWonOppJumpstart: true };
-                  case types.GET_WON_OPP_OF_JUMPSTART_SUCCESS:
-                    return {
-                      ...state,
-                      fetchingCustWonOppJumpstart: false,
-                      wonOppOfCustJumpstart: action.payload,
-                      // contactByUserId: [
-                      //   ...state.contactByUserId,
-                      //   ...action.payload],
-                    
-                    };
-                  case types.GET_WON_OPP_OF_JUMPSTART_FAILURE:
-                    return { ...state, fetchingCustWonOppJumpstart: false, fetchingCustWonOppJumpstartError: true };
-              
-            
-          
+    case types.HANDLE_CUSTOMER_ACTIVITY_JUMPSTART_MODAL:
+      return { ...state, addCustomerActivityJumpstartModal: action.payload };
+
+    case types.HANDLE_CUSTOMER_OPEN_OPPORTUNITY_JUMPSTART_MODAL:
+      return { ...state, addCustomerOpenOppJumpstartModal: action.payload };
+
+    case types.HANDLE_CUSTOMER_WON_OPPORTUNITY_JUMPSTART_MODAL:
+      return { ...state, addCustomerWonOppJumpstartModal: action.payload };
+
+
+    case types.GET_CONTACTS_OF_JUMPSTART_REQUEST:
+      return { ...state, fetchingCustContactsJumpstart: true };
+    case types.GET_CONTACTS_OF_JUMPSTART_SUCCESS:
+      return {
+        ...state,
+        fetchingCustContactsJumpstart: false,
+        contactOfCustJumpstart: action.payload,
+        // contactByUserId: [
+        //   ...state.contactByUserId,
+        //   ...action.payload],
+
+      };
+    case types.GET_CONTACTS_OF_JUMPSTART_FAILURE:
+      return { ...state, fetchingCustContactsJumpstart: false, fetchingCustContactsJumpstartError: true };
+
+    case types.GET_OPEN_OPP_OF_JUMPSTART_REQUEST:
+      return { ...state, fetchingCustOpenOppJumpstart: true };
+    case types.GET_OPEN_OPP_OF_JUMPSTART_SUCCESS:
+      return {
+        ...state,
+        fetchingCustOpenOppJumpstart: false,
+        openOppOfCustJumpstart: action.payload,
+        // contactByUserId: [
+        //   ...state.contactByUserId,
+        //   ...action.payload],
+
+      };
+    case types.GET_OPEN_OPP_OF_JUMPSTART_FAILURE:
+      return { ...state, fetchingCustOpenOppJumpstart: false, fetchingCustOpenOppJumpstartError: true };
+
+
+
+    case types.GET_WON_OPP_OF_JUMPSTART_REQUEST:
+      return { ...state, fetchingCustWonOppJumpstart: true };
+    case types.GET_WON_OPP_OF_JUMPSTART_SUCCESS:
+      return {
+        ...state,
+        fetchingCustWonOppJumpstart: false,
+        wonOppOfCustJumpstart: action.payload,
+        // contactByUserId: [
+        //   ...state.contactByUserId,
+        //   ...action.payload],
+
+      };
+    case types.GET_WON_OPP_OF_JUMPSTART_FAILURE:
+      return { ...state, fetchingCustWonOppJumpstart: false, fetchingCustWonOppJumpstartError: true };
+
+
+
 
     default:
       return state;
