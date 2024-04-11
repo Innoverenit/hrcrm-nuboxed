@@ -217,7 +217,7 @@ return <div><BundleLoader/></div>;
      
                 </>
             ) : (
-                <div className="region">
+                <div className="region" style={{width:"8rem"}}>
                   {region.roleType}</div>
             )}
 
