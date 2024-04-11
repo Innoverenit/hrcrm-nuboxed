@@ -27,7 +27,9 @@ const Option = Select;
 function RegionSalesList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [rowdata, setrowdata] = useState("");
+  const [rowdownData, setrowDowndata] = useState("");
   const [page, setPage] = useState(0);
+  const [showHeartCard, setShowHeartCard] = useState(false);
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     props.getRegionSalesList(currentYear,props.tabKey,props.rowdata.regionsId,"Sales");
@@ -36,6 +38,12 @@ function RegionSalesList(props) {
 
   const handleRowData = (data) => {
     setrowdata(data);
+    // setShowHeartCard(true);
+  };
+
+  const handleRowDownData = (data) => {
+    setrowDowndata(data);
+    setShowHeartCard(true);
   };
   
 
@@ -51,7 +59,12 @@ function RegionSalesList(props) {
   return (
     <>
   {regionSalesList.length > 0 ? (
-  regionSalesList.map((employee, i) => (
+  regionSalesList.map((employee, i) => {
+    const AssignedValue = employee.useKpiList.reduce((acc, curr) => acc + curr.assignedValue, 0);
+        const Actualcompleted = employee.useKpiList.reduce((acc, curr) => acc + curr.completedValue, 0);
+
+        const actualCompletedValue=employee.useKpiList.reduce((acc, curr) => acc + curr.actualCompletedValue, 0);
+        return (
       <div key={i}>
         <div className="flex items-center">
           <div className="font-bold mr-4">{employee.employeeName}</div>
@@ -83,22 +96,17 @@ function RegionSalesList(props) {
             
             </div>
   
-            {employee.useKpiList.map((item, index) => {
+            {/* {employee.useKpiList.map((item, index) => { */}
+
   
-  
-            const AssignedTotal = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue) ;
-            const AchievedTotal = Math.floor(item.month1CompletedValue + item.month2CompletedValue +item.month3CompletedValue) ;
-  const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2ActualCompletedValue +item.month3ActualCompletedValue) ;
-            // + item.month1CompletedValue + item.month2CompletedValue + item.month3CompletedValue + item.month1ActualCompletedValue + item.month2ActualCompletedValue + item.month3ActualCompletedValue );
-             return (
-              <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+              <div  className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
                 <div className="flex font-medium flex-col md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div className="flex max-sm:w-full items-center">
                     <div className="max-sm:w-full">
                       <Tooltip>
                         <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                           <div className="text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
-                            {item.kpiName}
+                            {employee.kpiSalesName}
                           </div>
                         </div>
                       </Tooltip>
@@ -112,7 +120,7 @@ function RegionSalesList(props) {
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {AssignedTotal}
+                       {AssignedValue}
                       </div>
                     </>
                   </div>
@@ -123,7 +131,7 @@ function RegionSalesList(props) {
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {AchievedTotal}
+                       {Actualcompleted}
                       </div>
                     </>
                   </div>
@@ -133,7 +141,7 @@ function RegionSalesList(props) {
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {ActualTotal}
+                       {actualCompletedValue}
                       </div>
                     </>
                   </div>
@@ -141,19 +149,39 @@ function RegionSalesList(props) {
                    <div className="flex font-medium flex-col md:w-[4.3rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div className="text-sm text-cardBody font-poppins">
                     <>
-                   <Button>Details</Button>
+                   <Button
+                   onClick={() => {
+                    // handleSalesPlanDrawerModal(true);
+                    handleRowDownData(employee);
+                    }}
+                   >Details</Button>
                     </>
                   </div>
+        
                 </div>
                 
               </div>
-             );
+             {/* ); */}
                        
-})}
+{/* })} */}
           </div>
         </div>
         {/* Details card code */}
-        {/* <div className=' flex  justify-center  sticky top-28 z-auto'>
+       
+      
+       
+      </div>
+      
+        )
+})
+
+    ) : (
+      
+      <p>No Data Available</p>
+    )}
+              <div>
+        {showHeartCard && (
+<div className=' flex  justify-center  sticky top-28 z-auto'>
           <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[11.5rem]">
@@ -184,7 +212,7 @@ function RegionSalesList(props) {
             
             </div>
   
-            {employee.useKpiList.map((item, index) => {
+            {rowdownData.useKpiList.map((item, index) => {
   
   
             const AssignedTotal = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue) ;
@@ -356,13 +384,10 @@ function RegionSalesList(props) {
                        
 })}
           </div>
-        </div> */}
-      </div>
-    ))
-    ) : (
-      <p>No Data Available</p>
-    )}
-  
+        </div>
+  )}
+        </div>
+
     <SalesPlanDrawerModal
     tabKey={props.tabKey}
             rowdata={rowdata}
