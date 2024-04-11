@@ -19,7 +19,7 @@ import ButtonGroup from "antd/lib/button/button-group";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
-import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled } from "@mui/icons-material";
+import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SubTitle } from "../../../Components/UI/Elements";
@@ -28,6 +28,7 @@ import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import TagInDrawer from "./ProductionTab/TagInDrawer";
 import { base_url2 } from "../../../Config/Auth";
+import { BundleLoader } from "../../../Components/Placeholder";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -122,7 +123,7 @@ function PhoneListForRepair(props) {
             repairTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
-        props.updaterepairStatus(data, item.phoneId, props.rowData.orderPhoneId, props.locationId, props.userId)
+        props.updaterepairStatus(data, item.phoneId, props.userId)
         if (type === "Complete") {
             setBackComplete(false)
         }
@@ -130,7 +131,7 @@ function PhoneListForRepair(props) {
 
     return (
         <>
-            <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
+            {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
                 <div class=" h-[75vh] rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[98.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[4.2rem]"><FormattedMessage
@@ -166,6 +167,10 @@ function PhoneListForRepair(props) {
                             id="app.actualeffort"
                             defaultMessage="actualeffort"
                         /></div>
+                        <div className="md:w-[6rem]"><FormattedMessage
+                            id="app.workduration"
+                            defaultMessage="Work Duration"
+                        /></div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[5rem]"></div>
@@ -179,8 +184,11 @@ function PhoneListForRepair(props) {
                         height={"75vh"}
                     >
                         {props.repairPhone.map((item, index) => {
-                            console.log(item.pauseInd)
-                            console.log(item.repairStatus)
+
+                            let x = item.repairStatus === "In Progress"
+                            let y = item.pauseInd
+                            console.log(x)
+                            console.log(y)
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             return (
                                 <div>
@@ -231,8 +239,19 @@ function PhoneListForRepair(props) {
 
                                         <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
+                                                {(x === true && y === true) &&
 
-                                                {/* <ButtonGroup> */}
+                                                    <PlayCircleFilledSharp
+                                                        // class=" cursor-pointer"
+                                                        onClick={() => {
+                                                            let data = {
+                                                                userId: props.userId,
+                                                                phoneId: item.phoneId,
+                                                                pauseInd: false
+                                                            }
+                                                            props.updatePauseStatus(data)
+                                                        }} />
+                                                }
                                                 {item.repairStatus === "To Start" && <StatusIcon
                                                     type="In Progress"
                                                     iconType="fa-hourglass-half"
@@ -246,7 +265,7 @@ function PhoneListForRepair(props) {
 
                                                     }}
                                                 />}
-                                                {item.repairStatus === "In Progress" && item.pauseInd === false ?
+                                                {item.repairStatus === "In Progress" && item.pauseInd === false &&
 
                                                     <PauseCircleFilled
                                                         class=" cursor-pointer text-orange-400"
@@ -259,19 +278,8 @@ function PhoneListForRepair(props) {
                                                             props.updatePauseStatus(data)
                                                         }}
                                                     />
-                                                    : item.repairStatus === "In Progress" && item.pauseInd === true ?
-                                                        <PlayCircleFilled
-                                                            class=" cursor-pointer text-green-600"
-                                                            onClick={() => {
-                                                                let data = {
-                                                                    userId: props.userId,
-                                                                    phoneId: item.phoneId,
-                                                                    pauseInd: false
-                                                                }
-                                                                props.updatePauseStatus(data)
-                                                            }} />
-                                                        : null
                                                 }
+
                                                 {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
                                                     type="Complete"
                                                     iconType="fa-hourglass"
@@ -312,6 +320,12 @@ function PhoneListForRepair(props) {
                                         <div className=" flex font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
+
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                                {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
                                             </div>
                                         </div>
@@ -377,7 +391,7 @@ function PhoneListForRepair(props) {
                                                 />}>
 
                                                     <ReactToPrint
-                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR</Button>}
                                                         content={() => componentRefs.current[index]}
                                                     />
                                                 </Tooltip>
@@ -465,7 +479,7 @@ function PhoneListForRepair(props) {
                     clickTagInDrawr={props.clickTagInDrawr}
                     handleInTagDrawer={props.handleInTagDrawer}
                 /> */}
-            </div>
+            </div>}
         </>
     )
 

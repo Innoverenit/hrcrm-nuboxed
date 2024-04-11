@@ -19,7 +19,7 @@ function LocationOrderForm(props) {
         setTechnician(val)
         props.addSupervisor({ supervisorUserId: val }, props.particularRowData.orderId)
     }
-    let location = props.particularRowData.locationDetailsViewDTO.locationDetailsId
+    let location = props.particularRowData.locationDetailsId
 
     const handleDepartment = (val) => {
         setDepartment(val)
