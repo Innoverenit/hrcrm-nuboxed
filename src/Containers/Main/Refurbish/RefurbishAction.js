@@ -909,7 +909,7 @@ export const getRepairPhoneByUser = (orderPhoneId, technicianId) => (dispatch) =
       });
     });
 };
-export const updaterepairStatus = (data, phoneId, orderPhoneId, locationDetailsId, userId, cb) => (dispatch) => {
+export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_REPAIR_STATUS_REQUEST });
   axios
@@ -920,7 +920,7 @@ export const updaterepairStatus = (data, phoneId, orderPhoneId, locationDetailsI
     })
     .then((res) => {
       // dispatch(getRepairPhoneByUser(orderPhoneId, userId))
-      dispatch(getRepairOrderByUser(locationDetailsId, userId))
+      dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
         payload: res.data,
@@ -990,7 +990,6 @@ export const repairInspectionButton = (data, orderPhoneId, cb) => (dispatch) => 
       },
     })
     .then((res) => {
-      // dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_REPAIR_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -1372,7 +1371,6 @@ export const updateFarGlassInProduction = (data, productRepurbishId) => (dispatc
       },
     })
     .then((res) => {
-      // dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_FAR_GLASS_IN_PRODUCTION_SUCCESS,
         payload: res.data,

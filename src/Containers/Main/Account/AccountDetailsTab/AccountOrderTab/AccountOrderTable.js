@@ -463,7 +463,7 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
+                                                            {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
                                                                 id="app.updateorder"
                                                                 defaultMessage="Update Order"
                                                             />}>
@@ -475,7 +475,7 @@ const AccountOrderTable = (props) => {
                                                                         handleSetParticularOrderData(item)
                                                                     }}
                                                                 />
-                                                            </Tooltip>
+                                                            </Tooltip>}
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -515,7 +515,7 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        {item.locationName && <div class=" cursor-pointer">
+                                                        {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer">
                                                             <Tooltip title="Add Supervisor">
                                                                 <PersonAddAlt1
                                                                     className="!text-base cursor-pointer"

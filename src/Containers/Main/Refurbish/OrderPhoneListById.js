@@ -14,6 +14,7 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
+import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
@@ -115,7 +116,7 @@ function OrderPhoneListById(props) {
     }
     return (
         <>
-            <div className=' flex justify-end sticky flex-col z-auto'>
+            {props.fetchingOrderIdByUserId ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[98.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[4.2rem]"><FormattedMessage
@@ -413,7 +414,7 @@ function OrderPhoneListById(props) {
                     phoNotesQCOrderModal={props.phoNotesQCOrderModal}
                     handleQCPhoneNotesOrderModal={props.handleQCPhoneNotesOrderModal}
                 />
-            </div>
+            </div>}
         </>
     )
 

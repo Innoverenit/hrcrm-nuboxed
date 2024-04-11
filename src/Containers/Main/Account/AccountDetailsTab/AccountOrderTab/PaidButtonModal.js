@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
 const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
 const OrderPaymentTable = lazy(() => import("./OrderPaymentTable"));
 class PaidButtonModal extends Component {

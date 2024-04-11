@@ -138,7 +138,7 @@ function OrderPaymentTable(props) {
                                 paymentId: item.paymentId,
                                 transactionNumber: item.transactionNumber,
                                 remarks: item.remarks,
-                                orderPaymentType: "PhonePayment",
+                                orderPaymentType: "Repair",
                                 paymentMode: mode,
                                 paymentAmount: amount,
                                 docId: item.docId,
@@ -175,7 +175,7 @@ function OrderPaymentTable(props) {
                       <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() => props.deleteOrderPaymentData({
-                          orderPaymentType: "PhonePayment",
+                          orderPaymentType: "Repair",
                           reason: "",
                           paymentId: item.paymentId
                         }, item.paymentId)}

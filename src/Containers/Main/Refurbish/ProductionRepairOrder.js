@@ -6,6 +6,7 @@ import { Button, Badge } from "antd";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
