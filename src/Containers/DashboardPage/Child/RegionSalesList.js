@@ -29,7 +29,7 @@ function RegionSalesList(props) {
   const [rowdata, setrowdata] = useState("");
   const [rowdownData, setrowDowndata] = useState("");
   const [page, setPage] = useState(0);
-  const [showHeartCard, setShowHeartCard] = useState(false);
+  const [showHeartCard, setShowHeartCard] = useState(null);
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     props.getRegionSalesList(currentYear,props.tabKey,props.rowdata.regionsId,"Sales");
@@ -43,7 +43,7 @@ function RegionSalesList(props) {
 
   const handleRowDownData = (data,i) => {
     setrowDowndata(data);
-    setShowHeartCard(rowdownData === i ? null : i);
+    setShowHeartCard(showHeartCard === i ? null : i);
   };
   
 
