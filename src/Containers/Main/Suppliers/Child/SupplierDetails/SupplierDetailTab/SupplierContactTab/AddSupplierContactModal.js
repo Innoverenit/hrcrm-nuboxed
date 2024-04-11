@@ -27,7 +27,10 @@ class AddSupplierContactModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <SupplierContactForm />
+                        <SupplierContactForm
+                        distributorId={this.props.distributorId}
+                        shipperId= {this.props.shipperId}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </>
