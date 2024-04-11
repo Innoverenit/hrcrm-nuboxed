@@ -10,7 +10,7 @@ import { SubTitle } from '../../../../Components/UI/Elements';
 const CompletedPhones = (props) => {
 
     useEffect(() => {
-        props.getCompletedPhones(props.orderPhoneId, props.locationId);
+        props.getCompletedPhones(props.orderPhoneId, props.row.technicianId);
     }, [])
 
     const column = [
