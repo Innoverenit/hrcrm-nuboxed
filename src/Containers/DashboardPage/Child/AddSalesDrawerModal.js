@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import RegionSalesList from "./RegionSalesList";
-// import NotesForm from "./NotesForm";
 
 class AddSalesDrawerModal extends Component {
   render() {
@@ -15,7 +14,7 @@ class AddSalesDrawerModal extends Component {
         <StyledDrawer
         // title="Sales"
           title={`${this.props.rowdata.regions}-Sales`}
-          width="64%"
+          width="74%"
           destroyOnClose
           closable
           placement="right"

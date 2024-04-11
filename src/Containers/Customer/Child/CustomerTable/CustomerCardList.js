@@ -90,10 +90,19 @@ function CustomerCardList(props) {
       }
     })
     setPage(page + 1);
-    props.getCustomerListByUserId(props.userId, page, "creationdate");
+   // props.getCustomerListByUserId(props.userId, page, "creationdate");
     //   props.getSectors();
     // props.getCountries();
-    // props.getAllCustomerEmployeelist();
+    //props.getAllCustomerEmployeelist();
+    if (props.viewType === "table") {
+      props.getCustomerListByUserId(props.userId, page, "creationdate");
+    } else if (props.viewType === "teams") {
+      props.getCustomerListByUserId("teams", page, "creationdate");
+    } 
+    else if (props.viewType === "all") {
+      props.getCustomerListByUserId("all", page, "creationdate");
+    } 
+    
   }, []);
 
   useEffect(() => {
@@ -685,6 +694,7 @@ const mapStateToProps = ({
   countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  // viewType: customer.viewType,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

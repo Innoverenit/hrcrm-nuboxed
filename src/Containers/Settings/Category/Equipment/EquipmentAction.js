@@ -1,5 +1,4 @@
-
-import * as types from "./QualityActionTypes";
+import * as types from "./EquipmentActionTypes";
 import axios from "axios";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
@@ -8,12 +7,12 @@ import Swal from 'sweetalert2'
 /**
  * get all the Sector
  */
- export const getQuality = (orgId) => (dispatch) => {
+ export const getEquipment = (orgId) => (dispatch) => {
     dispatch({
-      type: types.GET_QUALITY_REQUEST,
+      type: types.GET_EQUIPMENT_REQUEST,
     });
     axios
-    .get(`${base_url}/quality/All`, {
+    .get(`${base_url}/equipment/All`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -22,14 +21,14 @@ import Swal from 'sweetalert2'
       .then((res) => {
         console.log(res);
         dispatch({
-          type: types.GET_QUALITY_SUCCESS,
+          type: types.GET_EQUIPMENT_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.GET_QUALITY_FAILURE,
+          type: types.GET_EQUIPMENT_FAILURE,
           payload: err,
         });
       });
@@ -38,13 +37,13 @@ import Swal from 'sweetalert2'
   // /**
 //  * add a new sector 
 //  */
-export const addQuality = (sectors,orgId, cb) => (dispatch) => {
+export const addEquipment = (sectors,orgId, cb) => (dispatch) => {
     console.log(sectors);
     dispatch({
-      type: types.ADD_QUALITY_REQUEST,
+      type: types.ADD_EQUIPMENT_REQUEST,
     });
     axios
-      .post(`${base_url}/quality`, sectors, {
+      .post(`${base_url}/equipment`, sectors, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -61,15 +60,15 @@ export const addQuality = (sectors,orgId, cb) => (dispatch) => {
          
           Swal.fire({
             icon: 'success',
-            title: 'Quality added Successfully!',
+            title: 'Equipment added Successfully!',
             // showConfirmButton: false,
             // timer: 1500
           });
         }
-        dispatch(getQualityCount());
+        dispatch(getEquipmentCount());
         console.log(res);
         dispatch({
-          type: types.ADD_QUALITY_SUCCESS,
+          type: types.ADD_EQUIPMENT_SUCCESS,
           payload: { ...sectors, },
         });
         cb();
@@ -78,7 +77,7 @@ export const addQuality = (sectors,orgId, cb) => (dispatch) => {
         console.log(err);
      
         dispatch({
-          type: types.ADD_QUALITY_FAILURE,
+          type: types.ADD_EQUIPMENT_FAILURE,
         });
         // message.success(res.data.message);
         cb();
@@ -88,34 +87,34 @@ export const addQuality = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeQuality = ( qualityId,orgId) => (dispatch) => {
+export const removeEquipment = ( equipmentId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
-      type: types.REMOVE_QUALITY_REQUEST,
+      type: types.REMOVE_EQUIPMENT_REQUEST,
     });
     axios
-      .delete(`${base_url}/quality/${qualityId}`, {
+      .delete(`${base_url}/equipment/${equipmentId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
-        dispatch(getQualityCount());
+        dispatch(getEquipmentCount());
         Swal.fire({
           icon: 'success',
-          title: 'Quality deleted Successfully!',
+          title: 'Equipment deleted Successfully!',
         })
-        // message.success("QUALITY has been deleted successfully!");
+        // message.success("EQUIPMENT has been deleted successfully!");
         console.log(res);
         dispatch({
-          type: types.REMOVE_QUALITY_SUCCESS,
-          payload:qualityId,
+          type: types.REMOVE_EQUIPMENT_SUCCESS,
+          payload:equipmentId,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.REMOVE_QUALITY_FAILURE,
+          type: types.REMOVE_EQUIPMENT_FAILURE,
         });
       });
   };
@@ -123,14 +122,14 @@ export const removeQuality = ( qualityId,orgId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
+export const updateEquipment = ( data,equipmentId,cb) => (dispatch) => {
     
     dispatch({
-      type: types.UPDATE_QUALITY_REQUEST,
+      type: types.UPDATE_EQUIPMENT_REQUEST,
     });
     axios
       .put(
-        `${base_url}/quality/${qualityId}`,
+        `${base_url}/equipment/${equipmentId}`,
         data,
         {
           headers: {
@@ -141,29 +140,29 @@ export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Quality updated Successfully!',
+          title: 'Equipment updated Successfully!',
         })
-        // message.success("QUALITY has been updated successfully!");
+        // message.success("EQUIPMENT has been updated successfully!");
         console.log(res);
         dispatch({
-          type: types.UPDATE_QUALITY_SUCCESS,
+          type: types.UPDATE_EQUIPMENT_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.UPDATE_QUALITY_FAILURE,
+          type: types.UPDATE_EQUIPMENT_FAILURE,
         });
       });
   };
   
-  export const searchQualityName = (qualityName) => (dispatch) => {
+  export const searchEquipmentName = (name) => (dispatch) => {
     dispatch({
-      type: types.GET_QUALITY_SEARCH_REQUEST,
+      type: types.GET_EQUIPMENT_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/quality/search/${qualityName}`, {
+      .get(`${base_url}/equipment/search/${name}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -176,31 +175,31 @@ export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
       
       
         dispatch({
-          type: types.GET_QUALITY_SEARCH_SUCCESS,
+          type: types.GET_EQUIPMENT_SEARCH_SUCCESS,
           payload: res.data,
         });
       }
       )
       .catch((err) => {
         dispatch({
-          type: types.GET_QUALITY_SEARCH_FAILURE,
+          type: types.GET_EQUIPMENT_SEARCH_FAILURE,
           payload: err,
         });
       });
   }; 
 
-  export const ClearReducerDataOfQuality = () => (dispatch) => {
+  export const ClearReducerDataOfEquipment = () => (dispatch) => {
     dispatch({
-      type: types.HANDLE_CLAER_REDUCER_DATA_QUALITY,
+      type: types.HANDLE_CLAER_REDUCER_DATA_EQUIPMENT,
     });
   };
 
-  export const getQualityCount = (orgId) => (dispatch) => {
+  export const getEquipmentCount = (orgId) => (dispatch) => {
     dispatch({
-      type: types.GET_QUALITY_COUNT_REQUEST,
+      type: types.GET_EQUIPMENT_COUNT_REQUEST,
     });
     axios
-      .get(`${base_url}/quality/count/All`, {
+      .get(`${base_url}/equipment/count/All`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -208,14 +207,14 @@ export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
       .then((res) => {
         console.log(res);
         dispatch({
-          type: types.GET_QUALITY_COUNT_SUCCESS,
+          type: types.GET_EQUIPMENT_COUNT_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.GET_QUALITY_COUNT_FAILURE,
+          type: types.GET_EQUIPMENT_COUNT_FAILURE,
           payload: err,
         });
       });

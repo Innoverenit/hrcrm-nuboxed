@@ -68,7 +68,7 @@ const BussinessCard = (props) => {
               {currencyType && <CurrencySymbol currencyType={currencyType} />}
              
               &nbsp;             
-              {secondaryTitle || ""} 
+              {/* {secondaryTitle || ""}  */}
              
               <Popconfirm
   title="Change status to Won?"

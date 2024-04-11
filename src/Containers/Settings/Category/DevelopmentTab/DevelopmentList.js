@@ -34,6 +34,7 @@ const documentSchema = Yup.object().shape({
 const DevelopmentList = (props) => {
   const [taskTypeId, setTaskTypeId] = useState("");
   const [error, setError] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
   const [currentData, setCurrentData] = useState("");
   const [developmentList, setDevelopmentData] = useState(props.developmentList);
   const [editingId, setEditingId] = useState(null);
@@ -45,10 +46,11 @@ const DevelopmentList = (props) => {
       props.getDevelopmentCount(props.orgId) 
   }, [])
 
-  const editRegion = (developmentId, name,) => {
+  const editRegion = (developmentId, name,option) => {
 
       setEditingId(developmentId);
       setDevelopmentName(name);
+      setSelectedOption(option);
       // setTaskTypeId(value);
   };
 
@@ -59,9 +61,13 @@ const DevelopmentList = (props) => {
 
   const handleAddDevelopment = () => {
       setAddingRegion(true);
-      setDevelopmentName("")
+      setDevelopmentName("");
+      setTaskTypeId("");
+      setSelectedOption("");
   };
-
+  const handleOptionChange = (value) => {
+    setSelectedOption(value);
+};
   const handleUpdateDevelopment=(region)=>{
       console.log(region)
       let data={
@@ -71,6 +77,7 @@ const DevelopmentList = (props) => {
         userId:props.userId,
         value:newDevelopmentName,
         taskType:taskTypeId,
+        option: selectedOption 
        
       }
 props.updateDevelopment(data,region.developmentId)
@@ -86,6 +93,7 @@ setEditingId(null);
         organizationId:props.organizationId,
         userId:props.userId,
         taskType:taskTypeId,
+        option: selectedOption 
        
       }
       props.addDevelopment(data,props.orgId)
@@ -143,7 +151,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
+          {/* <div class="w-[20rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"roleType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -151,7 +159,7 @@ return <div><BundleLoader/></div>;
       </Tooltip>
     </div>
   </a>
-</div>
+</div> */}
             <div className="add-region" style={{width:"45%"}}>
               {addingRegion ? (
                   <div>
@@ -171,13 +179,22 @@ return <div><BundleLoader/></div>;
      
       <input 
                         placeholder="Add"
-                      style={{border:"2px solid black",width: "35%",marginLeft:"2rem"}}
+                      style={{border:"2px solid black",width: "23%",marginLeft:"2rem"}}
                           type="text" 
                           value={newDevelopmentName} 
                           onChange={(e) => setDevelopmentName(e.target.value)} 
                       />
   
-   
+  <select
+    className="customize-select"
+                    value={selectedOption}
+                    onChange={(e) => handleOptionChange(e.target.value)}
+                    style={{ marginLeft: "1rem" }}
+                >
+                    <option value="">Select Option</option>
+                    <option value="percentage">Percentage</option>
+                    <option value="hours">Hours</option>
+                </select>
                       <button 
                       className=" ml-2"
                          loading={props.addingDevelopment}
@@ -233,11 +250,21 @@ return <div><BundleLoader/></div>;
             value={newDevelopmentName}
             onChange={(e) => setDevelopmentName(e.target.value)}
         />
+          <select
+    className="customize-select"
+                    value={selectedOption}
+                    onChange={(e) => handleOptionChange(e.target.value)}
+                    style={{ marginLeft: "1rem" }}
+                >
+                    <option value="">Select Option</option>
+                    <option value="percentage">Percentage</option>
+                    <option value="hours">Hours</option>
+                </select>
      
                 </>
             ) : (
                 <div className="region" style={{width:"15rem"}}>
-                  {region.value}</div>
+                  {region.value} {region.option}</div>
             )}
 
             {/* Action buttons */}
@@ -251,7 +278,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {/* {region.editInd ? ( */}
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId,region.value, region.taskType,)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.option)} />
                     {/* ) : null} */}
                     </>
                 )}

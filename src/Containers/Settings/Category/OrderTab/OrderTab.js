@@ -118,9 +118,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.qualityCount.QualityCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                        Quality
                       </span>
+                      </Badge>
                     </>
                   }
                   key="3"
@@ -138,10 +143,11 @@ class OrderTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth ,itemTask,shipBy}) => ({
+const mapStateToProps = ({auth ,itemTask,shipBy,quality}) => ({
   user: auth.userDetails,
   itemTaskCount:itemTask.itemTaskCount,
   shipByCount:shipBy.shipByCount,
+  qualityCount:quality.qualityCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

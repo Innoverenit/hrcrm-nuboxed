@@ -11,12 +11,14 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal
 } from "../AccountAction";
+import {handleSupplierContactModal} from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
+import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -27,7 +29,6 @@ const LinkedDistributorNotes = lazy(() => import("./AccountNoteTab/LinkedDistrib
 // const OrderGenerateModal = lazy(() => import("./AccountOrder1Tab/OrderGenerateModal"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
-const AddAccountContact = lazy(() => import("./AccountContactTab/AddAccountContact"))
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
 
 const TabPane = StyledTabs.TabPane;
@@ -156,7 +157,8 @@ function AccountDetailsTab(props) {
                                                 type="plus"
                                                 tooltipTitle="Create"
                                                 onClick={() => {
-                                                    props.handleDistributorContactModal(true);
+                                                  //  props.handleDistributorContactModal(true);
+                                                  props.handleSupplierContactModal( true )
                                                 }}
                                                 className="!text-base cursor-pointer ml-1"
                                             />
@@ -283,11 +285,12 @@ function AccountDetailsTab(props) {
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
-            <AddAccountContact
-                handleDistributorContactModal={props.handleDistributorContactModal}
-                distributorContactModal={props.distributorContactModal}
-                distributorId={props.distributorData.distributorId}
-            />
+            
+               <AddSupplierContactModal
+            addSupplierContactModal={props.addSupplierContactModal}
+            handleSupplierContactModal={props.handleSupplierContactModal}
+            distributorId={props.distributorData.distributorId}
+          />
             <AccountActivityModal
                 addDistributorActivityModal={props.addDistributorActivityModal}
                 handleDistributorActivityModal={props.handleDistributorActivityModal} />
@@ -304,7 +307,7 @@ function AccountDetailsTab(props) {
     );
 }
 
-const mapStateToProps = ({ distributor, auth }) => ({
+const mapStateToProps = ({ distributor, auth,suppliers }) => ({
     orderRecordData: distributor.orderRecordData,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
@@ -314,6 +317,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     addCatalogueOrderModal: distributor.addCatalogueOrderModal,
     productionInd: auth.userDetails.productionInd,
     repairInd: auth.userDetails.repairInd,
+    addSupplierContactModal: suppliers.addSupplierContactModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -324,7 +328,8 @@ const mapDispatchToProps = (dispatch) =>
             handleDistributorActivityModal,
             handleDistributorDocumentUploadModal,
             handleOrderGenerateModal,
-            handleAddOrderModal
+            handleAddOrderModal,
+            handleSupplierContactModal
         },
         dispatch
     );

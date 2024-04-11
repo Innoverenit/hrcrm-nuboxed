@@ -57,6 +57,8 @@ class SupplierContactForm extends Component {
                     initialValues={{
                         userId: this.props.userId,
                         supplierId: this.props.supplierId,
+                        distributorId: this.props.distributorId,
+                        shipperId: this.props.shipperId,
                         salutation: "",
                         mobileNo: "",
                         phoneNo: "",
