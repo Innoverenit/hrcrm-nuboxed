@@ -66,12 +66,17 @@ function onChange(pagination, filters, sorter) {
 }
 
 function CustomerCardList(props) {
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
 
   const [hasMore, setHasMore] = useState(true);
 
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
+
+  console.log(props.viewType)
+
+
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -90,24 +95,26 @@ function CustomerCardList(props) {
       }
     })
     setPage(page + 1);
-   // props.getCustomerListByUserId(props.userId, page, "creationdate");
+    // props.getCustomerListByUserId(props.userId, page, "creationdate");
     //   props.getSectors();
     // props.getCountries();
     //props.getAllCustomerEmployeelist();
     if (props.viewType === "table") {
       props.getCustomerListByUserId(props.userId, page, "creationdate");
     } else if (props.viewType === "teams") {
-      props.getCustomerListByUserId("teams", page, "creationdate");
-    } 
-    else if (props.viewType === "all") {
-      props.getCustomerListByUserId("all", page, "creationdate");
-    } 
-    
-  }, []);
+      props.getCustomerListByUserId(props.viewType, page, "creationdate");
+    } else {
+      props.getCustomerListByUserId(props.viewType, page, "creationdate");
+    }
 
+  }, [props.viewType]);
+
+  const [JsonData, setJsonData] = useState(props.customerByUserId);
+
+  console.log(JsonData)
   useEffect(() => {
-    return () => props.emptyCustomer();
-  }, []);
+    setJsonData(props.customerByUserId)
+  }, [props.customerByUserId]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -137,7 +144,6 @@ function CustomerCardList(props) {
     props.customerToAccount(customerId);
   };
   const handleLoadMore = () => {
-
     setPage(page + 1);
     props.getCustomerListByUserId(
       props.currentUser ? props.currentUser : props.userId,
@@ -173,8 +179,6 @@ function CustomerCardList(props) {
 
   return (
     <>
-
-
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -282,9 +286,9 @@ function CustomerCardList(props) {
               return (
                 <div>
                   <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-[2.75rem] max-sm:h-[9rem] items-center p-3 "
-                  
+
                   >
-                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
@@ -340,7 +344,7 @@ function CustomerCardList(props) {
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                         {`${item.countryDialCode} ${item.phoneNumber}`}
+                          {`${item.countryDialCode} ${item.phoneNumber}`}
                         </div>
 
                       </div>
@@ -352,8 +356,8 @@ function CustomerCardList(props) {
                         </div>
 
                       </div>
-                      </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex font-medium max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[4rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
@@ -372,28 +376,28 @@ function CustomerCardList(props) {
                           {countryCode}
                         </div>
                       </div>
-                   
 
-                    <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {item.oppNo}
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          {item.oppNo}
+
+                        </div>
                       </div>
-                    </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     
-                        {`${item.currency} ${item.totalProposalValue}`}
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
+                          {`${item.currency} ${item.totalProposalValue}`}
+
+                        </div>
                       </div>
-                    </div>
-                    {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
 
                                     <div class=" text-xs text-cardBody font-poppins text-center">
@@ -401,33 +405,33 @@ function CustomerCardList(props) {
 
                                     </div>
                                 </div> */}
-                    <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                      {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+                      <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
-                      <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                        <div>
-                          {item.assignedTo === null ? (
-                            <div class="text-xs text-cardBody font-poppins">No Data</div>
-                          ) : (
-                            <>
-                              {item.assignedTo === item.ownerName ? (
+                          <div>
+                            {item.assignedTo === null ? (
+                              <div class="text-xs text-cardBody font-poppins">No Data</div>
+                            ) : (
+                              <>
+                                {item.assignedTo === item.ownerName ? (
 
-                                null
-                              ) : (
-                                <MultiAvatar2
-                                  primaryTitle={item.assignedTo}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                              )}
-                            </>
-                          )}
+                                  null
+                                ) : (
+                                  <MultiAvatar2
+                                    primaryTitle={item.assignedTo}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
+                                )}
+                              </>
+                            )}
+                          </div>
+
                         </div>
-
                       </div>
-                    </div>
-                    <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -443,7 +447,7 @@ function CustomerCardList(props) {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      
+
                       <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
@@ -457,9 +461,9 @@ function CustomerCardList(props) {
                             <Button type="primary"
                               style={{ width: "8rem" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                               {item.convertInd===0 && "Convert"}
-                               {item.convertInd===1 && "In progress"}
-                               {item.convertInd===2 && "Converted"}
+                                {item.convertInd === 0 && "Convert"}
+                                {item.convertInd === 1 && "In progress"}
+                                {item.convertInd === 2 && "Converted"}
                               </div>
                             </Button>
                           )}
