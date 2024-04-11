@@ -183,7 +183,11 @@ const Quality = (props) => {
                       onChange={(e) => setQualityName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"16rem"}}>{region.qualityName}</div>
+                  <div className="region" style={{width:"16rem"}}>{region.qualityName}&nbsp;&nbsp;&nbsp;
+                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                        >
+                                          New
+                                        </span> : null}</div>
               )}
                {editingId === region.qualityId ? (
                   <input
@@ -207,11 +211,8 @@ const Quality = (props) => {
                       onChange={(e) => setDescriptionName(e.target.value)}
                   />
               ) : (
-                  <div className="region" style={{width:"39rem"}}>{region.description}&nbsp;&nbsp;&nbsp;
-                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
-                                        >
-                                          New
-                                        </span> : null}</div>
+                  <div className="region" style={{width:"39rem"}}>{region.description}
+                  </div>
               )}
   
               {/* Action buttons */}

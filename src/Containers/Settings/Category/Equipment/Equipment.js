@@ -2,77 +2,69 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
+import { base_url } from "../../../../Config/Auth";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Button,Popconfirm,Tooltip, Input } from "antd";
-import { base_url } from "../../../../Config/Auth";
 import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { MainWrapper } from "../../../../Components/UI/Layout";
-import { TextInput } from "../../../../Components/UI/Elements";
+import { MainWrapper, } from "../../../../Components/UI/Layout";
+import { TextInput, } from "../../../../Components/UI/Elements";
 import {
-  getShipByData,
-  getShipByCount,
-  addShipBy,
-  ClearReducerDataOfShipBy,
-  searchShipByName,
-  removeShipBy,
-  updateShipBy
-} from "../ShipBy/ShipByAction";
+    getEquipment,
+    getEquipmentCount,
+    addEquipment,
+    searchEquipmentName,
+    ClearReducerDataOfEquipment,
+    removeEquipment,
+    updateEquipment
+} from "../Equipment/EquipmentAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
-const ShipBy = (props) => {
+
+const Equipment = (props) => {
   const [currentData, setCurrentData] = useState("");
-  const [ShipByData, setShipByData] = useState(props.ShipByData);
+  const [equipmentListData, setEquipmentListData] = useState(props.equipmentListData);
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
-  const [newShipByName, setShipByName] = useState('');
+  const [newEquipmentName, setEquipmentName] = useState('');
   useEffect(() => {
-      props.getShipByData(props.orgId); 
-      props.getShipByCount(props.orgId) 
+      props.getEquipment(); 
+      props.getEquipmentCount() 
   }, [])
 
-  const editRegion = (shipById, name) => {
+  const editRegion = (equipmentId, name) => {
     console.log(name)
     console.log(name)
-      setEditingId(shipById);
-      setShipByName(name);
+      setEditingId(equipmentId);
+      setEquipmentName(name);
   };
 
 
 
-  const handleAddShipBy = () => {
+  const handleAddEquipment = () => {
       setAddingRegion(true);
-      setShipByName("")
+      setEquipmentName("")
   };
 
-  const handleUpdateShipBy=(region)=>{
+  const handleUpdateEquipment=(region)=>{
       console.log(region)
       let data={
-        shipById:region.shipById,
-        name:newShipByName
+        equipmentId:region.equipmentId,
+        name:newEquipmentName
        
       }
-props.updateShipBy(data,region.shipById)
+props.updateEquipment(data,region.equipmentId)
 setEditingId(null);
   }
 
-  const handleShipBy = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+  const handleEquipment = () => {
+ 
       let data={
-        name:newShipByName,
+        name:newEquipmentName,
         orgId:props.orgId,
       }
-      props.addShipBy(data,props.orgId)
+      props.addEquipment(data,props.orgId)
       setAddingRegion(false)
   };
   const handleChange = (e) => {
@@ -81,7 +73,7 @@ setEditingId(null);
   
       if (e.target.value.trim() === "") {
       //   setPage(pageNo + 1);
-      props.getShipByData(props.orgId);
+      props.getEquipment();
       //   props.ClearReducerDataOfLoad()
       }
     };
@@ -89,14 +81,14 @@ setEditingId(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.searchShipByName(currentData);
+        props.searchEquipmentName(currentData);
       } else {
         console.error("Input is empty. Please provide a value.");
       }
     };
 
   const handleCancelAdd = () => {
-    setShipByName('');
+    setEquipmentName('');
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -104,14 +96,14 @@ setEditingId(null);
   };
   useEffect(() => {
       
-      if (props.ShipByData.length > 0) {
+      if (props.equipmentListData.length > 0) {
         
-        setShipByData(props.ShipByData);
+        setEquipmentListData(props.equipmentListData);
       }
-    }, [props.ShipByData]);
+    }, [props.equipmentListData]);
 
 // console.log(regions)
-if (props.fetchingShipBy) {
+if (props.fetchingEquipment) {
 return <div><BundleLoader/></div>;
 }
   return (
@@ -127,50 +119,50 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
+          {/* <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"itemTask"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
         <DownloadIcon />
       </Tooltip>
     </div>
   </a>
-</div>
+</div> */}
             <div className="add-region">
               {addingRegion ? (
                   <div>
                       <input 
-                      style={{border:"2px solid black",width:"54%"}}
+                      style={{border:"2px solid black",width:"53%"}}
                           type="text" 
-                          placeholder="Add ShipBy"
-                          value={newShipByName} 
-                          onChange={(e) => setShipByName(e.target.value)} 
+                          placeholder="Add Equipment"
+                          value={newEquipmentName} 
+                          onChange={(e) => setEquipmentName(e.target.value)} 
                       />
                       <button 
-                         loading={props.addingItemTask}
-                      onClick={handleShipBy}>Save</button>
+                    
+                         loading={props.addingEquipment}
+                      onClick={handleEquipment}>Save</button>
                       <button onClick={handleCancelAdd}>Cancel</button>
                   </div>
               ) : (
                   <button  style={{backgroundColor:"tomato",color:"white"}}
-                  onClick={handleAddShipBy}> Add More</button>
+                  onClick={handleAddEquipment}> Add More</button>
               )}
           </div>
           </div>
           <div class=" flex flex-col" >
          
          <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingShipBy && ShipByData.length === 0 ? <NodataFoundPage /> : ShipByData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="card9" key={region.shipById}>
+          {!props.fetchingEquipment && equipmentListData.length === 0 ? <NodataFoundPage /> : equipmentListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
+            <div className="card9" key={region.equipmentId}>
             {/* Region name display or input field */}
-            
-            {editingId === region.shipById ? (
+            {editingId === region.equipmentId ? (
                 <input
+                placeholder="Update Equipment"
                 style={{border:"2px solid black"}}
                     type="text"
-                    placeholder="Update ShipBy"
-                    value={newShipByName}
-                    onChange={(e) => setShipByName(e.target.value)}
+                    value={newEquipmentName}
+                    onChange={(e) => setEquipmentName(e.target.value)}
                 />
             ) : (
                 <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
@@ -183,13 +175,13 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.shipById ? (
+                {editingId === region.equipmentId ? (
                     <div>
-                        <button onClick={() => handleUpdateShipBy(region)}>Save</button>
-                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+                        <button onClick={() => handleUpdateEquipment(region)}>Save</button>
+                        <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.shipById, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.equipmentId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -197,7 +189,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeShipBy(region.shipById,props.orgId)}
+                        onConfirm={() =>  props.removeEquipment(region.equipmentId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -205,7 +197,7 @@ return <div><BundleLoader/></div>;
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.shipById)
+              //     props.removeServiceLine(item.equipmentId)
               //  }
                  />
                  </Popconfirm>
@@ -214,41 +206,39 @@ return <div><BundleLoader/></div>;
           ))}
           </MainWrapper>
             </div>
-  <div class=" font-bold">Updated on {dayjs(props.ShipByData && props.ShipByData.length && props.ShipByData[0].updationDate).format('YYYY-MM-DD')} by {props.ShipByData && props.ShipByData.length && props.ShipByData[0].updatedBy}</div>
+           <div class=" font-bold">Updated on {dayjs(props.equipmentListData && props.equipmentListData.length && props.equipmentListData[0].updationDate).format('YYYY-MM-DD')} by {props.equipmentListData && props.equipmentListData.length && props.equipmentListData[0].updatedBy}</div>
       </div>
   );
 };
 
-
-
-const mapStateToProps = ({ shipBy,auth }) => ({
-  addingShipBy: shipBy.addingShipBy,
-  addingShipByError: shipBy.addingShipByError,
-  ShipByData: shipBy.ShipByData,
-  shipByCount:shipBy.shipByCount,
+const mapStateToProps = ({ equipment,auth }) => ({
+    addingEquipment: equipment.addingEquipment,
+    addingEquipmentError: equipment.addingEquipmentError,
+    equipmentListData: equipment.equipmentListData,
+    equipmentCount:equipment.equipmentCount,
 orgId:auth.userDetails.organizationId,
 userId:auth.userDetails.userId,
-removingShipBy: shipBy.removingShipBy,
-removingShipByError: shipBy.removingShipByError,
-fetchingShipBy: shipBy.fetchingShipBy,
-fetchingShipByError: shipBy.fetchingShipByError,
+removingEquipment: equipment.removingEquipment,
+removingEquipmentError: equipment.removingEquipmentError,
+fetchingEquipment: equipment.fetchingEquipment,
+fetchingEquipmentError: equipment.fetchingEquipmentError,
 
-updatingShipBy: shipBy.updatingShipBy,
-updatingShipByError: shipBy.updatingShipByError,
+updatingEquipment: equipment.updatingEquipment,
+updatingEquipmentError: equipment.updatingEquipmentError,
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getShipByData,
-      getShipByCount,
-      ClearReducerDataOfShipBy,
-      searchShipByName,
-      addShipBy,
-      removeShipBy,
-      updateShipBy,
+        getEquipment,
+        getEquipmentCount,
+        ClearReducerDataOfEquipment,
+        searchEquipmentName,
+        addEquipment,
+        removeEquipment,
+        updateEquipment,
 
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ShipBy);
+export default connect(mapStateToProps, mapDispatchToProps)(Equipment);

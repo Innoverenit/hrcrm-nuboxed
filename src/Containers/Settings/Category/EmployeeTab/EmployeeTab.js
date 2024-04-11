@@ -7,6 +7,7 @@ import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import SourceIcon from '@mui/icons-material/Source';
 import DevelopmentTab from "../DevelopmentTab/DevelopmentTab";
+import Equipment from "../Equipment/Equipment";
 
 
 
@@ -29,8 +30,8 @@ class EmployeeTab extends Component {
     switch (key) {
         case "0":
             return   <DevelopmentTab />;
-        // case "1":
-        //   return     <ShipBy/>;
+        case "1":
+          return     <Equipment/>;
       
 
       default:
@@ -54,7 +55,7 @@ class EmployeeTab extends Component {
                     <>
                       <SourceIcon />
                       <Badge
-                count={this.props.developeCount.DevelopeCount}
+                count={this.props.developeCount.DevelopmentCount}
                 overflowCount={999}
               >
                       <span class=" ml-1">
@@ -71,9 +72,14 @@ class EmployeeTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
+                      <Badge
+                count={this.props.equipmentCount.EquipmentCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1">
                 Equipment
                       </span>
+                      </Badge>
                     </>
                   }
                   key="1"
@@ -92,11 +98,12 @@ class EmployeeTab extends Component {
     );
   }
 }
-const mapStateToProps = ({auth ,development,itemTask,shipBy}) => ({
+const mapStateToProps = ({auth ,equipment,development,itemTask,shipBy}) => ({
   user: auth.userDetails,
   developeCount:development.developeCount,
   itemTaskCount:itemTask.itemTaskCount,
   shipByCount:shipBy.shipByCount,
+  equipmentCount:equipment.equipmentCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

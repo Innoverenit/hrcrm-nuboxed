@@ -97,6 +97,7 @@ import { masterKpiReducer } from "../Containers/Settings/Category/KpiMasterList/
 import { lobReducer } from "../Containers/Settings/Category/LOB/LOBReducer";
 import { developmentReducer } from "../Containers/Settings/Category/DevelopmentTab/DevelopmentReducer";
 import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityReducer";
+import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -190,6 +191,7 @@ const appReducer = combineReducers({
   lob:lobReducer,
   development:developmentReducer,
   quality:qualityReducer,
+  equipment:equipmentReducer,
 });
 
 const rootReducer = (state, action) => {
