@@ -2,25 +2,25 @@ import * as types from "./QualityActionTypes";
 
 const initialState = {
 
-    fetchingItemTask: false,
-    fetchingItemTaskError: false,
-    itemTaskListData: [],
+    fetchingQuality: false,
+    fetchingQualityError: false,
+    qualityList: [],
 
-    fetchingItemTaskCount: false,
-    fetchingItemTaskCountError: false,
-    itemTaskCount:{},
+    fetchingQualityCount: false,
+    fetchingQualityCountError: false,
+    qualityCount:{},
 
-     addingItemTask: false,
-     addingItemTaskError: false,
+     addingQuality: false,
+     addingQualityError: false,
 
-     removingItemTask: false,
-     removingItemTaskError: false,
+     removingQuality: false,
+     removingQualityError: false,
 
-      updatingItemTask: false,
-      updatingItemTaskError: false,
+      updatingQuality: false,
+      updatingQualityError: false,
 
-     fetchingItemTaskSearchData:false,
-     fetchingItemTaskSearchDataError:false,
+     fetchingQualitySearchData:false,
+     fetchingQualitySearchDataError:false,
    
 };
 
@@ -29,113 +29,113 @@ export const qualityReducer = (state = initialState, action) => {
 
  //get opportunity customer
 
- case types.GET_ITEM_TASK_REQUEST:
-    return { ...state,  fetchingItemTask: true };
-  case types.GET_ITEM_TASK_SUCCESS:
+ case types.GET_QUALITY_REQUEST:
+    return { ...state,  fetchingQuality: true };
+  case types.GET_QUALITY_SUCCESS:
     return {
       ...state,
-      fetchingItemTask: false,
-       itemTaskListData: action.payload,
+      fetchingQuality: false,
+       qualityList: action.payload,
     };
-  case types.GET_ITEM_TASK_FAILURE:
+  case types.GET_QUALITY_FAILURE:
     return {
       ...state,
-      fetchingItemTask: false,
-      fetchingItemTaskError: true,
+      fetchingQuality: false,
+      fetchingQualityError: true,
     };
 
  // add sector
 
- case types.ADD_ITEM_TASK_REQUEST:
-    return { ...state,  addingItemTask: true };
-  case types.ADD_ITEM_TASK_SUCCESS:
+ case types.ADD_QUALITY_REQUEST:
+    return { ...state,  addingQuality: true };
+  case types.ADD_QUALITY_SUCCESS:
     return {
       ...state,
-      addingItemTask: false,
-      itemTaskListData:[action.payload,...state.itemTaskListData],
-      // itemTaskCount:[action.payload,...state.itemTaskCount],
+      addingQuality: false,
+      qualityList:[action.payload,...state.qualityList],
+      // qualityCount:[action.payload,...state.qualityCount],
       
-      // itemTaskListData: [...state.itemTaskListData, action.payload],
+      // qualityList: [...state.qualityList, action.payload],
       
     };
-  case types.ADD_ITEM_TASK_FAILURE:
+  case types.ADD_QUALITY_FAILURE:
     return {
       ...state,
-      addingItemTask: false,
-      addingItemTaskError: true,
+      addingQuality: false,
+      addingQualityError: true,
     };
 
      // remove sector
 
-     case types.REMOVE_ITEM_TASK_REQUEST:
-        return { ...state,  removingItemTask: true };
-      case types.REMOVE_ITEM_TASK_SUCCESS:
+     case types.REMOVE_QUALITY_REQUEST:
+        return { ...state,  removingQuality: true };
+      case types.REMOVE_QUALITY_SUCCESS:
         return {
           ...state,
-          removingItemTask: false,
-          itemTaskListData: state.itemTaskListData.filter(
-            (item) => item.itemTaskId !== action.payload
+          removingQuality: false,
+          qualityList: state.qualityList.filter(
+            (item) => item.qualityId !== action.payload
         ), 
         };
-      case types.REMOVE_ITEM_TASK_FAILURE:
+      case types.REMOVE_QUALITY_FAILURE:
         return {
           ...state,
-          removingItemTask: false,
-          removingItemTaskError: true,
+          removingQuality: false,
+          removingQualityError: true,
         };
 
       //   update an existing SECTOR 
 
-      case types.UPDATE_ITEM_TASK_REQUEST:
-        return { ...state,   updatingItemTask: true };
-      case types.UPDATE_ITEM_TASK_SUCCESS:
+      case types.UPDATE_QUALITY_REQUEST:
+        return { ...state,   updatingQuality: true };
+      case types.UPDATE_QUALITY_SUCCESS:
         // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
         return {
           ...state,
-          updatingItemTask: false,
-          itemTaskListData: state.itemTaskListData.map((sector) =>
-            sector.itemTaskId === action.payload.itemTaskId
+          updatingQuality: false,
+          qualityList: state.qualityList.map((sector) =>
+            sector.qualityId === action.payload.qualityId
               ? action.payload
               : sector
           ),
         };
-      case types.UPDATE_ITEM_TASK_FAILURE:
+      case types.UPDATE_QUALITY_FAILURE:
         return {
           ...state,
-          updatingItemTask: false,
-          updatingItemTaskError: true,
+          updatingQuality: false,
+          updatingQualityError: true,
         };
 
-        case types.GET_ITEM_TASK_SEARCH_REQUEST:
-          return { ...state,  fetchingItemTaskSearchData: true };
-        case types.GET_ITEM_TASK_SEARCH_SUCCESS:
+        case types.GET_QUALITY_SEARCH_REQUEST:
+          return { ...state,  fetchingQualitySearchData: true };
+        case types.GET_QUALITY_SEARCH_SUCCESS:
           return {
             ...state,
-            fetchingItemTaskSearchData: false,
-            itemTaskListData: action.payload,
+            fetchingQualitySearchData: false,
+            qualityList: action.payload,
             // serachedData: action.payload,
           };
-        case types.GET_ITEM_TASK_SEARCH_FAILURE:
-          return { ...state,  fetchingItemTaskSearchDataError: true };
+        case types.GET_QUALITY_SEARCH_FAILURE:
+          return { ...state,  fetchingQualitySearchDataError: true };
 
 
-          case types.HANDLE_CLAER_REDUCER_DATA_ITEM_TASK:
+          case types.HANDLE_CLAER_REDUCER_DATA_QUALITY:
             return { ...state, 
-                itemTaskListData: [], 
+                qualityList: [], 
               // deletedTruck: [] 
             }; 
             
             
-            case types.GET_ITEM_TASK_COUNT_REQUEST:
-              return { ...state, fetchingItemTaskCount: true };
-            case types.GET_ITEM_TASK_COUNT_SUCCESS:
-              return { ...state, fetchingItemTaskCount: false, 
-                itemTaskCount: action.payload };
-            case types.GET_ITEM_TASK_COUNT_FAILURE:
+            case types.GET_QUALITY_COUNT_REQUEST:
+              return { ...state, fetchingQualityCount: true };
+            case types.GET_QUALITY_COUNT_SUCCESS:
+              return { ...state, fetchingQualityCount: false, 
+                qualityCount: action.payload };
+            case types.GET_QUALITY_COUNT_FAILURE:
               return {
                 ...state,
-                fetchingItemTaskCount: false,
-                fetchingItemTaskCountError: true,
+                fetchingQualityCount: false,
+                fetchingQualityCountError: true,
               };
     
     default:

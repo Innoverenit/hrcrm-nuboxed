@@ -45,11 +45,12 @@ const Role = (props) => {
       props.getRoleCount(props.orgId) 
   }, [])
 
-  const editRegion = (roleTypeId, name) => {
+  const editRegion = (roleTypeId, name,department) => {
     console.log(name)
     console.log(name)
       setEditingId(roleTypeId);
       setRoleName(name);
+      setSelectedDept(department)
   };
 
   const handleDeptChange = (event) => {
@@ -253,7 +254,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.roleTypeId, region.roleType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.roleTypeId, region.roleType,region.department)} />
                     ) : null}
                     </>
                 )}

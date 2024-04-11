@@ -8,12 +8,12 @@ import Swal from 'sweetalert2'
 /**
  * get all the Sector
  */
- export const getItemTask = (orgId) => (dispatch) => {
+ export const getQuality = (orgId) => (dispatch) => {
     dispatch({
-      type: types.GET_ITEM_TASK_REQUEST,
+      type: types.GET_QUALITY_REQUEST,
     });
     axios
-    .get(`${base_url}/itemTask/all/${orgId}`, {
+    .get(`${base_url}/quality/All`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -22,14 +22,14 @@ import Swal from 'sweetalert2'
       .then((res) => {
         console.log(res);
         dispatch({
-          type: types.GET_ITEM_TASK_SUCCESS,
+          type: types.GET_QUALITY_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.GET_ITEM_TASK_FAILURE,
+          type: types.GET_QUALITY_FAILURE,
           payload: err,
         });
       });
@@ -38,13 +38,13 @@ import Swal from 'sweetalert2'
   // /**
 //  * add a new sector 
 //  */
-export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
+export const addQuality = (sectors,orgId, cb) => (dispatch) => {
     console.log(sectors);
     dispatch({
-      type: types.ADD_ITEM_TASK_REQUEST,
+      type: types.ADD_QUALITY_REQUEST,
     });
     axios
-      .post(`${base_url}/itemTask/save`, sectors, {
+      .post(`${base_url}/quality`, sectors, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -61,15 +61,15 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
          
           Swal.fire({
             icon: 'success',
-            title: 'Type added Successfully!',
+            title: 'Quality added Successfully!',
             // showConfirmButton: false,
             // timer: 1500
           });
         }
-        dispatch(getItemTaskCount(orgId));
+        dispatch(getQualityCount());
         console.log(res);
         dispatch({
-          type: types.ADD_ITEM_TASK_SUCCESS,
+          type: types.ADD_QUALITY_SUCCESS,
           payload: { ...sectors, },
         });
         cb();
@@ -78,7 +78,7 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
         console.log(err);
      
         dispatch({
-          type: types.ADD_ITEM_TASK_FAILURE,
+          type: types.ADD_QUALITY_FAILURE,
         });
         // message.success(res.data.message);
         cb();
@@ -88,34 +88,34 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeItemTask = ( itemTaskId,orgId) => (dispatch) => {
+export const removeQuality = ( qualityId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
-      type: types.REMOVE_ITEM_TASK_REQUEST,
+      type: types.REMOVE_QUALITY_REQUEST,
     });
     axios
-      .delete(`${base_url}/C/delete/${itemTaskId}`, {
+      .delete(`${base_url}/quality/${qualityId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
-        dispatch(getItemTaskCount(orgId));
+        dispatch(getQualityCount());
         Swal.fire({
           icon: 'success',
-          title: 'Type deleted Successfully!',
+          title: 'Quality deleted Successfully!',
         })
-        // message.success("ITEM_TASK has been deleted successfully!");
+        // message.success("QUALITY has been deleted successfully!");
         console.log(res);
         dispatch({
-          type: types.REMOVE_ITEM_TASK_SUCCESS,
-          payload:itemTaskId,
+          type: types.REMOVE_QUALITY_SUCCESS,
+          payload:qualityId,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.REMOVE_ITEM_TASK_FAILURE,
+          type: types.REMOVE_QUALITY_FAILURE,
         });
       });
   };
@@ -123,14 +123,14 @@ export const removeItemTask = ( itemTaskId,orgId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
+export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
     
     dispatch({
-      type: types.UPDATE_ITEM_TASK_REQUEST,
+      type: types.UPDATE_QUALITY_REQUEST,
     });
     axios
       .put(
-        `${base_url}/itemTask/update/${itemTaskId}`,
+        `${base_url}/quality/${qualityId}`,
         data,
         {
           headers: {
@@ -141,29 +141,29 @@ export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Type updated Successfully!',
+          title: 'Quality updated Successfully!',
         })
-        // message.success("ITEM_TASK has been updated successfully!");
+        // message.success("QUALITY has been updated successfully!");
         console.log(res);
         dispatch({
-          type: types.UPDATE_ITEM_TASK_SUCCESS,
+          type: types.UPDATE_QUALITY_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.UPDATE_ITEM_TASK_FAILURE,
+          type: types.UPDATE_QUALITY_FAILURE,
         });
       });
   };
   
-  export const searchItemTaskName = (name) => (dispatch) => {
+  export const searchQualityName = (qualityName) => (dispatch) => {
     dispatch({
-      type: types.GET_ITEM_TASK_SEARCH_REQUEST,
+      type: types.GET_QUALITY_SEARCH_REQUEST,
     });
     axios
-      .get(`${base_url}/itemTask/search/${name}`, {
+      .get(`${base_url}/quality/search/${qualityName}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -176,31 +176,31 @@ export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
       
       
         dispatch({
-          type: types.GET_ITEM_TASK_SEARCH_SUCCESS,
+          type: types.GET_QUALITY_SEARCH_SUCCESS,
           payload: res.data,
         });
       }
       )
       .catch((err) => {
         dispatch({
-          type: types.GET_ITEM_TASK_SEARCH_FAILURE,
+          type: types.GET_QUALITY_SEARCH_FAILURE,
           payload: err,
         });
       });
   }; 
 
-  export const ClearReducerDataOfItemTask = () => (dispatch) => {
+  export const ClearReducerDataOfQuality = () => (dispatch) => {
     dispatch({
-      type: types.HANDLE_CLAER_REDUCER_DATA_ITEM_TASK,
+      type: types.HANDLE_CLAER_REDUCER_DATA_QUALITY,
     });
   };
 
-  export const getItemTaskCount = (orgId) => (dispatch) => {
+  export const getQualityCount = (orgId) => (dispatch) => {
     dispatch({
-      type: types.GET_ITEM_TASK_COUNT_REQUEST,
+      type: types.GET_QUALITY_COUNT_REQUEST,
     });
     axios
-      .get(`${base_url}/itemTask/count/${orgId}`, {
+      .get(`${base_url}/quality/count/All`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -208,14 +208,14 @@ export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
       .then((res) => {
         console.log(res);
         dispatch({
-          type: types.GET_ITEM_TASK_COUNT_SUCCESS,
+          type: types.GET_QUALITY_COUNT_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
         dispatch({
-          type: types.GET_ITEM_TASK_COUNT_FAILURE,
+          type: types.GET_QUALITY_COUNT_FAILURE,
           payload: err,
         });
       });
