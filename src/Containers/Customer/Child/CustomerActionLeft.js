@@ -85,13 +85,16 @@ function  handleFilterChange(data){
       props.getRecords(props.userId);
     } else if (props.viewType === "teams") {
       props.getCustomerTeamRecords(props.userId);
+     // props.getCustomerListByUserId("teams", page, "creationdate");
     } 
     else if (props.viewType === "all") {
       props.getCustomerAllRecords(props.orgId);
+      //props.getCustomerListByUserId("all", page, "creationdate");
     } 
     
     else if (props.viewType === "table") {
       props.getRecords(props.userId);
+      //props.getCustomerListByUserId(props.userId, page, "creationdate");
     } else if (props.viewType === "dashboard") {
       props.getCategoryRecords("blue");
     }
@@ -101,7 +104,17 @@ function  handleFilterChange(data){
       props.setCurrentData(transcript);
     }
   }, [props.viewType, props.userId, transcript]);
-   
+  // useEffect(() => {
+  //   if (props.viewType === "table") {
+  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
+  //   } else if (props.viewType === "teams") {
+  //     props.getCustomerListByUserId("teams", page, "creationdate");
+  //   } 
+  //   else if (props.viewType === "all") {
+  //     props.getCustomerListByUserId("all", page, "creationdate");
+  //   } 
+    
+  // }, [])
   const {user}=props;
   return (
     <div class=" flex items-center"
