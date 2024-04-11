@@ -12,21 +12,21 @@ class StageTaskColumns1 extends Component {
     const { task, index, history } = this.props;
     console.log(task)
     return (
-    //   <Draggable
-    //   draggableId={opportunity.opportunityId}
-    //   index={index}
-    //   type="stage"
-    // >
-    //   {(provided, snapshot) => (
+      <Draggable
+      draggableId={task.taskId}
+      index={index}
+      type="stage"
+    >
+       {(provided, snapshot) => (
         <div
-        //   ref={provided.innerRef}
-        //   {...provided.draggableProps}
-        //   {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
         >
   
             <TaskGroupCard
             task={task}
-            //   isDragging={snapshot.isDragging}
+              isDragging={snapshot.isDragging}
             //   opportunityId={opportunity.opportunityId}
               primaryTitle={`${elipsize(task.taskName, 60)}`} 
             // secondaryTitle={`${task.taskName} `}
@@ -38,8 +38,8 @@ class StageTaskColumns1 extends Component {
             />
              
             </div>
-            // )}
-            //      </Draggable>
+            )}
+                 </Draggable>
          
     );
   }

@@ -495,8 +495,7 @@
 import React, { useEffect,useRef,useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { DndProvider, useDrag } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Tabs,Tooltip,Button } from 'antd';
 import { EnvironmentOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
@@ -504,7 +503,7 @@ import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import StageTaskColumns1 from "../../DashboardPage/Child/StageTaskColumns1"
 import styled from "styled-components";
-import {getRegionTaskList} from "../RegionalDashAction"
+import {getRegionTaskList,updateTaskdragstage} from "../RegionalDashAction"
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import { BundleLoader } from '../../../Components/Placeholder';
@@ -524,6 +523,7 @@ const SalesTaskCardList = (props) => {
   const tasks=props.regionAllTaskList
   const numberOfWeeks=4
   const [weeks, setWeeks] = useState([]);
+  const [isDragging, setIsDragging] = useState(false);
   const [showSmileCard, setShowSmileCard] = useState(true);
   const [showHeartCard, setShowHeartCard] = useState(false);
 
@@ -560,7 +560,48 @@ const SalesTaskCardList = (props) => {
   if (props.fetchingRegionalTaskList) return <BundleLoader/>;
 
  
+  function onDragEnd(result) {
+    console.log(result);
+    setIsDragging(false);
 
+    if (!navigator.onLine) {
+      return;
+    }
+
+    if (!result.destination) {
+      return;
+    }
+
+    const { draggableId, destination, source } = result;
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
+    const {
+      updateTaskdragstage,
+
+    } = props;
+    let data={
+      opportunityStagesId:destination.droppableId,
+      opportunityId:result.draggableId,
+    }
+    updateTaskdragstage(data,
+      source.droppableId,
+      destination.droppableId,
+      draggableId,
+
+    );
+  }
+  function dragStart() {
+    setIsDragging(true);
+  }
+  function dragUpdate() {
+    setIsDragging(false);
+  }
 
 
   const getWeekStartDate = (weekNumber) => {
@@ -571,6 +612,7 @@ const SalesTaskCardList = (props) => {
     const startDate = new Date(currentYear, 0, (weekNumber - 1) * 7 + 1 - firstDayOfYear);
     return startDate;
   };
+  console.log(getWeekStartDate)
 
   const getWeekEndDate = (weekNumber) => {
     const startDate = getWeekStartDate(weekNumber);
@@ -885,7 +927,11 @@ const SalesTaskCardList = (props) => {
 
 
 {showHeartCard && (
-  <DndProvider backend={HTML5Backend}>
+   <DragDropContext
+   onDragEnd={onDragEnd}
+  type="stage"
+   onDragStart={dragStart}
+>
       <div>
         <h2>Week Numbers</h2>
         <div style={{display:"flex"}}>
@@ -899,7 +945,17 @@ const SalesTaskCardList = (props) => {
         margin: '5px',}}>
                   Week {week}
                 </div> */}
-               
+                  <Droppable
+                          key={index}
+                          droppableId={week}
+                          // others={startDate}
+                          type="stage"
+                        
+                        >
+                          {(provided, snapshot) => (
+                            <>
+                
+                
                  <StageHeader 
                 //  style={{ position: "absolute" }}
                  >
@@ -908,11 +964,11 @@ const SalesTaskCardList = (props) => {
                                     </div>
                                   </StageHeader>
                                   <StageColumn
-                                      // ref={provided.innerRef}
-                                      // isDraggingOver={snapshot.isDraggingOver}
-                                      // {...provided.droppableProps}
-                                      // droppableProps={{ hello: "world" }}
-                                      // className="scrollbar"
+                                      ref={provided.innerRef}
+                                      isDraggingOver={snapshot.isDraggingOver}
+                                      {...provided.droppableProps}
+                                      droppableProps={{ hello: "world" }}
+                                      className="scrollbar"
                                       id="style-3"
                                     >
                 {filteredTasks.map((task, taskIndex) => (
@@ -937,6 +993,9 @@ const SalesTaskCardList = (props) => {
                    
                     ))}
                     </StageColumn>
+                    </>
+                      )}
+                      </Droppable>
                   
                 {/* <div style={{ marginLeft: '20px' }}> */}
                   {/* <div>
@@ -954,7 +1013,8 @@ const SalesTaskCardList = (props) => {
           })}
         </div>
       </div>
-    </DndProvider>
+      
+    </DragDropContext>
 )}
 
 
@@ -978,6 +1038,7 @@ const mapStateToProps = ({ auth,
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
         getRegionTaskList,
+        updateTaskdragstage
        
 
     }, dispatch);

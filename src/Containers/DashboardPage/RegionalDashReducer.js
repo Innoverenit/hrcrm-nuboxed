@@ -16,6 +16,10 @@ const initialState = {
   fetchingRegionalSalesListError: false,
   regionSalesList:[],
 
+
+  updatingTaskDragStage:false,
+  updatingTaskDragStageError:false,
+
   addInvestmentModal:false,
 
   addFullFillmentModal:false,
@@ -162,6 +166,29 @@ case types.GET_REGION_TASK_LIST_FAILURE:
     fetchingRegionalTaskList: false,
     fetchingRegionalTaskListError: true,
   };
+
+
+
+
+
+  case types.UPDATE_TASK_DRAG_STAGE_REQUEST:
+                                                return {
+                                                  ...state,
+                                                  updatingTaskDragStage: true,
+                                                
+                                                  // candidateRequirement: action.payload,
+                                                };
+                                              case types.UPDATE_TASK_DRAG_STAGE_SUCCESS:
+                                                return { ...state, 
+                                                  updatingTaskDragStage: false ,
+                                                  //opportunityByUserId: updatedDragOpportunity(state.opportunityByUserId, action.payload),
+                                                 // candidateRequirement: [action.payload]
+
+                                                };
+                                              case types.UPDATE_TASK_DRAG_STAGE_FAILURE:
+                                                return { ...state };  
+
+
 
 
 default:
