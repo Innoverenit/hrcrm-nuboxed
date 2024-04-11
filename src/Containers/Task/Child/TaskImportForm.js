@@ -60,6 +60,7 @@ class TaskImportForm extends Component {
               
               
                 excelId:"",
+                type:"investorCategory"
                
               }}
             //    validationSchema={documentSchema}

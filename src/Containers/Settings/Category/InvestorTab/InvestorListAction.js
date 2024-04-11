@@ -265,7 +265,7 @@ export const updateInvestor = (data, investorCategoryId,cb) => (dispatch) => {
   });
 
   axios
-    .post(`${base_url}/excel/import/category/?type=${"investorCategory"}`, customer, {
+    .post(`${base_url}/excel/import/category`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
