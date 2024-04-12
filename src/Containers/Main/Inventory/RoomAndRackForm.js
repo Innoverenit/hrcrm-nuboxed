@@ -1,6 +1,6 @@
 import { Button, Input,Select } from 'antd'
 import React, { useState,useEffect } from 'react'
-import { addRoomAndRackInInventory,getRoomRackByLocId } from "./InventoryAction"
+import { addRoomAndRackInInventory,getRoomRackByLocId,updateRoomRackId } from "./InventoryAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CloseOutlined } from "@ant-design/icons"
@@ -65,6 +65,40 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
       setRows(updatedRows);
     };
 
+   const handleUpdate = () => {
+    const updatedData = rows.map((row) => ({
+      zone: row.zone,
+      rack: row.rack,
+      userId: props.userId,
+      zoneType: row.zoneType,
+      // Include other fields as needed
+    }));
+  
+    const payload = {
+      locationDetailsId: props.rowData.locationDetailsId,
+      roomRackList: updatedData,
+    };
+
+      // const payload = {
+      //   locationDetailsId: props.rowData.locationDetailsId,
+       
+      //   roomRackList: [
+      //    {
+      //     roomRackChamberLinkId: "",
+      //  chamber: "A1"
+      // },
+      // {
+      //   roomRackChamberLinkId: "",
+      //  chamber: "V1"
+      // }
+      //   ],
+      //   userId:  props.userId,
+    
+      // };
+      props.updateRoomRackId(payload);
+     
+    };
+
     return (
         <>
       <div>
@@ -96,8 +130,8 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
              <div class="w-24">
              <Select
                   value={row.zoneType}
-                  onChange={(value) => handleSelectChange(index, value)}
-                >
+                  defaultValue={row.zoneType}
+                  onChange={(value) => handleSelectChange(index, value)}>
           <Option value="entry">Entry</Option>
           <Option value="exit">Exit</Option>
         </Select>
@@ -161,7 +195,11 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId)
          </div>
          </div>
          <div class="flex justify-end">
-        <Button type="primary" loading={props.addingRoomAndRackInInventory} onClick={handleSubmit}> <FormattedMessage
+        <Button type="primary" loading={props.addingRoomAndRackInInventory} onClick={handleUpdate}> <FormattedMessage
+                id="app.update"
+                defaultMessage="Update"
+              /></Button>
+              <Button type="primary" loading={props.addingRoomAndRackInInventory} onClick={handleSubmit}> <FormattedMessage
                 id="app.Submit"
                 defaultMessage="Submit"
               /></Button>
@@ -180,7 +218,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             addRoomAndRackInInventory,
-            getRoomRackByLocId
+            getRoomRackByLocId,
+            updateRoomRackId
         },
         dispatch
     );

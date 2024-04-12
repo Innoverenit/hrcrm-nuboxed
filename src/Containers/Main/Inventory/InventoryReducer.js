@@ -1382,6 +1382,26 @@ export const inventoryReducer = (state = initialState, action) => {
           fetchingRoomRackByIdError: true,
         };
 
+        case types.UPDATE_ROOM_RACK_ID_REQUEST:
+          return { ...state, updatingRoomRackId: true };
+        case types.UPDATE_ROOM_RACK_ID_SUCCESS:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            roomRackbyLoc: state.roomRackbyLoc.map((item) =>
+              item.orderPhoneId === action.payload.orderPhoneId
+                ? action.payload : item
+            ),
+          };
+        case types.UPDATE_ROOM_RACK_ID_FAILURE:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            updatingRoomRackIdError: true,
+          };
+    
+
+
     default:
       return state;
   }

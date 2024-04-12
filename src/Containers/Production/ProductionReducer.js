@@ -41,6 +41,20 @@ const initialState = {
 
   updatingroomrackProdn: false,updatingroomrackProdnError:false,
 
+  fetchingAllStageProduction: false, productionStageAll:[], fetchingAllStageProductionError: false,
+
+  updatingProductionDragStage: false,
+
+};
+
+const updateDragdpROD = (item, newProps) => {
+  return item.map((opp, index) => {
+    if (opp.manufactureId === newProps.manufactureId) {
+      console.log("inside opp");
+      opp.productionStagesId = newProps.productionStagesId;
+    }
+    return opp;
+  });
 };
 export const productionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -234,6 +248,31 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
           };
         case types.UPDATE_ROOM_RACK_PRODN_FAILURE:
           return { ...state, updatingroomrackProdn: false,updatingroomrackProdnError:true, };
+
+          case types.GET_ALL_STAGE_PRODUCTION_REQUEST:
+            return { ...state, fetchingAllStageProduction: true, fetchingAllStageProductionError: false };
+          case types.GET_ALL_STAGE_PRODUCTION_SUCCESS:
+            return { ...state, fetchingAllStageProduction: false, productionStageAll: action.payload };
+          case types.GET_ALL_STAGE_PRODUCTION_FAILURE:
+            return { ...state, fetchingAllStageProduction: false, fetchingAllStageProductionError: true };
+
+
+            case types.UPDATE_PRODUCTION_DRAG_STAGE_REQUEST:
+              return {
+                ...state,
+                updatingProductionDragStage: true,
+              
+                // candidateRequirement: action.payload,
+              };
+            case types.UPDATE_PRODUCTION_DRAG_STAGE_SUCCESS:
+              return { ...state, 
+                updatingProductionDragStage: false ,
+                productionByLocsId: updateDragdpROD(state.productionByLocsId, action.payload),
+               // candidateRequirement: [action.payload]
+
+              };
+            case types.UPDATE_PRODUCTION_DRAG_STAGE_FAILURE:
+              return { ...state };  
 
     default:
       return state;
