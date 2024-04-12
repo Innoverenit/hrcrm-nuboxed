@@ -72,6 +72,10 @@ const initialState = {
   addingService: false,
   addingServiceError: false,
 
+  fetchingdeleteProducts: false,
+  fetchingdeleteProductsError: false,
+  deleteproducts:[],
+
   fetchingLatestProductsByOrganizationId: false,
   fetchingLatestProductsByOrganizationIdError: false,
   latestProductsByOrganizationId: [],
@@ -140,6 +144,9 @@ const initialState = {
 
   deletingProductData: false,
   deletingProductDataError: false,
+
+  deletingCatalogData: false,
+  deletingCatalogDataError: false,
 
   fetchingSuspendProducts: false,
   fetchingSuspendProductsError: false,
@@ -369,6 +376,16 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
 
+
+      case types.GET_DELETEPRODUCTS_REQUEST:
+      return { ...state, fetchingdeleteProducts: true, fetchingdeleteProductsError: false };
+    case types.GET_DELETEPRODUCTS_SUCCESS:
+      return { ...state, fetchingdeleteProducts: false, deleteproducts: action.payload };
+    case types.GET_DELETEPRODUCTS_FAILURE:
+      return { ...state, 
+        fetchingdeleteProducts: false,
+         fetchingdeleteProductsError: true };
+
       case types.GET_CATEGORY_REQUEST:
       return { ...state, fetchingCategory: true, fetchingCategoryError: false };
     case types.GET_CATEGORY_SUCCESS:
@@ -548,6 +565,23 @@ export const productReducer = (state = initialState, action) => {
         deletingProductData: false,
         deletingProductDataError: true,
       };
+
+      case types.DELETE_CATALOG_DATA_REQUEST:
+        return { ...state, deletingCatalogData: true };
+      case types.DELETE_CATALOG_DATA_SUCCESS:
+        return {
+          ...state,
+          deletingCatalogData: false,
+          products: state.products.filter(
+            (item) => item.productId !== action.payload
+          ),
+        };
+      case types.DELETE_CATALOG_DATA_FAILURE:
+        return {
+          ...state,
+          deletingCatalogData: false,
+          deletingCatalogDataError: true,
+        };
 
     case types.GET_SUSPEND_PRODUCT_REQUEST:
       return {
