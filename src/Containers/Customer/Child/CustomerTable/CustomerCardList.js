@@ -71,11 +71,24 @@ function CustomerCardList(props) {
   const [hasMore, setHasMore] = useState(true);
 
   const [page, setPage] = useState(0);
+  const [page1, setPage1] = useState(0);
+  const [page2, setPage2] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
 
 
   console.log(props.viewType)
-
+  useEffect(() => {
+    if (props.viewType === "table") {
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.userId, page, "creationdate");
+    } else if (props.viewType === "teams") { 
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.viewType, page1, "creationdate");
+    } else {     
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.viewType, page2, "creationdate");
+    }
+  }, [props.viewType]);
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -94,20 +107,23 @@ function CustomerCardList(props) {
         }
       }
     })
-    setPage(page + 1);
+    //setPage(page + 1);
     // props.getCustomerListByUserId(props.userId, page, "creationdate");
     //   props.getSectors();
     // props.getCountries();
     //props.getAllCustomerEmployeelist();
-    if (props.viewType === "table") {
-      props.getCustomerListByUserId(props.userId, page, "creationdate");
-    } else if (props.viewType === "teams") {
-      props.getCustomerListByUserId(props.viewType, page, "creationdate");
-    } else {
-      props.getCustomerListByUserId(props.viewType, page, "creationdate");
-    }
+    // if (props.viewType === "table") {
+    //   props.emptyCustomer()
+    //   props.getCustomerListByUserId(props.userId, page, "creationdate");
+    // } else if (props.viewType === "teams") {
+    //   props.emptyCustomer()
+    //   props.getCustomerListByUserId(props.viewType, page1, "creationdate");
+    // } else {
+    //   props.emptyCustomer()
+    //   props.getCustomerListByUserId(props.viewType, page2, "creationdate");
+    // }
 
-  }, [props.viewType]);
+  }, []);
 
   const [JsonData, setJsonData] = useState(props.customerByUserId);
 
@@ -144,12 +160,25 @@ function CustomerCardList(props) {
     props.customerToAccount(customerId);
   };
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getCustomerListByUserId(
-      props.currentUser ? props.currentUser : props.userId,
-      page,
-      props.filter ? props.filter : "creationdate"
-    );
+   // setPage(page + 1);
+    // props.getCustomerListByUserId(
+    //   props.currentUser ? props.currentUser : props.userId,
+    //   page,
+    //   props.filter ? props.filter : "creationdate"
+    // );
+    if (props.viewType === "table") {
+     // props.emptyCustomer()
+     setPage(page + 1);
+      props.getCustomerListByUserId(props.userId, page, "creationdate");
+    } else if (props.viewType === "teams") {
+     // props.emptyCustomer()
+     setPage1(page1 + 1);
+      props.getCustomerListByUserId(props.viewType, page1, "creationdate");
+    } else {
+     // props.emptyCustomer()
+     setPage2(page2 + 1);
+      props.getCustomerListByUserId(props.viewType, page2, "creationdate");
+    }
   };
 
   const {

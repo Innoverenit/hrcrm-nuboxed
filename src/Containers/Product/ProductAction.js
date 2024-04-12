@@ -36,6 +36,34 @@ export const getProducts = (pageNo) => (dispatch) => {
       });
     });
 };
+
+export const getdeleteProducts = () => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETEPRODUCTS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/deleteProductHistory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETEPRODUCTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETEPRODUCTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getService = () => (dispatch) => {
   dispatch({
     type: types.GET_SERVICE_REQUEST,
@@ -458,6 +486,33 @@ export const deleteProductData = (id) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.DELETE_PRODUCT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteCatalogData = (id) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_CATALOG_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/product/${id}`,
+    {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.DELETE_CATALOG_DATA_SUCCESS,
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_CATALOG_DATA_FAILURE,
         payload: err,
       });
     });
