@@ -114,19 +114,19 @@ const handleLoadMore = () => {
                     <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      {/* <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <RefurbishToggle
                         locationDetailsId={item.locationDetailsId}
                         productionInd={item.productionInd}
                         />
-                      </div>
+                      </div> */}
                     </div>
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <ProductionToggle
-                        locationDetailsId={item.locationDetailsId}
-                        prodManufactureInd={item.prodManufactureInd}
+                    locationDetailsId={item.locationDetailsId}
+                    productionInd={item.productionInd}
                         />
                       </div>
                     </div>

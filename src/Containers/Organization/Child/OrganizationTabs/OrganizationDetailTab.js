@@ -7,6 +7,7 @@ import { MailOutlined, PlusOutlined,
 import { handleEmailModal,handleWebsiteModal } from "../../../Settings/SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import IndustryForm from "./IndustryForm";
 const AddEmailModal = lazy(() => import('../Email/AddEmailModal'))
 const AddWebsiteModal = lazy(() => import('../Website/AddWebsiteModal'))
 const EmailTable = lazy(() => import('../Email/EmailTable'))
@@ -91,6 +92,23 @@ class OrganizationDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <EmailTable />
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <MailOutlined type="mail" />
+                   Industry
+                  </span>
+                
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <IndustryForm />
               </Suspense>
             </TabPane>
             {/* <TabPane

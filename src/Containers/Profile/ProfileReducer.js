@@ -45,6 +45,9 @@ const initialState = {
    fetchingVisaDetailsError: false,
    visaDetails:[],
 
+   updatingProfileEquipment: false,
+   updatingProfileEquipmentError: false,
+
   updatingBankDetails: false,
   updatingTrainingDetails: false,
   updatingPersonalDetails: false,
@@ -991,6 +994,28 @@ export const profileReducer = (state = initialState, action) => {
           fetchingPerformance: false,
           fetchingPerformanceError: true,
         };
+
+
+        
+        case types.UPDATE_PROFILE_EQUIPMENT_REQUEST:
+          return { ...state, updatingProfileEquipment: true };
+        case types.UPDATE_PROFILE_EQUIPMENT_SUCCESS:
+          // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+          return {
+            ...state,
+            updatingProfileEquipment: false,
+            // serviceLine: state.serviceLine.map((document) =>
+            //   document.serviceLineId === action.payload.serviceLineId
+            //     ? action.payload
+            //     : document
+            // ),
+          };
+        case types.UPDATE_PROFILE_EQUIPMENT_FAILURE:
+          return {
+            ...state,
+            updatingProfileEquipment: false,
+            updatingProfileEquipmentError: true,
+          };
 
     default:
       return state;

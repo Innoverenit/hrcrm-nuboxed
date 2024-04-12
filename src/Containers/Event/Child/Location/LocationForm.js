@@ -115,7 +115,7 @@ class LocationForm extends Component {
             billingInd: this.state.billing ? "true" : "false",
             inventoryInd: this.state.inventory ? "true" : "false",
             projectInd: this.state.project ? "true" : "false",
-            prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+            // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
             corporateInd: this.state.corporate ? "true" : "false",
             retailInd: this.state.retail ? "true" : "false",
             timeZone: "",
@@ -147,7 +147,7 @@ class LocationForm extends Component {
                 billingInd: this.state.billing ? "true" : "false",
                 inventoryInd: this.state.inventory ? "true" : "false",
                 projectInd: this.state.project ? "true" : "false",
-                prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+                // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
                 corporateInd: this.state.corporate ? "true" : "false",
                 retailInd: this.state.retail ? "true" : "false",
                 orgId: this.props.orgId,
@@ -277,7 +277,7 @@ class LocationForm extends Component {
                   </FlexContainer> */}
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">Functions</div>
                   <div class=" flex ">
-                    <div class=" w-[47%] mt-2" >
+                    {/* <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
                       <div>
                         <Switch
@@ -288,7 +288,7 @@ class LocationForm extends Component {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Inventory &nbsp;<i class="fas fa-warehouse text-base"></i></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
@@ -307,10 +307,10 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Production &nbsp;<PrecisionManufacturingIcon/></div>
                       <div>
-                        <Switch
+                      <Switch
                           style={{ width: "6.25em" }}
-                          checked={this.state.prodmanuf}
-                          onChange={this.handleProdManuf}
+                          checked={this.state.production}
+                          onChange={this.handleProduction}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
