@@ -1546,3 +1546,36 @@ export const getPerformanceList = () => (dispatch) => {
       });
     });
 };
+
+
+export const updateProfileEquipment = (departmentId, liveInd, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_PROFILE_EQUIPMENT_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/serviceLine/department/update/${departmentId}/${liveInd}`,
+      {},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROFILE_EQUIPMENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROFILE_EQUIPMENT_FAILURE,
+      });
+    });
+};

@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PerformanceTable from "./Performance/PerformanceTable";
 import LinkAccountForm from "./LinkAccount/LinkAccountForm";
+import EquipmentForm from "./ProfileBoost/EquipmentForm";
 const AddEducationModal = lazy(() => import("./ProfileBoost/Education/AddEducationModal"));
 const AddTrainingModal = lazy(() => import("./ProfileBoost/Training/AddTrainingModal"));
 const AddEmploymentModal = lazy(() => import("./ProfileBoost/Employment/AddEmploymentModal"));
@@ -413,6 +414,27 @@ class ProfileDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <LinkAccountForm
+                employeeId={this.props.userDetails.employeeId}/>
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <MailOutlined type="mail" />
+                    <span class=" ml-1"> 
+              Equipment
+                  </span>
+                  </span>
+            
+            
+                </>
+              }
+              key="11"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <EquipmentForm
                 employeeId={this.props.userDetails.employeeId}/>
               </Suspense>
             </TabPane>
