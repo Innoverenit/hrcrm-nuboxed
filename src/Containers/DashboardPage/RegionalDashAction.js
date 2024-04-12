@@ -102,15 +102,8 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
 
 
 
-  export const updateTaskdragstage = (
-    data,
-      
-    sourceStageId,
-    destinationStageId,
-    opportunityId,
-    cb
-  ) => (dispatch) => {
-    console.log(sourceStageId, destinationStageId, opportunityId);
+  export const updateTaskdragstage = (data,userId, typeName,quarter,year) => (dispatch) => {
+    //console.log(sourceStageId, destinationStageId, opportunityId);
     // if (destinationStageId === "won") {
     //   message.success("stage is won");
     // }
@@ -119,12 +112,9 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
     // }
     dispatch({
       type: types.UPDATE_TASK_DRAG_STAGE_REQUEST,
-      payload: {
-        sourceStageId,
-        destinationStageId,
-        opportunityId,
-      },
+  
     });
+   
     axios
       .put(
         `${base_url}/task/drag-and-drop/weak-to-weak`,data, {
@@ -135,17 +125,12 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
       )
       .then((res) => {
         console.log(res);
-        // if (res.data.stageName === "Won") {
-        //   message.error("Won");
-        // } else {
-        //   message.error("Loss");
-        // }
-  
-        dispatch({
+        dispatch(getRegionTaskList(userId, typeName,quarter,year))
+       dispatch({
           type: types.UPDATE_TASK_DRAG_STAGE_SUCCESS,
           payload: res.data,
         });
-        cb && cb(res.data);
+        // cb && cb(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -154,7 +139,7 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
           type: types.UPDATE_TASK_DRAG_STAGE_FAILURE,
           payload: err,
         });
-        cb && cb("failure");
+        // cb && cb("failure");
       });
   };
 
