@@ -103,7 +103,7 @@ function AssigenedKpiCardList(props) {
 
       </div>
       <div class=" flex flex-col" >
-      <div className="!h-[20vh] !mt-2" >
+      <div className="!h-[25vh] !mt-2" >
       {props.employeeKpiList.map((item) => { 
         
         

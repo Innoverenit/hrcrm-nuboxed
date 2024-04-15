@@ -1548,15 +1548,14 @@ export const getPerformanceList = () => (dispatch) => {
 };
 
 
-export const updateProfileEquipment = (departmentId, liveInd, cb) => (dispatch) => {
+export const updateProfileEquipment = (data, liveInd, cb) => (dispatch) => {
   // console.log(leadDocumentsId, DocumentsName);
   dispatch({
     type: types.UPDATE_PROFILE_EQUIPMENT_REQUEST,
   });
   axios
     .put(
-      `${base_url}/serviceLine/department/update/${departmentId}/${liveInd}`,
-      {},
+      `${base_url}/employee/equipment`,data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1576,6 +1575,33 @@ export const updateProfileEquipment = (departmentId, liveInd, cb) => (dispatch) 
       console.log(err);
       dispatch({
         type: types.UPDATE_PROFILE_EQUIPMENT_FAILURE,
+      });
+    });
+};
+
+export const getEmployeeEquipmentByUserId = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EMPLOYEE_EQUIPMENT_REQUEST,
+  });
+  axios
+  .get(`${base_url}/employee/equipment/${userId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EMPLOYEE_EQUIPMENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EMPLOYEE_EQUIPMENT_FAILURE,
+        payload: err,
       });
     });
 };

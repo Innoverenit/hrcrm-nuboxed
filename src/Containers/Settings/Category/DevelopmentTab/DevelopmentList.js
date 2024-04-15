@@ -46,10 +46,11 @@ const DevelopmentList = (props) => {
       props.getDevelopmentCount(props.orgId) 
   }, [])
 
-  const editRegion = (developmentId, name,developmentType) => {
+  const editRegion = (developmentId, taskTypeId,value,developmentType) => {
 
       setEditingId(developmentId);
-      setDevelopmentName(name);
+      setTaskTypeId(taskTypeId)
+      setDevelopmentName(value);
       setSelectedOption(developmentType);
       // setTaskTypeId(value);
   };
@@ -140,8 +141,10 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
+            <label class=" font-bold ml-[15rem]">Configuration is per weekly basis</label>
     <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+
+    <div class=" flex w-[14vw]" style={{marginTop:"12px"}} >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -160,7 +163,8 @@ return <div><BundleLoader/></div>;
     </div>
   </a>
 </div> */}
-            <div className="add-region" style={{width:"45%"}}>
+
+            <div className="add-region" style={{width:"45vw"}}>
               {addingRegion ? (
                   <div>
       
@@ -178,7 +182,7 @@ return <div><BundleLoader/></div>;
 </select>             
      
       <input 
-                        placeholder="Add"
+                        placeholder="Input"
                       style={{border:"2px solid black",width: "23%",marginLeft:"2rem"}}
                           type="text" 
                           value={newDevelopmentName} 
@@ -193,7 +197,7 @@ return <div><BundleLoader/></div>;
                 >
                     <option value="">Select Option</option>
                     <option value="percentage">Percentage</option>
-                    <option value="hours">Hours</option>
+                    <option value="hours">Hours/Week</option>
                 </select>
                       <button 
                       className=" ml-2"
@@ -258,13 +262,13 @@ return <div><BundleLoader/></div>;
                 >
                     <option value="">Select Option</option>
                     <option value="percentage">Percentage</option>
-                    <option value="hours">Hours</option>
+                    <option value="hours">Hours/Week</option>
                 </select>
      
                 </>
             ) : (
                 <div className="region" style={{width:"15rem"}}>
-                  {region.value} {region.developmentType}</div>
+                  {region.value} {region.developmentType === 'percentage' ? '%' : region.developmentType}</div>
             )}
 
             {/* Action buttons */}
@@ -303,10 +307,11 @@ return <div><BundleLoader/></div>;
             </div>
         </div>
         ))}
+        <div class=" font-bold">Updated on {dayjs(props.developmentList && props.developmentList.length && props.developmentList[0].updationDate).format('YYYY-MM-DD')} by {props.developmentList && props.developmentList.length && props.developmentList[0].updatedBy}</div>
         </MainWrapper>
             </div>
       
-  <div class=" font-bold">Updated on {dayjs(props.developmentList && props.developmentList.length && props.developmentList[0].updationDate).format('YYYY-MM-DD')} by {props.developmentList && props.developmentList.length && props.developmentList[0].name}</div>
+  
       </div>
   );
 };

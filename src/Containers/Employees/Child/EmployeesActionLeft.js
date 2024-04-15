@@ -125,7 +125,7 @@ const EmployeesActionLeft = (props) => {
       </div>
    
         <div  class=" w-[35%] mt-2 ml-2">
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort"  defaultValue="cretiondate" onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="cretiondate">Creation Date</Option>
           <Option value="AtoZ">A To Z</Option>
             <Option value="ZtoA">Z To A</Option>

@@ -137,14 +137,14 @@ const Quality = (props) => {
                             onChange={(e) => setQualityName(e.target.value)} 
                         /> */}
                           <input 
-                            placeholder="code"
+                            placeholder="Code"
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newCodeName} 
                             onChange={(e) => setCodeName(e.target.value)} 
                         />
                             <input 
-                            placeholder="deescription"
+                            placeholder="Description"
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newDescriptionName} 
@@ -206,7 +206,7 @@ const Quality = (props) => {
                   <input
                   style={{border:"2px solid black"}}
                       type="text"
-                      placeholder="description"
+                      placeholder="Description"
                       value={newDescriptionName}
                       onChange={(e) => setDescriptionName(e.target.value)}
                   />
