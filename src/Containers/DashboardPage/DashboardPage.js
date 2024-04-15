@@ -72,10 +72,10 @@ class DashboardPage extends Component {
         <Suspense fallback={<BundleLoader />}>
         <MainWrapper style={{marginTop:"1rem",overflow:"hidden",height:"21rem"}}
     >
-          <div class=" h-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
-         <div class="flex justify-between  max-sm:flex-col">
+          <div class=" flex justify-between max-sm:h-[36rem] max-sm:overflow-x-auto">
+         {/* <div class="flex justify-between  max-sm:flex-col"> */}
         
-           <div class="w-[53%] max-sm:w-wk">
+           <div class="w-[47.5%] max-sm:w-wk">
            <CardElement>
         
            <div class=" flex flex-col " >
@@ -97,7 +97,7 @@ class DashboardPage extends Component {
     </div>
   
 
-     <div class="w-[47%] max-sm:w-wk">
+     <div class="w-[47.5%] max-sm:w-wk">
      <CardElement>
      <div class=" flex flex-col" >
      
@@ -112,18 +112,18 @@ class DashboardPage extends Component {
     </CardElement>
     </div>
     
-    </div>
+    {/* </div> */}
 
 
   
     </div>
     </MainWrapper>
-    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
+    <MainWrapper style={{marginTop:"0.5rem",overflow:"none",height:"21rem"}}
     >
-    <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
-         <div class="flex justify-between  max-sm:flex-col">
+    <div class=" flex justify-between   max-sm:h-[36rem] max-sm:overflow-x-auto">
+         {/* <div class="flex justify-between  max-sm:flex-col"> */}
        
-           <div class="w-[53%] max-sm:w-wk">
+           <div class="w-[47.5%] max-sm:w-wk">
            <CardElement>
            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
            <div class=" flex flex-col " >
@@ -152,7 +152,7 @@ class DashboardPage extends Component {
         </CardElement>
     </div>
 
-     <div class="w-[47%] max-sm:w-wk">
+     <div class="w-[47.5%] max-sm:w-wk">
   
      <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >
@@ -173,7 +173,7 @@ class DashboardPage extends Component {
     </div>
     </div>
  
-    </div>
+    {/* </div> */}
 
 
   

@@ -26,7 +26,9 @@ const BussinessCard = (props) => {
     user,
     customerName,
     contactName,
-    task
+    task,
+    contact,
+    opportunityName
   } = props;
   console.log(primaryTitle)
   
@@ -59,7 +61,8 @@ const BussinessCard = (props) => {
             >
               {primaryTitle || ""}
             </Title>
-          
+            
+                   
             <SubTitle>
        
              
@@ -68,7 +71,7 @@ const BussinessCard = (props) => {
               &nbsp;    
             {secondaryTitle || ""} 
  
-  
+           
    
             </SubTitle>      
           </FlexContainer>
@@ -80,6 +83,8 @@ const BussinessCard = (props) => {
         <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
         </SubTitle>
       {/* </div> */}
+      <div class="flex items-center">
+     
       <ButtonGroup >
       <StatusIcon
   type="To Start"
@@ -124,6 +129,9 @@ const BussinessCard = (props) => {
             //   }
             />
             </ButtonGroup>
+            <div class="text-xs text-cardBody font-poppins"> 
+                        {`${customerName} ${contactName} ${opportunityName} `}</div>
+            </div>
       </MainWrapper>
     </div>
   );

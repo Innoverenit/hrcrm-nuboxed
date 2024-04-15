@@ -13,6 +13,7 @@ const { Option } = Select;
 const JumpStartWrapper = styled.div`
   margin: 0.2rem 0.4rem;
   padding: 0.3rem;
+  max-width: 11rem;
   border: 0.0625em solid #ddd;
   display: flex;
   justify-content: "space-between";

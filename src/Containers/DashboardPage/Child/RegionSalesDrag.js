@@ -105,7 +105,7 @@ function RegionSalesDrag(props) {
     onDragStart={dragStart}
  >
        <div>
-         <h2>Week Numbers</h2>
+         {/* <h2>Week Numbers</h2> */}
          <div style={{display:"flex"}}>
            {weeks.map((week, index) => {
              const startDate = getWeekStartDate(week);
@@ -143,7 +143,7 @@ function RegionSalesDrag(props) {
                  //  style={{ position: "absolute" }}
                   >
                                      <div>Week{week}</div>
-                                     <button>OverView</button>
+                                     {/* <button>OverView</button> */}
                                      <div>
                                      </div>
                                    </StageHeader>
