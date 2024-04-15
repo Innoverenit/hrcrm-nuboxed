@@ -4,7 +4,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import SourceIcon from '@mui/icons-material/Source';
 import DevelopmentTab from "../DevelopmentTab/DevelopmentTab";
 import Equipment from "../Equipment/Equipment";
@@ -71,7 +71,7 @@ class EmployeeTab extends Component {
                     <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <BuildCircleIcon />
                       <Badge
                 count={this.props.equipmentCount.EquipmentCount}
                 overflowCount={999}

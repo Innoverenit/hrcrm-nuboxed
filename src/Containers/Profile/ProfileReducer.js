@@ -71,6 +71,10 @@ const initialState = {
   fetchingBankDetailsError: false,
   bankDetails: [],
 
+  fetchingEquipmentEmployee: false,
+  fetchingEquipmentEmployeeError: false,
+  employeeEquipment:[],
+
   updateVisaModal:false,
 
   fetchingPersonalDetails: false,
@@ -1016,6 +1020,21 @@ export const profileReducer = (state = initialState, action) => {
             updatingProfileEquipment: false,
             updatingProfileEquipmentError: true,
           };
+
+          case types.GET_EMPLOYEE_EQUIPMENT_REQUEST:
+            return { ...state,  fetchingEquipmentEmployee: true };
+          case types.GET_EMPLOYEE_EQUIPMENT_SUCCESS:
+            return {
+              ...state,
+              fetchingEquipmentEmployee: false,
+               employeeEquipment: action.payload,
+            };
+          case types.GET_EMPLOYEE_EQUIPMENT_FAILURE:
+            return {
+              ...state,
+              fetchingEquipmentEmployee: false,
+              fetchingEquipmentEmployeeError: true,
+            };
 
     default:
       return state;

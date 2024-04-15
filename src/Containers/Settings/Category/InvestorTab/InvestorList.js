@@ -140,7 +140,7 @@ return <div><BundleLoader/></div>;
     </div>
   </a>
 </div>
-<div class="w-[5rem]">
+{/* <div class="w-[5rem]">
 <Button
           type="primary"
        
@@ -148,7 +148,7 @@ return <div><BundleLoader/></div>;
         >
           Import
         </Button>
-        </div>
+        </div> */}
             <div className="add-region">
               {addingRegion ? (
                   <div>

@@ -74,7 +74,7 @@ export const getEmployeelist = (filter) => (dispatch) => {
   });
 
   axios
-  .get(`${base_url}/employee/employees/filter/${filter}`, {
+  .get(`${base_url}/employee/active/employees/filter/${filter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1384,4 +1384,6 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
       });
     });
 };
+
+
 
