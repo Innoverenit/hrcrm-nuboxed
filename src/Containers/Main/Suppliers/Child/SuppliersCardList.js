@@ -57,28 +57,26 @@ function SuppliersCardList(props) {
     <>
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
+          <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[11.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
             </div>
-            <div className=" w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
-            <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <div className="w-[17.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage id="app.address" defaultMessage="Address" />
 
             </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[9.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage id="app.city" defaultMessage="City" />
 
             </div>
-            <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
 
-            </div>
-            <div className="w-[3.8rem]">
             </div>
           </div>
           <div class="overflow-x-auto h-[89vh]">
@@ -110,7 +108,7 @@ function SuppliersCardList(props) {
                             </div>
 
                             
-                            <div className=" flex font-medium flex-col w-[13.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex font-medium flex-col w-[8.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
 
 
@@ -150,7 +148,7 @@ function SuppliersCardList(props) {
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[12.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex font-medium flex-col w-[4.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
