@@ -31,9 +31,13 @@ function SupplierSuppliesCardTable(props) {
     setrowData(data);
   };
 
-  function handleSetCurrentType(selectvlu) {
-    setCurrentType(selectvlu);
-  }
+  const handleSetCurrentType = (value, item) => {
+    setCurrentType({
+      ...currentType,
+      [item.suppliesId]: value
+    });
+  };
+
   const handleLoadMore = () => {
     setPage(page + 1);
   };
@@ -42,6 +46,16 @@ function SupplierSuppliesCardTable(props) {
     props.getSupplierSuppliesQuality();
   }, []);
 
+  const handleSaveQualityIds = (item) => {
+    const qualityIds = currentType[item.suppliesId] || [];
+    const payload = {
+      type: qualityIds.map((qualityId) => ({ qualityId })),
+      suppliesId: item.suppliesId,
+      supplierId: props.supplier.supplierId,
+      supplierSuppliesInd: true 
+    };
+    props.setSupplierSuppliesType(payload);
+  };
 
   return (
     <>
@@ -78,7 +92,7 @@ function SupplierSuppliesCardTable(props) {
               <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
 
             </div> */}
-            <div className="w-[3.8rem]">
+            <div className="w-[1.5rem]">
             </div>
           </div>
           <div >
@@ -167,26 +181,27 @@ supplierId={props.supplier.supplierId}
           optionFilterProp="children"
           // loading={isLoadingInclude}
           // onFocus={handleSelectIncludeFocus}
-          onChange={handleSetCurrentType}
-          defaultValue={item.type} 
+          onChange={(value) => handleSetCurrentType(value, item)}
+          defaultValue={item.type || []} 
           mode="multiple" 
         >
           {props.supplierSuppliesQuality.map(opt => (
-            <Option key={opt.typeId} value={opt.typeId}>
-              {opt.type}
+            <Option key={opt.qualityId} value={opt.qualityId}>
+              {opt.code}
             </Option>
           ))}
         </Select>
         <Button type="primary"
                         // type={dt.type}
                         // role={item.type}
-                        onClick={() => {
-                          props.setSupplierSuppliesType({ type:currentType,
-                          suppliesId:item.suppliesId,
-                          supplierId:props.supplier.supplierId,
-                          supplierSuppliesInd:"true"
-                        });
-                        }}
+                        // onClick={() => {
+                        //   props.setSupplierSuppliesType({ type:currentType,
+                        //   suppliesId:item.suppliesId,
+                        //   supplierId:props.supplier.supplierId,
+                        //   supplierSuppliesInd:"true"
+                        // });
+                        // }}
+                        onClick={() => handleSaveQualityIds(item)}
                       >
 Save
                     </Button>

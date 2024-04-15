@@ -1488,7 +1488,7 @@ export const getSupplierSuppliesQuality = () => (dispatch) => {
     type: types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST,
   });
   axios
-    .get(`${base_url2}/quality/All`, {
+    .get(`${base_url}/quality/All`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
