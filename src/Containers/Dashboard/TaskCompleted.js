@@ -30,7 +30,7 @@ class TaskOpens extends Component {
     }
     return (
       <>
-          <div className="grid grid-cols-5 gap-4 p-4">
+          <div className="grid grid-cols-5 gap-4 p-4 h-[22vh] overflow-auto">
   {this.props.dashbCompletedTasks.length &&
     this.props.dashbCompletedTasks.map((item) => {
       return ( 

@@ -508,6 +508,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import { BundleLoader } from '../../../Components/Placeholder';
 import RegionSalesDrag from './RegionSalesDrag';
+import TocIcon from '@mui/icons-material/Toc';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 const { TabPane } = Tabs;
 const ButtonGroup = Button.Group;
 const SalesTaskCardList = (props) => {
@@ -558,29 +560,20 @@ const SalesTaskCardList = (props) => {
 
  
 
- 
+  const handleHeartClick = () => {
+    setShowHeartCard(true);
+    setShowSmileCard(false);
+  };
   const handleSmileClick = () => {
     setShowSmileCard(true);
     setShowHeartCard(false);
   };
 
-  const handleHeartClick = () => {
-    setShowHeartCard(true);
-    setShowSmileCard(false);
-  };
+  
   return (
     <>
     <div>
-    <EnvironmentOutlined
-                  type="environment"
-                  style={{                   
-                    fontSize: "1.2em",
-                    margin: "0px 0.68em 0.42rem",
-                    placeSelf: "center",
-                  }}
-                  onClick={handleSmileClick}
-                />
-                   <EnvironmentOutlined
+    <CalendarMonthIcon
                   type="environment"
                   style={{                   
                     fontSize: "1.2em",
@@ -589,8 +582,29 @@ const SalesTaskCardList = (props) => {
                   }}
                   onClick={handleHeartClick}
                 />
+    <TocIcon
+                  type="environment"
+                  style={{                   
+                    fontSize: "1.2em",
+                    margin: "0px 0.68em 0.42rem",
+                    placeSelf: "center",
+                  }}
+                  onClick={handleSmileClick}
+                />
+                  
     </div>
-    {showSmileCard && (
+    
+
+
+{showHeartCard && (
+  <RegionSalesDrag
+  regionAllTaskList={props.regionAllTaskList}
+  rowdata={props.rowdata}
+  tabKey={props.tabKey}
+  />
+)}
+
+{showSmileCard && (
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -632,7 +646,7 @@ const SalesTaskCardList = (props) => {
         <div className="w-12"></div>
         {/* <div className="w-12"></div> */}
       </div>
- 
+      <div class="h-[60vh] overflow-auto">
       {props.regionAllTaskList.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
@@ -753,7 +767,7 @@ const SalesTaskCardList = (props) => {
          </ButtonGroup>
          <div></div>
                          </div>
-                    <div className="flex font-medium flex-col md:w-[1rem] max-sm:flex-row  w-full ">
+                    <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row  w-full ">
                        
                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
                        <div class="text-xs text-cardBody font-poppins"> 
@@ -849,22 +863,12 @@ const SalesTaskCardList = (props) => {
 
 
                     )
+                    
                 })}
-                
+               </div> 
       </div>
 </div>
     )}
-
-
-{showHeartCard && (
-  <RegionSalesDrag
-  regionAllTaskList={props.regionAllTaskList}
-  rowdata={props.rowdata}
-  tabKey={props.tabKey}
-  />
-)}
-
-
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>

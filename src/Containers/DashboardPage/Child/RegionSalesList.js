@@ -78,22 +78,22 @@ function RegionSalesList(props) {
         <div className=' flex  justify-center  sticky top-28 z-auto'>
           <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className="md:w-[2.5rem]">
+              <div className="md:w-[7.9rem]">
                 <FormattedMessage id="app.kpi" defaultMessage="KPI" />
               </div>
             
               
-              <div className="md:w-[6.1rem]">
-                <FormattedMessage id="app.assigned" defaultMessage="Assigned Total" />
+              <div className="md:w-[9.1rem]">
+                <FormattedMessage id="app.assigned" defaultMessage="Assigned " />
               </div>
           
              
-              <div className="md:w-[6.1rem]">
-                <FormattedMessage id="app.achieved" defaultMessage="Achieved Total" />
+              <div className="md:w-[11.11rem]">
+                <FormattedMessage id="app.achieved" defaultMessage="Achieved " />
               </div>
             
-              <div className="md:w-[10.2rem]">
-                <FormattedMessage id="app.actual" defaultMessage="Actual Total" />
+              <div className="md:w-[9.2rem]">
+                <FormattedMessage id="app.actual" defaultMessage="Actual " />
               </div>
             
             </div>
@@ -122,28 +122,43 @@ function RegionSalesList(props) {
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {AssignedValue}
+                       {/* {AssignedValue} */}
+                       {/* {employee.month3AssignedValue && (
+                       <span> */}
+                      {employee.currencyInd && `${employee.userCurrency} `}{AssignedValue/ 10000}k
+                      {/* </span>
+                    )} */}
                       </div>
                     </>
                   </div>
                 </div>
            
               
-                <div className="flex font-medium flex-col md:w-[19.3rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="flex font-medium flex-col md:w-[19.31rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {Actualcompleted}
+                       {/* {Actualcompleted} */}
+                       {/* {employee.month3CompletedValue && (
+                     <span> */}
+                      {employee.currencyInd && `${employee.userCurrency} `}{Actualcompleted/ 10000}k
+                      {/* </span>
+                       )} */}
                       </div>
                     </>
                   </div>
                 </div>
               
-                <div className="flex font-medium flex-col md:w-[4.3rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="flex font-medium flex-col md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div className="text-sm text-cardBody font-poppins">
                     <>
                       <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-                       {actualCompletedValue}
+                       {/* {actualCompletedValue} */}
+                       {/* {employee.month3ActualCompletedValue && (
+                      <span> */}
+                      {employee.currencyInd && `${employee.userCurrency} `}{actualCompletedValue/ 10000}k
+                      {/* </span>
+                    )} */}
                       </div>
                     </>
                   </div>
@@ -283,7 +298,7 @@ function RegionSalesList(props) {
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                      {item.month3AssignedValue && (
                        <span>
-                      {AssignedTotal/ 10000}k
+                      {item.currencyInd && `${item.userCurrency} `}{AssignedTotal/ 10000}k
                       </span>
                     )}
                      </div>
@@ -332,7 +347,7 @@ function RegionSalesList(props) {
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                      {item.month3CompletedValue && (
                      <span>
-                      {AchievedTotal/ 10000}k
+                      {item.currencyInd && `${item.userCurrency} `}{AchievedTotal/ 10000}k
                       </span>
                        )}
                      </div>
@@ -380,7 +395,7 @@ function RegionSalesList(props) {
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                      {item.month3ActualCompletedValue && (
                       <span>
-                      {ActualTotal/ 10000}k
+                      {item.currencyInd && `${item.userCurrency} `}{ActualTotal/ 10000}k
                       </span>
                     )}
                      </div>
