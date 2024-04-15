@@ -272,7 +272,10 @@ const initialState = {
   roomRackbyLoc:[],
   fetchingRoomRack: false,
   fetchingRoomRackByIdError:false,
-  
+
+  fetchingRacklist: false,
+  fetchingRacklistError:false,
+  rackList:[],
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -986,14 +989,14 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingRoomAndRackInInventory: false,
-        addroomrackininventory: false,
+        // addroomrackininventory: false,
       };
     case types.ADD_ROOM_AND_RACK_IN_INVENTORY_FAILURE:
       return {
         ...state,
         addingRoomAndRackInInventory: false,
         addingRoomAndRackInInventoryError: true,
-        addroomrackininventory: false,
+        // addroomrackininventory: false,
       };
 
     case types.UPDATE_VALIDATION_IN_RECEIVE_REQUEST:
@@ -1400,7 +1403,20 @@ export const inventoryReducer = (state = initialState, action) => {
             updatingRoomRackIdError: true,
           };
     
-
+          case types.GET_RACK_LIST_REQUEST:
+            return { ...state, fetchingRacklist: true };
+          case types.GET_RACK_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              rackList: action.payload
+            };
+          case types.GET_RACK_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              fetchingRacklistError: true,
+            };
 
     default:
       return state;

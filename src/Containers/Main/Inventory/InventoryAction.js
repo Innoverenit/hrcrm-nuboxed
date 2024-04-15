@@ -1061,7 +1061,7 @@ export const handleInventoryRoomRackModal = (modalProps) => (dispatch) => {
 export const addRoomAndRackInInventory = (data) => (dispatch) => {
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
-    .post(`${base_url2}/roomrack`, data,{
+    .post(`${base_url2}/roomrack/rck`, data,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1728,6 +1728,30 @@ export const updateRoomRackId = (data, roomRackId) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.UPDATE_ROOM_RACK_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getRackList = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_RACK_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/racklist/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_RACK_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_RACK_LIST_FAILURE,
         payload: err,
       });
     });
