@@ -1548,7 +1548,7 @@ export const getPerformanceList = () => (dispatch) => {
 };
 
 
-export const updateProfileEquipment = (data, liveInd, cb) => (dispatch) => {
+export const updateProfileEquipment = (data,employeeId, liveInd, cb) => (dispatch) => {
   // console.log(leadDocumentsId, DocumentsName);
   dispatch({
     type: types.UPDATE_PROFILE_EQUIPMENT_REQUEST,
@@ -1563,7 +1563,7 @@ export const updateProfileEquipment = (data, liveInd, cb) => (dispatch) => {
       }
     )
     .then((res) => {
-    
+    dispatch(getEmployeeEquipmentByUserId(employeeId));
       // message.success("Document has been updated successfully!");
       console.log(res);
       dispatch({

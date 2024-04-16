@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import { DeleteOutlined } from "@ant-design/icons";
-import { MainWrapper } from "../../../../Components/UI/Layout";
+import {getLob} from "../../../Settings/Category/LOB/LOBAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getEmployeeKpiList,deleteKpiData,updateAssignedValue} from "../TeamsAction"
 import { Button } from 'antd';
@@ -15,11 +15,12 @@ function onChange(pagination, filters, sorter) {
 }
 
 function AssigenedKpiCardList(props) {
-
+  const [lob, setLob] = useState("");
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
 
   useEffect(() => {
+    props.getLob(props.orgId); 
     props.getEmployeeKpiList(props.rowdata.employeeId, props.selectedYear, props.activeTab);
   }, [props.rowdata.employeeId, props.selectedYear, props.activeTab]);
 
@@ -34,17 +35,24 @@ function AssigenedKpiCardList(props) {
     }));
   };
 
-  const handleEditClick = (userKpiLinkId) => {
+  const handleEditClick = (userKpiLinkId,lobName) => {
     setEditContactId(userKpiLinkId);
+    setLob(lobName);
   };
   const handleCancelClick = (userKpiLinkId) => {
     setEditedFields((prevFields) => ({ ...prevFields, [userKpiLinkId]: undefined }));
     setEditContactId(null);
   };
+  const handleLobChange = (event) => {
+    const lob = event.target.value;
+    setLob(lob);
+    // setSelectedUser("");
+    // props.getDepartmentwiserUser(selected) // Assuming you want to pass the selected department and filtered roles to a parent component
+  };
 
 
 
-  const handleUpdateAssigned = (userKpiLinkId,  month1AssignedValue,month2AssignedValue,month3AssignedValue,weitageValue) => {
+  const handleUpdateAssigned = (userKpiLinkId,  month1AssignedValue,month2AssignedValue,month3AssignedValue,weitageValue,lobName) => {
     const data = {
         userKpiLinkId: userKpiLinkId, 
        employeeId: props.rowdata.employeeId,
@@ -54,6 +62,8 @@ function AssigenedKpiCardList(props) {
       month2AssignedValue: parseFloat(editedFields[userKpiLinkId]?.month2AssignedValue !== undefined ? editedFields[userKpiLinkId].month2AssignedValue : month2AssignedValue), 
       month3AssignedValue: parseFloat(editedFields[userKpiLinkId]?.month3AssignedValue !== undefined ? editedFields[userKpiLinkId].month3AssignedValue : month3AssignedValue),         
        weitageValue: editedFields[userKpiLinkId]?.weitageValue !== undefined ? editedFields[userKpiLinkId].weitageValue : weitageValue,
+      //  lobName: editedFields[userKpiLinkId]?.lobName !== undefined ? editedFields[userKpiLinkId].lobName : lobName,
+      lobDetailsId: lob,
     };
   
     props.updateAssignedValue(data, props.rowdata.employeeId,)
@@ -73,34 +83,37 @@ function AssigenedKpiCardList(props) {
              <div className="md:w-[9.5rem]">
                <FormattedMessage id="app.kpi" defaultMessage="KPI" />
              </div>
-             <div className="md:w-[11.5rem]">
+             <div className="md:w-[7.5rem]">
                <FormattedMessage id="app.lob" defaultMessage="LOB" />
+             </div>
+             <div className="md:w-[7.5rem]">
+               <FormattedMessage id="app.lob" defaultMessage="Currency" />
              </div>
              <div className="md:w-[10.1rem]">
                <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
              </div>
-             <div className="md:w-[7.11rem]">
+             <div className="md:w-[9.11rem]">
                <FormattedMessage id="app.assigned" defaultMessage=" Total" />
              </div>
          
-             <div className="md:w-[6.11rem]">
+             <div className="md:w-[9.11rem]">
                <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
              </div>
-             <div className="md:w-[5.51rem]">
+             <div className="md:w-[12.51rem]">
                <FormattedMessage id="app.achieved" defaultMessage=" Total" />
              </div>
              <div className="md:w-[5.01rem]">
                <FormattedMessage id="app.actual" defaultMessage="Actual" />
              </div>
-             <div className="md:w-[2.1rem]">
+             <div className="md:w-[3.1rem]">
                <FormattedMessage id="app.actual" defaultMessage="Total" />
 
              </div>
-             <div className="md:w-[10.1rem]"><FormattedMessage
+             <div className="md:w-[6.1rem]"><FormattedMessage
                 id="app.weightage"
                 defaultMessage="Weightage"
               /></div>
-               <div className="w-[4.2rem]"></div>
+               <div className="w-[2rem]"></div>
            </div>
  
            {props.employeeKpiList.map((item, index) => {
@@ -124,19 +137,45 @@ function AssigenedKpiCardList(props) {
                        </div>
                      </Tooltip>
                    </div>
-                   <div className="max-sm:w-full">
-                     <Tooltip>
-                       <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[10rem]">
-                         <div className="text-sm  text-cardBody font-poppins  cursor-pointer">
-                           {item.lobName}
-                         </div>
-                       </div>
-                     </Tooltip>
-                   </div>
+                
+                 </div>
+               </div>
+               <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                 <div className="text-sm text-cardBody font-poppins">
+                   <>
+         
+                   {editContactId === item.userKpiLinkId ? (
+  <select
+    className="customize-select"
+    style={{ width: "50%" }}
+    value={lob} 
+    onChange={handleLobChange}
+  >
+    <option value="">Select</option>
+    {props.lobListData.map((item, index) => (
+      <option key={index} value={item.lobDetsilsId}>
+        {item.name}
+      </option>
+    ))}
+  </select>
+) : (
+  <div className="font-normal text-sm text-cardBody font-poppins">{item.lobName}</div>
+)}
+           
+                   </>
+                 </div>
+               </div>
+               <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+                 <div className="text-sm text-cardBody font-poppins">
+                   <>
+         
+           {props.rowdata.currency}
+           
+                   </>
                  </div>
                </div>
       
-               <div className="flex font-medium flex-col md:w-[19.32rem] max-sm:flex-row w-full max-sm:justify-between">
+               <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
                    {editContactId === item.userKpiLinkId ? (
@@ -194,7 +233,7 @@ function AssigenedKpiCardList(props) {
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M1</span>
-                         <span className='ml-2 w-20'>
+                         <span className='ml-2 w-[4rem]'>
                           {item.month1AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
@@ -204,7 +243,7 @@ function AssigenedKpiCardList(props) {
                        </div>
                        <div className="flex flex-col items-center">
                          <span className="mr-2">M2</span>
-                         <span className='ml-2 w-20'>{item.month2AssignedValue && (
+                         <span className='ml-2 w-[4rem]'>{item.month2AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
        {item.month2AssignedValue/ 10000}k 
@@ -214,7 +253,7 @@ function AssigenedKpiCardList(props) {
                        <div className="flex flex-col items-center">
                          <span className="mr-2 ">M3</span>
                
-                                   <span className='ml-2 w-20'>{item.month3AssignedValue && (
+                                   <span className='ml-2 w-[4rem]'>{item.month3AssignedValue && (
    <span>
        {item.currencyInd && `${item.userCurrency} `}
        {item.month3AssignedValue/ 10000}k 
@@ -227,7 +266,7 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
-               <div className="flex font-medium flex-col md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between">
+               <div className="flex font-medium flex-col md:w-[13.3rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
@@ -241,7 +280,7 @@ function AssigenedKpiCardList(props) {
                  </div>
                </div>
           
-               <div className="flex font-medium flex-col md:w-[18.3rem] max-sm:flex-row w-full max-sm:justify-between">
+               <div className="flex font-medium flex-col md:w-[28.3rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
@@ -289,13 +328,13 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
-               <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+               <div className="flex font-medium flex-col md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                        <div className="flex flex-col">
                          <span className="mr-2">M1</span>
-                         <span className='ml-2'>   {item.month1ActualCompletedValue && (
+                         <span className='ml-2 w-[4rem]'>   {item.month1ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
                                            {item.month1ActualCompletedValue/ 10000}k
@@ -304,7 +343,7 @@ function AssigenedKpiCardList(props) {
                        </div>
                        <div className="flex flex-col">
                          <span className="mr-2">M2</span>
-                         <span className='ml-2'>   {item.month2ActualCompletedValue && (
+                         <span className='ml-2 w-[4rem]'>   {item.month2ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
                                            {item.month2ActualCompletedValue/ 10000}k
@@ -313,7 +352,7 @@ function AssigenedKpiCardList(props) {
                        </div>
                        <div className="flex flex-col">
                          <span className="mr-2">M3</span>
-                         <span className='ml-2'>   {item.month3ActualCompletedValue && (
+                         <span className='ml-2 w-[4rem]'>   {item.month3ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
                                            {item.month3ActualCompletedValue/ 10000}k
@@ -369,7 +408,7 @@ function AssigenedKpiCardList(props) {
                              <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                   {editContactId === item.userKpiLinkId ? (
                       <>
-                    <Button onClick={() => handleUpdateAssigned(item.userKpiLinkId, item.month1AssignedValue,item.month2AssignedValue,item.month3AssignedValue,item.weitageValue)}>
+                    <Button onClick={() => handleUpdateAssigned(item.userKpiLinkId, item.month1AssignedValue,item.month2AssignedValue,item.month3AssignedValue,item.weitageValue,item.lobName)}>
                       Save
                     </Button>
                       <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
@@ -424,10 +463,13 @@ function AssigenedKpiCardList(props) {
 // }
 const mapStateToProps = ({
   auth,
-  teams
+  teams,
+  lob
 }) => ({
     employeeKpiList:teams.employeeKpiList,
   userId:auth.userDetails.userId,
+  lobListData: lob.lobListData,
+  orgId:auth.userDetails.organizationId,
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -435,6 +477,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         getEmployeeKpiList,
         deleteKpiData,
+        getLob,
         updateAssignedValue
     },
     dispatch

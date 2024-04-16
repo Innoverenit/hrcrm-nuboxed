@@ -17,6 +17,12 @@ import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import RefurbishToggle from "./RefurbishToggle";
 import ProductionToggle from "./ProductionToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
+import InventoryToggle from "./InventoryToggle";
+import BillingToggle from "./BillingToggle";
+import CorporateToggle from "./CorporateToggle";
+import ProjectToggle from "./ProjectToggle";
+import RetailToggle from "./RetailToggle";
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
 const LocationSupplierDrawer = lazy(() => import("./LocationSupplierDrawer"));
 const LocationShiftDrawer = lazy(() => import("./LocationShiftDrawer"));
@@ -48,7 +54,7 @@ const handleLoadMore = () => {
       setPage(page + 1);
       props.getlocation(props.orgId);
 }
-  // if (props.fetchingLocationData) return <BundleLoader />;
+   if (props.fetchingLocationData) return <BundleLoader />;
   return (
     <>
       <div>
@@ -63,7 +69,6 @@ const handleLoadMore = () => {
         <div className=" md:w-[10.5rem]">Name</div>
         <div className=" md:w-[9.1rem]">Country</div>
         <div className=" md:w-[11.1rem] ">Address</div>
-        <div className=" md:w-[8.5rem] ">Refurbish</div>
         <div className=" md:w-[8.2rem] ">Production</div>
         <div className="md:w-[8.5rem]">Inventory</div>
         <div className="md:w-[7.5rem]">Billing</div>
@@ -111,16 +116,16 @@ const handleLoadMore = () => {
                   </div>
                 </div>
 
-                    <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    {/* <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
-                      {/* <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <RefurbishToggle
                         locationDetailsId={item.locationDetailsId}
                         productionInd={item.productionInd}
                         />
-                      </div> */}
-                    </div>
+                      </div>
+                    </div> */}
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
@@ -134,27 +139,35 @@ const handleLoadMore = () => {
                      
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
+                      <InventoryToggle
+                    locationDetailsId={item.locationDetailsId}
+                    inventoryInd={item.inventoryInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.inventoryInd}
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           disabled={!props.orderManagementInd}
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
+                      <BillingToggle
+                    locationDetailsId={item.locationDetailsId}
+                    billingInd={item.billingInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.billingInd}
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           disabled={!props.financeInd}
-                        />
+                        /> */}
                       </div>
                     </div>
               
@@ -162,39 +175,52 @@ const handleLoadMore = () => {
                     <div className=" flex font-medium flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
+
+                      <CorporateToggle
+                    locationDetailsId={item.locationDetailsId}
+                    corporateInd={item.corporateInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.corporateInd}
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className=" flex font-medium flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
+                      <ProjectToggle
+                    locationDetailsId={item.locationDetailsId}
+                    projectInd={item.projectInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.projectInd}
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                           disabled={!props.recruitProInd}
-                        />
+                        /> */}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-row md:w-[5.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex font-medium flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                       
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <Switch
+                      <RetailToggle
+                    locationDetailsId={item.locationDetailsId}
+                    retailInd={item.retailInd}
+                        />
+                        {/* <Switch
                           className="toggle-clr"
                           checked={item.retailInd}
                           isLoading={true}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className=" font-medium flex-row md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
@@ -314,7 +340,8 @@ const mapStateToProps = ({ location, auth }) => ({
   repairInd: auth.userDetails.repairInd,
   productionInd:auth.userDetails.productionInd,
   orderManagementInd:auth.userDetails.orderManagementInd,
-  recruitProInd:auth.userDetails.recruitProInd
+  recruitProInd:auth.userDetails.recruitProInd,
+  fetchingLocationData:location.fetchingLocationData,
 
 });
 const mapDispatchToProps = (dispatch) =>

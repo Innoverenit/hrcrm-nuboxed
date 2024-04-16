@@ -98,6 +98,7 @@ import { lobReducer } from "../Containers/Settings/Category/LOB/LOBReducer";
 import { developmentReducer } from "../Containers/Settings/Category/DevelopmentTab/DevelopmentReducer";
 import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityReducer";
 import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
+import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -192,6 +193,7 @@ const appReducer = combineReducers({
   development:developmentReducer,
   quality:qualityReducer,
   equipment:equipmentReducer,
+  industry:industryReducer,
 });
 
 const rootReducer = (state, action) => {

@@ -5,6 +5,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Tooltip,Button, Input } from "antd";
 import dayjs from "dayjs";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -131,7 +132,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
+          <div class="w-[12rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"investorCategory"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -140,15 +141,13 @@ return <div><BundleLoader/></div>;
     </div>
   </a>
 </div>
-{/* <div class="w-[5rem]">
-<Button
-          type="primary"
-       
-        onClick={() => props.handleInvestorImportModal(true)}
-        >
-          Import
-        </Button>
-        </div> */}
+<div class="w-[5rem] mt-2">
+<div className="circle-icon !text-base cursor-pointer text-[blue]">
+  <Tooltip title="Upload XL">
+  <FileUploadIcon  onClick={() => props.handleInvestorImportModal(true)}/>
+  </Tooltip>
+  </div>
+        </div>
             <div className="add-region">
               {addingRegion ? (
                   <div>

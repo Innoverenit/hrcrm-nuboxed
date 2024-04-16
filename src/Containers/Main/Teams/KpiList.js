@@ -186,7 +186,7 @@ function KpiList(props) {
     </div>
   )}
   {selected && (
-    <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
+    <div className="w-[18%] mt-[1.2rem] max-sm:w-wk">
       <label className="text-[#444] font-bold flex-col text-[0.75rem]">
         LOB
       </label>
@@ -319,6 +319,7 @@ function KpiList(props) {
       <AssigenedKpiCardList  rowdata={props.rowdata}
       selectedYear={selectedYear}
       activeTab={activeTab}
+ 
       />
       )}
     </>
