@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
 import { Popconfirm } from "antd";
+import dayjs from "dayjs";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const RepairTaskTable = (props) => {
@@ -17,17 +18,20 @@ const RepairTaskTable = (props) => {
 
                 {props.taskByPhone.map((item) => {
                     return (
-                        <div class="cursor-pointer w-[30%] flex justify-center max-sm:w-auto mt-2 ">
-                            <div class="w-[70%]">
+                        <div class="cursor-pointer w-[50%] flex justify-center max-sm:w-auto mt-2 ">
+                            <div class="w-[50%]">
                                 {item.taskName}
                             </div>
-                            <div class="w-[40%] flex justify-between">
+                            <div class="w-[50%] flex justify-between">
                                 <QCPhoneTaskToggle item={item} />
                                 <MultiAvatar
-                                    primaryTitle={item.userName}
+                                    primaryTitle={`${item.completeTaskUserName}`}
                                     imgWidth={"2.1em"}
                                     imgHeight={"2.1em"}
                                 />
+                                <span>
+                                    {dayjs(item.creationDate).format("DD-MM-YY HH:mm:ss")}
+                                </span>
                                 {!item.completeTaskInd && <Popconfirm
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteTaskList({
