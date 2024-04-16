@@ -1651,10 +1651,10 @@ export const validateEmailOtpurL = (data, cb) => (dispatch) => {
         payload: res.data,
       });
       cb && cb("success");
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: 'OTP validiated successfully!',
-      // })
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP validiated successfully!',
+      })
     })
     .catch((err) => {
       dispatch({
@@ -1677,17 +1677,21 @@ export const addEmailLinkSave = (data, cb) => (dispatch) => {
     type: types.ADD_EMAIL_LINK_REQUEST,
   });
   axios
-    .post(`${base_url}/employee/email/link/save`, data)
+    .post(`${base_url}/employee/email/link/save`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       dispatch({
         type: types.ADD_EMAIL_LINK_SUCCESS,
         payload: res.data,
       });
       cb && cb("success");
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: 'OTP validiated successfully!',
-      // })
+      Swal.fire({
+        icon: 'success',
+        title: res.data.message,
+      })
     })
     .catch((err) => {
       dispatch({
