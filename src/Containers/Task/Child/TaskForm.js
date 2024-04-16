@@ -2518,275 +2518,140 @@ const [priority,setpriority]=useState(props.selectedTask
                       </div>
                     )}
                   </div>
-                  <div class=" flex justify-between ">
-               
-                      <div class=" flex justify-between flex-col w-full">
-                        
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                            {/* Priority */}
-                            <FormattedMessage
-                              id="app.priority"
-                              defaultMessage="priority"
-                            />
-                            
-                          </div>
-                        
-                          <div class="flex">
-                            <Tooltip title="High">
-                              <Button
-                                
-                                 shape="circle"
-                                onClick={() => handleButtonClick("High")}
-                                style={{
-                                  backgroundColor:"red",
-                                      borderRadius: "50%", 
-                                      width: "31px", 
-                                      height: "31px"
-                                }}
-                              />
-                            </Tooltip>
-                            &nbsp;
-                            <Tooltip title="Medium">
-                              <Button
-                                
-                                 shape="circle"
-                  
-                                onClick={() => handleButtonClick("Medium")}
-                                style={{
-                                  backgroundColor:"orange",
-                                      borderRadius: "50%", 
-                                      width: "31px", 
-                                      height: "31px",
-                                }}
-                              />
-                            </Tooltip>
-                            &nbsp;
-                            <Tooltip title="Low">
-                              <Button
-                                
-                                 shape="circle"
-                        
-                                onClick={() => handleButtonClick("Low")}
-                                style={{
-                                  backgroundColor:"teal",
-                                      borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                      width: "31px", // Adjust the width as needed
-                                      height: "31px"
-                                }}
-                              ></Button>
-                            </Tooltip>
-                          </div>
-                        </div>
+                  <div class="mt-3 flex justify-between">
+                  <div class=" flex  flex-col mr-1 ">
+                 
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                       {/* Priority */}
+                       <FormattedMessage
+                         id="app.priority"
+                         defaultMessage="priority"
+                       />
+                       
+                     </div>
                    
-                 
-                    <div class=" w-1/2  max-sm:w-wk ">
-                      
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.type"
-                              defaultMessage="type"
-                            /></div>
-                      <select 
-                        style={{ border: "0.06em solid #aaa" }}
-                       onChange={handleTaskTypeChange}
-                      >
-          <option value="">Select</option>
-          {props.tasks.map((item, index) => (
-            <option key={index} value={item.taskTypeId}>
-              {item.taskType}
-            </option>
-          ))}
-        </select>
-                      {/* <StyledLabel>Type</StyledLabel>
-                      <Field
-                    name="taskTypeId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                 
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    // options={
-                    //   Array.isArray(TaskOption)
-                    //     ? TaskOption
-                    //     : []
-                    // }
-                    options={Array.isArray(TaskOption) ? TaskOption : []}
-                    isColumn
-                    margintop={"0"}
-                    value={values.taskTypeId}
-                    inlineLabel
-                  /> */}
-                      {/* <Field
-                        name="taskTypeId"
-                         component={SelectComponent}
-                        value={values.taskTypeId}
-                        options={Array.isArray(TaskOption) ? TaskOption : []}
-                      /> */}
-                    </div>
-                  
-                    {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
-                      <div class=" w-1/2 ml-2 max-sm:w-wk">
-                          
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.workflow"
-                              defaultMessage="workflow"
-                            /></div>
-                          <select
-                 style={{ border: "0.06em solid #aaa" }}
-                       onChange={handleWorkflowChange}
-                       disabled={filteredWorkflow.length === 0}
-                    >
-          <option value="">select</option>
-          {filteredWorkflow.map((item, index) => (
-            <option key={index}
-            // disabled
-          
-             value={item.taskChecklistId}>
-              {item.taskChecklistName}
-            </option>
-          ))}
-        </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
-
-                      <Field
-                    name="taskType"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                 
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                        : []
-                    }
-                    value={values.taskType}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  /> */}
-                          {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
-                     
-                      </div>
-                    {/* )} */}
-                      {/* <div class=" w-1/2">
+                     <div class="flex">
+                       <Tooltip title="High">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("High")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Medium">
+                         <Button
+                           
+                            shape="circle"
              
-                      <StyledLabel>Task Stages</StyledLabel>
+                           onClick={() => handleButtonClick("Medium")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Low">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("Low")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
+                   </div>
+                  <div class=" w-[30.5%] mr-1">
+                          <Field
+                            isRequired
+                            name="taskName"
+                            //label="Name"
+                            // value={values.taskName}
+                            label={
+                              <FormattedMessage
+                                id="app.name"
+                                defaultMessage="name"
+                              />
+                            }
+                            component={InputComponent}
+                            isColumn
+                            width={"100%"}
+                            inlineLabel
+                          />
+                        </div>
+                    <div class=" w-[30.5%] ">
                       <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
-                
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
-                 
-                    <div class="w-[24%]">
-                     
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
-                          id="app.status"
-                          defaultMessage="status"
-                        />
-                      
-                      </div>
-
-                      <div class="w-[100%]">
-                        <ButtonGroup>
-                          <StatusIcon
-                            color="blue"
-                            type="To Start"
-                            iconType="fa-hourglass-start"
-                            tooltip="To Start"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.tostart"
-                                defaultMessage="To Start"
-                              />
-                            }
-                            status={active}
-                            onClick={() => glassButtoClick("To Start")}
+                        isRequired
+                        name="endDate"
+                        // label="End "
+                        label={
+                          <FormattedMessage
+                            id="app.enddate"
+                            defaultMessage="enddate"
                           />
-
-                          <StatusIcon
-                            type="In Progress"
-                            iconType="fa-hourglass-half"
-                            tooltip="In Progress"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.inprogress"
-                                defaultMessage="inprogress"
-                              />
+                        }
+                        component={DatePicker}
+                        isColumn
+                        value={values.endDate || values.startDate}
+                        // defaultValue={dayjs("2015-01-01")}
+                        inlineLabel
+                        style={{
+                          width: "100%",
+                        }}
+                        disabledDate={(currentDate) => {
+                          if (values.startDate) {
+                            if (
+                              moment(currentDate).isBefore(
+                                moment(values.startDate)
+                              )
+                            ) {
+                              return true;
+                            } else {
+                              return false;
                             }
-                            status={active}
-                            onClick={() => glassButtoClick("In Progress")}
-                          />
-
-                          <StatusIcon
-                            type="Completed"
-                            iconType="fa-hourglass"
-                            tooltip="Completed"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.completed"
-                                defaultMessage="completed"
-                              />
-                            }
-                            status={active}
-                            onClick={() => glassButtoClick("Completed")}
-                            //  status={item.taskStatus}
-                            //  onClick={() =>
-                            //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
-                            //  }
-                          />
-                        </ButtonGroup>
-                      </div>
+                          }
+                        }}
+                      />
                     </div>
+                   
+                    {/* <div class=" w-5/12">
+                      <Field
+                        // isRequired
+                        name="endTime"
+                        //label="End Time"
+                        label={
+                          <FormattedMessage
+                            id="app.endTime"
+                            defaultMessage="End Time"
+                          />
+                        }
+                        isColumn
+                        component={TimePicker}
+                        use12Hours
+                        value={values.endTime}
+                        inlineLabel
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div> */}
                   </div>
+                 
             
                   <div class="mt-3 flex justify-between w-full max-sm:flex-col">
                    
@@ -2860,8 +2725,237 @@ const [priority,setpriority]=useState(props.selectedTask
                   </div>
                   */}
 
+<div class=" flex justify-between ">
                
-                  <div class="mt-3 flex justify-between">
+               
+            
+          
+             <div class=" w-[39.5%]  max-sm:w-wk ">
+               
+             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+                       id="app.type"
+                       defaultMessage="type"
+                     /></div>
+               <select 
+                 style={{ border: "0.06em solid #aaa" }}
+                onChange={handleTaskTypeChange}
+               >
+   <option value="">Select</option>
+   {props.tasks.map((item, index) => (
+     <option key={index} value={item.taskTypeId}>
+       {item.taskType}
+     </option>
+   ))}
+ </select>
+               {/* <StyledLabel>Type</StyledLabel>
+               <Field
+             name="taskTypeId"
+             // selectType="customerList"
+             isColumnWithoutNoCreate
+          
+             //component={SearchSelect}
+             component={SelectComponent}
+             // options={
+             //   Array.isArray(TaskOption)
+             //     ? TaskOption
+             //     : []
+             // }
+             options={Array.isArray(TaskOption) ? TaskOption : []}
+             isColumn
+             margintop={"0"}
+             value={values.taskTypeId}
+             inlineLabel
+           /> */}
+               {/* <Field
+                 name="taskTypeId"
+                  component={SelectComponent}
+                 value={values.taskTypeId}
+                 options={Array.isArray(TaskOption) ? TaskOption : []}
+               /> */}
+             </div>
+           
+             {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
+               <div class=" w-[40%] ml-2 max-sm:w-wk">
+                   
+               <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+                       id="app.workflow"
+                       defaultMessage="workflow"
+                     /></div>
+                   <select
+          style={{ border: "0.06em solid #aaa",width:"100%" }}
+                onChange={handleWorkflowChange}
+                disabled={filteredWorkflow.length === 0}
+             >
+   <option value="">select</option>
+   {filteredWorkflow.map((item, index) => (
+     <option key={index}
+     // disabled
+   
+      value={item.taskChecklistId}>
+       {item.taskChecklistName}
+     </option>
+   ))}
+ </select>
+               {/* <StyledLabel> Workflow</StyledLabel>
+
+               <Field
+             name="taskType"
+             // selectType="contactListFilter"
+             isColumnWithoutNoCreate
+          
+             // component={SearchSelect}
+             component={SelectComponent}
+             options={
+               Array.isArray(
+                 this.handleCheckListOptions("taskTypeId", values.taskTypeId)
+               )
+                 ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
+                 : []
+             }
+             value={values.taskType}
+             filterOption={{
+               filterType: "taskTypeId",
+               filterValue: values.taskTypeId,
+             }}
+             disabled={!values.taskTypeId}
+             isColumn
+             inlineLabel
+           /> */}
+                   {/* <Field
+                     name="taskChecklistId"
+                     // selectType="contactListFilter"
+                     isColumnWithoutNoCreate
+                     isRequired
+                     placeolder="Select type"
+                     // label={
+                     //   <FormattedMessage
+                     //     id="app.taskList"
+                     //     defaultMessage="Task CheckList"
+                     //   />
+                     // }
+                     // component={SearchSelect}
+                     component={SelectComponent}
+                     options={
+                       Array.isArray(TaskOptions) ? TaskOptions : []
+                     }
+                     value={values.taskChecklistId}
+                     isColumn
+                     inlineLabel
+                   /> */}
+              
+               </div>
+             {/* )} */}
+               {/* <div class=" w-1/2">
+      
+               <StyledLabel>Task Stages</StyledLabel>
+               <Field
+             name="taskChecklistId"
+          
+             isColumnWithoutNoCreate
+         
+             component={SelectComponent}
+             options={
+               Array.isArray(
+                 this.taskStageOptions("taskTypeId", values.taskTypeId)
+               )
+                 ? this.taskStageOptions("taskTypeId", values.customerId)
+                 : []
+             }
+              value={values.taskChecklistId}
+             filterOption={{
+               filterType: "taskTypeId",
+               filterValue: values.taskTypeId,
+             }}
+             disabled={!values.taskTypeId}
+             isColumn
+             inlineLabel
+           />
+             
+              
+               </div> */}
+
+
+          
+             <div class="w-[16%] ml-2">
+              
+             <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 <FormattedMessage
+                   id="app.status"
+                   defaultMessage="status"
+                 />
+               
+               </div>
+
+               <div class="w-[100%]">
+                 <ButtonGroup>
+                   <StatusIcon
+                     color="blue"
+                     type="To Start"
+                     iconType="fa-hourglass-start"
+                     tooltip="To Start"
+                     tooltipTitle={
+                       <FormattedMessage
+                         id="app.tostart"
+                         defaultMessage="To Start"
+                       />
+                     }
+                     status={active}
+                     onClick={() => glassButtoClick("To Start")}
+                   />
+
+                   <StatusIcon
+                     type="In Progress"
+                     iconType="fa-hourglass-half"
+                     tooltip="In Progress"
+                     tooltipTitle={
+                       <FormattedMessage
+                         id="app.inprogress"
+                         defaultMessage="inprogress"
+                       />
+                     }
+                     status={active}
+                     onClick={() => glassButtoClick("In Progress")}
+                   />
+
+                   <StatusIcon
+                     type="Completed"
+                     iconType="fa-hourglass"
+                     tooltip="Completed"
+                     tooltipTitle={
+                       <FormattedMessage
+                         id="app.completed"
+                         defaultMessage="completed"
+                       />
+                     }
+                     status={active}
+                     onClick={() => glassButtoClick("Completed")}
+                     //  status={item.taskStatus}
+                     //  onClick={() =>
+                     //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
+                     //  }
+                   />
+                 </ButtonGroup>
+               </div>
+             </div>
+           </div>
+                  {/* <div class="mt-3 flex justify-between">
+                  <div class=" w-5/12">
+                          <Field
+                            isRequired
+                            name="taskName"
+                           
+                            label={
+                              <FormattedMessage
+                                id="app.name"
+                                defaultMessage="name"
+                              />
+                            }
+                            component={InputComponent}
+                            isColumn
+                            width={"100%"}
+                            inlineLabel
+                          />
+                        </div>
                     <div class=" w-1/2 ">
                       <Field
                         isRequired
@@ -2876,7 +2970,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
-                        // defaultValue={dayjs("2015-01-01")}
+                       
                         inlineLabel
                         style={{
                           width: "100%",
@@ -2896,46 +2990,9 @@ const [priority,setpriority]=useState(props.selectedTask
                         }}
                       />
                     </div>
-                    <div class=" w-5/12">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                    {/* <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endTime"
-                            defaultMessage="End Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div> */}
-                  </div>
+                   
+                    
+                  </div> */}
                   <div class=" w-full mt-4">
                         <Field
                           name="documentId"

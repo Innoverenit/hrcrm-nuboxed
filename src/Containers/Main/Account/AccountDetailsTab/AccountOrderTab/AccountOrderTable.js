@@ -119,7 +119,7 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[7.4rem]">
                             <FormattedMessage
                                 id="app.orderno"
-                                defaultMessage="Order No"
+                                defaultMessage="Order No#"
                             />
                         </div>
                         <div className=" md:w-[5rem]">
@@ -165,8 +165,14 @@ const AccountOrderTable = (props) => {
                         </div>
                         <div className=" md:w-[8rem]">
                             <FormattedMessage
-                                id="app.assigned"
-                                defaultMessage="Assigned"
+                                id="app.supervisor"
+                                defaultMessage="Supervisor"
+                            />
+                        </div>
+                        <div className=" md:w-[8.1rem]">
+                            <FormattedMessage
+                                id="app.lead"
+                                defaultMessage="Lead"
                             />
                         </div>
                         <div className=" md:w-[8rem]">
@@ -213,7 +219,7 @@ const AccountOrderTable = (props) => {
                                                         </Tooltip>
                                                     </div>
 
-                                                    <div class="flex">
+                                                    <div class="flex items-center">
                                                         <div className="ml-1 font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                             <div class=" text-xs text-cardBody font-poppins">
                                                                 <Badge
@@ -280,13 +286,13 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
@@ -295,7 +301,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input

@@ -67,7 +67,7 @@ function AccountDetailsTab(props) {
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
                                     <i class="fas fa-shopping-bag"></i>
-                                    <span class="ml-1">Order</span>
+                                    <span class="ml-1">Production</span>
                                 </span>
                                 {activeKey === "1" && (
                                     <>
@@ -102,7 +102,7 @@ function AccountDetailsTab(props) {
                                             <DynamicFeedIcon
                                                 className="!text-base cursor-pointer"
                                             />
-                                            <span class="ml-1">Repair</span>
+                                            <span class="ml-1 text-sm">Repair</span>
                                         </Tooltip>
                                     </span>
                                 </Badge>
@@ -125,7 +125,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-base -ml-3 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
