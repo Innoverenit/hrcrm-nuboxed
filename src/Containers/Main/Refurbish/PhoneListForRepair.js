@@ -158,18 +158,18 @@ function PhoneListForRepair(props) {
                             id="app.start"
                             defaultMessage="Start"
                         /></div>
-                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.end"
                             defaultMessage="End"
                         /></div>
 
-                        <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.actualeffort"
                             defaultMessage="actualeffort"
                         /></div>
                         <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.workduration"
-                            defaultMessage="Work Duration"
+                            defaultMessage="TAT"
                         /></div>
                         <div className="w-[5.01rem]"></div>
                         <div className="w-[5.02rem]"></div>
@@ -194,7 +194,7 @@ function PhoneListForRepair(props) {
                                     <div className="flex rounded-xl  w-full  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col "
 
                                     >
-                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[6.21rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
                                                 {item.company}
                                             </div>
@@ -212,239 +212,239 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium w-[5.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <SubTitle>
-                                                    {item.qrCodeId ? (
-                                                        <span onClick={() => {
-                                                            props.handlePhoneDetails(true)
-                                                            handleSetRowData(item);
-                                                        }}>
-                                                            <QRCodeModal
-                                                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                imgHeight={"2.8em"}
-                                                                imgWidth={"2.8em"}
-                                                                imgRadius={20}
-                                                            />
-                                                        </span>
-
-                                                    ) : (
-                                                        <span class="text-[0.6rem] font-bold">
-                                                            No QR
-                                                        </span>
-                                                    )}
-                                                </SubTitle>
-                                            </div>
-                                        </div>
-
-                                        <div className=" flex font-medium  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                {(x === true && y === true) &&
-
-                                                    <PlayCircleFilledSharp
-                                                        // class=" cursor-pointer"
-                                                        onClick={() => {
-                                                            let data = {
-                                                                userId: props.userId,
-                                                                phoneId: item.phoneId,
-                                                                pauseInd: false
-                                                            }
-                                                            props.updatePauseStatus(data)
-                                                        }} />
-                                                }
-                                                {item.repairStatus === "To Start" && <StatusIcon
-                                                    type="In Progress"
-                                                    iconType="fa-hourglass-half"
-                                                    tooltip="In Progress"
-                                                    id={item.phoneId}
-                                                    indStatus={item.repairStatus}
-                                                    phoneId={RowData.phoneId}
-                                                    status={active}
-                                                    onClick={() => {
-                                                        handleQCRepairStatus("In Progress", item)
-
-                                                    }}
-                                                />}
-                                                {item.repairStatus === "In Progress" && item.pauseInd === false &&
-
-                                                    <PauseCircleFilled
-                                                        class=" cursor-pointer text-orange-400"
-                                                        onClick={() => {
-                                                            let data = {
-                                                                userId: props.userId,
-                                                                phoneId: item.phoneId,
-                                                                pauseInd: true
-                                                            }
-                                                            props.updatePauseStatus(data)
-                                                        }}
-                                                    />
-                                                }
-
-                                                {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
-                                                    type="Complete"
-                                                    iconType="fa-hourglass"
-                                                    tooltip="Complete"
-                                                    indStatus={item.repairStatus}
-                                                    status={active}
-                                                    id={item.phoneId}
-                                                    phoneId={RowData.phoneId}
-                                                    onClick={() => {
-                                                        handleQCRepairStatus("Complete", item);
-                                                    }}
-                                                />}
-                                                {item.repairStatus === "Complete" &&
-                                                    <RollbackOutlined />}
-                                                {/* </ButtonGroup> */}
-
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                {item.totalhours}
-
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium  w-[5.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                {item.repairStartTime === null ? "" : dayjs(item.repairStartTime).format('HH:mm:ss')}
-
-                                            </div>
-                                        </div>
-
-                                        <div className=" flex font-medium  w-[5.57rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <>{item.repairEndTime === null ? "" : dayjs(item.repairEndTime).format('HH:mm:ss')}</>
-
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium w-[7.04rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
-
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium w-[6.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
-
-                                            </div>
-                                        </div>
-
-                                        <div className=" flex font-medium w-[5.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <Tooltip title="Spare">
-                                                    <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
-                                                        <Button
-                                                            type="primary"
-                                                            style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
-
-                                                            onClick={() => {
+                                            <div className=" flex font-medium w-[5.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <SubTitle>
+                                                        {item.qrCodeId ? (
+                                                            <span onClick={() => {
+                                                                props.handlePhoneDetails(true)
                                                                 handleSetRowData(item);
-                                                                hanldeSpare();
                                                             }}>
-                                                            <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
-                                                        </Button>
-                                                    </Badge>
-                                                </Tooltip>
+                                                                <QRCodeModal
+                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                                    imgHeight={"2.8em"}
+                                                                    imgWidth={"2.8em"}
+                                                                    imgRadius={20}
+                                                                />
+                                                            </span>
 
+                                                        ) : (
+                                                            <span class="text-[0.6rem] font-bold">
+                                                                No QR
+                                                            </span>
+                                                        )}
+                                                    </SubTitle>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium  w-[5.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <Tooltip title="Task">
-                                                    <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
-                                                        <Button
-                                                            style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                            type="primary"
+
+                                            <div className=" flex font-medium  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {(x === true && y === true) &&
+
+                                                        <PlayCircleFilledSharp
+                                                            // class=" cursor-pointer"
                                                             onClick={() => {
-                                                                handleSetRowData(item);
-                                                                handleExpand(item.phoneId);
-                                                            }}
-                                                        ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
-                                                    </Badge>
-                                                </Tooltip>
+                                                                let data = {
+                                                                    userId: props.userId,
+                                                                    phoneId: item.phoneId,
+                                                                    pauseInd: false
+                                                                }
+                                                                props.updatePauseStatus(data)
+                                                            }} />
+                                                    }
+                                                    {item.repairStatus === "To Start" && <StatusIcon
+                                                        type="In Progress"
+                                                        iconType="fa-hourglass-half"
+                                                        tooltip="In Progress"
+                                                        id={item.phoneId}
+                                                        indStatus={item.repairStatus}
+                                                        phoneId={RowData.phoneId}
+                                                        status={active}
+                                                        onClick={() => {
+                                                            handleQCRepairStatus("In Progress", item)
 
+                                                        }}
+                                                    />}
+                                                    {item.repairStatus === "In Progress" && item.pauseInd === false &&
+
+                                                        <PauseCircleFilled
+                                                            class=" cursor-pointer text-orange-400"
+                                                            onClick={() => {
+                                                                let data = {
+                                                                    userId: props.userId,
+                                                                    phoneId: item.phoneId,
+                                                                    pauseInd: true
+                                                                }
+                                                                props.updatePauseStatus(data)
+                                                            }}
+                                                        />
+                                                    }
+
+                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
+                                                        type="Complete"
+                                                        iconType="fa-hourglass"
+                                                        tooltip="Complete"
+                                                        indStatus={item.repairStatus}
+                                                        status={active}
+                                                        id={item.phoneId}
+                                                        phoneId={RowData.phoneId}
+                                                        onClick={() => {
+                                                            handleQCRepairStatus("Complete", item);
+                                                        }}
+                                                    />}
+                                                    {item.repairStatus === "Complete" &&
+                                                        <RollbackOutlined />}
+                                                    {/* </ButtonGroup> */}
+
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div className=" flex font-medium  w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.totalhours}
+
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium  w-[2.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <Tooltip title="Notes">
-                                                    <NoteAddOutlined
-                                                        style={{ cursor: "pointer", fontSize: "1rem" }}
-                                                        onClick={() => {
-                                                            handleSetRowData(item);
-                                                            props.handleRepairPhoneNotesOrderModal(true);
-                                                        }}
-                                                    />
+                                            <div className=" flex font-medium  w-[5.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.repairStartTime === null ? "" : dayjs(item.repairStartTime).format('HH:mm:ss')}
 
-                                                </Tooltip>
+                                                </div>
+                                            </div>
 
+                                            <div className=" flex font-medium  w-[5.57rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <>{item.repairEndTime === null ? "" : dayjs(item.repairEndTime).format('HH:mm:ss')}</>
+
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium w-[6.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
+
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex font-medium w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
-                                        <div className=" flex font-medium   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.Print"
-                                                    defaultMessage="Print"
-                                                />}>
+                                                </div>
+                                            </div>
 
-                                                    <ReactToPrint
-                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR</Button>}
-                                                        content={() => componentRefs.current[index]}
-                                                    />
-                                                </Tooltip>
+                                            <div className=" flex font-medium w-[5.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Spare">
+                                                        <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
+                                                            <Button
+                                                                type="primary"
+                                                                style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
 
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    hanldeSpare();
+                                                                }}>
+                                                                <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
+                                                            </Button>
+                                                        </Badge>
+                                                    </Tooltip>
+
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  w-[5.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Task">
+                                                        <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
+                                                            <Button
+                                                                style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                                type="primary"
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    handleExpand(item.phoneId);
+                                                                }}
+                                                            ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
+                                                        </Badge>
+                                                    </Tooltip>
+
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex font-medium  w-[2.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title="Notes">
+                                                        <NoteAddOutlined
+                                                            style={{ cursor: "pointer", fontSize: "1rem" }}
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                props.handleRepairPhoneNotesOrderModal(true);
+                                                            }}
+                                                        />
 
-                                        <div className=" flex font-medium   w-[4.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.scan"
-                                                    defaultMessage="scan"
-                                                />}>
+                                                    </Tooltip>
 
-                                                    <Button
-                                                        // onClick={() => {
-                                                        //     props.handleInTagDrawer(true)
-                                                        //     handleSetRowData(item)
-                                                        // }}
-                                                        class=" bg-green-600 cursor-pointer text-gray-50"
-                                                    >
-                                                        Scan </Button>
+                                                </div>
+                                            </div>
 
-                                                </Tooltip>
+                                            <div className=" flex font-medium   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title={<FormattedMessage
+                                                        id="app.Print"
+                                                        defaultMessage="Print"
+                                                    />}>
 
+                                                        <ReactToPrint
+                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR</Button>}
+                                                            content={() => componentRefs.current[index]}
+                                                        />
+                                                    </Tooltip>
+
+                                                </div>
+                                            </div>
+
+                                            <div className=" flex font-medium   w-[4.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title={<FormattedMessage
+                                                        id="app.scan"
+                                                        defaultMessage="scan"
+                                                    />}>
+
+                                                        <Button
+                                                            // onClick={() => {
+                                                            //     props.handleInTagDrawer(true)
+                                                            //     handleSetRowData(item)
+                                                            // }}
+                                                            class=" bg-green-600 cursor-pointer text-gray-50"
+                                                        >
+                                                            Scan </Button>
+
+                                                    </Tooltip>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div style={{ display: "none", textAlign: "center" }}>
+                                        <div style={{ display: "none", textAlign: "center" }}>
 
-                                        <div
-                                            ref={(el) => (componentRefs.current[index] = el)}
-                                            style={{
-                                                fontSize: "16px",
-                                                marginBottom: "20px",
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <div style={{ fontSize: "5rem" }}>
-                                                <QRCode
-                                                    size={150}
-                                                    value={item.phoneId} />
+                                            <div
+                                                ref={(el) => (componentRefs.current[index] = el)}
+                                                style={{
+                                                    fontSize: "16px",
+                                                    marginBottom: "20px",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <div style={{ fontSize: "5rem" }}>
+                                                    <QRCode
+                                                        size={150}
+                                                        value={item.phoneId} />
+                                                </div>
+                                                <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                             </div>
-                                            <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             )

@@ -7,6 +7,10 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+.clock-container .react-clock {
+  width: 41px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+}
 .editable-row .ant-form-explain {
   position: absolute;
   font-size: 0.75em;

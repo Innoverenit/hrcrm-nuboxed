@@ -9,6 +9,7 @@ import { getSpareListByPhoneId, deleteSpareList } from "../Account/AccountAction
 import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Popconfirm } from "antd";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 
 
 function RepairSpareListTable(props) {
@@ -71,6 +72,20 @@ function RepairSpareListTable(props) {
                     <RepairSpareApproveToggle
                         spareUseInd={item.spareUseInd}
                         phoneSpareId={item.phoneSpareId}
+                    />
+                )
+            }
+
+        },
+        {
+            title: "Completed By",
+            width: "10%",
+            render: (text, item) => {
+                return (
+                    <MultiAvatar
+                        primaryTitle={`${item.spareCompleteUser}`}
+                        imgWidth={"2.1em"}
+                        imgHeight={"2.1em"}
                     />
                 )
             }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Popconfirm, Switch,Select } from "antd";
+import { Tooltip, Button, Popconfirm, Switch, Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
@@ -9,9 +9,10 @@ import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
-import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer,updateRoomRackProduction } from "../ProductionAction"
+import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer, updateRoomRackProduction } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import PrintIcon from '@mui/icons-material/Print';
+import { PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
+import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
 import { getRoomRackByLocId } from "../../Main/Inventory/InventoryAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InpectProductionToggle from "./InpectProductionToggle";
@@ -29,7 +30,7 @@ function ProductionCardView(props) {
     const [selectedRoomRackId, setSelectedRoomRackId] = useState('');
     const [selectedLocationDetailsId, setSelectedLocationDetailsId] = useState('');
     const [selectedCreationDate, setSelectedCreationDate] = useState('');
-    
+
 
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
@@ -95,20 +96,21 @@ function ProductionCardView(props) {
     } = props;
 
 
-const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
-    const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
-  const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
-  if (selectedRoomRack && associatedProduction) {
-    const { locationDetailsId, creationDate } = selectedRoomRack;
-    const { productId, productName, categoryName } = associatedProduction;
-  const dataToSend = {
-      roomRackId: selectedRoomRackId,
-      manufactureId: manufactureId, 
-      locationDetailsId: locationDetailsId,
-      roomEntryDate: creationDate,
+    const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
+        const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
+        const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
+        if (selectedRoomRack && associatedProduction) {
+            const { locationDetailsId, creationDate } = selectedRoomRack;
+            const { productId, productName, categoryName } = associatedProduction;
+            const dataToSend = {
+                roomRackId: selectedRoomRackId,
+                manufactureId: manufactureId,
+                locationDetailsId: locationDetailsId,
+                roomEntryDate: creationDate,
+            };
+            props.updateRoomRackProduction(dataToSend);
+        }
     };
-props.updateRoomRackProduction(dataToSend);
-}};
 
     return (
         <>
@@ -194,7 +196,7 @@ props.updateRoomRackProduction(dataToSend);
                                                         {item.attributeName}  {item.subAttributeName}
                                                     </div>
                                                 </div>
-                                            
+
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.workFlow}
@@ -202,7 +204,33 @@ props.updateRoomRackProduction(dataToSend);
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.type === "In Progress" && item.pauseInd === true &&
 
+                                                            <PlayCircleFilledSharp
+                                                                // class=" cursor-pointer"
+                                                                onClick={() => {
+                                                                    let data = {
+                                                                        userId: props.userId,
+                                                                        phoneId: item.manufactureId,
+                                                                        pauseInd: false
+                                                                    }
+                                                                    props.updatePauseStatus(data)
+                                                                }} />
+                                                        }
+                                                        {item.type === "In Progress" && item.pauseInd === false &&
+
+                                                            <PauseCircleFilled
+                                                                class=" cursor-pointer text-orange-400"
+                                                                onClick={() => {
+                                                                    let data = {
+                                                                        userId: props.userId,
+                                                                        phoneId: item.manufactureId,
+                                                                        pauseInd: true
+                                                                    }
+                                                                    props.updatePauseStatus(data)
+                                                                }}
+                                                            />
+                                                        }
                                                         <ButtonGroup>
                                                             {item.type === "null" && (
                                                                 <StatusIcon
@@ -232,7 +260,7 @@ props.updateRoomRackProduction(dataToSend);
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                    <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     {item.type === "In Progress" ?
                                                         <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                             <Button
@@ -248,31 +276,31 @@ props.updateRoomRackProduction(dataToSend);
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                    <Select
-                        classNames="w-32"
-                        value={item.zone}
-                        onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
-                      >
-                        {props.roomRackbyLoc.map((s) => (
-                          <Option key={s.roomRackId} value={s.roomRackId}>
-                            {s.zone}
-                          </Option>
-                        ))}
-                      </Select>
+                                                        <Select
+                                                            classNames="w-32"
+                                                            value={item.zone}
+                                                            onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
+                                                        >
+                                                            {props.roomRackbyLoc.map((s) => (
+                                                                <Option key={s.roomRackId} value={s.roomRackId}>
+                                                                    {s.zone}
+                                                                </Option>
+                                                            ))}
+                                                        </Select>
                                                     </div>
                                                 </div>
                                                 <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <>
-                                                <div class="flex">
-                                                        <InpectProductionToggle item={item} /> &nbsp;&nbsp;
-                                                        {item.inspectedInd ?
-                                                        <MultiAvatar
-                primaryTitle={item.inspectedUserName}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />                 : null
-            }</div>
-            
+                                                    <>
+                                                        <div class="flex">
+                                                            <InpectProductionToggle item={item} /> &nbsp;&nbsp;
+                                                            {item.inspectedInd ?
+                                                                <MultiAvatar
+                                                                    primaryTitle={item.inspectedUserName}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                /> : null
+                                                            }</div>
+
                                                         {item.inspectedInd ?
                                                             <>
                                                                 <div>
@@ -284,7 +312,7 @@ props.updateRoomRackProduction(dataToSend);
                                                             : null
                                                         }
 
-</>
+                                                    </>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
@@ -372,7 +400,7 @@ props.updateRoomRackProduction(dataToSend);
 }
 
 
-const mapStateToProps = ({ production, auth,inventory }) => ({
+const mapStateToProps = ({ production, auth, inventory }) => ({
     productionByLocsId: production.productionByLocsId,
     fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
@@ -381,7 +409,7 @@ const mapStateToProps = ({ production, auth,inventory }) => ({
     clickedProductionIdrwr: production.clickedProductionIdrwr,
     organizationId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    roomRackbyLoc:inventory.roomRackbyLoc
+    roomRackbyLoc: inventory.roomRackbyLoc
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -389,6 +417,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getProductionsbyLocId,
             handleBuilderProduction,
+            updatePauseStatus,
             handleProductionIDrawer,
             updateProStatus,
             getRoomRackByLocId,

@@ -10,7 +10,7 @@ const AddAssignRepairModal = (props) => {
         <>
             <StyledDrawer
                 title={`Assign for repair - ${props.rowData.newOrderNo}`}
-                width="60%"
+                width="70%"
                 visible={showAssignRepairModal}
                 maskClosable={false}
                 destroyOnClose
