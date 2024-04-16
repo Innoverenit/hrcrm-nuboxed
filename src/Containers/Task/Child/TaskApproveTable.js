@@ -126,23 +126,24 @@ const TaskApproveTable = (props) => {
       
           <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
                         /></div>
-        <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]"><FormattedMessage
                           id="app.name"
                           defaultMessage="name"
                         /></div>
-             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] "><FormattedMessage
                           id="app.submittedby"
                           defaultMessage="submittedby"
                         /></div>
-        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]"><FormattedMessage
                           id="app.ageing"
                           defaultMessage="Ageing"
                         /></div>
-        <div className="w-[14.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                         <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">Info</div>
+        <div className="w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]"><FormattedMessage
                           id="app.assignedOn"
                           defaultMessage="Assigned On"
                         /></div>
@@ -168,9 +169,9 @@ const TaskApproveTable = (props) => {
          console.log("deviationDate",incompleteDeviationDate)
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col">
+                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[9rem] max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[16.1rem] max-sm:w-auto max-sm:flex-row justify-between ">
+                                <div className=" flex font-medium flex-col w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[9.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
                       <div
@@ -204,7 +205,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium  items-center  w-[9.3rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium  items-center  w-[10.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -226,7 +227,7 @@ const TaskApproveTable = (props) => {
                    
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col  w-[9.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex font-medium flex-col  w-[7.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Submitted By</div> */}
                                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
@@ -237,16 +238,16 @@ const TaskApproveTable = (props) => {
                 />
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col w-[10.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex font-medium flex-col w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        
                      <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-  {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900">{completeDeviation} Days</span>) :
-   (incompleteDeviationDate > 0 && <span className=" text-red-900">{incompleteDeviationDate} Days</span>)}
+  {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
+   (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
 </div>
                      
                    </div>
-                               
+                             </div>  
                                 {/* <div className=" flex font-medium flex-col w-32 ">
                                     <div class=" text-sm text-cardBody font-poppins">Team</div>
 
@@ -274,8 +275,22 @@ const TaskApproveTable = (props) => {
 </Avatar.Group>
                                     </div>
                                 </div> */}
-                     
-                       
+                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                     <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <MultiAvatar
+                              primaryTitle={item.name}
+                              imageId={item.imageId}
+                              imageURL={item.imageURL}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                  <MultiAvatar
+                  primaryTitle={item.name}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+                />
+
+                   </div>
 
 
         
@@ -283,20 +298,20 @@ const TaskApproveTable = (props) => {
   
                    
                    
-                                <div className=" flex font-medium flex-col  w-[5.9rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium flex-col  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
                                     </div>
                                 </div>
-                               
+                      
                          </div>
 
   
-                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                         <div class="flex  max-sm:justify-end max-sm:w-wk items-center">  
                   
-                   <div class="flex flex-col w-[10.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                   <div class="w-36">
+                   <div class="flex flex-col w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="w-36 max-sm:w-auto">
   {item.taskType === "ProspectToCustomer" ? (
     <>
        <Tooltip title="Qualify? Prospect will move to Customer section!">
@@ -362,7 +377,7 @@ const TaskApproveTable = (props) => {
 
                           
                     
-                    <div class="flex flex-col  justify-evenly max-sm:w-auto  ">
+<div class="flex flex-col w-[1.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
