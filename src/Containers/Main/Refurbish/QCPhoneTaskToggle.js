@@ -29,8 +29,8 @@ function QCPhoneTaskToggle(props) {
                     <Switch
                         checked={props.item.completeTaskInd}
                         isLoading={true}
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
+                        checkedChildren="Completed"
+                        unCheckedChildren="Not Completed"
                     />
                 </Popconfirm>
             </div>
