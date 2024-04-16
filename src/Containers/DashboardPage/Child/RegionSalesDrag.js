@@ -9,12 +9,46 @@ import {updateTaskdragstage} from "../RegionalDashAction"
 import StageTaskColumns1 from "../../DashboardPage/Child/StageTaskColumns1"
 const ButtonGroup = Button.Group;
 function RegionSalesDrag(props) {
+  // const data = [
+  //   {
+  //     id: 1,
+  //     taskName: "test1",
+  //     taskId:"3",
+  //     endDate: "2024-04-18T20:42:05Z"
+  //   },
+  //   {
+  //     id: 1,
+  //     taskId:"2",
+  //     taskName: "test9",
+  //     endDate: "2024-04-17T20:42:05Z"
+  //   },
+  //   {
+  //     id: 2,
+  //     taskName: "test2",
+  //     taskId:"1",
+  //     endDate: "2024-04-25T09:42:05Z"
+  //   }
+  // ];
 
-    const tasks=props.regionAllTaskList
+    // const tasks=props.regionAllTaskList
+    //const tasks=data
+    const[tasks,setTasks]=useState(props.regionAllTaskList)
+    console.log("tasks",tasks)
     const numberOfWeeks=4
     const [weeks, setWeeks] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
-
+    useEffect(() => {
+      if (
+        props.regionAllTaskList !== undefined 
+        
+      ) {
+        setTasks(props.regionAllTaskList);
+       
+        
+        // Perform a null check before accessing substring
+       
+      }
+    }, [props.regionAllTaskList ]);
     useEffect(() => {
         const getCurrentWeekNumber = () => {
           const currentDate = new Date();
@@ -116,6 +150,7 @@ function RegionSalesDrag(props) {
              const filteredTasks = filterTasksForWeek(week);
              //const formattedStartDate = startDate.toISOString().split('T')[0];
              const droppableId = `${convertedDateString+"T20:00:00Z"}`
+             console.log("filter",filteredTasks)
              return (
                <div key={index} >
                  {/* <div style={{ textAlign: 'center' ,border:"1px solid black",  padding: '5px',
