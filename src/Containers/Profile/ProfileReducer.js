@@ -81,6 +81,10 @@ const initialState = {
   fetchingPersonalDetailsError: false,
   personalDetails: [],
 
+
+  validatingEmailOtp:false,
+  validatingEmailOtpError:false,
+
   fetchingDocumentDetails: false,
   fetchingDocumentDetailsError: false,
   documentDetails: [],
@@ -101,6 +105,9 @@ const initialState = {
   fetchingEmployeeSalaryDetails: false,
   fetchingEmployeeSalaryDetailsError: false,
   salaryDetails: [],
+
+  addingEmailLink:false,
+  addingEmailLinkError:false,
 
   updatingEmployeeSalaryDetails: false,
   updatingEmployeeSalaryDetailsError: false,
@@ -136,6 +143,10 @@ const initialState = {
 
   updatingEmploymentDetails: false,
   updatingEmploymentDetailsError: false,
+
+
+  verifyingUserEmail:false,
+  verifyingUserEmailError:false,
 
   addingEmailProfile:false,
   addingEmailProfileError:false,
@@ -613,6 +624,38 @@ export const profileReducer = (state = initialState, action) => {
         deleteEmploymentError: false,
       };
 
+
+
+      case types.ADD_EMAIL_LINK_REQUEST:
+        return { ...state, addingEmailLink: true };
+      case types.ADD_EMAIL_LINK_SUCCESS:
+        return {
+          ...state,
+          addingEmailLink: false,
+          // validOtp: action.payload
+        };
+      case types.ADD_EMAIL_LINK_FAILURE:
+        return {
+          ...state,
+          addingEmailLink: false,
+          addingEmailLinkError: true,
+        };
+
+
+      case types.VERIFY_USER_EMAIL_REQUEST:
+        return { ...state, verifyingUserEmail: true };
+      case types.VERIFY_USER_EMAIL_SUCCESS:
+        return {
+          ...state,
+          verifyingUserEmail: false,
+        };
+      case types.VERIFY_USER_EMAIL_FAILURE:
+        return {
+          ...state,
+          verifyingUserEmail: false,
+          verifyingUserEmailError: true,
+        };
+
     //EMERGENCY
     case types.DELETE_EMERGENCY_REQUEST:
       return { ...state, deleteEmergency: true };
@@ -1035,6 +1078,23 @@ export const profileReducer = (state = initialState, action) => {
               fetchingEquipmentEmployee: false,
               fetchingEquipmentEmployeeError: true,
             };
+
+
+
+            case types.VALIDATE_EMAIL_OTP_REQUEST:
+              return { ...state, validatingEmailOtp: true };
+            case types.VALIDATE_EMAIL_OTP_SUCCESS:
+              return {
+                ...state,
+                validatingEmailOtp: false,
+                // validOtp: action.payload
+              };
+            case types.VALIDATE_EMAIL_OTP_FAILURE:
+              return {
+                ...state,
+                validatingEmailOtp: false,
+                validatingEmailOtpError: true,
+              };
 
     default:
       return state;

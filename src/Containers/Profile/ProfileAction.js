@@ -1,6 +1,7 @@
 import * as types from "./ProfileActionTypes";
 import axios from "axios";
 import { base_url } from "../../Config/Auth";
+import Swal from "sweetalert2";
 
 export const handleEducationModal = (modalProps) => (dispatch) => {
   dispatch({
@@ -1603,5 +1604,100 @@ export const getEmployeeEquipmentByUserId = (userId) => (dispatch) => {
         type: types.GET_EMPLOYEE_EQUIPMENT_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+export const verifyUserEmailurL = (data) => (dispatch) => {
+  dispatch({
+    type: types.VERIFY_USER_EMAIL_REQUEST,
+  });
+  axios
+    .post(`${base_url}/otp/user/link/one-to-another/generateOTP`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.VERIFY_USER_EMAIL_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: res.data.message,
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VERIFY_USER_EMAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const validateEmailOtpurL = (data, cb) => (dispatch) => {
+  dispatch({
+    type: types.VALIDATE_EMAIL_OTP_REQUEST,
+  });
+  axios
+    .post(`${base_url}/otp/user/validateOtp`, data)
+    .then((res) => {
+      dispatch({
+        type: types.VALIDATE_EMAIL_OTP_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'OTP validiated successfully!',
+      // })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VALIDATE_EMAIL_OTP_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'OTP is not matching with input!',
+      // })
+    });
+};
+
+
+
+
+export const addEmailLinkSave = (data, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_EMAIL_LINK_REQUEST,
+  });
+  axios
+    .post(`${base_url}/employee/email/link/save`, data)
+    .then((res) => {
+      dispatch({
+        type: types.ADD_EMAIL_LINK_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'OTP validiated successfully!',
+      // })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_EMAIL_LINK_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'OTP is not matching with input!',
+      // })
     });
 };
