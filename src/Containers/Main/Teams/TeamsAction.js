@@ -2,6 +2,7 @@ import * as types from "./TeamsActionType";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 
 /**
  * teams modal action
@@ -689,6 +690,22 @@ export const addKpi = (data,employeeId,year,quarter) => (dispatch) => {
       },
     })
     .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'KPI added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       dispatch({
         type: types.ADD_KPI_SUCCESS,
         payload: res.data,
@@ -770,6 +787,10 @@ export const deleteKpiData = (employeeKpiLinkId,orgId) => (dispatch, getState) =
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI deleted Successfully!',
+      })
       console.log(res);
       //  dispatch(getScheduler(orgId));
       dispatch({
@@ -801,7 +822,11 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
       console.log(res);
       //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
@@ -832,7 +857,11 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
       console.log(res);
       //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
