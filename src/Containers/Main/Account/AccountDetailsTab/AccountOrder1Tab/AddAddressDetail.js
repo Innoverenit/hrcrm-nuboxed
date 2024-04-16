@@ -109,7 +109,8 @@ function AddAddressDetail(props) {
             {({ values, handleChange }) => (
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
-                        <div>
+                        <div class="w-wk flex justify-between">
+                            <div class="w-[47.5%]">
                             <StyledLabel><h3> <FormattedMessage
                                 id="app.pickupaddress"
                                 defaultMessage="Pickup Address"
@@ -175,8 +176,25 @@ function AddAddressDetail(props) {
                             </div>
                         </div> */}
 
+                           
+
+                            <div class=" mt-3 justify-between flex">
+                                <div class="w-wk">
+                                    <Field
+                                        name="comments"
+                                        label="Comment"
+                                        width={"100%"}
+                                        isColumn
+                                        component={TextareaComponent}
+                                    />
+                                </div>
+
+                               
+                            </div>
+                            </div>
+                            <div class="w-[47.5%]">
                             <div class="justify-between flex mt-2">
-                                <div class="w-[30%]">
+                                <div class="w-[47.5%]">
                                     <Field
                                         name="paymentInTerms"
                                         label="Payment Terms (in Days)"
@@ -186,7 +204,7 @@ function AddAddressDetail(props) {
                                         options={["7", "15", "30", "45", "60", "75", "90"]}
                                     />
                                 </div>
-                                <div class="w-[30%]">
+                                <div class="w-[47.5%]">
                                     <Field
                                         label="Air Way Bill"
                                         name="awbNo"
@@ -196,7 +214,10 @@ function AddAddressDetail(props) {
                                         isColumn
                                     />
                                 </div>
-                                <div class="w-[30%]">
+                               
+                            </div>
+                            <div class="justify-between flex mt-2">
+                            <div class="w-[47.5%]">
                                     <Field
                                         label="Contact Person"
                                         name="contactPersonId"
@@ -208,10 +229,7 @@ function AddAddressDetail(props) {
                                         isColumn
                                     />
                                 </div>
-                            </div>
-
-                            <div class="justify-between flex mt-2">
-                                <div class="w-[22%]">
+                                <div class="w-[47.5%]">
                                     <Field
                                         width={"100%"}
                                         name="advancePayment"
@@ -221,7 +239,10 @@ function AddAddressDetail(props) {
                                         component={InputComponent}
                                     />
                                 </div>
-                                <div class="w-[22%]">
+                                </div>
+                            <div class="justify-between flex mt-2">
+                               
+                                <div class="w-[47.5%]">
                                     <Field
                                         name="orderCurrencyId"
                                         label="Currency"
@@ -231,7 +252,7 @@ function AddAddressDetail(props) {
                                         options={Array.isArray(currencyOption) ? currencyOption : []}
                                     />
                                 </div>
-                                <div class="w-[22%]">
+                                <div class="w-[47.5%]">
                                     <Field
                                         name="deliveryDate"
                                         label="Delivery Date "
@@ -244,7 +265,11 @@ function AddAddressDetail(props) {
                                     />
                                 </div>
 
-                                <div class="w-[22%]">
+                                
+
+                            </div>
+                            <div class="justify-between flex mt-2 items-center">
+                            <div class="w-[47.5%]  ">
                                     <StyledLabel><FormattedMessage
                                         id="app.priority"
                                         defaultMessage="Priority"
@@ -317,21 +342,7 @@ function AddAddressDetail(props) {
 
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class=" mt-3 justify-between flex">
-                                <div class="w-[30%]">
-                                    <Field
-                                        name="comments"
-                                        label="Comment"
-                                        width={"100%"}
-                                        isColumn
-                                        component={TextareaComponent}
-                                    />
-                                </div>
-
-                                <div class="w-[47%]  mt-[48px] mr-[90px] mb-[17px] flex justify-end">
+                            <div class="w-[47.5%] mt-4  ">
                                     <Button
                                         className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                         htmlType="Submit"
@@ -344,6 +355,7 @@ function AddAddressDetail(props) {
 
                                     </Button>
 
+                                </div>
                                 </div>
                             </div>
                         </div>
