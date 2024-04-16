@@ -286,7 +286,7 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
-                  <div class="flex justify-between ">
+                  {/* <div class="flex justify-between ">
                   <div class="w-[47%]">
                     <Field
                       label="Workflow"
@@ -312,20 +312,8 @@ class Productform extends Component {
                       isColumn
                     />
                   </div>
-</div>
-                  <div class="flex justify-between">
-                    <div class="w-full">
-                      <Field
-                        name="description"
-                        label="Description"
-                        isColumn
-                        width={"33.125em"}
-                        component={TextareaComponent}
-                        inlineLabel
-
-                      />
-                    </div>
-                  </div>
+</div> */}
+              
                 </div>
                 <div class="h-full w-[45%]">
                 <div class="flex justify-between ">
@@ -357,6 +345,19 @@ class Productform extends Component {
                       />
                     </div>
                     </div>
+                    <div class="flex justify-between">
+                    <div class="w-full">
+                      <Field
+                        name="description"
+                        label="Description"
+                        isColumn
+                        width={"33.125em"}
+                        component={TextareaComponent}
+                        inlineLabel
+
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 

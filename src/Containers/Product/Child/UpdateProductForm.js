@@ -233,7 +233,7 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
-                  <div class="flex justify-between mt-4">
+                  {/* <div class="flex justify-between mt-4">
                   <div class="w-[47%]">
                     <Field
                       label="Workflow"
@@ -259,7 +259,7 @@ class Productform extends Component {
                       isColumn
                     />
                   </div>
-</div>
+</div> */}
                   {/* <div class="flex justify-between mt-4">
                  <div class="w-[30%]">
                     <Field
@@ -297,23 +297,6 @@ class Productform extends Component {
                     </div>
                   </div> */}
 
-<div class="flex justify-between">
-<div class="w-full">
-                      <Field
-                        name="description"
-                        label="Description"
-                        isColumn
-                        width={"350px"}
-                        component={TextareaComponent}
-                        inlineLabel
-                        style={{
-                          flexBasis: "80%",
-                          height: "80px",
-                          marginTop: "0px",
-                        }}
-                      />
-                    </div>
-                  </div>
                 </div>
 
                 <div class="h-full w-[45%]">
@@ -351,7 +334,23 @@ class Productform extends Component {
                     </div>
                     </div>
               
-
+                    <div class="flex justify-between">
+<div class="w-full">
+                      <Field
+                        name="description"
+                        label="Description"
+                        isColumn
+                        width={"350px"}
+                        component={TextareaComponent}
+                        inlineLabel
+                        style={{
+                          flexBasis: "80%",
+                          height: "80px",
+                          marginTop: "0px",
+                        }}
+                      />
+                    </div>
+                  </div>
                 
                 </div>
               </div>
