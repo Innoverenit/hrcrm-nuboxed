@@ -10,7 +10,7 @@ function RepairSpareApproveToggle(props) {
         props.updateSpareItem(
             {
                 spareUseInd: props.spareUseInd ? false : true,
-                userId: props.userId
+                spareCompleteUserId: props.userId
 
             },
             props.phoneSpareId,

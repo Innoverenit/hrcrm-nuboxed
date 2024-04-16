@@ -1,4 +1,4 @@
-import { Button, DatePicker, Select, } from 'antd'
+import { Button, DatePicker, Input, Select, } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
@@ -141,7 +141,7 @@ const AssignRepairForm = (props) => {
         <div>
 
             <div class="mt-[10px] flex justify-between">
-                <div>
+                <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Department</label>
                     <Select
                         className="w-[350px]"
@@ -153,7 +153,7 @@ const AssignRepairForm = (props) => {
                         })}
                     </Select>
                 </div>
-                <div>
+                <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Technician</label>
                     <Select
                         className="w-[350px]"
@@ -165,7 +165,21 @@ const AssignRepairForm = (props) => {
                         })}
                     </Select>
                 </div>
-                <div>
+                <div class=" w-1/5">
+                    <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
+                    <Input
+                        className="w-[150px]"
+                    // value={ }
+                    />
+                </div>
+                <div class=" w-1/5">
+                    <label class="text-[15px] font-semibold m-[10px]">Quality</label>
+                    <Input
+                        className="w-[150px]"
+                    // value={ }
+                    />
+                </div>
+                <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
                     <DatePicker
                         className="w-[250px]"

@@ -7,18 +7,21 @@ import QCPhoneTaskToggle from './QCPhoneTaskToggle'
 import { Popconfirm } from "antd";
 import dayjs from "dayjs";
 import DeleteIcon from '@mui/icons-material/Delete';
+import Clock from 'react-clock';
+import 'react-clock/dist/Clock.css';
 
 const RepairTaskTable = (props) => {
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
     }, [])
+
     return (
         <div>
             <MainWrapper>
 
                 {props.taskByPhone.map((item) => {
                     return (
-                        <div class="cursor-pointer w-[50%] flex justify-center max-sm:w-auto mt-2 ">
+                        <div class="cursor-pointer w-[100%] flex justify-center max-sm:w-auto mt-2 ">
                             <div class="w-[50%]">
                                 {item.taskName}
                             </div>
@@ -30,7 +33,13 @@ const RepairTaskTable = (props) => {
                                     imgHeight={"2.1em"}
                                 />
                                 <span>
-                                    {dayjs(item.creationDate).format("DD-MM-YY HH:mm:ss")}
+                                    {dayjs(item.creationDate).format("DD-MM-YY")}
+                                </span>
+                                <span>
+                                    <Clock
+                                        style={{ width: "41px", height: "40px" }}
+                                        value={dayjs(item.creationDate).format("HH:mm")} />
+
                                 </span>
                                 {!item.completeTaskInd && <Popconfirm
                                     title="Do you want to delete?"
