@@ -1369,7 +1369,10 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
       console.log(res);
       //  dispatch(getUserKpiList(employeeId,year,quarter));
       dispatch({
