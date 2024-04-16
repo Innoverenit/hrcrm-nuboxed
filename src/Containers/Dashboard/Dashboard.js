@@ -98,6 +98,7 @@ class Dashboard extends Component {
     });
   };
   handleMapClick = (event) => {
+    console.log("event",event)
     const geocoder = new window.google.maps.Geocoder();
     const latlng = {
       lat: event.latLng.lat(),
@@ -151,9 +152,9 @@ class Dashboard extends Component {
         activeButton={this.state.activeButton}
         />
         <Suspense fallback={<BundleLoader />}>
-        <MainWrapper style={{marginTop:"1rem",overflow:"hidden",height:"21rem"}}
+        <MainWrapper style={{marginTop:"0.5rem",overflow:"hidden",height:"21rem"}}
     >
-          <div class=" h-[44vh] max-sm:h-[36rem] max-sm:overflow-x-auto">
+          <div class="  max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
            <div class=" flex flex-col " >
@@ -352,9 +353,9 @@ class Dashboard extends Component {
     </MainWrapper>
     <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
     >
-    <div class=" h-[44vh]  max-sm:h-[36rem] max-sm:overflow-x-auto">
+    <div class="   max-sm:h-[36rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
-           <div class="w-[53%] max-sm:w-wk">
+           <div class="w-[47.5%] max-sm:w-wk">
            <div class=" flex flex-col " >
           
      
@@ -365,6 +366,7 @@ class Dashboard extends Component {
                  
                     { viewType==="ALL" && this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                     handleMapClick={this.handleMapClick}
+                    selectedCountry={this.state.selectedCountry}
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)
@@ -375,6 +377,8 @@ class Dashboard extends Component {
                           </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
+                          : this.state.activeButton === "Customer" ? (
+                            <CustomerGoogleMap />)
                           : this.state.activeButton === "test" ? (
                             <StackedClosureChart />)
                             : this.state.activeButton === "Tasks" ? (
@@ -396,7 +400,7 @@ class Dashboard extends Component {
     </div>
     </div>
 
-     <div class="w-[47%] max-sm:w-wk">
+     <div class="w-[47.5%] max-sm:w-wk">
   
      <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >

@@ -45,6 +45,9 @@ const initialState = {
    fetchingVisaDetailsError: false,
    visaDetails:[],
 
+   updatingProfileEquipment: false,
+   updatingProfileEquipmentError: false,
+
   updatingBankDetails: false,
   updatingTrainingDetails: false,
   updatingPersonalDetails: false,
@@ -67,6 +70,10 @@ const initialState = {
   fetchingBankDetails: false,
   fetchingBankDetailsError: false,
   bankDetails: [],
+
+  fetchingEquipmentEmployee: false,
+  fetchingEquipmentEmployeeError: false,
+  employeeEquipment:[],
 
   updateVisaModal:false,
 
@@ -991,6 +998,43 @@ export const profileReducer = (state = initialState, action) => {
           fetchingPerformance: false,
           fetchingPerformanceError: true,
         };
+
+
+        
+        case types.UPDATE_PROFILE_EQUIPMENT_REQUEST:
+          return { ...state, updatingProfileEquipment: true };
+        case types.UPDATE_PROFILE_EQUIPMENT_SUCCESS:
+          // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+          return {
+            ...state,
+            updatingProfileEquipment: false,
+            // serviceLine: state.serviceLine.map((document) =>
+            //   document.serviceLineId === action.payload.serviceLineId
+            //     ? action.payload
+            //     : document
+            // ),
+          };
+        case types.UPDATE_PROFILE_EQUIPMENT_FAILURE:
+          return {
+            ...state,
+            updatingProfileEquipment: false,
+            updatingProfileEquipmentError: true,
+          };
+
+          case types.GET_EMPLOYEE_EQUIPMENT_REQUEST:
+            return { ...state,  fetchingEquipmentEmployee: true };
+          case types.GET_EMPLOYEE_EQUIPMENT_SUCCESS:
+            return {
+              ...state,
+              fetchingEquipmentEmployee: false,
+               employeeEquipment: action.payload,
+            };
+          case types.GET_EMPLOYEE_EQUIPMENT_FAILURE:
+            return {
+              ...state,
+              fetchingEquipmentEmployee: false,
+              fetchingEquipmentEmployeeError: true,
+            };
 
     default:
       return state;

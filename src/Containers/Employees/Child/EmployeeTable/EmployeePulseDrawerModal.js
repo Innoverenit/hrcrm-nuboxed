@@ -12,6 +12,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import UserKpiList from "./EmployeeDrawer/UserKpiList";
+import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class EmployeePulseDrawerModal extends Component {
           closable
           maskClosable={false}
           destroyOnClose
-          width={"70%"}
+          width={"80%"}
           visible={this.props.addDrawerEmployeePulseModal}
         onClose={() => this.props.handleEmployeePulseDrawerModal(false)}
         
@@ -117,25 +118,7 @@ class EmployeePulseDrawerModal extends Component {
                     360 View
                     
                   </span>
-                  {/* {activeKey === "2" && (
-                    <>
-                      <PlusOutlined
-                        type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
-                        onClick={() => handleInvestorDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
-                      />
-                    </>
-                  )} */}
+              
                 </>
               }
               key="2"
@@ -198,6 +181,27 @@ class EmployeePulseDrawerModal extends Component {
                  employeeName={this.props.employeeName}
                 />
                 {/* <UserKpiList employeeName={this.props.employeeName}/> */}
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+ <ContactsIcon style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                    Equipment
+                    </span>
+                  </span>
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <EmployeeEquipmentForm
+                 employeeName={this.props.employeeName}
+                />
+             
               </Suspense>
             </TabPane>
             

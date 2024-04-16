@@ -9,10 +9,11 @@ import { MainWrapper, } from "../../../Components/UI/Layout";
 import {
     getProcessForProduction,
     getProcessStagesForProduction,
-    updateStageForProduction
 } from "../../Settings/SettingsAction";
 import { Spin } from "antd";
 import {getAllDealsbyUserId} from "../../Deal/DealAction";
+import {getAllstageProductions,getProductionsbyLocId,updateProductiondragstage} from "../ProductionAction";
+
 // const DealStageColumn =lazy(()=>import("./DealStageColumn"));
 
 const TabPane = StyledTabs.TabPane;
@@ -80,7 +81,8 @@ function ProductionBoard(props) {
 
   useEffect(() => {
     props.getProcessForProduction(props.orgId);
-     props.getAllDealsbyUserId(props.userId)
+     props.getAllstageProductions(props.userId)
+     props.getProductionsbyLocId(props.userId, 0);
   }, []);
 
   useEffect(() => {
@@ -115,14 +117,14 @@ function ProductionBoard(props) {
     }
 
     const {
-        updateStageForProduction,
+      updateProductiondragstage,
     } = props;
     let data={
         productionStagesId:destination.droppableId,
         manufactureId:result.draggableId,
         // invOppStagesId:destination.droppableId,
     }
-    updateStageForProduction(data,
+    updateProductiondragstage(data,
       source.droppableId,
       destination.droppableId,
       draggableId,
@@ -185,7 +187,7 @@ function ProductionBoard(props) {
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.investorOppStagesId}
+                          droppableId={stage.productionStagesId}
                           type="stage"
                         
                         >
@@ -209,10 +211,10 @@ function ProductionBoard(props) {
                                       className="scrollbar"
                                       id="style-3"
                                     >
-                                      {/* {props.dealsByuserId
+                                      {/* {props.productionByLocsId
                                         .filter(
                                           (opp, index) =>
-                                            opp.invOpportunityStagesId === stage.investorOppStagesId
+                                            opp.productionStagesId === stage.investorOppStagesId
                                         )
                                         .map((opp, index) => {
                                           return (
@@ -224,7 +226,6 @@ function ProductionBoard(props) {
                                             />
                                           );
                                         })} */}
-                                 Hello Pro !
                                     </StageColumn>
                                   </Spin>
                                 </div>
@@ -244,9 +245,7 @@ function ProductionBoard(props) {
 }
 
 const mapStateToProps = ({
-  opportunity,
-  account,
-  dashboard,
+  production,
   auth,
   settings,
   deal
@@ -255,7 +254,9 @@ const mapStateToProps = ({
     orgId: auth.userDetails && auth.userDetails.organizationId,
    userId: auth.userDetails.userId,
    dealsByuserId:deal.dealsByuserId,
+   productionStageAll:production.productionStageAll,
 productionProcessStages: settings.productionProcessStages,
+productionByLocsId: production.productionByLocsId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -263,16 +264,10 @@ const mapDispatchToProps = (dispatch) =>
         getProcessForProduction,
         getProcessStagesForProduction,
         getAllDealsbyUserId,
-        updateStageForProduction
-    //   updateOpportunityStage,
-    //   getOpportunityRelatedData,
-    //   getOpportunities,
-    //   getAccounts,
-    //   getStages,
-    //   getProcess,
-    //   getProcessStages,
-    //   addReson,
-    },
+        getAllstageProductions,
+        getProductionsbyLocId,
+        updateProductiondragstage
+          },
     dispatch
   );
 export default withRouter(

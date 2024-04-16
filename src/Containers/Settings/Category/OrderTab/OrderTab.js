@@ -4,6 +4,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
+import RecommendIcon from '@mui/icons-material/Recommend';
 import SourceIcon from '@mui/icons-material/Source';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
@@ -117,7 +118,7 @@ class OrderTab extends Component {
                 <TabPane
                   tab={
                     <>
-                      <SourceIcon />
+                      <RecommendIcon />
                       <Badge
                 count={this.props.qualityCount.QualityCount}
                 overflowCount={999}

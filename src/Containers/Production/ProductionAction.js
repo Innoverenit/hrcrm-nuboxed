@@ -351,3 +351,79 @@ export const updateRoomRackProduction = (data) => (dispatch) => {
       });
     });
 };
+
+export const getAllstageProductions = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_STAGE_PRODUCTION_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/all/product/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_STAGE_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ALL_STAGE_PRODUCTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateProductiondragstage = (
+  data,
+    
+  sourceStageId,
+  destinationStageId,
+  manufactureId,
+  cb
+) => (dispatch) => {
+  
+  dispatch({
+    type: types.UPDATE_PRODUCTION_DRAG_STAGE_REQUEST,
+    payload: {
+      sourceStageId,
+      destinationStageId,
+      manufactureId,
+    },
+  });
+  axios
+    .put(
+      `${base_url}/production/production/update/stage`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+
+      dispatch({
+        type: types.UPDATE_PRODUCTION_DRAG_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_PRODUCTION_DRAG_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};

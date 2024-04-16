@@ -31,7 +31,9 @@ class StageTaskColumns1 extends Component {
               primaryTitle={`${elipsize(task.taskName, 60)}`} 
             // secondaryTitle={`${task.taskName} `}
             //   currencyType={opportunity.currency}
-            //   customerName={opportunity.customer}
+               customerName={task.customer}
+               contactName={task.contact}
+               opportunityName={task.oppertunity}
             //   contactName={opportunity.contactName}
             //   user={this.props.user}
              

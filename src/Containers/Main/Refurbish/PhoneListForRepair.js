@@ -132,49 +132,49 @@ function PhoneListForRepair(props) {
     return (
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
-                <div class=" h-[75vh] rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex  w-[98.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[4.2rem]"><FormattedMessage
+                <div class=" h-[75vh] rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex  w-[98.5%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
-                        <div className=" md:w-[4rem]"><FormattedMessage
+                        <div className=" w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
                         /></div>
-                        <div className=" md:w-[5rem] "><FormattedMessage
+                        <div className=" w-[5.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
-                        <div className="md:w-[4rem]"></div>
-                        <div className="md:w-[5.3rem]"></div>
-                        <div className="md:w-[5.2rem]">
+                        <div className="w-[4.01rem]"></div>
+                        <div className="w-[5.3rem]"></div>
+                        <div className="w-[6.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <FormattedMessage
                                 id="app.totalhr"
                                 defaultMessage="Total Hours"
                             />
                         </div>
-                        <div className="md:w-[4.5rem]"><FormattedMessage
+                        <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
                         /></div>
-                        <div className="md:w-[4.5rem]"><FormattedMessage
+                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.end"
                             defaultMessage="End"
                         /></div>
 
-                        <div className="md:w-[6rem]"><FormattedMessage
+                        <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.actualeffort"
                             defaultMessage="actualeffort"
                         /></div>
-                        <div className="md:w-[6rem]"><FormattedMessage
+                        <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.workduration"
                             defaultMessage="Work Duration"
                         /></div>
-                        <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[2rem]"></div>
+                        <div className="w-[5.01rem]"></div>
+                        <div className="w-[5.02rem]"></div>
+                        <div className="w-[5.03rem]"></div>
+                        <div className="w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.repairPhone.length}
@@ -191,28 +191,29 @@ function PhoneListForRepair(props) {
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  w-full  mt-4 bg-white h-12 items-center p-3 "
+                                    <div className="flex rounded-xl  w-full  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col "
 
                                     >
-                                        <div class="flex">
-                                            <div className=" flex font-medium  md:w-[4.2rem] max-sm:w-full  ">
+                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex font-medium  w-[6.21rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
                                                 {item.company}
                                             </div>
 
-                                            <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins">
+                                            <div className=" flex font-medium   w-[5.07rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.model}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins">
+                                            <div className=" flex font-medium  w-[6.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.imei}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium w-[5.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <SubTitle>
                                                     {item.qrCodeId ? (
                                                         <span onClick={() => {
@@ -236,8 +237,8 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium  md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div className=" flex font-medium  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {(x === true && y === true) &&
 
                                                     <PlayCircleFilledSharp
@@ -297,40 +298,44 @@ function PhoneListForRepair(props) {
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {item.totalhours}
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium  md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium  w-[5.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {item.repairStartTime === null ? "" : dayjs(item.repairStartTime).format('HH:mm:ss')}
 
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium  md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div className=" flex font-medium  w-[5.57rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <>{item.repairEndTime === null ? "" : dayjs(item.repairEndTime).format('HH:mm:ss')}</>
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div className=" flex font-medium w-[7.04rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium w-[6.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center mr-2">
+                                        <div className=" flex font-medium w-[5.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <Tooltip title="Spare">
                                                     <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
                                                         <Button
@@ -348,8 +353,8 @@ function PhoneListForRepair(props) {
 
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        <div className=" flex font-medium  w-[5.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <Tooltip title="Task">
                                                     <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
                                                         <Button
@@ -365,9 +370,10 @@ function PhoneListForRepair(props) {
 
                                             </div>
                                         </div>
-
-                                        <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div className=" flex font-medium  w-[2.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <Tooltip title="Notes">
                                                     <NoteAddOutlined
                                                         style={{ cursor: "pointer", fontSize: "1rem" }}
@@ -382,8 +388,8 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div className=" flex font-medium   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.Print"
                                                     defaultMessage="Print"
@@ -398,8 +404,8 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div className=" flex font-medium   w-[4.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.scan"
                                                     defaultMessage="scan"
@@ -438,6 +444,7 @@ function PhoneListForRepair(props) {
                                             </div>
                                             <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             )

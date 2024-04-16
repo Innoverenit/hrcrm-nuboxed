@@ -24,13 +24,13 @@ function OpenRepairTable(props) {
     return (
         <>
             {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[34.12rem]"><FormattedMessage
+                <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.order"
                             defaultMessage="order"
                         /></div>
-                        <div className=" md:w-[35.1rem]"><FormattedMessage
+                        <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
@@ -38,8 +38,8 @@ function OpenRepairTable(props) {
                             id="app.lead"
                             defaultMessage="Lead"
                         /></div>
-                        <div className="md:w-[6.6rem]"></div>
-                        <div className="md:w-[5.8rem]"><FormattedMessage
+                        <div className="w-[6.6rem]"></div>
+                        <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.notes"
                             defaultMessage="notes"
                         /></div>
@@ -57,18 +57,18 @@ function OpenRepairTable(props) {
                                 const date = moment(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
-                                            <div class="flex">
-                                                <div className=" flex font-medium  md:w-[32.8rem] max-sm:w-full  ">
+                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col ">
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                <div className=" flex font-medium  w-[32.8rem] max-xl:w- max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class=" cursor-pointer w-[7rem] flex">
+                                                        <span class=" cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                             {item.newOrderNo}
                                                         </span>
                                                     </Badge>
                                                 </div>
 
-                                                <div className=" flex font-medium   md:w-[22.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins">
+                                                <div className=" flex font-medium   w-[22.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : moment(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
@@ -79,14 +79,14 @@ function OpenRepairTable(props) {
                                </div>
                            </div> */}
                                             </div>
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.reason}
 
-                                            <div className=" flex font-medium  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {item.reason}
-
+                                                    </div>
                                                 </div>
                                             </div>
-
 
                                         </div>
                                     </div>

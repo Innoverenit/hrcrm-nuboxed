@@ -60,6 +60,8 @@ const initialState = {
   fetchingEmployeeByIdError: false,
   singleEmployee: {},
 
+
+
   addOnboadingEmpl: false,
   addOnboadingEmplError: false,
 
@@ -1029,6 +1031,10 @@ case types.GET_ADMIN_USER_FAILURE:
                       };
                     case types.UPDATE_ACTUAL_VALUE_FAILURE:
                       return { ...state, updatingActualValue: false, updatingActualValueError: true };
+
+
+                     
+                  
               
 
 

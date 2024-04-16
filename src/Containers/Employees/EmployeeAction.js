@@ -74,7 +74,7 @@ export const getEmployeelist = (filter) => (dispatch) => {
   });
 
   axios
-  .get(`${base_url}/employee/employees/filter/${filter}`, {
+  .get(`${base_url}/employee/active/employees/filter/${filter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1369,7 +1369,10 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
       console.log(res);
       //  dispatch(getUserKpiList(employeeId,year,quarter));
       dispatch({
@@ -1384,4 +1387,6 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
       });
     });
 };
+
+
 

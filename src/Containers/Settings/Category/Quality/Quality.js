@@ -30,12 +30,11 @@ const Quality = (props) => {
         props.getQualityCount(); 
     }, [])
   
-    const editRegion = (qualityId, name,qualityName,description) => {
-      console.log(name)
-      console.log(name)
+    const editRegion = (qualityId,code,description) => {
+      // console.log(name)
+      // console.log(name)
         setEditingId(qualityId);
-        setQualityName(name);
-        setCodeName(qualityName);
+        setCodeName(code);
         setDescriptionName(description);
     };
   
@@ -43,7 +42,7 @@ const Quality = (props) => {
   
     const handleAddQuality = () => {
         setAddingRegion(true);
-        setQualityName("")
+      
         setCodeName("")
         setDescriptionName("")
     };
@@ -52,7 +51,7 @@ const Quality = (props) => {
         console.log(region)
         let data={
             qualityId:region.qualityId,
-          qualityName:newQualityName,
+        
           code:newCodeName,
           description:newDescriptionName,
          
@@ -63,7 +62,7 @@ const Quality = (props) => {
   
     const handleQuality = () => {
         let data={
-          qualityName:newQualityName,
+  
           code:newCodeName,
           description:newDescriptionName,
           orgId:props.orgId,
@@ -92,7 +91,7 @@ const Quality = (props) => {
       };
   
     const handleCancelAdd = () => {
-      setQualityName('');
+    
       setCodeName("");
       setDescriptionName("");
         setAddingRegion(false);
@@ -130,22 +129,22 @@ const Quality = (props) => {
             <div className="add-region">
                 {addingRegion ? (
                     <div>
-                        <input 
+                        {/* <input 
                         style={{border:"2px solid black"}}
                             type="text" 
                             placeholder="Quality"
                             value={newQualityName} 
                             onChange={(e) => setQualityName(e.target.value)} 
-                        />
+                        /> */}
                           <input 
-                            placeholder="code"
+                            placeholder="Code"
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newCodeName} 
                             onChange={(e) => setCodeName(e.target.value)} 
                         />
                             <input 
-                            placeholder="deescription"
+                            placeholder="Description"
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newDescriptionName} 
@@ -169,12 +168,12 @@ const Quality = (props) => {
             <div class=" flex flex-col" >
          
          <MainWrapper className="!h-[69vh] !mt-2" >
-            {!props.fetchingQuality && qualityList.length === 0 ? <NodataFoundPage /> : qualityList.slice().sort((a, b) => a.qualityName.localeCompare(b.qualityName)).map((region, index) => (
+            {!props.fetchingQuality && qualityList.length === 0 ? <NodataFoundPage /> : qualityList.slice().sort((a, b) => a.code.localeCompare(b.code)).map((region, index) => (
      
               <div className="card9" key={region.qualityId}>
               {/* Region name display or input field */}
               
-              {editingId === region.qualityId ? (
+              {/* {editingId === region.qualityId ? (
                   <input
                   style={{border:"2px solid black"}}
                       type="text"
@@ -184,11 +183,8 @@ const Quality = (props) => {
                   />
               ) : (
                   <div className="region" style={{width:"16rem"}}>{region.qualityName}&nbsp;&nbsp;&nbsp;
-                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
-                                        >
-                                          New
-                                        </span> : null}</div>
-              )}
+                 </div>
+              )} */}
                {editingId === region.qualityId ? (
                   <input
                   style={{border:"2px solid black"}}
@@ -199,6 +195,10 @@ const Quality = (props) => {
                   />
               ) : (
                   <div className="region" style={{width:"29rem"}}>{region.code}&nbsp;&nbsp;&nbsp;
+                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                        >
+                                          New
+                                        </span> : null}
                  </div>
               )}
 
@@ -206,7 +206,7 @@ const Quality = (props) => {
                   <input
                   style={{border:"2px solid black"}}
                       type="text"
-                      placeholder="description"
+                      placeholder="Description"
                       value={newDescriptionName}
                       onChange={(e) => setDescriptionName(e.target.value)}
                   />
@@ -225,7 +225,7 @@ const Quality = (props) => {
                       </div>
                   ) : (
                       <BorderColorIcon   style={{fontSize:"1rem"}} 
-                      onClick={() => editRegion(region.qualityId, region.qualityName,region.code,region.description)} 
+                      onClick={() => editRegion(region.qualityId,region.code,region.description)} 
                       />
                   )}
   

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import QrGenerate from "../ProductTable/QrGenerate"
 import {
-  getProducts,
+    getdeleteProducts,
   getProductByGroup,
   getAllProductCatagory,
   setEditProducts,
@@ -30,7 +30,7 @@ const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
 
-function ProductCardList(props) {
+function ProductDeleteList(props) {
 
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -38,8 +38,7 @@ function ProductCardList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
 
   useEffect(() => {
-    props.getProducts(page);
-    setPage(page + 1);
+    props.getdeleteProducts();
   }, []);
 
   useEffect(() => {
@@ -58,20 +57,20 @@ function ProductCardList(props) {
     setParticularDiscountData(item);
   }
 
-  const handleLoadMore = () => {
-    const proPag = props.products && props.products.length && props.products[0].pageCount
-    setTimeout(() => {
-      if (props.products) {
-        if (page < proPag) {
-          setPage(page + 1);
-          props.getProducts(page);
-        }
-        if (page === proPag) {
-          setHasMore(false)
-        }
-      }
-    }, 100);
-  };
+//   const handleLoadMore = () => {
+//     const proPag = props.products && props.products.length && props.products[0].pageCount
+//     setTimeout(() => {
+//       if (props.products) {
+//         if (page < proPag) {
+//           setPage(page + 1);
+//           props.getProducts(page);
+//         }
+//         if (page === proPag) {
+//           setHasMore(false)
+//         }
+//       }
+//     }, 100);
+//   };
 
   const {
     fetchingProducts,
@@ -83,7 +82,8 @@ function ProductCardList(props) {
     handleProductBuilderDrawer,
     handlePriceDrawer,
     priceOpenDrawer,
-    deleteCatalogData
+    deleteCatalogData,
+    deleteproducts
   } = props;
 
   return (
@@ -102,15 +102,15 @@ function ProductCardList(props) {
             <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
             <div className="w-12"></div>
           </div>
-          <InfiniteScroll
+          {/* <InfiniteScroll
             dataLength={products.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"75vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-          >
-            {products.map((item) => {
+          > */}
+            {deleteproducts.map((item) => {
               return (
                 <div>
                   <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
@@ -132,7 +132,7 @@ function ProductCardList(props) {
                         </SubTitle>
                       </div>
                       <div className=" flex font-medium flex-col w-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-xs text-cardBody  max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
@@ -215,7 +215,7 @@ function ProductCardList(props) {
                         </Tooltip>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    {/* <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
@@ -229,7 +229,7 @@ function ProductCardList(props) {
                       </div>
 
 
-                    </div>
+                    </div> */}
                     <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title={item.description}>
@@ -239,7 +239,7 @@ function ProductCardList(props) {
 
 
                     </div>
-                    <div className="mt-1 ml-2">
+                    {/* <div className="mt-1 ml-2">
                           <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => deleteCatalogData(item.productId,props.orgId)}
@@ -251,14 +251,14 @@ function ProductCardList(props) {
                             />
                          
                           </StyledPopconfirm>
-                        </div>
+                        </div> */}
                     </div>
                    
                   </div>
                 </div>
               );
             })}
-          </InfiniteScroll>
+          {/* </InfiniteScroll> */}
         </div>
       </div>
       <Suspense fallback={"Loading"}>
@@ -284,6 +284,7 @@ function ProductCardList(props) {
 
 
 const mapStateToProps = ({ product, auth, supplies }) => ({
+    deleteproducts:product.deleteproducts,
   productByGroup: product.productByGroup,
   fetchingProductByGroup: product.fetchingProductByGroup,
   groupId: auth.userDetails.groupId,
@@ -318,7 +319,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCatalogueConfigureModal,
       getAllProductCatagory,
       handleCatalogueWipModal,
-      getProducts,
+      getdeleteProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
     },
@@ -328,4 +329,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductCardList);
+)(ProductDeleteList);

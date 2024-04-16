@@ -507,6 +507,9 @@ import {getRegionTaskList,updateTaskdragstage} from "../RegionalDashAction"
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import { BundleLoader } from '../../../Components/Placeholder';
+import RegionSalesDrag from './RegionSalesDrag';
+import TocIcon from '@mui/icons-material/Toc';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 const { TabPane } = Tabs;
 const ButtonGroup = Button.Group;
 const SalesTaskCardList = (props) => {
@@ -520,10 +523,7 @@ const SalesTaskCardList = (props) => {
       endDate: "2024-04-25T09:42:05Z"
     }
   ];
-  const tasks=props.regionAllTaskList
-  const numberOfWeeks=4
-  const [weeks, setWeeks] = useState([]);
-  const [isDragging, setIsDragging] = useState(false);
+ 
   const [showSmileCard, setShowSmileCard] = useState(true);
   const [showHeartCard, setShowHeartCard] = useState(false);
 
@@ -533,124 +533,47 @@ const SalesTaskCardList = (props) => {
     props.getRegionTaskList(props.rowdata.employeeId,"Sales Plan",props.tabKey,currentYear)
   }, []);
 
-  useEffect(() => {
-    const getCurrentWeekNumber = () => {
-      const currentDate = new Date();
-      const currentWeekNumber = Math.ceil(
-        (currentDate - new Date(currentDate.getFullYear(), 0, 1)) / 604800000
-      );
-      return currentWeekNumber;
-    };
 
-    const generateWeekNumbers = () => {
-      const currentWeekNumber = getCurrentWeekNumber();
-      const weekNumbers = [];
-
-      for (let i = 0; i < numberOfWeeks; i++) {
-        weekNumbers.push(currentWeekNumber + i);
-      }
-
-      setWeeks(weekNumbers);
-    };
-
-    generateWeekNumbers();
-  }, [numberOfWeeks]);
 
  
   if (props.fetchingRegionalTaskList) return <BundleLoader/>;
 
  
-  function onDragEnd(result) {
-    console.log(result);
-    setIsDragging(false);
-
-    if (!navigator.onLine) {
-      return;
-    }
-
-    if (!result.destination) {
-      return;
-    }
-
-    const { draggableId, destination, source } = result;
-
-    if (
-      source.droppableId === destination.droppableId &&
-      source.index === destination.index
-    ) {
-      return;
-    }
-
-    const {
-      updateTaskdragstage,
-
-    } = props;
-    let data={
-      opportunityStagesId:destination.droppableId,
-      opportunityId:result.draggableId,
-    }
-    updateTaskdragstage(data,
-      source.droppableId,
-      destination.droppableId,
-      draggableId,
-
-    );
-  }
-  function dragStart() {
-    setIsDragging(true);
-  }
-  function dragUpdate() {
-    setIsDragging(false);
-  }
+  
+  // function dragUpdate() {
+  //   setIsDragging(false);
+  // }
 
 
-  const getWeekStartDate = (weekNumber) => {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const januaryFirst = new Date(currentYear, 0, 1);
-    const firstDayOfYear = januaryFirst.getDay() || 7; // Adjust for Sunday being 0
-    const startDate = new Date(currentYear, 0, (weekNumber - 1) * 7 + 1 - firstDayOfYear);
-    return startDate;
-  };
-  console.log(getWeekStartDate)
+  // const getWeekStartDate = (weekNumber) => {
+  //   const currentDate = new Date();
+  //   const currentYear = currentDate.getFullYear();
+  //   const januaryFirst = new Date(currentYear, 0, 1);
+  //   const firstDayOfYear = januaryFirst.getDay() || 7; // Adjust for Sunday being 0
+  //   const startDate = new Date(currentYear, 0, (weekNumber - 1) * 7 + 1 - firstDayOfYear);
+    
+  //   return startDate; 
+   
 
-  const getWeekEndDate = (weekNumber) => {
-    const startDate = getWeekStartDate(weekNumber);
-    const endDate = new Date(startDate);
-    endDate.setDate(endDate.getDate() + 6); // 6 days later to get the end of the week
-    return endDate;
-  };
+  // };
+  
 
-  const filterTasksForWeek = (weekNumber) => {
-    const startDate = getWeekStartDate(weekNumber);
-    const endDate = getWeekEndDate(weekNumber);
-    return tasks.filter(task => {
-      const taskEndDate = new Date(task.endDate);
-      return taskEndDate >= startDate && taskEndDate <= endDate;
-    });
+ 
+
+  const handleHeartClick = () => {
+    setShowHeartCard(true);
+    setShowSmileCard(false);
   };
   const handleSmileClick = () => {
     setShowSmileCard(true);
     setShowHeartCard(false);
   };
 
-  const handleHeartClick = () => {
-    setShowHeartCard(true);
-    setShowSmileCard(false);
-  };
+  
   return (
     <>
     <div>
-    <EnvironmentOutlined
-                  type="environment"
-                  style={{                   
-                    fontSize: "1.2em",
-                    margin: "0px 0.68em 0.42rem",
-                    placeSelf: "center",
-                  }}
-                  onClick={handleSmileClick}
-                />
-                   <EnvironmentOutlined
+    <CalendarMonthIcon
                   type="environment"
                   style={{                   
                     fontSize: "1.2em",
@@ -659,8 +582,29 @@ const SalesTaskCardList = (props) => {
                   }}
                   onClick={handleHeartClick}
                 />
+    <TocIcon
+                  type="environment"
+                  style={{                   
+                    fontSize: "1.2em",
+                    margin: "0px 0.68em 0.42rem",
+                    placeSelf: "center",
+                  }}
+                  onClick={handleSmileClick}
+                />
+                  
     </div>
-    {showSmileCard && (
+    
+
+
+{showHeartCard && (
+  <RegionSalesDrag
+  regionAllTaskList={props.regionAllTaskList}
+  rowdata={props.rowdata}
+  tabKey={props.tabKey}
+  />
+)}
+
+{showSmileCard && (
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -702,7 +646,7 @@ const SalesTaskCardList = (props) => {
         <div className="w-12"></div>
         {/* <div className="w-12"></div> */}
       </div>
- 
+      <div class="h-[60vh] overflow-auto">
       {props.regionAllTaskList.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
@@ -823,7 +767,7 @@ const SalesTaskCardList = (props) => {
          </ButtonGroup>
          <div></div>
                          </div>
-                    <div className="flex font-medium flex-col md:w-[1rem] max-sm:flex-row  w-full ">
+                    <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row  w-full ">
                        
                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
                        <div class="text-xs text-cardBody font-poppins"> 
@@ -919,105 +863,12 @@ const SalesTaskCardList = (props) => {
 
 
                     )
+                    
                 })}
-                
+               </div> 
       </div>
 </div>
     )}
-
-
-{showHeartCard && (
-   <DragDropContext
-   onDragEnd={onDragEnd}
-  type="stage"
-   onDragStart={dragStart}
->
-      <div>
-        <h2>Week Numbers</h2>
-        <div style={{display:"flex"}}>
-          {weeks.map((week, index) => {
-            const startDate = getWeekStartDate(week);
-            const endDate = getWeekEndDate(week);
-            const filteredTasks = filterTasksForWeek(week);
-            return (
-              <div key={index} >
-                {/* <div style={{ textAlign: 'center' ,border:"1px solid black",  padding: '5px',
-        margin: '5px',}}>
-                  Week {week}
-                </div> */}
-                  <Droppable
-                          key={index}
-                          droppableId={week}
-                          // others={startDate}
-                          type="stage"
-                        
-                        >
-                          {(provided, snapshot) => (
-                            <>
-                
-                
-                 <StageHeader 
-                //  style={{ position: "absolute" }}
-                 >
-                                    <div>Week{week}</div>
-                                    <div>
-                                    </div>
-                                  </StageHeader>
-                                  <StageColumn
-                                      ref={provided.innerRef}
-                                      isDraggingOver={snapshot.isDraggingOver}
-                                      {...provided.droppableProps}
-                                      droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
-                                    >
-                {filteredTasks.map((task, taskIndex) => (
-                  
-                    
-                  // <div key={taskIndex} 
-                  //   style={{ border: '1px solid gray', padding: '5px', margin: '5px' }}
-                  //   >
-                  //     {task.taskType} 
-                  //     {/* - 
-                  //     End Date: {task.endDate} */}
-                  //   </div>
-                      <StageTaskColumns1
-                                              key={taskIndex}
-                                              task={task}
-                                              index={taskIndex}
-                                              // history={props.history}
-                                            />
-
-                    
-                    
-                   
-                    ))}
-                    </StageColumn>
-                    </>
-                      )}
-                      </Droppable>
-                  
-                {/* <div style={{ marginLeft: '20px' }}> */}
-                  {/* <div>
-                    <strong>Start Date:</strong> {startDate.toLocaleDateString()}
-                  </div>
-                  <div>
-                    <strong>End Date:</strong> {endDate.toLocaleDateString()}
-                  </div> */}
-                {/* </div> */}
-                <div>
-               
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      
-    </DragDropContext>
-)}
-
-
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>
@@ -1078,20 +929,7 @@ function StatusIcon(props) {
 
 
 
-const StageHeader = styled.div`
-  background-color: rgb(14, 149, 144);
-  color: white;
-  font-size: 0.93em;
-  width: 250px;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 0.06em solid ${(props) => props.theme.backgroundColor};
-  padding: 0.5rem;
-  border-bottom: 2px solid ${(props) => props.theme.borderColor};
-  /* position:fixed; */
-`;
+
 
 
 
@@ -1109,24 +947,7 @@ height:26rem;
 `;
 
 
-const StageColumn = styled.div`
-  background-color: whitesmoke;
-  color: ${(props) => props.theme.color};
-  float: left;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 26rem;
-  width: 250px;
-  margin-top: 3.75em;
-  overflow-y: auto;
-  border-right: 0.06em solid #d2cfcf;
-  /* background-color: ${(props) => props.theme.applicationBackground}; */
-  /* color: ${(props) => props.theme.color}; */
-  /* min-height: 43.12em; */
-`;
+
 
 
 

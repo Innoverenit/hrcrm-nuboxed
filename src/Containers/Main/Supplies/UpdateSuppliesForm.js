@@ -15,6 +15,7 @@ import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponen
 
 const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
+  categoryName: Yup.string().required("Input needed!"),
 });
 class UpdateSuppliesForm extends Component {
 
@@ -163,7 +164,7 @@ class UpdateSuppliesForm extends Component {
                 </div>
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
-                    <div class="w-[47%]">
+                    <div class="w-wk">
                       <Field
                         name="name"
                         label="Name"
@@ -173,7 +174,11 @@ class UpdateSuppliesForm extends Component {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
+                    
+                  </div>
+
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
                       <Field
                         name="hsn"
                         label="HSN"
@@ -183,9 +188,6 @@ class UpdateSuppliesForm extends Component {
                         component={InputComponent}
                       />
                     </div>
-                  </div>
-
-                  <div class="flex justify-between">
                     <div class="w-[47%]">
                       <Field
                         name="reorder"
@@ -196,7 +198,7 @@ class UpdateSuppliesForm extends Component {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
+                    {/* <div class="w-[47%]">
                       <Field
                         name="currencyName"
                         label="Currency"
@@ -208,7 +210,7 @@ class UpdateSuppliesForm extends Component {
                           width: "100%",
                         }}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
