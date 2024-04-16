@@ -33,11 +33,11 @@ function OrderPhoneListById(props) {
         props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
     }, [props.rowData.orderPhoneId, props.userId])
 
-    const [hasMore, setHasMore] = useState(true);
-    const handleLoadMore = () => {
-        setPage(page + 1);
-        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
-    };
+    // const [hasMore, setHasMore] = useState(true);
+    // const handleLoadMore = () => {
+    //     setPage(page + 1);
+    //     props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+    // };
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -161,8 +161,8 @@ function OrderPhoneListById(props) {
 
                         <InfiniteScroll
                             dataLength={props.orderPhoneList.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
+                            // next={handleLoadMore}
+                            // hasMore={hasMore}
                             loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
                         >

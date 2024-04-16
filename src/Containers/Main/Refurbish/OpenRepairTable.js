@@ -34,10 +34,10 @@ function OpenRepairTable(props) {
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
-                        {/* <div className=" md:w-[9.8rem] "><FormattedMessage
-                        id="app.completedphn"
-                        defaultMessage="completedphn"
-                      /></div> */}
+                        <div className=" md:w-[9.8rem] "><FormattedMessage
+                            id="app.lead"
+                            defaultMessage="Lead"
+                        /></div>
                         <div className="w-[6.6rem]"></div>
                         <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.notes"
@@ -58,7 +58,7 @@ function OpenRepairTable(props) {
                                 return (
                                     <div>
                                         <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col ">
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[32.8rem] max-xl:w- max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class=" cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -80,13 +80,13 @@ function OpenRepairTable(props) {
                            </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.reason}
+                                                <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.reason}
 
+                                                    </div>
                                                 </div>
                                             </div>
-</div>
 
                                         </div>
                                     </div>

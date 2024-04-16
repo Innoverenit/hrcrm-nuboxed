@@ -45,6 +45,10 @@ function ProductionOrderListById(props) {
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
+                        <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                            id="app.lead"
+                            defaultMessage="Lead"
+                        /></div>
                         <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.status"
                             defaultMessage="status"
@@ -67,7 +71,7 @@ function ProductionOrderListById(props) {
                                         <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col "
 
                                         >
-                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium w-[33.8rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -97,37 +101,37 @@ function ProductionOrderListById(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
+                                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                                        {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
 
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.qcInspectionInd === 0 ?
+                                                            <Button
+                                                                className="w-32"
+                                                                type="primary"
+                                                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQcInspectionButton}
+                                                                onClick={() => {
+                                                                    props.qcInspectionButton({
+                                                                        productionDispatchId: item.productionDispatchId,
+                                                                        orderPhoneId: item.orderPhoneId,
+                                                                        qcInspectionInd: 1
+                                                                    }, item.orderPhoneId, props.userId)
+                                                                }}
+                                                            >
+                                                                Start Inspection
+
+                                                            </Button> : item.qcInspectionInd === 1 ?
+                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcInspectionInd === 0 ?
-                                                        <Button
-                                                            className="w-32"
-                                                            type="primary"
-                                                            loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQcInspectionButton}
-                                                            onClick={() => {
-                                                                props.qcInspectionButton({
-                                                                    productionDispatchId: item.productionDispatchId,
-                                                                    orderPhoneId: item.orderPhoneId,
-                                                                    qcInspectionInd: 1
-                                                                }, item.orderPhoneId, props.userId)
-                                                            }}
-                                                        >
-                                                            Start Inspection
-
-                                                        </Button> : item.qcInspectionInd === 1 ?
-                                                            <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
-
-                                                </div>
-                                            </div>
-                                             </div>
 
                                         </div>
                                     </div>

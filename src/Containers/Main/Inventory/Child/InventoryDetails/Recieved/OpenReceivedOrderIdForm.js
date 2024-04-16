@@ -316,7 +316,7 @@ function OpenReceivedOrderIdForm(props) {
                               </>}
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title={<FormattedMessage
                               id="app.Print"
@@ -327,7 +327,7 @@ function OpenReceivedOrderIdForm(props) {
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                               <ReactToPrint
-                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
                                 content={() => componentRefs.current[index]}
                               />
                             </Tooltip>

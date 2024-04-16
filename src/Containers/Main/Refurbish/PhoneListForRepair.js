@@ -45,11 +45,11 @@ function PhoneListForRepair(props) {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
     }, [])
-    const [hasMore, setHasMore] = useState(true);
-    const handleLoadMore = () => {
-        setPage(page + 1);
-        props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
-    };
+    // const [hasMore, setHasMore] = useState(true);
+    // const handleLoadMore = () => {
+    //     setPage(page + 1);
+    //     props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
+    // };
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -178,8 +178,7 @@ function PhoneListForRepair(props) {
                     </div>
                     <InfiniteScroll
                         dataLength={props.repairPhone.length}
-                        next={handleLoadMore}
-                        hasMore={hasMore}
+
                         loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
                     >

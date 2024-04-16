@@ -52,13 +52,14 @@ function ProductionRepairOrder(props) {
                         <div className=" w-[35.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
-                        /></div>
-                        {/* <div className=" md:w-[9.8rem] "> 
-                        <FormattedMessage
-                        id="app.units"
-                        defaultMessage="Units"
-                      />
-                      </div> */}
+                        />
+                        </div>
+                        <div className=" md:w-[9.8rem] ">
+                            <FormattedMessage
+                                id="app.lead"
+                                defaultMessage="Lead"
+                            />
+                        </div>
                         <div className="w-[5.6rem]"></div>
                         <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.status"
@@ -79,7 +80,7 @@ function ProductionRepairOrder(props) {
                                 return (
                                     <div>
                                         <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col "   >
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[27.9rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -111,38 +112,38 @@ function ProductionRepairOrder(props) {
                                             </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium justify-center w-[31rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.repairInspectionInd === 0 ?
-                                                        <Button
-                                                            style={{ width: "8rem" }}
-                                                            type="primary"
-                                                            loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingRepairInspectionButton}
-                                                            onClick={() => {
-                                                                handleRowData(item);
-                                                                props.repairInspectionButton({
-                                                                    repairInspectionInd: 1,
-                                                                    orderPhoneId: item.orderPhoneId,
-                                                                    productionRepairDispatchId: item.productionRepairDispatchId
-                                                                },
-                                                                    item.orderPhoneId,
+                                                <div className=" flex font-medium justify-center w-[31rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.repairInspectionInd === 0 ?
+                                                            <Button
+                                                                style={{ width: "8rem" }}
+                                                                type="primary"
+                                                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingRepairInspectionButton}
+                                                                onClick={() => {
+                                                                    handleRowData(item);
+                                                                    props.repairInspectionButton({
+                                                                        repairInspectionInd: 1,
+                                                                        orderPhoneId: item.orderPhoneId,
+                                                                        productionRepairDispatchId: item.productionRepairDispatchId
+                                                                    },
+                                                                        item.orderPhoneId,
 
-                                                                    props.userId)
-                                                            }}
-                                                        >Start Repair</Button> :
-                                                        item.repairInspectionInd === 1 ?
-                                                            <Button style={{ width: "8rem" }}
-                                                                onClick={handlePauseResume}>
-                                                                {hide ? "Pause Repair" : "Resume Repair"}</Button> : <div class="text-green-600">Completed</div>}
+                                                                        props.userId)
+                                                                }}
+                                                            >Start Repair</Button> :
+                                                            item.repairInspectionInd === 1 ?
+                                                                <Button style={{ width: "8rem" }}
+                                                                    onClick={handlePauseResume}>
+                                                                    {hide ? "Pause Repair" : "Resume Repair"}</Button> : <div class="text-green-600">Completed</div>}
 
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div className=" flex font-medium  w-[.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.reason}
+                                                <div className=" flex font-medium  w-[.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.reason}
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                         </div>
                                     </div>
