@@ -5,31 +5,31 @@ import { bindActionCreators } from "redux";
 import {addingLocationToggle } from "./LocationAction";
 
 
-function ProductionToggle(props) {
+function BillingToggle(props) {
   
-  const [toggle, setToggle] = React.useState(props.productionInd);
-  console.log(props.productionInd)
+  const [toggle, setToggle] = React.useState(props.billingInd);
+  console.log(props.billingInd)
 
   function handleRefurbishClick(item) {
-    if (props.productionInd) {
+    if (props.billingInd) {
       props.addingLocationToggle({
         locationId: props.locationDetailsId,
-        value: props.productionInd ? false : true,
-        type: "production"
+        value: props.billingInd ? false : true,
+        type: "billing"
          
       },props.orgId);
  
     } else {
       props.addingLocationToggle({
         locationId: props.locationDetailsId,
-        value: props.productionInd ? false : true,
-        type: "production",
+        value: props.billingInd ? false : true,
+        type: "billing",
       },props.orgId);
     }
   }
 
   function handleCancel() {
-    if (props.productionInd) {
+    if (props.billingInd) {
       setToggle(true);
     } else {
       setToggle(false);
@@ -47,11 +47,11 @@ function ProductionToggle(props) {
         >
           <Switch
             className="toggle-clr"
-            checked={props.productionInd || toggle}
+            checked={props.billingInd || toggle}
             isLoading={true}
             style={{
               width: "4em",
-              // backgroundColor: props.productionInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
+              // backgroundColor: props.billingInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
             }}
             checkedChildren="Yes"
             unCheckedChildren="No"
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductionToggle);
+)(BillingToggle);

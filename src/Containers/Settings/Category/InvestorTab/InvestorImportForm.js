@@ -43,6 +43,7 @@ class InvestorImportForm extends Component {
               
               
                 excelId:"",
+                type:"investorCategory"
                
               }}
             //    validationSchema={documentSchema}
@@ -80,12 +81,13 @@ class InvestorImportForm extends Component {
                         width: "45%",
                       }}
                     >
-                      <Field
+                      {/* <Field
                         name="excelId"
                         isRequired
-                        component={ImportTaskUpload}
+                        component={}
                         // component={DocumentUpload}
-                      />
+                      /> */}
+                      <ImportTaskUpload type="investorCategory"/>
                       {errors.documentId && (
                         <p style={{ color: "tomato", fontWeight: 600 }}>
                           {errors.documentId}
@@ -118,13 +120,13 @@ class InvestorImportForm extends Component {
 
                   <Spacer />
                   <FlexContainer justifyContent="flex-end">
-                    <Button
+                    {/* <Button
                       htmlType="submit"
                       type="primary"
                      Loading={this.props.addingInvestorImportForm}
                     >
                       Submit
-                    </Button>
+                    </Button> */}
                   </FlexContainer>
                 </Form>
               )}

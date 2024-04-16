@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateProfileEquipment,getEmployeeEquipmentByUserId } from "../../../ProfileAction";
+import { updateProfileEquipment, getEmployeeEquipmentByUserId } from "../../../ProfileAction";
 import { Switch, Input, Button } from 'antd'; 
 import { getEquipment } from "../../../../Settings/Category/Equipment/EquipmentAction";
 import { MainWrapper } from '../../../../../Components/UI/Layout';
@@ -10,7 +10,7 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 const EquipmentForm = (props) => {
     const [equipmentListData, setEquipmentListData] = useState(props.equipmentListData);
     const [selectedEquipment, setSelectedEquipment] = useState({});
-    const [equipmentValues, setEquipmentValues] = useState({}); 
+    const [equipmentValues, setEquipmentValues] = useState({});
 
     useEffect(() => {
         props.getEquipment();
@@ -20,61 +20,57 @@ const EquipmentForm = (props) => {
     useEffect(() => {
         if (props.equipmentListData.length > 0) {
             setEquipmentListData(props.equipmentListData);
+            // Initialize selectedEquipment and equipmentValues based on localStorage or props.employeeEquipment
+            const initialSelectedEquipment = JSON.parse(localStorage.getItem("selectedEquipment")) || {};
+            const initialEquipmentValues = JSON.parse(localStorage.getItem("equipmentValues")) || {};
+            setSelectedEquipment(initialSelectedEquipment);
+            setEquipmentValues(initialEquipmentValues);
         }
-    }, [props.equipmentListData]);
+    }, [props.equipmentListData, props.employeeEquipment]);
 
     const handleEquipment = (checked, equipmentId) => {
         setSelectedEquipment(prevState => ({
             ...prevState,
             [equipmentId]: checked
         }));
+        // Update localStorage with the new selected equipment
+        localStorage.setItem("selectedEquipment", JSON.stringify({
+            ...selectedEquipment,
+            [equipmentId]: checked
+        }));
     };
 
     const handleInputChange = (equipmentId, value) => {
-        setEquipmentValues(prevState => {
-            const updatedValues = { ...prevState };
-            updatedValues[equipmentId] = value;
-            return updatedValues;
-        });
+        setEquipmentValues(prevState => ({
+            ...prevState,
+            [equipmentId]: value
+        }));
+        // Update localStorage with the new equipment values
+        localStorage.setItem("equipmentValues", JSON.stringify({
+            ...equipmentValues,
+            [equipmentId]: value
+        }));
     };
+    
     const handleSubmit = () => {
         const equipmentDataArray = [];
         Object.keys(selectedEquipment).forEach(equipmentId => {
             if (selectedEquipment[equipmentId]) {
                 const data = {
                     equipmentName: equipmentId,
-                    // equipmentName: equipmentListData.find(equipment => equipment.equipmentId === equipmentId).name,
                     value: equipmentValues[equipmentId] || '', 
                     orgId: props.orgId,
-                    userId:props.userId,
+                    userId: props.userId,
                 };
                 equipmentDataArray.push(data);
             }
         });
-        console.log("Submit data array:", equipmentDataArray); 
-      
-         props.updateProfileEquipment(equipmentDataArray);
+        props.updateProfileEquipment(equipmentDataArray, props.employeeId);
     };
-    
-
-    // const handleSubmit = () => {
-    //     Object.keys(selectedEquipment).forEach(equipmentId => {
-    //         if (selectedEquipment[equipmentId]) {
-    //             const data = {
-    //                 equipmentId: equipmentId,
-    //                 equipmentName: equipmentListData.find(equipment => equipment.equipmentId === equipmentId).name,
-    //                 value: equipmentValues[equipmentId] || '', // Get input value for the selected equipment
-    //                 orgId: props.orgId,
-    //             };
-    //             console.log("Submit data:", data); // Check if data is correct
-    //             props.updateProfileEquipment(data);
-    //         }
-    //     });
-    // };
     
     if (props.fetchingEquipmentEmployee) {
         return <div><BundleLoader/></div>;
-        }
+    }
     return (
         <div>
             <div className="flex flex-nowrap flex-col">
@@ -95,24 +91,24 @@ const EquipmentForm = (props) => {
                                     value={equipmentValues[dept.equipmentId] || ''}
                                     onChange={(e) => handleInputChange(dept.equipmentId, e.target.value)}
                                 />
-                              
                             </div>
                         )}
                     </div>
                 ))}
             </div>
             <div class=" flex justify-end">
-            <Button       type="primary" onClick={handleSubmit}>
-          Submit
-        </Button>
-        </div>
+                <Button type="primary" onClick={handleSubmit}>
+                    Submit
+                </Button>
+            </div>
         </div>
     );
 };
 
-const mapStateToProps = ({ auth, equipment,profile }) => ({
-    fetchingEquipmentEmployee:profile.fetchingEquipmentEmployee,
-    employeeEquipment:profile.employeeEquipment,
+
+const mapStateToProps = ({ auth, equipment, profile }) => ({
+    fetchingEquipmentEmployee: profile.fetchingEquipmentEmployee,
+    employeeEquipment: profile.employeeEquipment,
     equipmentListData: equipment.equipmentListData,
     organizationId: auth.userDetails.organizationId,
     orgId: auth.userDetails.organizationId,

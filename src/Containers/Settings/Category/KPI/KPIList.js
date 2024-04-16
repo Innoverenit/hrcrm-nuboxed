@@ -8,8 +8,10 @@ import { Checkbox, Button, Input } from "antd";
 class KPIList extends Component {
   constructor(props) {
     super(props);
+    // Retrieve checked state from localStorage or initialize an empty object
+    const storedState = JSON.parse(localStorage.getItem("selectedKPIs")) || {};
     this.state = {
-      selectedKPIs: {},
+      selectedKPIs: storedState,
     };
   }
 
@@ -23,21 +25,11 @@ class KPIList extends Component {
           checked: !prevState.selectedKPIs[kpi.performanceManagementId]?.checked,
         },
       },
-    }));
+    }), () => {
+      // Update localStorage after state is updated
+      localStorage.setItem("selectedKPIs", JSON.stringify(this.state.selectedKPIs));
+    });
   };
-
-  // // Function to handle input changes
-  // handleInputChange = (kpiId, value) => {
-  //   this.setState((prevState) => ({
-  //     selectedKPIs: {
-  //       ...prevState.selectedKPIs,
-  //       [kpiId]: {
-  //         ...prevState.selectedKPIs[kpiId],
-  //         value: value,
-  //       },
-  //     },
-  //   }));
-  // };
 
   handleSubmit = () => {
     const { selectedKPIs } = this.state;
@@ -84,7 +76,6 @@ class KPIList extends Component {
                 onChange={() => this.handleCheckboxChange(item)}
               />
               <span className="font-bold ml-2">{item.kpi}</span>
-            
             </div>
           ))}
         </div>

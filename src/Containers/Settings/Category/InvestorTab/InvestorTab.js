@@ -5,6 +5,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import Industry from "../Industry/Industry";
 const InvestorList = lazy(() =>
   import("./InvestorList")
 );
@@ -27,6 +28,8 @@ class InvestorTab extends Component {
     switch (key) {
       case "0":
         return     <InvestorList />;
+        case "1":
+          return     <Industry />;
 
       default:
         return null;
@@ -61,6 +64,24 @@ class InvestorTab extends Component {
                 >
          
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      <Badge
+                count={this.props.industryCount.IndustryCount}
+                overflowCount={999}
+              >
+                      <span class=" ml-1" >
+                   Real Estate
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="1"
+                >
+         
+                </TabPane>
                
              
               </StyledTabs>
@@ -74,8 +95,9 @@ class InvestorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({investorList }) => ({
+const mapStateToProps = ({investorList,industry }) => ({
   investorCount:investorList.investorCount,
+  industryCount:industry.industryCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

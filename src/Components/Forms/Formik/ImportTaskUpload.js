@@ -28,7 +28,7 @@ class ImportTaskUpload extends React.Component {
     let formData = new FormData();
     formData.append("file", file);
     axios
-      .post(`${base_url}/import`, formData, {
+      .post(`${base_url}/import/${this.props.type}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
