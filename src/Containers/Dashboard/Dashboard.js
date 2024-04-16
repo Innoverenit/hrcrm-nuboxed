@@ -98,6 +98,7 @@ class Dashboard extends Component {
     });
   };
   handleMapClick = (event) => {
+    console.log("event",event)
     const geocoder = new window.google.maps.Geocoder();
     const latlng = {
       lat: event.latLng.lat(),
@@ -365,6 +366,7 @@ class Dashboard extends Component {
                  
                     { viewType==="ALL" && this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                     handleMapClick={this.handleMapClick}
+                    selectedCountry={this.state.selectedCountry}
                       />)
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerGoogleMap />)

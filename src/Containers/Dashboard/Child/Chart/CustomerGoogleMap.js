@@ -70,6 +70,7 @@ const CustomerGoogleMap = (props) => {
       }
     ]
   };
+  console.log(props.selectedCountry)
 const{latitude,longitude}=props.address[0]
   const center = {
     lat: parseFloat(latitude),
@@ -109,8 +110,8 @@ const{latitude,longitude}=props.address[0]
         <Marker position={center} />
 
         {/* Marker for selected country */}
-        {selectedCountry && (
-          <Marker position={{ lat: 0, lng: 0 }} label={selectedCountry} />
+        {props.selectedCountry && (
+          <Marker position={{ lat: 0, lng: 0 }} label={props.selectedCountry} />
         )}
       </GoogleMap>
   
