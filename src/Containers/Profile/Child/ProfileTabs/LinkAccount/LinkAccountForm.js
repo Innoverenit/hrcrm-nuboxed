@@ -8,7 +8,10 @@ import { ValidationError, Title, SubTitle } from "../../../../../Components/UI/E
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import styled from "styled-components";
- import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "../../../../Auth/AuthAction";
+ import { verifyUserEmailurL ,
+  validateEmailOtpurL,
+  addEmailLinkSave
+} from "../../../ProfileAction";
 
 class LinkAccountForm extends Component {
   state = {
@@ -18,6 +21,7 @@ class LinkAccountForm extends Component {
     show2: Boolean(),
     show: Boolean(),
     sendOtpClicked: false,
+    isGenerating: false
   };
   handleClick = () =>
     this.setState(({ type, prevState }) => ({
@@ -47,6 +51,11 @@ class LinkAccountForm extends Component {
       this.props.history.push("/home");
     }
   };
+  handleClickChange = () => {
+    this.setState(prevState => ({
+      isGenerating: !prevState.isGenerating
+    }));
+  };
 
   render() {
     return (
@@ -69,6 +78,8 @@ class LinkAccountForm extends Component {
                     initialValues={{
                       emailId: this.props.user.emailId,
                       otp: "",
+                      email2:"",
+                      otp2:"",
                     }}
                     // validationSchema={ChangePasswordSchema}
                     onSubmit={(values) => {
@@ -105,9 +116,9 @@ class LinkAccountForm extends Component {
                                 disabled={!values.emailId.length}
                                 onClick={() => {
                                   // this.setState({ sendOtpClicked: true });
-                                  this.props.verifyEmailurL({
+                                  this.props.verifyUserEmailurL({
                                     emailId: values.emailId,
-                                    otp: 0,
+                                    // otp: 0,
                                   });
                                 }}
                                 class={{
@@ -136,13 +147,13 @@ class LinkAccountForm extends Component {
                               <Button
                                 type="primary"
                                 disabled={!values.otp.length}
-                                // onClick={() => {
-                                //   this.props.validateOtpurL({
-                                //     emailId: values.emailId,
-                                //     otp: values.otp,
-                                //   });
+                                onClick={() => {
+                                  this.props.validateEmailOtpurL({
+                                     emailId: values.emailId,
+                                    otp: values.otp,
+                                  });
 
-                                // }}
+                                }}
                                 style={{
                                   width: "100%",
                                   margin: "7%",
@@ -164,7 +175,7 @@ class LinkAccountForm extends Component {
                           
                                
                                 placeholder="Enter your email2"
-                                name="email"
+                                name="email2"
                                
                                 isColumn
                                 // defaultValue={this.props.user.emailId}
@@ -176,12 +187,12 @@ class LinkAccountForm extends Component {
                             <div className="w-[25%] mt-2" >
                               <Button
                                 type="primary"
-                                disabled={!values.emailId.length}
+                                disabled={!values.email2.length}
                                 onClick={() => {
                                   // this.setState({ sendOtpClicked: true });
-                                  this.props.verifyEmailurL({
-                                    emailId: values.emailId,
-                                    otp: 0,
+                                  this.props.verifyUserEmailurL({
+                                    emailId: values.email2,
+                                    // otp: 0,
                                   });
                                 }}
                                 class={{
@@ -199,7 +210,7 @@ class LinkAccountForm extends Component {
                             <div className="w-[75%]" >
                               <Field
                                 // disabled={!this.state.otp}
-                                name="otp"
+                                name="otp2"
                                 // label="Validate OTP*"
                                 placeholder="Validate OTP"
                                 isColumn
@@ -209,14 +220,15 @@ class LinkAccountForm extends Component {
                             <div className="w-[25%]">
                               <Button
                                 type="primary"
-                                disabled={!values.otp.length}
-                                // onClick={() => {
-                                //   this.props.validateOtpurL({
-                                //     emailId: values.emailId,
-                                //     otp: values.otp,
-                                //   });
+                                disabled={!values.otp2.length}
+                                onClick={() => {
+                                  this.handleClickChange();
+                                  this.props.validateEmailOtpurL({
+                                    emailId: values.email2,
+                                    otp: values.otp2,
+                                  });
 
-                                // }}
+                                }}
                                 style={{
                                   width: "100%",
                                   margin: "7%",
@@ -239,9 +251,16 @@ class LinkAccountForm extends Component {
                             <Button
                               type="primary"
                               htmlType="submit"
-                              loading={this.props.doResetpassword}
+                              // disabled={!values.otp2.length}
+                              disabled={!this.state.isGenerating}
+                              //loading={this.props.doResetpassword}
                               style={{ width: "15.875em", height: "2.5em" }}
-                            // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
+                            onClick={() => 
+                              this.props.addEmailLinkSave({
+                                employeeId:this.props.employeeId,
+                                primaryEmailId:values.emailId,
+                                secondaryEmailId:values.email2,
+                              })}
                             >
                             Submit
                             </Button>
@@ -278,7 +297,11 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      forgotUserPassword, validateOtpurL, verifyEmailurL
+      // forgotUserPassword, 
+      // validateOtpurL, 
+      verifyUserEmailurL,
+      validateEmailOtpurL,
+      addEmailLinkSave
     },
     dispatch
   );
