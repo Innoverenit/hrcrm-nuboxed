@@ -33,11 +33,11 @@ function OpenQcTable(props) {
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
-                        {/* <div className=" md:w-[9.8rem] ">
-    <FormattedMessage
-                        id="app.units"
-                        defaultMessage="Units"
-                      /></div> */}
+                        <div className=" md:w-[9.8rem] ">
+                            <FormattedMessage
+                                id="app.lead"
+                                defaultMessage="Lead"
+                            /></div>
                         <div className="md:w-[6.6rem]"></div>
                         <div className="md:w-[5.8rem]"><FormattedMessage
                             id="app.status"

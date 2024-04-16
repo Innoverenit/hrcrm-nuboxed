@@ -33,23 +33,23 @@ function ReceivedSpareList(props) {
         {
             title: "Category",
             width: "15%",
-            render: (text, item) => {
-                return (
-                    <>
-                        {item.categoryName} {item.subCategoryName}
-                    </>
-                )
-            },
+            // render: (text, item) => {
+            //     return (
+            //         <>
+            //             {item.categoryName} {item.subCategoryName}
+            //         </>
+            //     )
+            // },
         },
         {
             title: "Attribute",
-            render: (text, item) => {
-                return (
-                    <>
-                        {item.attribute} {item.subAttribute}
-                    </>
-                )
-            },
+            // render: (text, item) => {
+            //     return (
+            //         <>
+            //             {item.attribute} {item.subAttribute}
+            //         </>
+            //     )
+            // },
             width: "15%",
         },
         {
@@ -80,26 +80,7 @@ function ReceivedSpareList(props) {
         {
             title: "",
             width: "10%",
-            render: (text, item) => {
-                return (
-                    <>
-                        {!item.spareUseInd &&
-                            <Popconfirm
-                                title="Do you want to delete?"
-                            // onConfirm={() => props.deleteSpareList({
-                            //     userId: props.userId
-                            // }, item.phoneSpareId)}
-                            >
 
-                                <DeleteIcon
-                                    className="text-base cursor-pointer text-[red]"
-                                />
-                            </Popconfirm>
-                        }
-                    </>
-
-                )
-            }
 
         },
 

@@ -137,12 +137,27 @@ function InspectedPhoneByOrder(props) {
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 <Button
                                                     type="primary"
-                                                    style={{ color: show && item.phoneId === data.phoneId ? "black" : "white" }}
-                                                    onClick={() => {
-                                                        handleShow()
-                                                        handleParticularRow()
-                                                    }}>
+                                                // style={{ color: show && item.phoneId === data.phoneId ? "black" : "white" }}
+                                                // onClick={() => {
+                                                //     handleShow()
+                                                //     handleParticularRow()
+                                                // }}
+                                                >
                                                     Receive Spare
+                                                </Button>
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                                <Button
+                                                    type="primary"
+                                                // style={{ color: show && item.phoneId === data.phoneId ? "black" : "white" }}
+                                                // onClick={() => {
+                                                //     handleShow()
+                                                //     handleParticularRow()
+                                                // }}
+                                                >
+                                                    Release Spare
                                                 </Button>
                                             </div>
                                         </div>
