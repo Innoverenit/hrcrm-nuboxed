@@ -467,7 +467,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     priority: priority,
                     complexity: complexity,
 
-                    startDate: `${newStartDate}T${newStartTime}`,
+                    // startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
                     endTime: 0,
@@ -485,7 +485,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     priority: priority,
                     complexity: complexity,
                     ownerIds: userId === userId ? [userId] : [],
-                    startDate: `${newStartDate}T${newStartTime}`,
+                    // startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
                     endTime: 0,
@@ -538,60 +538,50 @@ const [priority,setpriority]=useState(props.selectedTask
                           </div>
                         
                           <div class="flex">
-                            <Tooltip title="High">
-                              <Button
-                              className="w-8 h-8 rounded-[50%]"
-                                type="primary"
-                                 shape="circle"
-                                onClick={() => handleButtonClick("High")}
-                                style={{
-                                  backgroundColor:
-                                    priority === "High"
-                                      ? "red"
-                                      : "white",
-                                      // borderRadius: "50%", 
-                                      // width: "31px", 
-                                      // height: "31px"
-                                }}
-                              />
-                            </Tooltip>
-                            &nbsp;
-                            <Tooltip title="Medium">
-                              <Button
-                                type="primary"
-                                 shape="circle"
-                                 className="w-8 h-8 rounded-[50%]"
-                                onClick={() => handleButtonClick("Medium")}
-                                style={{
-                                  backgroundColor:
-                                    priority === "Medium"
-                                      ? "Orange"
-                                      : "white",
-                                      // borderRadius: "50%", 
-                                      // width: "31px", 
-                                      // height: "31px",
-                                }}
-                              />
-                            </Tooltip>
-                            &nbsp;
-                            <Tooltip title="Low">
-                              <Button
-                                type="primary"
-                                 shape="circle"
-                                 className="w-8 h-8 rounded-[50%]"
-                                onClick={() => handleButtonClick("Low")}
-                                style={{
-                                  backgroundColor:
-                                    priority === "Low"
-                                      ? "teal"
-                                      : "white",
-                                      // borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                      // width: "31px", // Adjust the width as needed
-                                      // height: "31px"
-                                }}
-                              ></Button>
-                            </Tooltip>
-                          </div>
+                       <Tooltip title="High">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("High")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Medium">
+                         <Button
+                           
+                            shape="circle"
+             
+                           onClick={() => handleButtonClick("Medium")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Low">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("Low")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
                         </div>
                    
                  
@@ -841,46 +831,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     </div> */}
                   </div>
     
-                  <div class=" flex justify-between mt-4">
-                    <div class=" w-1/2">
-                      <Field
-                        isRequired
-                        name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
-                        isColumn
-                        component={DatePicker}
-                        value={values.startDate}
-                        inlineLabel
-                        
-                      />
-                    </div>
-                 
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.startTime"
-                            defaultMessage="Start Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                        
-                      />
-                    </div>
-                  </div>
+               
               
 
                
@@ -919,25 +870,6 @@ const [priority,setpriority]=useState(props.selectedTask
                     </div>
                     
                    
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endTime"
-                            defaultMessage="End Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                       
-                      />
-                    </div>
                   </div>
                   <div class=" w-full mt-4">
                         <Field

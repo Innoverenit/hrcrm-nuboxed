@@ -72,6 +72,8 @@ const initialState = {
   addingNotesByLeadsId: false,
   addingNotesByLeadsIdError: false,
 
+  addLeadsNoteDrawerModal:false,
+
 
   fetchingLeadsInputSearchData: false,
   fetchingLeadsInputSearchDataError: false,
@@ -80,6 +82,10 @@ const initialState = {
   fetchingCallList: true,
   fetchingCallListError: true,
   callList:[],
+
+  fetchingNotesListOfLeads: false,
+  fetchingNotesListOfLeadsError: false,
+  notesListOfLeads:[],
 
   addingDocumentByLeadsId: false,
   addingDocumentByLeadsIdError: false,
@@ -1024,6 +1030,26 @@ case types.HANDLE_LEADS_MODAL:
                             fetchingLeadsAllRecords: false,
                             fetchingLeadsAllRecordsError: true,
                           };
+
+                          case types.HANDLE_LEADS_NOTE_DRAWER_MODAL:
+                            return { ...state, addLeadsNoteDrawerModal: action.payload };
+
+
+                            case types.GET_NOTES_LIST_LEADS_REQUEST:
+                              return { ...state, fetchingNotesListOfLeads: true };
+                            case types.GET_NOTES_LIST_LEADS_SUCCESS:
+                              return {
+                                ...state,
+                                fetchingNotesListOfLeads: false,
+                                notesListOfLeads: action.payload,
+                              };
+                            case types.GET_NOTES_LIST_LEADS_FAILURE:
+                              return {
+                                ...state,
+                                fetchingNotesListOfLeads: false,
+                                fetchingNotesListOfLeadsError: true,
+                              };
+                      
 
 default:
 return state;

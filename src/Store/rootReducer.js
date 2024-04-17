@@ -99,6 +99,7 @@ import { developmentReducer } from "../Containers/Settings/Category/DevelopmentT
 import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityReducer";
 import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
+import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -194,6 +195,7 @@ const appReducer = combineReducers({
   quality:qualityReducer,
   equipment:equipmentReducer,
   industry:industryReducer,
+  categoryList:categoryListReducer,
 });
 
 const rootReducer = (state, action) => {

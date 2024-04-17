@@ -9,6 +9,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import FactoryIcon from '@mui/icons-material/Factory';
 import { FormattedMessage } from "react-intl";
 import LOB from "./LOB/LOB";
+import CategoryList from "./CategoryList/CategoryList";
 const Payment = lazy(() =>
   import("./Payment/Payment")
 );
@@ -59,6 +60,8 @@ class CustomerSectorTab extends Component {
               return              <Payment />;
               case "5":
                 return              <LOB />;
+                case "6":
+                  return              <CategoryList />;
       default:
         return null;
     }
@@ -204,6 +207,27 @@ class CustomerSectorTab extends Component {
                     <Payment />
                   </Suspense> */}
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <PaymentIcon />
+            
+                         <span class="font-poppins ml-1 ">
+                         <Badge
+                count={this.props.categoryCount.categoryCount}
+                overflowCount={999}
+              >
+              Category
+                      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+                      </Badge>
+                      </span>
+                     
+                    </>
+                  }
+                  key="6"
+                >
+               
+                </TabPane>
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
                 {this.renderTabContent(activeKey)}
@@ -215,12 +239,13 @@ class CustomerSectorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ sector,lob,source,catgCustomer,payments}) => ({
+const mapStateToProps = ({ sector,lob,categoryList,source,catgCustomer,payments}) => ({
   sectorCount:sector.sectorCount,
   sourceCount:source.sourceCount,
   paymentCount:payments.paymentCount,
   lobCount:lob.lobCount,
   customerCount:catgCustomer.customerCount,
+  categoryCount:categoryList.categoryCount,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

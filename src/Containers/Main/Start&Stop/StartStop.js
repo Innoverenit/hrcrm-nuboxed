@@ -194,6 +194,7 @@ useEffect(()=>{
       {drop1==="On Travel" ?  
      <div class="mt-[0.2rem] ml-3" >
      <input 
+     style={{height:"1rem", border: "0px solid #d9d9d9"}}
         type="date" 
         value={selectedDate} 
         onChange={handleDateChange} 

@@ -265,17 +265,18 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead Info  updated Successfully!',
+       
+        })
         console.log(res);
         dispatch({
           type: types.UPDATE_LEADS_BY_ID_SUCCESS,
           payload: res.data,
         });
       })
-      Swal.fire({
-        icon: 'success',
-        title: 'Lead Info  updated Successfully!',
-     
-      })
+    
       .catch((err) => {
         console.log(err);
         dispatch({
@@ -1481,6 +1482,39 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_LEADS_ALL_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleLeadsNoteDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_NOTE_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const getNotesListOfLeads = (type,id) => (dispatch) => {
+    dispatch({
+      type: types.GET_NOTES_LIST_LEADS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/todo/activity/notes/${type}/${id}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_NOTES_LIST_LEADS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_NOTES_LIST_LEADS_FAILURE,
           payload: err,
         });
       });

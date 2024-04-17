@@ -159,7 +159,7 @@ function UserKpiList(props) {
       <div className="md:w-[9.11rem]">
         <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
       </div>
-      <div className="md:w-[5.51rem]">
+      <div className="md:w-[7.51rem]">
         <FormattedMessage id="app.achieved" defaultMessage=" Total" />
       </div>
       <div className="md:w-[5.01rem]">
@@ -313,7 +313,7 @@ const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2Actu
             <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
             {item.month3CompletedValue && (
             <span>
-             {item.currencyInd && `${item.userCurrency} `}{AchievedTotal/ 10000}k
+             {item.currencyInd && `${item.userCurrency} `}{item.completedValue/ 10000}k
              </span>
               )}
             </div>

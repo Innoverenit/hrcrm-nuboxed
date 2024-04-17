@@ -50,11 +50,13 @@ props. getCrm();
       clearbit,
       setClearbitData,
     } = props;
-
+    const [lob, setLob] = useState([]);
+    const [selectedLob, setSelectedLob] = useState(null);
+    const [touchedLob, setTouchedLob] = useState(false);
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
-
+    const [isLoadingLob, setIsLoadingLob] = useState(false);
     const [source, setSource] = useState([]);
     const [sector, setSector] = useState([]);
     const [touched, setTouched] = useState(false);
@@ -131,6 +133,38 @@ props. getCrm();
       setTouchedSector(true);
     }
   };
+  const fetchLob = async () => {
+    setIsLoadingLob(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/lob/all/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setLob(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingLob(false);
+    }
+  };
+  const handleSelectLobFocus = () => {
+    if (!touchedLob) {
+     
+      fetchLob();
+
+      setTouchedLob(true);
+    }
+  };
+  const handleSelectLob = (value) => {
+    setSelectedLob(value)
+    console.log('Selected user:', value);
+  };
     return (
       <>
         <Formik
@@ -174,6 +208,10 @@ props. getCrm();
                 ...values,
                 companyName: "",
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                source: selectedSource,
+                lob:selectedLob,
+               
+                sectorId: selectedSector,
               },
               props.userId,
             );
@@ -388,23 +426,8 @@ props. getCrm();
                   </div>
                          
                  
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-               
-                      {/* <FastField
-                        name="sectorId"
-                        isColumnWithoutNoCreate
-                        selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
-                        isColumn
-                        component={SearchSelect}
-                        value={values.sectorId}
-                      /> */}
 
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
 
@@ -446,6 +469,28 @@ props. getCrm();
       </Select>
                         </div>
                     </div>
+                    <div class=" flex justify-between mt-3 max-sm:flex-col">
+                    <div class=" w-w47.5 max-sm:w-wk">
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select LOB"
+        optionFilterProp="children"
+        loading={isLoadingLob}
+        onFocus={handleSelectLobFocus}
+        onChange={handleSelectLob}
+      >
+        {lob.map(item => (
+          <Option key={item.name} value={item.lobDetsilsId}>
+            {item.name}
+          </Option>
+        ))}
+      </Select>
+                    </div>
+                  
+                  </div>
                
                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
@@ -475,8 +520,8 @@ props. getCrm();
                         // label="URL"
                         label={
                           <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
+                            id="app.registration"
+                            defaultMessage="Registration"
                           />
                         }
                         isColumn
@@ -642,13 +687,15 @@ props. getCrm();
     );
 }
 
-const mapStateToProps = ({ auth, leads }) => ({
+const mapStateToProps = ({ auth, leads,lob }) => ({
   addingLeads: leads.addingLeads,
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
    clearbit: leads.clearbit,
   user: auth.userDetails,
+  lobListData: lob.lobListData,
   organizationId: auth.userDetails.organizationId,
+  orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
   token: auth.token,

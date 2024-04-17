@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button, Select} from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -20,6 +20,7 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react'
+const { Option } = Select; 
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -36,12 +37,22 @@ function UpdateLeadsForm (props) {
   const handleReset = (resetForm) => {
     resetForm();
   };
-  useEffect (()=>{
+  useEffect(() => {
     props.getAllCustomerEmployeelist();
-    props.getSources(props.orgId)
-    props. getCrm();
-    // props.getDialCode();
-  },[])
+    props.getSources(props.orgId);
+    props.getCrm();
+    fetchSector();
+    if (props.setEditingLeads.source) {
+      setSelectedSource(props.setEditingLeads.source);
+    }
+    if (props.setEditingLeads.sector) {
+      setSelectedSector(props.setEditingLeads.sector);
+    }
+    if (props.setEditingLeads.lob) {
+      setSelectedSource(props.setEditingLeads.lob);
+    }
+  }, []);
+
  
 
 
@@ -61,12 +72,119 @@ function UpdateLeadsForm (props) {
         value: item.sourceId,
       };
     });
-
+    
+    const [lob, setLob] = useState([]);
+    const [selectedLob, setSelectedLob] = useState(null);
+    const [touchedLob, setTouchedLob] = useState(false);
+    const [isLoadingLob, setIsLoadingLob] = useState(false);
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
+    const [source, setSource] = useState([]);
+    const [sector, setSector] = useState([]);
+    const [touched, setTouched] = useState(false);
+  const [touchedSector, setTouchedSector] = useState(false);
+    const [selectedSector, setSelectedSector] = useState(null);
+    const [selectedSource, setSelectedSource] = useState(null);
+    const [isLoadingSector, setIsLoadingSector] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const fetchSource = async () => {
+      setIsLoading(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSource(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     
-    
+  const handleSelectChange = (value) => {
+    setSelectedSource(value)
+    console.log('Selected user:', value);
+  };
+    const handleSelectFocus = () => {
+      if (!touched) {
+        fetchSource();
+        // fetchSector();
+  
+        setTouched(true);
+      }
+    };
+    const fetchSector = async () => {
+      setIsLoadingSector(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setSector(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoadingSector(false);
+      }
+    };
+    const handleSelectSector = (value) => {
+      setSelectedSector(value)
+      console.log('Selected user:', value);
+    };
+    const handleSelectSectorFocus = () => {
+      if (!touchedSector) {
+       
+        fetchSector();
+  
+        setTouchedSector(true);
+      }
+    };
+    const fetchLob = async () => {
+      setIsLoadingLob(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/lob/all/${props.orgId}`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setLob(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoadingLob(false);
+      }
+    };
+    const handleSelectLobFocus = () => {
+      if (!touchedLob) {
+       
+        fetchLob();
+  
+        setTouchedLob(true);
+      }
+    };
+    const handleSelectLob = (value) => {
+      setSelectedLob(value)
+      console.log('Selected user:', value);
+    };
     return (
       <>
         <Formik
@@ -74,7 +192,7 @@ function UpdateLeadsForm (props) {
           initialValues={{
             companyName: props.setEditingLeads.companyName || "",
             url: props.setEditingLeads.url || "",
-            sectorId: props.setEditingLeads.sectorId  ,
+            sectorId: props.setEditingLeads.sector  ,
             vatNo:props.setEditingLeads.vatNo  ,
             email: props.setEditingLeads.email || "",
             country:props.setEditingLeads.country || "",
@@ -112,6 +230,9 @@ function UpdateLeadsForm (props) {
               {
                 ...values,
                 leadsId: props.leadsId,
+                source: selectedSource,
+                lob:selectedLob,
+                sectorId: selectedSector,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
               },
               props.leadsId,
@@ -297,49 +418,74 @@ function UpdateLeadsForm (props) {
                   
                   
                   <div class=" flex justify-between mt-3">
-                   <div class=" w-1/2 max-sm:w-wk">
-                      <FastField
-                        name="sectorId"
-                        isColumnWithoutNoCreate
-                        selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
-                        isColumn
-                        component={SearchSelect}
-                      />
+                  <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select sector"
+        optionFilterProp="children"
+        loading={isLoadingSector}
+        value={selectedSector}
+        onFocus={handleSelectSectorFocus}
+        onChange={handleSelectSector}
+      >
+        {sector.map(sectors => (
+          <Option key={sectors.sectorId} value={sectors.sectorId}>
+            {sectors.sectorName}
+          </Option>
+        ))}
+      </Select>
                     </div>
-                    <div class=" w-2/5">
-                    <Field
-                          name="source"
-                          isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.source"
-                              defaultMessage="Source"
-                            />
-                          }
-                          component={SelectComponent}
-                          options={
-                            Array.isArray(SourceOptions)
-                              ? SourceOptions
-                              : []
-                          }
-                          value={values.source}
-                          isColumn
-                          margintop={"0"}
-                          inlineLabel
-                        />
+                    <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select source"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+        value={selectedSource}
+      >
+        {source.map(sources => (
+          <Option key={sources.sourceId} value={sources.sourceId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
            </div>
                 </div>
               
-                   
+                <div class=" flex justify-between mt-3 max-sm:flex-col">
+                    <div class=" w-w47.5 max-sm:w-wk">
+                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select LOB"
+        optionFilterProp="children"
+        loading={isLoadingLob}
+        value={selectedLob}
+        onFocus={handleSelectLobFocus}
+        onChange={handleSelectLob}
+      >
+        {lob.map(item => (
+          <Option key={item.name} value={item.lobDetsilsId}>
+            {item.name}
+          </Option>
+        ))}
+      </Select>
+                    </div>
+                  
+                  </div> 
           
                 <div class=" flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-1/2 max-sm:w-wk">
+                <div class=" w-w47.5 max-sm:w-wk">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="vatNo"
@@ -358,7 +504,7 @@ function UpdateLeadsForm (props) {
                         />
                         </div>
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class="w-w47.5">
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                       <Field
                         name="businessRegistration"
@@ -366,8 +512,8 @@ function UpdateLeadsForm (props) {
                         // label="URL"
                         label={
                           <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
+                            id="app.registration"
+                            defaultMessage="Registration"
                           />
                         }
                         isColumn
@@ -508,11 +654,13 @@ const mapStateToProps = ({ auth, leads,employee,source, }) => ({
     sources: source.sources,
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
+    organizationId: auth.userDetails.organizationId,
     employees: employee.employees,
     leadsAllData:leads.leadsAllData,
     fullName: auth.userDetails.fullName,
     allCustomerEmployeeList:employee.allCustomerEmployeeList,
     crmAllData:leads.crmAllData,
+    token: auth.token,
 
 });
 
