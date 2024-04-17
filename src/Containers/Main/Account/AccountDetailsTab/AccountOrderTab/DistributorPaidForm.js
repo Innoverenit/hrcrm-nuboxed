@@ -124,7 +124,8 @@ function DistributorPaidForm(props) {
 
                   </div>
                 </div>
-                <div class="w-full">
+                <div class="flex justify-between">
+                <div class="w-[47.5%]">
                   <Field
                     name="remarks"
                     label={
@@ -133,7 +134,22 @@ function DistributorPaidForm(props) {
                         defaultMessage="Reason"
                       />}
                     component={TextareaComponent}
+                     style={{height:"9rem"}}
                   />
+                </div>
+                <div class="w-[47.5%] mt-4">
+                  <Field
+                    name="docId"
+                    label={
+                      <FormattedMessage
+                        id="app.documentId"
+                        defaultMessage="Document Id"
+                      />
+                    }
+                    isRequired
+                    component={DragableUpload}
+                  />
+                </div>
                 </div>
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
@@ -173,7 +189,7 @@ function DistributorPaidForm(props) {
                     />
                   </div>
                 </div>
-                <div class="w-full">
+                {/* <div class="w-full">
                   <Field
                     name="docId"
                     label={
@@ -185,7 +201,7 @@ function DistributorPaidForm(props) {
                     isRequired
                     component={DragableUpload}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
 
