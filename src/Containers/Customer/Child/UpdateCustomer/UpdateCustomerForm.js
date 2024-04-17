@@ -175,6 +175,8 @@ function UpdateCustomerForm (props) {
                 ...values,
                 customerId: props.customerId,
                 currencyId:selectedCurrency,
+                // source: selectedSource,
+                // sectorId: selectedSector,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
                 
               },
@@ -316,6 +318,7 @@ function UpdateCustomerForm (props) {
                     </div>
                     <div class=" w-w47.5">
                     <FastField
+
                           name="source"
                           isColumnWithoutNoCreate
                           label={

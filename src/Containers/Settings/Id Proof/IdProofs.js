@@ -35,10 +35,10 @@ const IdProofs = (props) => {
       props.getIdProofCount(props.orgId) 
   }, [])
 
-  const editRegion = (IdProofTypeId, name) => {
+  const editRegion = (idProofTypeId, name) => {
     console.log(name)
     console.log(name)
-      setEditingId(IdProofTypeId);
+      setEditingId(idProofTypeId);
       setIdProofName(name);
   };
 
@@ -52,11 +52,11 @@ const IdProofs = (props) => {
   const handleUpdateIdProof=(region)=>{
       console.log(region)
       let data={
-        IdProofTypeId:region.IdProofTypeId,
-        IdProofType:newIdProofName
+        idProofTypeId:region.idProofTypeId,
+        idProofType:newIdProofName
        
       }
-props.updateIdProofs(data,region.IdProofTypeId)
+props.updateIdProofs(data,region.idProofTypeId)
 setEditingId(null);
   }
 
@@ -72,7 +72,7 @@ setEditingId(null);
       //     setAddingRegion(false);
       // }
       let data={
-        IdProofType:newIdProofName,
+        idProofType:newIdProofName,
         orgId:props.orgId,
       }
       props.addIdProofs(data,props.orgId)
@@ -163,11 +163,11 @@ return <div><BundleLoader/></div>;
           <div class=" flex flex-col" >
          
          <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingIdProofs && idProofs.length === 0 ? <NodataFoundPage /> : idProofs.slice().sort((a, b) => a.IdProofType.localeCompare(b.IdProofType)).map((region, index) => (
-            <div className="card9" key={region.IdProofTypeId}>
+          {!props.fetchingIdProofs && idProofs.length === 0 ? <NodataFoundPage /> : idProofs.slice().sort((a, b) => a.idProofType.localeCompare(b.idProofType)).map((region, index) => (
+            <div className="card9" key={region.idProofTypeId}>
             {/* Region name display or input field */}
             
-            {editingId === region.IdProofTypeId ? (
+            {editingId === region.idProofTypeId ? (
                 <input
                 placeholder="Update Identity"
                 style={{border:"2px solid black"}}
@@ -176,7 +176,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setIdProofName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.IdProofType}&nbsp;&nbsp;&nbsp;
+                <div className="region">{region.idProofType}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -186,7 +186,7 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div className="actions">
                 {/* Edit button */}
-                {editingId === region.IdProofTypeId ? (
+                {editingId === region.idProofTypeId ? (
                     <div>
                         <button onClick={() => handleUpdateIdProof(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
@@ -194,7 +194,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.IdProofTypeId, region.IdProofType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.idProofTypeId, region.idProofType)} />
                     ) : null}
                     </>
                 )}
@@ -204,7 +204,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeIdProof(region.IdProofTypeId,props.orgId)}
+                        onConfirm={() =>  props.removeIdProof(region.idProofTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
                   style={{
@@ -212,7 +212,7 @@ return <div><BundleLoader/></div>;
                     color: "red",
                   }}
               // onClick={() => 
-              //     props.removeServiceLine(item.IdProofTypeId)
+              //     props.removeServiceLine(item.idProofTypeId)
               //  }
                  />
                  </Popconfirm>

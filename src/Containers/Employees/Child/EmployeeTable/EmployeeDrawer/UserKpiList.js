@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo,useRef, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  Select, Tooltip } from "antd"
+import {  Select, Tooltip,Progress } from "antd"
 import { Tabs } from 'antd';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
  import {getUserKpiList,updateActualValue} from "../../../EmployeeAction"
@@ -182,7 +182,8 @@ function UserKpiList(props) {
     const AssignedTotal = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue) ;
     const AchievedTotal = Math.floor(item.month1CompletedValue + item.month2CompletedValue +item.month3CompletedValue) ;
 const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2ActualCompletedValue +item.month3ActualCompletedValue) ;
-    // + item.month1CompletedValue + item.month2CompletedValue + item.month3CompletedValue + item.month1ActualCompletedValue + item.month2ActualCompletedValue + item.month3ActualCompletedValue );
+const actualPercentage = AssignedTotal !== 0 ? Math.floor((ActualTotal / AssignedTotal) * 100) : 0;
+const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue / AssignedTotal) * 100) : 0;
      return (
      <>
       <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
@@ -320,6 +321,25 @@ const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2Actu
           </>
         </div>
       </div>
+      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+         {/* <Tooltip title={item.oppStage}> */}
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={acivedPercentage}
+//disable={true}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+{/* </Tooltip> */}
+      
+         </div>
+       </div>
       <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
         <div className="text-sm text-cardBody font-poppins">
         {editContactId === item.userKpiLinkId ? (
@@ -420,6 +440,25 @@ const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2Actu
           </>
         </div>
       </div>
+      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+         {/* <Tooltip title={item.oppStage}> */}
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={actualPercentage}
+//disable={true}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+{/* </Tooltip> */}
+      
+         </div>
+       </div>
 <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
            
            <div class="text-sm text-cardBody font-poppins">

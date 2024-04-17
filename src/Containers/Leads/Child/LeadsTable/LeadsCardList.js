@@ -724,12 +724,12 @@ const LeadsCardList = (props) => {
                   
                   null
                 ) : (
-                          <MultiAvatar
-                          // style={{color:"rgb(148, 179, 228)"}}
-                            primaryTitle={item.assignedTo}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
+                  <MultiAvatar
+                  style={{ backgroundColor: "rgb(148, 179, 228)", color: "#fff" }} 
+                  primaryTitle={item.assignedTo}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+              />
                         )}
                         </>
               )}
