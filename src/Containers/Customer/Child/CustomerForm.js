@@ -384,6 +384,9 @@ console.log(selectedSource)
             {
               ...values,
               category: checked ? "Both" : whiteblue ? "White" : "Blue",
+              currencyId:selectedCurrency,
+              source: selectedSource,
+              sectorId: selectedSector,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
               // assignedTo:selectedOption?selectedOption:userId,
             },
