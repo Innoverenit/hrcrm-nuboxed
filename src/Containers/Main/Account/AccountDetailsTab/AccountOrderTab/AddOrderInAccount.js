@@ -160,6 +160,31 @@ function AddOrderInAccount(props) {
 
                             </div>
                             <div class=" w-[47%]">
+                            <div class="justify-between flex mt-3">
+                                <div class="w-[45%]">
+                                        <Field
+                                            label="Contact"
+                                            name="contactPersonId"
+                                            placeholder="Value"
+                                            component={SelectComponent}
+                                            options={Array.isArray(contactOption) ? contactOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="Units"
+                                            name="totalPhoneCount"
+                                            component={InputComponent}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    
+                                </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
@@ -187,54 +212,7 @@ function AddOrderInAccount(props) {
                                                 isColumn
                                             />
                                         </div>}
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="LOB"
-                                            name="lobDetsilsId"
-                                            component={SelectComponent}
-                                            options={Array.isArray(lobOption) ? lobOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <label>Required bulk QR code</label>
-                                        <Switch
-                                            onChange={handleBulkQr}
-                                            checked={bulkQr}
-                                            checkedChildren="Yes"
-                                            unCheckedChildren="No" />
-                                    </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="Units"
-                                            name="totalPhoneCount"
-                                            component={InputComponent}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="Contact"
-                                            name="contactPersonId"
-                                            placeholder="Value"
-                                            component={SelectComponent}
-                                            options={Array.isArray(contactOption) ? contactOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
+                                        <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
                                             name="advancePayment"
@@ -244,63 +222,9 @@ function AddOrderInAccount(props) {
                                             component={InputComponent}
                                         />
                                     </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="orderCurrencyId"
-                                            label="Currency"
-                                            isColumn
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={Array.isArray(currencyOption) ? currencyOption : []}
-                                        />
-                                    </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="availabilityDate"
-                                            label="Pickup Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-
-                                            disabledDate={disabledDate}
-                                            component={DatePicker}
-                                            value={values.availabilityDate}
-
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="deliveryDate"
-                                            label="Delivery Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            disable={!values.availabilityDate}
-                                            component={DatePicker}
-                                            disabledDate={(currentDate) => {
-                                                if (values.availabilityDate) {
-                                                    if (
-                                                        dayjs(currentDate).isBefore(
-                                                            dayjs(values.availabilityDate)
-                                                        )
-                                                    ) {
-                                                        return true;
-                                                    } else {
-                                                        return false;
-                                                    }
-                                                }
-                                            }}
-                                            value={values.deliveryDate}
-
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div class=" mt-3 flex justify-between">
-                                    <div class="w-[46%]  ml-8 mt-2">
+                                <div class="w-[46%]  ml-8 mt-2">
                                         <StyledLabel><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
@@ -372,6 +296,85 @@ function AddOrderInAccount(props) {
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="LOB"
+                                            name="lobDetsilsId"
+                                            component={SelectComponent}
+                                            options={Array.isArray(lobOption) ? lobOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    </div>
+                                    <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="availabilityDate"
+                                            label="Pickup Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+
+                                            disabledDate={disabledDate}
+                                            component={DatePicker}
+                                            value={values.availabilityDate}
+
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="deliveryDate"
+                                            label="Delivery Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+                                            disable={!values.availabilityDate}
+                                            component={DatePicker}
+                                            disabledDate={(currentDate) => {
+                                                if (values.availabilityDate) {
+                                                    if (
+                                                        dayjs(currentDate).isBefore(
+                                                            dayjs(values.availabilityDate)
+                                                        )
+                                                    ) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            }}
+                                            value={values.deliveryDate}
+
+                                        />
+                                    </div>
+
+                                </div>
+                            <div class="justify-between flex mt-3">
+                                    
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="orderCurrencyId"
+                                            label="Currency"
+                                            isColumn
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(currencyOption) ? currencyOption : []}
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <label>Required bulk QR code</label>
+                                        <Switch
+                                            onChange={handleBulkQr}
+                                            checked={bulkQr}
+                                            checkedChildren="Yes"
+                                            unCheckedChildren="No" />
+                                    </div>
+                                </div>
+
+                                <div class=" mt-3 flex justify-between">
+                                   
                                     <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"

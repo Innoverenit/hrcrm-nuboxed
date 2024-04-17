@@ -752,9 +752,11 @@ function CallForm(props) {
                           /> }
                         isColumn
                         options={[
-                          "Zoom Call",
-                          "Whatsapp call",
+                          "Phone",
+                          "Zoom ",
+                          "Whatsapp ",
                           "Google Meet",
+                          "Teams",
                           "Others",
                         ]}
                         component={SelectComponent}

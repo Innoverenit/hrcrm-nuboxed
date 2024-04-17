@@ -16,10 +16,12 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { addDistributor, setClearbitData } from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { getCurrency } from "../../Auth/AuthAction";
+import { getCurrency,getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
 import { FormattedMessage } from "react-intl";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
+import AddressFieldArray2 from "../../../Components/Forms/Formik/AddressFieldArray2";
+import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -48,6 +50,8 @@ const AddAccountForm = ({
   getAllCustomerEmployeelist,
   getCustomer,
   getCurrency,
+  getCategory,
+  category
 }) => {
 
   useEffect(() => {
@@ -55,9 +59,15 @@ const AddAccountForm = ({
     getAllCustomerEmployeelist();
     getCustomer(orgId);
     getCurrency();
+    getCategory(orgId);
 
   }, []);
 
+  const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
+
+  const handleToggleChange = () => {
+    setBillingSameAsCommunication(!billingSameAsCommunication);
+  };
 
   const CountryOptions = countries.map((item) => {
     return {
@@ -79,6 +89,15 @@ const AddAccountForm = ({
       value: item.currency_name,
     };
   });
+
+  const categoryOption = category.map((item) => {
+    return {
+      label: item.currency_name || "",
+      value: item.currency_name,
+    };
+  });
+
+
   console.log(countryDialCode1)
 
   const [defaultOption, setDefaultOption] = useState(fullName);
@@ -393,6 +412,21 @@ const AddAccountForm = ({
                       isColumn
                     />
                   </div>
+                  <div class="w-w47.5">
+                    <Field
+                      name="category"
+                      label="Category"
+                      isColumn
+                      placeholder="Select"
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(categoryOption)
+                          ? categoryOption
+                          : []
+                      }
+
+                    />
+                  </div>
                   {values.payment === "Custom" && <div class="w-w47.5">
                     <FastField
                       label={
@@ -483,10 +517,7 @@ const AddAccountForm = ({
                   </Listbox>
                 </div>
                 <div class="mt-4">
-                  <StyledLabel > <FormattedMessage
-                    id="app.billingaddress"
-                    defaultMessage="billingaddress"
-                  /></StyledLabel>
+                  <StyledLabel >Billing Address</StyledLabel>
                 </div>
                 <div>
                   <FieldArray
@@ -500,6 +531,33 @@ const AddAccountForm = ({
                     )}
                   />
                 </div>
+                {/* <div class="flex items-center">
+        <div>Billing Address Same as Communication Address</div>
+        <label className="toggle mt-1 ml-2">
+          <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      {!billingSameAsCommunication && (
+        <div class="flex flex-col">
+                <div class="mt-4">
+                  <StyledLabel > Billing Address</StyledLabel>
+                </div>
+                 
+                <div>
+                  <FieldArray
+                    name="pickUpAddress"
+                    render={(arrayHelpers) => (
+                      <AddressFieldArray4
+                        singleAddress
+                        arrayHelpers={arrayHelpers}
+                        values={values}
+                      />
+                    )}
+                  />
+                </div>
+                </div>
+                )} */}
                 <div class="mt-4">
                   <Field
                     name="description"
@@ -551,6 +609,7 @@ const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, 
   countries: auth.countries,
   clearbit: distributor.clearbit,
   currencies: auth.currencies,
+  category:auth.category,
   country: countrys.country,
   countryDialCode1: auth.userDetails.countryDialCode1,
   addingDistributor: distributor.addingDistributor,
@@ -565,6 +624,7 @@ const mapDispatchToProps = (dispatch) =>
       getCustomer,
       getAllCustomerEmployeelist,
       getCurrency,
+      getCategory
     },
     dispatch
   );
