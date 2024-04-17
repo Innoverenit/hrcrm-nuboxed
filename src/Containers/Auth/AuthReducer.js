@@ -27,6 +27,10 @@ const initialState = {
   fetchingInvestorCurrencyError: false,
   investorCurrencies:[],
 
+  fetchingCategory: false,
+  fetchingCategoryError: false,
+  category:[],
+
   addDrawerActionModal: false,
 
   addingOrganization: false,
@@ -236,6 +240,17 @@ export const authReducer = (state = initialState, action) => {
         fetchingCurrency: false,
         fetchingCurrencyError: true,
       };
+
+      case types.GET_CATEGORY_REQUEST:
+        return { ...state, fetchingCategory: true };
+      case types.GET_CATEGORY_SUCCESS:
+        return { ...state, fetchingCategory: false, category: action.payload };
+      case types.GET_CATEGORY_FAILURE:
+        return {
+          ...state,
+          fetchingCategory: false,
+          fetchingCategoryError: true,
+        };
 
     case types.GET_SALE_CURRENCY_REQUEST:
       return { ...state, fetchingSaleCurrency: true };

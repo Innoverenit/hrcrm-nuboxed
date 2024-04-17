@@ -422,7 +422,7 @@ function CustomerCardList(props) {
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                          {`${item.currency} ${item.totalProposalValue}`}
+                          {`${item.userCurrency} ${item.totalProposalValue}`}
 
                         </div>
                       </div>

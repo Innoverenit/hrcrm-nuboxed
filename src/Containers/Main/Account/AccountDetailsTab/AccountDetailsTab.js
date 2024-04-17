@@ -19,6 +19,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
 import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
+import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -269,7 +270,24 @@ function AccountDetailsTab(props) {
                         </Suspense>
                     </TabPane>
 
-
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Sales Map</span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="7"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <SalesMapTable
+                               
+                            />
+                        </Suspense>
+                    </TabPane>
                 </StyledTabs>
             </TabsWrapper>
             <AddDistributorDocumentModal
