@@ -8,7 +8,7 @@ import { InboxOutlined } from "@ant-design/icons";
 const { Dragger } = Upload;
 const token = sessionStorage.getItem("token");
 
-class ImportTaskUpload extends React.Component {
+class CategoryImportUpload extends React.Component {
   state = {
     previewVisible: false,
     previewImage: "",
@@ -28,7 +28,7 @@ class ImportTaskUpload extends React.Component {
     let formData = new FormData();
     formData.append("file", file);
     axios
-      .post(`${base_url}/import`, formData, {
+      .post(`${base_url}/import/${this.props.type}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -87,4 +87,4 @@ class ImportTaskUpload extends React.Component {
   }
 }
 
-export default ImportTaskUpload;
+export default CategoryImportUpload;
