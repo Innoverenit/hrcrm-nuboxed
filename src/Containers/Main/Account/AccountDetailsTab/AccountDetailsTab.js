@@ -20,6 +20,7 @@ import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
 import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
+import SummaryTable from "./SummaryTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -288,6 +289,26 @@ function AccountDetailsTab(props) {
                             />
                         </Suspense>
                     </TabPane>
+
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Summery</span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="8"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <SummaryTable
+                               
+                            />
+                        </Suspense>
+                    </TabPane>
+
                 </StyledTabs>
             </TabsWrapper>
             <AddDistributorDocumentModal

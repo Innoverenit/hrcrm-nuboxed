@@ -122,10 +122,13 @@ const AccountOrderTable = (props) => {
                                 defaultMessage="Order No#"
                             />
                         </div>
+                        <div className=" md:w-[8.1rem]">
+                            LOB
+                        </div>
                         <div className=" md:w-[5rem]">
                             <FormattedMessage
-                                id="app.created"
-                                defaultMessage="Created"
+                                id="app.owner"
+                                defaultMessage="Owner"
                             />
                         </div>
 
@@ -139,8 +142,8 @@ const AccountOrderTable = (props) => {
                         </div>
                         <div className="md:w-[6rem]">
                             <FormattedMessage
-                                id="app.expectedprice"
-                                defaultMessage="Expected Price"
+                                id="app.quoted"
+                                defaultMessage="Quoted"
                             />
                         </div>
                         <div className="md:w-[5rem]">
@@ -175,6 +178,7 @@ const AccountOrderTable = (props) => {
                                 defaultMessage="Lead"
                             />
                         </div>
+                       
                         <div className=" md:w-[8rem]">
                             <FormattedMessage
                                 id="app.repair"
