@@ -7,6 +7,7 @@ import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import { Spacer,  } from "../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../Components/UI/Layout";
 import ImportTaskUpload from "../../../../Components/Forms/Formik/ImportTaskUpload";
+import CategoryImportUpload from "../../../../Components/Forms/Formik/CategoryImportUpload";
 const ButtonGroup = Button.Group;
 
 const { Option } = Select;
@@ -87,7 +88,7 @@ class InvestorImportForm extends Component {
                         component={}
                         // component={DocumentUpload}
                       /> */}
-                      <ImportTaskUpload type="investorCategory"/>
+                      <CategoryImportUpload type="investorCategory"/>
                       {errors.documentId && (
                         <p style={{ color: "tomato", fontWeight: 600 }}>
                           {errors.documentId}
