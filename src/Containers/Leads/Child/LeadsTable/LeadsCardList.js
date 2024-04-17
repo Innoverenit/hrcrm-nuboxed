@@ -502,6 +502,7 @@ const LeadsCardList = (props) => {
         <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
         <div className=" w-[5.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
         <div className= " w-[8.8rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
+        <div className= " w-[8.8rem] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
         <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
         <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
         <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
@@ -704,6 +705,12 @@ const LeadsCardList = (props) => {
              {item.source}
            </div>
          </div>
+         <div className=" flex font-medium flex-col  w-[0.5rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem]">
+           
+           <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+             {item.lob}
+           </div>
+         </div>
                 </div>
                 <div class="flex md:items-center ">
                   <div className=" flex font-medium flex-col w-[7rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
@@ -718,6 +725,7 @@ const LeadsCardList = (props) => {
                   null
                 ) : (
                           <MultiAvatar
+                          // style={{color:"rgb(148, 179, 228)"}}
                             primaryTitle={item.assignedTo}
                             imgWidth={"1.8rem"}
                             imgHeight={"1.8rem"}
@@ -734,6 +742,7 @@ const LeadsCardList = (props) => {
                 <div class="max-sm:flex justify-end">
                 <Tooltip title={item.assignedBy}>
               <MultiAvatar
+              
                 primaryTitle={item.assignedBy}
                 // imageId={item.ownerImageId}
                 imgWidth={"1.9rem"}

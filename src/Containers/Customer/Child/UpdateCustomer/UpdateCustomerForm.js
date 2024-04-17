@@ -2,7 +2,7 @@ import React, {useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button} from "antd";
+import { Button,Select} from "antd";
 import {getCustomer} from "../../../Settings/Category/Customer/CustomerAction"
 import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitImage";
@@ -17,7 +17,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { Listbox, } from '@headlessui/react'
 import { getCrm} from "../../../Leads/LeadsAction";
 import {getCurrency} from "../../../Auth/AuthAction";
-
+const { Option } = Select; 
 //yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const UpdateCustomerSchema = Yup.object().shape({
@@ -32,6 +32,9 @@ function UpdateCustomerForm (props) {
     props.getCrm();
     props.getCustomer(props.orgId); 
     props.getCurrency();
+    if (props.setEditingCustomer.currency) {
+      setSelectedCurrency(props.setEditingCustomer.currency);
+    }
   }, []);
 
 
@@ -49,7 +52,10 @@ function UpdateCustomerForm (props) {
       userId
     } = props;
 
- 
+    const [currency, setCurrency] = useState([]);
+    const [touchedCurrency, setTouchedCurrency] = useState(false);
+    const [selectedCurrency, setSelectedCurrency] = useState(null);
+    const [isLoadingCurrency, setIsLoadingCurrency] = useState(false);
     const [defaultOption, setDefaultOption] = useState(setEditingCustomer.assignedTo);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
@@ -92,6 +98,38 @@ function UpdateCustomerForm (props) {
         value: item.customerTypeId,
       };
     });
+    const fetchCurrency = async () => {
+      setIsLoadingCurrency(true);
+      try {
+        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies/sales`;
+        const response = await fetch(apiEndpoint,{
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${props.token}`,
+            'Content-Type': 'application/json',
+            // Add any other headers if needed
+          },
+        });
+        const data = await response.json();
+        setCurrency(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setIsLoadingCurrency(false);
+      }
+    };
+    const handleSelectCurrency = (value) => {
+      setSelectedCurrency(value)
+      console.log('Selected user:', value);
+    };
+    const handleSelectCurrencyFocus = () => {
+      if (!touchedCurrency) {
+       
+        fetchCurrency();
+  
+        setTouchedCurrency(true);
+      }
+    };
     
     return (
       <>
@@ -136,6 +174,7 @@ function UpdateCustomerForm (props) {
               {
                 ...values,
                 customerId: props.customerId,
+                currencyId:selectedCurrency,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
                 
               },
@@ -224,7 +263,7 @@ function UpdateCustomerForm (props) {
                     component={InputComponent}
                     inlineLabel
                     /> */}
-                   <div class=" flex justify-between mt-3">
+                   <div class=" flex justify-between mt-2">
                    <div class=" w-3/12 max-sm:w-[31%]">
                       <FastField
                         name="countryDialCode"
@@ -296,50 +335,66 @@ function UpdateCustomerForm (props) {
                         />
            </div>
            </div>
-           <div class=" flex justify-between mt-3">
-           <div class="flex justify-between w-w47.5 max-sm:w-wk">
-           <div class="w-24">
-                    <Field
-                  name="potentialValue"
-                    label={
-                      <FormattedMessage
-                        id="app.potential"
-                        defaultMessage="Potential"
-                      />
-                    }
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                    />
-                    </div>
-                    <div class="w-16 max-sm:w-wk">
-                    <Field
-                      name="currencyId"
-                      isColumnWithoutNoCreate
-                      defaultValue={{
-                        value: props.user.currency,
-                      }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
-                      width="100%"
-                      isColumn
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(currencyNameOption)
-                          ? currencyNameOption
-                          : []
-                      }
-                    />
-                  </div>
-                    </div>
-         
-                 </div>
+           <div class="flex justify-between mt-2">
+  <div class="w-w47.5 flex">
+    <div class="w-24">
+      <Field
+        name="potentialValue"
+        label={
+          <FormattedMessage
+            id="app.potential"
+            defaultMessage="Potential"
+          />
+        }
+        isColumn
+        width={"100%"}
+        component={InputComponent}
+        inlineLabel
+      />
+    </div>
+    <div class="w-16 ml-2 max-sm:w-wk">
+      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <Select
+        showSearch
+        style={{ width: 100 }}
+        placeholder="Search or select currency"
+        optionFilterProp="children"
+        loading={isLoadingCurrency}
+        value={selectedCurrency}
+        onFocus={handleSelectCurrencyFocus}
+        onChange={handleSelectCurrency}
+      >
+        {currency.map(currencies => (
+          <Option key={currencies.currency_name} value={currencies.currency_name}>
+            {currencies.currency_name}
+          </Option>
+        ))}
+      </Select>
+    </div>
+  </div>
+
+
+  <div class="w-w47.5">
+    <Field
+      name="type"
+      label={
+        <FormattedMessage
+          id="app.type"
+          defaultMessage="Type"
+        />
+      }
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={
+        Array.isArray(typeOption)
+          ? typeOption
+          : []
+      }
+      inlineLabel
+    />
+  </div>
+</div>
                 
            <div class=" mt-3">
                   <Field
@@ -456,8 +511,8 @@ function UpdateCustomerForm (props) {
                         // label="URL"
                         label={
                           <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
+                            id="app.registration"
+                            defaultMessage="Registration"
                           />
                         }
                         isColumn
@@ -467,31 +522,7 @@ function UpdateCustomerForm (props) {
                       />
                     </div>                    
                     </div>
-                    <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
-                      <Field
-                        name="type"
-                        // type="text"
-                        // label="VAT Number"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(typeOption)
-                            ? typeOption
-                            : []
-                        }
-                        inlineLabel
-                      />
-                    </div>
                 
-                  </div>
                  
                   <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
@@ -574,6 +605,7 @@ const mapStateToProps = ({ auth, customer,catgCustomer,employee,leads }) => ({
   crmAllData:leads.crmAllData,
   customerListData: catgCustomer.customerListData,
   currencies: auth.currencies,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -210,7 +210,7 @@ console.log(selectedSource)
   const fetchCurrency = async () => {
     setIsLoadingCurrency(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies`;
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies/sales`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -468,7 +468,7 @@ console.log(selectedSource)
                     component={InputComponent}
                     inlineLabel
                   />                   */}
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class=" w-3/12 max-sm:w-[30%]">
                       {/* <FastField
                         name="countryDialCode"
@@ -607,51 +607,28 @@ country_dial_code
       </Select>
                     </div>
                   </div>
-                  <div class=" flex justify-between mt-3">
-                  <div class="flex justify-between w-w47.5 max-sm:w-wk">
-                    <div class="w-24">
-                    <Field
-                  name="potentialValue"
-                    label={
-                      <FormattedMessage
-                        id="app.potential"
-                        defaultMessage="Potential"
-                      />
-                    }
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                    />
-                    </div>
-                    <div class=" w-16 max-sm:w-wk">
-                    {/* <Field
-                      name="currencyId"
-                      isColumnWithoutNoCreate
-                      defaultValue={{
-                        value: props.user.currency,
-                      }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
-                      width="100%"
-                      isColumn
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(currencyNameOption)
-                          ? currencyNameOption
-                          : []
-                      }
-                    /> */}
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
-
-<Select
+                  <div class="flex justify-between mt-2">
+  <div class="w-w47.5 flex">
+    <div class="w-24">
+      <Field
+        name="potentialValue"
+        label={
+          <FormattedMessage
+            id="app.potential"
+            defaultMessage="Potential"
+          />
+        }
+        isColumn
+        width={"100%"}
+        component={InputComponent}
+        inlineLabel
+      />
+    </div>
+    <div class="w-16 ml-2 max-sm:w-wk">
+      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <Select
         showSearch
-        style={{ width: 200 }}
+        style={{ width: 100 }}
         placeholder="Search or select currency"
         optionFilterProp="children"
         loading={isLoadingCurrency}
@@ -664,10 +641,32 @@ country_dial_code
           </Option>
         ))}
       </Select>
-                  </div>
-                    </div>
-                   
-                  </div>
+    </div>
+  </div>
+
+
+  <div class="w-w47.5">
+    <Field
+      name="type"
+      label={
+        <FormattedMessage
+          id="app.type"
+          defaultMessage="Type"
+        />
+      }
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={
+        Array.isArray(typeOption)
+          ? typeOption
+          : []
+      }
+      inlineLabel
+    />
+  </div>
+</div>
+
 
                   <div class=" mt-3">
                     <Field
@@ -828,8 +827,8 @@ country_dial_code
                         // label="URL"
                         label={
                           <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
+                            id="app.registration"
+                            defaultMessage="Registration"
                           />
                         }
                         isColumn
@@ -840,31 +839,7 @@ country_dial_code
                     </div>
                   </div>
 
-                  <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                  <div class="w-w47.5">
-                      <Field
-                        name="type"
-                        // type="text"
-                        // label="VAT Number"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(typeOption)
-                            ? typeOption
-                            : []
-                        }
-                        inlineLabel
-                      />
-                    </div>
-                
-                  </div>
+                 
 
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                     <div>
@@ -939,6 +914,7 @@ country_dial_code
 const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
+  saleCurrencies: auth.saleCurrencies,
   customerListData: catgCustomer.customerListData,
   clearbit: customer.clearbit,
   user: auth.userDetails,

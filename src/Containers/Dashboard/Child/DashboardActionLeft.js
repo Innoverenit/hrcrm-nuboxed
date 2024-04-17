@@ -519,12 +519,19 @@ const DashboardActionLeft = (props) => {
         </TabPane>
       ))}
     </Tabs>
-    {/* <TimeInterval
+   
+        </div>
+        )}
+        {activeButton !== "Regional" && (
+          <div class="ml-[9rem]" >
+           
+         <TimeInterval
     style={{fontSize:"0.67"}}
           times={dateRangeList}
           handleClick={setSelectedTimeIntervalReport}
-        /> */}
-        </div>
+        />
+        
+          </div>
         )}
         {/* <Popover>
           <StyledRangePicker
