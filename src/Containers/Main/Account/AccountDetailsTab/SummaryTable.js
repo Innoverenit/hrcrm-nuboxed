@@ -27,7 +27,7 @@ const SummaryTable = () => {
    
      </div>
      </div>
-     <div class="flex flex-col w-[30%] ml-36">
+     <div class="flex flex-col mt-3 w-[30%] ml-36">
         <div class="flex items-center">
         <div class="w-16">
             LOB 1

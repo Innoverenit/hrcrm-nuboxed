@@ -43,28 +43,28 @@ const PulseTable = (props) => {
                                 <div >
                                     <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                         <div class="flex ">
-                                            <div className=" flex font-medium flex-col md:w-[21.56rem] max-sm:w-full  ">
+                                            <div className=" flex font-medium flex-col md:w-[6.56rem] max-sm:w-full  ">
 
                                                   {item.name}
                                            
                                             </div>
-                                            <div className=" flex font-medium   md:w-[16.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                          <div class=" text-xs text-cardBody font-poppins text-center">
-                                            <LobToggle/>
+                                            {/* <LobToggle/> */}
                                                </div>
                                                 </div>
-                                            <div className=" flex font-medium   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                 <Input/>
+                                                 {/* <Input/> */}
                                                 </div>
                                             </div>
                                            
-                                              <div className=" flex font-medium   md:w-[7.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                              <div className=" flex font-medium   md:w-[4.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                           <div class=" text-xs text-cardBody font-poppins text-center">
-                                          <Select
+                                          {/* <Select
                                               style={{width:"8rem"}}            
                                                             //value={item.zone}
                                                            // onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
@@ -74,7 +74,7 @@ const PulseTable = (props) => {
                                                                     {sd.currency_name}
                                                                 </Option>
                                                             ))}
-                                                        </Select>
+                                                        </Select> */}
                                             </div>
                                               </div>
                                           
