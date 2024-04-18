@@ -3298,3 +3298,33 @@ export const linkOpportunityContract = (data, opportunityId) => (
     });
 };
 
+
+
+
+export const getRegionSalesQuotationList = (userId,quarter,year) => (dispatch) => {
+  
+  dispatch({
+    type: types.GET_REGION_SALES_QUOTATION_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunityList/${userId}/${quarter}/${year}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REGION_SALES_QUOTATION_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REGION_SALES_QUOTATION_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
