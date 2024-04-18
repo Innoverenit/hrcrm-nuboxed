@@ -1063,7 +1063,7 @@ export const addRoomAndRackInInventory = (data) => (dispatch,getState) => {
   
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
-    .post(`${base_url2}/roomrack/add`, data,{
+    .post(`${base_url2}/roomrack/add`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1686,7 +1686,7 @@ export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   });
 };
 
-export const getRoomRackByLocId = (locationId,orgId) => (dispatch) => {
+export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
   });
@@ -1745,6 +1745,7 @@ export const getRackList = (roomRackId) => (dispatch) => {
       },
     })
     .then((res) => {
+      console.log(res.data)
       dispatch({
         type: types.GET_RACK_LIST_SUCCESS,
         payload: res.data,

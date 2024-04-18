@@ -92,8 +92,8 @@ const AddAccountForm = ({
 
   const categoryOption = category.map((item) => {
     return {
-      label: item.currency_name || "",
-      value: item.currency_name,
+      label: item.name || "",
+      value: item.categoryId,
     };
   });
 
@@ -103,12 +103,14 @@ const AddAccountForm = ({
   const [defaultOption, setDefaultOption] = useState(fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = allCustomerEmployeeList.find((item) => item.fullName === selected);
+  // console.log(category.categoryId)
   return (
     <>
       <Formik
         enableReinitialize
         initialValues={{
           userId: userId,
+          dCategory:"",
           name: "",
           phoneNo: "",
           url: "",
@@ -263,7 +265,7 @@ const AddAccountForm = ({
                   disable
                   inlineLabel
                 />
-                <div class="flex  mt-4" >
+                {/* <div class="flex  mt-4" >
                   <div>
                     <b><FormattedMessage
                       id="app.vatvalidity"
@@ -279,7 +281,7 @@ const AddAccountForm = ({
                     />
 
                   </div>
-                </div>
+                </div> */}
 
 
                 <div class="flex justify-between mt-4" >
@@ -303,12 +305,7 @@ const AddAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.vat"
-                          defaultMessage="vat"
-                        />
-                      }
+                      label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -414,7 +411,7 @@ const AddAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <Field
-                      name="category"
+                      name="dCategory"
                       label="Category"
                       isColumn
                       placeholder="Select"

@@ -1,7 +1,7 @@
 import React, { useState,useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tabs,Tooltip,Button } from 'antd';
+import { Tabs,Tooltip,Button ,Progress} from 'antd';
 import { FormattedMessage } from "react-intl";
 import {getEmployeeKpiList,updateCompletedValue} from "../../../../Main/Teams/TeamsAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -146,6 +146,7 @@ const PerformanceTable = (props) => {
             <div className="md:w-[5.51rem]">
               <FormattedMessage id="app.achieved" defaultMessage=" Total" />
             </div>
+            <div class="w-[2rem]"></div>
             <div className="md:w-[5.01rem]">
               <FormattedMessage id="app.actual" defaultMessage="Actual" />
             </div>
@@ -153,6 +154,7 @@ const PerformanceTable = (props) => {
               <FormattedMessage id="app.actual" defaultMessage="Total" />
 
             </div>
+            <div class="w-[2rem]"></div>
             <div className="md:w-[4.1rem]"><FormattedMessage
                id="app.weightage"
                defaultMessage="Weightage"
@@ -166,7 +168,8 @@ const PerformanceTable = (props) => {
           const AssignedTotal = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue) ;
           const AchievedTotal = Math.floor(item.month1CompletedValue + item.month2CompletedValue +item.month3CompletedValue) ;
 const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2ActualCompletedValue +item.month3ActualCompletedValue) ;
-          // + item.month1CompletedValue + item.month2CompletedValue + item.month3CompletedValue + item.month1ActualCompletedValue + item.month2ActualCompletedValue + item.month3ActualCompletedValue );
+const actualPercentage = AssignedTotal !== 0 ? Math.floor((ActualTotal / AssignedTotal) * 100) : 0;
+const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / AssignedTotal) * 100) : 0;
            return (
            <>
             <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
@@ -356,6 +359,25 @@ style={{border:"2px solid black",width:"6rem"}}
                   </>
                 </div>
               </div>
+              <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+         {/* <Tooltip title={item.oppStage}> */}
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={acivedPercentage}
+//disable={true}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+{/* </Tooltip> */}
+      
+         </div>
+       </div>
               <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
  <div className="text-sm text-cardBody font-poppins">
    <>
@@ -404,6 +426,24 @@ style={{border:"2px solid black",width:"6rem"}}
    </>
  </div>
 </div>
+        <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+ 
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={actualPercentage}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+
+      
+         </div>
+       </div>
 <div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                  
                  <div class="text-sm text-cardBody font-poppins">

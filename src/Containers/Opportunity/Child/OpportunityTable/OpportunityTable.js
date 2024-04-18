@@ -379,10 +379,10 @@ function handleSend (){
     },
     
     {
-      //title: "Proposal Amount",
+      //title: "Value",
       title: <FormattedMessage
         id="app.proposalamount"
-        defaultMessage="Proposal Amount"
+        defaultMessage="Value"
       />,
       width: "10%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,

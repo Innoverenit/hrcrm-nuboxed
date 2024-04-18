@@ -20,6 +20,7 @@ import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
 import { HistoryOutlined } from "@ant-design/icons";
 import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import SummaryTable from "./SummaryTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
@@ -68,7 +69,7 @@ function AccountDetailsTab(props) {
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
-                                    <i class="fas fa-shopping-bag"></i>
+                                <PrecisionManufacturingIcon/>
                                     <span class="ml-1">Production</span>
                                 </span>
                                 {activeKey === "1" && (
@@ -284,9 +285,7 @@ function AccountDetailsTab(props) {
                         key="7"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <SalesMapTable
-                               
-                            />
+                           
                         </Suspense>
                     </TabPane>
 
@@ -303,9 +302,12 @@ function AccountDetailsTab(props) {
                         key="8"
                     >
                         <Suspense fallback={"Loading ..."}>
-                            <SummaryTable
+                        <SalesMapTable
                                
-                            />
+                               />
+                            {/* <SummaryTable
+                               
+                            /> */}
                         </Suspense>
                     </TabPane>
 

@@ -310,7 +310,7 @@ export const getCategory = (orgId) => (dispatch) => {
     type: types.GET_CATEGORY_REQUEST,
   });
   axios
-    .get(`${base_url}/category/all/${orgId}`,{
+    .get(`${base_url}/category/all/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -358,7 +358,11 @@ export const getCountries = () => (dispatch) => {
     type: types.GET_COUNTRIES_REQUEST,
   });
   axios
-    .get(`${base_url}/countries`)
+    .get(`${base_url}/countries`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1659,7 +1663,7 @@ export const handleFAQModal = (modalProps) => (dispatch) => {
 export const updateRepositoryDocument = (data, organizationDocumentLinkId) => (
   dispatch,
 ) => {
-  
+
   dispatch({ type: types.UPDATE_REPOSITORY_DOCUMENT_REQUEST });
   axios
     .put(`${base_url}/organization/document/${organizationDocumentLinkId}`, data, {
@@ -1668,7 +1672,7 @@ export const updateRepositoryDocument = (data, organizationDocumentLinkId) => (
       },
     })
     .then((res) => {
-     
+
       console.log(res);
       //  dispatch(getOpportunityListByUserId(userId,0));
       dispatch({

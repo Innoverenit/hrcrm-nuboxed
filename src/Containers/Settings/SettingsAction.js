@@ -2661,7 +2661,7 @@ export const deleteOpportunityProcessData = (opportunityWorkflowDetailsId, orgId
     })
     .then((res) => {
       console.log(res);
-      //  dispatch(getScheduler(orgId));
+      //  dispatch(getProcessForOpportunity(orgId));
       dispatch({
         type: types.DELETE_OPPORTUNITY_PROCESS_DATA_SUCCESS,
         payload: opportunityWorkflowDetailsId,

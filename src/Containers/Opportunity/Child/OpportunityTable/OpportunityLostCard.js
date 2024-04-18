@@ -98,7 +98,7 @@ function OpportunityLostCard(props) {
         <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem]">Prospect</div>
         <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem]">Sponsor</div>
         <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.8rem]">Start Date</div>
-        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.3rem]">Proposal Amount</div>
+        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.3rem]">Value</div>
         <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">Stages</div> 
         <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem]">Sales Rep</div>
         <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">Owner</div>

@@ -36,6 +36,8 @@ const initialState = {
   fetchingCandidateTaskListError:false,
   candidateTaskList:[],
 
+  addDrawerTaskStepperModal:false,
+
   addDrawerTaskFeedbackModal:false,
 
   addSharingTask: false,
@@ -94,6 +96,9 @@ const initialState = {
   fetchingProjectTaskList:false,
   fetchingProjectTaskListError:false,
   projectTaskList:[],
+
+  addingStepperTask: false,
+  addingStepperTaskError: false,
 
 
   updatingTaskImportForm:false,
@@ -442,6 +447,23 @@ export const TaskReducer = (state = initialState, action) => {
         addingTaskError: false,
         addTaskModal: false,
       };
+
+      case types.ADD_STEPPER_TASK_REQUEST:
+        return { ...state, addingStepperTask: true };
+      case types.ADD_STEPPER_TASK_SUCCESS:
+        return { ...state, addingStepperTask: false,
+          //  addTaskModal: false,
+          //  callActivityModal:false,
+          //  addPitchactivityModal:false,
+          //  taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
+          };
+      case types.ADD_STEPPER_TASK_FAILURE:
+        return {
+          ...state,
+          addingStepperTask: false,
+          addingStepperTaskError: false,
+          // addTaskModal: false,
+        };
 
     case types.GET_TIMEZONE_REQUEST:
       return { ...state, fetchingtimeZone: true };
@@ -824,6 +846,9 @@ export const TaskReducer = (state = initialState, action) => {
 
       case types.HANDLE_TASK_NOTES_DRAWER_MODAL:
         return { ...state, addDrawerTaskNotesModal: action.payload };
+
+        case types.HANDLE_TASK_STEPPER_DRAWER_MODAL:
+          return { ...state, addDrawerTaskStepperModal: action.payload };
 
         case types.HANDLE_TASK_FEEDBACK_DRAWER_MODAL:
           return { ...state, addDrawerTaskFeedbackModal: action.payload };

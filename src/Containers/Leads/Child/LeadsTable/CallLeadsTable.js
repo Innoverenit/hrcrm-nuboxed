@@ -52,7 +52,7 @@ const CallLeadsTable = (props) => {
                        props.getNotesListOfLeads(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null)
                     }}
                   >
-                    <u>Note</u>
+                    <u>Notes</u>
                   </label>
                 </div>
               </div>

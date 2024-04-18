@@ -5,11 +5,14 @@ import { InputComponent } from '../../../../../Components/Forms/Formik/InputComp
 import { Button } from 'antd';
 import { getAllProductList, saveUnitForCatalogueItem } from "../../AccountAction"
 import { bindActionCreators } from 'redux';
+import * as Yup from "yup";
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 const AddCatalogueTable = lazy(() => import("./AddCatalogueTable"));
-
+const FormSchema = Yup.object().shape({
+    quantity: Yup.string().required("Input needed!"),
+})
 const AddCatalogueForm = (props) => {
     useEffect(() => {
         props.getAllProductList()
@@ -65,7 +68,7 @@ const AddCatalogueForm = (props) => {
                             marginType: "amount",
                             distributorDiscountType: "cash"
                         }}
-
+                        validationSchema={FormSchema}
                         onSubmit={(values, { resetForm }) => {
                             console.log(values)
                             props.saveUnitForCatalogueItem(

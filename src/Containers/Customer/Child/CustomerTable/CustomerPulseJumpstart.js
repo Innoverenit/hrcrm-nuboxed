@@ -1,4 +1,4 @@
-import React, {} from "react";
+import React, {Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -18,6 +18,8 @@ import AddCustomerContactJumpstartModal from "./AddCustomerContactJumpstartModal
 import AddCustomerActivityJumpstartModal from "./AddCustomerActivityJumpstartModal";
 import AddCustomerOpenOppJumpstartModal from "./AddCustomerOpenOppJumpstartModal";
 import AddCustomerWonOppJumpstartModal from "./AddCustomerWonOppJumpstartModal";
+import CustrOpenOpportunityJumpstartCardList from "./CustrOpenOpportunityJumpstartCardList";
+import { BundleLoader } from "../../../../Components/Placeholder";
 class CustomerPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -84,17 +86,17 @@ render() {
             noProgress
             title={
               <FormattedMessage
-                id="app.opportunities"
-                defaultMessage="#Open Opportunities"
+                id="app.quotations"
+                defaultMessage="#Open Quotations"
               />
             }
-            jumpstartClick={() => {
-              handleCustomerOpenOpportunityJumpstartModal(true);
+            // jumpstartClick={() => {
+            //   handleCustomerOpenOpportunityJumpstartModal(true);
            
-              // handleRowData(region);
-            }}
+            
+            // }}
       
-            cursorData={"pointer"}
+            // cursorData={"pointer"}
             value={
               this.props.OppValue.CustomerOppertunityDetails
 
@@ -112,7 +114,7 @@ render() {
             title={
               <FormattedMessage
                 id="app.pipeLineValue"
-                defaultMessage="Pipe line value"
+                defaultMessage="Pipeline value"
               />
             }
             bgColor="#34495E "
@@ -126,31 +128,29 @@ render() {
           
           />
 
-<JumpStartBox
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.opportunities"
-            defaultMessage=" Opportunities Won"
-          />
-        }
-        value={
-          this.props.WonCustomerOpp.CustomerWonOppertunityDetails
 
-        }
-        jumpstartClick={() => {
-          handleCustomerWonOpportunityJumpstartModal(true);
-       
-          // handleRowData(region);
-        }}
-  
-        cursorData={"pointer"}
-        bgColor="#35CD7A"
-        // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
-        isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
+<JumpStartBox
+    noProgress
+    title={
+        <FormattedMessage
+            id="app.quotations"
+            defaultMessage=" Quotations Won"
+        />
+    }
+    value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
+    jumpstartClick={() => {
+        handleCustomerWonOpportunityJumpstartModal(true);
+        // handleRowData(region);
+    }}
+    cursorData={"pointer"}
+    bgColor="#35CD7A"
+    // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
+    isLoading={this.props.fetchingWonCustomerOppValue} 
+    //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+/>
+
+
+
       <JumpStartBox
         noProgress
         title={
@@ -221,6 +221,12 @@ render() {
       </div>
 
 <div class=" flex flex-row w-full mt-4" >
+<Suspense fallback={<BundleLoader />}>
+            <CustrOpenOpportunityJumpstartCardList 
+          customer={this.props.customer} 
+           
+            />
+          </Suspense>
 {/* <div class="flex w-full" >
     
 <JumpStartBox2

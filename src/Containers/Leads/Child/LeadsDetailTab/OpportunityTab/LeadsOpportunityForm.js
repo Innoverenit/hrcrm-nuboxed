@@ -353,7 +353,7 @@ function LeadsOpportunityForm (props) {
                         label={
                           <FormattedMessage
                             id="app.proposalAmount"
-                            defaultMessage="Proposal Amount"
+                            defaultMessage="Value"
                           />
                         }
                         isColumn

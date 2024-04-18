@@ -244,12 +244,12 @@ class ContactOpportunityForm extends Component {
                     <div class=" w-2/4">
                       <Field
                         name="proposalAmount"
-                        //label="Proposal Amount"
+                        //label="Value"
 
                         label={
                           <FormattedMessage
                             id="app.proposalAmount"
-                            defaultMessage="Proposal Amount"
+                            defaultMessage="Value"
                           />
                         }
                         isColumn

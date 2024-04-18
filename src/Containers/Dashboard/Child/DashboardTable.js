@@ -307,7 +307,7 @@ import { SearchOutlined } from "@ant-design/icons";
      //   },
      },
      {
-       //title: "Proposal Amount",
+       //title: "Value",
        title: <FormattedMessage
          id="app.stages"
          defaultMessage="Stages"

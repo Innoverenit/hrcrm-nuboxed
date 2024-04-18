@@ -269,14 +269,13 @@ const initialState = {
   fetchingArchieveProductionLocIdError: true,
   archieveInProduction: [],
 
-  roomRackbyLoc:[],
+  roomRackbyLoc: [],
   fetchingRoomRack: false,
-  fetchingRoomRackByIdError:false,
+  fetchingRoomRackByIdError: false,
 
   fetchingRacklist: false,
-  fetchingRacklistError:false,
-  rackList:{},
-
+  fetchingRacklistError: false,
+  rackList: [],
 };
 
 export const inventoryReducer = (state = initialState, action) => {

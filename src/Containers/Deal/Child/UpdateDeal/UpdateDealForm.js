@@ -381,7 +381,7 @@ function UpdateDealForm (props) {
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                         <Field
                           name="proposalAmount"
-                          // label="Proposal Amount"
+                          // label="Value"
                           label={
                             <FormattedMessage
                           id="app.fundValue"
