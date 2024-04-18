@@ -27,6 +27,7 @@ class OrderPlanColumn extends Component {
             offerValue={order.payableOfferPrice}
             newOrderNo={order.newOrderNo}
             deliveryDate={order.deliveryDate}
+            orderCurrencyName={order.orderCurrencyName}
              
             />
              
