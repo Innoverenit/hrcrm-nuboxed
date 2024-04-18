@@ -990,6 +990,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         addingRoomAndRackInInventory: false,
         // addroomrackininventory: false,
+        // roomRackbyLoc:action.payload
       };
     case types.ADD_ROOM_AND_RACK_IN_INVENTORY_FAILURE:
       return {
@@ -1370,53 +1371,53 @@ export const inventoryReducer = (state = initialState, action) => {
     case types.HANDLE_STOCK_USED_DRAWER:
       return { ...state, stockUseDrwr: action.payload };
 
-    case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
-      return { ...state, fetchingRoomRack: true };
-    case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
-      return {
-        ...state,
-        fetchingRoomRack: false,
-        roomRackbyLoc: action.payload
-      };
-    case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
-      return {
-        ...state,
-        fetchingRoomRack: false,
-        fetchingRoomRackByIdError: true,
-      };
+      case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
+        return { ...state, fetchingRoomRack: true };
+      case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          roomRackbyLoc: action.payload
+        };
+      case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          fetchingRoomRackByIdError: true,
+        };
 
-    case types.UPDATE_ROOM_RACK_ID_REQUEST:
-      return { ...state, updatingRoomRackId: true };
-    case types.UPDATE_ROOM_RACK_ID_SUCCESS:
-      return {
-        ...state,
-        updatingRoomRackId: false,
-        roomRackbyLoc: state.roomRackbyLoc.map((item) =>
-          item.orderPhoneId === action.payload.orderPhoneId
-            ? action.payload : item
-        ),
-      };
-    case types.UPDATE_ROOM_RACK_ID_FAILURE:
-      return {
-        ...state,
-        updatingRoomRackId: false,
-        updatingRoomRackIdError: true,
-      };
-
-    case types.GET_RACK_LIST_REQUEST:
-      return { ...state, fetchingRacklist: true };
-    case types.GET_RACK_LIST_SUCCESS:
-      return {
-        ...state,
-        fetchingRacklist: false,
-        rackList: action.payload
-      };
-    case types.GET_RACK_LIST_FAILURE:
-      return {
-        ...state,
-        fetchingRacklist: false,
-        fetchingRacklistError: true,
-      };
+        case types.UPDATE_ROOM_RACK_ID_REQUEST:
+          return { ...state, updatingRoomRackId: true };
+        case types.UPDATE_ROOM_RACK_ID_SUCCESS:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            roomRackbyLoc: state.roomRackbyLoc.map((item) =>
+              item.roomRackId === action.payload.roomRackId
+                ? action.payload : item
+            ),
+          };
+        case types.UPDATE_ROOM_RACK_ID_FAILURE:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            updatingRoomRackIdError: true,
+          };
+    
+          case types.GET_RACK_LIST_REQUEST:
+            return { ...state, fetchingRacklist: true };
+          case types.GET_RACK_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              rackList: action.payload
+            };
+          case types.GET_RACK_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              fetchingRacklistError: true,
+            };
 
     default:
       return state;

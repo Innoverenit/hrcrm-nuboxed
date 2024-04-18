@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CloseOutlined } from "@ant-design/icons"
 import { FormattedMessage } from 'react-intl';
+import { BundleLoader } from '../../../Components/Placeholder';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const { Option } = Select;
 
@@ -15,6 +17,9 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
   },[]);
   
   const [rows, setRows] = useState([]);
+
+  const [editedFields, setEditedFields] = useState({});
+  const [editroomRackId, setEditroomRackId] = useState(null);
 
   const handleAddRow = () => {
     const newRow = { zone: '', rack: '', zoneType: '',description:'' };
@@ -51,11 +56,47 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
             props.addRoomAndRackInInventory(payload);
             setRows([{ zone: '', rack: '',zoneType:'',description:''}]);
           };
+
+     if(props.fetchingRoomRack) {
+      return <BundleLoader/>
+     }    
+
+     const handleUpChange = (roomRackId, fieldName, value) => {
+      setEditedFields((prevFields) => ({
+        ...prevFields,
+        [roomRackId]: {
+          ...prevFields[roomRackId],
+          [fieldName]: value,
+        },
+      }));
+    };
+  
+    const handleEditClick = (roomRackId) => {
+      setEditroomRackId(roomRackId);
+    };
+    const handleCancelClick = (roomRackId) => {
+      setEditedFields((prevFields) => ({ ...prevFields, [roomRackId]: undefined }));
+      setEditroomRackId(null);
+    };
+
+    function handleUpdate(roomRackId,zone,rack,zoneType,description){
+      const updatedData = {
+        locationDetailsId: props.rowData.locationDetailsId,
+        userId: props.userId,
+        zone: editedFields[roomRackId]?.zone !== undefined ? editedFields[roomRackId].zone : zone,
+        rack: editedFields[roomRackId]?.rack !== undefined ? editedFields[roomRackId].rack : rack,
+        zoneType: editedFields[roomRackId]?.zoneType !== undefined ? editedFields[roomRackId].zoneType : zoneType,
+        description: editedFields[roomRackId]?.description !== undefined ? editedFields[roomRackId].description : description,
+        orgId:props.orgId
+      };
+      props.updateRoomRackId(updatedData,roomRackId);
+    }
+
   return (
     <>
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: '10px' }}>
-        Add Row
+        Add Zone
       </Button>
       {rows.map((row, index) => (
         <div key={index} class="flex">
@@ -71,17 +112,7 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
           />
           </div>
              </div>
-             <div>
-              <label>Description</label>
-             <div class="w-24">
-          <Input
             
-            value={row.description}
-            onChange={(e) => handleChange(index, 'description', e.target.value)}
-            placeholder="Description"
-          />
-          </div>
-             </div>
              <div>
               <label>#Rack</label>
              <div class="w-24"></div>
@@ -102,6 +133,17 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
             <Option value="entry">Entry</Option>
             <Option value="exit">Exit</Option>
           </Select></div></div>
+          <div>
+              <label>Description</label>
+             <div class="w-24">
+          <Input
+            
+            value={row.description}
+            onChange={(e) => handleChange(index, 'description', e.target.value)}
+            placeholder="Description"
+          />
+          </div>
+             </div>
           </div>
           
           <Button type="primary" onClick={() => handleSubmit(index)}>
@@ -110,13 +152,14 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
           <CloseOutlined onClick={() => handleRemoveRow(index)}/>
           </div>
       ))}
-        {/* <div className=' flex justify-end sticky z-auto'>
+
+        <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">Zone Code</div>
-            <div className=" md:w-[6.1rem]">Description</div>
+            <div className=" md:w-[5rem]">Zone Code</div>
             <div className=" md:w-[4.2rem] ">#Rack</div>
-            <div className=" md:w-[4.2rem] ">Zone Type</div>
+            <div className=" md:w-[5.2rem] ">Zone Type</div>
+            <div className=" md:w-[5.1rem]">Description</div>
             <div className="w-12"></div>             </div>
 
           {props.roomRackbyLoc.map((item) => {
@@ -127,52 +170,73 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
 
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                      <Select
-                        classNames="w-32"
-                        value={item.zoneType}
-                        // onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
-                      >
+                    {editroomRackId === item.roomRackId ? (
+                       <Input
+                       class="border-[2px] border-black w-12"
+                      //  style={{border:"2px solid black"}}
+                       value={editedFields[item.roomRackId]?.zone !== undefined ? editedFields[item.roomRackId].zone : item.zone}
+                       onChange={(e) => handleUpChange(item.roomRackId, 'zone', e.target.value)}
+                       />
                        
-                       <Option value="entry">Entry</Option>
-            <Option value="exit">Exit</Option>
-                      </Select>
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.zone}</div>
+                      </div>
+                    )}
                     </div>
                   </div>
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                     <div class=" text-xs text-cardBody font-poppins">
-                      <Input
-                        className="w-32"
-                        value={item.zone}
-                        // onChange={(e) => handleInputChange(e.target.value, item.key, 'price')}
-                      />
+                    {editroomRackId === item.roomRackId ? (
+                       <Input
+                       class="border-[2px] border-black w-12"
+                      //  style={{border:"2px solid black"}}
+                       value={editedFields[item.roomRackId]?.rack !== undefined ? editedFields[item.roomRackId].rack : item.rack}
+                       onChange={(e) => handleUpChange(item.roomRackId, 'rack', e.target.value)}
+                       />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.rack}</div>
+                      </div>
+                    )}
                     </div>
 
                   </div>
-
-
-
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins">
-
-                      <Input
-                        className="w-32"
-                        value={item.rack}
-                        // onChange={(e) => handleInputChange(e.target.value, item.key, 'priceB2C')}
-                      />
+                    {editroomRackId === item.roomRackId ? (
+                       <Select
+                       classNames="w-32"
+                       value={editedFields[item.roomRackId]?.zoneType !== undefined ? editedFields[item.roomRackId].zoneType : item.zoneType}
+                       onChange={(value) => handleUpChange(value, item.key, 'zoneType')}
+                       >
+                       <Option value="entry">Entry</Option>
+                      <Option value="exit">Exit</Option>
+                      </Select>
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.zoneType}</div>
+                      </div>
+                    )}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                      <Input
-                        className="w-32"
-                        value={item.description}
-                        // onChange={(e) => handleInputChange(e.target.value, item.key, 'vat')}
-                      />
-                    </div>
+                  {editroomRackId === item.roomRackId ? (
+                       <Input
+                       class="border-[2px] border-black w-12"
+                      //  style={{border:"2px solid black"}}
+                       value={editedFields[item.roomRackId]?.description !== undefined ? editedFields[item.roomRackId].description : item.description}
+                       onChange={(e) => handleUpChange(item.roomRackId, 'description', e.target.value)}
+                       />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.description}</div>
+                      </div>
+                    )}
                   </div>
 
                   <div class="flex md:items-center">
@@ -180,11 +244,28 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
 
                     <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
                       <div>
-                        <Button type="primary" 
-                        // onClick={() => handleSave(item.key)}
-                        >
-                          Save
-                        </Button>
+                      {editroomRackId === item.roomRackId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      onClick={() => handleUpdate(item.roomRackId,item.zone,item.rack,item.zoneType,item.description )}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.roomRackId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.roomRackId)}
+                      />
+                    )}
                       </div>
 
                     </div>
@@ -196,7 +277,7 @@ props.getRoomRackByLocId(props.rowData.locationDetailsId,props.orgId);
           })}
 
         </div>
-      </div> */}
+      </div>
       </div>
       </>
   );
@@ -206,7 +287,8 @@ const mapStateToProps = ({ inventory, auth, locations }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     userId:auth.userDetails.userId,
     roomRackbyLoc:inventory.roomRackbyLoc,
-    orgId:auth.userDetails.organizationId
+    orgId:auth.userDetails.organizationId,
+    fetchingRoomRack:inventory.fetchingRoomRack
 });
 
 const mapDispatchToProps = (dispatch) =>

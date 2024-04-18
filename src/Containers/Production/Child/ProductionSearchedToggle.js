@@ -25,8 +25,8 @@ function ProductionSearchedToggle(props) {
         locationDetailsId: props.locationId,
         userId: props.userId,
         orgId: props.organizationId,
-        productionWorkflowDetailsId: props.productionWorkflowDetailsId,
-        productionStagesId:props.productionStagesId
+        workflow: props.productionWorkflowDetailsId,
+        stage:props.productionStagesId
       });
     }
 

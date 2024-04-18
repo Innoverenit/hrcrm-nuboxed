@@ -98,7 +98,7 @@ const handleStageChange = (value) => {
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <ProductionSearchedToggle item={item} productionWorkflowDetailsId={selectedWorkflowId} productionStagesId={selectedStageId}/>
+                      <ProductionSearchedToggle item={item} workflow={selectedWorkflowId} stage={selectedStageId}/>
                     </div>
 
                   </div>
