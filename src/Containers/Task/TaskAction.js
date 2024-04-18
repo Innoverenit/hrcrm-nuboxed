@@ -26,6 +26,12 @@ export const handleTaskNotesDrawerModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleTaskStepperDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_STEPPER_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleTaskImportModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_IMPORT_MODAL,
@@ -1568,5 +1574,40 @@ export const updateTaskImportForm =
         payload: err,
       });
       // cb && cb();
+    });
+};
+
+
+export const addStepperTask = (task, cb) => (dispatch, getState) => {
+  const { employeeId } = getState("auth").auth.userDetails;
+  const { userId } = getState("auth").auth.userDetails;
+
+  console.log("inside addTask");
+  dispatch({
+    type: types.ADD_STEPPER_TASK_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/task/step`, task, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success("Task has been added successfully!");
+      console.log(res);
+      dispatch({
+        type: types.ADD_STEPPER_TASK_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_STEPPER_TASK_FAILURE,
+        payload: err,
+      });
+      cb();
     });
 };

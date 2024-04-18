@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  Select, Tooltip } from "antd"
+import {  Select, Tooltip,Progress } from "antd"
 import { DeleteOutlined } from "@ant-design/icons";
 import {getLob} from "../../../Settings/Category/LOB/LOBAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -86,34 +86,36 @@ function AssigenedKpiCardList(props) {
              <div className="md:w-[7.5rem]">
                <FormattedMessage id="app.lob" defaultMessage="LOB" />
              </div>
-             <div className="md:w-[7.5rem]">
+             {/* <div className="md:w-[7.5rem]">
                <FormattedMessage id="app.lob" defaultMessage="Currency" />
-             </div>
-             <div className="md:w-[10.1rem]">
+             </div> */}
+             <div className="md:w-[12.1rem]">
                <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
              </div>
-             <div className="md:w-[9.11rem]">
+             <div className="md:w-[7.11rem]">
                <FormattedMessage id="app.assigned" defaultMessage=" Total" />
              </div>
          
-             <div className="md:w-[9.11rem]">
+             <div className="md:w-[10.11rem]">
                <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
              </div>
-             <div className="md:w-[12.51rem]">
+             <div className="md:w-[9.51rem]">
                <FormattedMessage id="app.achieved" defaultMessage=" Total" />
              </div>
-             <div className="md:w-[5.01rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Actual" />
-             </div>
+             <div class="w-[2rem]"></div>
+             <div className="md:w-[8.01rem]">
+        <FormattedMessage id="app.actual" defaultMessage="Actual" />
+      </div>
              <div className="md:w-[3.1rem]">
                <FormattedMessage id="app.actual" defaultMessage="Total" />
 
              </div>
+             <div class="w-[2rem]"></div>
              <div className="md:w-[6.1rem]"><FormattedMessage
                 id="app.weightage"
                 defaultMessage="Weightage"
               /></div>
-               <div className="w-[2rem]"></div>
+               <div className="w-[1rem]"></div>
            </div>
  
            {props.employeeKpiList.map((item, index) => {
@@ -122,7 +124,8 @@ function AssigenedKpiCardList(props) {
            const AssignedTotal = Math.floor(item.month1AssignedValue + item.month2AssignedValue +item.month3AssignedValue) ;
            const AchievedTotal = Math.floor(item.month1CompletedValue + item.month2CompletedValue +item.month3CompletedValue) ;
  const ActualTotal = Math.floor(item.month1ActualCompletedValue + item.month2ActualCompletedValue +item.month3ActualCompletedValue) ;
-           // + item.month1CompletedValue + item.month2CompletedValue + item.month3CompletedValue + item.month1ActualCompletedValue + item.month2ActualCompletedValue + item.month3ActualCompletedValue );
+ const actualPercentage = AssignedTotal !== 0 ? Math.floor((ActualTotal / AssignedTotal) * 100) : 0;
+ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / AssignedTotal) * 100) : 0;
             return (
             <>
              <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
@@ -165,7 +168,7 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
-               <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+               {/* <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
          
@@ -173,7 +176,7 @@ function AssigenedKpiCardList(props) {
            
                    </>
                  </div>
-               </div>
+               </div> */}
       
                <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
@@ -328,6 +331,25 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
+               <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+         {/* <Tooltip title={item.oppStage}> */}
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={acivedPercentage}
+//disable={true}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+{/* </Tooltip> */}
+      
+         </div>
+       </div>
                <div className="flex font-medium flex-col md:w-[15.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
@@ -352,7 +374,7 @@ function AssigenedKpiCardList(props) {
                        </div>
                        <div className="flex flex-col">
                          <span className="mr-2">M3</span>
-                         <span className='ml-2 w-[4rem]'>   {item.month3ActualCompletedValue && (
+                         <span className='ml-2 w-[5.5rem]'>   {item.month3ActualCompletedValue && (
                                        <span>
                                            {item.currencyInd && `${item.userCurrency} `}
                                            {item.month3ActualCompletedValue/ 10000}k
@@ -363,7 +385,7 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
-               <div className="flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full max-sm:justify-between">
+               <div className="flex font-medium flex-col md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between">
                  <div className="text-sm text-cardBody font-poppins">
                    <>
                      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
@@ -376,6 +398,24 @@ function AssigenedKpiCardList(props) {
                    </>
                  </div>
                </div>
+               <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+         
+         <div class=" text-xs text-cardBody font-poppins">
+ 
+{" "}
+<Progress
+type="circle"
+style={{ cursor: "pointer",color:"red" }}
+percent={actualPercentage}
+width={30}
+ strokeColor={"#005075"}
+
+/>
+  
+
+      
+         </div>
+       </div>
                <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
                                  <div class="text-sm text-cardBody font-poppins">

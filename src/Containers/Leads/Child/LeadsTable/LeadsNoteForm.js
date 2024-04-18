@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-// import { addNote } from "../../../../CustomerAction";
+ import { addNote } from "../../LeadsAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
@@ -65,6 +65,7 @@ class LeadsNoteForm extends Component {
       customerId,
       employeeId,
       notes,
+      rowdata,
       fetchingNotesListByLeadsId,
     } = this.props;
     const { editorState, placeholder } = this.state;
@@ -74,10 +75,11 @@ class LeadsNoteForm extends Component {
           enableReinitialize
           initialValues={{
             notes: "",
-            customerId: customerId ? customerId : "",
-            employeeId:employeeId ? employeeId:"",
+            // customerId: customerId ? customerId : "",
+            // employeeId:employeeId ? employeeId:"",
           }}
           onSubmit={(values, { resetForm }) => {
+            const { type, id } = this.props;
             console.log(
               draftToHtml(convertToRaw(editorState.getCurrentContent()))
             );
@@ -85,12 +87,20 @@ class LeadsNoteForm extends Component {
               convertToRaw(editorState.getCurrentContent())
             );
             // const htmlBody = 'draftToHtml(convertToRaw(editorState.getCurrentContent()))'
-
-            console.log({ ...values, notes: htmlBody });
-            // addNote({ ...values, notes: htmlBody }, this.createCallback);
+            addNote(
+              {
+                ...values, notes: htmlBody
+              },
+              rowdata.category,rowdata.category==="Task"?rowdata.taskId:rowdata.category==="Event"?rowdata.eventId:rowdata.category==="Call"?rowdata.callId:null,
+              this.createCallback
+        
+            );
+          
+           
             resetForm();
           }}
         >
+
           {({
             errors,
             touched,
@@ -162,7 +172,7 @@ const mapStateToProps = ({ auth, team, customer }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   addNote,
+      addNote,
     },
     dispatch
   );

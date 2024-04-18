@@ -26,15 +26,16 @@ const CustomerActivityTable = (props) => {
   const currentDate = moment().format("DD/MM/YYYY");
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
-    <>
+
         <div className="mt-4 ml-4">
         <Timeline>
           {customerActivityTimeline &&
             customerActivityTimeline.map((status, index) => ( 
-              <React.Fragment key={status}>
-              <>    
-              <Timeline.Item key={index} style={{display:"flex"}}>               
-                <div>               
+              <Timeline.Item key={index} > 
+          
+            
+                 
+              <div className="flex flex-row justify-between items-center">           
                 <div>                
                 
 {currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
@@ -43,11 +44,8 @@ const CustomerActivityTable = (props) => {
                       </span>
                     ) : null}    {status.category} {status.activityType} Completed by {moment(status.endDate).format('DD/MM/YYYY')}
                   </div>
-           
-                </div>
-                <div>
-                
-                <Button
+                  <div class=" w-[40rem]">
+                  <Button
                   type="link"
                   style={{ margin: '0 8px', padding: 0 }}
                   onClick={() => {
@@ -56,38 +54,22 @@ const CustomerActivityTable = (props) => {
                     // handleSetTaskNameId(item);
                   }}
                 >
-                  Note
+                  Notes
                 </Button>
-                 
                 </div>
-              </Timeline.Item>
-              </> 
-               
+                </div>
+                
+                
+                </Timeline.Item>
+                 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-</React.Fragment>
        
             ))}
            
            
         </Timeline>
-        {/* {expandedRow !== null && (
-                //  <div>Hello</div>
-                <NotesProspectForm/>
-                )} */}
+ 
        <AddCustomerNotesListDrawerModal
        customerNoteList={props.customerNoteList}
        addCustomerNoteDrawerModal={props.addCustomerNoteDrawerModal}
@@ -95,7 +77,7 @@ const CustomerActivityTable = (props) => {
        />
         
       </div>
-    </>
+
   );
 };
 

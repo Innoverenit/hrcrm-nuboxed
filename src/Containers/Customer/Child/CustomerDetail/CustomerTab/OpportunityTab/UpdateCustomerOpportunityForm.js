@@ -329,7 +329,7 @@ console.log("hh",customerId)
                   <div class=" w-[47%]" >
                       <Field
                         name="proposalAmount"
-                        //label="Proposal Amount"
+                        //label="Value"
 
                         label={
                           <FormattedMessage

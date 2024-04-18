@@ -1520,3 +1520,29 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const addNote = (note,type,id, cb) => (dispatch) => {
+    dispatch({ type: types.ADD_LEAD_NOTES_REQUEST });
+    axios
+      .post(`${base_url}/todo/activity/notes/${type}/${id }`, note, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.ADD_LEAD_NOTES_SUCCESS,
+          payload: res.note,
+        });
+        console.log(res);
+        cb && cb();
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.ADD_LEAD_NOTES_FAILURE,
+          payload: err,
+        });
+        console.log(err);
+        cb && cb();
+      });
+  };
+

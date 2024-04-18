@@ -86,7 +86,7 @@ function ChooseCandidateEmailTable(props) {
     },
   },
     {
-      //title: "Proposal Amount",
+      //title: "Value",
       title: (
         <FormattedMessage
           id="app.mobile"

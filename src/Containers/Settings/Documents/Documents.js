@@ -140,7 +140,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          <div class="w-[27rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -174,7 +174,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingDocuments && documents.length === 0 ? <NodataFoundPage /> : documents.slice().sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)).map((region, index) => (
-            <div className="card9" key={region.documentTypeId}>
+            <div className="card9"  key={region.documentTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.documentTypeId ? (
@@ -186,16 +186,16 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setDocumentName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.documentTypeName}&nbsp;&nbsp;&nbsp;
+                <div className="region" style={{width:"40%"}}>{region.documentTypeName}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
                                       </span> : null}</div>
             )}
- <div className="flex justify-between w-[34rem]">
-                  <div className="w-[8rem]">
+ {/* <div className="flex justify-between w-[34rem]"> */}
+                  <div className="w-[30%]">
                   <Select
-  style={{ width: "100%" }}
+  style={{ width: "50%" }}
   onChange={(value) => handleStageType(value, region.documentTypeId)} // Pass region.documentTypeId here
   value={region.userType}
   placeholder="Select Entity"
@@ -205,7 +205,7 @@ return <div><BundleLoader/></div>;
   <option value="Supplier">Supplier</option>
 </Select>
                   </div>
-                  <div className=" w-[21rem]">
+                  <div className=" w-[20%]">
                     <DocumentStatusToggle
                       editInd={region.editInd}
                       userType={region.userType}
@@ -215,9 +215,9 @@ return <div><BundleLoader/></div>;
                     />
                   </div>
                  
-                </div>
+                {/* </div> */}
             {/* Action buttons */}
-            <div className="actions">
+            <div className="actions" style={{width:"11%"}}>
   {/* Edit button */}
   {editingId === region.documentTypeId ? (
     <div>

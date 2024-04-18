@@ -100,12 +100,15 @@ const JumpStartDetail = ({
     //debugger;
     console.log(value);
   }
+  const cursorDisabled = value === 0 ? "cursor-not-allowed" : "pointer";
+
   return (
     <JumpStartWrapper
       bgColor={bgColor}
       clickable={clickable}
       onClick={jumpstartClick}
-      style={{ cursor: cursorData }}
+       style={{ cursor: cursorDisabled }}
+      // style={{ cursor: cursorData }}
     >
       <div>
         {icon ? (
