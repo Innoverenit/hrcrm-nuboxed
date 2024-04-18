@@ -56,15 +56,21 @@ function InventoryDetail(props) {
                   tabData={tabData}
                 /> */}
                 {props.viewType1 === "repair" && props.repairInd ? (
+                  <div class="cursor-pointer">
                   <InventoryDetailTab
                     viewType1={viewType1}
                     inventory={inventory}
                     tabData={tabData}
                   />
+                  </div>
                 ) : props.viewType1 === "material" ? (
+                  <div class="cursor-pointer">
                   <InventoryMaterialTab inventory={inventory} />
+                  </div>
                 ) : props.viewType1 === "production" && props.productionInd ? (
+                  <div class="cursor-pointer">
                   <InventoryProductionTab />
+                  </div>
                 ) : null}
               </div>
             </div>

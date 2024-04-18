@@ -14,12 +14,17 @@ import ReceivedDetailModal from "./ReceivedDetailModal";
 import { ListAltOutlined } from "@mui/icons-material";
 import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip } from "antd";
+import { Tooltip,Select,Button } from "antd";
+import { getRoomRackByLocId,getRackList } from "../../../../Inventory/InventoryAction";
+
+const { Option } = Select;
 
 const MaterialReceivedTable = (props) => {
     useEffect(() => {
-        props.getMaterialReceiveData(props.locationDetailsId)
+        props.getMaterialReceiveData(props.locationDetailsId);
+        props.getRoomRackByLocId(props.locationId,props.orgId);
     }, [])
+    const [clickStore, setclickStore] = useState(false)
 
     const [row, setRow] = useState({})
     const handleRow = (item) => {
@@ -40,6 +45,7 @@ const MaterialReceivedTable = (props) => {
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
                         <div className=" w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" w-[11.122rem]">Supplier</div>
+                        <div className=" w-[11.122rem]">Store</div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -88,8 +94,41 @@ const MaterialReceivedTable = (props) => {
                                             <div class=" text-xs text-cardBody font-poppins">
                                                {item.supplierName}
                                             </div>
-
                                         </div>
+         <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+         {!clickStore && 
+<Button type="primary" onClick={()=> setclickStore(true)}>
+    Send to Store
+</Button>}
+                                        {clickStore && 
+                                        <>
+                                        <Select
+                                                            classNames="w-32"
+                                                            // value={item.zone}
+                                                            // onChange={handleRoomRackChange}
+                                                            
+                                                        >
+                                                            {props.roomRackbyLoc.map((s) => (
+                                                                <Option key={s.roomRackId} value={s.roomRackId}>
+                                                                    {s.zone}
+                                                                </Option>
+                                                            ))}
+                                                        </Select>
+                                                        <Select
+        classNames="w-32"
+        // value={selectedChamberId}
+        // onChange={(e) => handleChangeChamber(e,item.manufactureId)}
+        style={{marginLeft:"1.5rem"}}
+    >
+        {/* {props.racklist.map((chamber) => (
+            <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
+                {chamber.chamber}
+            </Select.Option>
+        ))} */}
+    </Select> 
+    </>
+                        }  
+</div>
                                         <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 <Tooltip title="GRN list">
@@ -128,11 +167,15 @@ const MaterialReceivedTable = (props) => {
 
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
+    locationId: auth.userDetails.locationId,
+    orgId:auth.userDetails.organizationId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialReceiveData: inventory.materialReceiveData,
     addMaterialReceived: inventory.addMaterialReceived,
     showGrnListOfPo: inventory.showGrnListOfPo,
-    fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData
+    fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData,
+    roomRackbyLoc: inventory.roomRackbyLoc,
+    rackList:inventory.rackList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -140,7 +183,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getMaterialReceiveData,
             handleMaterialReceived,
-            handlegrnlistmodal
+            handlegrnlistmodal,
+            getRackList,
+            getRoomRackByLocId,
         },
         dispatch
     );

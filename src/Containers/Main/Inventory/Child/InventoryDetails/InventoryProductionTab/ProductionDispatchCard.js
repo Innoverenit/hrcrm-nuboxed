@@ -59,6 +59,8 @@ function ProductionDispatchCard(props) {
                         <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
                         <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div> 
                         <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>                                       
+                        <div className=" md:w-[4.01rem]">Zone</div>
+                        <div className=" md:w-[4.01rem]">#Rack</div>
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -116,6 +118,14 @@ function ProductionDispatchCard(props) {
                                                   imgHeight={"1.8rem"}
                                                      />
                                             </div>
+                                        </div>
+                                        <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
+
+                                           
+                                        </div>
+                                        <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
+
+                                           
                                         </div>
                                         <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
