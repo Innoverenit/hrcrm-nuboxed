@@ -27,6 +27,7 @@ const BussinessCard = (props) => {
     user,
     customerName,
     newOrderNo,
+    orderCurrencyName,
     offerValue,
     deliveryDate,
     contactName
@@ -43,7 +44,7 @@ const BussinessCard = (props) => {
         >
           <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
             <MultiAvatar
-              primaryTitle={primaryTitle}
+              primaryTitle={secondaryTitle}
               imgHeight={"1.56em"}
               imgWidth={"1.56em"}
             />
@@ -61,14 +62,14 @@ const BussinessCard = (props) => {
             >
               {primaryTitle || ""}
             </Title>
-            <div class="text-xs">
+            {/* <div class="text-xs">
               {secondaryTitle || ""} 
-              </div>
+              </div> */}
               <div class="text-xs">          
               {newOrderNo || ""} 
               </div>
               <div class="text-xs">          
-              {offerValue || ""} 
+              {offerValue || ""} {orderCurrencyName}
               </div>
               <div class="text-xs">          
               {`  ${moment.utc(deliveryDate).format("DD-MM-YYYY")}`} 
