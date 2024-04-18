@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 // import dayjs from "dayjs";
 // import {getProspectWeightedValue,getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
 import { JumpStartBox,  } from "../../../Components/UI/Elements";
+import SummaryTable from "./AccountDetailsTab/SummaryTable";
+
 class AccountPulseForm extends React.Component {
     // constructor() {
     //     super();
@@ -47,17 +49,13 @@ class AccountPulseForm extends React.Component {
         //   console.log(startDate)
         //   console.log(this.state.endDate.format("YYYY MM DD"))
         return (
+            <>
             <div class=" flex flex-row w-full" >
                 <div class="flex w-full" >
 
                     <JumpStartBox
                         noProgress
-                        title={
-                            <FormattedMessage
-                                id="app.opportunities"
-                                defaultMessage=" # Opportunities"
-                            />
-                        }
+                        title="#Open Orders"
                         bgColor="linear-gradient(270deg,#F15753,orange)"
                     // value={this.props.OppValue.CustomerOppertunityDetails }
                     // isLoading={this.props.fetchingOppValue} 
@@ -68,12 +66,7 @@ class AccountPulseForm extends React.Component {
 
                     <JumpStartBox
                         noProgress
-                        title={
-                            <FormattedMessage
-                                id="app.pipeLineValue"
-                                defaultMessage="Pipe line value"
-                            />
-                        }
+                        title="Revenue Booked"
                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
 
                     // value={pipeLineValue}
@@ -86,12 +79,7 @@ class AccountPulseForm extends React.Component {
                         noProgress
                         bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                         // title="Open Tasks"
-                        title={
-                            <FormattedMessage
-                                id="app.weightedValue"
-                                defaultMessage="Weighted Value"
-                            />
-                        }
+                        title="Revenue Relised"
                     // value={ weightedValue }
                     // isLoading={this.props.fetchingWeightedValue} 
                     //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -116,7 +104,10 @@ class AccountPulseForm extends React.Component {
                     />
                 </div>
             </div>
-
+            <div class="mt-4">
+            <SummaryTable/>
+            </div>
+                               </>
         );
     }
 }

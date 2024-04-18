@@ -82,8 +82,8 @@ const UpdateAccountForm = ({
   });
   const categoryOption = category.map((item) => {
     return {
-      label: item.currency_name || "",
-      value: item.currency_name,
+      label: item.name || "",
+      value: item.categoryId,
     };
   });
   const handlevat = () => {
@@ -106,6 +106,7 @@ const UpdateAccountForm = ({
           currencyPrice: setEditingDistributor.currencyPrice || "",
           currency: setEditingDistributor.currency || "",
           phoneNo: setEditingDistributor.phoneNo || "",
+          dCategory:setEditingDistributor.dCategoryName || "",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           url: setEditingDistributor.url || "",
           description: setEditingDistributor.description || "",
@@ -113,7 +114,7 @@ const UpdateAccountForm = ({
           notes: setEditingDistributor.notes || "",
           customPayment: "",
           dialCode: setEditingDistributor.dialCode || "",
-          clientId: setEditingDistributor.clientId || "",
+          clientId: setEditingDistributor.clientName || "",
           address: [
             {
               addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
@@ -230,7 +231,7 @@ const UpdateAccountForm = ({
                   isColumn
                   inlineLabel
                 />
-                <Spacer />
+                {/* <Spacer />
                 <div class=" flex justify-between mt-4">
                   <div>
                     <FormattedMessage
@@ -242,7 +243,7 @@ const UpdateAccountForm = ({
                       onChange={handlevat}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div class=" flex justify-between mt-4">
                   <div class="w-w47.5">
                     <FastField
@@ -261,12 +262,7 @@ const UpdateAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.vat"
-                          defaultMessage="vat"
-                        />
-                      }
+                     label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -372,7 +368,7 @@ const UpdateAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <Field
-                      name="category"
+                      name="dCategory"
                       label="Category"
                       isColumn
                       placeholder="Select"

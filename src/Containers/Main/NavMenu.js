@@ -5,6 +5,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { Menu, Badge } from "antd";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ComputerIcon from '@mui/icons-material/Computer';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
@@ -812,7 +813,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         <Menu.Item key="/production" style={{ height: "1.7rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/production' ? 'tomato' : '#4bc076' }}>
           <Link to="/production" onClick={() => handleSelect('/production')}>
-            <ProductionQuantityLimitsIcon
+            <PrecisionManufacturingIcon
               style={{ fontSize: "large" }}
             />
             <span class="text-white text-ls ml-1"><FormattedMessage
