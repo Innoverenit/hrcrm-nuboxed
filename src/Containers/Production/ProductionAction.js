@@ -303,7 +303,7 @@ export const getProductRecords = (locationDetailsId) => (dispatch) => {
     type: types.GET_PRODUCT_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/production/product/count/${locationDetailsId}`, {
+    .get(`${base_url2}/production/product/count/${locationDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

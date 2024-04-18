@@ -106,6 +106,7 @@ function SupplierSuppliesCardTable(props) {
               {props.supplierSuppliesList.length ?
                 <>
                   {props.supplierSuppliesList.map((item) => {
+                    const initialSelectedValues = item.type ? item.type.map(({ qualityId }) => qualityId) : [];
                     return (
                       <>
                         <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"
@@ -182,7 +183,7 @@ supplierId={props.supplier.supplierId}
           // loading={isLoadingInclude}
           // onFocus={handleSelectIncludeFocus}
           onChange={(value) => handleSetCurrentType(value, item)}
-          defaultValue={item.type || []} 
+          defaultValue={initialSelectedValues} 
           mode="multiple" 
         >
           {props.supplierSuppliesQuality.map(opt => (

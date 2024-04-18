@@ -13,7 +13,7 @@ import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handle
 import { DeleteOutlined } from "@ant-design/icons";
 import { PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
-import { getRoomRackByLocId } from "../../Main/Inventory/InventoryAction";
+import { getRoomRackByLocId,getRackList } from "../../Main/Inventory/InventoryAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InpectProductionToggle from "./InpectProductionToggle";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -26,16 +26,14 @@ function ProductionCardView(props) {
 
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-    const [selectedManufactureId, setSelectedManufactureId] = useState('');
-    const [selectedRoomRackId, setSelectedRoomRackId] = useState('');
-    const [selectedLocationDetailsId, setSelectedLocationDetailsId] = useState('');
-    const [selectedCreationDate, setSelectedCreationDate] = useState('');
-
+    const [selectedChamberId, setSelectedChamberId] = useState(null);
+    
+    const [selectedRoomId, setSelectedRoomId] = useState(null);
 
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
         setPage(page + 1);
-        props.getRoomRackByLocId(props.locationId)
+        props.getRoomRackByLocId(props.locationId);
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -91,11 +89,33 @@ function ProductionCardView(props) {
     const {
         fetchingProductionLocId,
         productionByLocsId,
-        user,
+        user, 
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
 
+//     const handleRoomRackChange = (value) => {
+//         setSelectedRoomId(value);
+//         // props.getRackList(value);
+//       }
 
+//   const filteredRacks = props.rackList.filter(
+//     (product) => product.roomRackId === selectedRoomId
+//   );
+//     const handleChangeChamber = (selectedRoomRackId, manufactureId) => {
+//         const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
+//         const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
+//         if (selectedRoomRack && associatedProduction) {
+//             const { locationDetailsId, creationDate } = selectedRoomRack;
+//             const { productId, productName, categoryName } = associatedProduction;
+//             const dataToSend = {
+//                 roomRackId: selectedRoomRackId,
+//                 manufactureId: manufactureId,
+//                 locationDetailsId: locationDetailsId,
+//                 roomEntryDate: creationDate,
+//             };
+//             props.updateRoomRackProduction(dataToSend);
+//         }
+//     };
     const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
         const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
         const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
@@ -111,7 +131,6 @@ function ProductionCardView(props) {
             props.updateRoomRackProduction(dataToSend);
         }
     };
-
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -123,8 +142,9 @@ function ProductionCardView(props) {
                         <div className=" md:w-[7rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
                         <div className="md:w-[5rem]">Attribute</div>
-                        <div className="md:w-[5.2rem]">Workflow</div>
                         <div className=" md:w-[5rem] ">Status</div>
+                        <div className="md:w-[5.2rem]">Workflow</div>
+                        <div className="md:w-[5.2rem]">Stage</div>
                         <div className="md:w-[5rem]"></div>
                         <div className="md:w-[5rem]">Store</div>
                         <div className="md:w-[5rem]">Inspected</div>
@@ -197,11 +217,7 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {item.workFlow}
-                                                    </div>
-                                                </div>
+                                               
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.type === "In Progress" && item.pauseInd === true &&
@@ -261,6 +277,16 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.workFlow}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                       {/* {stage} */}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     {item.type === "In Progress" ?
                                                         <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                             <Button
@@ -287,6 +313,17 @@ function ProductionCardView(props) {
                                                                 </Option>
                                                             ))}
                                                         </Select>
+                                                        {/* <Select
+        classNames="w-32"
+        value={selectedChamberId}
+        onChange={(e) => handleChangeChamber(e,item.manufactureId)}
+    >
+        {filteredRacks.map((chamber) => (
+            <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
+                {chamber.chamber}
+            </Select.Option>
+        ))}
+    </Select>   */}
                                                     </div>
                                                 </div>
                                                 <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -409,7 +446,8 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     clickedProductionIdrwr: production.clickedProductionIdrwr,
     organizationId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
-    roomRackbyLoc: inventory.roomRackbyLoc
+    roomRackbyLoc: inventory.roomRackbyLoc,
+    rackList:inventory.rackList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -421,7 +459,8 @@ const mapDispatchToProps = (dispatch) =>
             handleProductionIDrawer,
             updateProStatus,
             getRoomRackByLocId,
-            updateRoomRackProduction
+            updateRoomRackProduction,
+            getRackList
         },
         dispatch
     );
