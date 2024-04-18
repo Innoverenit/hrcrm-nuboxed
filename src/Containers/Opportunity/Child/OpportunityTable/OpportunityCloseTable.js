@@ -352,11 +352,11 @@ function OpportunityCloseTable(props) {
     },
     
     {
-      //title: "Proposal Amount",
+      //title: "Value",
       title: (
         <FormattedMessage
           id="app.proposalamount"
-          defaultMessage="Proposal Amount"
+          defaultMessage="Value"
         />
       ),
       width: "10%",

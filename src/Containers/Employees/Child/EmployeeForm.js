@@ -37,7 +37,10 @@ function EmployeeForm(props) {
 
   const [active, setActive] = useState(false);
   const [department, setDepartment] = useState("");
+  const [secondatDepartment, setSecondaryDepartment] = useState("");
   const [reportingManager, setreportingManager] = useState("")
+  const [secondaryReportingManager, setSecondaryreportingManager] = useState("")
+  
   const [checked, setChecked] = useState(true);
   const [typeInd, setTypeInd] = useState(false);
   const [selectedDept, setSelectedDept] = useState("");
@@ -74,9 +77,17 @@ function EmployeeForm(props) {
     setDepartment(val)
     props.getDepartmentwiserUser(val);
   }
+  const handleSecondaryDepartment = (val) => {
+    setSecondaryDepartment(val)
+    props.getDepartmentwiserUser(val);
+  }
+ 
 
   const handlereportingManager = (val) => {
     setreportingManager(val)
+  }
+  const handleSecondaryreportingManager = (val) => {
+    setSecondaryreportingManager(val)
   }
   const handleDeptChange = (event) => {
     const selectedDept = event.target.value;
@@ -311,6 +322,8 @@ function EmployeeForm(props) {
               ...values,
               reportingManagerDeptId: department,
               reportingManager: reportingManager,
+              secondaryReptManagerDept:secondatDepartment,
+              secondaryReptManager:secondaryReportingManager,
               job_type: active ? "Full Time" : "Part Time",
               type: typeInd ? "true" : "false",
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
@@ -1033,6 +1046,34 @@ function EmployeeForm(props) {
                         className="w-[250px]"
                         value={reportingManager}
                         onChange={(value) => handlereportingManager(value)}
+                      >
+                        {props.departmentwiseUser.map((a) => {
+                          return <Option value={a.employeeId}>{a.empName}</Option>;
+                        })}
+                      </Select>
+
+                    </div>
+                  </div>
+                  <div class=" flex justify-between  max-sm:flex-col" >
+                    <div class=" w-w48 max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+                      <Select
+                        className="w-[250px]"
+                        value={secondatDepartment}
+                        onChange={(value) => handleSecondaryDepartment(value)}
+                      >
+                        {props.departments.map((a) => {
+                          return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                        })}
+                      </Select>
+                    </div>
+
+                    <div class="w-w48  max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+                      <Select
+                        className="w-[250px]"
+                        value={secondaryReportingManager}
+                        onChange={(value) => handleSecondaryreportingManager(value)}
                       >
                         {props.departmentwiseUser.map((a) => {
                           return <Option value={a.employeeId}>{a.empName}</Option>;

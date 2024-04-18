@@ -37,6 +37,9 @@ const initialState = {
   addUpdateLeadsContactModal:false,
   setEditingLeadsContact:{},
 
+  addingNotesOfLead: false,
+  addingNotesOfLeadError: false,
+
   addingLeads:false,
   addingLeadsError:false,
 
@@ -1049,6 +1052,25 @@ case types.HANDLE_LEADS_MODAL:
                                 fetchingNotesListOfLeads: false,
                                 fetchingNotesListOfLeadsError: true,
                               };
+
+                              case types.ADD_LEAD_NOTES_REQUEST:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: true,
+                                };
+                              case types.ADD_LEAD_NOTES_SUCCESS:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: false,
+                                  addingNotesOfLead: false,
+                                  // addLeadsNoteDrawerModal: false,
+                                };
+                              case types.ADD_LEAD_NOTES_FAILURE:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: false,
+                                  addingNotesOfLeadError: true,
+                                };
                       
 
 default:

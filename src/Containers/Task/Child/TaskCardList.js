@@ -33,6 +33,7 @@ import {
   setEditTask,
   handleDownloadTaskModal,
   handleTaskNotesDrawerModal,
+  handleTaskStepperDrawerModal,
   handleTaskFeedbackDrawerModal,
   handleTaskProjectDrawerModal,
   handleTaskopenModal,
@@ -42,6 +43,7 @@ import UpdateDocumentDrawerModal from "../Child/UpdateDocumentDrawerModal"
 import { MultiAvatar, } from "../../../Components/UI/Elements";
 import InfoIcon from '@mui/icons-material/Info';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import AddTaskStepperDrawerModal from "./TaskStepper/AddTaskStepperDrawerModal";
 const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const OpenTaskModal = lazy(() => import("./OpenTaskModal"));
@@ -124,6 +126,7 @@ const TaskCardList = (props) => {
     addDrawerTaskNotesModal,
     addDrawerTaskFeedbackModal,
     handleTaskNotesDrawerModal,
+    handleTaskStepperDrawerModal,
     handleTaskFeedbackDrawerModal,
     setEditTask,
    
@@ -480,7 +483,12 @@ const TaskCardList = (props) => {
      <div className="flex font-medium flex-col w-[2.6rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-     <StairsIcon  className="!text-xl cursor-pointer text-[green]"/>
+     <StairsIcon  className="!text-xl cursor-pointer text-[green]"
+         onClick={() => {
+          handleTaskStepperDrawerModal(true);
+          handleSetTaskNameId(item);
+        }}
+     />
                
  
       
@@ -655,6 +663,14 @@ handleSetTaskNameId={handleSetTaskNameId}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
 />
+<AddTaskStepperDrawerModal
+handleSetTaskNameId={handleSetTaskNameId}
+handleTaskStepperDrawerModal={handleTaskStepperDrawerModal}
+addDrawerTaskStepperModal={props.addDrawerTaskStepperModal}
+  currentNameId={currentNameId}
+  // taskName={currentprocessName.taskName} // Pass taskName as a prop
+
+/>
 
 <AddTaskFeedbackDrawerModal
 handleSetTaskNameId={handleSetTaskNameId}
@@ -697,7 +713,8 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
       fetchingTaskListRangeByUserId: task.fetchingTaskListRangeByUserId,
   fetchingTaskListRangeByUserIdError:task.fetchingTaskListRangeByUserIdError,
   taskListRangeByUserId: task.taskListRangeByUserId,
-  addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal
+  addDocumentTaskDrawerModal:task.addDocumentTaskDrawerModal,
+  addDrawerTaskStepperModal:task.addDrawerTaskStepperModal,
 
   });
   
@@ -711,6 +728,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
         handleUpdateDocumentDrawerModal,
         handleTaskFeedbackDrawerModal,
         handleTaskNotesDrawerModal,
+        handleTaskStepperDrawerModal,
         handleTaskDocumentDrawerModal,
         approveTaskByTaskId,
         rejectTaskByTaskId,

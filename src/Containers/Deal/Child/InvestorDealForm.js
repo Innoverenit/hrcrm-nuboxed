@@ -416,7 +416,7 @@ function InvestorDealForm(props) {
                 <div class="  w-w47.5 max-sm:w-wk">
                     <Field
                       name="proposalAmount"
-                      //label="Proposal Amount"
+                      //label="Value"
 
                       label={
                         <FormattedMessage

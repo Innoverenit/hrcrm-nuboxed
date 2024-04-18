@@ -10,10 +10,10 @@ import LeadsNoteForm from "./LeadsNoteForm";
 
 
 class NotesLeadsForm extends Component {
-  // componentDidMount() {
+  componentDidMount() {
   
-  //   this.props.getNotesListOfLeads(this.props.rowdata.category,this.props.rowdata.category==="Task"?this.props.rowdata.taskId:this.props.rowdata.category==="Event"?this.props.rowdata.eventId:this.props.rowdata.category==="Call"?this.props.rowdata.callId:null);
-  // }
+    this.props.getNotesListOfLeads(this.props.rowdata.category,this.props.rowdata.category==="Task"?this.props.rowdata.taskId:this.props.rowdata.category==="Event"?this.props.rowdata.eventId:this.props.rowdata.category==="Call"?this.props.rowdata.callId:null);
+  }
 
   render() {
     const { fetchingNotesListOfLeads, notesListOfLeads } = this.props;
@@ -22,10 +22,11 @@ class NotesLeadsForm extends Component {
       <>
         <div style={{ backgroundColor: "#dcdcdc" }}>
           <LeadsNoteForm
+           rowdata={this.props.rowdata}
             type={"customer"}
             customerId={this.props.rowdata.customerId}
             callback={() =>
-              this.props.getNotesListOfLeads(this.props.rowdata.customerId)
+              this.props.getNotesListOfLeads(this.props.rowdata.category,this.props.rowdata.category==="Task"?this.props.rowdata.taskId:this.props.rowdata.category==="Event"?this.props.rowdata.eventId:this.props.rowdata.category==="Call"?this.props.rowdata.callId:null)
             }
           />
         </div>

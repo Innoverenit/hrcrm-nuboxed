@@ -207,14 +207,14 @@ function PublishTable(props) {
       width: "7%",
     },
     {
-      //title: "Proposal Amount",
+      //title: "Value",
       title: <FormattedMessage id="app.submitted" defaultMessage="Submitted" />,
       dataIndex: "offered",
       width: "8%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
     },
     {
-      //title: "Proposal Amount",
+      //title: "Value",
       title: <FormattedMessage id="app.selected" defaultMessage="Selected" />,
       dataIndex: "closedPosition",
       width: "7%",
