@@ -214,11 +214,11 @@ export const getArchieveListOfProduction = (locationDetailsId, userId, pageNo) =
       });
     });
 };
-export const updateProStatus = (data,productionProductId) => (dispatch) => {
+export const updateProStatus = (data, productionProductId) => (dispatch) => {
   dispatch({ type: types.UPDATE_PRODCUTION_STATUS_REQUEST });
   axios
     .put(
-      `${base_url2}/production/updateStatus/${productionProductId}`,data,
+      `${base_url2}/production/updateStatus/${productionProductId}`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -237,7 +237,7 @@ export const updateProStatus = (data,productionProductId) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.UPDATE_PRODCUTION_STATUS_FAILURE,
-        payload:err
+        payload: err
       });
     });
 };
@@ -246,7 +246,7 @@ export const setInspectProdn = (data) => (dispatch) => {
   dispatch({ type: types.SET_INSPECT_PRODN_REQUEST });
   axios
     .put(
-      `${base_url2}/production/inspectedUser`,data,
+      `${base_url2}/production/inspectedUser`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -265,7 +265,7 @@ export const setInspectProdn = (data) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.SET_INSPECT_PRODN_FAILURE,
-        payload:err
+        payload: err
       });
     });
 };
@@ -324,11 +324,11 @@ export const getProductRecords = (locationDetailsId) => (dispatch) => {
     });
 };
 
-export const updateRoomRackProduction = (data) => (dispatch) => {
+export const updateRoomRackProduction = (data, cb) => (dispatch) => {
   dispatch({ type: types.UPDATE_ROOM_RACK_PRODN_REQUEST });
   axios
     .put(
-      `${base_url2}/production/addRoomAndRack`,data,
+      `${base_url2}/production/addRoomAndRack`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -339,6 +339,7 @@ export const updateRoomRackProduction = (data) => (dispatch) => {
         type: types.UPDATE_ROOM_RACK_PRODN_SUCCESS,
         payload: res.data,
       });
+      cb()
       Swal({
         icon: 'success',
         title: 'Done',
@@ -347,7 +348,7 @@ export const updateRoomRackProduction = (data) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.UPDATE_ROOM_RACK_PRODN_FAILURE,
-        payload:err
+        payload: err
       });
     });
 };
@@ -380,13 +381,13 @@ export const getAllstageProductions = (userId) => (dispatch) => {
 };
 export const updateProductiondragstage = (
   data,
-    
+
   sourceStageId,
   destinationStageId,
   manufactureId,
   cb
 ) => (dispatch) => {
-  
+
   dispatch({
     type: types.UPDATE_PRODUCTION_DRAG_STAGE_REQUEST,
     payload: {
@@ -397,11 +398,11 @@ export const updateProductiondragstage = (
   });
   axios
     .put(
-      `${base_url}/production/production/update/stage`,data, {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      }
+      `${base_url}/production/production/update/stage`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    }
     )
     .then((res) => {
       console.log(res);

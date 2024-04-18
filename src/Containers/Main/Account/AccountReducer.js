@@ -408,7 +408,7 @@ const initialState = {
 
   fetchingOrderStatus: false,
   fetchingOrderStatusError: false,
-  orderStatus: [],
+  orderStatus: {},
 
   fetchingProductById: false,
   fetchingProductByIdError: false,

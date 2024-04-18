@@ -11,9 +11,9 @@ import MoveToggleProduction from "../Child/MoveToggleProduction";
 import ButtonGroup from "antd/lib/button/button-group";
 import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer, updateRoomRackProduction } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
+import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
-import { getRoomRackByLocId,getRackList } from "../../Main/Inventory/InventoryAction";
+import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InpectProductionToggle from "./InpectProductionToggle";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -26,14 +26,40 @@ function ProductionCardView(props) {
 
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-    const [selectedChamberId, setSelectedChamberId] = useState(null);
-    
-    const [selectedRoomId, setSelectedRoomId] = useState(null);
+    const [selectedChamberId, setSelectedChamberId] = useState("");
+    const [selectedRoomId, setSelectedRoomId] = useState("");
+    const [store, setStore] = useState(false);
 
+    function handleStore() {
+        setStore(true)
+    }
+
+    const handleChangeRoomRack = (value) => {
+        setSelectedRoomId(value)
+
+        props.getRackList(value)
+    }
+
+    const handleChangeChamber = (value, id) => {
+        setSelectedChamberId(value)
+        const dataToSend = {
+            roomRackId: selectedRoomId,
+            manufactureId: id,
+            roomRackChamberLinkId: value,
+            locationDetailsId: props.locationId,
+            roomEntryDate: dayjs()
+        };
+        props.updateRoomRackProduction(dataToSend, handleCallback())
+    }
+    function handleCallback() {
+        setStore(false)
+        setSelectedChamberId("")
+        setSelectedRoomId("")
+    }
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
         setPage(page + 1);
-        props.getRoomRackByLocId(props.locationId);
+        props.getRoomRackByLocId(props.locationId, props.orgId);
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -89,48 +115,11 @@ function ProductionCardView(props) {
     const {
         fetchingProductionLocId,
         productionByLocsId,
-        user, 
+        user,
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
 
-//     const handleRoomRackChange = (value) => {
-//         setSelectedRoomId(value);
-//         // props.getRackList(value);
-//       }
 
-//   const filteredRacks = props.rackList.filter(
-//     (product) => product.roomRackId === selectedRoomId
-//   );
-//     const handleChangeChamber = (selectedRoomRackId, manufactureId) => {
-//         const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
-//         const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
-//         if (selectedRoomRack && associatedProduction) {
-//             const { locationDetailsId, creationDate } = selectedRoomRack;
-//             const { productId, productName, categoryName } = associatedProduction;
-//             const dataToSend = {
-//                 roomRackId: selectedRoomRackId,
-//                 manufactureId: manufactureId,
-//                 locationDetailsId: locationDetailsId,
-//                 roomEntryDate: creationDate,
-//             };
-//             props.updateRoomRackProduction(dataToSend);
-//         }
-//     };
-    const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
-        const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
-        const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
-        if (selectedRoomRack && associatedProduction) {
-            const { locationDetailsId, creationDate } = selectedRoomRack;
-            const { productId, productName, categoryName } = associatedProduction;
-            const dataToSend = {
-                roomRackId: selectedRoomRackId,
-                manufactureId: manufactureId,
-                locationDetailsId: locationDetailsId,
-                roomEntryDate: creationDate,
-            };
-            props.updateRoomRackProduction(dataToSend);
-        }
-    };
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -217,7 +206,7 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
 
-                                               
+
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.type === "In Progress" && item.pauseInd === true &&
@@ -283,7 +272,7 @@ function ProductionCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                       {/* {stage} */}
+                                                        {/* {stage} */}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -300,30 +289,49 @@ function ProductionCardView(props) {
                                                             </Button>
                                                         </div> : null}
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+                                                <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        <Select
-                                                            classNames="w-32"
-                                                            value={item.zone}
-                                                            onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
-                                                        >
-                                                            {props.roomRackbyLoc.map((s) => (
-                                                                <Option key={s.roomRackId} value={s.roomRackId}>
-                                                                    {s.zone}
-                                                                </Option>
-                                                            ))}
-                                                        </Select>
-                                                        {/* <Select
-        classNames="w-32"
-        value={selectedChamberId}
-        onChange={(e) => handleChangeChamber(e,item.manufactureId)}
-    >
-        {filteredRacks.map((chamber) => (
-            <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
-                {chamber.chamber}
-            </Select.Option>
-        ))}
-    </Select>   */}
+                                                        {store && particularDiscountData.manufactureId === item.manufactureId ?
+                                                            <>
+                                                                <Select
+                                                                    classNames="w-32"
+                                                                    value={selectedRoomId}
+                                                                    onChange={(value) => { handleChangeRoomRack(value) }}
+                                                                >
+                                                                    {props.roomRackbyLoc.map((s) => (
+                                                                        <Option value={s.roomRackId}>
+                                                                            {s.zone}
+                                                                        </Option>
+                                                                    ))}
+                                                                </Select>
+                                                                <Select
+                                                                    classNames="w-32"
+                                                                    value={selectedChamberId}
+                                                                    onChange={(val) => handleChangeChamber(val, item.manufactureId)}
+                                                                >
+                                                                    {props.rackList.map((chamber) => (
+                                                                        <Option value={chamber.roomRackChamberLinkId}>
+                                                                            {chamber.chamber}
+                                                                        </Option>
+                                                                    ))}
+                                                                </Select>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                {`${item.zone || ""} ${item.chamber || ""}`}
+
+                                                            </>
+                                                        }
+                                                        {item.zone ? <BorderColorOutlined
+                                                            onClick={() => {
+                                                                handleStore()
+                                                                handleParticularRowData(item)
+                                                            }}
+                                                        /> : <Button onClick={() => {
+                                                            handleStore()
+                                                            handleParticularRowData(item)
+                                                        }}>Send To Store</Button>}
                                                     </div>
                                                 </div>
                                                 <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -447,7 +455,8 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     organizationId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
     roomRackbyLoc: inventory.roomRackbyLoc,
-    rackList:inventory.rackList
+    rackList: inventory.rackList,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

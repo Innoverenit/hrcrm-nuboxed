@@ -1061,7 +1061,7 @@ export const handleInventoryRoomRackModal = (modalProps) => (dispatch) => {
 export const addRoomAndRackInInventory = (data) => (dispatch) => {
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
-    .post(`${base_url2}/roomrack/add`, data,{
+    .post(`${base_url2}/roomrack/add`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1684,12 +1684,12 @@ export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   });
 };
 
-export const getRoomRackByLocId = (locationId) => (dispatch) => {
+export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
   });
   axios
-    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}`, {
+    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1737,12 +1737,13 @@ export const getRackList = (roomRackId) => (dispatch) => {
     type: types.GET_RACK_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/roomRack/${roomRackId}`, {
+    .get(`${base_url2}/roomrack/${roomRackId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      console.log(res.data)
       dispatch({
         type: types.GET_RACK_LIST_SUCCESS,
         payload: res.data,

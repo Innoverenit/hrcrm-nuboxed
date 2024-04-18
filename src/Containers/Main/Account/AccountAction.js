@@ -3279,7 +3279,7 @@ export const getOrderStatus = (orderId) => (dispatch) => {
     type: types.GET_ORDER_STATUS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/order/${orderId}`,
+    .get(`${base_url2}/phoneOrder/orderStatus/${orderId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
