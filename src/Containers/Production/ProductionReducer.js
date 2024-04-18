@@ -42,9 +42,11 @@ const initialState = {
   updatingroomrackProdn: false,updatingroomrackProdnError:false,
 
   fetchingAllStageProduction: false, productionStageAll:[], fetchingAllStageProductionError: false,
-
   updatingProductionDragStage: false,
 
+  fetchingStageList: false,
+  fetchingStageListError:false,
+  stageProduction:[],
 };
 
 const updateDragdpROD = (item, newProps) => {
@@ -274,7 +276,26 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
             case types.UPDATE_PRODUCTION_DRAG_STAGE_FAILURE:
               return { ...state };  
 
-    default:
+   
+   
+              case types.GET_STAGE_LIST_REQUEST:
+                return { ...state, fetchingStageList: true };
+              case types.GET_STAGE_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingStageList: false,
+                  stageProduction: action.payload,
+                };
+              case types.GET_STAGE_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingStageList: false,
+                  fetchingStageListError: true,
+          
+                };  
+   
+   
+              default:
       return state;
   }
 };

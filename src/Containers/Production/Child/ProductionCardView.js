@@ -33,7 +33,7 @@ function ProductionCardView(props) {
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
         setPage(page + 1);
-        props.getRoomRackByLocId(props.locationId);
+        props.getRoomRackByLocId(props.locationId,props.orgId);
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -93,30 +93,15 @@ function ProductionCardView(props) {
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
 
-//     const handleRoomRackChange = (value) => {
-//         setSelectedRoomId(value);
-//         // props.getRackList(value);
-//       }
+    const handleRoomRackChange = (value) => {
+        setSelectedRoomId(value);
+        props.getRackList(value);
+      }
 
 //   const filteredRacks = props.rackList.filter(
 //     (product) => product.roomRackId === selectedRoomId
 //   );
-//     const handleChangeChamber = (selectedRoomRackId, manufactureId) => {
-//         const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
-//         const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
-//         if (selectedRoomRack && associatedProduction) {
-//             const { locationDetailsId, creationDate } = selectedRoomRack;
-//             const { productId, productName, categoryName } = associatedProduction;
-//             const dataToSend = {
-//                 roomRackId: selectedRoomRackId,
-//                 manufactureId: manufactureId,
-//                 locationDetailsId: locationDetailsId,
-//                 roomEntryDate: creationDate,
-//             };
-//             props.updateRoomRackProduction(dataToSend);
-//         }
-//     };
-    const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
+    const handleChangeChamber = (selectedRoomRackId, manufactureId) => {
         const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
         const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
         if (selectedRoomRack && associatedProduction) {
@@ -127,10 +112,26 @@ function ProductionCardView(props) {
                 manufactureId: manufactureId,
                 locationDetailsId: locationDetailsId,
                 roomEntryDate: creationDate,
+                roomRackChamberLinkId:"",
             };
             props.updateRoomRackProduction(dataToSend);
         }
     };
+    // const handleChangeRoomRack = (selectedRoomRackId, manufactureId) => {
+    //     const selectedRoomRack = props.roomRackbyLoc.find((rack) => rack.roomRackId === selectedRoomRackId);
+    //     const associatedProduction = props.productionByLocsId.find((prod) => prod.manufactureId === manufactureId);
+    //     if (selectedRoomRack && associatedProduction) {
+    //         const { locationDetailsId, creationDate } = selectedRoomRack;
+    //         const { productId, productName, categoryName } = associatedProduction;
+    //         const dataToSend = {
+    //             roomRackId: selectedRoomRackId,
+    //             manufactureId: manufactureId,
+    //             locationDetailsId: locationDetailsId,
+    //             roomEntryDate: creationDate,
+    //         };
+    //         props.updateRoomRackProduction(dataToSend);
+    //     }
+    // };
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -305,25 +306,25 @@ function ProductionCardView(props) {
                                                         <Select
                                                             classNames="w-32"
                                                             value={item.zone}
-                                                            onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
+                                                            onChange={handleRoomRackChange}
                                                         >
-                                                            {props.roomRackbyLoc.map((s) => (
+                                                            {/* {props.roomRackbyLoc.map((s) => (
                                                                 <Option key={s.roomRackId} value={s.roomRackId}>
                                                                     {s.zone}
                                                                 </Option>
-                                                            ))}
+                                                            ))} */}
                                                         </Select>
-                                                        {/* <Select
+                                                        <Select
         classNames="w-32"
         value={selectedChamberId}
         onChange={(e) => handleChangeChamber(e,item.manufactureId)}
     >
-        {filteredRacks.map((chamber) => (
+        {/* {props.racklist.map((chamber) => (
             <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
                 {chamber.chamber}
             </Select.Option>
-        ))}
-    </Select>   */}
+        ))} */}
+    </Select>  
                                                     </div>
                                                 </div>
                                                 <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -441,6 +442,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     productionByLocsId: production.productionByLocsId,
     fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
+    orgId:auth.userDetails.organizationId,
     user: auth.userDetails,
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     clickedProductionIdrwr: production.clickedProductionIdrwr,
