@@ -406,6 +406,10 @@ const initialState = {
   deletingSpareList: false,
   deletingSpareListError: false,
 
+  fetchingOrderStatus: false,
+  fetchingOrderStatusError: false,
+  orderStatus: {},
+
   fetchingProductById: false,
   fetchingProductByIdError: false,
   catalogueById: [],
@@ -2492,6 +2496,22 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingLobList: false,
         fetchingLobListError: true,
+
+      };
+
+    case types.GET_ORDER_STATUS_REQUEST:
+      return { ...state, fetchingOrderStatus: true };
+    case types.GET_ORDER_STATUS_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderStatus: false,
+        orderStatus: action.payload
+      };
+    case types.GET_ORDER_STATUS_FAILURE:
+      return {
+        ...state,
+        fetchingOrderStatus: false,
+        fetchingOrderStatusError: true,
 
       };
     default:
