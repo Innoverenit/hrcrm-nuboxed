@@ -991,6 +991,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         addingRoomAndRackInInventory: false,
         // addroomrackininventory: false,
+        // roomRackbyLoc:action.payload
       };
     case types.ADD_ROOM_AND_RACK_IN_INVENTORY_FAILURE:
       return {
@@ -1393,7 +1394,7 @@ export const inventoryReducer = (state = initialState, action) => {
             ...state,
             updatingRoomRackId: false,
             roomRackbyLoc: state.roomRackbyLoc.map((item) =>
-              item.orderPhoneId === action.payload.orderPhoneId
+              item.roomRackId === action.payload.roomRackId
                 ? action.payload : item
             ),
           };
