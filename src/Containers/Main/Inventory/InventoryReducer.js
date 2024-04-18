@@ -275,31 +275,8 @@ const initialState = {
 
   fetchingRacklist: false,
   fetchingRacklistError:false,
-  rackList:[ {
-    "roomRackId": "RARG8098874754292024",
-    "rack": 0.0,
-    "roomFullInd": false,
-    "userId": "EMP16818052295222021",
-    "chamber": "A2",
-    "roomRackChamberLinkId": "RRCMBG2831939790592024"
-},
-{
-  "roomRackId": "RARG8098874754292024",
-    "rack": 0.0,
-    "roomFullInd": false,
-    "userId": "EMP16818052295222021",
-    "chamber": "A3",
-    "roomRackChamberLinkId": "RRCMBG3785197509092024"
-},
-{
-  "roomRackId": "RARG8098874754292024",
-    "rack": 0.0,
-    "roomFullInd": false,
-    "userId": "EMP16818052295222021",
-    "chamber": "A1",
-    "roomRackChamberLinkId": "RRCMBG8238232805292024"
-},
-],
+  rackList:{},
+
 };
 
 export const inventoryReducer = (state = initialState, action) => {

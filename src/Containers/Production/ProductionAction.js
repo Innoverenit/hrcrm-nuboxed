@@ -427,3 +427,29 @@ export const updateProductiondragstage = (
       cb && cb("failure");
     });
 };
+export const getStageList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_STAGE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/workflow/production/stages/for_dropdown/${orgId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_STAGE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_STAGE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
