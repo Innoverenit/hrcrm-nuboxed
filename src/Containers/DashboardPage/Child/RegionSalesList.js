@@ -11,9 +11,13 @@ import {  Tooltip, Select,Button } from "antd";
 import { MultiAvatar2, SubTitle } from "../../../Components/UI/Elements";
 import {
     getRegionSalesList,
-    handleSalesPlanDrawerModal
+    handleSalesPlanDrawerModal,
+    handleSalesQuotationDrawerModal,
+    handleSalesOrderDrawerModal
 } from "../RegionalDashAction";
+import OrderPlanDrawerModal from "../Child/OrderPlanDrawerModal"
 import { FormattedMessage } from "react-intl";
+import QuotationPlanDrawerModal from "../Child/QuotationPlanDrawerModal"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -53,6 +57,8 @@ function RegionSalesList(props) {
     regionSalesList,
     addSalesPlanModal,
     handleSalesPlanDrawerModal,
+    handleSalesQuotationDrawerModal,
+    handleSalesOrderDrawerModal
   } = props;
 
   if (fetchingRegionalSalesList) return <BundleLoader/>;
@@ -73,6 +79,14 @@ function RegionSalesList(props) {
             handleSalesPlanDrawerModal(true);
             handleRowData(employee);
             }}>View Sales Plan</Button>
+             <Button type="primary" onClick={() => {
+            handleSalesQuotationDrawerModal(true);
+            handleRowData(employee);
+            }}>Quotation</Button>
+              <Button type="primary" onClick={() => {
+            handleSalesOrderDrawerModal(true);
+            handleRowData(employee);
+            }}>Order</Button>
         </div>
 
         <div className=' flex  justify-center  sticky top-28 z-auto'>
@@ -430,6 +444,20 @@ function RegionSalesList(props) {
       addSalesPlanModal={addSalesPlanModal}
       handleSalesPlanDrawerModal={handleSalesPlanDrawerModal}
     />
+    <QuotationPlanDrawerModal
+    tabKey={props.tabKey}
+            rowdata={rowdata}
+            handleSalesQuotationDrawerModal={handleSalesQuotationDrawerModal}
+            addSalesQuotationModal={props.addSalesQuotationModal}
+           
+    />
+    <OrderPlanDrawerModal
+    tabKey={props.tabKey}
+            rowdata={rowdata}
+            handleSalesOrderDrawerModal={handleSalesOrderDrawerModal}
+            addSalesOrderModal={props.addSalesOrderModal}
+           
+    />
   </>
   
   );
@@ -439,13 +467,17 @@ const mapStateToProps = ({
 }) => ({
     regionSalesList:dashboardRegional.regionSalesList,
     addSalesPlanModal:dashboardRegional.addSalesPlanModal,
+    addSalesQuotationModal:dashboardRegional.addSalesQuotationModal,
     fetchingRegionalSalesList:dashboardRegional.fetchingRegionalSalesList,
+    addSalesOrderModal:dashboardRegional.addSalesOrderModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getRegionSalesList,
-        handleSalesPlanDrawerModal
+        handleSalesPlanDrawerModal,
+        handleSalesQuotationDrawerModal,
+        handleSalesOrderDrawerModal
     },
     dispatch
   );

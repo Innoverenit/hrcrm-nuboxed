@@ -10,11 +10,22 @@ const initialState = {
   fetchingRegionalTaskListError: false,
   regionAllTaskList:[],
 
+  
+
   addSalesPlanModal:false,
+
+  addSalesQuotationModal:false,
+
+  addSalesOrderModal:false,
 
   fetchingRegionalSalesList: false,
   fetchingRegionalSalesListError: false,
   regionSalesList:[],
+
+
+  fetchingOrderPlanList:false,
+  fetchingOrderPlanListError:false,
+  orderPlanList:[],
 
 
   updatingTaskDragStage:false,
@@ -107,6 +118,14 @@ case types.CHANGE_SELECTED_REGIONAL_TIME_INTERVAL_REPORT:
 
       case types.HANDLE_SALES_PLAN_DRAWER_MODAL:
         return { ...state, addSalesPlanModal: action.payload };
+
+
+        case types.HANDLE_SALES_ORDER_DRAWER_MODAL:
+    return { ...state, addSalesOrderModal: action.payload };
+
+
+    case types.EMPTY_ORDER_PLAN:
+      return { ...state, orderPlanList:[] };
   
 
       case types.HANDLE_FULLFILLMENT_MODAL:
@@ -151,7 +170,32 @@ case types.GET_REGION_SALES_LIST_FAILURE:
   };
 
 
+
+
+
+  case types.GET_ORDER_PLAN_LIST_REQUEST:
+    return { ...state, fetchingOrderPlanList: true };
+  case types.GET_ORDER_PLAN_LIST_SUCCESS:
+    return {
+      ...state,
+      fetchingOrderPlanList: false,
+      orderPlanList: action.payload,
+    };
+  case types.GET_ORDER_PLAN_LIST_FAILURE:
+    return {
+      ...state,
+      fetchingOrderPlanList: false,
+      fetchingOrderPlanListError: true,
+    };
   
+
+
+
+  
+
+
+  case types.HANDLE_SALES_QUOTATION_DRAWER_MODAL:
+    return { ...state, addSalesQuotationModal: action.payload };
 case types.GET_REGION_TASK_LIST_REQUEST:
   return { ...state, fetchingRegionalTaskList: true };
 case types.GET_REGION_TASK_LIST_SUCCESS:

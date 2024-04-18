@@ -2,11 +2,35 @@ import * as types from "./RegionalDashActionTypes";
 import axios from "axios";
 import { base_url } from "../../Config/Auth";
 
+import { base_url2 } from "../../Config/Auth";
+
 
 export const setReionalDashViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.SET_REGIONAL_DASH_VIEW_TYPE,
       payload: viewType,
+    });
+  };
+
+  export const handleSalesOrderDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_SALES_ORDER_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const handleSalesQuotationDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_SALES_QUOTATION_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
+  export const emptyOrderPlan = () => (dispatch) => {
+    dispatch({
+      type: types.EMPTY_ORDER_PLAN,
+      
     });
   };
 
@@ -44,6 +68,35 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
       type: types.HANDLE_INVESTMENT_MODAL,
       payload: modalProps,
     });
+  };
+
+
+
+  export const getOrderPlanList = (userId,quarter,year) => (dispatch) => {
+  
+    dispatch({
+      type: types.GET_ORDER_PLAN_LIST_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/phoneOrder/orderListByDeliveryDate/${userId}/${quarter}/${year}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ORDER_PLAN_LIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ORDER_PLAN_LIST_FAILURE,
+          payload: err,
+        });
+      });
   };
 
   export const getRegionSalesList = (year,quarter,regionsId,type) => (dispatch) => {
@@ -168,5 +221,10 @@ export const setReionalDashViewType = (viewType) => (dispatch) => {
 //         });
 //       });
 //   };
+
+
+
+
+
 
  

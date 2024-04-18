@@ -251,6 +251,12 @@ const initialState = {
   deletedOpportunity: [],
 
 
+  fetchingRegionalQuotationSalesList:false,
+  fetchingRegionalQuotationSalesListError:false,
+  regionQuotationSalesList:[],
+
+
+
   fetchingPermissionsList: false,
   fetchingPermissionsListError: false,
   permissionsDataList: [],
@@ -531,6 +537,19 @@ const updatedOpportunity = (item, newProps) => {
 
 
 const updatedDragOpportunity = (item, newProps) => {
+  return item.map((opp, index) => {
+    console.log("Author7",opp);
+    console.log("Author8",newProps);
+    if (opp.opportunityId === newProps.opportunityId) {
+      console.log("inside opp");
+      opp.opportunityStagesId = newProps.opportunityStagesId;
+    }
+    return opp;
+  });
+};
+
+
+const updatedDragQuotation = (item, newProps) => {
   return item.map((opp, index) => {
     console.log("Author7",opp);
     console.log("Author8",newProps);
@@ -1328,6 +1347,24 @@ case types.GET_DELETED_OPPORTUNITY_FAILURE:
                   ...state,
                   fetchingAllRecruitmentDetailsByOppIdError: true,
                 };
+
+
+
+                case types.GET_REGION_SALES_QUOTATION_LIST_REQUEST:
+  return { ...state, fetchingRegionalQuotationSalesList: true };
+case types.GET_REGION_SALES_QUOTATION_LIST_SUCCESS:
+  return {
+    ...state,
+    fetchingRegionalQuotationSalesList: false,
+    regionQuotationSalesList: action.payload,
+  };
+case types.GET_REGION_SALES_QUOTATION_LIST_FAILURE:
+  return {
+    ...state,
+    fetchingRegionalQuotationSalesList: false,
+    fetchingRegionalQuotationSalesListError: true,
+  };
+
 
 
                 case types.GET_SKILLS_COUNT_REQUEST:
@@ -2339,6 +2376,7 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                                 return { ...state, 
                                                   updatingDragStage: false ,
                                                   opportunityByUserId: updatedDragOpportunity(state.opportunityByUserId, action.payload),
+                                                  regionQuotationSalesList: updatedDragQuotation(state.regionQuotationSalesList, action.payload),
                                                  // candidateRequirement: [action.payload]
 
                                                 };
