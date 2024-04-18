@@ -22,7 +22,7 @@ const ProductionActionLeft = (props) => {
         title={<FormattedMessage id="app.listView" defaultMessage="List View" />}>
  <Badge
           size="small"
-          count={(props.viewType === "card" && props.productrecordData.customer) || 0}
+          count={(props.viewType === "card" && props.productrecordData.product) || 0}
           overflowCount={999}
         >
         <span class=" md:mr-2 text-sm cursor-pointer"

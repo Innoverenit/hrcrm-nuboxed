@@ -90,7 +90,38 @@ const initialState = {
 
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
-  allproducts: [],
+  allproducts: [
+//     {
+//       "id": "PCD7617397754982024",
+//       "categoryName": "Phulka",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD7856330229422024",
+//       "categoryName": "king",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD793500819122024",
+//       "categoryName": "Dry Powder",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD8213713670282024",
+//       "categoryName": "iPad ",
+//       "imageId": null
+//   },
+// {
+//       "id": "PCD6068749460382024",
+//       "categoryName": "Dough",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD9509139668222024",
+//       "categoryName": "Fruits",
+//       "imageId": null
+//   },
+  ],
 
   fetchingProductsById: false,
   fetchingProductsByIdError: false,
@@ -266,7 +297,33 @@ const initialState = {
 
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
-  productAlls: [],
+  productAlls: [
+//     {
+//     "productId": "PD68170822484172024",
+//     "productName": "Accelerator testing 1 2 ",
+//     "creationDate": "2024-04-17T08:57:17.261Z",
+//     "categoryName": "paneer",
+// },
+// {
+//     "productId": "PD5118276228082024",
+//     "productName": "Palak Phulka Phulka Palak 2.0 3.0",
+//     "creationDate": "2024-04-16T08:21:46.026Z",
+// "categoryName": "Phulka",
+// },
+// {
+//     "productId": "PD1920247105482024",
+//     "productName": "Jowar Phulka - Gluten Free Phulka Jowar  ",
+//     "creationDate": "2024-04-08T13:00:18.227Z",
+// "categoryName": "Phulka",
+// },
+
+// {
+//     "productId": "PD7213203342382024",
+//     "productName": "Paneer Stuffed Bhatura Dough Dough Paneer Stuffed Bhatura  ",
+//     "creationDate": "2024-04-08T12:36:08.306Z",
+// "categoryName": "Dough",
+// },
+],
 
   postingProductionBldr: false,
   postingProductionBldrError: false,

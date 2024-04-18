@@ -89,7 +89,7 @@ export const updateSupplies = (data, suppliesId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_SUPPLIES_BY_ID_REQUEST });
   axios
-    .put(`${base_url2}/supplies/${suppliesId}`, { ...data })
+    .put(`${base_url2}/supplies/${suppliesId}/rtr`, { ...data })
     .then((res) => {
       console.log(res);
       dispatch({

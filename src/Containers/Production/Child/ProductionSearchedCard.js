@@ -1,10 +1,24 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProductionSearchedToggle from "./ProductionSearchedToggle";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {getProcessForProduction} from "../../Settings/SettingsAction";
+import { Select } from "../../../Components/UI/Elements";
+
+const { Option } = Select;
 
 function ProductionSearchedCard(props) {
+
+  const [selectedWorkflowId, setSelectedWorkflowId] = useState(null);
+
+useEffect(()=>{
+  props.getProcessForProduction(props.orgId);
+},[]);
+
+const handleWorkflowChange = (value) => {
+  setSelectedWorkflowId(value);
+};
 
   return (
     <>
@@ -17,7 +31,8 @@ function ProductionSearchedCard(props) {
             <div className=" md:w-[7rem]">Category</div>
             <div className=" md:w-[7rem] ">Attribute</div>
             <div className="md:w-[7rem]">Workflow</div>
-            <div className=" md:w-[7rem] ">Add</div>
+            <div className="md:w-[7rem]">Stage</div>
+            <div className=" md:w-[7rem] ">Add to queue</div>
 
           </div>
           <InfiniteScroll
@@ -60,10 +75,20 @@ function ProductionSearchedCard(props) {
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <Select value={selectedWorkflowId} onChange={handleWorkflowChange} >
+                  {props.productionProcess.map(option => {
+                    return <Option key={option.productionWorkflowDetailsId} value={option.productionWorkflowDetailsId}>{option.workflowName}</Option>
+                  })}
+                </Select>
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <ProductionSearchedToggle item={item} />
+
+                      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <ProductionSearchedToggle item={item} productionWorkflowDetailsId={selectedWorkflowId}/>
                     </div>
 
                   </div>
@@ -78,15 +103,17 @@ function ProductionSearchedCard(props) {
   );
 }
 
-const mapStateToProps = ({ production }) => ({
+const mapStateToProps = ({ production,auth,settings }) => ({
   searchedProduction: production.searchedProduction,
-  fetchingSearchedProduction: production.fetchingSearchedProduction
+  fetchingSearchedProduction: production.fetchingSearchedProduction,
+  orgId:auth.userDetails.organizationId,
+  productionProcess:settings.productionProcess
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-
+      getProcessForProduction
     },
     dispatch
   );

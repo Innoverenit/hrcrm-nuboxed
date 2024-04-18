@@ -11,8 +11,9 @@ const { Option } = Select;
 const RoomAndRackForm = (props) => {
 
   useEffect(()=>{
-// props.getRoomRackByLocId(props.rowData.locationDetailsId)
+props.getRoomRackByLocId(props.rowData.locationDetailsId);
   },[]);
+  
   const [rows, setRows] = useState([]);
 
   const handleAddRow = () => {
@@ -43,7 +44,8 @@ const RoomAndRackForm = (props) => {
     const payload = {
               locationDetailsId: props.rowData.locationDetailsId,
               userId: props.userId,
-              roomRackList:row,
+              // roomRackList:row,
+              zone: row.zone, rack:row.rack,zoneType:row.zoneType,description:row.description
             };
             props.addRoomAndRackInInventory(payload);
             setRows([{ zone: '', rack: '',zoneType:'',description:''}]);

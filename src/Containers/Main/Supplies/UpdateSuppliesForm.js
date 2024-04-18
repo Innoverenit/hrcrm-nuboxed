@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
@@ -17,55 +17,62 @@ const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
   categoryName: Yup.string().required("Input needed!"),
 });
-class UpdateSuppliesForm extends Component {
+function UpdateSuppliesForm (props) {
+  useEffect(()=> {
+   props.getCurrency();
+  },[]);
 
-  componentDidMount() {
-    this.props.getCurrency()
+  const [newimageId, setnewimageId] = useState("");
+
+  function setImage(imageId) {
+    setnewimageId(imageId);
   }
-  render() {
-    const currencyType = this.props.currencies.map((item) => {
+
+    const currencyType =props.currencies.map((item) => {
       return {
         label: item.currency_name || "",
         value: item.currency_name,
       };
     })
-    console.log(this.props.particularDiscountData)
+console.log("f",newimageId)
     return (
       <>
         <Formik
           initialValues={{
             attribute: "",
-            attributeName: this.props.particularDiscountData.attributeName || "",
-            category: this.props.particularDiscountData.category || "",
-            categoryName: this.props.particularDiscountData.categoryName || "",
-            description: this.props.particularDiscountData.description || "",
-            imageId: this.props.particularDiscountData.imageId,
-            name: this.props.particularDiscountData.suppliesName || "",
-            hsn: this.props.particularDiscountData.hsn || "",
-            subAttribute: this.props.particularDiscountData.subAttribute || "",
-            subAttributeName: this.props.particularDiscountData.subAttributeName || "",
-            subCategory: this.props.particularDiscountData.subCategory || "",
-            subCategoryName: this.props.particularDiscountData.subCategoryName || "",
+            attributeName:props.particularDiscountData.attributeName || "",
+            category:props.particularDiscountData.category || "",
+            categoryName:props.particularDiscountData.categoryName || "",
+            description:props.particularDiscountData.description || "",
+            imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
+            // imageId: props.particularDiscountData.imageId,
+            name:props.particularDiscountData.suppliesName || "",
+            hsn:props.particularDiscountData.hsn || "",
+            subAttribute:props.particularDiscountData.subAttribute || "",
+            subAttributeName:props.particularDiscountData.subAttributeName || "",
+            subCategory:props.particularDiscountData.subCategory || "",
+            subCategoryName:props.particularDiscountData.subCategoryName || "",
             price: 0,
             tax: 0,
-            orgId: this.props.orgId,
-            userId: this.props.userId,
-            currencyName: this.props.particularDiscountData.costCurrencyName || "",
-            grossWeight: this.props.particularDiscountData.grossWeight || "",
-            grossUnit: this.props.particularDiscountData.grossUnit || "",
-            netUnit: this.props.particularDiscountData.netUnit || "",
-            netWeight: this.props.particularDiscountData.netWeight || "",
-            reorder: this.props.particularDiscountData.reorder || "",
+            orgId:props.orgId,
+            userId:props.userId,
+            currencyName:props.particularDiscountData.costCurrencyName || "",
+            grossWeight:props.particularDiscountData.grossWeight || "",
+            grossUnit:props.particularDiscountData.grossUnit || "",
+            netUnit:props.particularDiscountData.netUnit || "",
+            netWeight:props.particularDiscountData.netWeight || "",
+            reorder:props.particularDiscountData.reorder || "",
           }}
           validationSchema={SuppliesSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            this.props.updateSupplies(
+           props.updateSupplies(
               {
                 ...values,
-                imageId: this.props.particularDiscountData.imageId,
+                imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
+                // imageId: props.particularDiscountData.imageId,
               },
-              this.props.particularDiscountData.suppliesId
+             props.particularDiscountData.suppliesId
             );
           }}
         >
@@ -85,10 +92,10 @@ class UpdateSuppliesForm extends Component {
                     <div class="w-[40%]">
                       <div class="mt-3">
                         <EditUpload
-                          imageId={this.props.particularDiscountData.imageId}
+                          imageId={props.particularDiscountData.imageId}
                           imgWidth={100}
                           imgHeight={100}
-                        // getImage={setImage}
+                          getImage={setImage}
                         />
 
                       </div>
@@ -96,8 +103,8 @@ class UpdateSuppliesForm extends Component {
                   </div>
                   <Field
                     defaultValue={{
-                      label: this.props.particularDiscountData.categoryName,
-                      value: this.props.particularDiscountData.categoryName,
+                      label:props.particularDiscountData.categoryName,
+                      value:props.particularDiscountData.categoryName,
                     }}
                     isRequired
                     name="categoryName"
@@ -113,8 +120,8 @@ class UpdateSuppliesForm extends Component {
                   />
                   <Field
                     defaultValue={{
-                      label: this.props.particularDiscountData.subCategoryName,
-                      value: this.props.particularDiscountData.subCategoryName,
+                      label:props.particularDiscountData.subCategoryName,
+                      value:props.particularDiscountData.subCategoryName,
                     }}
                     name="subCategoryName"
                     label="Sub Category"
@@ -130,8 +137,8 @@ class UpdateSuppliesForm extends Component {
                     <div class="w-full">
                       <Field
                         defaultValue={{
-                          label: this.props.particularDiscountData.attributeName,
-                          value: this.props.particularDiscountData.attributeName,
+                          label:props.particularDiscountData.attributeName,
+                          value:props.particularDiscountData.attributeName,
                         }}
                         name="attributeName"
                         label="Attribute"
@@ -145,8 +152,8 @@ class UpdateSuppliesForm extends Component {
                       />
                       <Field
                         defaultValue={{
-                          label: this.props.particularDiscountData.subAttributeName,
-                          value: this.props.particularDiscountData.subAttributeName,
+                          label:props.particularDiscountData.subAttributeName,
+                          value:props.particularDiscountData.subAttributeName,
                         }}
                         name="subAttributeName"
                         label="Sub Attribute"
@@ -280,7 +287,7 @@ class UpdateSuppliesForm extends Component {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={this.props.addingPurchase}
+                  loading={props.addingPurchase}
                 >
                   Update
                 </Button>
@@ -290,7 +297,6 @@ class UpdateSuppliesForm extends Component {
         </Formik>
       </>
     );
-  }
 }
 
 const mapStateToProps = ({ auth, supplies }) => ({
