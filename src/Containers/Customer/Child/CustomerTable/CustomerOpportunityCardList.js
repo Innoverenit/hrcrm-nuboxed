@@ -146,7 +146,7 @@ function CustomerOpportunityCardList(props) {
         <div className=" md:w-[8.1rem]">Name</div>
         <div className=" md:w-[6.1rem]">startDate</div>
         <div className=" md:w-[4.2rem] ">endDate</div>
-        <div className="md:w-[5.8rem]">Proposal Amount</div>
+        <div className="md:w-[5.8rem]">Value</div>
         <div className="md:w-[8.5rem]">Status</div>
         <div className="md:w-[3.8rem]">Sponsor</div> 
         <div className="w-12"></div>

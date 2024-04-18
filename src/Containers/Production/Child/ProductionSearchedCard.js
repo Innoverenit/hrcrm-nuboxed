@@ -5,21 +5,26 @@ import ProductionSearchedToggle from "./ProductionSearchedToggle";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {getProcessForProduction} from "../../Settings/SettingsAction";
 import { Select } from "../../../Components/UI/Elements";
+import {getStageList} from "../ProductionAction";
 
 const { Option } = Select;
 
 function ProductionSearchedCard(props) {
 
   const [selectedWorkflowId, setSelectedWorkflowId] = useState(null);
+  const [selectedStageId, setSelectedStageId] = useState(null);
 
 useEffect(()=>{
   props.getProcessForProduction(props.orgId);
+  props.getStageList(props.orgId);
 },[]);
 
 const handleWorkflowChange = (value) => {
   setSelectedWorkflowId(value);
 };
-
+const handleStageChange = (value) => {
+  setSelectedStageId(value);
+};
   return (
     <>
 
@@ -85,10 +90,15 @@ const handleWorkflowChange = (value) => {
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <Select value={selectedStageId} onChange={handleStageChange} >
+                  {props.stageProduction.map(option => {
+                    return <Option key={option.productionStagesId} value={option.productionStagesId}>{option.stageName}</Option>
+                  })}
+                </Select>
                       </div>
                     </div>
                     <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <ProductionSearchedToggle item={item} productionWorkflowDetailsId={selectedWorkflowId}/>
+                      <ProductionSearchedToggle item={item} productionWorkflowDetailsId={selectedWorkflowId} productionStagesId={selectedStageId}/>
                     </div>
 
                   </div>
@@ -107,13 +117,15 @@ const mapStateToProps = ({ production,auth,settings }) => ({
   searchedProduction: production.searchedProduction,
   fetchingSearchedProduction: production.fetchingSearchedProduction,
   orgId:auth.userDetails.organizationId,
-  productionProcess:settings.productionProcess
+  productionProcess:settings.productionProcess,
+  stageProduction:production.stageProduction
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProcessForProduction
+      getProcessForProduction,
+      getStageList
     },
     dispatch
   );

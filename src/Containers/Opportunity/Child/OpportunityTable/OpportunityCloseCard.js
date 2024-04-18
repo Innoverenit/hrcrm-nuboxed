@@ -126,7 +126,7 @@ function OpportunityCloseCard(props) {
             <div>{moment(item.startDate).format("ll")}</div>
                     </div>
                     <div class="flex justify-between">
-                    <div>Proposal Amount</div> 
+                    <div>Value</div> 
             <div><span>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;

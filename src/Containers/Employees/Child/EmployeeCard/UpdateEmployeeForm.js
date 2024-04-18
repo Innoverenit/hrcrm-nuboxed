@@ -41,6 +41,8 @@ class UpdateEmployeeForm extends Component {
       role: [],
       reportingManager: this.props.currentEmployeeId.reportingManager || "",
       department: this.props.currentEmployeeId.reportingManagerDeptId || "",
+      secondatDepartment:this.props.currentEmployeeId.secondaryReptManagerDept || "",
+      secondaryReportingManager:this.props.currentEmployeeId.secondaryReptManager || "",
       selectedRole: "",
       selectedCountry: '',
       selectedDept: "",
@@ -102,6 +104,13 @@ class UpdateEmployeeForm extends Component {
   handleDepartment = (val) => {
     this.setState({ department: val });
     this.props.getDepartmentwiserUser(val);
+  }
+ handleSecondaryDepartment = (val) => {
+  this.setState({ secondatDepartment: val });
+    this.props.getDepartmentwiserUser(val);
+  }
+ handleSecondaryreportingManager = (val) => {
+  this.setState({ secondaryReportingManager: val });
   }
   handlereportingManager = (val) => {
     this.setState({ reportingManager: val });
@@ -188,7 +197,7 @@ class UpdateEmployeeForm extends Component {
   }
 
   render() {
-    const { user, reportingManager, department, selectedRow, dueDate } = this.state;
+    const { user, reportingManager, department,secondatDepartment,secondaryReportingManager, selectedRow, dueDate } = this.state;
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
         label: item.zone_name
@@ -310,6 +319,8 @@ class UpdateEmployeeForm extends Component {
                   // workplace: currentEmployeeId.country_name ,
                   // location: currentEmployeeId.locationDetailsId ,
                   reportingManagerDeptId: department,
+                  secondaryReptManagerDept:secondatDepartment,
+                  secondaryReptManager: secondaryReportingManager,
                   reportingManager: reportingManager,
                   job_type: this.state.active ? "Full Time" : "Part Time",
                   type: this.state.typeInd ? "true" : "false",
@@ -915,6 +926,34 @@ name="departmentId"
                           className="w-[250px]"
                           value={reportingManager}
                           onChange={(value) => this.handlereportingManager(value)}
+                        >
+                          {this.props.departmentwiseUser.map((a) => {
+                            return <Option value={a.employeeId}>{a.empName}</Option>;
+                          })}
+                        </Select>
+                      </div>
+                    </div>
+
+                    <div class=" flex justify-between  max-sm:flex-col" >
+                      <div class=" w-w48 max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+                        <Select
+                          className="w-[250px]"
+                          value={secondatDepartment}
+                          onChange={(value) => this.handleSecondaryDepartment(value)}
+                        >
+                          {this.props.departments.map((a) => {
+                            return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                          })}
+                        </Select>
+                      </div>
+
+                      <div class="w-w47.5 max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+                        <Select
+                          className="w-[250px]"
+                          value={secondaryReportingManager}
+                          onChange={(value) => this.handleSecondaryreportingManager(value)}
                         >
                           {this.props.departmentwiseUser.map((a) => {
                             return <Option value={a.employeeId}>{a.empName}</Option>;

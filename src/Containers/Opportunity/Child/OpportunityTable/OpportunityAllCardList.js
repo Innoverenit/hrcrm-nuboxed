@@ -91,7 +91,7 @@ function OpportunityAllCardList(props) {
         <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
         <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
         <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Proposal Amount</div>
+        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
         <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
         <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
         <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>

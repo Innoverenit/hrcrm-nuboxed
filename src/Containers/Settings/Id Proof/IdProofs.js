@@ -53,7 +53,8 @@ const IdProofs = (props) => {
       console.log(region)
       let data={
         idProofTypeId:region.idProofTypeId,
-        idProofType:newIdProofName
+        idProofType:newIdProofName,
+        editInd:true,
        
       }
 props.updateIdProofs(data,region.idProofTypeId)
@@ -74,6 +75,7 @@ setEditingId(null);
       let data={
         idProofType:newIdProofName,
         orgId:props.orgId,
+        editInd:true,
       }
       props.addIdProofs(data,props.orgId)
       setAddingRegion(false)

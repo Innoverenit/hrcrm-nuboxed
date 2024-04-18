@@ -50,7 +50,7 @@ class SingleOpportunityStages extends Component {
         opportunityProcessStages: {
         stageName,
         opportunityStagesId,
-        deleteOpportunityStagesData,
+     
         responsible,
         probability,
         days,
@@ -71,6 +71,7 @@ class SingleOpportunityStages extends Component {
       handleStageClick,
       color,
       key,
+      deleteOpportunityStagesData,
       currentStage,
     } = this.props;
     console.log(opportunityStagesId, "----------", linkedStages);

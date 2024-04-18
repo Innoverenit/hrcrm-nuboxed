@@ -143,10 +143,10 @@ function OpportunityTable(props) {
       },
     },
     // {
-    //   // title: "Proposal Amount",
+    //   // title: "Value",
     //   title: <FormattedMessage
     //     id="app.proposalAmount"
-    //     defaultMessage="Proposal Amount"
+    //     defaultMessage="Value"
     //   />,
     //   dataIndex: "proposalAmount",
     //   width: "15%",

@@ -146,9 +146,9 @@ function UserKpiList(props) {
       <div className="md:w-[7.5rem]">
         <FormattedMessage id="app.lob" defaultMessage="LOB" />
       </div>
-      <div className="md:w-[5.5rem]">
+      {/* <div className="md:w-[5.5rem]">
          <FormattedMessage id="app.lob" defaultMessage="Currency" />
-       </div>
+       </div> */}
       <div className="md:w-[11.1rem]">
         <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
       </div>
@@ -156,19 +156,21 @@ function UserKpiList(props) {
         <FormattedMessage id="app.assigned" defaultMessage=" Total" />
       </div>
   
-      <div className="md:w-[9.11rem]">
+      <div className="md:w-[7.11rem]">
         <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
       </div>
       <div className="md:w-[7.51rem]">
         <FormattedMessage id="app.achieved" defaultMessage=" Total" />
       </div>
-      <div className="md:w-[5.01rem]">
+      <div class="w-[2rem]"></div>
+      <div className="md:w-[8.01rem]">
         <FormattedMessage id="app.actual" defaultMessage="Actual" />
       </div>
       <div className="md:w-[3.1rem]">
         <FormattedMessage id="app.actual" defaultMessage="Total" />
 
       </div>
+      <div class="w-[2rem]"></div>
       <div className="md:w-[4.1rem]"><FormattedMessage
          id="app.weightage"
          defaultMessage="Weightage"
@@ -210,7 +212,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
             </>
           </div>
         </div>
-        <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+        {/* <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
            <div className="text-sm text-cardBody font-poppins">
              <>
    
@@ -218,7 +220,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
      
              </>
            </div>
-         </div>
+         </div> */}
 
         <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
           <div className="text-sm text-cardBody font-poppins">
@@ -340,7 +342,7 @@ width={30}
       
          </div>
        </div>
-      <div className="flex font-medium flex-col md:w-[19.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+      <div className="flex font-medium flex-col md:w-[24.3rem]  max-sm:flex-row w-full max-sm:justify-between">
         <div className="text-sm text-cardBody font-poppins">
         {editContactId === item.userKpiLinkId ? (
  <>
@@ -397,7 +399,7 @@ width={30}
             <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
               <div className="flex flex-col">
                 <span className="mr-2">M1</span>
-                <span className='ml-2'>   {item.month1ActualCompletedValue && (
+                <span className='ml-2 w-[3rem]'>   {item.month1ActualCompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
                                   {item.month1ActualCompletedValue/ 10000}k
@@ -406,7 +408,7 @@ width={30}
               </div>
               <div className="flex flex-col">
                 <span className="mr-2">M2</span>
-                <span className='ml-2'>   {item.month2ActualCompletedValue && (
+                <span className='ml-2 w-[3rem]'>   {item.month2ActualCompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
                                   {item.month2ActualCompletedValue/ 10000}k
@@ -415,7 +417,7 @@ width={30}
               </div>
               <div className="flex flex-col">
                 <span className="mr-2">M3</span>
-                <span className='ml-2'>   {item.month3ActualCompletedValue && (
+                <span className='ml-2 w-[5.5rem]'>   {item.month3ActualCompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
                                   {item.month3ActualCompletedValue/ 10000}k

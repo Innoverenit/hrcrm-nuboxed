@@ -119,7 +119,6 @@ function ProductionCardView(props) {
         openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     } = props;
 
-
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -379,7 +378,6 @@ function ProductionCardView(props) {
 
                                                     </div>
                                                 </div>
-
                                                 {(user.productionDeleteInd === true || user.role === "ADMIN") && (
                                                     <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
@@ -449,6 +447,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     productionByLocsId: production.productionByLocsId,
     fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
+    orgId: auth.userDetails.organizationId,
     user: auth.userDetails,
     openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     clickedProductionIdrwr: production.clickedProductionIdrwr,

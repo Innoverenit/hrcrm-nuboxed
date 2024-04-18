@@ -332,7 +332,7 @@ function CustomerOpportunityForm(props) {
                   <div class=" w-2/4">
                     <Field
                       name="proposalAmount"
-                      //label="Proposal Amount"
+                      //label="Value"
 
                       label={
                         <FormattedMessage
