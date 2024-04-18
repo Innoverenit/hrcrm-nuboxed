@@ -3273,3 +3273,28 @@ export const getSubOrderPhone = (orderPhoneAwbId) => (dispatch) => {
       });
     });
 };
+
+export const getOrderStatus = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_STATUS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/order/${orderId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_STATUS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_STATUS_FAILURE,
+        payload: err,
+      });
+    });
+};
