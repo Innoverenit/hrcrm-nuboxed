@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addSupervisor, getUserByLocationDepartment } from "../../AccountAction"
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
-import * as Yup from "yup";
 import { Select } from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
