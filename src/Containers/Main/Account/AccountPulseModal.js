@@ -13,7 +13,7 @@ class AccountPulseModal extends Component {
                 <StyledDrawer
                     // title="Notes"
                     title={`${this.props.RowData.name}`}
-                    width="60%"
+                    width="90%"
                     visible={this.props.showPulseModal}
                     onClose={() => this.props.handleAccountPulse(false)}
                 >

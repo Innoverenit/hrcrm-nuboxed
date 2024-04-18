@@ -23,6 +23,7 @@ import { FormattedMessage } from "react-intl";
 import AccountPulseModal from "./AccountPulseModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+import ExploreIcon from "@mui/icons-material/Explore";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -65,10 +66,7 @@ function AccountTable(props) {
               id="app.work#"
               defaultMessage="work#"
             /></div>
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] "><FormattedMessage
-              id="app.website"
-              defaultMessage="website"
-            /></div>
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">Category</div>
             <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]"><FormattedMessage
               id="app.type"
               defaultMessage="type"
@@ -77,18 +75,12 @@ function AccountTable(props) {
               id="app.Paymentdays"
               defaultMessage="Paymentdays"
             /></div>
-            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]"><FormattedMessage
-              id="app.vat"
-              defaultMessage="vat"
-            /></div>
+            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">Tax#</div>
             <div className="w-[15.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14rem]"><FormattedMessage
               id="app.billingaddress"
               defaultMessage="billingaddress"
             /></div>
-            <div className="w-[6.83rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.83rem]"><FormattedMessage
-              id="app.pincode"
-              defaultMessage="pincode"
-            /></div>
+            
 
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
@@ -115,13 +107,13 @@ function AccountTable(props) {
            ${item.address && item.address.length && item.address[0].state}
           ${(item.address && item.address.length && item.address[0].country) || ""
                     } 
-           
+                   ${item.address && item.address.length && item.address[0].postalCode}
             `;
                   return (
                     <div>
                       <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[15rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                          <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -136,13 +128,13 @@ function AccountTable(props) {
                               <div class="max-sm:w-auto flex items-center">
                                 <Tooltip>
                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
-                                        class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                         to={`distributor/${item.distributorId}`}
                                         title={`${item.name}`}>
-                                        {item.name}
+                                        {item.name.substring(0, 25)}
                                       </Link>  &nbsp;&nbsp;
                                       {date === currentdate ? (
                                         <div class="text-xs text-[tomato] font-bold" >
@@ -166,9 +158,10 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[8.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.url}
+                              {/* {item.url} */}
+                              {item.dCategoryName}
 
                             </div>
                           </div>
@@ -179,7 +172,7 @@ function AccountTable(props) {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.payment}
 
@@ -194,24 +187,51 @@ function AccountTable(props) {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[15rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {dataLoc}
                             </div>
 
                           </div>
 
-                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
+                          {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.address && item.address.length && item.address[0].postalCode}
 
                             </div>
 
-                          </div>
+                          </div> */}
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
+
+                        <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div>
+                          <Tooltip title={item.url}>
+                            {item.url !== "" ? (
+                              <div                            
+                                style={{ cursor: "pointer" }}
+                                onClick={() => { }}
+                              >
+                                {" "}
+                                <a href={`https://${item.url}`} target="_blank">
+                                  <ExploreIcon
+                                    className=" !text-base cursor-pointer text-[green]"
+
+                                  />
+                                </a>
+                              </div>
+                            )
+                              : <div class=" w-3">
+
+                              </div>
+                            }
+                          </Tooltip>
+
+                        </div>
+                          </div>
+                         <div class="flex md:flex-col">
                           <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins">
                               <Tooltip title="Pulse">
@@ -241,6 +261,7 @@ function AccountTable(props) {
                             </div>
 
 
+                          </div>
                           </div>
                         </div>
                       </div>

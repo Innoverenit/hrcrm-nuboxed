@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Menu, Icon, Popover, Badge } from "antd";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { FormattedMessage } from "react-intl";
 import { translateText, getSupportedLanguages } from '../Translate/TranslateService';
 import TimeToLeaveIcon from '@mui/icons-material/TimeToLeave';
@@ -793,7 +794,7 @@ function NavMenu (props) {
         <Menu.Item key="/production" style={{ height: "1.7rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/production' ? 'tomato' : '#4bc076' }}>
           <Link to="/production" onClick={() => handleSelect('/production')}>
-            <ProductionQuantityLimitsIcon
+            <PrecisionManufacturingIcon
               style={{ fontSize: "large" }}
             />
             <span class="text-white text-ls ml-1"><FormattedMessage

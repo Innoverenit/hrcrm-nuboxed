@@ -1,6 +1,7 @@
 import React from 'react'
 import PieChart1 from '../../../../Components/Charts/PieChart1'
 import { Flex, Progress } from 'antd';
+import PulseTable from './AccountDocumentTab/PulseTable';
 
 const SummaryTable = () => {
     const currentDate = new Date();
@@ -9,23 +10,24 @@ const SummaryTable = () => {
   const year = currentDate.getFullYear();
   return (
     <>
-     <div class="flex flex-col items-start">
-      <h1>This Year {year}</h1>
-      {/* <p>{day}/{month}/{year} </p> */}
+     <div class="flex flex-col items-center">
+      <label class="font-bold"> {year}</label>
     </div>
    
     <div class="flex justify-between">
-        <div class="flex flex-col w-[47.5%]">
+        <div class="flex flex-col w-[25%]">
             <div>
+            Order By Value
      <PieChart1/>
-     Order By Value
+    
      </div>
      <div>
-     <PieChart1/>
      Order By Volume
+     <PieChart1/>
+   
      </div>
      </div>
-     <div class="flex flex-col w-[47.5%]">
+     <div class="flex flex-col w-[30%] ml-36">
         <div class="flex items-center">
         <div class="w-16">
             LOB 1
@@ -54,6 +56,9 @@ const SummaryTable = () => {
   </Flex>
   </div>
   </div>
+        </div>
+        <div class="flex flex-col w-[33%]">
+        <PulseTable/>
         </div>
     </div>
     </>
