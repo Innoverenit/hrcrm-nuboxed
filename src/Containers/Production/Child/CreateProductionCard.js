@@ -60,6 +60,8 @@ function CreateProductionCard(props) {
                         <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem]">Category</div>
                         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem] ">Attribute</div>   
                         <div className=" w-[12.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.21rem] ">To Dispatch</div>                     
+                        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem] ">Zone</div>   
+                        <div className=" w-[12.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.21rem] "># Rack</div>  
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll

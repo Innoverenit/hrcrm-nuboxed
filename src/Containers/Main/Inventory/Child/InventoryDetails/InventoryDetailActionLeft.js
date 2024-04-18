@@ -39,14 +39,14 @@ class InventoryDetailActionLeft extends Component {
                     </Link>
           <Tooltip title="Material">
           <div
-      className="mr-2 cursor-pointer font-medium text-sm"
+      className="mr-2  font-medium text-sm"
       style={{
         color: viewType1 === "material" ? "#1890ff" : "tomato",
       }}
       onClick={() => setInventoryDetailViewType("material")}
     >
       <Button type={viewType1 === "material" ? "primary" : ""} style={{ backgroundColor: viewType1 === "material" ? "" : "tomato" }}>
-        <label class="text-white">Material</label>
+        <label class="text-white cursor-pointer">Material</label>
       </Button>
     </div>
 
@@ -54,7 +54,7 @@ class InventoryDetailActionLeft extends Component {
           {/* } */}
           {this.props.productionInd && <Tooltip title="Production">
             <div
-              className=" mr-2 cursor-pointer font-medium text-sm"
+              className=" mr-2  font-medium text-sm"
               style={{
                 color: viewType1 === "production" && "#1890ff",
               }}
@@ -62,7 +62,7 @@ class InventoryDetailActionLeft extends Component {
             >
              {/* <Button type="primary">  */}
              <Button type={viewType1 === "production" ? "primary" : ""} style={{ backgroundColor: viewType1 === "production" ? "" : "tomato" }}>
-             <label class="text-white">Production</label></Button>
+             <label class="text-white cursor-pointer">Production</label></Button>
             </div>
           </Tooltip>}
           {this.props.repairInd && <Tooltip title="Repair">
@@ -75,7 +75,7 @@ class InventoryDetailActionLeft extends Component {
             >
               <Button type={viewType1 === "repair" ? "primary" : ""} style={{ backgroundColor: viewType1 === "repair" ? "" : "tomato" }}>
                 
-              <label class="text-white">Repair</label></Button>
+              <label class="text-white cursor-pointer">Repair</label></Button>
             </div>
           </Tooltip>}
 
