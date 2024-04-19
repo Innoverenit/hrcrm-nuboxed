@@ -7,6 +7,7 @@ import Piechart1 from "../../Components/Charts/PieChart1";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
+import CustomerAccountGoogleMap from "../Dashboard/CustomerAccountGoogleMap"
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
 import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
@@ -52,7 +53,8 @@ class Dashboard extends Component {
       loading: false,
       tab: ["Q1", "Q2", "Q3", "Q4"],
       activeButton: "test",
-      selectedCountry: ""
+      selectedCountry: "",
+      setInfoWindowPosition:null,
     };
   }
    handleButtonClick=(buttonName)=>{
@@ -118,6 +120,7 @@ class Dashboard extends Component {
           this.props.getOpenQuotationThisYear(country.long_name)
           // setSelectedCountry(country.long_name);
           this.setState({selectedCountry:country.long_name});
+          this.setState({setInfoWindowPosition:latlng});
           console.log(country.long_name)
         }
       }
@@ -367,9 +370,14 @@ class Dashboard extends Component {
                     { viewType==="ALL" && this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
                     handleMapClick={this.handleMapClick}
                     selectedCountry={this.state.selectedCountry}
+                    setInfoWindowPosition={this.state.setInfoWindowPosition}
                       />)
                        : this.state.activeButton === "Accounts" ? (
-                        <CustomerGoogleMap />)
+                        <CustomerAccountGoogleMap 
+                        handleMapClick={this.handleMapClick}
+                        selectedCountry={this.state.selectedCountry}
+                        setInfoWindowPosition={this.state.setInfoWindowPosition}
+                        />)
                         : this.state.activeButton === "Regional" && activeTab  ?
                           <CardElement>
                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>

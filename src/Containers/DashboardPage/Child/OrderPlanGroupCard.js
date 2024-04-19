@@ -32,10 +32,41 @@ const BussinessCard = (props) => {
     deliveryDate,
     contactName
   } = props;
-  
+  const today = new Date();
+  // const isDateClose = (deliveryDate) => {
+  //   const delivery = new Date(deliveryDate);
+  //   const differenceInDays = Math.abs(Math.floor((delivery - today) / (1000 * 60 * 60 * 24))); // Calculate absolute difference
+  //   console.log('Delivery Date:', delivery);
+  //   console.log('Today:', today);
+  //   console.log('Difference in Days:', differenceInDays);
+  //   return differenceInDays === 4; // Highlight if the absolute difference is exactly 4 days
+  // };
+
+  const getColor = (deliveryDate) => {
+    const delivery = new Date(deliveryDate);
+    const differenceInDays = Math.abs(Math.floor((delivery - today) / (1000 * 60 * 60 * 24))); // Calculate absolute difference in days
+    console.log('Delivery Date:', delivery);
+    console.log('Today:', today);
+    console.log('Difference in Days:', differenceInDays);
+
+    if (differenceInDays === 4) {
+     
+      if (delivery < today) {
+       
+        return { borderColor: 'green', dateColor: 'red' };
+      } else {
+        
+        return { borderColor: 'blue', dateColor: 'black' };
+      }
+    } else {
+      
+      return { borderColor: '#ccc', dateColor: 'black' }; 
+    }
+  };
+  const { borderColor, dateColor } = getColor(deliveryDate);
   return (
     <div class="flex-col rounded-[3px]">
-      <MainWrapper style={{height:"6rem"}}>
+      <MainWrapper style={{height:"6rem",border: `2px solid ${borderColor}`}}>
       {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
         <FlexContainer
           alignItems="center"
@@ -71,7 +102,7 @@ const BussinessCard = (props) => {
               <div class="text-xs">          
               {offerValue || ""} {orderCurrencyName}
               </div>
-              <div class="text-xs">          
+              <div class="text-xs" style={{color: dateColor}}>          
               {`  ${moment.utc(deliveryDate).format("DD-MM-YYYY")}`} 
               </div>
             <SubTitle>
