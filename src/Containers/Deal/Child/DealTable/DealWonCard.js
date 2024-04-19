@@ -271,7 +271,7 @@ function DealWonCard(props) {
                 {" "}
                 <Progress
                   type="circle"
-                  style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
+                  style={{ cursor: "pointer", color: "red",fontSize:"1.25" }}
                   percent={findProbability}
                   width={30}
                   strokeColor={"#005075"}
@@ -330,7 +330,7 @@ function DealWonCard(props) {
          >
           <LockIcon
                 style={{
-                  fontSize: "0.8rem",
+                  fontSize: "1.25rem",
                   cursor: "pointer",
                 }}
               />
@@ -427,7 +427,7 @@ function DealWonCard(props) {
          >
            {user.pulseAccessInd === true && (
              <MonitorHeartIcon
-               style={{ fontSize: "0.8rem", color: "#df9697" }}
+               style={{ fontSize: "1.25rem", color: "#df9697" }}
              />
            )}
          </span>
