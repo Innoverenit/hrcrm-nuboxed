@@ -33,28 +33,32 @@ function ProductionCardView(props) {
     function handleStore() {
         setStore(true)
     }
+    function handleCancelStore() {
+        setStore(false)
+    }
 
     const handleChangeRoomRack = (value) => {
         setSelectedRoomId(value)
-
         props.getRackList(value)
     }
 
-    const handleChangeChamber = (value, id) => {
+    const handleChangeChamber = (value) => {
         setSelectedChamberId(value)
+    }
+    const handleSubmitRoomRack = (id) => {
         const dataToSend = {
             roomRackId: selectedRoomId,
             manufactureId: id,
-            roomRackChamberLinkId: value,
+            roomRackChamberLinkId: selectedChamberId,
             locationDetailsId: props.locationId,
             roomEntryDate: dayjs()
         };
         props.updateRoomRackProduction(dataToSend, handleCallback())
     }
     function handleCallback() {
-        setStore(false)
         setSelectedChamberId("")
         setSelectedRoomId("")
+        setStore(false)
     }
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
@@ -125,18 +129,19 @@ function ProductionCardView(props) {
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[10rem]">ID</div>
-                        <div className=" md:w-[7rem]">Created</div>
-                        <div className=" md:w-[7rem]">Item</div>
+                        <div className=" md:w-[9rem]">ID</div>
+                        <div className=" md:w-[6rem]">Created</div>
+                        <div className=" md:w-[6rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
                         <div className="md:w-[5rem]">Attribute</div>
                         <div className=" md:w-[5rem] ">Status</div>
-                        <div className="md:w-[5.2rem]">Workflow</div>
-                        <div className="md:w-[5.2rem]">Stage</div>
+                        <div className="md:w-[5rem]">Workflow</div>
+                        <div className="md:w-[5rem]">Stage</div>
                         <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[5rem]">Store</div>
-                        <div className="md:w-[5rem]">Inspected</div>
-                        <div className="md:w-[5rem]"> Dispatch </div>
+                        <div className="md:w-[8rem]">Store</div>
+                        <div className="md:w-[4rem]"></div>
+                        <div className="md:w-[4rem]">Inspected</div>
+                        <div className="md:w-[4rem]"> Dispatch </div>
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
@@ -157,7 +162,7 @@ function ProductionCardView(props) {
                                         <div key={item.productionProductId}>
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 <div class="flex">
-                                                    <div className=" flex font-medium flex-col  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium flex-col  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             onClick={() => {
@@ -176,14 +181,14 @@ function ProductionCardView(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {date}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {item.productName}
@@ -307,7 +312,7 @@ function ProductionCardView(props) {
                                                                 <Select
                                                                     classNames="w-32"
                                                                     value={selectedChamberId}
-                                                                    onChange={(val) => handleChangeChamber(val, item.manufactureId)}
+                                                                    onChange={(val) => handleChangeChamber(val)}
                                                                 >
                                                                     {props.rackList.map((chamber) => (
                                                                         <Option value={chamber.roomRackChamberLinkId}>
@@ -315,25 +320,46 @@ function ProductionCardView(props) {
                                                                         </Option>
                                                                     ))}
                                                                 </Select>
+                                                                <Button
+                                                                    type="primary"
+                                                                    onClick={() => {
+                                                                        handleSubmitRoomRack(item.manufactureId)
+                                                                    }} >
+                                                                    <FormattedMessage
+                                                                        id="app.save"
+                                                                        defaultMessage="Save"
+                                                                    />
+                                                                </Button>
+                                                                <Button onClick={() => handleCancelStore()}><FormattedMessage
+                                                                    id="app.cancel"
+                                                                    defaultMessage="Cancel"
+                                                                /></Button>
                                                             </>
                                                             :
                                                             <>
-                                                                {`${item.zone || ""} ${item.chamber || ""}`}
+                                                                {`${item.zone || ""} - ${item.chamber || ""}`}
 
                                                             </>
                                                         }
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.zone ? <BorderColorOutlined
                                                             onClick={() => {
                                                                 handleStore()
                                                                 handleParticularRowData(item)
                                                             }}
-                                                        /> : <Button onClick={() => {
-                                                            handleStore()
-                                                            handleParticularRowData(item)
-                                                        }}>Send To Store</Button>}
+                                                        /> : <Button
+                                                            type="primary"
+                                                            onClick={() => {
+                                                                handleStore()
+                                                                handleParticularRowData(item)
+                                                            }}>Send To Store</Button>}
                                                     </div>
                                                 </div>
-                                                <div className=" flex flex-col font-medium md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex flex-col font-medium md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <>
                                                         <div class="flex">
                                                             <InpectProductionToggle item={item} /> &nbsp;&nbsp;
@@ -379,7 +405,7 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
                                                 {(user.productionDeleteInd === true || user.role === "ADMIN") && (
-                                                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <Tooltip title="Delete">
                                                                 <Popconfirm
