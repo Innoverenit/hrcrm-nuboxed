@@ -19,7 +19,7 @@ function RepairSpareListTable(props) {
 
     let data = props.spareList.every((item) => item.spareUseInd)
     console.log(data)
-    let phoneSpare = props.spareList.map((item) => item.phoneSpareId)
+    let phoneSpare = props.spareList.map((item) => ({ phoneSpareId: item.phoneSpareId }))
     const columns = [
         {
             title: "",
@@ -69,10 +69,13 @@ function RepairSpareListTable(props) {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <RepairSpareApproveToggle
-                        spareUseInd={item.spareUseInd}
-                        phoneSpareId={item.phoneSpareId}
-                    />
+                    <>
+                        {item.sparePacketInd && <RepairSpareApproveToggle
+
+                            spareUseInd={item.spareUseInd}
+                            phoneSpareId={item.phoneSpareId}
+                        />}
+                    </>
                 )
             }
 
@@ -82,11 +85,14 @@ function RepairSpareListTable(props) {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <MultiAvatar
-                        primaryTitle={`${item.spareCompleteUser}`}
-                        imgWidth={"2.1em"}
-                        imgHeight={"2.1em"}
-                    />
+                    <>
+                        {item.spareCompleteUser &&
+                            <MultiAvatar
+                                primaryTitle={`${item.spareCompleteUser}`}
+                                imgWidth={"2.1em"}
+                                imgHeight={"2.1em"}
+                            />}
+                    </>
                 )
             }
 
@@ -137,7 +143,9 @@ function RepairSpareListTable(props) {
                             sparePacketId: "",
                             phoneId: props.RowData.phoneId,
                             orderPhoneId: props.orderPhoneId,
-                            spareList: phoneSpare
+                            spareList: phoneSpare,
+                            sparePacketInd: true,
+                            userId: props.userId
                         });
                     }}
                 >Create Spare Packet</Button>
