@@ -303,7 +303,7 @@ function ContactAllCardList(props) {
                   handleContactPulseDrawerModal(true);
                   handleSetCurrentContact(item);
                 }}
-                style={{ fontSize: "0.8rem", color: "#df9697" }}
+                style={{ fontSize: "1.25rem", color: "#df9697" }}
               />
            </Tooltip>
 
@@ -319,7 +319,7 @@ function ContactAllCardList(props) {
                   handleSetCurrentContactId(item);
                 }}
               >
-               <PhoneInTalkIcon style={{fontSize:"0.8rem"}}/>
+               <PhoneInTalkIcon style={{fontSize:"1.25rem"}}/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -339,7 +339,7 @@ function ContactAllCardList(props) {
            
             <MailOutlineIcon
               type="mail"
-              style={{ cursor: "pointer",fontSize:"0.8rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleContactEmailDrawerModal(true);
@@ -357,7 +357,7 @@ function ContactAllCardList(props) {
                 props.handleContactPulseDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon style={{fontSize:"0.8rem" ,color: "#df9697"}}/>
+              <MonitorHeartIcon style={{fontSize:"1.25rem" ,color: "#df9697"}}/>
             )}
             </span>
                         </div>
@@ -377,7 +377,7 @@ function ContactAllCardList(props) {
             >
             <LocationOnIcon   style={{
                 cursor: "pointer",
-                fontSize: "0.8rem"
+                fontSize: "1.25rem"
               }}/>
             </span>
           </Tooltip>
@@ -388,7 +388,7 @@ function ContactAllCardList(props) {
            
             <Tooltip title="Edit">
               <BorderColorIcon
-                style={{ cursor: "pointer",fontSize: "0.8rem", color: "grey", }}
+                style={{ cursor: "pointer",fontSize: "1.25rem", color: "grey", }}
                 onClick={() => {
                   props.setEditContact(item);
                   handleUpdateContactModal(true);

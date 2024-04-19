@@ -243,7 +243,7 @@ props.updateTypeForLead(item.leadsId,typ)
             {" "}
             <a href={`https://www.${item.url}`} target="_blank">
               <OpenInBrowserIcon
-                className=" !text-base cursor-pointer text-green-800"
+                className=" !text-xl cursor-pointer text-green-800"
               />
             </a>
           </span>
@@ -312,7 +312,7 @@ Resinstate
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-        className="!text-base cursor-pointer text-[tomato]"
+        className="!text-xl cursor-pointer text-[tomato]"
           onClick={() => {
             props.setEditLeads(item);
             handleUpdateLeadsModal(true);
@@ -330,7 +330,7 @@ Resinstate
     >
       <DeleteOutlined
         type="delete"
-        className=" !text-base cursor-pointer text-[red]"
+        className=" !text-xl cursor-pointer text-[red]"
       />
     </StyledPopconfirm>
                   </div>
@@ -347,7 +347,7 @@ Resinstate
           cursor: "pointer",
         }}
       >
-      <LocationOnIcon    className="!text-base cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon    className="!text-xl cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
     </div>
@@ -355,7 +355,7 @@ Resinstate
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-base cursor-pointer text-green-400"
+          className="!text-xl cursor-pointer text-green-400"
           onClick={() => {
             handleSetCurrentLeadsId(item);
             props.handleLeadsEmailDrawerModal(true);
@@ -580,7 +580,7 @@ props.updateTypeForLead(item.leadsId,typ)
             {" "}
             <a href={`https://www.${item.url}`} target="_blank">
               <OpenInBrowserIcon
-                className=" !text-base cursor-pointer text-green-800"
+                className=" !text-xl cursor-pointer text-green-800"
               />
             </a>
           </div>
@@ -642,7 +642,7 @@ Resinstate
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-          className="!text-base cursor-pointer text-[tomato]"
+          className="!text-xl cursor-pointer text-[tomato]"
           onClick={() => {
             props.setEditLeads(item);
             handleUpdateLeadsModal(true);
@@ -661,7 +661,7 @@ Resinstate
          <Tooltip title="Delete">
       <DeleteOutlined
         type="delete"
-        className=" !text-base cursor-pointer text-[red]"
+        className=" !text-xl cursor-pointer text-[red]"
       />
       </Tooltip>
     </StyledPopconfirm>
@@ -677,7 +677,7 @@ Resinstate
       <div className=""
        
       >
-      <LocationOnIcon  className="!text-base cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
       </div>
     </Tooltip>
     </div>
@@ -685,7 +685,7 @@ Resinstate
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-base cursor-pointer text-green-400"
+          className="!text-xl cursor-pointer text-green-400"
           onClick={() => {
             handleSetCurrentLeadsId(item);
             props.handleLeadsEmailDrawerModal(true);
@@ -762,7 +762,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );

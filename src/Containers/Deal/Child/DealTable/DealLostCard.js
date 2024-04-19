@@ -311,7 +311,7 @@ function DealLostCard(props) {
                                   }}
                                 >
                                   <NoteAltIcon
-                                     className="!text-base cursor-pointer text-[green]"
+                                     className="!text-xl cursor-pointer text-[green]"
                                   />
                                 </span>
                               </Tooltip>
@@ -337,7 +337,7 @@ function DealLostCard(props) {
                                     }}
                                   >
                                     <BorderColorIcon
-                                      className="!text-base cursor-pointer text-[tomato]"
+                                      className="!text-xl cursor-pointer text-[tomato]"
                                     />
                                   </span>
                                 )}
@@ -356,7 +356,7 @@ function DealLostCard(props) {
                                 
                                   <DeleteOutlined
                                     type="delete"
-                                    className="!text-base text-[red] cursor-pointer"
+                                    className="!text-xl text-[red] cursor-pointer"
                                   />
                                   )}
                                   </StyledPopconfirm>
@@ -688,7 +688,7 @@ function DealLostCard(props) {
                           }}
                         >
                           <NoteAltIcon
-                            className="!text-base cursor-pointer text-[green]"
+                            className="!text-xl cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
@@ -714,7 +714,7 @@ function DealLostCard(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-base cursor-pointer text-[tomato]"
+                             className="!text-xl cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -733,7 +733,7 @@ function DealLostCard(props) {
                         
                           <DeleteOutlined
                             type="delete"
-                            className="!text-base text-[red] cursor-pointer"
+                            className="!text-xl text-[red] cursor-pointer"
                           />
                           )}
                           </StyledPopconfirm>
