@@ -6,7 +6,8 @@ import {
     setEditDistributorContact,
     applyForLoginInContact,
     handleUpdateDistributorContactModal,
-    getLobList
+    getLobList,
+    setContactRoleForAccount
 } from "../../AccountAction";
 import { Tooltip, Button, Input, Switch, Select } from "antd";
 import UpdateAccountContactModal from "./UpdateAccountContactModal";
@@ -34,10 +35,77 @@ class AccountContactTable extends Component {
         this.setState({ rowData: item })
     }
 
+    handleAddPlusClick = (contactPersonId) => {
+   
+        let data = {
+          
+            icon: "C-Level",
+         
+        };
+    
+        this.props.setContactRoleForAccount(data,contactPersonId);
+      };
+      handleAddPlusClick1 = (contactPersonId) => {
+       
+        let data = {
+          
+            icon: "Strategic",
+         
+        };
+    
+        this.props.setContactRoleForAccount(data,contactPersonId);
+      };
+      handleAddPlusClick2 = (contactPersonId) => {
+       
+        let data = {
+          
+            icon: "Mid-Level",
+         
+        };
+    
+        this.props.setContactRoleForAccount(data,contactPersonId);
+      };
+
+      handleChange = (lobDetsilsId,contactPersonId) => {
+        let data = {
+          
+            lobId: lobDetsilsId,
+         
+        };
+        this.props.setContactRoleForAccount(data,lobDetsilsId,contactPersonId);
+    }
+
+    handleChange1 = (currencyId,contactPersonId) => {
+        let data = {
+          
+            potentialCurrencyId: currencyId,
+         
+        };
+        this.props.setContactRoleForAccount(data,currencyId,contactPersonId);
+    }
+
+    handleInputChange = (contactPersonId, e) => {
+        const inputValue = e.target.value.trim(); // Trim to remove leading/trailing whitespaces
+        if (inputValue !== '') {
+            // Call the API with the input value
+            this.setContactRoleForAccount(contactPersonId, inputValue);
+        }
+    }
+
+    handleKeyPress = (contactPersonId, e) => {
+        if (e.key === 'Enter') {
+            const inputValue = e.target.value.trim(); // Trim to remove leading/trailing whitespaces
+            if (inputValue !== '') {
+                // Call the API with the input value
+                this.setContactRoleForAccount(contactPersonId, inputValue);
+            }
+        }
+    }
+
     render() {
         const {
-            fetchingContactDistributorsById
-
+            fetchingContactDistributorsById,
+            setContactRoleForAccount
         } = this.props;
         if (fetchingContactDistributorsById) {
             return <BundleLoader />;
@@ -146,53 +214,41 @@ class AccountContactTable extends Component {
                   iconType="fa-vote-yea"
                   tooltip="C-Level"
                   role={item.contactRole}
-                    // onClick={() =>
-                    //  this.handleAddPlusClick(
+                    onClick={() =>
+                     this.handleAddPlusClick(
                        
-                    //     item.contactId,
+                        item.contactPersonId,
                         
-                    //   )
-                    // }
+                      )
+                    }
                 />
                 <RoleButton
                   type="Evaluator"
                   iconType="fa-address-card"
                   tooltip="Strategic"
                   role={item.contactRole}
-                    // onClick={() =>
-                    //   this.handleAddPlusClick1(
+                    onClick={() =>
+                      this.handleAddPlusClick1(
                      
-                    //     item.contactId,
+                        item.contactPersonId,
                       
-                    //   )
-                    // }
+                      )
+                    }
                 />
                 <RoleButton
                   type="Influencer"
                   iconType="fa-hands-helping"
                   tooltip="Mid-Level"
                   role={item.contactRole}
-                    // onClick={() =>
-                    //   this.handleAddPlusClick2(
+                    onClick={() =>
+                      this.handleAddPlusClick2(
                       
-                    //     item.contactId,
+                        item.contactPersonId,
                        
-                    //   )
-                    // }
+                      )
+                    }
                 />
-                {/* <RoleButton
-                  type="Sponsor"
-                  iconType="fa-user"
-                  tooltip="Sponsor"
-                  role={item.contactRole}
-                    // onClick={() =>
-                    //   this.handleAddPlusClick3(
-                      
-                    //     item.contactId,
-                       
-                    //   )
-                    // }
-                /> */}
+               
               </ButtonGroup>
             
             </div>
@@ -202,12 +258,20 @@ class AccountContactTable extends Component {
                                   <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                   <div class=" text-xs text-cardBody font-poppins text-center">
                                           <Select
-                                              style={{width:"8rem"}}            
+                                              style={{width:"8rem"}}  
+                                              onChange={() =>
+                                                this.handleChange(
+                                                
+                                                  item.contactPersonId,
+                                                 
+                                                )
+                                              }          
                                                             //value={item.zone}
                                                            // onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
+                                                           //onChange={this.handleChange}
                                                         >
                                                             {this.props.lobList.map((sd) => (
-                                                                <Option key={sd.roomRackId} value={sd.roomRackId}>
+                                                                <Option  key={sd.lobId} value={sd.lobId}  >
                                                                     {sd.name}
                                                                 </Option>
                                                             ))}
@@ -217,7 +281,10 @@ class AccountContactTable extends Component {
                                     <div className=" flex font-medium   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                          <div class=" text-xs text-cardBody font-poppins text-center">
-                                         <Input/>
+                                         <Input
+                onPressEnter={(e) => this.handleKeyPress(item.contactPersonId, e)} // Call handleKeyPress when Enter key is pressed
+                onChange={(e) => this.handleInputChange(item.contactPersonId, e)} // Call handleInputChange on input change
+            />
                                                </div>
                                                 </div>
                                                 <div className=" flex font-medium   md:w-[8.41rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -225,8 +292,13 @@ class AccountContactTable extends Component {
 <div class=" text-xs text-cardBody font-poppins text-center">
 <Select
     style={{width:"5rem"}}            
-                  //value={item.zone}
-                 // onChange={(e) => handleChangeRoomRack(e, item.manufactureId)}
+    onChange={() =>
+        this.handleChange1(
+        
+          item.contactPersonId,
+         
+        )
+      } 
               >
                   {this.props.saleCurrencies.map((sd) => (
                       <Option key={sd.roomRackId} value={sd.roomRackId}>
@@ -300,7 +372,8 @@ const mapDispatchToProps = (dispatch) =>
             applyForLoginInContact,
             handleUpdateDistributorContactModal,
             getLobList,
-            getSaleCurrency
+            getSaleCurrency,
+            setContactRoleForAccount
         },
         dispatch
     );
