@@ -8,7 +8,7 @@ import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
 import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction"
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
-import { getAllCustomerData } from "../../../../Customer/CustomerAction"
+import { getAllCustomerData,addCustomerActivityTask } from "../../../../Customer/CustomerAction"
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Spacer } from "../../../../../Components/UI/Elements";
 import { getUnits } from "../../../../../Containers/Settings/Unit/UnitAction";
@@ -479,7 +479,7 @@ function ActivityTaskForm(props) {
                             },
                             handleCallback
                         )
-                        : addTask(
+                        : props.addCustomerActivityTask(
                             {
                                 ...values,
                                 taskTypeId: selectedTaskType,
@@ -1531,7 +1531,8 @@ const mapStateToProps = ({
     tasks: tasks.tasks,
     customerTaskList: task.customerTaskList,
     candidateFilterTaskList: task.candidateFilterTaskList,
-    fullName: auth.userDetails.fullName
+    fullName: auth.userDetails.fullName,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1557,6 +1558,7 @@ const mapDispatchToProps = (dispatch) =>
             getTaskForStages,
             // getOppoStages,
             // setClearbitCandidateData,
+            addCustomerActivityTask
         },
         dispatch
     );

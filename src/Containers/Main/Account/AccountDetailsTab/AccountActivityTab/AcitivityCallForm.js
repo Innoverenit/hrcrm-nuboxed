@@ -22,7 +22,7 @@ import {
     deleteCall,
     handleCallModal,
 } from "../../../../Call/CallAction";
-import { getAllCustomerData } from "../../../../Customer/CustomerAction"
+import { getAllCustomerData,addCustomerActivityCall } from "../../../../Customer/CustomerAction"
 import { handleChooserModal } from "../../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
@@ -204,7 +204,7 @@ function CallForm(props) {
                         : {
                             callType: Type,
                             callCategory: category,
-
+                            // distributorId:props.distributorData.distributorId,
                             callPurpose: "",
                             fullName: "",
                             timeZone: timeZone,
@@ -307,7 +307,7 @@ function CallForm(props) {
                         callType: Type,
                         startDate: `${newStartDate}T${newStartTime}`,
                         endDate: `${newEndDate}T${newEndTime}`,
-
+                        // distributorId:props.distributorData.distributorId,
                         startTime: 0,
                         endTime: 0,
                         assignedTo: selectedOption ? selectedOption.employeeId : userId,
@@ -328,7 +328,7 @@ function CallForm(props) {
                             },
                             () => handleCallback(resetForm)
                         )
-                        : addCall(testVal,
+                        : props.addCustomerActivityCall(testVal,
                             () => handleCallback(resetForm));
                 }}
             >
@@ -914,7 +914,7 @@ function CallForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    Loading={isEditing ? updatingCall : addingCall}
+                                    Loading={isEditing ? updatingCall : props.addingCustomerActivityCall}
                                 >
                                     {isEditing ? (
                                         "Update"
@@ -946,8 +946,8 @@ const mapStateToProps = ({ auth, call, employee, customer, opportunity, candidat
     sales: opportunity.sales,
     filteredContact: candidate.filteredContact,
     addNotesSpeechModal: call.addNotesSpeechModal,
-    fullName: auth.userDetails.fullName
-    // candidateByuserId:candidate.candidateByuserId
+    fullName: auth.userDetails.fullName,
+    addingCustomerActivityCall:customer.addingCustomerActivityCall
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -965,6 +965,7 @@ const mapDispatchToProps = (dispatch) =>
             getFilteredEmailContact,
             setClearbitCandidateData,
             handleCallNotesModal,
+            addCustomerActivityCall
         },
         dispatch
     );
