@@ -288,7 +288,11 @@ export const getCurrency = () => (dispatch) => {
     type: types.GET_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies`)
+    .get(`${base_url}/currencies`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -384,7 +388,11 @@ export const getSaleCurrency = () => (dispatch) => {
     type: types.GET_SALE_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies/sales`)
+    .get(`${base_url}/currencies/sales`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1694,7 +1702,11 @@ export const getInvestorCurrency = () => (dispatch) => {
     type: types.GET_INVESTOR_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies/investor`)
+    .get(`${base_url}/currencies/investor`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
