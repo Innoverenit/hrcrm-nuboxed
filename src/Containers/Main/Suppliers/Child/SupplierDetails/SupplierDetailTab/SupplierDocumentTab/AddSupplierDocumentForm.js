@@ -103,6 +103,8 @@ class AddSupplierDocumentForm extends Component {
             documentId: "",
             supplierId: this.props.supplierId,
             userId:this.props.userId,
+            distributorId:this.props.distributorId,
+            shipperId:this.props.shipperId
           }}
           //   validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {

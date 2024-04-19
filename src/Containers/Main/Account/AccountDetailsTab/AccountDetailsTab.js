@@ -11,6 +11,7 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal
 } from "../AccountAction";
+import {handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import {handleSupplierContactModal} from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
@@ -22,6 +23,7 @@ import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/Suppl
 import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import SummaryTable from "./SummaryTable";
+import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -60,6 +62,7 @@ function AccountDetailsTab(props) {
     };
     const handleTabChange = (key) => setactiveKey(key);
     console.log(props.productionInd)
+   console.log(props.distributorData)
     return (
         <>
             <TabsWrapper>
@@ -252,9 +255,10 @@ function AccountDetailsTab(props) {
                                                 // type="plus"
                                                 // tooltipTitle="Create"
                                                 onClick={() =>
-                                                    props.handleDistributorDocumentUploadModal(
-                                                        true
-                                                    )
+                                                    // props.handleDistributorDocumentUploadModal(
+                                                    //     true
+                                                    // )
+                                                    props.handleSupplierDocumentUploadModal(true)
                                                 }
                                                 className="!text-base cursor-pointer ml-1"
                                             />
@@ -313,14 +317,19 @@ function AccountDetailsTab(props) {
 
                 </StyledTabs>
             </TabsWrapper>
-            <AddDistributorDocumentModal
+            {/* <AddDistributorDocumentModal
                 distributorDocumentUploadModal={
                     props.distributorDocumentUploadModal
                 }
                 handleDistributorDocumentUploadModal={
                     props.handleDistributorDocumentUploadModal
                 }
-            />
+            /> */}
+            <AddSupplierDocumentModal 
+             distributorId={props.distributorData.distributorId}       
+            supplierDocumentUploadModal={props.supplierDocumentUploadModal}
+            handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
+          />
             <AddAccountModal
                 handleLinkDistributorOrderConfigureModal={props.handleLinkDistributorOrderConfigureModal}
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
@@ -359,6 +368,7 @@ const mapStateToProps = ({ distributor, auth,suppliers }) => ({
     productionInd: auth.userDetails.productionInd,
     repairInd: auth.userDetails.repairInd,
     addSupplierContactModal: suppliers.addSupplierContactModal,
+    supplierDocumentUploadModal:suppliers.supplierDocumentUploadModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -369,6 +379,7 @@ const mapDispatchToProps = (dispatch) =>
             handleDistributorActivityModal,
             handleDistributorDocumentUploadModal,
             handleOrderGenerateModal,
+            handleSupplierDocumentUploadModal,
             handleAddOrderModal,
             handleSupplierContactModal
         },
