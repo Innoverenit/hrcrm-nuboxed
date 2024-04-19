@@ -7,6 +7,7 @@ import Piechart1 from "../../Components/Charts/PieChart1";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
+import CustomerViewGoogleMap from "./CustomerViewGoogleMap"
 import CustomerAccountGoogleMap from "../Dashboard/CustomerAccountGoogleMap"
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
 import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
@@ -386,7 +387,7 @@ class Dashboard extends Component {
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
                           : this.state.activeButton === "Customer" ? (
-                            <CustomerGoogleMap />)
+                            <CustomerViewGoogleMap />)
                           : this.state.activeButton === "test" ? (
                             <StackedClosureChart />)
                             : this.state.activeButton === "Tasks" ? (

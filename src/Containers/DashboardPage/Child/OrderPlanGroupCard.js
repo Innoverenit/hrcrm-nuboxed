@@ -53,10 +53,10 @@ const BussinessCard = (props) => {
      
       if (delivery < today) {
        
-        return { borderColor: 'green', dateColor: 'red' };
+        return { borderColor: 'red', dateColor: 'red' };
       } else {
         
-        return { borderColor: 'blue', dateColor: 'black' };
+        return { borderColor: 'orange', dateColor: 'black' };
       }
     } else {
       
