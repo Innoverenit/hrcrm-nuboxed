@@ -36,7 +36,14 @@ const initialState = {
    fetchingLocationRecordsError: false,
    recordData:{},
 
+   clickLocDrwr:false,
 
+   creatingLocationCell: false,
+creatingLocationCellError:false,
+
+fetchingLocationCell: false,
+fetchingLocationCellError:false,
+showLoCell:[],
   };
 
   export const locationReducer = (state = initialState, action) => {
@@ -195,8 +202,42 @@ const initialState = {
                                                   addingLocationToggleError: true,
                                                 };
                                                                                   
+                                                case types.HANDLE_LOCATION_CELL_DRAWER:
+                                                  return { ...state, clickLocDrwr: action.payload };
+                                
+                                                  case types.CREATE_LOCATION_CELL_REQUEST:
+                                                    return { ...state, creatingLocationCell: true };
+                                                  case types.CREATE_LOCATION_CELL_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      creatingLocationCell: false,
+                               
+                                                    };
+                                                  case types.CREATE_LOCATION_CELL_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      creatingLocationCell: false,
+                                                      creatingLocationCellError: true,
                                       
-        default:
+                                                    };
+       
+                                                    case types.GET_LOCATION_CELL_REQUEST:
+                                                      return { ...state, fetchingLocationCell: true };
+                                                    case types.GET_LOCATION_CELL_SUCCESS:
+                                                      return {
+                                                        ...state,
+                                                        fetchingLocationCell: false,
+                                                        showLoCell: action.payload
+                                                      };
+                                                    case types.GET_LOCATION_CELL_FAILURE:
+                                                      return {
+                                                        ...state,
+                                                        fetchingLocationCell: false,
+                                                        fetchingLocationCellError: true,
+                                                      };
+
+
+      default:
     return state;
       }
   };

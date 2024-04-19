@@ -1750,8 +1750,10 @@ export const customerReducer = (state = initialState, action) => {
     case types.ADD_CUSTOMER_ACTIVITY_CALL_SUCCESS:
       return {
         ...state,
+        addDistributorActivityModal:false,
         addingCustomerActivityCall: false,
         callActivityModal: false,
+        activityDistributor:action.payload,
         customerActivityTimeline: [
           action.payload,
           ...state.customerActivityTimeline,
@@ -1770,6 +1772,7 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         addingCustomerActivityEvent: false,
+        addDistributorActivityModal:false,
         callActivityModal: false,
         customerActivityTimeline: [
           action.payload,

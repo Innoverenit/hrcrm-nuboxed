@@ -42,7 +42,7 @@ class AccountActivityModal extends Component {
                             </TabPane>
                             <TabPane tab={`Task`} key="3">
                                 <div style={{ marginTop: 20 }}>
-                                    <ActivityTaskForm />
+                                    <ActivityTaskForm/>
                                 </div>
                             </TabPane>
                         </StyledTabs>

@@ -47,6 +47,9 @@ const initialState = {
   fetchingStageList: false,
   fetchingStageListError:false,
   stageProduction:[],
+
+  clickProdnDrwr:false,
+
 };
 
 const updateDragdpROD = (item, newProps) => {
@@ -294,7 +297,9 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
           
                 };  
    
-   
+                // case types.HANDLE_PRODUCTION_CELL_DRAWER:
+                //   return { ...state, clickProdnDrwr: action.payload };
+
               default:
       return state;
   }

@@ -5,8 +5,10 @@ import { getlocation, handleLocationShiftDrawer,
   handleUpdateLocationDrawer,
   handleLocationCustomerDrawer,
   handleLocationSupplierDrawer,
-  deleteLocation,addingLocationToggle } from "./LocationAction";
+  deleteLocation,addingLocationToggle,
+  handleLocnCellDrawer } from "./LocationAction";
 import styled from "styled-components";
+import CellTowerIcon from '@mui/icons-material/CellTower';
 import { Popconfirm, Switch, Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -23,6 +25,7 @@ import BillingToggle from "./BillingToggle";
 import CorporateToggle from "./CorporateToggle";
 import ProjectToggle from "./ProjectToggle";
 import RetailToggle from "./RetailToggle";
+import LocationCellDrawer from "./LocationCellDrawer";
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
 const LocationSupplierDrawer = lazy(() => import("./LocationSupplierDrawer"));
 const LocationShiftDrawer = lazy(() => import("./LocationShiftDrawer"));
@@ -255,21 +258,21 @@ const handleLoadMore = () => {
                       </div>
                       </div>
                     
-                    {/* <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                     
+                    <div class="flex flex-row w-[2%] max-sm:flex-row max-sm:w-[10%]">
+                     {item.productionInd ?
                       <div>
-                      <Tooltip title="Supplier">
-                          <InventoryIcon
-                            style={{ cursor: "pointer", fontSize: "1rem" }}
-                            onClick={() => {
-                               handleStoredLocations(item);
-                            props.handleLocationSupplierDrawer(true);
-                            }}
-                          />
-                         </Tooltip>
-                      </div> 
+                      <Tooltip title="Cell">
+                                                            <CellTowerIcon 
+                                                            className=" !text-base cursor-pointer text-[blue]"
+                                                            onClick={()=>{
+                                                              handleStoredLocations(item);
+                                                                props.handleLocnCellDrawer(true);
+                                                            }}
+                                                            />
+                                                          </Tooltip>
+                      </div> :null}
                       <div></div>
-                    </div> */}
+                    </div>
                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
                         <Tooltip title="Edit">
@@ -326,6 +329,11 @@ const handleLoadMore = () => {
       locationSupplierdrawr={props.locationSupplierdrawr}
       handleLocationSupplierDrawer={props.handleLocationSupplierDrawer}
       />
+      <LocationCellDrawer
+      storedLoc={storedLoc}
+clickLocDrwr={props.clickLocDrwr}
+      handleLocnCellDrawer={props.handleLocnCellDrawer}
+      />
     </>
   );
 };
@@ -342,7 +350,7 @@ const mapStateToProps = ({ location, auth }) => ({
   orderManagementInd:auth.userDetails.orderManagementInd,
   recruitProInd:auth.userDetails.recruitProInd,
   fetchingLocationData:location.fetchingLocationData,
-
+  clickLocDrwr: location.clickLocDrwr,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -353,7 +361,8 @@ const mapDispatchToProps = (dispatch) =>
       deleteLocation,
       handleLocationCustomerDrawer,
       handleLocationSupplierDrawer,
-      addingLocationToggle
+      addingLocationToggle,
+      handleLocnCellDrawer
     },
     dispatch
   );

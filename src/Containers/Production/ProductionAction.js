@@ -454,3 +454,9 @@ export const getStageList = (orgId) => (dispatch) => {
       });
     });
 };
+// export const handleProdnCellDrawer =(modalProps)=>(dispatch) => {
+//   dispatch({
+//     type: types.HANDLE_PRODUCTION_CELL_DRAWER,
+//     payload: modalProps,
+//   });
+// }

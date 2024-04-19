@@ -293,3 +293,61 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
+  
+  export const handleLocnCellDrawer =(modalProps)=>(dispatch) => {
+    dispatch({
+      type: types.HANDLE_LOCATION_CELL_DRAWER,
+      payload: modalProps,
+    });
+  }
+
+  export const createLoCell = (data) => (dispatch) => {
+    // const { locationId,organizationId } = getState().auth.userDetails;
+    
+    dispatch({ type: types.CREATE_LOCATION_CELL_REQUEST });
+    axios
+      .post(`${base_url2}/cell/createCell`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(getRoomRackByLocId(locationId,organizationId))
+        dispatch({
+          type: types.CREATE_LOCATION_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+  export const getLoCell = (ID) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_CELL_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/LOCAL/${ID}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_LOCATION_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };

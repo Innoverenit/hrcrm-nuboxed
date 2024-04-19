@@ -2,17 +2,57 @@ import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Tooltip, Button } from "antd";
+import { Tooltip, Button,Select } from "antd";
+import dayjs from "dayjs";
+import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
+import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import MoveToggleProduction from "./MoveToggleProduction";
-import { getProductionsbyLocId } from "../ProductionAction"
+import { getProductionsbyLocId,updateRoomRackProduction } from "../ProductionAction"
 import QRCode from "qrcode.react";
+import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
+
+const { Option } = Select;
 
 function CreateProductionCard(props) {
 
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
+    const [selectedChamberId, setSelectedChamberId] = useState("");
+    const [selectedRoomId, setSelectedRoomId] = useState("");
+    const [store, setStore] = useState(false);
+
+    function handleStore() {
+        setStore(true)
+    }
+    function handleCancelStore() {
+        setStore(false)
+    }
+
+    const handleChangeRoomRack = (value) => {
+        setSelectedRoomId(value)
+        props.getRackList(value)
+    }
+
+    const handleChangeChamber = (value) => {
+        setSelectedChamberId(value)
+    }
+    const handleSubmitRoomRack = (id) => {
+        const dataToSend = {
+            roomRackId: selectedRoomId,
+            manufactureId: id,
+            roomRackChamberLinkId: selectedChamberId,
+            locationDetailsId: props.locationId,
+            roomEntryDate: dayjs()
+        };
+        props.updateRoomRackProduction(dataToSend, handleCallback())
+    }
+    function handleCallback() {
+        setSelectedChamberId("")
+        setSelectedRoomId("")
+        setStore(false)
+    }
 
     const componentRefs = useRef([]);
 
@@ -60,8 +100,7 @@ function CreateProductionCard(props) {
                         <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem]">Category</div>
                         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem] ">Attribute</div>   
                         <div className=" w-[12.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.21rem] ">To Dispatch</div>                     
-                        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem] ">Zone</div>   
-                        <div className=" w-[12.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.21rem] "># Rack</div>  
+                        <div className="md:w-[10rem]">Store</div> 
                         <div className="w-12"></div>
                     </div>
                     <InfiniteScroll
@@ -108,12 +147,71 @@ function CreateProductionCard(props) {
                                             </div>
                                         </div>
 
-                                        {/* <div className=" flex font-medium flex-col w-[3.2rem] max-sm:flex-row  max-sm:justify-between ">
+                                        <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {store && particularDiscountData.manufactureId === item.manufactureId ?
+                                                            <>
+                                                                <Select
+                                                                    classNames="w-32"
+                                                                    value={selectedRoomId}
+                                                                    onChange={(value) => { handleChangeRoomRack(value) }}
+                                                                >
+                                                                    {props.roomRackbyLoc.map((s) => (
+                                                                        <Option value={s.roomRackId}>
+                                                                            {s.zone}
+                                                                        </Option>
+                                                                    ))}
+                                                                </Select>
+                                                                <Select
+                                                                    classNames="w-32"
+                                                                    value={selectedChamberId}
+                                                                    onChange={(val) => handleChangeChamber(val)}
+                                                                >
+                                                                    {props.rackList.map((chamber) => (
+                                                                        <Option value={chamber.roomRackChamberLinkId}>
+                                                                            {chamber.chamber}
+                                                                        </Option>
+                                                                    ))}
+                                                                </Select>
+                                                                <Button
+                                                                    type="primary"
+                                                                    onClick={() => {
+                                                                        handleSubmitRoomRack(item.manufactureId)
+                                                                    }} >
+                                                                    <FormattedMessage
+                                                                        id="app.save"
+                                                                        defaultMessage="Save"
+                                                                    />
+                                                                </Button>
+                                                                <Button onClick={() => handleCancelStore()}><FormattedMessage
+                                                                    id="app.cancel"
+                                                                    defaultMessage="Cancel"
+                                                                /></Button>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                {`${item.zone || ""} - ${item.chamber || ""}`}
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                {item.attributeName}
-                                            </div>
-                                        </div> */}
+                                                            </>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.zone ? <BorderColorOutlined
+                                                            onClick={() => {
+                                                                handleStore()
+                                                                handleParticularRowData(item)
+                                                            }}
+                                                        /> : <Button
+                                                            type="primary"
+                                                            onClick={() => {
+                                                                handleStore()
+                                                                handleParticularRowData(item)
+                                                            }}>Send To Store</Button>}
+                                                    </div>
+                                                </div>
                                         <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[7.21rem] max-lg:w-[5.21rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -181,18 +279,24 @@ function CreateProductionCard(props) {
 }
 
 
-const mapStateToProps = ({ production, auth, }) => ({
+const mapStateToProps = ({ production, auth, inventory}) => ({
     productionByLocsId: production.productionByLocsId,
     fetchingProductionLocId: production.fetchingProductionLocId,
     locationId: auth.userDetails.locationId,
     user: auth.userDetails,
-
+    userId: auth.userDetails.userId,
+    roomRackbyLoc: inventory.roomRackbyLoc,
+    rackList: inventory.rackList,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getProductionsbyLocId
+            getProductionsbyLocId,
+            getRoomRackByLocId,
+            updateRoomRackProduction,
+            getRackList
         },
         dispatch
     );
