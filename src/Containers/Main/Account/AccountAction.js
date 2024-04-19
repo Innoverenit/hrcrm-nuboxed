@@ -3298,3 +3298,26 @@ export const getOrderStatus = (orderId) => (dispatch) => {
       });
     });
 };
+
+export const setContactRoleForAccount = (data,contactId,) => (dispatch) => {
+  //console.log(opportunityId, contactId, role);
+  console.log(sessionStorage.getItem("token"));
+  axios
+    .put(
+      `${base_url}/distributor/distributor/${contactId}`,data,
+      {
+      
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};

@@ -2499,6 +2499,26 @@ export const distributorReducer = (state = initialState, action) => {
 
       };
 
+      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_REQUEST:
+        return { ...state };
+      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_SUCCESS:
+        return {
+          ...state,
+          contactDistributor: state.contactDistributor.map(
+            (item) =>{
+            if (item.contactPersonId === action.payload.contactPersonId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_FAILURE:
+        return { ...state };
+
+
+
+
     case types.GET_ORDER_STATUS_REQUEST:
       return { ...state, fetchingOrderStatus: true };
     case types.GET_ORDER_STATUS_SUCCESS:
