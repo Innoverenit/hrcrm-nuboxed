@@ -282,7 +282,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {/* {region.editInd ? ( */}
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.developmentType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.developmentId, region.taskType,region.value,region.developmentType)} />
                     {/* ) : null} */}
                     </>
                 )}
@@ -296,7 +296,7 @@ return <div><BundleLoader/></div>;
                       >
                 <DeleteOutlined 
                   style={{
-                  
+                    cursor:"pointer",
                     color: "red",
                   }}
               // onClick={() => 

@@ -236,7 +236,7 @@ trigger={["click"]}
 {" "}
 <Progress
 type="circle"
-style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
+style={{ cursor: "pointer", color: "red",fontSize:"1.25rem" }}
 percent={findProbability}
 width={30}
 strokeColor={"#005075"}

@@ -189,7 +189,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.lobDetsilsId, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.lobDetsilsId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -203,6 +203,7 @@ return <div><BundleLoader/></div>;
                   style={{
                   
                     color: "red",
+                    cursor:"pointer"
                   }}
               // onClick={() => 
               //     props.removeServiceLine(item.lobDetsilsId)

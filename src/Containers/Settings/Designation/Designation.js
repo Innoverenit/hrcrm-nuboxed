@@ -193,7 +193,7 @@ return <div><BundleLoader/></div>;
                 ) : (
                   <>
                   {region.editInd ? (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.designationTypeId, region.designationType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.designationTypeId, region.designationType)} />
                     ) : null}
                     </>
                 )}
@@ -209,6 +209,7 @@ return <div><BundleLoader/></div>;
                   style={{
                   
                     color: "red",
+                    cursor:"pointer"
                   }}
               // onClick={() => 
               //     props.removeServiceLine(item.designationTypeId)

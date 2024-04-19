@@ -214,7 +214,7 @@ if (props.fetchingRegions) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined onClick={() => editRegion(region.regionsId, region.regions,region)} />
+                      <EditOutlined style={{ cursor:"pointer"}} onClick={() => editRegion(region.regionsId, region.regions,region)} />
                   )}
 
                   {/* Delete button */}
@@ -228,6 +228,7 @@ if (props.fetchingRegions) {
                    style={{
                     
                     color: "red",
+                    cursor:"pointer"
                   }}
                 // onClick={() => 
                 //     props.removeRegions(region.regionsId)

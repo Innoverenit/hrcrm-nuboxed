@@ -192,7 +192,7 @@ width={30}
           <InfoIcon 
           
               // type="edit"
-              style={{ cursor: "pointer",fontSize:"1rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
              
             />
           
@@ -205,7 +205,7 @@ width={30}
           <BorderColorIcon 
           
               type="edit"
-              style={{ cursor: "pointer",fontSize:"1rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
               onClick={() => {
                 props.setEditCustomerOpportunity(item);
                // handleUpdateCustomerOpportunityModal(true);

@@ -338,7 +338,7 @@ function InvestorTeamCardList(props) {
               handleInvestorPulseDrawerModal(true);
               handleCurrentRowData(item);
             }}
-            className=" !text-base cursor-pointer text-[#df9697]"
+            className=" !text-xl cursor-pointer text-[#df9697]"
           />
        </Tooltip>
                     </div>
@@ -353,7 +353,7 @@ function InvestorTeamCardList(props) {
             props.handleInvestorNotesDrawerModal(true);
             handleCurrentRowData(item);
           }}
-          className=" !text-base cursor-pointer text-green-800"
+          className=" !text-xl cursor-pointer text-green-800"
         />
      </Tooltip>
              </div>
@@ -368,7 +368,7 @@ function InvestorTeamCardList(props) {
             {" "}
             <a href={`https://${item.url}`} target="_blank">
               <ExploreIcon
-                className=" !text-base cursor-pointer text-green-800"
+                className=" !text-xl cursor-pointer text-green-800"
               />
             </a>
           </span>
@@ -387,7 +387,7 @@ function InvestorTeamCardList(props) {
               <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto ">
               <div>
                   <span 
-        className=" !text-base cursor-pointer"
+        className=" !text-xl cursor-pointer"
       //   onClick={() => {
       //     props.getCustomerDetailsById(item.customerId);
       //     props.getCustomerKeySkill(item.customerId);
@@ -397,7 +397,7 @@ function InvestorTeamCardList(props) {
       //   }}
       >
         {" "}
-        {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-base cursor-pointer text-[#df9697]" />}
+        {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-xl cursor-pointer text-[#df9697]" />}
       </span> 
                   </div>
   
@@ -422,7 +422,7 @@ function InvestorTeamCardList(props) {
                 <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span class="cursor-pointer">
-      <LocationOnIcon   className=" !text-base cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon   className=" !text-xl cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
     </div>
@@ -439,7 +439,7 @@ function InvestorTeamCardList(props) {
       <div>
       {user.imInd === true  &&  user.investorUpdateInd === true &&  (
       <Tooltip title="Edit">
-        <BorderColorIcon className=" !text-base cursor-pointer text-[tomato]"
+        <BorderColorIcon className=" !text-xl cursor-pointer text-[tomato]"
           onClick={() => {
               handleUpdateInvestorModal(true);
               handleCurrentRowData(item);

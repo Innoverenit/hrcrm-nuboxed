@@ -201,7 +201,7 @@ Currency
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.performanceManagementId, region.kpi)} />
                 )}
 
                 {/* Delete button */}
@@ -215,6 +215,7 @@ Currency
                   style={{
                   
                     color: "red",
+                    cursor:"pointer"
                   }}
               // onClick={() => 
               //     props.removeServiceLine(item.performanceManagementId)

@@ -742,7 +742,7 @@ const SingleDepartment = (props) => {
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={toggleViewType}
-                        style={{ fontSize: "1rem" }}
+                        style={{ fontSize: "1rem",cursor:"pointer" }}
                       />
                     )}
   <Tooltip title="Delete">
@@ -757,6 +757,7 @@ const SingleDepartment = (props) => {
                         // onClick={() => handleDeleteDepartment(departmentId)}
                      
                         style={{
+                          cursor:"pointer",
                           verticalAlign: "center",
                           marginLeft: "5px",
                           fontSize: "1rem",

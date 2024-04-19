@@ -542,7 +542,7 @@ width={30}
           <InfoIcon 
           
               // type="edit"
-              style={{ cursor: "pointer",fontSize:"1rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
              
             />
           
@@ -553,7 +553,7 @@ width={30}
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 
-          className=" !text-base cursor-pointer text-[tomato]"
+          className=" !text-xl cursor-pointer text-[tomato]"
               onClick={() => {
                 props.setEditCustomerOpportunity(item);
                 handleUpdateCustomerOpportunityModal(true);

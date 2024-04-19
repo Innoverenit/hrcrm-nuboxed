@@ -181,7 +181,7 @@ return <div><BundleLoader/></div>;
                         <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.industryId, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.industryId, region.name)} />
                 )}
 
                 {/* Delete button */}
@@ -193,7 +193,7 @@ return <div><BundleLoader/></div>;
                       >
                 <DeleteOutlined 
                   style={{
-                  
+                    cursor:"pointer",
                     color: "red",
                   }}
               // onClick={() => 

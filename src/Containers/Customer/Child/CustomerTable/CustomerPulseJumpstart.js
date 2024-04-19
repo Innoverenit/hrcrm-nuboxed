@@ -90,17 +90,25 @@ render() {
                 defaultMessage="#Open Quotations"
               />
             }
-            // jumpstartClick={() => {
-            //   handleCustomerOpenOpportunityJumpstartModal(true);
            
-            
+            // jumpstartClick={() => {
+            //   if (!this.props.fetchingOppValue &&    this.props.OppValue.CustomerOppertunityDetails !== 0) {
+            //     handleCustomerOpenOpportunityJumpstartModal(true);
+            //   }
             // }}
+            // cursorData={
+            //   this.props.fetchingOppValue ||   this.props.OppValue.CustomerOppertunityDetails === 0 ? "not-allowed" : "pointer"
+            // }
       
-            // cursorData={"pointer"}
             value={
+              this.props.fetchingOppValue ? "Loading..." :
+              this.props.OppValue.CustomerOppertunityDetails === 0 ? "No Data" :
               this.props.OppValue.CustomerOppertunityDetails
-
             }
+            // value={
+            //   this.props.OppValue.CustomerOppertunityDetails
+
+            // }
             bgColor="#33D7FF" 
             // bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             isLoading={this.props.fetchingOppValue} 
@@ -108,25 +116,23 @@ render() {
           
           />
   
-       
-          <JumpStartBox
-            noProgress
-            title={
-              <FormattedMessage
-                id="app.pipeLineValue"
-                defaultMessage="Pipeline value"
-              />
-            }
-            bgColor="#34495E "
-            // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
-            value={
-              pipeLineValue
-
-            }
-            isLoading={this.props.fetchingPipelineValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-          />
+  <JumpStartBox
+  noProgress
+  title={
+    <FormattedMessage
+      id="app.pipeLineValue"
+      defaultMessage="Pipeline value"
+    />
+  }
+  bgColor="#34495E"
+  value={
+    this.props.fetchingPipelineValue ? "Loading..." :
+    this.props.pipelineValue.pipeLineValue === 0 ? "No Data" :
+    pipeLineValue
+  }
+  isLoading={this.props.fetchingPipelineValue} 
+/>
+         
 
 
 <JumpStartBox
@@ -137,14 +143,22 @@ render() {
             defaultMessage=" Quotations Won"
         />
     }
-    value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
+    value={
+      this.props.fetchingWonCustomerOppValue ? "Loading..." :
+      this.props.WonCustomerOpp.CustomerWonOppertunityDetails === 0 ? "No Data" :
+      this.props.WonCustomerOpp.CustomerWonOppertunityDetails
+    }
+    // value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
     jumpstartClick={() => {
+      if (!this.props.fetchingWonCustomerOppValue && this.props.WonCustomerOpp.CustomerWonOppertunityDetails !== 0) {
         handleCustomerWonOpportunityJumpstartModal(true);
-        // handleRowData(region);
+      }
     }}
-    cursorData={"pointer"}
+    cursorData={
+      this.props.fetchingWonCustomerOppValue || this.props.WonCustomerOpp.CustomerWonOppertunityDetails === 0 ? "not-allowed" : "pointer"
+    }
     bgColor="#35CD7A"
-    // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
+  
     isLoading={this.props.fetchingWonCustomerOppValue} 
     //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
 />
@@ -160,18 +174,25 @@ render() {
           />
         }
         value={
+          this.props.fetchingCustomerActivityCount ? "Loading..." :
+          this.props.customerActivityCount.count === 0 ? "No Data" :
           this.props.customerActivityCount.count
-
         }
+        // value={
+        //   this.props.customerActivityCount.count
+
+        // }
+        isLoading={this.props.fetchingCustomerActivityCount} 
         jumpstartClick={() => {
-          handleCustomerActivityJumpstartModal(true);
-       
-          // handleRowData(region);
+          if (!this.props.fetchingCustomerActivityCount &&  this.props.customerActivityCount.count !== 0) {
+            handleCustomerActivityJumpstartModal(true);
+          }
         }}
-  
-        cursorData={"pointer"}
+        cursorData={
+          this.props.fetchingCustomerActivityCount ||  this.props.customerActivityCount.count === 0 ? "not-allowed" : "pointer"
+        }
         bgColor="#FF4C33"
-        // isLoading={this.props.fetchingWonCustomerOppValue} 
+       
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
       
       />
@@ -185,16 +206,22 @@ render() {
             }
        
             jumpstartClick={() => {
-              handleCustomerContactJumpstartModal(true);
-           
-              // handleRowData(region);
+              if (!this.props.fetchingContactValue &&   this.props.contactValue.CustomerContactDetails !== 0) {
+                handleCustomerContactJumpstartModal(true);
+              }
             }}
-      
-            cursorData={"pointer"}
+            cursorData={
+              this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
+            }
 
+            // value={
+            //   this.props.contactValue.CustomerContactDetails
+
+            // }
             value={
+              this.props.fetchingContactValue ? "Loading..." :
+              this.props.contactValue.CustomerContactDetails === 0 ? "No Data" :
               this.props.contactValue.CustomerContactDetails
-
             }
             bgColor="linear-gradient(270deg,black,grey)"
             isLoading={this.props.fetchingContactValue} 
@@ -342,6 +369,7 @@ const mapStateToProps = ({ customer,auth }) => ({
   pipelineValue:customer.pipelineValue,
   fetchingPipelineValue:customer.fetchingPipelineValue,
   OppValue:customer.OppValue,
+  fetchingCustomerActivityCount:customer.fetchingCustomerActivityCount,
   customerActivityCount:customer.customerActivityCount,
   fetchingOppValue:customer.fetchingOppValue,
   WeightedValue:customer.WeightedValue,

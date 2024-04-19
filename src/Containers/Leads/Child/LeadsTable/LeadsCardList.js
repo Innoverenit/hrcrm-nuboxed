@@ -275,7 +275,7 @@ const LeadsCardList = (props) => {
                             {" "}
                             <a href={`https://www.${item.url}`} target="_blank">
                               <OpenInBrowserIcon
-                                className=" !text-base cursor-pointer text-green-800"
+                                className=" !text-xl cursor-pointer text-green-800"
                               />
                             </a>
                           </div>
@@ -348,7 +348,7 @@ const LeadsCardList = (props) => {
                               props.handleLeadsConfirmationModal(true);
                            
                             }}
-                            className="!text-base cursor-pointer text-[blue]"
+                            className="!text-xl cursor-pointer text-[blue]"
                           />
                         </Tooltip>
                         
@@ -363,7 +363,7 @@ const LeadsCardList = (props) => {
                               handleLeadsNotesDrawerModal(true);
                            
                             }}
-                            className=" !text-base cursor-pointer text-green-800"
+                            className=" !text-xl cursor-pointer text-green-800"
                           />
                         </Tooltip>
                       </div>
@@ -377,7 +377,7 @@ const LeadsCardList = (props) => {
                           }
                         >
                           <AddchartIcon
-                            className="!text-base cursor-pointer text-blue-500"
+                            className="!text-xl cursor-pointer text-blue-500"
                             onClick={() => {
                                   handleRowData(item);
                               props.handleCETmodal(true);
@@ -393,7 +393,7 @@ const LeadsCardList = (props) => {
                         <div className="mr-1">
                           <Tooltip title="Edit">
                             <BorderColorIcon
-                              className="!text-base cursor-pointer text-[tomato]"
+                              className="!text-xl cursor-pointer text-[tomato]"
                               onClick={() => {
                                 props.setEditLeads(item);
                                 handleUpdateLeadsModal(true);
@@ -412,7 +412,7 @@ const LeadsCardList = (props) => {
                             
                             <DeleteOutlined
                               type="delete"
-                              className=" !text-base cursor-pointer text-[red]"
+                              className=" !text-xl cursor-pointer text-[red]"
                             />
                          
                           </StyledPopconfirm>
@@ -428,7 +428,7 @@ const LeadsCardList = (props) => {
                            
                           >
                             <LocationOnIcon
-                             className="!text-base cursor-pointer text-[#960a0a]"
+                             className="!text-xl cursor-pointer text-[#960a0a]"
                             />
                           </div>
                         </Tooltip>
@@ -437,7 +437,7 @@ const LeadsCardList = (props) => {
                         <Tooltip title={item.email}>
                           <MailOutlineIcon
                             type="mail"
-                            className="!text-base cursor-pointer text-green-400"
+                            className="!text-xl cursor-pointer text-green-400"
                             onClick={() => {
                               handleSetCurrentLeadsId(item);
                               props.handleLeadsEmailDrawerModal(true);
@@ -685,7 +685,7 @@ const LeadsCardList = (props) => {
                           {" "}
                           <a href={`https://www.${item.url}`} target="_blank">
                             <OpenInBrowserIcon
-                               className=" !text-base cursor-pointer text-green-800"
+                               className=" !text-xl cursor-pointer text-green-800"
                             />
                           </a>
                         </div>
@@ -779,13 +779,13 @@ const LeadsCardList = (props) => {
             handleRowData(item);
             props.handleLeadsConfirmationModal(true);
           }}
-          className="!text-base cursor-pointer text-[blue]"
+          className="!text-xl cursor-pointer text-[blue]"
         />
       </Tooltip>
     ) : (
       <Tooltip title="Company name is required to enable qualification action">
         <ConnectWithoutContactIcon
-          className="!text-base cursor-not-allowed text-gray-400"
+          className="!text-xl cursor-not-allowed text-gray-400"
         />
       </Tooltip>
     )}
@@ -795,7 +795,7 @@ const LeadsCardList = (props) => {
                     <div>
                       <Tooltip title="Notes">
                         <NoteAltIcon
-                         className=" !text-base cursor-pointer text-green-800"
+                         className=" !text-xl cursor-pointer text-green-800"
                           onClick={() => {
                             handleRowData(item);
                             handleLeadsNotesDrawerModal(true);
@@ -815,7 +815,7 @@ const LeadsCardList = (props) => {
                         }
                       >
                         <AddchartIcon
-                         className="!text-base cursor-pointer text-blue-500"
+                         className="!text-xl cursor-pointer text-blue-500"
                           onClick={() => {
                                 handleRowData(item);
                             props.handleCETmodal(true);
@@ -831,7 +831,7 @@ const LeadsCardList = (props) => {
                       <div>
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                           className="!text-base cursor-pointer text-[tomato]"
+                           className="!text-xl cursor-pointer text-[tomato]"
                             onClick={() => {
                               props.setEditLeads(item);
                               handleUpdateLeadsModal(true);
@@ -850,7 +850,7 @@ const LeadsCardList = (props) => {
                      <Tooltip title="Delete">
                           <DeleteOutlined
                             type="delete"
-                            className=" !text-base cursor-pointer text-[red]"
+                            className=" !text-xl cursor-pointer text-[red]"
                           />
                        </Tooltip>
                         </StyledPopconfirm>
@@ -868,7 +868,7 @@ const LeadsCardList = (props) => {
                          
                         >
                           <LocationOnIcon
-                             className="!text-base cursor-pointer text-[#960a0a]"
+                             className="!text-xl cursor-pointer text-[#960a0a]"
                           />
                         </div>
                       </Tooltip>
@@ -877,7 +877,7 @@ const LeadsCardList = (props) => {
                       <Tooltip title={item.email}>
                         <MailOutlineIcon
                           type="mail"
-                          className="!text-base cursor-pointer text-green-400"
+                          className="!text-xl cursor-pointer text-green-400"
                           onClick={() => {
                             handleSetCurrentLeadsId(item);
                             props.handleLeadsEmailDrawerModal(true);
@@ -894,12 +894,12 @@ const LeadsCardList = (props) => {
                       >
                           <div className="cursor-pointer">
     {item.CreationType === "Website" ? (
-      <LanguageIcon className="!text-base cursor-pointer text-[#960a0a]" />
+      <LanguageIcon className="!text-xl cursor-pointer text-[#960a0a]" />
     ) : item.CreationType === "InApp" ? (
-      <LanguageIcon className="!text-base cursor-pointer text-blue-500" />
+      <LanguageIcon className="!text-xl cursor-pointer text-blue-500" />
     ) : (
       // Default 
-      <LanguageIcon className="!text-base cursor-pointer" />
+      <LanguageIcon className="!text-xl cursor-pointer" />
     )}
   </div>
                       
@@ -1001,7 +1001,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
       </Button>
     </Tooltip>
   );
@@ -1025,7 +1025,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -1049,7 +1049,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType} text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

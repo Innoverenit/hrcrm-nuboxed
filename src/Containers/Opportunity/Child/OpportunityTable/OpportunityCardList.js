@@ -139,7 +139,7 @@ function OpportunityCardList(props) {
                        findProbability = element.probability;}
                     });
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7rem] 
+                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
                   text-[#444444] m-3 p-1 w-[15vw] max-sm:w-wk flex flex-col  ">
         <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
@@ -373,7 +373,7 @@ imgHeight={"1.8em"}
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
               </span>
         
           </Tooltip>
@@ -389,14 +389,14 @@ imgHeight={"1.8em"}
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
-            className=" !text-base cursor-pointer text-[grey]"
+            className=" !text-xl cursor-pointer text-[grey]"
               onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <BorderColorIcon  className=" !text-base cursor-pointer"/>
+                 <BorderColorIcon  className=" !text-xl cursor-pointer"/>
               </span>
            )}
           </Tooltip>
@@ -409,7 +409,7 @@ imgHeight={"1.8em"}
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
             <DeleteOutlined
             // loading={props.deleteOpportunityData}
-            type="delete" className=" !text-base cursor-pointer text-[red]" />
+            type="delete" className=" !text-xl cursor-pointer text-[red]" />
              )}
           </StyledPopconfirm>
 

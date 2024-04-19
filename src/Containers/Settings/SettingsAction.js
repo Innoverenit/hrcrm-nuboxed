@@ -2896,9 +2896,7 @@ export const getRemoteAccess = (orgId) => (dispath) => {
 
 export const updateStageForOpportunity = (
   opportunityStagesId,
-  // responsible,
   stageName,
-
   probability,
   days,
   cb

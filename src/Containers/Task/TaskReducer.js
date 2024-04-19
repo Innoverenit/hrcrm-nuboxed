@@ -73,6 +73,13 @@ const initialState = {
   fetchingProjectTaskTableError:false,
   projectTaskTable:[],
 
+  fetchingStepperTaskList: false,
+  fetchingStepperTaskListError: false,
+  taskCardList:[],
+
+  updatingStepperTaskValue: false,
+   updatingStepperTaskValueError: false,
+
   fetchingTaskListRangeByUserIdForReport: false,
   fetchingTaskListRangeByUserIdForReportError: false,
   taskListRangeByUserIdForReport: [],
@@ -96,6 +103,9 @@ const initialState = {
   fetchingProjectTaskList:false,
   fetchingProjectTaskListError:false,
   projectTaskList:[],
+
+  deletingStepperTaskData: false, 
+  deletingStepperTaskDataError: false, 
 
   addingStepperTask: false,
   addingStepperTaskError: false,
@@ -452,16 +462,15 @@ export const TaskReducer = (state = initialState, action) => {
         return { ...state, addingStepperTask: true };
       case types.ADD_STEPPER_TASK_SUCCESS:
         return { ...state, addingStepperTask: false,
-          //  addTaskModal: false,
-          //  callActivityModal:false,
-          //  addPitchactivityModal:false,
-          //  taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
+          taskCardList:[action.payload,...state.taskCardList]
+        
           };
       case types.ADD_STEPPER_TASK_FAILURE:
         return {
           ...state,
           addingStepperTask: false,
           addingStepperTaskError: false,
+         
           // addTaskModal: false,
         };
 
@@ -1076,6 +1085,7 @@ export const TaskReducer = (state = initialState, action) => {
                                         ...state,
                                         // addDrawerTaskNotesModal:false,
                                         addingNotesList: false,
+               
                             
                                       };
                                     case types.ADD_TASK_NOTES_LIST_FAILURE:
@@ -1085,6 +1095,54 @@ export const TaskReducer = (state = initialState, action) => {
                                         addingNotesListError: true,
                                       };  
                             
+
+                                      case types.GET_STEPPER_TASK_LIST_REQUEST:
+                                        return { ...state, fetchingStepperTaskList: true };
+                                      case types.GET_STEPPER_TASK_LIST_SUCCESS:
+                                        return {
+                                          ...state,
+                                          fetchingStepperTaskList: false,
+                                          taskCardList: action.payload,
+                                          // clearbit: null,
+                                        };
+                                      case types.GET_STEPPER_TASK_LIST_FAILURE:
+                                        return {
+                                          ...state,
+                                          fetchingStepperTaskList: false,
+                                          fetchingStepperTaskListError: true,
+                                        };
+
+                                        case types.UPDATE_TASK_STEPPER_VALUE_REQUEST:
+                                          return { ...state, updatingStepperTaskValue: true };
+                                        case types.UPDATE_TASK_STEPPER_VALUE_SUCCESS:
+                                          // return { ...state, updatingDepartments: false, Departments: [...state.Departments, action.payload] };
+                                          return {
+                                            ...state,
+                                            updatingStepperTaskValue: false,
+                                            taskCardList: state.taskCardList.map((equipment) =>
+                                            equipment.id === action.payload.id ? action.payload : equipment
+                                            ),
+                                          };
+                                        case types.UPDATE_TASK_STEPPER_VALUE_FAILURE:
+                                          return { ...state, updatingStepperTaskValue: false, updatingStepperTaskValueError: true };
+
+
+
+                                          case types.DELETE_SREPPER_TASK_DATA_REQUEST:
+                                            return { ...state, deletingStepperTaskData: true };
+                                          case types.DELETE_SREPPER_TASK_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              deletingStepperTaskData: false,
+                                              taskCardList: state.taskCardList.filter(
+                                                (item) => item.id !== action.payload
+                                              ),
+                                            };
+                                          case types.DELETE_SREPPER_TASK_DATA_FAILURE:
+                                            return { ...state, deletingStepperTaskData: false, deletingStepperTaskDataError: false };
+                                      
+                                
+                                
                           
 
         default:

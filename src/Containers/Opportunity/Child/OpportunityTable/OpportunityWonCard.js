@@ -241,7 +241,7 @@ function OpportunityWonCard(props) {
                 {" "}
                 <Progress
                   type="circle"
-                  className=" !text-base cursor-pointer text-[red]"
+                  className=" !text-xl cursor-pointer text-[red]"
                  
                   percent={findProbability}
                   width={30}
@@ -302,7 +302,7 @@ function OpportunityWonCard(props) {
        
          >
           <LockIcon
-           className=" !text-base cursor-pointer"
+           className=" !text-xl cursor-pointer"
                
               />
             </span>
@@ -331,7 +331,7 @@ function OpportunityWonCard(props) {
                         {user.opportunityUpdateInd ===true && (
               
               <span
-              className=" !text-base cursor-pointer text-[grey]"
+              className=" !text-xl cursor-pointer text-[grey]"
                 onClick={() => {
                   props.setEditOpportunity(item);
                   handleUpdateOpportunityModal(true);
@@ -339,7 +339,7 @@ function OpportunityWonCard(props) {
                 }}
               >
                             <BorderColorIcon
-                             className=" !text-base cursor-pointer text-[tomato]"
+                             className=" !text-xl cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -358,7 +358,7 @@ function OpportunityWonCard(props) {
                         
                           <DeleteOutlined
                             type="delete"
-                            className=" !text-base cursor-pointer text-[red]"
+                            className=" !text-xl cursor-pointer text-[red]"
                           />
                           )}
                           </StyledPopconfirm>
@@ -386,7 +386,7 @@ function OpportunityWonCard(props) {
          >
            {user.pulseAccessInd === true && (
              <MonitorHeartIcon
-             className=" !text-base cursor-pointer text-[#df9697]"
+             className=" !text-xl cursor-pointer text-[#df9697]"
              />
            )}
          </span>
@@ -410,7 +410,7 @@ function OpportunityWonCard(props) {
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
               </span>
         
           </Tooltip></div>

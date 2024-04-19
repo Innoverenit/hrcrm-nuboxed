@@ -195,7 +195,7 @@ const {
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.eventTypeId, region.eventType)} />
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.eventTypeId, region.eventType)} />
                 )}
 
                 {/* Delete button */}
@@ -209,6 +209,7 @@ const {
                   style={{
                   
                     color: "red",
+                    cursor:"pointer"
                   }}
               // onClick={() => 
               //     props.removeServiceLine(item.eventTypeId)

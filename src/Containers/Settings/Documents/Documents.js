@@ -228,7 +228,7 @@ return <div><BundleLoader/></div>;
     <>
       {region.editInd && !region.mandatoryInd && (
         <BorderColorIcon
-          style={{ fontSize: "1rem" }}
+          style={{ fontSize: "1rem", cursor:"pointer" }}
           onClick={() => editRegion(region.documentTypeId, region.documentTypeName)}
         />
       )}
@@ -242,6 +242,7 @@ return <div><BundleLoader/></div>;
           >
             <DeleteOutlined
               style={{
+                cursor:"pointer",
                 verticalAlign: "center",
                 marginLeft: "1rem",
                 fontSize: "1rem",

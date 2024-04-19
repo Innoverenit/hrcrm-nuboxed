@@ -294,8 +294,8 @@ function ContactCardList(props) {
                                     <div class="text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                                     {item.thirdPartyAccessInd === true
-    ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-base text-[green]"/></Tooltip> 
-    :  <Tooltip title="Not Provided"> <DoNotDisturbOnTotalSilenceIcon  className=" !text-base text-[red]"/></Tooltip>}
+    ?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-xl text-[green]"/></Tooltip> 
+    :  <Tooltip title="Not Provided"> <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/></Tooltip>}
 
                                     </div>
                                 </div>
@@ -320,7 +320,7 @@ function ContactCardList(props) {
                     <div>
                     <Tooltip title="Notes">
        <NoteAltIcon
-                className=" !text-base cursor-pointer text-[#4bc076]"
+                className=" !text-xl cursor-pointer text-[#4bc076]"
                 onClick={() => {
                   handleContactNotesDrawerModal(true);
                   handleSetCurrentContact(item);
@@ -340,7 +340,7 @@ function ContactCardList(props) {
                         }
                       >
                         <AddchartIcon
-                        className="!text-base cursor-pointer text-blue-500"
+                        className="!text-xl cursor-pointer text-blue-500"
                           onClick={() => {
                             props.handleContactCETdrawer(true);
                             handleSetCurrentContact(item);
@@ -359,7 +359,7 @@ function ContactCardList(props) {
                   handleSetCurrentContactId(item);
                 }}
               >
-               <PhoneInTalkIcon     className=" !text-base cursor-pointer text-[blue]"/>
+               <PhoneInTalkIcon     className=" !text-xl cursor-pointer text-[blue]"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -379,7 +379,7 @@ function ContactCardList(props) {
            
             <MailOutlineIcon
               type="mail"
-              className=" !text-base cursor-pointer text-[red]"
+              className=" !text-xl cursor-pointer text-[red]"
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleContactEmailDrawerModal(true);
@@ -397,7 +397,7 @@ function ContactCardList(props) {
                 props.handleContactPulseDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon  className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon  className=" !text-xl cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -415,7 +415,7 @@ function ContactCardList(props) {
               }}
             >
             <LocationOnIcon   
-            className=" !text-base cursor-pointer text-[#960A0A]"/>
+            className=" !text-xl cursor-pointer text-[#960A0A]"/>
             </span>
           </Tooltip>
           </div>
@@ -434,7 +434,7 @@ function ContactCardList(props) {
            
             <Tooltip title="Edit">
               <BorderColorIcon
-                className=" !text-base cursor-pointer text-[tomato]"
+                className=" !text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                   props.setEditContact(item);
                   handleUpdateContactModal(true);
@@ -450,7 +450,7 @@ function ContactCardList(props) {
                       <div>
            <Tooltip title="Pulse">
        <MonitorHeartIcon
-       className=" !text-base cursor-pointer text-[#df9697]"
+       className=" !text-xl cursor-pointer text-[#df9697]"
                 onClick={() => {
                   handleContactPulseDrawerModal(true);
                   handleSetCurrentContact(item);
