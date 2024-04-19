@@ -268,8 +268,8 @@ function CustomerCardList(props) {
           </div> */}
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
               <FormattedMessage
-                id="app.assignedTo"
-                defaultMessage="Assigned to"
+                id="app.assigned"
+                defaultMessage="Assigned"
               />
 
             </div>
@@ -401,8 +401,8 @@ function CustomerCardList(props) {
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
                         <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
-                          &nbsp;
-                          {countryCode}
+                          {/* &nbsp;
+                          {countryCode} */}
                         </div>
                       </div>
 
@@ -420,11 +420,16 @@ function CustomerCardList(props) {
                       <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-
-                          {`${item.userCurrency} ${item.totalProposalValue}`}
-
-                        </div>
+                        {/* {item.totalProposalValue > 0 && (
+      <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {`${item.userCurrency} ${item.totalProposalValue}`}
+      </div>
+    )} */}
+                            {item.totalProposalValue && (
+      <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        {`${item.userCurrency} ${item.totalProposalValue/10000}K`}
+      </div>
+    )}
                       </div>
                       {/* <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                                 
@@ -511,7 +516,7 @@ function CustomerCardList(props) {
                                 {" "}
                                 <a href={`https://${item.url}`} target="_blank">
                                   <ExploreIcon
-                                    className=" !text-base cursor-pointer text-[green]"
+                                    className=" !text-xl cursor-pointer text-[green]"
 
                                   />
                                 </a>
@@ -537,7 +542,7 @@ function CustomerCardList(props) {
                           >
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-base cursor-pointer text-[#df9697]"
+                              className=" !text-xl cursor-pointer text-[#df9697]"
                             />}
                           </div>
                         </div>
@@ -551,7 +556,7 @@ function CustomerCardList(props) {
                         <div>
                           <Tooltip title="Contact">
                             <ContactsIcon
-                              className=" !text-base cursor-pointer text-[#709ab3]"
+                              className=" !text-xl cursor-pointer text-[#709ab3]"
                               onClick={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -563,7 +568,7 @@ function CustomerCardList(props) {
                         <div>
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
-                              className=" !text-base cursor-pointer text-[#AF5910]"
+                              className=" !text-xl cursor-pointer text-[#AF5910]"
                               onClick={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -579,7 +584,7 @@ function CustomerCardList(props) {
                         <div>
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
-                              className=" !text-base cursor-pointer text-[#df9697]"
+                              className=" !text-xl cursor-pointer text-[#df9697]"
                               onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -591,7 +596,7 @@ function CustomerCardList(props) {
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-base cursor-pointer text-[#4bc076]"
+                              className=" !text-xl cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -609,7 +614,7 @@ function CustomerCardList(props) {
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
-                              className=" !text-base cursor-pointer text-[#960A0A]"
+                              className=" !text-xl cursor-pointer text-[#960A0A]"
 
                             />
 
@@ -619,7 +624,7 @@ function CustomerCardList(props) {
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
+                                className=" !text-xl cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditCustomer(item);

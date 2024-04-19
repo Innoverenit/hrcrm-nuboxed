@@ -233,22 +233,22 @@ if(fetchingCustomerCampaign){
                 />
                  <div class="">
                       {item.rating === 0 ? (<StarBorderIcon
-                       className="!text-base cursor-pointer text-[#eeeedd]"
+                       className="!text-xl cursor-pointer text-[#eeeedd]"
                   />)
                   : (
                     <span>
                       {item.rating}{<StarBorderIcon 
-                      className="!text-base cursor-pointer text-[#FFD700]"/>}
+                      className="!text-xl cursor-pointer text-[#FFD700]"/>}
                     </span>)}
                           </div>                 
                           <div>
                           {item.completionInd === false ? (
                   <CheckCircleIcon 
-                  className="!text-base cursor-pointer text-[#eeeedd]"
+                  className="!text-xl cursor-pointer text-[#eeeedd]"
                     />
                 ) : (
                   <span><CheckCircleIcon 
-                  className="!text-base cursor-pointer text-[#67d239]"
+                  className="!text-xl cursor-pointer text-[#67d239]"
                    />
                   </span>
                 )}
@@ -262,20 +262,20 @@ if(fetchingCustomerCampaign){
        {item.eventDescription}
        <br />
        <FileCopyIcon
-         className={`!text-base cursor-pointer ${isCopied ? 'text-white' : ''}`}
+         className={`!text-xl cursor-pointer ${isCopied ? 'text-white' : ''}`}
          onClick={handleCopyClick}
        />
        {/* {isCopied && <span className="text-green-500 ml-2">Copied!</span>} */}
      </div>
    }>
-     <EventNoteIcon className="text-base cursor-pointer" />
+     <EventNoteIcon className="text-xl cursor-pointer" />
    </Tooltip>
                    </div>
                    
                    {/* <Tooltip title="Edit">
                 <BorderColorIcon
                   type="edit"
-                  className="!text-base cursor-pointer text-[tomato]"
+                  className="!text-xl cursor-pointer text-[tomato]"
                   onClick={() => {
                     props.setEditEvents(item);
                     handleUpdateEventModal(true);
@@ -292,7 +292,7 @@ if(fetchingCustomerCampaign){
              >
                 <Tooltip title="Delete">
                <DeleteOutlined  type="delete"
-                 className="!text-base cursor-pointer text-[red]"
+                 className="!text-xl cursor-pointer text-[red]"
                />
                </Tooltip>
              </StyledPopconfirm>

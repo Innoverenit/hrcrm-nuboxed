@@ -171,61 +171,69 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
-          {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-
-            <div className="card9" key={region.investorCategoryId}>
-            {/* Region name display or input field */}
-            
-            {editingId === region.investorCategoryId ? (
-                <input
-                placeholder="Update Investor"
-                style={{border:"2px solid black"}}
-                    type="text"
-                    value={newInvestorName}
-                    onChange={(e) => setInvestorName(e.target.value)}
-                />
-            ) : (
-                <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
-                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
-                                      >
-                                        New
-                                      </span> : null}</div>
-            )}
-
-            {/* Action buttons */}
-            <div className="actions">
-                {/* Edit button */}
-                {editingId === region.investorCategoryId ? (
-                    <div>
-                        <button onClick={() => handleUpdateInvestor(region)}>Save</button>
-                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                    </div>
-                ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.investorCategoryId, region.name)} />
-                )}
-
-                {/* Delete button */}
-                <Popconfirm
-                        title="Do you want to delete?"
-                        okText="Yes"
-                        cancelText="No"
-                        onConfirm={() =>  props.removeInvestor(region.investorCategoryId,props.orgId)}
-                      >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                  }}
-              // onClick={() => 
-              //     props.removeServiceLine(item.investorCategoryId)
-              //  }
-                 />
-                 </Popconfirm>
-            </div>
+          <MainWrapper className="!h-[69vh] !mt-2">
+  {!props.fetchingInvestorList && investorListData.length === 0 ? <NodataFoundPage /> : investorListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
+    <>
+    <div className="card9" key={region.investorCategoryId}>
+      {/* Region name display or input field */}
+      {editingId === region.investorCategoryId ? (
+        <input
+          placeholder="Update Investor"
+          style={{border:"2px solid black"}}
+          type="text"
+          value={newInvestorName}
+          onChange={(e) => setInvestorName(e.target.value)}
+        />
+      ) : (
+        <div className="region">
+          {region.name}&nbsp;&nbsp;&nbsp;
+          {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") &&
+            <span className="text-xs text-[tomato] font-bold">
+              New
+            </span>
+          }
         </div>
-        ))}
-        </MainWrapper>
+      )}
+
+      {/* Action buttons */}
+      <div className="actions">
+        {/* Edit button */}
+        {editingId === region.investorCategoryId ? (
+          <div>
+            <button onClick={() => handleUpdateInvestor(region)}>Save</button>
+            <button className="ml-4" onClick={cancelEdit}>Cancel</button>
+          </div>
+        ) : (
+          <BorderColorIcon style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.investorCategoryId, region.name)} />
+        )}
+
+        {/* Delete button */}
+        <Popconfirm
+          title="Do you want to delete?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => props.removeInvestor(region.investorCategoryId,props.orgId)}
+        >
+          <DeleteOutlined 
+            style={{
+              color: "red",
+              cursor:"pointer"
+            }}
+          />
+        </Popconfirm>
+      </div>
+    </div>
+     {/* <div className="font-bold">
+     Updated on {dayjs(region.updationDate).format('YYYY-MM-DD')} by {region.updatedBy}
+   </div> */}
+   </>
+  ))}
+  
+  {/* <div className="font-bold">
+    Updated on {dayjs(props.investorListData && props.investorListData.length && props.investorListData[0].updationDate).format('YYYY-MM-DD')} by {props.investorListData && props.investorListData.length && props.investorListData[0].updatedBy}
+  </div> */}
+</MainWrapper>
+
             </div>
 
   <div class=" font-bold">Updated on {dayjs(props.investorListData && props.investorListData.length && props.investorListData[0].updationDate).format('YYYY-MM-DD')} by {props.investorListData && props.investorListData.length && props.investorListData[0].updatedBy}</div>

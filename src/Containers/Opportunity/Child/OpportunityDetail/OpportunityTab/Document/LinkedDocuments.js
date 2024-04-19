@@ -159,7 +159,7 @@ class LinkedDocuments extends Component {
           >
             <DownloadIcon
               type="download"
-              style={{ cursor: "pointer",fontSize:"0.8rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
             />
           </a>
               </>
@@ -174,7 +174,7 @@ class LinkedDocuments extends Component {
             title="Do you want to delete?"
           onConfirm={() => deleteDocument(item.documentId)}
          >
-            <DeleteIcon type="delete" style={{ cursor: "pointer",fontSize:"0.8rem" , color: "red" }} />
+            <DeleteIcon type="delete" style={{ cursor: "pointer",fontSize:"1.25rem" , color: "red" }} />
           </StyledPopconfirm>
     
                                         </div>

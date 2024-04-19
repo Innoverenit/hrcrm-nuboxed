@@ -16,6 +16,7 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 // import {getRegionCount} from "../Category/Region/RegionAction"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
+import Industry from "./Industry/Industry";
 
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -69,6 +70,8 @@ class OthersTab extends Component {
           return   <KpiMasterList />;
         case "9":
           return   <ServiceLine />;
+          case "10":
+            return     <Industry />;
        
         
       default:
@@ -240,7 +243,24 @@ class OthersTab extends Component {
                 key="9"
               />
              
-              
+             <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      <Badge
+                count={this.props.industryCount.IndustryCount}
+                overflowCount={999}
+              >
+                      <span class=" ml-1" >
+                Industry
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="10"
+                >
+         
+                </TabPane>
             </StyledTabs>
             <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
               {this.renderTabContent(activeKey)}
@@ -253,9 +273,10 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines,masterKpi,currency,countrys,education,idProof,expenses,document
+  region,auth,serviceLines,industry,masterKpi,currency,countrys,education,idProof,expenses,document
 }
 ) => ({
+  industryCount:industry.industryCount,
   documentCount:document.documentCount,
   masterKpiCount:masterKpi.masterKpiCount,
   currencyCount:currency.currencyCount,

@@ -152,7 +152,7 @@ class SingleOpportunityStages extends Component {
                    <Tooltip title="Edit">
                    {probability !== 0 && probability !== 100 && (
                    <BorderColorIcon
-                   style={{fontSize:"1rem"}}
+                   style={{fontSize:"1rem",cursor: "pointer"}}
                           tooltipTitle="Edit"
                           onClick={toggleViewType}
                         />
@@ -213,7 +213,7 @@ class SingleOpportunityStages extends Component {
                   name={newProbability}
                   defaultValue={probability}
                   disabled={disabled}
-                  style={{ cursor: disabled ? "not-allowed" : "pointer" }}
+                  // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
                   onChange={this.handleChange}
                   // placeholder="Weightage"
                   // disabled={true}
@@ -224,7 +224,7 @@ class SingleOpportunityStages extends Component {
                   name={newDays}
                   defaultValue={days}
                   disabled={disabled}
-                  style={{ cursor: disabled ? "not-allowed" : "pointer" }}
+                  // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
                   onChange={this.handleChange}
                   placeholder="Days"
                   width={"8%"}
@@ -234,11 +234,11 @@ class SingleOpportunityStages extends Component {
                   type="primary"
                   htmlType="submit"
                   // disabled={disabled}
-                  loading={updatingStages}                  
+                  loading={this.props.loading}                
                   onClick={() =>
+
                     handleUpdateStage(
                       this.props.opportunityStagesId,
-                      // this.state.days,
                       this.state.fields.stageName,
                       this.state.fields.probability,
                       this.state.fields.days,
@@ -306,7 +306,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(SingleOpportunitySta
 const StageWrapper = styled.div`
   width: 100%;
   height: auto;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 const StageName = styled.h3`
   color: ${(props) => props.theme.color || "teal"};

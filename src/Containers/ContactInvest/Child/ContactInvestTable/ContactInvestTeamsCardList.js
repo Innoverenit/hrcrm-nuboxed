@@ -268,7 +268,7 @@ if (isMobile){
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className="!text-base text-[gold]"/>
+               <PhoneInTalkIcon className="!text-xl text-[gold]"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -288,7 +288,7 @@ if (isMobile){
            
             <MailOutlineIcon
               type="mail"
-              className="!text-base cursor-pointer text-green-400"
+              className="!text-xl cursor-pointer text-green-400"
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleCurrentContactIdata(true);
@@ -305,7 +305,7 @@ if (isMobile){
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -324,7 +324,7 @@ if (isMobile){
                 cursor: "pointer",
               }}
             >
-            <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -342,7 +342,7 @@ if (isMobile){
             {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-               className="!text-base cursor-pointer text-[tomato]"
+               className="!text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);
@@ -360,7 +360,7 @@ if (isMobile){
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-base"
+                className="text-green-500 cursor-pointer !text-xl"
               />
            </Tooltip>
 
@@ -590,7 +590,7 @@ if (isMobile){
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className="!text-base text-[gold]"/>
+               <PhoneInTalkIcon className="!text-xl text-[gold]"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -610,7 +610,7 @@ if (isMobile){
            
             <MailOutlineIcon
               type="mail"
-              className="!text-base cursor-pointer text-green-400"
+              className="!text-xl cursor-pointer text-green-400"
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleCurrentContactIdata(true);
@@ -627,7 +627,7 @@ if (isMobile){
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -642,7 +642,7 @@ if (isMobile){
             <span class="cursor-pointer"
              
             >
-            <LocationOnIcon  className="!text-base cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -660,7 +660,7 @@ if (isMobile){
             {/* {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-base cursor-pointer text-[tomato]"
+                className="!text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);
@@ -680,7 +680,7 @@ if (isMobile){
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-base"
+                className="text-green-500 cursor-pointer !text-xl"
               />
            </Tooltip>
 

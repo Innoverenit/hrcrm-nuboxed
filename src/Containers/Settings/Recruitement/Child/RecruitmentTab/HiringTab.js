@@ -103,7 +103,7 @@ class HiringTab extends Component {
   };
   
   handlePublishClick = () => {
-    this.setState({ loading: true });
+   
     const { currentProcess, publish } = this.state;
     console.log(currentProcess);
 
@@ -113,10 +113,7 @@ class HiringTab extends Component {
       publishInd: currentProcess.publishInd ? false : true,
     };
 
-    this.props.LinkOpportunityProcessPublish(data,  () => {
-       
-      this.setState({ loading: false });
-    }, this.handleCallBack1);
+    this.props.LinkOpportunityProcessPublish(data,  this.handleCallBack1);
   };
 
   handleApproveIconClick = (item) => {
@@ -162,6 +159,7 @@ class HiringTab extends Component {
   };
   handleUpdateStage = (opportunityStagesId, stageName, probability, days) => {
     //debugger;
+      this.setState({ loading: true });
     const { opportunityProcessStages } = this.props;
     let exist =
     opportunityProcessStages &&
@@ -176,17 +174,14 @@ class HiringTab extends Component {
   };
 
   handleStagePublishClick = (opportunityStagesId, publishInd) => {
-    this.setState({ loading: true });
+  
     const { recruitProcessStages } = this.props;
     const data = {
       opportunityStagesId,
       publishInd: publishInd ? false : true,
     };
     console.log(publishInd);
-    this.props.LinkOpportunityStagePublish(data, () => {
-       
-      this.setState({ deletingProcess: false });
-    }, this.handleCallBack);
+    this.props.LinkOpportunityStagePublish(data, this.handleCallBack);
   };
   handleCallBack = (status) => {
     if (status === "Success") {
@@ -296,14 +291,14 @@ class HiringTab extends Component {
     });
   };
   render() {
-    const { loading ,deletingProcess} = this.state;
+    const { loading } = this.state;
     const { addingProcessForOpportunity, addProcessForOpportunity } = this.props;
     return (
       <>
        
         <StageWrapper>
         {loading && <div>Loading...</div>}
-        {/* {deletingProcess && <div>Loading...</div>} */}
+      
           <MainWrapper>
             <h1
             >
@@ -638,7 +633,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(HiringTab);
 const StageWrapper = styled.div`
   width: 100%;
   height: auto;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 const StageName = styled.h3`
   color: ${(props) => props.theme.color || "teal"};

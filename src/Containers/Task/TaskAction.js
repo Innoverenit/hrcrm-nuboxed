@@ -1578,7 +1578,7 @@ export const updateTaskImportForm =
 };
 
 
-export const addStepperTask = (task, cb) => (dispatch, getState) => {
+export const addStepperTask = (task,taskId, cb) => (dispatch, getState) => {
   const { employeeId } = getState("auth").auth.userDetails;
   const { userId } = getState("auth").auth.userDetails;
 
@@ -1594,6 +1594,7 @@ export const addStepperTask = (task, cb) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      dispatch(getStepperTaskList(taskId))
       // message.success("Task has been added successfully!");
       console.log(res);
       dispatch({
@@ -1609,5 +1610,100 @@ export const addStepperTask = (task, cb) => (dispatch, getState) => {
         payload: err,
       });
       cb();
+    });
+};
+
+export const getStepperTaskList = (taskId,) => (dispatch) => {
+
+  dispatch({
+    type: types.GET_STEPPER_TASK_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/task/steps/${taskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_STEPPER_TASK_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_STEPPER_TASK_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateTaskStepperValue= (data,employeeId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_TASK_STEPPER_VALUE_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/task/steps`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Task Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
+      console.log(res);
+      //  dispatch(getEmployeeKpiList(employeeId));
+      dispatch({
+        type: types.UPDATE_TASK_STEPPER_VALUE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_TASK_STEPPER_VALUE_FAILURE,
+      });
+    });
+};
+
+export const deleteStepperTaskData = (id,orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_SREPPER_TASK_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/task/steps/${id}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Task deleted Successfully!',
+      })
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_SREPPER_TASK_DATA_SUCCESS,
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SREPPER_TASK_DATA_FAILURE,
+        payload: err,
+      });
     });
 };

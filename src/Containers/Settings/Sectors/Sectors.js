@@ -191,7 +191,7 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
                 )}
 
                 {/* Delete button */}
@@ -205,6 +205,7 @@ return <div><BundleLoader/></div>;
                   style={{
                   
                     color: "red",
+                    cursor:"pointer"
                   }}
               // onClick={() => 
               //     props.removeServiceLine(item.sectorId)
@@ -217,7 +218,7 @@ return <div><BundleLoader/></div>;
         </MainWrapper>
             </div>
       
-  <div class=" font-bold">Updated on {dayjs(props.sectors && props.sectors.length && props.sectors[0].updationDate).format('YYYY-MM-DD')} by {props.sectors && props.sectors.length && props.sectors[0].updatedBy}</div>
+  <div class=" font-bold">Updated on {dayjs(props.sectors && props.sectors.length && props.sectors[0].updationDate).format('YYYY-MM-DD')} by {props.sectors && props.sectors.length && props.sectors[0].name}</div>
       </div>
   );
 };

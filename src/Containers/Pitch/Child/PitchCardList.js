@@ -384,7 +384,7 @@ const PitchCardList = (props) => {
                   {" "}
                   <a href={`item.url`} target="_blank">
                     <ExploreIcon
-                    className="!text-base cursor-pointer text-[green]"
+                    className="!text-xl cursor-pointer text-[green]"
                     />
                   </a>
                 </span>
@@ -407,13 +407,13 @@ const PitchCardList = (props) => {
                             props.handlePitchConvertModal(true);
                          
                           }}
-                          className="!text-base cursor-pointer text-[blue]"
+                          className="!text-xl cursor-pointer text-[blue]"
                         />
                       </Tooltip>
                         ) : (
                           <Tooltip title="Company name is required to enable qualification action">
                             <ConnectWithoutContactIcon
-                              className="!text-base cursor-not-allowed text-gray-400"
+                              className="!text-xl cursor-not-allowed text-gray-400"
                             />
                           </Tooltip>
                         )}
@@ -432,7 +432,7 @@ const PitchCardList = (props) => {
                   props.handlePitchNotesDrawerModal(true);
                   handleSetCurrentLeadsId(item);
                 }}
-                className="!text-base cursor-pointer text-[green]"
+                className="!text-xl cursor-pointer text-[green]"
               />
            </Tooltip>
 
@@ -444,7 +444,7 @@ const PitchCardList = (props) => {
         }
       >
 <AddchartIcon
-className="!text-base cursor-pointer text-blue-500"
+className="!text-xl cursor-pointer text-blue-500"
 
 onClick={()=>{
   props.handleAssimodal(true)
@@ -462,7 +462,7 @@ onClick={()=>{
                                 <div>
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-base cursor-pointer text-[tomato]"
+                className="!text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                    props.setEditPitch(item);
                    props.handleUpdatePitchModal(true);
@@ -484,7 +484,7 @@ onClick={()=>{
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
             <DeleteOutlined
               type="delete"
-              className="!text-base text-[red] cursor-pointer"
+              className="!text-xl text-[red] cursor-pointer"
               
             />
              )} 
@@ -501,7 +501,7 @@ onClick={()=>{
                       <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer" >
-            <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -509,7 +509,7 @@ onClick={()=>{
           <Tooltip title={item.email}>
               <MailOutlineIcon
                 type="mail"
-                className="!text-base cursor-pointer text-green-400"
+                className="!text-xl cursor-pointer text-green-400"
                 // onClick={() => {
                 //   handleSetCurrentLeadsId(item);
                 //   props.handleLeadsEmailDrawerModal(true);
@@ -609,7 +609,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-       <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+       <i className={`${iconType} text-xl max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -633,7 +633,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+         <i className={`${iconType} text-xl max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );
@@ -657,7 +657,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
         ghost={role !== type}
         onClick={onClick}
       >
-         <i className={`${iconType} text-base max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+         <i className={`${iconType} text-xl max-sm:text-[0.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

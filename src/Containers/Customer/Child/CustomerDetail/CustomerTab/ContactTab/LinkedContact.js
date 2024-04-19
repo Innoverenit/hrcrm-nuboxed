@@ -255,7 +255,7 @@ function LinkedContact(props) {
                 }}
               >
                 <BorderColorIcon 
-               className=" !text-base cursor-pointer text-[tomato]"
+               className=" !text-xl cursor-pointer text-[tomato]"
                 />
               </span>
               {/* )} */}
@@ -277,7 +277,7 @@ function LinkedContact(props) {
               //   }
             >
               <ActionIcon
-               className=" !text-base cursor-pointer text-[#fb8500]"
+               className=" !text-xl cursor-pointer text-[#fb8500]"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={
                   <FormattedMessage

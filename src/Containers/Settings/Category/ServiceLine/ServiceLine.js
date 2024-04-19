@@ -232,7 +232,12 @@ if (props.fetchingServiceLine) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} />
+                      <EditOutlined onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
+                      style={{
+                    
+                        cursor:"pointer"
+                      }}
+                      />
                   )}
 
                   {/* Delete button */}
@@ -246,6 +251,7 @@ if (props.fetchingServiceLine) {
                     style={{
                     
                       color: "red",
+                      cursor:"pointer"
                     }}
                 // onClick={() => 
                 //     props.removeServiceLine(region.serviceLineId)

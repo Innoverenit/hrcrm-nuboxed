@@ -251,7 +251,7 @@ trigger={["click"]}
 {" "}
 <Progress
 type="circle"
-className=" !text-base cursor-pointer text-[red]"
+className=" !text-xl cursor-pointer text-[red]"
 percent={findProbability}
 width={30}
 strokeColor={"#005075"}
@@ -326,7 +326,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 >
          {user.pulseAccessInd === true && (
            <MonitorHeartIcon
-           className=" !text-base cursor-pointer text-[#df9697]"
+           className=" !text-xl cursor-pointer text-[#df9697]"
             
            />
          )}
@@ -348,7 +348,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
       }}         
      
        >
-        <LockIcon className=" !text-base cursor-pointer"
+        <LockIcon className=" !text-xl cursor-pointer"
              
             />
           </span>
@@ -373,7 +373,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                 // handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
               </span>
         
           </Tooltip></div>
@@ -394,7 +394,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       {user.opportunityUpdateInd ===true && (
             
             <span 
-            className=" !text-base cursor-pointer text-[grey]"
+            className=" !text-xl cursor-pointer text-[grey]"
               
               onClick={() => {
                 props.setEditOpportunity(item);
@@ -403,7 +403,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-base cursor-pointer text-[tomato]"
+                          className=" !text-xl cursor-pointer text-[tomato]"
                             
                           />
                         </span>
@@ -423,7 +423,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-base cursor-pointer text-[red]"
+                          className=" !text-xl cursor-pointer text-[red]"
                         />
                         )}
                         </StyledPopconfirm>

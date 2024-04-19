@@ -271,7 +271,7 @@ class LinkedDocuments extends Component {
             // target="_blank"
           >
             <DownloadIcon
-            className="cursor-pointer !text-base"
+            className="cursor-pointer !text-xl"
             />
           </a>            </div>
           <div>
@@ -284,7 +284,7 @@ class LinkedDocuments extends Component {
                          <Tooltip title="Delete">
       
             <DeleteOutlined
-className="cursor-pointer !text-base text-[red]"
+className="cursor-pointer !text-xl text-[red]"
             />
             </Tooltip>
           </Popconfirm>
