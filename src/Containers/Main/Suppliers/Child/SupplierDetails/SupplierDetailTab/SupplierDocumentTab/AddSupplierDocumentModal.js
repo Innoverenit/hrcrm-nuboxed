@@ -24,7 +24,10 @@ class AddSupplierDocumentModal extends Component {
                     footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <AddSupplierDocumentForm  supplier={this.props.supplier}/>
+            <AddSupplierDocumentForm  supplier={this.props.supplier}
+            distributorId={this.props.distributorId}
+            shipperId= {this.props.shipperId}
+            />
           </Suspense>
         </StyledDrawer>
       </>
