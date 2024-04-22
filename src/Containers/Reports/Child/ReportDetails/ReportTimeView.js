@@ -9,7 +9,11 @@ class ReportTimeView extends Component {
     return (
       <>
         <div class=" flex items-center w-[90%] justify-between flex-no-wrap m-2">
-          <ReportActionRight />
+          <ReportActionRight 
+             handleButtonTask={this.props.handleButtonTask}
+             taskData={this.props.taskData}
+           selectedCategory={this.props.selectedCategory}
+          />
 
         </div>
 

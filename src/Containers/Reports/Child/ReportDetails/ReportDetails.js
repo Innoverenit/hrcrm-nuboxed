@@ -29,11 +29,22 @@ class ReportDetails extends Component {
                     <div class=" w-1/4 max-sm:w-full">
                       <ReportDetailLeft   handleIconClick={this.props.handleIconClick}
             activeIcon={this.props.activeIcon}
+            handleButtonTask={this.props.handleButtonTask}
+            taskData={this.props.taskData}
             dropdownData={this.props.dropdownData}
+            selectedCategory={this.props.selectedCategory}
+            dropdownOptions={this.props.dropdownOptions}
+            handleSelectChange={this.props.handleSelectChange}
+            handleButtonClick={this.props.handleButtonClick}
+            buttonData={this.props.buttonData}
                handleDropChange={this.props.handleDropChange} />
                     </div>
                     <div class=" w-3/4 max-sm:w-full">
-                      <ReportDetailRight customer={customer} />
+                      <ReportDetailRight 
+                      gettingReportProspect={this.props.gettingReportProspect}
+                      reportProspect={this.props.reportProspect}
+                      selectedCategory={this.props.selectedCategory}
+                      customer={customer} />
                     </div>
                   </div>
                 </Suspense>

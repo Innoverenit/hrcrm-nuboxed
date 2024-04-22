@@ -12,6 +12,9 @@ class ReportTimeCard extends Component {
             viewType === "view" ? (
               <ReportTimeView
                 customer={customer}
+                handleButtonTask={this.props.handleButtonTask}
+                taskData={this.props.taskData}
+                selectedCategory={this.props.selectedCategory}
                 toggleViewType={toggleViewType}
               />
             ) : null
