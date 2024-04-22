@@ -1,211 +1,53 @@
+
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import { getSectors } from "../../../Settings/Sectors/SectorsAction";
+
 import dayjs from "dayjs";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { getCountries } from "../../../Auth/AuthAction";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button, Popconfirm } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import {
-  MultiAvatar,
-  MultiAvatar2,
-} from "../../../../Components/UI/Elements";
+
 import { Link } from 'react-router-dom';
-import {
-  getCustomerListByUserId,
-  handleUpdateCustomerModal,
-  setEditCustomer,
-  updateOwnercustomerById,
-  handleCustomerDrawerModal,
-  getCustomerDetailsById,
-  getCustomerKeySkill,
-  handleCustomerEmailDrawerModal,
-  handleCustomerNotesDrawerModal,
-  getCustomerById,
-  emptyCustomer,
-  customerToAccount,
-  handleCustomerPulseDrawerModal,
-  handleCustomerContactDrawerModal,
-  handleCustomerOpportunityDrawerModal,
-} from "../../CustomerAction";
+
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { FormattedMessage } from "react-intl";
-import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
-const AddCustomerDrawerModal = lazy(() =>
-  import("../../AddCustomerDrawerModal")
-);
-const AddCustomerEmailDrawerModal = lazy(() =>
-  import("../UpdateCustomer/AddCustomerEmailDrawerModal")
-);
-const AddCustomerNotesDrawerModal = lazy(() =>
-  import("../CustomerDetail/AddCustomerNotesDrawerModal")
-);
-const CustomerPulseDrawerModal = lazy(() =>
-  import("./CustomerPulseDrawerModal")
-);
-const CustomerContactDrawerModal = lazy(() =>
-  import("./CustomerContactDrawerModal")
-);
-const CustomerOpportunityDrawerModal = lazy(() =>
-  import("./CustomerOpportunityDrawerModal")
-);
-const UpdateCustomerModal = lazy(() =>
-  import("../UpdateCustomer/UpdateCustomerModal")
-);
+import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
+import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
+import { BundleLoader } from "../../Components/Placeholder";
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function CustomerCardList(props) {
+function ReportProspectList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
 
   const [page, setPage] = useState(0);
   const [page1, setPage1] = useState(0);
-  const [page2, setPage2] = useState(0);
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
 
 
-  console.log(props.viewType)
-  useEffect(() => {
-    if (props.viewType === "table") {
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.userId, page, "creationdate");
-    } else if (props.viewType === "teams") { 
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-    } else {     
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-    }
-  }, [props.viewType]);
 
-  useEffect(() => {
-    window.addEventListener('error', e => {
-      if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
-        const resizeObserverErrDiv = document.getElementById(
-          'webpack-dev-server-client-overlay-div'
-        )
-        const resizeObserverErr = document.getElementById(
-          'webpack-dev-server-client-overlay'
-        )
-        if (resizeObserverErr) {
-          resizeObserverErr.setAttribute('style', 'display: none');
-        }
-        if (resizeObserverErrDiv) {
-          resizeObserverErrDiv.setAttribute('style', 'display: none');
-        }
-      }
-    })
-    //setPage(page + 1);
-    // props.getCustomerListByUserId(props.userId, page, "creationdate");
-    //   props.getSectors();
-    // props.getCountries();
-    //props.getAllCustomerEmployeelist();
-    // if (props.viewType === "table") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.userId, page, "creationdate");
-    // } else if (props.viewType === "teams") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-    // } else {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-    // }
 
-  }, []);
-
-  const [JsonData, setJsonData] = useState(props.customerByUserId);
-
-  console.log(JsonData)
-  useEffect(() => {
-    setJsonData(props.customerByUserId)
-  }, [props.customerByUserId]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const [rowdata, setrowdata] = useState("");
-  const [currentCustomerId, setCurrentCustomerId] = useState("");
-  const [currentCustomer, setCurrentCustomer] = useState("");
-  function handleSetCurrentCustomerId(customerId) {
-    setCurrentCustomerId(customerId);
-    console.log(customerId);
-  }
-  function handleSetCurrentCustomer(item) {
-    setCurrentCustomer(item);
-  }
-  const handleRowData = (data) => {
-    setrowdata(data);
-  };
-  const handleConfirm = (customerId) => {
-    // Call the function to change the status to "Lost" here
-    props.customerToAccount(customerId);
-  };
-  const handleLoadMore = () => {
-  
-    if (props.viewType === "table") {
-     
-    //  setPage(page + 1);
-    setPage(prevPage => prevPage + 1); 
-      props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
-    } else if (props.viewType === "teams") {
- 
-      setPage1(prevPage1 => prevPage1 + 1); 
-      props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-    } else {
-     
-    //  setPage2(page2 + 1);
-     setPage2(prevPage2 => prevPage2 + 1); 
-      props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
-    }
-  };
-
-  const {
-    fetchingCustomers,
-    customerByUserId,
-    fetchingCustomerPagination,
-    handleUpdateCustomerModal,
-    addDrawerCustomerPulseModal,
-    addDrawerCustomerContactModal,
-    addDrawerCustomerOpportunityModal,
-    handleCustomerPulseDrawerModal,
-    handleCustomerContactDrawerModal,
-    handleCustomerOpportunityDrawerModal,
-    updateCustomerModal,
-    fetchingCustomersError,
-    fetchingAllCustomers,
-    user,
-    addDrawerCustomerNotesModal,
-    handleCustomerNotesDrawerModal,
-    IconShowhover,
-  } = props;
-  console.log("ee");
-
-  // if (fetchingCustomers) {
-  //   return <BundleLoader />;
-  // }
 console.log(page)
+if(props.gettingReportProspect){
+    return <BundleLoader/>
+}
+const {user}=props
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
+       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
@@ -282,18 +124,12 @@ console.log(page)
                 defaultMessage="Customer"
               />
             </div>
-            <div className="w-[3.8rem]"></div>
+            {/* <div className="w-[3.8rem]"></div> */}
 
           </div>
-          <InfiniteScroll
-            dataLength={customerByUserId.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"75vh"}
-          >
+       
 
-            {!fetchingCustomers && customerByUserId.length === 0 ? <NodataFoundPage /> : customerByUserId.map((item, index) => {
+            {!props.gettingReportProspect && props.reportProspect.length === 0 ? <NodataFoundPage /> : props.reportProspect.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code
@@ -479,7 +315,7 @@ console.log(page)
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      {/* <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
                         <Popconfirm
@@ -499,7 +335,7 @@ console.log(page)
                             </Button>
                           )}
                         </Popconfirm>
-                      </div>
+                      </div> */}
 
                       <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                         <div>
@@ -529,13 +365,7 @@ console.log(page)
                         <div>
                           <div
                             style={{ fontSize: "0.8rem" }}
-                            onClick={() => {
-                              props.getCustomerDetailsById(item.customerId);
-                              props.getCustomerKeySkill(item.customerId);
-                              //   this.props.getCustomerDocument(item.customerId );
-
-                              props.handleCustomerDrawerModal(item, true);
-                            }}
+                            
                           >
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
@@ -554,10 +384,10 @@ console.log(page)
                           <Tooltip title="Contact">
                             <ContactsIcon
                               className=" !text-xl cursor-pointer text-[#709ab3]"
-                              onClick={() => {
-                                handleCustomerContactDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
+                            //   onClick={() => {
+                            //     handleCustomerContactDrawerModal(true);
+                            //     handleSetCurrentCustomer(item);
+                            //   }}
 
                             />
                           </Tooltip>
@@ -566,11 +396,11 @@ console.log(page)
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
                               className=" !text-xl cursor-pointer text-[#AF5910]"
-                              onClick={() => {
-                                handleCustomerOpportunityDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
+                            //   onClick={() => {
+                            //     handleCustomerOpportunityDrawerModal(true);
+                            //     handleSetCurrentCustomer(item);
+                            //     handleRowData(item);
+                            //   }}
 
                             />
                           </Tooltip>
@@ -582,10 +412,10 @@ console.log(page)
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
                               className=" !text-xl cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
+                            //   onClick={() => {
+                            //     handleCustomerPulseDrawerModal(true);
+                            //     handleSetCurrentCustomer(item);
+                            //   }}
 
                             />
                           </Tooltip>
@@ -594,11 +424,11 @@ console.log(page)
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className=" !text-xl cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
+                            //   onClick={() => {
+                            //     handleCustomerNotesDrawerModal(true);
+                            //     handleSetCurrentCustomer(item);
+                            //     handleRowData(item);
+                            //   }}
 
                             />
                           </Tooltip>
@@ -623,12 +453,12 @@ console.log(page)
                               <BorderColorIcon
                                 className=" !text-xl cursor-pointer text-[tomato]"
 
-                                onClick={() => {
-                                  props.setEditCustomer(item);
-                                  handleUpdateCustomerModal(true);
-                                  handleSetCurrentCustomerId(item.customerId);
+                                // onClick={() => {
+                                //   props.setEditCustomer(item);
+                                //   handleUpdateCustomerModal(true);
+                                //   handleSetCurrentCustomerId(item.customerId);
 
-                                }}
+                                // }}
                               />
                             </Tooltip>
                           )}
@@ -652,53 +482,14 @@ console.log(page)
 
               )
             })}
-          </InfiniteScroll>
+        
         </div>
       </div>
 
 
-      <AddCustomerDrawerModal
-        addDrawerCustomerModal={props.addDrawerCustomerModal}
-        handleCustomerDrawerModal={props.handleCustomerDrawerModal}
-      />
+     
 
-      <UpdateCustomerModal
-        customerId={currentCustomerId}
-        updateCustomerModal={updateCustomerModal}
-        handleUpdateCustomerModal={handleUpdateCustomerModal}
-        handleSetCurrentCustomerId={handleSetCurrentCustomerId}
-      />
-      <CustomerPulseDrawerModal
-        customer={currentCustomer}
-        addDrawerCustomerPulseModal={addDrawerCustomerPulseModal}
-        handleCustomerPulseDrawerModal={handleCustomerPulseDrawerModal}
-        handleSetCurrentCustomer={handleSetCurrentCustomer}
-      />
-      <CustomerContactDrawerModal
-        customer={currentCustomer}
-        addDrawerCustomerContactModal={addDrawerCustomerContactModal}
-        handleCustomerContactDrawerModal={handleCustomerContactDrawerModal}
-        handleSetCurrentCustomer={handleSetCurrentCustomer}
-      />
-      <CustomerOpportunityDrawerModal
-        customer={currentCustomer}
-        addDrawerCustomerOpportunityModal={addDrawerCustomerOpportunityModal}
-        handleCustomerOpportunityDrawerModal={handleCustomerOpportunityDrawerModal}
-        handleSetCurrentCustomer={handleSetCurrentCustomer}
-      />
-      <AddCustomerEmailDrawerModal
-        // contactById={props.contactById}
-        addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
-        handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
-      />
-
-
-      <AddCustomerNotesDrawerModal
-        rowdata={rowdata}
-        addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
-        handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
-        handleSetCurrentCustomer={handleSetCurrentCustomer}
-      />
+    
     </>
   );
 }
@@ -710,50 +501,33 @@ const mapStateToProps = ({
   opportunity,
   employee,
 }) => ({
-  userId: auth.userDetails.userId,
-  addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
-  addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
-  addDrawerCustomerNotesModal: customer.addDrawerCustomerNotesModal,
-  customerByUserId: customer.customerByUserId,
-  fetchingCustomerPagination: customer.fetchingCustomerPagination,
-  sales: opportunity.sales,
-  addDrawerCustomerPulseModal: customer.addDrawerCustomerPulseModal,
-  recruiterName: opportunity.recruiterName,
-  fetchingAllCustomers: customer.fetchingAllCustomers,
-  sectors: sector.sectors,
-  fetchingCustomers: customer.fetchingCustomers,
-  fetchingCustomersError: customer.fetchingCustomersError,
-  updateCustomerModal: customer.updateCustomerModal,
-  user: auth.userDetails,
-  employees: employee.employees,
-  countries: auth.countries,
-  allCustomerEmployeeList: employee.allCustomerEmployeeList,
-  addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+    user: auth.userDetails,
   // viewType: customer.viewType,
 });
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch,) =>
   bindActionCreators(
-    {
-      getCustomerListByUserId,
-      handleUpdateCustomerModal,
-      handleCustomerPulseDrawerModal,
-      handleCustomerContactDrawerModal,
-      handleCustomerOpportunityDrawerModal,
-      setEditCustomer,
-      getSectors,
-      customerToAccount,
-      emptyCustomer,
-      updateOwnercustomerById,
-      handleCustomerDrawerModal,
-      getCustomerDetailsById,
-      getCustomerKeySkill,
-      handleCustomerEmailDrawerModal,
-      handleCustomerNotesDrawerModal,
-      getCustomerById,
-      getCountries,
-      getAllCustomerEmployeelist,
+     {
+        
+    //   getCustomerListByUserId,
+    //   handleUpdateCustomerModal,
+    //   handleCustomerPulseDrawerModal,
+    //   handleCustomerContactDrawerModal,
+    //   handleCustomerOpportunityDrawerModal,
+    //   setEditCustomer,
+    //   getSectors,
+    //   customerToAccount,
+    //   emptyCustomer,
+    //   updateOwnercustomerById,
+    //   handleCustomerDrawerModal,
+    //   getCustomerDetailsById,
+    //   getCustomerKeySkill,
+    //   handleCustomerEmailDrawerModal,
+    //   handleCustomerNotesDrawerModal,
+    //   getCustomerById,
+    //   getCountries,
+    //   getAllCustomerEmployeelist,
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(ReportProspectList);
 

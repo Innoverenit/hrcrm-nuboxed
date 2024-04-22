@@ -10,6 +10,10 @@ const initialState = {
      fetchingAllReportInvestorsError: false,
      allReportInvestors:[],
 
+     fetchingTaskdata:false,
+     fetchingTaskdataError:false,
+     taskData:[],
+
     fetchingMyViewReport: false,
     fetchingMyViewReportError: false,
     myViewReportData: [],
@@ -18,21 +22,29 @@ const initialState = {
     fetchingSalesReportsError: false,
     reportsSales: [],
 
+    gettingReportTask:false,
+    gettingReportTaskError:false,
+    reportTask:[],
+
+    gettingReportProspect:false,
+    gettingReportProspectError:false,
+    reportProspect:[],
+
     reportViewType: "ME",
     dateRangeList: [
-        // {
-        //     id: 1,
-        //     type: "Today",
-        //     value: "Today",
-        //     starter: false,
-        //     isSelected: true,
-        //     startDate: dayjs()
-        //         // .subtract(1, "days")
-        //         .toISOString(),
-        //     endDate: dayjs().toISOString(),
-        // },
         {
             id: 1,
+            type: "Today",
+            value: "Today",
+            starter: false,
+            isSelected: false,
+            startDate: dayjs()
+                // .subtract(1, "days")
+                .toISOString(),
+            endDate: dayjs().toISOString(),
+        },
+        {
+            id: 2,
             type: "Lastmonth",
             value: "MTD",
             starter: false,
@@ -41,7 +53,7 @@ const initialState = {
             endDate: dayjs().toISOString(),
         },
         {
-            id: 2,
+            id: 3,
             type: "Thismonth",
             value: "QTD",
             starter: false,
@@ -51,7 +63,7 @@ const initialState = {
         },
     
         {
-            id: 3,
+            id: 4,
             type: "Yesterday",
             value: "YTD",
             starter: false,
@@ -89,6 +101,7 @@ const initialState = {
         // },
     ],
     isCustomSelected: false,
+    // timeRangeType: "today",
     // startDate: dayjs()
     //     .startOf("year")
     //     .toISOString(),
@@ -127,6 +140,7 @@ export const reportReducer = (state = initialState, action) => {
                 isCustomSelected: false,
                 startDate: action.payload.startDate,
                 endDate: action.payload.endDate,
+                timeRangeType:action.payload.type
             };
         case types.SET_TIME_INTERVAL_REPORT:
             return {
@@ -179,6 +193,27 @@ export const reportReducer = (state = initialState, action) => {
                 selectedReportType: "Select Report",
             };
 
+
+
+
+            case types.GET_REPORT_PROSPECT_REQUEST:
+      return { ...state, gettingReportProspect: true };
+
+    case types.GET_REPORT_PROSPECT_SUCCESS:
+      return {
+        ...state,
+        gettingReportProspect: false,
+        reportProspect: action.payload,
+      };
+
+    case types.GET_REPORT_PROSPECT_FAILURE:
+      return {
+        ...state,
+        gettingReportProspect: false,
+        gettingReportProspectError: true,
+      };
+
+
         case types.SET_SELECTED_REPORT_TYPE:
             return {
                 ...state, selectedReportType: action.payload,
@@ -190,6 +225,27 @@ export const reportReducer = (state = initialState, action) => {
                 ...state,
                 selectedSubReportType: action.payload,
             };
+
+
+
+
+
+            case types.GET_REPORT_TASK_REQUEST:
+                return { ...state, gettingReportTask: true };
+          
+              case types.GET_REPORT_TASK_SUCCESS:
+                return {
+                  ...state,
+                  gettingReportTask: false,
+                  reportTask: action.payload,
+                };
+          
+              case types.GET_REPORT_TASK_FAILURE:
+                return {
+                  ...state,
+                  gettingReportTask: false,
+                  gettingReportTaskError: true,
+                };
 
         case types.GET_SALES_REPORTS_REQUEST:
             return { ...state, fetchingSalesReports: true };
@@ -213,6 +269,21 @@ export const reportReducer = (state = initialState, action) => {
                 return { ...state, fetchingAllReportInvestors: false, allReportInvestors: action.payload };
               case types.GET_ALL_REPORT_INVESTORS_FAILURE:
                 return { ...state, fetchingAllReportInvestors: false, fetchingAllReportInvestorsError: true };
+
+
+
+
+                case types.GET_TASK_DATA_REQUEST:
+                return { ...state, fetchingTaskdata: true };
+              case types.GET_TASK_DATA_SUCCESS:
+                return { ...state, fetchingTaskdata: false, 
+                  taskData: action.payload };
+              case types.GET_TASK_DATA_FAILURE:
+                return {
+                  ...state,
+                  fetchingTaskdata: false,
+                  fetchingTaskdataError: true,
+                };
           
         default:
             return state;
