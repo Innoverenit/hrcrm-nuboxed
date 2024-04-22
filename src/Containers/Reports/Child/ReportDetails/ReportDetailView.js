@@ -41,7 +41,8 @@ class ReportDetailView extends Component {
         >
  {buttonData.map((button, index) => (
         <div key={index} style={{ marginBottom: '20px' }}>
-          <Button onClick={() => this.props.handleButtonClick(button.name)}>{button.name}</Button>
+          <Button style={{backgroundColor:this.props.selectedCategory ===button.name?"tomato":""}}
+          onClick={() => this.props.handleButtonClick(button.name)}>{button.name}</Button>
           {/* {this.props.selectedCategory === button.name && (
             <Select
               style={{ width: 200, marginLeft: '10px' }}

@@ -44,7 +44,11 @@ class ReportDetails extends Component {
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}
                       selectedCategory={this.props.selectedCategory}
-                      customer={customer} />
+                      customer={customer} 
+                      reportTask={this.props.reportTask}
+         
+          gettingReportTask={this.props.gettingReportTask}
+                      />
                     </div>
                   </div>
                 </Suspense>

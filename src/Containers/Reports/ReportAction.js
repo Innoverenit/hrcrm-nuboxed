@@ -233,7 +233,7 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
       type: types.GET_TASK_DATA_REQUEST,
     });
     axios
-      .get(`${base_url}/taskType/${orgId}`, {
+      .get(`${base_url}/taskType/drop-down/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

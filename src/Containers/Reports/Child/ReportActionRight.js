@@ -51,13 +51,16 @@ class ReportActionLeft extends React.Component {
             onChange={this.props.handleButtonTask}
            >   
            {/* taskData={this.props.taskData} */}
-            
-               <Option  value="Task1">
-               Task1
+            {this.props.taskData.map((item)=>{
+              return(
+
+<Option  value={item.taskTypeId}>
+              {item.taskType}
                </Option>
-               <Option  value="Task2">
-               Task2
-               </Option>
+              )
+            })}
+               
+              
            
            </Select>
             )}
