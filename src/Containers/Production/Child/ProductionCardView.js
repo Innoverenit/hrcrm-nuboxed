@@ -337,7 +337,12 @@ function ProductionCardView(props) {
                                                             </>
                                                             :
                                                             <>
-                                                                {`${item.zone || ""} - ${item.chamber || ""}`}
+                                                                <MultiAvatar
+                                                                    primaryTitle={item.zone}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                />&nbsp;
+                                                                {item.chamber || ""}
 
                                                             </>
                                                         }
@@ -386,7 +391,7 @@ function ProductionCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        <MoveToggleProduction item={item} />
+                                                        {item.inspectedInd && <MoveToggleProduction item={item} />}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">

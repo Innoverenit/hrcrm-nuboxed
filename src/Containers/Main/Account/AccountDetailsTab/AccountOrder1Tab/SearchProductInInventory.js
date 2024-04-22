@@ -35,7 +35,7 @@ const SearchProductInInventory = (props) => {
             locationDetailsId: val,
             orderId: props.particularRowData.orderId,
             orgId: props.orgId
-        })
+        }, product, val, props.particularRowData.orderId)
     }
     const locationsName = props.locationlist.filter((item) => {
         return item.inventoryInd === true
@@ -55,7 +55,7 @@ const SearchProductInInventory = (props) => {
                                 }
                             >
                                 {props.productionOrderDetail.map((a) => {
-                                    return <Option value={a.productId}>{`${a.productFullName} - ${a.quantity}`}</Option>;
+                                    return <Option value={a.productId}>{`${a.productFullName} - ${a.remainingQuantity}`}</Option>;
                                 })}
                             </Select>
                         </div>
@@ -75,7 +75,11 @@ const SearchProductInInventory = (props) => {
                         </div>
                     </div>
                 </>}
-            <SearchedListItems orderId={props.particularRowData.orderId} />
+            <SearchedListItems
+                orderId={props.particularRowData.orderId}
+                productId={product}
+                locationId={location}
+            />
         </>
 
     )

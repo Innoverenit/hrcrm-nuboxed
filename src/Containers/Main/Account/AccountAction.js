@@ -3145,7 +3145,7 @@ export const getProductionOrderDetails = (orderId) => (dispatch) => {
     });
 };
 
-export const searchItemInLocation = (data, cb) => (dispatch) => {
+export const searchItemInLocation = (data, productId, locationId, orderId) => (dispatch) => {
   dispatch({ type: types.SEARCH_ITEM_IN_LOCATION_REQUEST });
   axios
     .post(`${base_url2}/order/productionProductData`, data, {
@@ -3154,6 +3154,7 @@ export const searchItemInLocation = (data, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getDispatchItemList(productId, locationId, orderId))
       dispatch({
         type: types.SEARCH_ITEM_IN_LOCATION_SUCCESS,
         payload: res.data,
@@ -3163,6 +3164,33 @@ export const searchItemInLocation = (data, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.SEARCH_ITEM_IN_LOCATION_FAILURE,
+      });
+    });
+};
+
+export const getDispatchItemList = (productId, locationId, orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISPATCH_ITEM_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/productionProductDispatchData/${productId}/${locationId}/${orderId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISPATCH_ITEM_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DISPATCH_ITEM_LIST_FAILURE,
+        payload: err,
       });
     });
 };
@@ -3299,18 +3327,18 @@ export const getOrderStatus = (orderId) => (dispatch) => {
     });
 };
 
-export const setContactRoleForAccount = (data,contactId,) => (dispatch) => {
+export const setContactRoleForAccount = (data, contactId,) => (dispatch) => {
   //console.log(opportunityId, contactId, role);
   console.log(sessionStorage.getItem("token"));
   axios
     .put(
-      `${base_url}/distributor/distributor/${contactId}`,data,
+      `${base_url}/distributor/distributor/${contactId}`, data,
       {
-      
+
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
-      
+
       })
     .then((res) => {
       console.log(res);
