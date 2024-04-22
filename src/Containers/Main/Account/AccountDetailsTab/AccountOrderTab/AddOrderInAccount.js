@@ -160,8 +160,8 @@ function AddOrderInAccount(props) {
 
                             </div>
                             <div class=" w-[47%]">
-                            <div class="justify-between flex mt-3">
-                                <div class="w-[45%]">
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
                                         <Field
                                             label="Contact"
                                             name="contactPersonId"
@@ -183,7 +183,7 @@ function AddOrderInAccount(props) {
                                             isColumn
                                         />
                                     </div>
-                                    
+
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
@@ -212,7 +212,7 @@ function AddOrderInAccount(props) {
                                                 isColumn
                                             />
                                         </div>}
-                                        <div class="w-[45%]">
+                                    <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
                                             name="advancePayment"
@@ -224,7 +224,7 @@ function AddOrderInAccount(props) {
                                     </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                <div class="w-[46%]  ml-8 mt-2">
+                                    <div class="w-[46%]  ml-8 mt-2">
                                         <StyledLabel><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
@@ -307,8 +307,8 @@ function AddOrderInAccount(props) {
                                             isColumn
                                         />
                                     </div>
-                                    </div>
-                                    <div class="justify-between flex mt-3">
+                                </div>
+                                <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
                                             name="availabilityDate"
@@ -351,8 +351,8 @@ function AddOrderInAccount(props) {
                                     </div>
 
                                 </div>
-                            <div class="justify-between flex mt-3">
-                                    
+                                <div class="justify-between flex mt-3">
+
                                     <div class="w-[45%]">
                                         <Field
                                             name="orderCurrencyId"
@@ -374,7 +374,7 @@ function AddOrderInAccount(props) {
                                 </div>
 
                                 <div class=" mt-3 flex justify-between">
-                                   
+
                                     <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"

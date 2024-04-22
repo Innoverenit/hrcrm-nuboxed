@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addCarDetails } from "../../AccountAction"
 import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
@@ -9,6 +9,12 @@ import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 
 function AddPhoneExcel(props) {
+
+    const [bulkQr, setBulkQr] = useState(false)
+
+    function handleBulkQr(checked) {
+        setBulkQr(checked)
+    }
 
     return (
         <>
@@ -64,6 +70,26 @@ function AddPhoneExcel(props) {
                                             width={"100%"}
                                             isColumn
                                         />
+                                    </div>
+                                    <div class=" flex justify-between">
+                                        <div class="w-[45%]">
+                                            <Field
+                                                label="Units"
+                                                name="totalPhoneCount"
+                                                component={InputComponent}
+                                                inlineLabel
+                                                width={"100%"}
+                                                isColumn
+                                            />
+                                        </div>
+                                        <div class="w-[45%]">
+                                            <label>Required bulk QR code</label>
+                                            <Switch
+                                                onChange={handleBulkQr}
+                                                checked={bulkQr}
+                                                checkedChildren="Yes"
+                                                unCheckedChildren="No" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
