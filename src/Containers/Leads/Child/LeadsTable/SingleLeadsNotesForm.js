@@ -1,26 +1,35 @@
 import React from "react";
 import styled from "styled-components";
-import dayjs from "dayjs";
+import { Timeline, Button, Popconfirm } from 'antd';
 import moment from "moment";
-import { Spacer,SubTitle } from "../../../../Components/UI/Elements";
-const NotesWrapper = styled.div``;
-export default function SingleLeadsNoteForm(props) {
+import { removeLeadsNote } from "../../LeadsAction";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Spacer, SubTitle } from "../../../../Components/UI/Elements";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
+const NotesWrapper = styled.div``;
+
+const SingleLeadsNotesForm = (props) => {
   const {
     comment,
     notes,
+    noteId,
     creationDate,
     ownerName,
     userId,
     creatorId,
-   
   } = props;
-//   console.log(creationDate);
+  const handleDelete = () => {
+    let data = {
+      leadsId: props.rowdata.leadsId,
+      noteId: noteId,
+    };
+    // props.removeLeadsNote(data);
+  };
+  
   return (
     <NotesWrapper>
-      {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
-                {description}
-            </SubTitle> */}
       <div dangerouslySetInnerHTML={{ __html: notes }} />
       <SubTitle
         fontSize="0.875em"
@@ -28,10 +37,29 @@ export default function SingleLeadsNoteForm(props) {
         style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
         <Spacer />
-        {`${moment.utc(creationDate).fromNow()}`}  {ownerName}
-       
-       
+        {`${moment.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
+     
+          <DeleteOutlined
+          onClick={handleDelete()}
+            style={{
+              color: "red",
+              cursor: "pointer"
+            }}
+          />
+  
       </SubTitle>
     </NotesWrapper>
   );
-}
+};
+
+const mapStateToProps = ({ customer, auth }) => ({});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      removeLeadsNote
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleLeadsNotesForm);

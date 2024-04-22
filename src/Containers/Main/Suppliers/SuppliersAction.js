@@ -1508,3 +1508,31 @@ export const getSupplierSuppliesQuality = () => (dispatch) => {
       });
     });
 };
+
+export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.DELETE_SUPPLIER_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/supplier/deleteSupplier/${supplierId}`)
+    .then((res) => {
+      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Supplier deleted Successfully!',
+      })
+      dispatch({
+        type: types.DELETE_SUPPLIER_DATA_SUCCESS,
+        payload: supplierId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
