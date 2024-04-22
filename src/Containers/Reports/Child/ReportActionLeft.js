@@ -221,7 +221,7 @@ style={{ fontSize: "1rem" ,}}
                     onClick={() => setReportViewType("ME")}
                   >My View</Tag>
                 </div> */}
-                <div class=" mt-2">
+                {/* <div class=" mt-2">
               {reportViewType === "ME" ? (
                 <StyledSelect
                   showSearch
@@ -262,10 +262,10 @@ style={{ fontSize: "1rem" ,}}
                 </StyledSelect>
               )}
 
-            </div>
-            {activeIcon && (
+            </div> */}
+            {/* {activeIcon && (
             <div class=" mt-2">
-              {/* {reportViewType === "investor" ? ( */}
+            
               <StyledSelect
                   showSearch
                   width={"20%"}
@@ -283,16 +283,12 @@ style={{ fontSize: "1rem" ,}}
                   {item}
                 </Option>
               ))}
-                  {/* {investorTypes.map((option, i) => (
-                    <Option key={i} value={option}>
-                      {option}
-                    </Option>
-                  ))} */}
+                 
                 </StyledSelect>
             
 
             </div>
-               )}
+               )} */}
                 </div>
               </>
             )}

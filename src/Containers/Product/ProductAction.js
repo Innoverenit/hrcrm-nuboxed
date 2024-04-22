@@ -491,22 +491,23 @@ export const deleteProductData = (id) => (dispatch) => {
     });
 };
 
-export const deleteCatalogData = (id) => (dispatch) => {
+export const deleteCatalogData = (data,productId) => (dispatch) => {
   dispatch({
     type: types.DELETE_CATALOG_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/product/${id}`,
+    .put(`${base_url2}/product/delete/${productId}`,data,
     {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      dispatch(getProducts(0))
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,
-        payload: id,
+        payload: res.data,
       });
     })
     .catch((err) => {

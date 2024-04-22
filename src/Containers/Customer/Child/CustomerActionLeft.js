@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import GridViewIcon from '@mui/icons-material/GridView';
 import TocIcon from '@mui/icons-material/Toc';
 import PeopleIcon from '@mui/icons-material/People';
 import { getCustomerListByUserId } from "../CustomerAction"

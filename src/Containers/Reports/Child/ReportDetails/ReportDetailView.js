@@ -2,11 +2,14 @@ import { Badge, Button, Tooltip } from "antd";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Select } from 'antd';
+const { Option } = Select;
 
 class ReportDetailView extends Component {
   render() {
     const {
         reportTypes,
+        buttonData,
         handleIconClick,
         reportType,
         investorTypes,
@@ -32,74 +35,31 @@ class ReportDetailView extends Component {
     return (
       <>
              <span class="cursor-pointer ml-2"
+             style={{display:"ruby-text"}}
         //   onClick={() => handleIconClick("prospectTypes")}
       
         >
-          <Tooltip title="Tasks">
-<Button>Tasks</Button>
-</Tooltip>        
+ {buttonData.map((button, index) => (
+        <div key={index} style={{ marginBottom: '20px' }}>
+          <Button onClick={() => this.props.handleButtonClick(button.name)}>{button.name}</Button>
+          {/* {this.props.selectedCategory === button.name && (
+            <Select
+              style={{ width: 200, marginLeft: '10px' }}
+              placeholder={`Select ${button.name}`}
+              //onChange={this.props.handleSelectChange}
+            >
+              {this.props.dropdownOptions[button.name].map((option) => (
+                <Option key={option} value={option}>
+                  {option}
+                </Option>
+              ))}
+            </Select>
+          )} */}
+        </div>
+      ))}
         </span>
 
-        {user.crmInd === true && (
-        <Badge
-        size="small"
-      >
-        <span class="cursor-pointer ml-2"
-          onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-          <Tooltip title="Prospects">
-<Button>Prospects</Button>
-</Tooltip>        
-        </span>
-        </Badge>
- )} 
-        <div class=" flex mt-3">
-        {user.imInd === true  && (
-            <Badge
-            size="small"
-            // count={(props.reportViewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-            // overflowCount={999}
-          >
-        <span class="cursor-pointer ml-2"
-         onClick={() => handleIconClick("investorTypes")}
-        // onClick={() => setReportViewType("investor")} 
-        // style={{
-        //   color:activeButton === "Investors" && "tomato",
-    
-        // }}
-        >  
-        <Tooltip title="Investors">
-<Button>Investors</Button>
-</Tooltip>       
-        </span>
-        </Badge>
- )} 
-        <span class="cursor-pointer ml-2"
-        //   onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-          <Tooltip title="Order">
-<Button>Order</Button>
-</Tooltip>        
-        </span>
-        </div>
-        <div class=" flex mt-3">
-        <span class="cursor-pointer ml-2"
-        //   onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-        
-<Button>Production</Button>
-     
-        </span>
-        <span class="cursor-pointer ml-2"
-        //   onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-<Button>Receivables</Button>      
-        </span>
-        </div>
+
       </>
     );
   }

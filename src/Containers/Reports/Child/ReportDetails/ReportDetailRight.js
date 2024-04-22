@@ -7,6 +7,7 @@ import OrgSelected from "../OrganizationView/Selected";
 import OrgRequirement from "../OrganizationView/Requirement";
 import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
+import ReportsProspectList from "../../ReportsProspectList";
 
 class ReportDetailRight extends Component {
 
@@ -38,8 +39,11 @@ class ReportDetailRight extends Component {
     console.log(this.props.customer);
     return (
       <div class=" w-full">
-              {this.state.currentUser === "Investor List" && (
-    <ReportsCardList allReportInvestors={this.props.allReportInvestors} />
+              {this.props.selectedCategory === "Prospect" && (
+    <ReportsProspectList 
+    gettingReportProspect={this.props.gettingReportProspect}
+    reportProspect={this.props.reportProspect}
+    allReportInvestors={this.props.allReportInvestors} />
   )}
           {reportViewType === "ME" && (
             <>

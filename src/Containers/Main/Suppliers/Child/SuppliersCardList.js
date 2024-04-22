@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSuppliersList, emptysUPPLIERS } from "../SuppliersAction"
+import { getSuppliersList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal} from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import { DeleteOutlined } from "@ant-design/icons";
+import {Popconfirm,Tooltip } from "antd";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import UpdateSupplierModal from "./UpdateSupplierModal";
 
 function SuppliersCardList(props) {
 
@@ -34,6 +38,7 @@ function SuppliersCardList(props) {
     setTimeout(() => {
       const {
         getSuppliersList,
+        handleUpdateSupplierModal,
         userId
       } = props;
       if  (props.supplierList)
@@ -167,16 +172,16 @@ function SuppliersCardList(props) {
 
                             </div>
                             </div>
-                            {/* <div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                        <div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
  <div>
 <Tooltip title="Edit">
-            <EditOutlined
-              style={{ cursor: "pointer" }}
+            <BorderColorIcon
+             className="!text-xl cursor-pointer text-[tomato]"
               onClick={() => {
-                props.setEditShipper(item);
+                // props.setEditShipper(item);
                 handleRowData(item);
-                handleUpdateShipperModal(true);
-                handleSetCurrentShipperId(item.shipperId);
+                handleUpdateSupplierModal(true);
+             
               }}
             />
           </Tooltip>
@@ -184,15 +189,15 @@ function SuppliersCardList(props) {
           <div>
           <Popconfirm
               title="Do you want to delete?"
-             onConfirm={() => props.deleteShipperData(item.shipperId)}
+             onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
               <DeleteOutlined
 
-                style={{ cursor: "pointer", color: "red" }}
+className=" !text-xl cursor-pointer text-[red]"
               />
             </Popconfirm>
             </div>
-            </div> */}
+            </div> 
 
 
                           </div>
@@ -212,7 +217,13 @@ function SuppliersCardList(props) {
         </div>
       </div>
 
-
+      <UpdateSupplierModal
+        rowdata={rowdata}
+     
+        updateSupplierModal={props.updateSupplierModal}
+        handleRowData={handleRowData}
+        handleUpdateSupplierModal={handleUpdateSupplierModal}
+      />
     </>
   )
 }
@@ -224,13 +235,16 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
+  updateSupplierModal:suppliers.updateSupplierModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSuppliersList,
-      emptysUPPLIERS
+      emptysUPPLIERS,
+      deleteSupplierData,
+      handleUpdateSupplierModal
     },
     dispatch
   );

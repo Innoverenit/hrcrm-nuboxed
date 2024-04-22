@@ -298,7 +298,7 @@ function AccountDetailsTab(props) {
                             <>
                                 <span>
                                     {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">Summery</span>
+                                    <span class="ml-1">Summary</span>
                                 </span>
                                 
                             </>

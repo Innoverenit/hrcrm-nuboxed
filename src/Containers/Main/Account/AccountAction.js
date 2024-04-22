@@ -1617,6 +1617,32 @@ export const getLobList = (orgId) => (dispatch) => {
     });
 };
 
+export const getPulseList = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PULSE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/orderListByYear/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PULSE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PULSE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 
 export const setEditDistributorContact = (name) => (dispatch) => {
   dispatch({

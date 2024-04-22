@@ -13,6 +13,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import UserKpiList from "./EmployeeDrawer/UserKpiList";
 import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
+import AssigenedKpiCardList from "../../../Main/Teams/TeamsCard.js/AssigenedKpiCardList";
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
@@ -102,6 +103,7 @@ class EmployeePulseDrawerModal extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
+                {/* <AssigenedKpiCardList employeeName={this.props.employeeName}/> */}
                 <UserKpiList employeeName={this.props.employeeName}/>
               </Suspense>
             </TabPane>

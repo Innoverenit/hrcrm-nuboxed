@@ -328,6 +328,10 @@ const initialState = {
 
   addBillToAddress: false,
 
+  fetchingPulseList: false,
+  fetchingPulseListError: false,
+  pulseList: [],
+
   fetchingBillingAddressById: false,
   fetchingBillingAddressByIdError: false,
   billAddress: {},
@@ -2520,6 +2524,22 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingDispatchItemList: false,
         fetchingDispatchItemListError: true,
+      };
+
+    case types.GET_PULSE_LIST_REQUEST:
+      return { ...state, fetchingPulseList: true };
+    case types.GET_PULSE_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingPulseList: false,
+        pulseList: action.payload
+      };
+    case types.GET_PULSE_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingPulseList: false,
+        fetchingPulseListError: true,
+
       };
 
     case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_REQUEST:
