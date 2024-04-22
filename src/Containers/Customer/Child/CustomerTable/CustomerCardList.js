@@ -208,20 +208,20 @@ console.log(page)
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
+            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
               />
             </div>
-            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
               />
 
             </div>
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
               <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
@@ -235,21 +235,21 @@ console.log(page)
               />
 
             </div>
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
+            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               <FormattedMessage
                 id="app.country"
                 defaultMessage="Country"
               />
 
             </div>
-            <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
+            <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
               <FormattedMessage
                 id="app.quotation"
                 defaultMessage="Quotation"
               />
 
             </div>
-            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[1.8rem]">
+            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
               <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
@@ -263,20 +263,20 @@ console.log(page)
                       />
           
           </div> */}
-            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
+            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
               <FormattedMessage
                 id="app.assigned"
                 defaultMessage="Assigned"
               />
 
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
               <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
               />
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
               <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
@@ -315,7 +315,7 @@ console.log(page)
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[7rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -384,7 +384,7 @@ console.log(page)
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[4rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -392,7 +392,7 @@ console.log(page)
                         </div>
 
                       </div>
-                      <div className=" flex font-medium max-sm:w-auto flex-col justify-center w-[5.1rem] max-xl:w-[3.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium max-sm:w-auto flex-col justify-center w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -404,7 +404,7 @@ console.log(page)
                       </div>
 
 
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -414,7 +414,7 @@ console.log(page)
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -436,7 +436,7 @@ console.log(page)
 
                                     </div>
                                 </div> */}
-                      <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[8rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
