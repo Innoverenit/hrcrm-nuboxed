@@ -68,13 +68,13 @@ export const addEmployee = (employee,cretiondate) => (dispatch) => {
 /**
  * Fetching all employees of org
  */
-export const getEmployeelist = (filter) => (dispatch) => {
+export const getEmployeelist = (filter,type) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_LIST_REQUEST,
   });
 
   axios
-  .get(`${base_url}/employee/active/employees/filter/${filter}`, {
+  .get(`${base_url}/employee/employees/filter/${filter}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -649,12 +649,12 @@ export const getEmployeeData = (employeeType) => (dispatch) => {
     });
 };
 
-export const getRecords = (orgId) => (dispatch) => {
+export const getRecords = (orgId,type) => (dispatch) => {
   dispatch({
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/count/${orgId}`, {
+    .get(`${base_url}/employee/count/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1385,6 +1385,40 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
       dispatch({
         type: types.UPDATE_ACTUAL_VALUE_FAILURE,
       });
+    });
+};
+
+export const multiOrgStatus = (employeeId ,multyOrgAccessInd) => (
+  dispatch,
+  getState
+) => {
+  // debugger;
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.MULTI_ORG_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url}/multy-org-access-ind/employee/${employeeId}/${multyOrgAccessInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getCandidateListByUserId(userId));
+      dispatch({
+        type: types.MULTI_ORG_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success", res.data.message, res.data.suspendInd);
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MULTI_ORG_STATUS_FAILURE,
+        payload: err,
+      });
+       cb && cb("failuer");
     });
 };
 

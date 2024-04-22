@@ -575,6 +575,7 @@ import moment from "moment";
 import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import MultiOrgEmployee from "../MultiOrgEmployee";
 
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);
@@ -602,7 +603,7 @@ function EmployeeTable(props) {
         }
       }
     })
-    props.getEmployeelist("cretiondate");
+    props.getEmployeelist("cretiondate","all");
     props.getRoles(props.organizationId);
     props.getDepartments();
   }, []);
@@ -956,6 +957,7 @@ function EmployeeTable(props) {
                     <div className="md:w-[8.7rem]">Mobile #</div>
                     <div className="md:w-[8.9rem]">Email #</div>
                     <div className="md:w-[7.2rem]">Stop Access</div>
+                    <div className="md:w-[7.2rem]">Multi Org</div>
                     <div className="md:w-[10.2rem]"></div>
                 </div>
                 {props.filteredData.map((item) => {
@@ -1017,6 +1019,18 @@ function EmployeeTable(props) {
               employeeId={item.employeeId}
             />
             ):null}
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                  
+            <MultiOrgEmployee
+              // partnerId={item.partnerId}
+              multyOrgAccessInd={item.multyOrgAccessInd}
+              // assignedIndicator={item.assignedInd}
+              employeeId={item.employeeId}
+            />
+
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
