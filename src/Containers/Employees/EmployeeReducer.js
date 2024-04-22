@@ -128,6 +128,9 @@ const initialState = {
   fetchingPermissionsListError: false,
   permissionsDataList: [],
 
+  MutltiorgStatus: false,
+  MutltiorgStatusError: false,
+
   updatingEmployee: false,
   updatingEmployeeError: false,
 
@@ -1034,7 +1037,20 @@ case types.GET_ADMIN_USER_FAILURE:
 
 
                      
-                  
+                      case types.MULTI_ORG_STATUS_REQUEST:
+                        return { ...state, MutltiorgStatus: true };
+                      case types.MULTI_ORG_STATUS_SUCCESS:
+                        return {
+                          ...state,
+                          MutltiorgStatus: false,
+                          // addTeamTransferModal: false,
+                        };
+                      case types.MULTI_ORG_STATUS_FAILURE:
+                        return {
+                          ...state,
+                          MutltiorgStatus: false,
+                          MutltiorgStatusError: true,
+                        };           
               
 
 

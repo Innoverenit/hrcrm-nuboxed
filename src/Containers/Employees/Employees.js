@@ -57,7 +57,7 @@ class Employees extends Component {
     }
   }
   componentDidMount(){
-    this.props.getEmployeelist("cretiondate");
+    this.props.getEmployeelist("cretiondate","active");
   }
   render() {
  

@@ -23,7 +23,7 @@ const EmployeesActionLeft = (props) => {
 
     if (e.target.value.trim() === "") {
       setPage(pageNo + 1);
-      props.getEmployeelist("cretiondate");
+      props.getEmployeelist("cretiondate","active");
       props.ClearReducerDataOfEmployee()
     }
   };
@@ -37,9 +37,9 @@ const EmployeesActionLeft = (props) => {
   };
   useEffect(() => {
     if (props.viewType === "tile") {
-      props.getRecords(props.orgId);
+      props.getRecords(props.orgId,"active");
     }else if (props.viewType === "table") {
-      props.getRecords(props.orgId);
+      props.getRecords(props.orgId,"all");
     } else if (props.viewType === "card") {
       props.getRecords(props.orgId);
     }
