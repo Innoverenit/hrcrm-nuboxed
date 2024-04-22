@@ -1058,9 +1058,8 @@ export const handleInventoryRoomRackModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const addRoomAndRackInInventory = (data) => (dispatch,getState) => {
-  const { locationId,organizationId } = getState().auth.userDetails;
-  
+export const addRoomAndRackInInventory = (data, locationId, organizationId) => (dispatch) => {
+
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
     .post(`${base_url2}/roomrack/add`, data, {
@@ -1070,7 +1069,7 @@ export const addRoomAndRackInInventory = (data) => (dispatch,getState) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getRoomRackByLocId(locationId,organizationId))
+      dispatch(getRoomRackByLocId(locationId, organizationId))
       dispatch({
         type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_SUCCESS,
         payload: res.data,

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Switch } from "antd";
+import React from "react";
+import { Popconfirm, Switch } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { moveProduction } from "../ProductionAction";
@@ -7,33 +7,33 @@ import dayjs from "dayjs";
 
 function MoveToggleProduction(props) {
 
-  const [checked, setChecked] = useState(false);
+  function handleDispatchToggle() {
+    props.moveProduction(
+      {
 
-  const handleToggle = () => {
-    setChecked(prevChecked => !prevChecked);
-
-    if (!checked) {
-      const currentDate = dayjs().format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-
-      props.moveProduction(
-        {
-
-          manufactureId: props.item.manufactureId,
-          moveToInventoryDate: currentDate,
-          moveToInventoryInd: true,
-          locationDetailsId: props.locationId,
-
-
-        },);
-    }
-  };
+        manufactureId: props.item.manufactureId,
+        moveToInventoryDate: dayjs(),
+        moveToInventoryInd: true,
+        locationDetailsId: props.locationId,
+      });
+  }
 
   return (
     <div>
-      <Switch
-        checkedChildren="Yes"
-        unCheckedChildren="No"
-        checked={checked} onChange={handleToggle} />
+      <Popconfirm
+        title="Confirm status change?"
+        onConfirm={handleDispatchToggle}
+        onCancel={null}
+        okText="Ok"
+        cancelText="Cancel"
+      >
+        <Switch
+          checked={props.item.moveToInventoryInd}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </Popconfirm>
+
     </div>
   );
 

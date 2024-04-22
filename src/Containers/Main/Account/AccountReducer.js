@@ -330,7 +330,7 @@ const initialState = {
 
   fetchingPulseList: false,
   fetchingPulseListError: false,
-  pulseList:[],
+  pulseList: [],
 
   fetchingBillingAddressById: false,
   fetchingBillingAddressByIdError: false,
@@ -433,12 +433,15 @@ const initialState = {
 
   orderCartDrawer: false,
 
+  fetchingDispatchItemList: false,
+  fetchingDispatchItemListError: true,
+  searchedItem: [],
+
   showProductList: false,
   searchItemsInLocation: false,
 
   searchingItemInLocation: false,
   searchingItemInLocationError: true,
-  searchedItem: [],
 
   updatingSuborderAwb: false,
   updatingSuborderAwbError: false,
@@ -2373,7 +2376,6 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         searchingItemInLocation: false,
-        searchedItem: action.payload
       };
     case types.SEARCH_ITEM_IN_LOCATION_FAILURE:
       return {
@@ -2388,6 +2390,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         movingToProductionArchieve: false,
+        searchedItem: state.searchedItem.map((item) => {
+          if (item.productionProductId == action.payload.productionProductId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.MOVE_TO_PRODUCTION_ARCHIEVE_FAILURE:
       return {
@@ -2500,10 +2509,24 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingLobList: false,
         fetchingLobListError: true,
-
       };
 
-      case types.GET_PULSE_LIST_REQUEST:
+    case types.GET_DISPATCH_ITEM_LIST_REQUEST:
+      return { ...state, fetchingDispatchItemList: true };
+    case types.GET_DISPATCH_ITEM_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingDispatchItemList: false,
+        searchedItem: action.payload
+      };
+    case types.GET_DISPATCH_ITEM_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingDispatchItemList: false,
+        fetchingDispatchItemListError: true,
+      };
+
+    case types.GET_PULSE_LIST_REQUEST:
       return { ...state, fetchingPulseList: true };
     case types.GET_PULSE_LIST_SUCCESS:
       return {
@@ -2519,22 +2542,22 @@ export const distributorReducer = (state = initialState, action) => {
 
       };
 
-      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_REQUEST:
-        return { ...state };
-      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_SUCCESS:
-        return {
-          ...state,
-          contactDistributor: state.contactDistributor.map(
-            (item) =>{
+    case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_REQUEST:
+      return { ...state };
+    case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        contactDistributor: state.contactDistributor.map(
+          (item) => {
             if (item.contactPersonId === action.payload.contactPersonId) {
               return action.payload;
             } else {
               return item;
             }
           }),
-        };
-      case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_FAILURE:
-        return { ...state };
+      };
+    case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_FAILURE:
+      return { ...state };
 
 
 

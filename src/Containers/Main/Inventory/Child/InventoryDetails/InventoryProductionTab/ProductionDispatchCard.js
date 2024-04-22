@@ -57,8 +57,8 @@ function ProductionDispatchCard(props) {
                         <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16rem]">Manufacture ID</div>
                         <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.01rem]">Name</div>
                         <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem]">Category</div>
-                        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div> 
-                        <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>                                       
+                        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Attribute</div>
+                        <div className=" w-[11.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[19.2rem] ">Dispatch By</div>
                         <div className=" md:w-[4.01rem]">Zone</div>
                         <div className=" md:w-[4.01rem]">#Rack</div>
                         <div className="w-12"></div>
@@ -75,14 +75,14 @@ function ProductionDispatchCard(props) {
                             return (
                                 <div>
                                     <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
-                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-    {item.manufactureId}
-</div>
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                    {item.manufactureId}
+                                                </div>
 
-</div>
+                                            </div>
                                             <div className=" flex font-medium flex-col  w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[5.9rem]  max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -93,86 +93,86 @@ function ProductionDispatchCard(props) {
 
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium flex-col w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                            <div className=" flex font-medium flex-col w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[6.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
-                                            {item.categoryName}  {item.subCategoryName}
+                                                    {item.categoryName}  {item.subCategoryName}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col w-[17.2rem] max-xl:w-[13.2rem] max-lg:w-[10.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                            {item.attributeName}  {item.subAttributeName}
+                                                <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                    {item.attributeName}  {item.subAttributeName}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className=" flex font-medium flex-col w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col w-[5.5rem] max-sm:flex-row  max-sm:justify-between ">
 
-                                            <div class="text-xs text-cardBody font-semibold  font-poppins">
-                                                {/* {item.userName} */}
-                                                <MultiAvatar
-                                                  primaryTitle={item.userName}
-                                                  imageId={item.imageId}                  
-                                                  imgWidth={"1.8rem"}
-                                                  imgHeight={"1.8rem"}
-                                                     />
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
-
-                                           
-                                        </div>
-                                        <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
-
-                                           
-                                        </div>
-                                        <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                <Tooltip title="Edit">
-                                                    <BorderColorIcon
-                                                        className="!text-base cursor-pointer text-[tomato]"
-                                                    // onClick={() => {
-                                                    //     props.setEditProducts(item);
-                                                    //     handleUpdateProductModal(true);
-                                                    // }}
+                                                <div class="text-xs text-cardBody font-semibold  font-poppins">
+                                                    {/* {item.userName} */}
+                                                    <MultiAvatar
+                                                        primaryTitle={item.userName}
+                                                        imageId={item.imageId}
+                                                        imgWidth={"1.8rem"}
+                                                        imgHeight={"1.8rem"}
                                                     />
-                                                </Tooltip>
+                                                </div>
                                             </div>
+                                            <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
 
 
-                                        </div>
+                                            </div>
+                                            <div className=" flex font-medium flex-col w-[4.5rem] max-sm:flex-row  max-sm:justify-between ">
+
+
+                                            </div>
+                                            <div className=" flex font-medium flex-col w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                    <Tooltip title="Edit">
+                                                        <BorderColorIcon
+                                                            className="!text-base cursor-pointer text-[tomato]"
+                                                        // onClick={() => {
+                                                        //     props.setEditProducts(item);
+                                                        //     handleUpdateProductModal(true);
+                                                        // }}
+                                                        />
+                                                    </Tooltip>
+                                                </div>
+
+
+                                            </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium  w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                                <Tooltip title="Print">
+                                            <div className=" flex font-medium  w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                    <Tooltip title="Print">
 
-                                                    <ReactToPrint
-                                                        trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
-                                                        content={() => componentRefs.current[index]}
-                                                    />
-                                                </Tooltip>
+                                                        <ReactToPrint
+                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
+                                                            content={() => componentRefs.current[index]}
+                                                        />
+                                                    </Tooltip>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div  style={{ display: "none", textAlign: "center" }}>
+                                        <div style={{ display: "none", textAlign: "center" }}>
 
-                                        <div
-                                            ref={(el) => (componentRefs.current[index] = el)}
-                                            style={{
-                                                fontSize: "16px",
-                                                marginBottom: "20px",
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>
-                                            <div style={{ fontSize: "2rem", marginTop: "10px" }}> {item.manufactureId}</div>
+                                            <div
+                                                ref={(el) => (componentRefs.current[index] = el)}
+                                                style={{
+                                                    fontSize: "16px",
+                                                    marginBottom: "20px",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>
+                                                <div style={{ fontSize: "2rem", marginTop: "10px" }}> {item.manufactureId}</div>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             );
