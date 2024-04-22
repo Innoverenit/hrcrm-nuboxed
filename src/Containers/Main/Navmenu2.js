@@ -42,7 +42,6 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 const SubMenu = Menu.SubMenu;
 
 

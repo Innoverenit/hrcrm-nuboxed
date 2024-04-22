@@ -25,6 +25,7 @@ import {
   handleCustomerReactSpeechModal,
   handleCampaignDrawer,
 } from "../../../CustomerAction";
+import CustomerMapTable from "./CustomerMapTable";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
@@ -497,6 +498,25 @@ class ContactDetailTab extends Component {
               </Suspense>
             </TabPane>
            
+            <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Summary</span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="10"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                        <CustomerMapTable
+                               
+                               />                       
+                        </Suspense>
+                    </TabPane>
+
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}>

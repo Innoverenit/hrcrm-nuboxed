@@ -244,7 +244,7 @@ disabled={startInd===true}
       </select>
       </div>:null
 }
-<div>
+<div class="ml-2">
        <Button 
         disabled={!drop1}
         type="primary"
