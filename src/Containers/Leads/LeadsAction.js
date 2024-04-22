@@ -1552,7 +1552,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       type: types.REMOVE_LEADS_NOTE_REQUEST,
     });
     axios
-    .delete(
+    .put(
       `${base_url}/employee/notes`,
      data,
       {

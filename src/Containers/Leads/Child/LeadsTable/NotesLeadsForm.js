@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Timeline } from "antd";
 import { BorderBox } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
- import { getNotesListOfLeads } from "../../LeadsAction";
+ import { getNotesListOfLeads,removeLeadsNote } from "../../LeadsAction";
 import SingleLeadsNoteForm from "./SingleLeadsNotesForm";
 import LeadsNoteForm from "./LeadsNoteForm";
 
@@ -70,6 +70,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getNotesListOfLeads,
+      removeLeadsNote
     },
     dispatch
   );

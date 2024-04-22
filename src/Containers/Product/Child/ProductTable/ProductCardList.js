@@ -42,6 +42,15 @@ function ProductCardList(props) {
     setPage(page + 1);
   }, []);
 
+  const handleDelete = (item) => {
+    let data = {
+    active:false,
+      reason: "",
+      productId:item.productId,
+    };
+     props.deleteCatalogData(data,item.productId);
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -242,7 +251,8 @@ function ProductCardList(props) {
                     <div className="mt-1 ml-2">
                           <StyledPopconfirm
                             title="Do you want to delete?"
-                            onConfirm={() => deleteCatalogData(item.productId,props.orgId)}
+                            onConfirm={() => handleDelete(item)}
+
                           >
                             
                             <DeleteOutlined

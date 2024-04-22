@@ -23,9 +23,9 @@ const SingleLeadsNotesForm = (props) => {
   const handleDelete = () => {
     let data = {
       leadsId: props.rowdata.leadsId,
-      noteId: noteId,
+      notesId: noteId,
     };
-    // props.removeLeadsNote(data);
+     props.removeLeadsNote(data);
   };
   
   return (
