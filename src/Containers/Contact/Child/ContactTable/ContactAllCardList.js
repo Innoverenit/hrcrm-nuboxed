@@ -178,7 +178,7 @@ function ContactAllCardList(props) {
                             <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
                                 >
                                      
-                                <div className=" flex font-medium flex-col w-52 max-sm:flex-row max-xl:w-[16rem]   max-sm:justify-between max-sm:w-wk  ">
+                                <div className=" flex font-medium flex-col w-52 max-sm:flex-row max-xl:w-[8rem]   max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
             <MultiAvatar2
