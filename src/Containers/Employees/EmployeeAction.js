@@ -1418,7 +1418,7 @@ export const multiOrgStatus = (employeeId ,multyOrgAccessInd) => (
         type: types.MULTI_ORG_STATUS_FAILURE,
         payload: err,
       });
-       cb && cb("failuer");
+      //  cb && cb("failuer");
     });
 };
 
