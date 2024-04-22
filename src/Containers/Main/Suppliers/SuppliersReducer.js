@@ -93,6 +93,9 @@ const initialState = {
   addingPurchaseSuppliers: false,
   addingPurchaseSuppliersError: false,
 
+  deletingSupplierData: false,
+  deletingSupplierDataError: false,
+
   fetchingGeneratorSupplierList: false,
   fetchingGeneratorSupplierListError: false,
   generatorSuppliers: [],
@@ -1346,6 +1349,23 @@ export const suppliersReducer = (state = initialState, action) => {
           fetchingSupplierSuppliesQuality: false,
           fetchingSupplierSuppliesQualityError: true,
         };
+
+        case types.DELETE_SUPPLIER_DATA_REQUEST:
+          return { ...state, deletingSupplierData: true };
+        case types.DELETE_SUPPLIER_DATA_SUCCESS:
+          return {
+            ...state,
+            deletingSupplierData: false,
+            supplierList: state.supplierList.filter(
+              (item) => item.supplierId !== action.payload
+            ),
+          };
+        case types.DELETE_SUPPLIER_DATA_FAILURE:
+          return {
+            ...state,
+            deletingSupplierData: false,
+            deletingSupplierDataError: true,
+          };
 
     default:
       return state;

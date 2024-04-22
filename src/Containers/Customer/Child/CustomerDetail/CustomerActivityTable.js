@@ -2,10 +2,11 @@
 
 
 import React, { useEffect,useState } from 'react';
-import { Timeline,Button } from 'antd';
+import { Timeline,Button,Popconfirm } from 'antd';
 import { connect } from 'react-redux';
 import AddCustomerNotesListDrawerModal from "../CustomerDetail/AddCustomerNotesListDrawerModal"
 import { bindActionCreators } from 'redux';
+import { DeleteOutlined } from "@ant-design/icons";
 import NotesProspectForm from "../CustomerDetail/NotesProspectForm"
 import moment from 'moment';
  import { getCustomerActivityTimeline,getCustomerNoteList,getCustomerActivityRecords,handleCustomerNoteDrawerModal } from '../../CustomerAction';
@@ -57,6 +58,7 @@ const CustomerActivityTable = (props) => {
                   Notes
                 </Button>
                 </div>
+            
                 </div>
                 
                 

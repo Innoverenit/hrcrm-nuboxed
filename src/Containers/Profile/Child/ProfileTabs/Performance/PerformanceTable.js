@@ -130,9 +130,6 @@ const PerformanceTable = (props) => {
             <div className="md:w-[7.5rem]">
               <FormattedMessage id="app.lob" defaultMessage="LOB" />
             </div>
-            <div className="md:w-[7.5rem]">
-               <FormattedMessage id="app.lob" defaultMessage="Currency" />
-             </div>
             <div className="md:w-[10.1rem]">
               <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
             </div>
@@ -196,15 +193,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                   </>
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
-                 <div className="text-sm text-cardBody font-poppins">
-                   <>
-         
-           {props.currency}
            
-                   </>
-                 </div>
-               </div>
      
               <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
@@ -216,7 +205,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
           {item.month1AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{item.month1AssignedValue/ 10000}k 
+{Math.floor(item.month1AssignedValue/ 10000)}k 
 </span>
 )}</span>
        </div>
@@ -225,7 +214,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
          <span className='ml-2 w-20'>{item.month2AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{item.month2AssignedValue/ 10000}k 
+{Math.floor(item.month2AssignedValue/ 10000)}k 
 </span>
 )}</span>
        </div>
@@ -235,7 +224,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                    <span className='ml-2 w-20'>{item.month3AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
-{item.month3AssignedValue/ 10000}k 
+{Math.floor(item.month3AssignedValue/ 10000)}k 
 </span>
 )}</span>
        </div> 
@@ -249,7 +238,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((AchievedTotal / Assig
                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                     {item.month3AssignedValue && (
                       <span>
-                     {item.currencyInd && `${item.userCurrency} `}{AssignedTotal/ 10000}k
+                     {item.currencyInd && `${item.userCurrency} `}{Math.floor(AssignedTotal / 10000)}k
                      </span>
                    )}
                     </div>
@@ -313,30 +302,30 @@ style={{border:"2px solid black",width:"6rem"}}
 ) : (
 <>
      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-       <div className="flex flex-col w-[3rem]">
+       <div className="flex flex-col w-[3rem] items-center">
          <span className="mr-2">M1</span>
          <span className='ml-2'>   {item.month1CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month1CompletedValue/ 10000}k
+                           {(item.month1CompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
-       <div className="flex flex-col w-[3rem]">
+       <div className="flex flex-col w-[3rem] items-center">
          <span className="mr-2">M2</span>
          <span className='ml-2'>   {item.month2CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month2CompletedValue/ 10000}k
+                           {(item.month2CompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
-       <div className="flex flex-col w-[3rem]">
+       <div className="flex flex-col w-[3rem] items-center">
          <span className="mr-2">M3</span>
          <span className='ml-2'>   {item.month3CompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month3CompletedValue/ 10000}k
+                           {(item.month3CompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -352,7 +341,7 @@ style={{border:"2px solid black",width:"6rem"}}
                     <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
                     {item.month3CompletedValue && (
                     <span>
-                     {item.currencyInd && `${item.userCurrency} `}{AchievedTotal/ 10000}k
+                     {item.currencyInd && `${item.userCurrency} `}{(AchievedTotal/ 10000).toFixed(2)}k
                      </span>
                       )}
                     </div>
@@ -382,30 +371,30 @@ width={30}
  <div className="text-sm text-cardBody font-poppins">
    <>
      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-       <div className="flex flex-col">
+       <div className="flex flex-col items-center">
          <span className="mr-2">M1</span>
          <span className='ml-2'>   {item.month1ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month1ActualCompletedValue/ 10000}k
+                           {(item.month1ActualCompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
-       <div className="flex flex-col">
+       <div className="flex flex-col items-center">
          <span className="mr-2">M2</span>
          <span className='ml-2'>   {item.month2ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month2ActualCompletedValue/ 10000}k
+                           {(item.month2ActualCompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
-       <div className="flex flex-col">
+       <div className="flex flex-col items-center">
          <span className="mr-2">M3</span>
          <span className='ml-2'>   {item.month3ActualCompletedValue && (
                        <span>
                            {item.currencyInd && `${item.userCurrency} `}
-                           {item.month3ActualCompletedValue/ 10000}k
+                           {(item.month3ActualCompletedValue / 10000).toFixed(2)}k
                        </span>
                    )}</span>
        </div>
@@ -419,7 +408,7 @@ width={30}
      <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
      {item.month3ActualCompletedValue && (
       <span>
-      {item.currencyInd && `${item.userCurrency} `}{ActualTotal/ 10000}k
+      {item.currencyInd && `${item.userCurrency} `}{(ActualTotal / 10000).toFixed(2)}k
       </span>
     )}
      </div>
@@ -459,6 +448,7 @@ width={30}
 
                  </div>
              </div>
+    
                             <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                  {editContactId === item.userKpiLinkId ? (
                      <>
@@ -479,6 +469,7 @@ width={30}
                    />
                  )}
                </div>
+             
                       
             </div>
           
@@ -512,222 +503,5 @@ const mapDispatchToProps = (dispatch) =>
 
     }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(PerformanceTable);
-
-
-{/* <div className=' flex  justify-center  sticky top-28 z-auto'>
-<div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-<div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-<div className=" md:w-[4.5rem]">
-<FormattedMessage
-        id="app.name"
-        defaultMessage="Name"
-      /></div>
-<div className=" md:w-[12.1rem]"><FormattedMessage
-        id="app.assigned"
-        defaultMessage="Assigned"
-      /></div>
-       <div className="md:w-[10.1rem]"><FormattedMessage
-        id="app.achieved"
-        defaultMessage="Achieved"
-      /></div>
-            <div className="md:w-[10.1rem]"><FormattedMessage
-        id="app.actual"
-        defaultMessage="Actual"
-      /></div>
-
-
-
-
-</div>
-
-
-{props.employeeKpiList.map((item) => { 
-
-
-          return (
-              <div>
-                  <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-                      >
-                           
-                           <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
-
-<div class="max-sm:w-full">
-                              <Tooltip>
-                                <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                                
-                                  <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                      
-{item.kpiName}
-
-
-                                  </div>
-                                  </div>
-                              </Tooltip>
-                              </div>
-                              </div>
-                      </div>
-                      <div class="flex">
-
-                  
-                  <div className=" flex font-medium flex-col md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                         
-                         <div class="text-sm text-cardBody font-poppins">
-
-           <div className="font-normal text-sm text-cardBody font-poppins">
-           {item.assignedValue && (
-                                  <span>
-                                      {item.currencyInd && `${item.userCurrency} `}
-                                      {item.assignedValue}
-                                  </span>
-                              )}
-           </div>
-     
-                         </div>
-                     </div>
-                     <div className=" flex font-medium flex-col md:w-[18.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                         
-                         <div class="text-sm text-cardBody font-poppins">
-                         {editContactId === item.userKpiLinkId ? (
-        <>
-        <div class=" flex flex-row">
-        <input
-        style={{border:"2px solid black",width:"6rem"}}
-        placeholder="Month1"
-          value={editedFields[item.userKpiLinkId]?.month1CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1CompletedValue : item.month1CompletedValue}
-          onChange={(e) => {
-            const inputValue = e.target.value;
-            if (!isNaN(inputValue)) { 
-                handleChange(item.userKpiLinkId, 'month1CompletedValue', inputValue);
-            } else {
-              alert("Please enter  number.");
-           
-            }
-        }}
-        />
-        &nbsp;
-        <input
-        placeholder="Month2"
-        style={{border:"2px solid black",width:"6rem"}}
-          value={editedFields[item.userKpiLinkId]?.month2CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2CompletedValue : item.month2CompletedValue}
-          onChange={(e) => {
-            const inputValue = e.target.value;
-            if (!isNaN(inputValue)) { 
-                handleChange(item.userKpiLinkId, 'month2CompletedValue', inputValue);
-            } else {
-              alert("Please enter  number.");
-           
-            }
-        }}
-        />
-           &nbsp;
-        <input
-        placeholder="Month3"
-        style={{border:"2px solid black",width:"6rem"}}
-          value={editedFields[item.userKpiLinkId]?.month3CompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3CompletedValue : item.month3CompletedValue}
-          onChange={(e) => {
-            const inputValue = e.target.value;
-            if (!isNaN(inputValue)) { 
-                handleChange(item.userKpiLinkId, 'month3CompletedValue', inputValue);
-            } else {
-              alert("Please enter  number.");
-           
-            }
-        }}
-        />
-           &nbsp;
-        </div>
-        </>
-      ) : (
-        <>
-
-        <div className="font-normal flex flex-row text-sm text-cardBody font-poppins">
-        <div class=" flex flex-col">
-<span className='mr-2'>Month 1</span>
-<span className='ml-2'>   {item.month1CompletedValue && (
-                                  <span>
-                                      {item.currencyInd && `${item.userCurrency} `}
-                                      {item.month1CompletedValue}
-                                  </span>
-                              )}</span>
-</div>
-<div class=" flex flex-col">
-<span className='mr-2'>Month 2</span>
-<span className='ml-2'>   {item.month2CompletedValue && (
-                                  <span>
-                                      {item.currencyInd && `${item.userCurrency} `}
-                                      {item.month2CompletedValue}
-                                  </span>
-                              )}</span>
-
-</div>
-<div class=" flex flex-col">
-<span className='mr-2'>Month 3</span>
-<span className='ml-2'>   {item.month3CompletedValue && (
-                                  <span>
-                                      {item.currencyInd && `${item.userCurrency} `}
-                                      {item.month3CompletedValue}
-                                  </span>
-                              )}</span>
-
-</div>
-        </div>
-        
-    
-        </>
-      )}
-                         </div>
-                     </div>
-                    <div className=" flex font-medium flex-col md:w-[5.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                    {item.actualCompletedValue && (
-        <div className="font-normal text-sm text-cardBody font-poppins">
-{` ${item.actualCompletedValue} ${item.userCurrency}`}
-          </div>
-            )} 
-                    </div>
-                  
-                    </div>
-                    <div className=" flex  ml-8" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
-          {editContactId === item.userKpiLinkId ? (
-              <>
-             <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1CompletedValue,item.month2CompletedValue,item.month3CompletedValue)}>
-          Save
-        </Button>
-              <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-              Cancel
-            </Button>
-            </>
-            
-          ) : (
-            <BorderColorIcon
-              tooltipTitle="Edit"
-              iconType="edit"
-               onClick={() => handleEditClick(item.userKpiLinkId)}
-              style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}
-            />
-          )}
-        </div>
-                   
-
-                    
-                   
-                  </div>
-              </div>
-
-
-          )
-      })}
-          
-</div>
-</div> */}
-
-
-
-
-
-
-
-
-
 
 

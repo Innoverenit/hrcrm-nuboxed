@@ -5,6 +5,9 @@ const initialState = {
 
   addLeadsModal:false,
 
+  removingLeadsNote: false,
+  removingLeadsNoteError: false,
+
   addingLeadsActivityCall: false,
   addingLeadsActivityCallError: false,
 
@@ -1071,6 +1074,23 @@ case types.HANDLE_LEADS_MODAL:
                                   addingNotesOfLead: false,
                                   addingNotesOfLeadError: true,
                                 };
+
+                                case types.REMOVE_LEADS_NOTE_REQUEST:
+                                  return { ...state, removingLeadsNote: true };
+                                case types.REMOVE_LEADS_NOTE_SUCCESS:
+                                  return {
+                                    ...state,
+                                    removingLeadsNote: false,
+                                  //   notesListOfLeads: state.notesListOfLeads.filter(
+                                  //     (item) => item.taskId !== action.payload
+                                  // ), 
+                                  };
+                                case types.REMOVE_LEADS_NOTE_FAILURE:
+                                  return {
+                                    ...state,
+                                    removingLeadsNote: false,
+                                    removingLeadsNoteError: true,
+                                  };
                       
 
 default:

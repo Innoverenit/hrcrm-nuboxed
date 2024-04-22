@@ -1546,3 +1546,38 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const removeLeadsNote = ( data,orgId) => (dispatch) => {
+    // console.log(typeId);
+    dispatch({
+      type: types.REMOVE_LEADS_NOTE_REQUEST,
+    });
+    axios
+    .delete(
+      `${base_url}/employee/notes`,
+     data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+      .then((res) => {
+        // dispatch(getSectorCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Note deleted Successfully!',
+        })
+        console.log(res);
+        dispatch({
+          type: types.REMOVE_LEADS_NOTE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.REMOVE_LEADS_NOTE_FAILURE,
+        });
+      });
+  };
+

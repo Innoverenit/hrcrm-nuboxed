@@ -45,6 +45,7 @@ class NotesLeadsForm extends Component {
                         style={{ paddingBottom: "0.625em" }}
                       >
                         <SingleLeadsNoteForm 
+                           rowdata={this.props.rowdata}
                          {...item} userId={this.props.userId} 
                         />
                      </Timeline.Item>
