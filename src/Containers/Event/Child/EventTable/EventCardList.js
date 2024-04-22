@@ -101,7 +101,7 @@ function EventCardList (props) {
                   id="app.assignedto"
                   defaultMessage="assignedto"
                 /></div>
-        <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[15.01rem]"><FormattedMessage
+        <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>

@@ -7,7 +7,8 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import { OnlyWrapCard } from "../../../../Components/UI/Layout";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import LanguageIcon from '@mui/icons-material/Language';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -90,17 +91,20 @@ const LeadsTeamCardList = (props) => {
    return (
     <>
      <div className=' flex justify-end sticky top-28 z-auto'>
-     <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[12.12rem]">Name</div>
-        <div className=" md:w-[9.1rem]"></div>
-        <div className=" md:w-[6.5rem] ">Phone #</div>
-        <div className="md:w-[9.8rem]">Country</div>
-        <div className="md:w-[10.5rem]">Company</div>
-        <div className="md:w-[7.8rem]">Sector</div> 
-        <div className="md:w-[7.81rem]">Assigned to</div>
-        <div className="md:w-[5.5rem]">Owner</div>
-        <div className="md:w-[3.3rem]">Qualify</div>
+     <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div className=" flex  w-[92%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[12.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+        <div className=" w-[14.1rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[7.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>
+        <div className=" w-[5.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
+        <div className=" w-[10.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Company</div>
+        <div className=" w-[5.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
+        <div className= " w-[8.8rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
+        <div className= " w-[8.8rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
+        <div className=" w-[4.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
+        <div className=" w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
+        <div className=" w-[3.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Qualify</div>
         <div className="w-12"></div>
 
       </div>
@@ -141,11 +145,11 @@ const LeadsTeamCardList = (props) => {
           return (
             <div>
               <div
-                className="flex rounded-xl  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-11 items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
               >
-                <div class="flex ">
-                  <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
-                    <div className="flex max-sm:w-full ">
+               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div className=" flex font-medium flex-col w-[11rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                    <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div>
                        
                           <MultiAvatar
@@ -162,18 +166,15 @@ const LeadsTeamCardList = (props) => {
                       <div class="max-sm:w-full md:flex items-center">
                         <Tooltip>
                           <div class="max-sm:w-full justify-between flex md:flex-col">
-                            {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden">
-                              Name
-                            </div> */}
-                            <div class="text-sm text-cardBody font-semibold flex  font-poppins cursor-pointer">
+                            <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                               {item.name}
                               &nbsp;&nbsp;
                               {date === currentdate ? (
-                                <span class="text-xs text-[tomato] mt-[0.4rem] font-bold"
+                                <div class="text-xs  text-[tomato] font-bold"
                                   
                                 >
                                   New
-                                </span>
+                                </div>
                               ) : null}
                             </div>
                           </div>
@@ -182,28 +183,7 @@ const LeadsTeamCardList = (props) => {
                     </div>
                   </div>
 
-                  <div class="flex flex-row items-center md:w-[11%] max-sm:flex-row w-full max-sm:justify-between">
-                    <div>
-                      <ButtonGroup>
-                        <RoleButton
-                          type="Warm"
-                          iconType="	fas fa-burn"
-                          // tooltip="Warm"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.warm"
-                              defaultMessage="Warm"
-                            />
-                          }
-                          role={item.type}
-                          onClick={() => {
-                            const typ = "Warm";
-                            props.updateTypeForLead(item.leadsId, typ);
-                          }}
-                        />
-                      </ButtonGroup>
-                    </div>
-
+                  <div class="flex flex-row items-center w-[6.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
                       <ButtonGroup>
                         <RoleButton
@@ -226,7 +206,27 @@ const LeadsTeamCardList = (props) => {
                     </div>
                     <div>
                       <ButtonGroup>
-                        <RoleButton
+                        <RoleButton1
+                          type="Warm"
+                          iconType="	fas fa-burn"
+                          // tooltip="Warm"
+                          tooltip={
+                            <FormattedMessage
+                              id="app.warm"
+                              defaultMessage="Warm"
+                            />
+                          }
+                          role={item.type}
+                          onClick={() => {
+                            const typ = "Warm";
+                            props.updateTypeForLead(item.leadsId, typ);
+                          }}
+                        />
+                      </ButtonGroup>
+                    </div>
+                    <div>
+                      <ButtonGroup>
+                        <RoleButton2
                           type="Cold"
                           iconType="far fa-snowflake"
                           // tooltip="Cold"
@@ -246,123 +246,161 @@ const LeadsTeamCardList = (props) => {
                     </div>
                   </div>
                 </div>
-                <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      {" "}
-                      Phone #{" "}
-                    </div> */}
-                    <div class=" text-xs text-cardBody font-poppins">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div className=" flex font-medium flex-col w-[6.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+         
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.countryDialCode && item.phoneNumber
                         ? `${item.countryDialCode} ${item.phoneNumber}`
                         : "No Data"}
-                      {/* {`${item.countryDialCode} ${item.phoneNumber}`} */}
+                 
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      Country
-                    </div> */}
-                    <div class=" text-xs text-cardBody font-poppins">
-                    <CountryFlag1 countryCode={countryCode} />
+                  <div className=" flex font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                     
+                       <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
+                     
                     </div>
                   </div>
-                </div>
-                <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      {" "}
-                      Company{" "}
-                    </div> */}
-                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                  <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                    <div class=" text-xs text-cardBody   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                       {item.companyName || "No Data"}
                     </div>
                   </div>
+                </div>
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                 
                   <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
                     {item.url !== null ? (
                       <Tooltip title={item.url}>
-                        <span class="cursor-pointer"
-                          //type="edit"
-                      
+                        <div class="cursor-pointer"
                           onClick={() => {}}
                         >
                           {" "}
                           <a href={`https://www.${item.url}`} target="_blank">
                             <OpenInBrowserIcon
-                              className=" !text-xl cursor-pointer text-[green]"
+                               className=" !text-xl cursor-pointer text-green-800"
                             />
                           </a>
-                        </span>
+                        </div>
                       </Tooltip>
                     ) : null}
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      {" "}
-                      Sector{" "}
-                    </div> */}
-                    <div class=" text-xs text-cardBody font-poppins">
+                  <div className=" flex font-medium flex-col  w-[6.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+           
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.sector}
                     </div>
                   </div>
+                  <div className=" flex font-medium flex-col  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+           
+           <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+             {item.source}
+           </div>
+         </div>
+         <div className=" flex font-medium flex-col  w-[0.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+           
+           <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+             {item.lob}
+           </div>
+         </div>
                 </div>
-                <div class="flex md:items-center ">
-                  <div className=" flex font-medium flex-col md:w-[7.6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      Assigned to
-                    </div> */}
-
-                    <div class=" text-xs text-cardBody font-poppins">
-                      <span>
-                        {item.assignedTo === null ? (
-                          "None"
-                        ) : (
-                          <MultiAvatar
-                            primaryTitle={item.assignedTo}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div className=" flex font-medium flex-col w-[5.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div>
+                      {item.assignedTo === null ? (
+                "No Data"
+              ) : (
+                <>
+                {item.assignedTo === item.ownerName ? (
+                  
+                  null
+                ) : (
+                  <MultiAvatar
+                  style={{ backgroundColor: "rgb(148, 179, 228)", color: "#fff" }} 
+                  primaryTitle={item.assignedTo}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+              />
                         )}
-                      </span>
+                        </>
+              )}
+                      </div>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-20  max-sm:flex-row w-full max-sm:justify-between">
-                    {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">
-                      Owner
-                    </div> */}
-
-                    <span>
-                      <MultiAvatar
-                        primaryTitle={item.ownerName}
-                        imageId={item.ownerImageId}
-                        imageURL={item.imageURL}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </span>
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div class=" text-xs text-cardBody font-poppins"></div>
+                     <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                      <StatusCustomerToggle
-                        type={props.convertInd ? "primary" : "danger"}
-                        leadsId={item.leadsId}
-                        convertInd={item.convertInd}
-                      />
+                    <Tooltip title={item.assignedBy}>
+                <div class="max-sm:flex justify-end">
+                <Tooltip title={item.assignedBy}>
+              <MultiAvatar
+              
+                primaryTitle={item.assignedBy}
+                // imageId={item.ownerImageId}
+                imgWidth={"1.9rem"}
+                imgHeight={"1.9rem"}
+              />
+            </Tooltip>
+            </div>
+          </Tooltip>
                     </div>
                   </div>
-                  <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
+                  <div className=" flex font-medium flex-col w-16  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                    <div>
+                    <Tooltip title={item.ownerName}>
+                <div class="max-sm:flex justify-end">
+                <Tooltip title={item.ownerName}>
+              <MultiAvatar
+                primaryTitle={item.ownerName}
+                imageId={item.ownerImageId}
+                imgWidth={"1.9rem"}
+                imgHeight={"1.9rem"}
+              />
+            </Tooltip>
+            </div>
+          </Tooltip>
+                    </div>
+                  </div>
+                  <div className=" flex font-medium flex-col w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs text-cardBody font-poppins"></div>
+                    <div>
+    {item.companyName ? (
+      <Tooltip title="Qualify? Lead will move to Prospect section!">
+        <ConnectWithoutContactIcon
+          onClick={() => {
+            handleRowData(item);
+            props.handleLeadsConfirmationModal(true);
+          }}
+          className="!text-xl cursor-pointer text-[blue]"
+        />
+      </Tooltip>
+    ) : (
+      <Tooltip title="Company name is required to enable qualification action">
+        <ConnectWithoutContactIcon
+          className="!text-xl cursor-not-allowed text-gray-400"
+        />
+      </Tooltip>
+    )}
+  </div>
+                  </div>
+                  </div>
+                  <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
                     <div>
                       <Tooltip title="Notes">
                         <NoteAltIcon
+                         className=" !text-xl cursor-pointer text-green-800"
                           onClick={() => {
-                            handleLeadsNotesDrawerModal(true);
                             handleRowData(item);
+                            handleLeadsNotesDrawerModal(true);
+                         
                           }}
-                          className=" !text-xl cursor-pointer text-[green]"
+                         
                         />
                       </Tooltip>
                     </div>
@@ -376,22 +414,23 @@ const LeadsTeamCardList = (props) => {
                         }
                       >
                         <AddchartIcon
-                          className=" !text-xl cursor-pointer "
+                         className="!text-xl cursor-pointer text-blue-500"
                           onClick={() => {
+                                handleRowData(item);
                             props.handleCETmodal(true);
-                            handleRowData(item);
+                        
                           }}
                         />
                       </Tooltip>
                     </div>
                   </div>
 
-                  <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
                     {user.leadsUpdateInd === true && user.crmInd === true && (
                       <div>
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className=" !text-xl cursor-pointer text-[gray]"
+                           className="!text-xl cursor-pointer text-[tomato]"
                             onClick={() => {
                               props.setEditLeads(item);
                               handleUpdateLeadsModal(true);
@@ -403,43 +442,41 @@ const LeadsTeamCardList = (props) => {
                     )}
                     {user.leadsDeleteInd === true && user.crmInd === true && (
                       <div>
+                       
                         <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId)}
-                        >
-                            <Tooltip title="Delete">
-                          {/* {user.opportunityDeleteInd ===true && ( */}
+                          onConfirm={() => deleteLeadsData(item.leadsId)}>
+                     <Tooltip title="Delete">
                           <DeleteOutlined
                             type="delete"
                             className=" !text-xl cursor-pointer text-[red]"
                           />
-                          </Tooltip>
-                          {/* )} */}
+                       </Tooltip>
                         </StyledPopconfirm>
                       </div>
                     )}
                     <div></div>
                   </div>
-                  <div class="flex flex-col w-[4%] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
                     <div>
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
                         title={dataLoc}
                       >
-                        <span  className="  cursor-pointer "
-                          
+                        <div class="cursor-pointer"
+                         
                         >
                           <LocationOnIcon
-                            className=" !text-xl cursor-pointer"
+                             className="!text-xl cursor-pointer text-[#960a0a]"
                           />
-                        </span>
+                        </div>
                       </Tooltip>
                     </div>
                     <div>
                       <Tooltip title={item.email}>
                         <MailOutlineIcon
                           type="mail"
-                          className=" !text-xl cursor-pointer "
+                          className="!text-xl cursor-pointer text-green-400"
                           onClick={() => {
                             handleSetCurrentLeadsId(item);
                             props.handleLeadsEmailDrawerModal(true);
@@ -448,8 +485,29 @@ const LeadsTeamCardList = (props) => {
                       </Tooltip>{" "}
                     </div>
                   </div>
-                  <div class="w-[2%]"></div>
-                </div>
+                  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
+                    <div>
+                      <Tooltip
+                        // overlayStyle={{ maxWidth: "300px" }}
+                        title={item.CreationType}
+                      >
+                          <div className="cursor-pointer">
+    {item.CreationType === "Website" ? (
+      <LanguageIcon className="!text-xl cursor-pointer text-[#960a0a]" />
+    ) : item.CreationType === "InApp" ? (
+      <LanguageIcon className="!text-xl cursor-pointer text-blue-500" />
+    ) : (
+      // Default 
+      <LanguageIcon className="!text-xl cursor-pointer" />
+    )}
+  </div>
+                      
+                      </Tooltip>
+                    </div>
+
+                  </div>
+               </div>
+               
               </div>
             </div>
             // </div>
@@ -536,12 +594,60 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         style={{
           padding: "0.37em",
           borderColor: "transparent",
-          color: role === type ? "#1890ff" : "grey",
+          color: role === type ? "red" : "grey",
         }}
         ghost={role !== type}
         onClick={onClick}
       >
-        <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i>
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "orange" : "grey",
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "blue" : "grey",
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+        <i className={`${iconType} text-xl max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

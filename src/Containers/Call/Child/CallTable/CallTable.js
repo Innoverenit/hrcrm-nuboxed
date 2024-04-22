@@ -144,10 +144,10 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[7rem] max-sm:flex-col"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-              <div class="flex  flex-col w-[8.9rem] max-xl:w-[5.6rem] max-lg:w-[4.3rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+              <div class="flex  flex-col w-[8.9rem] max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
             <div className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
-            <div class="flex  flex-col w-[12.8rem] max-xl:w-[8.8rem] max-lg:w-[6.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+            <div class="flex  flex-col w-[12.8rem] max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
             <p className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</p>
               </div>
               <div class="flex  flex-col w-[7.5rem] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
@@ -165,10 +165,10 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
               
-              <div class="flex  flex-col justify-center w-[11.35rem] max-xl:w-[7.35rem] max-lg:w-[5.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex  flex-col justify-center w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
               <p className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</p>
               </div>
-              <div class="flex  flex-col w-[8.5rem] max-xl:w-[5.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex  flex-col w-[8.5rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
              
               <div>
            
@@ -231,7 +231,7 @@ return (
               
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
              
-              <div class="flex  flex-col w-[9.38rem] max-xl:w-[6.38rem] max-lg:w-[5.38rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto mt-1 mb-1">
+              <div class="flex  flex-col w-[9.38rem] max-xl:w-[7.78rem] max-lg:w-[5.38rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto mt-1 mb-1">
              
              <MultiAvatar2
                    primaryTitle={item.woner}
@@ -242,7 +242,7 @@ return (
                  />
             
              </div>
-              <div class="flex  flex-col w-[11.35rem] max-xl:w-[7.35rem] max-lg:w-[5.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex  flex-col w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
            
               <p className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? "Yes" : "No"}</p>
               </div>
