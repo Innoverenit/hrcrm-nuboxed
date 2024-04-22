@@ -18,7 +18,9 @@ class AccountPulseModal extends Component {
                     onClose={() => this.props.handleAccountPulse(false)}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <AccountPulseForm />
+                        <AccountPulseForm 
+                         RowData={this.props.RowData}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </div>

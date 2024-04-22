@@ -13,7 +13,7 @@ import {
   Button,
   Layout,
   message,
-  Tooltip
+  Badge
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
@@ -388,7 +388,7 @@ function MainApp(props) {
 
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
-          <div class="max-sm:hidden overflow-x-auto">
+          <div class="max-sm:hidden overflow-x-auto max-xl:hidden">
             <Sider
               trigger={null}
               collapsible
@@ -458,10 +458,11 @@ function MainApp(props) {
 
             }}>
               <Header>
-                <div class="md:hidden"><Navmenu2 selectedLanguage={selectedLanguage} /></div>
+                <div class="flex justify-between items-center">
+                <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
                 <div class=" flex items-center h-full self-start "
                 >
-                  <div class=" ml-3 max-sm:hidden " >
+                  <div class=" ml-3 mt-1 max-sm:hidden " >
                     <Select
                       value={props.preferedLanguage}
                       style={{ width: "3.8rem" }}
@@ -472,7 +473,9 @@ function MainApp(props) {
                     </Select>
                   </div>
                 </div>
+              
                 <StartStop />
+              
                 {/* <Button
                   onClick={() => {
                     props.handleInTagDrawer(true)
@@ -480,6 +483,7 @@ function MainApp(props) {
                   class=" bg-green-600 cursor-pointer text-gray-50"
                 >
                   Scan </Button> */}
+                  <div class="ml-2">
                 <QRCodeList
                   handleScan={handleScan}
                   stopScanning={stopScanning}
@@ -490,6 +494,8 @@ function MainApp(props) {
                   data={data}
                   shouldRenderCamera={shouldRenderCamera}
                 />
+                </div>
+                </div>
                 {/* <Popconfirm
                 title="Stop"
                 visible={visible}
@@ -620,7 +626,12 @@ function MainApp(props) {
                       props.handleActionDrawerModal(true);
 
                     }}
-                  >Action Required <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span></div>
+                  >Action<Badge
+                  count={props.actionCount.ActionRecordCount}
+                  overflowCount={999}
+                ></Badge>
+                  {/* <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span> */}
+                  </div>
                   <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",

@@ -105,7 +105,9 @@ class AccountPulseForm extends React.Component {
                 </div>
             </div>
             <div class="mt-4">
-            <SummaryTable/>
+            <SummaryTable
+             RowData={this.props.RowData}
+            />
             </div>
                                </>
         );

@@ -3,7 +3,7 @@ import PieChart1 from '../../../../Components/Charts/PieChart1'
 import { Flex, Progress } from 'antd';
 import PulseTable from './AccountDocumentTab/PulseTable';
 
-const SummaryTable = () => {
+const SummaryTable = (props) => {
     const currentDate = new Date();
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1; // Months are zero-based
@@ -58,7 +58,9 @@ const SummaryTable = () => {
   </div>
         </div>
         <div class="flex flex-col w-[33%]">
-        <PulseTable/>
+        <PulseTable
+         RowData={props.RowData}
+        />
         </div>
     </div>
     </>
