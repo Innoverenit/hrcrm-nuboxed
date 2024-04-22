@@ -137,12 +137,12 @@ function Reports (props){
   const handleButtonTask = (data) => {
     setSelectedTask(data);
   };
-
+console.log(selectedTask)
   useEffect(()=> {
     if (selectedCategory==="Prospect") {
    props.getReportProspect(props.userId,props.startDate,props.endDate);
     }else if(selectedCategory==="Task"){
-      props.getReportTask(props.userId,props.startDate,props.endDate);
+      props.getReportTask(props.userId,props.startDate,props.endDate,selectedTask);
     }
 
     props.getTaskData(props.organizationId)
@@ -179,6 +179,7 @@ function Reports (props){
         <Suspense fallback={<BundleLoader />}>
           <ReportDetails
           reportTask={props.reportTask}
+         
           gettingReportTask={props.gettingReportTask}
           reportProspect={props.reportProspect}
           gettingReportProspect={props.gettingReportProspect}

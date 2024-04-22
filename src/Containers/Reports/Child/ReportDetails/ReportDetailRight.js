@@ -1,6 +1,7 @@
 import React, { Component, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ReportsTaskList from "../ReportDetails/ReportsTaskList"
 import Requirement from "../MyViewReports/Requirement";
 import Selected from "../OrganizationView/Selected";
 import OrgSelected from "../OrganizationView/Selected";
@@ -44,6 +45,12 @@ class ReportDetailRight extends Component {
     gettingReportProspect={this.props.gettingReportProspect}
     reportProspect={this.props.reportProspect}
     allReportInvestors={this.props.allReportInvestors} />
+  )}
+            {this.props.selectedCategory === "Task" && (
+    <ReportsTaskList 
+    reportTask={this.props.reportTask}
+         
+    gettingReportTask={this.props.gettingReportTask} />
   )}
           {reportViewType === "ME" && (
             <>
