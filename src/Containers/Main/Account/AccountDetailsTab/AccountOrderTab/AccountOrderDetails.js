@@ -100,35 +100,19 @@ function DistributorPauseForm(props) {
                                         id="app.model"
                                         defaultMessage="Model"
                                     /></div>
-                                    <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.IMEI"
-                                        defaultMessage="IMEI"
-                                    /></div>
-                                    <div className=" md:w-[5.2rem]"><FormattedMessage
-                                        id="app.os"
-                                        defaultMessage="OS"
-                                    /></div>
-                                    <div className=" md:w-[5.2rem]"><FormattedMessage
-                                        id="app.gb"
-                                        defaultMessage="GB"
-                                    /></div>
-                                    <div className=" md:w-[5.5rem]"><FormattedMessage
-                                        id="app.color"
-                                        defaultMessage="Color"
-                                    /></div>
-                                    <div className=" md:w-[5.5rem]"><FormattedMessage
+                                    <div className="md:w-[6.2rem]">Unique ID</div>
+                                    <div className=" md:w-[9.2rem]">Info</div>
+                                    
+                                    <div className=" md:w-[7.5rem]"><FormattedMessage
                                         id="app.condition"
                                         defaultMessage="Condition"
                                     /></div>
-                                    <div className=" md:w-[6.8rem]"><FormattedMessage
-                                        id="app.expectedprice"
-                                        defaultMessage="Expected Price"
-                                    /></div>
+                                    <div className=" md:w-[6.8rem]">Quoted</div>
                                     <div className=" md:w-[6.5rem]"><FormattedMessage
                                         id="app.totalhours"
                                         defaultMessage="Total Hours"
                                     /></div>
-                                    <div className=" md:w-[6.3rem]"><FormattedMessage
+                                    <div className=" md:w-[6.31rem]"><FormattedMessage
                                         id="app.totalcost"
                                         defaultMessage="Total Cost"
                                     /></div>
@@ -149,40 +133,40 @@ function DistributorPauseForm(props) {
                                     <div className=" md:w-[1rem]"></div>
                                     <div className=" md:w-[1rem]"></div>
                                 </div>
-                                <div class="overflow-y-auto h-[65vh]">
+                                <div >
                                     <InfiniteScroll
                                         dataLength={props.phoneListById.length}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                                        height={"65vh"}
+                                        height={"64vh"}
                                     >
                                         {props.phoneListById.map((item, index) => {
                                             return (
                                                 <div>
                                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                                         <div class="flex">
-                                                            <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.company}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.model}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium items-center    md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.imei}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.os}
+                                                                    {item.os} {item.gb} {item.color}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            {/* <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.gb}
                                                                 </div>
@@ -191,33 +175,33 @@ function DistributorPauseForm(props) {
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.color}
                                                                 </div>
-                                                            </div>
-                                                            <div className=" flex font-medium   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            </div> */}
+                                                            <div className=" flex font-medium  items-center   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.condition}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.expectedPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.totalhours}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.totalExtraCost}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  items-center   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.totalPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium items-center    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <ButtonGroup>
                                                                         <StatusIcon
@@ -254,12 +238,12 @@ function DistributorPauseForm(props) {
                                                                     </ButtonGroup>
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium items-center   md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.issue}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex font-medium    md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     <SubTitle>
                                                                         {item.qrCodeId ? (
