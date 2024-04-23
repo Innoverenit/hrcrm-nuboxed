@@ -192,6 +192,9 @@ const initialState = {
   fetchingJumpstartBulb3: false,
   fetchingJumpstartBulb3Error: false,
   jumpstartBulb3Count: [],
+  gettingDevelopChart:false,
+  gettingDevelopChartError:false,
+  developChart:[],
 
 
   prospectQuotationYearModal:false,
@@ -1839,6 +1842,22 @@ export const dashboardReducer = (state = initialState, action) => {
             fetchingRegionRecordsCount: false,
             fetchingRegionRecordsCountError: true,
           };
+          case types.GET_DEVELOP_CHART_REQUEST:
+            return { ...state, gettingDevelopChart: true };
+      
+          case types.GET_DEVELOP_CHART_SUCCESS:
+            return {
+              ...state,
+              gettingDevelopChart: false,
+              developChart: action.payload,
+            };
+      
+          case types.GET_HOT_COLD_WARM_FAILURE:
+            return {
+              ...state,
+              gettingDevelopChart: false,
+              gettingDevelopChartError: true,
+            };
 
     default:
       return state;

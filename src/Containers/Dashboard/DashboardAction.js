@@ -2423,3 +2423,31 @@ export const getRegionRecords = (year,quarter) => (dispatch) => {
       });
     });
 };
+
+
+export const getDevelopChart = (userId, startDate, endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEVELOP_CHART_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/task/dev/${userId}?endDate=${endDate}&startDate=${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_DEVELOP_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_DEVELOP_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DashboardDoubleChart from "./DashboardDoubleChart"
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
@@ -54,6 +55,34 @@ class TaskDashboardTab extends Component {
             onChange={this.handleTabChange}
             forceRender={true}
           >
+             <TabPane
+              tab={
+                <>
+                  <ListAltIcon style={{fontSize:"1.1rem"}}/>
+                 
+               <span class=" ml-1 font-semibold">
+               {/* <FormattedMessage
+                id="app.openTasks"
+                defaultMessage="Open Tasks"
+              /> */}
+              Development
+                </span>
+              
+
+                  {activeKey === "1" && (
+                    <>
+                    </>
+                  )}
+                </>
+              }
+              key="1"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                {/* <TaskNew /> */}
+                <DashboardDoubleChart/>
+              </Suspense>
+            </TabPane>
             <TabPane
               tab={
                 <>
@@ -67,13 +96,13 @@ class TaskDashboardTab extends Component {
                 </span>
               
 
-                  {activeKey === "1" && (
+                  {activeKey === "2" && (
                     <>
                     </>
                   )}
                 </>
               }
-              key="1"
+              key="2"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
@@ -94,13 +123,13 @@ class TaskDashboardTab extends Component {
                 </span>
               
 
-                  {activeKey === "2" && (
+                  {activeKey === "3" && (
                     <>
                     </>
                   )}
                 </>
               }
-              key="2"
+              key="3"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
@@ -120,13 +149,13 @@ class TaskDashboardTab extends Component {
                     {/* Events */}
                     </span>
 
-                  {activeKey === "3" && (
+                  {activeKey === "4" && (
                     <>
                     </>
                   )}
                 </>
               }
-              key="3"
+              key="4"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
