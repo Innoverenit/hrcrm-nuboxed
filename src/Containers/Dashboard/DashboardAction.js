@@ -2451,3 +2451,32 @@ export const getDevelopChart = (userId, startDate, endDate) => (dispatch) => {
       });
     });
 };
+
+
+
+export const getQuotationTableData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUOTATION_TABLE_DATA_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/opportunity/open/list/${country}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_QUOTATION_TABLE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_QUOTATION_TABLE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -77,6 +77,10 @@ const initialState = {
   fetchingDashBoardFunnelError: false,
   dashboardFunnel: [],
 
+  fetchingQuotationTableData:false,
+  fetchingQuotationTableDataError:false,
+  quotationTableData:[],
+
   fetchingUpcomingEvents: false,
   fetchingUpcomingEventsError: false,
   upcomingEvents: [],
@@ -1422,6 +1426,24 @@ export const dashboardReducer = (state = initialState, action) => {
         ...state,
         gettingInvHotColdWarm: false,
         gettingInvHotColdWarmError: true,
+      };
+
+
+
+
+      case types.GET_QUOTATION_TABLE_DATA_REQUEST:
+      return { ...state, fetchingQuotationTableData: true };
+    case types.GET_QUOTATION_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        quotationTableData: action.payload,
+      };
+    case types.GET_QUOTATION_TABLE_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        fetchingQuotationTableDataError: true,
       };
 
     case types.GET_DASH_INVESTOR_ADDED_PITCH_REQUEST:
