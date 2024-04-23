@@ -3,19 +3,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import {
-  StyledTable,
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import {
-  getContactDocument,
   deleteDocument 
 } from "../../../../../Contact/ContactAction";
-import { elipsize } from "../../../../../../Helpers/Function/Functions";
+import {
+  getContactDocument 
+} from "../../../../../Customer/CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -124,11 +123,11 @@ class LinkedContactInvestDocuments extends Component {
   }
 }
 
-const mapStateToProps = ({ contact,contactinvest }) => ({
+const mapStateToProps = ({ contact,contactinvest,customer }) => ({
   contact: contact.contact,
-  fetchingDocumentsByContactId: contact.fetchingDocumentsByContactId,
-  fetchingDocumentsByContactIdError: contact.fetchingDocumentsByContactIdError,
-  documentsByContactId: contact.documentsByContactId,
+  fetchingDocumentsByContactId: customer.fetchingDocumentsByContactId,
+  fetchingDocumentsByContactIdError: customer.fetchingDocumentsByContactIdError,
+  documentsByContactId: customer.documentsByContactId,
 });
 
 const mapDispatchToProps = (dispatch) =>

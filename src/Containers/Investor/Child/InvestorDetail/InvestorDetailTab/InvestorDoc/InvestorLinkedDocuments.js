@@ -225,10 +225,10 @@ class InvestorLinkedDocuments extends Component {
 const mapStateToProps = ({ customer,investor, document }) => ({
   customer: customer.customer,
   documents: document.documents,
-  fetchingDocumentsByInvestorId: investor.fetchingDocumentsByInvestorId,
+  fetchingDocumentsByInvestorId: customer.fetchingDocumentsByInvestorId,
   fetchingDocumentsByInvestorIdError:
-    investor.fetchingDocumentsByInvestorIdError,
-  documentsByInvestorId: investor.documentsByInvestorId,
+  customer.fetchingDocumentsByInvestorIdError,
+  documentsByInvestorId: customer.documentsByInvestorId,
 });
 
 const mapDispatchToProps = (dispatch) =>
