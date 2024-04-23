@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSuppliersList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
+import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
@@ -11,8 +11,9 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
-function SuppliersCardList(props) {
+function SuppliersDeletedCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [currentShipperId, setCurrentShipperId] = useState("");
@@ -21,8 +22,7 @@ function SuppliersCardList(props) {
 
 
   useEffect(() => {
-    setPage(page + 1);
-    props.getSuppliersList(props.userId,page);
+    props.getSuppliersDeletedList();
   }, []);
 
 
@@ -33,32 +33,15 @@ function SuppliersCardList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
-  const handleLoadMore = () => {
-    const PageMapd = props.supplierList && props.supplierList.length &&props.supplierList[0].pageCount
-    setTimeout(() => {
-      const {
-        getSuppliersList,
 
-        userId
-      } = props;
-      if  (props.supplierList)
-      {
-        if (page < PageMapd) {
-          setPage(page + 1);
-          getSuppliersList(userId, page);
-      }
-      if (page === PageMapd){
-        setHasMore(false)
-      }
-    }
-    }, 100);
-  };
 
   useEffect(() => {
     props.emptysUPPLIERS();
   }, []);
 
-
+  if (props.fetchingSupplierDeletedList) {
+    return <div><BundleLoader/></div>;
+    }
   return (
     <>
       <div className=' flex justify-end sticky top-28 z-auto'>
@@ -80,23 +63,16 @@ function SuppliersCardList(props) {
               <FormattedMessage id="app.city" defaultMessage="City" />
 
             </div>
-            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
 
             </div>
-            <div class=" w-[2rem]"></div>
           </div>
           <div class="overflow-x-auto h-[89vh]">
-            <InfiniteScroll
-              dataLength={props.supplierList.length}
-              next={handleLoadMore}
-              hasMore={hasMore}
-              loader={props.fetchingSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-              height={"80vh"}
-            >
-              {props.supplierList.length ?
+        
+              {props.supplierDeletedList.length ?
                 <>
-                  {props.supplierList.map((item) => {
+                  {props.supplierDeletedList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
@@ -105,7 +81,7 @@ function SuppliersCardList(props) {
                   className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className="font-medium  flex items-center w-[14.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className="font-medium  flex items-center w-[16.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-semibold text-[0.85rem] text-cardBody font-poppins">
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`supplier/${item.supplierId}`}
@@ -173,33 +149,7 @@ function SuppliersCardList(props) {
 
                             </div>
                             </div>
-                        <div class="flex flex-col items-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
- <div>
-<Tooltip title="Edit">
-            <BorderColorIcon
-             className="!text-[0.8rem] cursor-pointer text-[tomato]"
-              onClick={() => {
-                 props.setEditSuppliers(item);
-                handleRowData(item);
-                props.handleUpdateSupplierModal(true);
-             
-              }}
-            />
-          </Tooltip>
-          </div>
-          <div>
-          <Popconfirm
-              title="Do you want to delete?"
-             onConfirm={() => props.deleteSupplierData(item.supplierId)}
-            >
-              <DeleteOutlined
-
-className=" !text-[0.8rem] cursor-pointer text-[red]"
-              />
-            </Popconfirm>
-            </div>
-            </div> 
-
+            
 
                           </div>
 
@@ -211,9 +161,9 @@ className=" !text-[0.8rem] cursor-pointer text-[red]"
                     )
                   })}
                 </> :
-                !props.supplierList.length &&
-                  !props.fetchingSupplierList ? <NodataFoundPage /> : null}
-            </InfiniteScroll>
+                !props.supplierDeletedList.length &&
+                  !props.fetchingSupplierDeletedList ? <NodataFoundPage /> : null}
+   
           </div>
         </div>
       </div>
@@ -229,10 +179,10 @@ className=" !text-[0.8rem] cursor-pointer text-[red]"
   )
 }
 const mapStateToProps = ({ shipper, suppliers, auth }) => ({
-  supplierList: suppliers.supplierList,
+    supplierDeletedList: suppliers.supplierDeletedList,
   userId: auth.userDetails.userId,
-  fetchingSupplierList: suppliers.fetchingSupplierList,
-  fetchingSupplierListError: suppliers.fetchingSupplierListError,
+  fetchingSupplierDeletedList: suppliers.fetchingSupplierDeletedList,
+  fetchingSupplierDeletedListError: suppliers.fetchingSupplierDeletedListError,
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
@@ -242,7 +192,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getSuppliersList,
+        getSuppliersDeletedList,
       emptysUPPLIERS,
       deleteSupplierData,
       setEditSuppliers,
@@ -251,4 +201,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuppliersCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(SuppliersDeletedCardList);

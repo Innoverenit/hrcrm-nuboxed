@@ -956,9 +956,9 @@ function EmployeeTable(props) {
                     <div className=" md:w-[6.8rem] ">Role</div>
                     <div className="md:w-[8.7rem]">Mobile #</div>
                     <div className="md:w-[8.9rem]">Email #</div>
-                    <div className="md:w-[7.2rem]">Stop Access</div>
-                    <div className="md:w-[7.2rem]">Multi Org</div>
-                    <div className="md:w-[10.2rem]"></div>
+                    <div className="md:w-[9.2rem]">Stop Access</div>
+                    <div className="md:w-[10.2rem]">Multi Org</div>
+                    <div className="md:w-[11.2rem]"></div>
                 </div>
                 {props.filteredData.map((item) => {
                     const currentdate = moment().format("DD/MM/YYYY");
@@ -999,7 +999,7 @@ function EmployeeTable(props) {
                                 </div>
 
                                
-                                <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs text-cardBody font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
@@ -1021,13 +1021,11 @@ function EmployeeTable(props) {
             ):null}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs text-cardBody font-poppins text-center">
                                   
             <MultiOrgEmployee
-              // partnerId={item.partnerId}
               multyOrgAccessInd={item.multyOrgAccessInd}
-              // assignedIndicator={item.assignedInd}
               employeeId={item.employeeId}
             />
 

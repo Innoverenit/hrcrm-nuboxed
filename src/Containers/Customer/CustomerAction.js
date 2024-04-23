@@ -2736,6 +2736,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     });
   };
 
+  export const handleCustomerActivityModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_ACTIVITY_MODAL,
+      payload: modalProps,
+    });
+  };
+
 
   export const handleCustomerContactJumpstartModal = (modalProps) => (dispatch) => {
     dispatch({
@@ -2851,6 +2858,43 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         console.log(err.response);
         dispatch({
           type: types.GET_WON_OPP_OF_JUMPSTART_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const updateActivityTask = (taskId, data, cb) => (dispatch, getState) => {
+    //debugger
+    const { userId } = getState("auth").auth.userDetails;
+    console.log(data);
+    dispatch({ type: types.UPDATE_ACTIVITY_TASK_REQUEST });
+    axios
+      .put(
+        `${base_url}/task/activity/update/${taskId}`,
+       data,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        //debugger
+  
+        //   dispatch(getEventsListByUserId(userId));
+        console.log(res);
+  
+        dispatch({
+          type: types.UPDATE_ACTIVITY_TASK_SUCCESS,
+          payload: res.data,
+        });
+        cb();
+      })
+      .catch((err) => {
+        //debugger
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_ACTIVITY_TASK_FAILURE,
           payload: err,
         });
       });

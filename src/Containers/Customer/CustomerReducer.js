@@ -47,6 +47,8 @@ const initialState = {
   customerProject: [],
 
 
+  addCustomerActivityDrawerModal:false,
+
   fetchingCustOpenOppJumpstart: false,
   fetchingCustOpenOppJumpstartError: false,
   openOppOfCustJumpstart: [],
@@ -207,6 +209,9 @@ const initialState = {
   fetchingCustomerById: false,
   fetchingCustomerByIdError: false,
   customerById: [],
+
+  updatingActivityTask: false, 
+  updatingActivityTaskError: false,
 
   fetchingCustomerDetailsById: false,
   fetchingCustomerDetailsByIdError: false,
@@ -1710,6 +1715,11 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL:
       return { ...state, addCustomerNoteDrawerModal: action.payload };
 
+
+      case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
+        return { ...state, addCustomerActivityDrawerModal: action.payload };
+  
+
     case types.CUSTOMER_TO_ACCOUNT_CONVERT_REQUEST:
       return {
         ...state,
@@ -2126,6 +2136,23 @@ export const customerReducer = (state = initialState, action) => {
       return { ...state, fetchingCustWonOppJumpstart: false, fetchingCustWonOppJumpstartError: true };
 
 
+      case types.UPDATE_ACTIVITY_TASK_REQUEST:
+        return { ...state, updatingActivityTask: true };
+      case types.UPDATE_ACTIVITY_TASK_SUCCESS:
+        return {
+          ...state,
+          updatingActivityTask: false,
+          addCustomerActivityDrawerModal: false,
+          customerActivityTimeline: state.customerActivityTimeline.map((event) =>
+          event.taskId === action.payload.taskId
+            ? action.payload
+            : event
+        ),
+         
+  
+        };
+      case types.UPDATE_ACTIVITY_TASK_FAILURE:
+        return { ...state, updatingActivityTask: false, updatingActivityTaskError: false };
 
 
     default:

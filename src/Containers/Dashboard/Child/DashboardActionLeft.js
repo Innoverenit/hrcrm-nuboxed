@@ -114,6 +114,31 @@ const DashboardActionLeft = (props) => {
     </span>
   </Badge>
 )}
+
+{user.multyOrgAccessInd === true && (
+  <Badge
+    size="small"
+    // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+    // overflowCount={999}
+  >
+    <span class="cursor-pointer mr-1"
+      onClick={() => handleButtonClick("multiOrg")} 
+      style={{
+        color: activeButton === "multiOrg" && "tomato",
+      }}
+    >
+      <Tooltip title="Multi Org">
+        <Button
+          style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
+         
+        >
+          <span class=" text-white">Multi Org</span>
+        </Button>
+      </Tooltip>
+    </span>
+  </Badge>
+)}
+   
    
 {user.crmInd === true && (
     <Badge
@@ -298,6 +323,29 @@ const DashboardActionLeft = (props) => {
     </span>
   </Badge>
 )}
+            {user.multyOrgAccessInd === true && (
+  <Badge
+    size="small"
+    // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+    // overflowCount={999}
+  >
+    <span class="cursor-pointer mr-1"
+      onClick={() => handleButtonClick("multiOrg")} 
+      style={{
+        color: activeButton === "multiOrg" && "tomato",
+      }}
+    >
+      <Tooltip title="Multi Org">
+        <Button
+          style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
+        
+        >
+          <span class=" text-white">Multi Org</span>
+        </Button>
+      </Tooltip>
+    </span>
+  </Badge>
+)} 
             <Badge size="small">
               <span
                 className="cursor-pointer mr-1"
@@ -502,37 +550,28 @@ const DashboardActionLeft = (props) => {
         </div>
    
       <>
-      {activeButton === "Regional" && (
-      <div class="ml-[9rem] mt-[1rem] max-sm:hidden" >
-      <Tabs  type="card" 
-   
-           activeKey={props.activeTab} 
-          onChange={props.handleTabClick}
-           >
-      {props.tab.map((tabs) => (
-        <TabPane  key={tabs} tab={tabs}
-      
-        >
-       
-       
-       
-        </TabPane>
-      ))}
-    </Tabs>
-   
-        </div>
-        )}
-        {activeButton !== "Regional" && (
-          <div class="ml-[9rem]" >
-           
-         <TimeInterval
-    style={{fontSize:"0.67"}}
-          times={dateRangeList}
-          handleClick={setSelectedTimeIntervalReport}
-        />
-        
-          </div>
-        )}
+      <>
+
+
+  {activeButton === "Regional" || activeButton === "multiOrg" ? (
+    <div class="ml-[14rem] mt-[1rem] max-sm:hidden">
+      <Tabs type="card" activeKey={props.activeTab} onChange={props.handleTabClick}>
+        {props.tab.map((tabs) => (
+          <TabPane key={tabs} tab={tabs}></TabPane>
+        ))}
+      </Tabs>
+    </div>
+  ) : (
+    <div class="ml-[14rem]">
+      <TimeInterval
+        style={{ fontSize: "0.67" }}
+        times={dateRangeList}
+        handleClick={setSelectedTimeIntervalReport}
+      />
+    </div>
+  )}
+</>
+
         {/* <Popover>
           <StyledRangePicker
             style={{width:"30%"}}

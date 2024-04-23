@@ -9,7 +9,7 @@ const UpdateShipperModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.shipper" defaultMessage="Shipper"/>}
+        title={<FormattedMessage id="app.supplier" defaultMessage="Supplier"/>}
         width="60%"
         visible={props.updateShipperModal}
         maskClosable={false}

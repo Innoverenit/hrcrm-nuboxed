@@ -1515,7 +1515,12 @@ export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
     type: types.DELETE_SUPPLIER_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/supplier/deleteSupplier/${supplierId}`)
+    .put(`${base_url2}/supplier/deleteSupplier/${supplierId}`,{},
+    {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       Swal.fire({
@@ -1531,6 +1536,69 @@ export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
       console.log(err);
       dispatch({
         type: types.DELETE_SUPPLIER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateSupplierById = (data, id, userId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SUPPLIERS_BY_ID_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/${id} `, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      Swal.fire({
+        icon: 'success',
+        title: 'Supplier updated Successfully!',
+      })
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setEditSuppliers = (name) => (dispatch) => {
+  dispatch({
+    type: types.SET_SUPPLIERS_EDIT,
+    payload: name,
+  });
+};
+
+export const getSuppliersDeletedList = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERS_DELETED_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/deleteSupplierHistory`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERS_DELETED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERS_DELETED_LIST_FAILURE,
         payload: err,
       });
     });

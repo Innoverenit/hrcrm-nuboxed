@@ -19,6 +19,9 @@ import InvestorFunnelTab from "./Child/InvestorFunnelTab";
 import RegionalSales from "../DashboardPage/Child/RegionalSales";
 import FullFillMentJumpstartBox from "./FullFillMentJumpstartBox";
 import InvestorRegionalJumpstartBox from "../DashboardPage/Child/InvestorRegionalJumpstartBox";
+import MultiOrgInvestorRegionalJumpstartBox from "../DashboardPage/Child/MultiOrgInvestorRegionalJumpstartBox";
+import MultiOrgFullFillMentMJumpstartBox from "../DashboardPage/Child/MultiOrgFullFillMentMJumpstartBox";
+import MultiOrgSales from "../DashboardPage/Child/MultiOrgSales";
 const DashboardCustomerTab= lazy(()=>import("./DashboardCustomerTab"));
 const FunnelChartAll= lazy(()=>import("./FunnelChartAll"));
 const DashboardJumpstartAll= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardJumpstartAll"));
@@ -198,12 +201,18 @@ class Dashboard extends Component {
                 regionRecords={this.props.regionRecords}/>
               </CardElement>
             ) 
-            // : viewType==="ALL" ? (
-            //   <CardElement>
-            //     <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
-            //     <RegionalSales />
-            //   </CardElement>
-            // ) 
+            
+            : this.state.activeButton === "multiOrg" && activeTab  ? (
+              <CardElement>
+                <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
+                <MultiOrgSales 
+                 tab={tab}
+                 tabKey={this.state.activeTab}
+                
+                 handleTabClick={this.handleTabClick}
+                regionRecords={this.props.regionRecords}/>
+              </CardElement>
+            ) 
             
              :
              (
@@ -225,6 +234,8 @@ class Dashboard extends Component {
             <FinanceDashTab/>)
             :this.state.activeButton==="Regional" && activeTab ?(
               null)
+              :this.state.activeButton==="multiOrg" && activeTab ?(
+                null)
             
        :  this.state.activeButton==="Customer" ?(
         <CustomerLeadsTab/>)
@@ -270,7 +281,12 @@ class Dashboard extends Component {
       null
       ) : viewType==="ALL" || this.state.activeButton === "Regional" && activeTab  ? (
         null
-  ) : this.state.activeButton === "Customer" ? (
+        
+  ) 
+  : viewType==="ALL" || this.state.activeButton === "multiOrg" && activeTab  ? (
+    null
+    
+) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
   ) : (
     this.state.activeButton === "Customer"   ? null : <StackedClosureChart />
@@ -317,6 +333,12 @@ class Dashboard extends Component {
         <CardElement>
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
             <FullFillMentJumpstartBox regionRecords={this.props.regionRecords}/>
+        </CardElement>
+    )}
+     {this.state.activeButton === "multiOrg" && activeTab && (
+        <CardElement>
+            <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
+            <MultiOrgFullFillMentMJumpstartBox regionRecords={this.props.regionRecords}/>
         </CardElement>
     )}
 
@@ -384,6 +406,11 @@ class Dashboard extends Component {
                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
                           <InvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
                           </CardElement>
+                           : this.state.activeButton === "multiOrg" && activeTab  ?
+                           <CardElement>
+                           <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
+                           <MultiOrgInvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
+                           </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
                           : this.state.activeButton === "Customer" ? (

@@ -352,3 +352,29 @@ export const handlePaidModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const getProductionOrder = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/all-Orders/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -7,7 +7,7 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import * as Yup from "yup";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
-import { addSuppliers } from "../SuppliersAction";
+import { updateSupplierById } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
 import { Listbox } from '@headlessui/react';
 import { FormattedMessage } from "react-intl";
@@ -22,7 +22,7 @@ const CustomerSchema = Yup.object().shape({
   // phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
 });
 
-function AddSuppliersForm (props) {
+function UpdateSupplierForm (props) {
   useEffect(() => {
     props.getEmployeelistAsErp();
     // props.getShipByData(props.orgId);
@@ -38,23 +38,23 @@ function AddSuppliersForm (props) {
           // enableReinitialize
           initialValues={{
             userId: props.userId,
-            name: "",
-            dialCode: "",
-            phoneNo: "",
-            emailId: "",
+            name: props.setEditingSuppliers.name || "",
+            dialCode: props.setEditingSuppliers.dialCode || "",
+            phoneNo: props.setEditingSuppliers.phoneNo || "",
+            emailId: props.setEditingSuppliers.emailId || "",
             orgId: props.orgId,
-            assignedTo: selectedOption ? selectedOption.employeeId:props.userId,
+            assignedTo: selectedOption ? selectedOption.employeeId:props.setEditingSuppliers.userId,
             address: [
               {
-                addressId: "",
-                addressType: "",
-                address1: "",
-                address2: "",
-                town: "",
-                street: "",
-                city: "",
-                pinCode: "",
-                country: "",
+              addressType:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressType : "",
+                address1: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address1 : "",
+                address2:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address2 : "",
+                addressId:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressId : "",
+              town: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].town :"",
+              street:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].street : "",
+              city:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].city : "",
+              pinCode:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].pinCode : "",
+              country: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].country :"",
                 latitude: "",
                 longitude: "",
 
@@ -64,11 +64,12 @@ function AddSuppliersForm (props) {
           }}
           validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
-           props.addSuppliers(
+           props.updateSupplierById(
               {
                 ...values,
-                assignedTo: selectedOption ? selectedOption.employeeId:props.userId,
+                assignedTo: selectedOption ? selectedOption.employeeId:props.setEditingSuppliers.userId,
               },
+              props.rowdata.supplierId,
              props.userId,
 
               resetForm()
@@ -249,9 +250,9 @@ function AddSuppliersForm (props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={props.addingSuppliers}
+                  loading={props.updateSuppliersById}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  <FormattedMessage id="app.update" defaultMessage="Update" />
                 </Button>
               </div>
             </Form>
@@ -266,21 +267,22 @@ function AddSuppliersForm (props) {
 const mapStateToProps = ({ auth, shipper,employee,suppliers,shipBy }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
-  addingSuppliers: suppliers.addingSuppliers,
+  updateSuppliersById: suppliers.updateSuppliersById,
   allCustomerEmployeeList:employee.allCustomerEmployeeList,
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
   ShipByData:shipBy.ShipByData,
-  employeeAsErp:shipper.employeeAsErp
+  employeeAsErp:shipper.employeeAsErp,
+  setEditingSuppliers:suppliers.setEditingSuppliers,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addSuppliers,
+        updateSupplierById,
       getEmployeelistAsErp,
   
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(AddSuppliersForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateSupplierForm);

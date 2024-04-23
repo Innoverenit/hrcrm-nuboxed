@@ -2,6 +2,7 @@ import React,{useEffect,useState} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
+import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
     setTimeRange,getSupplierCount,getSupplierAllCount
@@ -115,6 +116,24 @@ const {
 
                     </span>
                     </Badge>
+                </Tooltip>
+                <Tooltip title="Deleted List">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" md:mr-2 text-sm cursor-pointer"
+                        onClick={() => setSuppliersViewType("delete")}
+                        style={{
+                            color: viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <DeleteOutlined className="text-white" /></Avatar>
+
+                    </span>
+                    {/* </Badge> */}
                 </Tooltip>
 
                 &nbsp;&nbsp;

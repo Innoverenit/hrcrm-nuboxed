@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-//  const UpdateShipperForm = lazy(() => import("./UpdateShipperForm"));
+import UpdateSupplierForm from "./UpdateSupplierForm";
 
 const UpdateSupplierModal = (props) => {
   const { ...formProps } = props;
@@ -17,11 +17,12 @@ const UpdateSupplierModal = (props) => {
         onClose={() => props.handleUpdateSupplierModal(false)}
         footer={null}
       >
-        {/* <Suspense fallback={<BundleLoader />}>
-          <UpdateShipperForm 
+        <Suspense fallback={<BundleLoader />}>
+          <UpdateSupplierForm
             rowdata={props.rowdata}
-          shipperId={props.shipperId} />
-        </Suspense> */}
+          // shipperId={props.shipperId} 
+          />
+        </Suspense>
       </StyledDrawer>
     </>
   );
