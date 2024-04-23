@@ -11,9 +11,11 @@ import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
 import {
-  getOpportunityDocument,
   deleteDocument,
 } from "../../../../OpportunityAction";
+import {
+  getOpportunityDocument,
+} from "../../../../../Customer/CustomerAction";
 import { Tooltip } from "antd";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import ContractToggle from "./ContractToggle";
@@ -210,13 +212,13 @@ class LinkedDocuments extends Component {
   }
 }
 
-const mapStateToProps = ({ opportunity }) => ({
+const mapStateToProps = ({ opportunity,customer }) => ({
   opportunity: opportunity.opportunity,
   fetchingDocumentsByOpportunityId:
-    opportunity.fetchingDocumentsByOpportunityId,
+  customer.fetchingDocumentsByOpportunityId,
   fetchingDocumentsByOpportunityIdError:
-    opportunity.fetchingDocumentsByOpportunityIdError,
-  documentsByOpportunityId: opportunity.documentsByOpportunityId,
+  customer.fetchingDocumentsByOpportunityIdError,
+  documentsByOpportunityId: customer.documentsByOpportunityId,
 });
 
 const mapDispatchToProps = (dispatch) =>

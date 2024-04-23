@@ -495,7 +495,7 @@ export const updateCustomer = (data, customerId) => (dispatch) => {
 /**
  * add document to a customer
  */
-export const addCustomerDocument = (data, cb) => (dispatch) => {
+export const addCustomerDocument = (data) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_CUSTOMER_DOCUMENT_REQUEST });
   axios
@@ -510,7 +510,7 @@ export const addCustomerDocument = (data, cb) => (dispatch) => {
         type: types.ADD_CUSTOMER_DOCUMENT_SUCCESS,
         payload: res.data,
       });
-      cb();
+      // cb();
     })
     .catch((err) => {
       console.log(err);
@@ -2856,5 +2856,105 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+ 
+export const getContactDocument = (contactId) => (dispatch) => {
+  dispatch({ type: types.GET_CONTACT_DOCUMENTS_REQUEST });
+  axios
+    .get(`${base_url}/contact/document/${contactId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+}; 
   
-  
+
+export const getOpportunityDocument = (opportunityId) => (dispatch) => {
+  dispatch({ type: types.GET_OPPORTUNITY_DOCUMENTS_REQUEST });
+  axios
+    .get(`${base_url}/opportunity/document/${opportunityId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPPORTUNITY_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_OPPORTUNITY_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDealDocument = (invOpportunityId) => (dispatch) => {
+  dispatch({ type: types.GET_DEAL_DOCUMENTS_REQUEST });
+  axios
+    .get(`${base_url}/investorOpportunity/document/${invOpportunityId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEAL_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DEAL_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getInvestorDocument = (investorId) => (dispatch) => {
+  dispatch({ type: types.GET_INVESTOR_DOCUMENTS_REQUEST });
+  axios
+    .get(`${base_url}/investor/document/${investorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVESTOR_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVESTOR_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -378,7 +378,7 @@ export const addContactDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_CONTACT_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/contact/document`, data, {
+    .post(`${base_url}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1490,3 +1490,4 @@ export const getContactAllRecord = (orgId,type) => (dispatch) => {
       });
     });
 };
+

@@ -10,6 +10,8 @@ import { Tooltip } from "antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import {
   getContactDocument,
+} from "../../../../../Customer/CustomerAction";
+import {
   deleteDocument 
 } from "../../../../ContactAction";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
@@ -194,11 +196,11 @@ class LinkedDocuments extends Component {
   }
 }
 
-const mapStateToProps = ({ contact }) => ({
+const mapStateToProps = ({ contact,customer }) => ({
   contact: contact.contact,
-  fetchingDocumentsByContactId: contact.fetchingDocumentsByContactId,
-  fetchingDocumentsByContactIdError: contact.fetchingDocumentsByContactIdError,
-  documentsByContactId: contact.documentsByContactId,
+  fetchingDocumentsByContactId: customer.fetchingDocumentsByContactId,
+  fetchingDocumentsByContactIdError: customer.fetchingDocumentsByContactIdError,
+  documentsByContactId: customer.documentsByContactId,
 });
 
 const mapDispatchToProps = (dispatch) =>
