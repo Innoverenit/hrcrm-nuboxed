@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Select, Icon, Tag, Switch } from "antd";
+import { Button, Select } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { Spacer } from "../../../../../../../Components/UI/Elements";
-import { ShowOrCollapse } from "../../../../../../../Components/Common";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import PostImageUpld from "../../../../../../../Components/Forms/Formik/PostImageUpld";
-import { StyledLabel } from "../../../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
-import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
 import { addSupplierContact } from "../../../../SuppliersAction";
 import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../../../Settings/Department/DepartmentAction";
@@ -28,7 +23,7 @@ const { Option } = Select;
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ContactSchema = Yup.object().shape({
     firstName: Yup.string().required("Input needed!"),
-    // emailId: Yup.string().required("Input needed!"),
+    emailId: Yup.string().required("Input needed!"),
 });
 
 class SupplierContactForm extends Component {
@@ -56,9 +51,9 @@ class SupplierContactForm extends Component {
                 <Formik
                     initialValues={{
                         userId: this.props.userId,
-                        supplierId: this.props.supplierId,
-                        distributorId: this.props.distributorId,
-                        shipperId: this.props.shipperId,
+                        supplierId: this.props.type === "supplier" ? this.props.id : "",
+                        distributorId: this.props.type === "distributor" ? this.props.id : "",
+                        shipperId: this.props.type === "shipper" ? this.props.id : "",
                         salutation: "",
                         mobileNo: "",
                         phoneNo: "",
@@ -93,13 +88,13 @@ class SupplierContactForm extends Component {
 
                     }}
 
-
+                    validationSchema={ContactSchema}
                     onSubmit={(values, { resetForm }) => {
                         this.props.addSupplierContact(
                             {
                                 ...values,
                             },
-                            this.props.supplierId
+                            this.props.id
                         );
                     }}
                 >
@@ -278,8 +273,10 @@ class SupplierContactForm extends Component {
                                                 isColumn
                                                 width={"100%"}
                                                 component={InputComponent}
+
                                                 inlineLabel
                                                 style={{
+                                                    borderRight: "3px red solid",
                                                     flexBasis: "80%",
                                                     height: "2.0625em",
                                                     marginTop: "0em",

@@ -883,7 +883,7 @@ export const handleSupplierContactModal = (modalProps) => (dispatch) => {
 /**
  *  adding a Contact for distributor
  */
-export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
+export const addSupplierContact = (supplier, id) => (dispatch) => {
   dispatch({
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
@@ -896,7 +896,8 @@ export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
-      dispatch(getSupplierContactList(supplierId));
+      dispatch(getSupplierContactList(id));
+      dispatch(getContactDistributorList(id));
       dispatch({
         type: types.ADD_SUPPLIER_CONTACT_SUCCESS,
         payload: res.data,
@@ -910,6 +911,64 @@ export const addSupplierContact = (supplier, supplierId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.ADD_SUPPLIER_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const applyForLoginInContact = (data, contactPersonId, userId, id) => (dispatch) => {
+  dispatch({
+    type: types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/distributor/convert/contactToUser/${contactPersonId}/${userId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Applied for login',
+        showConfirmButton: true,
+      })
+      dispatch(getContactDistributorList(id))
+      dispatch({
+        type: types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactDistributorList = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/distributor/contactPerson/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_FAILURE,
         payload: err,
       });
     });

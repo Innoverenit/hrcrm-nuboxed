@@ -202,7 +202,7 @@ class UpdateAccountContactForm extends Component {
                                     <div>
 
                                         <FastField
-
+                                            isRequired
                                             type="email"
                                             name="emailId"
                                             label={<FormattedMessage id="app.email" defaultMessage="Email" />}
@@ -211,6 +211,7 @@ class UpdateAccountContactForm extends Component {
                                             width={"100%"}
                                             component={InputComponent}
                                             inlineLabel
+                                            style={{ borderRight: "3px red solid" }}
                                         />
                                     </div>
                                     <div class="w-full">

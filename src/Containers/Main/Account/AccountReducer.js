@@ -223,9 +223,6 @@ const initialState = {
   fetchingPaymentModeError: false,
   paymentModee: [],
 
-  applyingForLoginInContact: false,
-  applyingForLoginInContactError: false,
-
   fetchingDistributorsDeletedOrderById: false,
   fetchingDistributorsDeletedOrderByIdError: false,
   distributorDeletedOrder: [],
@@ -289,9 +286,7 @@ const initialState = {
   addingContactDistributor: false,
   addingContactDistributorError: false,
 
-  fetchingContactDistributorsById: false,
-  fetchingContactDistributorsByIdError: false,
-  contactDistributor: [],
+
 
   fetchingLocationList: false,
   fetchingLocationListError: false,
@@ -345,6 +340,9 @@ const initialState = {
 
   addingCurrencyForOrder: false,
   addingCurrencyForOrderError: false,
+
+  deletingDistributorById: false,
+  deletingDistributorByIdError: false,
 
   fetchingProductByCurrency: false,
   fetchingProductByCurrencyError: false,
@@ -1500,20 +1498,7 @@ export const distributorReducer = (state = initialState, action) => {
     /**
      * get  distributor's contact list
      */
-    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST:
-      return { ...state, fetchingContactDistributorsById: true };
-    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_SUCCESS:
-      return {
-        ...state,
-        fetchingContactDistributorsById: false,
-        contactDistributor: action.payload,
-      };
-    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_FAILURE:
-      return {
-        ...state,
-        fetchingContactDistributorsById: false,
-        fetchingContactDistributorsByIdError: true,
-      };
+
 
     case types.SET_DISTRIBUTOR_CONTACT_EDIT:
       return { ...state, setEditingDistributorContact: action.payload };
@@ -1768,19 +1753,7 @@ export const distributorReducer = (state = initialState, action) => {
         generateQuoteInDistributor: false
       };
 
-    case types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST:
-      return { ...state, applyingForLoginInContact: true };
-    case types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS:
-      return {
-        ...state,
-        applyingForLoginInContact: false,
-      };
-    case types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE:
-      return {
-        ...state,
-        applyingForLoginInContact: false,
-        applyingForLoginInContactError: true,
-      };
+
 
     case types.HANDLE_INVENTORY_LOCATION_IN_ORDER_MODAL:
       return { ...state, addInventoryInOrder: action.payload };
@@ -1827,6 +1800,23 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         updatingSuborderAwb: false,
         updatingSuborderAwbError: true,
+      };
+
+    case types.DELETE_DISTRIBUTOR_REQUEST:
+      return { ...state, deletingDistributorById: true };
+    case types.DELETE_DISTRIBUTOR_SUCCESS:
+      return {
+        ...state,
+        deletingDistributorById: false,
+        customerListByUser: state.customerListByUser.filter(
+          (item) => item.distributorId !== action.payload
+        ),
+      };
+    case types.DELETE_DISTRIBUTOR_FAILURE:
+      return {
+        ...state,
+        deletingDistributorById: false,
+        deletingDistributorByIdError: true,
       };
 
     case types.GET_PHONE_LIST_BY_ID_REQUEST:
