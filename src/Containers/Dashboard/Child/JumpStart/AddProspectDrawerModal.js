@@ -16,7 +16,8 @@ class AddProspectDrawerModal extends Component {
       <div>
  <StyledDrawer
           title="Prospect"
-          width={"60%"}
+          width={"87%"}
+          destroyOnClose
           visible={this.props.prospectDrawerModal}
       
         onClose={() => this.props.handleProspectDrawer(false)}

@@ -92,7 +92,7 @@ useEffect(() => {
       }));
   return (
     <>
-    {/* <div>{weekendStart}-{weekendEnd}</div> */}
+    <div style={{marginTop:"-14px",textAlign:"center",fontWeight:"bold"}}>{moment.utc(weekendStart).format("DD-MM-YYYY")}-{moment.utc(weekendEnd).format("DD-MM-YYYY")}</div>
     {/* {`  ${moment.utc(weekendStart).format("DD-MM-YYYY")-moment.utc(weekendEnd
   ).format("DD-MM-YYYY")}`} */}
     <BarChart width={600} height={162} data={data}>
