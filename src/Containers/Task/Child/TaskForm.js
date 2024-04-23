@@ -2342,7 +2342,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   taskChecklistId: "",
                   taskDescription: "",
                   timeZone: timeZone,
-                  contactId: "",
+                  contact: "",
                   startDate: startDate || dayjs(),
                   endDate: endDate || null,
                   endDate: dayjs(),
@@ -2467,7 +2467,7 @@ const [priority,setpriority]=useState(props.selectedTask
               : addTask(
                   {
                     ...values,
-                    contactId: selectedContact,
+                    contact: selectedContact,
                   opportunityId:selectedOpportunity,
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
