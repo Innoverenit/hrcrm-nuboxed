@@ -17,7 +17,7 @@ import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor } from "./AccountAction";
 import { FormattedMessage } from "react-intl";
-import { getCurrency,getCategory } from "../../Auth/AuthAction";
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -35,7 +35,7 @@ const UpdateAccountForm = ({
   customerListData,
   getCountry,
   getAllCustomerEmployeelist,
-  currencies,
+  saleCurrencies,
   setEditingDistributor,
   updateDisributorById,
   updateDistributor,
@@ -43,19 +43,19 @@ const UpdateAccountForm = ({
   allCustomerEmployeeList,
   countries,
   getCustomer,
-  getCurrency,
+  getSaleCurrency,
   getCategory,
   category
 }) => {
   const [vatInd, setVatInd] = useState(setEditingDistributor.vatInd);
 
   useEffect(() => {
-    getCurrency();
+    getSaleCurrency();
     getCustomer(orgId);
     getCountry();
     getCategory(orgId);
     getAllCustomerEmployeelist();
-  }, [getCountry, getCurrency, getAllCustomerEmployeelist]);
+  }, [getCountry, getSaleCurrency, getAllCustomerEmployeelist]);
 
   const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
 
@@ -74,10 +74,10 @@ const UpdateAccountForm = ({
     };
   });
 
-  const currencyOption = currencies.map((item) => {
+  const currencyOption = saleCurrencies.map((item) => {
     return {
       label: item.currency_name || "",
-      value: item.currency_name,
+      value: item.currency_id,
     };
   });
   const categoryOption = category.map((item) => {
@@ -106,7 +106,7 @@ const UpdateAccountForm = ({
           currencyPrice: setEditingDistributor.currencyPrice || "",
           currency: setEditingDistributor.currency || "",
           phoneNo: setEditingDistributor.phoneNo || "",
-          dCategory:setEditingDistributor.dCategoryName || "",
+          dcategory: setEditingDistributor.dCategory || "",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           url: setEditingDistributor.url || "",
           description: setEditingDistributor.description || "",
@@ -262,7 +262,7 @@ const UpdateAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <FastField
-                     label="Tax Registration"
+                      label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -557,8 +557,8 @@ const mapStateToProps = ({ auth, distributor, catgCustomer, rule, category, empl
   orgId: auth.userDetails.organizationId,
   customerListData: catgCustomer.customerListData,
   fullName: auth.userDetails.fullName,
-  currencies: auth.currencies,
-  category:auth.category,
+  saleCurrencies: auth.saleCurrencies,
+  category: auth.category,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   setEditingDistributor: distributor.setEditingDistributor,
   updateDisributorById: distributor.updateDisributorById,
@@ -571,7 +571,7 @@ const mapDispatchToProps = (dispatch) =>
       getCountry,
       updateDistributor,
       getCustomer,
-      getCurrency,
+      getSaleCurrency,
       getAllCustomerEmployeelist,
       getCategory
     },

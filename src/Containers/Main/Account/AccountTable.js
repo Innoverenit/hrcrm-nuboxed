@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip } from "antd";
+import { Popconfirm, Tooltip } from "antd";
 import { Link } from 'react-router-dom';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -12,7 +12,7 @@ import {
   handleUpdateDistributorModal,
   handleDistributorOrderModal,
   handleDistributorActivityTableModal,
-  deleteDistributorData,
+  deleteDistributor,
   handleBillingAddressModal,
   handleUpdateAccountModal,
   emptyDistributor,
@@ -24,6 +24,7 @@ import AccountPulseModal from "./AccountPulseModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
+import { DeleteOutlined } from "@ant-design/icons";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -80,7 +81,7 @@ function AccountTable(props) {
               id="app.billingaddress"
               defaultMessage="billingaddress"
             /></div>
-            
+
 
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
@@ -161,8 +162,7 @@ function AccountTable(props) {
                           <div className=" flex font-medium flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.url} */}
-                              {item.dCategoryName}
-
+                              {item.dcategoryName}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
@@ -205,63 +205,78 @@ function AccountTable(props) {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
+                          <div class="flex md:flex-col">
+                            <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div>
+                                <Tooltip title={item.url}>
+                                  {item.url !== "" ? (
+                                    <div
+                                      style={{ cursor: "pointer" }}
+                                      onClick={() => { }}
+                                    >
+                                      {" "}
+                                      <a href={`https://${item.url}`} target="_blank">
+                                        <ExploreIcon
+                                          className=" !text-base cursor-pointer text-[green]"
 
-                        <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                        <div>
-                          <Tooltip title={item.url}>
-                            {item.url !== "" ? (
-                              <div                            
-                                style={{ cursor: "pointer" }}
-                                onClick={() => { }}
-                              >
-                                {" "}
-                                <a href={`https://${item.url}`} target="_blank">
-                                  <ExploreIcon
-                                    className=" !text-base cursor-pointer text-[green]"
+                                        />
+                                      </a>
+                                    </div>
+                                  )
+                                    : <div class=" w-3">
 
+                                    </div>
+                                  }
+                                </Tooltip>
+
+                              </div>
+                            </div>
+                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div class=" text-xs text-cardBody font-poppins">
+                                <Popconfirm
+                                  title="Do you want to delete?"
+                                  onConfirm={() => props.deleteDistributor({}, item.distributorId)}
+                                >
+                                  <DeleteOutlined
+                                    className=" !text-base cursor-pointer text-[red]"
                                   />
-                                </a>
+                                </Popconfirm>
                               </div>
-                            )
-                              : <div class=" w-3">
 
-                              </div>
-                            }
-                          </Tooltip>
 
-                        </div>
-                          </div>
-                         <div class="flex md:flex-col">
-                          <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              <Tooltip title="Pulse">
-                                <MonitorHeartIcon
-                                  onClick={() => {
-                                    props.handleAccountPulse(true);
-                                    handleCurrentRowData(item);
-                                  }}
-                                  className=" !text-base cursor-pointer text-[#df9697]"
-                                />
-                              </Tooltip>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              <Tooltip title="Edit">
-                                <BorderColorIcon
-                                  className=" !text-base cursor-pointer text-[tomato]"
-                                  onClick={() => {
-                                    props.setEditDistributor(item)
-                                    handleUpdateAccountModal(true);
-                                    handleCurrentRowData(item);
-                                  }}
-                                />
-
-                              </Tooltip>
+                          <div class="flex md:flex-col">
+                            <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div class=" text-xs text-cardBody font-poppins">
+                                <Tooltip title="Pulse">
+                                  <MonitorHeartIcon
+                                    onClick={() => {
+                                      props.handleAccountPulse(true);
+                                      handleCurrentRowData(item);
+                                    }}
+                                    className=" !text-base cursor-pointer text-[#df9697]"
+                                  />
+                                </Tooltip>
+                              </div>
                             </div>
+                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div class=" text-xs text-cardBody font-poppins">
+                                <Tooltip title="Edit">
+                                  <BorderColorIcon
+                                    className=" !text-base cursor-pointer text-[tomato]"
+                                    onClick={() => {
+                                      props.setEditDistributor(item)
+                                      handleUpdateAccountModal(true);
+                                      handleCurrentRowData(item);
+                                    }}
+                                  />
+
+                                </Tooltip>
+                              </div>
 
 
-                          </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -311,7 +326,7 @@ const mapDispatchToProps = (dispatch) =>
       setEditDistributor,
       handleDistributorOrderModal,
       handleDistributorActivityTableModal,
-      deleteDistributorData,
+      deleteDistributor,
       handleBillingAddressModal,
       handleUpdateAccountModal,
       emptyDistributor,

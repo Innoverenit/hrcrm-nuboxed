@@ -705,6 +705,40 @@ export const updateDistributor = (data, distributorId, userId) => (
     });
 };
 
+export const deleteDistributor = (data, distributorId, userId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.DELETE_DISTRIBUTOR_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/distributor/deleteDistributor/${distributorId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDistributorsByUserId(userId));
+      dispatch({
+        type: types.DELETE_DISTRIBUTOR_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully',
+        showConfirmButton: true,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_DISTRIBUTOR_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  * Input data search
  */
@@ -1548,7 +1582,7 @@ export const addContactDistributor = (contact, distributorId) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
-      dispatch(getContactDistributorList(distributorId));
+      // dispatch(getContactDistributorList(distributorId));
       dispatch({
         type: types.ADD_CONTACT_DISTRIBUTOR_SUCCESS,
         payload: res.data,
@@ -1565,31 +1599,7 @@ export const addContactDistributor = (contact, distributorId) => (dispatch) => {
 /**
  * get all contact distributor list
  */
-export const getContactDistributorList = (distributorId) => (dispatch) => {
-  dispatch({
-    type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST,
-  });
-  axios
-    .get(`${base_url2}/distributor/contactPerson/${distributorId}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 
 export const getLobList = (orgId) => (dispatch) => {
   dispatch({
@@ -2088,37 +2098,7 @@ export const getDistributorQuoteByDistributorId = (distributorId) => (
     });
 };
 
-export const applyForLoginInContact = (data, contactPersonId, id, userId) => (dispatch) => {
-  dispatch({
-    type: types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST,
-  });
-  axios
-    .put(`${base_url2}/distributor/convert/contactToUser/${contactPersonId}/${userId}`, data,
-      {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-        },
-      })
-    .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Applied for login',
-        showConfirmButton: true,
-      })
-      dispatch(getContactDistributorList(id))
-      dispatch({
-        type: types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 
 export const addLocationInOrder = (data, distributorId, cb) => (dispatch) => {
   dispatch({

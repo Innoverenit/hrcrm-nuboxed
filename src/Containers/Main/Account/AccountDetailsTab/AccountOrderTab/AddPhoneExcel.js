@@ -24,6 +24,9 @@ function AddPhoneExcel(props) {
                     excelId: "",
                     userId: props.userId,
                     orgId: props.orgId,
+                    totalPhoneCount: "",
+                    bulkQrInd: bulkQr,
+
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)

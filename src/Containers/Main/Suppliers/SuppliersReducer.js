@@ -152,6 +152,9 @@ const initialState = {
   addingSuppliersActivityEvent: false,
   addingSuppliersActivityEventError: false,
 
+  applyingForLoginInContact: false,
+  applyingForLoginInContactError: false,
+
   addingSuppliersActivityTask: false,
   addingSuppliersActivityTaskError: false,
 
@@ -234,8 +237,9 @@ const initialState = {
   searchDispatchItemError: false,
   supplierContact: [],
 
-  // fetchingContactsOfSupplier: false,
-  //fetchingContactsOfSupplierError: false,
+  fetchingContactDistributorsById: false,
+  fetchingContactDistributorsByIdError: false,
+  contactDistributor: [],
 
   fetchingContactSupplierById: false,
   fetchingContactSupplierByIdError: false,
@@ -955,6 +959,35 @@ export const suppliersReducer = (state = initialState, action) => {
         addSupplierContactModal: false,
       };
 
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST:
+      return { ...state, applyingForLoginInContact: true };
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS:
+      return {
+        ...state,
+        applyingForLoginInContact: false,
+      };
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE:
+      return {
+        ...state,
+        applyingForLoginInContact: false,
+        applyingForLoginInContactError: true,
+      };
+
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST:
+      return { ...state, fetchingContactDistributorsById: true };
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingContactDistributorsById: false,
+        contactDistributor: action.payload,
+      };
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingContactDistributorsById: false,
+        fetchingContactDistributorsByIdError: true,
+      };
+
     /**
      * get  supplier's contact list
      */
@@ -1330,42 +1363,42 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingAllSupplierCountError: true,
       };
 
-      case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
-        return {
-          ...state,
-          fetchingSupplierSuppliesQuality: true,
-          fetchingSupplierSuppliesQualityError: false,
-        };
-      case types.GET_SUPPLIER_SUPPLIES_QUALITY_SUCCESS:
-        return {
-          ...state,
-          fetchingSupplierSuppliesQuality: false,
-          fetchingSupplierSuppliesQualityError: false,
-          supplierSuppliesQuality: action.payload,
-        };
-      case types.GET_SUPPLIER_SUPPLIES_QUALITY_FAILURE:
-        return {
-          ...state,
-          fetchingSupplierSuppliesQuality: false,
-          fetchingSupplierSuppliesQualityError: true,
-        };
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: true,
+        fetchingSupplierSuppliesQualityError: false,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: false,
+        fetchingSupplierSuppliesQualityError: false,
+        supplierSuppliesQuality: action.payload,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: false,
+        fetchingSupplierSuppliesQualityError: true,
+      };
 
-        case types.DELETE_SUPPLIER_DATA_REQUEST:
-          return { ...state, deletingSupplierData: true };
-        case types.DELETE_SUPPLIER_DATA_SUCCESS:
-          return {
-            ...state,
-            deletingSupplierData: false,
-            supplierList: state.supplierList.filter(
-              (item) => item.supplierId !== action.payload
-            ),
-          };
-        case types.DELETE_SUPPLIER_DATA_FAILURE:
-          return {
-            ...state,
-            deletingSupplierData: false,
-            deletingSupplierDataError: true,
-          };
+    case types.DELETE_SUPPLIER_DATA_REQUEST:
+      return { ...state, deletingSupplierData: true };
+    case types.DELETE_SUPPLIER_DATA_SUCCESS:
+      return {
+        ...state,
+        deletingSupplierData: false,
+        supplierList: state.supplierList.filter(
+          (item) => item.supplierId !== action.payload
+        ),
+      };
+    case types.DELETE_SUPPLIER_DATA_FAILURE:
+      return {
+        ...state,
+        deletingSupplierData: false,
+        deletingSupplierDataError: true,
+      };
 
     default:
       return state;

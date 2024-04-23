@@ -5,8 +5,6 @@ import SupplierContactForm from "./SupplierContactForm";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 
-const ButtonGroup = Button.Group;
-
 class AddSupplierContactModal extends Component {
     render() {
         const {
@@ -16,9 +14,9 @@ class AddSupplierContactModal extends Component {
         return (
             <>
                 <StyledDrawer
-                      title={
+                    title={
                         <FormattedMessage id="app.Contact" defaultMessage="Contact" />
-                      }
+                    }
                     width="60%"
                     visible={addSupplierContactModal}
                     destroyOnClose
@@ -28,8 +26,8 @@ class AddSupplierContactModal extends Component {
                 >
                     <Suspense fallback={<BundleLoader />}>
                         <SupplierContactForm
-                        distributorId={this.props.distributorId}
-                        shipperId= {this.props.shipperId}
+                            type={this.props.type}
+                            id={this.props.id}
                         />
                     </Suspense>
                 </StyledDrawer>
