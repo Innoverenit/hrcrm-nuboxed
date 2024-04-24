@@ -86,7 +86,7 @@ const {
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" md:mr-2 text-sm cursor-pointer"
+                    <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("card")}
                         style={{
                             color: viewType === "card" && "#1890ff",
@@ -105,7 +105,7 @@ const {
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
           overflowCount={999}
         >
-                    <span class=" md:mr-2 text-sm cursor-pointer"
+                    <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("all")}
                         style={{
                             color: viewType === "all" && "#1890ff",
@@ -123,7 +123,7 @@ const {
           count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
           overflowCount={999}
         > */}
-                    <span class=" md:mr-2 text-sm cursor-pointer"
+                    <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("delete")}
                         style={{
                             color: viewType === "delete" && "#1890ff",
@@ -137,7 +137,7 @@ const {
                 </Tooltip>
 
                 &nbsp;&nbsp;
-                <div class=" ml-6 h-6 w-60">
+                <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
                 <Input
           placeholder="Search by Name or Sector"
           width={"100%"}
