@@ -391,6 +391,8 @@ const initialState = {
   fetchingProductionDetailByIdError: false,
   productionOrderDetail: [],
 
+  addpickupLocation: false,
+
   fetchingUsersByDepartmentAndLocation: false,
   fetchingUsersByDepartmentAndLocationError: false,
   departmentUser: [],
@@ -1730,10 +1732,10 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDistributorByGroupError: true,
       };
 
-    case types.HANDLE_DISTRIBUTOR_GENERATE_QUOTE_MODAL:
+    case types.HANDLE_ORDER_PICKUP_MODAL:
       return {
         ...state,
-        generateQuoteInDistributor: action.payload,
+        addpickupLocation: action.payload,
       };
 
     case types.GET_DISTRIBUTOR_QUOTE_BY_DISTRIBUTOR_ID_REQUEST:
@@ -1809,7 +1811,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         deletingDistributorById: false,
         customerListByUser: state.customerListByUser.filter(
-          (item) => item.distributorId !== action.payload
+          (item) => item.distributorId !== action.payload.distributorId
         ),
       };
     case types.DELETE_DISTRIBUTOR_FAILURE:

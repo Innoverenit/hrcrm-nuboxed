@@ -46,8 +46,8 @@ function ProductionRepairOrder(props) {
                 <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden w-[82.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[33.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.order"
-                            defaultMessage="order"
+                            id="app.order#"
+                            defaultMessage="Order #"
                         /></div>
                         <div className=" w-[35.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
@@ -61,10 +61,7 @@ function ProductionRepairOrder(props) {
                             />
                         </div>
                         <div className="w-[5.6rem]"></div>
-                        <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.status"
-                            defaultMessage="Status"
-                        /></div>
+                        <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll

@@ -44,15 +44,15 @@ function DispatchTable(props) {
       {props.fetchingDispatchList ? <BundleLoader /> :
         <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-            <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">         
+            <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.01rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className=" w-[5.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.22rem] "><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
               <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
               <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
-              <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
-              <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
 
+              <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
+              <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
               <div className=" w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
               < div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.pickup" defaultMessage="pickup" /></div>
               <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
@@ -74,7 +74,7 @@ function DispatchTable(props) {
                   return (
                     <div>
                       <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                             <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
@@ -92,124 +92,125 @@ function DispatchTable(props) {
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[7.4rem] max-xl:w-[3.4rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins">
-                            <MultiAvatar2
-                              primaryTitle={item.distributorName}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
+                            <div class=" text-xs text-cardBody font-poppins">
+                              <MultiAvatar2
+                                primaryTitle={item.distributorName}
+                                imageURL={item.imageURL}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[6.1rem] max-xl:w-[3.41rem] max-lg:w-[2.41rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                            <MultiAvatar2
-                              primaryTitle={item.contactPersonName}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
+                          <div className=" flex font-medium flex-col w-[6.1rem] max-xl:w-[3.41rem] max-lg:w-[2.41rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                              <MultiAvatar2
+                                primaryTitle={item.contactPersonName}
+                                imageURL={item.imageURL}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                            </div>
                           </div>
-                        </div>
 
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                        <div className=" flex font-medium flex-col w-[4.6rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.dispatchPhoneCount}/{item.phoneReceiveCount}
+                          <div className=" flex font-medium flex-col w-[4.6rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.dispatchPhoneCount}/{item.phoneReceiveCount}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.dispatchInspectionInd === 0 ?
+                                <Button
+                                  loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
+                                  onClick={() => {
+                                    handleRowData(item);
+                                    props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
+                                  }}
+                                  style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
+                                  Start
+                                </Button>
+                                : item.dispatchInspectionInd === 2 ||
+                                  item.dispatchInspectionInd === 3 ||
+                                  item.dispatchInspectionInd === 4 ?
+                                  <b>Completed</b>
+                                  : item.dispatchInspectionInd === 1 ?
+                                    <Button
+                                      style={{ fontWeight: "500", color: "white" }}
+                                      // onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd : 1 }, item.orderPhoneId, props.locationDetailsId)}
+                                      type="primary">
+                                      Pause
+                                    </Button> :
+                                    null}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[6.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
+                                null : <DispatchPackedToggle
+                                  locationDetailsId={props.locationDetailsId}
+                                  item={item}
+                                />}
+                            </div>
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.dispatchInspectionInd === 0 ?
-                              <Button
-                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+
+                          <div className=" flex font-medium flex-col w-[6.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
+                            </div>
+                          </div>
+
+                          <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.shipperName === "null" ? "" : item.shipperName}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[6.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.unloadingAddresses && item.unloadingAddresses[0].city && !item.newAwbNo ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
-                                  props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
-                                }}
-                                style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
-                                Start
-                              </Button>
-                              : item.dispatchInspectionInd === 2 ||
-                                item.dispatchInspectionInd === 3 ||
-                                item.dispatchInspectionInd === 4 ?
-                                <b>Completed</b>
-                                : item.dispatchInspectionInd === 1 ?
-                                  <Button
-                                    style={{ fontWeight: "500", color: "white" }}
-                                    // onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd : 1 }, item.orderPhoneId, props.locationDetailsId)}
-                                    type="primary">
-                                    Pause
-                                  </Button> :
-                                  null}
+                                  props.handleCreateAWB(true)
+                                }}>Create AWB</Button> : item.newAwbNo}
+                            </div>
                           </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[6.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
+                          <div className=" flex font-medium flex-col w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.status === "null" ? "" : item.status}
+                            </div>
                           </div>
-                        </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[6.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
-                              null : <DispatchPackedToggle
-                                locationDetailsId={props.locationDetailsId}
-                                item={item}
-                              />}
+                          <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.dispatchInspectionInd === 4 && item.newAwbNo &&
+                                <DispatchValidationToggle
+                                  locationDetailsId={props.locationDetailsId}
+                                  item={item}
+                                />}
+                            </div>
                           </div>
-                        </div>
+                          <div class="flex flex-col md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
+                            <div>
+                              <Tooltip title="Notes">
+                                <NoteAltIcon
+                                  style={{ cursor: "pointer", fontSize: "13px" }}
+                                />
 
-                        <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.shipperName === "null" ? "" : item.shipperName}
+                              </Tooltip>
+                            </div>
                           </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
-                          </div>
-                        </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[6.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.unloadingAddresses && item.unloadingAddresses[0].city ? <Button type="primary"
-                              onClick={() => {
-                                handleRowData(item);
-                                props.handleCreateAWB(true)
-                              }}>Create AWB</Button> : item.newAwbNo}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.status === "null" ? "" : item.status}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.dispatchInspectionInd === 4 && item.newAwbNo &&
-                              <DispatchValidationToggle
-                                locationDetailsId={props.locationDetailsId}
-                                item={item}
-                              />}
-                          </div>
-                        </div>
-                        <div class="flex flex-col md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
-                          <div>
-                            <Tooltip title="Notes">
-                              <NoteAltIcon
-                                style={{ cursor: "pointer", fontSize: "13px" }}
-                              />
-
-                            </Tooltip>
-                          </div>
-                        </div>
                         </div>
                       </div>
                     </div>

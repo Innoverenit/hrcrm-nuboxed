@@ -174,35 +174,37 @@ const ReceivedTable = (props) => {
 
                           <div className=" flex font-medium flex-col  w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
-                                <>
-                                  <Select
-                                    value={locationValue}
-                                    onChange={(value) =>
-                                      handleChangeLocation(value)
-                                    }
-                                  >
-                                    {productionLocation.map((a) => {
-                                      return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                    })}
-                                  </Select>
-                                  <div>
-                                    <Button
-                                      type='primary'
-                                      loading={props.addingLocationInOrder}
-                                      onClick={() => {
-                                        props.addDeliveryDate({
-                                          transferInd: 2,
-                                          inspectionInd: 3,
-                                          locationId: locationValue,
-                                          userId: props.userId,
-                                          orderPhoneId: item.orderPhoneId
-                                        }, handleCallback())
-                                      }}>Save</Button>
-                                    <Button onClick={handlelocation}>Cancel</Button>
-                                  </div>
-                                </>
-                                : item.productionLocationName}
+                              {
+                                // locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
+                                // <>
+                                //   <Select
+                                //     value={locationValue}
+                                //     onChange={(value) =>
+                                //       handleChangeLocation(value)
+                                //     }
+                                //   >
+                                //     {productionLocation.map((a) => {
+                                //       return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
+                                //     })}
+                                //   </Select>
+                                //   <div>
+                                //     <Button
+                                //       type='primary'
+                                //       loading={props.addingLocationInOrder}
+                                //       onClick={() => {
+                                //         props.addDeliveryDate({
+                                //           transferInd: 2,
+                                //           inspectionInd: 3,
+                                //           locationId: locationValue,
+                                //           userId: props.userId,
+                                //           orderPhoneId: item.orderPhoneId
+                                //         }, handleCallback())
+                                //       }}>Save</Button>
+                                //     <Button onClick={handlelocation}>Cancel</Button>
+                                //   </div>
+                                // </>
+                                // :
+                                item.productionLocationName}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -226,9 +228,18 @@ const ReceivedTable = (props) => {
                                 : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
                                     className="cursor-pointer text-base"
+                                    // onClick={() => {
+                                    //   handleRowData(item)
+                                    //   handlelocation();
+                                    // }}
                                     onClick={() => {
-                                      handleRowData(item)
-                                      handlelocation();
+                                      props.addDeliveryDate({
+                                        transferInd: 2,
+                                        inspectionInd: 3,
+                                        locationId: props.locationDetailsId,
+                                        userId: props.userId,
+                                        orderPhoneId: item.orderPhoneId
+                                      }, handleCallback())
                                     }}
                                   >
                                     Send To Store

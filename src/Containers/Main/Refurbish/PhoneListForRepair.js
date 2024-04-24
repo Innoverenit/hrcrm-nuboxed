@@ -150,8 +150,8 @@ function PhoneListForRepair(props) {
                         <div className="w-[5.3rem]"></div>
                         <div className="w-[6.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <FormattedMessage
-                                id="app.totalhr"
-                                defaultMessage="Total Hours"
+                                id="app.estimate"
+                                defaultMessage="Estimate"
                             />
                         </div>
                         <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -164,13 +164,10 @@ function PhoneListForRepair(props) {
                         /></div>
 
                         <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.actualeffort"
-                            defaultMessage="actualeffort"
-                        /></div>
-                        <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.workduration"
+                            id="app.tat"
                             defaultMessage="TAT"
                         /></div>
+
                         <div className="w-[5.01rem]"></div>
                         <div className="w-[5.02rem]"></div>
                         <div className="w-[5.03rem]"></div>
@@ -240,17 +237,18 @@ function PhoneListForRepair(props) {
                                             <div className=" flex font-medium  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
-
-                                                        <PlayCircleFilledSharp
-                                                            // class=" cursor-pointer"
-                                                            onClick={() => {
-                                                                let data = {
-                                                                    userId: props.userId,
-                                                                    phoneId: item.phoneId,
-                                                                    pauseInd: false
-                                                                }
-                                                                props.updatePauseStatus(data)
-                                                            }} />
+                                                        <Tooltip title="Pause">
+                                                            <PlayCircleFilledSharp
+                                                                // class=" cursor-pointer"
+                                                                onClick={() => {
+                                                                    let data = {
+                                                                        userId: props.userId,
+                                                                        phoneId: item.phoneId,
+                                                                        pauseInd: false
+                                                                    }
+                                                                    props.updatePauseStatus(data)
+                                                                }} />
+                                                        </Tooltip>
                                                     }
                                                     {item.repairStatus === "To Start" && <StatusIcon
                                                         type="In Progress"
@@ -266,18 +264,19 @@ function PhoneListForRepair(props) {
                                                         }}
                                                     />}
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false &&
-
-                                                        <PauseCircleFilled
-                                                            class=" cursor-pointer text-orange-400"
-                                                            onClick={() => {
-                                                                let data = {
-                                                                    userId: props.userId,
-                                                                    phoneId: item.phoneId,
-                                                                    pauseInd: true
-                                                                }
-                                                                props.updatePauseStatus(data)
-                                                            }}
-                                                        />
+                                                        <Tooltip title="Resume">
+                                                            <PauseCircleFilled
+                                                                class=" cursor-pointer text-orange-400"
+                                                                onClick={() => {
+                                                                    let data = {
+                                                                        userId: props.userId,
+                                                                        phoneId: item.phoneId,
+                                                                        pauseInd: true
+                                                                    }
+                                                                    props.updatePauseStatus(data)
+                                                                }}
+                                                            />
+                                                        </Tooltip>
                                                     }
 
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
@@ -319,20 +318,14 @@ function PhoneListForRepair(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium w-[6.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.estimateRepairTimeHours || "0"}H:{item.estimateRepairTimeMinutes || "0"}M:{item.estimateRepairTimeSeconds || "0"}S
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                                             <div className=" flex font-medium w-[5.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">

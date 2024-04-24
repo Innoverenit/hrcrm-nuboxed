@@ -1091,6 +1091,12 @@ export const handlePaidModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleOrderPickupModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_PICKUP_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const handleOrderPaymentModal = (modalProps) => (dispatch) => {
   dispatch({
@@ -2142,6 +2148,11 @@ export const addSupervisor = (data, orderPhoneId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Supervisor Tagged',
+        showConfirmButton: true,
+      })
       dispatch({
         type: types.ADD_SUPERVISOR_SUCCESS,
         payload: res.data,

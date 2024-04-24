@@ -9,10 +9,12 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddPickupModal from "./AddPickupModal"
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
     getDistributorOrderByDistributorId,
     handleInventoryLocationInOrder,
+    handleOrderPickupModal,
     handleOrderDetailsModal,
     handleNotesModalInOrder,
     handlePaidModal,
@@ -24,7 +26,6 @@ import {
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
-    addLocationInOrder,
     updateSubOrderAwb,
 } from "../../AccountAction";
 import { FormattedMessage } from 'react-intl';
@@ -68,16 +69,7 @@ const AccountOrderTable = (props) => {
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
-    function handleChangeLocation(id) {
-        setLocationValue(id)
-    }
-    function handlelocation() {
-        setLocationChange(!locationChange);
-    }
-    function handleCallback() {
-        setLocationChange(false)
-        setLocationValue("")
-    }
+
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
@@ -178,7 +170,7 @@ const AccountOrderTable = (props) => {
                                 defaultMessage="Lead"
                             />
                         </div>
-                       
+
                         <div className=" md:w-[8.02rem]">
                             <FormattedMessage
                                 id="app.repair"
@@ -223,37 +215,37 @@ const AccountOrderTable = (props) => {
                                                         </Tooltip>
                                                     </div>
 
-                                                   
-                                                        <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                            <div class=" text-xs text-cardBody font-poppins">
-                                                                <Badge
-                                                                    class=" ml-2"
-                                                                    size="small"
-                                                                    count={item.count || 0}
-                                                                    overflowCount={999}
-                                                                >
-                                                                    <span
-                                                                        class="underline cursor-pointer text-[#1890ff]"
-                                                                        onClick={() => {
-                                                                            handleSetParticularOrderData(item);
-                                                                            props.handleOrderDetailsModal(true);
-                                                                        }}
-                                                                    >{item.newOrderNo}</span>
-                                                                </Badge>
-                                                                &nbsp;&nbsp;
-                                                                {date === currentdate ? (
-                                                                    <span
-                                                                        class="text-[tomato] font-bold">
-                                                                        {<FormattedMessage
-                                                                            id="app.new"
-                                                                            defaultMessage="New"
-                                                                        />}
-                                                                    </span>
-                                                                ) : null}
-                                                            </div>
+
+                                                    <div className="ml-1 font-medium flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.count || 0}
+                                                                overflowCount={999}
+                                                            >
+                                                                <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        props.handleOrderDetailsModal(true);
+                                                                    }}
+                                                                >{item.newOrderNo}</span>
+                                                            </Badge>
+                                                            &nbsp;&nbsp;
+                                                            {date === currentdate ? (
+                                                                <span
+                                                                    class="text-[tomato] font-bold">
+                                                                    {<FormattedMessage
+                                                                        id="app.new"
+                                                                        defaultMessage="New"
+                                                                    />}
+                                                                </span>
+                                                            ) : null}
                                                         </div>
-                                                        <div className=" flex font-medium  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                            </div>
+                                                    </div>
+                                                    <div className=" flex font-medium  md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    </div>
 
                                                     <div className=" flex font-medium  md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
@@ -269,7 +261,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             <Button
-                                                            style={{boxShadow:"#faad14 1px 2px 0px 0px"}}
+                                                                style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                 class=" bg-green-500"
                                                                 onClick={() => {
                                                                     handleCheckAwb();
@@ -358,40 +350,13 @@ const AccountOrderTable = (props) => {
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
-                                                        {locationChange && (item.orderId === particularRowData.orderId) ?
-                                                            <>
-                                                                <Select
-                                                                    value={locationValue}
-                                                                    onChange={(value) =>
-                                                                        handleChangeLocation(value)
-                                                                    }
-                                                                >
-                                                                    {props.locationlist.map((a) => {
-                                                                        return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                                                    })}
-                                                                </Select>
-                                                                <div>
-                                                                    <Button
-                                                                        type='primary'
-                                                                        loading={props.addingLocationInOrder}
-                                                                        onClick={() => {
-                                                                            props.addLocationInOrder({
-                                                                                transferInd: 1,
-                                                                                locationId: locationValue,
-                                                                                userId: props.userId,
-                                                                                orderPhoneId: item.orderId
-                                                                            }, props.distributorId, handleCallback())
-                                                                        }}>Save</Button>
-                                                                    <Button onClick={handlelocation}>Cancel</Button>
-                                                                </div>
-                                                            </>
-                                                            : item.locationName}
+                                                        {item.locationName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center">
                                                         <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
-                                                            {item.supervisorUserName ? item.supervisorUserName : "No Data"}
+                                                            {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -411,9 +376,8 @@ const AccountOrderTable = (props) => {
                                                                 type='primary'
                                                                 className="cursor-pointer text-sm bg-[#3096e9] text-white"
                                                                 onClick={() => {
-                                                                    handlelocation()
                                                                     handleSetParticularOrderData(item);
-                                                                    // props.handleInventoryLocationInOrder(true);
+                                                                    props.handleOrderPickupModal(true);
                                                                 }}
                                                             >
                                                                 <FormattedMessage
@@ -486,7 +450,7 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>}
-                                                       
+
                                                     </div>
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
@@ -512,9 +476,9 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                    <div>
+                                                        <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
                                                                 id="app.updateorder"
                                                                 defaultMessage="Update Order"
@@ -541,7 +505,7 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -566,6 +530,11 @@ const AccountOrderTable = (props) => {
                     particularRowData={particularRowData}
                     addInventoryInOrder={props.addInventoryInOrder}
                     handleInventoryLocationInOrder={props.handleInventoryLocationInOrder}
+                />
+                <AddPickupModal
+                    handleOrderPickupModal={props.handleOrderPickupModal}
+                    addpickupLocation={props.addpickupLocation}
+                    particularRowData={particularRowData}
                 />
                 <AddNotesOrderModal
                     particularRowData={particularRowData}
@@ -614,7 +583,8 @@ const mapStateToProps = ({ distributor, auth, departments }) => ({
     updateOrderModal: distributor.updateOrderModal,
     addPaidButtonModal: distributor.addPaidButtonModal,
     orgId: auth.userDetails.organizationId,
-    locationlist: distributor.locationlist,
+    addpickupLocation: distributor.addpickupLocation,
+
     userId: auth.userDetails.userId,
 
     updatingSuborderAwb: distributor.updatingSuborderAwb,
@@ -632,10 +602,10 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     handleAccountProduction,
     handleUpdateOrder,
     setEditOrder,
+    handleOrderPickupModal,
     removeOrderAcc,
     deleteDistributorData,
     getLocationList,
-    addLocationInOrder,
     updateSubOrderAwb,
 }, dispatch);
 

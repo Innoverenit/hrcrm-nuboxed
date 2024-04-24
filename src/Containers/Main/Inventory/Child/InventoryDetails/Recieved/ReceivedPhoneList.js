@@ -93,6 +93,7 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveIMEI"
                                     label="IMEI"
+                                    disabled
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}

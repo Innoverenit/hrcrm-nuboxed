@@ -188,7 +188,7 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                {department && technician && dueDate && checkedValue && <Button
+                {department && technician && dueDate && rowSelection.length && <Button
                     loading={props.updatingtechnicianByPhone}
                     type='primary'
                     // disabled={!department && !technician && !dueDate && !checkedValue}

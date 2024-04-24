@@ -231,22 +231,6 @@ function AccountTable(props) {
 
                               </div>
                             </div>
-                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
-                              <div class=" text-xs text-cardBody font-poppins">
-                                <Popconfirm
-                                  title="Do you want to delete?"
-                                  onConfirm={() => props.deleteDistributor({}, item.distributorId)}
-                                >
-                                  <DeleteOutlined
-                                    className=" !text-base cursor-pointer text-[red]"
-                                  />
-                                </Popconfirm>
-                              </div>
-
-
-                            </div>
-                          </div>
-                          <div class="flex md:flex-col">
                             <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Tooltip title="Pulse">
@@ -260,6 +244,9 @@ function AccountTable(props) {
                                 </Tooltip>
                               </div>
                             </div>
+                          </div>
+                          <div class="flex md:flex-col">
+
                             <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Tooltip title="Edit">
@@ -273,6 +260,20 @@ function AccountTable(props) {
                                   />
 
                                 </Tooltip>
+                              </div>
+
+
+                            </div>
+                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div class=" text-xs text-cardBody font-poppins">
+                                <Popconfirm
+                                  title="Do you want to delete?"
+                                  onConfirm={() => props.deleteDistributor({}, item.distributorId)}
+                                >
+                                  <DeleteOutlined
+                                    className=" !text-base cursor-pointer text-[red]"
+                                  />
+                                </Popconfirm>
                               </div>
 
 

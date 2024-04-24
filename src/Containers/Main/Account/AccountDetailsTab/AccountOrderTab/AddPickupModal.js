@@ -1,27 +1,26 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-// import CardContainer from "./CardContainer";
-const LocationOrderForm = lazy(() => import("./LocationOrderForm"));
+// const OrderPickUpForm = lazy(() => import("./OrderPickUpForm"));
 
-const AddLocationInOrder = (props) => {
+const AddPickupModal = (props) => {
     const { ...formProps } = props;
     return (
         <>
             <StyledDrawer
-                title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
+                title={`Pickup Location - ${props.particularRowData.newOrderNo}`}
                 width="40vw"
-                visible={props.addInventoryInOrder}
-                onClose={() => props.handleInventoryLocationInOrder(false)}
+                visible={props.addpickupLocation}
+                onClose={() => props.handleOrderPickupModal(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                     {/* <CardContainer /> */}
-                    <LocationOrderForm particularRowData={props.particularRowData} />
+                    {/* <OrderPickUpForm particularRowData={props.particularRowData} /> */}
                 </Suspense>
             </StyledDrawer>
         </>
     );
 };
 
-export default AddLocationInOrder;
+export default AddPickupModal;

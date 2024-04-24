@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Tooltip, Button, Badge } from "antd";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {
     getProductionOrderId,
     handleProductionNotesModal,
@@ -24,6 +25,7 @@ import { HistoryOutlined } from "@ant-design/icons";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category'
 import InfiniteScroll from "react-infinite-scroll-component";
+import { BorderColorOutlined } from "@mui/icons-material";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -76,19 +78,19 @@ const ProductionOrderList = (props) => {
                         /> </div>
                         <div className="w-[5.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.assigned"
-                            defaultMessage="Assigned To"
+                            defaultMessage="Assigned"
                         /> </div>
                         <div className="w-[3.61rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
                         /> </div>
-                        {/* <div className="md:w-[5.8rem]"><FormattedMessage
-                        id="app.balance"
-                        defaultMessage="balance"
-                      /></div> */}
+                        <div className="md:w-[5.8rem]"><FormattedMessage
+                            id="app.final"
+                            defaultMessage="final"
+                        /></div>
                         <div className="w-[8.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.expectedprice"
-                            defaultMessage="expectedprice"
+                            id="app.quoted"
+                            defaultMessage="Quoted"
                         /></div>
                         <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.deliverydate"
@@ -187,17 +189,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[5.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs cursor-pointer text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Button
-                                                        type="primary"
-                                                        onClick={() => {
-                                                            handleRowData(item);
-                                                            props.handleAllSpareList(true)
-                                                        }}
-                                                    ><CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares</Button>
-                                                </div>
-                                            </div>
+
                                             <div className=" flex font-medium  w-[8.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 1 ?
@@ -213,7 +205,9 @@ const ProductionOrderList = (props) => {
                                                         </Tooltip>
                                                         // </Badge>
                                                         : item.qcStartInd === 2 ? <b>QC Assigned</b>
-                                                            : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>QC on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                            : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>
+                                                                QC <CheckCircleIcon />
+                                                                {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[6.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -229,7 +223,8 @@ const ProductionOrderList = (props) => {
                                                             >Assign For Repair</Button>
                                                         </Tooltip>
                                                         : item.qcRepairInd === 2 ? <b>Repair Assigned</b>
-                                                            : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair on {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                            : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair
+                                                                <CheckCircleIcon /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
                                         </div>
@@ -251,8 +246,8 @@ const ProductionOrderList = (props) => {
                                             </div>
                                             <div className=" flex font-medium  w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="History">
-                                                        <HistoryOutlined
+                                                    <Tooltip title="Update">
+                                                        <BorderColorOutlined
                                                             className="text-base cursor-pointer"
                                                             onClick={() => {
                                                                 props.handleTechnicianModal(true)

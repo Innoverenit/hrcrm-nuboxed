@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledTabs } from "../../../Components/UI/Antd";
 import { Avatar, Tooltip } from "antd";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import TocIcon from '@mui/icons-material/Toc';
-import GridViewIcon from '@mui/icons-material/GridView';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 
 class RefurbishActionLeft extends Component {
   constructor(props) {
@@ -37,25 +35,21 @@ class RefurbishActionLeft extends Component {
               }}
             >
               <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                <TocIcon className="text-white" /></Avatar>
+                <HomeRepairServiceIcon className="text-white" /></Avatar>
 
             </span>
           </Tooltip>
-          {/* {user.designation === "Manager" && */}
-          <Tooltip title="All Orders">
-            <span class=" md:mr-2 text-sm cursor-pointer"
-              onClick={() => setProductionViewType("all")}
-              style={{
-                color: viewType === "all" && "#1890ff",
-              }}
-            >
-              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <div className="text-white">ALL</div></Avatar>
 
-            </span>
-          </Tooltip>
-          {/* } */}
+          <span class=" md:mr-2 text-sm cursor-pointer"
+            onClick={() => setProductionViewType("all")}
+            style={{
+              color: viewType === "all" && "#1890ff",
+            }}
+          >
+            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <div className="text-white">ALL</div></Avatar>
 
+          </span>
         </FlexContainer>
 
       </>
