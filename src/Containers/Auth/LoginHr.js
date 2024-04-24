@@ -95,18 +95,18 @@ class LoginHr extends Component {
               margin: "auto",
             }}
           >
-            {/* <img
+            <img
               className="big-logo"
               src={FWLogo2}
               style={{ width: 200 }}
               alt="Tekorero logo"
-            /> */}
-            <img
+            />
+            {/* <img
               className="big-logo"
               src={inno}
               style={{ width: 200 }}
               alt="Tekorero logo"
-            />
+            /> */}
             <br />
 
             <FormWrapper width="25em">
