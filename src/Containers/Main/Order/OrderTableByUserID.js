@@ -352,7 +352,7 @@ const mapDispatchToProps = (dispatch) =>
       handleNotesModalInOrder,
       handleStatusOfOrder,
       handlePaidModal,
-      handleOrderDetailsModal
+     handleOrderDetailsModal 
     },
     dispatch
   );

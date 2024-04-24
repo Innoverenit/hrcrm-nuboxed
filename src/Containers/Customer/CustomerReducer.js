@@ -50,6 +50,9 @@ const initialState = {
   fetchingCustomerProjectError: false,
   customerProject: [],
 
+  updatingActivityTaskForm: false,
+  updatingActivityTaskFormError: false,
+
 
   fetchingCustOpenOppJumpstart: false,
   fetchingCustOpenOppJumpstartError: false,
@@ -260,6 +263,9 @@ const initialState = {
   deleteDocument: false,
   deleteDocumentError: false,
 
+  updatingActivityCallForm: false,
+  updatingActivityCallFormError: false,
+
   addCustomerSpeechModal: false,
   addDrawerCustomerModal: false,
   customerDrawerProps: {},
@@ -297,6 +303,8 @@ const initialState = {
   fetchingCustomerRecruitError: false,
   customerRecruit: [],
 
+  setActivityEditingEvents:{},
+
   fetchingAllCustomerByCloser: false,
   fetchingAllCustomerByCloserError: false,
 
@@ -307,6 +315,9 @@ const initialState = {
   fetchingContactValue: false,
   fetchingContactValueError: false,
   contactValue: {},
+
+  updatingActivityEventForm: false,
+  updatingActivityEventFormError: false,
 
   linkedProjectTask: false,
   linkedProjectTaskError: false,
@@ -2231,6 +2242,83 @@ export const customerReducer = (state = initialState, action) => {
 
       case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
         return { ...state, addCustomerActivityDrawerModal: action.payload };
+
+
+        case types.UPDATE_ACTIVITY_CALL_FORM_REQUEST:
+          return { ...state, updatingActivityCallForm: true };
+      case types.UPDATE_ACTIVITY_CALL_FORM_SUCCESS:
+          return {
+              ...state,
+              updatingActivityCallForm: false,
+              addCustomerActivityDrawerModal: false,
+              customerActivityTimeline: state.customerActivityTimeline.map((item) => {
+                  if (item.callId == action.payload.callId) {
+                      return action.payload;
+                  } else {
+                      return item;
+                  }
+              }),
+        
+          };
+      case types.UPDATE_ACTIVITY_CALL_FORM_FAILURE:
+          return {
+              ...state,
+              updatingActivityCallForm: false,
+              updatingActivityCallFormError: true,
+          };
+
+
+          
+        case types.UPDATE_ACTIVITY_TASK_FORM_REQUEST:
+          return { ...state, updatingActivityTaskForm: true };
+      case types.UPDATE_ACTIVITY_TASK_FORM_SUCCESS:
+          return {
+              ...state,
+              updatingActivityTaskForm: false,
+              addCustomerActivityDrawerModal: false,
+              customerActivityTimeline: state.customerActivityTimeline.map((item) => {
+                  if (item.taskId == action.payload.taskId) {
+                      return action.payload;
+                  } else {
+                      return item;
+                  }
+              }),
+        
+          };
+      case types.UPDATE_ACTIVITY_TASK_FORM_FAILURE:
+          return {
+              ...state,
+              updatingActivityTaskForm: false,
+              updatingActivityTaskFormError: true,
+          };
+
+          case types.UPDATE_ACTIVITY_EVENT_FORM_REQUEST:
+            return { ...state, updatingActivityEventForm: true };
+        case types.UPDATE_ACTIVITY_EVENT_FORM_SUCCESS:
+            return {
+                ...state,
+                updatingActivityEventForm: false,
+                addCustomerActivityDrawerModal: false,
+                customerActivityTimeline: state.customerActivityTimeline.map((item) => {
+                    if (item.eventId == action.payload.eventId) {
+                        return action.payload;
+                    } else {
+                        return item;
+                    }
+                }),
+          
+            };
+        case types.UPDATE_ACTIVITY_EVENT_FORM_FAILURE:
+            return {
+                ...state,
+                updatingActivityEventForm: false,
+                updatingActivityEventFormError: true,
+            };
+
+            case types.SET_ACTIVITY_EVENTS_EDIT:
+              return { ...state, setActivityEditingEvents: action.payload };
+        
+    
   
 
     default:

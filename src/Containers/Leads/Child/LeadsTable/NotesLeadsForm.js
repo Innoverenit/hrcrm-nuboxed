@@ -17,7 +17,7 @@ class NotesLeadsForm extends Component {
 
   render() {
     const { fetchingNotesListOfLeads, notesListOfLeads } = this.props;
-
+    console.log(this.props.rowdata.leadsId)
     return (
       <>
         <div style={{ backgroundColor: "#dcdcdc" }}>

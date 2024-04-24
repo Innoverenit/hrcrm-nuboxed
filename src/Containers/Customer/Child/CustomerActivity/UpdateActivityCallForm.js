@@ -22,7 +22,7 @@ import {
   deleteCall,
   handleCallModal,
 } from "../../../Call/CallAction";
-import {addCustomerActivityCall} from "../../../Customer/CustomerAction"
+import {updateActivityCallForm} from "../../../Customer/CustomerAction"
 import {getAllCustomerData} from "../../../Customer/CustomerAction"
 import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
@@ -169,10 +169,10 @@ function UpdateActivityCallForm(props) {
       user: { userId, firstName, middleName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCustomerActivityCall,
+      updateActivityCallForm,
+      updatingActivityCallForm,
       deleteCall,
       deletingCall,
-      addCustomerActivityCall,
       startDate,
       endDate,
       startTime,
@@ -329,7 +329,7 @@ function UpdateActivityCallForm(props) {
                 () => handleCallback(resetForm)
               )
               :
-               addCustomerActivityCall(testVal,
+              updateActivityCallForm(testVal,props.selectedStatus.callId,
                 () => handleCallback(resetForm));
           }}
         >
@@ -918,7 +918,7 @@ function UpdateActivityCallForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingCall : addingCustomerActivityCall}
+                  loading={isEditing ? updatingCall : updatingActivityCallForm}
                 >
                   {isEditing ? (
                     "Update"
@@ -937,7 +937,7 @@ function UpdateActivityCallForm(props) {
   }
 
 const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCustomerActivityCall: customer.addingCustomerActivityCall,
+  updatingActivityCallForm: customer.updatingActivityCallForm,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
@@ -956,7 +956,7 @@ const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addCustomerActivityCall,
+      updateActivityCallForm,
       getAllCustomerData,
       handleChooserModal,
       getAllSalesList,
