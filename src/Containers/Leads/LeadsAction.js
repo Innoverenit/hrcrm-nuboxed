@@ -1546,38 +1546,63 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const removeLeadsNote = ( data,orgId) => (dispatch) => {
-    // console.log(typeId);
+  export const removeLeadsNote = (data,leadsId) => (dispatch) => {
     dispatch({
       type: types.REMOVE_LEADS_NOTE_REQUEST,
     });
     axios
-    .put(
-      `${base_url}/employee/notes`,
-     data,
-      {
+      .put(`${base_url}/employee/delete/notes`,data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
-      }
-    )
+      })
       .then((res) => {
-        // dispatch(getSectorCount(orgId));
-        Swal.fire({
-          icon: 'success',
-          title: 'Note deleted Successfully!',
-        })
-        console.log(res);
+        // dispatch(getCallTimeline(leadsId));
         dispatch({
           type: types.REMOVE_LEADS_NOTE_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+    
         dispatch({
           type: types.REMOVE_LEADS_NOTE_FAILURE,
+          payload: err,
         });
       });
   };
+  export const updateLeadsNote = (data,leadsId) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_REQUEST,
+    });
+    axios
+      .put(`${base_url}/employee/notes`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // dispatch(getCallTimeline(leadsId));
+        dispatch({
+          type: types.UPDATE_LEADS_NOTE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+    
+        dispatch({
+          type: types.UPDATE_LEADS_NOTE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  
+  export const updateLeadsNoteDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+  
 

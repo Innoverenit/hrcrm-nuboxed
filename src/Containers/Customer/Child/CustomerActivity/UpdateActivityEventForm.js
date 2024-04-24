@@ -23,7 +23,7 @@ import {
   updateEvent,
   handleEventModal,
 } from "../../../Event/EventAction";
-import {addCustomerActivityEvent} from "../../../Customer/CustomerAction"
+import {updateActivityEventForm} from "../../../Customer/CustomerAction"
 import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -114,8 +114,8 @@ const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingCustomerActivityEvent,
-      addCustomerActivityEvent,
+      updatingActivityEventForm,
+      updateActivityEventForm,
       deletingEvent,
       deleteEvent,
       startDate,
@@ -263,23 +263,23 @@ const {
                   handleCallback
                 )
               : 
-              // addCustomerActivityEvent(
-              //     {
-              //       ...values,
-              //       contact: values.contact,
-              //       // contact: values.contactId,
-              //       opportunity: values.opportunity,
-              //       customer: props.customer.customerId,
-              //       // ownerIds: userId === userId ? [userId] : [],
-              //       startDate: `${newStartDate}T${newStartTime}`,
-              //       endDate: `${newEndDate}T${newEndTime}`,
-              //       startTime: 0,
-              //       endTime: 0,
-              //       remindInd: reminder ? true : false,
-              //       assignedTo: selectedOption ? selectedOption.employeeId:userId,
-              //     },
-              //     handleCallback
-              //   );
+              updateActivityEventForm(
+                  {
+                    ...values,
+                    contact: values.contact,
+                    // contact: values.contactId,
+                    opportunity: values.opportunity,
+                    customer: props.customer.customerId,
+                    // ownerIds: userId === userId ? [userId] : [],
+                    startDate: `${newStartDate}T${newStartTime}`,
+                    endDate: `${newEndDate}T${newEndTime}`,
+                    startTime: 0,
+                    endTime: 0,
+                    remindInd: reminder ? true : false,
+                    assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                  },props.selectedStatus.eventId,
+                  handleCallback
+                );
             !isEditing && resetForm();
           }}
         >
@@ -764,7 +764,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingEvent : addingCustomerActivityEvent}
+                  loading={isEditing ? updatingEvent : updatingActivityEventForm}
                 >
                   {isEditing ? (
                     "Update"
@@ -782,7 +782,7 @@ const {
     );
 }
 const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingCustomerActivityEvent: customer.addingCustomerActivityEvent,
+  updatingActivityEventForm: customer.updatingActivityEventForm,
   assignedToList:employee.assignedToList,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
@@ -790,6 +790,7 @@ const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, c
   updatingEvent: event.updatingEvent,
   user: auth.userDetails,
   orgId: auth.userDetails.organizationId,
+  setActivityEditingEvents:event.setActivityEditingEvents,
   deletingEvent: event.deleteEvent,
   sales: opportunity.sales,
   candidateId: candidate.clearbitCandidate.candidateId,
@@ -799,7 +800,7 @@ const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, c
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addCustomerActivityEvent,
+      updateActivityEventForm,
       deleteEvent,
       updateEvent,
       getAssignedToList,

@@ -10,7 +10,7 @@ import UpdateActivityEventForm from "./UpdateActivityEventForm";
 class AddCustomerActivityDrawerModal extends Component {
 
   render() {
-    const { selectedStatus } = this.props;
+    const { selectedStatus,...formProps } = this.props;
         let title = "Default Title";
     if (selectedStatus) {
       switch (selectedStatus.category) {
@@ -46,7 +46,7 @@ class AddCustomerActivityDrawerModal extends Component {
               <UpdateActivityTaskForm selectedStatus={selectedStatus}  customer={this.props.customer} customerNoteList={this.props.customerNoteList} />
             )}
              {selectedStatus && selectedStatus.category === "Event" && (
-              <UpdateActivityEventForm selectedStatus={selectedStatus}   customer={this.props.customer} customerNoteList={this.props.customerNoteList} />
+              <UpdateActivityEventForm selectedStatus={selectedStatus}   customer={this.props.customer} customerNoteList={this.props.customerNoteList} {...formProps}/>
             )}
           </Suspense>
         </StyledDrawer>

@@ -7,7 +7,9 @@ import { bindActionCreators } from 'redux';
 import { DeleteOutlined } from "@ant-design/icons";
 import NotesProspectForm from "../CustomerDetail/NotesProspectForm"
 import moment from 'moment';
-import { getCustomerActivityTimeline, getCustomerNoteList, getCustomerActivityRecords, handleCustomerNoteDrawerModal, handleCustomerActivityModal } from '../../CustomerAction';
+import { getCustomerActivityTimeline,
+  setEditActivityEvents,
+   getCustomerNoteList, getCustomerActivityRecords, handleCustomerNoteDrawerModal, handleCustomerActivityModal } from '../../CustomerAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
 
@@ -64,7 +66,9 @@ const CustomerActivityTable = (props) => {
                   <Tooltip title="Edit">
                     <BorderColorIcon
                       className="!text-xl cursor-pointer text-[tomato]"
-                      onClick={() => handleEditClick(status)}
+                      onClick={() => {handleEditClick(status)
+                        props.setEditActivityEvents(status)
+                      }}
                     />
                   </Tooltip>
                 </div>
@@ -106,7 +110,8 @@ const mapDispatchToProps = (dispatch) =>
         getCustomerActivityRecords,
         handleCustomerNoteDrawerModal,
         handleCustomerActivityModal,
-        getCustomerNoteList
+        getCustomerNoteList,
+        setEditActivityEvents
     },
     dispatch
   );

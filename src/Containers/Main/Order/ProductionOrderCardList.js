@@ -11,16 +11,34 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
     getProductionOrder,
+    handleNotesModalInOrder,
+  handlePaidModal
 } from "../Order/OrderAction";
+import { handleOrderDetailsModal } from "../Account/AccountAction";
 import { FormattedMessage } from "react-intl";
+import moment from "moment";
+import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
+import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
+import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 
 function ProductionOrderCardList(props) {
-
+  const [particularRowData, setParticularRowData] = useState({});
     const [page, setPage] = useState(0);
+    const [show, setshow] = useState(false);
+    const [orderId, setorderId] = useState("");
     useEffect(() => {
       props.getProductionOrder(props.userId, page);
       setPage(page + 1);
     }, []);
+
+    function handleSetParticularOrderData(item, data) {
+      console.log(item);
+      setParticularRowData(item);
+    }
+    function handleOrder(orderId) {
+      setshow(true);
+      setorderId(orderId);
+    }
     const [hasMore, setHasMore] = useState(true);
 
     const handleLoadMore = () => {
@@ -48,23 +66,23 @@ console.log(page)
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.order#"
                 defaultMessage="Order#"
               />
             </div>
-            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[9.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
-                id="app.created"
-                defaultMessage="Created (Name & Date)"
+                id="app.created(name & date)"
+                defaultMessage="Created(Name & Date)"
               />
 
             </div>
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
               <FormattedMessage
-                id="app.statusOrder"
-                defaultMessage="Status Order"
+                id="app.status"
+                defaultMessage="Status"
               />
 
             </div>
@@ -82,7 +100,7 @@ console.log(page)
             {!fetchingProductionOrder && productionOrder.length === 0 ? <NodataFoundPage /> : productionOrder.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-              const countryCode = item.address[0].countryAlpha2Code
+             
               const diff = Math.abs(
                 dayjs().diff(dayjs(item.lastRequirementOn), "days")
               );
@@ -101,7 +119,7 @@ console.log(page)
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                     
                           <div class="w-[4%]"></div>
@@ -111,9 +129,28 @@ console.log(page)
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class="flex text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
-                                    {item.newOrderNo}
-                                  </Link>
+                                <span
+                              class="underline cursor-pointer text-[#1890ff]"
+                              onClick={() => {
+                                handleOrder(item.orderId);
+                                handleSetParticularOrderData(item);
+                                props.handleOrderDetailsModal(true);
+                              }}
+
+                            >{`${item.newOrderNo} `}
+
+                              &nbsp;&nbsp;
+                              {date === currentdate ? (
+                                <span
+                                  style={{
+                                    color: "tomato",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  New
+                                </span>
+                              ) : null}
+                            </span>
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
@@ -128,11 +165,11 @@ console.log(page)
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[18.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {`${item.date}`}
+                          {` ${item.userName} ${moment(item.creationDate).format('DD/MM/YYYY')}`}
                         </div>
 
                       </div>
@@ -140,12 +177,12 @@ console.log(page)
 
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.statusOrder}
+                          {item.status}
                         </div>
 
                       </div>
                     </div>
-                  
+                  <div class=" flex">
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
                           {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
@@ -153,11 +190,11 @@ console.log(page)
                             <Tooltip title="Notes">
                               <NoteAltIcon
                                 style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
-                                // onClick={() => {
+                                onClick={() => {
 
-                                //   props.handleNotesModalInOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
+                                  props.handleNotesModalInOrder(true);
+                                  handleSetParticularOrderData(item);
+                                }}
                               />
 
                             </Tooltip>
@@ -167,31 +204,31 @@ console.log(page)
                         </div>
 
 
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        {/* <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <h4 class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Status">
                               <EventRepeatIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handleStatusOfOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
+                                onClick={() => {
+                                  props.handleStatusOfOrder(true);
+                                  handleSetParticularOrderData(item);
+                                }}
                               />
                             </Tooltip>
                           </h4>
-                          {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+                        
 
 
-                        </div>
+                        </div> */}
                         <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <h4 class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Collection">
                               <PaidIcon
                                 style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handlePaidModal(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
+                                onClick={() => {
+                                  props.handlePaidModal(true);
+                                  handleSetParticularOrderData(item);
+                                }}
                               // style={{ color: "blue" }}
                               />
                             </Tooltip>
@@ -200,6 +237,7 @@ console.log(page)
                           {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
 
 
+                        </div>
                         </div>
                   </div>
                 </div>
@@ -211,8 +249,21 @@ console.log(page)
         </div>
       </div>
 
-
-     
+      <AddNotesOrderDrawer
+        particularRowData={particularRowData}
+        addNotesInOrder={props.addNotesInOrder}
+        handleNotesModalInOrder={props.handleNotesModalInOrder}
+      />
+       <PaidButtonModal
+                    type={props.type}
+                    addPaidButtonModal={props.addPaidButtonModal}
+                    handlePaidModal={props.handlePaidModal}
+                    particularRowData={particularRowData}
+                />
+                      <AccountOrderDetailsModal
+        particularRowData={particularRowData}
+        handleOrderDetailsModal={props.handleOrderDetailsModal}
+        addOrderDetailsModal={props.addOrderDetailsModal} />
   
     </>
   );
@@ -221,6 +272,7 @@ console.log(page)
 const mapStateToProps = ({
   auth,
   order,
+  distributor,
   sector,
   opportunity,
   employee,
@@ -228,11 +280,23 @@ const mapStateToProps = ({
     productionOrder:order.productionOrder,
     userId: auth.userDetails.userId,
     fetchingProductionOrder:order.fetchingProductionOrder,
+    allOrderList: order.allOrderList,
+    addPaidButtonModal: order.addPaidButtonModal,
+    addStatusOfOrder: order.addStatusOfOrder,
+    addNotesInOrder: order.addNotesInOrder,
+    fetchingOrderByIdError: order.fetchingOrderByIdError,
+    fetchingOrderById: order.fetchingOrderById,
+    userId: auth.userDetails.userId,
+    addOrderDetailsModal: distributor.addOrderDetailsModal,
+    orderShowById: order.orderShowById,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getProductionOrder,
+        handleNotesModalInOrder,
+        handlePaidModal,
+        handleOrderDetailsModal
     
      
     },

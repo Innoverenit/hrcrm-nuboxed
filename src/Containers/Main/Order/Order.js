@@ -36,6 +36,7 @@ class Order extends Component {
         />
 
         <Suspense fallback={<BundleLoader />}>
+          
           {this.props.viewType === "list" ? (
             <OrderTableByUserID
             />
@@ -56,6 +57,7 @@ class Order extends Component {
 
 const mapStateToProps = ({ order, auth }) => ({
   viewType: order.viewType,
+  user: auth.userDetails,
   userId: auth.userDetails.userId,
 });
 

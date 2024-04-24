@@ -18,9 +18,10 @@ const CallLeadsTable = (props) => {
   const { callTimeline, ratingValue } = props;
   const currentDate = moment().format("DD/MM/YYYY");
   if (props.fetchingCallTimelineStatus) return <BundleLoader/>;
-  const handleRowData = (data) => {
-    setrowdata(data);
+  const handleRowData = (status) => {
+    setrowdata(status);
   };
+  console.log(props.rowdata.leadsId)
   return (
     <div className="mt-4">
       <Timeline>
@@ -48,7 +49,7 @@ const CallLeadsTable = (props) => {
                     style={{ margin: '0 8px', padding: 0 }}
                     onClick={() => {
                       props.handleLeadsNoteDrawerModal(true);
-                      handleRowData(status);
+                       handleRowData(status);
                        props.getNotesListOfLeads(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null)
                     }}
                   >
@@ -60,7 +61,9 @@ const CallLeadsTable = (props) => {
           ))}
       </Timeline>
       <AddLeadsNotesListDrawerModal
-    rowdata={rowdata}
+    rowdata={props.rowdata}
+    handleRowData={handleRowData}
+    callTimeline={props.callTimeline}
     notesListOfLeads={props.notesListOfLeads}
        addLeadsNoteDrawerModal={props.addLeadsNoteDrawerModal}
        handleLeadsNoteDrawerModal={props.handleLeadsNoteDrawerModal

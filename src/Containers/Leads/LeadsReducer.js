@@ -156,6 +156,8 @@ const initialState = {
 
   addLeadsImportModal:false,
 
+  updatingLeadsNoteDrawerModal:false,
+
   updatingLeadsOpportunity: false,
   updatingLeadsOpportunityError: false,
   leadsOpportunityByUserId: [],
@@ -191,6 +193,9 @@ const initialState = {
   addSharingLeads: false,
   addSharingLeadsError: false,
 
+
+  updatingLeadsNote: false,
+  updatingLeadsNoteError: false,
 
   addingLeadsImportForm:false,
   addingLeadsImportFormError:false,
@@ -1082,8 +1087,11 @@ case types.HANDLE_LEADS_MODAL:
                                     ...state,
                                     removingLeadsNote: false,
                                   //   notesListOfLeads: state.notesListOfLeads.filter(
-                                  //     (item) => item.taskId !== action.payload
+                                  //     (item) => item.notesId !== action.payload
                                   // ), 
+                                    notesListOfLeads: state.notesListOfLeads.filter(
+                                      (item) => item.notesId !== action.payload.notesId
+                                    ),
                                   };
                                 case types.REMOVE_LEADS_NOTE_FAILURE:
                                   return {
@@ -1091,6 +1099,30 @@ case types.HANDLE_LEADS_MODAL:
                                     removingLeadsNote: false,
                                     removingLeadsNoteError: true,
                                   };
+
+                                  case types.UPDATE_LEADS_NOTE_REQUEST:
+                                    return { ...state, updatingLeadsNote: true };
+                                  case types.UPDATE_LEADS_NOTE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      updatingLeadsNote: false,
+                                      notesListOfLeads: state.notesListOfLeads.map((item) =>
+                                      item.notesId === action.payload.notesId
+                                        ? action.payload
+                                        : item
+                                    ),
+                                    };
+                                  case types.UPDATE_LEADS_NOTE_FAILURE:
+                                    return {
+                                      ...state,
+                                      updatingLeadsNote: false,
+                                      updatingLeadsNoteError: true,
+                                    };
+
+
+                                    case types.UPDATE_LEADS_NOTE_DRAWER_MODAL:
+                                      return { ...state, updatingLeadsNoteDrawerModal: action.payload };
+          
                       
 
 default:
