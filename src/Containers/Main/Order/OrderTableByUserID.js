@@ -67,11 +67,14 @@ function OrderTableByUserID(props) {
     <>
       <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[12rem]">Order ID</div>
-          <div className=" md:w-28">Customer</div>
-          <div className=" md:w-28 ">Contact</div>
-          <div className="md:w-32">#Phone</div>
-          <div className="md:w-[16rem]">Creation Date</div>
+          <div className=" md:w-[8rem]">Order ID</div>
+          <div className=" md:w-[5rem]">Customer</div>
+          <div className=" md:w-[3rem] ">Contact</div>
+          <div className="md:w-[7rem]">Units</div>
+          <div className="md:w-[2rem]">Owner</div>
+          <div className="md:w-[2rem]">Supervisor</div>
+          <div className="md:w-[3rem]">Lead</div>
+          <div className="md:w-[16rem]">Created</div>
           <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
@@ -114,7 +117,7 @@ function OrderTableByUserID(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-60">
+                        <div class="w-[9rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff]"
@@ -153,7 +156,7 @@ function OrderTableByUserID(props) {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-44 max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -169,15 +172,62 @@ function OrderTableByUserID(props) {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.noOfPhones}
                       </h4>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+             
+                   
+                  </div>
+                  <div class="flex flex-row items-center md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      <MultiAvatar2
+                          primaryTitle={item.userName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
+                      </div>
+
+
+
+                    </div>
+                  <div class=" flex">
+                  <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                        <MultiAvatar2
+                          primaryTitle={item.supervisorUserName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                        <MultiAvatar2
+                          primaryTitle={item.lead}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
+                      </div>
+
+
+
+                    </div>
+                  
+                    </div>
+                    <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <span>{date}</span>
                     </div>
-                  </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 

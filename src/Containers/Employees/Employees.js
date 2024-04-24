@@ -56,6 +56,7 @@ class Employees extends Component {
       this.setState({ filteredData: this.props.employees });
     }
   }
+
   componentDidMount(){
     this.props.getEmployeelist("cretiondate","active");
   }

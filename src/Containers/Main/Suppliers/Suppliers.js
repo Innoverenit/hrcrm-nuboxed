@@ -5,6 +5,7 @@ import { setSuppliersViewType } from "./SuppliersAction";
 import SuppliersHeader from "../../Main/Suppliers/SuppliersHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
+import SuppliersDeletedCardList from "./Child/SuppliersDeletedCardList";
 
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));
 const AllSuppliersCardList=lazy(()=>import("./Child/AllSuppliersCardList"));
@@ -32,6 +33,9 @@ class Suppliers extends Component {
           ) 
           : this.props.viewType==="all" ? (
             <AllSuppliersCardList/>
+          )
+          : this.props.viewType==="delete" ? (
+            <SuppliersDeletedCardList/>
           )
           :null}
         </Suspense>

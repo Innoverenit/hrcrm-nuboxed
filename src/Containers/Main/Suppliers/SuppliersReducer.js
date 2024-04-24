@@ -113,6 +113,8 @@ const initialState = {
   fetchingTermsnConditionOfPOError: true,
   termsnconditionofpo: [],
 
+  setEditingSuppliers:{},
+
   addSupplierCatalogueModal: false,
 
   updateSupplierModal: false,
@@ -120,6 +122,9 @@ const initialState = {
   fetchingSupplierDetailsBySupplierId: false,
   fetchingSupplierDetailsBySupplierIdError: true,
   supplierDetailById: [],
+
+  updateSuppliersById: false,
+  updateSuppliersByIdError: false,
 
   setEditingSupplier: {},
 
@@ -174,6 +179,10 @@ const initialState = {
 
   updatingSuppliersTask: false,
   updatingSuppliersTaskError: false,
+
+  fetchingSupplierDeletedList: false,
+  fetchingSupplierDeletedListError: false,
+  supplierDeletedList:[],
 
   fetchingAllSupplierListById: false,
   fetchingAllSupplierListByIdError: false,
@@ -1399,6 +1408,47 @@ export const suppliersReducer = (state = initialState, action) => {
         deletingSupplierData: false,
         deletingSupplierDataError: true,
       };
+
+          case types.UPDATE_SUPPLIERS_BY_ID_REQUEST:
+            return { ...state, updateSuppliersById: true };
+          case types.UPDATE_SUPPLIERS_BY_ID_SUCCESS:
+            return {
+              ...state,
+              updateSuppliersById: false,
+              updateSupplierModal: false,
+              supplierList: state.supplierList.map((item) => {
+                if (item.supplierId == action.payload.supplierId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            };
+          case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
+            return {
+              ...state,
+              updateSuppliersById: false,
+              updateSuppliersByIdError: true,
+            };
+
+            case types.SET_SUPPLIERS_EDIT:
+              return { ...state, setEditingSuppliers: action.payload };
+
+
+              case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:
+                return { ...state, fetchingSupplierDeletedList: true };
+              case types.GET_SUPPLIERS_DELETED_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSupplierDeletedList: false,
+                  supplierDeletedList:action.payload,
+                };
+              case types.GET_SUPPLIERS_DELETED_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingSupplierDeletedList: false,
+                  fetchingSupplierDeletedListError: true,
+                };
 
     default:
       return state;

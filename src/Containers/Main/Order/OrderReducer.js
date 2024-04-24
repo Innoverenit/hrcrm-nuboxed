@@ -14,6 +14,10 @@ const initialState = {
   fetchingOrderCountError: false,
   orderCount: {},
 
+  fetchingProductionOrder: false,
+  fetchingProductionOrderError: false,
+  productionOrder:[],
+
   fetchingOrderList: false,
   fetchingOrderListError: false,
   orderList: [],
@@ -310,6 +314,24 @@ export const orderReducer = (state = initialState, action) => {
 
     case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };
+
+
+      case types.GET_PRODUCTION_ORDER_REQUEST:
+        return { ...state, fetchingProductionOrder: true };
+      case types.GET_PRODUCTION_ORDER_SUCCESS:
+        return {
+          ...state,
+          fetchingProductionOrder: false,
+          productionOrder: [
+            ...state.productionOrder,
+            ...action.payload]
+        };
+      case types.GET_PRODUCTION_ORDER_FAILURE:
+        return {
+          ...state,
+          fetchingProductionOrder: false,
+          fetchingProductionOrderError: true,
+        };
     default:
       return state;
   }

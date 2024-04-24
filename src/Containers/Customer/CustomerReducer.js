@@ -426,6 +426,8 @@ const initialState = {
   fetchingCustomersListError: false,
   customerByList: [],
 
+  addCustomerActivityDrawerModal:false,
+
   fetchingAttendanceList: false,
   fetchingAttendanceListError: false,
   attendanceByList: [],
@@ -2226,6 +2228,10 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByInvestorId: false,
         fetchingDocumentsByInvestorIdError: true,
       };
+
+      case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
+        return { ...state, addCustomerActivityDrawerModal: action.payload };
+  
 
     default:
       return state;

@@ -2735,6 +2735,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       payload: modalProps,
     });
   };
+  export const handleCustomerActivityModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CUSTOMER_ACTIVITY_MODAL,
+      payload: modalProps,
+    });
+  };
+  
 
 
   export const handleCustomerContactJumpstartModal = (modalProps) => (dispatch) => {
@@ -2958,3 +2965,4 @@ export const getInvestorDocument = (investorId) => (dispatch) => {
       });
     });
 };
+

@@ -69,6 +69,8 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
 
   return (
     <FlexContainer alignItems="center">
+      <>
+      {user.productionInd === true && (
       <div className="">
         <Tooltip title="List View">
           <Badge
@@ -90,7 +92,51 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
+        <Tooltip title="Complete Orders">
+          <Badge
+            size="small"
+            // count={(viewType === "complete" && orderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => setOrderViewType("complete")}
+              style={{
+                color: viewType === "complete" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "complete" ? "#f279ab" : "#4bc076" }}>
+                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+        <Tooltip title="ALL">
+          <Badge
+            size="small"
+            count={(viewType === "all" && allOrderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => setOrderViewType("all")}
+              style={{
+                color: viewType === "all" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <div className="text-white">ALL</div></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
       </div>
+     
+     
+)}
+{user.repairInd === true && (
       <div className="">
         <Tooltip title="List View">
           <Badge
@@ -114,30 +160,6 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
-      </div>
-      <div className=" ">
-        <Tooltip title="Complete Orders">
-          <Badge
-            size="small"
-            // count={(viewType === "complete" && orderCount.order) || 0}
-
-            overflowCount={999}
-          >
-
-            <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("complete")}
-              style={{
-                color: viewType === "complete" && "#1890ff",
-              }}
-            >
-              <Avatar style={{ background: viewType === "complete" ? "#f279ab" : "#4bc076" }}>
-                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
-
-            </span>
-          </Badge>
-        </Tooltip>
-      </div>
-      <div className=" ">
         <Tooltip title="ALL">
           <Badge
             size="small"
@@ -158,8 +180,6 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
-      </div>
-      <div className=" ">
         <Tooltip title="All Complete Orders">
           <Badge
             size="small"
@@ -181,6 +201,10 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           </Badge>
         </Tooltip>
       </div>
+     
+  
+     
+      )}
       <div class=" w-64 max-sm:w-24">
         <Input
           placeholder="Search by Name or Sector"
@@ -190,6 +214,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
           onChange={handleChange}
           value={currentData}
         /></div>
+        </>
     </FlexContainer>
   );
 };

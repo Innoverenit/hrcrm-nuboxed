@@ -1398,7 +1398,7 @@ export const multiOrgStatus = (employeeId ,multyOrgAccessInd) => (
     type: types.MULTI_ORG_STATUS_REQUEST,
   });
   axios
-    .put(`${base_url}/multy-org-access-ind/employee/${employeeId}/${multyOrgAccessInd}`, {}, {
+    .put(`${base_url}/employee/multy-org-access-ind/${employeeId}/${multyOrgAccessInd}`, {}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
