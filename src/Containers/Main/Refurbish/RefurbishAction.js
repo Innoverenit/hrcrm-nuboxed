@@ -505,7 +505,7 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
       // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
-        title: 'Items Assigned To Technician',
+        title: 'Items Assigned For Repair',
         showConfirmButton: true,
       })
       dispatch({

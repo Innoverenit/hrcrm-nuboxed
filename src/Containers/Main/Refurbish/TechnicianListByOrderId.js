@@ -27,18 +27,40 @@ const TechnicianListByOrderId = (props) => {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
+                        <div className=" md:w-[12rem]"><FormattedMessage
                             id="app.name"
                             defaultMessage="Name"
-                        /></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
-                            id="app.mobile"
-                            defaultMessage="Mobile #"
-                        /></div>
-                        <div className="md:w-[8.12rem]"><FormattedMessage
-                            id="app.unit"
-                            defaultMessage="Units"
-                        /></div>
+                        />
+                        </div>
+                        <div className=" md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.mobile"
+                                defaultMessage="Mobile #"
+                            />
+                        </div>
+                        <div className="md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.totalUnit"
+                                defaultMessage="Total Unit"
+                            /></div>
+                        <div className=" md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.remaining"
+                                defaultMessage="Remaining"
+                            />
+                        </div>
+                        <div className=" md:w-[8rem]">
+
+                            <FormattedMessage
+                                id="app.InProgress"
+                                defaultMessage="In Progress"
+                            />
+                        </div>
+                        <div className="md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.complete"
+                                defaultMessage="Complete"
+                            /></div>
 
                     </div>
                     {props.technicianByID.map((item) => {

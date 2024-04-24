@@ -81,11 +81,7 @@ function OpenReceivedOrderIdForm(props) {
       dataIndex: "repairTechnicianName",
       width: "10%",
     },
-    {
-      title: "Received By",
-      dataIndex: "dispatchPhoneUserName",
-      width: "10%",
-    },
+
 
     {
       title: "QR",
@@ -162,6 +158,10 @@ function OpenReceivedOrderIdForm(props) {
           </Tooltip>
         );
       },
+    },
+    {
+      dataIndex: "dispatchPhoneUserName",
+      width: "10%",
     },
 
   ];

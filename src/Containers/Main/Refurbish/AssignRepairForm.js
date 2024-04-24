@@ -165,19 +165,13 @@ const AssignRepairForm = (props) => {
                         })}
                     </Select>
                 </div>
-                <div class=" w-1/5">
+                <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
-                    <Input
-                        className="w-[150px]"
-                    // value={ }
-                    />
+                    <div class=" text-base"></div>
                 </div>
-                <div class=" w-1/5">
+                <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">Quality</label>
-                    <Input
-                        className="w-[150px]"
-                    // value={ }
-                    />
+                    <div class=" text-base"></div>
                 </div>
                 <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Due Date</label>

@@ -1,5 +1,5 @@
 import React, { } from "react";
-import { Switch,  Popconfirm, } from "antd";
+import { Switch, Popconfirm, } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateDispatchReceivePhone } from "../../../InventoryAction"
@@ -22,7 +22,7 @@ function DispatchReceiveToggle(props) {
         <>
             <div>
                 <Popconfirm
-                    title="Received ?"
+                    title="Inspected ?"
                     onCancel={null}
                     onConfirm={onChange}
                     okText="Yes"

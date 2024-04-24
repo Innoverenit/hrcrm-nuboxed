@@ -12,7 +12,7 @@ class DispatchPhoneListModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title="Dispatch"
+                    title={`Dispatch - ${props.rowData.newOrderId}`}
                     width="65%"
                     height="45%"
                     visible={openPickupDateModal}

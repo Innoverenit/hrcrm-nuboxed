@@ -113,14 +113,11 @@ function OpenReceivedOrderIdForm(props) {
               <div className="md:w-[8rem]">
                 <FormattedMessage
                   id="app.Received"
-                  defaultMessage="Receive"
+                  defaultMessage="Received"
                 />
               </div>
               <div className="md:w-[8.4rem]">
-                <FormattedMessage
-                  id="app.Received"
-                  defaultMessage="Received "
-                />
+
               </div>
               <div className="md:w-[2rem]">
               </div>
@@ -303,6 +300,7 @@ function OpenReceivedOrderIdForm(props) {
                               <>
                                 {!item.cannotRepairInd && item.inspectionInd !== 3 ?
                                   <Button
+                                    // loading={props.updatingRepairStatus}
                                     onClick={() => {
                                       props.updateRepairStatus({
                                         cannotRepairInd: true,
@@ -488,6 +486,7 @@ const mapStateToProps = ({ inventory, auth, refurbish }) => ({
   userId: auth.userDetails.userId,
   addReceivePhone: inventory.addReceivePhone,
   showPhoneData: refurbish.showPhoneData,
+  updatingRepairStatus: inventory.updatingRepairStatus,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal
 });
 
