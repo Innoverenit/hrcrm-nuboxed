@@ -6,6 +6,7 @@ import { Formik, Form, Field } from "formik";
 import { addCarDetails } from "../../../AccountAction";
 import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
 import { FormattedMessage } from 'react-intl';
+import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
 function OrderStep2(props) {
     const [xlUpdateInd, setxlUpdateInd] = useState(true)
@@ -16,10 +17,11 @@ function OrderStep2(props) {
         <>
             <Formik
                 initialValues={{
-                    orderPhoneId: props.orderDetailsId,
+                    orderPhoneId: props.orderId,
                     excelId: "",
                     userId: props.userId,
-                    distributorId: props.distributorId,
+                    awbNo: "",
+
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -28,7 +30,8 @@ function OrderStep2(props) {
                         {
                             ...values,
                             type: "Non-Catalogue",
-                            xlUpdateInd: xlUpdateInd ? false : true
+                            orgId: props.orgId,
+                            distributorId: props.distributorId,
                         },
                         props.distributorId
                     );
@@ -46,22 +49,8 @@ function OrderStep2(props) {
                 }) => (
                     <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form class="form-background">
-                            <div class="justify-between flex w-5/12 mt-1">
-                                <h2>
-                                    <FormattedMessage
-                                        id="app.Keepearlieruploadeddata"
-                                        defaultMessage="Keep earlier uploaded data?"
-                                    />
-                                </h2>
-                                <Switch
-                                    onChange={handleKeepData}
-                                    checked={xlUpdateInd}
-                                    checkedChildren="Yes"
-                                    unCheckedChildren="No"
-                                />
-                            </div>
-                            <div class="justify-between flex">
-                                <div class="h-full w-[47%]">
+                            <div class="justify-between flex mt-3">
+                                <div class="h-full w-[45%]">
                                     <div class="mt-3">
                                         <Field
                                             name="excelId"
@@ -70,9 +59,19 @@ function OrderStep2(props) {
                                         />
                                     </div>
                                 </div>
-
+                                <div class="h-full w-[45%]">
+                                    <div class="mt-3">
+                                        <Field
+                                            label="AWB No"
+                                            name="awbNo"
+                                            component={InputComponent}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="justify-end flex mt-3">
                                 <Button
                                     type="primary"
@@ -94,8 +93,8 @@ function OrderStep2(props) {
 }
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
-    orderDetailsId: distributor.orderDetailsId,
-    addingCar: distributor.addingCar
+    addingCar: distributor.addingCar,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

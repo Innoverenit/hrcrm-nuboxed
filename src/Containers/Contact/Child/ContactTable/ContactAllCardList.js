@@ -35,6 +35,7 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import {  Tooltip, Select } from "antd";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const Option = Select;
 const UpdateContactModal = lazy(() =>
   import("../UpdateContact/UpdateContactModal")
@@ -61,7 +62,7 @@ function ContactAllCardList(props) {
         }
       }
     })
-    props.getAllContact(page,"creationdate");
+    props.getAllContact(page,"Customer");
     setPage(page + 1);
   }, []);
 
@@ -93,7 +94,7 @@ function ContactAllCardList(props) {
   const handleLoadMore = () => {
             setPage(page + 1);
             props.getAllContact(page,
-              props.filter?props.filter:"creationdate"
+              "Customer"
               );
   }
 
@@ -124,345 +125,21 @@ function ContactAllCardList(props) {
 //  if(fetchingContacts){
 //   return <BundleLoader/>
 //  }
-if (isMobile) {
-return (
-  <>
-    
-   
-    <div class="rounded-lg  p-2 w-full overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      
-        <InfiniteScroll
-      dataLength={allContacts.length}
-      next={handleLoadMore}
-      hasMore={hasMore}
-      loader={fetchingAllContacts?<div class="flex justify-center">Loading...</div>:null}
-      height={"75vh"}
-    >
-      
-    {allContacts.map((item) => { 
-      
-       const currentdate = dayjs().format("DD/MM/YYYY");
-       const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-       const diff = Math.abs(
-          dayjs().diff(dayjs(item.lastRequirementOn), "days")
-        );
-        const dataLoc = ` Address : ${item.address &&
-          item.address.length &&
-          item.address[0].address1} 
-         Street : ${item.address &&
-          item.address.length &&
-          item.address[0].street}   
-        State : ${item.address && item.address.length && item.address[0].state}
-        City : ${item.address && item.address.length && item.address[0].city}
-       Country : ${(item.address &&
-            item.address.length &&
-            item.address[0].country) ||
-          ""} 
-         PostalCode : ${item.address &&
-          item.address.length &&
-          item.address[0].postalCode} `;
-                  return (
-                      <div>
-                            <div
-              className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
-            >
-                                   
-                              <div className=" flex font-medium flex-col md:w-52 max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full"> 
-<div>
-                              
-          <MultiAvatar2
-            primaryTitle={item.firstName}
-            imageId={item.imageId}
-            imageURL={item.imageURL}
-            imgWidth={"1.8em"}
-            imgHeight={"1.8em"}
-          />
-        </div>
-        &nbsp;
-        <div class="max-sm:w-full">
-                                      <Tooltip>
-                                        <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
-                                          <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                              
-       <Link
-        toUrl={`contact/${item.contactId}`}
-        title={`${item.fullName}`}
-      >{item.fullName}</Link>&nbsp;&nbsp;
-      {date === currentdate ? (
-        <span class="text-xs"
-          style={{
-            color: "tomato",
-            fontWeight: "bold",
-          }}
-        >
-          New
-        </span>
-      ) : null}
-     
-                                          </div>
-                                          </div>
-                                      </Tooltip>
-                                      </div>
-                                      </div>
-                              </div>
-                              <div class="flex">
-
-                              <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
-                                  
-                                  <div class=" text-sm text-cardBody font-poppins">   
-                                  {item.tagWithCompany}
-                                  </div>
-                              </div>
-                              <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                             
-                                  <div class="text-sm text-cardBody font-poppins">
-                                       {item.designation}
-                                  </div>
-                              </div>
-                              <div className=" flex font-medium flex-col md:w-36  max-sm:flex-row w-full max-sm:justify-between">
-                              
-                                <div class="text-sm text-cardBody font-poppins">
-                                     {item.department}
-                                </div>
-                            </div>
-                            </div>
-                            <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-
-<div className="text-sm text-cardBody font-poppins text-center">
-  {item.oppNo}
-</div>
-</div>
-<div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                    
-
-                                  <div class=" text-sm text-cardBody font-poppins text-center">
-                                  {item.totalProposalValue}
-
-                                  </div>
-                              </div>
-                              <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-             
-
-                                  <div class="text-sm text-cardBody font-poppins">
-
-                                  {item.thirdPartyAccessInd 
-  ? `${item.thirdPartyAccessInd}`
-  : 'Not Provided'}
-
-                                  </div>
-                              </div>
-                              <div class="flex md:items-center">
-                              <div className="flex font-medium  md:w-20  max-sm:flex-row w-full max-sm:justify-between">
-                     
-
-
-                 
-            <Tooltip title={item.ownerName}>
-              <div class="max-sm:flex justify-end">
-              <Tooltip title={item.ownerName}>
-            <MultiAvatar
-              primaryTitle={item.ownerName}
-              imageId={item.ownerImageId}
-              imgWidth={"1.8rem"}
-              imgHeight={"1.8rem"}
-            />
-   </Tooltip>
-          </div>
-        </Tooltip>
-
-                 </div>
-                 <div class="flex flex-col w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                  <div>
-                  <Tooltip title="Notes">
-     <NoteAltIcon
-              onClick={() => {
-                handleContactNotesDrawerModal(true);
-                handleSetCurrentContact(item);
-              }}
-              style={{ color: "green", cursor: "pointer", fontSize: "1rem" }}
-            />
-         </Tooltip>
-         </div>
-         <div>
-         <Tooltip title="Pulse">
-     <MonitorHeartIcon
-              onClick={() => {
-                handleContactPulseDrawerModal(true);
-                handleSetCurrentContact(item);
-              }}
-              style={{ fontSize: "0.8rem", color: "#df9697" }}
-            />
-         </Tooltip>
-
-</div>
-          </div>
-                              <div class="flex flex-col  max-sm:flex-row w-[40%] max-sm:justify-evenly items-center">
-                  <div class="rounded-full bg-white w-5 h-5 cursor-pointer md:mt-4">
-                  <Tooltip title={item.mobileNo} >
-          {item.doNotCallInd !== true && (
-            <span class=" mr-2 text-xs cursor-pointer"
-              onClick={() => {
-                props.handleDonotCallModal(true);
-                handleSetCurrentContactId(item);
-              }}
-            >
-             <PhoneInTalkIcon style={{fontSize:"0.8rem"}}/>
-            </span>
-          )}
-          {item.doNotCallInd === true && (
-            <span class=" mr-2 text-xs cursor-pointer"
-              onClick={() => {
-                props.handleDonotCallModal(true);
-                handleSetCurrentContactId(item);
-              }}
-            >
-              <PhoneDisabledIcon/>
-            </span>
-          )}
-        </Tooltip>
-                      </div>
-                      <div class=" max-sm:flex justify-end max-sm:w-full">
-                      <Tooltip title={item.emailId}>
-         
-          <MailOutlineIcon
-            type="mail"
-            style={{ cursor: "pointer",fontSize:"0.8rem" }}
-            onClick={() => {
-              props.getContactById(item.contactId);
-              props.handleContactEmailDrawerModal(true);
-            }}
-          />
-         </Tooltip>
-                      </div>
-
-                    &nbsp;&nbsp;
-                      <div>
-                      <span
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              handleSetCurrentContactId(item);
-              props.handleContactPulseDrawerModal(true);
-            }}
-          >{user.pulseAccessInd === true && (
-            <MonitorHeartIcon style={{fontSize:"0.8rem" ,color: "#df9697"}}/>
-          )}
-          </span>
-                      </div>
-                      <div>
-          
-
-                  </div>
-                  </div>
-                  <div class="flex flex-col md:w-[2%] max-sm:flex-row w-full max-sm:justify-evenly items-center">
-                    <div>
-                  <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-          <span
-            style={{
-
-              cursor: "pointer",
-            }}
-          >
-          <LocationOnIcon   style={{
-              cursor: "pointer",
-              fontSize: "0.8rem"
-            }}/>
-          </span>
-        </Tooltip>
-        </div>
-  
-            {user.contactUpdateInd === true &&  user.crmInd === true && (
-          <div>
-         
-          <Tooltip title="Edit">
-            <BorderColorIcon
-              style={{ cursor: "pointer",fontSize: "0.8rem", color: "grey", }}
-              onClick={() => {
-                props.setEditContact(item);
-                handleUpdateContactModal(true);
-                handleSetCurrentContactId(item);
-                
-              }}
-            />
-          </Tooltip>
-    
-          </div>
-            )}
-                    </div>    
-                   <div class="w-[1%]"></div>
-                    </div>
-                          </div>
-                      </div>
-
-
-                  )
-              })}
-                    </InfiniteScroll>
-    </div>
-
-
-    <UpdateContactModal
-      contactData={currentContactId}
-      // fullName={currentContactId}
-      updateContactModal={updateContactModal}
-      handleUpdateContactModal={handleUpdateContactModal}
-      handleSetCurrentContactId={handleSetCurrentContactId}
-    />
-     <AddContactNotesDrawerModal
-      contactData={currentContact}
-      // fullName={currentContactId}
-      addDrawerContactNotesModal={addDrawerContactNotesModal}
-      handleContactNotesDrawerModal={handleContactNotesDrawerModal}
-      handleSetCurrentContact={handleSetCurrentContact}
-    />
-       <AddContactPulseDrawerModal
-      contactData={currentContact}
-      // fullName={currentContactId}
-      addDrawerContactPulseModal={addDrawerContactPulseModal}
-      handleContactPulseDrawerModal={handleContactPulseDrawerModal}
-      handleSetCurrentContact={handleSetCurrentContact}
-    />
-    <AddContactEmailDrawerModal
-      // item={currentContactId}
-      contactData={currentContactId}
-      addDrawerContactEmailModal={props.addDrawerContactEmailModal}
-      handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
-    />
-    <ReactContactSpeechModal
-      // item={currentContactId}
-      contactData={currentContactId}
-      handleContactReactSpeechModal={handleContactReactSpeechModal}
-      addContactSpeechModal={addContactSpeechModal}
-      handleSetCurrentContactId={handleSetCurrentContactId}
-    />
-    {/* <AddDonotCallModal
-      addDonotCallModal={props.addDonotCallModal}
-      contactId={currentContactId}
-      handleDonotCallModal={props.handleDonotCallModal}
-    /> */}
-    <AddContactDrawerModal
-      item={currentContactId}
-      addDrawerContactModal={props.addDrawerContactModal}
-      handleContactDrawerModal={props.handleContactDrawerModal}
-    />
-  </>
-);
-  }
 
   return (
     <>
       
      
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[12rem]">Name</div>
-        <div className=" md:w-40">Company</div>
-        <div className=" md:w-28 ">Designation</div>
-        <div className="md:w-36">Department</div>
-        <div className="md:w-28"># Opportunity</div>
-        <div className="md:w-28">Pipeline</div>
-        <div className="md:w-20">Portal Acess</div>
-        <div className="md:w-16">Owner</div>
+      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" max-sm:hidden flex justify-between w-[98%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10rem]">Name</div>
+        <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[5rem]">Company</div>
+        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.1rem] max-lg:w-[8.1rem] ">Designation</div>
+        <div className="w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[7.1rem]">Department</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem]">Quotation</div>
+        <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[5.12rem]">Pipeline</div>
+        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem]">Portal Acess</div>
+        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.1rem] max-lg:w-[4.2rem]">Owner</div>
         <div className="w-12"></div>
 
       </div>
@@ -474,7 +151,7 @@ return (
         height={"75vh"}
       >
         
-      {allContacts.map((item) => { 
+        { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -498,11 +175,11 @@ return (
             item.address[0].postalCode} `;
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
                                 >
                                      
-                                <div className=" flex font-medium flex-col md:w-52 max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full"> 
+                                <div className=" flex font-medium flex-col w-52 max-sm:flex-row max-xl:w-[8rem]   max-sm:justify-between max-sm:w-wk  ">
+<div className="flex max-sm:w-full items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
             <MultiAvatar2
               primaryTitle={item.firstName}
@@ -516,14 +193,14 @@ return (
           <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
-         <Link
+         <Link className="max-sm:text-sm"
           toUrl={`contact/${item.contactId}`}
           title={`${item.fullName}`}
         >{item.fullName}</Link>&nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
+          <span class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -539,45 +216,46 @@ return (
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex">
+                                <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                                <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col max-sm:w-auto  w-48 max-sm:flex-row max-xl:w-[7rem] max-lg:w-[5.21rem]   max-sm:justify-between ">
                                     
-                                    <div class=" text-sm text-cardBody font-poppins">   
+                                    <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium max-sm:w-auto flex-col w-36 max-sm:flex-row max-xl:w-[8rem] max-lg:w-[5.1rem]   max-sm:justify-between ">
                                
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                          {item.designation}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex font-medium max-sm:w-auto flex-col w-36  max-sm:flex-row max-xl:w-[5rem] max-lg:w-[4.1rem]   max-sm:justify-between">
                                 
-                                  <div class="text-sm text-cardBody font-poppins">
+                                  <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                        {item.department}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                              <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                              <div className="flex font-medium max-sm:w-auto flex-col w-32 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row   max-sm:justify-between ">
 
-  <div className="text-sm text-cardBody font-poppins text-center">
+  <div className="text-sm text-cardBody max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
     {item.oppNo}
   </div>
 </div>
-<div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex font-medium flex-col w-36 max-xl:w-[7rem] max-lg:w-[5rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                       
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm max-sm:text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {item.totalProposalValue}
 
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className="flex max-sm:w-auto font-medium flex-col w-32 max-xl:w-[5rem] max-lg:w-[4.21rem] max-sm:flex-row  max-sm:justify-between ">
                
 
-                                    <div class="text-sm text-cardBody font-poppins">
+                                    <div class="text-sm max-sm:text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                                     {item.thirdPartyAccessInd 
     ? `${item.thirdPartyAccessInd}`
@@ -585,8 +263,9 @@ return (
 
                                     </div>
                                 </div>
-                                <div class="flex md:items-center">
-                                <div className="flex font-medium  md:w-20  max-sm:flex-row w-full max-sm:justify-between">
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className="flex font-medium  w-20 max-xl:w-[3rem] max-sm:w-wk   max-sm:flex-row  max-sm:justify-between">
                        
 
 
@@ -605,7 +284,7 @@ return (
           </Tooltip>
 
                    </div>
-                   <div class="flex flex-col w-[5%] max-sm:flex-row max-sm:w-[10%]">
+                   <div class="flex flex-col w-[5%] max-sm:w-wk max-sm:flex-row max-sm:justify-between ">
                     <div>
                     <Tooltip title="Notes">
        <NoteAltIcon
@@ -624,13 +303,13 @@ return (
                   handleContactPulseDrawerModal(true);
                   handleSetCurrentContact(item);
                 }}
-                style={{ fontSize: "0.8rem", color: "#df9697" }}
+                style={{ fontSize: "1.25rem", color: "#df9697" }}
               />
            </Tooltip>
 
 </div>
             </div>
-                                <div class="flex flex-col  max-sm:flex-row w-[40%] max-sm:justify-evenly items-center">
+                                <div class="flex flex-col max-sm:w-wk  max-sm:flex-row w-[40%] max-sm:justify-between items-center">
                     <div class="rounded-full bg-white w-5 h-5 cursor-pointer md:mt-4">
                     <Tooltip title={item.mobileNo} >
             {item.doNotCallInd !== true && (
@@ -640,7 +319,7 @@ return (
                   handleSetCurrentContactId(item);
                 }}
               >
-               <PhoneInTalkIcon style={{fontSize:"0.8rem"}}/>
+               <PhoneInTalkIcon style={{fontSize:"1.25rem"}}/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -660,7 +339,7 @@ return (
            
             <MailOutlineIcon
               type="mail"
-              style={{ cursor: "pointer",fontSize:"0.8rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleContactEmailDrawerModal(true);
@@ -678,7 +357,7 @@ return (
                 props.handleContactPulseDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon style={{fontSize:"0.8rem" ,color: "#df9697"}}/>
+              <MonitorHeartIcon style={{fontSize:"1.25rem" ,color: "#df9697"}}/>
             )}
             </span>
                         </div>
@@ -687,7 +366,7 @@ return (
 
                     </div>
                     </div>
-                    <div class="flex flex-col md:w-[2%] max-sm:flex-row w-full max-sm:justify-evenly items-center">
+                    <div class="flex flex-col md:w-[2%] max-sm:w-auto max-sm:flex-row w-full  items-center">
                       <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span
@@ -698,7 +377,7 @@ return (
             >
             <LocationOnIcon   style={{
                 cursor: "pointer",
-                fontSize: "0.8rem"
+                fontSize: "1.25rem"
               }}/>
             </span>
           </Tooltip>
@@ -709,7 +388,7 @@ return (
            
             <Tooltip title="Edit">
               <BorderColorIcon
-                style={{ cursor: "pointer",fontSize: "0.8rem", color: "grey", }}
+                style={{ cursor: "pointer",fontSize: "1.25rem", color: "grey", }}
                 onClick={() => {
                   props.setEditContact(item);
                   handleUpdateContactModal(true);

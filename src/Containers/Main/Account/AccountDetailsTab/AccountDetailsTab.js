@@ -11,10 +11,18 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal
 } from "../AccountAction";
+import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
+import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CompleteOrderTable from "./AccountOrderTab/CompleteOrderTable";
+import { HistoryOutlined } from "@ant-design/icons";
+import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
+import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -25,7 +33,6 @@ const LinkedDistributorNotes = lazy(() => import("./AccountNoteTab/LinkedDistrib
 // const OrderGenerateModal = lazy(() => import("./AccountOrder1Tab/OrderGenerateModal"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
-const AddAccountContact = lazy(() => import("./AccountContactTab/AddAccountContact"))
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
 
 const TabPane = StyledTabs.TabPane;
@@ -37,26 +44,37 @@ function AccountDetailsTab(props) {
     }, []);
     const [activeKey, setactiveKey] = useState("1")
     const [breadCumb, setBreadCumb] = useState(false)
+    const [openOrder, setOpenOrder] = useState(false)
 
-    const handleOrderCreateClick = (data) => {
-        setBreadCumb(data);
+    const handleOrderCreateClick = () => {
+        setBreadCumb(true);
+    };
+    const handleOrderClick = () => {
+        setBreadCumb(true);
+        setOpenOrder(false)
     };
 
-    const handleTabChange = (key) => setactiveKey(key);
 
+    const handleOpenOrder = () => {
+        setBreadCumb(false);
+        setOpenOrder(true)
+    };
+    const handleTabChange = (key) => setactiveKey(key);
+    console.log(props.productionInd)
+    console.log(props.activeKey)
     return (
         <>
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-                    {props.orderCreatProductionInd && <TabPane
+                    {props.productionInd && <TabPane
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
-                                    <i class="fas fa-shopping-bag"></i>
-                                    <span class="ml-1">Order</span>
+                                    <PrecisionManufacturingIcon />
+                                    <span class="ml-1">Production</span>
                                 </span>
-                                {activeKey === "1" && (
+                                {activeKey === "2" && (
                                     <>
                                         <Tooltip title="Create">
                                             <AddShoppingCartIcon
@@ -70,13 +88,13 @@ function AccountDetailsTab(props) {
                                         </Tooltip>
                                     </>
                                 )}</>}
-                        key="1"
+                        key="2"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountOrder1Table distributorId={props.distributorData.distributorId} />
                         </Suspense>
                     </TabPane>}
-                    {props.orderCreatRepairInd && <TabPane
+                    {props.repairInd && <TabPane
                         tab={
                             <>
                                 <Badge
@@ -84,14 +102,26 @@ function AccountDetailsTab(props) {
                                     count={(props.orderRecordData.order) || 0}
                                     overflowCount={999}
                                 >
-                                    <span >
-                                        <DynamicFeedIcon
-                                            className="!text-base cursor-pointer"
-                                        />
-                                        <span class="ml-1">Repair</span>
+                                    <span onClick={() => handleOrderClick(false)}>
+                                        <Tooltip title="Orders">
+                                            <DynamicFeedIcon
+                                                className="!text-base cursor-pointer"
+                                            />
+                                            <span class="ml-1 text-sm">Repair</span>
+                                        </Tooltip>
                                     </span>
                                 </Badge>
-                                {activeKey === "2" && (
+                                &nbsp;
+                                {activeKey === "3" && (
+                                    <Tooltip title="Complete Orders">
+                                        <HistoryOutlined
+                                            fontSize="small"
+                                            onClick={handleOpenOrder}
+                                        />
+                                    </Tooltip>
+                                )}
+                                &nbsp;
+                                {activeKey === "3" && (
                                     <>
                                         <Tooltip title="Add Order">
                                             <AddShoppingCartIcon
@@ -100,18 +130,22 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
-                                                className="!text-base cursor-pointer ml-1"
+                                                className="!text-base -ml-3 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
                                 )}
+
                             </>
                         }
-                        key="2"
+                        key="3"
                     >
 
                         <Suspense fallback={"Loading ..."}>
-                            <AccountOrderTable distributorId={props.distributorData.distributorId} />
+                            {openOrder ?
+                                <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" /> :
+                                <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" />
+                            }
                         </Suspense>
                     </TabPane>}
                     <TabPane
@@ -121,14 +155,15 @@ function AccountDetailsTab(props) {
                                     <i class="fas fa-file-contract"></i>
                                     &nbsp; Contact
                                 </span>
-                                {activeKey === "3" && (
+                                {activeKey === "1" && (
                                     <>
                                         <Tooltip title="Add Contact">
                                             <AddIcon
                                                 type="plus"
                                                 tooltipTitle="Create"
                                                 onClick={() => {
-                                                    props.handleDistributorContactModal(true);
+                                                    //  props.handleDistributorContactModal(true);
+                                                    props.handleSupplierContactModal(true)
                                                 }}
                                                 className="!text-base cursor-pointer ml-1"
                                             />
@@ -137,7 +172,7 @@ function AccountDetailsTab(props) {
                                 )}
                             </>
                         }
-                        key="3"
+                        key="1"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountContactTable distributorId={props.distributorData.distributorId} />
@@ -146,6 +181,7 @@ function AccountDetailsTab(props) {
                     <TabPane
                         tab={
                             <>
+
                                 <span>
                                     <i class="fab fa-connectdevelop"></i>
                                     <span class="ml-1">Activity</span>
@@ -219,9 +255,10 @@ function AccountDetailsTab(props) {
                                                 // type="plus"
                                                 // tooltipTitle="Create"
                                                 onClick={() =>
-                                                    props.handleDistributorDocumentUploadModal(
-                                                        true
-                                                    )
+                                                    // props.handleDistributorDocumentUploadModal(
+                                                    //     true
+                                                    // )
+                                                    props.handleSupplierDocumentUploadModal(true)
                                                 }
                                                 className="!text-base cursor-pointer ml-1"
                                             />
@@ -239,26 +276,71 @@ function AccountDetailsTab(props) {
                         </Suspense>
                     </TabPane>
 
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Sales Map</span>
+                                </span>
+
+                            </>
+                        }
+                        key="7"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+
+                        </Suspense>
+                    </TabPane>
+
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Summary</span>
+                                </span>
+
+                            </>
+                        }
+                        key="8"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <SalesMapTable
+
+                            />
+                            {/* <SummaryTable
+                               
+                            /> */}
+                        </Suspense>
+                    </TabPane>
 
                 </StyledTabs>
             </TabsWrapper>
-            <AddDistributorDocumentModal
+            {/* <AddDistributorDocumentModal
                 distributorDocumentUploadModal={
                     props.distributorDocumentUploadModal
                 }
                 handleDistributorDocumentUploadModal={
                     props.handleDistributorDocumentUploadModal
                 }
+            /> */}
+            <AddSupplierDocumentModal
+                distributorId={props.distributorData.distributorId}
+                supplierDocumentUploadModal={props.supplierDocumentUploadModal}
+                handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
             />
             <AddAccountModal
                 handleLinkDistributorOrderConfigureModal={props.handleLinkDistributorOrderConfigureModal}
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
-            <AddAccountContact
-                handleDistributorContactModal={props.handleDistributorContactModal}
-                distributorContactModal={props.distributorContactModal}
-                distributorId={props.distributorData.distributorId}
+
+            <AddSupplierContactModal
+                addSupplierContactModal={props.addSupplierContactModal}
+                handleSupplierContactModal={props.handleSupplierContactModal}
+                type="distributor"
+                id={props.distributorData.distributorId}
             />
             <AccountActivityModal
                 addDistributorActivityModal={props.addDistributorActivityModal}
@@ -276,7 +358,7 @@ function AccountDetailsTab(props) {
     );
 }
 
-const mapStateToProps = ({ distributor, auth }) => ({
+const mapStateToProps = ({ distributor, auth, suppliers }) => ({
     orderRecordData: distributor.orderRecordData,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
@@ -284,8 +366,10 @@ const mapStateToProps = ({ distributor, auth }) => ({
     addDistributorActivityModal: distributor.addDistributorActivityModal,
     generateOrderModal: distributor.generateOrderModal,
     addCatalogueOrderModal: distributor.addCatalogueOrderModal,
-    orderCreatProductionInd: auth.userDetails.orderCreatProductionInd,
-    orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
+    productionInd: auth.userDetails.productionInd,
+    repairInd: auth.userDetails.repairInd,
+    addSupplierContactModal: suppliers.addSupplierContactModal,
+    supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -296,7 +380,9 @@ const mapDispatchToProps = (dispatch) =>
             handleDistributorActivityModal,
             handleDistributorDocumentUploadModal,
             handleOrderGenerateModal,
-            handleAddOrderModal
+            handleSupplierDocumentUploadModal,
+            handleAddOrderModal,
+            handleSupplierContactModal
         },
         dispatch
     );

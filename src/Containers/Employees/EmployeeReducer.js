@@ -36,6 +36,11 @@ const initialState = {
   fetchingEmployeeError: false,
   employees: [],
 
+
+  fetchingUserSalary:false,
+  fetchingUserSalaryError:false,
+  usersalary:[],
+
   addDrawerEmployeeDocumentModal:false,
 
   fetchingEmployeeData: false,
@@ -55,8 +60,13 @@ const initialState = {
   fetchingEmployeeByIdError: false,
   singleEmployee: {},
 
+
+
   addOnboadingEmpl: false,
   addOnboadingEmplError: false,
+
+  updatingActualValue: false,
+   updatingActualValueError: false, 
 
   fetchingProcessDropdownForOnboarding: false,
   fetchingProcessDropdownForOnboardingError: false,
@@ -118,12 +128,17 @@ const initialState = {
   fetchingPermissionsListError: false,
   permissionsDataList: [],
 
+  MutltiorgStatus: false,
+  MutltiorgStatusError: false,
+
   updatingEmployee: false,
   updatingEmployeeError: false,
 
   fetchingallCustomerEmployeeList:false,
   fetchingallCustomerEmployeeListError:false,
   allCustomerEmployeeList:[],
+
+  updatingUserDragStage:false,
 
   fetchingEmployeeSkillExperince: false,
   fetchingEmployeeSkillExperinceError: false,
@@ -151,6 +166,58 @@ const initialState = {
   userAdminnoti:{},
 
 };
+
+const updatedDragUser = (item, newProps) => {
+  console.log("Author8",item);
+  return item.map((opp, index) => {
+    console.log("Author7",opp);
+    console.log("Author8",newProps);
+    // const newData=newProps.stageList.map((item)=>{
+    //       return item.unboardingStagesId;
+    // })
+    if (opp.unboardingWorkflowDetailsId === newProps.unboardingWorkflowDetailsId) {
+      console.log("inside opp");
+      opp.unboardingStagesId = newProps.unboardingStagesId;
+    }
+    return opp;
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const EmployeeReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_EMPLOYEE_VIEW_TYPE:
@@ -413,6 +480,25 @@ export const EmployeeReducer = (state = initialState, action) => {
         addSharingEmployeeError: true,
       };
 
+
+
+      case types.UPDATE_USER_DRAG_STAGE_REQUEST:
+                                                return {
+                                                  ...state,
+                                                  updatingUserDragStage: true,
+                                                
+                                                  // candidateRequirement: action.payload,
+                                                };
+                                              case types.UPDATE_USER_DRAG_STAGE_SUCCESS:
+                                                return { ...state, 
+                                                  updatingUserDragStage: false ,
+                                                  //userStageList: updatedDragUser(state.userStageList, action.payload),
+                                                 // candidateRequirement: [action.payload]
+
+                                                };
+                                              case types.UPDATE_USER_DRAG_STAGE_FAILURE:
+                                                return { ...state };  
+
     case types.SUSPEND_STATUS_REQUEST:
       return { ...state, SuspendStatus: true };
     case types.SUSPEND_STATUS_SUCCESS:
@@ -451,6 +537,24 @@ export const EmployeeReducer = (state = initialState, action) => {
         employeeStatus: false,
         employeeStatusError: true,
       };
+
+
+
+      case types.GET_USER_SALARY_REQUEST:
+    return { ...state,  fetchingUserSalary: true };
+  case types.GET_USER_SALARY_SUCCESS:
+    return {
+      ...state,
+      fetchingUserSalary: false,
+       usersalary: action.payload,
+    };
+  case types.GET_USER_SALARY_FAILURE:
+    return {
+      ...state,
+      fetchingUserSalary: false,
+      fetchingUserSalaryError: true,
+    };
+
 
     case types.LINK_EMPLOYEE_STATUS_REQUEST:
       return { ...state, defultStatus: true };
@@ -898,6 +1002,7 @@ case types.GET_ADMIN_USER_FAILURE:
                     return {
                       ...state,
                       addWorkflowEmployee: false,
+                      userStageList:action.payload
                       // onboardingEmployeeModal: false,
                       // employees: state.employees.map((item) => {
                       //   if (item.employeeId === action.payload.employeeId) {
@@ -914,6 +1019,39 @@ case types.GET_ADMIN_USER_FAILURE:
                       addWorkflowEmployee: false,
                       addWorkflowEmployeeError: true,
                     };
+
+
+                    case types.UPDATE_ACTUAL_VALUE_REQUEST:
+                      return { ...state, updatingActualValue: true };
+                    case types.UPDATE_ACTUAL_VALUE_SUCCESS:
+                      // return { ...state, updatingDepartments: false, Departments: [...state.Departments, action.payload] };
+                      return {
+                        ...state,
+                        updatingActualValue: false,
+                        userKpiList: state.userKpiList.map((equipment) =>
+                        equipment.userKpiLinkId === action.payload.userKpiLinkId ? action.payload : equipment
+                        ),
+                      };
+                    case types.UPDATE_ACTUAL_VALUE_FAILURE:
+                      return { ...state, updatingActualValue: false, updatingActualValueError: true };
+
+
+                     
+                      case types.MULTI_ORG_STATUS_REQUEST:
+                        return { ...state, MutltiorgStatus: true };
+                      case types.MULTI_ORG_STATUS_SUCCESS:
+                        return {
+                          ...state,
+                          MutltiorgStatus: false,
+                          // addTeamTransferModal: false,
+                        };
+                      case types.MULTI_ORG_STATUS_FAILURE:
+                        return {
+                          ...state,
+                          MutltiorgStatus: false,
+                          MutltiorgStatusError: true,
+                        };           
+              
 
 
     default:

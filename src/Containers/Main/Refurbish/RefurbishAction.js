@@ -28,7 +28,53 @@ export const getTodayProduction = (date) => (dispatch) => {
       });
     });
 };
+export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/phone/qcstatus/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getOrderByUser(locationDetailsId, userId))
+      dispatch({
+        type: types.UPDATE_QC_STATUS_SUCCESS,
+        payload: res.data,
+      });
 
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QC_STATUS_FAILURE,
+      });
+    });
+};
+export const updatePauseStatus = (data) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_PAUSE_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/phone/start-pause/repairTime`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PAUSE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PAUSE_STATUS_FAILURE,
+      });
+    });
+};
 export const getTomorrowProduction = () => (dispatch) => {
   dispatch({
     type: types.GET_TOMORROW_PRODUCTION_REQUEST,
@@ -69,6 +115,33 @@ export const linkDateToProduction = (data) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.LINK_DATE_TO_PRODUCTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateSparePacket = (data) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SPARE_PACKET_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/phoneSpare/spare-packet-link`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getTaskListRangeByUserId(userId));
+      dispatch({
+        type: types.UPDATE_SPARE_PACKET_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SPARE_PACKET_FAILURE,
         payload: err,
       });
     });
@@ -184,13 +257,12 @@ export const getProductionOutputList = (locationDetailsId) => (dispatch) => {
     });
 };
 
-export const getShifts = (userId) => (dispatch) => {
-  console.log(userId);
+export const getPhoneDetails = (phoneId) => (dispatch) => {
   dispatch({
-    type: types.GET_SHIFTS_REQUEST,
+    type: types.GET_PHONE_DETAILS_REQUEST,
   });
   axios
-    .get(`${base_url2}/shift/getShiftList/${userId}`, {
+    .get(`${base_url2}/phone/phoneData/${phoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -198,14 +270,14 @@ export const getShifts = (userId) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({
-        type: types.GET_SHIFTS_SUCCESS,
-        payload: [res.data],
+        type: types.GET_PHONE_DETAILS_SUCCESS,
+        payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err.response);
       dispatch({
-        type: types.GET_SHIFTS_FAILURE,
+        type: types.GET_PHONE_DETAILS_FAILURE,
         payload: err,
       });
     });
@@ -286,9 +358,9 @@ export const deleteProductionOutput = (productionProductId) => (dispatch) => {
     });
 };
 
-export const handleSplitOutputModal = (modalProps) => (dispatch) => {
+export const handlePhoneDetails = (modalProps) => (dispatch) => {
   dispatch({
-    type: types.HANDLE_SPLIT_OUTPUT_MODAL,
+    type: types.HANDLE_PHONE_DETAILS_MODAL,
     payload: modalProps,
   });
 };
@@ -300,12 +372,12 @@ export const setEditOutputProduction = (name) => (dispatch) => {
   });
 };
 
-export const getProductionOrderId = (locationId) => (dispatch) => {
+export const getProductionOrderId = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_ORDER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-all/${locationId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -377,6 +449,12 @@ export const handlePhoneNotesProductionModal = (modalProps) => (dispatch) => {
   })
 }
 
+export const emptyRefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_REFURBISH_LIST,
+  });
+};
+
 export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatch) => {
   // debugger;
   dispatch({
@@ -390,7 +468,12 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
     })
     .then((res) => {
       dispatch(getNoOfPhoneById(id));
-      dispatch(getProductionOrderId(locationDetailsId))
+      // dispatch(getProductionOrderId(locationDetailsId))
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Assigned To Technician',
+        showConfirmButton: true,
+      })
       dispatch({
         type: types.UPDATE_TECHNICIAN_BY_PHONE_SUCCESS,
         payload: res.data,
@@ -419,7 +502,12 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
     })
     .then((res) => {
       dispatch(getRepairPhoneById(id))
-      dispatch(getProductionOrderId(locationDetailsId))
+      // dispatch(getProductionOrderId(locationDetailsId))
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Assigned For Repair',
+        showConfirmButton: true,
+      })
       dispatch({
         type: types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_SUCCESS,
         payload: res.data,
@@ -705,12 +793,12 @@ export const handleAllSpareList = (modalProps) => (dispatch) => {
   })
 }
 
-export const getOrderByUser = (locationId, userId) => (dispatch) => {
+export const getOrderByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-allOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-allOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -731,12 +819,12 @@ export const getOrderByUser = (locationId, userId) => (dispatch) => {
     });
 };
 
-export const getRepairOrderByUser = (locationId, userId) => (dispatch) => {
+export const getRepairOrderByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_ORDER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/get-allRepairPhoneOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/get-allRepairPhoneOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -821,7 +909,7 @@ export const getRepairPhoneByUser = (orderPhoneId, technicianId) => (dispatch) =
       });
     });
 };
-export const updaterepairStatus = (data, phoneId, orderPhoneId, locationDetailsId, userId, cb) => (dispatch) => {
+export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_REPAIR_STATUS_REQUEST });
   axios
@@ -831,13 +919,8 @@ export const updaterepairStatus = (data, phoneId, orderPhoneId, locationDetailsI
       },
     })
     .then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Repair Status Updated Successfully',
-        showConfirmButton: true,
-      })
-      dispatch(getRepairPhoneByUser(orderPhoneId, userId))
-      dispatch(getRepairOrderByUser(locationDetailsId, userId))
+      // dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+      dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
         payload: res.data,
@@ -877,7 +960,7 @@ export const qcInspectionButton = (data, orderPhoneId, locationDetailsId, userId
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(locationDetailsId, userId))
+
       dispatch({
         type: types.UPDATE_QC_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -895,7 +978,7 @@ export const qcInspectionButton = (data, orderPhoneId, locationDetailsId, userId
     });
 };
 
-export const repairInspectionButton = (data, orderPhoneId, locationDetailsId, userId, cb) => (dispatch) => {
+export const repairInspectionButton = (data, orderPhoneId, cb) => (dispatch) => {
   // debugger;
   dispatch({
     type: types.UPDATE_REPAIR_INSPECTION_BUTTON_REQUEST,
@@ -907,7 +990,6 @@ export const repairInspectionButton = (data, orderPhoneId, locationDetailsId, us
       },
     })
     .then((res) => {
-      dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_REPAIR_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -925,12 +1007,12 @@ export const repairInspectionButton = (data, orderPhoneId, locationDetailsId, us
     });
 };
 
-export const getOpenQcByUser = (locationId, userId) => (dispatch) => {
+export const getOpenQcByUser = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_OPEN_QC_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProduction/get-allInCompleteQcOrder/${locationId}/${userId} `, {
+    .get(`${base_url2}/orderProduction/get-allInCompleteQcOrder/${userId} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -951,12 +1033,12 @@ export const getOpenQcByUser = (locationId, userId) => (dispatch) => {
     });
 };
 
-export const getOpenRepair = (locationId, userId) => (dispatch) => {
+export const getOpenRepair = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_OPEN_USER_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/get-allRepairIncompletePhoneOrder/${locationId}/${userId}`, {
+    .get(`${base_url2}/get-allRepairIncompletePhoneOrder/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1251,12 +1333,12 @@ export const addCatalogueByTechnician = (data, id) => (dispatch) => {
     });
 };
 // get catalogue in production
-export const getCatalogueByTechnician = (userId) => (dispatch) => {
+export const getCatalogueByTechnician = (pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_CATALOGUE_BY_TECHNICIAN_REQUEST,
   });
   axios
-    .get(`${base_url2}/inventory/productRepurbish/${userId}`, {
+    .get(`${base_url2}/product/productList/pagewise/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1289,7 +1371,6 @@ export const updateFarGlassInProduction = (data, productRepurbishId) => (dispatc
       },
     })
     .then((res) => {
-      // dispatch(getRepairOrderByUser(locationDetailsId, userId))
       dispatch({
         type: types.UPDATE_FAR_GLASS_IN_PRODUCTION_SUCCESS,
         payload: res.data,
@@ -1409,6 +1490,31 @@ export const getTaskByPhoneId = (phoneId) => (dispatch) => {
     });
 };
 
+export const getTaskListByPhone = (phoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_TASK_LIST_BY_PHONE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/repairTask/${phoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TASK_LIST_BY_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_LIST_BY_PHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const approveSpare = (data, phoneSpareId) => (dispatch) => {
   dispatch({
     type: types.APPROVE_SPARE_REQUEST,
@@ -1482,6 +1588,125 @@ export const gettASKItemCounts = (phoneId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_TASK_ITEM_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const closeRepairModal = (close) => (dispatch) =>
+  dispatch({ type: types.SET_CLOSE_REPAIR_MODAL, payload: close });
+
+
+
+export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_TASK_LIST_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/itemTask/deleteTaskInd/${phoneTaskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_TASK_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Task Deleted Successfully',
+        showConfirmButton: true,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_TASK_LIST_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong");
+    });
+};
+
+export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETED_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/completeRepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const reassignPhonesToTechnician = (data, orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.REASSIGN_PHONES_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/orderProduction/reAssignRepair/productionDispatch`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch(getRemainingPhones(orderPhoneId, technicianId));
+      dispatch(getNoOfRepairTechnicianById(orderPhoneId))
+      dispatch({
+        type: types.REASSIGN_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REASSIGN_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRemainingPhones = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REMAINING_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/notStart/RepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_FAILURE,
         payload: err,
       });
     });

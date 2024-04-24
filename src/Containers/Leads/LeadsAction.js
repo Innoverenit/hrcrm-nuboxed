@@ -18,6 +18,14 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     });
   };
 
+
+  export const handleLeadsImportModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_IMPORT_MODAL,
+      payload: modalProps,
+    });
+  };
+
   export const handleLeadsConfirmationModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_CONFIRMATION_MODAL,
@@ -41,6 +49,11 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead created Successfully!',
+      
+        })
         dispatch(getOpportunityRecord(userId));
         console.log(res);
         const startDate = dayjs()
@@ -144,6 +157,11 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead converted Successfully!',
+       
+        })
         dispatch(getLeads(userId));
         // dispatch(getLeadsRecords(userId));
         dispatch({
@@ -247,12 +265,18 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead Info  updated Successfully!',
+       
+        })
         console.log(res);
         dispatch({
           type: types.UPDATE_LEADS_BY_ID_SUCCESS,
           payload: res.data,
         });
       })
+    
       .catch((err) => {
         console.log(err);
         dispatch({
@@ -1019,8 +1043,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Reinstated Successfully',
-          // showConfirmButton: false,
-          // timer: 4000
+      
         })
       })
       .catch((err) => {
@@ -1167,13 +1190,13 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const getTeamLeads = (userId,pageNo,filter) => (dispatch) => {
+  export const getTeamLeads = (userId,pageNo) => (dispatch) => {
  
     dispatch({
       type: types.GET_TEAM_LEADS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/team/${userId}/${pageNo}/${filter}`, {
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -1191,11 +1214,15 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.GET_TEAM_LEADS_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
 
-  export const addLeadsActivityCall = (call,leadsId, cb) => (dispatch, getState) => {
+  export const addLeadsActivityCall = (call,leadsId) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
     const { userId } = getState("auth").auth.userDetails;
@@ -1211,16 +1238,16 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        Swal({
-          icon: 'success',
-          title: 'Call has been added successfully!',
-        })
-         dispatch(getCallTimeline(leadsId));
+        dispatch(getCallTimeline(leadsId));    
         dispatch({
           type: types.ADD_LEADS_ACTIVITY_CALL_SUCCESS,
           payload: res.data,
         });
-        cb();
+        Swal({
+          icon: 'success',
+          title: 'Call has been added successfully!',
+        })
+        // cb();
       })
       .catch((err) => {
         console.log(err);
@@ -1228,7 +1255,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.ADD_LEADS_ACTIVITY_CALL_FAILURE,
           payload: err,
         });
-        cb();
+        // cb();
       });
   };
 
@@ -1247,10 +1274,6 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        Swal({
-          icon: 'success',
-          title: 'Meeting has been added successfully!',
-        })
         console.log(res);
         dispatch(getCallTimeline(leadsId));
         // dispatch(getEventListRangeByUserId(userId,0));
@@ -1258,7 +1281,10 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.ADD_LEADS_ACTIVITY_EVENT_SUCCESS,
           payload: res.data,
         });
-        // cb();
+        Swal({
+          icon: 'success',
+          title: 'Meeting has been added successfully!',
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -1271,9 +1297,6 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   };
 
   export const addLeadsActivityTask = (event,leadsId, cb) => (dispatch, getState) => {
-    const { userId } = getState("auth").auth.userDetails;
-    // const { startDate, endDate } = getState("dashboard").dashboard;
-    console.log("inside addEvent");
     dispatch({
       type: types.ADD_LEADS_ACTIVITY_TASK_REQUEST,
     });
@@ -1285,15 +1308,15 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
-        Swal({
-          icon: 'success',
-          title: 'Task has been added successfully!',
-        })
         dispatch(getCallTimeline(leadsId));
         dispatch({
           type: types.ADD_LEADS_ACTIVITY_TASK_SUCCESS,
           payload: res.data,
         });
+        Swal({
+          icon: 'success',
+          title: 'Task has been added successfully!',
+        })
         // cb();
       })
       .catch((err) => {
@@ -1336,7 +1359,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       type: types.GET_LEADS_TEAM_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/team/count/${userId}`, {
+      .get(`${base_url}/leads/teams/count/${userId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -1367,5 +1390,194 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.EMPTY_LEADS_LIST, 
     });
+  };
+
+  export const getLeadsActivityRecords = (leadsId) => (dispatch) => {
+    dispatch({
+      type: types.GET_LEADS_ACTIVITY_RECORDS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/activity/record/${leadsId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_ACTIVITY_RECORDS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_ACTIVITY_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const addLeadsImportForm =
+  (customer, orgId) => (dispatch, getState) => {
+    const userId = getState().auth.userDetails.userId;
+
+    // const opportunityId = getState().opportunity.opportunity.opportunityId;
+    console.log("inside add customer");
+    dispatch({
+      type: types.ADD_LEADS_IMPORT_FORM_REQUEST,
+    });
+
+    axios
+      .post(`${base_url}/excel/import/leads`, customer, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      dispatch(getLeads(userId));
+        const startDate = dayjs().startOf("month").toISOString();
+        const endDate = dayjs().endOf("month").toISOString();
+        // dispatch(getRecords(userId));
+        // dispatch(getLatestCustomers(userId, startDate, endDate));
+        // dispatch(getCustomerListByUserId(userId));
+
+        dispatch({
+          type: types.ADD_LEADS_IMPORT_FORM_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_LEADS_IMPORT_FORM_FAILURE,
+          payload: err,
+        });
+        // cb && cb();
+      });
+  };
+
+  export const getLeadsAllRecords = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_LEADS_ALL_RECORDS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/record/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_ALL_RECORDS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_ALL_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleLeadsNoteDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_NOTE_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const getNotesListOfLeads = (type,id) => (dispatch) => {
+    dispatch({
+      type: types.GET_NOTES_LIST_LEADS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/todo/activity/notes/${type}/${id}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_NOTES_LIST_LEADS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_NOTES_LIST_LEADS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const addNote = (note,type,id, cb) => (dispatch) => {
+    dispatch({ type: types.ADD_LEAD_NOTES_REQUEST });
+    axios
+      .post(`${base_url}/todo/activity/notes/${type}/${id }`, note, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.ADD_LEAD_NOTES_SUCCESS,
+          payload: res.note,
+        });
+        console.log(res);
+        cb && cb();
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.ADD_LEAD_NOTES_FAILURE,
+          payload: err,
+        });
+        console.log(err);
+        cb && cb();
+      });
+  };
+
+  export const removeLeadsNote = ( data,orgId) => (dispatch) => {
+    // console.log(typeId);
+    dispatch({
+      type: types.REMOVE_LEADS_NOTE_REQUEST,
+    });
+    axios
+    .put(
+      `${base_url}/employee/notes`,
+     data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+      .then((res) => {
+        // dispatch(getSectorCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Note deleted Successfully!',
+        })
+        console.log(res);
+        dispatch({
+          type: types.REMOVE_LEADS_NOTE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.REMOVE_LEADS_NOTE_FAILURE,
+        });
+      });
   };
 

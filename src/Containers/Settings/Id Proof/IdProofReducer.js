@@ -6,6 +6,10 @@ const initialState = {
   fetchingIdProofsError: false,
   idProofs: [],
 
+  fetchingIdProofCount: false,
+  fetchingIdProofCountError: false,
+  idProofCount:{},
+
   addingIdProofs: false,
   addingIdProofsError: false,
 
@@ -61,7 +65,7 @@ export const idProofsReducer = (state = initialState, action) => {
         ...state,
         updatingIdProofs: false,
         idProofs: state.idProofs.map((task) =>
-        task.IdProofTypeId === action.payload.IdProofTypeId
+        task.idProofTypeId === action.payload.idProofTypeId
             ? action.payload
             : task
         ),
@@ -95,7 +99,7 @@ export const idProofsReducer = (state = initialState, action) => {
       return {
         ...state,
         removingIdProof: false,
-        idProofs: state.idProofs.filter((item) => item.IdProofTypeId !== action.payload),
+        idProofs: state.idProofs.filter((item) => item.idProofTypeId !== action.payload),
       };
     case types.REMOVE_ID_PROOF_FAILURE:
       return {
@@ -109,6 +113,19 @@ export const idProofsReducer = (state = initialState, action) => {
           idProofs: [], 
           // deletedTruck: [] 
         };
+
+
+        case types.GET_ID_PROOF_COUNT_REQUEST:
+          return { ...state, fetchingIdProofCount: true };
+        case types.GET_ID_PROOF_COUNT_SUCCESS:
+          return { ...state, fetchingIdProofCount: false, 
+            idProofCount: action.payload };
+        case types.GET_ID_PROOF_COUNT_FAILURE:
+          return {
+            ...state,
+            fetchingIdProofCount: false,
+            fetchingIdProofCountError: true,
+          };
 
     default:
       return state;

@@ -1,18 +1,22 @@
-import { Button, DatePicker, Select,  } from 'antd'
+import { Button, DatePicker, Input, Select, } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProductionUsersById, getRepairPhoneById, UpdateTechnicianForRepairPhone } from "./RefurbishAction"
+import { getProductionUsersById, getRepairPhoneById, closeRepairModal, UpdateTechnicianForRepairPhone } from "./RefurbishAction"
 import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
 import { SubTitle } from '../../../Components/UI/Elements';
+import dayjs from "dayjs";
 
 const { Option } = Select;
 const AssignRepairForm = (props) => {
+
+    let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? "" : props.rowData.defaultRepairDepartmentId
+
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState("")
+    const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
 
     const rowSelection = {
@@ -32,14 +36,15 @@ const AssignRepairForm = (props) => {
         setTechnician(val)
     }
     const handleDepartment = (val) => {
-        setDepartment(val)
-        props.getProductionUsersById(val, props.locationId);
+        let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? val : props.rowData.defaultRepairDepartmentId
+        setDepartment(depaVal)
+        props.getProductionUsersById(depaVal, props.locationId);
     }
     console.log(user)
 
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.departmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultRepairDepartmentId, props.locationId);
         props.getRepairPhoneById(props.rowData.orderPhoneId)
         props.getDepartments()
     }, [])
@@ -49,6 +54,19 @@ const AssignRepairForm = (props) => {
     const hanldeOnChange = (value) => {
         setDueDate(value)
     }
+
+    const handleCallback = () => {
+        if (!props.repairPhoneByOrder.length) {
+            props.closeRepairModal()
+        }
+    }
+
+    const disabledDate = current => {
+        // Replace 'start' and 'end' with your desired start and end dates
+        const startDate = dayjs(props.rowData.availabilityDate);
+        const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
+        return current && (current < startDate || current > endDate);
+    };
     const column = [
         {
             title: "",
@@ -123,12 +141,10 @@ const AssignRepairForm = (props) => {
         <div>
 
             <div class="mt-[10px] flex justify-between">
-                <div>
+                <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Department</label>
                     <Select
-                        style={{
-                            width: 250,
-                        }}
+                        className="w-[350px]"
                         value={department}
                         onChange={(value) => handleDepartment(value)}
                     >
@@ -137,12 +153,10 @@ const AssignRepairForm = (props) => {
                         })}
                     </Select>
                 </div>
-                <div>
-                <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                <div class=" w-1/5">
+                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
                     <Select
-                        style={{
-                            width: 250,
-                        }}
+                        className="w-[350px]"
                         value={technician}
                         onChange={(value) => handleTechnician(value)}
                     >
@@ -151,14 +165,21 @@ const AssignRepairForm = (props) => {
                         })}
                     </Select>
                 </div>
-                <div>
-                <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                <div class=" w-1/6">
+                    <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
+                    <div class=" text-base"></div>
+                </div>
+                <div class=" w-1/6">
+                    <label class="text-[15px] font-semibold m-[10px]">Quality</label>
+                    <div class=" text-base"></div>
+                </div>
+                <div class=" w-1/5">
+                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
                     <DatePicker
-                        style={{
-                            width: 250,
-                        }}
+                        className="w-[250px]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
+                        disabledDate={disabledDate}
                     />
                 </div>
             </div>
@@ -168,24 +189,27 @@ const AssignRepairForm = (props) => {
                 pagination={false}
                 columns={column}
                 rowSelection={rowSelection}
-                loading={props.fetchingNoOfPhonesById}
+                loading={props.fetchingRepairPhoneById}
             />
             <div class="flex justify-end mt-1">
-                <Button
+                {department && technician && dueDate && checkedValue && <Button
                     type='primary'
+                    loading={props.updatingTechnicianForRepair}
                     onClick={() => props.UpdateTechnicianForRepairPhone({
                         phoneDetailsList: checkedValue,
                         orderPhoneId: props.rowData.orderPhoneId,
                         productionRepairDispatchId: "",
                         technicianId: technician,
                         userId: props.userId,
+                        defaultRepairDepartmentId: department,
                         repairDueDate: dueDate
                     },
                         props.rowData.orderPhoneId,
-                        props.locationId
+                        props.locationId,
+                        handleCallback()
                     )}>
                     Submit
-                </Button>
+                </Button>}
             </div>
         </div>
     )
@@ -196,10 +220,12 @@ const mapStateToProps = ({ auth, refurbish, departments }) => ({
     productionUser: refurbish.productionUser,
     repairPhoneByOrder: refurbish.repairPhoneByOrder,
     noOfPhoneById: refurbish.noOfPhoneById,
+    showAssignRepairModal: refurbish.showAssignRepairModal,
     locationId: auth.userDetails.locationId,
-    fetchingNoOfPhonesById: refurbish.fetchingNoOfPhonesById,
+    fetchingRepairPhoneById: refurbish.fetchingRepairPhoneById,
     userId: auth.userDetails.userId,
     departments: departments.departments,
+    updatingTechnicianForRepair: refurbish.updatingTechnicianForRepair
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -109,7 +109,7 @@ class SingleIdProof extends Component {
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                   </Button>
                
-                  <Button type="primary" ghost onClick={() => toggleViewType()}>
+                  <Button type="cancel"  onClick={() => toggleViewType()}>
                     {/* Cancel */}
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>

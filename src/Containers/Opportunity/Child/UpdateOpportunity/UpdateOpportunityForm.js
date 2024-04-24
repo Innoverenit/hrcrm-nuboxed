@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {getCurrency} from "../../../Auth/AuthAction"
+import {getSaleCurrency} from "../../../Auth/AuthAction"
 import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { updateOpportunity, getAllSalesList } from "../../OpportunityAction";
@@ -45,7 +45,7 @@ function UpdateOpportunityForm (props) {
     props. getCrm();
     props.getAllEmployeelist();
     props.getAssignedToList(props.orgId);
-    props.getCurrency();
+    props.getSaleCurrency();
   },[]);
 //   const includeOption = opportunities.map(opportunity => opportunity.included);
 // const allIncluded = mappedIncluded.flat();
@@ -61,9 +61,9 @@ function UpdateOpportunityForm (props) {
     console.log("test", includeOption)
   
   }, [props.setEditingOpportunity]);
-  console.log(includeNames)
 
-  const sortedCurrency =props.currencies.sort((a, b) => {
+
+  const sortedCurrency =props.saleCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -78,7 +78,7 @@ function UpdateOpportunityForm (props) {
   const currencyNameOption = sortedCurrency.map((item) => {
     return {
       label: `${item.currency_name}`,
-      value: item.currency_id,
+      value: item.currency_name,
     };
   });
   const includeOption = props.setEditingOpportunity.included===null?[]: props.setEditingOpportunity.included.map((item) => {
@@ -206,8 +206,10 @@ function UpdateOpportunityForm (props) {
               dayjs(props.setEditingOpportunity.startDate) || dayjs(),
             endDate: dayjs(props.setEditingOpportunity.endDate) || dayjs(),
             // endDate: endDate || null,
-            oppWorkflow: props.setEditingOpportunity.oppWorkflow || "",
-            oppStage: props.setEditingOpportunity.oppStage || "",
+            oppWorkflow:"",
+            oppStage:"",
+            // oppWorkflow: props.setEditingOpportunity.oppWorkflow || "",
+            // oppStage: props.setEditingOpportunity.oppStage || "",
             
             // description: props.setEditingOpportunity.description || "",
             proposalAmount:
@@ -405,11 +407,11 @@ function UpdateOpportunityForm (props) {
                       <StyledLabel>
                         <Field
                           name="proposalAmount"
-                          // label="Proposal Amount"
+                          // label="Value"
                           label={
                             <FormattedMessage
                               id="app.proposalAmount"
-                              defaultMessage="Proposal Amount"
+                              defaultMessage="Value"
                             />
                           }
                           isColumn
@@ -653,64 +655,62 @@ function UpdateOpportunityForm (props) {
                   <div class="flex justify-between max-sm:flex-col">
                     <div class=" w-1/2 max-sm:w-wk">
                       <StyledLabel>
-                        <Field
-                          name="oppWorkflow"
-                          isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.workflow"
-                              defaultMessage="Workflow"
-                            />
-                          }
-                          component={SelectComponent}
-                          options={
-                            Array.isArray(WorkflowOptions)
-                              ? WorkflowOptions
-                              : []
-                          }
-                          value={values.oppWorkflow}
-                          isColumn
-                          margintop={"0"}
-                          inlineLabel
-                        />
+                      <Field
+                        name="oppWorkflow"
+                        // selectType="contactListFilter"
+                        isColumnWithoutNoCreate
+                        isRequired
+                        placeolder="Select type"
+                        label={
+                          <FormattedMessage
+                            id="app.workflow"
+                            defaultMessage="Workflow"
+                          />
+                        }
+                        // component={SearchSelect}
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(WorkflowOptions) ? WorkflowOptions : []
+                        }
+                        value={values.oppWorkflow}
+                        isColumn
+                        inlineLabel
+                      />
                       </StyledLabel>
                     </div>
                     <Spacer />
                     <div class=" w-2/5 max-sm:w-wk">
                       <StyledLabel>
-                        <Field
-                          name="oppStage"
-                          isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.stages"
-                              defaultMessage="Stages"
-                            />
-                          }
-                          component={SelectComponent}
-                          options={
-                            Array.isArray(
-                             getStagesOptions(
+                      <Field
+                        name="oppStage"
+                        isRequired
+                        isColumnWithoutNoCreate
+                        label={
+                          <FormattedMessage
+                            id="app.stages"
+                            defaultMessage="Stages"
+                          />
+                        }
+                        component={SelectComponent}
+                        options={
+                          Array.isArray(
+                            getStagesOptions("oppWorkflow", values.oppWorkflow)
+                          )
+                            ? getStagesOptions(
                                 "oppWorkflow",
                                 values.oppWorkflow
                               )
-                            )
-                              ? getStagesOptions(
-                                  "oppWorkflow",
-                                  values.oppWorkflow
-                                )
-                              : []
-                          }
-                          value={values.oppStage}
-                          filterOption={{
-                            filterType: "oppWorkflow",
-                            filterValue: values.oppWorkflow,
-                          }}
-                          disabled={!values.oppWorkflow}
-                          isColumn
-                          margintop={"0"}
-                          inlineLabel
-                        />
+                            : []
+                        }
+                        value={values.oppStage}
+                        filterOption={{
+                          filterType: "oppWorkflow",
+                          filterValue: values.oppWorkflow,
+                        }}
+                        disabled={!values.oppWorkflow}
+                        isColumn
+                        inlineLabel
+                      />
                       </StyledLabel>
                     </div>
                   </div>
@@ -722,7 +722,7 @@ function UpdateOpportunityForm (props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={updateOpportunityById}
+                  loading={updateOpportunityById}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
@@ -750,6 +750,7 @@ const mapStateToProps = ({ auth, opportunity,currency,employee, customer,leads, 
   crmAllData:leads.crmAllData,
   orgId: auth.userDetails.organizationId,
   allEmployeeList:investor.allEmployeeList,
+  saleCurrencies: auth.saleCurrencies,
   assignedToList:employee.assignedToList,
   currencies: auth.currencies,
 });
@@ -766,7 +767,7 @@ const mapDispatchToProps = (dispatch) =>
       getCrm,
       getAssignedToList,
       getAllEmployeelist,
-      getCurrency
+      getSaleCurrency
     },
     dispatch
   );

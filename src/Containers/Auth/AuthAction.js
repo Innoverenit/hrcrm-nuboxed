@@ -12,6 +12,7 @@ import {
   UPDATE_USER_DETAILS_FAILURE,
 } from "./AuthTypes";
 import { SET_FISCAL_TIME_INTERVAL_REPORT } from "../Reports/ReportActionType";
+import Swal from "sweetalert2";
 // import { SET_FISCAL_TIME_INTERVAL_TEAM } from "../Teams/TeamsActionTypes";
 // import { SET_FISCAL_TIME_INTERVAL_VIEWPORT } from "../Viewport/ViewportActionTypes";
 const history = createBrowserHistory();
@@ -80,141 +81,110 @@ export const register = (user) => (dispatch) => {
  * this method is a called when user click on the email activation link
  * this method verify the email and if user is verified it send them to set Password page
  */
-export const validateEmail = (
-  employeeId,
-  token,
-  emailId,
-  organizationId,
-  history
-) => (dispatch) => {
-  console.log(employeeId, token, emailId, organizationId);
-  dispatch({
-    type: types.VALIDATE_EMAIL_REQUEST,
-  });
-
-  axios
-    .post(`${base_url}/emailValidation`, {
-      empId: employeeId,
-      token: token,
-      emailId: emailId,
-
-      organizationId: organizationId,
-    })
-    .then((res) => {
-      console.log(res);
-      if (res.data === true) {
-        console.log("email is valid");
-        message.success("Your email has been validated successfully.");
-        history.push({
-          pathname: "/setPassword",
-          state: {
-            employeeId: employeeId,
-            emailId: emailId,
-            organizationId: organizationId,
-            token: token,
-          },
-        });
-        // dispatch({
-        //     type: types.VALIDATE_EMAIL_SUCCESS,
-        // })
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      // dispatch({
-      //     type: types.VALIDATE_EMAIL_FAILURE
-      // })
+export const validateEmail =
+  (employeeId, token, emailId, organizationId, history) => (dispatch) => {
+    console.log(employeeId, token, emailId, organizationId);
+    dispatch({
+      type: types.VALIDATE_EMAIL_REQUEST,
     });
-};
+
+    axios
+      .post(`${base_url}/emailValidation`, {
+        empId: employeeId,
+        token: token,
+        emailId: emailId,
+
+        organizationId: organizationId,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data === true) {
+          console.log("email is valid");
+          message.success("Your email has been validated successfully.");
+          history.push({
+            pathname: "/setPassword",
+            state: {
+              employeeId: employeeId,
+              emailId: emailId,
+              organizationId: organizationId,
+              token: token,
+            },
+          });
+          // dispatch({
+          //     type: types.VALIDATE_EMAIL_SUCCESS,
+          // })
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        // dispatch({
+        //     type: types.VALIDATE_EMAIL_FAILURE
+        // })
+      });
+  };
 /**
  * reset password
  * this method is a called when user click on the forgot password link
  * this method verify the email and if user is verified it send them to set Password page
  */
-export const resetPassword = (
-  userId,
-  employeeId,
-  token,
-  emailId,
-  organizationId,
-  history
-) => (dispatch) => {
-  console.log(userId, token, emailId, organizationId);
+export const resetPassword =
+  (userId, employeeId, token, emailId, organizationId, history) =>
+    (dispatch) => {
+      console.log(userId, token, emailId, organizationId);
 
-  axios
-    .post(`${base_url}/emailValidation`, {
-      employeeId: employeeId,
-      emailId: emailId,
-      token: token,
-      organizationId: organizationId,
-    })
-    .then((res) => {
-      console.log(res);
-      if (res.data === true) {
-        history.push({
-          pathname: "/setPassword",
-          state: {
-            employeeId: employeeId,
-            emailId: emailId,
-            organizationId: organizationId,
-            token: token,
-          },
+      axios
+        .post(`${base_url}/emailValidation`, {
+          employeeId: employeeId,
+          emailId: emailId,
+          token: token,
+          organizationId: organizationId,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data === true) {
+            history.push({
+              pathname: "/setPassword",
+              state: {
+                employeeId: employeeId,
+                emailId: emailId,
+                organizationId: organizationId,
+                token: token,
+              },
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+    };
 /**
  * Set Password goes here
  * password is set here and after password set it redirect to login page
  */
-// export const setPassword = (data,cb) => (dispatch) => {
-//   dispatch({ type: types.SET_PASSWORD_REQUEST });
-//   axios
-//     .post(`${base_url}/setPassword`, data,{ headers: {
-//       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-//     },})
-//     .then((res) => {
-//       console.log(res);
-//       dispatch({ type: types.SET_PASSWORD_SUCCESS });
-//       cb();
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       dispatch({ type: types.SET_PASSWORD_FAILURE });
-//       cb();
-//     });
-// };
 
-export const setPassword = (
-  userId,
-  organizationId,
-  emailId,
-  password,
-  history
-) => (dispatch) => {
-  console.log(userId, organizationId, emailId, password);
-  axios
-    .post(`${base_url}/setPassword`, {
-      userId: userId,
-      organizationId: organizationId,
-      emailId: emailId,
-      password: password,
-      ipAddress: "103.72.61.3",
-    })
-    .then((res) => {
-      console.log(res);
-      if (res.data === true) {
-        message.success("Your password has been saved successfully.");
-        history.push("/login");
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
+export const setPassword =
+  (userId, organizationId, emailId, password, history) => (dispatch) => {
+    console.log(userId, organizationId, emailId, password);
+    axios
+      .post(`${base_url}/setPassword`, {
+        userId: userId,
+        organizationId: organizationId,
+        emailId: emailId,
+        password: password,
+        ipAddress: "103.72.61.3",
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data === true) {
+          message.success("Your password has been saved successfully.");
+          history.push("/login");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 /**
  * change Password goes here
@@ -259,60 +229,70 @@ export const forgotPassword = (email) => (dispatch) => {
  * login request with username(email) and password
  * after successfull login it store the recieved token to local storage sends to dashboard
  */
-export const login = ({ userName, password }, history, cb) => (dispatch) => {
-  dispatch({
-    type: types.LOGIN_REQUEST,
-  });
-  axios
-    .post(`${login_url}/token/generate-token`, {
-      username: userName,
-      password: password,
-    })
-    .then((res) => {
-      // message.success('Welcome to FokusWork, great to have you here.')
-      console.log(res);
-      sessionStorage.setItem("token", res.data.token);
-
-      dispatch(getUserDetails(res.data.token));
-
-      history.push("/dashboard");
+export const login =
+  ({ userName, password }, history, cb) =>
+    (dispatch) => {
       dispatch({
-        type: types.LOGIN_SUCCESS,
-        payload: res.data,
+        type: types.LOGIN_REQUEST,
       });
-      cb && cb("success");
-    })
-    .catch((err) => {
-      console.log(err && err.response && err.response.data);
-      cb && cb("failure");
+      axios
+        .post(`${login_url}/token/generate-token`, {
+          username: userName,
+          password: password,
+        })
+        .then((res) => {
+          // message.success('Welcome to FokusWork, great to have you here.')
+          console.log(res);
+          sessionStorage.setItem("token", res.data.token);
 
-      if (
-        err &&
-        err.response &&
-        err.response.data ===
-        "You have entered an invalid username or password "
-      ) {
-        message.error("You have entered an invalid username or password ");
-      } else {
-        message.error(err.response.data);
-        console.log(err);
-        history.push({
-          pathname: "/",
+          dispatch(getUserDetails(res.data.token));
+          // if(res.data.dashboardRegionalInd === true){
+          //   history.push("/dashboardRegional"); 
+          // }else{
+          //   history.push("/dashboard"); 
+          // }
+          history.push("/dashboard");
+          dispatch({
+            type: types.LOGIN_SUCCESS,
+            payload: res.data,
+          });
+          cb && cb("success");
+        })
+        .catch((err) => {
+          console.log(err && err.response && err.response.data);
+          cb && cb("failure");
+
+          if (
+            err &&
+            err.response &&
+            err.response.data ===
+            "You have entered an invalid username or password "
+          ) {
+            message.error("You have entered an invalid username or password ");
+          } else {
+            message.error(err.response.data);
+            console.log(err);
+            history.push({
+              pathname: "/",
+            });
+          }
+          dispatch({
+            type: types.LOGIN_FAILURE,
+            payload: err,
+          });
         });
-      }
-      dispatch({
-        type: types.LOGIN_FAILURE,
-        payload: err,
-      });
-    });
-};
+    };
 
 export const getCurrency = () => (dispatch) => {
   dispatch({
     type: types.GET_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies`)
+    .get(`${base_url}/currencies`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -324,6 +304,32 @@ export const getCurrency = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_CURRENCY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCategory = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/all/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CATEGORY_FAILURE,
         payload: err,
       });
     });
@@ -356,7 +362,11 @@ export const getCountries = () => (dispatch) => {
     type: types.GET_COUNTRIES_REQUEST,
   });
   axios
-    .get(`${base_url}/countries`)
+    .get(`${base_url}/countries`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -368,6 +378,32 @@ export const getCountries = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_COUNTRIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSaleCurrency = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SALE_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/currencies/sales`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SALE_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SALE_CURRENCY_FAILURE,
         payload: err,
       });
     });
@@ -424,6 +460,22 @@ export const setFiscalTimeIntervalReport = (data) => (dispatch) => {
   dispatch({
     type: SET_FISCAL_TIME_INTERVAL_REPORT,
     payload: data,
+  });
+};
+
+
+export const handleRepositoryDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REPOSITORY_DOCUMENT_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const setEditRepositoryList = (name) => (dispatch) => {
+  dispatch({
+    type: types.SET_REPOSITORY_EDIT,
+    payload: name,
   });
 };
 
@@ -489,9 +541,7 @@ export const handleUpdateOrganizationModal = (modalProps) => (dispatch) => {
 /**
  * update user details after login
  */
-export const updateOrganizationDetails = (orgId, data, cb) => (
-  dispatch
-) => {
+export const updateOrganizationDetails = (orgId, data, cb) => (dispatch) => {
   console.log(data);
   console.log(orgId);
   dispatch({
@@ -509,11 +559,12 @@ export const updateOrganizationDetails = (orgId, data, cb) => (
     )
     .then((res) => {
       console.log(res);
-      dispatch(getOrganizationDetails());
+      // dispatch(getOrganizationDetails());
+      dispatch(getOrganizationDetails(orgId));
+      dispatch(getOrganizationList(orgId));
       dispatch({
         type: types.UPDATE_ORGANIZATION_DETAILS_SUCCESS,
         payload: res.data,
-
       });
       cb();
     })
@@ -549,9 +600,7 @@ export const getLoginDetails = (userId) => (dispatch) => {
         message: "Welcome to Korero, great to have you here.",
         description:
           "Last logged on " +
-          dayjs(res.data && res.data[1] && res.data[1].loginDate).format(
-            "LLL"
-          ),
+          dayjs(res.data && res.data[1] && res.data[1].loginDate).format("LLL"),
         style: {
           // backgroundColor: '#1890ff',
           // color: '#fff',
@@ -813,36 +862,34 @@ export const getLeavesByUserId = (employeeId) => (dispatch) => {
       });
     });
 };
-export const addOrganizationSignatureByOrgId = (data) => (
-  dispatch,
-  getState
-) => {
-  const { organizationId } = getState().auth.userDetails;
-  dispatch({
-    type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_REQUEST,
-  });
-  axios
-    .put(`${base_url}/organization/signature`, data, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch(getOrganizationSignatureByOrgId(organizationId));
-      dispatch({
-        type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_FAILURE,
-        payload: err,
-      });
+export const addOrganizationSignatureByOrgId =
+  (data) => (dispatch, getState) => {
+    const { organizationId } = getState().auth.userDetails;
+    dispatch({
+      type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_REQUEST,
     });
-};
+    axios
+      .put(`${base_url}/organization/signature`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(getOrganizationSignatureByOrgId(organizationId));
+        dispatch({
+          type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_ORGANIZATION_SIGNATUE_BY_ORGANIZATION_ID_FAILURE,
+          payload: err,
+        });
+      });
+  };
 
 export const getOrganizationSignatureByOrgId = (orgId) => (dispatch) => {
   dispatch({
@@ -953,7 +1000,7 @@ export const validateOtp = (data) => (dispatch) => {
         type: types.VALIDATE_OTP_BY_EMAIL_SUCCESS,
         payload: res.data,
       });
-      message.success(res.data.status)
+      message.success(res.data.status);
     })
     .catch((err) => {
       console.log(err);
@@ -961,9 +1008,7 @@ export const validateOtp = (data) => (dispatch) => {
     });
 };
 
-export const editOrganizationDetails = (orgId, data, cb) => (
-  dispatch
-) => {
+export const editOrganizationDetails = (orgId, data, cb) => (dispatch) => {
   console.log(data);
   console.log(orgId);
   dispatch({
@@ -985,7 +1030,6 @@ export const editOrganizationDetails = (orgId, data, cb) => (
       dispatch({
         type: types.EDIT_ORGANIZATION_DETAILS_SUCCESS,
         payload: res.data,
-
       });
       cb();
     })
@@ -998,58 +1042,53 @@ export const editOrganizationDetails = (orgId, data, cb) => (
     });
 };
 
+export const addOrganizationDocument =
+  (customer, orgId) => (dispatch, getState) => {
+    const userId = getState().auth.userDetails.userId;
 
-
-export const addOrganizationDocument = (customer, orgId) => (dispatch, getState) => {
-  const userId = getState().auth.userDetails.userId;
-
-  // const opportunityId = getState().opportunity.opportunity.opportunityId;
-  console.log("inside add customer");
-  dispatch({
-    type: types.ADD_ORGANIZATION_DOCUMENT_REQUEST,
-  });
-
-  axios
-    .post(`${base_url}/organization/document`, customer, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch(getRepositoryDocuments(orgId));
-      const startDate = dayjs()
-        .startOf("month")
-        .toISOString();
-      const endDate = dayjs()
-        .endOf("month")
-        .toISOString();
-      // dispatch(getRecords(userId));
-      // dispatch(getLatestCustomers(userId, startDate, endDate));
-      // dispatch(getCustomerListByUserId(userId));
-
-      dispatch({
-        type: types.ADD_ORGANIZATION_DOCUMENT_SUCCESS,
-        payload: res.data,
-      });
-      // cb && cb();
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.ADD_ORGANIZATION_DOCUMENT_FAILURE,
-        payload: err,
-      });
-      // cb && cb();
+    // const opportunityId = getState().opportunity.opportunity.opportunityId;
+    console.log("inside add customer");
+    dispatch({
+      type: types.ADD_ORGANIZATION_DOCUMENT_REQUEST,
     });
-};
 
-export const getRepositoryDocuments = (orgId) => (dispatch) => {
+    axios
+      .post(`${base_url}/organization/document`, customer, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        //dispatch(getRepositoryDocuments(userId));
+        const startDate = dayjs().startOf("month").toISOString();
+        const endDate = dayjs().endOf("month").toISOString();
+        // dispatch(getRecords(userId));
+        // dispatch(getLatestCustomers(userId, startDate, endDate));
+        // dispatch(getCustomerListByUserId(userId));
+
+        dispatch({
+          type: types.ADD_ORGANIZATION_DOCUMENT_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_ORGANIZATION_DOCUMENT_FAILURE,
+          payload: err,
+        });
+        // cb && cb();
+      });
+  };
+
+export const getRepositoryDocuments = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_REPOSITORY_DOCUMENTS_REQUEST,
   });
   axios
-    .get(`${base_url}/organization/document/organization/${orgId}`, {
+    .get(`${base_url}/organization/document/user/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1114,7 +1153,7 @@ export const deleteOrgDocata = (documentId, orgId) => (dispatch, getState) => {
     });
 };
 
-export const LinkOrgDocPublish = (data, cb,) => (dispatch) => {
+export const LinkOrgDocPublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_ORG_DOC_PUBLISH_REQUEST });
 
   axios
@@ -1141,7 +1180,7 @@ export const LinkOrgDocPublish = (data, cb,) => (dispatch) => {
     });
 };
 
-export const LinkOrgDocPrivate = (data, cb,) => (dispatch) => {
+export const LinkOrgDocPrivate = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_ORG_DOC_PRIVATE_REQUEST });
 
   axios
@@ -1175,8 +1214,7 @@ export const addOnboard = (data, cb) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url}/registration`, data,
-    )
+    .post(`${base_url}/registration`, data)
     .then((res) => {
       console.log(res);
       sessionStorage.setItem("token", res.data.token);
@@ -1194,7 +1232,6 @@ export const addOnboard = (data, cb) => (dispatch, getState) => {
         type: types.ADD_ONBOARD_FAILURE,
         payload: err,
       });
-
     });
 };
 
@@ -1274,12 +1311,12 @@ export const getOrganizationList = (userId, pageNo, filter) => (dispatch) => {
     });
 };
 
-
 export const updatePreferLang = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_PREFERED_LANG_REQUEST });
   axios
     .put(
-      `${base_url}/employee/update/preferedLanguage`, { ...data },
+      `${base_url}/employee/update/preferedLanguage`,
+      { ...data },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1308,7 +1345,6 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_ACTION_DRAWER_MODAL,
     payload: modalProps,
   });
-
 };
 
 export const getActionRequiredCount = (userId) => (dispatch) => {
@@ -1433,7 +1469,6 @@ export const getDealsIncludedCount = (userId) => (dispatch) => {
     });
 };
 
-
 export const getTaskIncludedCount = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_TASK_INCLUDED_COUNT_REQUEST,
@@ -1459,7 +1494,6 @@ export const getTaskIncludedCount = (userId) => (dispatch) => {
       });
     });
 };
-
 
 export const getIncludedDealsList = (userId, pageNo) => (dispatch) => {
   dispatch({
@@ -1534,6 +1568,156 @@ export const getAllDialCodeList = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ALL_DIAL_CODE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const verifyEmailurL = (data) => (dispatch) => {
+  dispatch({
+    type: types.VERIFY_EMAIL_REQUEST,
+  });
+  axios
+    .post(`${base_url}/otp/user/generateOTP`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.VERIFY_EMAIL_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP sent successfully to the provided Email account',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VERIFY_EMAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const validateOtpurL = (data, cb) => (dispatch) => {
+  dispatch({
+    type: types.VALIDATE_OTP_REQUEST,
+  });
+  axios
+    .post(`${base_url}/api/otp/validateOtp`, data)
+    .then((res) => {
+      dispatch({
+        type: types.VALIDATE_OTP_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+      Swal.fire({
+        icon: 'success',
+        title: 'OTP validiated successfully!',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.VALIDATE_OTP_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+      Swal.fire({
+        icon: 'error',
+        title: 'OTP is not matching with input!',
+      })
+    });
+};
+export const forgotUserPassword = (data, cb) => (dispatch) => {
+
+  dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
+  axios
+    .post(`${base_url}/setPassword`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+
+
+      dispatch({
+        type: types.FORGOT_PASSWORD_SUCCESS,
+
+      });
+      cb && cb("success")
+      Swal.fire({
+        icon: 'success',
+        title: 'You have successfully reset your password!',
+      })
+    })
+    .catch((err) => {
+
+      dispatch({ type: types.FORGOT_PASSWORD_FAILURE });
+      cb && cb("failure");
+    });
+};
+
+export const handleFAQModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_FAQ_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const updateRepositoryDocument = (data, organizationDocumentLinkId) => (
+  dispatch,
+) => {
+
+  dispatch({ type: types.UPDATE_REPOSITORY_DOCUMENT_REQUEST });
+  axios
+    .put(`${base_url}/organization/document/${organizationDocumentLinkId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+
+      console.log(res);
+      //  dispatch(getOpportunityListByUserId(userId,0));
+      dispatch({
+        type: types.UPDATE_REPOSITORY_DOCUMENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_REPOSITORY_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getInvestorCurrency = () => (dispatch) => {
+  dispatch({
+    type: types.GET_INVESTOR_CURRENCY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/currencies/investor`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVESTOR_CURRENCY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVESTOR_CURRENCY_FAILURE,
         payload: err,
       });
     });

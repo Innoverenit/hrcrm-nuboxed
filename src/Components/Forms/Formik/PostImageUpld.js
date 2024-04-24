@@ -19,10 +19,10 @@ class PostImageUpld extends React.Component {
       file.flag = true;
       return false;
     }
-    const isLt2M = file.size / 1024 < 50;
+    const isLt2M = file.size / 1024 < 150;
     // file.size/1024/1024 <25
     if (!isLt2M) {
-      message.error("Image size must be smaller than 50KB!");
+      message.error("Image size must be smaller than 150KB!");
       file.flag = true;
       return false;
     }

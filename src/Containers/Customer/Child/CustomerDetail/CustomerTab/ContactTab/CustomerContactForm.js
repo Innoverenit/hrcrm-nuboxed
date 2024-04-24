@@ -26,10 +26,10 @@ const ContactSchema = Yup.object().shape({
     .matches(phoneRegExp, "Whatsapp number is not valid")
     .min(8, "Minimum 8 digits")
     .max(10, "Number is too long"),
-  mobileNumber: Yup.string()
-    .matches(phoneRegExp, "Mobile number is not valid")
-    .min(8, "Minimum 8 digits")
-    .max(10, "Number is too long"),
+  // mobileNumber: Yup.string()
+  //   .matches(phoneRegExp, "Mobile number is not valid")
+  //   .min(8, "Minimum 8 digits")
+  //   .max(10, "Number is too long"),
 });
 
 class ContactForm extends Component {
@@ -126,7 +126,7 @@ class ContactForm extends Component {
             description: "",
             // department: undefined,
             departmentDetails: "",
-            departmentId: this.props.departmentId,
+            departmentId: "",
             userId: this.props.userId,
             // tagWithCompany: tagWithCompany ? tagWithCompany : "",
             tagWithCompany: "",
@@ -164,6 +164,8 @@ class ContactForm extends Component {
               {
                 ...values,
                 customerId: this.props.customerId,
+                opportunityId:this.props.opportunityId,
+                investorId:this.props.investorId,
                 whatsapp: this.state.whatsapp ? "Different" : "Same",
               },
               this.props.userId,
@@ -288,7 +290,8 @@ class ContactForm extends Component {
                     </div>
                     <div class=" w-2/5">
                       <FastField
-                        type="text"
+                      // inputMode="numeric" 
+                        type="number"
                         name="mobileNumber"
                         //placeholder="Mobile #"
                         label={
@@ -448,7 +451,7 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class=" w-full">
+                  <div class="  w-w47.5">
                     <FastField
                       name="departmentId"
                       //label="Department"
@@ -458,11 +461,12 @@ class ContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
-                      component={SearchSelect}
-                      value={values.departmentId}
-                      selectType="departmentName"
+                      component={InputComponent}
+                      // value={values.departmentId}
+                      // selectType="departmentName"
                       inlineLabel
                     />
                   </div>

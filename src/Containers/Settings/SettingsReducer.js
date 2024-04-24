@@ -9,6 +9,9 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+  deleteSupplierProcessData: false, 
+  deleteSupplierProcessDataError: false,
+
   fetchingMatrixData:false,
   fetchingMatrixDataError:false,
   matrixData:[],
@@ -43,6 +46,9 @@ const initialState = {
   fetchingSequence: false,
   fetchingSequenceError: false,
   sequence: [],
+
+  updateProcessNameForProduction: false,
+  updateProcessNameForProductionError: false,
 
 
   fetchingTaskForRecruit: false,
@@ -91,6 +97,9 @@ const initialState = {
   addingProcess: false,
   addingProcessError: false,
 
+  addingProcessForSupplier: false,
+  addingProcessForSupplierError: false,
+
   addingProcessTask: false,
   addingProcessTaskError: false,
 
@@ -105,6 +114,9 @@ const initialState = {
   fetchingDistributionAutomationError: true,
   distributionAutomation:[],
 
+  deletingSupplierStagesData: false,
+   deletingSupplierStagesDataError: false,
+
   updatingTask: false,
   updatingTaskError: false,
   deleteTask: false,
@@ -113,11 +125,17 @@ const initialState = {
   deleteTaskData: false,
   deleteTaskDataError: false,
 
+  updatingStagesForSupplier: false,
+  updatingStagesForSupplierError: false,
+
   updatingTaskResuffel: false,
   updatingTaskResuffelError: false,
 
   addTaskModal: false,
   setEditingTask: {},
+
+  addingProcessStagesForSupplier: false,
+  addingProcessStagesForSupplier: false,
 
   fetchingApproveData: false,
   fetchingApproveDataError: false,
@@ -145,6 +163,9 @@ const initialState = {
   fetchingDepartmentRoleDataError: false,
   departmentRoleData: [],
 
+  addingProcessStagesForRepair: false,
+  addingProcessStagesForRepair: false,
+
   deletingOnboardingStagesData: false, 
   deletingOnboardingStagesDataError: false,
 
@@ -159,6 +180,10 @@ const initialState = {
   fetchingProcessStagesForOnboarding: false,
   fetchingProcessStagesForOnboardingError: false,
   onboardingProcessStages: [],
+
+  fetchingSalary: false,
+  fetchingSalaryError: false,
+  salary:[],
 
   updateProcessNameForDeals: false,
   updateProcessNameForDealsError: false,
@@ -191,6 +216,10 @@ const initialState = {
   addingProcessStages: false,
   addingProcessStagesError: false,
 
+  linkingRepairProcessPublish: false,
+  linkingRepairProcessPublishError: false,
+  repairProcessPublish:[],
+
   fetchingAllProcessStages: false,
   fetchingAllProcessStagesError: false,
   allProcessStages: [],
@@ -198,6 +227,10 @@ const initialState = {
   fetchingOppoStages: false,
   fetchingOppoStagesError: false,
   oppoStages: [],
+
+  linkingSupplierStagesPublish: false,
+  linkingSupplierStagesPublishError: false,
+  supplierStagesPublish:[],
 
   udatingSequence: false,
   udatingSequenceError: false,
@@ -219,12 +252,23 @@ const initialState = {
   fetchingProcessForRecruitError: false,
   recruitProcess: [],
 
+  updateProcessNameForRepair: false,
+  updateProcessNameForRepairError: false,
+
+  deleteProductionProcessData: false,
+   deleteProductionProcessDataError: false, 
+
+   addSalaryModal:false,
+
   addingProcessForRecruit: false,
   addingProcessForRecruitError: false,
 
   fetchingProcessStagesForRecruit: false,
   fetchingProcessStagesForRecruitError: false,
   recruitProcessStages: [],
+
+  addingSalary: false,
+  addingSalaryError: false,
 
   updateProcessNameForRecruit: false,
   updateProcessNameForRecruitError: false,
@@ -261,6 +305,9 @@ const initialState = {
   fetchingNotificationsError: false,
   notifications: [],
 
+  updateProcessNameForSupplier: false,
+  updateProcessNameForSupplierError: false,
+
   linkingDealsProcessPublish: false,
   linkingDealsProcessPublishError: false,
   dealsProcessPublish: [],
@@ -283,6 +330,10 @@ const initialState = {
   linkingDealsStagesPublishError: false,
   dealsStagesPublish: [],
 
+  fetchingProcessStagesForProduction: false,
+  fetchingProcessStagesForProductionError: false,
+  productionProcessStages: [],
+
   linkingOnboardingProcessPublish: false,
   linkingOnboardingProcessPublishError: false,
   onboardingProcessPublish:[],
@@ -297,6 +348,9 @@ const initialState = {
   fetchingTaskStagesForRecruitError: false,
   recruitTaskStages: [],
 
+  addingProcessForProduction: false,
+  addingProcessForProductionError: false,
+
   fetchingTaskTeamList: false,
   fetchingTaskTeamListError: false,
   taskTeamList: [],
@@ -307,6 +361,10 @@ const initialState = {
   fetchingMileageDetails: false,
   // fetchingOrganizationLeadsError: false,
   mileageData: [],
+
+  fetchingProcessForProduction: false,
+  fetchingProcessForProductionError: false,
+  productionProcess: [],
 
   updatingMileage: false,
   updatingMileageError: false,
@@ -327,6 +385,10 @@ const initialState = {
   fetchingMonsterError: false,
   monster: {},
 
+  fetchingProcessForSupplier: false,
+  fetchingProcessForSupplierError: false,
+  supplierProcess:[],
+
   fetchingProcessStagesForDeals: false,
   fetchingProcessStagesForDealsError: false,
   dealsProcessStages: [],
@@ -345,6 +407,9 @@ const initialState = {
 
   updateTaskNameForRecruit: false,
   updateTaskNameForRecruitError: false,
+
+  addingProcessStagesForProduction: false,
+  addingProcessStagesForProduction: false,
 
   fetchingCommission: false,
   fetchingCommissionError: false,
@@ -367,6 +432,14 @@ const initialState = {
   fetchingRecruiterError: false,
   recruiterData: [],
 
+  fetchingProcessStagesForRepair: false,
+  fetchingProcessStagesForRepairError: false,
+  repairProcessStages: [],
+
+  fetchingProcessStagesForSupplier: false,
+  fetchingProcessStagesForSupplierError: false,
+  supplierProcessStages: [],
+
   addingWeekendAccess: false,
   addingWeekendAccessError: false,
 
@@ -381,8 +454,14 @@ const initialState = {
   fetchingWebsiteError: false,
   website: [],
 
+  updatingStagesForRepair: false,
+  updatingStagesForRepairError: false,
+
   addingScheduler: false,
   addingSchedulerError: false,
+
+  updatingStagesForProduction: false,
+  updatingStagesForProductionError: false,
 
   fetchingScheduler: false,
   fetchingSchedulerError: false,
@@ -397,6 +476,14 @@ const initialState = {
   fetchingThirdPartyAccess: false,
   fetchingThirdPartyAccessError: false,
   thirdPartyAccess: [],
+
+  linkingProductionStagesPublish: false,
+  linkingProductionStagesPublishError: false,
+  productionStagesPublish:[],
+
+  linkingRepairStagesPublish: false,
+  linkingRepairStagesPublishError: false,
+  repairStagesPublish:[],
 
   addingUpWorkAccess: false,
   addingUpWorkAccessError: false,
@@ -421,6 +508,9 @@ const initialState = {
   fetchingDepartmentAccess: false,
   fetchingDepartmentAccessError: false,
   departmentAcces: {},
+
+  addingProcessForRepair: false,
+  addingProcessForRepairError: false,
   // vendor: ['Read', 'Create', 'Update', 'Delete'],
   // customer: ['Read', 'Create', 'Update', 'Delete'],
   // opportunity: ['Read', 'Create', 'Update', 'Delete'],
@@ -461,6 +551,14 @@ const initialState = {
   fetchingProcessStagesForOpportunityError: false,
   opportunityProcessStages: [],
 
+  linkingSupplierProcessPublish: false,
+  linkingSupplierProcessPublishError: false,
+  supplierProcessPublish:[],
+
+  linkingProductionProcessPublish: false,
+  linkingProductionProcessPublishError: false,
+  productionProcessPublish:[],
+
   addingNotificationAccess: false,
   addingNotificationAccessError: false,
 
@@ -482,6 +580,9 @@ const initialState = {
   fetchingOpportunitiesDuration: false,
   fetchingOpportunitiesDurationError: false,
   opportunityDuration: [],
+
+  deletingProductionStagesData: false,
+   deletingProductionStagesDataError: false,
 
   fetchingPermissionAccess: false,
   fetchingPermissionAccessError: false,
@@ -517,12 +618,23 @@ const initialState = {
   gettingNotificationConfigError:false,
   notificationConfig:{},
 
+  fetchingProcessForRepair: false,
+  fetchingProcessForRepairError: false,
+  repairProcess: [],
+
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
 
   fetchingCurrencyConversion: false,
   fetchingCurrencyConversionError: false,
-  conversionCurrencies:[]
+  conversionCurrencies:[],
+  
+  fetchingLangWords: false,
+  fetchingLangWordsError:false,
+  langWords:[],
+
+  addingLangWords: false,
+  addingLangWordsError:false,
 
 };
 export const settingsReducer = (state = initialState, action) => {
@@ -3228,6 +3340,661 @@ export const settingsReducer = (state = initialState, action) => {
             fetchingCurrencyConversion: false,
             fetchingCurrencyConversionError: true,
           };
+
+          
+    case types.ADD_PROCESS_FOR_SUPPLIER_REQUEST:
+      return {
+        ...state,
+        addingProcessForSupplier: true,
+        addingProcessForSupplierError: false,
+      };
+    case types.ADD_PROCESS_FOR_SUPPLIER_SUCCESS:
+      return {
+        ...state,
+        addingProcessForSupplier: false,
+        addingProcessForSupplierError: false,
+        // addProcessHiringModal: false,
+      };
+    case types.ADD_PROCESS_FOR_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        addingProcessForSupplier: false,
+        addingProcessForSupplierError: true,
+        // addProcessHiringModal: false,
+      };
+
+
+      case types.GET_PROCESS_FOR_SUPPLIER_REQUEST:
+        return {
+          ...state,
+          fetchingProcessForSupplier: true,
+          fetchingProcessForSupplierError: false,
+        };
+      case types.GET_PROCESS_FOR_SUPPLIER_SUCCESS:
+        return {
+          ...state,
+          fetchingProcessForSupplier: false,
+          fetchingProcessForSupplierError: false,
+          supplierProcess: action.payload,
+        };
+      case types.GET_PROCESS_FOR_SUPPLIER_FAILURE:
+        return {
+          ...state,
+          fetchingProcessForSupplier: false,
+          fetchingProcessForSupplierError: true,
+        };
+
+        
+    case types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_REQUEST:
+      return { ...state, updateProcessNameForSupplier: true };
+    case types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_SUCCESS:
+      // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+      return {
+        ...state,
+        updateProcessNameForSupplier: false,
+
+        supplierProcess: state.supplierProcess.map((state) =>
+          state.supplierUnboardingWorkflowDetailsId === action.payload.supplierUnboardingWorkflowDetailsId
+            ? action.payload
+            : state
+        ),
+      };
+    case types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        updateProcessNameForSupplier: false,
+        updateProcessNameForSupplierError: true,
+      };
+
+      case types.DELETE_SUPPLIER_PROCESS_DATA_REQUEST:
+        return { ...state, deleteSupplierProcessData: true };
+      case types.DELETE_SUPPLIER_PROCESS_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteSupplierProcessData: false,
+          supplierProcess: state.supplierProcess.filter(
+            (item) => item.supplierUnboardingWorkflowDetailsId !== action.payload
+          ),
+        };
+      case types.DELETE_SUPPLIER_PROCESS_DATA_FAILURE:
+        return { ...state, deleteSupplierProcessData: false, deleteSupplierProcessDataError: false };
+  
+
+        case types.ADD_PROCESS_STAGE_FOR_SUPPLIER_REQUEST:
+          return { ...state, addingProcessStagesForSupplier: true };
+        case types.ADD_PROCESS_STAGE_FOR_SUPPLIER_SUCCESS:
+          return {
+            ...state,
+            addingProcessStagesForSupplier: false,
+            supplierProcessStages: [...state.supplierProcessStages, action.payload],
+          };
+        case types.ADD_PROCESS_STAGE_FOR_SUPPLIER_FAILURE:
+          return {
+            ...state,
+            addingProcessStagesForSupplier: false,
+            addingProcessStagesForSupplier: true,
+          };
+
+          case types.GET_PROCESS_STAGES_FOR_SUPPLIER_REQUEST:
+            return {
+              ...state,
+              fetchingProcessStagesForSupplier: true,
+              fetchingProcessStagesForSupplierError: false,
+            };
+          case types.GET_PROCESS_STAGES_FOR_SUPPLIER_SUCCESS:
+            return {
+              ...state,
+              fetchingProcessStagesForSupplier: false,
+              fetchingProcessStagesForSupplierError: false,
+              supplierProcessStages: action.payload,
+            };
+          case types.GET_PROCESS_STAGES_FOR_SUPPLIER_FAILURE:
+            return {
+              ...state,
+              fetchingProcessStagesForSupplier: false,
+              fetchingProcessStagesForSupplierError: true,
+            };
+
+            case types.UPDATE_STAGE_FOR_SUPPLIER_REQUEST:
+              return { ...state, updatingStagesForSupplier: true };
+            case types.UPDATE_STAGE_FOR_SUPPLIER_SUCCESS:
+              // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+              return {
+                ...state,
+                updatingStagesForSupplier: false,
+                supplierProcessStages: state.supplierProcessStages.map((state) =>
+                  state.supplierUnboardingStagesId === action.payload.supplierUnboardingStagesId ? action.payload : state
+                ),
+              };
+            case types.UPDATE_STAGE_FOR_SUPPLIER_FAILURE:
+              return {
+                ...state,
+                updatingStagesForSupplier: false,
+                updatingStagesForSupplierError: true,
+              };
+
+              case types.DELETE_SUPPLIER_STAGES_DATA_REQUEST:
+                return { ...state, deletingSupplierStagesData: true };
+              case types.DELETE_SUPPLIER_STAGES_DATA_SUCCESS:
+                return {
+                  ...state,
+                  deletingSupplierStagesData: false,
+                  supplierProcessStages: state.supplierProcessStages.filter(
+                    (item) => item.supplierUnboardingStagesId !== action.payload
+                  ),
+                };
+              case types.DELETE_SUPPLIER_STAGES_DATA_FAILURE:
+                return { ...state, deletingSupplierStagesData: false, deletingSupplierStagesDataError: false };
+
+                case types.LINK_SUPPLIER_PROCESS_PUBLISH_REQUEST:
+      return {
+        ...state,
+        linkingSupplierProcessPublish: true,
+      };
+    case types.LINK_SUPPLIER_PROCESS_PUBLISH_SUCCESS:
+      return {
+        ...state,
+        linkingSupplierProcessPublish: false,
+        supplierProcessPublish: state.supplierProcessPublish.map((item) => {
+          if (
+            item.supplierUnboardingWorkflowDetailsId === action.payload.supplierUnboardingWorkflowDetailsId
+          ) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.LINK_SUPPLIER_PROCESS_PUBLISH_FAILURE:
+      return {
+        ...state,
+        linkingSupplierProcessPublish: false,
+        linkingSupplierProcessPublishError: true,
+      };
+
+      case types.LINK_SUPPLIER_STAGES_PUBLISH_REQUEST:
+        return {
+          ...state,
+          linkingSupplierStagesPublish: true,
+        };
+      case types.LINK_SUPPLIER_STAGES_PUBLISH_SUCCESS:
+        return {
+          ...state,
+          linkingSupplierStagesPublish: false,
+          supplierStagesPublish: state.supplierStagesPublish.map((item) => {
+            if (item.supplierUnboardingStagesId === action.payload.supplierUnboardingStagesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.LINK_SUPPLIER_STAGES_PUBLISH_FAILURE:
+        return {
+          ...state,
+          linkingSupplierStagesPublish: false,
+          linkingSupplierStagesPublishError: true,
+        };
+
+
+        case types.ADD_PROCESS_FOR_PRODUCTION_REQUEST:
+          return {
+            ...state,
+            addingProcessForProduction: true,
+            addingProcessForProductionError: false,
+          };
+        case types.ADD_PROCESS_FOR_PRODUCTION_SUCCESS:
+          return {
+            ...state,
+            addingProcessForProduction: false,
+            addingProcessForProductionError: false,
+            // addProcessHiringModal: false,
+          };
+        case types.ADD_PROCESS_FOR_PRODUCTION_FAILURE:
+          return {
+            ...state,
+            addingProcessForProduction: false,
+            addingProcessForProductionError: true,
+            // addProcessHiringModal: false,
+          };
+
+          case types.GET_PROCESS_FOR_PRODUCTION_REQUEST:
+            return {
+              ...state,
+              fetchingProcessForProduction: true,
+              fetchingProcessForProductionError: false,
+            };
+          case types.GET_PROCESS_FOR_PRODUCTION_SUCCESS:
+            return {
+              ...state,
+              fetchingProcessForProduction: false,
+              fetchingProcessForProductionError: false,
+              productionProcess: action.payload,
+            };
+          case types.GET_PROCESS_FOR_PRODUCTION_FAILURE:
+            return {
+              ...state,
+              fetchingProcessForProduction: false,
+              fetchingProcessForProductionError: true,
+            };
+
+            case types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_REQUEST:
+              return { ...state, updateProcessNameForProduction: true };
+            case types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_SUCCESS:
+              // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+              return {
+                ...state,
+                updateProcessNameForProduction: false,
+        
+                productionProcess: state.productionProcess.map((state) =>
+                  state.productionWorkflowDetailsId === action.payload.productionWorkflowDetailsId
+                    ? action.payload
+                    : state
+                ),
+              };
+            case types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_FAILURE:
+              return {
+                ...state,
+                updateProcessNameForProduction: false,
+                updateProcessNameForProductionError: true,
+              };
+          
+
+              case types.DELETE_PRODUCTION_PROCESS_DATA_REQUEST:
+                return { ...state, deleteProductionProcessData: true };
+              case types.DELETE_PRODUCTION_PROCESS_DATA_SUCCESS:
+                return {
+                  ...state,
+                  deleteProductionProcessData: false,
+                  productionProcess: state.productionProcess.filter(
+                    (item) => item.productionWorkflowDetailsId !== action.payload
+                  ),
+                };
+              case types.DELETE_PRODUCTION_PROCESS_DATA_FAILURE:
+                return { ...state, deleteProductionProcessData: false, deleteProductionProcessDataError: false };
+
+                case types.ADD_PROCESS_STAGE_FOR_PRODUCTION_REQUEST:
+                  return { ...state, addingProcessStagesForProduction: true };
+                case types.ADD_PROCESS_STAGE_FOR_PRODUCTION_SUCCESS:
+                  return {
+                    ...state,
+                    addingProcessStagesForProduction: false,
+                    productionProcessStages: [...state.productionProcessStages, action.payload],
+                  };
+                case types.ADD_PROCESS_STAGE_FOR_PRODUCTION_FAILURE:
+                  return {
+                    ...state,
+                    addingProcessStagesForProduction: false,
+                    addingProcessStagesForProduction: true,
+                  };
+
+                  case types.GET_PROCESS_STAGES_FOR_PRODUCTION_REQUEST:
+                    return {
+                      ...state,
+                      fetchingProcessStagesForProduction: true,
+                      fetchingProcessStagesForProductionError: false,
+                    };
+                  case types.GET_PROCESS_STAGES_FOR_PRODUCTION_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingProcessStagesForProduction: false,
+                      fetchingProcessStagesForProductionError: false,
+                      productionProcessStages: action.payload,
+                    };
+                  case types.GET_PROCESS_STAGES_FOR_PRODUCTION_FAILURE:
+                    return {
+                      ...state,
+                      fetchingProcessStagesForProduction: false,
+                      fetchingProcessStagesForProductionError: true,
+                    };
+
+
+                    case types.UPDATE_STAGE_FOR_PRODUCTION_REQUEST:
+                      return { ...state, updatingStagesForProduction: true };
+                    case types.UPDATE_STAGE_FOR_PRODUCTION_SUCCESS:
+                      // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                      return {
+                        ...state,
+                        updatingStagesForProduction: false,
+                        productionProcessStages: state.productionProcessStages.map((state) =>
+                          state.productionStagesId === action.payload.productionStagesId ? action.payload : state
+                        ),
+                      };
+                    case types.UPDATE_STAGE_FOR_PRODUCTION_FAILURE:
+                      return {
+                        ...state,
+                        updatingStagesForProduction: false,
+                        updatingStagesForProductionError: true,
+                      };
+
+                      case types.DELETE_PRODUCTION_STAGES_DATA_REQUEST:
+                        return { ...state, deletingProductionStagesData: true };
+                      case types.DELETE_PRODUCTION_STAGES_DATA_SUCCESS:
+                        return {
+                          ...state,
+                          deletingProductionStagesData: false,
+                          productionProcessStages: state.productionProcessStages.filter(
+                            (item) => item.productionStagesId !== action.payload
+                          ),
+                        };
+                      case types.DELETE_PRODUCTION_STAGES_DATA_FAILURE:
+                        return { ...state, deletingProductionStagesData: false, deletingProductionStagesDataError: false };
+
+                        case types.LINK_PRODUCTION_PROCESS_PUBLISH_REQUEST:
+                          return {
+                            ...state,
+                            linkingProductionProcessPublish: true,
+                          };
+                        case types.LINK_PRODUCTION_PROCESS_PUBLISH_SUCCESS:
+                          return {
+                            ...state,
+                            linkingProductionProcessPublish: false,
+                            productionProcessPublish: state.productionProcessPublish.map((item) => {
+                              if (
+                                item.productionWorkflowDetailsId === action.payload.productionWorkflowDetailsId
+                              ) {
+                                return action.payload;
+                              } else {
+                                return item;
+                              }
+                            }),
+                          };
+                        case types.LINK_PRODUCTION_PROCESS_PUBLISH_FAILURE:
+                          return {
+                            ...state,
+                            linkingProductionProcessPublish: false,
+                            linkingProductionProcessPublishError: true,
+                          };
+
+                          case types.LINK_PRODUCTION_STAGES_PUBLISH_REQUEST:
+                            return {
+                              ...state,
+                              linkingProductionStagesPublish: true,
+                            };
+                          case types.LINK_PRODUCTION_STAGES_PUBLISH_SUCCESS:
+                            return {
+                              ...state,
+                              linkingProductionStagesPublish: false,
+                              productionStagesPublish: state.productionStagesPublish.map((item) => {
+                                if (item.productionStagesId === action.payload.productionStagesId) {
+                                  return action.payload;
+                                } else {
+                                  return item;
+                                }
+                              }),
+                            };
+                          case types.LINK_PRODUCTION_STAGES_PUBLISH_FAILURE:
+                            return {
+                              ...state,
+                              linkingProductionStagesPublish: false,
+                              linkingProductionStagesPublishError: true,
+                            };
+
+                            case types.ADD_PROCESS_FOR_REPAIR_REQUEST:
+                              return {
+                                ...state,
+                                addingProcessForRepair: true,
+                                addingProcessForRepairError: false,
+                              };
+                            case types.ADD_PROCESS_FOR_REPAIR_SUCCESS:
+                              return {
+                                ...state,
+                                addingProcessForRepair: false,
+                                addingProcessForRepairError: false,
+                                // addProcessHiringModal: false,
+                              };
+                            case types.ADD_PROCESS_FOR_REPAIR_FAILURE:
+                              return {
+                                ...state,
+                                addingProcessForRepair: false,
+                                addingProcessForRepairError: true,
+                                // addProcessHiringModal: false,
+                              };
+
+                              case types.GET_PROCESS_FOR_REPAIR_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: true,
+                                  fetchingProcessForRepairError: false,
+                                };
+                              case types.GET_PROCESS_FOR_REPAIR_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: false,
+                                  fetchingProcessForRepairError: false,
+                                  repairProcess: action.payload,
+                                };
+                              case types.GET_PROCESS_FOR_REPAIR_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingProcessForRepair: false,
+                                  fetchingProcessForRepairError: true,
+                                };
+
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST:
+                                  return { ...state, updateProcessNameForRepair: true };
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_SUCCESS:
+                                  // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                  return {
+                                    ...state,
+                                    updateProcessNameForRepair: false,
+                            
+                                    repairProcess: state.repairProcess.map((state) =>
+                                      state.repairWorkflowDetailsId === action.payload.repairWorkflowDetailsId
+                                        ? action.payload
+                                        : state
+                                    ),
+                                  };
+                                case types.UPDATE_PROCESS_NAME_FOR_REPAIR_FAILURE:
+                                  return {
+                                    ...state,
+                                    updateProcessNameForRepair: false,
+                                    updateProcessNameForRepairError: true,
+                                  };
+
+                                  case types.DELETE_REPAIR_PROCESS_DATA_REQUEST:
+                                    return { ...state, deleteRepairProcessData: true };
+                                  case types.DELETE_REPAIR_PROCESS_DATA_SUCCESS:
+                                    return {
+                                      ...state,
+                                      deleteRepairProcessData: false,
+                                      repairProcess: state.repairProcess.filter(
+                                        (item) => item.repairWorkflowDetailsId !== action.payload
+                                      ),
+                                    };
+                                  case types.DELETE_REPAIR_PROCESS_DATA_FAILURE:
+                                    return { ...state, deleteRepairProcessData: false, deleteRepairProcessDataError: false };
+
+
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_REQUEST:
+                                      return { ...state, addingProcessStagesForRepair: true };
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_SUCCESS:
+                                      return {
+                                        ...state,
+                                        addingProcessStagesForRepair: false,
+                                        repairProcessStages: [...state.repairProcessStages, action.payload],
+                                      };
+                                    case types.ADD_PROCESS_STAGE_FOR_REPAIR_FAILURE:
+                                      return {
+                                        ...state,
+                                        addingProcessStagesForRepair: false,
+                                        addingProcessStagesForRepair: true,
+                                      };
+
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_REQUEST:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: true,
+                                          fetchingProcessStagesForRepairError: false,
+                                        };
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_SUCCESS:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: false,
+                                          fetchingProcessStagesForRepairError: false,
+                                          repairProcessStages: action.payload,
+                                        };
+                                      case types.GET_PROCESS_STAGES_FOR_REPAIR_FAILURE:
+                                        return {
+                                          ...state,
+                                          fetchingProcessStagesForRepair: false,
+                                          fetchingProcessStagesForRepairError: true,
+                                        };
+
+
+                                        case types.UPDATE_STAGE_FOR_REPAIR_REQUEST:
+                                          return { ...state, updatingStagesForRepair: true };
+                                        case types.UPDATE_STAGE_FOR_REPAIR_SUCCESS:
+                                          // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                          return {
+                                            ...state,
+                                            updatingStagesForRepair: false,
+                                            repairProcessStages: state.repairProcessStages.map((state) =>
+                                              state.repairStagesId === action.payload.repairStagesId ? action.payload : state
+                                            ),
+                                          };
+                                        case types.UPDATE_STAGE_FOR_REPAIR_FAILURE:
+                                          return {
+                                            ...state,
+                                            updatingStagesForRepair: false,
+                                            updatingStagesForRepairError: true,
+                                          };
+
+                                          case types.DELETE_REPAIR_STAGES_DATA_REQUEST:
+                                            return { ...state, deletingRepairStagesData: true };
+                                          case types.DELETE_REPAIR_STAGES_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              deletingRepairStagesData: false,
+                                              repairProcessStages: state.repairProcessStages.filter(
+                                                (item) => item.repairStagesId !== action.payload
+                                              ),
+                                            };
+                                          case types.DELETE_REPAIR_STAGES_DATA_FAILURE:
+                                            return { ...state, deletingRepairStagesData: false, deletingRepairStagesDataError: false };
+
+
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_REQUEST:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: true,
+                                              };
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_SUCCESS:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: false,
+                                                repairProcessPublish: state.repairProcessPublish.map((item) => {
+                                                  if (
+                                                    item.repairWorkflowDetailsId === action.payload.repairWorkflowDetailsId
+                                                  ) {
+                                                    return action.payload;
+                                                  } else {
+                                                    return item;
+                                                  }
+                                                }),
+                                              };
+                                            case types.LINK_REPAIR_PROCESS_PUBLISH_FAILURE:
+                                              return {
+                                                ...state,
+                                                linkingRepairProcessPublish: false,
+                                                linkingRepairProcessPublishError: true,
+                                              };
+
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_REQUEST:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: true,
+                                                };
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: false,
+                                                  repairStagesPublish: state.repairStagesPublish.map((item) => {
+                                                    if (item.repairStagesId === action.payload.repairStagesId) {
+                                                      return action.payload;
+                                                    } else {
+                                                      return item;
+                                                    }
+                                                  }),
+                                                };
+                                              case types.LINK_REPAIR_STAGES_PUBLISH_FAILURE:
+                                                return {
+                                                  ...state,
+                                                  linkingRepairStagesPublish: false,
+                                                  linkingRepairStagesPublishError: true,
+                                                };
+
+                                                case types.HANDLE_SALARY_MODAL:
+                                                  return { ...state, addSalaryModal: action.payload };
+
+
+                                                  case types.GET_SALARY_REQUEST:
+                                                    return { ...state, fetchingSalary: true };
+                                                  case types.GET_SALARY_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      fetchingSalary: false,
+                                                      salary: action.payload,
+                                                    };
+                                                  case types.GET_SALARY_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      fetchingSalary: false,
+                                                      fetchingSalaryError: true,
+                                                    };
+
+                                                    case types.ADD_SALARY_REQUEST:
+                                                      return { ...state, addingSalary: true };
+                                                    case types.ADD_SALARY_SUCCESS:
+                                                      // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+                                                      return {
+                                                        ...state,
+                                                        addingSalary: false,
+                                                        // Process: state.Process.map((state) =>
+                                                        //   state.processId === action.payload.processId ? action.payload : state
+                                                        // ),
+                                                      };
+                                                    case types.ADD_SALARY_FAILURE:
+                                                      return {
+                                                        ...state,
+                                                        addingSalary: false,
+                                                        addingSalaryError: true,
+                                                      };
+                    
+
+                                                      case types.GET_LANG_WORDS_REQUEST:
+                                                        return { ...state, fetchingLangWords: true };
+                                                      case types.GET_LANG_WORDS_SUCCESS:
+                                                        return {
+                                                          ...state,
+                                                          fetchingLangWords: false,
+                                                          langWords: action.payload,
+                                                          
+                                                        };
+                                                      case types.GET_LANG_WORDS_FAILURE:
+                                                        return {
+                                                          ...state,
+                                                          fetchingLangWords: false,
+                                                          fetchingLangWordsError: true,
+                                                        };
+
+                                                        case types.ADD_LANG_WORDS_REQUEST:
+                                                          return { ...state, addingLangWords: true };
+                                                        case types.ADD_LANG_WORDS_SUCCESS:
+                                                          return {
+                                                            ...state,
+                                                            addingLangWords: false,
+                                                            // langWords: [action.payload,...state.langWords]
+                                                          };
+                                                        case types.ADD_LANG_WORDS_FAILURE:
+                                                          return {
+                                                            ...state,
+                                                            addingLangWords: false,
+                                                            addingLangWordsError: true,
+                                                          };              
+                    
+        
+          
 
     default:
       return state;

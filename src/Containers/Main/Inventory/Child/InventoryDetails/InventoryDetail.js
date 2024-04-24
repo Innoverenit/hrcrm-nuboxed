@@ -28,7 +28,7 @@ function InventoryDetail(props) {
   function handleResetTab() {
     setTabData("1");
   }
-
+  console.log(props.productionInd)
   const {
     inventory = { inventory },
     fetchingInventoryById,
@@ -55,16 +55,22 @@ function InventoryDetail(props) {
                   inventory={inventory}
                   tabData={tabData}
                 /> */}
-                {props.viewType1 === "repair" && props.orderCreatRepairInd ? (
+                {props.viewType1 === "repair" && props.repairInd ? (
+                  <div class="cursor-pointer">
                   <InventoryDetailTab
                     viewType1={viewType1}
                     inventory={inventory}
                     tabData={tabData}
                   />
+                  </div>
                 ) : props.viewType1 === "material" ? (
+                  <div class="cursor-pointer">
                   <InventoryMaterialTab inventory={inventory} />
-                ) : props.viewType1 === "production" && props.orderCreatProductionInd ? (
+                  </div>
+                ) : props.viewType1 === "production" && props.productionInd ? (
+                  <div class="cursor-pointer">
                   <InventoryProductionTab />
+                  </div>
                 ) : null}
               </div>
             </div>
@@ -78,8 +84,8 @@ const mapStateToProps = ({ inventory, auth }) => ({
   fetchingInventoryById: inventory.fetchingInventoryById,
   inventory: inventory.inventoryDetailById,
   viewType1: inventory.viewType1,
-  orderCreatProductionInd: auth.userDetails.orderCreatProductionInd,
-  orderCreatRepairInd: auth.userDetails.orderCreatRepairInd,
+  productionInd: auth.userDetails.productionInd,
+  repairInd: auth.userDetails.repairInd,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

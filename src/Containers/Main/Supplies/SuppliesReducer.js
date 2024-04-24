@@ -64,29 +64,38 @@ const initialState = {
     fetchingBrandModelError: false,
     brandModel: [],
 
-    fetchingSuppliescount:false,
-    fetchingSuppliescountError:false,
-    suppliesCount:{},
+    fetchingSuppliescount: false,
+    fetchingSuppliescountError: false,
+    suppliesCount: {},
 
-    materialBuildrawer:false,
+    materialBuildrawer: false,
 
     addingMaterialBuilder: false,
     // addedMateriBuilder:{},
-    addingMaterialBuilderError:false,
+    addingMaterialBuilderError: false,
 
     fetchingMaterialBuilderbyId: false,
-    builderMaterialbyId:[],
+    builderMaterialbyId: [],
     fetchingMaterialBuilderbyIdError: false,
 
     fetchingSearchedMaterialBuilders: false,
-    fetchingSearchedMaterialBuildersError:false,
-    searchedMaterialBuilders:[],
+    fetchingSearchedMaterialBuildersError: false,
+    searchedMaterialBuilders: [],
 
     removingMaterialBuilder: false,
-    removingMaterialBuilderError:false,
+    removingMaterialBuilderError: false,
 
     updatingMaterialBuilder: false,
-    updatingMaterialBuilderError:false,
+    updatingMaterialBuilderError: false,
+
+    deletingSuppliesData: false,
+    deletingSuppliesDataError: false,
+
+    suppliersListDrwr: false,
+
+    fetchingSupplieSupplerList: false,
+    fetchingSupplieSupplerListError: false,
+    supplieSupplerList: []
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -104,7 +113,11 @@ export const suppliesReducer = (state = initialState, action) => {
         case types.ADD_SUPPLIES_REQUEST:
             return { ...state, addingPurchase: true };
         case types.ADD_SUPPLIES_SUCCESS:
-            return { ...state, addingPurchase: false, addSuppliesModal: false };
+            return {
+                ...state, addingPurchase: false,
+                purchaseList: [action.payload, ...state.purchaseList],
+                addSuppliesModal: false
+            };
         case types.ADD_SUPPLIES_FAILURE:
             return {
                 ...state,
@@ -311,7 +324,15 @@ export const suppliesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 addingMasterList: false,
-                addBrandModel: false
+                addBrandModel: false,
+                brandModel: [],
+                purchaseList: state.purchaseList.map((item) => {
+                    if (item.suppliesId == action.payload.suppliesId) {
+                        return action.payload;
+                    } else {
+                        return item;
+                    }
+                }),
             };
         case types.ADD_MASTER_LIST_FAILURE:
             return {
@@ -336,111 +357,162 @@ export const suppliesReducer = (state = initialState, action) => {
                 fetchingTaggedBrandByIdError: true,
             };
 
-            case types.GET_BRAND_MODEL_REQUEST:
-                return { ...state, fetchingBrandModel: true };
-            case types.GET_BRAND_MODEL_SUCCESS:
-                return { ...state, fetchingBrandModel: false, brandModel: action.payload };
-            case types.GET_BRAND_MODEL_FAILURE:
-                return { ...state, fetchingBrandModel: false, fetchingBrandModelError: true };
+        case types.GET_BRAND_MODEL_REQUEST:
+            return { ...state, fetchingBrandModel: true };
+        case types.GET_BRAND_MODEL_SUCCESS:
+            return { ...state, fetchingBrandModel: false, brandModel: action.payload };
+        case types.GET_BRAND_MODEL_FAILURE:
+            return { ...state, fetchingBrandModel: false, fetchingBrandModelError: true };
 
-                case types.GET_SUPPLIES_COUNT_REQUEST:
-                    return { ...state, fetchingSuppliescount: true };
-                case types.GET_SUPPLIES_COUNT_SUCCESS:
-                    return { ...state, fetchingSuppliescount: false, suppliesCount: action.payload };
-                case types.GET_SUPPLIES_COUNT_FAILURE:
-                    return { ...state, fetchingSuppliescount: false, fetchingSuppliescountError: true };
-    
-                    case types.HANDLE_MATERIAL_BUILDER_DRAWER:
-                        return { ...state, materialBuildrawer: action.payload };
+        case types.GET_SUPPLIES_COUNT_REQUEST:
+            return { ...state, fetchingSuppliescount: true };
+        case types.GET_SUPPLIES_COUNT_SUCCESS:
+            return { ...state, fetchingSuppliescount: false, suppliesCount: action.payload };
+        case types.GET_SUPPLIES_COUNT_FAILURE:
+            return { ...state, fetchingSuppliescount: false, fetchingSuppliescountError: true };
 
-                        case types.ADD_MATERIAL_BUILDER_REQUEST:
-                            return { ...state, addingMaterialBuilder: true };
-                          case types.ADD_MATERIAL_BUILDER_SUCCESS:
-                            return {
-                              ...state,
-                              addingMaterialBuilder: false,
-                            //   addedMateriBuilder:action.payload,
-                            builderMaterialbyId:[action.payload,...state.builderMaterialbyId]
-                            };
-                          case types.ADD_MATERIAL_BUILDER_FAILURE:
-                            return {
-                              ...state,
-                              addingMaterialBuilder: false,
-                              addingMaterialBuilderError: true,
-                            };
+        case types.HANDLE_MATERIAL_BUILDER_DRAWER:
+            return { ...state, materialBuildrawer: action.payload };
 
-     case types.GET_MATERIAL_BUILDER_BYID_REQUEST:
-      return {
-        ...state,
-        fetchingMaterialBuilderbyId: true,
-        fetchingMaterialBuilderbyIdError: false,
-      };
-    case types.GET_MATERIAL_BUILDER_BYID_SUCCESS:
-      return {
-        ...state,
-        fetchingMaterialBuilderbyId: false,
-        builderMaterialbyId: action.payload,
-      };
-    case types.GET_MATERIAL_BUILDER_BYID_FAILURE:
-      return {
-        ...state,
-        fetchingMaterialBuilderbyId: false,
-        fetchingMaterialBuilderbyIdError: true,
-      };
+        case types.ADD_MATERIAL_BUILDER_REQUEST:
+            return { ...state, addingMaterialBuilder: true };
+        case types.ADD_MATERIAL_BUILDER_SUCCESS:
+            return {
+                ...state,
+                addingMaterialBuilder: false,
+                //   addedMateriBuilder:action.payload,
+                builderMaterialbyId: [action.payload, ...state.builderMaterialbyId]
+            };
+        case types.ADD_MATERIAL_BUILDER_FAILURE:
+            return {
+                ...state,
+                addingMaterialBuilder: false,
+                addingMaterialBuilderError: true,
+            };
 
-      case types.GET_SEARCH_MATERIAL_BUILDER_REQUEST:
-        return { ...state, fetchingSearchedMaterialBuilders: true };
-      case types.GET_SEARCH_MATERIAL_BUILDER_SUCCESS:
-        return { ...state, 
-          fetchingSearchedMaterialBuilders: false,
-          searchedMaterialBuilders: action.payload,
-        };
-      case types.GET_SEARCH_MATERIAL_BUILDER_FAILURE:
-        return {
-          ...state,
-          fetchingSearchedMaterialBuilders: false,
-          fetchingSearchedMaterialBuildersError: true,
-        };
+        case types.GET_MATERIAL_BUILDER_BYID_REQUEST:
+            return {
+                ...state,
+                fetchingMaterialBuilderbyId: true,
+                fetchingMaterialBuilderbyIdError: false,
+            };
+        case types.GET_MATERIAL_BUILDER_BYID_SUCCESS:
+            return {
+                ...state,
+                fetchingMaterialBuilderbyId: false,
+                builderMaterialbyId: action.payload,
+            };
+        case types.GET_MATERIAL_BUILDER_BYID_FAILURE:
+            return {
+                ...state,
+                fetchingMaterialBuilderbyId: false,
+                fetchingMaterialBuilderbyIdError: true,
+            };
+
+        case types.GET_SEARCH_MATERIAL_BUILDER_REQUEST:
+            return { ...state, fetchingSearchedMaterialBuilders: true };
+        case types.GET_SEARCH_MATERIAL_BUILDER_SUCCESS:
+            return {
+                ...state,
+                fetchingSearchedMaterialBuilders: false,
+                searchedMaterialBuilders: action.payload,
+            };
+        case types.GET_SEARCH_MATERIAL_BUILDER_FAILURE:
+            return {
+                ...state,
+                fetchingSearchedMaterialBuilders: false,
+                fetchingSearchedMaterialBuildersError: true,
+            };
 
         case types.REMOVE_MATERIAL_BUILDER_REQUEST:
             return { ...state, removingMaterialBuilder: true };
-          case types.REMOVE_MATERIAL_BUILDER_SUCCESS:
+        case types.REMOVE_MATERIAL_BUILDER_SUCCESS:
             return {
-              ...state,
-              removingMaterialBuilder: false,
-              builderMaterialbyId: state.builderMaterialbyId.filter(
-                (item) => item.supplySupplyLinkId !== action.payload.supplySupplyLinkId
-              ),
+                ...state,
+                removingMaterialBuilder: false,
+                builderMaterialbyId: state.builderMaterialbyId.filter(
+                    (item) => item.supplySupplyLinkId !== action.payload.supplySupplyLinkId
+                ),
             };
-          case types.REMOVE_MATERIAL_BUILDER_FAILURE:
+        case types.REMOVE_MATERIAL_BUILDER_FAILURE:
             return {
-              ...state,
-              removingMaterialBuilder: false,
-              removingMaterialBuilderError: true,
-            };  
-    
-            case types.UPDATE_MATERIAL_BUILDER_REQUEST:
-              return { ...state, updatingMaterialBuilder: true };
-            case types.UPDATE_MATERIAL_BUILDER_SUCCESS:
-              return {
+                ...state,
+                removingMaterialBuilder: false,
+                removingMaterialBuilderError: true,
+            };
+
+        case types.UPDATE_MATERIAL_BUILDER_REQUEST:
+            return { ...state, updatingMaterialBuilder: true };
+        case types.UPDATE_MATERIAL_BUILDER_SUCCESS:
+            return {
                 ...state,
                 updatingMaterialBuilder: false,
                 builderMaterialbyId: state.builderMaterialbyId.map((item) => {
                     if (item.linkSuppliesId === action.payload.linkSuppliesId) {
-                      return action.payload;
+                        return action.payload;
                     } else {
-                      return item;
+                        return item;
                     }
-                  }),
+                }),
 
-              };
-            case types.UPDATE_MATERIAL_BUILDER_FAILURE:
-              return {
+            };
+        case types.UPDATE_MATERIAL_BUILDER_FAILURE:
+            return {
                 ...state,
                 updatingMaterialBuilder: false,
                 updatingMaterialBuilderError: true,
-              };
-    
+            };
+
+        case types.DELETE_SUPPLIES_REQUEST:
+            return { ...state, deletingSuppliesData: true };
+        case types.DELETE_SUPPLIES_SUCCESS:
+            return {
+                ...state,
+                deletingSuppliesData: false,
+            };
+        case types.DELETE_SUPPLIES_FAILURE:
+            return {
+                ...state,
+                deletingSuppliesData: false,
+                deletingSuppliesDataError: true,
+            };
+
+        case types.HANDLE_SUPPLIERSLIST_DRAWER:
+            return { ...state, suppliersListDrwr: action.payload };
+
+        case types.GET_SUPPLIES_SUPPLIERS_REQUEST:
+            return { ...state, fetchingSupplieSupplerList: true };
+        case types.GET_SUPPLIES_SUPPLIERS_SUCCESS:
+            return {
+                ...state,
+                fetchingSupplieSupplerList: false,
+                supplieSupplerList: action.payload,
+            };
+        case types.GET_SUPPLIES_SUPPLIERS_FAILURE:
+            return {
+                ...state,
+                fetchingSupplieSupplerList: false,
+                fetchingSupplieSupplerListError: true,
+            };
+
+        case types.SET_SUPPLIES_SUPPLIER_REQUEST:
+            return { ...state };
+        case types.SET_SUPPLIES_SUPPLIER_SUCCESS:
+            return {
+                ...state,
+                supplieSupplerList: state.supplieSupplerList.map(
+                    (item) => {
+                        if (item.supplierId === action.payload.supplierId) {
+                            return action.payload;
+                        } else {
+                            return item;
+                        }
+                    }),
+            };
+        case types.SET_SUPPLIES_SUPPLIER_FAILURE:
+            return { ...state };
+
+
         default:
             return state;
     }

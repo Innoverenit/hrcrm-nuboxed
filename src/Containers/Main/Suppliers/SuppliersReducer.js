@@ -93,6 +93,9 @@ const initialState = {
   addingPurchaseSuppliers: false,
   addingPurchaseSuppliersError: false,
 
+  deletingSupplierData: false,
+  deletingSupplierDataError: false,
+
   fetchingGeneratorSupplierList: false,
   fetchingGeneratorSupplierListError: false,
   generatorSuppliers: [],
@@ -110,6 +113,8 @@ const initialState = {
   fetchingTermsnConditionOfPOError: true,
   termsnconditionofpo: [],
 
+  setEditingSuppliers:{},
+
   addSupplierCatalogueModal: false,
 
   updateSupplierModal: false,
@@ -117,6 +122,9 @@ const initialState = {
   fetchingSupplierDetailsBySupplierId: false,
   fetchingSupplierDetailsBySupplierIdError: true,
   supplierDetailById: [],
+
+  updateSuppliersById: false,
+  updateSuppliersByIdError: false,
 
   setEditingSupplier: {},
 
@@ -128,6 +136,10 @@ const initialState = {
   fetchingSuppliesList: false,
   fetchingSuppliesListError: false,
   suppliesList: [],
+
+  fetchingSuppliesListById: false,
+  fetchingSuppliesListByIdError: false,
+  suppliesBySupplier: [],
 
   feedbackModal: false,
 
@@ -144,6 +156,9 @@ const initialState = {
 
   addingSuppliersActivityEvent: false,
   addingSuppliersActivityEventError: false,
+
+  applyingForLoginInContact: false,
+  applyingForLoginInContactError: false,
 
   addingSuppliersActivityTask: false,
   addingSuppliersActivityTaskError: false,
@@ -164,6 +179,10 @@ const initialState = {
 
   updatingSuppliersTask: false,
   updatingSuppliersTaskError: false,
+
+  fetchingSupplierDeletedList: false,
+  fetchingSupplierDeletedListError: false,
+  supplierDeletedList:[],
 
   fetchingAllSupplierListById: false,
   fetchingAllSupplierListByIdError: false,
@@ -227,8 +246,9 @@ const initialState = {
   searchDispatchItemError: false,
   supplierContact: [],
 
-  // fetchingContactsOfSupplier: false,
-  //fetchingContactsOfSupplierError: false,
+  fetchingContactDistributorsById: false,
+  fetchingContactDistributorsByIdError: false,
+  contactDistributor: [],
 
   fetchingContactSupplierById: false,
   fetchingContactSupplierByIdError: false,
@@ -277,7 +297,29 @@ const initialState = {
 
   fetchingPoDetailsList: false,
   fetchingPoDetailsListError: false,
-  poDetails: []
+  poDetails: [],
+
+  fetchingPurchaseOrder: false,
+  fetchingPurchaseOrderError: false,
+  poBySupplier: [],
+
+  supplierSuppliesdrwr: false,
+
+  fetchingSupplierSupplies: false,
+  fetchingSupplierSuppliesError: false,
+  supplierSuppliesList: [],
+
+  fetchingSupplierCount: false,
+  fetchingSupplierCountError: false,
+  countSupplier: {},
+  fetchingAllSupplierCount: false,
+  fetchingAllSupplierCountError: false,
+  allCountSupplier: {},
+
+  fetchingSupplierSuppliesQuality: false,
+  fetchingSupplierSuppliesQualityError: false,
+  supplierSuppliesQuality: [],
+
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -375,6 +417,22 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierListError: true,
       };
 
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST:
+      return { ...state, fetchingSuppliesListById: true };
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_SUCCESS:
+      return {
+        ...state,
+        fetchingSuppliesListById: false,
+        suppliesBySupplier: action.payload
+      };
+    case types.GET_SUPPLIES_LIST_BY_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        fetchingSuppliesListById: false,
+        fetchingSuppliesListByIdError: true,
+
+      };
+
     case types.GET_SUPPLIER_BY_SUPPLIER_ID_REQUEST:
       return { ...state, fetchingSupplierDetailsBySupplierId: true };
     case types.GET_SUPPLIER_BY_SUPPLIER_ID_SUCCESS:
@@ -440,6 +498,21 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         fetchingGeneratorSupplierList: false,
         fetchingGeneratorSupplierListError: true,
+      };
+
+    case types.GET_PURCHASE_ORDER_REQUEST:
+      return { ...state, fetchingPurchaseOrder: true };
+    case types.GET_PURCHASE_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingPurchaseOrder: false,
+        poBySupplier: action.payload,
+      };
+    case types.GET_PURCHASE_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingPurchaseOrder: false,
+        fetchingPurchaseOrderError: true,
       };
 
     case types.MOVE_TO_INVENTORY_REQUEST:
@@ -895,6 +968,35 @@ export const suppliersReducer = (state = initialState, action) => {
         addSupplierContactModal: false,
       };
 
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_REQUEST:
+      return { ...state, applyingForLoginInContact: true };
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_SUCCESS:
+      return {
+        ...state,
+        applyingForLoginInContact: false,
+      };
+    case types.APPLY_FOR_LOGIN_IN_CONTACT_FAILURE:
+      return {
+        ...state,
+        applyingForLoginInContact: false,
+        applyingForLoginInContactError: true,
+      };
+
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST:
+      return { ...state, fetchingContactDistributorsById: true };
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingContactDistributorsById: false,
+        contactDistributor: action.payload,
+      };
+    case types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingContactDistributorsById: false,
+        fetchingContactDistributorsByIdError: true,
+      };
+
     /**
      * get  supplier's contact list
      */
@@ -1199,7 +1301,154 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
+    case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
+      return { ...state, supplierSuppliesdrwr: action.payload };
 
+    case types.GET_SUPPLIER_SUPPLIES_REQUEST:
+      return {
+        ...state,
+        fetchingSupplierSupplies: true,
+        fetchingSupplierSuppliesError: false,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierSupplies: false,
+        fetchingSupplierSuppliesError: false,
+        supplierSuppliesList: action.payload,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierSupplies: false,
+        fetchingSupplierSuppliesError: true,
+      };
+
+    case types.SET_SUPPLIER_SUPPLIES_REQUEST:
+      return { ...state };
+    case types.SET_SUPPLIER_SUPPLIES_SUCCESS:
+      return {
+        ...state,
+        supplierSuppliesList: state.supplierSuppliesList.map(
+          (item) => {
+            if (item.suppliesId === action.payload.suppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+      };
+    case types.SET_SUPPLIER_SUPPLIES_FAILURE:
+      return { ...state };
+
+
+    case types.GET_SUPPLIER_COUNT_REQUEST:
+      return { ...state, fetchingSupplierCount: true };
+    case types.GET_SUPPLIER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierCount: false,
+        countSupplier: action.payload,
+      };
+    case types.GET_SUPPLIER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierCount: false,
+        fetchingSupplierCountError: true,
+      };
+
+    case types.GET_ALL_SUPPLIER_COUNT_REQUEST:
+      return { ...state, fetchingAllSupplierCount: true };
+    case types.GET_ALL_SUPPLIER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingAllSupplierCount: false,
+        allCountSupplier: action.payload,
+      };
+    case types.GET_ALL_SUPPLIER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingAllSupplierCount: false,
+        fetchingAllSupplierCountError: true,
+      };
+
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: true,
+        fetchingSupplierSuppliesQualityError: false,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: false,
+        fetchingSupplierSuppliesQualityError: false,
+        supplierSuppliesQuality: action.payload,
+      };
+    case types.GET_SUPPLIER_SUPPLIES_QUALITY_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierSuppliesQuality: false,
+        fetchingSupplierSuppliesQualityError: true,
+      };
+
+    case types.DELETE_SUPPLIER_DATA_REQUEST:
+      return { ...state, deletingSupplierData: true };
+    case types.DELETE_SUPPLIER_DATA_SUCCESS:
+      return {
+        ...state,
+        deletingSupplierData: false,
+        supplierList: state.supplierList.filter(
+          (item) => item.supplierId !== action.payload
+        ),
+      };
+    case types.DELETE_SUPPLIER_DATA_FAILURE:
+      return {
+        ...state,
+        deletingSupplierData: false,
+        deletingSupplierDataError: true,
+      };
+
+          case types.UPDATE_SUPPLIERS_BY_ID_REQUEST:
+            return { ...state, updateSuppliersById: true };
+          case types.UPDATE_SUPPLIERS_BY_ID_SUCCESS:
+            return {
+              ...state,
+              updateSuppliersById: false,
+              updateSupplierModal: false,
+              supplierList: state.supplierList.map((item) => {
+                if (item.supplierId == action.payload.supplierId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            };
+          case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
+            return {
+              ...state,
+              updateSuppliersById: false,
+              updateSuppliersByIdError: true,
+            };
+
+            case types.SET_SUPPLIERS_EDIT:
+              return { ...state, setEditingSuppliers: action.payload };
+
+
+              case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:
+                return { ...state, fetchingSupplierDeletedList: true };
+              case types.GET_SUPPLIERS_DELETED_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSupplierDeletedList: false,
+                  supplierDeletedList:action.payload,
+                };
+              case types.GET_SUPPLIERS_DELETED_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingSupplierDeletedList: false,
+                  fetchingSupplierDeletedListError: true,
+                };
 
     default:
       return state;

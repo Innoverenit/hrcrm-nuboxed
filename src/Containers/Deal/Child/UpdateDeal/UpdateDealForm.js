@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
-import {getCurrency} from "../../../Auth/AuthAction"
+import {getInvestorCurrency} from "../../../Auth/AuthAction"
 import {getAssignedToList} from "../../../Employees/EmployeeAction"
 import {getAllEmployeelist} from "../../../Investor/InvestorAction"
 import { FormattedMessage } from "react-intl";
@@ -35,10 +35,15 @@ const UpdateOpportunitySchema = Yup.object().shape({
   oppWorkflow: Yup.string().required("Input needed!"),
 });
 function UpdateDealForm (props) {
+
+  const includeOption = props.currentItem.include===null?[]: props.currentItem.include.map((item) => {
+    return item.empName
+  })
+  const [includeNames, setInclude] = useState(includeOption);
   useEffect(()=> {
     props.getAllEmployeelist();
     props.getAssignedToList(props.orgId);
-    props.getCurrency();
+    props.getInvestorCurrency();
     props.getInvestorData(props.userId);
     props.getContactData(props.userId);
     props.getDealLinkedStages(props.orgId);
@@ -75,6 +80,7 @@ function UpdateDealForm (props) {
 
     return StagesOptions;
   }
+  
   useEffect(() => {
     console.log("helo")
     const includeOption = props.currentItem.include===null?[]: props.currentItem.include.map((item) => {
@@ -89,10 +95,8 @@ function UpdateDealForm (props) {
   }, [props.currentItem]);
   console.log(includeNames)
 
-  const includeOption = props.currentItem.include===null?[]: props.currentItem.include.map((item) => {
-    return item.empName
-  })
-  const [includeNames, setInclude] = useState(includeOption);
+ 
+ 
   function handleChangeInclude(value) {
     setInclude(value)
   }
@@ -144,7 +148,7 @@ function UpdateDealForm (props) {
 
       return contactOptions;
     };
-    const sortedCurrency =props.currencies.sort((a, b) => {
+    const sortedCurrency =props.investorCurrencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();
       // Compare department names
@@ -377,7 +381,7 @@ function UpdateDealForm (props) {
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col ">
                         <Field
                           name="proposalAmount"
-                          // label="Proposal Amount"
+                          // label="Value"
                           label={
                             <FormattedMessage
                           id="app.fundValue"
@@ -395,9 +399,9 @@ function UpdateDealForm (props) {
                     <Field
                       name="currency"
                       isColumnWithoutNoCreate
-                      defaultValue={{
-                        value: props.user.currency,
-                      }}
+                      // defaultValue={{
+                      //   value: props.user.currency,
+                      // }}
                       label={
                         <FormattedMessage
                           id="app.currency"
@@ -428,8 +432,8 @@ function UpdateDealForm (props) {
                           id="app.assignedto"
                           defaultMessage="assignedto"
                         /></Listbox.Label>
-          <div className="relative mt-1">
-              <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+          <div className="relative ">
+              <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
               </Listbox.Button>
               {open && (
@@ -492,21 +496,29 @@ function UpdateDealForm (props) {
     </Listbox>
     <div>
     <label class=" text-[#444] font-bold text-[0.75rem]" >Include</label>
+ 
     <Select
-                        name="included"
-                        mode="multiple"
-                        style={{ width: '100%' }}
-                        placeholder="Select"
-                        defaultValue={includeNames}
-                        onChange={handleChangeInclude}
-                      >
-  
-                        {props.assignedToList.map((item, i) => {
-                          return (
-                            <Option value={item.employeeId}>{item.empName}</Option>
-                          )
-                        })}
-                      </Select>
+  name="included"
+  mode="multiple"
+  style={{ width: '100%' }}
+  placeholder="Select"
+  defaultValue={includeNames}
+  onChange={handleChangeInclude}
+>
+  {props.assignedToList.map((item) => {
+    const isCurrentUser = item.employeeId === props.user.userId;
+
+    if (!isCurrentUser) {
+      return (
+        <Option key={item.employeeId} value={item.employeeId}>
+          {item.empName}
+        </Option>
+      );
+    }
+
+    return null; // Skip rendering for the current user
+  })}
+</Select>
 {/* <Field
                     name="include"
                     isColumnWithoutNoCreate
@@ -668,6 +680,7 @@ function UpdateDealForm (props) {
 const mapStateToProps = ({ auth,deal,investor,employee, opportunity, customer, contact }) => ({
   user: auth.userDetails,
   currencies: auth.currencies,
+  investorCurrencies:auth.investorCurrencies,
   allEmployeeList:investor.allEmployeeList,
   assignedToList:employee.assignedToList,
   userId: auth.userDetails.userId,
@@ -676,6 +689,7 @@ const mapStateToProps = ({ auth,deal,investor,employee, opportunity, customer, c
   updateOpportunityById: opportunity.updateOpportunityById,
   dealLinkWorkflow:deal.dealLinkWorkflow,
   dealLinkStages:deal.dealLinkStages,
+  fullName: auth.userDetails.fullName,
   workflow: opportunity.workflow,
   stages: opportunity.stages,
   contactData: contact.contactData,
@@ -687,7 +701,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       updateDeal,
-      getCurrency,
+      getInvestorCurrency,
       getAllEmployeelist,
       getAssignedToList,
       getDealLinkedWorkflow,

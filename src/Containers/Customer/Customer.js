@@ -41,6 +41,20 @@ class Customer extends Component {
     this.props.getLatestCustomer(this.props.userId);
     this.props.getCustomerCloser(this.props.userId, startDate, endDate);
   };
+
+  // componentDidMount() {
+  //   const { viewType, userId, page, getCustomerListByUserId } = this.props;
+    
+  //   if (viewType === "table") {
+  //     getCustomerListByUserId(userId, page, "creationdate");
+  //   } else if (viewType === "teams") {
+  //     getCustomerListByUserId("teams", page, "creationdate");
+  //   } else if (viewType === "all") {
+  //     getCustomerListByUserId("all", page, "creationdate");
+  //   }
+  // }
+
+
   componentDidMount() {
     // Check if isMobile is stored in localStorage
     const storedIsMobile = localStorage.getItem('isMobile');
@@ -117,15 +131,30 @@ class Customer extends Component {
              <CustomerCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
+             viewType={this.props.viewType}
              /> ):
           this.props.viewType==="map"?
           <CustomerMap/>:
           this.props.viewType==="all" ?(
-            <CustomerAllCardList 
-            filter={this.state.filter}
+            // <CustomerAllCardList 
+            // filter={this.state.filter}
+            //  currentUser={this.state.currentUser} 
+            // />
+            <CustomerCardList
+             filter={this.state.filter}
              currentUser={this.state.currentUser} 
-            />)
-            :this.props.viewType==="teams" ? (<CustomerTeamCardList/>)
+             viewType={this.props.viewType}
+             /> 
+          
+          )
+            :this.props.viewType==="teams" ? (
+            // <CustomerTeamCardList/>
+            <CustomerCardList
+            viewType={this.props.viewType}
+            filter={this.state.filter}
+            currentUser={this.state.currentUser} 
+            /> 
+          )
             : null} 
         </Suspense> 
         {/* <FloatButton.Group
@@ -161,7 +190,7 @@ const mapDispatchToProps = (dispatch) =>
       emptyCustomer,
       getLatestCustomer,
       getCustomerCloser,
-      getCustomerFilterData
+      getCustomerFilterData,
     },
     dispatch
   );

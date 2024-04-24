@@ -114,12 +114,14 @@ function LeadsCallForm(props) {
         value: item.employeeId,
       };
     });
-   
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const {
       user: { userId, firstName, empName,middleName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCall,
+      addingLeadsActivityCall,
       deleteCall,
       deletingCall,
       addLeadsActivityCall,
@@ -278,6 +280,7 @@ function LeadsCallForm(props) {
                 () => handleCallback(resetForm)
               )
               : addLeadsActivityCall(testVal,
+                props.rowdata.leadsId,
                resetForm()
                );
          
@@ -622,7 +625,7 @@ function LeadsCallForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,
@@ -740,7 +743,7 @@ function LeadsCallForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingCall : addingCall}
+                  loading={isEditing ? updatingCall : addingLeadsActivityCall}
                 >
                   {isEditing ? (
                     "Update"
@@ -758,8 +761,8 @@ function LeadsCallForm(props) {
     );
   }
 
-const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCall: call.addingCall,
+const mapStateToProps = ({ auth, call, employee,customer,leads, opportunity, candidate }) => ({
+  addingLeadsActivityCall: leads.addingLeadsActivityCall,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   allOpportunityData:opportunity.allOpportunityData,

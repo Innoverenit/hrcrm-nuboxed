@@ -13,11 +13,11 @@ function TagBrandModel(props) {
     return (
         <div>
             <StyledDrawer
-                title="Tag Brand"
+                title={`Tag Brand - ${props.particularDiscountData.suppliesName}  ${props.particularDiscountData.attributeName}`}
                 width="60%"
                 visible={addBrandModel}
-                destroyOnClose
                 maskClosable={false}
+                destroyOnClose
                 onClose={() => handleBrandModel(false)}
                 footer={null}
             >
@@ -25,6 +25,7 @@ function TagBrandModel(props) {
                     {props.particularDiscountData.mainInd ?
                         <TaggedBrandTable particularDiscountData={props.particularDiscountData} />
                         : <BrandModelTable particularDiscountData={props.particularDiscountData} />}
+                       
                 </Suspense>
 
             </StyledDrawer>

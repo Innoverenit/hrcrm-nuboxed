@@ -4,15 +4,39 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ButtonGroup from "antd/lib/button/button-group";
 import { Button, Tooltip } from 'antd'
-import { updateFarGlassInProduction,handleInTagDrawer } from "../RefurbishAction"
+import { updateFarGlassInProduction, handleInTagDrawer } from "../RefurbishAction"
 import TagInDrawer from './TagInDrawer';
 import MoveInvenToggle from './MoveInvenToggle'
+import { getAllProductList } from "../../Account/AccountAction"
 import { OnlyWrapCard } from '../../../../Components/UI/Layout'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductionTable = (props) => {
+    const [page, setPage] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
-        props.getCatalogueByTechnician(props.userId)
+        props.getCatalogueByTechnician(page)
+        setPage(page + 1);
+    }, []);
+    const handleLoadMore = () => {
+        const proPag = props.products && props.products.length && props.products[0].pageCount
+        setTimeout(() => {
+            if (props.products) {
+                if (page < proPag) {
+                    setPage(page + 1);
+                    props.getCatalogueByTechnician(page)
+                }
+                if (page === proPag) {
+                    setHasMore(false)
+                }
+            }
+        }, 100);
+    };
+
+    useEffect(() => {
+        props.getAllProductList()
+        props.getCatalogueByTechnician(page)
     }, []);
 
     const [RowData, setRowData] = useState({});
@@ -53,8 +77,8 @@ const ProductionTable = (props) => {
         console.log(item)
         const data = {
             repairStatus: type,
-            productRepurbishId:item.productRepurbishId,
-            repurbishStartDate:props.startDate,
+            productRepurbishId: item.productRepurbishId,
+            repurbishStartDate: props.startDate,
             phoneId: item.phoneId,
             repairTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
@@ -67,9 +91,9 @@ const ProductionTable = (props) => {
         console.log(item)
         const data = {
             repairStatus: type,
-            productRepurbishId:item.productRepurbishId,
-            repurbishStartDate:item.repurbishStartDate,
-            repurbishEndDate:props.endDate,
+            productRepurbishId: item.productRepurbishId,
+            repurbishStartDate: item.repurbishStartDate,
+            repurbishEndDate: props.endDate,
             phoneId: item.phoneId,
             repairTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
@@ -80,127 +104,135 @@ const ProductionTable = (props) => {
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-         <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
-         <div className=" flex justify-between w-[75%] px-2 bg-transparent font-bold sticky top-0 z-10">
-         <div className=""></div>
-        <div className=" md:w-[6.1rem]">Name</div>
-        <div className=" md:w-[4.2rem] ">Category</div>
-        <div className="md:w-[5.8rem]">Sub Category</div>
-        <div className="md:w-[8.5rem]">Attribute</div>
-        <div className="md:w-[5.2rem]">Sub Attribute</div>
-        <div className="md:w-[5.2rem]">Units</div>
-        <div className="w-12"></div>
-            </div>
-        {/* <InfiniteScroll
+                <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+                    <div className=" flex justify-between w-[75%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=""></div>
+                        <div className=" md:w-[6.1rem]">Name</div>
+                        <div className=" md:w-[4.2rem] ">Category</div>
+                        <div className="md:w-[5.8rem]">Sub Category</div>
+                        <div className="md:w-[8.5rem]">Attribute</div>
+                        <div className="md:w-[5.2rem]">Sub Attribute</div>
+                        <div className="md:w-[5.2rem]">Units</div>
+                        <div className="w-12"></div>
+                    </div>
+                    {/* <InfiniteScroll
         dataLength={props.catalogueByTechnician.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingCatalogueByTechnician?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"75vh"}
       > */}
-             {props.catalogueByTechnician.map((item) => {
-          return (
-<div>
-<div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3">
-       <div class="flex">
-    <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-    <h4 class=" text-xs text-cardBody font-poppins">
-                        {item.name} 
-                    </h4>
-    </div> 
- 
-    </div>
-    
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-    <h4 class=" text-xs text-cardBody font-poppins">
-                      
-                      {item.categoryName}
-                    </h4>
-    </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-                      {item.subCategoryName}
-                    </h4>
-    </div>
-    
-    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-               {item.attributeName}
-             </h4>
-    </div>
-    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-               {item.subAttributeName}
-             </h4>
-    </div>
-    <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-               {item.unit}
-             </h4>
-    </div>
-    <div class="flex md:items-center"> 
-    
-    <div className=" flex font-medium flex-col  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-    <ButtonGroup>
+                    <InfiniteScroll
+                        dataLength={props.catalogueByTechnician.length}
+                        next={handleLoadMore}
+                        hasMore={hasMore}
+                        // loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        height={"75vh"}
+                        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+                    >
+                        {props.catalogueByTechnician.map((item) => {
+                            return (
+                                <div>
+                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3">
+                                        <div class="flex">
+                                            <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                                    {item.name}
+                                                </h4>
+                                            </div>
 
-<StatusIcon
-    type="In Progress"
-    iconType="fa-hourglass-half"
-    tooltip="In Progress"
-    id={item.phoneId}
-    indStatus={item.repairStatus}
-    phoneId={RowData.phoneId}
-    status={active}
-    onClick={() => {
-        handleInProgress("In Progress", item);
-        handleSetRowData(item)
-    }}
-/>
-<StatusIcon
-    type="Complete"
-    iconType="fa-hourglass"
-    tooltip="Complete"
-    status={active}
-    id={item.phoneId}
-    indStatus={item.repairStatus}
-    phoneId={RowData.phoneId}
-    onClick={() => {
-        handleCompleteglass("Complete", item);
-        handleSetRowData(item)
-    }}
-/>
-</ButtonGroup>
-</div> 
-<div className=" flex font-medium flex-col  md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        </div>
 
-{item.repurbishStartDate===null ?null:
-                        <Tooltip title="">
-                            <Button
-                            className="bg-[orange] text-[white]"
-                                onClick={() => {
-                                    props.handleInTagDrawer(true)
-                                    handleSetRowData(item)
-                                }}
-                            >
-                                Tag Parts
-                            </Button>
-                        </Tooltip>
-                        } 
+                                        <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-xs text-cardBody font-poppins">
 
-</div> 
-<div className=" flex font-medium flex-col  md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                {item.categoryName}
+                                            </h4>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.subCategoryName}
+                                            </h4>
+                                        </div>
 
-{item.repurbishEndDate===null ? null:
-                   <MoveInvenToggle
-                   moveToLocationId={item.moveToLocationId}
-                   productRepurbishId={item.productRepurbishId}
-                   repurbishStartDate={item.repurbishStartDate}
-                   repurbishEndDate={item.repurbishEndDate}
-                   />}
+                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.attributeName}
+                                            </h4>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.subAttributeName}
+                                            </h4>
+                                        </div>
+                                        <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                {item.unit}
+                                            </h4>
+                                        </div>
+                                        <div class="flex md:items-center">
 
-</div> 
-</div>
-{/* <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
+                                            <div className=" flex font-medium flex-col  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <ButtonGroup>
+
+                                                    <StatusIcon
+                                                        type="In Progress"
+                                                        iconType="fa-hourglass-half"
+                                                        tooltip="In Progress"
+                                                        id={item.phoneId}
+                                                        indStatus={item.repairStatus}
+                                                        phoneId={RowData.phoneId}
+                                                        status={active}
+                                                        onClick={() => {
+                                                            handleInProgress("In Progress", item);
+                                                            handleSetRowData(item)
+                                                        }}
+                                                    />
+                                                    <StatusIcon
+                                                        type="Complete"
+                                                        iconType="fa-hourglass"
+                                                        tooltip="Complete"
+                                                        status={active}
+                                                        id={item.phoneId}
+                                                        indStatus={item.repairStatus}
+                                                        phoneId={RowData.phoneId}
+                                                        onClick={() => {
+                                                            handleCompleteglass("Complete", item);
+                                                            handleSetRowData(item)
+                                                        }}
+                                                    />
+                                                </ButtonGroup>
+                                            </div>
+                                            <div className=" flex font-medium flex-col  md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                                                {/* {item.repurbishStartDate===null ?null: */}
+                                                <Tooltip title="">
+                                                    <Button
+                                                        className="bg-[orange] text-[white]"
+                                                        onClick={() => {
+                                                            props.handleInTagDrawer(true)
+                                                            handleSetRowData(item)
+                                                        }}
+                                                    >
+                                                        Tag Parts
+                                                    </Button>
+                                                </Tooltip>
+                                                {/* }  */}
+
+                                            </div>
+                                            <div className=" flex font-medium flex-col  md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                                                {item.repurbishEndDate === null ? null :
+                                                    <MoveInvenToggle
+                                                        moveToLocationId={item.moveToLocationId}
+                                                        productRepurbishId={item.productRepurbishId}
+                                                        repurbishStartDate={item.repurbishStartDate}
+                                                        repurbishEndDate={item.repurbishEndDate}
+                                                    />}
+
+                                            </div>
+                                        </div>
+                                        {/* <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[6%]">
                    <div>
                    <Tooltip title="Add Price">
                             <EuroIcon
@@ -241,34 +273,36 @@ const ProductionTable = (props) => {
 
 </div> */}
 
-</div>
-</div>
-          );
-        })}
-              {/* </InfiniteScroll>  */}
-              </OnlyWrapCard>
-              </div>
-<TagInDrawer
-RowData={RowData}
-clickTagInDrawr={props.clickTagInDrawr}
-handleInTagDrawer={props.handleInTagDrawer}
-/>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </InfiniteScroll>
+                </OnlyWrapCard>
+            </div>
+            <TagInDrawer
+                RowData={RowData}
+                clickTagInDrawr={props.clickTagInDrawr}
+                handleInTagDrawer={props.handleInTagDrawer}
+            />
         </>
     )
 }
 
-const mapStateToProps = ({ refurbish, auth }) => ({
+const mapStateToProps = ({ refurbish, auth, distributor }) => ({
     catalogueByTechnician: refurbish.catalogueByTechnician,
     userId: auth.userDetails.userId,
-    clickTagInDrawr:refurbish.clickTagInDrawr,
-    startDate:refurbish.startDate,
-    endDate:refurbish.endDate,
+    clickTagInDrawr: refurbish.clickTagInDrawr,
+    startDate: refurbish.startDate,
+    endDate: refurbish.endDate,
+    allProduct: distributor.allProduct,
 });
 const mapDispatchToProps = dispatch =>
     bindActionCreators({
         getCatalogueByTechnician,
         updateFarGlassInProduction,
-        handleInTagDrawer
+        handleInTagDrawer,
+        getAllProductList
     }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductionTable);
@@ -443,7 +477,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProductionTable);
 //                                 Tag Parts
 //                             </Button>
 //                         </Tooltip>
-//                         } 
+//                         }
 
 //                     </>
 //                 )

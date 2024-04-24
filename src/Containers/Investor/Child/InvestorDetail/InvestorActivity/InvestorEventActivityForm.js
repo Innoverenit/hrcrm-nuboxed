@@ -67,6 +67,9 @@ function InvestorEventActivityForm (props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const opportunityNameOption = props.opportunityByCustomerId.map((item) => {
       return {
         label: `${item.opportunityName}`,
@@ -105,7 +108,7 @@ const {
       user: { userId, firstName, fullName,empName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingEvent,
+      addinginvestActivityEvent,
       addinvestActivityEvent,
       deletingEvent,
       deleteEvent,
@@ -547,7 +550,7 @@ const {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,
@@ -682,7 +685,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingEvent : addingEvent}
+                  loading={isEditing ? updatingEvent : addinginvestActivityEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -699,8 +702,8 @@ const {
       </>
     );
 }
-const mapStateToProps = ({ auth, event,customer,employee, opportunity, events, candidate }) => ({
-  addingEvent: event.addingEvent,
+const mapStateToProps = ({ auth, event,customer,employee, opportunity, events,investor, candidate }) => ({
+  addinginvestActivityEvent: investor.addinginvestActivityEvent,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
   allCustomerData:customer.allCustomerData,

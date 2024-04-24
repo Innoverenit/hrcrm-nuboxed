@@ -1,6 +1,7 @@
 import * as types from "./EducationActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 
@@ -31,7 +32,7 @@ export const getEducations = () => (dispatch) => {
     });
 };
 
-export const addEducations = (education, cb) => (dispatch) => {
+export const addEducations = (education,orgId, cb) => (dispatch) => {
   console.log(education);
   dispatch({
     type: types.ADD_EDUCATION_REQUEST,
@@ -43,8 +44,24 @@ export const addEducations = (education, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Education has been added successfully!");
-      // dispatch(getEducations());
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Education added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      // message.success("Education added successfully!");
+      dispatch(getEducationCount(orgId));
       console.log(res);
       dispatch({
         type: types.ADD_EDUCATION_SUCCESS,
@@ -60,7 +77,7 @@ export const addEducations = (education, cb) => (dispatch) => {
     });
 };
 
-export const updateEducations = (educationTypeId, educationType, cb) => (
+export const updateEducations = (data,educationTypeId, cb) => (
   dispatch
 ) => {
   dispatch({
@@ -69,7 +86,7 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
   axios
     .put(
       `${base_url}/educationType/update`,
-      { educationType, educationTypeId, editInd: "true" },
+     data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -77,7 +94,11 @@ export const updateEducations = (educationTypeId, educationType, cb) => (
       }
     )
     .then((res) => {
-      message.success("Education has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Education updated Successfully!',
+      })
+      // message.success("Education updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_EDUCATION_SUCCESS,
@@ -117,7 +138,7 @@ export const searchEducationsName = (name) => (dispatch) => {
       });
     });
 };
-export const removeEducation = (educationTypeId) => (dispatch) => {
+export const removeEducation = (educationTypeId,orgId) => (dispatch) => {
   // console.log(typeId);
   dispatch({
     type: types.REMOVE_EDUCATION_REQUEST,
@@ -129,7 +150,12 @@ export const removeEducation = (educationTypeId) => (dispatch) => {
       },
     })
     .then((res) => {
-      message.success("Education has been deleted successfully!");
+      dispatch(getEducationCount(orgId));
+      Swal.fire({
+        icon: 'success',
+        title: 'Education deleted Successfully!',
+      })
+      // message.success("Education deleted successfully!");
       console.log(res);
       dispatch({
         type: types.REMOVE_EDUCATION_SUCCESS,
@@ -148,4 +174,30 @@ export const ClearReducerDataOfEducation = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_REDUCER_DATA_EDUCATION,
   });
+};
+
+export const getEducationCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EDUCATION_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/educationType/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EDUCATION_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EDUCATION_COUNT_FAILURE,
+        payload: err,
+      });
+    });
 };

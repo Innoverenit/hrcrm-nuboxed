@@ -3,7 +3,7 @@ import * as types from "./TeamsActionType";
 const initialState = {
   addTeamsModal: false,
 
-  viewType: "table",
+  viewType: "client",
 
   fetchingEmployeeList: false, 
   fetchingEmployeeListError: false ,
@@ -19,6 +19,8 @@ const initialState = {
   fetchingEmployeeKpi: false,
   fetchingEmployeeKpiError: false,
   employeeKpiList:[],
+
+  addDrawerTeamsPulseModal:false,
 
   fetchingPerformanceRecords: false,
   fetchingPerformanceRecordsError: false,
@@ -550,6 +552,10 @@ case types.GET_EMPLOYEE_KPI_LIST_FAILURE:
           };
         case types.UPDATE_ASSIGNED_VALUE_FAILURE:
           return { ...state, updatingAssignedValue: false, updatingAssignedValueError: true };
+
+
+          case types.HANDLE_TEAMS_PULSE_DRAWER_MODAL:
+                              return { ...state, addDrawerTeamsPulseModal: action.payload };
         
       
 

@@ -163,3 +163,93 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
         });
       });
   };
+
+
+
+
+
+  export const getReportProspect = (userId, startDate, endDate) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_PROSPECT_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/customer/report/all-customer/self/${userId}?endDate=${endDate}&startDate=${startDate}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_PROSPECT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_PROSPECT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getReportTask = (userId, startDate, endDate,type) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORT_TASK_REQUEST,
+    });
+    axios
+      .get(
+        `${base_url}/task/report/self/${userId}?endDate=${endDate}&startDate=${startDate}/${type}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: types.GET_REPORT_TASK_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORT_TASK_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getTaskData = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_TASK_DATA_REQUEST,
+    });
+    axios
+      .get(`${base_url}/taskType/drop-down/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TASK_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_TASK_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };

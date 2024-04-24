@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
-import {getKpilist,addKpi, } from "./TeamsAction";
-import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import { Tabs,Select } from 'antd';
+import {addKpi, } from "./TeamsAction";
+import {getLob} from "../../Settings/Category/LOB/LOBAction"
+import {getKpis} from "../../Settings/Category/KPI/KPIAction"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import AssigenedKpiCardList from "./TeamsCard.js/AssigenedKpiCardList";
-
+const { TabPane } = Tabs;
 
 /**
  * yup validation scheme for creating a Team
@@ -20,9 +21,31 @@ const TeamsSchema = Yup.object().shape({
 });
 
 function KpiList(props) {
+  const tab=[
+    "Q1","Q2","Q3","Q4"
+  ]
+  const years=[2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
   const [selected, setSelected] = useState("");
+  const [lob, setLob] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("");
+  const [selectedYear, setSelectedYear] = useState(null);
+  const yearSelectRef = useRef(null);
+
+  const resetData = () => {
+    setSelectedYear(null);
+    setActiveTab(null)
+    // setSales({ amount: null, currency: null });
+    // setFulfillment({ amount: null });
+    // setInvestment({ amount: null, currency: null });
+   
+    if (yearSelectRef.current) {
+      yearSelectRef.current.value = ""; // Reset the value of the select element
+    }
+  };
     useEffect(()=>{
-        props.getKpilist(props.rowdata.departmentId)
+      props.getLob(props.orgId); 
+        props.getKpis(props.rowdata.departmentId,props.rowdata.roleType)
         // props.getEmployeeKpiList(props.rowdata.employeeId)
     },[]);
 
@@ -30,12 +53,38 @@ function KpiList(props) {
     resetForm();
   }
 
+  const handleYearChange = async (e) => {
+    const year = parseInt(e.target.value);
+    setSelectedYear(year);
+  
+   
+  };
+  const handleTabClick = async (key) => {
+    setActiveTab(key);
+    setLoading(true); 
+    await loadKPIsForTab(selectedYear, key);
+  
+    setLoading(false); 
+  };
+  
+  const loadKPIsForTab = async (year, tabKey) => {
+    await props.getKpis(props.rowdata.departmentId,props.rowdata.roleType);
+  };
+  
+
   const handleWorkflowChange = (event) => {
     const selected = event.target.value;
     setSelected(selected);
     // setSelectedUser("");
     // props.getDepartmentwiserUser(selected) // Assuming you want to pass the selected department and filtered roles to a parent component
   };
+  const handleLobChange = (event) => {
+    const lob = event.target.value;
+    setLob(lob);
+    // setSelectedUser("");
+    // props.getDepartmentwiserUser(selected) // Assuming you want to pass the selected department and filtered roles to a parent component
+  };
+  
 
   const kpiNameOption = props.kpiList.map((item) => {
     return {
@@ -46,20 +95,38 @@ function KpiList(props) {
   const { addingKpi } = props;
   return (
     <>
-      <Formik
+
+<Formik
         enableReinitialize
         initialValues={{
           // performanceManagementId:[],
           employeeId:props.rowdata.employeeId,
           performanceManagementId: selected,
-          assignedValue:"",
-      
+          lobDetailsId: lob,
+          month1AssignedValue:"",
+          month2AssignedValue:"",
+          month3AssignedValue:"",
+          weitageValue:"",
+          year: selectedYear,
+          quarter:activeTab,
+        
         }}
-        // validationSchema={TeamsSchema}
-        onSubmit={(values, { resetForm }) => {
-          props.addKpi(values, () => handleReset(resetForm));
+        onSubmit={(values) => {
+          const month1AssignedValue = values.month1AssignedValue !== "" ? values.month1AssignedValue : 0;  
+          const month2AssignedValue = values.month2AssignedValue !== "" ? values.month2AssignedValue : 0;  
+          const month3AssignedValue = values.month3AssignedValue !== "" ? values.month3AssignedValue : 0;   
+          props.addKpi(
+            {
+              ...values,
+              month1AssignedValue:month1AssignedValue,
+              month2AssignedValue:month2AssignedValue,
+              month3AssignedValue:month3AssignedValue,
+            },
+            // props.orgId
+          );
         }}
       >
+   
         {({
           errors,
           touched,
@@ -70,88 +137,210 @@ function KpiList(props) {
           ...rest
         }) => (
             <Form className="form-background">
-            <div class="flex justify-between  pr-2 max-sm:flex-col">
-            <div class=" w-w47.5 max-sm:w-wk">
-            <label class=" text-[#444] font-bold text-[0.75rem]" >KPI</label>&nbsp;
-                      <select  className="customize-select"
-                       
-                      onChange={handleWorkflowChange}>
-          <option value="">Select Kpi</option>
-          {props.kpiList.map((item, index) => (
-            <option 
-           
-            key={index} value={item.performanceManagementId}>
-              {item.kpi}
-            </option>
-          ))}
-        </select>
-            {/* <Field
-              name="performanceManagementId"
-              isColumnWithoutNoCreate
-              label={
-                <FormattedMessage
-                  id="app.kpi"
-                  defaultMessage="KPI List"
-                />
-              } 
-              onChange={(selectedValue) => setSelected(selectedValue)}
-              component={SelectComponent}
-              options={kpiNameOption}
-              isColumn
-              margintop={"0"}
-              //value={values.customerId}
-              inlineLabel
-            />  */}
-    
+            <div class="flex   items-center  pr-2 max-sm:flex-col">
+              <div class=" w-[21%] flex justify-between">
+                <div>Assesment Year</div>
+            <select 
+      ref={yearSelectRef}
+      onChange={handleYearChange}>
+        <option value="">Select Year</option>
+        {years.map((year) => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </select>
       </div>
-      {selected && (
-          <>                                           
-        <div class=" w-[45%]" >
-                          <FastField
-                            // isRequired
-                            name="assignedValue"
-                            type="text"
-                            // width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
-                          {/* <input value={this.state.value} onChange={this.onNumber}/> */}
-                        </div>               
-</> 
-        )}   
-     <div class="flex justify-end w-wk  ">
-          <Button
-            htmlType="submit"
-            type="primary"
-            Loading={addingKpi}
-          >
-            Submit
-          </Button>
-        </div>
+      {selectedYear && (
+        <div class=" w-[30%] flex items-center flex-col mt-4">
+           <Tabs type="card" 
+           activeKey={activeTab} 
+          onChange={handleTabClick}
+           >
+      {tab.map((tabs) => (
+        <TabPane key={tabs} tab={tabs}>
+       
+       
+       
+        </TabPane>
+      ))}
+    </Tabs>
+    </div> 
+    )}
+     </div>
+     <div className="flex flex-wrap justify-between mt-2">
+  {activeTab && (
+    <div className="w-[25%] mt-[1.2rem] max-sm:w-wk">
+      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+        Assign KPI
+      </label>
+      <select
+        className="customize-select"
+        onChange={handleWorkflowChange}
+      >
+        <option value="">Select</option>
+        {props.kpiListData.map((item, index) => (
+          <option key={index} value={item.performanceManagementId}>
+            {item.kpi}
+          </option>
+        ))}
+      </select>
+    </div>
+  )}
+  {selected && (
+    <div className="w-[18%] mt-[1.2rem] max-sm:w-wk">
+      <label className="text-[#444] font-bold flex-col text-[0.75rem]">
+        LOB
+      </label>
+      <select
+        className="customize-select"
+        style={{ width: "50%" }}
+        onChange={handleLobChange}
+      >
+        <option value="">Select</option>
+        {props.lobListData.map((item, index) => (
+          <option key={index} value={item.lobDetsilsId}>
+            {item.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  )}
+  {selected && (
+    <>
+      <div className="w-[35%]">
+        <label className="text-[#444] font-bold text-[0.75rem]">Assigned</label>
+     
+<div class=" flex flex-row">
+        <Field
+     
+     name="month1AssignedValue"
+     type="number"
+     placeholder="Month1"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+     
+     <Field
+     
+     name="month2AssignedValue"
+     type="number"
+     placeholder="Month2"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+        <Field
+     
+     name="month3AssignedValue"
+     type="number"
+     placeholder="Month3"
+     style={{width:"90%"}}
+                    component={InputComponent}
+                    inlineLabel
+                    validate={(value) => {
+         
+                      if (value === 0) {
+                          return null;
+                      }
+                   
+                      if (!value || isNaN(Number(value))) {
+                        return 'Assigned Value must be a number';
+                      }
+                      return null;
+                  }}
+               
+                  />
+                  </div>
+        {/* </div> */}
+      </div>
+      <div className="w-[15%] ">
+        <label className="text-[#444] font-bold text-[0.75rem]">Weightage</label>
+        <Field
+          onChange={(e) => setFieldValue("weitageValue", parseFloat(e.target.value))}
+          name="weitageValue"
+          type="number"
+          validate={(value) => {
+            if (!value || isNaN(Number(value))) {
+              return 'Weightage value must be a number';
+            }
+            return null;
+          }}
+          component={InputComponent}
+          inlineLabel
+        />
+      </div>
+      <div className="flex items-end">
+      <Button
+        htmlType="submit"
+        type="primary"
+        loading={addingKpi}
+      >
+        Submit
+      </Button>
+    </div>
+    </>
+  )}
+
+</div>
+
         
-        </div>
+       
        
        
       </Form>
    
         )}
       </Formik>
-      <AssigenedKpiCardList  rowdata={props.rowdata}/>
+      {activeTab && (
+      <AssigenedKpiCardList  rowdata={props.rowdata}
+      selectedYear={selectedYear}
+      activeTab={activeTab}
+ 
+      />
+      )}
     </>
   );
 }
 
-const mapStateToProps = ({ teams, auth, area }) => ({
+const mapStateToProps = ({ teams, auth, kpi,lob }) => ({
     userDetails: auth.userDetails,
+    lobListData: lob.lobListData,
     kpiList:teams.kpiList,
+    kpiListData:kpi.kpiListData,
+    addingKpi:teams.addingKpi,
+    orgId:auth.userDetails.organizationId,
     employeeKpiList:teams.employeeKpiList,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getKpilist,
+        getKpis,
+        getLob,
         addKpi,
       
     },

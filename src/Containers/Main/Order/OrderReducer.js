@@ -6,21 +6,29 @@ const initialState = {
 
   addOrderModal: false,
 
-  addNotesInOrder:false,
+  addNotesInOrder: false,
 
-  addStatusOfOrder:false,
+  addStatusOfOrder: false,
 
   fetchingOrderCount: false,
   fetchingOrderCountError: false,
-  orderCount:{},
+  orderCount: {},
+
+  fetchingProductionOrder: false,
+  fetchingProductionOrderError: false,
+  productionOrder:[],
 
   fetchingOrderList: false,
   fetchingOrderListError: false,
   orderList: [],
 
+  fetchingALlCompleteOrderList: false,
+  fetchingALlCompleteOrderListError: true,
+  allCompleteOrder: [],
+
   fetchingAllOrderCount: false,
   fetchingAllOrderCountError: false,
-  allOrderCount:{},
+  allOrderCount: {},
 
 
   fetchingCustomerList: false,
@@ -31,8 +39,11 @@ const initialState = {
   fetchingDistributorListError: false,
   distributorList: [],
 
-  addPaidButtonModal:false,
+  addPaidButtonModal: false,
 
+  fetchingCompleteOrders: false,
+  fetchingCompleteOrdersError: false,
+  comepletOrder: [],
 
   fetchingDistributorOrderList: false,
   fetchingDistributorOrderListError: false,
@@ -57,7 +68,7 @@ const initialState = {
 
   fetchingOrderById: false,
   fetchingOrderByIdError: false,
-  orderShowById:[],
+  orderShowById: [],
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -114,6 +125,40 @@ export const orderReducer = (state = initialState, action) => {
         fetchingCustomerListError: true,
       };
 
+    case types.GET_COMPLETE_ORDERS_REQUEST:
+      return { ...state, fetchingCompleteOrders: true };
+    case types.GET_COMPLETE_ORDERS_SUCCESS:
+      return {
+        ...state,
+        fetchingCompleteOrders: false,
+        comepletOrder: [
+          ...state.comepletOrder,
+          ...action.payload]
+      };
+    case types.GET_COMPLETE_ORDERS_FAILURE:
+      return {
+        ...state,
+        fetchingCompleteOrders: false,
+        fetchingCompleteOrdersError: true,
+      };
+
+    case types.GET_ALL_COMPLETE_ORDER_LIST_REQUEST:
+      return { ...state, fetchingALlCompleteOrderList: true };
+    case types.GET_ALL_COMPLETE_ORDER_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingALlCompleteOrderList: false,
+        allCompleteOrder: [
+          ...state.allCompleteOrder,
+          ...action.payload]
+      };
+    case types.GET_ALL_COMPLETE_ORDER_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingALlCompleteOrderList: false,
+        fetchingALlCompleteOrderListError: true,
+
+      };
 
     case types.GET_DISTRIBUTOR_ORDER_LIST_REQUEST:
       return { ...state, fetchingDistributorOrderList: true };
@@ -188,13 +233,23 @@ export const orderReducer = (state = initialState, action) => {
         addingCustomerOrderIdError: true,
       };
 
+    case types.EMPTY_ORDERS_LIST:
+      return {
+        ...state,
+        comepletOrder: [],
+        allCompleteOrder: [],
+        allOrderList: [],
+        orderShowById: [],
+      };
+
     case types.GET_ALL_ORDER_LIST_REQUEST:
       return { ...state, fetchingAllOrderList: true };
     case types.GET_ALL_ORDER_LIST_SUCCESS:
       return {
         ...state,
         fetchingAllOrderList: false,
-        allOrderList: action.payload,
+
+        allCompleteOrder: [...state.allCompleteOrder, ...action.payload]
       };
     case types.GET_ALL_ORDER_LIST_FAILURE:
       return {
@@ -202,61 +257,81 @@ export const orderReducer = (state = initialState, action) => {
         fetchingAllOrderList: false,
         fetchingAllOrderListError: true,
       };
-      case types.GET_ORDER_BY_ID_REQUEST:
-        return { ...state, fetchingOrderById: true };
-      case types.GET_ORDER_BY_ID_SUCCESS:
-        return {
-          ...state,
-          fetchingOrderById: false,
-          orderShowById: action.payload,
-        };
-      case types.GET_ORDER_BY_ID_FAILURE:
-        return {
-          ...state,
-          fetchingOrderById: false,
-          fetchingOrderByIdError: true,
-        };
+    case types.GET_ORDER_BY_ID_REQUEST:
+      return { ...state, fetchingOrderById: true };
+    case types.GET_ORDER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderById: false,
+        orderShowById: [
+          ...state.orderShowById,
+          ...action.payload]
+      };
+    case types.GET_ORDER_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingOrderById: false,
+        fetchingOrderByIdError: true,
+      };
 
 
-        case types.GET_ORDER_COUNT_REQUEST:
-          return { ...state, fetchingOrderCount: true };
-        case types.GET_ORDER_COUNT_SUCCESS:
-          return {
-            ...state,
-            fetchingOrderCount: false,
-            orderCount: action.payload,
-          };
-        case types.GET_ORDER_COUNT_FAILURE:
-          return {
-            ...state,
-            fetchingOrderCount: false,
-            fetchingOrderCountError: true,
-          };
+    case types.GET_ORDER_COUNT_REQUEST:
+      return { ...state, fetchingOrderCount: true };
+    case types.GET_ORDER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderCount: false,
+        orderCount: action.payload,
+      };
+    case types.GET_ORDER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingOrderCount: false,
+        fetchingOrderCountError: true,
+      };
 
 
-          case types.GET_ALL_ORDER_COUNT_REQUEST:
-            return { ...state, fetchingAllOrderCount: true };
-          case types.GET_ALL_ORDER_COUNT_SUCCESS:
-            return {
-              ...state,
-              fetchingAllOrderCount: false,
-              allOrderCount: action.payload,
-            };
-          case types.GET_ALL_ORDER_COUNT_FAILURE:
-            return {
-              ...state,
-              fetchingAllOrderCount: false,
-              fetchingAllOrderCountError: true,
-            };
+    case types.GET_ALL_ORDER_COUNT_REQUEST:
+      return { ...state, fetchingAllOrderCount: true };
+    case types.GET_ALL_ORDER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingAllOrderCount: false,
+        allOrderCount: action.payload,
+      };
+    case types.GET_ALL_ORDER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingAllOrderCount: false,
+        fetchingAllOrderCountError: true,
+      };
 
-            case types.HANDLE_NOTES_MODAL_IN_ORDER:
+    case types.HANDLE_NOTES_MODAL_IN_ORDER:
       return { ...state, addNotesInOrder: action.payload };
 
-      case types.HANDLE_STATUS_OF_ORDER_MODAL:
+    case types.HANDLE_STATUS_OF_ORDER_MODAL:
       return { ...state, addStatusOfOrder: action.payload };
 
-      case types.HANDLE_PAID_BUTTON_MODAL:
+    case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };
+
+
+      case types.GET_PRODUCTION_ORDER_REQUEST:
+        return { ...state, fetchingProductionOrder: true };
+      case types.GET_PRODUCTION_ORDER_SUCCESS:
+        return {
+          ...state,
+          fetchingProductionOrder: false,
+          productionOrder: [
+            ...state.productionOrder,
+            ...action.payload]
+        };
+      case types.GET_PRODUCTION_ORDER_FAILURE:
+        return {
+          ...state,
+          fetchingProductionOrder: false,
+          fetchingProductionOrderError: true,
+        };
     default:
       return state;
   }

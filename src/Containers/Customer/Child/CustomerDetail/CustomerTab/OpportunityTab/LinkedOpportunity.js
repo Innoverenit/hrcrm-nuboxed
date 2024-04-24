@@ -16,6 +16,8 @@ import { CurrencySymbol } from "../../../../../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
   setEditCustomerOpportunity} from "../../../../CustomerAction";
 import { Tooltip,Button,Input,Progress } from "antd";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpportunityModal")); 
 
 
@@ -225,11 +227,11 @@ function OpportunityTable(props) {
 //       },
 //     },
 //     {
-//       //title: "Proposal Amount",
+//       //title: "Value",
 //       title: (
 //         <FormattedMessage
 //           id="app.proposalAmount"
-//           defaultMessage="Proposal Amount"
+//           defaultMessage="Value"
 //         />
 //       ),
 //       dataIndex: "proposalAmount",
@@ -373,7 +375,7 @@ function OpportunityTable(props) {
 //       width: "1%",
 //     },
 //   ];
-
+if (fetchingCustomerOpportunity) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
@@ -391,7 +393,7 @@ function OpportunityTable(props) {
 
       </div>
 
-        {opportunityByCustomerId.map((item) => {
+      { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<NodataFoundPage />:opportunityByCustomerId.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {
@@ -436,7 +438,7 @@ function OpportunityTable(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
@@ -446,7 +448,7 @@ function OpportunityTable(props) {
         >{item.opportunityName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
+          <span class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -540,7 +542,7 @@ width={30}
           <InfoIcon 
           
               // type="edit"
-              style={{ cursor: "pointer",fontSize:"1rem" }}
+              style={{ cursor: "pointer",fontSize:"1.25rem" }}
              
             />
           
@@ -551,7 +553,7 @@ width={30}
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 
-          className=" !text-base cursor-pointer text-[tomato]"
+          className=" !text-xl cursor-pointer text-[tomato]"
               onClick={() => {
                 props.setEditCustomerOpportunity(item);
                 handleUpdateCustomerOpportunityModal(true);

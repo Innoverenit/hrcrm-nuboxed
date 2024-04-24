@@ -2,12 +2,16 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Input } from "antd";
+import { Button,Input,Tooltip } from "antd";
+import { FormattedMessage } from "react-intl";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput,  } from "../../../Components/UI/Elements";
 import {
   getDepartments,
+  getDepartmentCount,
   addDepartments,
   searchDepartmentName,
   removeDepartments,
@@ -94,7 +98,7 @@ class Department extends Component {
     //     "Can't create as another departmentName exists with same name!"
     //   );
     // } else {
-      addDepartments(department, () => console.log("add department callback"));
+      addDepartments(department,this.props.orgId, () => console.log("add department callback"));
     // }
 
     this.setState({
@@ -107,7 +111,7 @@ class Department extends Component {
     });
   };
   handleDeleteDepartment = (departmentId={departmentId}) => {
-    this.props.removeDepartments(departmentId);
+    this.props.removeDepartments(departmentId,);
     this.setState({ departmentName: "", singleDepartment: "" });
   };
   handleUpdateDepartment = (departmentId, departmentName, sectorId, sectorName, editInd, cb) => {
@@ -131,9 +135,10 @@ class Department extends Component {
   // };
 
   componentDidMount() {
-    const { getDepartments, getSectors } = this.props;
+    const { getDepartments, getDepartmentCount,orgId,getSectors } = this.props;
     console.log();
     getDepartments(getDepartments);
+    getDepartmentCount(orgId)
     // getSectors();
   }
   render() {
@@ -178,6 +183,18 @@ class Department extends Component {
             // value={currentData}
           />
         </div>
+    
+        <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"department"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+
+ 
         {isTextInputOpen ? (
             <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
             
@@ -206,15 +223,15 @@ class Department extends Component {
                     type="primary"
                     htmlType="submit"
                     disabled={!departmentName}
-                    Loading={addingDepartments}
+                    loading={addingDepartments}
                     onClick={this.handleAddDepartment}
                   // style={{ marginRight: "0.125em" }}
                   >
-                    <label class="text-white"> Save</label>
+                  <FormattedMessage id="app.save" defaultMessage="Save" />
                   </Button>
                   &nbsp;
                   <Button type="cancel"  onClick={this.toggleInput}>
-                  <label class="text-white"> Cancel</label>
+                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>
               </div>
             ) : (
@@ -224,7 +241,7 @@ class Department extends Component {
                   <Button
                     type="primary"
                     htmlType="button"
-                    Loading={addingDepartments}
+                    loading={addingDepartments}
                     onClick={this.toggleInput}                
                   >
                    <label class="text-white"> Add More</label>
@@ -233,7 +250,10 @@ class Department extends Component {
                
               </>
             )}
+
              </div>
+             
+
             <div class=" flex flex-col" >
             <MainWrapper className="!h-[69vh] !mt-2" >
               {departments.length ? (
@@ -276,11 +296,11 @@ class Department extends Component {
   }
 }
 
-const mapStateToProps = ({ departments, sector }) => ({
+const mapStateToProps = ({ departments, sector,auth }) => ({
   addingDepartments: departments.addingDepartments,
   addingDepartmentsError: departments.addingDepartmentsError,
   departments: departments.departments,
-
+  orgId: auth.userDetails.organizationId,
   // removingDepartments: departments.removingDepartments,
   // removingDepartmentsError: departments.removingDepartmentsError,
   updatinDepartments: departments.updatingDepartments,
@@ -293,6 +313,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDepartments,
+      getDepartmentCount,
       addDepartments,
        removeDepartments,
       updateDepartments,

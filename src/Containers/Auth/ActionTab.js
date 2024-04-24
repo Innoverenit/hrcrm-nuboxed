@@ -3,14 +3,15 @@ import React, { Component, lazy, Suspense } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {  StyledTabs } from "../../Components/UI/Antd";
-import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
+import TabsWrappers from "../../Components/UI/Layout/TabsWrappers";
 import IncludedDealCardList from "./ActionRequired/IncludedDealCardList";
 import IncludedTaskCardList from "./ActionRequired/IncludedTaskCardList";
 import OppIncludedCardList from "./ActionRequired/OppIncludedCardList";
-// const LeadHotTable=lazy(()=>import("./LeadHotTable"));
-// const LeadColdTable=lazy(()=>import("./LeadColdTable"));
-// const LeadWarmTable=lazy(()=>import("./LeadWarmTable"));
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -23,37 +24,40 @@ class ActionTab extends Component {
   }
 
   handleTabChange = (key) => {
-    this.setState({ activeKey: key });
+    this.setState(  key );
   };
   render() {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper1 style={{ height:"100vh"}}>
+        <div class=" flex flex-no-wrap" >
+        <div class=" w-full" >
+        <TabsWrappers style={{ height:"100vh"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
-            forceRender={true}
+            // forceRender={true}
           >
             <TabPane
               tab={
                 <>
                  
-                 <Badge count={this.props.oppIncludedCount.OpportunityCount} overflowCount={999}>
-               <span class=" ml-1">
+                 <LightbulbIcon
+                // style={{ fontSize: "large" }}
+              />
+                 <span class="font-poppins ml-[0.25em]" >
+               <Badge count={this.props.oppIncludedCount.OpportunityCount} overflowCount={999}>
               
-               <FormattedMessage
-          id="app.Opportunity"
-          defaultMessage="Opportunity"
-        />
+               Opportunity
+                 </Badge>
    
                 </span>
-                </Badge>
+       
 
-                  {activeKey === "1" && (
+                  {/* {activeKey === "1" && (
                     <>
                     </>
-                  )}
+                  )} */}
                 </>
               }
               key="1"
@@ -66,22 +70,24 @@ class ActionTab extends Component {
             <TabPane
               tab={
                 <>
-                  
+                    <CurrencyExchangeIcon
+                // style={{ fontSize: "large" }}
+              />
+                 
+                  <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.dealsIncludedCount.InvestorOppCount} overflowCount={999}>
-               <span class=" ml-1">
-            
                <FormattedMessage
           id="app.Deals"
           defaultMessage="Deals"
         />
-        
+              </Badge>
                 </span>
-                </Badge>
+          
 
-                  {activeKey === "2" && (
+                  {/* {activeKey === "2" && (
                     <>
                     </>
-                  )}
+                  )} */}
                 </>
               }
               key="2"
@@ -95,19 +101,23 @@ class ActionTab extends Component {
               tab={
                 <>
                   
+                  <FactCheckIcon
+                // style={{ fontSize: "large" }}
+              />
+                  <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.taskIncludedCount.TaskCount} overflowCount={999}>
-               <span class=" ml-1">
                <FormattedMessage
           id="app.Task"
           defaultMessage="Task"
         />
+          </Badge>
                 </span>
-              </Badge>
+            
 
-                  {activeKey === "3" && (
+                  {/* {activeKey === "3" && (
                     <>
                     </>
-                  )}
+                  )} */}
                 </>
               }
               key="3"
@@ -119,7 +129,9 @@ class ActionTab extends Component {
             </TabPane>
          
           </StyledTabs>
-        </TabsWrapper1>
+        </TabsWrappers>
+        </div>
+        </div>
       </>
     );
   }

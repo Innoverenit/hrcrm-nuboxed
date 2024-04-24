@@ -34,7 +34,7 @@ class CollectionHeader extends Component {
               setCurrentData1={this.props.setCurrentData1}
             />
           }
-          rightComponent={<CollectionActionRight />}
+          // rightComponent={<CollectionActionRight />}
         />
       </div>
     );

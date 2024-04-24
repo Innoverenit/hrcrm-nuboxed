@@ -98,8 +98,8 @@ class SingleExpenses extends Component {
                                     />
                                 </Button>
                                 <Button
-                                    type='primary'
-                                    ghost
+                                    type='cancel'
+                                    
                                   
                                     onClick={() => toggleViewType()}
                                 >

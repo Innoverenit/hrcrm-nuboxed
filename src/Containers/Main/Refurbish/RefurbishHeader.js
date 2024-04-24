@@ -14,10 +14,10 @@ class RefurbishHeader extends Component {
               viewType={this.props.viewType}
             />
           }
-          rightComponent={
-            <RefurbishActionRight
-            />
-          }
+        // rightComponent={
+        //   <RefurbishActionRight
+        //   />
+        // }
         />
       </>
     );

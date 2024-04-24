@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class DashboardJumpStart extends React.Component{
@@ -91,6 +91,8 @@ render() {
                 defaultMessage="Leave Balance"
               />
             }
+             bgColor="linear-gradient(270deg,#F15753,orange)"
+            
             value={this.props.leaveFetching.leaveBalance}
             // value={
             //   this.props.user.department === "Recruiter"
@@ -105,8 +107,10 @@ render() {
           />
   
        
-          <JumpStartBox1
+          <JumpStartBox
             noProgress
+            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+           
             title={
               <FormattedMessage
                 id="app.avHoursThisMonth"
@@ -137,7 +141,7 @@ render() {
             isLoading={this.props.fetchingDatewiseReport}
           /> */}
           <div class="flex w-wk">
-          <JumpStartBox2
+          <JumpStartBox
             noProgress
             // title="Open Tasks"
             title={
@@ -146,6 +150,8 @@ render() {
                 defaultMessage="Open Tasks"
               />
             }
+            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+           
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
             // value={this.props.showDatelist.selectted}
             value={
@@ -162,7 +168,7 @@ render() {
             // }
             
           />
-          <JumpStartBox3
+          <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -170,6 +176,8 @@ render() {
                 defaultMessage="Joining Date"
               />
             }
+            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+        
             // title="Joining Date"
            // bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
            value={formattedDate}

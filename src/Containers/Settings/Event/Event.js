@@ -1,271 +1,250 @@
-import React, { Component,lazy } from "react";
+import React, {  useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Input } from "antd";
+import { base_url } from "../../../Config/Auth";
+import { Tooltip } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { Popconfirm,Input } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
+import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import {
   getEvents,
+  getEventCount,
   addEvents,
    removeEvents,
   updateEvents,
   searchEventName,
   ClearReducerDataOfEvent
 } from "./EventAction";
-const SingleEvent = lazy(() =>
-  import("./SingleEvent")
-);
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
-class Event extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linkedEvents: [],
-      isTextInputOpen: false,
-      addingEvent: false,
-      eventType: "",
-      type:"",
-      singleEvent: "",
-      editInd:true,
-    };
+const Event = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [events, setEvents] = useState(props.events);
+  const [editingId, setEditingId] = useState(null);
+  const [addingRegion, setAddingRegion] = useState(false);
+  const [newEventName, setEventName] = useState('');
+  useEffect(() => {
+      props.getEvents(); 
+      props.getEventCount(props.orgId) 
+  }, [])
+
+  const editRegion = (eventTypeId, name) => {
+    console.log(name)
+    console.log(name)
+      setEditingId(eventTypeId);
+      setEventName(name);
+  };
+
+
+
+  const handleAddEvent = () => {
+      setAddingRegion(true);
+      setEventName("")
+  };
+
+  const handleUpdateEvent=(region)=>{
+      console.log(region)
+      let data={
+        eventTypeId:region.eventTypeId,
+        eventType:newEventName
+       
+      }
+props.updateEvents(data,region.eventTypeId)
+setEditingId(null);
   }
-  handleChangeDes = (e) => {
-    this.setState({ currentData: e.target.value });
+
+  const handleEvent = () => {
+      // if (newRegionName.trim() !== '') {
+      //     console.log("New Region:", newRegionName);
+      //     const newRegion = {
+      //         id: Date.now(),
+      //         item: newRegionName
+      //     };
+      //     setRegions([...regions, newRegion]);
+      //     setNewRegionName('');
+      //     setAddingRegion(false);
+      // }
+      let data={
+        eventType:newEventName,
+        orgId:props.orgId,
+      }
+      props.addEvents(data,props.orgId)
+      setAddingRegion(false)
+  };
+  const handleChange = (e) => {
+      setCurrentData(e.target.value.trim());
+    
   
-    if (e.target.value.trim() === "") {
-      this.setState((prevState) => ({ pageNo: prevState.pageNo + 1 }));
-      this.props.getEvents();
-      this.props.ClearReducerDataOfEvent();
-    }
-  };
-  handleSearch = () => {
-    if (this.state.currentData.trim() !== "") {
-      this.props.searchEventName(this.state.currentData);
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  toggleInput = () =>
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-  handleAddEvent = () => {
-    const { addEvents, events } = this.props;
-    const { eventType, addingEvents, isTextInputOpen,editInd } = this.state;
-    let event = { eventType,editInd };
+      if (e.target.value.trim() === "") {
+      //   setPage(pageNo + 1);
+      props.getEvents();
+      //   props.ClearReducerDataOfLoad()
+      }
+    };
 
-    let exist =
-    events &&
-    events.some((element) => element.eventType == eventType);
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.searchEventName(currentData);
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
 
-    // if (exist) {
-    //   message.error(
-    //     "Can't create as another event type exists with same name!"
-    //   );
-    // } else {
-      addEvents(event, () => console.log("add event callback"));
-    // }
+  const handleCancelAdd = () => {
+    setEventName('');
+      setAddingRegion(false);
+  };
+  const cancelEdit = () => {
+      setEditingId(null);
+  };
+  useEffect(() => {
+      
+      if (props.events.length > 0) {
+        
+        setEvents(props.events);
+      }
+    }, [props.events]);
 
-    this.setState({
-        eventType: "",
-      singleEvent: "",
-      isTextInputOpen: false,
-      editInd:true,
-      currentData: "",
-    });
-  };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    this.props.getEvents();
-  };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
-  };
-
-  handleSearchChange = (e) => {
-    // console.log(e.target.value)
-    // this.setState({ text: e.target.value });
-    this.setState({ currentData: e.target.value })
-   
-  };
-  handleDeleteEvent = (eventTypeId={eventTypeId}) => {
-    this.props.removeEvents(eventTypeId);
-    this.setState({ eventType: "", eventTypeId: "" });
-  };
-  handleUpdateEvent = (eventType,eventTypeId, editInd,cb) => {
-    this.props.updateEvents(eventType,eventTypeId, editInd, cb);
-    this.setState({ eventType: "", singleEvent: "",editInd:true });
-  };
-  // getLinkedDocuments = () => {
-  //   axios
-  //     .get(`${base_url}/opportunity/source/linkedSources`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({ linkedSources: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  componentDidMount() {
-    const { getEvents } = this.props;
-    console.log();
-    getEvents();
-  }
-  render() {
-    // const eventData = events && events.length > 0
-    // ? [...events].sort((a, b) => {
-    //     console.log(a.eventType, b.eventType); // Add this line for debugging
-    //     return a.eventType.localeCompare(b.eventType);
-    //   })
-    // : [];
-
-   
-    // console.log("eventData",eventData)
-    const {
-      fetchingEvents,
-      fetchingEventsError,
-      events,
-      addingEvents,
-      updatingEvents,
-    } = this.props;
-    const {
-      isTextInputOpen,
-      eventType,
-      singleEvent,
-      linkedEvents,
-    } = this.state;
-    if (fetchingEvents) return <BundleLoader/>;
-    if (fetchingEventsError) return <p>Error ...</p>;
-    return (
-      <>
- <div class="flex flex-nowrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              // height: "30.625em",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-             <div class=" flex flex-row justify-between">
-         <div class=" flex w-[18vw]" >
-            <Input
-         placeholder="Search by Name"
-        style={{width:"100%",marginLeft:"0.5rem"}}
-            // suffix={suffix}
-            onPressEnter={this.handleSearch}  
-            onChange={this.handleChangeDes}
-            // value={currentData}
-          />
-            </div>
-            {isTextInputOpen ? (
-              <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-            
-              >
-               
-                <TextInput
-                  placeholder="Add Event"
-                  name="eventType"
-                  value={eventType}
-                  onChange={this.handleChange}
-                  width="61%"
-                  style={{ marginRight: "0.125em" }}
-                />
-                &nbsp;
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={!eventType}
-                  Loading={addingEvents}
-                  onClick={this.handleAddEvent}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  Save
-                </Button>
-                &nbsp;
-                <Button type="cancel"  onClick={this.toggleInput}>
-                  Cancel
-                </Button>
-              </div>
-            ) : (
-              <>
-             
-                <div class=" flex justify-end" >
-                  <Button
-                    type="primary"
-                    htmlType="button"
-                    Loading={addingEvents}
-                    onClick={this.toggleInput}
-                  >
-                    Add More
-                  </Button>
-                </div>
-               
-              </>
-            )}
-              </div>
-            <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
-              {events.length ? (
-  events
-    .slice() 
-    .sort((a, b) => a.eventType.localeCompare(b.eventType)) 
-    .map((event, i) => (
-      <SingleEvent
-        key={i}
-        value={singleEvent}
-        name="singleEvent"
-        event={event}
-        linkedEvents={linkedEvents}
-        updatingEvents={updatingEvents}
-        handleChange={this.handleChange}
-        handleUpdateEvent={this.handleUpdateEvent}
-        handleClear={this.handleClear}
-        handleSearchChange={this.handleSearchChange}
-        currentData={this.state.currentData}
-        setCurrentData={this.setCurrentData}
-        handleDeleteEvent={this.handleDeleteEvent}
-      />
-    ))
-) : (
-  <p>No Data Available</p>
-)}
-              </MainWrapper>
-            </div>
-         
-          </MainWrapper>
-        </div>
-        <div class=" font-bold">Updated on {dayjs(this.props.events && this.props.events.length && this.props.events[0].updationDate).format('YYYY-MM-DD')} by {this.props.events && this.props.events.length && this.props.events[0].name}</div>
-      </>
-    );
-  }
+// console.log(regions)
+if (props.fetchingEvents) {
+return <div><BundleLoader/></div>;
 }
+const {
+  userId,
+  user,
+ 
+} = props;
+  return (
+ 
+      <div>
+    <div class=" flex flex-row justify-between">
+    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+          <Input
+       placeholder="Search by Name"
+      style={{width:"100%",marginLeft:"0.5rem"}}
+          // suffix={suffix}
+          onPressEnter={handleSearch}  
+          onChange={handleChange}
+          // value={currentData}
+        />
+          </div>
+          <div class="w-[20rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"eventType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+            <div className="add-region">
+              {addingRegion ? (
+                  <div>
+                      <input 
+                      style={{border:"2px solid black",width:"54%"}}
+                          type="text" 
+                          placeholder="Events"
+                          value={newEventName} 
+                          onChange={(e) => setEventName(e.target.value)} 
+                      />
+                      <button 
+                         loading={props.addingItemTask}
+                      onClick={handleEvent}>Save</button>
+                      <button onClick={handleCancelAdd}>Cancel</button>
+                  </div>
+              ) : (
+                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddEvent}> Add More</button>
+              )}
+          </div>
+          </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
+          {!props.fetchingEvents && events.length === 0 ? <NodataFoundPage /> : events.slice().sort((a, b) => a.eventType.localeCompare(b.eventType)).map((region, index) => (
+            <div className="card9" key={region.eventTypeId}>
+            {/* Region name display or input field */}
+            
+            {editingId === region.eventTypeId ? (
+                <input
+                style={{border:"2px solid black"}}
+                    type="text"
+                    placeholder="Events"
+                    value={newEventName}
+                    onChange={(e) => setEventName(e.target.value)}
+                />
+            ) : (
+                <div className="region">{region.eventType}&nbsp;&nbsp;&nbsp;
+                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                      >
+                                        New
+                                      </span> : null}</div>
+            )}
 
-const mapStateToProps = ({ events }) => ({
+            {/* Action buttons */}
+            <div className="actions">
+                {/* Edit button */}
+                {editingId === region.eventTypeId ? (
+                    <div>
+                        <button onClick={() => handleUpdateEvent(region)}>Save</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+                    </div>
+                ) : (
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.eventTypeId, region.eventType)} />
+                )}
+
+                {/* Delete button */}
+                <Popconfirm
+                        title="Do you want to delete?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() =>  props.removeEvents(region.eventTypeId,props.orgId)}
+                      >
+                <DeleteOutlined 
+                  style={{
+                  
+                    color: "red",
+                    cursor:"pointer"
+                  }}
+              // onClick={() => 
+              //     props.removeServiceLine(item.eventTypeId)
+              //  }
+                 />
+                 </Popconfirm>
+            </div>
+        </div>
+      ))}
+      </MainWrapper>
+            </div>
+  <div class=" font-bold">Updated on {dayjs(props.events && props.events.length && props.events[0].updationDate).format('YYYY-MM-DD')} by {props.events && props.events.length && props.events[0].name}</div>
+      </div>
+  );
+};
+
+const mapStateToProps = ({ events,auth }) => ({
   addingEvents: events.addingEvents,
   addingEventsError: events.addingEventsError,
   events: events.events,
-
+  userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   // removingEvents: event.removingEvents,
   // removingEventsError: event.removingEventsError,
      updatingEvents: events.updatingEvents,
      updatingEventsError: events.updatingEventsError,
   fetchingEvents: events.fetchingEvents,
+  eventCount:events.eventCount,
   fetchingEventsError: events.fetchingEventsError,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getEvents,
+      getEventCount,
       addEvents,
        removeEvents,
        updateEvents,

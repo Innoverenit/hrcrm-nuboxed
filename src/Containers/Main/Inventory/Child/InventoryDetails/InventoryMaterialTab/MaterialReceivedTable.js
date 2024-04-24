@@ -14,11 +14,17 @@ import ReceivedDetailModal from "./ReceivedDetailModal";
 import { ListAltOutlined } from "@mui/icons-material";
 import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Tooltip,Select,Button } from "antd";
+import { getRoomRackByLocId,getRackList } from "../../../../Inventory/InventoryAction";
+
+const { Option } = Select;
 
 const MaterialReceivedTable = (props) => {
     useEffect(() => {
-        props.getMaterialReceiveData(props.locationDetailsId)
+        props.getMaterialReceiveData(props.locationDetailsId);
+        props.getRoomRackByLocId(props.locationId,props.orgId);
     }, [])
+    const [clickStore, setclickStore] = useState(false)
 
     const [row, setRow] = useState({})
     const handleRow = (item) => {
@@ -36,8 +42,10 @@ const MaterialReceivedTable = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
+                        <div className=" w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" w-[11.122rem]">Supplier</div>
+                        <div className=" w-[11.122rem]">Store</div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -54,7 +62,7 @@ const MaterialReceivedTable = (props) => {
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                         <div class="flex">
 
-                                            <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
+                                            <div className=" flex font-medium flex-col w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
@@ -70,7 +78,7 @@ const MaterialReceivedTable = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <MultiAvatar
@@ -81,14 +89,56 @@ const MaterialReceivedTable = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+
                                             <div class=" text-xs text-cardBody font-poppins">
+                                               {item.supplierName}
+                                            </div>
+                                        </div>
+         <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+         {!clickStore && 
+<Button type="primary" onClick={()=> setclickStore(true)}>
+    Send to Store
+</Button>}
+                                        {clickStore && 
+                                        <>
+                                        <Select
+                                                            classNames="w-32"
+                                                            // value={item.zone}
+                                                            // onChange={handleRoomRackChange}
+                                                            
+                                                        >
+                                                            {props.roomRackbyLoc.map((s) => (
+                                                                <Option key={s.roomRackId} value={s.roomRackId}>
+                                                                    {s.zone}
+                                                                </Option>
+                                                            ))}
+                                                        </Select>
+                                                        <Select
+        classNames="w-32"
+        // value={selectedChamberId}
+        // onChange={(e) => handleChangeChamber(e,item.manufactureId)}
+        style={{marginLeft:"1.5rem"}}
+    >
+        {/* {props.racklist.map((chamber) => (
+            <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
+                {chamber.chamber}
+            </Select.Option>
+        ))} */}
+    </Select> 
+    </>
+                        }  
+</div>
+                                        <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins cursor-pointer">
+                                                <Tooltip title="GRN list">
                                                 <ListAltOutlined
                                                     onClick={() => {
                                                         handleRow(item);
                                                         props.handlegrnlistmodal(true)
                                                     }}
                                                 />
+                                                </Tooltip>
                                             </div>
 
                                         </div>
@@ -117,11 +167,15 @@ const MaterialReceivedTable = (props) => {
 
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
+    locationId: auth.userDetails.locationId,
+    orgId:auth.userDetails.organizationId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialReceiveData: inventory.materialReceiveData,
     addMaterialReceived: inventory.addMaterialReceived,
     showGrnListOfPo: inventory.showGrnListOfPo,
-    fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData
+    fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData,
+    roomRackbyLoc: inventory.roomRackbyLoc,
+    rackList:inventory.rackList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -129,7 +183,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getMaterialReceiveData,
             handleMaterialReceived,
-            handlegrnlistmodal
+            handlegrnlistmodal,
+            getRackList,
+            getRoomRackByLocId,
         },
         dispatch
     );

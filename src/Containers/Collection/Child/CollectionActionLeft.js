@@ -1,6 +1,6 @@
 import React, { } from "react";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { Tooltip } from "antd";
+import { Tooltip,Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
@@ -59,7 +59,10 @@ const CollectionActionLeft = (props) => {
             marginRight: "0.5rem",
             color: props.viewType === "distributor" && "#1890ff",
           }}
-        ><TocIcon/>&nbsp; <FormattedMessage id="app.distributor" defaultMessage="Distributor"/>
+        >
+            <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
+          <TocIcon />
+          </Avatar>
         </span>
       </Tooltip>
       {/* <Tooltip

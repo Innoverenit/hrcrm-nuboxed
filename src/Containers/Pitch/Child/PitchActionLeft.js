@@ -6,42 +6,60 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from '@mui/icons-material/People';
 import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { } from 'react-speech-recognition';
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { Input, Tooltip,Badge,Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount,searchPitchName} from "../PitchAction";
+import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount, getTeamsPitchCount,searchPitchName} from "../PitchAction";
 import { FormattedMessage } from "react-intl";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const PitchActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getPitch(props.userId,pageNo,"creationdate");
       props.ClearReducerDataOfPitch()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.searchPitchName(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
   };
   const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
   useEffect(() => {
     if (props.viewType === "card") {
       props.getPitchCount(props.userId);
     } else if (props.viewType === "all") {
-      props.getPitchAllRecords();
+      props.getPitchAllRecords(props.orgId);
+    } else if (props.viewType === "teams") {
+      props.getTeamsPitchCount(props.userId);
     }
-  }, [props.viewType, props.userId]);
+  }, [props.viewType, props.userId,props.orgId]);
   // useEffect(() => {
   //   props.getPitchCount(props.userId)
   //   props.getPitchAllRecords
@@ -93,7 +111,7 @@ const PitchActionLeft = (props) => {
       >
           <Badge
         size="small"
-        // count={(props.viewType === "card" && props.pitchCount.InvestorLeadsDetails) || 0}
+         count={(props.viewType === "card" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
         
         overflowCount={999}
       >
@@ -162,7 +180,7 @@ const PitchActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
         
           />
         </div>
@@ -198,8 +216,10 @@ const PitchActionLeft = (props) => {
 const mapStateToProps = ({pitch,auth}) => ({
   pitchRecord:pitch.pitchRecord,
   pitchCount:pitch.pitchCount,
+  teamsPitchCount:pitch.teamsPitchCount,
   userId: auth.userDetails.userId,
   user:auth.userDetails,
+  orgId: auth.userDetails.organizationId,
   pitchAllRecord:pitch.pitchAllRecord,
 
 });
@@ -209,7 +229,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getPitch,
   getPitchCount,
   searchPitchName,
-  getPitchAllRecords
+  getPitchAllRecords,
+  getTeamsPitchCount
 }, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(PitchActionLeft));

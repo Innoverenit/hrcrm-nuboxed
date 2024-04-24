@@ -19,6 +19,8 @@ class CustomerContactDrawerModal extends Component {
           title={this.props.customer.name}
           width="80%"
           visible={this.props.addDrawerCustomerContactModal}
+          destroyOnClose
+          closable
           onClose={() => this.props.handleCustomerContactDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>

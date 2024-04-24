@@ -94,7 +94,7 @@ function OpportunityTable(props) {
       width: "20%",
     },
     {
-      title: "Proposal Amount",
+      title: "Value",
       dataIndex: "proposalAmount",
       width: "20%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,

@@ -5,6 +5,9 @@ const initialState = {
 
   addLeadsModal:false,
 
+  removingLeadsNote: false,
+  removingLeadsNoteError: false,
+
   addingLeadsActivityCall: false,
   addingLeadsActivityCallError: false,
 
@@ -37,6 +40,9 @@ const initialState = {
   addUpdateLeadsContactModal:false,
   setEditingLeadsContact:{},
 
+  addingNotesOfLead: false,
+  addingNotesOfLeadError: false,
+
   addingLeads:false,
   addingLeadsError:false,
 
@@ -56,13 +62,23 @@ const initialState = {
   fetchingCrmError: false,
   crmAllData:[],
 
+  fetchingLeadsActivityCount: false,
+  fetchingLeadsActivityCountError: false,
+  leadsActivityCount:{},
+
 
   addLeadsOpportunityModal:false,
+
+  fetchingLeadsAllRecords: false,
+  fetchingLeadsAllRecordsError: false,
+  leadsAllCountData:{},
 
   clearbit: {},
 
   addingNotesByLeadsId: false,
   addingNotesByLeadsIdError: false,
+
+  addLeadsNoteDrawerModal:false,
 
 
   fetchingLeadsInputSearchData: false,
@@ -72,6 +88,10 @@ const initialState = {
   fetchingCallList: true,
   fetchingCallListError: true,
   callList:[],
+
+  fetchingNotesListOfLeads: false,
+  fetchingNotesListOfLeadsError: false,
+  notesListOfLeads:[],
 
   addingDocumentByLeadsId: false,
   addingDocumentByLeadsIdError: false,
@@ -134,6 +154,8 @@ const initialState = {
 
   leadsDocumentUploadModal:false,
 
+  addLeadsImportModal:false,
+
   updatingLeadsOpportunity: false,
   updatingLeadsOpportunityError: false,
   leadsOpportunityByUserId: [],
@@ -168,6 +190,10 @@ const initialState = {
 
   addSharingLeads: false,
   addSharingLeadsError: false,
+
+
+  addingLeadsImportForm:false,
+  addingLeadsImportFormError:false,
 
   updateTypeLeads: false,
   updateTypeLeadsError:false,
@@ -328,6 +354,9 @@ case types.HANDLE_LEADS_MODAL:
           updateLeadsById: false,
           updateLeadsByIdError: true,
         };
+
+        case types.HANDLE_LEADS_IMPORT_MODAL:
+      return { ...state, addLeadsImportModal: action.payload };
 
         case types.HANDLE_LEADS_EMAIL_DRAWER_MODAL:
                     return { ...state, addDrawerLeadsEmailModal: action.payload };
@@ -874,6 +903,30 @@ case types.HANDLE_LEADS_MODAL:
           linkingLeadsError: true,
         };
 
+
+
+
+        case types.ADD_LEADS_IMPORT_FORM_REQUEST:
+      return { ...state, addingLeadsImportForm: true };
+    case types.ADD_LEADS_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingLeadsImportForm: false,
+        addLeadsImportModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_LEADS_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingLeadsImportForm: false,
+        addingLeadsImportFormError:true,
+        // addCustomerModal: false 
+      };
+
         case types.GET_TEAM_LEADS_REQUEST:
           return { ...state, fetchingTeamLeads: true };
         case types.GET_TEAM_LEADS_SUCCESS:
@@ -895,7 +948,7 @@ case types.HANDLE_LEADS_MODAL:
           case types.ADD_LEADS_ACTIVITY_EVENT_SUCCESS:
             return { ...state, addingLeadsActivityEvent: false,
               addCallTaskModal: false,
-              callTimeline:[action.payload,...state.callTimeline]
+              // callTimeline:[action.payload,...state.callTimeline]
              };
           case types.ADD_LEADS_ACTIVITY_EVENT_FAILURE:
             return {
@@ -909,7 +962,7 @@ case types.HANDLE_LEADS_MODAL:
             case types.ADD_LEADS_ACTIVITY_TASK_SUCCESS:
               return { ...state, addingLeadsActivityTask: false,
                 addCallTaskModal: false,
-                callTimeline:[action.payload,...state.callTimeline]
+                // callTimeline:[action.payload,...state.callTimeline]
                };
             case types.ADD_LEADS_ACTIVITY_TASK_FAILURE:
               return {
@@ -924,7 +977,7 @@ case types.HANDLE_LEADS_MODAL:
               case types.ADD_LEADS_ACTIVITY_CALL_SUCCESS:
                 return { ...state, addingLeadsActivityCall: false,
                   addCallTaskModal: false,
-                  callTimeline:[action.payload,...state.callTimeline]
+                  //  callTimeline:[action.payload,...state.callTimeline]
                  };
               case types.ADD_LEADS_ACTIVITY_CALL_FAILURE:
                 return {
@@ -953,6 +1006,92 @@ case types.HANDLE_LEADS_MODAL:
 
                     case types.EMPTY_LEADS_LIST:
                       return { ...state, leadsAllData: [] }; 
+
+                      case types.GET_LEADS_ACTIVITY_RECORDS_REQUEST:
+                        return { ...state, fetchingLeadsActivityCount: true };
+                      case types.GET_LEADS_ACTIVITY_RECORDS_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingLeadsActivityCount: false,
+                          leadsActivityCount: action.payload,
+                        };
+                      case types.GET_LEADS_ACTIVITY_RECORDS_FAILURE:
+                        return {
+                          ...state,
+                          fetchingLeadsActivityCount: false,
+                          fetchingLeadsActivityCountError: true,
+                        };
+
+                        case types.GET_LEADS_ALL_RECORDS_REQUEST:
+                          return { ...state, fetchingLeadsAllRecords: true };
+                        case types.GET_LEADS_ALL_RECORDS_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingLeadsAllRecords: false,
+                            leadsAllCountData: action.payload,
+                          };
+                        case types.GET_LEADS_ALL_RECORDS_FAILURE:
+                          return {
+                            ...state,
+                            fetchingLeadsAllRecords: false,
+                            fetchingLeadsAllRecordsError: true,
+                          };
+
+                          case types.HANDLE_LEADS_NOTE_DRAWER_MODAL:
+                            return { ...state, addLeadsNoteDrawerModal: action.payload };
+
+
+                            case types.GET_NOTES_LIST_LEADS_REQUEST:
+                              return { ...state, fetchingNotesListOfLeads: true };
+                            case types.GET_NOTES_LIST_LEADS_SUCCESS:
+                              return {
+                                ...state,
+                                fetchingNotesListOfLeads: false,
+                                notesListOfLeads: action.payload,
+                              };
+                            case types.GET_NOTES_LIST_LEADS_FAILURE:
+                              return {
+                                ...state,
+                                fetchingNotesListOfLeads: false,
+                                fetchingNotesListOfLeadsError: true,
+                              };
+
+                              case types.ADD_LEAD_NOTES_REQUEST:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: true,
+                                };
+                              case types.ADD_LEAD_NOTES_SUCCESS:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: false,
+                                  addingNotesOfLead: false,
+                                  // addLeadsNoteDrawerModal: false,
+                                };
+                              case types.ADD_LEAD_NOTES_FAILURE:
+                                return {
+                                  ...state,
+                                  addingNotesOfLead: false,
+                                  addingNotesOfLeadError: true,
+                                };
+
+                                case types.REMOVE_LEADS_NOTE_REQUEST:
+                                  return { ...state, removingLeadsNote: true };
+                                case types.REMOVE_LEADS_NOTE_SUCCESS:
+                                  return {
+                                    ...state,
+                                    removingLeadsNote: false,
+                                  //   notesListOfLeads: state.notesListOfLeads.filter(
+                                  //     (item) => item.taskId !== action.payload
+                                  // ), 
+                                  };
+                                case types.REMOVE_LEADS_NOTE_FAILURE:
+                                  return {
+                                    ...state,
+                                    removingLeadsNote: false,
+                                    removingLeadsNoteError: true,
+                                  };
+                      
 
 default:
 return state;

@@ -11,7 +11,7 @@ import { AudioOutlined } from "@ant-design/icons";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import {getInvestor,ClearReducerDataOfInvestor,getInvestorsbyId,getInvestorTeam,searchInvestorName} from "../InvestorAction";
+import {getInvestor,ClearReducerDataOfInvestor,getInvestorsbyId,getInvestorTeam,searchInvestorName,getInvestorAll} from "../InvestorAction";
 import { Input } from "antd";
 
 const Option = StyledSelect.Option;
@@ -20,20 +20,23 @@ const { Search } = Input;
 const InvestorActionLeft = (props) => {
   const[filter,setFilter]=useState("creationdate")
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getInvestorsbyId(props.userId, pageNo,"creationdate");
       props.ClearReducerDataOfInvestor()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.searchInvestorName(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -64,19 +67,27 @@ const InvestorActionLeft = (props) => {
 // useEffect(() => {
 //   props.getInvestor(props.userId)
 //   }, [props.userId]);
-
+useEffect(() => {
+  // props.getCustomerRecords();
+  if (transcript) {
+    console.log(">>>>>>>", transcript);
+    setCurrentData(transcript);
+  }
+  }, [ transcript]);
   useEffect(() => {
     if (props.viewType === "list") {
       props.getInvestor(props.userId);
     } else if (props.viewType === "teams") {
       props.getInvestorTeam(props.userId);
+    } else if (props.viewType === "all") {
+      props.getInvestorAll(props.orgId);
     } 
    
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      props.setCurrentData(transcript);
-    }
-  }, [props.viewType, props.userId, transcript]);
+    // if (transcript) {
+    //   console.log(">>>>>>>", transcript);
+    //   props.setCurrentData(transcript);
+    // }
+  }, [props.viewType, props.userId,props.orgId]);
 
   return (
     <div class=" flex items-center">
@@ -127,7 +138,7 @@ const InvestorActionLeft = (props) => {
       <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
         <Badge
           size="small"
-        count={(props.viewType === "all" && props.investorRecord.investor) || 0}
+        count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
           overflowCount={999}
         >
           <span
@@ -190,7 +201,7 @@ const InvestorActionLeft = (props) => {
           suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
         />
         </div>
         {/* <Button
@@ -226,6 +237,8 @@ const mapStateToProps = ({ investor, auth, candidate }) => ({
   investorTeamRecord:investor.investorTeamRecord,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
+  allinvestorRecord:investor.allinvestorRecord
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -234,7 +247,8 @@ const mapDispatchToProps = (dispatch) =>
       ClearReducerDataOfInvestor,
       getInvestorsbyId,
       getInvestorTeam,
-      searchInvestorName
+      searchInvestorName,
+      getInvestorAll
     },
     dispatch
   );

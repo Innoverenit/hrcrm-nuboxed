@@ -12,6 +12,7 @@ const PoLocationModal = (props) => {
                 title={`Delivery details for PO# - ${props.rowData.poSupplierDetailsId} `}
                 width="40vw"
                 visible={addlocationInPo}
+                destroyOnClose
                 onClose={() => handlePoLocationModal(false)}
                 footer={null}
             >

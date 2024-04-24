@@ -454,13 +454,10 @@ const [priority,setpriority]=useState(props.selectedTask
                   prefillTask.taskId,
                   {
                     ...values,
-                   
-                   
-                    // taskTypeId: "",
+                
                     taskStatus: active,
                     priority: priority,
                     complexity: complexity,
-
                     startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
                     startTime: 0,
@@ -472,7 +469,7 @@ const [priority,setpriority]=useState(props.selectedTask
               : addContactActivityTask(
                   {
                     ...values,
-                    contactId:props.currentContact.contactId,
+                    contact:props.currentContact.contactId,
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
                     taskStatus: active,

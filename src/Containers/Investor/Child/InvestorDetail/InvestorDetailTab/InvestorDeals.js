@@ -13,6 +13,7 @@ import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
@@ -21,8 +22,8 @@ const InvestorDeals = (props) => {
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     props.getInvestorDeals(props.investorDetails.investorId);
-    
-  }, []);
+  
+ }, []);
 
   const [currentLeadsId, setCurrentLeadsId] = useState("");
   const [rowdata, setrowData] = useState({});
@@ -38,12 +39,12 @@ const InvestorDeals = (props) => {
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-   const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllDealsData,leadsAllData  } = props;
+   const { user,deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingAllDealsData,leadsAllData,fetchingInvestorDealsData  } = props;
 
 //   if (fetchingAllDealsData) {
 //     return <BundleLoader />;
 //   }
-console.log(props.investorDealsData)
+console.log("investorDetails",props.investorDetails)
   return (
     <>
   <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -89,7 +90,7 @@ console.log(props.investorDealsData)
         loader={fetchingAllDealsData?<div  class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
       > */}
-   {props.investorDealsData.map((item) => { 
+  { !fetchingInvestorDealsData && props.investorDealsData.length === 0 ?<NodataFoundPage />:props.investorDealsData.map((item,index) =>  {
        var findProbability = item.probability;
        item.stageList.forEach((element) => {
          if (element.oppStage === item.oppStage) {
@@ -143,14 +144,14 @@ console.log(props.investorDealsData)
                                         <Tooltip>
                                           <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                                             
-                                            <div class=" text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
                                                 
                                               {item.opportunityName}
                                               
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] font-bold"
+                                                 <span class="text-[tomato] mt-[0.4rem] font-bold"
                                             
                                                  >
                                                    New
@@ -235,7 +236,7 @@ trigger={["click"]}
 {" "}
 <Progress
 type="circle"
-style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
+style={{ cursor: "pointer", color: "red",fontSize:"1.25rem" }}
 percent={findProbability}
 width={30}
 strokeColor={"#005075"}
@@ -252,7 +253,7 @@ strokeColor={"#005075"}
 
 <span>
 {item.assignedTo === null ? (
-                "Not available"
+                "No Data"
               ) : (
                 <>
                 {item.assignedTo === item.ownerName ? (
@@ -305,6 +306,7 @@ imgHeight={"1.8rem"}
 const mapStateToProps = ({ auth, leads,investor, sector,pitch }) => ({
 investorDealsData:investor.investorDealsData,
 user: auth.userDetails,
+fetchingInvestorDealsData:investor.fetchingInvestorDealsData,
 userId: auth.userDetails.userId,
   
 });

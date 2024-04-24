@@ -7,6 +7,10 @@ const initialState = {
     fetchingSectorsError: false,
     sectors: [],
 
+    fetchingSectorCount: false,
+    fetchingSectorCountError: false,
+    sectorCount:{},
+
     addingSectors: false,
     addingSectorsError: false,
 
@@ -118,6 +122,19 @@ export const sectorsReducer = (state = initialState, action) => {
               sectors: [], 
               // deletedTruck: [] 
             };
+
+
+            case types.GET_SECTOR_COUNT_REQUEST:
+              return { ...state, fetchingSectorCount: true };
+            case types.GET_SECTOR_COUNT_SUCCESS:
+              return { ...state, fetchingSectorCount: false, 
+                sectorCount: action.payload };
+            case types.GET_SECTOR_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingSectorCount: false,
+                fetchingSectorCountError: true,
+              };
     
     default:
         return state;

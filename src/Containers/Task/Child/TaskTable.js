@@ -248,7 +248,7 @@ const TaskTable = (props) => {
       width: "2%",
     },
     {
-      title: "Type",
+      title: "Types",
      
       dataIndex: "taskType",
      
@@ -563,6 +563,8 @@ return (
             );
           },
         },
+
+       
 
 
         {

@@ -15,13 +15,15 @@ const StepperEmployeeModal = (props) => {
     <>
       <StyledDrawer
         title={currentEmployeeId.fullName}
-        width="60%"
+        width="72%"
+        destroyOnClose
         visible={props.onboardingEmployeeModal}
         onClose={() => props.handleOnboardingEmployeeModal(false)}
         footer={null}
       >
        
           <OnBoardingEmployeeForm 
+           userStageList={props.userStageList}
           currentEmployeeId={currentEmployeeId}
           employeeName={props.employeeName}
             //  employeeId={props.setEditingEmployee.employeeId}

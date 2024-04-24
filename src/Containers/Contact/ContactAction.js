@@ -14,6 +14,13 @@ export const handleContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleContactImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const emptyContact = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CONTACT_TABLE,
@@ -77,9 +84,9 @@ export const addContact = (contact) => (dispatch, getState) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Contact created Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
       })
       console.log(res);
       dispatch(getOpportunityRecord(userId));
@@ -371,7 +378,7 @@ export const addContactDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_CONTACT_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/contact/document`, data, {
+    .post(`${base_url}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -380,8 +387,8 @@ export const addContactDocument = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        // showConfirmButton: false,
+        // timer: 1500
       })
       dispatch({
         type: types.ADD_CONTACT_DOCUMENT_SUCCESS,
@@ -530,8 +537,8 @@ export const addContactOpportunity = (opportunity, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        // showConfirmButton: false,
+        // timer: 1500
       })
       console.log(res);
       const startDate = dayjs()
@@ -591,9 +598,9 @@ export const updateContact = (data, contactId) => (dispatch) => {
       });
       Swal.fire({
         icon: 'success',
-        title: 'Updated Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Contact Info Updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
       })
     })
     .catch((err) => {
@@ -751,8 +758,8 @@ export const addLinkContactByOpportunityId = (contact, opportunityId) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        // showConfirmButton: false,
+        // timer: 1500
       })
     })
     .catch((err) => {
@@ -841,8 +848,8 @@ export const shareContactPartnerPermission = (data, userId, a) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        // showConfirmButton: false,
+        // timer: 1500
       })
     })
     .catch((err) => {
@@ -894,12 +901,12 @@ export const shareContactCustomerPermission = (data, userId, a) => (
     });
 };
 
-export const getRecords = (userId,type) => (dispatch) => {
+export const getRecords = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/record/count/${userId}/${type}`, {
+    .get(`${base_url}/contact/teams/count/${userId}`, {
                     
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1112,7 +1119,7 @@ export const getContactTeamRecord = (userId) => (dispatch) => {
     type: types.GET_CONTACT_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/team/count/${userId}`, {
+    .get(`${base_url}/contact/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1180,12 +1187,12 @@ export const handleContactPulseDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const getAllContact = (pageNo,filter) => (dispatch) => {
+export const getAllContact = (pageNo,type) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/all/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1206,13 +1213,13 @@ export const getAllContact = (pageNo,filter) => (dispatch) => {
     });
 };
 
-export const getTeamContact = (userId,pageNo,filter) => (dispatch) => {
+export const getTeamContact = (userId,pageNo) => (dispatch) => {
  
   dispatch({
     type: types.GET_TEAM_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/team/${userId}/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/teams/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1230,6 +1237,10 @@ export const getTeamContact = (userId,pageNo,filter) => (dispatch) => {
         type: types.GET_TEAM_CONTACT_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -1427,3 +1438,56 @@ export const getContactCETrecord = (contactId) => (dispatch) => {
           });
       });
 };
+
+export const getContactActivityRecords = (contactId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ACTIVITY_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/contact/activity/record/${contactId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ACTIVITY_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_ACTIVITY_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactAllRecord = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/contact/all/record/count/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+

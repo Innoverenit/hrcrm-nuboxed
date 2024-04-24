@@ -6,13 +6,14 @@ import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { Select } from "../../../../Components/UI/Elements";
 import {  Popconfirm, Switch } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import FWLogo from "../../../../Assets/Images/crm.jpg";
 import FWLogo1 from "../../../../Assets/Images/Im.jpg";
 import FWLogo2 from "../../../../Assets/Images/Hr.jpg";
 import FWLogo3 from "../../../../Assets/Images/Recruitpro.jpg";
 import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
@@ -301,7 +302,8 @@ const handleFinanceClick = (checked) => {
     };
     props.addingModules(data, props.orgId);
   };
-
+  
+  if (props.fetchingModules) return <BundleLoader/>;
     return (
       <>
         <div flexWrap="nowrap">
@@ -339,8 +341,7 @@ const handleFinanceClick = (checked) => {
                         okText="Yes"
                         cancelText="No"
                       >
-                        <Switch
-                          style={{ width: "5em" }}
+                        <Switch className="w-[5rem]"
                           onChange={() => {}}
                           // onChange={handleCrmClick}
                           checked={crmStatus || crmInd}
@@ -360,7 +361,7 @@ const handleFinanceClick = (checked) => {
               alt="Tekorero logo"
             />
             <div class="flex justify-center mt-1">
-              <div class=" text-sm font-semibold ">Accounting</div>
+              <div class=" text-sm font-semibold ">Finance</div>
                     <div   class="  ml-2">
                     <Popconfirm
         title="Do you wish to change Status?"
@@ -398,7 +399,7 @@ const handleFinanceClick = (checked) => {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                          className="w-[5rem]"
                           // onChange={handleImClick}
                           onChange={() => {}}
                           checked={imStatus || imInd}
@@ -419,7 +420,7 @@ const handleFinanceClick = (checked) => {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                          className="w-[5rem]"
                           checked={accountStatus || accountInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -436,7 +437,7 @@ const handleFinanceClick = (checked) => {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                          className="w-[5rem]"
                           checked={recruitStatus || recruitOppsInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -463,7 +464,7 @@ const handleFinanceClick = (checked) => {
                       >
                    
                         <Switch
-                         style={{ width: "5em" }}
+                         className="w-[5rem]"
                          onChange={() => {}}
                         
                          checked={hrStatus || hrInd}
@@ -498,7 +499,7 @@ const handleFinanceClick = (checked) => {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                          className="w-[5rem]"
                           onChange={() => {}}
                           // onChange={handleRecruitProClick}
                           checked={recruitProStatus || recruitProInd}
@@ -527,7 +528,7 @@ const handleFinanceClick = (checked) => {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "5em" }}
+                          className="w-[5rem]"
                           onChange={() => {}}
                           // onChange={handleElearningClick}
                           checked={elearningStatus || elearningInd}
@@ -621,7 +622,7 @@ logisticsStatus={logisticsStatus}
             </div>
            
           </MainWrapper>
-          <div>Updated on {moment(props.moduleList.updationDate).format("ll")} by {props.moduleList.updatedBy}</div>
+          <div class=" font-bold">Updated on {dayjs(props.moduleList.updationDate).format('YYYY-MM-DD')} by {props.moduleList.updatedBy}</div>
         </div>
      
       </>

@@ -4,19 +4,22 @@ import { StyledTable } from '../../../Components/UI/Antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
-import { getProductionUsersById, UpdateTechnicianByPhone, getNoOfPhoneById } from "./RefurbishAction"
+import { getProductionUsersById, UpdateTechnicianByPhone, getNoOfPhoneById, closeRepairModal } from "./RefurbishAction"
 import { SubTitle } from '../../../Components/UI/Elements';
+import dayjs from "dayjs";
 
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
 const { Option } = Select;
 
 const AssignPhoneByTechnician = (props) => {
+
+    let depaVal = props.rowData.defaultQcDepartmentId === "null" ? "" : props.rowData.defaultQcDepartmentId
     const [user, setUser] = useState("")
     const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState("")
+    const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
-
+    console.log(department)
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -36,13 +39,16 @@ const AssignPhoneByTechnician = (props) => {
         setTechnician(val)
     }
     const handleDepartment = (val) => {
-        setDepartment(val)
-        props.getProductionUsersById(val, props.locationId);
+        let depaVal = props.rowData.defaultQcDepartmentId === "null" ? val : props.rowData.defaultQcDepartmentId
+        console.log(depaVal)
+        setDepartment(depaVal)
+
+        props.getProductionUsersById(depaVal, props.locationId);
     }
-    console.log(user)
+
 
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.departmentId, props.locationId);
+        props.getProductionUsersById(props.rowData.defaultQcDepartmentId, props.locationId);
         props.getNoOfPhoneById(props.rowData.orderPhoneId);
         props.getDepartments()
     }, [])
@@ -52,6 +58,17 @@ const AssignPhoneByTechnician = (props) => {
     const hanldeOnChange = (value) => {
         setDueDate(value)
     }
+    const handleCallback = () => {
+        if (!props.noOfPhoneById.length) {
+            props.closeRepairModal()
+        }
+    }
+    const disabledDate = current => {
+        // Replace 'start' and 'end' with your desired start and end dates
+        const startDate = dayjs(props.rowData.availabilityDate);
+        const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
+        return current && (current < startDate || current > endDate);
+    };
     const column = [
         {
             title: "",
@@ -123,9 +140,9 @@ const AssignPhoneByTechnician = (props) => {
 
     return (
         <div>
-            <div class="flex justify-between m-2">
+            <div class="mt-[10px] flex justify-between">
                 <div>
-                    <div class="text-sm font-semibold m-2">Department</div>
+                    <label class="text-[15px] font-semibold m-[10px]">Department</label>
                     <Select
                         className="w-[350px]"
                         value={department}
@@ -137,7 +154,7 @@ const AssignPhoneByTechnician = (props) => {
                     </Select>
                 </div>
                 <div>
-                    <div class="text-sm font-semibold m-2">Technician</div>
+                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
                     <Select
                         className="w-[350px]"
                         value={technician}
@@ -149,11 +166,13 @@ const AssignPhoneByTechnician = (props) => {
                     </Select>
                 </div>
                 <div>
-                    <div class="text-sm font-semibold m-2">Due Date</div>
+                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
                     <DatePicker
-                        className="w-[250px]"
+                        className="w-[300]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
+                        disabledDate={disabledDate}
+
                     />
                 </div>
             </div>
@@ -169,21 +188,25 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                <Button
+                {department && technician && dueDate && rowSelection.length && <Button
+                    loading={props.updatingtechnicianByPhone}
                     type='primary'
+                    // disabled={!department && !technician && !dueDate && !checkedValue}
                     onClick={() => props.UpdateTechnicianByPhone({
                         phoneDetailsList: checkedValue,
                         orderPhoneId: props.rowData.orderPhoneId,
                         productionDispatchId: "",
                         technicianId: technician,
                         userId: props.userId,
-                        dueDate: dueDate
+                        dueDate: dueDate,
+                        defaultQcDepartmentId: department
                     },
                         props.rowData.orderPhoneId,
-                        props.locationId
+                        props.locationId,
+                        handleCallback()
                     )}>
                     Submit
-                </Button>
+                </Button>}
             </div>
         </div>
     )
@@ -197,6 +220,8 @@ const mapStateToProps = ({ auth, refurbish, departments }) => ({
     userId: auth.userDetails.userId,
     departments: departments.departments,
     locationId: auth.userDetails.locationId,
+    assignOrderById: refurbish.assignOrderById,
+    updatingtechnicianByPhone: refurbish.updatingtechnicianByPhone
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -205,7 +230,8 @@ const mapDispatchToProps = (dispatch) =>
             getProductionUsersById,
             UpdateTechnicianByPhone,
             getNoOfPhoneById,
-            getDepartments
+            getDepartments,
+            closeRepairModal
         },
         dispatch
     );

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect,lazy } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
@@ -81,11 +81,7 @@ function OpenReceivedOrderIdForm(props) {
       dataIndex: "repairTechnicianName",
       width: "10%",
     },
-    {
-      title: "Received By",
-      dataIndex: "dispatchPhoneUserName",
-      width: "10%",
-    },
+
 
     {
       title: "QR",
@@ -163,6 +159,10 @@ function OpenReceivedOrderIdForm(props) {
         );
       },
     },
+    {
+      dataIndex: "dispatchPhoneUserName",
+      width: "10%",
+    },
 
   ];
 
@@ -182,6 +182,7 @@ function OpenReceivedOrderIdForm(props) {
         {props.rowData.dispatchInspectionInd === 1 &&
           <div class=" ml-[10px]" >
             <Button
+              loading={props.updatingDispatchInspectionButton}
               onClick={() => props.updateDispatchInspectionButton({
                 dispatchInspectionInd: 2,
                 stopDispatchInspectionUser: props.userId,
@@ -200,6 +201,7 @@ function OpenReceivedOrderIdForm(props) {
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updateDispatchList: inventory.updateDispatchList,
+  updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
   userId: auth.userDetails.userId
@@ -215,132 +217,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpenReceivedOrderIdForm);
-
-// import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
-
-// import { CurrencySymbol } from "../../../../../Components/Common";
-// import APIFailed from "../../../../../Helpers/ErrorBoundary/APIFailed";
-// import { getDispatchUpdateList } from "../../../InventoryAction";
-// import moment from "moment";
-// import { Tooltip } from "antd";
-
-// class DispatchDetailsTable extends Component {
-//   componentDidMount() {
-//     this.props.getDispatchUpdateList(this.props.dispatchId);
-//     console.log(this.props.dispatchId);
-//   }
-//   componentDidUpdate(prvP, prvS) {
-//     console.log(prvP);
-//     if (this.props.dispatchId !== prvP.dispatchId) {
-//       this.props.getDispatchUpdateList(this.props.dispatchId);
-//     }
-//   }
-
-//   render() {
-//     const columns = [
-//       {
-//         title: "",
-//         width: "2%",
-//       },
-//       {
-//         title: "Product ID",
-//         dataIndex: "productId",
-//         width: "15%",
-//       },
-//       {
-//         title: "Category",
-//         dataIndex: "categoryName",
-//         width: "11%",
-//       },
-//       {
-//         title: "Sub-cat",
-//         dataIndex: "subCategoryName",
-//         width: "11%",
-//       },
-
-//       {
-//         title: "Attribute",
-//         render: (name, item, i) => {
-//           return `${item.attributeName || ""} ${item.subAttributeName || ""} `;
-//         },
-//         width: "13%",
-//       },
-
-//       {
-//         title: "Name",
-//         dataIndex: "name",
-//         width: "18%",
-//       },
-//       {
-//         // title: "Mfg ID",
-//         title: "",
-//         // dataIndex: "inventoryProductId",
-//         render: (name, item, i) => {
-//           return item.inventoryProductId ? (
-//             <Tooltip title={item.inventoryProductId}>
-//               <i class="fas fa-industry"></i>
-//             </Tooltip>
-//           ) : null;
-//         },
-//         width: "3%",
-//       },
-//       {
-//         title: " Mfg",
-//         dataIndex: "manufactureDate",
-//         render: (name, item, i) => {
-//           return moment(item.manufactureDate).format("DD-MM-YY");
-//         },
-
-//         width: "8%",
-//       },
-//       {
-//         title: "Units",
-//         dataIndex: "units",
-//         width: "8%",
-//       },
-//     ];
-//     // if (this.this.props.fetchingOrderDetailsByIdError) {
-//     //   return <APIFailed />
-//     // }
-
-//     return (
-//       <>
-//         {true && (
-//           <StyledTable
-//             rowKey=""
-//             columns={columns}
-//             dataSource={this.props.updateDispatchList}
-//             loading={
-//               this.props.fetchingUpdateDispatchList ||
-//               this.props.fetchingUpdateDispatchListError
-//             }
-//             scroll={{ y: 320 }}
-//             pagination={false}
-//           />
-//         )}
-//       </>
-//     );
-//   }
-// }
-
-// const mapStateToProps = ({ inventory }) => ({
-//   fetchingUpdateDispatchList: inventory.fetchingUpdateDispatchList,
-//   receivedDetailsList: inventory.receivedDetailsList,
-//   updateDispatchList: inventory.updateDispatchList,
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       getDispatchUpdateList,
-//     },
-//     dispatch
-//   );
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(DispatchDetailsTable);

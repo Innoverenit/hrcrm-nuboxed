@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-const DealForm = lazy(() => import("./DealForm"));
+const InvestorDealForm = lazy(() => import("./InvestorDealForm"));
 
 const CreateDealModal = (props) => {
   const {opencreateDealModal,handleDealModal, ...formProps } = props;
@@ -23,7 +23,7 @@ const CreateDealModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <DealForm />{" "}
+          <InvestorDealForm  investorDetails={props.investorDetails}/>{" "}
         </Suspense>
       </StyledDrawer>
     </>

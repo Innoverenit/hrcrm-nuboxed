@@ -7,6 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select } from "antd";
 
@@ -24,8 +25,13 @@ import {
   handleCustomerEmailDrawerModal,
   getCustomerById,
 } from "../../../Customer/CustomerAction";
+import { FormattedMessage } from "react-intl";
 import ReactCountryFlag from 'react-country-flag';
-import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,handleUpdateInvestorModal} from "../../InvestorAction";
+import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
+  handleInvestorPulseDrawerModal,handleUpdateInvestorModal,handleInvestorContModal} from "../../InvestorAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
+import ContactsInvestorModal from "./ContactsInvestorModal";
 const AddInvestorNotesDrawerModal = lazy(() =>
   import("../InvestorDetail/AddInvestorNotesDrawerModal")
 );
@@ -59,7 +65,7 @@ function InvestorTeamCardList(props) {
         }
       }
     })
-    props.getTeamInvestor(props.userId, page,"creationdate");
+    props.getTeamInvestor(props.userId, page);
     setPage(page + 1);
   }, []);
 
@@ -79,7 +85,6 @@ function InvestorTeamCardList(props) {
       props.getTeamInvestor(
         props.currentUser ? props.currentUser : props.userId,
         page,
-        props.filter?props.filter:"creationdate"
       );
   };
 
@@ -90,6 +95,10 @@ function InvestorTeamCardList(props) {
     updateInvestorModal,
     fetchingInvestorsError,
     fetchingAllCustomers,
+    handleInvestorPulseDrawerModal,
+    addDrawerInvestorPulseModal,
+    handleInvestorContModal,
+    addDrawerInvestorContactModal,
     user,
     IconShowhover,
   } = props;
@@ -102,16 +111,46 @@ function InvestorTeamCardList(props) {
   return (
     <>
   
-  <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[13.4rem]">Name</div>
-        <div className=" md:w-[13.1rem]">Sector</div>
-        <div className=" md:w-[6.2rem] ">Country</div>
-        <div className="md:w-[7.12rem]"># Deals</div>
-        <div className="md:w-[8.2rem]">Pipeline Value</div>
-        <div className="md:w-[7.3rem]">Assigned to</div>
-        <div className="md:w-[8.21rem]">Owner</div>
-        <div className="md:w-[6.34rem]">Source</div>
+  <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div className=" flex justify-between max-sm:hidden  w-[90%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[13.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] "><FormattedMessage
+                  id="app.name"
+                  defaultMessage="Name"
+                /></div>
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]"><FormattedMessage
+                  id="app.sector"
+                  defaultMessage="Sector"
+                /></div>
+        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "><FormattedMessage
+                  id="app.country"
+                  defaultMessage="Country"
+                /></div>
+        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># <FormattedMessage
+                  id="app.deals"
+                  defaultMessage="Deals"
+                /></div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <FormattedMessage
+                  id="app.pipelineValue"
+                  defaultMessage="Pipeline Value"
+                />
+          </div>
+        <div className="w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <FormattedMessage
+                  id="app.assignedto"
+                  defaultMessage="Assigned to"
+                />
+         </div>
+        <div className="w-[8.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]"><FormattedMessage
+                  id="app.owner"
+                  defaultMessage="owner"
+                /></div>
+        <div className="w-[7.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+        <FormattedMessage
+                  id="app.source"
+                  defaultMessage="Source"
+                />
+          </div>
         {/* <div className="w-12">Action</div> */}
 
       </div>
@@ -123,7 +162,7 @@ function InvestorTeamCardList(props) {
         height={"75vh"}
       >
         
-      {teamInvestor.map((item) => { 
+        { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
@@ -143,252 +182,279 @@ function InvestorTeamCardList(props) {
              item.address && item.address.length && item.address[0].postalCode
            } `;
                     return (
-                        <div>
-                            <div className="flex rounded-xl  mt-2 bg-white h-11 items-center p-3"
-                                // style={{
-                                //     borderBottom: "3px dotted #515050"
-                                // }}
-                                >
-                                     <div class="flex">
-                                <div className=" flex font-medium  md:w-[13rem] max-sm:flex-row w-full ">
-                                <div>
-<SubTitle>
-            <MultiAvatar
-              primaryTitle={item.name}
-              imageId={item.imageId}
-              imageURL={item.imageURL}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
-            />
-          </SubTitle>
-</div>
-                                   <div class="w-[4%]">
-
-                                   </div>
-                                   
-                                        <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                            {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">
-                                            Name
-                                            </h4> */}
-                                            <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
-
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`investor/${item.investorId}`} title={item.name}>
-      {item.name}
-  </Link>  
-{/*                                                 
-         <Link
-          toUrl={`investor/${item.investorId}`}
-          title={`${item.name}`}
-        >{item.name}</Link> */}
-        &nbsp;&nbsp;
-        {date === currentdate ? (
-          <span
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </span>
-        ) : null}
-       
-                                            </h4>
-</div>
-                                        </Tooltip>
-                              
-                                </div>
-
-                                <div className=" flex font-medium flex-col  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
-                           
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                                    <h4 class=" text-sm text-cardBody font-poppins">   
-                                    {item.sector}
-                                    </h4>
-                                </div>
-                               
-                                <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
-                                  
-
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</h4> */}
-                                    <h4 class=" text-sm text-cardBody font-poppins">
-                                    <ReactCountryFlag
-                          countryCode={item.countryAlpha2Code}
-                          svg
-                          style={{
-                            width: '1em',
-                            height: '1em',
-                          }}
-                        />
-                        &nbsp;
-                       {item.address && item.address.length && item.address[0].country}
-                                    </h4>
-                                </div>
-                                </div>
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</h4> */}
-
-                                    <div class=" text-sm justify-center text-cardBody font-poppins">
-                                    {item.oppNo}
-                                    </div>
-                                </div>
-                             
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</h4> */}
-
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
-                                    {item.totalProposalValue}
-
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</h4> */}
-
-                                    <div class=" text-sm text-cardBody font-poppins">
-                                    
-                                    <span>
-              {item.assignedTo === null ? (
-                "Not available"
-              ) : (
-                <MultiAvatar2
-                  primaryTitle={item.assignedTo}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
-              )}
-            </span>
-             
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
-                       
-                       {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</h4> */}
-
-                       <span>
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imageURL={item.imageURL}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </span>
-                   </div>
-                   </div>
-                   <div class="flex max-sm:justify-between">
-                   <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <h4 class=" text-xs text-cardBody font-poppins max-sm:hidden">Source</h4> */}
-
-                                    <div class=" text-sm text-cardBody font-poppins">
-                                    {item.source}
-                                    </div>
-                                </div>
-                              
-                                <div class="flex flex-col w-[6%] max-sm:flex-row max-sm:w-[10%]">
-                   <div>
-                   <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  props.handleInvestorNotesDrawerModal(true);
-                  handleCurrentRowData(item);
-                }}
-                style={{ color: "green", cursor: "pointer", fontSize: "1rem" }}
-              />
-           </Tooltip>
-                   </div>
-                   
-                   <div>
-                    <Tooltip title={item.url}>
-              {item.url !== "" ? (
-                <span
-                  //type="edit"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {}}
-                >
-                  {" "}
-                  <a href={`https://${item.url}`} target="_blank">
-                    <ExploreIcon
-                      style={{ cursor: "pointer", color: "green",fontSize: "1rem" }}
-                    />
-                  </a>
-                </span>
-              ):<div class=" w-3">
-                      
-              </div>}
-            </Tooltip>
-                        </div>
-            </div>
-                      &nbsp;&nbsp;
-                        <div>
-                        <span
-              style={{ cursor: "pointer" ,fontSize: "1rem"}}
-            //   onClick={() => {
-            //     props.getCustomerDetailsById(item.customerId);
-            //     props.getCustomerKeySkill(item.customerId);
-            //     //   this.props.getCustomerDocument(item.customerId );
-
-            //     props.handleCustomerDrawerModal(item, true);
-            //   }}
-            >
-              {" "}
-              {user.pulseAccessInd === true && <MonitorHeartIcon  style={{
-                cursor: "pointer",
-                fontSize: "1rem",
-                color: "#df9697"}}/>}
-            </span> 
-                        </div>
-                        <div>
-            
-
-                    </div>
-    
-                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%] ">
                       <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span
-              style={{
-                // color:
-                //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
-                cursor: "pointer",
-              }}
-            >
-            <LocationOnIcon   style={{
-                cursor: "pointer",
-                fontSize: "1rem"
-              }}/>
-            </span>
-          </Tooltip>
-          </div>
-          {/* <div><Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> </div> */}
-            <div>
-            {user.imInd === true  &&  user.inventoryUpdateInd === true &&  (
-            <Tooltip title="Edit">
-              <BorderColorIcon
-                style={{ color: "grey",fontSize:"1rem",padding:"2px" }}
-                onClick={() => {
-                    handleUpdateInvestorModal(true);
-                    handleCurrentRowData(item);
-                  
-                }}
-              />
-            </Tooltip>
-            )}
-            </div>
-                      </div> 
-          
-                      </div>   
+                      <div className="flex justify-between rounded-xl  mt-2 bg-white h-11 items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
+                         
+                          >
+                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                          <div className=" flex font-medium  w-[12.8rem] max-xl:w-[7.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                          <div>
+
+      <MultiAvatar
+        primaryTitle={item.name}
+        imageId={item.imageId}
+        imageURL={item.imageURL}
+        imgWidth={"1.8em"}
+        imgHeight={"1.8em"}
+      />
+    
+</div>
+                             <div class="w-[4%]">
+
+                             </div>
+                             
+                                  <Tooltip>
+                                  <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                      {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
+                                      Name
+                                      </div> */}
+                                      <div class=" text-sm text-blue-500 flex text-cardBody font-poppins font-semibold cursor-pointer">
+                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+{item.name}
+</Link>                                
+   {/* <Link
+    toUrl={`investor/${item.investorId}`}
+    title={`${item.name}`}
+  >{item.name}</Link> */}
+  &nbsp;&nbsp;
+  {date === currentdate ? (
+    <span class="text-[tomato] mt-[0.4rem] font-bold">
+      New
+    </span>
+  ) : null}
+ 
+                                      </div>
+</div>
+                                  </Tooltip>
+                        
+                          </div>
+
+                          <div className=" flex font-medium items-center  w-[14.1rem] max-xl:w-[8.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                     
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
+                              <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                              {item.sector}
+                              </div>
+                          </div>
+                          </div>
+                         
+                          
+                          
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                          <div className=" flex font-medium items-center w-[7.21rem] max-xl:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            
+
+                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
+                            <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <ReactCountryFlag
+                  countryCode={item.countryAlpha2Code}
+                  svg
+                  style={{
+                    width: '1em',
+                    height: '1em',
+                  }}
+                />
+                &nbsp;
+               {item.countryAlpha2Code}
                             </div>
                         </div>
+                          <div className=" flex font-medium items-center w-[8.1rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
+
+                              <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.oppNo}
+                              </div>
+                          </div>
+                       
+                          <div className=" flex font-medium items-center w-[8.124rem] max-xl:w-[4.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
+
+                              <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.totalProposalValue}
+
+                              </div>
+                          </div>
+                          <div className=" flex font-medium items-center w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+
+                              <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              
+                              <span>
+        {item.assignedTo === null ? (
+          "No Data"
+        ) : (
+          <>
+          {item.assignedTo === item.ownerName ? (
+            
+            null
+          ) : (
+            <Tooltip title={item.assignedTo}> 
+          <MultiAvatar2
+            primaryTitle={item.assignedTo}
+            imgWidth={"1.8rem"}
+            imgHeight={"1.8rem"}
+          />
+             </Tooltip>
+          )}
+          </>
+        )}
+      </span>
+       
+                              </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                 
+                 {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
+
+                 <span>
+                 <Tooltip title={item.ownerName}>
+          <div class="max-sm:flex justify-end">
+          <Tooltip title={item.ownerName}>
+        <MultiAvatar
+          primaryTitle={item.ownerName}
+          imageId={item.ownerImageId}
+          imgWidth={"1.9rem"}
+          imgHeight={"1.9rem"}
+        />
+      </Tooltip>
+      </div>
+    </Tooltip>
+      </span>
+             </div>
+             </div>
+             <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+             <div className=" flex font-medium flex-col w-[7.211rem] max-xl:w-[3.211rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                              {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Source</div> */}
+
+                              <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.source}
+                              </div>
+                          </div>
+                          <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto ">
+                <div>
+                    <Tooltip title="Pulse">
+   <MonitorHeartIcon
+            onClick={() => {
+              handleInvestorPulseDrawerModal(true);
+              handleCurrentRowData(item);
+            }}
+            className=" !text-xl cursor-pointer text-[#df9697]"
+          />
+       </Tooltip>
+                    </div>
+
+    
+                </div> 
+                          <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
+             <div>
+             <Tooltip title="Notes">
+ <NoteAltIcon
+          onClick={() => {
+            props.handleInvestorNotesDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          className=" !text-xl cursor-pointer text-green-800"
+        />
+     </Tooltip>
+             </div>
+             
+             <div>
+              <Tooltip title={item.url}>
+        {item.url !== "" ? (
+          <span class="cursor-pointer"
+            //type="edit"
+            onClick={() => {}}
+          >
+            {" "}
+            <a href={`https://${item.url}`} target="_blank">
+              <ExploreIcon
+                className=" !text-xl cursor-pointer text-green-800"
+              />
+            </a>
+          </span>
+        ):<div class=" w-3">
+                
+        </div>}
+      </Tooltip>
+                  </div>
+      </div>
+             
+                
+                  <div>
+      
+
+              </div>
+              <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto ">
+              <div>
+                  <span 
+        className=" !text-xl cursor-pointer"
+      //   onClick={() => {
+      //     props.getCustomerDetailsById(item.customerId);
+      //     props.getCustomerKeySkill(item.customerId);
+      //     //   this.props.getCustomerDocument(item.customerId );
+
+      //     props.handleCustomerDrawerModal(item, true);
+      //   }}
+      >
+        {" "}
+        {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-xl cursor-pointer text-[#df9697]" />}
+      </span> 
+                  </div>
+  
+      <div>
+    
+      <Tooltip title="Investor Contact">
+        <LocationCityIcon
+        className=" !text-2xl cursor-pointer p-1 text-blue-500 "
+          onClick={() => {
+            handleInvestorContModal(true);
+              handleCurrentRowData(item);
+            
+          }}
+        />
+      </Tooltip>
+
+      </div>
+                </div> 
+              
+
+              <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto ">
+                <div>
+              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+      <span class="cursor-pointer">
+      <LocationOnIcon   className=" !text-xl cursor-pointer text-[#960a0a]"/>
+      </span>
+    </Tooltip>
+    </div>
+    {/* <div><Tooltip title={item.email}>
+        <MailOutlineIcon
+          type="mail"
+          style={{ cursor: "pointer",fontSize: "1rem" }}
+          onClick={() => {
+            props.getCustomerById(item.customerId);
+            props.handleCustomerEmailDrawerModal(true);
+          }}
+        />
+      </Tooltip> </div> */}
+      <div>
+      {user.imInd === true  &&  user.investorUpdateInd === true &&  (
+      <Tooltip title="Edit">
+        <BorderColorIcon className=" !text-xl cursor-pointer text-[tomato]"
+          onClick={() => {
+              handleUpdateInvestorModal(true);
+              handleCurrentRowData(item);
+            
+          }}
+        />
+      </Tooltip>
+     )} 
+      </div>
+                </div> 
+            
+    
+                </div>   
+                      </div>
+                  </div>
 
 
                     )
@@ -407,6 +473,18 @@ function InvestorTeamCardList(props) {
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
+        handleCurrentRowData={handleCurrentRowData}
+      />
+      <InvestorPulseDrawerModal
+        RowData={RowData}
+        addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
+        handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
+        handleCurrentRowData={handleCurrentRowData}
+      />
+      <ContactsInvestorModal
+        RowData={RowData}
+        addDrawerInvestorContactModal={addDrawerInvestorContactModal}
+        handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
       />
       {/* <AddCustomerDrawerModal
@@ -441,6 +519,8 @@ const mapStateToProps = ({
   user: auth.userDetails,
   employees: employee.employees,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
+  addDrawerInvestorContactModal:investor.addDrawerInvestorContactModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -455,6 +535,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerKeySkill,
       handleCustomerEmailDrawerModal,
       getCustomerById,
+      handleInvestorPulseDrawerModal,
+      handleInvestorContModal
     },
     dispatch
   );

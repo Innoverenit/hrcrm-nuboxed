@@ -146,7 +146,7 @@ function CustomerOpportunityCardList(props) {
         <div className=" md:w-[8.1rem]">Name</div>
         <div className=" md:w-[6.1rem]">startDate</div>
         <div className=" md:w-[4.2rem] ">endDate</div>
-        <div className="md:w-[5.8rem]">Proposal Amount</div>
+        <div className="md:w-[5.8rem]">Value</div>
         <div className="md:w-[8.5rem]">Status</div>
         <div className="md:w-[3.8rem]">Sponsor</div> 
         <div className="w-12"></div>
@@ -198,14 +198,14 @@ function CustomerOpportunityCardList(props) {
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                                 
          <Link
           toUrl={`/opportunity/${item.opportunityId}`}
           title={`${item.opportunityName || ""} `}
         >{item.opportunityName}</Link>&nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-xs"
+          <span class="text-xs mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",

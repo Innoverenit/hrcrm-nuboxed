@@ -9,24 +9,24 @@ import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComp
 import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
-import {
-  getCustomer,
-} from "../../Settings/Category/Customer/CustomerAction";
+import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { Listbox } from '@headlessui/react'
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { addDistributor, setClearbitData } from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { getCurrency } from "../../Auth/AuthAction";
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
 import { FormattedMessage } from "react-intl";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
+  clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
-  phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  currency: Yup.string().required("Input needed!"),
+  phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 const AddAccountForm = ({
@@ -42,24 +42,28 @@ const AddAccountForm = ({
   addingDistributor,
   addDistributor,
   customerListData,
-  currencies,
+  saleCurrencies,
   getCountry,
   getAllCustomerEmployeelist,
   getCustomer,
-  getCurrency,
+  getSaleCurrency,
+  getCategory,
+  category
 }) => {
-  const [vatInd, setVatInd] = useState(false);
 
   useEffect(() => {
     getCountry();
     getAllCustomerEmployeelist();
     getCustomer(orgId);
-    getCurrency();
+    getSaleCurrency();
+    getCategory(orgId);
 
   }, []);
 
-  const handleVatCheckBox = () => {
-    setVatInd(true);
+  const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
+
+  const handleToggleChange = () => {
+    setBillingSameAsCommunication(!billingSameAsCommunication);
   };
 
   const CountryOptions = countries.map((item) => {
@@ -76,22 +80,34 @@ const AddAccountForm = ({
     };
   });
 
-  const currencyOption = currencies.map((item) => {
+  const currencyOption = saleCurrencies.map((item) => {
     return {
       label: item.currency_name || "",
-      value: item.currency_name,
+      value: item.currency_id,
     };
   });
+
+  const categoryOption = category.map((item) => {
+    return {
+      label: item.name || "",
+      value: item.categoryId,
+    };
+  });
+
+
   console.log(countryDialCode1)
 
   const [defaultOption, setDefaultOption] = useState(fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = allCustomerEmployeeList.find((item) => item.fullName === selected);
+  // console.log(category.categoryId)
   return (
     <>
       <Formik
+        enableReinitialize
         initialValues={{
           userId: userId,
+          dcategory: "",
           name: "",
           phoneNo: "",
           url: "",
@@ -100,8 +116,13 @@ const AddAccountForm = ({
           country: "",
           currency: "",
           clientId: "",
+          payment: "",
+          customPayment: "",
           groupId: groupId,
-          vatInd: vatInd,
+          vatInd: false,
+          insuranceGrade: "",
+          countryValue: "",
+          currencyPrice: "",
           address: [
             {
               addressType: "",
@@ -124,6 +145,9 @@ const AddAccountForm = ({
           addDistributor(
             {
               ...values,
+              orgId: orgId,
+              vatInd: values.vatInd ? true : false,
+              payment: values.payment === "Custom" ? values.customPayment : values.payment,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
             },
             userId,
@@ -178,12 +202,13 @@ const AddAccountForm = ({
                       defaultMessage="name"
                     />}
                     width={"100%"}
-                    // component={InputComponent}
+                    // isColumnWithoutNoCreate
                     setClearbitData={setClearbitData}
                     component={ClearbitImage}
                     accounts={accounts}
                     isColumn
                     inlineLabel
+                    style={{ borderRight: "3px red solid" }}
                   />
                 </div>
                 <div class=" flex justify-between mt-4">
@@ -207,8 +232,6 @@ const AddAccountForm = ({
 
                   <div class=" w-[60%]">
                     <FastField
-                      type="text"
-                      // isRequired
                       name="phoneNo"
                       label={
                         <FormattedMessage
@@ -237,20 +260,26 @@ const AddAccountForm = ({
                   width={"100%"}
                   component={InputComponent}
                   isColumn
+                  disable
                   inlineLabel
                 />
-                <div class="flex  mt-4" >
+                {/* <div class="flex  mt-4" >
                   <div>
                     <b><FormattedMessage
                       id="app.vatvalidity"
                       defaultMessage="vatvalidity"
                     /></b>
-                    <Checkbox
-                      checked={vatInd}
-                      onChange={handleVatCheckBox}
+                    <Field
+                      name="vatInd"
+                      component={SwitchComponent}
+                      data={values.vatInd}
+                      checkedChildren={"Yes"}
+                      unCheckedChildren={"No"}
+                      width={"5em"}
                     />
+
                   </div>
-                </div>
+                </div> */}
 
 
                 <div class="flex justify-between mt-4" >
@@ -266,6 +295,8 @@ const AddAccountForm = ({
                       isColumn
                       placeholder="Select"
                       inlineLabel
+                      style={{ borderRight: "3px red solid" }}
+                      isRequired
                       component={SelectComponent}
                       options={
                         Array.isArray(CountryOptions) ? CountryOptions : []
@@ -274,12 +305,7 @@ const AddAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.vat"
-                          defaultMessage="vat"
-                        />
-                      }
+                      label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -289,21 +315,44 @@ const AddAccountForm = ({
                     />
                   </div>
                 </div>
-                <div class="mt-4">
-                  <Field
-                    name="insuranceGrade"
-                    type="text"
-                    label={
-                      <FormattedMessage
-                        id="app.insurancegrade"
-                        defaultMessage="insurancegrade"
-                      />
-                    }
-                    width={"100%"}
-                    component={InputComponent}
-                    isColumn
-                    inlineLabel
-                  />
+                <div class="flex justify-between mt-4" >
+                  <div class="w-w47.5">
+                    <Field
+                      name="insuranceGrade"
+                      type="text"
+                      label={
+                        <FormattedMessage
+                          id="app.insurancegrade"
+                          defaultMessage="insurancegrade"
+                        />
+                      }
+                      width={"100%"}
+                      component={InputComponent}
+                      isColumn
+                      inlineLabel
+                    />
+                  </div>
+                  <div class="w-w47.5">
+                    <Field
+                      name="clientId"
+                      label={
+                        <FormattedMessage
+                          id="app.type"
+                          defaultMessage="Type"
+                        />
+                      }
+                      isColumn
+                      style={{ borderRight: "3px red solid" }}
+                      placeholder="Type"
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(customerTypeOptions)
+                          ? customerTypeOptions
+                          : []
+                      }
+
+                    />
+                  </div>
                 </div>
                 <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
@@ -334,6 +383,7 @@ const AddAccountForm = ({
                       isColumn
                       placeholder="Currency"
                       component={SelectComponent}
+                      style={{ borderRight: "3px red solid" }}
                       options={
                         Array.isArray(currencyOption)
                           ? currencyOption
@@ -362,26 +412,36 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
-
                     <Field
-                      name="clientId"
-                      label={
-                        <FormattedMessage
-                          id="app.type"
-                          defaultMessage="Type"
-                        />
-                      }
+                      name="dcategory"
+                      label="Category"
                       isColumn
-                      placeholder="Type"
+                      placeholder="Select"
+                      style={{ borderRight: "3px red solid" }}
                       component={SelectComponent}
                       options={
-                        Array.isArray(customerTypeOptions)
-                          ? customerTypeOptions
+                        Array.isArray(categoryOption)
+                          ? categoryOption
                           : []
                       }
 
                     />
                   </div>
+                  {values.payment === "Custom" && <div class="w-w47.5">
+                    <FastField
+                      label={
+                        <FormattedMessage
+                          id="app.Custom Payment"
+                          defaultMessage="Custom Payment"
+                        />
+                      }
+                      name="customPayment"
+                      component={InputComponent}
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>}
                 </div>
 
               </div>
@@ -457,10 +517,7 @@ const AddAccountForm = ({
                   </Listbox>
                 </div>
                 <div class="mt-4">
-                  <StyledLabel > <FormattedMessage
-                    id="app.billingaddress"
-                    defaultMessage="billingaddress"
-                  /></StyledLabel>
+                  <StyledLabel >Billing Address</StyledLabel>
                 </div>
                 <div>
                   <FieldArray
@@ -474,6 +531,33 @@ const AddAccountForm = ({
                     )}
                   />
                 </div>
+                {/* <div class="flex items-center">
+        <div>Billing Address Same as Communication Address</div>
+        <label className="toggle mt-1 ml-2">
+          <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      {!billingSameAsCommunication && (
+        <div class="flex flex-col">
+                <div class="mt-4">
+                  <StyledLabel > Billing Address</StyledLabel>
+                </div>
+                 
+                <div>
+                  <FieldArray
+                    name="pickUpAddress"
+                    render={(arrayHelpers) => (
+                      <AddressFieldArray4
+                        singleAddress
+                        arrayHelpers={arrayHelpers}
+                        values={values}
+                      />
+                    )}
+                  />
+                </div>
+                </div>
+                )} */}
                 <div class="mt-4">
                   <Field
                     name="description"
@@ -524,7 +608,8 @@ const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, 
   customerListData: catgCustomer.customerListData,
   countries: auth.countries,
   clearbit: distributor.clearbit,
-  currencies: auth.currencies,
+  saleCurrencies: auth.saleCurrencies,
+  category: auth.category,
   country: countrys.country,
   countryDialCode1: auth.userDetails.countryDialCode1,
   addingDistributor: distributor.addingDistributor,
@@ -538,7 +623,8 @@ const mapDispatchToProps = (dispatch) =>
       getCountry,
       getCustomer,
       getAllCustomerEmployeelist,
-      getCurrency,
+      getSaleCurrency,
+      getCategory
     },
     dispatch
   );

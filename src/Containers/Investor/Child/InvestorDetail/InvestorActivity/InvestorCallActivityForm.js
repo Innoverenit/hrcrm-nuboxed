@@ -141,13 +141,16 @@ function InvestorCallActivityForm(props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
   
 
     const {
       user: { userId, firstName, middleName,empName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCall,
+      addinginvestActivityCall,
       deleteCall,
       deletingCall,
       addInvestActivityCall,
@@ -668,7 +671,7 @@ function InvestorCallActivityForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,
@@ -788,7 +791,7 @@ function InvestorCallActivityForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingCall : addingCall}
+                  loading={isEditing ? updatingCall : addinginvestActivityCall}
                 >
                   {isEditing ? (
                     "Update"
@@ -806,8 +809,8 @@ function InvestorCallActivityForm(props) {
     );
   }
 
-const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCall: call.addingCall,
+const mapStateToProps = ({ auth, call, employee,customer, opportunity, investor }) => ({
+  addinginvestActivityCall: investor.addinginvestActivityCall,
   assignedToList:employee.assignedToList,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,

@@ -8,6 +8,7 @@ import UpcomingIcon from '@mui/icons-material/Upcoming';
 import {getTodosCount} from "./DashboardAction";
 import { Badge } from "antd";
 import { FormattedMessage } from "react-intl";
+const LeavesGanttChart = lazy(()=>import("./Child/LeavesGanttChart"));
 const UpcomingEvents=lazy(() => import("./Child/UpcomingEvents"));
 const DashboardTodo=lazy(() => import("./Child/DashboardTodo"));
 
@@ -86,6 +87,28 @@ class TodoDashboardTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <DashboardTodo style={{ overflow: "scroll" }} />
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <UpcomingIcon style={{fontSize:"1.1rem"}}/>
+
+                  <span class=" ml-1 font-semibold">
+                  <FormattedMessage
+              id="app.leaves"
+              defaultMessage="Leaves"
+            />
+                    </span>
+
+                 
+                </>
+              }
+              key="2"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <LeavesGanttChart />
               </Suspense>
             </TabPane>
             {/* {this.props.user.dashboardrecruitDashInd === true &&(

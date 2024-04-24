@@ -18,7 +18,7 @@ class LinkedNotes extends Component {
 
     return (
       <>
-        <div style={{ backgroundColor: "#dcdcdc", height: "14.375em" }}>
+        <div style={{ backgroundColor: "#dcdcdc" }}>
           <NoteForm
             type={"customer"}
             customerId={this.props.rowdata.customerId}
@@ -30,7 +30,7 @@ class LinkedNotes extends Component {
         <br />
 
         <BorderBox>
-          <div style={{ height: 200, overflow: "auto", padding: "0.3rem" }}>
+          <div class="h-80 overflow-auto p-[0.3rem]">
             {fetchingNotesListByCustomerId ? (
               <BundleLoader />
             ) : (

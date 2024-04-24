@@ -2,6 +2,7 @@ import * as types from "./TeamsActionType";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 
 /**
  * teams modal action
@@ -678,7 +679,7 @@ export const getKpilist = (departmentId) => (dispatch) => {
     });
 };
 
-export const addKpi = (data) => (dispatch) => {
+export const addKpi = (data,employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.ADD_KPI_REQUEST,
   });
@@ -689,7 +690,22 @@ export const addKpi = (data) => (dispatch) => {
       },
     })
     .then((res) => {
-     
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'KPI added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       dispatch({
         type: types.ADD_KPI_SUCCESS,
         payload: res.data,
@@ -706,12 +722,12 @@ export const addKpi = (data) => (dispatch) => {
     });
 };
 
-export const getEmployeeKpiList = (employeeId) => (dispatch) => {
+export const getEmployeeKpiList = (employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_KPI_LIST_REQUEST,
   });
     axios
-  .get(`${base_url}/employee/kpi-list/${employeeId}`, {
+  .get(`${base_url}/employee/kpi-list/${employeeId}/${year}/${quarter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -771,6 +787,10 @@ export const deleteKpiData = (employeeKpiLinkId,orgId) => (dispatch, getState) =
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI deleted Successfully!',
+      })
       console.log(res);
       //  dispatch(getScheduler(orgId));
       dispatch({
@@ -793,7 +813,7 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
     type: types.UPDATE_COMPLETED_VALUE_REQUEST,
   });
   axios
-    .post(
+    .put(
       `${base_url}/employee/kpi-completed-value/save`,data,
       {
         headers: {
@@ -802,9 +822,13 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
       console.log(res);
-       dispatch(getEmployeeKpiList(employeeId));
+      //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
         type: types.UPDATE_COMPLETED_VALUE_SUCCESS,
         payload: res.data,
@@ -824,7 +848,7 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
     type: types.UPDATE_ASSIGNED_VALUE_REQUEST,
   });
   axios
-    .post(
+    .put(
       `${base_url}/employee/kpi-assigned-value/save`,data,
       {
         headers: {
@@ -833,9 +857,13 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
       }
     )
     .then((res) => {
-      message.success("Value has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
       console.log(res);
-       dispatch(getEmployeeKpiList(employeeId));
+      //  dispatch(getEmployeeKpiList(employeeId));
       dispatch({
         type: types.UPDATE_ASSIGNED_VALUE_SUCCESS,
         payload: res.data,
@@ -847,4 +875,11 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
         type: types.UPDATE_ASSIGNED_VALUE_FAILURE,
       });
     });
+};
+
+export const handleTeamsPulseDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TEAMS_PULSE_DRAWER_MODAL,
+    payload: modalProps,
+  });
 };

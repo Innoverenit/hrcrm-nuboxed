@@ -41,22 +41,22 @@ class UpdateOrderStepper extends Component {
     render() {
         const steps = [
             {
-                title:<FormattedMessage
-                id="app.order"
-                defaultMessage="Order"
-               />,
+                title: <FormattedMessage
+                    id="app.order"
+                    defaultMessage="Order"
+                />,
                 icon: <UserOutlined />,
-                content: <OrderStep1 distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <OrderStep1 orderId={this.props.particularRowData.orderId} distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {
-                title:<FormattedMessage
-                id="app.phonedetails"
-                defaultMessage="Phone details"
-               />,
+                title: <FormattedMessage
+                    id="app.phonedetails"
+                    defaultMessage="Phone details"
+                />,
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
-                content: <OrderStep2 distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <OrderStep2 orderId={this.props.particularRowData.orderId} distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
 
 
@@ -66,18 +66,18 @@ class UpdateOrderStepper extends Component {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{fontSize:"1rem"}}/>}
+                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
                             id="app.oderdetails"
                             defaultMessage="Order Details"
-                           />}
+                        />}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{fontSize:"1rem"}}/>}
+                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
-                           />}
+                        />}
                     />
                 </StyledSteps>
                 <div class="min-[50vh]"
@@ -88,17 +88,19 @@ class UpdateOrderStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        <Button className="mt-2"
+                                        <Button
+                                            style={{ marginRight: "3rem", marginTop: "70px" }}
+                                            className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
-                                            
+
 
                                         >
                                             <FormattedMessage
-                 id="app.proceed"
-                 defaultMessage="Proceed"
-                />
-                                            
+                                                id="app.proceed"
+                                                defaultMessage="Proceed"
+                                            />
+
                                         </Button>
                                     </>
                                 )}
@@ -106,12 +108,15 @@ class UpdateOrderStepper extends Component {
                         )}
 
                         {current > 0 && (
-                            <Button className="mt-1" onClick={() => this.prev()}>
+                            <Button
+                                className=" w-16 absolute top-3/4 right-0 mt"
+                                style={{ marginRight: "1rem", marginTop: "90px" }}
+                                onClick={() => this.prev()}>
                                 <FormattedMessage
-                 id="app.previous"
-                 defaultMessage="Previous"
-                />
-                                
+                                    id="app.previous"
+                                    defaultMessage="Previous"
+                                />
+
                             </Button>
                         )}
                     </div>

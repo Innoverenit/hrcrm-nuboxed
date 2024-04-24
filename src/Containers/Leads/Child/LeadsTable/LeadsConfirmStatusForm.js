@@ -127,7 +127,7 @@ const handleDeptChange = (event) => {
         {selectedDept && (
           <>                                           
 
-<div class=" w-[35%]" >
+<div class=" w-[35%] mt-4" >
             <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>User</label>
             <select   className="customize-select"
                  onChange={handleUserChange}
@@ -159,7 +159,7 @@ const handleDeptChange = (event) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={props.linkingLeads}
+                  loading={props.linkingCustomerStatus}
                 >
                   <FormattedMessage id="app.update" defaultMessage="Update" />
                   {/* Update */}
@@ -176,6 +176,7 @@ const handleDeptChange = (event) => {
 
 const mapStateToProps = ({ settings,leads, departments, auth }) => ({
   userId: auth.userDetails.userId,
+  linkingCustomerStatus:leads.linkingCustomerStatus,
   departmentwiseUser:settings.departmentwiseUser,
   distributionAutomation: settings.distributionAutomation,
   orgId: auth.userDetails.organizationId,

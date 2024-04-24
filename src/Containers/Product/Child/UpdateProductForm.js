@@ -12,16 +12,18 @@ import { updateProduct } from "../ProductAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
+import { getWorkflowList } from "../../Production/ProductionAction";
+import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 const ProductSchema = Yup.object().shape({
   categoryName: Yup.string().required("Please provide First Name"),
-  subCategoryName: Yup.string().required("Please provide First Name"),
-  attributeName: Yup.string().required("Please provide First Name"),
-  subAttributeName: Yup.string().required("Please provide First Name"),
-  // name: Yup.string().required("Please provide First Name"),
-  price: Yup.string().required("Please provide First Name"),
-  distributorMaxMargin: Yup.string().required("Please provide First Name"),
-  tax: Yup.string().required("Please provide First Name"),
+  // subCategoryName: Yup.string().required("Please provide First Name"),
+  // attributeName: Yup.string().required("Please provide First Name"),
+  // subAttributeName: Yup.string().required("Please provide First Name"),
+  name: Yup.string().required("Please provide Name"),
+  // price: Yup.string().required("Please provide First Name"),
+  // distributorMaxMargin: Yup.string().required("Please provide First Name"),
+  // tax: Yup.string().required("Please provide First Name"),
 
 
 });
@@ -29,8 +31,19 @@ const ProductSchema = Yup.object().shape({
 
 class Productform extends Component {
 
+  componentDidMount() {
+    this.props.getWorkflowList(this.props.orgId)
+  }
 
   render() {
+
+    const workFlowOption = this.props.workflowProduction.map((item) => {
+      return {
+        value: item.productionWorkflowDetailsId,
+        label: `${item.workflowName || ""}`
+      }
+    })
+
     const { updateProductById, updateProduct } = this.props;
     const currencySymbol = (
       <span>
@@ -66,6 +79,8 @@ class Productform extends Component {
             consumerMaxMargin: this.props.setEditingProducts.consumerMaxMargin || 0,
             articleNo:this.props.setEditingProducts.articleNo || "",
             // unitInStock: this.props.setEditingProducts.unitInStock || "",
+            brand:this.props.setEditingProducts.brand || "",
+            model:this.props.setEditingProducts.model || "",
           }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -120,6 +135,7 @@ class Productform extends Component {
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
                         <Field
+                        isRequired
                     name="name"
                     label="Name"
                     isColumn
@@ -218,6 +234,33 @@ class Productform extends Component {
                     </div>
                   </div>
                   {/* <div class="flex justify-between mt-4">
+                  <div class="w-[47%]">
+                    <Field
+                      label="Workflow"
+                      name="workflowId"
+                      placeholder="Value"
+                      component={SelectComponent}
+                      options={Array.isArray(workFlowOption) ? workFlowOption : []}
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>
+                  <div class="w-[47%]">
+                    <Field
+                      label="Stage"
+                      name="stage"
+                      placeholder="Value"
+                      component={InputComponent}
+                      // options={Array.isArray(workFlowOption) ? workFlowOption : []}
+
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>
+</div> */}
+                  {/* <div class="flex justify-between mt-4">
                  <div class="w-[30%]">
                     <Field
                         name="expireDays"
@@ -257,152 +300,41 @@ class Productform extends Component {
                 </div>
 
                 <div class="h-full w-[45%]">
-
-                  {/* <Spacer style={{ marginBottom: "10px" }} />
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "29%" }}>
+                <div class="flex justify-between ">
+                <div class="w-[48%]">
                       <Field
-                        name="price"
-                        label={currencySymbol}
+                      // defaultValue={{
+                      //   label: this.props.setEditingProducts.brand,
+                      //   value: this.props.setEditingProducts.brand,
+                      // }}
+                        name="brand"
+                        label="Brand"
+                        // placeholder="Search or Create"
+                        // optionLabel="categoryName"
+                        // optionValue="categoryName"
+                        // url={`${base_url2}/masterlist/masterList`}
+                        // component={LazySelect}
                         component={InputComponent}
-                        inlineLabel
                         isColumn
+                        inlineLabel
+
+                      />
+                    </div>
+
+                    <div class="w-[47%]">
+                      <Field
+                        name="model"
+                        label="Model"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel
                         width={"100%"}
-                        style={{
-                          flexBasis: "80%",
-                          marginTop: "0px",
-                        }}
+                   
                       />
                     </div>
-
-                    <div style={{ width: "20%" }}>
-                      <Field
-                        name="tax"
-                        label="GST %"
-                        width={"100%"}
-                        component={InputComponent}
-                        isColumn
-                        inlineLabel
-                        style={{ flexBasis: "30%", marginTop: "0px" }}
-                      />
                     </div>
-                    <div style={{
-                      width: "39%",
-                      fontWeight: "bold"
-                      , marginTop: "2px",
-                    }}>
-
-                      Price Includes GST
-                      <Field
-                        label="Price Includes GST"
-                        name="gstIncludeInd"
-                        component={SwitchComponent}
-                        data={values.gstIncludeInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-
-                      />
-
-                    </div>
-                  </FlexContainer>
-                  <Spacer style={{ marginTop: "10px" }} />
-                  <FlexContainer justifyContent="space-between">
-
-                    <div style={{ width: "47%" }}>
-
-                      <Field
-                        name="marginType"
-                        component={SwitchComponent}
-                        data={values.marginType}
-                        checkedChildren={"Percentage"}
-                        unCheckedChildren={"Amount"}
-                        marginTop={"20px"}
-
-                      />
-                    </div>
-
-                    <div style={{ width: "40%" }}>
-                      <Field
-                        name="distributorMaxMargin"
-                        label="Max. Margin"
-                        component={InputComponent}
-                        inlineLabel
-                        isColumn
-                        width={"100%"}
-                        style={{
-                          flexBasis: "80%",
-                          marginTop: "0px",
-                        }}
-                      />
-                    </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <div style={{ width: "100%" }}>
-                    Margin applicable for Customer
-                    <Field
-
-                      name="customerMarginInd"
-                      component={SwitchComponent}
-                      data={values.customerMarginInd}
-                      checkedChildren={"Yes"}
-                      unCheckedChildren={"No"}
-
-                    />
-
-                  </div>
-                  <Spacer />
-                  <div style={{ width: "100%" }}>
-                    Margin applicable for Distributor
-                    <Field
-
-                      name="distributorMarginInd"
-                      component={SwitchComponent}
-                      data={values.distributorMarginInd}
-                      checkedChildren={"Yes"}
-                      unCheckedChildren={"No"}
-
-                    />
-
-                  </div>
-                  <Spacer style={{ marginTop: "12px" }} />
-
-                  <div style={{ fontWeight: "bold" }}>
-                    Applicable for Customers ONLY
-                  </div>
-                  <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="consumerMarginType"
-                        component={SwitchComponent}
-                        data={values.consumerMarginType}
-                        checkedChildren={"Percentage"}
-                        unCheckedChildren={"Amount"}
-                        marginTop={"20px"}
-
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        // isRequired
-                        name="consumerMaxMargin"
-                        label="Consumer MaxMargin"
-                        type="number"
-                        isColumn
-                        component={InputComponent}
-                        use12Hours
-                        inlineLabel
-                        style={{
-                          flexBasis: "80%",
-                          marginTop: "0px",
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </FlexContainer> 
-                  <Spacer style={{ marginBottom: "30px" }} />
-                  */}
-
-<div class="flex justify-between">
+              
+                    <div class="flex justify-between">
 <div class="w-full">
                       <Field
                         name="description"
@@ -440,17 +372,19 @@ class Productform extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, product, opportunity }) => ({
+const mapStateToProps = ({ auth, product, production }) => ({
   updateProductById: product.updateProductById,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
   setEditingProducts: product.setEditingProducts,
+  workflowProduction: production.workflowProduction,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       updateProduct,
+      getWorkflowList
     },
     dispatch
   );

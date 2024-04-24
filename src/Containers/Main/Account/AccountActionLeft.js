@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Badge, Avatar } from "antd";
+import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch, getRecords, getAccountRecords, getAllRecords, getDistributorCount } from "./AccountAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
 const AccountActionLeft = (props) => {
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+    const [pageNo, setPage] = useState(0);
+
     const { user, } = props;
     useEffect(() => {
         if (props.viewType === "list") {
-            props.getAccountRecords();
+            props.getRecords(props.userId);
         } else if (props.viewType === "card") {
             props.getDistributorCount(props.userId);
         }
@@ -20,47 +25,59 @@ const AccountActionLeft = (props) => {
         }
     }, [props.viewType, props.userId]);
 
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+    useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+            console.log(">>>>>>>", transcript);
+            setCurrentData(transcript);
+        }
+    }, [transcript]);
+    const handleChange = (e) => {
+        setCurrentData(e.target.value);
 
-    const { distributorsByUserId } = props;
-    var total =
-        distributorsByUserId &&
-        distributorsByUserId.reduce((a, item) => {
-            return (a += item.totalPayableAmount) || 0;
-        }, 0);
-    var cost = `${Number(total).toFixed(2)}`;
+        if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+            setPage(pageNo + 1);
+            //   props.getLeads(props.userId, pageNo, "creationdate");
+            //   props.ClearReducerDataOfLead()
+            setSearchOnEnter(false);
+        }
+    };
+    const handleSearch = () => {
+        if (currentData.trim() !== "") {
+            // Perform the search
+            props.inputDataSearch(currentData);
+            setSearchOnEnter(true);  //Code for Search
+        } else {
+            console.error("Input is empty. Please provide a value.");
+        }
+    };
+    const suffix = (
+        <AudioOutlined
+            onClick={SpeechRecognition.startListening}
+            style={{
+                fontSize: 16,
+                color: '#1890ff',
+            }}
 
-    const { allDistributors } = props;
-    var total1 =
-        allDistributors &&
-        allDistributors.reduce((a, item) => {
-            return (a += item.totalPayableAmount) || 0;
-        }, 0);
-    var cost1 = `${Number(total1).toFixed(2)}`;
-
-    var totalA =
-        distributorsByUserId &&
-        distributorsByUserId.reduce((a, item) => {
-            return (a += item.outstanding) || 0;
-        }, 0);
-    var costA = `${Number(totalA).toFixed(2)}`;
-
-    var totalB =
-        allDistributors &&
-        allDistributors.reduce((a, item) => {
-            return (a += item.outstanding) || 0;
-        }, 0);
-    var costB = `${Number(totalB).toFixed(2)}`;
+        />
+    );
 
     return (
         <div class="flex items-center" >
-            <div class="max-sm:hidden">
+            <div class=" ">
                 {user.functionName !== "Customer Care" && (
 
                     <Tooltip title="List View">
                         <Badge size="small"
-                            count={props.accountRecordData.distributor || 0}
+                            count={props.recordData.distributor || 0}
                         >
-                            <span class=" md:mr-2 text-sm cursor-pointer"
+                            <span class=" mr-2 text-sm cursor-pointer"
                                 onClick={() => props.setDistributorViewType("list")}
                                 style={{
                                     color: props.viewType === "list" && "#1890ff",
@@ -75,59 +92,32 @@ const AccountActionLeft = (props) => {
 
                 )}
             </div>
-            {/* <Tooltip title="Distributor By Group">
-                <AppstoreOutlined
-                    style={{
-                        marginRight: "0.3rem",
-                        color: props.viewType === "group" && "#1890ff",
-                    }}
 
-                    onClick={() => props.setDistributorViewType("group")}
-                />
-            </Tooltip> */}
-
-            {/* {user.designation === "Manager" &&
-                (user.functionName === "Management" || user.functionName === "Sales") && ( */}
-
-            {/* )} */}
-            {/* <Tooltip title="card Distributor">
+            {user.accountFullListInd === true && user.erpInd === true && (
+                <div class=" ">
+                    <Tooltip title="All Customers">
                         <Badge size="small"
-                            count={props.allDistributorCount.distributor || 0}>
-                            <span
+                            count={props.accountRecordData.distributor || 0}
+                        >
+                            <span class=" mr-2 text-sm cursor-pointer"
+                                onClick={() => props.setDistributorViewType("all")}
                                 style={{
-                                    marginRight: "0.5rem",
-                                    color: props.viewType === "card" && "#1890ff",
-                                    fontSize: "17px",
-                                    cursor: "pointer",
+                                    color: props.viewType === "all" && "#1890ff",
                                 }}
-                                onClick={() => props.setDistributorViewType("card")}
-                            > <GridViewIcon style={{fontSize:"1.4rem"}}   />
+                            >
+                                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                    <div className="text-white">ALL</div></Avatar>
+
                             </span>
                         </Badge>
-                    </Tooltip> */}
-            {user.accountFullListInd === true && user.erpInd === true && (
-                <Tooltip title="All Customers">
-                    <Badge size="small"
-                        count={props.accountRecordData.distributor || 0}
-                    >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
-                            onClick={() => props.setDistributorViewType("all")}
-                            style={{
-                                color: props.viewType === "all" && "#1890ff",
-                            }}
-                        >
-                            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                                <div className="text-white">ALL</div></Avatar>
-
-                        </span>
-                    </Badge>
-                </Tooltip>
+                    </Tooltip>
+                </div>
             )}
             <Tooltip title="Deleted Distributor">
                 <Badge size="small"
                 // count={props.accountRecordData.distributor || 0}
                 >
-                    <span class=" md:mr-2 text-sm cursor-pointer"
+                    <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => props.setDistributorViewType("dashboard")}
                         style={{
                             color: props.viewType === "dashboard" && "#1890ff",
@@ -140,7 +130,15 @@ const AccountActionLeft = (props) => {
                 </Badge>
             </Tooltip>
 
-
+            <div class=" w-64 max-sm:w-24">
+                <Input
+                    placeholder="Search by Name or Sector"
+                    width={"100%"}
+                    suffix={suffix}
+                    onPressEnter={handleSearch}
+                    onChange={handleChange}
+                    value={currentData}
+                /></div>
             {/* &nbsp; &nbsp;
             {props.viewType === "table" ?
                 (
@@ -155,7 +153,7 @@ const AccountActionLeft = (props) => {
                         </div>
                     ) : null} */}
 
-            &nbsp;&nbsp;
+            {/* &nbsp;&nbsp;
             {props.viewType === "table" ?
                 (
                     <div>
@@ -182,7 +180,7 @@ const AccountActionLeft = (props) => {
                                 &nbsp;&nbsp;
                             </>
                         </div>
-                    ) : null}
+                    ) : null} */}
         </div>
     );
 };

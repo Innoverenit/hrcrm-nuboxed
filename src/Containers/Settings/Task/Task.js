@@ -1,261 +1,245 @@
 
-import React, { Component,lazy } from "react";
+import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button,Input} from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { base_url } from "../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
+import { Tooltip } from "antd";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { Popconfirm,Input} from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
+
 import dayjs from "dayjs";
 import {
   getTasks,
+  getTaskCount,
   addTasks,
   removeTask,
   updateTasks,
   searchTaskName,
   ClearReducerDataOfTask
 } from "./TaskAction";
-const SingleTasks = lazy(() =>
-  import("./SingleTasks")
-);
+import TaskConnetToggle from "./TaskConnetToggle";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
-class Task extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linkedTasks: [],
-      isTextInputOpen: false,
-      addingTask: false,
-      taskType: "",
-      type: "",
-      singleTask: "",
-      editInd:true,
-      currentData: ""
-    };
+const Task = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [tasks, setEvents] = useState(props.tasks);
+  const [editingId, setEditingId] = useState(null);
+  const [addingRegion, setAddingRegion] = useState(false);
+  const [newTaskName, setTaskName] = useState('');
+  useEffect(() => {
+      props.getTasks(); 
+      props.getTaskCount(props.orgId) 
+  }, [])
+
+  const editRegion = (taskTypeId, name) => {
+    console.log(name)
+    console.log(name)
+      setEditingId(taskTypeId);
+      setTaskName(name);
+  };
+
+
+
+  const handleAddTask = () => {
+      setAddingRegion(true);
+      setTaskName("")
+  };
+
+  const handleUpdateTask=(region)=>{
+      console.log(region)
+      let data={
+        taskTypeId:region.taskTypeId,
+        taskType:newTaskName
+       
+      }
+props.updateTasks(data,region.taskTypeId)
+setEditingId(null);
   }
-  handleChangeDes = (e) => {
-    this.setState({ currentData: e.target.value });
+
+  const handleTask = () => {
+      // if (newRegionName.trim() !== '') {
+      //     console.log("New Region:", newRegionName);
+      //     const newRegion = {
+      //         id: Date.now(),
+      //         item: newRegionName
+      //     };
+      //     setRegions([...regions, newRegion]);
+      //     setNewRegionName('');
+      //     setAddingRegion(false);
+      // }
+      let data={
+        taskType:newTaskName,
+        orgId:props.orgId,
+      }
+      props.addTasks(data,props.orgId)
+      setAddingRegion(false)
+  };
+  const handleChange = (e) => {
+      setCurrentData(e.target.value.trim());
+    
   
-    if (e.target.value.trim() === "") {
-      this.setState((prevState) => ({ pageNo: prevState.pageNo + 1 }));
-      this.props.getTasks();
-      this.props.ClearReducerDataOfTask();
-    }
-  };
-  handleSearch = () => {
-    if (this.state.currentData.trim() !== "") {
-      // Perform the search
-      this.props.searchTaskName(this.state.currentData);
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    this.props.getTasks();
-  };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
-  };
-
-  handleSearchChange = (e) => {
-    // console.log(e.target.value)
-    // this.setState({ text: e.target.value });
-    this.setState({ currentData: e.target.value })
-   
-  };
-  toggleInput = () =>
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-  handleAddTasks = () => {
-    const { addTasks, tasks } = this.props;
-    const { taskType, addingTasks, isTextInputOpen,editInd
-    } = this.state;
-    let task = { taskType,editInd
+      if (e.target.value.trim() === "") {
+      //   setPage(pageNo + 1);
+      props.getTasks();
+      //   props.ClearReducerDataOfLoad()
+      }
     };
 
-    let exist =
-    tasks &&
-    tasks.some((element) => element.taskType == taskType);
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.searchTaskName(currentData);
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
 
-    // if (exist) {
-    //   message.error(
-    //     "Can't create as another task type exists with same name!"
-    //   );
-    // } else {
-      addTasks(task, () => console.log("add task callback"));
-    // }
+  const handleCancelAdd = () => {
+    setTaskName('');
+      setAddingRegion(false);
+  };
+  const cancelEdit = () => {
+      setEditingId(null);
+  };
+  useEffect(() => {
+      
+      if (props.tasks.length > 0) {
+        
+        setEvents(props.tasks);
+      }
+    }, [props.tasks]);
 
-    this.setState({
-      taskType: "",
-      singleTask: "",
-      isTextInputOpen: false,
-      editInd:true,
-    });
-  };
-  handleDeleteTask = (taskTypeId={taskTypeId}) => {
-    this.props.removeTask(taskTypeId);
-    this.setState({ taskType: "", singleTask: "" });
-  };
-  handleUpdateTask = (taskType, taskTypeId,editInd, cb) => {
-    this.props.updateTasks(taskType, taskTypeId,editInd, cb);
-    this.setState({ taskType: "", singleTask: "",editInd: true });
-  };
-  // getLinkedDocuments = () => {
-  //   axios
-  //     .get(`${base_url}/opportunity/source/linkedSources`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({ linkedSources: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  componentDidMount() {
-    const { getTasks } = this.props;
-    console.log();
-    getTasks();
-    // this.getLinkedSources();
-  }
-  render() {
-    const {
-      fetchingTasks,
-      fetchingTasksError,
-      tasks,
-      addingTasks,
-      updatingTasks,
-    } = this.props;
-    const {
-      isTextInputOpen,
-      type,
-      taskType,
-      singleTask,
-      linkedTasks,
-    } = this.state;
-    if (fetchingTasks) return <BundleLoader/>;
-    if (fetchingTasksError) return <p>We are unable to load data</p>;
-    return (
-      <>
-        <div class="flex flex-nowrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              // height: "30.625em",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-              <div class=" flex flex-row justify-between">
-         <div class=" flex w-[18vw]" >
-            <Input
-         placeholder="Search by Name"
-        style={{width:"100%",marginLeft:"0.5rem"}}
-            // suffix={suffix}
-            onPressEnter={this.handleSearch}  
-            onChange={this.handleChangeDes}
-            // value={currentData}
-          />
-            </div>
-            {isTextInputOpen ? (
-               <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-            
-               >
-             
-                <TextInput
-                  placeholder="Add Task"
-                  name="taskType"
-                  value={taskType}
-                  onChange={this.handleChange}
-                  width="55%"
-                  style={{ marginRight: "0.125em" }}
-                />
-                &nbsp;
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={!taskType}
-                  Loading={addingTasks}
-                  onClick={this.handleAddTasks}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
-                </Button>
-                &nbsp;
-                <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                </Button>
-              </div>
-            ) : (
-              <>
-              
-                <div class=" flex justify-end" >
-                  <Button
-                    type="primary"
-                    htmlType="button"
-                    Loading={addingTasks}
-                    onClick={this.toggleInput}
-                  >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
-                  </Button>
-                </div>
-               
-              </>
-            )}
-             </div>
-            <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
-              {tasks.length ? (
-  tasks
-    .slice() 
-    .sort((a, b) => a.taskType.localeCompare(b.taskType)) 
-    .map((task, i) => (
-                    <SingleTasks
-                      key={i}
-                      value={singleTask}
-                      name="singleTask"
-                      task={task}
-                      linkedTasks={linkedTasks}
-                      updatingTasks={updatingTasks}
-                      handleChange={this.handleChange}
-                      handleUpdateTask={this.handleUpdateTask}
-                         handleDeleteTask={this.handleDeleteTask}
-                    />
-                  ))
-                  ) : (
-                    <p>No Data Available</p>
-                  )}
-              </MainWrapper>
-            </div>
-          
-          </MainWrapper>
-     
-        </div>
-        <div class=" font-bold">Updated on {dayjs(this.props.tasks && this.props.tasks.length && this.props.tasks[0].updationDate).format('YYYY-MM-DD')} by {this.props.tasks && this.props.tasks.length && this.props.tasks[0].name}</div>
-      </>
-    );
-  }
+// console.log(regions)
+if (props.fetchingTasks) {
+return <div><BundleLoader/></div>;
 }
+  return (
+      <div>
+    <div class=" flex flex-row justify-between">
+    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+          <Input
+       placeholder="Search by Name"
+      style={{width:"100%",marginLeft:"0.5rem"}}
+          // suffix={suffix}
+          onPressEnter={handleSearch}  
+          onChange={handleChange}
+          // value={currentData}
+        />
+          </div>
+          <div class="w-[20rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"taskType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+            <div className="add-region">
+              {addingRegion ? (
+                  <div>
+                      <input 
+                      style={{border:"2px solid black",width:"54%"}}
+                          type="text" 
+                          placeholder="Task"
+                          value={newTaskName} 
+                          onChange={(e) => setTaskName(e.target.value)} 
+                      />
+                      <button 
+                         loading={props.addingItemTask}
+                      onClick={handleTask}>Save</button>
+                      <button onClick={handleCancelAdd}>Cancel</button>
+                  </div>
+              ) : (
+                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddTask}> Add More</button>
+              )}
+          </div>
+          </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
+          {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
+            <div className="card9" key={region.taskTypeId}>
+            {/* Region name display or input field */}
+            
+            {editingId === region.taskTypeId ? (
+                <input
+                style={{border:"2px solid black"}}
+                    type="text"
+                    placeholder="Task"
+                    value={newTaskName}
+                    onChange={(e) => setTaskName(e.target.value)}
+                />
+            ) : (
+                <div className="region">{region.taskType}&nbsp;&nbsp;&nbsp;
+                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                      >
+                                        New
+                                      </span> : null}</div>
+            )}
+  <div class="flex w-60">
+                  <div class="ml-2 w-20">Workflow</div>
+                 
+                  <div class="ml-4 w-[25rem]">
+                    <TaskConnetToggle 
+                        taskType={region.taskType}
+                        taskTypeId={region.taskTypeId}
+                  taskCheckListInd={region.taskCheckListInd}
+                    />  
+                    </div>
+                    </div>
+            {/* Action buttons */}
+            <div className="actions">
+                {/* Edit button */}
+                {editingId === region.taskTypeId ? (
+                    <div>
+                        <button onClick={() => handleUpdateTask(region)}>Save</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+                    </div>
+                ) : (
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.taskTypeId, region.taskType)} />
+                )}
 
-const mapStateToProps = ({ tasks }) => ({
+                {/* Delete button */}
+                <Popconfirm
+                        title="Do you want to delete?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() =>  props.removeTask(region.taskTypeId)}
+                      >
+                <DeleteOutlined 
+                  style={{
+                  
+                    color: "red",
+                    cursor:"pointer"
+                  }}
+              // onClick={() => 
+              //     props.removeServiceLine(item.taskTypeId)
+              //  }
+                 />
+                 </Popconfirm>
+            </div>
+        </div>
+        ))}
+        </MainWrapper>
+            </div>
+  <div class=" font-bold">Updated on {dayjs(props.tasks && props.tasks.length && props.tasks[0].updationDate).format('YYYY-MM-DD')} by {props.tasks && props.tasks.length && props.tasks[0].name}</div>
+      </div>
+  );
+};
+
+
+const mapStateToProps = ({ tasks,auth }) => ({
   addingTasks: tasks.addingTasks,
   addingTasksError: tasks.addingTasksError,
   tasks: tasks.tasks,
-
+  taskCount:tasks.taskCount,
+  orgId: auth.userDetails.organizationId,
   // removingTasks: tasks.removingTasks,
   // removingTasksError: tasks.removingTasksError,
   
@@ -270,6 +254,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getTasks,
+      getTaskCount,
       addTasks,
       removeTask,
       updateTasks,

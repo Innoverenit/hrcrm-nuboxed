@@ -1,108 +1,3 @@
-// import React, { Component } from 'react';
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { withRouter, Link } from "react-router-dom";
-// import { Formik, Form, Field } from "formik";
-// import * as Yup from 'yup';
-// import { Button } from "antd";
-// import { AuthContainer, FormWrapper, Input } from "./styled";
-// import { Title, SubTitle, ValidationError, HeaderText, Spacer } from "../../Components/UI/Elements";
-// import { FlexContainer } from "../../Components/UI/Layout";
-// import FWLogo from '../../Assets/Images/Axis_logo_Big.png'
-// import RandomImageScreen from './RandomImageScreen'
-// import { forgotPassword } from "./AuthAction";
-
-// /**
-//  * yup validation scheme for set Password 
-//  */
-// const ForgotPasswordSchema = Yup.object().shape({
-//     email: Yup.string()
-//         .email('Enter a valid Email')
-//         .required('Input needed!'),
-// });
-
-// class SetPassword extends Component {
-//     handleForgotPassword = ({ email }) => {
-//         const { history } = this.props;
-//         this.props.forgotPassword(email, history)
-//     }
-
-//     InputComponent = ({ field, form: { touched, errors }, ...props }) => (
-//         <div>
-//             <div>
-//                 <Input {...field} {...props} />
-//             </div>
-//             {touched[field.name] &&
-//                 errors[field.name] && <ValidationError>{errors[field.name]}</ValidationError>}
-//         </div>
-//     );
-//     render() {
-//         return (
-//             <>
-//                 <FlexContainer>
-//                     <AuthContainer style={{ backgroundColor: '#F5F5F5', flexDirection: 'column' }}>
-//                         <img className='big-logo' src={FWLogo} style={{ width: 200 }} /><br />
-//                         <FormWrapper>
-//                             <HeaderText color='#1890ff'>Forgot password</HeaderText>
-//                             <Spacer style={{ marginTop: 20 }} />
-//                             <SubTitle>Link will be sent to your registered email id </SubTitle>
-//                             <Spacer style={{ marginTop: 10 }} />
-//                             <Formik
-//                                 initialValues={{
-//                                     email: ''
-//                                 }}
-
-//                                 validationSchema={ForgotPasswordSchema}
-//                                 onSubmit={values => {
-//                                     // same shape as initial values
-//                                     console.log(values);
-//                                     this.handleForgotPassword(values)
-//                                 }}>
-
-//                                 {({ errors, touched, isSubmitting }) => (
-//                                     <Form className="form-background">
-//                                         <Field
-//                                             name="email"
-//                                             placeholder='Enter your email'
-//                                             component={this.InputComponent} />
-//                                         <Spacer />
-
-//                                         <Button
-//                                             type="primary"
-//                                             htmlType='submit'
-//                                             Loading={isSubmitting}
-//                                             style={{ marginLeft: 280, marginTop: 30 }}
-//                                         // onClick={this.handleSetPassword}
-//                                         >
-//                                             Send
-//                                         </Button>
-//                                     </Form>
-//                                 )}
-//                             </Formik>
-//                             <Spacer style={{ marginBottom: -40 }} />
-//                             <Link to='/login' style={{ textAlign: 'center', fontSize: 16, marginLeft: "0.625em" }}>Back to login</Link>
-//                         </FormWrapper>
-//                         <div className="footer1"
-//                             style={{
-//                                 textAlign: 'center',
-//                                 fontSize: '12x', fontFamily: 'SFS, Arial, sans-serif', position: 'absolute', bottom: 0
-//                             }}>
-//                             © {new Date().getFullYear()},  {` `} teKorero.com, All rights reserved.
-//                         </div>
-//                     </AuthContainer>
-//                     <RandomImageScreen />
-//                 </FlexContainer>
-//             </>
-//         )
-//    }
-//}
-
-// 
-
-
-
-
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -114,10 +9,11 @@ import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
 import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
 import styled from "styled-components";
+import inno from "../../Assets/Images/logo_22.png"; //inn
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
-import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
-
+ import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
+import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 /**
  * yup validation scheme for set Password
  */
@@ -195,7 +91,7 @@ class ForgotPassword extends Component {
                   <Spacer />
                   <Formik
                     initialValues={{
-                      email: "",
+                      emailId: "",
                       otp: "",
                       password: "",
                       confirmPassword: "",
@@ -205,7 +101,7 @@ class ForgotPassword extends Component {
                       console.log(values);
                       this.props.forgetPassword(
                         {
-                          email: this.props.email,
+                          emailId: this.props.email,
                         },
                         this.callback
                       );
@@ -219,7 +115,7 @@ class ForgotPassword extends Component {
                               <Field
                                 // type="defaultUser.email"
                                 placeholder="Enter your email"
-                                name="defaultUser.email"
+                                name="emailId"
                                 // label="Verify Email"
                                 // className="field"
                                 isColumn
@@ -231,22 +127,19 @@ class ForgotPassword extends Component {
                             <div className="w-[25%]" >
                               <Button
                                 type="primary"
-                                // htmlType="submit"
-                                //disabled={!values.defaultUser.email.length}
-                                // loading={isSubmitting}
+                                disabled={!values.emailId.length}
                                 onClick={() => {
-                                  this.setState({ sendOtpClicked: true });
+                                  // this.setState({ sendOtpClicked: true });
                                   this.props.verifyEmailurL({
-                                    emailId: values.defaultUser.email,
+                                    emailId: values.emailId,
                                     otp: 0,
                                   });
-                                  // this.handleOtpField()
                                 }}
-                                style={{
+                                class={{
                                   width: "100%",
                                   margin: "7%",
                                 }}
-                              // disabled={!this.state.checked}
+
                               >
                                 Send OTP
                               </Button>
@@ -257,7 +150,7 @@ class ForgotPassword extends Component {
                             <div className="w-[75%]" >
                               <Field
                                 // disabled={!this.state.otp}
-                                name="defaultUser.validateotp"
+                                name="otp"
                                 // label="Validate OTP*"
                                 placeholder="Validate OTP"
                                 isColumn
@@ -267,21 +160,19 @@ class ForgotPassword extends Component {
                             <div className="w-[25%]">
                               <Button
                                 type="primary"
-                                // htmlType="submit"
-                                //disabled={!values.defaultUser.validateotp.length}
+                                disabled={!values.otp.length}
                                 onClick={() => {
-                                  //   this.props.validateOtpurL({
-                                  //     emailId: values.defaultUser.email,
-                                  //     otp: values.defaultUser.validateotp,
-                                  //   });
+                                  this.props.validateOtpurL({
+                                    emailId: values.emailId,
+                                    otp: values.otp,
+                                  });
 
                                 }}
                                 style={{
                                   width: "100%",
                                   margin: "7%",
                                 }}
-                                disabled={!this.state.sendOtpClicked}
-                              // disabled={!this.state.checked}
+                              // disabled={!this.state.sendOtpClicked}
                               >
                                 Validate
                               </Button>
@@ -293,7 +184,7 @@ class ForgotPassword extends Component {
                             <div className="w-full" >
                               <Field
                                 name="password"
-                                //type={this.state.type}
+                                type={this.state.type}
                                 placeholder=" New password"
                                 component={this.InputComponent}
                               />
@@ -384,7 +275,7 @@ class ForgotPassword extends Component {
                             <Button
                               type="primary"
                               htmlType="submit"
-                              Loading={this.props.changingPassword}
+                              loading={this.props.doResetpassword}
                               style={{ width: "15.875em", height: "2.5em" }}
                             // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
                             >
@@ -423,17 +314,17 @@ class ForgotPassword extends Component {
   }
 }
 const mapStateToProps = ({ auth }) => ({
-  changingPassword: auth.changingPassword,
-  changingPasswordError: auth.changingPasswordError,
+  doResetpassword: auth.doResetpassword,
+  doResetpasswordError: auth.doResetpasswordError,
   email: auth.userDetails.email,
   user: auth.userDetails,
   userType: auth.userDetails.userType,
+  validOtp: auth.validOtp,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // changePassword,
-      // validateOtpurL,
+      forgotUserPassword, validateOtpurL, verifyEmailurL
     },
     dispatch
   );

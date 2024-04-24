@@ -6,6 +6,10 @@ const initialState = {
   addTaskModal: false,
   addingTask: false,
   addingTaskError: false,
+  addingTaskImportForm:false,
+  addingTaskImportFormError:false,
+
+  addUpdatedocumentTaskModal:false,
   deleteTask: false,
   deleteTaskError: false,
   updatingTask: false,
@@ -32,6 +36,8 @@ const initialState = {
   fetchingCandidateTaskListError:false,
   candidateTaskList:[],
 
+  addDrawerTaskStepperModal:false,
+
   addDrawerTaskFeedbackModal:false,
 
   addSharingTask: false,
@@ -46,6 +52,8 @@ const initialState = {
 
 
   addDrawerTaskProjectModal:false,
+
+  addProspectConfirmationModal:false,
 
   approvedPartner: false,
   approvedPartnerError: false,
@@ -65,6 +73,13 @@ const initialState = {
   fetchingProjectTaskTableError:false,
   projectTaskTable:[],
 
+  fetchingStepperTaskList: false,
+  fetchingStepperTaskListError: false,
+  taskCardList:[],
+
+  updatingStepperTaskValue: false,
+   updatingStepperTaskValueError: false,
+
   fetchingTaskListRangeByUserIdForReport: false,
   fetchingTaskListRangeByUserIdForReportError: false,
   taskListRangeByUserIdForReport: [],
@@ -81,10 +96,23 @@ const initialState = {
   fetchingApproveTaskTableError: false,
   approvalTaskTable:[],
 
+  linkingProspectStatus: false,
+  linkingProspectStatusError: false,
+
 
   fetchingProjectTaskList:false,
   fetchingProjectTaskListError:false,
   projectTaskList:[],
+
+  deletingStepperTaskData: false, 
+  deletingStepperTaskDataError: false, 
+
+  addingStepperTask: false,
+  addingStepperTaskError: false,
+
+
+  updatingTaskImportForm:false,
+  updatingTaskImportFormError:false,
 
   fetchingHighPriorityTaskCompleted: false,
   fetchingHighPriorityTaskCompletedError: false,
@@ -98,6 +126,9 @@ const initialState = {
   fetchingTasksVelocityError: false,
   taskVelocity: 0,
 
+  addingNotesList:false,
+  addingNotesListError:false,
+
   addingNotesByTaskId: false,
   addingNotesByTaskIdError: false,
 
@@ -109,8 +140,15 @@ const initialState = {
   fetchingTasksAssignedError: false,
   taskAssigned: "",
 
+
+  addTaskImportModal:false,
+
    linkingTaskStatus: false,
    linkingTaskStatusError:false,
+
+   fetchingTaskTimeline:false,
+   fetchingTaskTimelineError:false,
+   taskTimeline:[],
 
    addDrawerTaskNotesModal:false,
 
@@ -139,6 +177,9 @@ const initialState = {
   fetchingTimeZoneError: false,
   timeZone: [],
 
+
+  addDocumentTaskDrawerModal:false,
+
   fetchingTaskDelete:false,
   fetchingTaskDeleteError:false,
   taskDeleteList:[],
@@ -156,6 +197,11 @@ const initialState = {
   fetchingGrantTask: false,
   fetchingGrantTaskError:false,
   grantTask:[],
+
+  fetchingNotesList:false,
+  fetchingNotesListError:false,
+
+  notesList:[]
 };
 export const TaskReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -294,6 +340,8 @@ export const TaskReducer = (state = initialState, action) => {
         fetchingHighPriorityTaskCompleted: false,
         fetchingHighPriorityTaskCompletedError: true,
       };
+      case types.HANDLE_TASK_IMPORT_MODAL:
+      return { ...state, addTaskImportModal: action.payload };
 
     case types.GET_TASK_VELOCITY_REQUEST:
       return { ...state, fetchingTasksVelocity: true };
@@ -323,6 +371,27 @@ export const TaskReducer = (state = initialState, action) => {
         ...state,
         fetchingTasksToStart: false,
         fetchingTasksToStartError: true,
+      };
+
+
+      case types.ADD_TASK_IMPORT_FORM_REQUEST:
+      return { ...state, addingTaskImportForm: true };
+    case types.ADD_TASK_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingTaskImportForm: false,
+        addTaskImportModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+
+      };
+    case types.ADD_TASK_IMPORT_FORM_FAILURE:
+      return {
+        ...state, addingTaskImportForm: false,
+        // addCustomerModal: false 
       };
 
     case types.GET_TASKS_ASSIGNED_REQUEST:
@@ -378,7 +447,9 @@ export const TaskReducer = (state = initialState, action) => {
       return { ...state, addingTask: false,
          addTaskModal: false,
          callActivityModal:false,
-         addPitchactivityModal:false, };
+         addPitchactivityModal:false,
+         taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
+        };
     case types.ADD_TASK_FAILURE:
       return {
         ...state,
@@ -386,6 +457,22 @@ export const TaskReducer = (state = initialState, action) => {
         addingTaskError: false,
         addTaskModal: false,
       };
+
+      case types.ADD_STEPPER_TASK_REQUEST:
+        return { ...state, addingStepperTask: true };
+      case types.ADD_STEPPER_TASK_SUCCESS:
+        return { ...state, addingStepperTask: false,
+          taskCardList:[action.payload,...state.taskCardList]
+        
+          };
+      case types.ADD_STEPPER_TASK_FAILURE:
+        return {
+          ...state,
+          addingStepperTask: false,
+          addingStepperTaskError: false,
+         
+          // addTaskModal: false,
+        };
 
     case types.GET_TIMEZONE_REQUEST:
       return { ...state, fetchingtimeZone: true };
@@ -666,6 +753,24 @@ export const TaskReducer = (state = initialState, action) => {
             fetchingCandidateTaskListError: true,
           };
 
+
+          case types.HANDLE_UPDATE_DOCUMENT_TASK_DRAWER_MODAL:
+            return { ...state, addUpdatedocumentTaskModal: action.payload };
+          case types.GET_TASK_TIMELINE_REQUEST:
+      return { ...state, fetchingTaskTimeline: true };
+    case types.GET_TASK_TIMELINE_SUCCESS:
+      return {
+        ...state,
+        fetchingTaskTimeline: false,
+        taskTimeline: action.payload,
+      };
+    case types.GET_TASK_TIMELINE_FAILURE:
+      return {
+        ...state,
+        fetchingTaskTimeline: false,
+        fetchingTaskTimelineError: true,
+      };
+
       
       case types.SET_TASK_EDIT:
         return { ...state, setEditingTask: action.payload };
@@ -751,8 +856,14 @@ export const TaskReducer = (state = initialState, action) => {
       case types.HANDLE_TASK_NOTES_DRAWER_MODAL:
         return { ...state, addDrawerTaskNotesModal: action.payload };
 
+        case types.HANDLE_TASK_STEPPER_DRAWER_MODAL:
+          return { ...state, addDrawerTaskStepperModal: action.payload };
+
         case types.HANDLE_TASK_FEEDBACK_DRAWER_MODAL:
           return { ...state, addDrawerTaskFeedbackModal: action.payload };
+
+          case types.HANDLE_TASK_DOCUMENT_DRAWER_MODAL:
+          return { ...state, addDocumentTaskDrawerModal: action.payload };
     
 
         case types.ADD_TASK_NOTES_REQUEST:
@@ -763,7 +874,7 @@ export const TaskReducer = (state = initialState, action) => {
         case types.ADD_TASK_NOTES_SUCCESS:
           return {
             ...state,
-            addDrawerTaskNotesModal:false,
+            // addDrawerTaskNotesModal:false,
             addingNotesByTaskId: false,
 
           };
@@ -788,6 +899,28 @@ export const TaskReducer = (state = initialState, action) => {
               fetchingNotesListByTaskId: false,
               fetchingNotesListByTaskIdError: true,
             };
+
+
+
+            case types.UPDATE_TASK_IMPORT_FORM_REQUEST:
+              return { ...state, updatingTaskImportForm: true };
+            case types.UPDATE_TASK_IMPORT_FORM_SUCCESS:
+              return {
+                ...state,
+                updatingTaskImportForm: false,
+                addUpdatedocumentTaskModal: false,
+                // organizationDocumentDrawer: false,
+                // repositoryData: [
+                //   action.payload,
+                //   ...state.repositoryData,
+                //  ],
+        
+              };
+            case types.UPDATE_TASK_IMPORT_FORM_FAILURE:
+              return {
+                ...state, updatingTaskImportForm: false,
+                // addCustomerModal: false 
+              };
 
             case types.GET_APPROVAL_TASK_TABLE_REQUEST:
               return { ...state, fetchingApproveTaskTable: true };
@@ -896,7 +1029,121 @@ export const TaskReducer = (state = initialState, action) => {
                                 ...state,
                                 fetchingOpportunityRecord: false,
                                 fetchingOpportunityRecordError: true,
-                              };            
+                              };   
+                              
+                              
+                              case types.HANDLE_PROSPECT_CONFIRMATION_MODAL:
+                                return { ...state, addProspectConfirmationModal: action.payload };
+
+
+                                case types.CONVERT_PROSPECT_STATUS_REQUEST:
+                                  return { ...state, linkingProspectStatus: true };
+                                case types.CONVERT_PROSPECT_STATUS_SUCCESS:
+                                  return {
+                                    ...state,
+                                    linkingProspectStatus: false,
+                                    addProspectConfirmationModal:false,
+                                    approvalTaskTable: state.approvalTaskTable.filter(
+                                      (item) => item.taskId !== action.payload
+                                    ),
+                                  };
+                                case types.CONVERT_PROSPECT_STATUS_FAILURE:
+                                  return {
+                                    ...state,
+                                    linkingProspectStatus: false,
+                                    linkingProspectStatusError: true,
+                                  };
+
+
+
+
+                                  case types.GET_NOTES_LIST_TASK_ID_REQUEST:
+                                    return { ...state, fetchingNotesList: true };
+                                  case types.GET_NOTES_LIST_TASK_ID_SUCCESS:
+                                    return {
+                                      ...state,
+                                    fetchingNotesList: false,
+                                    notesList: action.payload,
+                                    };
+                                  case types.GET_NOTES_LIST_TASK_ID_FAILURE:
+                                    return {
+                                      ...state,
+                                      fetchingNotesList: false,
+                                      fetchingNotesListError: true,
+                                    };
+
+
+
+
+                                    case types.ADD_TASK_NOTES_LIST_REQUEST:
+                                      return {
+                                        ...state,
+                                        addingNotesList: true,          
+                                      };
+                                    case types.ADD_TASK_NOTES_LIST_SUCCESS:
+                                      return {
+                                        ...state,
+                                        // addDrawerTaskNotesModal:false,
+                                        addingNotesList: false,
+               
+                            
+                                      };
+                                    case types.ADD_TASK_NOTES_LIST_FAILURE:
+                                      return {
+                                        ...state,
+                                        addingNotesList: false,
+                                        addingNotesListError: true,
+                                      };  
+                            
+
+                                      case types.GET_STEPPER_TASK_LIST_REQUEST:
+                                        return { ...state, fetchingStepperTaskList: true };
+                                      case types.GET_STEPPER_TASK_LIST_SUCCESS:
+                                        return {
+                                          ...state,
+                                          fetchingStepperTaskList: false,
+                                          taskCardList: action.payload,
+                                          // clearbit: null,
+                                        };
+                                      case types.GET_STEPPER_TASK_LIST_FAILURE:
+                                        return {
+                                          ...state,
+                                          fetchingStepperTaskList: false,
+                                          fetchingStepperTaskListError: true,
+                                        };
+
+                                        case types.UPDATE_TASK_STEPPER_VALUE_REQUEST:
+                                          return { ...state, updatingStepperTaskValue: true };
+                                        case types.UPDATE_TASK_STEPPER_VALUE_SUCCESS:
+                                          // return { ...state, updatingDepartments: false, Departments: [...state.Departments, action.payload] };
+                                          return {
+                                            ...state,
+                                            updatingStepperTaskValue: false,
+                                            taskCardList: state.taskCardList.map((equipment) =>
+                                            equipment.id === action.payload.id ? action.payload : equipment
+                                            ),
+                                          };
+                                        case types.UPDATE_TASK_STEPPER_VALUE_FAILURE:
+                                          return { ...state, updatingStepperTaskValue: false, updatingStepperTaskValueError: true };
+
+
+
+                                          case types.DELETE_SREPPER_TASK_DATA_REQUEST:
+                                            return { ...state, deletingStepperTaskData: true };
+                                          case types.DELETE_SREPPER_TASK_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              deletingStepperTaskData: false,
+                                              taskCardList: state.taskCardList.filter(
+                                                (item) => item.id !== action.payload
+                                              ),
+                                            };
+                                          case types.DELETE_SREPPER_TASK_DATA_FAILURE:
+                                            return { ...state, deletingStepperTaskData: false, deletingStepperTaskDataError: false };
+                                      
+                                
+                                
+                          
 
         default:
       return state;

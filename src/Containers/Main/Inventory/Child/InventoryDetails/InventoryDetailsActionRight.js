@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import { RollbackOutlined } from "@ant-design/icons";
+import { emptyInventory } from "../../InventoryAction"
 
 class InventoryDetailActionRight extends React.Component {
     render() {
@@ -26,12 +27,12 @@ class InventoryDetailActionRight extends React.Component {
 
                     <div class=" flex justify-between" >
 
-                        <div class=" flex flex-row w-[36rem] items-center"  >
+                        <div class=" flex flex-row w-[50rem] items-center justify-between"  >
                             <Title width="25%">
-                                <label class=" text-base font-medium"> {` ${locationName || ""} `}</label>
+                                <label class=" text-sm font-medium"> {` ${locationName || ""} `}</label>
                             </Title>
 
-                            <div class=" flex w-[70%] justify-center ml-[1rem]"  >
+                            <div class=" flex  justify-center ml-[1rem]"  >
                                 {`${addressdata1 || ""} ${addressdata2 || ""} ${addressdata3 || ""} ${addressdata4 || ""} ${addressdata5 || ""}`}
                             </div>
 
@@ -40,15 +41,15 @@ class InventoryDetailActionRight extends React.Component {
 
                         </div>
                     </div>
-                    <Tooltip title="Back">
+                    {/* <Tooltip title="Back">
                         <RollbackOutlined
-                            class="text-[#1890ff]"
+                            style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             onClick={() => {
                                 this.props.history.goBack();
-                                this.props.handleResetTab();
+                                this.props.emptyInventory()
                             }}
                         />
-                    </Tooltip>
+                    </Tooltip> */}
                 </div>
 
             </>
@@ -57,7 +58,9 @@ class InventoryDetailActionRight extends React.Component {
 }
 const mapStateToProps = ({ }) => ({});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    emptyInventory
+}, dispatch);
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(InventoryDetailActionRight)

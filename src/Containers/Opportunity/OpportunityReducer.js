@@ -103,6 +103,10 @@ const initialState = {
   fetchingOpportunityDetailsByIdError: false,
   opportunity: {},
 
+  fetchingAllRecords: false,
+  fetchingAllRecordsError: false,
+  allOpportunityRecords:{},
+
   documentUploadModal: false,
   addSponsorModal: false,
 
@@ -247,6 +251,12 @@ const initialState = {
   deletedOpportunity: [],
 
 
+  fetchingRegionalQuotationSalesList:false,
+  fetchingRegionalQuotationSalesListError:false,
+  regionQuotationSalesList:[],
+
+
+
   fetchingPermissionsList: false,
   fetchingPermissionsListError: false,
   permissionsDataList: [],
@@ -264,6 +274,10 @@ const initialState = {
   linkingProfileToOpportunity: false,
   linkingProfileToOpportunityError: false,
   profileRecruit:[],
+
+  fetchingTeamOpportunity: false,
+  fetchingTeamOpportunityError: false,
+  teamOpportunity:[],
 
   addingRecruitmentProfile: false,
   addingRecruitmentProfileError: false,
@@ -523,6 +537,19 @@ const updatedOpportunity = (item, newProps) => {
 
 
 const updatedDragOpportunity = (item, newProps) => {
+  return item.map((opp, index) => {
+    console.log("Author7",opp);
+    console.log("Author8",newProps);
+    if (opp.opportunityId === newProps.opportunityId) {
+      console.log("inside opp");
+      opp.opportunityStagesId = newProps.opportunityStagesId;
+    }
+    return opp;
+  });
+};
+
+
+const updatedDragQuotation = (item, newProps) => {
   return item.map((opp, index) => {
     console.log("Author7",opp);
     console.log("Author8",newProps);
@@ -1322,6 +1349,24 @@ case types.GET_DELETED_OPPORTUNITY_FAILURE:
                 };
 
 
+
+                case types.GET_REGION_SALES_QUOTATION_LIST_REQUEST:
+  return { ...state, fetchingRegionalQuotationSalesList: true };
+case types.GET_REGION_SALES_QUOTATION_LIST_SUCCESS:
+  return {
+    ...state,
+    fetchingRegionalQuotationSalesList: false,
+    regionQuotationSalesList: action.payload,
+  };
+case types.GET_REGION_SALES_QUOTATION_LIST_FAILURE:
+  return {
+    ...state,
+    fetchingRegionalQuotationSalesList: false,
+    fetchingRegionalQuotationSalesListError: true,
+  };
+
+
+
                 case types.GET_SKILLS_COUNT_REQUEST:
                   return { ...state, fetchingSkillsCount: true };
                 case types.GET_SKILLS_COUNT_SUCCESS:
@@ -2027,6 +2072,21 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                               fetchingCloseRecordsError: true,
                                             };
 
+                                            case types.GET_ALL_RECORDS_REQUEST:
+                                              return { ...state, fetchingAllRecords: true };
+                                            case types.GET_ALL_RECORDS_SUCCESS:
+                                              return {
+                                                ...state,
+                                                fetchingAllRecords: false,
+                                                allOpportunityRecords: action.payload,
+                                              };
+                                            case types.GET_ALL_RECORDS_FAILURE:
+                                              return {
+                                                ...state,
+                                                fetchingAllRecords: false,
+                                                fetchingAllRecordsError: true,
+                                              };
+
                                             case types.GET_LOST_RECORDS_REQUEST:
                                               return { ...state, fetchingLostRecords: true };
                                             case types.GET_LOST_RECORDS_SUCCESS:
@@ -2316,6 +2376,7 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                                 return { ...state, 
                                                   updatingDragStage: false ,
                                                   opportunityByUserId: updatedDragOpportunity(state.opportunityByUserId, action.payload),
+                                                  regionQuotationSalesList: updatedDragQuotation(state.regionQuotationSalesList, action.payload),
                                                  // candidateRequirement: [action.payload]
 
                                                 };
@@ -2338,7 +2399,7 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                                                       ...state,
                                                                       reInstateToggleForlost: false,
                                                                       lostOpportunity: state.lostOpportunity.filter(
-                                                                        (item) => item.opportunityId !== action.payload.opportunityId
+                                                                        (item) => item.opportunityId !== action.payload
                                                                      ),
                                                                    };
                                                                  case types.REINSTATE_TOGGLE_FOR_LOST_FAILURE:
@@ -2498,6 +2559,21 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
                                               fetchingAllOpportunity: false,
                                               fetchingAllOpportunityError: true,
                                             };
+
+                                            case types.GET_TEAM_OPPORTUNITY_REQUEST:
+                                              return { ...state, fetchingTeamOpportunity: true };
+                                            case types.GET_TEAM_OPPORTUNITY_SUCCESS:
+                                              return {
+                                                ...state,
+                                                fetchingTeamOpportunity: false,
+                                                teamOpportunity: action.payload,
+                                              };
+                                            case types.GET_TEAM_OPPORTUNITY_FAILURE:
+                                              return {
+                                                ...state,
+                                                fetchingTeamOpportunity: false,
+                                                fetchingTeamOpportunityError: true,
+                                              };
 
                                             case types.EMPTY_OPPORTUNITY_LIST:
         return { ...state, opportunityByUserId: [] }; 

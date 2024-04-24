@@ -2,6 +2,7 @@ import * as types from "./DepartmentActionTypes";
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 /**
  * get all the Department
  */
@@ -35,7 +36,7 @@ export const getDepartments = () => (dispatch) => {
 /**
 * add a new DEPARTMENTS
 */
-export const addDepartments = (departments, cb) => (dispatch) => {
+export const addDepartments = (departments,orgId, cb) => (dispatch) => {
   console.log(departments);
   dispatch({
     type: types.ADD_DEPARTMENTS_REQUEST,
@@ -47,11 +48,27 @@ export const addDepartments = (departments, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      {res.data.message?  
-        message.success(res.data.message):
-      message.success("Department has been added successfully!");
+      dispatch(getDepartmentCount(orgId));
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Department added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
       }
+    
       dispatch(getDepartments());
+    
+      
       console.log(res);
       dispatch({
         type: types.ADD_DEPARTMENTS_SUCCESS,
@@ -77,7 +94,7 @@ export const addDepartments = (departments, cb) => (dispatch) => {
 /**
  * remove a new DEPARTMENT
  */
-export const removeDepartments = (departmentId) => (dispatch) => {
+export const removeDepartments = (departmentId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_DEPARTMENTS_REQUEST,
@@ -89,7 +106,12 @@ export const removeDepartments = (departmentId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Department has been deleted successfully!");
+        dispatch(getDepartmentCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Department deleted Successfully!',
+        })
+        // message.success("Department has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DEPARTMENTS_SUCCESS,
@@ -125,12 +147,16 @@ export const updateDepartments = (departmentId, departmentName, sectorId, sector
       }
     )
     .then((res) => {
-      message.success("Department has been updated successfully!");
+      // message.success("Department has been updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_DEPARTMENTS_SUCCESS,
         payload: res.data,
       });
+      Swal.fire({
+        icon: 'success',
+        title: 'Department updated Successfully!',
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -435,6 +461,32 @@ export const addingDeptModules = (data, departmentId) => (dispatch, getState) =>
       console.log(err);
       dispatch({
         type: types.ADDING_MODULE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDepartmentCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEPARTMENT_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/department/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEPARTMENT_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DEPARTMENT_COUNT_FAILURE,
         payload: err,
       });
     });

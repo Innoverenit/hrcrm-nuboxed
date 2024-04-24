@@ -110,7 +110,7 @@ class SingleDesignation extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingDesignations}
+                    loading={updatingDesignations}
                     disabled={!value}
                     onClick={() =>
                       handleUpdateDesignation(
@@ -124,7 +124,7 @@ class SingleDesignation extends Component {
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                   </Button>
                 
-                  <Button type="primary" ghost onClick={() => toggleViewType()}>
+                  <Button type="cancel"  onClick={() => toggleViewType()}>
                     {/* Cancel */}
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>

@@ -17,6 +17,10 @@ const initialState = {
   addingTypeToggle: false,
   addingTypeToggleError: false,
 
+  fetchingDocumentCount: false,
+  fetchingDocumentCountError: false,
+  documentCount:{},
+
 
   addingWorkflowDocumentToggle:false,
   addingWorkflowDocumentToggleError:false,
@@ -201,6 +205,19 @@ export const documentsReducer = (state = initialState, action) => {
                   documents: [], 
                   // deletedTruck: [] 
                 };
+
+
+                case types.GET_DOCUMENT_COUNT_REQUEST:
+                  return { ...state, fetchingDocumentCount: true };
+                case types.GET_DOCUMENT_COUNT_SUCCESS:
+                  return { ...state, fetchingDocumentCount: false, 
+                    documentCount: action.payload };
+                case types.GET_DOCUMENT_COUNT_FAILURE:
+                  return {
+                    ...state,
+                    fetchingDocumentCount: false,
+                    fetchingDocumentCountError: true,
+                  };
       
 
     default:

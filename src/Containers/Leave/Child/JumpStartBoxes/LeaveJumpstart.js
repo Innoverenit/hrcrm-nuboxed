@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
 
 class LeaveJumpstart extends React.Component {
   render() {
@@ -21,6 +21,7 @@ class LeaveJumpstart extends React.Component {
 <div class="flex w-wk">
                 <div class="md:w-[35%] max-sm:w-wk">
                 <JumpStartBox
+                bgColor="linear-gradient(270deg,#F15753,orange)"
                 // bgColor="#005075"
                 title="Annual Leaves"
                 stringValue
@@ -30,7 +31,8 @@ class LeaveJumpstart extends React.Component {
                 </div>
 
                 <div class="md:w-[35%] max-sm:w-wk">
-                <JumpStartBox1
+                <JumpStartBox
+                bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                 // bgColor="#0073a8"
                 stringValue
                 noProgress
@@ -41,7 +43,8 @@ class LeaveJumpstart extends React.Component {
                 </div>
                 <div class="flex w-wk">
                 <div class="md:w-[35%] max-sm:w-wk">
-                <JumpStartBox2
+                <JumpStartBox
+                bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                 // bgColor="#0093d7"
                 // title="Pending"
                 title="Approved"
@@ -52,7 +55,8 @@ class LeaveJumpstart extends React.Component {
                 </div>
 
                 <div class="md:w-[35%] max-sm:w-wk">
-                <JumpStartBox3
+                <JumpStartBox
+                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 // bgColor="#24b9fe"
                 title="Leave Balance"
                 stringValue

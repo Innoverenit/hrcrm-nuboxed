@@ -2,6 +2,7 @@ import React, { useState,lazy} from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
+import EmployeeTab from "./EmployeeTab/EmployeeTab";
 const PerformanceManagementTab = lazy(() =>
   import("./PerformanceManagementTab/PerformanceManagementTab")
 );
@@ -32,6 +33,7 @@ const InvestorTab = lazy(() =>
 const ModuleTab = lazy(() =>
   import("./Module/ModuleTab")
 );
+const Words =lazy(()=>import("./Words/Words"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -79,11 +81,16 @@ function CategoryTab (props) {
               ruleId: "8",
               component:<PerformanceManagementTab />,
             },
-            // {
-            //   rulesName: "Assessment",
-            //   ruleId: "4",
-            //   component:<AssessmentTab/>,
-            // },
+            {
+              rulesName: "Words",
+              ruleId: "9",
+              component:<Words/>,
+            },
+            {
+              rulesName: "Employee",
+              ruleId: "10",
+              component:<EmployeeTab/>,
+            },
 
           ];
           const [rules, setRules] = useState(name);
@@ -96,14 +103,14 @@ function CategoryTab (props) {
           <div>
             {/* <Suspense fallback={"Loading..."}> */}
               <div class=" flex flex-no-wrap w-full" >
-                <div class=" w-[20%]" >
+                <div class=" w-[22%]" >
                   <CategoryActionLeft
                     handleRuleClick={handleRuleClick}
                     rules={rules}
                     currentRulesOpen={currentRulesOpen}
                   />
                 </div>
-                <div class=" w-[80%]" >
+                <div class=" w-[78%]" >
                   <CategoryActionRight current={currentRulesOpen} />
                 </div>
               </div>

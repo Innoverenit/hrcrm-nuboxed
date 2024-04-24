@@ -39,6 +39,7 @@ import {
 import AddOpportunityDrawerModal from "../../Child/OpportunityTable/AddOpportunityDrawerModal"
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -126,11 +127,11 @@ function OpportunityCardList(props) {
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingOpportunity?<div style={{ textAlign: 'center' }}>Loading...</div> :null}
-                height={"87vh"}
+                height={"75vh"}
             >
 
-<div class="flex justify-center  flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
-    {opportunityByUserId.map((item) => {
+<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                    item.stageList.forEach((element) => {
@@ -138,9 +139,9 @@ function OpportunityCardList(props) {
                        findProbability = element.probability;}
                     });
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] justify-center shadow-[#aaa] h-[8rem] 
-                  text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-full max-sm:m-[0.15rem]  ">
-        <div class="flex items-center flex-nowrap h-[2.81em]">
+                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
+                  text-[#444444] m-3 p-1 w-[15vw] max-sm:w-wk flex flex-col  ">
+        <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -164,7 +165,7 @@ title={`${item.opportunityName}`}>
           </div> 
           </div>
         </div>
-        <div className="flex justify-around">
+        <div className="flex justify-around max-sm:justify-between">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -191,7 +192,7 @@ title={`${item.opportunityName}`}>
           </div>
           </div>
           </div>
-          <div className="flex justify-around mt-1">      
+          <div className="flex justify-around mt-1 max-sm:justify-between">      
 <div>
 <span>
 <Dropdown
@@ -324,6 +325,7 @@ imgHeight={"1.8em"}
   </Tooltip>
   </Popconfirm>
   &nbsp; &nbsp;
+  {user.recruitProInd === true && (
   <Popconfirm
   title="Change status to Lost?"
   onConfirm={() => handleConfirm(item.opportunityId)}
@@ -347,6 +349,7 @@ imgHeight={"1.8em"}
         />
         </Tooltip>
     </Popconfirm>
+     )}
 </>
 )}
 </div>
@@ -370,7 +373,7 @@ imgHeight={"1.8em"}
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-base cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
               </span>
         
           </Tooltip>
@@ -386,14 +389,14 @@ imgHeight={"1.8em"}
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
-            className=" !text-base cursor-pointer text-[grey]"
+            className=" !text-xl cursor-pointer text-[grey]"
               onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <BorderColorIcon  className=" !text-base cursor-pointer"/>
+                 <BorderColorIcon  className=" !text-xl cursor-pointer"/>
               </span>
            )}
           </Tooltip>
@@ -405,7 +408,8 @@ imgHeight={"1.8em"}
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
             <DeleteOutlined
-            type="delete" className=" !text-base cursor-pointer text-[red]" />
+            // loading={props.deleteOpportunityData}
+            type="delete" className=" !text-xl cursor-pointer text-[red]" />
              )}
           </StyledPopconfirm>
 
@@ -459,6 +463,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  deleteOpportunityData:opportunity.deleteOpportunityData,
   addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   role: auth.userDetails.role,
   opportunitySkills:opportunity.opportunitySkills,

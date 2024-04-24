@@ -3,19 +3,33 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
+import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -25,21 +39,27 @@ const LeadsActionLeft = (props) => {
     } else if (props.viewType === "teams") {
       props.getLeadsTeamRecords(props.userId);
     }
+    else if (props.viewType === "all") {
+      props.getLeadsAllRecords(props.orgId);
+    }
+    
   }, [props.viewType, props.userId]);
 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
       setPage(pageNo + 1);
       props.getLeads(props.userId, pageNo, "creationdate");
       props.ClearReducerDataOfLead()
+      setSearchOnEnter(false);
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.inputLeadsDataSearch(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -55,6 +75,7 @@ const LeadsActionLeft = (props) => {
     />
   );
   const { user } = props;
+  console.log(currentData)
 
   return (
     <div class=" flex  items-center">
@@ -112,7 +133,10 @@ const LeadsActionLeft = (props) => {
           <Tooltip
             title="All"
           >
-            <Badge>
+            <Badge
+               size="small"
+               count={(props.viewType === "all" && props.leadsAllCountData.leadsDetails) || 0}
+               overflowCount={999}>
               <span class=" md:mr-1 text-sm cursor-pointer"
                 onClick={() => props.setLeadsViewType("all")}
                 style={{
@@ -155,7 +179,7 @@ const LeadsActionLeft = (props) => {
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChange}
-        // value={currentData}
+        value={currentData}
         />
         {/* <Input
             placeholder="Search by Name or Sector"
@@ -189,7 +213,9 @@ const mapStateToProps = ({ leads, auth }) => ({
   leadsTeamCountData: leads.leadsTeamCountData,
   leadsCountJunked: leads.leadsCountJunked,
   userId: auth.userDetails.userId,
+  leadsAllCountData:leads.leadsAllCountData,
   user: auth.userDetails,
+  orgId: auth.userDetails.organizationId,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -198,7 +224,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   ClearReducerDataOfLead,
   getLeads,
   getJunkedLeadsRecords,
-  getLeadsTeamRecords
+  getLeadsTeamRecords,
+  getLeadsAllRecords
 }, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LeadsActionLeft));

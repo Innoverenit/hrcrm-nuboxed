@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button} from "antd";
+import { Button } from "antd";
 import { OnlyWrapCard } from '../../../Components/UI/Layout'
 import { Formik, Form, Field } from "formik";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -15,6 +15,7 @@ import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import DistributorPaymentToggle from "./DistributorPaymentToggle";
 import DistributorProductHistory from "./DistributorProductHistory";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 function DistributorColletcionArchive(props) {
   useEffect(() => {
@@ -62,13 +63,13 @@ function DistributorColletcionArchive(props) {
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-evenly h-full w-[30%] items-end">
-              <div class="w-[35%]">
+            <div class="flex justify-evenly h-full w-[35%] items-end max-sm:w-wk">
+              <div class="w-[35%] max-sm:w-wk">
                 <Field
                   isRequired
                   name="date"
                   width={"100%"}
-                  label={<FormattedMessage id="app.paymentdate" defaultMessage="Payment Date"/>}
+                  label="Search by Payment Date"
                   component={DatePicker}
                   value={values.date}
                   inlineLabel
@@ -76,7 +77,7 @@ function DistributorColletcionArchive(props) {
 
                 />
               </div>
-              <div class="w-[25%]">
+              <div class="md:w-[0%] mb-[0.35rem]">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -84,10 +85,10 @@ function DistributorColletcionArchive(props) {
                   disabled={values.date ? false : true}
 
                 >
-                <FormattedMessage id="app.submit" defaultMessage="Submit"/>  
+                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
                 </Button>
               </div>
-              <div class="w-[15%]">
+              <div class=" mb-[0.35rem]">
                 <Button
                   type="primary"
                   disabled={values.date ? false : true}
@@ -97,150 +98,130 @@ function DistributorColletcionArchive(props) {
                     handleClear();
                   }}
                 >
-                  <FormattedMessage id="app.clear" defaultMessage="Clear"/>
+                  <FormattedMessage id="app.clear" defaultMessage="Clear" />
                 </Button>
               </div>
             </div>
 
 
-            
+
           </Form>
         )}
       </Formik>
 
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer"/></div>
-            <div className=" md:w-[8.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #"/></div>
-            <div className=" md:w-[5.8rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID"/></div>
-            <div className="md:w-[1.9rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
-            <div className="md:w-[5.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
-            <div className="md:w-[5.2rem]"><FormattedMessage id="app.amount" defaultMessage="Amount"/></div>
-            <div className="md:w-[3.3rem]"><FormattedMessage id="app.mode" defaultMessage="Mode"/></div>
-            <div className="w-[4.8rem]"><FormattedMessage id="app.received" defaultMessage="Received ?"/></div>
-            <div className="w-[4.9rem]"><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+      {props.fetchingTodayDistributor ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
+      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
+            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
+            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
+            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
+            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.received" defaultMessage="Received ?" /></div>
+            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
           </div>
-
-
+          <div className=" overflow-scroll h-[65vh]">
           {props.todayDistributor.map((item) => {
 
             return (
               <div>
-                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
-                  <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-      
-                      <div class=" text-xs text-cardBody font-poppins">
+                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.orderSourceName}
                       </div>
 
                     </div>
 
-                    <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-      
-                      <div class=" text-xs text-cardBody font-poppins">
-                        {item.orderId}
+                    <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                        {item.newOrderNo}
                       </div>
 
                     </div>
 
                   </div>
-                  <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                 
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    <div className=" flex font-medium flex-col w-[7.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+
+                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.transactionNumber}
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-          
-
-                      <div class=" text-xs text-cardBody font-poppins text-center">
+                    <div className=" flex font-medium flex-col w-[7.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.paymentType}
 
                       </div>
                     </div>
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-       
-
-                    <div class=" text-xs text-cardBody font-poppins text-center">
+                    <div className=" flex font-medium flex-col w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                       {` ${moment(item.date).format("DD-MM-YY")}`}
 
                     </div>
                   </div>
+                  </div>
+                
 
-                  <div class="flex md:items-center">
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-
-                      
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {` ${moment(item.paymentDate).format("ll")}`}
-                        </div>
-
-                      </div>
-                      <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-
-                      
-                        <div class=" text-xs text-cardBody font-poppins">
+                 
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium flex-col  w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
                       </div>
-                    </div>
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                       
-                        <div class=" text-xs text-cardBody font-poppins">
-                          {/* {item.paymentMode} */}
+                      <div className=" flex font-medium flex-col  w-[9.04rem] max-xl:w-[5.6rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {item.paymentModeName}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[7.03rem] max-xl:w-[4.2rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          {user.collectionApproveInd === true && (
+                            <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType} />
+                          )}
+                        </div>
 
-        
-                        <div class=" text-xs text-cardBody font-poppins">
-                         {user.collectionApproveInd === true && (
-                          <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType}/>
-                         )}
+                      </div>
+                   
+                   
+                      <div className=" flex font-medium flex-col  w-[6.07rem] max-xl:w-[6.07rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+
+                        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <span>
+                            <MultiAvatar
+                              primaryTitle={item.salesExecutive}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                          </span>
                         </div>
 
                       </div>
                     </div>
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[6.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                   
+                     
 
-        
-                        <div class=" text-xs text-cardBody font-poppins">
-                        <span>
-                      <MultiAvatar
-                        primaryTitle={item.salesExecutive}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </span>
-                        </div>
+                  
 
-                      </div>
-
-                    </div>
-
-                  </div>
+                 
                 </div>
               </div>
 
 
             )
           })}
-        </OnlyWrapCard>
-      </div>
+          </div>
+        </div>
+      </div>}
       <DistributorProductHistory
         handleDistributorProductModal={props.handleDistributorProductModal}
         collectionDistributorOrder={props.collectionDistributorOrder}

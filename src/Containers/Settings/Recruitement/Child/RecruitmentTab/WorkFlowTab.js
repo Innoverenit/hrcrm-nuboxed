@@ -3,11 +3,13 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import SupplierOnboardingTab from "./SupplierOnboarding/SupplierOnboardingTab";
+const ProductionTab = lazy(() => import("./ProductionTab/ProductionTab"));
 const OnboardingTab = lazy(() => import("./OnboardingTab/OnboardingTab"));
 const HiringTab = lazy(() => import("./HiringTab"));
 const TaskTab = lazy(() => import("../Configure/TaskTab"));
 const DealsTab = lazy(() => import("./Deals/DealsTab"));
+const RepairTab = lazy(() => import("./RepairTab/RepairTab"));
 
 
 const TabPane = StyledTabs.TabPane;
@@ -22,7 +24,7 @@ function WorkFlow(props) {
               <RecruitmentTab />
             </div>
           </TabPane> */}
-          <TabPane tab={`Opportunity`} key="2">
+          <TabPane tab={`Quotation`} key="2">
             <div  class=" mt-[10px]" >
               <HiringTab />
             </div>
@@ -44,7 +46,18 @@ function WorkFlow(props) {
           </TabPane>
           <TabPane tab={`Supplier-Onboarding`} key="6">
           <div  class=" mt-[10px]" >
-            {/* <OnboardingTab /> */}
+            <SupplierOnboardingTab />
+            </div>
+          </TabPane>
+          <TabPane tab={`Production`} key="7">
+          <div  class=" mt-[10px]" >
+            <ProductionTab />
+            </div>
+          </TabPane>
+
+          <TabPane tab={`Repair`} key="8">
+          <div  class=" mt-[10px]" >
+            <RepairTab />
             </div>
           </TabPane>
 

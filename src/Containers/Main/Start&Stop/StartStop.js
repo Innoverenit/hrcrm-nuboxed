@@ -4,6 +4,8 @@
 import { Button, DatePicker, } from "antd";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import dayjs from "dayjs";
+import moment from "moment";
 import { bindActionCreators } from "redux";
 import {getCountries} from "../../Auth/AuthAction"
 import {getCountry } from "../../../Containers/Settings/Category/Country/CountryAction"
@@ -20,17 +22,12 @@ const[country,setAllCountry]=useState("");
   console.log(drop1)
 
 
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
 
-  const handleDateChange = (date) => {
-
-    if (date) {
-      setSelectedDate(date.format("YYYY-MM-DD"))
-      console.log("Selected date:", date.format("YYYY-MM-DD"));
-    } else {
-      console.log("No date selected");
-    }
-    // setSelectedDate(date);
+  const handleDateChange = (event) => {
+    console.log(event.target.value)
+    setSelectedDate(event.target.value);
+    // You can perform any additional actions with the updated date here
   };
 
   // const handleLogDate = () => {
@@ -67,6 +64,11 @@ const[country,setAllCountry]=useState("");
     const data = {
       userId: props.userId,
       startInd: !startInd, 
+      attendanceId:props.attendanceByList.attendanceId,
+      country:mandatorCountry?mandatorCountry:null,
+      location:drop1?drop1:null,
+      other:country?country:null,
+      returnDate:returnDate,
     };
     props.addAttendence(data, props.userId);
   };
@@ -132,58 +134,56 @@ useEffect(()=>{
 },[])
 
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if (props.attendanceByList.startInd !== undefined&&props.attendanceByList.location !== undefined&&props.attendanceByList.country !== undefined) {
+  //   if (props.attendanceByList.startInd !== undefined&&props.attendanceByList.location !== undefined&&props.attendanceByList.country !== undefined) {
+  //     setStartInd(props.attendanceByList.startInd);
+  //     setDrop1(props.attendanceByList.location);
+  //     setmandatoryCountry(props.attendanceByList.country)
+  //     // setSelectedDate(props.attendanceByList.returnDate.substring(0, 10))
+  //     setSelectedDate(props.attendanceByList.returnDate)
+     
+  //   }
+  // }, [props.attendanceByList.startInd]);
+
+
+  useEffect(() => {
+    if (
+      props.attendanceByList.startInd !== undefined &&
+      props.attendanceByList.location !== undefined &&
+      props.attendanceByList.country !== undefined &&
+      props.attendanceByList.returnDate !== null // Check if returnDate is not null
+    ) {
       setStartInd(props.attendanceByList.startInd);
       setDrop1(props.attendanceByList.location);
-      setmandatoryCountry(props.attendanceByList.country)
-      // setDrop1(props.attendanceByList.location)
+      setmandatoryCountry(props.attendanceByList.country);
+      
+      // Perform a null check before accessing substring
+      if (props.attendanceByList.returnDate.length >= 10) {
+        setSelectedDate(props.attendanceByList.returnDate.substring(0, 10));
+      } else {
+        setSelectedDate(props.attendanceByList.returnDate);
+      }
     }
-  }, [props.attendanceByList.startInd]);
+  }, [props.attendanceByList.startInd, props.attendanceByList.returnDate]);
+  
 
   if (isLoading) {
     return <BundleLoader />;
   }
 
   return (
-    <div class=" flex" >
-        {/* <Popconfirm
-        title="Are you sure you want to start/stop?"
-       onConfirm={handleClick}
-        onCancel={handleClick} // Add onCancel handler to handle the cancel action
-       okText="Yes"
-     cancelText="No"
-     >
-
-      <button >
-       {startInd ? 'Stop' : 'Start'}
-      </button>
-     </Popconfirm> */}
-      {/* <Popconfirm
-        title="Are you sure you want to start/stop?"
-       onConfirm={handleClick}
-        onCancel={handleClick} // Add onCancel handler to handle the cancel action
-       okText="Yes"
-     cancelText="No"
-     > */}
-     <div>
-       <Button 
-        type="primary"
-       style={{backgroundColor:!startInd?"#77dd77" : "#ff7158bf"}} onClick={handleClick}>
-        {!startInd ? "Start" : "Stop"}
-      </Button>
-      </div>
-      {/* </Popconfirm> */}
+    <div class=" flex items-center" >
+      
       <div class="ml-[22px] mt-[0.2rem] max-sm:ml-1">
       <select
       value={drop1}
       onChange={handleDrop1}
-      disabled={!startInd}
+      disabled={startInd===true}
       style={{border:"0.5px solid lightgray ",height:"1.4rem", boxShadow: "0 0.15em 0.3em #aaa"
       }}
       >
-         {/* <option value="">Select</option> */}
+         <option value="">Select</option>
         <option value="In Office">In Office</option>
         <option value="On Travel">On Travel</option>
         <option value="Remote">Remote</option>
@@ -193,8 +193,14 @@ useEffect(()=>{
 
       {drop1==="On Travel" ?  
      <div class="mt-[0.2rem] ml-3" >
-     <DatePicker onChange={handleDateChange}/>
-      </div>:null
+     <input 
+     style={{height:"1rem", border: "0px solid #d9d9d9"}}
+        type="date" 
+        value={selectedDate} 
+        onChange={handleDateChange} 
+      />
+      </div>
+      :null
      }
      {drop1==="On Travel" ?  
      <div class="mt-[0.2rem] ml-3" >
@@ -202,6 +208,7 @@ useEffect(()=>{
        
         value={mandatorCountry}
 onChange={handleMandatoryCountry}
+disabled={startInd===true}
       >
          <option value="">Select Country</option>
          <option value="Others">Others</option>
@@ -237,10 +244,18 @@ onChange={handleMandatoryCountry}
       </select>
       </div>:null
 }
-
 <div class="ml-2">
+       <Button 
+        disabled={!drop1}
+        type="primary"
+       style={{backgroundColor:!startInd?"#77dd77" : "#ff7158bf"}} onClick={handleClick}>
+        {!startInd ? "Start" : "Stop"}
+      </Button>
+      </div>
+
+{/* <div class="ml-2">
   <Button onClick={handleSubmit}>Submit</Button>
-</div>
+</div> */}
      
     </div>
    

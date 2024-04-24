@@ -6,6 +6,10 @@ const initialState = {
     fetchingItemTaskError: false,
     itemTaskListData: [],
 
+    fetchingItemTaskCount: false,
+    fetchingItemTaskCountError: false,
+    itemTaskCount:{},
+
      addingItemTask: false,
      addingItemTaskError: false,
 
@@ -48,7 +52,9 @@ export const itemTaskReducer = (state = initialState, action) => {
     return {
       ...state,
       addingItemTask: false,
-      itemTaskListData:[action.payload,...state.itemTaskListData]
+      itemTaskListData:[action.payload,...state.itemTaskListData],
+      // itemTaskCount:[action.payload,...state.itemTaskCount],
+      
       // itemTaskListData: [...state.itemTaskListData, action.payload],
       
     };
@@ -117,7 +123,20 @@ export const itemTaskReducer = (state = initialState, action) => {
             return { ...state, 
                 itemTaskListData: [], 
               // deletedTruck: [] 
-            };    
+            }; 
+            
+            
+            case types.GET_ITEM_TASK_COUNT_REQUEST:
+              return { ...state, fetchingItemTaskCount: true };
+            case types.GET_ITEM_TASK_COUNT_SUCCESS:
+              return { ...state, fetchingItemTaskCount: false, 
+                itemTaskCount: action.payload };
+            case types.GET_ITEM_TASK_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingItemTaskCount: false,
+                fetchingItemTaskCountError: true,
+              };
     
     default:
         return state;

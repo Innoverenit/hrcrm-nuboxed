@@ -118,6 +118,9 @@ function CallForm(props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
 
     const ContactData = props.filteredContact.map((item) => {
       return {
@@ -685,7 +688,7 @@ function CallForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,

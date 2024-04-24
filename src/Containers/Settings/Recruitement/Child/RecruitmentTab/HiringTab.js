@@ -41,6 +41,9 @@ class HiringTab extends Component {
     this.state = {
       fields: {},
       activeKey: "0",
+      loading: false,
+      deletingProcess: false,
+      publishProcess: false,
       // viewAll:false,
       // setIsViewAll:false,
       change: true,
@@ -67,6 +70,18 @@ class HiringTab extends Component {
   componentDidMount() {
      this.props.getProcessForOpportunity(this.props.orgId);
   }
+  handleDeleteProcess = (opportunityWorkflowDetailsId) => {
+
+    this.setState({ deletingProcess: true });
+  
+    this.props.deleteOpportunityProcessData(
+      opportunityWorkflowDetailsId,
+      () => {
+       
+        this.setState({ deletingProcess: false });
+      }
+    );
+  };
   handleTabChange = (key) => {
     this.setState({ activeKey: key });
   };
@@ -86,8 +101,9 @@ class HiringTab extends Component {
     });
      this.props.getProcessStagesForOpportunity(item.opportunityWorkflowDetailsId);
   };
-
+  
   handlePublishClick = () => {
+   
     const { currentProcess, publish } = this.state;
     console.log(currentProcess);
 
@@ -97,7 +113,7 @@ class HiringTab extends Component {
       publishInd: currentProcess.publishInd ? false : true,
     };
 
-    this.props.LinkOpportunityProcessPublish(data, this.handleCallBack1);
+    this.props.LinkOpportunityProcessPublish(data,  this.handleCallBack1);
   };
 
   handleApproveIconClick = (item) => {
@@ -119,12 +135,13 @@ class HiringTab extends Component {
   handleCallBack1 = (status, data) => {
     if (status === "Success") {
       this.props.getProcessForOpportunity(this.props.orgId);
-      this.setState({ currentProcess: data });
+      this.setState({ currentProcess: data, loading: false });
     } else {
       alert("error");
     }
   };
   handleEditProcessName = () => {
+    this.setState({ loading: true });
     const { updateProcessNameForOpportunity } = this.props;
 
     const {
@@ -134,6 +151,7 @@ class HiringTab extends Component {
     } = this.state;
     const Id = currentProcess.opportunityWorkflowDetailsId;
     let process = { workflowName, opportunityWorkflowDetailsId: Id };
+    
     updateProcessNameForOpportunity(process,Id,this.handleCallBack1 );
     this.setState({
       isProcessTextInputOpen: false,
@@ -141,6 +159,7 @@ class HiringTab extends Component {
   };
   handleUpdateStage = (opportunityStagesId, stageName, probability, days) => {
     //debugger;
+      this.setState({ loading: true });
     const { opportunityProcessStages } = this.props;
     let exist =
     opportunityProcessStages &&
@@ -155,6 +174,7 @@ class HiringTab extends Component {
   };
 
   handleStagePublishClick = (opportunityStagesId, publishInd) => {
+  
     const { recruitProcessStages } = this.props;
     const data = {
       opportunityStagesId,
@@ -271,10 +291,14 @@ class HiringTab extends Component {
     });
   };
   render() {
+    const { loading } = this.state;
     const { addingProcessForOpportunity, addProcessForOpportunity } = this.props;
     return (
       <>
+       
         <StageWrapper>
+        {loading && <div>Loading...</div>}
+      
           <MainWrapper>
             <h1
             >
@@ -347,7 +371,7 @@ class HiringTab extends Component {
 
                     htmlType="button"
                  
-                     Loading={addingProcessForOpportunity}
+                     loading={addingProcessForOpportunity}
                     onClick={this.toggleInput1}
                   >
                     Add
@@ -431,15 +455,14 @@ class HiringTab extends Component {
 {this.state.currentProcess.workflowName && (
   <span
   style={{ cursor: "pointer" }}>
-                      <Popconfirm
-                      title="Do you want to delete?"
-                      okText="Yes"
-                      cancelText="No"
-                       onConfirm={() => this.props.deleteOpportunityProcessData(this.state.currentProcess.opportunityWorkflowDetailsId )}
-                    >
-                      <DeleteIcon
-                      type="delete" style={{ color: "white",marginLeft:"1rem" }} />
-                    </Popconfirm>
+                   <Popconfirm
+  title="Do you want to delete?"
+  okText="Yes"
+  cancelText="No"
+  onConfirm={() => this.handleDeleteProcess(this.state.currentProcess.opportunityWorkflowDetailsId)}
+>
+  <DeleteIcon type="delete" style={{ color: "white", marginLeft: "1rem" }} />
+</Popconfirm>
 
                     </span>
                     )}
@@ -543,7 +566,7 @@ class HiringTab extends Component {
                 <div class=" flex justify-end" >
                   <Button
                     type="primary"
-                    
+                    loading={this.props.addingProcessStagesForOpportunity}
                     htmlType="button"
                     onClick={this.toggleInput}
                     style={{ marginTop: "0.62em" }}
@@ -558,6 +581,7 @@ class HiringTab extends Component {
               </>
             ):null}
           </MainWrapper>
+        
         </StageWrapper>
 
         <AddProcessModalForHiring/>
@@ -583,6 +607,8 @@ const mapStateToProps = ({ settings, auth }) => ({
   opportunityProcessPublish: settings.opportunityProcessPublish,
   opportunityProcessStages: settings.opportunityProcessStages,
   orgId: auth.userDetails && auth.userDetails.organizationId,
+  addingProcessStagesForOpportunity:settings.addingProcessStagesForOpportunity,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -607,7 +633,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(HiringTab);
 const StageWrapper = styled.div`
   width: 100%;
   height: auto;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 const StageName = styled.h3`
   color: ${(props) => props.theme.color || "teal"};

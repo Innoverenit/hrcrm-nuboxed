@@ -14,9 +14,8 @@ class ReportHeader extends Component {
             activeIcon={this.props.activeIcon}
             dropdownData={this.props.dropdownData}
                handleDropChange={this.props.handleDropChange}/>}
-          rightComponent={<ReportActionRight />}
-          // rightComponent={<ReportActionRight
-          // />}
+          // rightComponent={<ReportActionRight />}
+        
         />
       </div>
     );

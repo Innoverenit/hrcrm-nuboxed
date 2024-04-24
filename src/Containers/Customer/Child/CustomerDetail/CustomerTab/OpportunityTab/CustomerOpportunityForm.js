@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {getCurrencyList} from "../../../../../Settings/Category/Currency/CurrencyAction"
+import {getCurrency} from "../../../../../Auth/AuthAction"
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { addCustomerOpportunity } from "../../../../CustomerAction";
 import { getWorkflow, getStages,
@@ -33,7 +33,7 @@ function CustomerOpportunityForm(props) {
   };
 
   useEffect(() => {
-    props.getCurrencyList();
+    props.getCurrency();
     props.getWorkflow(props.orgId);
     props.getStages(props.orgId);
     props. getCrm();
@@ -98,8 +98,7 @@ function CustomerOpportunityForm(props) {
       value: item.opportunityWorkflowDetailsId,
     };
   });
-
-  const sortedCurrency =props.currencyList.sort((a, b) => {
+  const sortedCurrency =props.currencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -114,7 +113,7 @@ function CustomerOpportunityForm(props) {
   const currencyNameOption = sortedCurrency.map((item) => {
     return {
       label: `${item.currency_name}`,
-      value: item.currency_id,
+      value: item.currency_name,
     };
   });
   
@@ -333,7 +332,7 @@ function CustomerOpportunityForm(props) {
                   <div class=" w-2/4">
                     <Field
                       name="proposalAmount"
-                      //label="Proposal Amount"
+                      //label="Value"
 
                       label={
                         <FormattedMessage
@@ -348,27 +347,28 @@ function CustomerOpportunityForm(props) {
                   </div>
                   <div class=" w-2/5">
                   <Field
-                        name="currency"
-                        defaultValue={{
-                          value: props.user.currency,
-                        }}
-                        isColumnWithoutNoCreate
-                        placeholder="Currency"
-                        label={<FormattedMessage
+                      name="currency"
+                      isColumnWithoutNoCreate
+                      defaultValue={{
+                        value: props.user.currency,
+                      }}
+                      label={
+                        <FormattedMessage
                           id="app.currency"
                           defaultMessage="Currency"
-                        />}
-                        isColumn
-                        // selectType="currencyName"
-                        isRequired
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(currencyNameOption)
-                            ? currencyNameOption
-                            : []
-                        }
-                      
-                      />
+                        />
+                      }
+                      width="100%"
+                      isColumn
+                      // selectType="currencyName"
+                      isRequired
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(currencyNameOption)
+                          ? currencyNameOption
+                          : []
+                      }
+                    />
                   
                   </div>
                 </div>
@@ -606,7 +606,7 @@ const mapStateToProps = ({ auth, opportunity, currency, customer,leads }) => ({
   customerId: customer.customer.customerId,
   addingCustomerOpportunity: customer.addingCustomerOpportunity,
   addingCustomerOpportunityError: customer.addingCustomerOpportunity,
-  currencyList: currency.currencyList,
+  currencies: auth.currencies,
   sales: opportunity.sales,
   workflow: opportunity.workflow,
   stages: opportunity.stages,
@@ -619,7 +619,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addCustomerOpportunity,
-      getCurrencyList,
+      getCurrency,
       getWorkflow,
       getStages, 
       getCrm,

@@ -14,7 +14,7 @@ const materialOptions = ['Access', 'Create', 'Update', 'Delete',];
 const userOptions = ['Access', 'Create', 'Update', 'Delete','Access Plus'];
  const defaultCheckedList=['Full List'];
  const melCheckedList=['Full List','Access'];
- const dashboardCheckedList=['Access','Full List'];
+ const dashboardCheckedList=['Access','Full List','Regional'];
  const refurbishCheckedList=['Workshop','Adminview','Adminassign'];
  const settingsCheckedList=['Access'];
  const accountingCheckedList=['Access'];
@@ -80,6 +80,9 @@ const AccessForm = (props) => {
     setCheckedHolidayList(props.departmentAcces.holiday)
     setCheckedAccessmentList(props.departmentAcces.assessment)
     setCheckedTopicList(props.departmentAcces.topic)
+    setCheckedReportList(props.departmentAcces.report)
+    setCheckedDataRoomList(props.departmentAcces.dataRoom)
+    setCheckedScannerList(props.departmentAcces.scanner)
     
   }, [props.departmentAcces.vendor,
   props.departmentAcces.customer,
@@ -129,6 +132,9 @@ const AccessForm = (props) => {
   props.departmentAcces.holiday,
   props.departmentAcces.topic,
   props.departmentAcces.production,
+  props.departmentAcces.report,
+  props.departmentAcces.dataRoom,
+  props.departmentAcces.scanner,
  
   
   
@@ -616,6 +622,24 @@ const AccessForm = (props) => {
                     setCheckAllDashboard(e.target.checked);
                   };
 
+
+                    // Reports
+
+                    const [checkedReportList, setCheckedReportList] = useState(props.departmentAcces.report              );
+                    const [indeterminateReport, setIndeterminateReport] = useState(true);
+                    const [checkAllReport, setCheckAllReport] = useState(false);
+                  
+                    const onReportChange = (list) => {
+                      setCheckedReportList(list);
+                      setIndeterminateReport(!!list.length && list.length < defaultCheckedList.length);
+                      setCheckAllReport(list.length === defaultCheckedList.length);
+                    };
+                  
+                    const onCheckAllReportChange = (e) => {
+                      setCheckedReportList(e.target.checked ? defaultCheckedList : []);
+                      setIndeterminateReport(false);
+                      setCheckAllReport(e.target.checked);
+                    };
                          // Settings
 
                          const [checkedSettingsList, setCheckedSettingsList] = useState(props.departmentAcces.settings              );
@@ -633,6 +657,25 @@ const AccessForm = (props) => {
                            setIndeterminateSettings(false);
                            setCheckAllSettings(e.target.checked);
                          };
+
+
+                                       // Scanner
+
+                                       const [checkedScannerList, setCheckedScannerList] = useState(props.departmentAcces.scanner              );
+                                       const [indeterminateScanner, setIndeterminateScanner] = useState(true);
+                                       const [checkAllScanner, setCheckAllScanner] = useState(false);
+                                     
+                                       const onScannerChange = (list) => {
+                                         setCheckedScannerList(list);
+                                         setIndeterminateScanner(!!list.length && list.length < settingsCheckedList.length);
+                                         setCheckAllScanner(list.length === settingsCheckedList.length);
+                                       };
+                                     
+                                       const onCheckAllScannerChange = (e) => {
+                                         setCheckedScannerList(e.target.checked ? settingsCheckedList : []);
+                                         setIndeterminateScanner(false);
+                                         setCheckAllScanner(e.target.checked);
+                                       };
 
 
                                 // Basic
@@ -759,6 +802,24 @@ const AccessForm = (props) => {
     setIndeterminateDeal(false);
     setCheckAllDeal(e.target.checked);
   };
+
+  
+    //Data Room
+    const [checkedDataRoomList, setCheckedDataRoomList] = useState(props.departmentAcces.dataRoom);
+    const [indeterminateDataRoom, setIndeterminateDataRoom] = useState(true);
+    const [checkAllDataRoom, setCheckAllDataRoom] = useState(false);
+  
+    const onDataRoomChange = (list) => {
+      setCheckedDataRoomList(list);
+      setIndeterminateDataRoom(!!list.length && list.length < plainOptions.length);
+      setCheckAllDataRoom(list.length === plainOptions.length);
+    };
+  
+    const onCheckAllDataRoomChange = (e) => {
+      setCheckedDataRoomList(e.target.checked ? plainOptions : []);
+      setIndeterminateDataRoom(false);
+      setCheckAllDataRoom(e.target.checked);
+    };
 
   //Pitch
   const [checkedPitchList, setCheckedPitchList] = useState(props.departmentAcces.pitch);
@@ -1051,6 +1112,9 @@ const onCheckAllTeamsChange = (e) => {
       catalog:checkedCatalogList || [],
       holiday:checkedHolidayList || [],
       topic:checkedTopicList || [],
+      report:checkedReportList || [],
+      dataRoom:checkedDataRoomList || [],
+      scanner:checkedScannerList || [],
       
       
       departmentId: props.departmentId,
@@ -1199,6 +1263,15 @@ const onCheckAllTeamsChange = (e) => {
               </Checkbox>
               <Divider />
               <CheckboxGroup options={dashboardCheckedList} value={checkedDashboardList} onChange={onDashboardChange} />
+
+            </div>
+            <div >
+              <div class="text-sm font-semibold">Reports</div>
+              <Checkbox indeterminate={indeterminateReport} onChange={onCheckAllReportChange} checked={checkAllReport}>
+              <div class="text-xs"> Check all</div>
+              </Checkbox>
+              <Divider />
+              <CheckboxGroup options={defaultCheckedList} value={checkedReportList} onChange={onReportChange} />
 
             </div>
             <div >
@@ -1448,6 +1521,16 @@ const onCheckAllTeamsChange = (e) => {
               <CheckboxGroup options={materialOptions} value={checkedProductionList} onChange={onProductionChange} />
 
             </div>
+
+            <div >
+              <div class="text-sm font-semibold">Scanner</div>
+              <Checkbox indeterminate={indeterminateScanner} onChange={onCheckAllScannerChange} checked={checkAllScanner}>
+               <div class="text-xs"> Check all</div>
+              </Checkbox>
+              <Divider />
+              <CheckboxGroup options={settingsCheckedList} value={checkedScannerList} onChange={onScannerChange} />
+
+            </div>
              
             
              
@@ -1602,6 +1685,23 @@ const onCheckAllTeamsChange = (e) => {
                   <CheckboxGroup options={plainOptions} value={checkedPulseList} onChange={onPulseChange} />
 
                 </div> */}
+              </div>
+
+
+              <div class=" flex justify-around mt-8" >
+              <div >
+                  <div class="text-sm font-semibold">Data Room</div>
+                  <Checkbox indeterminate={indeterminateDataRoom} onChange={onCheckAllDataRoomChange} checked={checkAllDataRoom}>
+                  <div class="text-xs">  Check all </div>
+                  </Checkbox>
+                  <Divider />
+                  <CheckboxGroup options={plainOptions} value={checkedDataRoomList} onChange={onDataRoomChange} />
+
+                </div>
+       
+             
+            
+              
               </div>
              
               </div> 

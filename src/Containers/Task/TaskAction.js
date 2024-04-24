@@ -1,7 +1,8 @@
 import * as types from "./TaskActionTypes";
 import axios from "axios";
 import { message } from "antd";
-import { base_url } from "../../Config/Auth";
+import Swal from 'sweetalert2'
+import { base_url,base_url2 } from "../../Config/Auth";
 import { getTasksListByUserId } from "../Auth/AuthAction";
 
 export const setTaskViewType = (viewType) => (dispatch) => {
@@ -11,13 +12,32 @@ export const setTaskViewType = (viewType) => (dispatch) => {
   });
 };
 
+
+export const handleUpdateDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_DOCUMENT_TASK_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleTaskNotesDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_NOTES_DRAWER_MODAL,
     payload: modalProps,
   });
 };
-
+export const handleTaskStepperDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_STEPPER_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleTaskImportModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_IMPORT_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleTaskFeedbackDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_FEEDBACK_DRAWER_MODAL,
@@ -85,6 +105,14 @@ export const getTaskInProgress = (userId, startDate, endDate) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+
+export const handleTaskDocumentDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_TASK_DOCUMENT_DRAWER_MODAL,
+    payload: modalProps,
+  });
 };
 
 
@@ -366,7 +394,7 @@ export const addTask = (task, cb) => (dispatch, getState) => {
       console.log(res);
       dispatch(getOpportunityRecord(userId));
       // dispatch(getTasksListByUserId(userId));
-      dispatch(getTaskListRangeByUserId(employeeId,0));
+      // dispatch(getTaskListRangeByUserId(employeeId,0));
       dispatch({
         type: types.ADD_TASK_SUCCESS,
         payload: res.data,
@@ -1312,6 +1340,369 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_OPPORTUNITY_RECORD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleProspectConfirmationModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROSPECT_CONFIRMATION_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const convertProspectStatus = (data,userId,taskId,) => (
+  dispatch,
+  getState
+) => {
+  // debugger;
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.CONVERT_PROSPECT_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/customer/account/assginToUser/${userId}/${taskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+  
+      if (res.data) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } 
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect converted Successfully!',
+     
+      // })
+      dispatch(getAprrovalTaskTable(userId,0));
+      // dispatch(getLeadsRecords(userId));
+      dispatch({
+        type: types.CONVERT_PROSPECT_STATUS_SUCCESS,
+        payload: taskId,
+      });
+      // Swal.fire({
+      //   icon: 'success',
+      //   fontSize:"2rem",
+      //   title: 'Lead Qualified Succefully!',
+      //   showConfirmButton: false,
+      //   timer: 4000
+      // })
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CONVERT_PROSPECT_STATUS_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
+    });
+};
+
+
+
+export const getTaskTimeline = (taskId) => (dispatch) => {
+  dispatch({
+      type: types.GET_TASK_TIMELINE_REQUEST,
+  });
+
+  axios
+      .get(`${base_url}/task/document/${taskId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_TASK_TIMELINE_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_TASK_TIMELINE_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+export const addTaskImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const employeeId = getState().auth.userDetails.employeeId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TASK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/import/task`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getTaskListRangeByUserId(employeeId,"0"));
+      // const startDate = dayjs().startOf("month").toISOString();
+      // const endDate = dayjs().endOf("month").toISOString();
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.ADD_TASK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TASK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+
+
+export const getNotesListTask = (taskId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NOTES_LIST_TASK_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url}/task/note/${taskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_NOTES_LIST_TASK_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NOTES_LIST_TASK_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addTaskNote = (note, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_TASK_NOTES_LIST_REQUEST });
+  axios
+    .post(`${base_url}/task/notes`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_TASK_NOTES_LIST_SUCCESS,
+        payload: res.note,
+      });
+      console.log(res);
+      cb && cb();
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_TASK_NOTES_LIST_FAILURE,
+        payload: err,
+      });
+      console.log(err);
+      cb && cb();
+    });
+};
+
+
+
+export const updateTaskImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const employeeId = getState().auth.userDetails.employeeId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.UPDATE_TASK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/task/document`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //dispatch(getTaskListRangeByUserId(employeeId,"0"));
+      // const startDate = dayjs().startOf("month").toISOString();
+      // const endDate = dayjs().endOf("month").toISOString();
+      // dispatch(getRecords(userId));
+      // dispatch(getLatestCustomers(userId, startDate, endDate));
+      // dispatch(getCustomerListByUserId(userId));
+
+      dispatch({
+        type: types.UPDATE_TASK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_TASK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+
+export const addStepperTask = (task,taskId, cb) => (dispatch, getState) => {
+  const { employeeId } = getState("auth").auth.userDetails;
+  const { userId } = getState("auth").auth.userDetails;
+
+  console.log("inside addTask");
+  dispatch({
+    type: types.ADD_STEPPER_TASK_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/task/step`, task, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getStepperTaskList(taskId))
+      // message.success("Task has been added successfully!");
+      console.log(res);
+      dispatch({
+        type: types.ADD_STEPPER_TASK_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_STEPPER_TASK_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+export const getStepperTaskList = (taskId,) => (dispatch) => {
+
+  dispatch({
+    type: types.GET_STEPPER_TASK_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/task/steps/${taskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_STEPPER_TASK_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_STEPPER_TASK_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateTaskStepperValue= (data,employeeId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_TASK_STEPPER_VALUE_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/task/steps`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Task Value updated Successfully!',
+      })
+      // message.success("Value has been updated successfully!");
+      console.log(res);
+      //  dispatch(getEmployeeKpiList(employeeId));
+      dispatch({
+        type: types.UPDATE_TASK_STEPPER_VALUE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_TASK_STEPPER_VALUE_FAILURE,
+      });
+    });
+};
+
+export const deleteStepperTaskData = (id,orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_SREPPER_TASK_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/task/steps/${id}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Task deleted Successfully!',
+      })
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_SREPPER_TASK_DATA_SUCCESS,
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SREPPER_TASK_DATA_FAILURE,
         payload: err,
       });
     });

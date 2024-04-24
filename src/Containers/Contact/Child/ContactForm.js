@@ -5,6 +5,7 @@ import { Button, Select, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
+import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { HeaderLabel, Spacer } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
@@ -14,7 +15,6 @@ import { addContact, addLinkContactByOpportunityId } from "../ContactAction";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getCustomerData } from "../../Customer/CustomerAction";
-// import {getDialCode} from "../../Investor/InvestorAction";
 
 const { Option } = Select;
 /**
@@ -26,13 +26,13 @@ const ContactSchema = Yup.object().shape({
   emailId: Yup.string()
     .required("Input needed!")
     .email("Enter a valid Email"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Number is too short").max(10, "Number is too long")
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Number is too short").max(10, "Number is too long")
 });
 
 class ContactForm extends Component {
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
-    this.props.getDialCode();
+    this.props.getDepartments();
   }
   constructor(props) {
     super(props);
@@ -121,13 +121,31 @@ class ContactForm extends Component {
         value: item.customerId,
       };
     });
-    // const dialCodeOption = this.props.dialCodeList.map((item) => {
-    //   return {
-    //     label: `+${item.country_dial_code || ""}`,
-    //     value: item.country_dial_code
-    //     ,
-    //   };
-    // });
+
+    const departmentNameOption = this.props.departments
+    .sort((a, b) => {
+      const libraryNameA = a.name && a.name.toLowerCase();
+      const libraryNameB = b.name && b.name.toLowerCase();
+      if (libraryNameA < libraryNameB) {
+        return -1;
+      }
+      if (libraryNameA > libraryNameB) {
+        return 1;
+      }
+  
+      // names must be equal
+      return 0;
+    }
+  )
+    .map((item) => {
+      return {
+        label: `${item.departmentName || ""}`,
+        value: item.departmentId,
+      };
+    });
+
+    
+  
     return (
       <>
         <Formik
@@ -137,7 +155,7 @@ class ContactForm extends Component {
             designationTypeId: this.props.designationTypeId,
             description: "",
             //department: undefined,
-            departmentId: this.props.departmentId,
+            departmentId: "",
             departmentDetails: "",
             userId: this.props.userId,
             customerId: this.props.customerId,
@@ -152,6 +170,7 @@ class ContactForm extends Component {
             phoneNumber: "",
             mobileNumber: "",
             emailId: "",
+            alternateEmail:"",
             linkedinPublicUrl: "",
             whatsapp: this.state.whatsapp ? "Different" : "Same",
             address: [
@@ -299,6 +318,29 @@ class ContactForm extends Component {
                         isRequired
                       />
                     </div>
+                  
+                  </div>  
+                  <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
                   </div>               
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">
@@ -314,12 +356,8 @@ class ContactForm extends Component {
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
-                        // component={SelectComponent}
-                        // options={
-                        //   Array.isArray(dialCodeOption) ? dialCodeOption : []
-                        // }
                         defaultValue={{
-                          value: this.props.user.countryDialCode,
+                          label:`+${this.props.user.countryDialCode}`,
                         }}
                         inlineLabel
                       />
@@ -334,7 +372,6 @@ class ContactForm extends Component {
                             defaultMessage="Mobile #"
                           />
                         }
-                        //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -478,8 +515,8 @@ class ContactForm extends Component {
                   </div>
                   <Spacer />
                   <div class=" flex justify-between">         
-                  <div class="w-w47.5">
-                    <FastField
+                  <div class="  w-w47.5">
+                    <Field
                       name="departmentId"
                                          label={
                         <FormattedMessage
@@ -487,11 +524,12 @@ class ContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
                       component={InputComponent}
                       // value={values.departmentId}
-        
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
                       inlineLabel
                     />
                   </div>
@@ -636,10 +674,11 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToProps = ({ auth,investor, contact, customer, opportunity, departments, designations }) => ({
+const mapStateToProps = ({ auth, contact, customer, opportunity, departments, designations }) => ({
   addingContact: contact.addingContact,
   addingContactError: contact.addingContactError,
   user: auth.userDetails,
+  departments: departments.departments,
   userId: auth.userDetails.userId,
   customerData:customer.customerData,
   customerId: customer.customer.customerId,
@@ -647,15 +686,15 @@ const mapStateToProps = ({ auth,investor, contact, customer, opportunity, depart
   opportunityId: opportunity.opportunity.opportunityId,
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
-  // dialCodeList:investor.dialCodeList,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getDialCode,
+
       addContact,
-      // getContactById,
+      getDepartments,
       addLinkContactByOpportunityId,
       // getCurrency,
       getCustomerData,

@@ -4,8 +4,9 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
-const CreateProductionCard =lazy(()=> import("../../../../../Production/Child/CreateProductionCard"));
-const ProductionDispatchCard=lazy(()=>import("./ProductionDispatchCard"));
+import ProductionArchieveCard from "./ProductionArchieveCard";
+const CreateProductionCard = lazy(() => import("../../../../../Production/Child/CreateProductionCard"));
+const ProductionDispatchCard = lazy(() => import("./ProductionDispatchCard"));
 
 const TabPane = StyledTabs.TabPane;
 class InventoryProductionTab extends PureComponent {
@@ -39,9 +40,9 @@ class InventoryProductionTab extends PureComponent {
                             }
                             key="1"
                         >
-                         
+
                             <Suspense fallback={"Loading..."}>
-                            <CreateProductionCard/>
+                                <CreateProductionCard />
                             </Suspense>
                         </TabPane>
                         <TabPane
@@ -54,20 +55,20 @@ class InventoryProductionTab extends PureComponent {
                         >
                             {" "}
                             <Suspense fallback={"Loading..."}>
-<ProductionDispatchCard/>
+                                <ProductionDispatchCard />
                             </Suspense>
                         </TabPane>
                         <TabPane
                             tab={
                                 <>
-                                    <i class="fab fa-linode"></i>  &nbsp; Archieve
+                                    <i class="fab fa-linode"></i>  &nbsp; Archive
                                 </>
                             }
                             key="3"
                         >
                             {" "}
                             <Suspense fallback={"Loading..."}>
-{/* <ProductionDispatchCard/> */}Arch..
+                                <ProductionArchieveCard />
                             </Suspense>
                         </TabPane>
                     </StyledTabs>

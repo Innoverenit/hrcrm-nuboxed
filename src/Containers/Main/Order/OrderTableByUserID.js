@@ -10,374 +10,351 @@ import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
+import { handleOrderDetailsModal } from "../Account/AccountAction";
 import {
-    getOrderById,
-    handleNotesModalInOrder,
-    handleStatusOfOrder,
-    handlePaidModal
+  getOrderById,
+  emptyOrders,
+  handleNotesModalInOrder,
+  handleStatusOfOrder,
+  handlePaidModal
 } from "./OrderAction";
 // import OrderDetailsTable from "../../Customer/Child/CustomerDetail/CustomerDetailsTab/OrderDetailsTable";
 import { CurrencySymbol } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
-import StatusOfOrderDrawer from "./StatusOfOrderDrawer";
-import PaidButtonDrawer from "./PaidButtonDrawer";
+import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
+import { MultiAvatar2 } from "../../../Components/UI/Elements";
+import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
+import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 
 function OrderTableByUserID(props) {
   const [page, setPage] = useState(0);
-    useEffect(() => {
-        props.getOrderById(props.userId,page);
-        setPage(page + 1);
-    }, []);
-    const [hasMore, setHasMore] = useState(true);
-    const [show, setshow] = useState(false);
-    const [orderId, setorderId] = useState("");
-    const [searchText, setSearchText] = useState("");
-    const [particularRowData, setParticularRowData] = useState({});
-    const [searchedColumn, setSearchedColumn] = useState("");
+  useEffect(() => {
+    props.getOrderById(props.userId, page);
+    setPage(page + 1);
+  }, []);
+  const [hasMore, setHasMore] = useState(true);
+  const [show, setshow] = useState(false);
+  const [orderId, setorderId] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [particularRowData, setParticularRowData] = useState({});
+  const [searchedColumn, setSearchedColumn] = useState("");
 
-    function handleOrder(orderId) {
-        setshow(true);
-        setorderId(orderId);
-    }
-
-    function handleSetParticularOrderData(item, data) {
-        console.log(item);
-        setParticularRowData(item);
-    }
-    // props.getOrderById(props.userId,page);
-    const handleLoadMore = () => {
-      setPage(page + 1);
-      props.getOrderById(props.currentUser?props.currentUser:props.userId,page,
-
-  
-        );
+  function handleOrder(orderId) {
+    setshow(true);
+    setorderId(orderId);
   }
 
-    function getColumnSearchProps(dataIndex) {
-        return {
-            filterDropdown: ({
-                setSelectedKeys,
-                selectedKeys,
-                confirm,
-                clearFilters,
-            }) => (
-                <div style={{ padding: 8 }}>
-                    <Input
-                        // ref={node => {
-                        //   this.searchInput = node;
-                        // }}
-                        placeholder={`Search ${dataIndex}`}
-                        value={selectedKeys[0]}
-                        onChange={(e) =>
-                            setSelectedKeys(e.target.value ? [e.target.value] : [])
-                        }
-                        onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                        style={{ width: 240, marginBottom: 8, display: "block" }}
-                    />
-                    <Space>
-                        <Button
-                            type="primary"
-                            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                            icon={<SearchOutlined />}
-                            size="small"
-                            style={{ width: 90 }}
-                        >
-                            Search
-                        </Button>
-                        <Button
-                            onClick={() => handleReset(clearFilters)}
-                            size="small"
-                            style={{ width: 90 }}
-                        >
-                            Reset
-                        </Button>
-                        <Button
-                            type="link"
-                            size="small"
-                            onClick={() => {
-                                confirm({ closeDropdown: false });
-                                setSearchText(selectedKeys[0]);
-                                setSearchedColumn(dataIndex);
-                            }}
-                        >
-                            Filter
-                        </Button>
-                    </Space>
-                </div>
-            ),
-            filterIcon: (filtered) => (
-                <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-            ),
-            onFilter: (value, record) =>
-                record[dataIndex]
-                    .toString()
-                    .toLowerCase()
-                    .includes(value.toLowerCase()),
-            onFilterDropdownVisibleChange: (visible) => {
-                if (visible) {
-                    // setTimeout(() => this.searchInput.select());
-                }
-            },
-            render: (text) =>
-                searchedColumn === dataIndex ? (
-                    <Highlighter
-                        highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-                        searchWords={[searchText]}
-                        autoEscape
-                        textToHighlight={text.toString()}
-                    />
-                ) : (
-                    text
-                ),
-        };
-    }
+  useEffect(() => {
+    return () => props.emptyOrders();
+  }, []);
+  function handleSetParticularOrderData(item, data) {
+    console.log(item);
+    setParticularRowData(item);
+  }
+  // props.getOrderById(props.userId,page);
+  const handleLoadMore = () => {
+    setPage(page + 1);
+    props.getOrderById(props.currentUser ? props.currentUser : props.userId, page,
 
-    function handleSearch(selectedKeys, confirm, dataIndex) {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-    }
 
-    function handleReset(clearFilters) {
-        clearFilters();
-        setSearchText("");
-    }
+    );
+  }
 
-    return (
-        <>
-          <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
-          <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[12rem]">Order ID</div>
-            <div className=" md:w-28">Customer</div>
-            <div className=" md:w-28 ">Contact</div>
-            <div className="md:w-32">#Phone</div>
-            <div className="md:w-[16rem]">Creation Date</div> 
-            <div className="md:w-24"></div>
-           
-    
-          </div>
-          <InfiniteScroll
-        dataLength={props.orderShowById.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={props.fetchingOrderById?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"75vh"}
-      >
-           {props.orderShowById.map((item) => {
-              const currentdate = moment().format("DD/MM/YYYY");
-              const date = moment(item.creationDate).format("DD/MM/YYYY");
-    
-              const diff = Math.abs(
-                moment().diff(moment(item.lastRequirementOn), "days")
-              );
-              const dataLoc = ` Address : ${
-                item.address && item.address.length && item.address[0].address1
+
+
+  return (
+    <>
+      <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[8rem]">Order ID</div>
+          <div className=" md:w-[5rem]">Customer</div>
+          <div className=" md:w-[3rem] ">Contact</div>
+          <div className="md:w-[7rem]">Units</div>
+          <div className="md:w-[2rem]">Owner</div>
+          <div className="md:w-[2rem]">Supervisor</div>
+          <div className="md:w-[3rem]">Lead</div>
+          <div className="md:w-[16rem]">Created</div>
+          <div className="md:w-24"></div>
+        </div>
+        <InfiniteScroll
+          dataLength={props.orderShowById.length}
+          next={handleLoadMore}
+          hasMore={hasMore}
+          loader={props.fetchingOrderById ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+          height={"75vh"}
+        >
+          {props.orderShowById.map((item) => {
+            const currentdate = moment().format("DD/MM/YYYY");
+            const date = moment(item.creationDate).format("DD/MM/YYYY");
+
+            const diff = Math.abs(
+              moment().diff(moment(item.lastRequirementOn), "days")
+            );
+            const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
               } 
-                   Street : ${
-                     item.address && item.address.length && item.address[0].street
-                   }   
-                  State : ${
-                    item.address && item.address.length && item.address[0].state
-                  }
-                 Country : ${
-                   (item.address &&
-                     item.address.length &&
-                     item.address[0].country) ||
-                   ""
-                 } 
-                   PostalCode : ${
-                     item.address &&
-                     item.address.length &&
-                     item.address[0].postalCode
-                   } `;
-              return (
-                <div>
-                  <div
-                    className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
-                    // style={{
-                    //   borderBottom: "3px dotted #515050",
-                    // }}
-                  >
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
-                        <div className="flex max-sm:w-full">
-                          <div class="w-60">
+                   Street : ${item.address && item.address.length && item.address[0].street
+              }   
+                  State : ${item.address && item.address.length && item.address[0].state
+              }
+                 Country : ${(item.address &&
+                item.address.length &&
+                item.address[0].country) ||
+              ""
+              } 
+                   PostalCode : ${item.address &&
+              item.address.length &&
+              item.address[0].postalCode
+              } `;
+            return (
+              <div>
+                <div
+                  className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
+                // style={{
+                //   borderBottom: "3px dotted #515050",
+                // }}
+                >
+                  <div class="flex">
+                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                      <div className="flex max-sm:w-full">
+                        <div class="w-[9rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                                onClick={() => {
-                                    handleOrder(item.orderId);
-                                    handleSetParticularOrderData(item);
-                                }}
+                              class="underline cursor-pointer text-[#1890ff]"
+                              onClick={() => {
+                                handleOrder(item.orderId);
+                                handleSetParticularOrderData(item);
+                                props.handleOrderDetailsModal(true);
+                              }}
 
                             >{`${item.newOrderNo} `}
 
-                                &nbsp;&nbsp;
-                                {date === currentdate ? (
-                                    <span
-                                        style={{
-                                            color: "tomato",
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        New
-                                    </span>
-                                ) : null}
+                              &nbsp;&nbsp;
+                              {date === currentdate ? (
+                                <span
+                                  style={{
+                                    color: "tomato",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  New
+                                </span>
+                              ) : null}
                             </span>
-                        </Badge>
-                          </div>
-                          <div class="w-[4%]"></div>
-    
-                          <div class="max-sm:w-full md:w-44">
-                            <Tooltip>
-                              <div class="max-sm:w-full justify-between flex md:flex-col">
+                          </Badge>
+                        </div>
+                        <div class="w-[4%]"></div>
+
+                        <div class="max-sm:w-full md:w-44">
+                          <Tooltip>
+                            <div class="max-sm:w-full justify-between flex md:flex-col">
                               {item.distributorName}
-                               
-                              </div>
-                            </Tooltip>
-                          </div>
+
+                            </div>
+                          </Tooltip>
                         </div>
                       </div>
-    
-                      <div class="flex flex-row items-center md:w-44 max-sm:flex-row w-full max-sm:justify-between">
-                        <div>
-                        {item.contactPersonName}
-                        </div>
-    
-                       
-                        
-                      </div>
                     </div>
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-48 max-sm:flex-row w-full max-sm:justify-between ">
-                       
-                        <h4 class=" text-xs text-cardBody font-poppins">
-                        {item.noOfPhones}
-                        </h4>
+
+                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                        <MultiAvatar2
+                          primaryTitle={item.contactPersonName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
                       </div>
-                      <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                       
-                      <span>{date}</span>
-                      </div>
+
+
+
                     </div>
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        
-                        <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                        </h4>
-                      </div>
-                      <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
-                       {item.orderStatus}
-                      </div>
-                      <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-{/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-<h4 class=" text-xs text-cardBody font-poppins">
-    <Tooltip title="Notes">
-        <NoteAltIcon
-            style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
-            onClick={() => {
-
-                props.handleNotesModalInOrder(true);
-                handleSetParticularOrderData(item);
-            }}
-        />
-
-    </Tooltip>
-</h4>
-
-
-</div>
-
-
-<div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<h4 class=" text-xs text-cardBody font-poppins">
-    <Tooltip title="Status">
-        <EventRepeatIcon
-            style={{ cursor: "pointer", fontSize: "1rem", }}
-            onClick={() => {
-                props.handleStatusOfOrder(true);
-                handleSetParticularOrderData(item);
-            }}
-        />
-    </Tooltip>
-</h4>
-{/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-
-
-</div>
-<div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<h4 class=" text-xs text-cardBody font-poppins">
-    <Tooltip title="Collection">
-        <PaidIcon
-            style={{ cursor: "pointer", fontSize: "1rem", }}
-            onClick={() => {
-                props.handlePaidModal(true);
-                handleSetParticularOrderData(item);
-            }}
-        // style={{ color: "blue" }}
-        />
-    </Tooltip>
-
-</h4>
-{/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-
-
-</div>
-    
-                    
-                    </div>
-                    
                   </div>
-                </div>
-                // </div>
-              );
-            })}
-              </InfiniteScroll>
-          </OnlyWrapCard>
-          <AddNotesOrderDrawer
-                particularRowData={particularRowData}
-                addNotesInOrder={props.addNotesInOrder}
-                handleNotesModalInOrder={props.handleNotesModalInOrder}
-            />
-              <StatusOfOrderDrawer
-                handleStatusOfOrder={props.handleStatusOfOrder}
-                addStatusOfOrder={props.addStatusOfOrder}
-                particularRowData={particularRowData}
-            />
-               <PaidButtonDrawer
-                addPaidButtonModal={props.addPaidButtonModal}
-                handlePaidModal={props.handlePaidModal}
-                particularRowData={particularRowData}
-            />
-        </>
-      );
-  
+                  <div class="flex">
+                    <div className=" flex font-medium flex-col  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        {item.noOfPhones}
+                      </h4>
+                    </div>
+             
+                   
+                  </div>
+                  <div class="flex flex-row items-center md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      <MultiAvatar2
+                          primaryTitle={item.userName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
 
-    
+                      </div>
+
+
+
+                    </div>
+                  <div class=" flex">
+                  <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                        <MultiAvatar2
+                          primaryTitle={item.supervisorUserName}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                        <MultiAvatar2
+                          primaryTitle={item.lead}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+
+                      </div>
+
+
+
+                    </div>
+                  
+                    </div>
+                    <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <span>{date}</span>
+                    </div>
+                  <div class="flex">
+                    <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+                      <h4 class=" text-xs text-cardBody font-semibold  font-poppins">
+                        {item.noOfownerPhones}
+                      </h4>
+                    </div>
+                    <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
+                      {item.orderStatus}
+                    </div>
+                    <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+
+                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title="Notes">
+                          <NoteAltIcon
+                            style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
+                            onClick={() => {
+
+                              props.handleNotesModalInOrder(true);
+                              handleSetParticularOrderData(item);
+                            }}
+                          />
+
+                        </Tooltip>
+                      </h4>
+
+
+                    </div>
+
+
+                    <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title="Status">
+                          <EventRepeatIcon
+                            style={{ cursor: "pointer", fontSize: "1rem", }}
+                            onClick={() => {
+                              props.handleStatusOfOrder(true);
+                              handleSetParticularOrderData(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </h4>
+                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+
+
+                    </div>
+                    <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title="Collection">
+                          <PaidIcon
+                            style={{ cursor: "pointer", fontSize: "1rem", }}
+                            onClick={() => {
+                              props.handlePaidModal(true);
+                              handleSetParticularOrderData(item);
+                            }}
+                          // style={{ color: "blue" }}
+                          />
+                        </Tooltip>
+
+                      </h4>
+                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
+
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+              // </div>
+            );
+          })}
+        </InfiniteScroll>
+      </OnlyWrapCard>
+      <AddNotesOrderDrawer
+        particularRowData={particularRowData}
+        addNotesInOrder={props.addNotesInOrder}
+        handleNotesModalInOrder={props.handleNotesModalInOrder}
+      />
+      
+      <StatusOfOrderModal
+                    handleStatusOfOrder={props.handleStatusOfOrder}
+                    addStatusOfOrder={props.addStatusOfOrder}
+                    particularRowData={particularRowData}
+                />
+         <PaidButtonModal
+                    type={props.type}
+                    addPaidButtonModal={props.addPaidButtonModal}
+                    handlePaidModal={props.handlePaidModal}
+                    particularRowData={particularRowData}
+                />
+      <AccountOrderDetailsModal
+        particularRowData={particularRowData}
+        handleOrderDetailsModal={props.handleOrderDetailsModal}
+        addOrderDetailsModal={props.addOrderDetailsModal} />
+    </>
+  );
+
+
+
 }
 
-const mapStateToProps = ({ order, auth }) => ({
-    allOrderList: order.allOrderList,
-    addPaidButtonModal:order.addPaidButtonModal,
-    addStatusOfOrder:order.addStatusOfOrder,
-    addNotesInOrder:order.addNotesInOrder,
-    fetchingOrderByIdError: order.fetchingOrderByIdError,
-    fetchingOrderById: order.fetchingOrderById,
-    userId: auth.userDetails.userId,
-    orderShowById:order.orderShowById,
+const mapStateToProps = ({ order, auth, distributor }) => ({
+  allOrderList: order.allOrderList,
+  addPaidButtonModal: order.addPaidButtonModal,
+  addStatusOfOrder: order.addStatusOfOrder,
+  addNotesInOrder: order.addNotesInOrder,
+  fetchingOrderByIdError: order.fetchingOrderByIdError,
+  fetchingOrderById: order.fetchingOrderById,
+  userId: auth.userDetails.userId,
+  addOrderDetailsModal: distributor.addOrderDetailsModal,
+  orderShowById: order.orderShowById,
 });
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            getOrderById,
-            handleNotesModalInOrder,
-            handleStatusOfOrder,
-            handlePaidModal
-        },
-        dispatch
-    );
+  bindActionCreators(
+    {
+      getOrderById,
+      emptyOrders,
+      handleNotesModalInOrder,
+      handleStatusOfOrder,
+      handlePaidModal,
+      handleOrderDetailsModal
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderTableByUserID);

@@ -53,7 +53,9 @@ function RepairReasonForm(props) {
                                 />
                             </div>
                             <div style={{ marginTop: "15px", marginLeft: "14px" }}>
-                                <Button type="primary" htmlType="submit">
+                                <Button
+                                    loading={props.startRepairingInStatus}
+                                    type="primary" htmlType="submit">
                                     Submit
                                 </Button>
                             </div>
@@ -67,6 +69,7 @@ function RepairReasonForm(props) {
 const mapStateToProps = ({ distributor, plant, auth }) => ({
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
+    startRepairingInStatus: distributor.startRepairingInStatus,
     distributorId: distributor.distributorDetailsByDistributorId.distributorId,
 });
 

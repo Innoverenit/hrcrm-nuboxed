@@ -68,13 +68,13 @@ export const addEmployee = (employee,cretiondate) => (dispatch) => {
 /**
  * Fetching all employees of org
  */
-export const getEmployeelist = (filter) => (dispatch) => {
+export const getEmployeelist = (filter,type) => (dispatch) => {
   dispatch({
     type: types.GET_EMPLOYEE_LIST_REQUEST,
   });
 
   axios
-  .get(`${base_url}/employee/employees/filter/${filter}`, {
+  .get(`${base_url}/employee/employees/filter/${filter}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -649,12 +649,12 @@ export const getEmployeeData = (employeeType) => (dispatch) => {
     });
 };
 
-export const getRecords = (orgId) => (dispatch) => {
+export const getRecords = (orgId,type) => (dispatch) => {
   dispatch({
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/employee/count/${orgId}`, {
+    .get(`${base_url}/employee/count/${orgId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -982,6 +982,67 @@ export const setEditEmployee = (name) => (dispatch) => {
   });
 };
 
+
+
+export const updateUserdragstage = (
+  data,
+    
+  unboardingStagesId,
+  unboardingWorkflowDetailsId,
+  draggableId,
+  employeeId,
+
+  cb
+) => (dispatch) => {
+  //console.log(sourceStageId, destinationStageId, opportunityId);
+  // if (destinationStageId === "won") {
+  //   message.success("stage is won");
+  // }
+  // if (destinationStageId === "loss") {
+  //   message.error("stage is loss");
+  // }
+  // getUserStageList
+  dispatch({
+    type: types.UPDATE_USER_DRAG_STAGE_REQUEST,
+    payload: {
+      unboardingStagesId,
+      unboardingWorkflowDetailsId,
+      // opportunityId,
+    },
+  });
+  axios
+    .put(
+      `${base_url}/employee/workflow/stage/update`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+dispatch(getUserStageList(employeeId));
+      dispatch({
+        type: types.UPDATE_USER_DRAG_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_USER_DRAG_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
 export const updateEmployee = (data, employeeId) => (dispatch) => {
   dispatch({ type: types.UPDATE_EMPLOYEE_REQUEST });
   axios
@@ -1183,13 +1244,13 @@ export const deleteEmployeeData = (userId,orgId) => (dispatch, getState) => {
     });
 };
 
-export const getUserKpiList = (employeeId) => (dispatch) => {
+export const getUserKpiList = (employeeId,year,quarter) => (dispatch) => {
   dispatch({
     type: types.GET_USER_KPI_LIST_REQUEST,
   });
 
   axios
-  .get(`${base_url}/employee/kpi-list/${employeeId}`, {
+  .get(`${base_url}/employee/kpi-list/${employeeId}/${year}/${quarter}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1261,4 +1322,105 @@ export const addEmployeeWorkflow = (data,employeeId,) => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+export const getUserSalary = (employeeId) => (dispatch) => {
+  dispatch({
+    type: types.GET_USER_SALARY_REQUEST,
+  });
+  axios
+  .get(`${base_url}/employee/salary-breckOut/${employeeId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_USER_SALARY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_USER_SALARY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_ACTUAL_VALUE_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/employee/kpi-actual-completed-value/save`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'KPI Value updated Successfully!',
+      })
+      console.log(res);
+      //  dispatch(getUserKpiList(employeeId,year,quarter));
+      dispatch({
+        type: types.UPDATE_ACTUAL_VALUE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACTUAL_VALUE_FAILURE,
+      });
+    });
+};
+
+export const multiOrgStatus = (employeeId ,multyOrgAccessInd) => (
+  dispatch,
+  getState
+) => {
+  // debugger;
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.MULTI_ORG_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url}/employee/multy-org-access-ind/${employeeId}/${multyOrgAccessInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getCandidateListByUserId(userId));
+      dispatch({
+        type: types.MULTI_ORG_STATUS_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success", res.data.message, res.data.suspendInd);
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MULTI_ORG_STATUS_FAILURE,
+        payload: err,
+      });
+      //  cb && cb("failuer");
+    });
+};
+
+
 

@@ -7,6 +7,10 @@ const initialState = {
     fetchingTasksError: false,
     tasks: [],
 
+    fetchingTaskCount: false,
+    fetchingTaskCountError: false,
+    taskCount:{},
+
     addingTasks: false,
     addingTasksError: false,
 
@@ -140,6 +144,19 @@ case types.GET_TASK_REQUEST:
                 tasks: [], 
                 // deletedTruck: [] 
               };
+
+
+              case types.GET_TASK_COUNT_REQUEST:
+                return { ...state, fetchingTaskCount: true };
+              case types.GET_TASK_COUNT_SUCCESS:
+                return { ...state, fetchingTaskCount: false, 
+                  taskCount: action.payload };
+              case types.GET_TASK_COUNT_FAILURE:
+                return {
+                  ...state,
+                  fetchingTaskCount: false,
+                  fetchingTaskCountError: true,
+                };
 
     default:
         return state;

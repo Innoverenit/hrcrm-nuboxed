@@ -3,6 +3,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
+import Swal from 'sweetalert2'
 
 /**
  * get all the Sector
@@ -49,10 +50,22 @@ export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getInvestorList(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("INVESTOR_ has been added successfully!");
+        dispatch(getInvestorCount(orgId));
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Investor Type added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
@@ -75,7 +88,7 @@ export const addInvestorData = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeInvestor = ( investorCategoryId) => (dispatch) => {
+export const removeInvestor = ( investorCategoryId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_INVESTOR_REQUEST,
@@ -87,7 +100,12 @@ export const removeInvestor = ( investorCategoryId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("INVESTOR has been deleted successfully!");
+        dispatch(getInvestorCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Investor Type deleted successfully!',
+        })
+        // message.success("Investor has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_INVESTOR_SUCCESS,
@@ -105,7 +123,7 @@ export const removeInvestor = ( investorCategoryId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
+export const updateInvestor = (data, investorCategoryId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_INVESTOR_REQUEST,
@@ -113,7 +131,7 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/investorCategory/${investorCategoryId}`,
-        { name,investorCategoryId,editInd:true },
+        data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -122,12 +140,16 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
       )
       .then((res) => {
         
-        message.success("INVESTOR has been updated successfully!");
+        // message.success("INVESTOR has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_INVESTOR_SUCCESS,
           payload: res.data,
         });
+        Swal.fire({
+          icon: 'success',
+          title: 'Investor Type updated successfully!',
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -198,3 +220,73 @@ export const updateInvestor = ( investorCategoryId,name,cb) => (dispatch) => {
         });
       });
   };
+
+  export const getInvestorCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTOR_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorCategory/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVESTOR_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleInvestorImportModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_IMPORT_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const addInvestorImportForm =
+(customer, orgId) => (dispatch, getState) => {
+  const employeeId = getState().auth.userDetails.employeeId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_INVESTOR_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/excel/import/category`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getTaskListRangeByUserId(employeeId,"0"));
+   
+
+      dispatch({
+        type: types.ADD_INVESTOR_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_INVESTOR_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};

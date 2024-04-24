@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
+import { Tooltip,Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
 
 class InventoryActionLeft extends React.Component {
@@ -20,7 +20,9 @@ class InventoryActionLeft extends React.Component {
                 
               }}
             >
+               <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
               <i class="fas fa-globe"></i>
+              </Avatar>
             </span>
           </Tooltip>
           {/* <Tooltip title="Catalogue">

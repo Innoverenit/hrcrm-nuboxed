@@ -1,13 +1,16 @@
-import React, { Component,lazy } from "react";
+import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, message,Input } from "antd";
-import { MainWrapper, } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
+import { DeleteOutlined } from "@ant-design/icons";
+import { base_url } from "../../../Config/Auth";
+import DownloadIcon from '@mui/icons-material/Download';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { Popconfirm,Tooltip, message,Input } from "antd";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getEducations,
+  getEducationCount,
   addEducations,
   removeEducation,
   updateEducations,
@@ -15,271 +18,224 @@ import {
   ClearReducerDataOfEducation
 } from "./EducationAction";
 import dayjs from "dayjs";
-const SingleEducations = lazy(() =>
-  import("./SingleEducation")
-);
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
 
 
 
-class Education extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linkedEducations: [],
-      isTextInputOpen: false,
-      addingEducation: false,
-      educationType: "",
-      type: "",
-      singleEducation: "",
-      editInd:true,
-      currentData: ""
-    };
+
+const Education = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [educations, setEducationData] = useState(props.educations);
+  const [editingId, setEditingId] = useState(null);
+  const [addingRegion, setAddingRegion] = useState(false);
+  const [newEducationName, setEducationName] = useState('');
+  useEffect(() => {
+      props.getEducations(); 
+      props.getEducationCount(props.orgId) 
+  }, [])
+
+  const editRegion = (educationTypeId, name) => {
+    console.log(name)
+    console.log(name)
+      setEditingId(educationTypeId);
+      setEducationName(name);
+  };
+
+
+
+  const handleAddEducation = () => {
+      setAddingRegion(true);
+      setEducationName("")
+  };
+
+  const handleUpdateEducation=(region)=>{
+      console.log(region)
+      let data={
+        educationTypeId:region.educationTypeId,
+        educationType:newEducationName
+       
+      }
+props.updateEducations(data,region.educationTypeId)
+setEditingId(null);
   }
-  handleChangeDes = (e) => {
-    this.setState({ currentData: e.target.value });
+
+  const handleEducation = () => {
+      // if (newRegionName.trim() !== '') {
+      //     console.log("New Region:", newRegionName);
+      //     const newRegion = {
+      //         id: Date.now(),
+      //         item: newRegionName
+      //     };
+      //     setRegions([...regions, newRegion]);
+      //     setNewRegionName('');
+      //     setAddingRegion(false);
+      // }
+      let data={
+        editInd:true,
+        educationType:newEducationName,
+        orgId:props.orgId,
+        editInd:true,
+      }
+      props.addEducations(data,props.orgId)
+      setAddingRegion(false)
+  };
+  const handleChange = (e) => {
+      setCurrentData(e.target.value.trim());
+    
   
-    if (e.target.value.trim() === "") {
-      this.setState((prevState) => ({ pageNo: prevState.pageNo + 1 }));
-      this.props.getEducations();
-      this.props.ClearReducerDataOfEducation();
-    }
-  };
-  handleSearch = () => {
-    if (this.state.currentData.trim() !== "") {
-      // Perform the search
-      this.props.searchEducationsName(this.state.currentData);
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    this.props.getEducations();
-  };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
-  };
-  handleSearchChange = (e) => {
-    this.setState({ currentData: e.target.value })
-  };
+      if (e.target.value.trim() === "") {
+      //   setPage(pageNo + 1);
+      props.getEducations();
+      //   props.ClearReducerDataOfLoad()
+      }
+    };
 
-  toggleInput = () =>
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-  handleAddEducations = () => {
-    const { addEducations, educations } = this.props;
-    const { educationType, addingEducations, isTextInputOpen,editInd} = this.state;
-    let education = { educationType,editInd};
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.searchEducationsName(currentData);
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
 
-    let exist =
-      educations &&
-      educations.some((element) => element.educationType == educationType);
-
-    if (exist) {
-      message.error(
-        "Can't create as another education type exists with same name!"
-      );
-    } else {
-      addEducations(education, () => console.log("add education callback"));
-    }
-
-    this.setState({
-      educationType: "",
-      singleEducation: "",
-      isTextInputOpen: false,
-      editInd:true,
-    });
+  const handleCancelAdd = () => {
+    setEducationName('');
+      setAddingRegion(false);
   };
-  handleDeleteEducation = (educationTypeId={educationTypeId}) => {
-    this.props.removeEducation(educationTypeId);
-    this.setState({ educationType: "", singleEducation: "" });
+  const cancelEdit = () => {
+      setEditingId(null);
   };
-  handleUpdateEducation = (educationType, educationTypeId, cb) => {
-    this.props.updateEducations(educationType, educationTypeId, cb);
-    this.setState({ educationType: "", singleEducation: "",editInd:true });
-  };
-  // getLinkedDocuments = () => {
-  //   axios
-  //     .get(`${base_url}/opportunity/source/linkedSources`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({ linkedSources: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  componentDidMount() {
-    const { getEducations } = this.props;
-    console.log();
-    getEducations();
-    // this.getLinkedSources();
-  }
-  render() {
-    const {
-      fetchingEducations,
-      fetchingEducationsError,
-      educations,
-      addingEducations,
-      updatingEducations,
-    } = this.props;
-    const {
-      isTextInputOpen,
-      type,
-      educationType,
-      singleEducation,
-      linkedEducations,
-    } = this.state;
-    if (fetchingEducations) return <BundleLoader/>;
-    if (fetchingEducationsError) return <p>We are unable to load data</p>;
-    return (
-      <>
-      <div class="flex flex-nowrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              // height: "30.625em",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-             <div class=" flex flex-row justify-between">
-        <div class=" flex w-[18vw]" >
-            <Input
-         placeholder="Search by Name"
-        style={{width:"100%",marginLeft:"0.5rem"}}
-            // suffix={suffix}
-            onPressEnter={this.handleSearch}  
-            onChange={this.handleChangeDes}
-            // value={currentData}
-          />
-            </div>
-            {isTextInputOpen ? (
-             <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-            
-             >
-              
-                <TextInput
-                  placeholder="Add Education"
-                  name="educationType"
-                  value={educationType}
-                  onChange={this.handleChange}
-                  width="55%"
-                  style={{ marginRight: "0.125em" }}
-                />
-                &nbsp;
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={!educationType}
-                  Loading={addingEducations}
-                  onClick={this.handleAddEducations}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
-                </Button>
-                &nbsp;
-                <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                </Button>
-              </div>
-            ) : (
-              <>
-              
-                <div class=" flex justify-end" >
-                  <Button
-                    type="primary"
-                    htmlType="button"
-                    Loading={addingEducations}
-                    onClick={this.toggleInput}
-                  >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
-                  </Button>
-                </div>
-              
-              </>
-            )}
-               </div>
-            <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
-              {educations.length ? (
-  educations
-    .slice() 
-    .sort((a, b) => a.educationType.localeCompare(b.educationType)) 
-    .map((education, i) => (
-                    <SingleEducations
-                      key={i}
-                      value={singleEducation}
-                      name="singleEducation"
-                      education={education}
-                      linkedEducations={linkedEducations}
-                      updatingEducations={updatingEducations}
-                      handleChange={this.handleChange}
-                      handleUpdateEducation={this.handleUpdateEducation}
-                      handleClear={this.handleClear}
-                      handleSearchChange={this.handleSearchChange}
-                      currentData={this.state.currentData}
-                      setCurrentData={this.setCurrentData}
-                      handleDeleteEducation={this.handleDeleteEducation}
-                    />
-                  ))
-                  ) : (
-                    <p>No Data Available</p>
-                  )}
-              </MainWrapper>
-            </div>
+  useEffect(() => {
+      
+      if (props.educations.length > 0) {
         
-          </MainWrapper>
-          {/* <MainWrapper>
-            <FlexContainer
-              style={{
-                border: "0.0625em solid #eee",
-                width: "100%",
-                padding: "1.6rem",
-                marginRight: 70,
-              }}
-            >
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Here is a list of sample sources, it will help attribute
-                opportunities to their sources thereby identifying the effective
-                channels and further allocating resources accordingly.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Korero allows you to change the sources as per your
-                organization's requirements.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                The only exception is if an opportunity is associated with a
-                source then it cannot be deleted from the list till no
-                opportunity exists in that source.
-              </p>
-            </FlexContainer>
-          </MainWrapper> */}
-        </div>
-        <div class=" font-bold">Updated on {dayjs(this.props.educations && this.props.educations.length && this.props.educations[0].updationDate).format('YYYY-MM-DD')} by {this.props.educations && this.props.educations.length && this.props.educations[0].name}</div>
-      </>
-    );
-  }
-}
+        setEducationData(props.educations);
+      }
+    }, [props.educations]);
 
-const mapStateToProps = ({ education }) => ({
+// console.log(regions)
+if (props.fetchingEducations) {
+return <div><BundleLoader/></div>;
+}
+  return (
+      <div>
+    <div class=" flex flex-row justify-between">
+    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+          <Input
+       placeholder="Search by Name"
+      style={{width:"100%",marginLeft:"0.5rem"}}
+          // suffix={suffix}
+          onPressEnter={handleSearch}  
+          onChange={handleChange}
+          // value={currentData}
+        />
+          </div>
+          <div class="w-[38rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"educationType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+            <div className="add-region">
+              {addingRegion ? (
+                  <div>
+                      <input 
+                        placeholder="Add Education"
+                      style={{border:"2px solid black",width:"52%"}}
+                          type="text" 
+                          value={newEducationName} 
+                          onChange={(e) => setEducationName(e.target.value)} 
+                      />
+                      <button 
+                         loading={props.addingIdProofs}
+                      onClick={handleEducation}>Save</button>
+                      <button onClick={handleCancelAdd}>Cancel</button>
+                  </div>
+              ) : (
+                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddEducation}> Add More</button>
+              )}
+          </div>
+          </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
+          {!props.fetchingEducations && educations.length === 0 ? <NodataFoundPage /> : educations.slice().sort((a, b) => a.educationType.localeCompare(b.educationType)).map((region, index) => (
+            <div className="card9" key={region.educationTypeId}>
+            {/* Region name display or input field */}
+            
+            {editingId === region.educationTypeId ? (
+                <input
+                placeholder="Update Education"
+                style={{border:"2px solid black"}}
+                    type="text"
+                    value={newEducationName}
+                    onChange={(e) => setEducationName(e.target.value)}
+                />
+            ) : (
+                <div className="region">{region.educationType}&nbsp;&nbsp;&nbsp;
+                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                      >
+                                        New
+                                      </span> : null}</div>
+            )}
+
+            {/* Action buttons */}
+            <div className="actions">
+                {/* Edit button */}
+                {editingId === region.educationTypeId ? (
+                    <div>
+                        <button onClick={() => handleUpdateEducation(region)}>Save</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+                    </div>
+                ) : (
+                  <>
+                  {region.editInd ? (
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.educationTypeId, region.educationType)} />
+                    ) : null}
+                    </>
+                )}
+
+                {/* Delete button */}
+                <Popconfirm
+                        title="Do you want to delete?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() =>  props.removeEducation(region.educationTypeId,props.orgId)}
+                      >
+                <DeleteOutlined 
+                  style={{
+                  
+                    color: "red",
+                    cursor:"pointer"
+                  }}
+              // onClick={() => 
+              //     props.removeServiceLine(item.educationTypeId)
+              //  }
+                 />
+                 </Popconfirm>
+            </div>
+        </div>
+        ))}
+        </MainWrapper>
+            </div>
+      
+  <div class=" font-bold">Updated on {dayjs(props.educations && props.educations.length && props.educations[0].updationDate).format('YYYY-MM-DD')} by {props.educations && props.educations.length && props.educations[0].name}</div>
+      </div>
+  );
+};
+
+const mapStateToProps = ({ education ,auth}) => ({
   addingEducations: education.addingEducations,
   addingEducationsError: education.addingEducationsError,
   educations: education.educations,
-
+  educationCount:education.educationCount,
+  orgId: auth.userDetails.organizationId,
   removingEducations: education.removingEducations,
   removingEducationsError: education.removingEducationsError,
   fetchingEducations: education.fetchingEducations,
@@ -294,6 +250,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getEducations,
+      getEducationCount,
       addEducations,
       removeEducation,
       updateEducations,

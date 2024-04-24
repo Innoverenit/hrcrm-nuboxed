@@ -28,6 +28,11 @@ const initialState = {
   fetchingDelasContactDataError: false,
   dealsContactData:[],
 
+  fetchingContactAllRecords: false,
+  fetchingContactAllRecordsError: false,
+  contactAllRecord:{},
+
+
   fetchingTeamContact: false,
   fetchingTeamContactError: false,
   teamContact:[],
@@ -82,6 +87,11 @@ const initialState = {
   fetchingContactOpportunity: false,
   fetchingContactOpportunityError: false,
   opportunityByContactId: [],
+
+
+  fetchingContactActivityCount: false,
+  fetchingContactActivityCountError: false,
+  contactActivityCount:{},
 
   updateContactModal: false,
 
@@ -208,6 +218,7 @@ const initialState = {
 addingNotesByContactId:false,
   addingNotesByContactIdError:false,
 
+  addContactImportModal:false,
 
   addingContactLinkByOpportunityId: false,
 
@@ -263,6 +274,9 @@ export const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.HANDLE_CONTACT_MODAL:
       return { ...state, addContactModal: action.payload };
+
+      case types.HANDLE_CONTACT_IMPORT_MODAL:
+        return { ...state, addContactImportModal: action.payload };
     //opp modal
     case types.HANDLE_CONTACT_OPPORTUNITY_MODAL:
       return { ...state, addContactOpportunityModal: action.payload };
@@ -984,6 +998,39 @@ export const contactReducer = (state = initialState, action) => {
                                 fetchingContactsCETRecord: false,
                                 fetchingContactsCETRecordError: true,
                             };
+
+
+                               
+    case types.GET_CONTACT_ACTIVITY_RECORDS_REQUEST:
+      return { ...state, fetchingContactActivityCount: true };
+    case types.GET_CONTACT_ACTIVITY_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingContactActivityCount: false,
+        contactActivityCount: action.payload,
+      };
+    case types.GET_CONTACT_ACTIVITY_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingContactActivityCount: false,
+        fetchingContactActivityCountError: true,
+      };
+
+
+      case types.GET_CONTACT_ALL_RECORDS_REQUEST:
+        return { ...state, fetchingContactAllRecords: true };
+      case types.GET_CONTACT_ALL_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingContactAllRecords: false,
+          contactAllRecord: action.payload,
+        };
+      case types.GET_CONTACT_ALL_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingContactAllRecords: false,
+          fetchingContactAllRecordsError: true,
+        };
 
                   default:
       return state;

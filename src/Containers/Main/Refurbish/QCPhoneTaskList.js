@@ -1,9 +1,10 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getTaskByPhoneId,  } from "./RefurbishAction"
+import { getTaskByPhoneId, deleteTaskList } from "./RefurbishAction"
 import { MainWrapper } from "../../../Components/UI/Elements";
-import QCPhoneTaskToggle from "./QCPhoneTaskToggle";
+import { Popconfirm, Tooltip } from "antd";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function QCPhoneTaskList(props) {
@@ -14,15 +15,23 @@ function QCPhoneTaskList(props) {
     return (
         <>
             <MainWrapper>
-        
+
                 {props.taskByPhone.map((item) => {
                     return (
-                        <div class="cursor-pointer w-[18%] flex justify-center ">
+                        <div class="cursor-pointer w-[25%] flex justify-center ">
                             <div class="basis-[85%]">
                                 {item.taskName}
                             </div>
                             <div>
-                           <QCPhoneTaskToggle phoneTaskId={item.phoneTaskId}/>
+                                <Popconfirm
+                                    title="Do you want to delete?"
+                                    onConfirm={() => props.deleteTaskList({}, item.phoneTaskId)}
+                                >
+                                    <DeleteIcon
+                                        className=" !text-base cursor-pointer text-[red]"
+                                    />
+                                </Popconfirm>
+
                             </div>
                         </div>
                     )
@@ -45,6 +54,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getTaskByPhoneId,
+            deleteTaskList
         },
         dispatch
     );

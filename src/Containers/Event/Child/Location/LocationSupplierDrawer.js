@@ -15,6 +15,8 @@ const LocationSupplierDrawer = (props) => {
           defaultMessage="Create Virtual Location"
         />}
         width={drawerWidth}
+        destroyOnClose
+          closable
         visible={locationSupplierdrawr}
         onClose={() => handleLocationSupplierDrawer(false)}
       >

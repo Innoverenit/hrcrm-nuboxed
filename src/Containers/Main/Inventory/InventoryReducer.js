@@ -75,7 +75,7 @@ const initialState = {
 
   //add dispatch
 
-  phoneListData: {},
+  setEdittingPhone: {},
 
   addingDispatch: false,
   addingDispatchError: false,
@@ -107,13 +107,16 @@ const initialState = {
   fetchingReceivedDetailsListError: false,
   receivedDetailsList: [],
 
+  updatingRepairStatus: false,
+  updatingRepairStatusError: false,
+
   addReceiveUnit: false,
 
   //dispatchModal
   dispatchModal: false,
   //receivedItem
-  addRecievedItem: false,
-  addRecievedItemError: false,
+  addingRecievedItem: false,
+  addingRecievedItemError: false,
   //damagedItem
   addingDamagedItem: false,
   addingDamagedItemError: false,
@@ -122,7 +125,9 @@ const initialState = {
   openPickupDateModal: false,
   //add dispatch modal
   addDispatchModal: false,
-  //dispatchFinalDataSave
+
+  mismatchPhoneModal: false,
+
   addingDispatchFinalData: false,
   addingDispatchFinalDataError: false,
 
@@ -222,6 +227,9 @@ const initialState = {
   fetchingRefurbishProductError: false,
   refurbishProduct: [],
 
+  updatingOrderReceive: false,
+  updatingOrderReceiveError: false,
+
   fetchingMaterialReceiveData: false,
   fetchingMaterialReceiveDataError: false,
   materialReceiveData: [],
@@ -245,12 +253,29 @@ const initialState = {
   fetchingReceivedUnitOfAnItemError: false,
   reciveUnitData: [],
 
+  addingDeliverDate: false,
+  addingDeliverDateError: false,
+
   showGrnListOfPo: false,
 
   showStockItem: false,
 
   fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: false,
   productionDispatchByLocsId: [],
+
+  stockUseDrwr: false,
+
+  fetchingArchieveProductionLocId: false,
+  fetchingArchieveProductionLocIdError: true,
+  archieveInProduction: [],
+
+  roomRackbyLoc: [],
+  fetchingRoomRack: false,
+  fetchingRoomRackByIdError: false,
+
+  fetchingRacklist: false,
+  fetchingRacklistError: false,
+  rackList: [],
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -535,18 +560,18 @@ export const inventoryReducer = (state = initialState, action) => {
 
     //addReceivedItem
     case types.ADD_TOTAL_RECEIVED_ITEM_REQUEST:
-      return { ...state, addRecievedItem: true };
+      return { ...state, addingRecievedItem: true };
     case types.ADD_TOTAL_RECEIVED_ITEM_SUCCESS:
       return {
         ...state,
-        addRecievedItem: false,
+        addingRecievedItem: false,
         receivedModal: false,
       };
     case types.ADD_TOTAL_RECEIVED_ITEM_FAILURE:
       return {
         ...state,
-        addRecievedItem: false,
-        addRecievedItemError: false,
+        addingRecievedItem: false,
+        addingRecievedItemError: false,
         receivedModal: false,
       };
     //addDamagedItem
@@ -757,20 +782,23 @@ export const inventoryReducer = (state = initialState, action) => {
       };
     case types.ADD_DELIVERY_DATE_REQUEST:
       return {
-        ...state,
+        ...state, addingDeliverDate: true,
       };
     case types.ADD_DELIVERY_DATE_SUCCESS:
       return {
         ...state,
-        // allReceivedUser: state.allReceivedUser.map((item) =>
-        //   item.dispatchId === action.payload.dispatchId ? action.payload : item
-        // ),
         addDeliverDate: false,
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
+        addingDeliverDate: false,
       };
     case types.ADD_DELIVERY_DATE_FAILURE:
       return {
         ...state,
-        addDeliverDate: false,
+        addingDeliverDate: false,
+        addingDeliverDateError: true,
       };
     case types.HANDLE_DELIVERY_DATE_MODAL:
       return { ...state, addDeliverDate: action.payload };
@@ -943,6 +971,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         receivedOrdeIdModal: action.payload,
+        phoneListById: []
       };
 
     case types.HANDLE_INVENTORY_RECEIVED_NOTE_ORDER_MODAL:
@@ -960,14 +989,15 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         addingRoomAndRackInInventory: false,
-        addroomrackininventory: false,
+        // addroomrackininventory: false,
+        // roomRackbyLoc:action.payload
       };
     case types.ADD_ROOM_AND_RACK_IN_INVENTORY_FAILURE:
       return {
         ...state,
         addingRoomAndRackInInventory: false,
         addingRoomAndRackInInventoryError: true,
-        addroomrackininventory: false,
+        // addroomrackininventory: false,
       };
 
     case types.UPDATE_VALIDATION_IN_RECEIVE_REQUEST:
@@ -976,7 +1006,11 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingValidationInRecive: false,
-        addReceivePhone: false
+        addReceivePhone: false,
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_VALIDATION_IN_RECEIVE_FAILURE:
       return {
@@ -997,7 +1031,11 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingInspection: false,
-        receivedOrdeIdModal: false
+        receivedOrdeIdModal: false,
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_INSPECTION_FAILURE:
       return {
@@ -1022,7 +1060,8 @@ export const inventoryReducer = (state = initialState, action) => {
       };
 
     case types.SET_PHONELIST_EDIT:
-      return { ...state, phoneListData: action.payload };
+      return { ...state, setEdittingPhone: action.payload };
+
 
     case types.SET_DISPATCH_PHONELIST_EDIT:
       return { ...state, dispatchPhoneData: action.payload };
@@ -1033,7 +1072,11 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingDispatchInspectionButton: false,
-        openPickupDateModal: false
+        openPickupDateModal: false,
+        allDispatchList: state.allDispatchList.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE:
       return {
@@ -1048,6 +1091,10 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingDispatchReceivePhone: false,
+        updateDispatchList: state.updateDispatchList.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
       };
     case types.UPDATE_DISPATCH_RECEIVE_PHONE_FAILURE:
       return {
@@ -1061,6 +1108,12 @@ export const inventoryReducer = (state = initialState, action) => {
 
     case types.HANDLE_PICKUP_MODAL:
       return { ...state, pickUpModal: action.payload };
+
+    case types.HANDLE_MISMATCH_PHONE_MODAL:
+      return { ...state, mismatchPhoneModal: action.payload };
+
+    case types.EMPTY_INVENTORY_LIST:
+      return { ...state, allReceivedUser: [], allDispatchList: [] };
 
     case types.HANDLE_ADD_AWB_MODAL:
       return { ...state, addAwbNo: action.payload };
@@ -1140,6 +1193,24 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, fetchingDispatchProductionLocId: false, productionDispatchByLocsId: action.payload };
     case types.GET_DISPATCH_PRODUCTION_BYLOC_ID_FAILURE:
       return { ...state, fetchingDispatchProductionLocId: false, fetchingDispatchProductionLocIdError: true };
+
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_REQUEST:
+      return {
+        ...state,
+        fetchingArchieveProductionLocId: true, fetchingArchieveProductionLocIdError: false
+      };
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_SUCCESS:
+      return {
+        ...state, fetchingArchieveProductionLocId: false,
+        archieveInProduction: action.payload
+      };
+    case types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_FAILURE:
+      return {
+        ...state, fetchingArchieveProductionLocId: false,
+        fetchingArchieveProductionLocIdError: true,
+
+      };
+
 
     case types.GENERATE_GRN_FOR_PO_REQUEST:
       return { ...state, generatingGrnForPo: true };
@@ -1257,8 +1328,97 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingGrnNoByPoId: false,
         fetchingGrnNoByPoIdError: true,
-
       };
+
+
+    case types.UPDATE_ORDER_RECEIVE_REQUEST:
+      return { ...state, updatingOrderReceive: true };
+    case types.UPDATE_ORDER_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        updatingOrderReceive: false,
+        allReceivedUser: state.allReceivedUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload : item
+        ),
+      };
+    case types.UPDATE_ORDER_RECEIVE_FAILURE:
+      return {
+        ...state,
+        updatingOrderReceive: false,
+        updatingOrderReceiveError: true,
+      };
+
+    case types.UPDATE_REPAIR_STATUS_REQUEST:
+      return { ...state, updatingRepairStatus: true };
+    case types.UPDATE_REPAIR_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingRepairStatus: false,
+        phoneListById: state.phoneListById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+      };
+    case types.UPDATE_REPAIR_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingRepairStatus: false,
+        updatingRepairStatusError: true,
+      };
+
+
+    case types.HANDLE_STOCK_USED_DRAWER:
+      return { ...state, stockUseDrwr: action.payload };
+
+      case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
+        return { ...state, fetchingRoomRack: true };
+      case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          roomRackbyLoc: action.payload
+        };
+      case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
+        return {
+          ...state,
+          fetchingRoomRack: false,
+          fetchingRoomRackByIdError: true,
+        };
+
+        case types.UPDATE_ROOM_RACK_ID_REQUEST:
+          return { ...state, updatingRoomRackId: true };
+        case types.UPDATE_ROOM_RACK_ID_SUCCESS:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            roomRackbyLoc: state.roomRackbyLoc.map((item) =>
+              item.roomRackId === action.payload.roomRackId
+                ? action.payload : item
+            ),
+          };
+        case types.UPDATE_ROOM_RACK_ID_FAILURE:
+          return {
+            ...state,
+            updatingRoomRackId: false,
+            updatingRoomRackIdError: true,
+          };
+    
+          case types.GET_RACK_LIST_REQUEST:
+            return { ...state, fetchingRacklist: true };
+          case types.GET_RACK_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              rackList: action.payload
+            };
+          case types.GET_RACK_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingRacklist: false,
+              fetchingRacklistError: true,
+            };
+
     default:
       return state;
   }

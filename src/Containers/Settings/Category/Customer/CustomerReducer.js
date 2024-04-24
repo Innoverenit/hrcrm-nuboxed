@@ -7,11 +7,20 @@ const initialState = {
      fetchingCustomerError: false,
     customerListData: [],
 
+    fetchingCustomerCount: false,
+    fetchingCustomerCountError: false,
+    customerCount:{},
+
      addingCustomer: false,
      addingCustomerError: false,
 
      removingCustomer: false,
      removingCustomerError: false,
+
+
+fetchingCustomerNote:false,
+fetchingCustomerNoteError:false,
+     customerNoteList:[],
 
       updatingCustomer: false,
       updatingCustomerError: false,
@@ -59,6 +68,9 @@ export const catgCustomerReducer = (state = initialState, action) => {
        addingCustomer: false,
        addingCustomerError: true,
     };
+
+
+   
 
      // remove sector
 
@@ -119,6 +131,19 @@ export const catgCustomerReducer = (state = initialState, action) => {
               customerListData: [], 
               // deletedTruck: [] 
             };    
+
+
+            case types.GET_CUSTOMER_COUNT_REQUEST:
+              return { ...state, fetchingCustomerCount: true };
+            case types.GET_CUSTOMER_COUNT_SUCCESS:
+              return { ...state, fetchingCustomerCount: false, 
+                customerCount: action.payload };
+            case types.GET_CUSTOMER_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingCustomerCount: false,
+                fetchingCustomerCountError: true,
+              };
     
     default:
         return state;

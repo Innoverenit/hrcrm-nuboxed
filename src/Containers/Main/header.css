@@ -1,68 +1,58 @@
 /*Desktop View*/
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 40px;
-    height: 80px;
-  }
-  .logo-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-  .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .header {
+    padding: 0px 0px;
   }
   .logo {
     width: 45px;
     height: 45px;
   }
-  .logo1 {
-    width: 60px;
-    height: 55px;
-  }
   .nav-options {
-    padding-left: 25px;
     display: flex;
-    /* grid-template-columns: repeat(3, auto);
-    grid-gap: 50px; */
-    /* list-style-type: none; */
-  }
-  .mobile-option {
-    display: none;
-  }
-  
-  .option :hover {
-    color: white;
-  }
-  .signin-up {
-    display: flex;
-    padding: 0px 5px;
+    width: 18%;
+    height: max-content;
+    position: absolute;
+    align-items: flex-start;
+    top: 49px;
+    left: -100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    flex-direction: column;
     list-style-type: none;
+    grid-gap: 0px;
   }
-  .sign-in {
-    padding-right: 50px;
-    align-self: center;
+  .nav-options.active {
+    background: #38445E;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    align-content: center;
+    padding-left: 0px;
   }
-  .sign-in :hover {
-    color: white;
+
+  .menu-icon {
+    width: 2rem;
+    height: 2rem;
   }
-  .signup-btn {
-    padding: 10px 10px;
-    height: 2.4rem;
-    border-radius: 3px;
-    background: rgb(222, 9, 241);
-    color: white;
-    cursor: pointer;
+  .option {
+    display: flex;
     align-items: center;
+    justify-content: center;
   }
-  .mobile-menu {
+  .sign-up {
+    background: rgb(222, 9, 241);
+    border-radius: 3px;
+    color: white;
+    padding: 20px 0px;
+    width: 80%;
+    align-self: center;
+    border-radius: 3px;
+  }
+
+  .signin-up {
     display: none;
-    padding: 0px 5px;
   }
+
   @media (max-width: 648px) {
     /*Mobile View */
     .header {
@@ -97,8 +87,8 @@
     }
   
     .menu-icon {
-      width: 45px;
-      height: 45px;
+      width: 2rem;
+      height: 2rem;
     }
     .option {
       display: flex;

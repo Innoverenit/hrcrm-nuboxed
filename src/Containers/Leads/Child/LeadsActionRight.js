@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
+//import {handleLeadsImportModal} from "../LeadsAction"
 import { Button } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 const Option = StyledSelect.Option;
@@ -31,15 +32,29 @@ class LeadsActionRight extends React.Component {
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
             Add
           </Button>
+          <div className="max-sm:hidden">
+          <Button type="primary"  
+        onClick={() => this.props.handleLeadsImportModal(true)}
+        >
+            Import
+          </Button>
+          </div>
         </div>
         )} 
+         
+       
       </>
     );
   }
 }
 
-const mapStateToProps = ({ auth, team, account }) => ({user: auth.userDetails,});
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapStateToProps = ({ auth, team,leads, account }) => ({
+  user: auth.userDetails,
+  // addLeadsImportModal:leads.addLeadsImportModal,
+});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // handleLeadsImportModal
+}, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LeadsActionRight)
 );

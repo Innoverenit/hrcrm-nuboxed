@@ -14,6 +14,7 @@ import { ActionIcon } from "../../../../../../Components/Utils";
 import Highlighter from "react-highlight-words";
 import {SearchOutlined}  from '@ant-design/icons';
 import {getDealContactList,setContactRoleForDeals} from "../../../../DealAction";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 class LinkedDealContact extends Component {
@@ -184,7 +185,7 @@ class LinkedDealContact extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
-                  {this.props.dealContactList.map((item) => {
+                  { !this.props.fetchingDealContactList && this.props.dealContactList.length === 0 ?<NodataFoundPage />:this.props.dealContactList.map((item,index) =>  {
                       
                       return (
                           <div >

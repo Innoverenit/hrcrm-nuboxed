@@ -14,6 +14,9 @@ const OpenTaskModal = (props) => {
       <StyledDrawer
          title={props.item.taskName}
         width="82%"
+        destroyOnClose
+        closable
+        placement="right"
         visible={props.addTaskDetailModal}
         onClose={() => props.handleTaskopenModal(false)}
         footer={null}

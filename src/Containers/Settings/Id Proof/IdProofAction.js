@@ -1,6 +1,6 @@
 import * as types from "./IdProofActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 /**
@@ -36,7 +36,7 @@ import { message } from "antd";
   /**
  * add a new DESIGNATIONS
  */
-export const addIdProofs = (idProofs, cb) => (dispatch) => {
+export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
     console.log(idProofs);
     dispatch({
       type: types.ADD_ID_PROOF_REQUEST,
@@ -48,11 +48,23 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("Identity has been added successfully!");
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Identity added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
-        // dispatch(getIdProofs());
+        dispatch(getIdProofCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_ID_PROOF_SUCCESS,
@@ -70,7 +82,7 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
   };
 
 
- export const updateIdProofs = (IdProofTypeId, IdProofType, cb) => (dispatch) => {
+ export const updateIdProofs = (data,IdProofTypeId, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_ID_PROOF_REQUEST,
@@ -78,7 +90,7 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/idProofType/update`,
-        { IdProofType,IdProofTypeId,editInd:"true" },
+      data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -86,7 +98,11 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Identity has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Identity updated Successfully!',
+        })
+        // message.success("Identity has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ID_PROOF_SUCCESS,
@@ -127,7 +143,7 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
       });
   }; 
 
-  export const removeIdProof= ( idProofTypeId) => (dispatch) => {
+  export const removeIdProof= ( idProofTypeId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_ID_PROOF_REQUEST,
@@ -139,7 +155,12 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Identity has been deleted successfully!");
+        dispatch(getIdProofCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Identity deleted Successfully!',
+        })
+        // message.success("Identity has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_ID_PROOF_SUCCESS,
@@ -158,4 +179,30 @@ export const addIdProofs = (idProofs, cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_ID_PROOF,
     });
+  };
+
+  export const getIdProofCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_ID_PROOF_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/idProofType/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ID_PROOF_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_ID_PROOF_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };

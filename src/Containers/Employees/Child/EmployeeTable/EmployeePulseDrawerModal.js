@@ -2,6 +2,7 @@ import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SalaryForm from "../EmployeeTable/SalaryForm"
 import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import EmployeeTreeMap from "./EmployeeTreeMap";
@@ -11,6 +12,8 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import UserKpiList from "./EmployeeDrawer/UserKpiList";
+import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
+import AssigenedKpiCardList from "../../../Main/Teams/TeamsCard.js/AssigenedKpiCardList";
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
@@ -33,7 +36,10 @@ class EmployeePulseDrawerModal extends Component {
       <div>
  <StyledDrawer
           title={this.props.employeeName.fullName}
-          width={"60%"}
+          closable
+          maskClosable={false}
+          destroyOnClose
+          width={"100%"}
           visible={this.props.addDrawerEmployeePulseModal}
         onClose={() => this.props.handleEmployeePulseDrawerModal(false)}
         
@@ -59,7 +65,7 @@ class EmployeePulseDrawerModal extends Component {
                   <span>
  <ContactsIcon style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      Performance Mangement
+                      Performance
                     </span>
                   </span>
                   {/* {activeKey === "1" && (
@@ -97,6 +103,7 @@ class EmployeePulseDrawerModal extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
+                {/* <AssigenedKpiCardList employeeName={this.props.employeeName}/> */}
                 <UserKpiList employeeName={this.props.employeeName}/>
               </Suspense>
             </TabPane>
@@ -113,25 +120,7 @@ class EmployeePulseDrawerModal extends Component {
                     360 View
                     
                   </span>
-                  {/* {activeKey === "2" && (
-                    <>
-                      <PlusOutlined
-                        type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
-                        onClick={() => handleInvestorDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
-                      />
-                    </>
-                  )} */}
+              
                 </>
               }
               key="2"
@@ -141,6 +130,80 @@ class EmployeePulseDrawerModal extends Component {
                 <EmployeeTreeMap
           employeeTreeMap={this.props.employeeTreeMap}
           />
+              </Suspense>
+            </TabPane>
+
+
+
+            <TabPane
+              tab={
+                <>
+                  <span>
+ <ContactsIcon style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                      Salary
+                    </span>
+                  </span>
+                  {/* {activeKey === "1" && (
+                    <>
+                      <Tooltip 
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
+                      
+                          <PlusOutlined
+                            type="plus"
+                           
+                            tooltiptitle={
+                              <FormattedMessage
+                                id="app.Create"
+                                defaultMessage="Create"
+                              />
+                            }
+                            onClick={() => {
+                              handleInvestorContactModal(true);
+                            }}
+                            size="0.875em"
+                          />
+                       
+                      </Tooltip>
+                    </>
+                  )} */}
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <SalaryForm
+                 employeeName={this.props.employeeName}
+                />
+                {/* <UserKpiList employeeName={this.props.employeeName}/> */}
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+ <ContactsIcon style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                    Equipment
+                    </span>
+                  </span>
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <EmployeeEquipmentForm
+                 employeeName={this.props.employeeName}
+                />
+             
               </Suspense>
             </TabPane>
             

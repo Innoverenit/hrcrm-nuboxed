@@ -13,11 +13,11 @@ class ReceivedDetailModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Po Details - ${this.props.row.newPoNumber}`}
-                    width="70%"
+                    title={`PO Details - ${this.props.row.newPoNumber}`}
+                    width="90%"
                     visible={addMaterialReceived}
-                    destroyOnClose
                     maskClosable={false}
+                    destroyOnClose
                     onClose={() => handleMaterialReceived(false)}
                     footer={null}
                 >

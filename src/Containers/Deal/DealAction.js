@@ -1,6 +1,7 @@
 import * as types from "./DealActionType";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../Config/Auth";
 import { message } from "antd";
 
@@ -34,6 +35,10 @@ export const setDealViewType = (viewType) => (dispatch) => {
           type: types.GET_DEAL_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -70,6 +75,33 @@ export const setDealViewType = (viewType) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.CREATE_DEAL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getInvestorDeals = (investorId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_INVESTOR_DEALS_DATA_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorOpportunity/details/investor/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_DEALS_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_INVESTOR_DEALS_DATA_FAILURE,
           payload: err,
         });
       });
@@ -344,7 +376,7 @@ export const getdealsTeamRecord = (userId) => (dispatch) => {
     type: types.GET_DEALS_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunit/contact/team/count/${userId}`, {
+    .get(`${base_url}/investorOpportunit/contact/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -365,12 +397,12 @@ export const getdealsTeamRecord = (userId) => (dispatch) => {
     });
 };
 
-export const getdealsAllRecord = (userId) => (dispatch) => {
+export const getdealsAllRecord = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_DEALS_ALL_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunity/record/count/${userId}`, {
+    .get(`${base_url}/investorOpportunity/all/record/count/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -407,24 +439,37 @@ export const LinkStageDeal = (data, cb) => (dispatch) => {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
-
     .then((res) => {
       console.log(res);
+
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+       
+        });
+      }
 
       dispatch({
         type: types.LINK_DEAL_SUCCESS,
         payload: res.data,
       });
+
       cb && cb("success");
     })
     .catch((err) => {
       console.log(err);
+message.error("Something went wrong")
+   
+
       dispatch({
         type: types.LINK_DEAL_FAILURE,
       });
+
       cb && cb("failure");
     });
 };
+
 
 export const addDealsNote = (note, cb) => (dispatch) => {
   dispatch({ type: types.ADD_DEALS_NOTES_REQUEST });
@@ -500,6 +545,36 @@ export const getWonDeals = (userId,pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_WON_DEALS_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
+    });
+};
+
+export const getlostRecords = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOST_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/InvestorOpportunity/LostInd/record/count/${userId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOST_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_LOST_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -585,6 +660,41 @@ export const getAllDeals = (userId,pageNo) => (dispatch) => {
         type: types.GET_ALL_DEALS_DATA_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
+    });
+};
+
+export const getTeamsDeals = (userId,pageNo) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_TEAMS_DEALS_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunit/teams/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAMS_DEALS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TEAMS_DEALS_DATA_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -613,7 +723,7 @@ export const updateDealdragstage = (
   });
   axios
     .put(
-      `${base_url}/investorOpportunity/${invOpportunityId}`,data, {
+      `${base_url}/investorOpportunity/update/stage`,data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -740,6 +850,11 @@ export const deleteDealsData = (invOpportunityId) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Deal Deleted Successfully',
+      
+      })
       dispatch({
         type: types.DELETE_DEAL_DATA_SUCCESS,
         payload: invOpportunityId,
@@ -808,4 +923,35 @@ export const setContactRoleForDeals = (
       });
     })
     .catch((err) => console.log(err));
+};
+
+
+export const getLostDeals = (userId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOST_DEALS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunity/lostInd/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOST_DEALS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOST_DEALS_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
+    });
 };

@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
 const DistributorPaidForm = lazy(() => import("./DistributorPaidForm"));
 const OrderPaymentTable = lazy(() => import("./OrderPaymentTable"));
 class PaidButtonModal extends Component {
@@ -14,10 +13,7 @@ class PaidButtonModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={<FormattedMessage
-                        id="app.collection"
-                        defaultMessage="Collection"
-                       />}
+                    title={`Collection - ${this.props.particularRowData.newOrderNo}`}
                     width="70%"
                     visible={addPaidButtonModal}
                     destroyOnClose
@@ -26,8 +22,13 @@ class PaidButtonModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <DistributorPaidForm particularRowData={this.props.particularRowData} />
-                        <OrderPaymentTable particularRowData={this.props.particularRowData} />
+
+                        {this.props.type === "incomplete" ?
+                            <>
+                                <DistributorPaidForm particularRowData={this.props.particularRowData} />
+                                <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                            </> :
+                            <OrderPaymentTable particularRowData={this.props.particularRowData} />}
                     </Suspense>
                 </StyledDrawer>
             </>

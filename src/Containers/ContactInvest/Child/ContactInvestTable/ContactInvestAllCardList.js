@@ -58,7 +58,7 @@ function ContactInvestAllCardList(props) {
         }
       }
     })
-    props.getAllContactInvest(pageNo,"creationdate");
+    props.getAllContactInvest(pageNo,"Investor");
     setPage(pageNo + 1);
   }, []);
 
@@ -83,7 +83,7 @@ function ContactInvestAllCardList(props) {
   const handleLoadMore = () => {
             setPage(pageNo + 1);
             props.getAllContactInvest(props.currentUser?props.currentUser:pageNo,
-                props.filter?props.filter:"creationdate"
+              "Investor"
             )  ; 
             setPage(pageNo + 1);
   }
@@ -169,7 +169,7 @@ if (isMobile){
                                             {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class="text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                 
@@ -179,7 +179,7 @@ if (isMobile){
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span
+          <span class=" mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -269,7 +269,7 @@ if (isMobile){
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className="!text-base text-[gold]"/>
+               <PhoneInTalkIcon className="!text-xl text-[gold]"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -289,7 +289,7 @@ if (isMobile){
            
             <MailOutlineIcon
               type="mail"
-              className="!text-base cursor-pointer text-green-400"
+              className="!text-xl cursor-pointer text-green-400"
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleCurrentContactIdata(true);
@@ -306,7 +306,7 @@ if (isMobile){
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -325,7 +325,7 @@ if (isMobile){
                 cursor: "pointer",
               }}
             >
-            <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -343,7 +343,7 @@ if (isMobile){
             {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-               className="!text-base cursor-pointer text-[tomato]"
+               className="!text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);
@@ -361,7 +361,7 @@ if (isMobile){
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-base"
+                className="text-green-500 cursor-pointer !text-xl"
               />
            </Tooltip>
 
@@ -493,7 +493,7 @@ if (isMobile){
                                             {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class="text-[0.82rem] text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-[0.82rem] flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
     </Link>                                 
@@ -503,7 +503,7 @@ if (isMobile){
         >{item.fullName}</Link> */}
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span
+          <span class=" mt-[0.4rem]"
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -591,7 +591,7 @@ if (isMobile){
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className="!text-base text-[gold]"/>
+               <PhoneInTalkIcon className="!text-xl text-[gold]"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -611,7 +611,7 @@ if (isMobile){
            
             <MailOutlineIcon
               type="mail"
-              className="!text-base cursor-pointer text-green-400"
+              className="!text-xl cursor-pointer text-green-400"
               onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleCurrentContactIdata(true);
@@ -628,7 +628,7 @@ if (isMobile){
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -643,7 +643,7 @@ if (isMobile){
             <span class="cursor-pointer"
              
             >
-            <LocationOnIcon  className="!text-base cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -661,7 +661,7 @@ if (isMobile){
             {/* {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-base cursor-pointer text-[tomato]"
+                className="!text-xl cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);
@@ -681,7 +681,7 @@ if (isMobile){
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-base"
+                className="text-green-500 cursor-pointer !text-xl"
               />
            </Tooltip>
 

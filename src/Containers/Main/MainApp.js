@@ -1,14 +1,19 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import HelpIcon from '@mui/icons-material/Help';
+import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
+
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
 import { bindActionCreators } from "redux";
 
 import {
+  Button,
   Layout,
   message,
+  Badge
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
@@ -17,7 +22,8 @@ import {
   NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
-import { updateUserById,handleActionDrawerModal,getActionRequiredCount } from "../Auth/AuthAction";
+import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
+import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
 import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
@@ -29,6 +35,12 @@ import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import FAQPage from "./FAQ/FAQPage";
+import DashboardPage from "../DashboardPage/DashboardPage";
+import DataRoom from "../Data Room/DataRoom";
+import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
+import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
+
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -230,11 +242,11 @@ const ContactInvestDetail = lazy(() => import("../ContactInvest/Child/ContactInv
 const DealDetail = lazy(() => import("../Deal/Child/DealDetail/DealDetail"));
 const Product = lazy(() => import("../Product/Product"));
 const Collection = lazy(() => import("../Collection/Collection"));
-const Plant =lazy(()=>import("../Plant/Plant"));
-const PlantDetail =lazy(()=>import("../Plant/Child/PlantDetail/PlantDetail"));
-const Procurement =lazy(()=>import("../Procurement/Procurement"));
-const Subscription=lazy(()=>import("../Subscription/Subscription"));
-const Production=lazy(()=>import("../Production/Production"));
+const Plant = lazy(() => import("../Plant/Plant"));
+const PlantDetail = lazy(() => import("../Plant/Child/PlantDetail/PlantDetail"));
+const Procurement = lazy(() => import("../Procurement/Procurement"));
+const Subscription = lazy(() => import("../Subscription/Subscription"));
+const Production = lazy(() => import("../Production/Production"));
 
 function MainApp(props) {
   const [visible, setVisible] = useState(false);
@@ -243,6 +255,12 @@ function MainApp(props) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
+
+  const [data, setData] = useState('No result');
+  const [scanning, setScanning] = useState(false);
+  const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
@@ -313,20 +331,64 @@ function MainApp(props) {
 
   const organizationLogo = (
     <MultiAvatar
-    // style={{width:"8rem"}}
+      // style={{width:"8rem"}}
       imageId={imageId}
     //marginLeft="30px"
     // primaryTitle={organizationName}
     />
   );
 
+
+
+  const handleError = (error) => {
+    console.error('Error with the QR scanner:', error);
+    setScanning(false);
+    setShouldRenderCamera(false);
+    setModalVisible(false);
+  };
+
+  const startScanning = () => {
+    setData('No result');
+    setScanning(true);
+    setShouldRenderCamera(true);
+    setModalVisible(true);
+  };
+
+  const stopScanning = () => {
+    setScanning(false);
+    setShouldRenderCamera(false);
+    setModalVisible(false);
+  };
+  const handleScan = async (result) => {
+    if (result) {
+      setData(result.text);
+    }
+  };
+  // const handleScan = async (result, error) => {
+  //   try {
+  //     if (result && result.text) {
+  //       setData(result.text);
+  //     } else if (result instanceof MediaStream) {
+  //     }
+
+  //     if (error) {
+  //       throw new Error(error);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error in QR code scanner:', error);
+
+  //     // Additional handling based on the error, if needed
+
+  //   }
+  // };
+
   return (
-    
+
     <>
-    
+
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
-          <div class="max-sm:hidden overflow-x-auto">
+          <div class="max-sm:hidden overflow-x-auto max-xl:hidden">
             <Sider
               trigger={null}
               collapsible
@@ -348,11 +410,13 @@ function MainApp(props) {
               height: 50,
             }}
           > */}
-              <div class=" h-3 ml-[2.5rem] "
-                 className="logo1"
+              <div class="  h-3 ml-[2.5rem] "
+                className="logo1"
                 style={{
+                  display: "flex",
+                  width: "-webkit-fill-available",
                   justifyContent: !collapsed ? "center" : "center",
-               
+
                 }}
               >
                 {collapsed && organizationLogo}
@@ -394,21 +458,44 @@ function MainApp(props) {
 
             }}>
               <Header>
-                <div class="md:hidden"><Navmenu2 selectedLanguage={selectedLanguage} /></div>
+                <div class="flex justify-between items-center">
+                <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
                 <div class=" flex items-center h-full self-start "
                 >
-                  <div class=" ml-3 max-sm:hidden " >
-                  <Select
-                    value={props.preferedLanguage}
-                    style={{ width: "3.8rem" }}
-                    onChange={(value) => handleLanguageSelect(value)}
-                  >
-                    <Option value="English">EN</Option>
-                    <Option value="Dutch">NL</Option>
-                  </Select>
+                  <div class=" ml-3 mt-1 max-sm:hidden " >
+                    <Select
+                      value={props.preferedLanguage}
+                      style={{ width: "3.8rem" }}
+                      onChange={(value) => handleLanguageSelect(value)}
+                    >
+                      <Option value="English">EN</Option>
+                      <Option value="Dutch">NL</Option>
+                    </Select>
+                  </div>
                 </div>
-                </div>
+              
                 <StartStop />
+              
+                {/* <Button
+                  onClick={() => {
+                    props.handleInTagDrawer(true)
+                  }}
+                  class=" bg-green-600 cursor-pointer text-gray-50"
+                >
+                  Scan </Button> */}
+                  <div class="ml-2">
+                <QRCodeList
+                  handleScan={handleScan}
+                  stopScanning={stopScanning}
+                  startScanning={startScanning}
+                  handleError={handleError}
+                  modalVisible={modalVisible}
+                  scanning={scanning}
+                  data={data}
+                  shouldRenderCamera={shouldRenderCamera}
+                />
+                </div>
+                </div>
                 {/* <Popconfirm
                 title="Stop"
                 visible={visible}
@@ -531,23 +618,20 @@ function MainApp(props) {
                     />
                   </FloatButton.Group> */}
 
-                  {/* <Link
-                                        to='/opportunity-stage'
-                                        style={{ height: 45, marginRight: 20 }}>
-                                        <FlexContainer alignItems='center' style={{ height: '100%' }}>
-                                            <Badge count={0} >
-                                                <Icon type="setting" style={{ fontSize: '1.375em' }} />
-                                            </Badge>
-                                        </FlexContainer>
-                                    </Link> */}
+
                   {/* <Subscription /> */}
-                  <div  class=" text-base cursor-pointer font-semibold text-[blue] max-sm:hidden"
-                      onClick={() => {
-                        // handleRowData(item);
-                        props.handleActionDrawerModal(true);
-                     
-                      }}
-            >Action Required {props.actionCount.ActionRecordCount}</div>
+                  <div class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
+                    onClick={() => {
+                      // handleRowData(item);
+                      props.handleActionDrawerModal(true);
+
+                    }}
+                  >Action<Badge
+                  count={props.actionCount.ActionRecordCount}
+                  overflowCount={999}
+                ></Badge>
+                  {/* <span class=" text-[tomato] font-semibold">{props.actionCount.ActionRecordCount}</span> */}
+                  </div>
                   <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
@@ -580,51 +664,24 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
-                  {user.settingsAccessInd === true || user.role === "ADMIN" ?
-  <SettingsDropdown />
-  : null
-}
-                  {/* {user.role === "ADMIN" ?
-                    <IsAuthorized>
-
+                  <div class=" flex items-center h-0">
+                    {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
-
-                    </IsAuthorized> 
-                   : null}  */}
-                  {/* <a href="#" style={{ height: 45, marginRight: 20 }}>
-                                        <FlexContainer alignItems='center' style={{ height: '100%' }}>
-                                            <Badge count={5} >
-                                                <Icon type="user" style={{ fontSize: '1.375em' }} />
-                                            </Badge>
-                                        </FlexContainer>
-                                    </a> */}
-                  <a href="#" style={{  marginRight: 10 }}>
-                    <div  class=" flex items-center h-full"
-                    >
-                      <NotificationPopover />
-                    </div>
-                  </a>
-                  {/* <Link to="/help" style={{ height: 45, marginRight: 20 }}>
-                    <Tooltip title="Knowledge Hub">
-                      <FlexContainer
-                        alignItems="center"
-                        style={{ height: "100%" }}
+                      : null
+                    }
+                    <a href="#" style={{ marginRight: 10 }}>
+                      <div class=" flex items-center "
                       >
-                        
-                        <Icon
-                          type="question-circle"
-                          style={{
-                            fontSize: path === "help" ? "1.75em" : "1.375em",
-                            color: path === "help" && "#0582f5"
-                          }}
-                        />
-                       
-                      </FlexContainer>
-                    </Tooltip>
-                  </Link> */}
+                        <NotificationPopover />
+                      </div>
+                    </a>
 
-                  <RepositoryData />
+                    <RepositoryData />
+                    <FAQPage />
+
+                  </div>
                   <ProfileDropdown />
+
                   {/* <Theme /> */}
                 </div>
               </Header>
@@ -635,7 +692,13 @@ function MainApp(props) {
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
                       <Route exact path="/planner" component={Planner} />
+
+                      <Route exact path="/dashboardRegional" component={DashboardPage} />
+
                       <Route exact path="/dashboard" component={Dashboard} />
+
+
+
                       <Route exact path="/profile" component={Profile} />
                       <Route exact path="/Invoice" component={Invoice} />
                       <Route
@@ -652,7 +715,7 @@ function MainApp(props) {
                       <Route exact path="/account" component={Account} />
                       <Route exact path="/location" component={Location} />
                       <Route exact path="/plant" component={Plant} />
-                      <Route exact path="/plant/:plantId" component={PlantDetail}/>
+                      <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
@@ -686,6 +749,7 @@ function MainApp(props) {
                       <Route exact path="/collection" component={Collection} />
                       <Route exact path="/task" component={Task} />
                       <Route exact path="/event" component={Event} />
+                      <Route exact path="/dataroom" component={DataRoom} />
                       <Route
                         exact
                         path="/employee/:id"
@@ -711,7 +775,11 @@ function MainApp(props) {
                         path="/leads/:leadsId"
                         component={LeadDetails}
                       />
-
+                      <Route
+                        exact
+                        path="/scan/:phoneId"
+                        component={PhoneScanner}
+                      />
                       <Route
                         exact
                         path="/course/:courseId"
@@ -753,8 +821,8 @@ function MainApp(props) {
                         path="/opportunity"
                         component={Opportunity}
                       />
-                      <Route exact path="/candidate" 
-                      component={Candidate}   
+                      <Route exact path="/candidate"
+                        component={Candidate}
                       />
 
                       {/* <Route
@@ -785,7 +853,7 @@ function MainApp(props) {
                         path="/shipper/:shipperId"
                         component={ShipperDetails}
                       />
-                       <Route
+                      <Route
                         exact
                         path="/supplier/:supplierId"
                         component={SupplierDetails}
@@ -822,7 +890,7 @@ function MainApp(props) {
                         path="/requirement"
                         component={Requirement}
                       />
-                       <Route
+                      <Route
                         exact
                         path="/procurement"
                         component={Procurement}
@@ -837,9 +905,9 @@ function MainApp(props) {
                       <Route exact path="/contactinvest/:contactId" component={ContactInvestDetail} />
                       <Route exact path="/dealDetails/:invOpportunityId" component={DealDetail} />
                       <Route exact path="/product" component={Product} />
-                      <Route exact path="/subscription" component={Subscription}/>
-                      <Route exact path="/production" component={Production}/>
-                      
+                      <Route exact path="/subscription" component={Subscription} />
+                      <Route exact path="/production" component={Production} />
+
                       <Route path="**" component={PageNotFound} />
                     </Switch>
                   </Suspense>
@@ -868,6 +936,11 @@ function MainApp(props) {
       // handleResponseData={this.handleResponseData}
       // responseData={this.state.responseData}
       />
+
+      <TagInDrawer
+        clickTagInDrawr={props.clickTagInDrawr}
+        handleInTagDrawer={props.handleInTagDrawer}
+      />
     </>
   );
 }
@@ -876,7 +949,7 @@ function MainApp(props) {
 const mapStateToProps = ({
   auth,
   theme,
-  customer,
+  refurbish,
   call,
   task,
   event,
@@ -890,7 +963,7 @@ const mapStateToProps = ({
   language: language.language,
   user: auth.userDetails,
   userDetails: auth.userDetails,
-  addDrawerActionModal:auth.addDrawerActionModal,
+  addDrawerActionModal: auth.addDrawerActionModal,
   addMessageModal: opportunity.addMessageModal,
   // employeeId: auth.userDetails.employeeId,
   userId: auth.userDetails.employeeId,
@@ -922,7 +995,8 @@ const mapStateToProps = ({
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
   user: auth.userDetails,
-  actionCount:auth.actionCount,
+  actionCount: auth.actionCount,
+  clickTagInDrawr: refurbish.clickTagInDrawr,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -937,6 +1011,7 @@ const mapDispatchToProps = (dispatch) =>
       getActionRequiredCount,
       handleMessageModal,
       handleActionDrawerModal,
+      handleInTagDrawer,
     },
     dispatch
   );

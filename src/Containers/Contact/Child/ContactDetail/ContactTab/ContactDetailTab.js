@@ -9,7 +9,7 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { handleDocumentUploadModal } from "../../../ContactAction";
 import { handleContactOpportunityModal,handleContactReactSpeechModal } from "../../../ContactAction";
 import { getOpportunityListByContactId } from "../../../ContactAction";
-const AddDocumentModal =lazy(()=>import("./Document/AddDocumentModal"));
+import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 const LinkedDocuments =lazy(()=>import("./Document/LinkedDocuments"));
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
 const AddContactOpportunityModal =lazy(()=>import("../../../Child/ContactDetail/ContactTab/Opportunity/AddContactOpportunityModal"));
@@ -145,9 +145,10 @@ class ContactDetailTab extends Component {
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
-          <AddDocumentModal
+        <AddDocumentModals
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            contactId={ contactId }
           />
           <AddContactOpportunityModal
             addContactOpportunityModal={addContactOpportunityModal}

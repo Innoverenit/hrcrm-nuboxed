@@ -48,7 +48,7 @@ function RefurbishToggle(props) {
           <Switch
             className="toggle-clr"
             checked={props.productionInd || toggle}
-            // disabled={props.status}
+            disabled={!props.repairInd}
             isLoading={true}
             style={{
               width: "4em",
@@ -67,6 +67,7 @@ function RefurbishToggle(props) {
 const mapStateToProps = ({ auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
+  repairInd: auth.userDetails.repairInd,
 });
 
 const mapDispatchToProps = (dispatch) =>

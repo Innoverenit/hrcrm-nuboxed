@@ -14,7 +14,7 @@ import { LinkOutlined, PlusOutlined,
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import {handleDealContactModal,handleDocumentUploadModal} from "../../../DealAction";
 import LinkedDocuments from "./Document/LinkedDocuments";
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
+import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 const LinkedDealContact = lazy(() => import("./DealContact/LinkedDealContact"));
 const DealContactModal = lazy(() => import("./DealContact/DealContactModal"));
 
@@ -299,8 +299,8 @@ return  <BundleLoader />
           addSpeechModal={addSpeechModal}
           />
 */}
-          <AddDocumentModal
-          dealDetailsbyID={this.props.dealDetailsbyID}
+         <AddDocumentModals
+         invOpportunityId={invOpportunityId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />

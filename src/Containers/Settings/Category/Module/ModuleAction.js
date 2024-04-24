@@ -21,7 +21,7 @@ import { message } from "antd"
   
       .then((res) => {
         console.log(res);
-        // dispatch(getModules(orgId))
+        dispatch(getModules(orgId))
         dispatch({
           type: types.ADDING_MODULE_SUCCESS,
           payload: res.data,

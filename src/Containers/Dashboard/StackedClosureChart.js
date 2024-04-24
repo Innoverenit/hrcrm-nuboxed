@@ -96,7 +96,7 @@ import { FormattedMessage } from "react-intl";
   return (
     <>
     <MainWrapper
-    style={{height:"16em",width:"-webkit-fill-available"}}
+    style={{height:"21rem",marginTop:"1rem",width:"-webkit-fill-available"}}
     >
       {/* Recruitment Performance */}
       <div class=" flex justify-between" >

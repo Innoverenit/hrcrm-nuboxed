@@ -3,10 +3,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
+import Swal from 'sweetalert2'
 
-/**
- * get all the Sector
- */
  export const getSources = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_SOURCE_REQUEST,
@@ -49,16 +47,29 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getSources(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("source has been added successfully!");
+        dispatch(getSourceCount(orgId));
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Source added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
           type: types.ADD_SOURCE_SUCCESS,
           payload: { ...source, },
         });
+      
         cb();
       })
       .catch((err) => {
@@ -75,7 +86,7 @@ export const addSources = (source,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeSource = ( sourceId) => (dispatch) => {
+export const removeSource = ( sourceId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_SOURCE_REQUEST,
@@ -87,7 +98,12 @@ export const removeSource = ( sourceId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("source has been deleted successfully!");
+        dispatch(getSourceCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Source deleted successfully!',
+        })
+        // message.success("source has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_SOURCE_SUCCESS,
@@ -105,7 +121,7 @@ export const removeSource = ( sourceId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
+export const updateSource = (data, sourceId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_SOURCE_REQUEST,
@@ -113,7 +129,7 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/source/${sourceId}`,
-        { name,sourceId,listType,editInd:true },
+    data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -122,12 +138,16 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
       )
       .then((res) => {
         
-        message.success("Sector has been updated successfully!");
+        // message.success(" has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_SOURCE_SUCCESS,
           payload: res.data,
         });
+        Swal.fire({
+          icon: 'success',
+          title: 'Source updated successfully!',
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -167,4 +187,30 @@ export const updateSource = ( sourceId,name,listType,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_SOURCE,
     });
+  };
+
+  export const getSourceCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_SOURCE_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/source/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SOURCE_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_SOURCE_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };

@@ -1,21 +1,18 @@
 import React from "react";
-import { Switch,  Popconfirm } from "antd";
+import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateProcessTask } from "./RefurbishAction";
 
 function QCPhoneTaskToggle(props) {
-    const [paymentCollection, setPaymentCollection] = React.useState(false)
-
-console.log(props.phoneTaskId)
 
     function handleToggleCollection(item) {
         props.updateProcessTask(
             {
-                completeTaskInd: true,
-                
+                completeTaskInd: props.item.completeTaskInd ? false : true,
+                completeTaskUserId: props.userId
             },
-            props.phoneTaskId,  
+            props.item.phoneTaskId,
         );
     }
 
@@ -30,10 +27,10 @@ console.log(props.phoneTaskId)
                     cancelText="Cancel"
                 >
                     <Switch
-                        checked={props.paymentCollection || paymentCollection}
+                        checked={props.item.completeTaskInd}
                         isLoading={true}
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
+                        checkedChildren="Completed"
+                        unCheckedChildren="Not Completed"
                     />
                 </Popconfirm>
             </div>

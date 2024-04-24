@@ -1,17 +1,19 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-const ProductbuilderTable=lazy(()=>import("./ProductbuilderTable"));
+import ProductbuilderTable2 from "./ProductbuilderTable2";
+const ProductbuilderTable = lazy(() => import("./ProductbuilderTable"));
 
 
 const ProductBuilderDrawer = (props) => {
-  const { proBuilderDrawer, handleProductBuilderDrawer,  particularDiscountData, ...formProps } = props;
+  const { proBuilderDrawer, handleProductBuilderDrawer, particularDiscountData, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+  const drawerWidth = isSmallScreen ? "90%" : "60%";
   return (
     <>
       <StyledDrawer
-        title={`Product Builder for ${particularDiscountData.name} ${particularDiscountData.articleNo}`}
+        title={`Product Builder for ${particularDiscountData.name ? `${particularDiscountData.name}`:""} 
+        ${particularDiscountData.articleNo ? `${particularDiscountData.articleNo}` : ""}`}
         width={drawerWidth}
         visible={proBuilderDrawer}
         destroyOnClose
@@ -20,7 +22,8 @@ const ProductBuilderDrawer = (props) => {
         onClose={() => handleProductBuilderDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ProductbuilderTable   particularDiscountData={particularDiscountData}/>
+          <ProductbuilderTable particularDiscountData={particularDiscountData} />
+          <ProductbuilderTable2 particularDiscountData={particularDiscountData} />
         </Suspense>
       </StyledDrawer>
     </>

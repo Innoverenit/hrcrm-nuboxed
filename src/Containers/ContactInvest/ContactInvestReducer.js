@@ -6,8 +6,15 @@ const initialState = {
     addingContactInvest: false, 
     addContactInvestModal: false,
 
+    addDrawerContactInvestPulseModal:false,
+
     addingContactinvestActivityEvent: false,
     addingContactinvestActivityEventError: false,
+
+
+    fetchingContactInvestAllRecords: false,
+    fetchingContactInvestAllRecordsError: false,
+    contactInvestAllRecord:{},
 
 
     addingContactinvestActivityCall:false,
@@ -26,6 +33,10 @@ const initialState = {
     fetchingAllContactInvest: false,
     fetchingAllContactInvestError: false,
     allContactInvestData:[],
+
+    fetchingTeamsContactInvest: false,
+    fetchingTeamsContactInvestError: false,
+    teamsContactInvestData:[],
 
     contactInvestorActivityModal:false,
 
@@ -213,6 +224,22 @@ export const contactInvestReducer = (state = initialState, action) => {
       fetchingAllContactInvest: false,
       fetchingAllContactInvestError: true,
     };
+
+    case types.GET_TEAMS_CONTACT_INVEST_REQUEST:
+
+    return { ...state, fetchingTeamsContactInvest: true };
+  case types.GET_TEAMS_CONTACT_INVEST_SUCCESS:
+    return {
+      ...state,
+      fetchingTeamsContactInvest: false,
+      teamsContactInvestData: action.payload,
+    };
+  case types.GET_TEAMS_CONTACT_INVEST_FAILURE:
+    return {
+      ...state,
+      fetchingTeamsContactInvest: false,
+      fetchingTeamsContactInvestError: true,
+    };
   
     case types.HANDLE_CONTACT_INVEST_ACTIVITY_MODAL:
       return { ...state, contactInvestorActivityModal: action.payload };
@@ -292,6 +319,26 @@ export const contactInvestReducer = (state = initialState, action) => {
                     contactiNVESTbyId: [], 
                     // deletedTruck: [] 
                   };
+
+                  case types.HANDLE_CONTACT_INVEST_PULSE_DRAWER_MODAL:
+                    return { ...state, addDrawerContactInvestPulseModal: action.payload }; 
+                    
+                    
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_REQUEST:
+                      return { ...state, fetchingContactInvestAllRecords: true };
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingContactInvestAllRecords: false,
+                        contactInvestAllRecord: action.payload,
+                      };
+                    case types.GET_CONTACT_INVEST_ALL_RECORDS_FAILURE:
+                      return {
+                        ...state,
+                        fetchingContactInvestAllRecords: false,
+                        fetchingContactInvestAllRecordsError: true,
+                      };
+
      
       
       default:

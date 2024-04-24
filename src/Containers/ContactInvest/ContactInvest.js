@@ -5,7 +5,7 @@ import { BundleLoader} from "../../Components/Placeholder";
 import {handleContactInvestModal,setContactInvetViewType,
   getContactInvestByUserId,
   getContactInvestFilterData} from "./ContactInvestAction";
-
+const ContactInvestTeamsCardList = lazy(() => import("./Child/ContactInvestTable/ContactInvestTeamsCardList"));
 const ContactInvestHeader = lazy(() => import("./Child/ContactInvestHeader"));
 const ContactInvestAllCardList = lazy(() => import("./Child/ContactInvestTable/ContactInvestAllCardList"));  
 const AddContactInvestModal = lazy(() => import("./Child/AddContactInvestModal"));
@@ -129,6 +129,8 @@ const{handleContactInvestModal,addContactInvestModal,
 
          :viewType === "all" ?
          <ContactInvestAllCardList     /> 
+         :viewType === "teams" ?
+         <ContactInvestTeamsCardList     /> 
          : null}
       </Suspense>
             </React.Fragment>

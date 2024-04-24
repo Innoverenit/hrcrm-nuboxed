@@ -1,6 +1,6 @@
 import * as types from "./DesignationActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../Config/Auth";
 import { message } from "antd";
 /**
@@ -36,7 +36,7 @@ import { message } from "antd";
   /**
  * add a new DESIGNATIONS
  */
-export const addDesignations = (designation, cb) => (dispatch) => {
+export const addDesignations = (designation,orgId, cb) => (dispatch) => {
     console.log(designation);
     dispatch({
       type: types.ADD_DESIGNATIONS_REQUEST,
@@ -48,11 +48,24 @@ export const addDesignations = (designation, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        {res.data.message?  
-          message.success(res.data.message):
-         message.success("Designation has been added successfully!");
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Designation added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
-        // dispatch(getDesignations());
+     
+        dispatch(getDesignationCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_DESIGNATIONS_SUCCESS,
@@ -75,7 +88,7 @@ export const addDesignations = (designation, cb) => (dispatch) => {
 /**
  * remove a new DESIGNATIONS
  */
-export const removeDesignations = (designationTypeId) => (dispatch) => {
+export const removeDesignations = (designationTypeId,orgId) => (dispatch) => {
     // console.log(leadDocumentsId);
     dispatch({
       type: types.REMOVE_DESIGNATIONS_REQUEST,
@@ -87,7 +100,13 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Designation has been deleted successfully!");
+        dispatch(getDesignationCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Designation deleted Successfully!',
+       
+        })
+        // message.success("Designation has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_DESIGNATIONS_SUCCESS,
@@ -107,7 +126,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
 /**
  *update label of DESIGNATIONS
  */
- export const updateDesignations = (designationTypeId, designationType, cb) => (dispatch) => {
+ export const updateDesignations = (data,designationTypeId, cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_DESIGNATIONS_REQUEST,
@@ -115,7 +134,7 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
     axios
       .put(
         `${base_url}/designation`,
-        { designationTypeId, designationType,editInd:"true" },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -123,7 +142,12 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Designation has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Designation updated Successfully!',
+       
+        })
+        // message.success("Designation has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_DESIGNATIONS_SUCCESS,
@@ -148,7 +172,12 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success(res.data.message);
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+       
+        })
+        // message.success(res.data.message);
         dispatch({
           type: types.GET_DESIGNATION_SEARCH_SUCCESS,
           payload: res.data,
@@ -167,5 +196,31 @@ export const removeDesignations = (designationTypeId) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_DESIGNATION,
     });
+  };
+
+  export const getDesignationCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_DESIGNATION_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/designation/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_DESIGNATION_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_DESIGNATION_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };
 

@@ -5,6 +5,7 @@ import {
 } from "../SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
 const RecruitmentActionRight = lazy(() => import("./RecruitmentActionRight"));
 const Matrix = lazy(() => import("../Recruitement/Child/RecruitmentTab/Matrix"));
@@ -103,6 +104,11 @@ function Recruitment(props) {
       rulesName: "Notification",
       ruleId: "14",
       component: <NotificationToggleForm />,
+    },
+    {
+      rulesName: "Pay Roll(Only for GCC)",
+      ruleId: "15",
+      component: <SalaryTab />,
     },
     // {
     //   rulesName: "Automation",

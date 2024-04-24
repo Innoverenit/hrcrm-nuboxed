@@ -17,6 +17,8 @@ import styled from "styled-components";
 import {getContactListByInvestorId,handleUpdateInvestorContactModal} from "../../../../InvestorAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const InvestorUpdateContactModal = lazy(() =>
   import("../InvestorContact/InvestorUpdateContactModal")
@@ -164,7 +166,7 @@ class InvestorLinkedContact extends Component {
       invstrContactUpdateModal,
     } = this.props;
 
-  
+    if (fetchingsInvestorContact) return <BundleLoader/>;
 
     // if (fetchingsInvestorContactError) {
     //   return <APIFailed />;
@@ -202,7 +204,7 @@ class InvestorLinkedContact extends Component {
       </div>
    
         
-      {contactsbyInvestorId.map((item) => { 
+      { !fetchingsInvestorContact && contactsbyInvestorId.length === 0 ?<NodataFoundPage />:contactsbyInvestorId.map((item,index) =>  {
         const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
           } 
@@ -309,7 +311,7 @@ class InvestorLinkedContact extends Component {
                                     <div class=" text-sm text-cardBody font-poppins text-center">
                                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
               <span
-                className="!text-base cursor-pointer text-[#960a0a]"
+                className="!text-xl cursor-pointer text-[#960a0a]"
               >
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
               </span>
@@ -324,7 +326,7 @@ class InvestorLinkedContact extends Component {
                                     <Tooltip title="LinkedIn">
               <span
                 //type="edit"
-                className="!text-base cursor-pointer"
+                className="!text-xl cursor-pointer"
                 onClick={() => {}}
               >
                 {" "}
@@ -348,7 +350,7 @@ class InvestorLinkedContact extends Component {
                  handleUpdateInvestorContactModal(true);
                 }}
               >
-                <BorderColorIcon className="!text-base cursor-pointer text-[tomato]" />
+                <BorderColorIcon className="!text-xl cursor-pointer text-[tomato] " />
               </span>
             </Tooltip>
 
@@ -378,7 +380,7 @@ class InvestorLinkedContact extends Component {
                 iconType="api"
                 onClick={null}
                 size="1em"
-                style={{ color: "#fb8500" }}
+                style={{ color: "#fb8500",cursor:"pointer",fontSize:"1.25rem" }}
               />
             </StyledPopconfirm>
 

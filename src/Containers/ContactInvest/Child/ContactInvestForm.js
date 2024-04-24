@@ -28,7 +28,7 @@ const ContactSchema = Yup.object().shape({
   emailId: Yup.string()
     .required("Input needed!")
     .email("Enter a valid Email"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 class ContactInvestForm extends Component {
@@ -186,6 +186,7 @@ class ContactInvestForm extends Component {
             phoneNumber: "",
             mobileNumber: "",
             emailId: "",
+            alternateEmail:"",
             linkedinPublicUrl: "",
             sourceId:"",
             address: [
@@ -331,7 +332,29 @@ class ContactInvestForm extends Component {
                         isRequired
                       />
                     </div>
-                  </div>               
+                  </div>  
+                  <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
+                  </div>                            
                   <div class=" flex justify-between">
                     <div class=" w-2/6">
                     <FastField

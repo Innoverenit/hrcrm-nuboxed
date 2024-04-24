@@ -206,6 +206,7 @@ function DealCardList(props) {
                             percent={findProbability}
                             //disable={true}
                             width={30}
+                     
                             strokeColor={"#005075"}
                           />
                         </Tooltip>
@@ -326,7 +327,7 @@ function DealCardList(props) {
                           }}
                         >
                           <NoteAltIcon
-                           className="!text-base cursor-pointer text-[green]"
+                           className="!text-xl cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
@@ -347,7 +348,7 @@ function DealCardList(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-base cursor-pointer text-[tomato]"
+                             className="!text-xl cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -362,7 +363,7 @@ function DealCardList(props) {
                         {user.imInd === true && user.dealDeleteInd === true && (
                           <DeleteOutlined
                             type="delete"
-                            className="!text-base text-[red] cursor-pointer"
+                            className="!text-xl text-[red] cursor-pointer"
                           />
                         )}
                         </Tooltip>

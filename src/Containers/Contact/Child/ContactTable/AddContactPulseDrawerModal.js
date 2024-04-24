@@ -3,6 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import ContactPulseJumpstart from "./ContactPulseJumpstart";
 
 
 class AddContactPulseDrawerModal extends Component {
@@ -12,19 +13,19 @@ class AddContactPulseDrawerModal extends Component {
     return (
       <div>
         <StyledDrawer
-        // title="Notes"
-        //   title={this.props.contactData.fullName}
+        title={this.props.contactData.fullName}
           width="64%"
-          style={{ marginTop: "5rem" }}
           visible={this.props.addDrawerContactPulseModal}
           closable
           placement="right"
           destroyOnClose
-          maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+        
           onClose={() => this.props.handleContactPulseDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-           
+          <ContactPulseJumpstart 
+            contactData={this.props.contactData}
+            />
           </Suspense>
         </StyledDrawer>
       </div>

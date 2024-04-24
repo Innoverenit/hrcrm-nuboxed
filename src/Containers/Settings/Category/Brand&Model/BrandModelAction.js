@@ -1,6 +1,7 @@
 import * as types from "./BrandModelType";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export const addBrandModel = (brand) => (dispatch) => {
     dispatch({
@@ -13,6 +14,22 @@ export const addBrandModel = (brand) => (dispatch) => {
             },
         })
         .then((res) => {
+            if (res.data.message) {
+                Swal.fire({
+                  icon: 'error',
+                  title: res.data.message,
+                  // showConfirmButton: false,
+                  // timer: 1500
+                });
+              } else {
+               
+                Swal.fire({
+                  icon: 'success',
+                  title: 'BrandModel added Successfully!',
+                  // showConfirmButton: false,
+                  // timer: 1500
+                });
+              }
             console.log(res);
             dispatch({
                 type: types.ADD_BRAND_MODEL_SUCCESS,
@@ -72,6 +89,10 @@ export const updateBrandModel = (phoneMasterListId, brand, model) => (dispatch) 
             }
         )
         .then((res) => {
+            Swal.fire({
+                icon: 'success',
+                title: 'BrandModel Updated Successfully!',
+              })
             dispatch({
                 type: types.UPDATE_BRAND_MODEL_SUCCESS,
                 payload: res.data,

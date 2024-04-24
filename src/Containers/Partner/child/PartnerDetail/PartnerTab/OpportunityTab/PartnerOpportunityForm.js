@@ -176,12 +176,12 @@ class OpportunityForm extends Component {
                     <div style={{ width: "47%" }}>
                       <Field
                         name="proposalAmount"
-                        //label="Proposal Amount"
+                        //label="Value"
 
                         label={
                           <FormattedMessage
                             id="app.proposalAmount"
-                            defaultMessage="Proposal Amount"
+                            defaultMessage="Value"
                           />
                         }
                         isColumn

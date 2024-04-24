@@ -778,7 +778,7 @@ export const addDeliveryDate = (data, locationDetailsId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getReceivedUserList(locationDetailsId))
+      // dispatch(getReceivedUserList(locationDetailsId))
       dispatch({
         type: types.ADD_DELIVERY_DATE_SUCCESS,
         payload: res.data,
@@ -1031,6 +1031,13 @@ export const handleReceivedOrderIdModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleMismatchPhoneModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_MISMATCH_PHONE_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleInventoryReceivedNoteOrderModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_RECEIVED_NOTE_ORDER_MODAL,
@@ -1051,13 +1058,18 @@ export const handleInventoryRoomRackModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const addRoomAndRackInInventory = (data) => (dispatch) => {
+export const addRoomAndRackInInventory = (data, locationId, organizationId) => (dispatch) => {
+
   dispatch({ type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_REQUEST });
   axios
-    .post(`${base_url}/roomrack`, data)
+    .post(`${base_url2}/roomrack/add`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
-      dispatch(getInventory())
+      dispatch(getRoomRackByLocId(locationId, organizationId))
       dispatch({
         type: types.ADD_ROOM_AND_RACK_IN_INVENTORY_SUCCESS,
         payload: res.data,
@@ -1081,8 +1093,6 @@ export const updateValidationInReceive = (data, phoneId, id) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res);
-      dispatch(getPhonelistByOrderId(id))
       dispatch({
         type: types.UPDATE_VALIDATION_IN_RECEIVE_SUCCESS,
         payload: res.data,
@@ -1111,7 +1121,7 @@ export const handleDispatchreceivePhoneModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
-export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) => {
+export const updateInspection = (data, orderPhoneId) => (dispatch) => {
   dispatch({ type: types.UPDATE_INSPECTION_REQUEST });
   axios
     .put(`${base_url2}/phoneOrder/inspectionIndStatus/${orderPhoneId}`, data, {
@@ -1120,8 +1130,12 @@ export const updateInspection = (data, orderPhoneId, locationId) => (dispatch) =
       },
     })
     .then((res) => {
-      console.log(res);
-      dispatch(getReceivedUserList(locationId))
+      Swal.fire({
+        icon: 'success',
+        title: 'Inspection Status Updated',
+        showConfirmButton: true,
+      })
+      // dispatch(getReceivedUserList(locationId))
       dispatch({
         type: types.UPDATE_INSPECTION_SUCCESS,
         payload: res.data,
@@ -1175,7 +1189,7 @@ export const setEditDispacthPhoneData = (name) => (dispatch) => {
     payload: name,
   });
 };
-export const updateDispatchInspectionButton = (data, orderPhoneId, locationId) => (dispatch) => {
+export const updateDispatchInspectionButton = (data, orderPhoneId) => (dispatch) => {
   dispatch({ type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_REQUEST });
   axios
     .put(`${base_url2}/phoneOrder/dispatchInspectionIndStatus/${orderPhoneId}`, data, {
@@ -1184,8 +1198,6 @@ export const updateDispatchInspectionButton = (data, orderPhoneId, locationId) =
       },
     })
     .then((res) => {
-      console.log(res);
-      dispatch(getDispatchList(locationId))
       dispatch({
         type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_SUCCESS,
         payload: res.data,
@@ -1210,7 +1222,7 @@ export const updateDispatchReceivePhone = (data, phoneId, orderPhoneId) => (disp
     })
     .then((res) => {
       console.log(res);
-      dispatch(getDispatchUpdateList(orderPhoneId))
+      // dispatch(getDispatchUpdateList(orderPhoneId))
       dispatch({
         type: types.UPDATE_DISPATCH_RECEIVE_PHONE_SUCCESS,
         payload: res.data,
@@ -1329,8 +1341,7 @@ export const updateReceivedDamagedUnit = (data, poSupplierDetailsId, suppliesId)
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        showConfirmButton: true,
       })
       console.log(res);
       dispatch({
@@ -1375,6 +1386,33 @@ export const getDispatchProductionsbyLocId = (locationDetailsId, pageNo) => (dis
     });
 };
 
+export const getArchieveProductionbyLocId = (locationDetailsId, userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/archieve/${locationDetailsId}/${userId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ARCHIEVE_PRODUCTION_BYLOC_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const generateGrnForPo = (data) => (dispatch) => {
   dispatch({
     type: types.GENERATE_GRN_FOR_PO_REQUEST,
@@ -1389,8 +1427,7 @@ export const generateGrnForPo = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Grn Created Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        showConfirmButton: true,
       })
       dispatch({
         type: types.GENERATE_GRN_FOR_PO_SUCCESS,
@@ -1452,8 +1489,7 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch)
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        showConfirmButton: false,
-        timer: 1500
+        showConfirmButton: true,
       })
       dispatch({
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
@@ -1522,8 +1558,7 @@ export const updatePartIdOfAnItem = (data, supplierSuppliesUniqueNumberId) => (d
       Swal.fire({
         icon: 'success',
         title: 'Part no updated successfully',
-        showConfirmButton: false,
-        timer: 1500
+        showConfirmButton: true,
       })
       dispatch({
         type: types.UPDATE_PART_ID_OF_AN_ITEM_SUCCESS,
@@ -1538,7 +1573,30 @@ export const updatePartIdOfAnItem = (data, supplierSuppliesUniqueNumberId) => (d
       });
     });
 };
-
+export const updateRepairStatus = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_REPAIR_STATUS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/canNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_REPAIR_STATUS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_REPAIR_STATUS_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getGrnNoByPoId = (pOSupplierDetailsId) => (dispatch) => {
   dispatch({
     type: types.GET_GRN_NO_BY_PO_ID_REQUEST,
@@ -1584,6 +1642,118 @@ export const getPartNoByItem = (poSupplierSuppliesId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_PART_NO_BY_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateOrderReceiveToggle = (data, orderId, locationId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_ORDER_RECEIVE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/inventoryReceived/${orderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getReceivedUserList(locationId))
+      dispatch({
+        type: types.UPDATE_ORDER_RECEIVE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_ORDER_RECEIVE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const emptyInventory = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_INVENTORY_LIST,
+  });
+};
+
+export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STOCK_USED_DRAWER,
+    payload: modalProps,
+  });
+};
+
+export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ROOM_RACK_BY_LOCID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ROOM_RACK_BY_LOCID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateRoomRackId = (data, roomRackId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_ROOM_RACK_ID_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/roomrack/update/${roomRackId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getReceivedUserList(locationId))
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getRackList = (roomRackId) => (dispatch) => {
+  dispatch({
+    type: types.GET_RACK_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/roomrack/${roomRackId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res.data)
+      dispatch({
+        type: types.GET_RACK_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_RACK_LIST_FAILURE,
         payload: err,
       });
     });

@@ -1,243 +1,277 @@
-import React, { Component ,lazy} from "react";
+import React, {  useEffect,lazy,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+import { DeleteOutlined } from "@ant-design/icons";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import dayjs from "dayjs";
-import { Button,Input } from "antd";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../Config/Auth";
+import { Popconfirm,Input,Select,Tooltip } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MainWrapper } from "../../../Components/UI/Layout";
-import { TextInput, } from "../../../Components/UI/Elements";
 import {
   getDocuments,
+  getDocumentCount,
   addDocuments,
   removeDocuments,
   updateDocuments,
+  linkTypeToggle,
   searchDocumentsName,
   ClearReducerDataOfDocument
 } from "./DocumentsAction";
-const SingleDocuments = lazy(() =>
-  import("./Child/SingleDocuments")
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../Components/UI/Layout";
+const DocumentStatusToggle = lazy(() =>
+  import("../Documents/Child/DocumentStatusToggle")
 );
 
-class Documents extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linkedDocuments: [],
-      isTextInputOpen: false,
-      addingDocument: false,
-      documentTypeName: "",
-      singleDocument: "",
-      editInd:true,
-      currentData: ""
+const Documents = (props) => {
+  const [type, setType] = useState("");
+  const [currentData, setCurrentData] = useState("");
+  const [documents, setDocumentData] = useState(props.documents);
+  const [editingId, setEditingId] = useState(null);
+  const [addingRegion, setAddingRegion] = useState(false);
+  const [newDocumentName, setDocumentName] = useState('');
+  useEffect(() => {
+      props.getDocuments(); 
+      props.getDocumentCount(props.orgId) 
+  }, [])
+
+  const editRegion = (documentTypeId, name) => {
+    console.log(name)
+    console.log(name)
+      setEditingId(documentTypeId);
+      setDocumentName(name);
+  };
+
+
+
+  const handleAddDocument = () => {
+      setAddingRegion(true);
+      setDocumentName("")
+  };
+
+  const handleStageType = (value, documentTypeId) => {
+    setType(value);
+    let data = {
+      userType: value,
+      documentTypeId: documentTypeId, // Use the provided documentTypeId here
     };
+    props.linkTypeToggle(data);
+  };
+
+  const handleUpdateDocument=(region)=>{
+      console.log(region)
+      let data={
+        documentTypeId:region.documentTypeId,
+        documentTypeName:newDocumentName
+       
+      }
+props.updateDocuments(data,region.documentTypeId)
+setEditingId(null);
   }
 
-  handleChangeDes = (e) => {
-    this.setState({ currentData: e.target.value });
+  const handleDocument = () => {
+      // if (newRegionName.trim() !== '') {
+      //     console.log("New Region:", newRegionName);
+      //     const newRegion = {
+      //         id: Date.now(),
+      //         item: newRegionName
+      //     };
+      //     setRegions([...regions, newRegion]);
+      //     setNewRegionName('');
+      //     setAddingRegion(false);
+      // }
+      let data={
+        documentTypeName:newDocumentName,
+        orgId:props.orgId,
+      }
+      props.addDocuments(data,props.orgId)
+      setAddingRegion(false)
+  };
+  const handleChange = (e) => {
+      setCurrentData(e.target.value.trim());
+    
   
-    if (e.target.value.trim() === "") {
-      this.setState((prevState) => ({ pageNo: prevState.pageNo + 1 }));
-      this.props.getDocuments();
-      this.props.ClearReducerDataOfDocument();
-    }
-  };
-  handleSearch = () => {
-    if (this.state.currentData.trim() !== "") {
-      // Perform the search
-      this.props.searchDocumentsName(this.state.currentData);
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    this.props.getDocuments();
-  };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
-  };
+      if (e.target.value.trim() === "") {
+      //   setPage(pageNo + 1);
+      props.getDocuments();
+      //   props.ClearReducerDataOfLoad()
+      }
+    };
 
-  handleSearchChange = (e) => {
-    this.setState({ currentData: e.target.value })
-   
-  };
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.searchDocumentsName(currentData);
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
 
-  toggleInput = () =>
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-  handleAddDocument = () => {
-    const { addDocuments, documents } = this.props;
-    const { documentTypeName, addingDocuments, isTextInputOpen,editInd} = this.state;
-    let document = { documentTypeName,editInd };
-
-    let exist =
-      documents &&
-      documents.some((element) => element.documentTypeName == documentTypeName);
-
-    // if (exist) {
-    //   message.error(
-    //     "Can't create as another documentTypeName exists with same name!"
-    //   );
-    // } else {
-      addDocuments(document, () => console.log("add document callback"));
-    // }
-
-    this.setState({
-      documentTypeName: "",
-      singleDocument: "",
-      isTextInputOpen: false,
-      editInd:true,
-    });
+  const handleCancelAdd = () => {
+    setDocumentName('');
+      setAddingRegion(false);
   };
-  handleUpdateDocument = (documentTypeName,documentTypeId,editInd, cb) => {
-    this.props.updateDocuments(documentTypeName, documentTypeId,editInd,cb);
-    this.setState({ documentTypeName: "", singleDocument: "",editInd:true,});
+  const cancelEdit = () => {
+      setEditingId(null);
   };
-  handleDeleteDocument = (documentTypeId={documentTypeId}) => {
-    this.props.removeDocuments(documentTypeId);
-    this.setState({ documentTypeName: "", singleDocument: "" });
-  };
-  componentDidMount() {
-    const { getDocuments } = this.props;
-    console.log();
-    getDocuments(getDocuments);
-  }
-  render() {
-    const {
-      fetchingDocuments,
-      fetchingDocumentsError,
-      documents,
-      addingDocuments,
-      updatingDocuments,
-    } = this.props;
-    const {
-      isTextInputOpen,
-      documentTypeName,
-      singleDocument,
-      linkedDocuments,
-    } = this.state;
-    if (fetchingDocuments) return <BundleLoader/>;
-    if (fetchingDocumentsError) return <p>Error ...</p>;
-    return (
-      <>
-      <div class="flex flex-nowrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-             <div class=" flex flex-row justify-between">
-     <div class=" flex w-[18vw]" >
-            <Input
-         placeholder="Search by Name"
-        style={{width:"100%",marginLeft:"0.5rem"}}
-            // suffix={suffix}
-            onPressEnter={this.handleSearch}  
-            onChange={this.handleChangeDes}
-            // value={currentData}
-          />
-            </div>
-            {isTextInputOpen ? (
-               <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-            
-               >
-              
-                <TextInput
-                  placeholder="Add Document"
-                  name="documentTypeName"
-                  value={documentTypeName}
-                  onChange={this.handleChange}
-                  width="55%"
-                />
-                &nbsp;
-                <Button
-                  type="primary"
-                  disabled={!documentTypeName}
-                  htmlType="submit"
-                  Loading={addingDocuments}
-                  onClick={this.handleAddDocument}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  {/* Save */}
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
-                  
-                </Button>
-                &nbsp;
-                <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
-                </Button>
-              </div>
-            ) : (
-              <>
-               
-                <div class=" flex justify-end" >
-                  <Button
-                    type="primary"
-                    htmlType="button"
-                    Loading={addingDocuments}
-                    onClick={this.toggleInput}
-                  >
-                   Add More 
-                  </Button>
-                </div>
-               
-              </>
-            )}
-             </div>
-            <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
-              {documents.length ? (
-  documents
-    .slice() 
-    .sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)) 
-    .map((document, i) => (
-                    <SingleDocuments
-                      key={i}
-                      value={singleDocument}
-                      name="singleDocument"
-                      document={document}
-                      linkedDocuments={linkedDocuments}
-                      updatingDocuments={updatingDocuments}
-                      handleChange={this.handleChange}
-                      handleUpdateDocument={this.handleUpdateDocument}
-                      handleDeleteDocument={this.handleDeleteDocument}
-                      handleClear={this.handleClear}
-                      handleSearchChange={this.handleSearchChange}
-                      currentData={this.state.currentData}
-                      setCurrentData={this.setCurrentData}
-                    />
-                  ))
-                  ) : (
-                    <p>No Data Available</p>
-                  )}
-              </MainWrapper>
-            </div>
-         
-          </MainWrapper>
-        </div>
-        <div class=" font-bold">Updated on {dayjs(this.props.documents && this.props.documents.length && this.props.documents[0].updationDate).format('YYYY-MM-DD')} by {this.props.documents && this.props.documents.length && this.props.documents[0].name}</div>
-      </>
-    );
-  }
+  useEffect(() => {
+      
+      if (props.documents.length > 0) {
+        
+        setDocumentData(props.documents);
+      }
+    }, [props.documents]);
+
+// console.log(regions)
+if (props.fetchingDocuments) {
+return <div><BundleLoader/></div>;
 }
+  return (
+      <div>
+    <div class=" flex flex-row justify-between">
+    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+          <Input
+       placeholder="Search by Name"
+      style={{width:"100%",marginLeft:"0.5rem"}}
+          // suffix={suffix}
+          onPressEnter={handleSearch}  
+          onChange={handleChange}
+          // value={currentData}
+        />
+          </div>
+          <div class="w-[27rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+            <div className="add-region">
+              {addingRegion ? (
+                  <div>
+                      <input 
+                      style={{border:"2px solid black"}}
+                          type="text" 
+                          placeholder="Add Document"
+                          value={newDocumentName} 
+                          onChange={(e) => setDocumentName(e.target.value)} 
+                      />
+                      <button 
+                         loading={props.addingItemTask}
+                      onClick={handleDocument}>Save</button>
+                      <button onClick={handleCancelAdd}>Cancel</button>
+                  </div>
+              ) : (
+                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddDocument}> Add More</button>
+              )}
+          </div>
+          </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
+          {!props.fetchingDocuments && documents.length === 0 ? <NodataFoundPage /> : documents.slice().sort((a, b) => a.documentTypeName.localeCompare(b.documentTypeName)).map((region, index) => (
+            <div className="card9"  key={region.documentTypeId}>
+            {/* Region name display or input field */}
+            
+            {editingId === region.documentTypeId ? (
+                <input
+                style={{border:"2px solid black"}}
+                    type="text"
+                    value={newDocumentName}
+                    placeholder="Update Document"
+                    onChange={(e) => setDocumentName(e.target.value)}
+                />
+            ) : (
+                <div className="region" style={{width:"40%"}}>{region.documentTypeName}&nbsp;&nbsp;&nbsp;
+                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                      >
+                                        New
+                                      </span> : null}</div>
+            )}
+ {/* <div className="flex justify-between w-[34rem]"> */}
+                  <div className="w-[30%]">
+                  <Select
+  style={{ width: "50%" }}
+  onChange={(value) => handleStageType(value, region.documentTypeId)} // Pass region.documentTypeId here
+  value={region.userType}
+  placeholder="Select Entity"
+>
+  <option value="User">User</option>
+  <option value="Customer">Customer</option>
+  <option value="Supplier">Supplier</option>
+</Select>
+                  </div>
+                  <div className=" w-[20%]">
+                    <DocumentStatusToggle
+                      editInd={region.editInd}
+                      userType={region.userType}
+                      mandatoryInd={region.mandatoryInd}
+                      documentTypeName={region.documentTypeName}
+                      documentTypeId={region.documentTypeId}
+                    />
+                  </div>
+                 
+                {/* </div> */}
+            {/* Action buttons */}
+            <div className="actions" style={{width:"11%"}}>
+  {/* Edit button */}
+  {editingId === region.documentTypeId ? (
+    <div>
+      <button onClick={() => handleUpdateDocument(region)}>Save</button>
+      <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+    </div>
+  ) : (
+    <>
+      {region.editInd && !region.mandatoryInd && (
+        <BorderColorIcon
+          style={{ fontSize: "1rem", cursor:"pointer" }}
+          onClick={() => editRegion(region.documentTypeId, region.documentTypeName)}
+        />
+      )}
+      {region.editInd && !region.mandatoryInd && (
+        <Tooltip title="Delete">
+          <Popconfirm
+            title="Do you want to delete?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={() => props.removeDocuments(region.documentTypeId,props.orgId)}
+          >
+            <DeleteOutlined
+              style={{
+                cursor:"pointer",
+                verticalAlign: "center",
+                marginLeft: "1rem",
+                fontSize: "1rem",
+                color: "red",
+              }}
+            />
+          </Popconfirm>
+        </Tooltip>
+      )}
+    </>
+  )}
+</div>
 
-const mapStateToProps = ({ document }) => ({
+        </div>
+        ))}
+        </MainWrapper>
+            </div>
+      
+  <div class=" font-bold">Updated on {dayjs(props.documents && props.documents.length && props.documents[0].updationDate).format('YYYY-MM-DD')} by {props.documents && props.documents.length && props.documents[0].name}</div>
+      </div>
+  );
+};
+
+const mapStateToProps = ({ document ,auth}) => ({
   addingDocuments: document.addingDocuments,
   addingDocumentsError: document.addingDocumentsError,
   documents: document.documents,
+  documentCount:document.documentCount,
+  orgId: auth.userDetails.organizationId,
   removingDocuments: document.removingDocuments,
   removingDocumentsError: document.removingDocumentsError,
     updatingDocuments: document.updatingDocuments,
@@ -249,6 +283,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getDocuments,
+      linkTypeToggle,
+      getDocumentCount,
       addDocuments,
       removeDocuments,
       updateDocuments,

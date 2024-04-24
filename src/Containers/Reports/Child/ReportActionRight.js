@@ -12,7 +12,9 @@ import {
   setSubSelectedReportType,
 } from "../ReportAction";
 import { TimeInterval } from "../../../Utils";
-const Option = StyledSelect.Option;
+import { Select } from 'antd';
+const { Option } = Select;
+// const Option = StyledSelect.Option;
 class ReportActionLeft extends React.Component {
   render() {
     const {
@@ -33,6 +35,7 @@ class ReportActionLeft extends React.Component {
       setSubSelectedReportType,
       reportTaskSubTypes,
       reportMileageSubTypes,
+      selectedCategory 
     } = this.props;
     const creationDate = user.creationDate;
     const dynamicData = [{ userName: "Samli", id: "1" }, { userName: "priya", id: "2" }]
@@ -41,6 +44,42 @@ class ReportActionLeft extends React.Component {
       <>
           <div class=" flex items-center" >
             {/* <div style={{ width: user.department === "MANAGEMENT" ? "45%" : "45%" }}> */}
+            {selectedCategory==="Task"&&(
+             <Select
+             style={{ width: 171, marginLeft: '-13px' }}
+            placeholder="Select Reportype"
+            onChange={this.props.handleButtonTask}
+           >   
+           {/* taskData={this.props.taskData} */}
+            {this.props.taskData.map((item)=>{
+              return(
+
+<Option  value={item.taskTypeId}>
+              {item.taskType}
+               </Option>
+              )
+            })}
+               
+              
+           
+           </Select>
+            )}
+              {selectedCategory==="Prospect"&&(
+             <Select
+             style={{  width: 171, marginLeft: '-13px'  }}
+            placeholder="Select Reportype"
+            //  onChange={this.handleSelectChange}
+           >
+            
+               <Option  value="Prospect Added">
+               Prospect Added
+               </Option>
+               {/* <Option  value="Task2">
+               Task2
+               </Option> */}
+           
+           </Select>
+            )}
               <TimeInterval
                 times={dateRangeList}
                 handleClick={setSelectedTimeIntervalReport}
@@ -58,6 +97,7 @@ class ReportActionLeft extends React.Component {
                 }
               />
             </Popover> */}
+           
           </div>
       </>
     );

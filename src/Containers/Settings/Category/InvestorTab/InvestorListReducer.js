@@ -7,11 +7,20 @@ const initialState = {
   fetchingInvestorListError: false,
   investorListData: [],
 
+  addingInvestorImportForm: false,
+  addingInvestorImportFormError: false,
+
+  addInvestorImportModal:false,
+
   addingInvestorData: false,
   addingInvestorDataError: false,
 
   removingInvestor: false,
   removingInvestorError: false,
+
+  fetchingInvestorCount: false,
+  fetchingInvestorCountError: false,
+  investorCount:{},
 
   updatingInvestor: false,
   updatingInvestorError: false,
@@ -130,7 +139,42 @@ export const investorListReducer = (state = initialState, action) => {
               return { ...state, 
                 investorListData: [], 
                 // deletedTruck: [] 
-              };   
+              }; 
+              
+              
+              case types.GET_INVESTOR_COUNT_REQUEST:
+              return { ...state, fetchingInvestorCount: true };
+            case types.GET_INVESTOR_COUNT_SUCCESS:
+              return { ...state, fetchingInvestorCount: false, 
+                investorCount: action.payload };
+            case types.GET_INVESTOR_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingInvestorCount: false,
+                fetchingInvestorCountError: true,
+              };
+
+
+              case types.HANDLE_INVESTOR_IMPORT_MODAL:
+                return { ...state, addInvestorImportModal: action.payload };
+
+
+                
+      case types.ADD_INVESTOR_IMPORT_FORM_REQUEST:
+        return { ...state, addingInvestorImportForm: true };
+      case types.ADD_INVESTOR_IMPORT_FORM_SUCCESS:
+        return {
+          ...state,
+          addingInvestorImportForm: false,
+          addInvestorImportModal: false,
+  
+        };
+      case types.ADD_INVESTOR_IMPORT_FORM_FAILURE:
+        return {
+          ...state, addingInvestorImportForm: false,
+          // addCustomerModal: false 
+        };
+          
     
     default:
         return state;

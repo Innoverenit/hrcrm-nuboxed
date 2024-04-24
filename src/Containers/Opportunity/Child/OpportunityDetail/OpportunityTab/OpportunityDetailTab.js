@@ -19,6 +19,7 @@ import { LinkOutlined, PlusOutlined,
 import { handleContactModal,handleLinkContactModal } from "../../../../Contact/ContactAction";
 import RecruitmentClosedTable from "../OpportunityTab/RecruitmentClosedTable"
 import {handleReactSpeechModal} from "../../../OpportunityAction"
+import {handleCustomerContactModal} from "../../../../Customer/CustomerAction"
 import {
     getContactListByOpportunityId,
     clearReducerState,
@@ -32,6 +33,8 @@ import {
 import LockIcon from '@mui/icons-material/Lock';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import ReactSpeechModal from "./ReactSpeechModal";
+import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
 const RecruitmentTable = lazy(() => import("./Recruitment/RecruitmentTable"));
 const AddRecruitModal = lazy(() => import("./Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("./Recruitment/AddTagProfileModal"));
@@ -123,7 +126,9 @@ class OpportunityDetailTab extends Component {
       user,
       fetchingOpportunityDetailsById,
       addContactModal,
+      addCustomerContactModal,
       handleContactModal,
+      handleCustomerContactModal,
       linkContactsCheckToOpportunity,
       getContactListByOpportunityId,
       handleLinkContactModal,
@@ -146,7 +151,7 @@ return  <BundleLoader />
             onChange={this.handleTabChange}
             forceRender={true}
           >
-            {user.requirementAccessInd === true ? (
+            {user.requirementAccessInd === true && user.recruitProInd === true ? (
              <TabPane
               tab={
                 <>
@@ -321,7 +326,8 @@ return  <BundleLoader />
                           tooltipTitle="Create"
                           onClick={() => {
                             this.handleContactPopoverVisibleChange();
-                            handleContactModal(true);
+                            //handleContactModal(true);
+                            handleCustomerContactModal(true);
                           }}
                           size="0.875em"
                           style={{ verticalAlign: "center", marginLeft: "0.125em" }}
@@ -471,11 +477,19 @@ return  <BundleLoader />
             handleTagProfileModal={this.props.handleTagProfileModal}
           />
 
-          <AddContactModal
+          {/* <AddContactModal
             addContactModal={addContactModal}
             handleContactModal={handleContactModal}
             callback={() => getContactListByOpportunityId(opportunityId)}
             linkContact
+          /> */}
+          <AddCustomerContactModal
+          handleCustomerContactModal={handleCustomerContactModal}
+            addCustomerContactModal={addCustomerContactModal}
+            opportunityId={opportunityId}
+            // defaultCustomers={[{ label: name, value: customerId }]}
+            // customerId={{ value: customerId }}
+            // callback={() => getContactListByCustomerId(customerId)}
           />
 
           <LinkContactModal
@@ -488,7 +502,8 @@ return  <BundleLoader />
             linkType="opportunity"
           />
 
-          <AddDocumentModal
+<AddDocumentModals
+opportunityId={opportunityId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />
@@ -513,6 +528,7 @@ const mapStateToProps = ({
   task,
   partner,
   customeField,
+  customer
 }) => ({
   fetchingOpportunityDetailsById:opportunity.fetchingOpportunityDetailsById,
   user: auth.userDetails,
@@ -520,6 +536,7 @@ const mapStateToProps = ({
   opportunityId: opportunity.opportunity.opportunityId,
   // organizationId: auth.userDetails.organizationId,
   opportunity: opportunity.opportunity,
+  addCustomerContactModal: customer.addCustomerContactModal,
   addContactModal: contact.addContactModal,
   linkContactModal:contact.linkContactModal,
   addSpeechModal:opportunity.addSpeechModal, 
@@ -532,6 +549,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       clearReducerState,
       handleContactModal,
+      handleCustomerContactModal,
       handleLinkContactModal,
       handleReactSpeechModal,
       handleDocumentUploadModal,

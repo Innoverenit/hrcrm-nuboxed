@@ -142,6 +142,9 @@ function CustomerCallActivityForm(props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const opportunityNameOption = props.opportunityByCustomerId.map((item) => {
       return {
         label: `${item.opportunityName}`,
@@ -166,7 +169,7 @@ function CustomerCallActivityForm(props) {
       user: { userId, firstName, middleName, fullName, lastName, timeZone },
       isEditing,
       prefillCall,
-      addingCall,
+      addingCustomerActivityCall,
       deleteCall,
       deletingCall,
       addCustomerActivityCall,
@@ -716,7 +719,7 @@ function CustomerCallActivityForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${fullName || ""} `,
@@ -914,7 +917,7 @@ function CustomerCallActivityForm(props) {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingCall : addingCall}
+                  loading={isEditing ? updatingCall : addingCustomerActivityCall}
                 >
                   {isEditing ? (
                     "Update"
@@ -933,7 +936,7 @@ function CustomerCallActivityForm(props) {
   }
 
 const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate }) => ({
-  addingCall: call.addingCall,
+  addingCustomerActivityCall: customer.addingCustomerActivityCall,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,

@@ -69,14 +69,16 @@ function LeadsEventForm (props) {
       };
     });
     
-  
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
 const selectedOption = props.assignedToList.find((item) => item.empName === selected);
    
 const {
       user: { userId, firstName, empName,fullName, middleName, lastName, timeZone },
       isEditing,
       prefillEvent,
-      addingEvent,
+      addingLeadsActivityEvent,
       addLeadsActivityEvent,
       deletingEvent,
       deleteEvent,
@@ -98,7 +100,7 @@ const {
     return (
       <>
         <Formik
-          enableReinitialize
+          // enableReinitialize
           initialValues={
             isEditing
               ? prefillEvent
@@ -231,6 +233,7 @@ const {
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
+                  props.rowdata.leadsId,
                   resetForm()
                 );
             
@@ -498,7 +501,7 @@ const {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,
@@ -634,7 +637,7 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  Loading={isEditing ? updatingEvent : addingEvent}
+                  loading={isEditing ? updatingEvent : addingLeadsActivityEvent}
                 >
                   {isEditing ? (
                     "Update"
@@ -651,8 +654,8 @@ const {
       </>
     );
 }
-const mapStateToProps = ({ auth, event,opportunity,customer, employee, events, candidate }) => ({
-  addingEvent: event.addingEvent,
+const mapStateToProps = ({ auth, event,opportunity,customer, employee,leads, events, candidate }) => ({
+  addingLeadsActivityEvent: leads.addingLeadsActivityEvent,
   orgId: auth.userDetails.organizationId,
   allCustomerData:customer.allCustomerData,
   updatingEvent: event.updatingEvent,

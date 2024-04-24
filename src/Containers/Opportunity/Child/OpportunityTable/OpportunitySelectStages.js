@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
-import { Tooltip } from "antd";
+import { Tooltip,Spin } from "antd";
 
 import { FlexContainer } from "../../../../Components/UI/Layout";
 
@@ -11,11 +11,19 @@ class OpportunitySelectStages extends Component {
   //   const { getStages } = this.props;
   //   getStages();
   // }
+  // state = {
+  //   loading: false,
+  // };
   handleStageClick = (opportunityStagesId) => {
-    this.props.stageClick(opportunityStagesId);
+    // this.setState({ loading: true });
+    this.props.stageClick(opportunityStagesId, () => {
+      // // Callback to handle loading completion
+      // this.setState({ loading: false });
+    });
   };
 
   render() {
+    // const { loading } = this.state;
     const { rec } = this.props;
     const index =
       rec.stageList &&
@@ -56,8 +64,10 @@ class OpportunitySelectStages extends Component {
                 //     : null
                 this.handleStageClick(item.opportunityStagesId)
                 }
+                // loading={this.props.linkingOpportunity}
               >
                 <Tooltip title={item.stageName}>
+                {/* <Spin spinning={loading}> */}
                   <svg
                     width="21"
                     height="17"
@@ -99,14 +109,21 @@ class OpportunitySelectStages extends Component {
                         id="svg_1"
                         d="m0.74999,0.75001l14.25,0l4.75001,7.49998l-4.75001,7.50001l-14.25,0l4.75001,-7.50001l-4.75001,-7.49998z"
                         stroke-width="0.5"
+                        // fill={
+                        //   item.stageId === rec.stageId
+                        //     ? "rgba(3, 89, 30, 0.6)"
+                        //     : "lightgrey"
+                        // }
                         fill={
-                          item.stageId === rec.stageId
-                            ? "rgba(3, 89, 30, 0.6)"
-                            : "lightgrey"
+                          item.stageName === rec.oppStage
+               
+                            ? "green"
+                            : "rgba(3, 89, 30, 0.6)"
                         }
                       />
                     </g>
                   </svg>
+                  {/* </Spin> */}
                   {/* <svg
                     width="22"
                     height="16"
@@ -170,6 +187,7 @@ const mapStateToProps = ({ auth, opportunity, account }) => ({
   //fullName:auth.userDetails.fullName,
   // fetchingStages: opportunity.fetchingStages,
   // stages: opportunity.stages,
+  linkingOpportunity:opportunity.linkingOpportunity,
 });
 
 const mapDispatchToProps = (dispatch) =>

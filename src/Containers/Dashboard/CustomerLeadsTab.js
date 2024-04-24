@@ -5,7 +5,8 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { FormattedMessage } from "react-intl";
-const LeadsHotColdWarm=lazy(()=>import("./LeadsHotColdWarm"));
+import Piechart1 from "../../Components/Charts/PieChart1";
+// const LeadsHotColdWarm=lazy(()=>import("./LeadsHotColdWarm"));
 
 const TabPane = StyledTabs.TabPane;
 class CustomerLeadsTab extends Component {
@@ -24,7 +25,7 @@ class CustomerLeadsTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper1>
+        <TabsWrapper1 style={{height:"32vh"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -53,7 +54,8 @@ class CustomerLeadsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LeadsHotColdWarm/>
+                {/* <LeadsHotColdWarm/> */}
+                <Piechart1/>
               </Suspense>
             </TabPane>
           </StyledTabs>

@@ -3,6 +3,7 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProspectCustomerForm from "./ProspectCustomerForm";
 const ApproveForm = lazy(() => import("./ApproveForm"));
 const MileageApproveForm = lazy(() => import("./MileageApproveForm"));
 const ExpenseApproveForm = lazy(() => import("./ExpenseApproveForm"));
@@ -39,9 +40,16 @@ function ApprovalTab(props) {
                         <ContactUserForm/>
                         </div>
                     </TabPane>
-                    <TabPane tab={`Phones Pair`} key="5">
+                    {props.user.repairInd === true && (
+                    <TabPane tab={`Repair`} key="5">
                         <div style={{ marginTop: 10 }}>
                         <PhonesPairApproveForm/>
+                        </div>
+                    </TabPane>
+                    )}
+                      <TabPane tab={`Prospect to Customer`} key="6">
+                        <div style={{ marginTop: 10 }}>
+                        <ProspectCustomerForm/>
                         </div>
                     </TabPane>
                     {/* <TabPane tab={`ApproveList`} key="4">
@@ -56,7 +64,7 @@ function ApprovalTab(props) {
 }
 
 const mapStateToProps = ({ settings, auth }) => ({
-
+    user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

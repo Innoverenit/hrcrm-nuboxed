@@ -1,246 +1,230 @@
-import React, { Component,lazy } from "react";
+import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Input } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { MainWrapper, } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
+import DownloadIcon from '@mui/icons-material/Download';
+import { base_url } from "../../../../Config/Auth";
 import {
     getPayments,
+    getPaymentCount,
     addPayment,
     searchPaymentName,
     ClearReducerDataOfPayment,
     removePayment,
     updatePayment
 } from "../Payment/PaymentAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 const SinglePayment = lazy(() =>
   import("./SinglePayment")
 );
 
-class Payment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linkedSectors: [],
-      isTextInputOpen: false,
-      addingPayment: false,
-      name: "",
-      type: "",
-      singlePayment: "",
-      editInd: true,
-      currentData: "",
-    };
-  }
+const Payment = (props) => {
+  const [currentData, setCurrentData] = useState("");
+  const [paymentsListData, setPaymentsData] = useState(props.paymentsListData);
+  const [editingId, setEditingId] = useState(null);
+  const [addingRegion, setAddingRegion] = useState(false);
+  const [newPaymentName, setPaymentName] = useState('');
+  useEffect(() => {
+      props.getPayments(props.orgId); 
+      props.getPaymentCount(props.orgId) 
+  }, [])
 
-  handleChangeDes = (e) => {
-    this.setState({ currentData: e.target.value });
-  
-    if (e.target.value.trim() === "") {
-      this.setState((prevState) => ({ pageNo: prevState.pageNo + 1 }));
-      this.props.getPayments(this.props.orgId);
-      this.props.ClearReducerDataOfPayment();
-    }
-  };
-  handleSearch = () => {
-    if (this.state.currentData.trim() !== "") {
-      // Perform the search
-      this.props.searchPaymentName(this.state.currentData);
-    } else {
-      console.error("Input is empty. Please provide a value.");
-    }
-  };
-  handleClear = () => {
-    this.setState({ currentData: "" });
-    this.props.getPayments(this.props.orgId);
-  };
-  setCurrentData = (value) => {
-    this.setState({ currentData: value });
+  const editRegion = (paymentCatagoryId, name) => {
+    console.log(name)
+    console.log(name)
+      setEditingId(paymentCatagoryId);
+      setPaymentName(name);
   };
 
-  handleSearchChange = (e) => {
-    // console.log(e.target.value)
-    // this.setState({ text: e.target.value });
-    this.setState({ currentData: e.target.value });
-  };
-  toggleInput = () =>
-    this.setState((prevState) => ({
-      isTextInputOpen: !prevState.isTextInputOpen,
-    }));
-  handleChange = ({ target: { name, value } }) =>
-    this.setState({ [name]: value });
-    handleAddPayment = () => {
-      const {   addPayment, payments } = this.props;
-      const { name, editInd, addingPayment, isTextInputOpen } = this.state;
-      let customer = { name,
-        orgId: this.props.orgId,
-        userId:this.props.userId,
-         editInd };
-    
-      let exist =
-      payments && payments.some((element) => element.name === name);
-    
-      // if (exist) {
-      //   message.error(
-      //     "Can't create as another source type exists with the same name!"
-      //   );
-      // } else {
-        addPayment(customer,this.props.orgId ,() => console.log("add sector callback"));
-        this.setState({
-          name: "",
-          singlePayment: "",
-          isTextInputOpen: false,
-          editInd: true,
-        });
-      // }
-    };
-    
-  handleDeletePayment = (paymentCatagoryId = { paymentCatagoryId }) => {
-     this.props.removePayment(paymentCatagoryId);
-    // this.setState({ name: "", singlePayment: "" });
-  };
-  handleupdatePayment = (name, paymentCatagoryId, editInd, cb) => {
-     this.props.updatePayment(name, paymentCatagoryId, editInd, cb);
-    this.setState({ name: "", singlePayment: "",paymentCatagoryId:"", editInd: true });
+
+
+  const handleAddPayment = () => {
+      setAddingRegion(true);
+      setPaymentName("")
   };
 
-  componentDidMount() {
-    const {   getPayments,orgId } = this.props;
-    console.log();
-    getPayments(orgId);
-    // this.getLinkedSources();
-  }
-  render() {
-    const {
-        fetchingPayment,
-        fetchingPaymentError,
-      paymentsListData,
-      addingPayment,
-      updatingPayment,
-    } = this.props;
-    const {
-      isTextInputOpen,
-      type,
-      name,
-      singlePayment,
-      linkedSectors,
-    } = this.state;
-    if (fetchingPayment) return <BundleLoader/>;
-    //if (fetchingSectorsError) return <p>We are unable to load data</p>;
-    return (
-      <>
-      <div class="flex flex-nowrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-               <div class=" flex flex-row justify-between">
-            <div class=" flex w-[18vw]" >
-            <Input
-         placeholder="Search by Name"
-        style={{width:"100%",marginLeft:"0.5rem"}}
-            // suffix={suffix}
-            onPressEnter={this.handleSearch}  
-            onChange={this.handleChangeDes}
-            // value={currentData}
-          />
-            </div>
-            {isTextInputOpen ? (
-              <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-            
-              >
-               
-                <TextInput
-                  placeholder="Add Payment"
-                  name="name"
-                  value={name}
-                  onChange={this.handleChange}
-                  width="55%"
-                  style={{ marginRight: "0.125em" }}
-                />
-                &nbsp;
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  disabled={!name}
-                  Loading={addingPayment}
-                  onClick={this.handleAddPayment}
-                  style={{ marginRight: "0.125em" }}
-                >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
-                </Button>
-                &nbsp;
-                <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                </Button>
-              </div>
-            ) : (
-              <>
-              
-                <div class=" flex justify-end" >
-                  <Button
-                    type="primary"
-                    htmlType="button"
-                    loading={addingPayment}
-                    onClick={this.toggleInput}
-                  >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
-                  </Button>
-                </div>
-                {/* <div>Updated on {dayjs(this.props.sectors && this.props.sectors.length && this.props.sectors[0].updationDate).format("ll")} by {this.props.sectors && this.props.sectors.length && this.props.sectors[0].name}</div> */}
-              </>
-            )}
-             </div>
-            <div class=" flex flex-col" >
-            <MainWrapper className="!h-[69vh] !mt-2" >
-             {paymentsListData.length ? (
-  paymentsListData
-    .slice() 
-    .sort((a, b) => a.name.localeCompare(b.name)) 
-    .map((payment, i) => (
-                    <SinglePayment
-                      key={i}
-                      value={singlePayment}
-                      name1="singlePayment"
-                      payment={payment}
-                      updatingPayment={updatingPayment}
-                      handleChange={this.handleChange}
-                      handleupdatePayment={this.handleupdatePayment}
-                      handleDeletePayment={this.handleDeletePayment}
-                      handleClear={this.handleClear}
-                      handleSearchChange={this.handleSearchChange}
-                      currentData={this.state.currentData}
-                      setCurrentData={this.setCurrentData}
-                    />
-                  ))
-                  ) : (
-                    <p>No Data Available</p>
-                  )}
-              </MainWrapper>
-            </div>
-          
-          </MainWrapper>
-      
+  const handleUpdatePayment=(region)=>{
+      console.log(region)
+      let data={
+        paymentCatagoryId:region.paymentCatagoryId,
+        name:newPaymentName
        
-        </div>
-        <div class=" font-bold">Updated on {dayjs(this.props.paymentsListData && this.props.paymentsListData.length && this.props.paymentsListData[0].updationDate).format('YYYY-MM-DD')} by {this.props.paymentsListData && this.props.paymentsListData.length && this.props.paymentsListData[0].updatedBy}</div>
-      </>
-    );
+      }
+props.updatePayment(data,region.paymentCatagoryId)
+setEditingId(null);
   }
+
+  const handlePayment = () => {
+      // if (newRegionName.trim() !== '') {
+      //     console.log("New Region:", newRegionName);
+      //     const newRegion = {
+      //         id: Date.now(),
+      //         item: newRegionName
+      //     };
+      //     setRegions([...regions, newRegion]);
+      //     setNewRegionName('');
+      //     setAddingRegion(false);
+      // }
+      let data={
+        name:newPaymentName,
+        orgId:props.orgId,
+      }
+      props.addPayment(data,props.orgId)
+      setAddingRegion(false)
+  };
+  const handleChange = (e) => {
+      setCurrentData(e.target.value.trim());
+    
+  
+      if (e.target.value.trim() === "") {
+      //   setPage(pageNo + 1);
+      props.getPayments(props.orgId);
+      //   props.ClearReducerDataOfLoad()
+      }
+    };
+
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.searchPaymentName(currentData);
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+
+  const handleCancelAdd = () => {
+    setPaymentName('');
+      setAddingRegion(false);
+  };
+  const cancelEdit = () => {
+      setEditingId(null);
+  };
+  useEffect(() => {
+      
+      if (props.paymentsListData.length > 0) {
+        
+        setPaymentsData(props.paymentsListData);
+      }
+    }, [props.paymentsListData]);
+
+// console.log(regions)
+if (props.fetchingPayment) {
+return <div><BundleLoader/></div>;
 }
+  return (
+      <div>
+    <div class=" flex flex-row justify-between">
+    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+          <Input
+       placeholder="Search by Name"
+      style={{width:"100%",marginLeft:"0.5rem"}}
+          // suffix={suffix}
+          onPressEnter={handleSearch}  
+          onChange={handleChange}
+          // value={currentData}
+        />
+          </div>
+          <div class="w-[18rem]">
+  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"payment"}`}>
+    <div className="circle-icon !text-base cursor-pointer text-[green]">
+      <Tooltip placement="top" title="Download XL">
+        <DownloadIcon />
+      </Tooltip>
+    </div>
+  </a>
+</div>
+            <div className="add-region">
+              {addingRegion ? (
+                  <div>
+                      <input 
+                      style={{border:"2px solid black",width:"55%"}}
+                          type="text" 
+                          placeholder="Add Payment"
+                          value={newPaymentName} 
+                          onChange={(e) => setPaymentName(e.target.value)} 
+                      />
+                      <button 
+                         loading={props.addingItemTask}
+                      onClick={handlePayment}>Save</button>
+                      <button  onClick={handleCancelAdd}>Cancel</button>
+                  </div>
+              ) : (
+                  <button  style={{backgroundColor:"tomato",color:"white"}}
+                  onClick={handleAddPayment}> Add More</button>
+              )}
+          </div>
+          </div>
+          <div class=" flex flex-col" >
+         
+         <MainWrapper className="!h-[69vh] !mt-2" >
+          {!props.fetchingPayment && paymentsListData.length === 0 ? <NodataFoundPage /> : paymentsListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
+            <div className="card9" key={region.paymentCatagoryId}>
+            {/* Region name display or input field */}
+            
+            {editingId === region.paymentCatagoryId ? (
+                <input
+                style={{border:"2px solid black"}}
+                    type="text"
+                    placeholder="Update Payment"
+                    value={newPaymentName}
+                    onChange={(e) => setPaymentName(e.target.value)}
+                />
+            ) : (
+                <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
+                {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                      >
+                                        New
+                                      </span> : null}</div>
+            )}
+
+            {/* Action buttons */}
+            <div className="actions">
+                {/* Edit button */}
+                {editingId === region.paymentCatagoryId ? (
+                    <div>
+                        <button onClick={() => handleUpdatePayment(region)}>Save</button>
+                        <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
+                    </div>
+                ) : (
+                    <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.paymentCatagoryId, region.name)} />
+                )}
+
+                {/* Delete button */}
+                <Popconfirm
+                        title="Do you want to delete?"
+                        okText="Yes"
+                        cancelText="No"
+                        onConfirm={() =>  props.removePayment(region.paymentCatagoryId,props.orgId)}
+                      >
+                <DeleteOutlined 
+                  style={{
+                  
+                    color: "red",
+                    cursor:"pointer"
+                  }}
+              // onClick={() => 
+              //     props.removeServiceLine(item.paymentCatagoryId)
+              //  }
+                 />
+                 </Popconfirm>
+            </div>
+        </div>
+          ))}
+          </MainWrapper>
+            </div>
+  <div class=" font-bold">Updated on {dayjs(props.paymentsListData && props.paymentsListData.length && props.paymentsListData[0].updationDate).format('YYYY-MM-DD')} by {props.paymentsListData && props.paymentsListData.length && props.paymentsListData[0].updatedBy}</div>
+      </div>
+  );
+};
 
 const mapStateToProps = ({ payments,auth }) => ({
     addingPayment: payments.addingPayment,
+    paymentCount:payments.paymentCount,
     addingPaymentError: payments.addingPaymentError,
     paymentsListData: payments.paymentsListData,
 orgId:auth.userDetails.organizationId,
@@ -258,6 +242,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getPayments,
+        getPaymentCount,
         ClearReducerDataOfPayment,
         searchPaymentName,
         addPayment,

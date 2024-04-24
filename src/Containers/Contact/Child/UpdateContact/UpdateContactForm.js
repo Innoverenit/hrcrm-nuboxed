@@ -16,7 +16,7 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
-import {getDialCode} from "../../../Investor/InvestorAction";
+
 
 const { Option } = Select;
 /**
@@ -28,13 +28,12 @@ const UpdateContactSchema = Yup.object().shape({
     .required("Input needed!")
     .email("Enter a valid Email"),
   firstName: Yup.string().required("Input needed!"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Number is too short").max(10,"Number is too long")
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Number is too short").max(10,"Number is too long")
 });
 
 class UpdateContactForm extends Component {
   componentDidMount() {
     this.props.getCustomerData(this.props.userId);
-    this.props.getDialCode();
   }
   constructor(props) {
     super(props);
@@ -133,12 +132,7 @@ class UpdateContactForm extends Component {
         value: item.customerId,
       };
     });
-    const dialCodeOption = this.props.dialCodeList.map((item) => {
-      return {
-        label: `+${item.country_dial_code || ""}`,
-        value: item.country_dial_code
-      };  });
-
+   
     return (
       <>
         <Formik
@@ -146,7 +140,7 @@ class UpdateContactForm extends Component {
             salutation: this.props.setEditingContact.salutation || "",
             designationTypeId: this.props.setEditingContact.designationTypeId || "",
             description: this.props.setEditingContact.description || "",
-            departmentId: this.props.setEditingContact.departmentId || "",
+            departmentId: this.props.setEditingContact.department || "",
             departmentDetails:
               this.props.setEditingContact.departmentDetails || "",
               source:
@@ -164,6 +158,8 @@ class UpdateContactForm extends Component {
             phoneNumber: this.props.setEditingContact.phoneNumber || "",
             mobileNumber: this.props.setEditingContact.mobileNumber || "",
             emailId: this.props.setEditingContact.emailId || "",
+            alternateEmail: this.props.setEditingContact.alternateEmail || "",
+            
             customerId:this.props.setEditingContact.customerId||"",
             linkedinPublicUrl:
               this.props.setEditingContact.linkedinPublicUrl || "",
@@ -307,6 +303,28 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
+                    <div class=" w-full">
+                      <FastField
+                        type="email"
+                        name="alternateEmail"
+                        //label="Email"
+                        label={
+                          <FormattedMessage
+                            id="app.alternateEmail"
+                            defaultMessage="Alternate Email"
+                          />
+                        }
+                        className="field"
+                        isColumn
+                        width={"100%"}
+                        component={InputComponent}
+                        inlineLabel
+                        // isRequired
+                      />
+                    </div>
+                  
+                  </div>  
+                  <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5">
                       <FastField
                         name="countryDialCode"
@@ -318,10 +336,11 @@ class UpdateContactForm extends Component {
                           />
                         }
                         isColumn
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(dialCodeOption) ? dialCodeOption : []
-                        }
+                        selectType="dialCode"
+                        component={SearchSelect}
+                        defaultValue={{
+                          label:`+${this.props.user.countryDialCode }`,
+                        }}
                         inlineLabel
                       />
                     </div>
@@ -473,12 +492,13 @@ class UpdateContactForm extends Component {
                           defaultMessage="Department"
                         />
                       }
+                      width="100%"
                       isColumn
                       isColumnWithoutNoCreate
                       // component={SelectComponent}
-                      component={SearchSelect}
-                      value={values.departmentId}
-                      selectType="departmentName"
+                      component={InputComponent}
+                      // value={values.departmentId}
+                      // selectType="departmentName"
                       inlineLabel
                     />
                   </div>
@@ -597,7 +617,7 @@ class UpdateContactForm extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, contact, investor,customer, departments, designations, opportunity }) => ({
+const mapStateToProps = ({ auth, contact,customer, departments, designations, opportunity }) => ({
   setEditingContact: contact.setEditingContact,
   updateContactById: contact.updateContactById,
   updateContactByIdError: contact.updateContactByIdError,
@@ -607,13 +627,13 @@ const mapStateToProps = ({ auth, contact, investor,customer, departments, design
   customerId: customer.customer.customerId,
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
-  dialCodeList:investor.dialCodeList,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getDialCode,
+
       updateContact,
       getCustomerData,
       getDesignations,

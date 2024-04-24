@@ -22,8 +22,8 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const UpdateCustomerContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
   emailId: Yup.string().email("Enter a valid Email"),
-  phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(5,"Number is too short").max(10,"Number is too long"),
-  mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Number is too short").max(10,"Number is too long")
+  // phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(5,"Number is too short").max(10,"Number is too long"),
+  // mobileNumber: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5,"Number is too short").max(10,"Number is too long")
 });
 
 class UpdateCustomerContactForm extends Component {
@@ -384,7 +384,7 @@ class UpdateCustomerContactForm extends Component {
                 
 
                     <div class=" flex justify-between mt-3">
-                      <div class=" w-2/5">
+                    <div class="  w-w47.5">
                         <>
                         <Field
                     name="customerId"
@@ -407,7 +407,12 @@ class UpdateCustomerContactForm extends Component {
                   />
                         </>
                       </div>
-                      <div class=" w-2/5">
+                    
+                   
+                    </div>
+
+                    <div class=" flex justify-between">
+                    <div class="  w-w47.5">
                         <FastField
                          name="designationTypeId"
                          //label="Designation"
@@ -425,7 +430,7 @@ class UpdateCustomerContactForm extends Component {
                          inlineLabel
                         />
                      </div>
-                     <div class=" w-2/5">
+                     <div class="w-w47.5">
                       <FastField
                         name="departmentId"
                         //label="Department"

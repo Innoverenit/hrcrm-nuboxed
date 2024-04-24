@@ -136,13 +136,13 @@ class DealsTab extends Component {
     let exist =
     dealsProcessStages &&
     dealsProcessStages.some((element) => element.stageName == stageName);
-    if (exist) {
-      message.error(
-        "Stage with same name already exists as part of this workflow"
-      );
-    } else {
+    // if (exist) {
+    //   message.error(
+    //     "Stage with same name already exists as part of this workflow"
+    //   );
+    // } else {
       this.props.updateStageForDeals(investorOppStagesId, stageName, probability, days);
-    }
+    // }
   };
 
 handleStagePublishClick = (investorOppStagesId, publishInd) => {

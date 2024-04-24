@@ -15,12 +15,10 @@ class AddOpportunityNotesDrawerModal extends Component {
         // title="Notes"
           title={this.props.opportunityData.opportunityName}
           width="64%"
-          style={{ marginTop: "5rem" }}
           visible={this.props.addDrawerOpportunityNotesModal}
+          destroyOnClose
           closable
           placement="right"
-          destroyOnClose
-          maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
           onClose={() => this.props.handleOpportunityNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>

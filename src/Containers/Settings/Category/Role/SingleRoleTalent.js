@@ -102,7 +102,7 @@ class SingleRoleTalent extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingTalentRoles}
+                    loading={updatingTalentRoles}
                     disabled={!value}
                   onClick={() => handleUpdateTalentRole(roleTypeExternalId, value, toggleViewType())}
                   >
@@ -110,7 +110,7 @@ class SingleRoleTalent extends Component {
             
                 </Button> 
              
-                  <Button type="primary" ghost onClick={() => toggleViewType()}>
+                  <Button type="cancel"  onClick={() => toggleViewType()}>
                      Cancel 
             
                 </Button>

@@ -24,6 +24,8 @@ import {
 } from "../../../../../../Components/UI/Elements";
 import {getInvestorDocument} from "../../../../InvestorAction"
 import { DeleteOutlined } from "@ant-design/icons";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class InvestorLinkedDocuments extends Component {
   constructor(props) {
@@ -119,8 +121,9 @@ class InvestorLinkedDocuments extends Component {
     clearFilters();
     this.setState({ searchText: "" });
   };
+ 
   render() {
-  
+    if (this.props.fetchingDocumentsByInvestorId) return <BundleLoader/>;
     return (
       <>
           <div className=' flex justify-end sticky top-28 z-auto'>          
@@ -135,7 +138,7 @@ class InvestorLinkedDocuments extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[67vh]">
-                  {this.props.documentsByInvestorId.map((item) => {
+                  { !this.props.fetchingDocumentsByInvestorId && this.props.documentsByInvestorId.length === 0 ?<NodataFoundPage />:this.props.documentsByInvestorId.map((item,index) =>  {
                       
                       return (
                           <div >
@@ -183,7 +186,7 @@ class InvestorLinkedDocuments extends Component {
             >
               <DownloadIcon
                 type="download"
-                style={{ cursor: "pointer" ,fontSize:"0.8rem"}}
+                style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
               />
             </a>
 
@@ -196,7 +199,7 @@ class InvestorLinkedDocuments extends Component {
               title="Do you want to delete?"
             //   onConfirm={() => deleteDocument(item.documentId)}
            >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"0.8rem",color: "red" }} />
+              <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
             </StyledPopconfirm>
 
                                       </div>
@@ -222,10 +225,10 @@ class InvestorLinkedDocuments extends Component {
 const mapStateToProps = ({ customer,investor, document }) => ({
   customer: customer.customer,
   documents: document.documents,
-  fetchingDocumentsByInvestorId: investor.fetchingDocumentsByInvestorId,
+  fetchingDocumentsByInvestorId: customer.fetchingDocumentsByInvestorId,
   fetchingDocumentsByInvestorIdError:
-    investor.fetchingDocumentsByInvestorIdError,
-  documentsByInvestorId: investor.documentsByInvestorId,
+  customer.fetchingDocumentsByInvestorIdError,
+  documentsByInvestorId: customer.documentsByInvestorId,
 });
 
 const mapDispatchToProps = (dispatch) =>

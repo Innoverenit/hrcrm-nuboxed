@@ -3,10 +3,13 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
-import PaymentIcon from '@mui/icons-material/Payment';
+import {  Badge } from "antd";
 import SourceIcon from '@mui/icons-material/Source';
+import PaymentIcon from '@mui/icons-material/Payment';
 import FactoryIcon from '@mui/icons-material/Factory';
 import { FormattedMessage } from "react-intl";
+import LOB from "./LOB/LOB";
+import CategoryList from "./CategoryList/CategoryList";
 const Payment = lazy(() =>
   import("./Payment/Payment")
 );
@@ -16,15 +19,11 @@ const Sectors = lazy(() =>
 const Source = lazy(() =>
   import("./Source/Source")
 );
-const ShipBy = lazy(() =>
-  import("./ShipBy/ShipBy")
-);
+
 const Customer = lazy(() =>
   import("./Customer/Customer")
 );
-const BrandModel = lazy(() =>
-  import("./Brand&Model/BrandModel")
-);
+
 const Vat = lazy(() =>
   import("./Vat/Vat")
 );
@@ -54,15 +53,15 @@ class CustomerSectorTab extends Component {
       case "1":
         return  <Source />;
       case "2":
-        return     <ShipBy />;
-      case "3":
         return    <Customer />;
-        case "4":
-          return        <BrandModel />;
-          case "5":
+          case "3":
             return            <Vat />;
-            case "6":
+            case "4":
               return              <Payment />;
+              case "5":
+                return              <LOB />;
+                case "6":
+                  return              <CategoryList />;
       default:
         return null;
     }
@@ -82,9 +81,18 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <FactoryIcon />
-                      <span class=" ml-1">
-                        Sector
+            
+                      <span class="font-poppins ml-1 ">
+                      <Badge
+                count={this.props.sectorCount.SectorCount}
+                overflowCount={999}
+              >
+                
+                   Sector 
+                        {/* <span className="text-red-500 font-bold">{this.props.sectorCount.SectorCount}</span> */}
+                        </Badge>
                       </span>
+                    
                     </>
                   }
                   key="0"
@@ -97,9 +105,17 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
-                      <span class=" ml-1">
+             
+                          <span class="font-poppins ml-1 ">
+                          <Badge
+                count={this.props.sourceCount.SourceCount}
+                overflowCount={999}
+              >
                         Source
+                        {/* <span className="text-red-500 font-bold">{this.props.sourceCount.SourceCount}</span> */}
+                        </Badge>
                       </span>
+                    
                     </>
                   }
                   key="1"
@@ -112,58 +128,36 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <SourceIcon />
-                      <span class=" ml-1">
-                        Ship By
+            
+                        <span class="font-poppins ml-1 ">
+                        <Badge
+                count={this.props.customerCount.CustomerTypeCount}
+                overflowCount={999}
+              >
+                      Type
+                      </Badge>
                       </span>
+                  
                     </>
                   }
                   key="2"
-                >
-                  {/* <Suspense>
-                    <ShipBy />
-                  </Suspense> */}
-                </TabPane>
-                <TabPane
-                  tab={
-                    <>
-                      <SourceIcon />
-                      <span class=" ml-1">
-                      Type
-                      </span>
-                    </>
-                  }
-                  key="3"
                 >
                   {/* <Suspense>
                     <Customer />
                   </Suspense> */}
                 </TabPane>
 
+            
                 <TabPane
                   tab={
                     <>
                       <SourceIcon />
-                      <span class=" ml-1">
-                        BrandModel
-                      </span>
-                    </>
-                  }
-                  key="4"
-                >
-                  {/* <Suspense>
-                    <BrandModel />
-                  </Suspense> */}
-                </TabPane>
-                <TabPane
-                  tab={
-                    <>
-                      <SourceIcon />
-                      <span class=" ml-1">
+                      <span class="font-poppins ml-1 ">
                         Vat
                       </span>
                     </>
                   }
-                  key="5"
+                  key="3"
                 >
                   <Suspense>
                     <Vat />
@@ -173,16 +167,66 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <PaymentIcon />
-                      <span class=" ml-1">
+            
+                         <span class="font-poppins ml-1 ">
+                         <Badge
+                count={this.props.paymentCount.ServiceLineCount}
+                overflowCount={999}
+              >
                       <FormattedMessage id="app.payment" defaultMessage="Payment" />
+                      </Badge>
                       </span>
+                     
                     </>
                   }
-                  key="6"
+                  key="4"
                 >
                   {/* <Suspense>
                     <Payment />
                   </Suspense> */}
+                </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <PaymentIcon />
+            
+                         <span class="font-poppins ml-1 ">
+                         <Badge
+                count={this.props.lobCount.LobCount}
+                overflowCount={999}
+              >
+                      <FormattedMessage id="app.lob" defaultMessage="LOB" />
+                      </Badge>
+                      </span>
+                     
+                    </>
+                  }
+                  key="5"
+                >
+                  {/* <Suspense>
+                    <Payment />
+                  </Suspense> */}
+                </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <PaymentIcon />
+            
+                         <span class="font-poppins ml-1 ">
+                         <Badge
+                count={this.props.categoryCount.categoryCount}
+                overflowCount={999}
+              >
+              Category
+                      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+                      </Badge>
+                      </span>
+                     
+                    </>
+                  }
+                  key="6"
+                >
+               
                 </TabPane>
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
@@ -195,7 +239,14 @@ class CustomerSectorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ }) => ({});
+const mapStateToProps = ({ sector,lob,categoryList,source,catgCustomer,payments}) => ({
+  sectorCount:sector.sectorCount,
+  sourceCount:source.sourceCount,
+  paymentCount:payments.paymentCount,
+  lobCount:lob.lobCount,
+  customerCount:catgCustomer.customerCount,
+  categoryCount:categoryList.categoryCount,
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerSectorTab);

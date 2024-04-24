@@ -4,17 +4,21 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { base_url } from "../../../../../../Config/Auth";
 import {
-  StyledTable,
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
+import { Tooltip } from "antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import {
   getContactDocument,
+} from "../../../../../Customer/CustomerAction";
+import {
   deleteDocument 
 } from "../../../../ContactAction";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import { DeleteOutlined, } from "@ant-design/icons";
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class LinkedDocuments extends Component {
   componentDidMount() {
@@ -31,110 +35,146 @@ class LinkedDocuments extends Component {
       fetchingDocumentsByContactIdError,
         deleteDocument,
     } = this.props;
-    const columns = [
-      {
-        //title: "Name",
-        title: <FormattedMessage
-          id="app.date"
-          defaultMessage="Date"
-        />,
-        dataIndex: "creationDate",
-        render: (name, item, i) => {
-          return <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>;
-        },
-      },
-      {
-        //title: "Name",
-        title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
-        dataIndex: "documentTitle",
-        onFilter: (value, record) => record.taskSubject.indexOf(value) === 0,
-        sorter: (a, b) => a.taskSubject.length - b.taskSubject.length,
-      },
-
-      {
-        //title: "Description",
-        title: <FormattedMessage
-          id="app.description"
-          defaultMessage="Description"
-        />,
-        dataIndex: "documentDescription",
-        width: "20%",
-        render: (name, item, i) => {
-          console.log(item);
-          return <span>{elipsize(item.documentDescription || "", 15)}</span>;
-        },
-        onFilter: (value, record) => record.taskType.indexOf(value) === 0,
-        sorter: (a, b) => a.taskType.length - b.taskType.length,
-      },
-      {
-        //title: "Uploaded By",
-        title: <FormattedMessage
-          id="app.uploadedBy"
-          defaultMessage="Uploaded By"
-        />,
-        dataIndex: "uploadedBy",
-        // onFilter: (value, record) => record.taskType.indexOf(value) === 0,
-        // sorter: (a, b) => a.taskType.length - b.taskType.length
-      },
-     
-      {
-        title: "",
-        // dataIndex: "documentTypeId",
-        width: "5%",
-        render: (name, item, i) => {
-          return (
-            <a
-              href={`${base_url}/document/${item.documentId}`}
-            // target="_blank"
-            >
-              <DownloadIcon
-                type="download"
-                style={{ cursor: "pointer" ,fontSize:"0.8rem"}}
-              />
-            </a>
-          );
-        },
-      },
-      {
-        title: "",
-        dataIndex: "documentTypeId",
-        width: "5%",
-        render: (name, item, i) => {
-          return (
-            <a
-              href={`${base_url}/download/${item.documentTypeId}`}
-            >
-              
-            </a>
-          );
-        },
-      },
-     
-      {
-        title: "",
-        dataIndex: "documentId",
-        width: "5%",
-        render: (name, item, i) => {
-          return (
-            <StyledPopconfirm
-              title="Do you want to delete?"
-              onConfirm={() => deleteDocument(item.documentId)}
-           >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"0.8rem",color: "red" }} />
-            </StyledPopconfirm>
-          );
-        },
-      },
-    ];
+  
 
     const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight * 0.75;
+  if (fetchingDocumentsByContactId) return <BundleLoader/>;
     return (
       <>
-        {true && (
+         <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[6.5rem]">
+        <FormattedMessage
+                  id="app.date"
+                  defaultMessage="Date"
+                /></div>
+ 
+        <div className="md:w-[10.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                 <div className="md:w-[10.1rem]">
+                 <FormattedMessage
+          id="app.description"
+          defaultMessage="Description"
+        /></div>
+                       <div className=" md:w-[8.1rem]">
+                       <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
+
+                      
+       
+        
+        <div className="w-[10.2rem]"></div>
+
+      </div>
+   
+        
+      { !fetchingDocumentsByContactId && documentsByContactId.length === 0 ?<NodataFoundPage />:documentsByContactId.map((item,index) =>  {
+        
+        
+                    return (
+                        <div>
+                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                                >
+                                     
+                                     <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+<div className="flex max-sm:w-full items-center"> 
+
+          <div class="max-sm:w-full">
+                                        <Tooltip>
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                          
+                                            <div class="text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                                                
+                                            <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
+     
+       
+                                            </div>
+                                            </div>
+                                        </Tooltip>
+                                        </div>
+                                        </div>
+                                </div>
+                                <div class="flex">
+
+                             
+                              
+                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                
+                                  <div class="text-sm text-cardBody font-poppins">
+                                  {item.documentTitle}
+                                  </div>
+                              </div>
+
+                              <div className=" flex font-medium flex-col md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                
+                                <div class="text-sm text-cardBody font-poppins">
+                                <span>{elipsize(item.documentDescription || "", 15)}</span>
+                                </div>
+                            </div>
+                            <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                   
+                                   <div class="text-sm text-cardBody font-poppins">
+                 
+                     <div className="font-normal text-sm text-cardBody font-poppins">
+                       <span>{item.uploadedBy}</span>
+                     </div>
+                 
+                                   </div>
+                               </div>
+
+                         
+                              </div>
+                              <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
+                   
+                              <>
+                              <a
+            href={`${base_url}/document/${item.documentId}`}
+          // target="_blank"
+          >
+            <DownloadIcon
+              type="download"
+              style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
+            />
+          </a>
+          </>
+                 
+                  </div>
+                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    
+
+                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <a
+            href={`${base_url}/download/${item.documentTypeId}`}
+          >
+            
+          </a>
+
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium ml-2 flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    
+
+                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => deleteDocument(item.documentId)}
+         >
+            <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
+          </StyledPopconfirm>
+
+                                    </div>
+                                </div>
+
+                              
+                             
+                            </div>
+                        </div>
+
+
+                    )
+                })}
+                    
+      </div>
+        {/* {true && (
           <StyledTable
             pagination={false}
             scroll={{ y: tableHeight }}
@@ -150,17 +190,17 @@ class LinkedDocuments extends Component {
             }
             onChange={console.log("task onChangeHere...")}
           />
-        )}
+        )} */}
       </>
     );
   }
 }
 
-const mapStateToProps = ({ contact }) => ({
+const mapStateToProps = ({ contact,customer }) => ({
   contact: contact.contact,
-  fetchingDocumentsByContactId: contact.fetchingDocumentsByContactId,
-  fetchingDocumentsByContactIdError: contact.fetchingDocumentsByContactIdError,
-  documentsByContactId: contact.documentsByContactId,
+  fetchingDocumentsByContactId: customer.fetchingDocumentsByContactId,
+  fetchingDocumentsByContactIdError: customer.fetchingDocumentsByContactIdError,
+  documentsByContactId: customer.documentsByContactId,
 });
 
 const mapDispatchToProps = (dispatch) =>

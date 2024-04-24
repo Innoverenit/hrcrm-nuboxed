@@ -3,12 +3,14 @@ import { Button, Switch, Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Radio } from "antd";
+import { Radio, message } from "antd";
 import { getlocation } from "../../../Event/Child/Location/LocationAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCurrency } from "../../../Auth/AuthAction"
-import { getTimeZone, getCountries } from "../../../Auth/AuthAction"
+import { 
+  // getTimeZone,
+   getCountries } from "../../../Auth/AuthAction"
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { updateEmployee, } from "../../EmployeeAction";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -16,11 +18,19 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
+import * as Yup from "yup";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 const { Option } = Select;
 
+const EmployeeSchema = Yup.object().shape({
+  departmentId: Yup.string().required("Input needed!"),
+  roleType: Yup.string().required("Input needed!"),
+  workplace: Yup.string().required("Input needed!"),
+  location: Yup.string().required("Input needed!"),
+  workplace: Yup.string().required("Input needed!"),
+});
 class UpdateEmployeeForm extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +41,8 @@ class UpdateEmployeeForm extends Component {
       role: [],
       reportingManager: this.props.currentEmployeeId.reportingManager || "",
       department: this.props.currentEmployeeId.reportingManagerDeptId || "",
+      secondatDepartment:this.props.currentEmployeeId.secondaryReptManagerDept || "",
+      secondaryReportingManager:this.props.currentEmployeeId.secondaryReptManager || "",
       selectedRole: "",
       selectedCountry: '',
       selectedDept: "",
@@ -45,9 +57,11 @@ class UpdateEmployeeForm extends Component {
 
 
   componentDidMount() {
-    const { getCountries, getEmployeelist, getDepartments, getTimeZone, getCurrency, getRoles, getlocation, } = this.props;
+    const { getCountries, getEmployeelist, getDepartments,
+      //  getTimeZone
+        getCurrency, getRoles, getlocation, } = this.props;
     getRoles(this.props.organizationId);
-    getTimeZone();
+    // getTimeZone();
     getlocation(this.props.orgId);
     getCountries(getCountries);
     getDepartments();
@@ -90,6 +104,13 @@ class UpdateEmployeeForm extends Component {
   handleDepartment = (val) => {
     this.setState({ department: val });
     this.props.getDepartmentwiserUser(val);
+  }
+ handleSecondaryDepartment = (val) => {
+  this.setState({ secondatDepartment: val });
+    this.props.getDepartmentwiserUser(val);
+  }
+ handleSecondaryreportingManager = (val) => {
+  this.setState({ secondaryReportingManager: val });
   }
   handlereportingManager = (val) => {
     this.setState({ reportingManager: val });
@@ -176,7 +197,7 @@ class UpdateEmployeeForm extends Component {
   }
 
   render() {
-    const { user, reportingManager, department, selectedRow, dueDate } = this.state;
+    const { user, reportingManager, department,secondatDepartment,secondaryReportingManager, selectedRow, dueDate } = this.state;
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
         label: item.zone_name
@@ -235,7 +256,10 @@ class UpdateEmployeeForm extends Component {
     });
 
 
-
+    const {
+      user: { firstName,empName, middleName, fullName, lastName, timeZone },
+      userId,
+    } = this.props;
 
     const { clearbit, currentEmployeeId } = this.props;
     console.log(currentEmployeeId)
@@ -248,7 +272,9 @@ class UpdateEmployeeForm extends Component {
             firstName: currentEmployeeId.firstName || "",
             lastName: currentEmployeeId.lastName || "",
             emailId: currentEmployeeId.emailId || "",
-            timeZone: currentEmployeeId.timeZone || "",
+            salary: currentEmployeeId.salary || "",
+            // timeZone: currentEmployeeId.timeZone || "",
+            timeZone: timeZone,
             countryDialCode: currentEmployeeId.countryDialCode || "",
             countryDialCode1: currentEmployeeId.countryDialCode1 || "",
             phoneNo: currentEmployeeId.phoneNo || "",
@@ -257,6 +283,7 @@ class UpdateEmployeeForm extends Component {
             dateOfJoining: dayjs(),
             dob: dayjs(),
             mobileNo: currentEmployeeId.mobileNo || "",
+            currency:currentEmployeeId.currency || "",
             country: currentEmployeeId.country || "",
             workplace: currentEmployeeId.workplace || "",
             location: currentEmployeeId.location || "",
@@ -283,26 +310,31 @@ class UpdateEmployeeForm extends Component {
             ],
 
           }}
-          //   validationSchema={documentSchema}
-
+          validationSchema={EmployeeSchema}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
-            this.props.updateEmployee(
-              {
-                ...values,
-                // workplace: currentEmployeeId.country_name ,
-                // location: currentEmployeeId.locationDetailsId ,
-                reportingManagerDeptId: department,
-                reportingManager: reportingManager,
-                job_type: this.state.active ? "Full Time" : "Part Time",
-                type: this.state.typeInd ? "true" : "false",
-                employee_type: this.state.workType,
-                employeeId: currentEmployeeId.employeeId,
-                // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
-              },
-              currentEmployeeId.employeeId,
-              () => this.handleReset(resetForm)
-            );
+            if (department && reportingManager) {
+              this.props.updateEmployee(
+                {
+                  ...values,
+                  // workplace: currentEmployeeId.country_name ,
+                  // location: currentEmployeeId.locationDetailsId ,
+                  reportingManagerDeptId: department,
+                  secondaryReptManagerDept:secondatDepartment,
+                  secondaryReptManager: secondaryReportingManager,
+                  reportingManager: reportingManager,
+                  job_type: this.state.active ? "Full Time" : "Part Time",
+                  type: this.state.typeInd ? "true" : "false",
+                  employee_type: this.state.workType,
+                  employeeId: currentEmployeeId.employeeId,
+                  // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
+                },
+                currentEmployeeId.employeeId,
+                () => this.handleReset(resetForm)
+              );
+            }
+            else {
+              message.error("Please Provide Department And Reporting Manager ! ")
+            }
           }}
 
         >
@@ -434,21 +466,21 @@ class UpdateEmployeeForm extends Component {
                     <div class="flex justify-between max-sm:flex-col">
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk " >
                         <div class=" w-w47.5 max-sm:w-wk ">
-                        <FastField
-                        name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
+                          <FastField
+                            name="countryDialCode"
+                            isColumnWithoutNoCreate
+                            label={
+                              <FormattedMessage
+                                id="app.dialCode"
+                                defaultMessage="Dial Code"
+                              />
+                            }
+                            isColumn
+                            // width={"100%"}
+                            selectType="dialCode"
+                            component={SearchSelect}
+                            inlineLabel
                           />
-                        }
-                        isColumn
-                        // width={"100%"}
-                        selectType="dialCode"
-                        component={SearchSelect}
-                        inlineLabel
-                      />
                         </div>
                         <div class=" w-w47.5 max-sm:w-wk">
                           <Field
@@ -467,21 +499,21 @@ class UpdateEmployeeForm extends Component {
                       </div>
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk" >
                         <div class="w-w47.5 max-sm:w-wk">
-                        <FastField
-                        name="countryDialCode1"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
+                          <FastField
+                            name="countryDialCode1"
+                            isColumnWithoutNoCreate
+                            label={
+                              <FormattedMessage
+                                id="app.dialCode"
+                                defaultMessage="Dial Code"
+                              />
+                            }
+                            isColumn
+                            // width={"100%"}
+                            selectType="dialCode"
+                            component={SearchSelect}
+                            inlineLabel
                           />
-                        }
-                        isColumn
-                        // width={"100%"}
-                        selectType="dialCode"
-                        component={SearchSelect}
-                        inlineLabel
-                      />
                         </div>
                         <div class="w-w47.5 max-sm:w-wk">
                           <Field
@@ -583,19 +615,24 @@ class UpdateEmployeeForm extends Component {
                   </div>
                   <div class="  w-[47.5%] max-sm:w-wk ">
                     <div class=" w-full mt-4" >
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Time Zone</div>
-                      <Field
-                        name="timeZone"
-                        type="text"
-                        placeholder="Select Time Zone"
-                        noLabel
-                        // disabled={!values.productionInd && !values.inventoryInd}
-                        isRequired
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(timeZoneOption) ? timeZoneOption : []
-                        }
+                    <Field
+                    isRequired
+                    defaultValue={{ label: timeZone, value: userId }}
+                    name="timeZone"
+                    isColumnWithoutNoCreate
+                    //label="TimeZone "
+                    label={
+                      <FormattedMessage
+                        id="app.timeZone"
+                        defaultMessage="time Zone"
                       />
+                    }
+                    selectType="timeZone"
+                    isColumn
+                    value={values.timeZone}
+                    component={SearchSelect}
+                    inlineLabel
+                  />
                     </div>
 
                     <div class=" flex justify-between max-sm:flex-col" >
@@ -650,24 +687,6 @@ name="departmentId"
                       </div>
                     </div>
                     <div class=" flex justify-between mt-2" >
-                      <div class=" w-w48 flex flex-col max-sm:w-wk">
-                        {/* <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Role</label>
-       
-                  <select className="customize-select"
-                 
-                      onChange={this.handleRoleChange}
-                    >
-          <option value="">Select </option>
-          {this.state.role.map((item, index) => (
-            <option key={index}
-            // disabled={!values.country_name}
-             value={item.roleTypeId}>
-              {item.roleType}
-            </option>
-          ))}
-        </select> */}
-                      </div>
-                    </div>
                     <div class=" w-w48 max-sm:w-wk">
                       <Field
                         name="roleType"
@@ -706,6 +725,22 @@ name="departmentId"
                       // selectType="roleType"
                       />
                     </div>
+                      <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <Field
+                     
+                        name="salary"
+                        type="text"
+                        isColumn
+                        width={"100%"}
+                        label={<FormattedMessage
+                          id="app.salary"
+                          defaultMessage="Salary" />}
+                        component={InputComponent}
+                        inlineLabel
+                      />
+                      </div>
+                    </div>
+                 
 
                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
@@ -802,7 +837,7 @@ name="departmentId"
                       </div>
                     </div>
 
-                    <div class=" flex " >
+                    <div class=" flex mt-2" >
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                           <FormattedMessage
@@ -898,6 +933,34 @@ name="departmentId"
                         </Select>
                       </div>
                     </div>
+
+                    <div class=" flex justify-between  max-sm:flex-col" >
+                      <div class=" w-w48 max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</label>
+                        <Select
+                          className="w-[250px]"
+                          value={secondatDepartment}
+                          onChange={(value) => this.handleSecondaryDepartment(value)}
+                        >
+                          {this.props.departments.map((a) => {
+                            return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                          })}
+                        </Select>
+                      </div>
+
+                      <div class="w-w47.5 max-sm:w-wk">
+                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</label>
+                        <Select
+                          className="w-[250px]"
+                          value={secondaryReportingManager}
+                          onChange={(value) => this.handleSecondaryreportingManager(value)}
+                        >
+                          {this.props.departmentwiseUser.map((a) => {
+                            return <Option value={a.employeeId}>{a.empName}</Option>;
+                          })}
+                        </Select>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="flex justify-end w-wk bottom-2 mr-2 mt-3 md:absolute ">
@@ -921,6 +984,7 @@ const mapStateToProps = ({ auth, role, settings, location, currency, employee, d
   userDetails: auth.userDetails,
   roles: role.roles,
   timeZone: auth.timeZone,
+  user: auth.userDetails,
   organizationId: auth.userDetails.organizationId,
   orgId: auth.userDetails.organizationId,
   countries: auth.countries,
@@ -936,7 +1000,7 @@ const mapStateToProps = ({ auth, role, settings, location, currency, employee, d
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({
     updateEmployee,
-    getTimeZone,
+    // getTimeZone,
     getCurrency,
     getDepartments,
     getDepartmentwiserUser,

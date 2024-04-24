@@ -4,6 +4,9 @@ import { bindActionCreators } from "redux";
 import { setOrderViewType } from "./OrderAction";
 import OrderHeader from "./OrderHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
+import CompleteOrder from "./CompleteOrder";
+import AllCompleteOrderList from "./AllCompleteOrderList";
+import ProductionOrderCardList from "./ProductionOrderCardList";
 
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
@@ -36,8 +39,14 @@ class Order extends Component {
           {this.props.viewType === "list" ? (
             <OrderTableByUserID
             />
+            ) : this.props.viewType === "production" ? (
+              <ProductionOrderCardList />
           ) : this.props.viewType === "all" ? (
             <AllOrderList />
+          ) : this.props.viewType === "complete" ? (
+            <CompleteOrder />
+          ) : this.props.viewType === "allcomplete" ? (
+            <AllCompleteOrderList />
           ) : null}
         </Suspense>
       </React.Fragment>

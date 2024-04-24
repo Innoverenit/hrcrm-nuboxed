@@ -16,6 +16,8 @@ import {
 } from "../../../../CustomerAction";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
 
@@ -70,7 +72,7 @@ function LinkedContact(props) {
     addUpdateCustomerContactModal,
   } = props;
 
-
+  if (fetchingCustomerContact) return <BundleLoader/>;
   return (
     <>
       
@@ -98,13 +100,18 @@ function LinkedContact(props) {
                   id="app.Designation"
                   defaultMessage="Designation"
                 /></div>
+                
         
         <div className="w-[10.2rem]"></div>
+        <div className="md:w-[7.2rem]"><FormattedMessage
+                  id="app.Portal"
+                  defaultMessage="Portal"
+                /></div>
 
       </div>
    
         
-      {contactByCustomerId.map((item) => { 
+      { !fetchingCustomerContact && contactByCustomerId.length === 0 ?<NodataFoundPage />:contactByCustomerId.map((item,index) =>  {
          const dataLoc = ` Address : ${
           item.address && item.address.length && item.address[0].address1
         } 
@@ -248,7 +255,7 @@ function LinkedContact(props) {
                 }}
               >
                 <BorderColorIcon 
-               className=" !text-base cursor-pointer text-[tomato]"
+               className=" !text-xl cursor-pointer text-[tomato]"
                 />
               </span>
               {/* )} */}
@@ -270,7 +277,7 @@ function LinkedContact(props) {
               //   }
             >
               <ActionIcon
-               className=" !text-base cursor-pointer text-[#fb8500]"
+               className=" !text-xl cursor-pointer text-[#fb8500]"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={
                   <FormattedMessage
@@ -288,6 +295,7 @@ function LinkedContact(props) {
                                    
                                 </div>
                                 <div class=" text-sm text-cardBody font-poppins text-center">
+                            
                                     <span>
               {item.thirdPartyAccessInd === true && (
                 <CustomerContactActiveToggle

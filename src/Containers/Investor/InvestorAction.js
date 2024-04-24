@@ -35,6 +35,10 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
           type: types.GET_INVESTORS_BY_ID_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -93,8 +97,8 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
+          // showConfirmButton: false,
+          // timer: 1500
         })
       })
       .catch((err) => {
@@ -135,8 +139,8 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Updated Successfully',
-          showConfirmButton: false,
-          timer: 1500
+          // showConfirmButton: false,
+          // timer: 1500
         })
       })
       .catch((err) => {
@@ -316,6 +320,21 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         },
       })
       .then((res) => {
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Contact created Successfully',
+         
+          });
+        }
         const startDate = dayjs()
           .startOf("month")
           .toISOString();
@@ -326,12 +345,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.ADD_INVESTOR_CONTACT_SUCCESS,
           payload: res.data,
         });
-        Swal.fire({
-          icon: 'success',
-          title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
-        })
+       
       })
       .catch((err) => {
         console.log(err);
@@ -365,8 +379,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Successfully',
-          showConfirmButton: false,
-          timer: 1500
+     
         })
         cb();
       })
@@ -459,12 +472,38 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
+  export const getInvestorAll = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTOR_ALL_RECORDS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investor/all/record/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_ALL_RECORDS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_INVESTOR_ALL_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const getInvestorTeam = (userId) => (dispatch) => {
     dispatch({
       type: types.GET_INVESTOR_TEAM_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/team/count/${userId}`, {
+      .get(`${base_url}/investor/teams/count/${userId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -574,6 +613,10 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.GET_ALL_INVESTORS_BY_ID_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -650,7 +693,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Call has been added successfully!',
-          timer: 1500
+        
         })
         console.log(res);
         dispatch({
@@ -686,7 +729,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Meeting has been added successfully!',
-          timer: 1500
+        
         })
         console.log(res);
         dispatch({
@@ -719,7 +762,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Task has been added successfully!',
-          timer: 1500
+          // timer: 1500
         })
         console.log(res);
         dispatch({
@@ -736,13 +779,13 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       });
   };
 
-  export const getTeamInvestor = (userId,pageNo,filter) => (dispatch) => {
+  export const getTeamInvestor = (userId,pageNo) => (dispatch) => {
  
     dispatch({
       type: types.GET_TEAM_INVESTOR_REQUEST,
     });
     axios
-      .get(`${base_url}/investor/team/${userId}/${pageNo}/${filter}`, {
+      .get(`${base_url}/investor/teams/${userId}/${pageNo}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -760,6 +803,10 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           type: types.GET_TEAM_INVESTOR_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
   export const ClearReducerDataOfInvestor = () => (dispatch) => {
@@ -1031,4 +1078,109 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
           payload: err,
         });
       });
+  };
+
+  export const getInvestorActivityRecords = (investorId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTOR_ACTIVITY_RECORDS_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investor/activity/record/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_RECORDS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_RECORDS_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleDealModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_DEAL_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const InvestorcreateDeals = (deal, cb) => (dispatch,getState) => {
+    const userId = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.CREATE_INVESTOR_DEAL_REQUEST,
+    });
+    axios
+      .post(`${base_url}/investor/opportunity/save`, deal, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        const startDate = dayjs()
+          .startOf("month")
+          .toISOString();
+        const endDate = dayjs()
+          .endOf("month")
+          .toISOString();
+    
+        // dispatch(getLatestOpportunities(userId, startDate, endDate));
+        // dispatch(getOpportunitiesByPrice(userId));
+        dispatch({
+          type: types.CREATE_INVESTOR_DEAL_SUCCESS,
+          payload: res.data,
+        });
+      
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_INVESTOR_DEAL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getInvestorActivityValue = (investorId, startDate, endDate) => (dispatch) => {
+    dispatch({ type: types.GET_INVESTOR_ACTIVITY_VALUE_REQUEST });
+  
+    axios
+      .get(
+        `${base_url}/investor/activity/record/${investorId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res)
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_VALUE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVESTOR_ACTIVITY_VALUE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const handleInvestorActivityJumpstartModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_ACTIVITY_JUMPSTART_MODAL,
+      payload: modalProps,
+    });
   };

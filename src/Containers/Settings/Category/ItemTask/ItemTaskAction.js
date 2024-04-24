@@ -2,6 +2,7 @@ import * as types from "./ItemTaskActionTypes";
 import axios from "axios";
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
+import Swal from 'sweetalert2'
 
 /**
  * get all the Sector
@@ -48,11 +49,23 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getItemTask(orgId));
-        // {res.data.message?  
-        //   message.success(res.data.message):
-        message.success("ITEM_TASK has been added successfully!");
-        // }
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Type added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        }
+        dispatch(getItemTaskCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_ITEM_TASK_SUCCESS,
@@ -74,7 +87,7 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeItemTask = ( itemTaskId) => (dispatch) => {
+export const removeItemTask = ( itemTaskId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_ITEM_TASK_REQUEST,
@@ -86,7 +99,12 @@ export const removeItemTask = ( itemTaskId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("ITEM_TASK has been deleted successfully!");
+        dispatch(getItemTaskCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Type deleted Successfully!',
+        })
+        // message.success("ITEM_TASK has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_ITEM_TASK_SUCCESS,
@@ -104,7 +122,7 @@ export const removeItemTask = ( itemTaskId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
+export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_ITEM_TASK_REQUEST,
@@ -112,7 +130,7 @@ export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/itemTask/update/${itemTaskId}`,
-        { name,itemTaskId,editInd:true },
+        data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -120,8 +138,11 @@ export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("ITEM_TASK has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type updated Successfully!',
+        })
+        // message.success("ITEM_TASK has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ITEM_TASK_SUCCESS,
@@ -171,6 +192,32 @@ export const updateItemTask = ( itemTaskId,name,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_ITEM_TASK,
     });
+  };
+
+  export const getItemTaskCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_ITEM_TASK_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/itemTask/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ITEM_TASK_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_ITEM_TASK_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };
 
   

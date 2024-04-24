@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { getAllCustomerData } from "../../../../Customer/CustomerAction"
+import { getAllCustomerData,addCustomerActivityEvent } from "../../../../Customer/CustomerAction"
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
 import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
@@ -75,6 +75,9 @@ function ActivityEventForm(props) {
             value: item.employeeId,
         };
     });
+    const filteredEmployeesData = employeesData.filter(
+        (item) => item.value !== props.user.userId
+      );
     const opportunityNameOption = props.allOpportunityData.map((item) => {
         return {
             label: `${item.opportunityName}`,
@@ -256,7 +259,7 @@ function ActivityEventForm(props) {
                             },
                             handleCallback
                         )
-                        : addEvent(
+                        : props.addCustomerActivityEvent(
                             {
                                 ...values,
                                 ownerIds: userId === userId ? [userId] : [],
@@ -539,7 +542,7 @@ function ActivityEventForm(props) {
                                         mode
                                         placeholder="Select"
                                         component={SelectComponent}
-                                        options={Array.isArray(employeesData) ? employeesData : []}
+                                        options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                                         value={values.included}
                                         defaultValue={{
                                             label: `${empName || ""} `,
@@ -752,7 +755,7 @@ function ActivityEventForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    Loading={isEditing ? updatingEvent : addingEvent}
+                                    Loading={isEditing ? updatingEvent : props.addingCustomerActivityEvent}
                                 >
                                     {isEditing ? (
                                         "Update"
@@ -781,7 +784,8 @@ const mapStateToProps = ({ auth, event, opportunity, customer, employee, events,
     assignedToList:employee.assignedToList,
     events: events.events,
     candidateId: candidate.clearbitCandidate.candidateId,
-    fullName: auth.userDetails.fullName
+    fullName: auth.userDetails.fullName,
+    addingCustomerActivityEvent:customer.addingCustomerActivityEvent
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -798,6 +802,7 @@ const mapDispatchToProps = (dispatch) =>
             getAllCustomerData,
             getFilteredEmailContact,
             setClearbitCandidateData,
+            addCustomerActivityEvent
         },
         dispatch
     );

@@ -2,20 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field, FastField, FieldArray } from "formik";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { updateDistributorContact } from "../../AccountAction"
 import * as Yup from "yup";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
-import Upload from "../../../../../Components/Forms/Formik/Upload";
 import { getDesignations } from "../../../../Settings/Designation/DesignationAction"
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
 import { FormattedMessage } from "react-intl";
-
+import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
+import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const DistributorSchema = Yup.object().shape({
     firstName: Yup.string().required("Input required"),
+    mobileNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long"),
 });
 
 class UpdateAccountContactForm extends Component {
@@ -77,25 +79,25 @@ class UpdateAccountContactForm extends Component {
                         emailId: this.props.setEditingDistributorContact.emailId || "",
                         departmentId: this.props.setEditingDistributorContact.departmentId || "",
                         designationId: this.props.setEditingDistributorContact.designationId || "",
-                        // address: [
-                        //     {
-                        //         addressId: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressId : "",
-                        //         addressType: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressType : "",
-                        //         address1: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address1 : "",
-                        //         address2: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address2 : "",
-                        //         date: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].date : "",
-                        //         street: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].street : "",
-                        //         city: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].city : "",
-                        //         state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
-                        //         pinCode: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].pinCode : "",
-                        //         country: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].country : "",
-                        //         county: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].county : "",
-                        //         state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
-                        //         location: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].location : "",
-                        //         latitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].latitude : "",
-                        //         longitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].longitude : "",
-                        //     },
-                        // ],
+                        address: [
+                            {
+                                addressId: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressId : "",
+                                addressType: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressType : "",
+                                address1: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address1 : "",
+                                address2: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address2 : "",
+                                date: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].date : "",
+                                street: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].street : "",
+                                city: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].city : "",
+                                state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
+                                pinCode: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].pinCode : "",
+                                country: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].country : "",
+                                county: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].county : "",
+                                state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
+                                location: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].location : "",
+                                latitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].latitude : "",
+                                longitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].longitude : "",
+                            },
+                        ],
 
                     }}
                     validationSchema={DistributorSchema}
@@ -121,18 +123,18 @@ class UpdateAccountContactForm extends Component {
                         ...rest
                     }) => (
                         <Form class="form-background">
-                           <div class="flex justify-between">
-                           <div class="h-full w-[45%]"> 
-                           <div class="flex justify-between mt-3">
+                            <div class="flex justify-between">
+                                <div class="h-full w-[45%]">
+                                    <div class="flex justify-between mt-3">
                                         <div class="w-[40%]">
-                                            <Field name="imageId" component={Upload} />
+                                            <FastField name="imageId" component={PostImageUpld} />
                                         </div>
                                         <div class="w-[60%]">
 
                                             <FastField
                                                 isRequired
                                                 name="firstName"
-                                                label={<FormattedMessage id="app.firstname" defaultMessage="First Name"/>}
+                                                label={<FormattedMessage id="app.firstname" defaultMessage="First Name" />}
                                                 type="text"
                                                 width={"100%"}
                                                 isColumn
@@ -141,11 +143,11 @@ class UpdateAccountContactForm extends Component {
 
                                             />
 
-<div class="flex justify-between">
+                                            <div class="flex justify-between">
                                                 <div class="w-[47%]">
                                                     <FastField
                                                         name="middleName"
-                                                        label={<FormattedMessage id="app.middlename" defaultMessage="Middle Name"/>}
+                                                        label={<FormattedMessage id="app.middlename" defaultMessage="Middle Name" />}
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -157,7 +159,7 @@ class UpdateAccountContactForm extends Component {
                                                 <div class="w-[47%]">
                                                     <FastField
                                                         name="lastName"
-                                                        label={<FormattedMessage id="app.lastname" defaultMessage="Last Name"/>}
+                                                        label={<FormattedMessage id="app.lastname" defaultMessage="Last Name" />}
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -166,10 +168,10 @@ class UpdateAccountContactForm extends Component {
 
                                                     />
                                                 </div>
-                                                </div>
+                                            </div>
                                         </div>
-                                        </div>
-                                        <div class="flex justify-between items-end">
+                                    </div>
+                                    <div class="flex justify-between items-end">
                                         <div class="w-[47%]">
                                             <FastField
                                                 name="dialCode1"
@@ -194,55 +196,28 @@ class UpdateAccountContactForm extends Component {
                                                 isColumn
                                             />
                                         </div>
-                                        </div>
-
-                                    <div class="flex justify-between items-end mt-3">
-                                    <div class="w-[47%]">
-                                            <FastField
-                                                name="dialCode2"
-                                                selectType="dialCode"
-                                                label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>}
-                                                isColumn
-                                                isColumnWithoutNoCreate
-                                                component={SearchSelect}
-                                                value={values.countryDialCode1}
-                                                inlineLabel
-                                               
-                                            />
-                                        </div>
-                                        <div class="w-[47%]">
-                                            <FastField
-                                                type="text"
-                                                name="phoneNo"
-                                                placeholder="Phone #"
-                                                isColumn
-                                                component={InputComponent}
-                                                inlineLabel
-                                                width={"100%"}
-
-                                            />
-                                        </div>
                                     </div>
 
-                                    
-<div class="mt-3">
 
-                                    <FastField
+                                    <div>
 
-                                        type="email"
-                                        name="emailId"
-                                        label={<FormattedMessage id="app.email" defaultMessage="Email"/>}
-                                        className="field"
-                                        isColumn
-                                        width={"100%"}
-                                        component={InputComponent}
-                                        inlineLabel
-                                    />
+                                        <FastField
+                                            isRequired
+                                            type="email"
+                                            name="emailId"
+                                            label={<FormattedMessage id="app.email" defaultMessage="Email" />}
+                                            className="field"
+                                            isColumn
+                                            width={"100%"}
+                                            component={InputComponent}
+                                            inlineLabel
+                                            style={{ borderRight: "3px red solid" }}
+                                        />
                                     </div>
                                     <div class="w-full">
                                         <FastField
                                             name="LinkedIn"
-                                            label={<FormattedMessage id="app.linkedIn" defaultMessage="LinkedIn"/>}
+                                            label={<FormattedMessage id="app.linkedIn" defaultMessage="LinkedIn" />}
                                             className="field"
                                             isColumn
                                             width={"100%"}
@@ -251,66 +226,67 @@ class UpdateAccountContactForm extends Component {
                                         />
                                     </div>
                                     <div class="mt-3">
-                                    <Field
-                                        name="notes"
-                                        label={<FormattedMessage id="app.notes" defaultMessage="Notes"/>}
-                                        width={"100%"}
-                                        isColumn
-                                        component={TextareaComponent}
-                                    />
-</div>
+                                        <Field
+                                            name="notes"
+                                            label={<FormattedMessage id="app.notes" defaultMessage="Notes" />}
+                                            width={"100%"}
+                                            isColumn
+                                            component={TextareaComponent}
+                                        />
+                                    </div>
                                 </div>
 
                                 <div
-                                class="w-[45%] h-[70%]">
+                                    class="w-[45%] h-[70%]">
                                     <div class="flex justify-between">
                                         <div class="w-[47%]">
                                             <Field
                                                 name="designationId"
                                                 placeholder="Designation"
-                                                label={<FormattedMessage id="app.designation" defaultMessage="Designation"/>}
+                                                label={<FormattedMessage id="app.designation" defaultMessage="Designation" />}
                                                 component={SelectComponent}
                                                 options={Array.isArray(designation) ? designation : []}
-                                             
+                                                style={{
+                                                    width: "100%"
+                                                }}
                                             />
                                         </div>
                                         <div class="w-[47%]">
                                             <Field
                                                 name="departmentId"
                                                 component={InputComponent}
-                                                label={<FormattedMessage id="app.department" defaultMessage="Department"/>}
-                                                // component={SelectComponent}
-                                                // options={Array.isArray(department) ? department : []}
-                                                
+                                                label={<FormattedMessage id="app.department" defaultMessage="Department" />}
+                                                style={{
+                                                    width: "100%"
+                                                }}
                                             />
                                         </div>
                                     </div>
-                                  
-
-                                    {/* <div>
-                                        <FieldArray
-                                            name="address"
-                                            render={(arrayHelpers) => (
-                                                <AddressFieldArray
-                                                    singleAddress
-                                                    arrayHelpers={arrayHelpers}
-                                                    values={values}
-                                                />
-                                            )}
-                                        />
-                                    </div> */}
+                                    <div>
+                                        <div class="mt-3">
+                                            <FieldArray
+                                                name="address"
+                                                render={(arrayHelpers) => (
+                                                    <AddressFieldArray
+                                                        singleAddress
+                                                        arrayHelpers={arrayHelpers}
+                                                        values={values}
+                                                    />
+                                                )}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mt-3">
+
                             <div class="flex justify-end">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
                                     loading={this.props.updateDisributorContactById}
                                 >
-                               <FormattedMessage id="app.update" defaultMessage="Update"/>      
+                                    <FormattedMessage id="app.update" defaultMessage="Update" />
                                 </Button>
-                            </div>
                             </div>
                         </Form>
                     )}

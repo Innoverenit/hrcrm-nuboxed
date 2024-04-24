@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
+import { Badge, Tooltip } from "antd";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { FormattedMessage } from "react-intl";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -23,13 +23,15 @@ import {
   handleInvoiceModal,
   handleCallActivityModal,
   handleCustomerReactSpeechModal,
+  handleCampaignDrawer,
 } from "../../../CustomerAction";
+import CustomerMapTable from "./CustomerMapTable";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
 const CustomerActivityTable = lazy(() => import("../CustomerActivityTable"));
 const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
+const AddDocumentModals = lazy(() => import("./Document/AddDocumentModals"));
 const AddCustomerContactModal = lazy(() =>
   import("../CustomerTab/ContactTab/AddCustomerContactModal")
 );
@@ -46,6 +48,8 @@ const AddTagProfileModal = lazy(() =>
 );
 const AddInvoiceModal = lazy(() => import("./Invoice/AddInvoiceModal"));
 const LinkedInvoice = lazy(() => import("./Invoice/LinkedInvoice"));
+const CampaignDrawer = lazy(() => import("./Campaign/CampaignDrawer"));
+const CampaignCardView=lazy(()=>import("./Campaign/CampaignCardView"));
 
 const TabPane = StyledTabs.TabPane;
 function handleRefreshPage() {
@@ -129,8 +133,8 @@ class ContactDetailTab extends Component {
                     <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
                       <FormattedMessage
-                        id="app.opportunity"
-                        defaultMessage="Opportunity"
+                        id="app.quotation"
+                        defaultMessage="Quotation"
                       />
                     </span>
                   </span>
@@ -158,6 +162,10 @@ class ContactDetailTab extends Component {
                               handleCustomerOpportunityModal(true);
                             }}
                             size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
                           />
                         )}
                       </Tooltip>
@@ -210,6 +218,10 @@ class ContactDetailTab extends Component {
                               handleCustomerContactModal(true);
                             }}
                             size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
                           />
                         )}
                       </Tooltip>
@@ -255,10 +267,18 @@ class ContactDetailTab extends Component {
                   </span>
                   {activeKey === "5" && (
                     <>
+                     <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                          id="app.uploaddocument"
+                          defaultMessage="Upload Document"
+                        />
+                        }
+                      >
                       <PlusOutlined
                         type="plus"
                         //tooltipTitle="Upload Document"
-                        title={
+                        tooltiptitle={
                           <FormattedMessage
                             id="app.uploaddocument"
                             defaultMessage="Upload Document"
@@ -270,7 +290,9 @@ class ContactDetailTab extends Component {
                           marginLeft: "0.3125em",
                           verticalAlign: "center",
                         }}
+                       
                       />
+                     </Tooltip>
                     </>
                   )}
                 </>
@@ -316,7 +338,12 @@ class ContactDetailTab extends Component {
                   <TabPane
               tab={
                 <>
+
                   <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <Badge
+                count={this.props.customerActivityCount.count}
+                overflowCount={999}
+              > 
                   <span class=" ml-1">
                     {
                       <FormattedMessage
@@ -325,9 +352,19 @@ class ContactDetailTab extends Component {
                       />
                     }
                     {/* Documents */}
+                 
                   </span>
+                  </Badge>
                   {activeKey === "7" && (
                     <>
+                      <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
                       <PlusOutlined
                         type="plus"
                         title={
@@ -343,6 +380,7 @@ class ContactDetailTab extends Component {
                           verticalAlign: "center",
                         }}
                       />
+                      </Tooltip>
                     </>
                   )}
                 
@@ -399,8 +437,86 @@ class ContactDetailTab extends Component {
                 <LinkedInvoice />
               </Suspense>
             </TabPane>
-      
+            <TabPane
+              tab={
+                <>
+
+                  <ReceiptIcon style={{fontSize:"1.1rem"}}/>
+                  <Badge
+                // count={this.props.customerActivityCount.count}
+                // overflowCount={999}
+              > 
+                  <span class=" ml-1">
+                    {
+                      <FormattedMessage
+                        id="app.campaign"
+                        defaultMessage="Campaign"
+                      />
+                    }
+                 
+                  </span>
+                  </Badge>
+                  {activeKey === "9" && (
+                    <>
+                        <Tooltip //title="Create"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
+                      <PlusOutlined
+                        type="plus"
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                        onClick={() => this.props.handleCampaignDrawer(true)}
+                        size="0.875em"
+                        style={{
+                          marginLeft: "0.3125em",
+                          verticalAlign: "center",
+                        }}
+                      />
+                      </Tooltip>
+                    </>
+                  )}
+                
+                </>
+              }
+              key="9"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+              
+                <CampaignCardView
+                 customer={this.props.customer}
+                />
+              </Suspense>
+            </TabPane>
            
+            <TabPane
+                        tab={
+                            <>
+                                <span>
+                                    {/* <i class="far fa-file"></i> */}
+                                    <span class="ml-1">Summary</span>
+                                </span>
+                                
+                            </>
+                        }
+                        key="10"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                        <CustomerMapTable
+                               
+                               />                       
+                        </Suspense>
+                    </TabPane>
+
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}>
@@ -415,7 +531,8 @@ class ContactDetailTab extends Component {
             handleTagProfileModal={this.props.handleTagProfileModal}
           />
 
-          <AddDocumentModal
+          <AddDocumentModals
+           customerId={customerId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />
@@ -458,13 +575,19 @@ class ContactDetailTab extends Component {
             callActivityModal={callActivityModal}
             handleCallActivityModal={handleCallActivityModal}
           /> 
+          <CampaignDrawer
+          customer={this.props.customer}
+           openCampaigndrwr={this.props.openCampaigndrwr}
+           handleCampaignDrawer={this.props.handleCampaignDrawer}
+          />
         </Suspense>
       </>
     );
   }
 }
-const mapStateToProps = ({ auth, customer, contact, opportunity }) => ({
+const mapStateToProps = ({ auth, customer, }) => ({
   documentUploadModal: customer.documentUploadModal,
+  customerActivityCount:customer.customerActivityCount,
   addCustomerContactModal: customer.addCustomerContactModal,
   addCustomerOpportunityModal: customer.addCustomerOpportunityModal,
   customerId: customer.customer.customerId,
@@ -478,6 +601,7 @@ const mapStateToProps = ({ auth, customer, contact, opportunity }) => ({
   addTagProfileModal: customer.addTagProfileModal,
   addInvoiceModal: customer.addInvoiceModal,
   callActivityModal:customer.callActivityModal,
+  openCampaigndrwr:customer.openCampaigndrwr
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -495,6 +619,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerProjectDrawer,
       handleCustomerReactSpeechModal,
       //handleCustomerCommercialsModal,
+      handleCampaignDrawer
     },
     dispatch
   );

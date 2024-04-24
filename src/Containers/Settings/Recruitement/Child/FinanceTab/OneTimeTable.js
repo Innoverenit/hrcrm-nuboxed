@@ -140,18 +140,24 @@ function OneTimeTable (props) {
                 width: "5%",
             },
             {
+                title: "From",
+                dataIndex: "reportingCurrency",
+                width: "12%",
+                // editable: true,
+            },
+            {
+                title: "To",
+                dataIndex: "conversionCurrency",
+                width: "12%",
+                editable: true,
+            },
+            {
                 title: "Conversion Factor",
                 dataIndex: "conversionFactor",
                 width: "12%",
                 editable: true,
             },
-            {
-                title: "Currency",
-                dataIndex: "conversionCurrency",
-                width: "12%",
-                editable: true,
-            },
-            
+
             {
                 title: '',
                 width: "10%",

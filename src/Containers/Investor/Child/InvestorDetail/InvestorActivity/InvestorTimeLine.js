@@ -4,15 +4,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
-import {getInvestorTimeline} from "../../../InvestorAction";
+import {getInvestorTimeline,getInvestorActivityRecords} from "../../../InvestorAction";
+import { BundleLoader } from '../../../../../Components/Placeholder';
 
 const InvestorTimeline = (props) => {
   useEffect(() => {
      props.getInvestorTimeline(props.investorDetails.investorId);
+     props.getInvestorActivityRecords(props.investorDetails.investorId);
   }, []);
-
-  const { InvestorStatus, ratingValue } = props;
+ 
+  const { InvestorStatus, fetchingInvestStatus,ratingValue } = props;
   console.log(props.investorDetails.investorId)
+  if (fetchingInvestStatus) return <BundleLoader/>;
   return (
     <>
       <div className="mt-4 ml-2">
@@ -58,12 +61,14 @@ const mapStateToProps = ({ mileage,investor, auth,pitch }) => ({
   userId: auth.userDetails.userId,
   InvestorStatus:investor.InvestorStatus,
   mileageStatus: mileage.mileageStatus,
+  investorActivityCount:investor.investorActivityCount,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getInvestorTimeline,
+        getInvestorActivityRecords
     },
     dispatch
   );

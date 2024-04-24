@@ -17,12 +17,15 @@ import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor } from "./AccountAction";
 import { FormattedMessage } from "react-intl";
-import { getCurrency } from "../../Auth/AuthAction";
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
+import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const DistributorSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
+  clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
+  currency: Yup.string().required("Input needed!"),
   phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
@@ -32,7 +35,7 @@ const UpdateAccountForm = ({
   customerListData,
   getCountry,
   getAllCustomerEmployeelist,
-  currencies,
+  saleCurrencies,
   setEditingDistributor,
   updateDisributorById,
   updateDistributor,
@@ -40,16 +43,25 @@ const UpdateAccountForm = ({
   allCustomerEmployeeList,
   countries,
   getCustomer,
-  getCurrency,
+  getSaleCurrency,
+  getCategory,
+  category
 }) => {
   const [vatInd, setVatInd] = useState(setEditingDistributor.vatInd);
 
   useEffect(() => {
-    getCurrency();
+    getSaleCurrency();
     getCustomer(orgId);
     getCountry();
+    getCategory(orgId);
     getAllCustomerEmployeelist();
-  }, [getCountry, getCurrency, getAllCustomerEmployeelist]);
+  }, [getCountry, getSaleCurrency, getAllCustomerEmployeelist]);
+
+  const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
+
+  const handleToggleChange = () => {
+    setBillingSameAsCommunication(!billingSameAsCommunication);
+  };
 
   const CountryOptions = countries.map((item) => ({
     label: `${item.country_name || ""}`,
@@ -62,10 +74,16 @@ const UpdateAccountForm = ({
     };
   });
 
-  const currencyOption = currencies.map((item) => {
+  const currencyOption = saleCurrencies.map((item) => {
     return {
       label: item.currency_name || "",
-      value: item.currency_name,
+      value: item.currency_id,
+    };
+  });
+  const categoryOption = category.map((item) => {
+    return {
+      label: item.name || "",
+      value: item.categoryId,
     };
   });
   const handlevat = () => {
@@ -88,28 +106,15 @@ const UpdateAccountForm = ({
           currencyPrice: setEditingDistributor.currencyPrice || "",
           currency: setEditingDistributor.currency || "",
           phoneNo: setEditingDistributor.phoneNo || "",
+          dcategory: setEditingDistributor.dCategory || "",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           url: setEditingDistributor.url || "",
           description: setEditingDistributor.description || "",
           imageId: setEditingDistributor.imageId || "",
           notes: setEditingDistributor.notes || "",
+          customPayment: "",
           dialCode: setEditingDistributor.dialCode || "",
-          clientId: setEditingDistributor.clientId || "",
-
-          // address: [
-          // {
-          // country:setEditingCustomer.country || "",
-          //   addressId: setEditingDistributor.address.address[0].addressId || "",
-          //   address1: setEditingDistributor.address.length ? setEditingDistributor.address[0].address1 : "",
-          //   address2:  setEditingDistributor.address.length ? setEditingDistributor.address[0].address2 : "",
-          //   street:  setEditingDistributor.address.length ? setEditingDistributor.address[0].street : "",
-          //   city:  setEditingDistributor.address.length ? setEditingDistributor.address[0].city : "",
-          //   state:  setEditingDistributor.address.address[0].state || "",
-          //   country: setEditingDistributor.address.length ? setEditingDistributor.address[0].country : "",
-          //   postalCode:  setEditingDistributor.address.length ? setEditingDistributor.address[0].postalCode : "",             
-          // },
-          //   ],
-
+          clientId: setEditingDistributor.clientName || "",
           address: [
             {
               addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
@@ -135,6 +140,8 @@ const UpdateAccountForm = ({
             {
               ...values,
               vatInd: vatInd,
+              orgId: orgId,
+              payment: values.payment === "Custom" ? values.customPayment : values.payment,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
             },
             setEditingDistributor.distributorId,
@@ -152,7 +159,6 @@ const UpdateAccountForm = ({
           values,
           ...rest
         }) => (
-
           <Form class="form-background">
             <div class="flex justify-between" >
               <div class=" h-full w-w47.5 max-sm:w-wk">
@@ -160,6 +166,7 @@ const UpdateAccountForm = ({
                   isRequired
                   name="name"
                   type="text"
+                  disable
                   label={<FormattedMessage
                     id="app.name"
                     defaultMessage="name"
@@ -224,7 +231,7 @@ const UpdateAccountForm = ({
                   isColumn
                   inlineLabel
                 />
-                <Spacer />
+                {/* <Spacer />
                 <div class=" flex justify-between mt-4">
                   <div>
                     <FormattedMessage
@@ -236,7 +243,7 @@ const UpdateAccountForm = ({
                       onChange={handlevat}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div class=" flex justify-between mt-4">
                   <div class="w-w47.5">
                     <FastField
@@ -255,12 +262,7 @@ const UpdateAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.vat"
-                          defaultMessage="vat"
-                        />
-                      }
+                      label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -270,21 +272,45 @@ const UpdateAccountForm = ({
                     />
                   </div>
                 </div>
-                <Field
-                  name="insuranceGrade"
-                  type="text"
-                  label={
-                    <FormattedMessage
-                      id="app.insurancegrade"
-                      defaultMessage="insurancegrade"
+                <div class="flex justify-between mt-4" >
+                  <div class="w-w47.5">
+                    <Field
+                      name="insuranceGrade"
+                      type="text"
+                      label={
+                        <FormattedMessage
+                          id="app.insurancegrade"
+                          defaultMessage="insurancegrade"
+                        />
+                      }
+                      width={"100%"}
+                      component={InputComponent}
+                      isColumn
+                      inlineLabel
                     />
-                  }
-                  width={"100%"}
-                  component={InputComponent}
-                  isColumn
-                  inlineLabel
-                />
-                <div class=" flex justify-between mt-4">
+                  </div>
+                  <div class="w-w47.5">
+                    <Field
+                      name="clientId"
+                      label={
+                        <FormattedMessage
+                          id="app.type"
+                          defaultMessage="Type"
+                        />
+                      }
+                      isColumn
+                      placeholder="Type"
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(customerTypeOptions)
+                          ? customerTypeOptions
+                          : []
+                      }
+
+                    />
+                  </div>
+                </div>
+                <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
                     <FastField
                       label={
@@ -322,7 +348,7 @@ const UpdateAccountForm = ({
                     />
                   </div>
                 </div>
-                <div class=" flex justify-between mt-4">
+                <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
                     <FastField
                       label={
@@ -342,42 +368,39 @@ const UpdateAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <Field
-                      name="clientId"
-                      label={
-                        <FormattedMessage
-                          id="app.type"
-                          defaultMessage="Type"
-                        />
-                      }
+                      name="dCategory"
+                      label="Category"
                       isColumn
-                      placeholder="Type"
+                      placeholder="Select"
                       component={SelectComponent}
                       options={
-                        Array.isArray(customerTypeOptions)
-                          ? customerTypeOptions
+                        Array.isArray(categoryOption)
+                          ? categoryOption
                           : []
                       }
 
                     />
                   </div>
+                  {values.payment === "Custom" && <div class="w-w47.5">
+                    <FastField
+                      label={
+                        <FormattedMessage
+                          id="app.Custom Payment"
+                          defaultMessage="Custom Payment"
+                        />
+                      }
+                      name="customPayment"
+                      component={InputComponent}
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                  </div>}
                 </div>
-                <div class="mt-4">
-                  <Field
-                    name="description"
-                    label={
-                      <FormattedMessage
-                        id="app.description"
-                        defaultMessage="description"
-                      />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
-                </div>
+
               </div>
-              <div class="w-w47.5">
-                <div class="  w-full mt-2">
+              <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-full mt-3">
                   <Listbox value={selected} onChange={setSelected}>
                     {({ open }) => (
                       <>
@@ -448,10 +471,7 @@ const UpdateAccountForm = ({
                   </Listbox>
                 </div>
                 <div class="mt-4">
-                  <StyledLabel ><FormattedMessage
-                    id="app.billingaddress"
-                    defaultMessage="billingaddress"
-                  /></StyledLabel>
+                  <StyledLabel > Billing Address</StyledLabel>
                 </div>
                 <div>
                   <FieldArray
@@ -463,6 +483,49 @@ const UpdateAccountForm = ({
                         values={values}
                       />
                     )}
+                  />
+                </div>
+                {/* <div class="flex items-center">
+        <div>Billing Address Same as Communication Address</div>
+        <label className="toggle mt-1 ml-2">
+          <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      {!billingSameAsCommunication && (
+        <div class="flex flex-col">
+                <div class="mt-4">
+                  <StyledLabel > Billing Address</StyledLabel>
+                </div>
+                 
+                <div>
+                  <FieldArray
+                    name="pickUpAddress"
+                    render={(arrayHelpers) => (
+                      <AddressFieldArray4
+                        singleAddress
+                        arrayHelpers={arrayHelpers}
+                        values={values}
+                      />
+                    )}
+                  />
+                </div>
+                </div>
+                )} */}
+
+
+                <div class="mt-4">
+                  <Field
+                    name="description"
+                    label={
+                      <FormattedMessage
+                        id="app.description"
+                        defaultMessage="description"
+                      />
+                    }
+                    width={"100%"}
+                    isColumn
+                    component={TextareaComponent}
                   />
                 </div>
               </div>
@@ -494,7 +557,8 @@ const mapStateToProps = ({ auth, distributor, catgCustomer, rule, category, empl
   orgId: auth.userDetails.organizationId,
   customerListData: catgCustomer.customerListData,
   fullName: auth.userDetails.fullName,
-  currencies: auth.currencies,
+  saleCurrencies: auth.saleCurrencies,
+  category: auth.category,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   setEditingDistributor: distributor.setEditingDistributor,
   updateDisributorById: distributor.updateDisributorById,
@@ -507,8 +571,9 @@ const mapDispatchToProps = (dispatch) =>
       getCountry,
       updateDistributor,
       getCustomer,
-      getCurrency,
+      getSaleCurrency,
       getAllCustomerEmployeelist,
+      getCategory
     },
     dispatch
   );

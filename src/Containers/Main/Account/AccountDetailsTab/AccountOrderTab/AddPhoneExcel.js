@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addCarDetails } from "../../AccountAction"
 import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
 import { FormattedMessage } from 'react-intl';
+import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 
 function AddPhoneExcel(props) {
+
+    const [bulkQr, setBulkQr] = useState(false)
+
+    function handleBulkQr(checked) {
+        setBulkQr(checked)
+    }
 
     return (
         <>
@@ -16,7 +23,10 @@ function AddPhoneExcel(props) {
                     orderPhoneId: props.orderDetailsId.orderId,
                     excelId: "",
                     userId: props.userId,
-                    distributorId: props.distributorId,
+                    orgId: props.orgId,
+                    totalPhoneCount: "",
+                    bulkQrInd: bulkQr,
+
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -24,6 +34,7 @@ function AddPhoneExcel(props) {
 
                         {
                             ...values,
+                            distributorId: props.distributorId,
                             type: "Non-Catalogue"
                         },
                         props.distributorId
@@ -42,17 +53,48 @@ function AddPhoneExcel(props) {
                 }) => (
                     <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form class="form-background">
-                        <div  class="justify-between flex">
-                                <div  class="h-full w-[47%]">
-                                <div class="mt-3">  
-                                    <Field
-                                        name="excelId"
-                                        isRequired
-                                        component={DraggableUpload1}
-                                    />
-                                     </div>
+                            <div class="justify-between flex mt-3">
+                                <div class="h-full w-[45%]">
+                                    <div class="mt-3">
+                                        <Field
+                                            name="excelId"
+                                            isRequired
+                                            component={DraggableUpload1}
+                                        />
+                                    </div>
                                 </div>
-
+                                <div class="h-full w-[45%]">
+                                    <div class="mt-3">
+                                        <Field
+                                            label="AWB No"
+                                            name="awbNo"
+                                            component={InputComponent}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
+                                    <div class=" flex justify-between">
+                                        <div class="w-[45%]">
+                                            <Field
+                                                label="Units"
+                                                name="totalPhoneCount"
+                                                component={InputComponent}
+                                                inlineLabel
+                                                width={"100%"}
+                                                isColumn
+                                            />
+                                        </div>
+                                        <div class="w-[45%]">
+                                            <label>Required bulk QR code</label>
+                                            <Switch
+                                                onChange={handleBulkQr}
+                                                checked={bulkQr}
+                                                checkedChildren="Yes"
+                                                unCheckedChildren="No" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="justify-end flex mt-3">
                                 <Button
@@ -60,10 +102,10 @@ function AddPhoneExcel(props) {
                                     htmlType="submit"
                                     loading={props.addingCar}
                                 >
-                                <FormattedMessage
-                 id="app.finish"
-                 defaultMessage="Finish"
-                />  
+                                    <FormattedMessage
+                                        id="app.finish"
+                                        defaultMessage="Finish"
+                                    />
                                 </Button>
                             </div>
                         </Form>
@@ -76,7 +118,8 @@ function AddPhoneExcel(props) {
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     orderDetailsId: distributor.orderDetailsId,
-    addingCar: distributor.addingCar
+    addingCar: distributor.addingCar,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

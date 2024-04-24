@@ -283,7 +283,7 @@ class UpdateLeadsOpportunityForm extends Component {
                         label={
                           <FormattedMessage
                             id="app.proposalAmount"
-                            defaultMessage="Proposal Amount"
+                            defaultMessage="Value"
                           />
                         }
                         isColumn

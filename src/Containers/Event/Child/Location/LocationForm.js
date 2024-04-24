@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import { FormattedMessage } from "react-intl";
+import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -68,9 +70,9 @@ class LocationForm extends Component {
 
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
-        label: item.zone_name
+        label: item.zoneName
         || null,
-        value: item.timezone_id
+        value: item.timezoneId
         ,
       };
     });
@@ -108,11 +110,12 @@ class LocationForm extends Component {
             orgId: this.props.orgId,
             groupId: this.props.groupId,
             locationtypeId: undefined,
+            regionsId:"",
             productionInd: this.state.production ? "true" : "false",
             billingInd: this.state.billing ? "true" : "false",
             inventoryInd: this.state.inventory ? "true" : "false",
             projectInd: this.state.project ? "true" : "false",
-            prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+            // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
             corporateInd: this.state.corporate ? "true" : "false",
             retailInd: this.state.retail ? "true" : "false",
             timeZone: "",
@@ -144,7 +147,7 @@ class LocationForm extends Component {
                 billingInd: this.state.billing ? "true" : "false",
                 inventoryInd: this.state.inventory ? "true" : "false",
                 projectInd: this.state.project ? "true" : "false",
-                prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+                // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
                 corporateInd: this.state.corporate ? "true" : "false",
                 retailInd: this.state.retail ? "true" : "false",
                 orgId: this.props.orgId,
@@ -180,6 +183,26 @@ class LocationForm extends Component {
                       isRequired
                     />
                   </div>
+                  <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                      <Field
+                        name="regionsId"
+                        selectType="DRegion"
+                        isColumnWithoutNoCreate
+                        component={SearchSelect}
+                        // value={values.countryDialCode}
+                        label={
+                          <FormattedMessage
+                            id="app.region"
+                            defaultMessage="Region"
+                          />
+                        }
+                        isColumn
+                        // defaultValue={{
+                        //   label:`+${props.user.countryDialCode}`,
+                        // }}
+                        inlineLabel
+                      />
+                    </div>
                   {/* <div style={{ width: "100%" }}>
                     <Field
                       label="Management"
@@ -252,9 +275,9 @@ class LocationForm extends Component {
                       />
                     </div>
                   </FlexContainer> */}
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-2">Functions</div>
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">Functions</div>
                   <div class=" flex ">
-                    <div class=" w-[47%] mt-2" >
+                    {/* <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
                       <div>
                         <Switch
@@ -265,7 +288,7 @@ class LocationForm extends Component {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Inventory &nbsp;<i class="fas fa-warehouse text-base"></i></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
@@ -284,10 +307,10 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">Production &nbsp;<PrecisionManufacturingIcon/></div>
                       <div>
-                        <Switch
+                      <Switch
                           style={{ width: "6.25em" }}
-                          checked={this.state.prodmanuf}
-                          onChange={this.handleProdManuf}
+                          checked={this.state.production}
+                          onChange={this.handleProduction}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -409,11 +432,12 @@ class LocationForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ location, auth, teams, plant }) => ({
+const mapStateToProps = ({ location, auth, region, plant }) => ({
   addingLocation: location.addingLocation,
   timeZone: auth.timeZone,
   userId:auth.userDetails.userId,
   orgId:auth.userDetails.organizationId,
+  
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -7,6 +7,13 @@ const initialState = {
     fetchingCountryError: false,
     country: [],
 
+    fetchingCountryCount: false,
+    fetchingCountryCountError: false,
+    countryCount:{},
+
+    fetchingCountrySearchData: false,
+    fetchingCountrySearchDataError: false,
+
     addingCountryToggle: false,
     addingCountryToggleError: false,
 
@@ -103,6 +110,37 @@ export const countryReducer = (state = initialState, action) => {
                 addingMandatoryCountry: false,
                 addingMandatoryCountryError: true,
               };
+
+              case types.GET_COUNTRY_SEARCH_REQUEST:
+                return { ...state, fetchingCountrySearchData: true };
+              case types.GET_COUNTRY_SEARCH_SUCCESS:
+                return {
+                  ...state,
+                  fetchingCountrySearchData: false,
+                  country: action.payload,
+                  // serachedData: action.payload,
+                };
+              case types.GET_COUNTRY_SEARCH_FAILURE:
+                return { ...state, fetchingCountrySearchDataError: true };
+      
+                case types.HANDLE_CLAER_REDUCER_DATA_COUNTRY:
+                  return { ...state, 
+                    country: [], 
+                    // deletedTruck: [] 
+                  };
+
+
+                  case types.GET_COUNTRY_COUNT_REQUEST:
+                    return { ...state, fetchingCountryCount: true };
+                  case types.GET_COUNTRY_COUNT_SUCCESS:
+                    return { ...state, fetchingCountryCount: false, 
+                      countryCount: action.payload };
+                  case types.GET_COUNTRY_COUNT_FAILURE:
+                    return {
+                      ...state,
+                      fetchingCountryCount: false,
+                      fetchingCountryCountError: true,
+                    };
 
      
     default:

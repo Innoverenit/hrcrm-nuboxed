@@ -19,6 +19,14 @@ const initialState = {
   fetchingTalentRolesError: false,
   talentRoles:[],
 
+  fetchingExternalRoleCount: false,
+  fetchingExternalRoleCountError: false,
+  externalRoleCount:{},
+
+  fetchingRoleCount: false,
+  fetchingRoleCountError: false,
+  roleCount:{},
+
 
   updatingTalentRoles: false, 
   updatingTalentRolesError: false ,
@@ -167,7 +175,32 @@ export const rolesReducer = (state = initialState, action) => {
                     return { ...state, 
                       talentRoles: [], 
                       // deletedTruck: [] 
-                    };    
+                    };   
+                    
+                    
+                    case types.GET_ROLE_COUNT_REQUEST:
+                      return { ...state, fetchingRoleCount: true };
+                    case types.GET_ROLE_COUNT_SUCCESS:
+                      return { ...state, fetchingRoleCount: false, 
+                        roleCount: action.payload };
+                    case types.GET_ROLE_COUNT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingRoleCount: false,
+                        fetchingRoleCountError: true,
+                      };
+
+                      case types.GET_EXTERNAL_ROLE_COUNT_REQUEST:
+                        return { ...state, fetchingExternalRoleCount: true };
+                      case types.GET_EXTERNAL_ROLE_COUNT_SUCCESS:
+                        return { ...state, fetchingExternalRoleCount: false, 
+                          externalRoleCount: action.payload };
+                      case types.GET_EXTERNAL_ROLE_COUNT_FAILURE:
+                        return {
+                          ...state,
+                          fetchingExternalRoleCount: false,
+                          fetchingExternalRoleCountError: true,
+                        };
    
 
     default:

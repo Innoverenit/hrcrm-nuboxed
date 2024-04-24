@@ -29,6 +29,7 @@ class PickUpDateModal extends Component {
             <PickUpForm
               contactPersonId={this.props.contactPersonId}
               orderPhoneId={this.props.orderPhoneId}
+              completeOrderInd={this.props.completeOrderInd}
               locationDetailsId={this.props.locationDetailsId} />
           </Suspense>
         </StyledDrawer>

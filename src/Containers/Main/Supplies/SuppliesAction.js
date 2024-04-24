@@ -3,6 +3,7 @@ import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import moment from "moment";
 import { message } from "antd";
+import Swal from 'sweetalert2'
 
 export const setSuppliesViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_SUPPLIES_VIEW_TYPE, payload: viewType });
@@ -84,11 +85,11 @@ export const setEditSupplies = (name) => (dispatch) => {
   });
 };
 
-export const updateSupplies = (data, suppliesId,cb) => (dispatch) => {
+export const updateSupplies = (data, suppliesId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_SUPPLIES_BY_ID_REQUEST });
   axios
-    .put(`${base_url2}/supplies/${suppliesId}`, { ...data })
+    .put(`${base_url2}/supplies/${suppliesId}/rtr`, { ...data })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -361,28 +362,28 @@ export const getTaggedBrandById = (suppliesId) => (dispatch) => {
 };
 export const getBrandModel = () => (dispatch) => {
   dispatch({
-      type: types.GET_BRAND_MODEL_REQUEST,
+    type: types.GET_BRAND_MODEL_REQUEST,
   });
   axios
-      .get(`${base_url2}/masterlist/masterList`, {
-          headers: {
-              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-      })
-      .then((res) => {
-          console.log(res);
-          dispatch({
-              type: types.GET_BRAND_MODEL_SUCCESS,
-              payload: res.data,
-          });
-      })
-      .catch((err) => {
-          console.log(err);
-          dispatch({
-              type: types.GET_BRAND_MODEL_FAILURE,
-              payload: err,
-          });
+    .get(`${base_url2}/masterlist/masterList`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_MODEL_SUCCESS,
+        payload: res.data,
       });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BRAND_MODEL_FAILURE,
+        payload: err,
+      });
+    });
 };
 export const getSuppliesCount = () => (dispatch) => {
   dispatch({
@@ -410,11 +411,11 @@ export const getSuppliesCount = () => (dispatch) => {
     });
 };
 
-export const handleMaterialBuilderDrawer=(modalProps)=>(dispatch)=>{
-dispatch({
-  type: types.HANDLE_MATERIAL_BUILDER_DRAWER,
-  payload: modalProps,
-});
+export const handleMaterialBuilderDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_MATERIAL_BUILDER_DRAWER,
+    payload: modalProps,
+  });
 };
 
 
@@ -486,7 +487,7 @@ export const getSearchedMaterialBuilder = (hsn) => (dispatch) => {
       });
     });
 };
-export const removeMaterialBuilder = (data,supplySupplyLinkId) => (dispatch) => {
+export const removeMaterialBuilder = (data, supplySupplyLinkId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_MATERIAL_BUILDER_REQUEST,
   });
@@ -516,8 +517,8 @@ export const removeMaterialBuilder = (data,supplySupplyLinkId) => (dispatch) => 
 export const updateMaterialBuilder = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_MATERIAL_BUILDER_REQUEST });
   axios
-      .post(`${base_url2}/suppliesBuilder/supplies`, data, {
-    headers: {
+    .post(`${base_url2}/suppliesBuilder/supplies`, data, {
+      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
@@ -530,6 +531,95 @@ export const updateMaterialBuilder = (data) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.UPDATE_MATERIAL_BUILDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteSupplies = (data, suppliesId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.DELETE_SUPPLIES_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplies/${suppliesId}`, data)
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleSuppliersListDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERSLIST_DRAWER,
+    payload: modalProps,
+  });
+};
+export const getSupplieSupplierList = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_SUPPLIERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/supplies-supplier-link/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIES_SUPPLIERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setSuppliesSupplierType = (data) => (dispatch) => {
+  dispatch({ type: types.SET_SUPPLIES_SUPPLIER_REQUEST });
+  axios
+    .post(
+      `${base_url2}/supplies/supplies-supplier-link`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.SET_SUPPLIES_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_SUPPLIES_SUPPLIER_FAILURE,
         payload: err,
       });
     });

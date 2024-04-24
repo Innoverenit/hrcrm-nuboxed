@@ -37,7 +37,7 @@ import { message } from "antd"
   // /**
 //  * add a new sector 
 //  */
-export const addSectors = (sectors, cb) => (dispatch) => {
+export const addSectors = (sectors,orgId,cb) => (dispatch) => {
     console.log(sectors);
     dispatch({
       type: types.ADD_SECTORS_REQUEST,
@@ -49,10 +49,22 @@ export const addSectors = (sectors, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getSectors());
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("Sector has been added successfully!");
+        dispatch(getSectorCount(orgId));
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Sector added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
@@ -75,7 +87,7 @@ export const addSectors = (sectors, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeSectors = ( sectorId) => (dispatch) => {
+export const removeSectors = ( sectorId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_SECTORS_REQUEST,
@@ -87,7 +99,11 @@ export const removeSectors = ( sectorId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Sector has been deleted successfully!");
+        dispatch(getSectorCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Sector deleted Successfully!',
+        })
         console.log(res);
         dispatch({
           type: types.REMOVE_SECTORS_SUCCESS,
@@ -105,7 +121,7 @@ export const removeSectors = ( sectorId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
+export const updateSectors = (data, sectorId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_SECTORS_REQUEST,
@@ -113,7 +129,7 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/sector/update`,
-        { sectorName,sectorId,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -121,8 +137,11 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("Sector has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Sector updated Successfully!',
+        })
+        // message.success("Sector has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_SECTORS_SUCCESS,
@@ -173,4 +192,30 @@ export const updateSectors = ( sectorId,sectorName,cb) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_REDUCER_DATA_SECTOR,
     });
+  };
+
+  export const getSectorCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_SECTOR_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/sector/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SECTOR_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_SECTOR_COUNT_FAILURE,
+          payload: err,
+        });
+      });
   };

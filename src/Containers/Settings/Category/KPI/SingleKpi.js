@@ -45,7 +45,7 @@ class SingleKpi extends Component {
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <div class=" flex justify-between" >
-                <div class=" flex  flex-col justify-between ml-4">
+                <div class=" flex  flex-col w-48 justify-between ml-4">
                  <div class=" flex text-base text-[#40A9FF]">KPI</div>
                  <div class=" font-semibold" >
                   {kpi}&nbsp;&nbsp;&nbsp;
@@ -55,14 +55,14 @@ class SingleKpi extends Component {
                                   </span> : null}
                 </div>
                 </div>
-                <div class=" flex  flex-col justify-between">
+                <div class=" flex  flex-col  w-[8rem] justify-between">
                 <div class=" flex text-base text-[#40A9FF]">Frequency</div>
                 <div class=" font-semibold" >
                   {frequency}
                 </div>
                 </div>
                 <div>
-                {this.props.kpi.editInd ? (
+                {/* {this.props.kpi.editInd ? ( */}
                     <BorderColorIcon
                    
                       tooltipTitle="Edit"
@@ -70,7 +70,7 @@ class SingleKpi extends Component {
                       onClick={toggleViewType}
                       style={{fontSize:"1rem"}}
                     />
-                    ) : null}
+                    {/* ) : null} */}
                   
                   <Tooltip title="Delete">
                   <Popconfirm
@@ -130,7 +130,7 @@ class SingleKpi extends Component {
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                   </Button>
                
-                  <Button type="primary" ghost onClick={() => toggleViewType()}>
+                  <Button type="cancel"  onClick={() => toggleViewType()}>
                     {/* Cancel */}
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>

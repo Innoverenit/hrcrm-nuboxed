@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
  import {
   getInvestorWeightedValue,
+  handleInvestorActivityJumpstartModal,
+  getInvestorActivityValue,
   getWonInvestorWeightedValue,
   getInvestorOppValue,
   getWonInvestorOppValue,
@@ -12,7 +14,8 @@ import dayjs from "dayjs";
   getWonInvestorPipeLineValue,
   getInvestorContactValue
 } from "../../InvestorAction"
-import { JumpStartBox,JumpStartBox1,JumpStartBox2,JumpStartBox3 } from "../../../../Components/UI/Elements";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import AddInvestorActivityJumpstartModal from "./AddInvestorActivityJumpstartModal";
 class InvestorPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -35,6 +38,8 @@ class InvestorPulseJumpStart extends React.Component{
 componentDidMount() {
   // const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
   // const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
+  
+  this.props.getInvestorActivityValue(this.props.RowData.investorId)
    this.props.getInvestorWeightedValue(this.props.RowData.investorId)
     this.props.getInvestorOppValue(this.props.RowData.investorId); 
     this.props.getWonInvestorWeightedValue(this.props.RowData.investorId);   
@@ -48,7 +53,7 @@ componentDidMount() {
 
 render() {
    const weightedValue = `${this.props.InvWeightedValue.weightedValue}`;
-   const pipeLineValue = `${this.props.InvestorPipelineValue.pipeLineValue} ${this.props.InvestorPipelineValue.tradeCurrency}`;
+   const pipeLineValue = `${this.props.InvestorPipelineValue.pipeLineValue}`;
  
   const { showDatelist, fetchingDatewiseReport } = this.props;
   console.log( this.props.taskperCount)
@@ -57,9 +62,15 @@ render() {
 
   console.log(startDate)
   console.log(this.state.endDate.format("YYYY MM DD"))
+  const {
+    handleInvestorActivityJumpstartModal,
+    addInvestorActivityJumpstartModal
+  } = this.props;
   return(
     <>
+        <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
+    
     <div class="flex w-full" >
         
         <JumpStartBox
@@ -70,6 +81,8 @@ render() {
                 defaultMessage=" # Opportunities"
               />
             }
+            bgColor="#33D7FF" 
+            // bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             value={
               this.props.InvestOppValue.opportunity
 
@@ -80,8 +93,10 @@ render() {
           />
   
        
-          <JumpStartBox1
+          <JumpStartBox
             noProgress
+            // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
+            bgColor="#34495E "
             title={
               <FormattedMessage
                 id="app.pipeLineValue"
@@ -90,7 +105,7 @@ render() {
             }
           
             value={
-              pipeLineValue
+              this.props.InvestorPipelineValue.pipeLineValue
 
             }
              isLoading={this.props.fetchingInvPipelineValue} 
@@ -98,7 +113,9 @@ render() {
           
           />
 
-          <JumpStartBox2
+          <JumpStartBox
+            bgColor="#35CD7A"
+          // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
             // title="Open Tasks"
             title={
@@ -108,7 +125,7 @@ render() {
               />
             }
             value={
-              weightedValue
+              this.props.InvWeightedValue.weightedValue
 
             }
             isLoading={this.props.fetchingINVWeightedValue} 
@@ -116,7 +133,30 @@ render() {
           
             
           />
-          <JumpStartBox3
+          <JumpStartBox
+        noProgress
+        title={
+          <FormattedMessage
+            id="app.activity"
+            defaultMessage="Activity"
+          />
+        }
+        value={
+          this.props.InvestActivityValue.count
+
+        }
+        jumpstartClick={() => {
+          handleInvestorActivityJumpstartModal(true);
+        }}
+  
+        cursorData={"pointer"}
+        bgColor="#FF4C33"
+        // isLoading={this.props.fetchingWonCustomerOppValue} 
+        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+      
+      />
+          <JumpStartBox
+           bgColor="linear-gradient(270deg,black,grey)"
             noProgress
             title={
               <FormattedMessage
@@ -151,10 +191,12 @@ render() {
           <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
         </FlexContainer> */}
       </div>
+      <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
         <div class="flex w-full" >
             
             <JumpStartBox
+             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
                   <FormattedMessage
@@ -163,7 +205,7 @@ render() {
                   />
                 }
                 value={
-                  this.props.WonInvestOpp.InvestorOppertunityDetails
+                  this.props.WonInvestOpp.opportunityWon
     
                 }
                 isLoading={this.props.fetchingWonInvestorOppValue} 
@@ -172,7 +214,8 @@ render() {
               />
       
            
-              <JumpStartBox1
+              <JumpStartBox
+               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
                   <FormattedMessage
@@ -182,7 +225,7 @@ render() {
                 }
               
                 value={
-                  this.props.WonInvestorPipeline.wonPipeLineValue
+                  this.props.WonInvestorPipeline.pipeLineWonValue
     
                 }
                  isLoading={this.props.fetchingWonInvPipelineValue} 
@@ -190,7 +233,8 @@ render() {
               
               />
     
-              <JumpStartBox2
+              <JumpStartBox
+               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 // title="Open Tasks"
                 title={
@@ -199,10 +243,10 @@ render() {
                     defaultMessage="Won Weighted Value"
                   />
                 }
-                // value={
-                //   this.props.WonInvWeighted.
+                value={
+                  this.props.WonInvWeighted.weightedWonValue
     
-                // }
+                }
                 isLoading={this.props.fetchingWonINVWeightedValue} 
                 //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
               
@@ -225,13 +269,20 @@ render() {
               <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
             </FlexContainer> */}
           </div>
+
+          <AddInvestorActivityJumpstartModal
+       RowData={this.props.RowData}
+       addInvestorActivityJumpstartModal={addInvestorActivityJumpstartModal}
+       handleInvestorActivityJumpstartModal={handleInvestorActivityJumpstartModal}
+      />
           </>
     
   ); 
 }
 }
 const mapStateToProps = ({ investor,auth }) => ({
-
+  addInvestorActivityJumpstartModal:investor.addInvestorActivityJumpstartModal,
+  InvestActivityValue:investor.InvestActivityValue,
   WonInvWeighted:investor.WonInvWeighted,
   fetchingWonINVWeightedValue:investor.fetchingWonINVWeightedValue,
   WonInvestorPipeline:investor.WonInvestorPipeline,
@@ -250,12 +301,14 @@ const mapStateToProps = ({ investor,auth }) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getInvestorWeightedValue,
+  getInvestorActivityValue,
   getWonInvestorWeightedValue,
 getInvestorOppValue,
 getWonInvestorOppValue,
 getInvestorPipeLineValue, 
 getWonInvestorPipeLineValue, 
-getInvestorContactValue
+getInvestorContactValue,
+handleInvestorActivityJumpstartModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvestorPulseJumpStart);

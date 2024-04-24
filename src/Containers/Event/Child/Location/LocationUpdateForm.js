@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
+import { FormattedMessage } from "react-intl";
+import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { Formik, Form, Field, FieldArray } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -20,7 +22,7 @@ class LocationUpdateForm extends Component {
       corporate: this.props.storedLoc.corporateInd,
       inventory: this.props.storedLoc.inventoryInd,
       project: this.props.storedLoc.projectInd,
-      productionManufac: this.props.storedLoc.prodManufactureInd,
+      // productionManufac: this.props.storedLoc.prodManufactureInd,
       retail: this.props.storedLoc.retailInd,
     };
   }
@@ -106,9 +108,9 @@ handleInventory = () => {
 
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
-        label: item.zone_name
+        label: item.zoneName
         || null,
-        value: item.timezone_id
+        value: item.timezoneId
         ,
       };
     });
@@ -142,6 +144,7 @@ handleInventory = () => {
             locationName:this.props.storedLoc.locationName || "",
             management:this.props.storedLoc.management || "",
             productionManager:this.props.storedLoc.productionManager || "",
+            regionsId:this.props.storedLoc.regions || "",
             userId: this.props.userId,
             orgId: this.props.orgId,
             groupId: this.props.groupId,
@@ -150,7 +153,7 @@ handleInventory = () => {
             billingInd: this.state.billing  ? "true" :"false",
             inventoryInd: this.state.inventory ? "true" : "false",
             projectInd: this.state.project ? "true" : "false",
-            prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+            // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
             corporateInd: this.state.corporate ? "true" : "false",
             retailInd: this.state.retail ? "true" : "false",
             timeZone:this.props.storedLoc.timeZone || "",
@@ -183,7 +186,7 @@ handleInventory = () => {
                 billingInd:this.state.billing  ? "true" :"false",
                 inventoryInd: this.state.inventory ? "true" : "false",
                 projectInd: this.state.project ? "true" : "false",
-                prodManufactureInd: this.state.prodmanuf ? "true" : "false",
+                // prodManufactureInd: this.state.prodmanuf ? "true" : "false",
                 corporateInd: this.state.corporate ? "true" : "false",
                 retailInd: this.state.retail ? "true" : "false",
                 orgId: this.props.orgId,
@@ -220,23 +223,30 @@ handleInventory = () => {
                       isRequired
                     />
                   </div>
-                  <div class="font-bold mt-2" >Functions</div>
-                  <div class=" flex ">
-                    <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
-                      <div>
-                        <Switch
-                        style={{
-                          width: "6.25em",
-                          //  backgroundColor: productionInd || this.state.production ? "rgb(119, 221, 119)" : "#E6E6E6",
+                  <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                      <Field
+                        name="regionsId"
+                        selectType="DRegion"
+                        isColumnWithoutNoCreate
+                        component={SearchSelect}
+                        // value={values.countryDialCode}
+                        label={
+                          <FormattedMessage
+                            id="app.region"
+                            defaultMessage="Region"
+                          />
+                        }
+                        isColumn
+                        defaultValue={{
+                          label:`${this.props.storedLoc.regions===null?"Select":this.props.storedLoc.regions}`,
                         }}
-                          checked={this.state.production}
-                          onChange={this.handleProduction}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
+                        inlineLabel
+                      />
                     </div>
+                    
+                  <div class="font-bold mt-3" >Functions</div>
+                  <div class=" flex ">
+                   
                     <div  class=" w-[47%] mt-2">
                       <div class="font-bold text-xs">Inventory &nbsp;<i class="fas fa-warehouse text-base"></i></div>
                       <div>
@@ -254,10 +264,13 @@ handleInventory = () => {
                   <div  class=" w-[47%] mt-2">
                       <div class="font-bold text-xs">Production &nbsp;<PrecisionManufacturingIcon/></div>
                       <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.prodmanuf}
-                          onChange={this.handleProdManuf}
+                      <Switch
+                        style={{
+                          width: "6.25em",
+                         
+                        }}
+                          checked={this.state.production}
+                          onChange={this.handleProduction}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />

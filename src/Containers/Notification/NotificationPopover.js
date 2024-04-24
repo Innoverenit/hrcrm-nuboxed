@@ -38,7 +38,7 @@ class NotificationPopover extends Component {
             count={this.props.notificationCount}
             style={{ fontSize: 8, boxSizing: 8 }}
           >
-            <BellOutlined  type="bell" style={{ fontSize: "1rem" }} />
+            <BellOutlined  type="bell"  className="!text-xl cursor-pointer text-[blue] "  />
           </Badge>
         </Popover>
       </Tooltip>

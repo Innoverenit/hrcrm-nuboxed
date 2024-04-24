@@ -1,5 +1,5 @@
 import * as types from "./SettingsActionTypes";
-import { base_url, base_url2 } from "../../Config/Auth";
+import { base_url,login_url, base_url2 } from "../../Config/Auth";
 import axios from "axios";
 import { UPDATE_RECRUITMENT_ADVANCE_SUCCESS } from "../Auth/AuthTypes";
 import { message } from "antd";
@@ -2661,7 +2661,7 @@ export const deleteOpportunityProcessData = (opportunityWorkflowDetailsId, orgId
     })
     .then((res) => {
       console.log(res);
-      //  dispatch(getScheduler(orgId));
+      //  dispatch(getProcessForOpportunity(orgId));
       dispatch({
         type: types.DELETE_OPPORTUNITY_PROCESS_DATA_SUCCESS,
         payload: opportunityWorkflowDetailsId,
@@ -2896,9 +2896,7 @@ export const getRemoteAccess = (orgId) => (dispath) => {
 
 export const updateStageForOpportunity = (
   opportunityStagesId,
-  responsible,
   stageName,
-
   probability,
   days,
   cb
@@ -2910,7 +2908,7 @@ export const updateStageForOpportunity = (
   axios
     .put(
       `${base_url}/opportunityStages/${opportunityStagesId}`,
-      { opportunityStagesId, responsible, stageName, probability, days },
+      { opportunityStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3271,6 +3269,7 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       },
     })
     .then((res) => {
+      
       console.log(res);
       // dispatch(getIndentApprovalData("Indent", "IndentApproval"))
       dispatch(getApproveData("Leave"))
@@ -3278,6 +3277,7 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       dispatch(getApproveData("Expense"))
       dispatch(getApproveData("ContactUser"))
       dispatch(getApproveData("PhonePair"))
+      dispatch(getApproveData("ProspectToCustomer"))
       dispatch({
         type: types.ADD_APPROVE_SUCCESS,
         payload: res.data,
@@ -3798,7 +3798,7 @@ export const updateProcessNameForDeals = (process, investorOppWorkflowId, cb) =>
 
 export const updateStageForDeals = (
   investorOppStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -3812,7 +3812,7 @@ export const updateStageForDeals = (
   axios
     .put(
       `${base_url}/investorOpportunityWorkflow/opportunityStages/${investorOppStagesId}`,
-      { investorOppStagesId, responsible, stageName, probability, days },
+      { investorOppStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3969,7 +3969,7 @@ export const getNotificationConfig = (name,type) => (dispatch) => {
     type: types.GET_NOTIFICATION_CONFIG_REQUEST,
   });
   axios
-    .get(`${base_url}/notification/config/${name}/${type}`, {
+    .get(`${base_url}/notification/config/${name}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4162,7 +4162,7 @@ export const getProcessStagesForOnboarding = (unboardingWorkflowId) => (
 
 export const updateStageForOnboarding = (
   unboardingStagesId,
-  responsible,
+  // responsible,
   stageName,
 
   probability,
@@ -4176,7 +4176,7 @@ export const updateStageForOnboarding = (
   axios
     .put(
       `${base_url}/unboardingWorkflow/unboardingStages/${unboardingStagesId}`,
-      { unboardingStagesId, responsible, stageName, probability, days },
+      { unboardingStagesId, stageName, probability, days },
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4405,5 +4405,990 @@ export const getCurrencyConversion = (orgId) => (dispatch) => {
         type: types.GET_CURRENCY_CONVERSION_FAILURE,
         payload: err,
       });
+    });
+};
+
+export const addProcessForSuppOnboarding = (data, orgId, cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_PROCESS_FOR_SUPPLIER_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/supplier/unboardingWorkflow`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getProcessForSupplier(orgId));
+      dispatch({
+        type: types.ADD_PROCESS_FOR_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_PROCESS_FOR_SUPPLIER_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
+export const getProcessForSupplier = (orgId) => (dispatch) => {
+  debugger;
+  dispatch({
+    type: types.GET_PROCESS_FOR_SUPPLIER_REQUEST,
+  });
+  axios
+    .get(`${base_url}/supplier/unboardingWorkflow/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log("print when new process added................", res);
+      dispatch({
+        type: types.GET_PROCESS_FOR_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_FOR_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateProcessNameForSupplier = (process, supplierUnboardingWorkflowDetailsId, cb) => (dispatch) => {
+  debugger;
+  dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_REQUEST });
+
+  axios
+    .put(`${base_url}/supplier/unboardingWorkflow/${supplierUnboardingWorkflowDetailsId}`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const deleteSupplierProcessData = (supplierUnboardingWorkflowDetailsId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_SUPPLIER_PROCESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/supplier/unboardingWorkflow/${supplierUnboardingWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_SUPPLIER_PROCESS_DATA_SUCCESS,
+        payload: supplierUnboardingWorkflowDetailsId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIER_PROCESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addProcessStageForSupplier = (stage, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_PROCESS_STAGE_FOR_SUPPLIER_REQUEST });
+
+  axios
+    .post(`${base_url}/supplier/unboardingWorkflow/supplierUnboardingStages`, stage, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_SUPPLIER_SUCCESS,
+        payload: { ...stage, stageId: res.data },
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_SUPPLIER_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const getProcessStagesForSupplier = (supplierUnboardingWorkflowId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_PROCESS_STAGES_FOR_SUPPLIER_REQUEST,
+  });
+  axios
+    .get(`${base_url}/supplier/unboardingWorkflow/supplierUnboardingStages/details/${supplierUnboardingWorkflowId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateStageForSupplier = (
+  supplierUnboardingStagesId,
+  // responsible,
+  stageName,
+
+  probability,
+  days,
+  cb
+) => (dispatch) => {
+  console.log(stageName, probability);
+  dispatch({
+    type: types.UPDATE_STAGE_FOR_SUPPLIER_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/supplier/unboardingWorkflow/supplierUnboardingStages/${supplierUnboardingStagesId}`,
+      { supplierUnboardingStagesId, stageName, probability, days },
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_SUPPLIER_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+export const deleteSupplierStagesData = (supplierUnboardingStagesId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_SUPPLIER_STAGES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/supplier/unboardingWorkflow/supplierUnboardingStages/${supplierUnboardingStagesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_SUPPLIER_STAGES_DATA_SUCCESS,
+        payload: supplierUnboardingStagesId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIER_STAGES_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const LinkSupplierProcessPublish = (data, cb,) => (dispatch) => {
+  dispatch({ type: types.LINK_SUPPLIER_PROCESS_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/supplier/unboardingWorkflow/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_SUPPLIER_PROCESS_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_SUPPLIER_PROCESS_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const LinkSupplierStagePublish = (data, cb) => (dispatch) => {
+  dispatch({ type: types.LINK_SUPPLIER_STAGES_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/supplier/unboardingStages/update/publishInd `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_SUPPLIER_STAGES_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_SUPPLIER_STAGES_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+export const addProcessForProductionOnboarding = (data, orgId, cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_PROCESS_FOR_PRODUCTION_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/productionWorkflow`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getProcessForProduction(orgId));
+      dispatch({
+        type: types.ADD_PROCESS_FOR_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_PROCESS_FOR_PRODUCTION_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
+export const getProcessForProduction = (orgId) => (dispatch) => {
+  debugger;
+  dispatch({
+    type: types.GET_PROCESS_FOR_PRODUCTION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/productionWorkflow/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log("print when new process added................", res);
+      dispatch({
+        type: types.GET_PROCESS_FOR_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_FOR_PRODUCTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateProcessNameForProduction = (process, productionWorkflowDetailsId, cb) => (dispatch) => {
+  debugger;
+  dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_REQUEST });
+
+  axios
+    .put(`${base_url}/productionWorkflow/workflow/${productionWorkflowDetailsId}`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_PRODUCTION_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const deleteProductionProcessData = (productionWorkflowDetailsId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_PRODUCTION_PROCESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/productionWorkflow/${productionWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_PRODUCTION_PROCESS_DATA_SUCCESS,
+        payload: productionWorkflowDetailsId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_PRODUCTION_PROCESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addProcessStageForProduction = (stage, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_PROCESS_STAGE_FOR_PRODUCTION_REQUEST });
+
+  axios
+    .post(`${base_url}/productionWorkflow/stages`, stage, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_PRODUCTION_SUCCESS,
+        payload: { ...stage, stageId: res.data },
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_PRODUCTION_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const getProcessStagesForProduction = (productionWorkflowDetailsId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_PROCESS_STAGES_FOR_PRODUCTION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/productionWorkflow/Stages/${productionWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_PRODUCTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateStageForProduction = (
+  productionStagesId,
+  // responsible,
+  stageName,
+
+  probability,
+  days,
+  cb
+) => (dispatch) => {
+  console.log(stageName, probability);
+  dispatch({
+    type: types.UPDATE_STAGE_FOR_PRODUCTION_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/productionWorkflow/stage/${productionStagesId}`,
+      { productionStagesId, stageName, probability, days },
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_PRODUCTION_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_PRODUCTION_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+export const deleteProductionStagesData = (productionStagesId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_PRODUCTION_STAGES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/productionStages/${productionStagesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_PRODUCTION_STAGES_DATA_SUCCESS,
+        payload: productionStagesId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_PRODUCTION_STAGES_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const LinkProductionProcessPublish = (data, cb,) => (dispatch) => {
+  dispatch({ type: types.LINK_PRODUCTION_PROCESS_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/productionWorkflow/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_PRODUCTION_PROCESS_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_PRODUCTION_PROCESS_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+export const LinkProductionStagePublish = (data, cb) => (dispatch) => {
+  dispatch({ type: types.LINK_PRODUCTION_STAGES_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/productionStages/update/publishInd `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_PRODUCTION_STAGES_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_PRODUCTION_STAGES_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+export const addProcessForRepair = (data, orgId, cb) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.ADD_PROCESS_FOR_REPAIR_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/repairWorkflow`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+       dispatch(getProcessForRepair(orgId));
+      dispatch({
+        type: types.ADD_PROCESS_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_PROCESS_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
+export const getProcessForRepair = (orgId) => (dispatch) => {
+  debugger;
+  dispatch({
+    type: types.GET_PROCESS_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/repairWorkflow/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log("print when new process added................", res);
+      dispatch({
+        type: types.GET_PROCESS_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateProcessNameForRepair = (process, repairWorkflowDetailsId, cb) => (dispatch) => {
+  debugger;
+  dispatch({ type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_REQUEST });
+
+  axios
+    .put(`${base_url}/repairWorkflow/workflow/${repairWorkflowDetailsId}`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_NAME_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const deleteRepairProcessData = (repairWorkflowDetailsId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_REPAIR_PROCESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/repairWorkflow/${repairWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_REPAIR_PROCESS_DATA_SUCCESS,
+        payload: repairWorkflowDetailsId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_REPAIR_PROCESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addProcessStageForRepair = (stage, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_PROCESS_STAGE_FOR_REPAIR_REQUEST });
+
+  axios
+    .post(`${base_url}/repairWorkflow/stages`, stage, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_REPAIR_SUCCESS,
+        payload: { ...stage, stageId: res.data },
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCESS_STAGE_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const getProcessStagesForRepair = (repairWorkflowDetailsId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_PROCESS_STAGES_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/repairWorkflow/Stages/${repairWorkflowDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PROCESS_STAGES_FOR_REPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateStageForRepair = (
+  repairStagesId,
+  stageName,
+  probability,
+  days,
+  cb
+) => (dispatch) => {
+  console.log(stageName, probability);
+  dispatch({
+    type: types.UPDATE_STAGE_FOR_REPAIR_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/repairWorkflow/stages/${repairStagesId}`,
+      { repairStagesId, stageName, probability, days },
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_REPAIR_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_STAGE_FOR_REPAIR_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+export const deleteRepairStagesData = (repairStagesId, orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_REPAIR_STAGES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/workflow/repairStages/${repairStagesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_REPAIR_STAGES_DATA_SUCCESS,
+        payload: repairStagesId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_REPAIR_STAGES_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const LinkRepairProcessPublish = (data, cb,) => (dispatch) => {
+  dispatch({ type: types.LINK_REPAIR_PROCESS_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/repairWorkflow/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_REPAIR_PROCESS_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_REPAIR_PROCESS_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const LinkRepairStagePublish = (data, cb) => (dispatch) => {
+  dispatch({ type: types.LINK_REPAIR_STAGES_PUBLISH_REQUEST });
+
+  axios
+    .put(`${base_url}/repairStages/update/publishInd`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_REPAIR_STAGES_PUBLISH_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success", res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_REPAIR_STAGES_PUBLISH_FAILURE,
+      });
+      cb && cb("Failure");
+    });
+};
+
+export const handleSalaryModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SALARY_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getSalary = (roleTypeId) => (dispath) => {
+  dispath({ type: types.GET_SALARY_REQUEST });
+  axios
+    .get(`${base_url}/userSalaryBreakout/list/${roleTypeId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispath({
+        type: types.GET_SALARY_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_SALARY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addSalary = (process, cb) => (dispatch) => {
+  dispatch({ type: types.ADD_SALARY_REQUEST });
+
+  axios
+    .post(`${base_url}/userSalaryBreakout`, process, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SALARY_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SALARY_FAILURE,
+      });
+
+    });
+};
+
+export const getLangWords = (word) => (dispath) => {
+  dispath({ type: types.GET_LANG_WORDS_REQUEST });
+  axios
+    .get(`${login_url}/words/allWords`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispath({
+        type: types.GET_LANG_WORDS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_LANG_WORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const AddLangWords = (word) => (dispatch) => {
+  dispatch({ type: types.ADD_LANG_WORDS_REQUEST });
+
+  axios
+    .post(`${login_url}/words `, word, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getLangWords())
+      dispatch({
+        type: types.ADD_LANG_WORDS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LANG_WORDS_FAILURE,
+      });
+
     });
 };

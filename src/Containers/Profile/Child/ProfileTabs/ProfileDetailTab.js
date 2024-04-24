@@ -15,6 +15,8 @@ import { handlePersonalDetailsModal } from "../../ProfileAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PerformanceTable from "./Performance/PerformanceTable";
+import LinkAccountForm from "./LinkAccount/LinkAccountForm";
+import EquipmentForm from "./ProfileBoost/EquipmentForm";
 const AddEducationModal = lazy(() => import("./ProfileBoost/Education/AddEducationModal"));
 const AddTrainingModal = lazy(() => import("./ProfileBoost/Training/AddTrainingModal"));
 const AddEmploymentModal = lazy(() => import("./ProfileBoost/Employment/AddEmploymentModal"));
@@ -117,7 +119,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <MailOutlined type="mail" />
+                    <span class=" ml-1">
                     Performance
+                  </span>
                   </span>
                  
                    
@@ -136,7 +140,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <CustomerServiceOutlined type="customer-service" />
+                    <span class=" ml-1">
                     Training
+                  </span>
                   </span>
                   {activeKey === "2" && (
                     <>
@@ -163,7 +169,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <i class="fa fa-graduation-cap"></i>
-                    &nbsp; Education
+                    <span class=" ml-1">
+                    Education
+                  </span>
                   </span>
                   {activeKey === "3" && (
                     <>
@@ -202,7 +210,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <BankOutlined type="bank" />
+                    <span class=" ml-1">
                     Employment
+                  </span>
                   </span>
                   {activeKey === "4" && (
                     <>
@@ -230,7 +240,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <PhoneOutlined type="phone" />
+                    <span class=" ml-1">
                     Emergency
+                    </span>
                   </span>
                   {activeKey === "5" && (
                     <>
@@ -258,7 +270,10 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-credit-card"></i>&nbsp; Bank Details
+                    <i class="fa fa-credit-card"></i> 
+                     <span class=" ml-1"> 
+                    Bank Details
+                  </span>
                   </span>
                   {activeKey === "6" && (
                     <>
@@ -285,7 +300,10 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-id-card"></i>&nbsp; Personal Details
+                    <i class="fa fa-id-card"></i>
+                    <span class=" ml-1"> 
+                     Personal Details
+                  </span>
                   </span>
                   {activeKey === "7" && (
                     <>
@@ -312,7 +330,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <i className="fas fa-file-signature"></i>
-                    &nbsp; Signature
+                    <span class=" ml-1"> 
+                    Signature
+                  </span>
                   </span>
                 </>
               }
@@ -328,7 +348,9 @@ class ProfileDetailTab extends Component {
                 <>
                   <span>
                     <MailOutlined type="mail" />
+                    <span class=" ml-1"> 
                     Email
+                  </span>
                   </span>
                   {activeKey === "9" && (
                     <>
@@ -355,6 +377,64 @@ class ProfileDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <EmailTable 
+                employeeId={this.props.userDetails.employeeId}/>
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <MailOutlined type="mail" />
+                    <span class=" ml-1"> 
+                 Link Account
+                  </span>
+                  </span>
+                  {/* {activeKey === "9" && (
+                    <>
+                      <>
+                        <PlusOutlined
+                          type="plus"
+                          tooltipTitle="Add"
+                          onClick={() =>
+                            this.props.handleEmailProfileModal(true) 
+                          }
+                          size="1em"
+                          style={{
+                            marginLeft: 10,
+                            verticalAlign: "center",
+                          }}
+                        />
+                      </>
+                    </>
+                  )} */}
+                </>
+              }
+              key="10"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <LinkAccountForm
+                employeeId={this.props.userDetails.employeeId}/>
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <MailOutlined type="mail" />
+                    <span class=" ml-1"> 
+              Equipment
+                  </span>
+                  </span>
+            
+            
+                </>
+              }
+              key="11"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <EquipmentForm
                 employeeId={this.props.userDetails.employeeId}/>
               </Suspense>
             </TabPane>

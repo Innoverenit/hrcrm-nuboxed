@@ -21,6 +21,7 @@ import {
     getDealsIncludedCount,
     emptyIncludedDeals
 } from "../AuthAction";
+import { BundleLoader } from "../../../Components/Placeholder";
 const DealSelectStages =lazy(()=>import("../../Deal/Child/DealTable/DealSelectStages"));
 
 function IncludedDealCardList(props) {
@@ -58,8 +59,12 @@ function IncludedDealCardList(props) {
     openupdateDealModal,
     deleteDealsData,
     history,
-    fetchingDeal,
+    fetchingIncludedDeals,
   } = props;
+
+  if (fetchingIncludedDeals) {
+    return <BundleLoader />;
+  }
 
   return (
     <>
@@ -68,7 +73,7 @@ function IncludedDealCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={
-          fetchingDeal ? (
+          fetchingIncludedDeals ? (
             <div class="flex justify-center">Loading...</div>
           ) : null
         }
@@ -364,6 +369,7 @@ const mapStateToProps = ({ auth, deal, opportunity }) => ({
     dealsIncluded: auth.dealsIncluded,
   userId: auth.userDetails.userId,
   dealsIncludedCount:auth.dealsIncludedCount,
+  fetchingIncludedDeals:auth.fetchingIncludedDeals,
   user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) =>

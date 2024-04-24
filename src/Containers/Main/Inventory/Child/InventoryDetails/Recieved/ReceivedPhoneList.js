@@ -6,48 +6,53 @@ import { bindActionCreators } from 'redux';
 import { updateValidationInReceive } from "../../../InventoryAction"
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import moment from 'moment';
+import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 
 function ReceivedPhoneList(props) {
-    console.log(props.phnId)
 
     return (
         <>
             <Formik
+                enableReinitialize
                 initialValues={{
                     receivePhoneInd: true,
                     orderPhoneId: props.orderPhoneId,
-                    receiveCompany: props.phoneListData.receiveCompany === null ?
-                        props.phoneListData.company : props.phoneListData.receiveCompany,
+                    receiveCompany: props.setEdittingPhone.receiveCompany === null ?
+                        props.setEdittingPhone.company : props.setEdittingPhone.receiveCompany,
 
-                    receiveModel: props.phoneListData.receiveModel === null ?
-                        props.phoneListData.model : props.phoneListData.receiveModel,
+                    receiveModel: props.setEdittingPhone.receiveModel === null ?
+                        props.setEdittingPhone.model : props.setEdittingPhone.receiveModel,
 
-                    receiveIMEI: props.phoneListData.receiveIMEI === null ?
-                        props.phoneListData.imei : props.phoneListData.receiveIMEI,
+                    receiveIMEI: props.setEdittingPhone.receiveIMEI === null ?
+                        props.setEdittingPhone.imei : props.setEdittingPhone.receiveIMEI,
 
-                    receiveGB: props.phoneListData.receiveGB === null ?
-                        props.phoneListData.gb : props.phoneListData.receiveGB,
+                    receiveGB: props.setEdittingPhone.receiveGB === null ?
+                        props.setEdittingPhone.gb : props.setEdittingPhone.receiveGB,
 
-                    receiveColor: props.phoneListData.receiveColor === null ?
-                        props.phoneListData.color : props.phoneListData.receiveColor,
+                    receiveColor: props.setEdittingPhone.receiveColor === null ?
+                        props.setEdittingPhone.color : props.setEdittingPhone.receiveColor,
 
-                    receiveCondition: props.phoneListData.receiveCondition === null ?
-                        props.phoneListData.conditions : props.phoneListData.receiveCondition,
+                    receiveCondition: props.setEdittingPhone.receiveCondition === null ?
+                        props.setEdittingPhone.conditions : props.setEdittingPhone.receiveCondition,
 
-                    receiveOS: props.phoneListData.receiveOS === null ?
-                        props.phoneListData.os : props.phoneListData.receiveOS,
+                    receiveOS: props.setEdittingPhone.receiveOS === null ?
+                        props.setEdittingPhone.os : props.setEdittingPhone.receiveOS,
                     mismatchInd: true,
+                    receivePhoneUser: props.userId,
+                    receivePhoneDate: moment(),
+                    mismatchOrderInd: true
                 }}
+
                 onSubmit={(values, { resetForm }) => {
-                    console.log(props.phoneId)
-                    props.updateValidationInReceive({
-                        ...values,
-                        receivePhoneUser: props.userId,
-                        receivePhoneDate: moment()
-                    },
-                        props.phoneListData.phoneId,
-                        props.orderPhoneId
+                    props.updateValidationInReceive(
+                        {
+                            ...values,
+
+                        },
+                        props.particularRowData.phoneId,
+                        props.distributorId,
                     );
+                    resetForm();
                 }}
             >
                 {({
@@ -70,8 +75,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveCompany"
                                     label="OEM"
-                                    type="number"
-                                    placeholder={"Value"}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -81,8 +84,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveModel"
                                     label="Model"
-                                    type="number"
-                                    placeholder={"Value"}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -92,8 +93,7 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveIMEI"
                                     label="IMEI"
-                                    type="number"
-                                    placeholder={"Value"}
+                                    disabled
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -103,8 +103,7 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveGB"
                                     label="GB"
-                                    type="number"
-                                    placeholder={"Value"}
+
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -117,8 +116,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveColor"
                                     label="Color"
-                                    type="number"
-                                    placeholder={"Value"}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -128,8 +125,6 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveCondition"
                                     label="Condition"
-                                    type="number"
-                                    placeholder={"Value"}
                                     isColumn
                                     width={"100%"}
                                     component={InputComponent}
@@ -139,15 +134,19 @@ function ReceivedPhoneList(props) {
                                 <Field
                                     name="receiveOS"
                                     label="OS"
-                                    type="number"
-                                    placeholder={"Value"}
                                     isColumn
+
                                     width={"100%"}
-                                    component={InputComponent}
+                                    options={["Andriod", "Apple"]}
+                                    component={SelectComponent}
                                     inlineLabel
                                     isRequired
                                 />
-                                <Button type="primary" htmlType="submit">
+                                <Button
+                                    // loading={props.updatingValidationInRecive}
+                                    type="primary"
+                                    htmlType="submit"
+                                >
                                     Submit
                                 </Button>
                             </div>
@@ -160,8 +159,9 @@ function ReceivedPhoneList(props) {
     );
 }
 const mapStateToProps = ({ inventory, auth }) => ({
-    phoneListData: inventory.phoneListData,
+    setEdittingPhone: inventory.setEdittingPhone,
     userId: auth.userDetails.userId,
+    updatingValidationInRecive: inventory.updatingValidationInRecive
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -1,94 +1,74 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
-import { Formik, Form, Field } from "formik";
-import moment from "moment";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
-import { addLocationInOrder, getLocationList } from "../../AccountAction"
+import { addSupervisor, getUserByLocationDepartment } from "../../AccountAction"
+import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
+import { Select } from "antd";
+import { BundleLoader } from "../../../../../Components/Placeholder";
+const { Option } = Select;
 
 function LocationOrderForm(props) {
     useEffect(() => {
-        props.getLocationList(props.orgId);
+        props.getDepartments()
     }, []);
-    moment.addRealYear = function addRealYear(y) {
-        var fm = moment(y).add(10, "Y");
-        var fmEnd = moment(fm).endOf("year");
-        return y.date() != fm.date() && fm.isSame(fmEnd.format("YYYY-MM-DD"))
-            ? fm.add(10, "y")
-            : fm;
-    };
-    const locationsName = props.locationlist.filter((item) => {
-        return item.inventoryInd === true
-    }).map((item) => {
-        return {
-            label: item.locationName || "",
-            value: item.locationDetailsId,
-        };
-    });
+    const [technician, setTechnician] = useState("")
+    const [department, setDepartment] = useState("")
+
+    const handleTechnician = (val) => {
+        setTechnician(val)
+        props.addSupervisor({ supervisorUserId: val }, props.particularRowData.orderId)
+    }
+    let location = props.particularRowData.locationDetailsId
+
+    const handleDepartment = (val) => {
+        setDepartment(val)
+        props.getUserByLocationDepartment(location, val);
+    }
     return (
         <>
-            <Formik
-                initialValues={{
-                    locationId: "",
-                    userId: props.userId,
-                    orderPhoneId: props.particularRowData.orderId
-                }}
-                onSubmit={(values, { resetForm }) => {
-                    //debugger;
-                    console.log(values);
-                    props.addLocationInOrder({
-                        ...values,
-                        transferInd: 1,
-                    },
-                        props.particularRowData.distributorId
-                 );
-                }}
-            >
-                {({
-                    errors,
-                    touched,
-                    isSubmitting,
-                    setFieldValue,
-                    setFieldTouched,
-                    values,
-                    ...rest
-                }) => (
-                    <Form>
-                        <div class="flex justify-between">
-                            <div class="w-[85%]">
-                                <Field
-                                    name="locationId"
-                                    type="text"
-                                    width={"100%"}
-                                    placeholder="Location"
-                                    label="Location"
-                                    isRequired
-                                    component={SelectComponent}
-                                    options={Array.isArray(locationsName) ? locationsName : []}
-                                />
-                            </div>
-                            <div class="flex justify-end">
-                                <Button type="primary" htmlType="submit">
-                                    Submit
-                                </Button>
-                            </div>
-                        </div>
-                    </Form>
-                )}
-            </Formik>
+            {props.fetchingDepartments ? <BundleLoader /> :
+                <div class=" flex justify-between">
+                    <div className=" w-2/5">
+                        <Select
+                            className="w-[350px]"
+                            value={department}
+                            onChange={(value) => handleDepartment(value)}
+                        >
+                            {props.departments.map((a) => {
+                                return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                            })}
+                        </Select>
+                    </div>
+
+                    <div className=" w-2/5">
+
+                        <Select
+                            className="w-[350px]"
+                            value={technician}
+                            onChange={(value) => handleTechnician(value)}
+                        >
+                            {props.departmentUser.map((a) => {
+                                return <Option value={a.employeeId}>{a.empName}</Option>;
+                            })}
+                        </Select>
+                    </div>
+                </div>}
         </>
     );
 }
-const mapStateToProps = ({ distributor, plant, auth }) => ({
+const mapStateToProps = ({ distributor, departments, auth }) => ({
     orgId: auth.userDetails.organizationId,
-    locationlist: distributor.locationlist,
+    userId: auth.userDetails.userId,
+    departments: departments.departments,
+    departmentUser: distributor.departmentUser,
+    fetchingDepartments: departments.fetchingDepartments
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
-        getLocationList,
-        addLocationInOrder
+        getUserByLocationDepartment,
+        addSupervisor,
+        getDepartments
     }, dispatch);
 
 export default connect(

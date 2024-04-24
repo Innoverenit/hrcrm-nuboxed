@@ -6,8 +6,10 @@ import dayjs from "dayjs";
 import {
     getProductionOrder,
     handleProductOrderDetailsModal,
-    handleSearchItem
+    handleSearchItem,
+    handleOrderPaymentModal
 } from "../../AccountAction";
+import PaidIcon from '@mui/icons-material/Paid';
 import { FormattedMessage } from 'react-intl';
 import { Button, Input, Tooltip } from 'antd';
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
@@ -15,6 +17,7 @@ import OrderDetailModal from './OrderDetailModal';
 import ItemsSearchModal from './ItemsSearchModal';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
+import ProductionPaymentModal from './ProductionPaymentModal';
 
 
 const AccountOrder1Table = (props) => {
@@ -173,12 +176,28 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
+                                                    <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs text-cardBody font-poppins text-center">
+                                                            <Tooltip title="Collection">
+                                                                <PaidIcon
+                                                                    className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleOrderPaymentModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+
+                                                                />
+                                                            </Tooltip>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                     )
-                                })}</> : <NodataFoundPage />}
+                                })}</>
+                                : !props.productionOrder.length
+                                    && !props.fetchingProductionOrderById ? <NodataFoundPage /> : null}
                         </InfiniteScroll>
                     </div>
 
@@ -193,6 +212,11 @@ const AccountOrder1Table = (props) => {
                 particularRowData={particularRowData}
                 showProductList={props.showProductList}
                 handleProductOrderDetailsModal={props.handleProductOrderDetailsModal} />
+            <ProductionPaymentModal
+                showPaymentListModal={props.showPaymentListModal}
+                handleOrderPaymentModal={props.handleOrderPaymentModal}
+                particularRowData={particularRowData}
+            />
         </>
     )
 }
@@ -201,12 +225,14 @@ const mapStateToProps = ({ distributor, auth, inventory }) => ({
     productionOrder: distributor.productionOrder,
     showProductList: distributor.showProductList,
     searchItemsInLocation: distributor.searchItemsInLocation,
+    showPaymentListModal: distributor.showPaymentListModal,
     fetchingProductionOrderById: distributor.fetchingProductionOrderById,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
     getProductionOrder,
     handleSearchItem,
-    handleProductOrderDetailsModal
+    handleProductOrderDetailsModal,
+    handleOrderPaymentModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrder1Table);

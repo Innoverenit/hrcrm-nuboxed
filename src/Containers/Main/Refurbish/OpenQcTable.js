@@ -5,6 +5,7 @@ import { getOpenQcByUser } from "./RefurbishAction";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import { Badge } from "antd";
+import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function OpenQcTable(props) {
@@ -12,16 +13,16 @@ function OpenQcTable(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getOpenQcByUser(props.locationId, props.userId)
+        props.getOpenQcByUser(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getOpenQcByUser(props.locationId, props.userId)
+        props.getOpenQcByUser(props.userId)
     };
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
+            {props.fetchingOpenQc ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[34.12rem]"><FormattedMessage
@@ -32,11 +33,11 @@ function OpenQcTable(props) {
                             id="app.duedate"
                             defaultMessage="duedate"
                         /></div>
-                        {/* <div className=" md:w-[9.8rem] ">
-    <FormattedMessage
-                        id="app.units"
-                        defaultMessage="Units"
-                      /></div> */}
+                        <div className=" md:w-[9.8rem] ">
+                            <FormattedMessage
+                                id="app.lead"
+                                defaultMessage="Lead"
+                            /></div>
                         <div className="md:w-[6.6rem]"></div>
                         <div className="md:w-[5.8rem]"><FormattedMessage
                             id="app.status"
@@ -95,7 +96,7 @@ function OpenQcTable(props) {
                     </div>
                 </div>
 
-            </div>
+            </div>}
         </>
     )
 }

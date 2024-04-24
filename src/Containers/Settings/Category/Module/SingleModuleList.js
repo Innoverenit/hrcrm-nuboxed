@@ -57,7 +57,7 @@ class SingleModuleList extends Component {
                         <Switch
                               onChange={() => {}}
                         //  onChange={this.props.handleErpClick}
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           checked={this.props.erpStatus || this.props.moduleList.erpInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -86,7 +86,7 @@ class SingleModuleList extends Component {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           onChange={() => {}}
                         //  onChange={this.props.handleProductionClick}
                          checked={this.props.productionStatus || this.props.moduleList.productionInd}
@@ -118,7 +118,7 @@ class SingleModuleList extends Component {
                                                 onChange={() => {}}
                         // onChange={this.props.handleRepairClick}
                         checked={this.props.repairStatus || this.props.moduleList.repairInd}
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
  
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -133,7 +133,7 @@ class SingleModuleList extends Component {
                         <Switch
                          onChange={this.props.handleInventoryClick}
                          checked={this.props.inventoryStatus || this.props.moduleList.inventoryInd}
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -160,7 +160,7 @@ class SingleModuleList extends Component {
                         cancelText="No"
                       >
                         <Switch
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           onChange={() => {}}
                          checked={this.props.orderManagStatus || this.props.moduleList.orderManagementInd}
                           checkedChildren="Yes"
@@ -190,7 +190,7 @@ class SingleModuleList extends Component {
                         <Switch
                                onChange={() => {}}
                          checked={this.props.logisticsStatus || this.props.moduleList.logisticsInd}
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -218,7 +218,7 @@ class SingleModuleList extends Component {
                         <Switch
                        onChange={() => {}}
                          checked={this.props.procurmentStatus || this.props.moduleList.procurementInd}
-                          style={{ width: "4em" }}
+                          className="w-[4rem]"
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />

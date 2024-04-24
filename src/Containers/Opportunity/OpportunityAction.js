@@ -1,6 +1,7 @@
 import * as types from "./OpportunityActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../Config/Auth";
 import { message } from "antd";
 import { ActionHeader } from "../../Components/Utils";
@@ -343,6 +344,12 @@ export const addOpportunity = (opportunity, cb) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity created Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       const startDate = dayjs()
         .startOf("month")
@@ -569,6 +576,12 @@ export const setEditOpportunity = (name) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
       console.log(res);
       //  dispatch(getOpportunityListByUserId(userId,0));
       dispatch({
@@ -781,6 +794,28 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Opportunity Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
       console.log(res);
       dispatch({
         type: types.DELETE_OPPORTUNITY_DATA_SUCCESS,
@@ -2397,6 +2432,32 @@ export const getcloseRecords = (userId) => (dispatch) => {
     });
 };
 
+export const getAllRecords = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/all/record/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getlostRecords = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_LOST_RECORDS_REQUEST,
@@ -2463,8 +2524,23 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
     })
 
     .then((res) => {
-     
-      message.success("Opportunity move to lost category.Better luck next time!");
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Not updated',
+          showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      // message.success("Opportunity move to lost category.Better luck next time!");
       console.log(res);
       dispatch({
         type: types.RECRUIT_LOST_STATUS_TO_OPPORTUNITY_SUCCESS,
@@ -2815,11 +2891,27 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
     })
   
     .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'success',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Not updated',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
       console.log(res);
-      dispatch(getlostOpportunity(userId));
+      // dispatch(getlostOpportunity(userId));
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_LOST_SUCCESS,
-        payload: res.data,
+        payload: opportunityId,
       });
       // message.success("Confirmation Successfully");
     })
@@ -3140,6 +3232,33 @@ export const getFullOpportunity = (pageNo) => (dispatch) => {
     });
 };
 
+export const getTeamOpportunity = (pageNo) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_TEAM_OPPORTUNITY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/all/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAM_OPPORTUNITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TEAM_OPPORTUNITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const emptyOpportunity = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_OPPORTUNITY_LIST, 
@@ -3176,6 +3295,36 @@ export const linkOpportunityContract = (data, opportunityId) => (
         payload: err,
       });
       // cb && cb("failuer");
+    });
+};
+
+
+
+
+export const getRegionSalesQuotationList = (userId,quarter,year) => (dispatch) => {
+  
+  dispatch({
+    type: types.GET_REGION_SALES_QUOTATION_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunityList/${userId}/${quarter}/${year}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REGION_SALES_QUOTATION_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REGION_SALES_QUOTATION_LIST_FAILURE,
+        payload: err,
+      });
     });
 };
 

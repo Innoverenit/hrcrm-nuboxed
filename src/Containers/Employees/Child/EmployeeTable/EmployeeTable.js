@@ -575,6 +575,7 @@ import moment from "moment";
 import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import MultiOrgEmployee from "../MultiOrgEmployee";
 
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);
@@ -602,7 +603,7 @@ function EmployeeTable(props) {
         }
       }
     })
-    props.getEmployeelist("cretiondate");
+    props.getEmployeelist("cretiondate","all");
     props.getRoles(props.organizationId);
     props.getDepartments();
   }, []);
@@ -756,6 +757,7 @@ function EmployeeTable(props) {
 
     return (
       <>
+      
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                  
@@ -926,6 +928,7 @@ function EmployeeTable(props) {
            employeeTreeMap={props.employeeTreeMap}
           //  currentData={rowData}
           employeeName={currentEmployeeId}
+          
           documentsByEmployeeId={props.documentsByEmployeeId}
           addDrawerEmployeePulseModal={props.addDrawerEmployeePulseModal}
           handleEmployeePulseDrawerModal={props.handleEmployeePulseDrawerModal}
@@ -936,6 +939,7 @@ function EmployeeTable(props) {
          openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
                    </Suspense>
           </div>
+         
       </>
   )   
   }
@@ -943,6 +947,7 @@ function EmployeeTable(props) {
 
   return (
     <>
+     <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                 <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -951,8 +956,9 @@ function EmployeeTable(props) {
                     <div className=" md:w-[6.8rem] ">Role</div>
                     <div className="md:w-[8.7rem]">Mobile #</div>
                     <div className="md:w-[8.9rem]">Email #</div>
-                    <div className="md:w-[7.2rem]">Stop Access</div>
-                    <div className="md:w-[10.2rem]"></div>
+                    <div className="md:w-[9.2rem]">Stop Access</div>
+                    <div className="md:w-[10.2rem]">Multi Org</div>
+                    <div className="md:w-[11.2rem]"></div>
                 </div>
                 {props.filteredData.map((item) => {
                     const currentdate = moment().format("DD/MM/YYYY");
@@ -993,7 +999,7 @@ function EmployeeTable(props) {
                                 </div>
 
                                
-                                <div className=" flex font-medium  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs text-cardBody font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
@@ -1013,6 +1019,16 @@ function EmployeeTable(props) {
               employeeId={item.employeeId}
             />
             ):null}
+                                    </div>
+                                </div>
+                                <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div class=" text-xs text-cardBody font-poppins text-center">
+                                  
+            <MultiOrgEmployee
+              multyOrgAccessInd={item.multyOrgAccessInd}
+              employeeId={item.employeeId}
+            />
+
                                     </div>
                                 </div>
                                 <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -1127,6 +1143,7 @@ function EmployeeTable(props) {
       currentEmployeeId={currentEmployeeId}
        openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
                  </Suspense>
+        </div>
         </div>
     </>
 )

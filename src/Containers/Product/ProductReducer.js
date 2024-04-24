@@ -72,6 +72,10 @@ const initialState = {
   addingService: false,
   addingServiceError: false,
 
+  fetchingdeleteProducts: false,
+  fetchingdeleteProductsError: false,
+  deleteproducts:[],
+
   fetchingLatestProductsByOrganizationId: false,
   fetchingLatestProductsByOrganizationIdError: false,
   latestProductsByOrganizationId: [],
@@ -80,9 +84,44 @@ const initialState = {
   fetchingProductsError: false,
   products: [],
 
+  fetchingCategory:false,
+  fetchingCategoryError:false,
+  categoryProducts:[],
+
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
-  allproducts: [],
+  allproducts: [
+//     {
+//       "id": "PCD7617397754982024",
+//       "categoryName": "Phulka",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD7856330229422024",
+//       "categoryName": "king",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD793500819122024",
+//       "categoryName": "Dry Powder",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD8213713670282024",
+//       "categoryName": "iPad ",
+//       "imageId": null
+//   },
+// {
+//       "id": "PCD6068749460382024",
+//       "categoryName": "Dough",
+//       "imageId": null
+//   },
+//   {
+//       "id": "PCD9509139668222024",
+//       "categoryName": "Fruits",
+//       "imageId": null
+//   },
+  ],
 
   fetchingProductsById: false,
   fetchingProductsByIdError: false,
@@ -116,6 +155,8 @@ const initialState = {
 
   updateProductModal: false,
 
+  categoryProductModal:false,
+
   addDiscountModal: false,
 
   addHistoryModal: false,
@@ -134,6 +175,9 @@ const initialState = {
 
   deletingProductData: false,
   deletingProductDataError: false,
+
+  deletingCatalogData: false,
+  deletingCatalogDataError: false,
 
   fetchingSuspendProducts: false,
   fetchingSuspendProductsError: false,
@@ -218,6 +262,9 @@ const initialState = {
   addingProduct: false,
   addingProductError: false,
 
+  addingCategory: false,
+  addingCategoryError: false,
+
   proBuilderDrawer: false,
 
   fetchingProductBuilder: false,
@@ -226,7 +273,7 @@ const initialState = {
 
   addingProductBuilder: false,
   addingProductBuilderError: false,
-  addedProBuilder:[],
+  addedProBuilder: [],
 
   fetchingBuilderByProductId: false,
   fetchingBuilderByProductIdError: false,
@@ -235,25 +282,51 @@ const initialState = {
   priceOpenDrawer: false,
 
   removingProductBuilder: false,
-  removingProductBuilderError:false,
+  removingProductBuilderError: false,
 
   fetchingProductCurrency: false,
-  fetchingProductCurrencyError:false,
-  ProductCurrency:[],
+  fetchingProductCurrencyError: false,
+  ProductCurrency: [],
 
   creatingProductCurrency: false,
-  creatingProductCurrencyError:false,
+  creatingProductCurrencyError: false,
 
   fetchingSearchedBuilders: false,
-  fetchingSearchedBuildersError:false,
-  searchedBuilders:[],
+  fetchingSearchedBuildersError: false,
+  searchedBuilders: [],
 
-  fetchingAllProducts: false, 
-  fetchingAllProductsError:false,
-  productAlls:[],
+  fetchingAllProducts: false,
+  fetchingAllProductsError: false,
+  productAlls: [
+//     {
+//     "productId": "PD68170822484172024",
+//     "productName": "Accelerator testing 1 2 ",
+//     "creationDate": "2024-04-17T08:57:17.261Z",
+//     "categoryName": "paneer",
+// },
+// {
+//     "productId": "PD5118276228082024",
+//     "productName": "Palak Phulka Phulka Palak 2.0 3.0",
+//     "creationDate": "2024-04-16T08:21:46.026Z",
+// "categoryName": "Phulka",
+// },
+// {
+//     "productId": "PD1920247105482024",
+//     "productName": "Jowar Phulka - Gluten Free Phulka Jowar  ",
+//     "creationDate": "2024-04-08T13:00:18.227Z",
+// "categoryName": "Phulka",
+// },
+
+// {
+//     "productId": "PD7213203342382024",
+//     "productName": "Paneer Stuffed Bhatura Dough Dough Paneer Stuffed Bhatura  ",
+//     "creationDate": "2024-04-08T12:36:08.306Z",
+// "categoryName": "Dough",
+// },
+],
 
   postingProductionBldr: false,
-  postingProductionBldrError:false,
+  postingProductionBldrError: false,
 
 
 
@@ -360,6 +433,23 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
 
+
+      case types.GET_DELETEPRODUCTS_REQUEST:
+      return { ...state, fetchingdeleteProducts: true, fetchingdeleteProductsError: false };
+    case types.GET_DELETEPRODUCTS_SUCCESS:
+      return { ...state, fetchingdeleteProducts: false, deleteproducts: action.payload };
+    case types.GET_DELETEPRODUCTS_FAILURE:
+      return { ...state, 
+        fetchingdeleteProducts: false,
+         fetchingdeleteProductsError: true };
+
+      case types.GET_CATEGORY_REQUEST:
+      return { ...state, fetchingCategory: true, fetchingCategoryError: false };
+    case types.GET_CATEGORY_SUCCESS:
+      return { ...state, fetchingCategory: false, categoryProducts: action.payload };
+    case types.GET_CATEGORY_FAILURE:
+      return { ...state, fetchingCategory: false, fetchingCategoryError: true };
+
     case types.GET_SERVICE_REQUEST:
       return { ...state, fetchingService: true, fetchingServiceError: false };
     case types.GET_SERVICE_SUCCESS:
@@ -447,6 +537,9 @@ export const productReducer = (state = initialState, action) => {
     case types.HANDLE_UPDATE_PRODUCT_MODAL:
       return { ...state, updateProductModal: action.payload };
 
+      case types.HANDLE_CATEGORY_MODAL:
+      return { ...state, categoryProductModal: action.payload };
+
     case types.HANDLE_DISCOUNT_BUTTON_MODAL:
       return { ...state, addDiscountModal: action.payload };
 
@@ -529,6 +622,23 @@ export const productReducer = (state = initialState, action) => {
         deletingProductData: false,
         deletingProductDataError: true,
       };
+
+      case types.DELETE_CATALOG_DATA_REQUEST:
+        return { ...state, deletingCatalogData: true };
+      case types.DELETE_CATALOG_DATA_SUCCESS:
+        return {
+          ...state,
+          deletingCatalogData: false,
+          products: state.products.filter(
+            (item) => item.productId !== action.payload
+          ),
+        };
+      case types.DELETE_CATALOG_DATA_FAILURE:
+        return {
+          ...state,
+          deletingCatalogData: false,
+          deletingCatalogDataError: true,
+        };
 
     case types.GET_SUSPEND_PRODUCT_REQUEST:
       return {
@@ -885,6 +995,24 @@ export const productReducer = (state = initialState, action) => {
         addConfigureModal: false,
       };
 
+
+      case types.ADD_CATEGORY_REQUEST:
+        return { ...state, addingCategory: true };
+      case types.ADD_CATEGORY_SUCCESS:
+        return {
+          ...state, addingCategory: false, 
+          categoryProductModal:false,
+          categoryProducts: [action.payload, ...state.categoryProducts]
+        };
+      case types.ADD_CATEGORY_FAILURE:
+        return {
+          ...state,
+          addingCategory: false,
+          addingCategoryError: true,
+          categoryProductModal:false,
+          
+        };
+
     case types.HANDLE_PRODUCT_BUILDER_DRAWER:
       return { ...state, proBuilderDrawer: action.payload };
 
@@ -913,7 +1041,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         addingProductBuilder: false,
-        addedProBuilder:action.payload,
+        addedProBuilder: action.payload,
         searchedBuilders: state.searchedBuilders.map((item) => {
           if (item.suppliesId == action.payload.suppliesId) {
             return action.payload;
@@ -929,7 +1057,7 @@ export const productReducer = (state = initialState, action) => {
         addingProductBuilder: false,
         addingProductBuilderError: true,
       };
-      
+
     case types.GET_BUILDER_BY_PRODUCT_ID_REQUEST:
       return {
         ...state,
@@ -967,124 +1095,124 @@ export const productReducer = (state = initialState, action) => {
         uploadingCatalogueListError: true,
       };
 
-      case types.REMOVE_PRODUCT_BUILDER_REQUEST:
-        return { ...state, removingProductBuilder: true };
-      case types.REMOVE_PRODUCT_BUILDER_SUCCESS:
-        return {
-          ...state,
-          removingProductBuilder: false,
-          builderbyProductId: state.builderbyProductId.filter(
-            (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
-          ),
-        };
-      case types.REMOVE_PRODUCT_BUILDER_FAILURE:
-        return {
-          ...state,
-          removingProductBuilder: false,
-          removingProductBuilderError: true,
-        };  
+    case types.REMOVE_PRODUCT_BUILDER_REQUEST:
+      return { ...state, removingProductBuilder: true };
+    case types.REMOVE_PRODUCT_BUILDER_SUCCESS:
+      return {
+        ...state,
+        removingProductBuilder: false,
+        builderbyProductId: state.builderbyProductId.filter(
+          (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
+        ),
+      };
+    case types.REMOVE_PRODUCT_BUILDER_FAILURE:
+      return {
+        ...state,
+        removingProductBuilder: false,
+        removingProductBuilderError: true,
+      };
 
-        case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
-          return { ...state, addingProductBuilder: true };
-        case types.UPDATE_PRO_SUPPL_BUILDER_SUCCESS:
-          return {
-            ...state,
-            addingProductBuilder: false,
-            // builderbyProductId:[action.payload, ...state.builderbyProductId],
-            builderbyProductId: state.builderbyProductId.map((item) => {
-              if (item.suppliesId == action.payload.suppliesId) {
-                return action.payload;
-              } else {
-                return item;
-              }
-            }),
-          };
-        case types.UPDATE_PRO_SUPPL_BUILDER_FAILURE:
-          return {
-            ...state,
-            addingProductBuilder: false,
-            addingProductBuilderError: true,
-          };
+    case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
+      return { ...state, addingProductBuilder: true };
+    case types.UPDATE_PRO_SUPPL_BUILDER_SUCCESS:
+      return {
+        ...state,
+        addingProductBuilder: false,
+        // builderbyProductId:[action.payload, ...state.builderbyProductId],
+        builderbyProductId: state.builderbyProductId.map((item) => {
+          if (item.suppliesId == action.payload.suppliesId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PRO_SUPPL_BUILDER_FAILURE:
+      return {
+        ...state,
+        addingProductBuilder: false,
+        addingProductBuilderError: true,
+      };
 
-          case types.GET_PRODUCT_CURRENCY_REQUEST:
-            return {
-              ...state,
-              fetchingProductCurrency: true,
-              fetchingProductCurrencyError: false,
-            };
-          case types.GET_PRODUCT_CURRENCY_SUCCESS:
-            return {
-              ...state,
-              fetchingProductCurrency: false,
-              ProductCurrency: action.payload,
-            };
-          case types.GET_PRODUCT_CURRENCY_FAILURE:
-            return {
-              ...state,
-              fetchingProductCurrency: false,
-              fetchingProductCurrencyError: true,
-            };
+    case types.GET_PRODUCT_CURRENCY_REQUEST:
+      return {
+        ...state,
+        fetchingProductCurrency: true,
+      };
+    case types.GET_PRODUCT_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        fetchingProductCurrency: false,
+        ProductCurrency: action.payload,
+      };
+    case types.GET_PRODUCT_CURRENCY_FAILURE:
+      return {
+        ...state,
+        fetchingProductCurrency: false,
+        fetchingProductCurrencyError: true,
+      };
 
-            case types.CREATE_PRODUCT_CURRENCY_REQUEST:
-              return { ...state, creatingProductCurrency: true };
-            case types.CREATE_PRODUCT_CURRENCY_SUCCESS:
-              return {
-                ...state,
-                creatingProductCurrency: false,
-                ProductCurrency: [action.payload, ...state.ProductCurrency]
-              };
-            case types.CREATE_PRODUCT_CURRENCY_FAILURE:
-              return {
-                ...state,
-                creatingProductCurrency: false,
-                creatingProductCurrencyError: true,
-              };
+    case types.CREATE_PRODUCT_CURRENCY_REQUEST:
+      return { ...state, creatingProductCurrency: true };
+    case types.CREATE_PRODUCT_CURRENCY_SUCCESS:
+      return {
+        ...state,
+        creatingProductCurrency: false,
+        ProductCurrency: [action.payload, ...state.ProductCurrency]
+      };
+    case types.CREATE_PRODUCT_CURRENCY_FAILURE:
+      return {
+        ...state,
+        creatingProductCurrency: false,
+        creatingProductCurrencyError: true,
+      };
 
-              case types.GET_SEARCH_BUILDER_REQUEST:
-                return { ...state, fetchingSearchedBuilders: true };
-              case types.GET_SEARCH_BUILDER_SUCCESS:
-                return { ...state, 
-                  fetchingSearchedBuilders: false,
-                  searchedBuilders: action.payload,
-                };
-              case types.GET_SEARCH_BUILDER_FAILURE:
-                return {
-                  ...state,
-                  fetchingSearchedBuilders: false,
-                  fetchingSearchedBuildersError: true,
-                };
+    case types.GET_SEARCH_BUILDER_REQUEST:
+      return { ...state, fetchingSearchedBuilders: true };
+    case types.GET_SEARCH_BUILDER_SUCCESS:
+      return {
+        ...state,
+        fetchingSearchedBuilders: false,
+        searchedBuilders: action.payload,
+      };
+    case types.GET_SEARCH_BUILDER_FAILURE:
+      return {
+        ...state,
+        fetchingSearchedBuilders: false,
+        fetchingSearchedBuildersError: true,
+      };
 
-                case types.GET_ALL_PRODUCT_LIST_REQUEST:
-                  return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };
-                case types.GET_ALL_PRODUCT_LIST_SUCCESS:
-                  return { ...state, fetchingAllProducts: false, productAlls: action.payload };
-                case types.GET_ALL_PRODUCT_LIST_FAILURE:
-                  return { ...state, fetchingAllProducts: false, fetchingAllProductsError: true };
+    case types.GET_ALL_PRODUCT_LIST_REQUEST:
+      return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };
+    case types.GET_ALL_PRODUCT_LIST_SUCCESS:
+      return { ...state, fetchingAllProducts: false, productAlls: action.payload };
+    case types.GET_ALL_PRODUCT_LIST_FAILURE:
+      return { ...state, fetchingAllProducts: false, fetchingAllProductsError: true };
 
-                  case types.POST_PRODUCTION_BUILDER_REQUEST:
-                    return { ...state, postingProductionBldr: true };
-                  case types.POST_PRODUCTION_BUILDER_SUCCESS:
-                    return {
-                      ...state,
-                      postingProductionBldr: false,
-                      builderbyProductId: state.builderbyProductId.map((item) => {
-                        if (item.suppliesId == action.payload.suppliesId) {
-                          return action.payload;
-                        } else {
-                          return item;
-                        }
-                      }),
-                    };
-                  case types.POST_PRODUCTION_BUILDER_FAILURE:
-                    return {
-                      ...state,
-                      postingProductionBldr: false,
-                      postingProductionBldrError: true,
-                    };
+    case types.POST_PRODUCTION_BUILDER_REQUEST:
+      return { ...state, postingProductionBldr: true };
+    case types.POST_PRODUCTION_BUILDER_SUCCESS:
+      return {
+        ...state,
+        postingProductionBldr: false,
+        builderbyProductId: state.builderbyProductId.map((item) => {
+          if (item.suppliesId == action.payload.suppliesId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.POST_PRODUCTION_BUILDER_FAILURE:
+      return {
+        ...state,
+        postingProductionBldr: false,
+        postingProductionBldrError: true,
+      };
 
-              
-          
-                  default:
+
+
+    default:
       return state;
   }
 };

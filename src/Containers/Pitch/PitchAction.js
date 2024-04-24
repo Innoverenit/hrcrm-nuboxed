@@ -29,6 +29,10 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
           type: types.GET_PITCH_FAILURE,
           payload: err,
         });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
       });
   };
 
@@ -78,8 +82,7 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Created Succefully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
         // cb && cb();
       })
@@ -195,8 +198,7 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Qualified Succefully',
-          showConfirmButton: false,
-          // timer: 1500
+       
         })
       })
       .catch((err) => {
@@ -422,12 +424,12 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       });
   };
 
-  export const getPitchAllRecords = (userId) => (dispatch) => {
+  export const getPitchAllRecords = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_PITCH_ALL_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/investorleads/all/count`, {
+      .get(`${base_url}/investorleads/all/record/count/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -605,6 +607,33 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
       });
   };
+
+  export const getTeamsPitchCount = (userId) => (dispatch) => {
+    dispatch({
+      type: types.GET_TEAMSPITCH_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/investorleads/teams/count/${userId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAMSPITCH_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAMSPITCH_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const setPitchViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.SET_PITCH_VIEW_TYPE,
@@ -636,6 +665,10 @@ export const getAllPitch = (pageNo,filter) => (dispatch) => {
         type: types.GET_ALL_PITCH_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
   
@@ -772,13 +805,13 @@ export const addPitchActivityTask = (task,investorLeadsId, cb) => (dispatch, get
     });
 };
 
-export const getTeamPitch = (userId,pageNo,filter) => (dispatch) => {
+export const getTeamPitch = (userId,pageNo) => (dispatch) => {
  
   dispatch({
     type: types.GET_TEAM_PITCH_REQUEST,
   });
   axios
-    .get(`${base_url}/investorleads/team/${userId}/${pageNo}/${filter}`, {
+    .get(`${base_url}/investorleads/teams/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -796,6 +829,10 @@ export const getTeamPitch = (userId,pageNo,filter) => (dispatch) => {
         type: types.GET_TEAM_PITCH_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -810,4 +847,37 @@ export const ClearReducerDataOfPitch = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_REDUCER_DATA_PITCH,
   });
+};
+
+export const setClearbitData = (data) => (dispatch) => {
+  dispatch({
+    type: types.SET_CLEARBIT_DATA,
+    payload: data,
+  });
+};
+
+export const getPitchActivityRecords = (investorLeadsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PITCH_ACTIVITY_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorLeads/activity/record/${investorLeadsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PITCH_ACTIVITY_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PITCH_ACTIVITY_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
 };

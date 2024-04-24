@@ -15,12 +15,12 @@ class OpenReceivedOrderIdModal extends Component {
             <>
                 <StyledDrawer
                     title={`Order No - ${this.props.rowData.newOrderNo}`}
-                    width="80%"
+                    width="90%"
                     visible={receivedOrdeIdModal}
-                    destroyOnClose
-                    maskClosable={false}
                     onClose={() => handleReceivedOrderIdModal(false)}
                     footer={null}
+                    maskClosable={false}
+                    destroyOnClose
                 >
                     <Suspense fallback={<BundleLoader />}>
                         <OpenReceivedOrderIdForm

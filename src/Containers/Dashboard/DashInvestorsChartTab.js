@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
+import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 const PitchAddChart = lazy(()=>import("./PitchAddChart"));
 const ContactInvestAddChart = lazy(()=>import("./ContactInvestAddChart"));
 
@@ -54,7 +55,8 @@ class DashInvestorsChartTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <PitchAddChart/>
+                {/* <PitchAddChart/> */}
+                <CustomerGoogleMap/>
               </Suspense>
             </TabPane>
             <TabPane

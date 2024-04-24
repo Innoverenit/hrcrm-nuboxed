@@ -4,9 +4,20 @@ import dayjs from "dayjs";
 const initialState = {
   viewType: "list",
 
+  addInvestorActivityJumpstartModal:false,
+
   fetchingInvestors: false,
   fetchingInvestorsError: false,
   investorsbyId: [],
+
+  opencreateDealModal: false,
+
+  fetchingInvestorActivityCount: false,
+  fetchingInvestorActivityCountError: false,
+  investorActivityCount:{},
+
+  creatingInvestorDeal: false,
+  creatingInvestorDealError: false,
 
   fetchingDialCode: false,
   fetchingDialCodeError: false,
@@ -84,6 +95,14 @@ const initialState = {
   fetchingInvestorDetailsById: false,
   fetchingInvestorDetailsByIdError: false,
   investorDetails: {},
+
+  fetchingInvestorAllRecords: false,
+  fetchingInvestorAllRecordsError: false,
+  allinvestorRecord:{},
+
+  fetchingInvestorActivityValue: false,
+  fetchingInvestorActivityValueError: false,
+  InvestActivityValue: {},
 
   fetchingINVWeightedValue: false,
   fetchingINVWeightedValueError: false,
@@ -445,6 +464,21 @@ export const investorReducer = (state = initialState, action) => {
                               fetchingInvestorRecordsError: true,
                             };
 
+                            case types.GET_INVESTOR_ALL_RECORDS_REQUEST:
+                            return { ...state, fetchingInvestorAllRecords: true };
+                          case types.GET_INVESTOR_ALL_RECORDS_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingInvestorAllRecords: false,
+                              allinvestorRecord: action.payload,
+                            };
+                          case types.GET_INVESTOR_ALL_RECORDS_FAILURE:
+                            return {
+                              ...state,
+                              fetchingInvestorAllRecords: false,
+                              fetchingInvestorAllRecordsError: true,
+                            };
+
                             
                           case types.GET_INVESTOR_TEAM_RECORDS_REQUEST:
                             return { ...state, fetchingInvestorTeamRecords: true };
@@ -719,6 +753,64 @@ export const investorReducer = (state = initialState, action) => {
                                     };
                                   case types.GET_INVESTOR_CONTACT_VALUE_FAILURE:
                                     return { ...state, fetchingInvContactValue: false, fetchingInvContactValueError: true };
+
+
+                                    case types.GET_INVESTOR_ACTIVITY_RECORDS_REQUEST:
+                                      return { ...state, fetchingInvestorActivityCount: true };
+                                    case types.GET_INVESTOR_ACTIVITY_RECORDS_SUCCESS:
+                                      return {
+                                        ...state,
+                                        fetchingInvestorActivityCount: false,
+                                        investorActivityCount: action.payload,
+                                      };
+                                    case types.GET_INVESTOR_ACTIVITY_RECORDS_FAILURE:
+                                      return {
+                                        ...state,
+                                        fetchingInvestorActivityCount: false,
+                                        fetchingInvestorActivityCountError: true,
+                                      };
+
+
+                                      
+
+                                      case types.CREATE_INVESTOR_DEAL_REQUEST:
+                                        return { ...state, creatingInvestorDeal: true };
+                                      case types.CREATE_INVESTOR_DEAL_SUCCESS:
+                                        return {
+                                          ...state,
+                                          // creatingDeal: false,
+                                          opencreateDealModal: false,
+                                         investorDealsData:[action.payload,...state.investorDealsData],
+                                        };
+                                      case types.CREATE_INVESTOR_DEAL_FAILURE:
+                                        return {
+                                          ...state,
+                                          creatingInvestorDeal: false,
+                                          creatingInvestorDealError: true,
+                                        };
+
+                                        case types.HANDLE_DEAL_MODAL:
+                                          return { ...state, opencreateDealModal: action.payload };
+
+
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_REQUEST:
+                                            return { ...state, fetchingInvestorActivityValue: true, fetchingInvestorOppValueError: false };
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingInvestorActivityValue: false,
+                                              fetchingInvestorActivityValueError: false,
+                                              InvestActivityValue: action.payload,
+                                            };
+                                          case types.GET_INVESTOR_ACTIVITY_VALUE_FAILURE:
+                                            return { ...state, fetchingInvestorActivityValue: false, fetchingInvestorActivityValueError: true };
+
+
+                                            case types.HANDLE_INVESTOR_ACTIVITY_JUMPSTART_MODAL:
+                                              return { ...state, addInvestorActivityJumpstartModal: action.payload };
+                              
+              
+                              
 
 
 default:

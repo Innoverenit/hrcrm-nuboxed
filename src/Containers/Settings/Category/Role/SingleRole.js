@@ -120,7 +120,7 @@ class SingleRole extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={updatingRoles}
+                    loading={updatingRoles}
                     disabled={!value}
                     onClick={() =>
                       handleUpdateRole(
@@ -135,7 +135,7 @@ class SingleRole extends Component {
                     Update
                   </Button>
                
-                  <Button type="primary" ghost onClick={() => toggleViewType()}>
+                  <Button type="cancel"  onClick={() => toggleViewType()}>
                     Cancel
                   </Button>
                 </div>

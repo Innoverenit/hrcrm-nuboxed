@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,Select } from "antd";
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -13,28 +13,29 @@ import {
   addCustomer,
   setClearbitData
 } from "../CustomerAction";
+import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
-import { Listbox } from '@headlessui/react'
+import { Listbox } from '@headlessui/react';
+import {getCurrency} from "../../Auth/AuthAction";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
-// import {getDialCode} from "../../Investor/InvestorAction";
-
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
   // email: Yup.string().required("Input needed!").email("Enter a valid Email"),
-  phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
-function CustomerForm(props) {
+const { Option } = Select;  
 
-  const [checked, setChecked] = useState(true);
-  const [whiteblue, setWhiteblue] = useState(true);
+function CustomerForm(props) {
+   const[checked,setChecked]=useState(true);
+  const[whiteblue,setWhiteblue]=useState(true);
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -49,32 +50,277 @@ function CustomerForm(props) {
     );
   };
   useEffect(() => {
-    props.getAllCustomerEmployeelist();
-    props.getSectors();
+    props.getCustomer(props.orgId); 
+    // props.getAllCustomerEmployeelist();
+    // props.getSectors();
     props.getCrm();
-    // props.getDialCode();
+    // props.getCurrency();
   }, []);
 
-  const {
-    accounts,
-    user,
-    userId,
-    // user: { userId, firstName },
-    isEditing,
-    prefillAccount,
-    addingCustomer,
-    addCustomer,
-    clearbit,
-    // setClearbitData,
-  } = props;
+    const {
+      accounts,
+      user,
+      userId,
+      // user: { userId, firstName },
+      isEditing,
+      prefillAccount,
+      addingCustomer,
+      addCustomer,
+      clearbit,
+      // setClearbitData,
+    } = props;
+   
+    function classNames(...classes) {
+      return classes.filter(Boolean).join(' ')
+    }
+    const sortedSector =props.sectors.sort((a, b) => {
+      const nameA = a.sectorName.toLowerCase();
+      const nameB = b.sectorName.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const sectorOption = sortedSector.map((item) => {
+      return {
+        label: item.sectorName || "",
+        value: item.sectorId,
+      };
+    });
+    const sortedCurrency =props.currencies.sort((a, b) => {
+      const nameA = a.currency_name.toLowerCase();
+      const nameB = b.currency_name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const currencyNameOption = sortedCurrency.map((item) => {
+      return {
+        label: `${item.currency_name}`,
+        value: item.currency_name,
+      };
+    });
+    const [code, setCode] = useState([]);
+    const [assign, setAssign] = useState([]);
+    const [currency, setCurrency] = useState([]);
+    const [source, setSource] = useState([]);
+    const [sector, setSector] = useState([]);
+    const [selectedCode, setSelectedCode] = useState(props.user.countryDialCode);
+    const [selectedCurrency, setSelectedCurrency] = useState(null);
+    const [selectedAssign, setSelectedAssign] = useState(props.fullName);
+    const [selectedSector, setSelectedSector] = useState(null);
+    const [selectedSource, setSelectedSource] = useState(null);
+    const [isLoadingCode, setIsLoadingCode] = useState(false);
+    const [isLoadingCurrency, setIsLoadingCurrency] = useState(false);
+    const [isLoadingAssign, setIsLoadingAssign] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingSector, setIsLoadingSector] = useState(false);
+    const [touchedCode, setTouchedCode] = useState(false);
+  const [touchedAssign, setTouchedAssign] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [touchedSector, setTouchedSector] = useState(false);
+  const [touchedCurrency, setTouchedCurrency] = useState(false);
+  const [defaultOption, setDefaultOption] = useState(props.fullName);
+  const [selected, setSelected] = useState(defaultOption);
+  const selectedOption = props.crmAllData.find((item) => item.empName === selected);
+  const fetchSource = async () => {
+    setIsLoading(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setSource(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
+  const handleSelectChange = (value) => {
+    setSelectedSource(value)
+    console.log('Selected user:', value);
+  };
+console.log(selectedSource)
+ 
 
-  const sortedSector = props.sectors.sort((a, b) => {
-    const nameA = a.sectorName.toLowerCase();
-    const nameB = b.sectorName.toLowerCase();
+
+
+  const fetchSector = async () => {
+    setIsLoadingSector(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setSector(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingSector(false);
+    }
+  };
+
+
+
+  const fetchAssign = async () => {
+    setIsLoadingAssign(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/employee/create/all-employees`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setAssign(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingAssign(false);
+    }
+  };
+
+
+  const fetchCurrency = async () => {
+    setIsLoadingCurrency(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/currencies/sales`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCurrency(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingCurrency(false);
+    }
+  };
+
+
+  const fetchCode = async () => {
+    setIsLoadingCode(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/countries/all/dail-code/list`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCode(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingCode(false);
+    }
+  };
+  const handleSelectSector = (value) => {
+    setSelectedSector(value)
+    console.log('Selected user:', value);
+  };
+
+
+  const handleSelectAssign = (value) => {
+    setSelectedAssign(value)
+    console.log('Selected user:', value);
+  };
+
+
+  const handleSelectCurrency = (value) => {
+    setSelectedCurrency(value)
+    console.log('Selected user:', value);
+  };
+
+  const handleSelectCode = (value) => {
+    setSelectedCode(value)
+    console.log('Selected user:', value);
+  };
+
+
+
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchSource();
+      // fetchSector();
+
+      setTouched(true);
+    }
+  };
+
+  const handleSelectSectorFocus = () => {
+    if (!touchedSector) {
+     
+      fetchSector();
+
+      setTouchedSector(true);
+    }
+  };
+
+  const handleSelectCurrencyFocus = () => {
+    if (!touchedCurrency) {
+     
+      fetchCurrency();
+
+      setTouchedCurrency(true);
+    }
+  };
+
+  const handleSelectAssignFocus = () => {
+    if (!touchedAssign) {
+     
+      fetchAssign();
+
+      setTouchedAssign(true);
+    }
+  };
+
+  const handleSelectCodeFocus = () => {
+    if (!touchedCode) {
+     
+      fetchCode();
+
+      setTouchedCode(true);
+    }
+  };
+
+  const sortedType =props.customerListData.sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
     // Compare department names
     if (nameA < nameB) {
       return -1;
@@ -84,41 +330,32 @@ function CustomerForm(props) {
     }
     return 0;
   });
-  const sectorOption = sortedSector.map((item) => {
+  const typeOption = sortedType.map((item) => {
     return {
-      label: item.sectorName || "",
-      value: item.sectorId,
+      label: `${item.name}`,
+      value: item.customerTypeId,
     };
   });
-  // const dialCodeOption = props.dialCodeList.map((item) => {
-  //   return {
-  //     label: `+${item.country_dial_code || ""}`,
-  //     value: item.country_dial_code
-  //     ,
-  //   };
-  // });
-
-  const [defaultOption, setDefaultOption] = useState(props.fullName);
-  const [selected, setSelected] = useState(defaultOption);
-  const selectedOption = props.crmAllData.find((item) => item.empName === selected);
+  console.log(selectedSector)
   return (
     <>
       <Formik
         // enableReinitialize
         initialValues={{
-          // sectorId:"",
+          currencyId:selectedCurrency,
           // sectorName:"",
           partnerName: "",
+          type:"",
           // sectorDescription:"",
           name: "",
           url: "",
           gst: "",
-          source: "",
-          sectorId: "",
+          source: selectedSource,
+          sectorId: selectedSector,
           country: props.user.country,
           email: "",
-          // sector: props.user.sectorName,
-          countryDialCode: props.user.countryDialCode,
+          potentialValue:"",
+          countryDialCode:selectedCode ,
           phoneNumber: "",
           fullName: "",
           category: checked ? "Both" : whiteblue ? "White" : "Blue",
@@ -147,7 +384,11 @@ function CustomerForm(props) {
             {
               ...values,
               category: checked ? "Both" : whiteblue ? "White" : "Blue",
+              currencyId:selectedCurrency,
+              source: selectedSource,
+              sectorId: selectedSector,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
+              // assignedTo:selectedOption?selectedOption:userId,
             },
             props.userId,
             () => handleReset(resetForm)
@@ -230,9 +471,9 @@ function CustomerForm(props) {
                     component={InputComponent}
                     inlineLabel
                   />                   */}
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class=" w-3/12 max-sm:w-[30%]">
-                      <FastField
+                      {/* <FastField
                         name="countryDialCode"
                         selectType="dialCode"
                         isColumnWithoutNoCreate
@@ -245,12 +486,36 @@ function CustomerForm(props) {
                           />
                         }
                         isColumn
-                        //   component={SelectComponent}
-                        // options={
-                        //   Array.isArray(dialCodeOption) ? dialCodeOption : []
-                        // }
+                        defaultValue={{
+                          label:`+${props.user.countryDialCode}`,
+                        }}
                         inlineLabel
-                      />
+                      /> */}
+
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Dial code</label>
+
+<Select
+        showSearch
+        style={{ width: 120 }}
+        placeholder="Search or select code"
+        optionFilterProp="children"
+        loading={isLoadingCode}
+        defaultValue={selectedCode}
+        onFocus={handleSelectCodeFocus}
+        onChange={handleSelectCode}
+      >
+        {code.map(codes => (
+          <Option key={codes.
+            country_dial_code
+            } value={codes.
+              country_dial_code
+              }>
+            {codes.
+country_dial_code
+}
+          </Option>
+        ))}
+      </Select>
                     </div>
                     <div class=" w-8/12">
                       <FastField
@@ -272,8 +537,8 @@ function CustomerForm(props) {
 
 
                   <div class=" flex justify-between mt-3">
-                    <div class="w-w47.5 max-sm:w-w47.5">
-                      <Field
+                    <div class="w-w47.5 max-sm:w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                      {/* <Field
                         placeholder="Sector"
                         name="sectorId"
                         label={
@@ -288,10 +553,27 @@ function CustomerForm(props) {
                         options={
                           Array.isArray(sectorOption) ? sectorOption : []
                         }
-                      />
+                      /> */}
+                      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Sector</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select sector"
+        optionFilterProp="children"
+        loading={isLoadingSector}
+        onFocus={handleSelectSectorFocus}
+        onChange={handleSelectSector}
+      >
+        {sector.map(sectors => (
+          <Option key={sectors.sectorId} value={sectors.sectorId}>
+            {sectors.sectorName}
+          </Option>
+        ))}
+      </Select>
                     </div>
-                    <div class="w-w47.5">
-                      <FastField
+                    <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                      {/* <FastField
                         name="source"
                         type="text"
                         label={
@@ -307,9 +589,86 @@ function CustomerForm(props) {
                         inlineLabel
                         className="field"
                         isColumn
-                      />
+                      /> */}
+
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Source</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select source"
+        optionFilterProp="children"
+        loading={isLoading}
+        onFocus={handleSelectFocus}
+        onChange={handleSelectChange}
+      >
+        {source.map(sources => (
+          <Option key={sources.sourceId} value={sources.sourceId}>
+            {sources.name}
+          </Option>
+        ))}
+      </Select>
                     </div>
                   </div>
+                  <div class="flex justify-between mt-2">
+  <div class="w-w47.5 flex">
+    <div class="w-24">
+      <Field
+        name="potentialValue"
+        label={
+          <FormattedMessage
+            id="app.potential"
+            defaultMessage="Potential"
+          />
+        }
+        isColumn
+        width={"100%"}
+        component={InputComponent}
+        inlineLabel
+      />
+    </div>
+    <div class="w-16 ml-2 max-sm:w-wk">
+      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <Select
+        showSearch
+        style={{ width: 100 }}
+        placeholder="Search or select currency"
+        optionFilterProp="children"
+        loading={isLoadingCurrency}
+        onFocus={handleSelectCurrencyFocus}
+        onChange={handleSelectCurrency}
+      >
+        {currency.map(currencies => (
+          <Option key={currencies.currency_name} value={currencies.currency_name}>
+            {currencies.currency_name}
+          </Option>
+        ))}
+      </Select>
+    </div>
+  </div>
+
+
+  <div class="w-w47.5">
+    <Field
+      name="type"
+      label={
+        <FormattedMessage
+          id="app.type"
+          defaultMessage="Type"
+        />
+      }
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={
+        Array.isArray(typeOption)
+          ? typeOption
+          : []
+      }
+      inlineLabel
+    />
+  </div>
+</div>
 
 
                   <div class=" mt-3">
@@ -329,7 +688,26 @@ function CustomerForm(props) {
                 >
 
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
-                    <div class=" h-full w-full">
+                    <div class=" h-full w-full" style={{display:"flex",flexDirection:"column"}}>
+
+                    {/* <label>Assigned to</label>
+
+<Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search or select assign"
+        optionFilterProp="children"
+        loading={isLoadingAssign}
+        defaultValue={selectedAssign}
+        onFocus={handleSelectAssignFocus}
+        onChange={handleSelectAssign}
+      >
+        {assign.map(assigned => (
+          <Option key={assigned.employeeId} value={assigned.employeeId}>
+            {assigned.fullName}
+          </Option>
+        ))}
+      </Select> */}
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
@@ -428,7 +806,7 @@ function CustomerForm(props) {
                   </div>
 
                   <div class=" flex justify-between mt-[0.2rem] max-sm:flex-col ">
-                    <div class=" w-2/5 max-sm:w-wk">
+                  <div class="w-w47.5">
                       <Field
                         name="vatNo"
                         type="text"
@@ -445,15 +823,15 @@ function CustomerForm(props) {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[10rem] max-sm:w-wk">
+                    <div class="w-w47.5">
                       <Field
                         name="businessRegistration"
                         type="text"
                         // label="URL"
                         label={
                           <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
+                            id="app.registration"
+                            defaultMessage="Registration"
                           />
                         }
                         isColumn
@@ -463,6 +841,8 @@ function CustomerForm(props) {
                       />
                     </div>
                   </div>
+
+                 
 
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                     <div>
@@ -534,28 +914,34 @@ function CustomerForm(props) {
 }
 
 
-const mapStateToProps = ({ auth, customer, employee, investor, sector, leads }) => ({
+const mapStateToProps = ({ auth, customer,employee ,catgCustomer,sector,leads}) => ({
   addingCustomer: customer.addingCustomer,
   addingCustomerError: customer.addingCustomerError,
+  saleCurrencies: auth.saleCurrencies,
+  customerListData: catgCustomer.customerListData,
   clearbit: customer.clearbit,
   user: auth.userDetails,
+  token: auth.token,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   userId: auth.userDetails.userId,
+  organizationId: auth.userDetails.organizationId,
+  orgId: auth.userDetails.organizationId,
   sectors: sector.sectors,
   fullName: auth.userDetails.fullName,
-  crmAllData: leads.crmAllData,
-  // dialCodeList:investor.dialCodeList,
+  crmAllData:leads.crmAllData,
+  currencies: auth.currencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getDialCode,
       addCustomer,
       setClearbitData,
       getSectors,
       getAllCustomerEmployeelist,
       getCrm,
+      getCurrency,
+      getCustomer
     },
     dispatch
   );

@@ -637,21 +637,29 @@ function UpdateEventForm (props) {
                      <div class="w-full mt-3">
                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Include</div> 
   
-                      <Select
-                        name="included"
-                        mode="multiple"
-                        style={{ width: '100%' }}
-                        placeholder="Select"
-                        defaultValue={includeNames}
-                        onChange={handleChangeInclude}
-                      >
-  
-                        {props.assignedToList.map((item, i) => {
-                          return (
-                            <Option value={item.employeeId}>{item.empName}</Option>
-                          )
-                        })}
-                      </Select>
+                     <Select
+  name="included"
+  mode="multiple"
+  style={{ width: '100%' }}
+  placeholder="Select"
+  defaultValue={includeNames}
+  onChange={handleChangeInclude}
+>
+  {props.assignedToList.map((item) => {
+    const isCurrentUser = item.employeeId === props.user.userId;
+
+    if (!isCurrentUser) {
+      return (
+        <Option key={item.employeeId} value={item.employeeId}>
+          {item.empName}
+        </Option>
+      );
+    }
+
+    return null; // Skip rendering for the current user
+  })}
+</Select>
+
   
                     </div>
                   <div class="mt-3">
@@ -754,6 +762,7 @@ const mapStateToProps = ({ auth, event,opportunity,candidate, employee, customer
   employees: employee.employees,
   assignedToList:employee.assignedToList,
   events: events.events,
+  user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

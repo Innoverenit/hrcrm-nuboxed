@@ -5,6 +5,8 @@ import { LOGOUT } from "../Containers/Auth/AuthTypes";
  */
 import { authReducer } from "../Containers/Auth/AuthReducer";
 import { pitchReducer } from "../Containers/Pitch/PitchReducer";
+import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
+import { serviceLineReducer } from "../Containers/Settings/Category/ServiceLine/ServiceLineReducer";
 import { messageReducer } from "../Containers/LiveMessages/MessageReducer";
 import { dashboardReducer } from "../Containers/Dashboard/DashboardReducer";
 import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/BrandModelReducer"
@@ -90,6 +92,14 @@ import { kpiReducer } from "../Containers/Settings/Category/KPI/KPIReducer";
 import { currencyReducer } from "../Containers/Settings/Category/Currency/CurrencyReducer";
 import { subscriptionReducer } from "../Containers/Subscription/SubscriptionReducer";
 import { productionReducer } from "../Containers/Production/ProductionReducer";
+import { regionalDashReducer } from "../Containers/DashboardPage/RegionalDashReducer";
+import { masterKpiReducer } from "../Containers/Settings/Category/KpiMasterList/KpiMasterListReducer";
+import { lobReducer } from "../Containers/Settings/Category/LOB/LOBReducer";
+import { developmentReducer } from "../Containers/Settings/Category/DevelopmentTab/DevelopmentReducer";
+import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityReducer";
+import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
+import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
+import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -129,6 +139,7 @@ const appReducer = combineReducers({
   expenses: expensesReducer,
   permissions: PermissionsReducer,
   designations: designationsReducer,
+  region: regionsReducer,
   certifications: certificationReducer,
   departments: departmentsReducer,
   events: eventsReducer,
@@ -170,12 +181,21 @@ const appReducer = combineReducers({
   investorList:investorListReducer,
   procurement:procurementReducer,
   payments:catgPaymentReducer,
+  serviceLines:serviceLineReducer,
   itemTask:itemTaskReducer,
   module:moduleReducer,
   kpi:kpiReducer,
   currency:currencyReducer,
   subscription:subscriptionReducer,
-  production:productionReducer
+  production:productionReducer,
+  dashboardRegional:regionalDashReducer,
+  masterKpi:masterKpiReducer,
+  lob:lobReducer,
+  development:developmentReducer,
+  quality:qualityReducer,
+  equipment:equipmentReducer,
+  industry:industryReducer,
+  categoryList:categoryListReducer,
 });
 
 const rootReducer = (state, action) => {

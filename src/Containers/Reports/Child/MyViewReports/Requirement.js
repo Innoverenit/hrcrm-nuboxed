@@ -305,12 +305,12 @@ console.log(fullDate);
           
             style={{ padding: "0em 1.25em" }}
           >
-          
+{/*           
           <Tooltip title={"Generate Pdf "}>
         <Button
             type="primary"
             onClick={showModal}
-           // onClick={() => props.handleUserModal(true)}
+
           >
             
             <PictureAsPdfIcon
@@ -333,18 +333,18 @@ console.log(fullDate);
               />
             </Modal>
         </Tooltip>
-        
+         */}
          
-            <span class=" ml-4 mr-2 text-4 cursor-pointer"
+            {/* <span class=" ml-4 mr-2 text-4 cursor-pointer"
             href={`${base_url}/excel/export/user/${props.userId
             }?type=${"expense"}&startDate=${props.startDate}&endDate=${props.endDate
             }=${props.userId}
           `}
-           // onClick={() => props.setCandidateViewType("table")}
+        
          
           >
             <InsertDriveFileIcon/>
-          </span>
+          </span> */}
             {/* <Tooltip title={"Generate XL"}>
               <Button
                 icon="file-excel"
@@ -363,12 +363,12 @@ console.log(fullDate);
               ></Button>
             </Tooltip> */}
            
-            <span class=" ml-4 mr-2 text-4 cursor-pointer"    
+            {/* <span class=" ml-4 mr-2 text-4 cursor-pointer"    
            // onClick={() => props.setCandidateViewType("table")}
           
           >
            <InsertDriveFileIcon/>
-          </span>
+          </span> */}
             {/* <Tooltip title={"Generate CSV"}>
               <Button
                 icon="file-text"

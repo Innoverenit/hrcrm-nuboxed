@@ -3,7 +3,9 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
+import {  Badge } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+
 const InvestorList = lazy(() =>
   import("./InvestorList")
 );
@@ -26,6 +28,7 @@ class InvestorTab extends Component {
     switch (key) {
       case "0":
         return     <InvestorList />;
+       
 
       default:
         return null;
@@ -46,15 +49,21 @@ class InvestorTab extends Component {
                   tab={
                     <>
                       <MonetizationOnIcon />
+                      <Badge
+                count={this.props.investorCount.InvestorCategoryCount}
+                overflowCount={999}
+              >
                       <span class=" ml-1" >
                         Type
                       </span>
+                      </Badge>
                     </>
                   }
                   key="0"
                 >
          
                 </TabPane>
+             
                
              
               </StyledTabs>
@@ -68,7 +77,10 @@ class InvestorTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ }) => ({});
+const mapStateToProps = ({investorList,industry }) => ({
+  investorCount:investorList.investorCount,
+  
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(InvestorTab);
@@ -81,66 +93,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(InvestorTab);
 
 
 
-// import React, { Component, Suspense,lazy } from "react";
-// import { bindActionCreators } from "redux";
-// import { StyledTabs } from "../../../../Components/UI/Antd";
-// import { TabsWrapper } from "../../../../Components/UI/Layout";
-// import { connect } from "react-redux";
-// import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-// const InvestorList = lazy(() =>
-//   import("./InvestorList")
-// );
-// const TabPane = StyledTabs.TabPane;
-
-// class InvestorTab extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       activeKey: "1",
-//       value: 1,
-//     };
-//   }
-
-//   onChange = (e) => {
-//     this.setState({
-//       value: e.target.value,
-//     });
-//   };
-
-//   handleTabChange = (key) => this.setState({ activeKey: key });
-//   render() {
-//     return (
-//       <>
-//            <div class="flex flex-nowrap" >
-//           <div class ="w-[70%]" >
-//             <TabsWrapper>
-//               <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
-//                 <TabPane
-//                   tab={
-//                     <>
-//                       <MonetizationOnIcon />
-//                       <span class=" ml-1" >
-//                         Type
-//                       </span>
-//                     </>
-//                   }
-//                   key="0"
-//                 >
-//                   <Suspense>
-//                     <InvestorList />
-//                   </Suspense>
-//                 </TabPane>
-               
-             
-//               </StyledTabs>
-//             </TabsWrapper>
-//           </div>
-//         </div>
-//       </>
-//     );
-//   }
-// }
-// const mapStateToProps = ({ }) => ({});
-// const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(InvestorTab);

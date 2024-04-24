@@ -7,6 +7,14 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingRegionRecordsCount: false,
+  fetchingRegionRecordsCountError: false,
+  regionRecords:[],
+
+  fetchingProspectTableData:false,
+  fetchingProspectTableDataError:false,
+  prospectTableData:[],
+
   fetchingThisMonthTaskGantt: false,
   fetchingThisMonthTaskGanttError: false,
 
@@ -69,6 +77,10 @@ const initialState = {
   fetchingDashBoardFunnelError: false,
   dashboardFunnel: [],
 
+  fetchingQuotationTableData:false,
+  fetchingQuotationTableDataError:false,
+  quotationTableData:[],
+
   fetchingUpcomingEvents: false,
   fetchingUpcomingEventsError: false,
   upcomingEvents: [],
@@ -103,12 +115,23 @@ const initialState = {
   fetchingTaskDashboardGanttError: false,
   tasksdashboardGantt: [],
 
+
+
+  fetchingOpenQuotationYear:false,
+  fetchingOpenQuotationYearError:false,
+  openQuotationYear:{},
+
   fetchingTaskper: false,
   fetchingTaskperError: false,
   taskperCount: {},
 
   addingActionNotifications: false,
   addingActionNotificationsError: false,
+
+  fetchingProspectLifetime:false,
+  fetchingProspectLifetimeError:false,
+
+  prospectLifeTime:{},
 
   updatingTodoTask: false,
   updatingTodoTaskError: false,
@@ -173,6 +196,14 @@ const initialState = {
   fetchingJumpstartBulb3: false,
   fetchingJumpstartBulb3Error: false,
   jumpstartBulb3Count: [],
+  gettingDevelopChart:false,
+  gettingDevelopChartError:false,
+  developChart:[],
+
+
+  prospectQuotationYearModal:false,
+
+  prospectQuotationLifeModal:false,
 
   dateRangeList: [
     {
@@ -215,15 +246,15 @@ const initialState = {
     },
     {
       id: 4,
-      type: "quarter",
+      type: "year",
       value: "YTD",
       starter: false,
       isSelected: false,
-      startDate: dayjs().startOf("quarter").toISOString(),
-      endDate: dayjs().endOf("quarter").toISOString(),
+      startDate: dayjs().startOf("year").toISOString(),
+      endDate: dayjs().endOf("year").toISOString(),
     },
 
- 
+
   ],
   timeRangeType: "today",
   isCustomSelected: false,
@@ -300,6 +331,10 @@ const initialState = {
   fetchingLeadsAddedError: false,
   showAddedLeads: [],
 
+  fetchingProspectQuotation:false,
+  fetchingProspectQuotationError:false,
+  prospectQuotation:{},
+
   openOppoAdded: false,
   fetchingOppoAdded: false,
   fetchingOppoAddedError: false,
@@ -353,21 +388,36 @@ const initialState = {
 
   taskNameDrwr: false,
   fetchingTaskNamedrwr: false,
-  fetchingTaskNamedrwrError:false,
-  taskInameDrwr:[],
+  fetchingTaskNamedrwrError: false,
+  taskInameDrwr: [],
 
   fetchingDashboardCompletedTasks: false,
-  fetchingDashboardCompletedTasksError:false,
-  dashbCompletedTasks:[],
-  completedtaskDrwr:false,
+  fetchingDashboardCompletedTasksError: false,
+  dashbCompletedTasks: [],
+  completedtaskDrwr: false,
 
   fetchingCompletedTaskTypes: false,
-  fetchingCompletedTaskTypesError:false,
-  completedtypeTasks:[],
+  fetchingCompletedTaskTypesError: false,
+  completedtypeTasks: [],
+
+  fetchingProspectData:false,
+  fetchingProspectDataError:false,
+  prospectChart:{},
 
   fetchingJumpOrderCount: false,
-  fetchingJumpOrderCountError:false,
-  jumstartOrderCount:{},
+  fetchingJumpOrderCountError: false,
+  jumstartOrderCount: {},
+
+  fetchingorderDetails: false,
+  fetchingorderDetailsError: false,
+  orderinDashboard: [],
+
+
+  prospectDrawerModal:false,
+
+  fetchingJumpstartFinanceDetail: false,
+  fetchingJumpstartFinanceDetailError: false,
+  financeDetail: []
 };
 
 export const dashboardReducer = (state = initialState, action) => {
@@ -389,6 +439,9 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingSkillsCloud: false,
         fetchingSkillsCloudError: true,
       };
+
+      case types.HANDLE_QUOTATION_YEAR_DRAWER:
+        return { ...state, prospectQuotationYearModal: action.payload };
     case types.CHANGE_SELECTED_TIME_INTERVAL_REPORT:
       return {
         ...state,
@@ -521,6 +574,31 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingdashBoardCustomerChartError: true,
       };
 
+
+
+
+      case types.GET_PROSPECT_LIFETIME_REQUEST:
+        return { ...state, fetchingProspectLifetime: true };
+      case types.GET_PROSPECT_LIFETIME_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectLifetime: false,
+          prospectLifeTime: action.payload,
+        };
+      case types.GET_PROSPECT_LIFETIME_FAILURE:
+        return {
+          ...state,
+          fetchingProspectLifetime: false,
+          fetchingProspectLifetimeError: true,
+        };
+
+
+        case types.HANDLE_PROSPECT_DRAWER:
+          return { ...state, prospectDrawerModal: action.payload };
+
+          case types.HANDLE_QUOTATION_LIFE_DRAWER:
+            return { ...state, prospectQuotationLifeModal: action.payload };
+
     case types.GET_DASHBOARD_CLOSURE_RATIO_REQUEST:
       return { ...state, fetchingdashBoardClosureRatio: true };
     case types.GET_DASHBOARD_CLOSURE_RATIO_SUCCESS:
@@ -535,6 +613,24 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingdashBoardClosureRatio: false,
         fetchingdashBoardClosureRatioError: true,
       };
+
+
+
+      case types.GET_PROSPECT_TABLE_DATA_REQUEST:
+      return { ...state, fetchingProspectTableData: true };
+    case types.GET_PROSPECT_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingProspectTableData: false,
+        prospectTableData: action.payload,
+      };
+    case types.GET_PROSPECT_TABLE_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingProspectTableData: false,
+        fetchingProspectTableDataError: true,
+      };
+
 
     case types.GET_DASHBOARD_SUMMARY_CHART_REQUEST:
       return { ...state, fetchingdashBoardSummaryChart: true };
@@ -680,6 +776,21 @@ export const dashboardReducer = (state = initialState, action) => {
         ...state,
         fetchingLeavesGantt: false,
         fetchingLeavesGanttError: true,
+      };
+
+    case types.GET_JUMPSTART_FINANCE_DETAIL_REQUEST:
+      return { ...state, fetchingJumpstartFinanceDetail: true };
+    case types.GET_JUMPSTART_FINANCE_DETAIL_SUCCESS:
+      return {
+        ...state,
+        fetchingJumpstartFinanceDetail: false,
+        financeDetail: action.payload,
+      };
+    case types.GET_JUMPSTART_FINANCE_DETAIL_FAILURE:
+      return {
+        ...state,
+        fetchingJumpstartFinanceDetail: false,
+        fetchingJumpstartFinanceDetailError: true,
       };
 
     case types.GET_TASKS_DASHBOARD_GANTT_REQUEST:
@@ -1317,6 +1428,24 @@ export const dashboardReducer = (state = initialState, action) => {
         gettingInvHotColdWarmError: true,
       };
 
+
+
+
+      case types.GET_QUOTATION_TABLE_DATA_REQUEST:
+      return { ...state, fetchingQuotationTableData: true };
+    case types.GET_QUOTATION_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        quotationTableData: action.payload,
+      };
+    case types.GET_QUOTATION_TABLE_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        fetchingQuotationTableDataError: true,
+      };
+
     case types.GET_DASH_INVESTOR_ADDED_PITCH_REQUEST:
       return { ...state, fetchingdashInvstPitchAdded: true };
     case types.GET_DASH_INVESTOR_ADDED_PITCH_SUCCESS:
@@ -1436,6 +1565,25 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingPitchQualified: false,
         fetchingPitchQualifiedError: true,
       };
+
+
+
+
+      case types.GET_OPEN_QUOTATION_YEAR_REQUEST:
+        return { ...state, fetchingOpenQuotationYear: true };
+      case types.GET_OPEN_QUOTATION_YEAR_SUCCESS:
+        return {
+          ...state,
+          fetchingOpenQuotationYear: false,
+          openQuotationYear: action.payload,
+        };
+      case types.GET_OPEN_QUOTATION_YEAR_FAILURE:
+        return {
+          ...state,
+          fetchingOpenQuotationYear: false,
+          fetchingOpenQuotationYearError: true,
+        };
+  
 
     case types.HANDLE_PITCH_ADDED_DRAWER:
       return { ...state, openPitchAdded: action.payload };
@@ -1605,53 +1753,133 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingTaskNamedrwrError: true,
       };
 
-      case types.GET_DASHBOARD_COMPLETED_TASK_REQUEST:
-        return { ...state, fetchingDashboardCompletedTasks: true };
-      case types.GET_DASHBOARD_COMPLETED_TASK_SUCCESS:
+    case types.GET_DASHBOARD_COMPLETED_TASK_REQUEST:
+      return { ...state, fetchingDashboardCompletedTasks: true };
+    case types.GET_DASHBOARD_COMPLETED_TASK_SUCCESS:
+      return {
+        ...state,
+        fetchingDashboardCompletedTasks: false,
+        dashbCompletedTasks: action.payload,
+      };
+    case types.GET_DASHBOARD_COMPLETED_TASK_FAILURE:
+      return {
+        ...state,
+        fetchingDashboardCompletedTasks: false,
+        fetchingDashboardCompletedTasksError: true,
+      };
+
+    case types.HANDLE_COMPLETED_TASK_TYPE_DRAWER:
+      return { ...state, completedtaskDrwr: action.payload };
+
+    case types.GET_COMPLETED_TASK_TYPE_REQUEST:
+      return { ...state, fetchingCompletedTaskTypes: true };
+    case types.GET_COMPLETED_TASK_TYPE_SUCCESS:
+      return {
+        ...state,
+        fetchingCompletedTaskTypes: false,
+        completedtypeTasks: action.payload,
+      };
+    case types.GET_COMPLETED_TASK_TYPE_FAILURE:
+      return {
+        ...state,
+        fetchingCompletedTaskTypes: false,
+        fetchingCompletedTaskTypesError: true,
+      };
+
+    case types.GET_JUMPSTART_ORDER_COUNT_REQUEST:
+      return { ...state, fetchingJumpOrderCount: true };
+    case types.GET_JUMPSTART_ORDER_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingJumpOrderCount: false,
+        jumstartOrderCount: action.payload,
+      };
+    case types.GET_JUMPSTART_ORDER_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingJumpOrderCount: false,
+        fetchingJumpOrderCountError: true,
+      };
+
+    case types.GET_JUMPSTART_ORDER_DETAIL_REQUEST:
+      return { ...state, fetchingorderDetails: true };
+    case types.GET_JUMPSTART_ORDER_DETAIL_SUCCESS:
+      return {
+        ...state,
+        fetchingorderDetails: false,
+        orderinDashboard: action.payload,
+      };
+    case types.GET_JUMPSTART_ORDER_DETAIL_FAILURE:
+      return {
+        ...state,
+        fetchingorderDetails: false,
+        fetchingorderDetailsError: true,
+
+      };
+
+
+
+      case types.GET_PROSPECT_DATA_REQUEST:
+      return { ...state, fetchingProspectData: true };
+    case types.GET_PROSPECT_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingProspectData: false,
+        prospectChart: action.payload,
+      };
+    case types.GET_PROSPECT_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingProspectData: false,
+        fetchingProspectDataError: true,
+      };
+
+
+
+
+      case types.GET_PROSPECT_QUOTATION_REQUEST:
+        return { ...state, fetchingProspectQuotation: true };
+      case types.GET_PROSPECT_QUOTATION_SUCCESS:
         return {
           ...state,
-          fetchingDashboardCompletedTasks: false,
-          dashbCompletedTasks: action.payload,
+          fetchingProspectQuotation: false,
+          prospectQuotation: action.payload,
         };
-      case types.GET_DASHBOARD_COMPLETED_TASK_FAILURE:
+      case types.GET_PROSPECT_QUOTATION_FAILURE:
         return {
           ...state,
-          fetchingDashboardCompletedTasks: false,
-          fetchingDashboardCompletedTasksError: true,
+          fetchingProspectQuotation: false,
+          fetchingProspectQuotationError: true,
         };
 
-        case types.HANDLE_COMPLETED_TASK_TYPE_DRAWER:
-          return { ...state, completedtaskDrwr: action.payload };
 
-          case types.GET_COMPLETED_TASK_TYPE_REQUEST:
-            return { ...state, fetchingCompletedTaskTypes: true };
-          case types.GET_COMPLETED_TASK_TYPE_SUCCESS:
+        case types.GET_REGION_RECORDS_REQUEST:
+          return { ...state, fetchingRegionRecordsCount: true };
+        case types.GET_REGION_RECORDS_SUCCESS:
+          return { ...state, fetchingRegionRecordsCount: false, 
+            regionRecords: action.payload };
+        case types.GET_REGION_RECORDS_FAILURE:
+          return {
+            ...state,
+            fetchingRegionRecordsCount: false,
+            fetchingRegionRecordsCountError: true,
+          };
+          case types.GET_DEVELOP_CHART_REQUEST:
+            return { ...state, gettingDevelopChart: true };
+      
+          case types.GET_DEVELOP_CHART_SUCCESS:
             return {
               ...state,
-              fetchingCompletedTaskTypes: false,
-              completedtypeTasks: action.payload,
+              gettingDevelopChart: false,
+              developChart: action.payload,
             };
-          case types.GET_COMPLETED_TASK_TYPE_FAILURE:
+      
+          case types.GET_HOT_COLD_WARM_FAILURE:
             return {
               ...state,
-              fetchingCompletedTaskTypes: false,
-              fetchingCompletedTaskTypesError: true,
-            };  
-
-            case types.GET_JUMPSTART_ORDER_COUNT_REQUEST:
-              return { ...state, fetchingJumpOrderCount: true };
-            case types.GET_JUMPSTART_ORDER_COUNT_SUCCESS:
-              return {
-                ...state,
-                fetchingJumpOrderCount: false,
-                jumstartOrderCount: action.payload,
-              };
-            case types.GET_JUMPSTART_ORDER_COUNT_FAILURE:
-              return {
-                ...state,
-                fetchingJumpOrderCount: false,
-                fetchingJumpOrderCountError: true,
-              };  
+              gettingDevelopChart: false,
+              gettingDevelopChartError: true,
+            };
 
     default:
       return state;

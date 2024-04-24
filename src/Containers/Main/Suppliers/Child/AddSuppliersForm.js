@@ -19,7 +19,7 @@ const CustomerSchema = Yup.object().shape({
   // emailId: Yup.string()
   //   .email("Enter a valid Email")
   //   .required("Input needed!"),
-  phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
+  // phoneNo: Yup.string().matches(phoneRegExp, 'Mobile number is not valid').min(5, "Too Short").max(10, "Too Large")
 });
 
 function AddSuppliersForm (props) {
@@ -42,6 +42,7 @@ function AddSuppliersForm (props) {
             dialCode: "",
             phoneNo: "",
             emailId: "",
+            orgId: props.orgId,
             assignedTo: selectedOption ? selectedOption.employeeId:props.userId,
             address: [
               {
@@ -106,7 +107,7 @@ function AddSuppliersForm (props) {
                       {/* <label>Dial Code</label> */}
                   
                       <FastField
-                        name="dialCode2"
+                        name="dialCode"
                         selectType="dialCode"
                         label={
                           <FormattedMessage id="app.dialcode" defaultMessage="Dial Code" />
@@ -128,6 +129,7 @@ function AddSuppliersForm (props) {
                         label={
                           <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
                         }
+                        type="text"
                         placeholder="Phone #"
                         isColumn
                         component={InputComponent}

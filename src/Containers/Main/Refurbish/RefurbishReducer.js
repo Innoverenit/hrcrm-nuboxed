@@ -71,6 +71,16 @@ const initialState = {
   fetchingNoOfPhoneInQcByIdError: false,
   phoneByTechId: [],
 
+  fetchingPhoneDetails: false,
+  fetchingPhoneDetailsError: false,
+  phoneDetails: {},
+
+  updatingPauseStatus: false,
+  updatingPauseStatusError: false,
+
+  updatingSparePacket: false,
+  updatingSparePacketError: false,
+
   fetchingShiftsByUserId: false,
   fetchingShiftsByUserIdError: false,
   shiftsData: [],
@@ -98,6 +108,9 @@ const initialState = {
 
   showPhoneList: false,
 
+  deletingTaskList: false,
+  deletingTaskListError: false,
+
   fetchingNoOfPhoneInRepair: false,
   fetchingNoOfPhoneInRepairError: true,
   repairPhoneByTechId: [],
@@ -123,6 +136,10 @@ const initialState = {
   fetchingPhoneListByUser: false,
   fetchingPhoneListByUserError: false,
   phoneByUser: [],
+
+  fetchingTaskListByPhone: false,
+  fetchingTaskListByPhoneError: false,
+  taskListByPhone: [],
 
   deleteProductionOutput: false,
   deleteProductionOutputError: false,
@@ -159,6 +176,9 @@ const initialState = {
   fetchingOrderIdByUserId: false,
   fetchingOrderIdByUserIdError: false,
   orderPhoneList: [],
+
+  updatingQCStatus: false,
+  updatingQCStatusError: false,
 
   fetchingOrderByUser: false,
   fetchingOrderByUserError: false,
@@ -219,13 +239,25 @@ const initialState = {
   approvingSpare: false,
   approvingSpareError: false,
 
+  showPhoneData: false,
+
   updatingProcessTask: false,
   updatingProcessTaskError: false,
 
+  reassigningPhones: false,
+  reassigningPhonesError: false,
+
+  fetchingCompletedPhones: false,
+  fetchingCompletedPhonesError: false,
+  completedPhone: [],
+
+  fetchingRemainingPhones: false,
+  fetchingRemainingPhonesError: false,
+  remainingPhones: [],
 
   fetchingItemTaskCount: false,
   fetchingItemTaskCountError: false,
-  itemTaskcount:{}
+  itemTaskcount: {}
 
 };
 
@@ -247,6 +279,20 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingTodayProduction: false,
         fetchingTodayProductionError: true,
+      };
+
+    case types.UPDATE_SPARE_PACKET_REQUEST:
+      return { ...state, updatingSparePacket: true };
+    case types.UPDATE_SPARE_PACKET_SUCCESS:
+      return {
+        ...state,
+        updatingSparePacket: false,
+      };
+    case types.UPDATE_SPARE_PACKET_FAILURE:
+      return {
+        ...state,
+        updatingSparePacket: false,
+        updatingSparePacketError: true,
       };
 
     case types.GET_TOMORROW_PRODUCTION_REQUEST:
@@ -344,19 +390,20 @@ export const refurbishReducer = (state = initialState, action) => {
         addingProductionOutputError: true,
       };
 
-    case types.GET_SHIFTS_REQUEST:
-      return { ...state, fetchingShiftsByUserId: true };
-    case types.GET_SHIFTS_SUCCESS:
+    case types.GET_PHONE_DETAILS_REQUEST:
+      return { ...state, fetchingPhoneDetails: true };
+    case types.GET_PHONE_DETAILS_SUCCESS:
       return {
         ...state,
-        fetchingShiftsByUserId: false,
-        shiftsData: action.payload,
+        fetchingPhoneDetails: false,
+        phoneDetails: action.payload,
       };
-    case types.GET_SHIFTS_FAILURE:
+    case types.GET_PHONE_DETAILS_FAILURE:
       return {
         ...state,
-        fetchingShiftsByUserId: false,
-        fetchingShiftsByUserIdError: true,
+        fetchingPhoneDetails: false,
+        fetchingPhoneDetailsError: true,
+
       };
 
     //transfer output
@@ -370,6 +417,14 @@ export const refurbishReducer = (state = initialState, action) => {
             ? action.payload
             : item
         ),
+      };
+
+    case types.EMPTY_REFURBISH_LIST:
+      return {
+        ...state,
+        productionOrder: [],
+        orderByUser: [],
+        repairOrder: [],
       };
     case types.TRANSFER_PRODUCTION_OUTPUT_TO_INVENTORY_FAILURE:
       return { ...state };
@@ -478,6 +533,12 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingtechnicianByPhone: false,
+        assignOrderById: false,
+        productionOrder: state.productionOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_TECHNICIAN_BY_PHONE_FAILURE:
       return {
@@ -551,8 +612,29 @@ export const refurbishReducer = (state = initialState, action) => {
 
       };
 
+    case types.GET_TASK_LIST_BY_PHONE_REQUEST:
+      return { ...state, fetchingTaskListByPhone: true };
+    case types.GET_TASK_LIST_BY_PHONE_SUCCESS:
+      return {
+        ...state,
+        fetchingTaskListByPhone: false,
+        taskListByPhone: action.payload
+      };
+    case types.GET_TASK_LIST_BY_PHONE_FAILURE:
+      return {
+        ...state,
+        fetchingTaskListByPhone: false,
+        fetchingTaskListByPhoneError: true,
+
+
+      };
+
     case types.HANDLE_PHONE_BY_TECHNICIAN_MODAL:
       return { ...state, phoneByTechnician: action.payload };
+
+    case types.HANDLE_PHONE_DETAILS_MODAL:
+      return { ...state, showPhoneData: action.payload };
+
 
     case types.HANDLE_ASSIGN_REPAIR_MODAL:
       return { ...state, showAssignRepairModal: action.payload, catalogueInRefurbish: [] };
@@ -627,7 +709,7 @@ export const refurbishReducer = (state = initialState, action) => {
       };
 
     case types.HANDLE_ORDER_PHONE_MODAL:
-      return { ...state, showPhoneList: action.payload };
+      return { ...state, showPhoneList: action.payload, orderPhoneList: [] };
 
     case types.GET_ORDERID_BY_USER_REQUEST:
       return { ...state, fetchingOrderIdByUserId: true };
@@ -649,6 +731,12 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingRepairStatus: false,
+        repairPhone: state.repairPhone.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
       };
     case types.UPDATE_REPAIR_STATUS_FAILURE:
       return {
@@ -693,6 +781,12 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingTechnicianForRepair: false,
+        showAssignRepairModal: false,
+        productionOrder: state.productionOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_FAILURE:
       return {
@@ -702,7 +796,7 @@ export const refurbishReducer = (state = initialState, action) => {
       };
 
     case types.HANDLE_REPAIR_PHONE_MODAL:
-      return { ...state, showRepairPhoneList: action.payload };
+      return { ...state, showRepairPhoneList: action.payload, repairPhone: [] };
 
     case types.GET_REPAIR_ORDER_BY_USER_REQUEST:
       return { ...state, fetchingRepairorderById: true };
@@ -730,6 +824,11 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingQcInspectionButton: false,
+        orderByUser: state.orderByUser.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_QC_INSPECTION_BUTTON_FAILURE:
       return {
@@ -738,12 +837,38 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingQcInspectionButtonError: true,
       };
 
+    case types.UPDATE_QC_STATUS_REQUEST:
+      return { ...state, updatingQCStatus: true };
+    case types.UPDATE_QC_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingQCStatus: false,
+        orderPhoneList: state.orderPhoneList.map((item) => {
+          if (item.phoneId == action.payload.phoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_QC_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingQCStatus: false,
+        updatingQCStatusError: true,
+      };
+
     case types.UPDATE_REPAIR_INSPECTION_BUTTON_REQUEST:
       return { ...state, updatingRepairInspectionButton: true };
     case types.UPDATE_REPAIR_INSPECTION_BUTTON_SUCCESS:
       return {
         ...state,
         updatingRepairInspectionButton: false,
+        repairOrder: state.repairOrder.map((item) =>
+          item.orderPhoneId === action.payload.orderPhoneId
+            ? action.payload
+            : item
+        ),
       };
     case types.UPDATE_REPAIR_INSPECTION_BUTTON_FAILURE:
       return {
@@ -802,6 +927,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCT_BUILDER_IN_PROCESS_MODAL:
       return { ...state, showProductBuilderList: action.payload };
+
+    case types.SET_CLOSE_REPAIR_MODAL:
+      return { ...state, showAssignRepairModal: false, assignOrderById: false };
 
     case types.GET_CATALOGUE_LIST_IN_REFURBISH_REQUEST:
       return { ...state, fetchingCatalogueListInReurbish: true };
@@ -1030,55 +1158,152 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingTaskByPhoneIdError: true,
       };
 
-      case types.APPROVE_SPARE_REQUEST:
-        return { ...state, approvingSpare: true };
-      case types.APPROVE_SPARE_SUCCESS:
-        return {
-          ...state,
-          approvingSpare: false,
-          allSpareById: state.allSpareById.filter(
-            (item) => item.phoneSpareId !== action.payload.phoneSpareId
-          ),
-        };
-      case types.APPROVE_SPARE_FAILURE:
-        return {
-          ...state,
-          approvingSpare: false,
-          approvingSpareError: true,
-        };  
-        
-        case types.UPDATE_PROCESS_TASK_REQUEST:
-          return { ...state, updatingProcessTask: true };
-        case types.UPDATE_PROCESS_TASK_SUCCESS:
-          return {
-            ...state,
-            updatingProcessTask: false,
-            taskByPhone: state.taskByPhone.filter(
-              (item) => item.phoneTaskId !== action.payload.phoneTaskId
-            ),
-          };
-        case types.UPDATE_PROCESS_TASK_FAILURE:
-          return {
-            ...state,
-            updatingProcessTask: false,
-            updatingProcessTaskError: true,
-          };  
+    case types.APPROVE_SPARE_REQUEST:
+      return { ...state, approvingSpare: true };
+    case types.APPROVE_SPARE_SUCCESS:
+      return {
+        ...state,
+        approvingSpare: false,
+        allSpareById: state.allSpareById.filter(
+          (item) => item.phoneSpareId !== action.payload.phoneSpareId
+        ),
+      };
+    case types.APPROVE_SPARE_FAILURE:
+      return {
+        ...state,
+        approvingSpare: false,
+        approvingSpareError: true,
+      };
 
-          case types.GET_TASK_ITEM_COUNT_REQUEST:
-            return { ...state, fetchingItemTaskCount: true };
-          case types.GET_TASK_ITEM_COUNT_SUCCESS:
-            return {
-              ...state,
-              fetchingItemTaskCount: false,
-              itemTaskcount: action.payload,
-            };
-          case types.GET_TASK_ITEM_COUNT_FAILURE:
-            return {
-              ...state,
-              fetchingItemTaskCount: false,
-              fetchingItemTaskCountError: true,
-            };
+    case types.UPDATE_PROCESS_TASK_REQUEST:
+      return { ...state, updatingProcessTask: true };
+    case types.UPDATE_PROCESS_TASK_SUCCESS:
+      return {
+        ...state,
+        updatingProcessTask: false,
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_TASK_FAILURE:
+      return {
+        ...state,
+        updatingProcessTask: false,
+        updatingProcessTaskError: true,
+      };
 
+    case types.GET_TASK_ITEM_COUNT_REQUEST:
+      return { ...state, fetchingItemTaskCount: true };
+    case types.GET_TASK_ITEM_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingItemTaskCount: false,
+        itemTaskcount: action.payload,
+      };
+    case types.GET_TASK_ITEM_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingItemTaskCount: false,
+        fetchingItemTaskCountError: true,
+      };
+
+
+
+    case types.DELETE_TASK_LIST_REQUEST:
+      return { ...state, deletingTaskList: true };
+    case types.DELETE_TASK_LIST_SUCCESS:
+      return {
+        ...state,
+        deletingTaskList: false,
+        taskByPhone: state.taskByPhone.filter(
+          (item) => item.phoneTaskId !== action.payload.phoneTaskId
+        ),
+
+
+      };
+    case types.DELETE_TASK_LIST_FAILURE:
+      return {
+        ...state,
+        deletingTaskList: false,
+        deletingTaskListError: true,
+      };
+
+    case types.GET_COMPLETED_PHONES_REQUEST:
+      return { ...state, fetchingCompletedPhones: true };
+    case types.GET_COMPLETED_PHONES_SUCCESS:
+      return {
+        ...state,
+        fetchingCompletedPhones: false,
+        completedPhone: action.payload,
+      };
+    case types.GET_COMPLETED_PHONES_FAILURE:
+      return {
+        ...state,
+        fetchingCompletedPhones: false,
+        fetchingCompletedPhonesError: true,
+
+      };
+
+    case types.REASSIGN_PHONES_REQUEST:
+      return { ...state, reassigningPhones: true };
+    case types.REASSIGN_PHONES_SUCCESS:
+      return {
+        ...state,
+        reassigningPhones: false,
+        // taskByPhone: state.taskByPhone.map((item) => {
+        //   if (item.phoneTaskId == action.payload.phoneTaskId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.REASSIGN_PHONES_FAILURE:
+      return {
+        ...state,
+        reassigningPhones: false,
+        reassigningPhonesError: true,
+      };
+
+    case types.GET_REMAINING_PHONES_REQUEST:
+      return { ...state, fetchingRemainingPhones: true };
+    case types.GET_REMAINING_PHONES_SUCCESS:
+      return {
+        ...state,
+        fetchingRemainingPhones: false,
+        remainingPhones: action.payload,
+      };
+    case types.GET_REMAINING_PHONES_FAILURE:
+      return {
+        ...state,
+        fetchingRemainingPhones: false,
+        fetchingRemainingPhonesError: true,
+
+      };
+
+    case types.UPDATE_PAUSE_STATUS_REQUEST:
+      return { ...state, updatingPauseStatus: true };
+    case types.UPDATE_PAUSE_STATUS_SUCCESS:
+      return {
+        ...state,
+        updatingPauseStatus: false,
+        repairPhone: state.repairPhone.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
+      };
+    case types.UPDATE_PAUSE_STATUS_FAILURE:
+      return {
+        ...state,
+        updatingPauseStatus: false,
+        updatingPauseStatusError: true,
+      };
     default:
       return state;
   }

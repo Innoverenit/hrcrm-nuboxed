@@ -34,6 +34,7 @@ import {
          deleteLostOpportunity,
 } from "../../../Opportunity/OpportunityAction";
 import {getWonDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
@@ -80,381 +81,46 @@ function DealWonCard(props) {
      
       } = props;
 
-      if (isMobile){
-        return (    
-          <>
-        
-             
-        <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-              
-              <InfiniteScroll
-                 dataLength={wonDeals.length}
-                next={handleLoadMore}
-                hasMore={hasMore}
-                loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
-                height={"75vh"}
-              >
-                 {wonDeals.map((item) => {
-                         
-                         var findProbability = item.probability;
-                         item.stageList.forEach((element) => {
-                           if (element.oppStage === item.oppStage) {
-                             findProbability = element.probability;
-                           }
-                         });
-                         return (
-                            <div>
-                             <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
-                >
-                              <div class="flex justify-between ">
-                             
-                                        <div>
-                    <MultiAvatar
-                      primaryTitle={item.opportunityName}
-                      imageId={item.imageId}
-                      // imageURL={imageURL}
-                      imgWidth={"1.8rem"}
-                      imgHeight={"1.8rem"}
-                    />
-        </div>
-                                           
-                                           
-                                                <Tooltip>
-                                                <div class=" flex max-sm:w-full  flex-row md:flex-col">
-                                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
-                                                    Name
-                                                    </div> */}
-                                                    <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
-                                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
-              {item.opportunityName}
-            </Link> 
-                                                    {/* <Link
-                                toUrl={`dealDetails/${item.invOpportunityId}`}
-                                title={`${item.opportunityName}`}
-                              >
-                                {item.opportunityName}
-                              </Link> */}
-                              &nbsp;&nbsp;
-                {/* {date === currentdate ? (
-                  <span
-                    style={{
-                      color: "tomato",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    New
-                  </span>
-                ) : null} */}
-               
-                                                    </div>
-        </div>
-                                                </Tooltip>
-                                      
-                                       
-        
-                                        
-                                   
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                            <div class=" text-sm text-cardBody font-poppins">   
-                                            <Link to ="/investor">
-                                {item.investor}
-                                </Link>
-                                            </div>
-                                       
-                                       
-                                       
-                                          
-        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                            <div class=" text-sm text-cardBody font-poppins">
-                                           
-                    {item.contactName === null ? "None" :
-                      <MultiAvatar2
-                        primaryTitle={item.contactName}
-                        imageId={item.imageId}
-                         imageURL={item.imageURL}
-                        imgWidth={"1.8em"}
-                        imgHeight={"1.8em"}
-                      />
-                    }
-                  
-                                            </div>
-                                       
-                                        </div>
-                                        <div class="flex justify-between">
-                                      
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
-        
-                                            <div class=" text-sm justify-center text-cardBody font-poppins">
-                                            {dayjs(item.startDate).format("DD/MM/YYYY")}
-                                            </div>
-                                       
-                                     
-                                        
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
-        
-                                            <div class=" text-sm text-cardBody font-poppins text-center">
-                                            <CurrencySymbol currencyType={item.currency} />
-                    &nbsp;
-                    {item.proposalAmount}
-        
-                                            </div>
-                                       
-                                       
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
-        
-                                            <div class=" text-sm text-cardBody font-poppins text-center">
-                                            <Dropdown
-                      overlay={
-                        <div>
-                          <Menu mode="horizontal">
-                            <Menu.Item
-                              style={{
-                                paddingLeft: 5,
-                                paddingRight: 5,
-                                backgroundColor: "#F5F5F5",
-                              }}
-                            >
-                              
-                            </Menu.Item>
-                          </Menu>
-                        </div>
-                      }
-                      trigger={["click"]}
-                    >
-                      <Tooltip title={item.stageName}>
-                        {" "}
-                        <Progress
-                          type="circle"
-                          style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
-                          percent={findProbability}
-                          width={30}
-                          strokeColor={"#005075"}
-                        />
-                      </Tooltip>
-                    </Dropdown>
-        
-                                            </div>
-                                       
-                                       
-                                            {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
-        
-                                            <div class=" text-sm text-cardBody font-poppins">
-                                            
-                                            <span>
-                                            <MultiAvatar2
-                      primaryTitle={item.assignedTo}
-                      imgWidth={"1.8em"}
-                      imgHeight={"1.8em"}
-                    />
-                    </span>
-                     
-                                            </div>
-                                        
-                                      
-                               
-                               {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
-        
-                      <Tooltip title={item.ownerName}>
-                  <span>
-                    <MultiAvatar2
-                      primaryTitle={item.ownerName}
-                      imageId={item.ownerImageId}
-                        imageURL={item.imageURL}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </span>
-                    </Tooltip>
-                          
-                           </div>
-                          
-                           <div class="flex justify-between">
-                           <div >
-                            <Tooltip title='Click to Open'><span
-                  onClick={() => {
-                   props.LinkClosedOpportunity(
-                     item.opportunityId,
-                     {
-                       closeInd:false,
-                     }
-                          
-                   );         
-                 }}         
-               
-                 >
-                  <LockIcon
-                        style={{
-                          fontSize: "0.8rem",
-                          cursor: "pointer",
-                        }}
-                      />
-                    </span>
-             </Tooltip> 
-                            </div>
-                            <div>
-                            <Tooltip
-                                placement="right"
-                                title={
-                                  <FormattedMessage
-                                    id="app.notes"
-                                    defaultMessage="Notes"
-                                  />
-                                }
-                              >
-                                <span
-                                  onClick={() => {
-                                    props.handleDealsNotesDrawerModal(true);
-                                    handleSetCurrentItem(item);
-                                  }}
-                                >
-                                  <NoteAltIcon
-                                     className="!text-base cursor-pointer text-[green]"
-                                  />
-                                </span>
-                              </Tooltip>
-                            </div>
-                          
-                          
-                           
-                              <div>
-                                 <Tooltip
-                                placement="right"
-                                title={
-                                  <FormattedMessage
-                                    id="app.edit"
-                                    defaultMessage="Edit"
-                                  />
-                                }
-                              >
-                                {user.imInd === true && user.dealUpdateInd === true && (
-                                  <span class="cursor-pointer text-[blue]"
-                                    onClick={() => {
-                                      handleUpdateDealModal(true);
-                                      handleSetCurrentItem(item);
-                                    }}
-                                  >
-                                    <BorderColorIcon
-                                      className="!text-base cursor-pointer text-[tomato]"
-                                    />
-                                  </span>
-                                )}
-                              </Tooltip>
-                              </div>
-                            
-                            
-                              <div>
-                              <StyledPopconfirm
-                                title="Do you want to delete?"
-                                onConfirm={() =>
-                                  deleteOpportunityData(item.opportunityId)
-                                }
-                              >
-                                {user.imInd === true && user.dealDeleteInd === true && (
-                                
-                                  <DeleteOutlined
-                                    type="delete"
-                                    className="!text-base text-[red] cursor-pointer"
-                                  />
-                                  )}
-                                  </StyledPopconfirm>
-                              </div>
-                     
-                           
-                         
-                                       
-                           <div>
-                           <span
-                 
-                 style={{ cursor: "pointer" }}
-                 onClick={() => {
-                    //  props.getAllRecruitmentByOppId(item.opportunityId);
-                    //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
-                    //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
-                    //  props.getAllRecruitmentPositionFilledByOppId(
-                    //    item.opportunityId
-                    //  );
-                    //  props.getAllRecruitmentDetailsByOppId(item.opportunityId);
-                    //  props.handleOpportunityDrawerModal(true);
-                    //  props.getOpportunitySKill(item.oppInnitiative);
-                    //  handleSetCurrentOpportunityId(item.opportunityName);
-                   }}
-                 >
-                   {user.pulseAccessInd === true && (
-                     <MonitorHeartIcon
-                       style={{ fontSize: "0.8rem", color: "#df9697" }}
-                     />
-                   )}
-                 </span>
-                                </div>
-                                </div>
-                              
-                                    </div>
-                                </div>
-        
-        
-                            )
-                        })}
-              </InfiniteScroll>
-        
-              </div>
-              <UpdateDealModal
-                currentItem={currentItem}
-                openupdateDealModal={openupdateDealModal}
-                handleUpdateDealModal={handleUpdateDealModal}
-                handleSetCurrentItem={handleSetCurrentItem}
-              />
-              <AddDealsNotesDrawerModal
-                currentItem={currentItem}
-                addDrawerDealsNotesModal={props.addDrawerDealsNotesModal}
-                handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
-                handleSetCurrentItem={handleSetCurrentItem}
-              />
-            </>
-          ); 
-      }
-
       return (    
   <>
 
      
-<div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[13.12rem]"><FormattedMessage
+<div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[13.12rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" md:w-[6.21rem]"><FormattedMessage
+        <div className=" w-[6.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.investor"
                   defaultMessage="investor"
                 /></div>
-        <div className=" md:w-[9.21rem] "><FormattedMessage
+        <div className=" w-[9.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                   id="app.sponsor"
                   defaultMessage="sponsor"
                 /></div>
-        <div className="md:w-[7.11rem]"><FormattedMessage
+        <div className="w-[7.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.startdate"
                   defaultMessage="startdate"
                 /></div>
-        <div className="md:w-[11.16rem]"><FormattedMessage
+        <div className="w-[11.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
                 /></div>
-        <div className="md:w-[5.14rem]"><FormattedMessage
+        <div className="w-[5.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
                 /></div> 
-        <div className="md:w-[7.1rem]"><FormattedMessage
+        <div className="w-[7.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.salesRep"
                   defaultMessage="salesRep"
                 /></div>
-        <div className="md:w-[3.22rem]"><FormattedMessage
+        <div className="w-[3.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
-        <div className="md:w-[5.71rem]"></div>
-        <div className="w-12"><FormattedMessage
+        <div className="w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-20 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.action"
                   defaultMessage="action"
                 /></div>
@@ -477,13 +143,11 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
-                      // style={{
-                      //   borderBottom: "3px dotted #515050",
-                      // }}
+                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
+                      
                     >
-                      <div class="flex ">
-                      <div className=" flex font-medium  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div className=" flex font-medium  w-[13.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -503,7 +167,7 @@ function DealWonCard(props) {
                                             Name
                                             </div> */}
                                             <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link> 
                                             {/* <Link
@@ -530,58 +194,61 @@ function DealWonCard(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins">   
+                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     <Link to ="/investor">
                         {item.investor}
                         </Link>
                                     </div>
                                 </div>
+                                </div>
                                
-                                <div className=" flex font-medium flex-col md:w-[6.4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                               
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex font-medium flex-col w-[9.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                                    <div class=" text-sm text-cardBody font-poppins">
-                                   
-            {item.contactName === null ? "None" :
-              <MultiAvatar2
-                primaryTitle={item.contactName}
-                imageId={item.imageId}
-                 imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
-              />
-            }
-          
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
+                                  <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                 
+          {item.contactName === null ? "None" :
+            <MultiAvatar2
+              primaryTitle={item.contactName}
+              imageId={item.imageId}
+               imageURL={item.imageURL}
+              imgWidth={"1.8em"}
+              imgHeight={"1.8em"}
+            />
+          }
+        
+                                  </div>
+                              </div>
+                                <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center text-cardBody font-poppins">
+                                    <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     <CurrencySymbol currencyType={item.currency} />
             &nbsp;
             {item.proposalAmount}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins text-center">
+                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     <Dropdown
               overlay={
                 <div>
@@ -604,7 +271,7 @@ function DealWonCard(props) {
                 {" "}
                 <Progress
                   type="circle"
-                  style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }}
+                  style={{ cursor: "pointer", color: "red",fontSize:"1.25" }}
                   percent={findProbability}
                   width={30}
                   strokeColor={"#005075"}
@@ -614,10 +281,10 @@ function DealWonCard(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
-                                    <div class=" text-sm text-cardBody font-poppins">
+                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -629,7 +296,7 @@ function DealWonCard(props) {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[5.1rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -646,8 +313,8 @@ function DealWonCard(props) {
             </Tooltip>
                    </div>
                    </div>
-                  
-                   <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
+                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                   <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title='Click to Open'><span
           onClick={() => {
@@ -663,7 +330,7 @@ function DealWonCard(props) {
          >
           <LockIcon
                 style={{
-                  fontSize: "0.8rem",
+                  fontSize: "1.25rem",
                   cursor: "pointer",
                 }}
               />
@@ -687,13 +354,13 @@ function DealWonCard(props) {
                           }}
                         >
                           <NoteAltIcon
-                            className="!text-base cursor-pointer text-[green]"
+                            className="!text-xl cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
                     </div>
                   </div>
-                  <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
                    
                       <div>
                          <Tooltip
@@ -713,7 +380,7 @@ function DealWonCard(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-base cursor-pointer text-[tomato]"
+                             className="!text-xl cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -732,7 +399,7 @@ function DealWonCard(props) {
                         
                           <DeleteOutlined
                             type="delete"
-                            className="!text-base text-[red] cursor-pointer"
+                            className="!text-xl text-[red] cursor-pointer"
                           />
                           )}
                           </StyledPopconfirm>
@@ -740,7 +407,7 @@ function DealWonCard(props) {
              
                     <div></div>
                   </div>   
-                                <div class="flex flex-col w-[0%] max-sm:flex-row max-sm:w-[10%]">
+                                <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
                    <div>
                    <span
          
@@ -760,13 +427,13 @@ function DealWonCard(props) {
          >
            {user.pulseAccessInd === true && (
              <MonitorHeartIcon
-               style={{ fontSize: "0.8rem", color: "#df9697" }}
+               style={{ fontSize: "1.25rem", color: "#df9697" }}
              />
            )}
          </span>
                         </div>
             </div>
-                      
+                  </div>    
                             </div>
                         </div>
 

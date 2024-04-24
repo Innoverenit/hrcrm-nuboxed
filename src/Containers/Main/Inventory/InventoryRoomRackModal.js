@@ -8,17 +8,11 @@ function InventoryRoomRackModal(props) {
     return (
         <>
             <StyledDrawer
-               title={<FormattedMessage
-                id="app.roomAndRack"
-                defaultMessage="Room And Rack"
-              />}
-                // title="Room And Rack"
+               title={props.rowData.locationName}
                 width="60%"
                 visible={props.addroomrackininventory}
                 destroyOnClose
                 maskClosable={false}
-                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                style={{ marginTop: "3rem" }}
                 onClose={() => props.handleInventoryRoomRackModal(false)}
                 footer={null}
             >

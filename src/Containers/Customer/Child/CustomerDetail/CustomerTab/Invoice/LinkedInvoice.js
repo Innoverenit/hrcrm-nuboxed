@@ -49,7 +49,7 @@ class LinkedInvoice extends Component {
             >
               <DownloadIcon
                 type="download"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer",fontSize:"1.35rem", }}
               />
             </a>
           );
@@ -68,7 +68,7 @@ class LinkedInvoice extends Component {
               />}
             
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlined type="delete" style={{ cursor: "pointer",fontSize:"1.25rem", color: "red" }} />
             </StyledPopconfirm>
           );
         },
@@ -78,6 +78,7 @@ class LinkedInvoice extends Component {
     // if (fetchingDocumentsByCustomerIdError) {
     //   return <APIFailed />;
     // }
+    // if (fetchingCustomerOpportunity) return <BundleLoader/>;
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (

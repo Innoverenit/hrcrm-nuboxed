@@ -12,8 +12,8 @@ class AddActionModal extends Component {
     return (
       <div>
         <StyledDrawer
-        // title="Notes"
-        //   title={this.props.rowdata.name}
+        title="Action Points"
+          // title={this.props.rowdata.name}
           width="64%"
           visible={this.props.addDrawerActionModal}
           onClose={() => this.props.handleActionDrawerModal(false)}

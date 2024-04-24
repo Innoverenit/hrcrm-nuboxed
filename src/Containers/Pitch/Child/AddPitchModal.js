@@ -9,6 +9,9 @@ class AddPitchModal extends Component {
   render() {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const handleClose = () => {
+      window.location.reload(true);
+    };
     const { addLeadsModal, handleLeadsModal, ...formProps } = this.props;
     return (
       <>
@@ -25,7 +28,10 @@ class AddPitchModal extends Component {
           visible={this.props.addPitchModal}
           destroyOnClose
           maskClosable={false}
-          onClose={() => this.props.handlePitchModal(false)}
+          onClose={() => {
+            handleClose();
+            this.props.handlePitchModal(false)}}
+          // onClose={() => this.props.handlePitchModal(false)}
           footer={null}
         >
         <Suspense fallback={<BundleLoader />}>

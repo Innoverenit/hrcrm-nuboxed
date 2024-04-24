@@ -37,6 +37,7 @@ class DealSelectStages extends Component {
             return (
               <div
                 style={{
+                 
                   cursor:
                     // this.props.recruitOwner !=this.props.fullName
                     //   ? "not-allowed"
@@ -89,6 +90,7 @@ class DealSelectStages extends Component {
                         />
                       </g>
                     </g>
+                
                     <g>
                       <title></title>
                       <path
@@ -96,13 +98,20 @@ class DealSelectStages extends Component {
                         id="svg_1"
                         d="m0.74999,0.75001l14.25,0l4.75001,7.49998l-4.75001,7.50001l-14.25,0l4.75001,-7.50001l-4.75001,-7.49998z"
                         stroke-width="0.5"
+                        // fill={
+                        //   item.stageId === rec.stageId
+                        //     ? "rgba(3, 89, 30, 0.6)"
+                        //     : "lightgrey"
+                        // }
                         fill={
-                          item.stageId === rec.stageId
-                            ? "rgba(3, 89, 30, 0.6)"
-                            : "lightgrey"
+                          item.stageName === rec.oppStage
+               
+                            ? "green"
+                            : "rgba(3, 89, 30, 0.6)"
                         }
                       />
                     </g>
+                   
                   </svg>
                   {/* <svg
                     width="22"

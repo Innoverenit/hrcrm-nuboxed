@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
+import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { movetoProductionArchieve } from "../../AccountAction"
@@ -8,8 +8,10 @@ function MoveToProductionArchieve(props) {
 
     function onChange() {
         props.movetoProductionArchieve({
-            dispatchInd: props.dispatchInd ? false : true
-        }, props.productionProductId)
+            dispatchInd: props.dispatchInd ? false : true,
+            orderProductLinkId: props.orderProductLinkId,
+            orderId: props.orderId
+        }, props.productionProductId, props.orderId)
     };
     return (
         <>

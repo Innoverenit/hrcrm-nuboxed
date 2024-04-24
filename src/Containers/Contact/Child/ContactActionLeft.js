@@ -17,6 +17,7 @@ import {
   ClearReducerDataOfContact,
   getContactListByUserId,
   getContactTeamRecord,
+  getContactAllRecord,
   getCustomerRecords,
   getContactRecord,
 } from "../ContactAction";
@@ -28,10 +29,11 @@ const { Search } = Input;
 const ContactActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
+  const [searchOnEnter, setSearchOnEnter] = useState(false);
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (e.target.value.trim() === "") {
+    if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       props.getContactListByUserId(props.userId, pageNo,"creationdate");
       props.ClearReducerDataOfContact()
@@ -41,6 +43,7 @@ const ContactActionLeft = (props) => {
     if (currentData.trim() !== "") {
       // Perform the search
       props.inputContactDataSearch(currentData);
+      setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
     }
@@ -60,6 +63,14 @@ const ContactActionLeft = (props) => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+  console.log(transcript);
   console.log(transcript);
   useEffect(() => {
     // props.getContactRecord(props.userId);
@@ -71,6 +82,10 @@ const ContactActionLeft = (props) => {
       } else if (props.viewType === "teams") {
         props.getContactTeamRecord(props.userId);
       } 
+      else if (props.viewType === "all") {
+        props.getContactAllRecord(props.orgId,"Customer");
+      }
+      
      
       if (transcript) {
         console.log(">>>>>>>", transcript);
@@ -160,11 +175,11 @@ const ContactActionLeft = (props) => {
       >
         <Badge
           size="small"
-          // count={
-          //   (props.viewType === "all" &&
-          //     props.contactRecord.customerContactCount) ||
-          //   0
-          // }
+          count={
+            (props.viewType === "all" &&
+              props.contactAllRecord.contact) ||
+            0
+          }
           overflowCount={5000}
         >
           <span
@@ -207,7 +222,7 @@ const ContactActionLeft = (props) => {
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChange}
-            // value={currentData}
+             value={currentData}
           />
         {/* <Input
           placeholder="Search by Name, Company"
@@ -250,12 +265,14 @@ const mapStateToProps = ({ auth, contact,departments }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   recordData: contact.recordData,
+  contactAllRecord:contact.contactAllRecord,
   contactRecord:contact.contactRecord,
   contactTeamRecord:contact.contactTeamRecord,
   customerRecordData: contact.customerRecordData,
   contactByUserId: contact.contactByUserId,
   fetchingContactInputSearchData: contact.fetchingContactInputSearchData,
   departments: departments.departments,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -265,6 +282,7 @@ const mapDispatchToProps = (dispatch) =>
       ClearReducerDataOfContact,
       getContactListByUserId,
       getContactTeamRecord,
+      getContactAllRecord,
       getCustomerRecords,
       getContactRecord,
       getDepartments

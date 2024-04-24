@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
@@ -82,7 +81,7 @@ class AccountStepper extends Component {
 
                 </StyledSteps>
                 <div
-                    class="min-[50vh]"
+                    class="min-[45vh]"
                 >{steps[current].content}</div>
                 <div class="flex justify-end">
                     <div className="steps-action">
@@ -90,18 +89,16 @@ class AccountStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        <Button
-                                            style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
-
                                         >
                                             <FormattedMessage
                                                 id="app.proceed"
                                                 defaultMessage="Proceed"
                                             />
-                                        </Button>
+                                        </Button>}
                                     </>
                                 )}
                             </>
@@ -127,6 +124,8 @@ class AccountStepper extends Component {
 
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+    addingOrder: distributor.addingOrder,
+    orderId: distributor.orderDetailsId.orderId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

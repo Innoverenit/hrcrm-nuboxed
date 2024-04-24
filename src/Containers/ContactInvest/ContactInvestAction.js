@@ -2,6 +2,7 @@ import * as types from "./ContactInvestActionType";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
+import Swal from "sweetalert2";
 import { message } from "antd";
 
 export const setContactInvetViewType = (viewType) => (dispatch) =>
@@ -70,7 +71,12 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
         dispatch({
           type: types.GET_CONTACTS_INVEST_FAILURE,
           payload: err,
-        });});};
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });};
 
         export const getContactInvestFilterData = (userId,pageNo,filter) => (dispatch) => {
           dispatch({
@@ -184,7 +190,7 @@ export const getTeamContactInvest = (userId) => (dispatch) => {
     type: types.GET_TEAM_CONTACTINVEST_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investor/contact/team/count/${userId}`, {
+    .get(`${base_url}/investor/contact/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -245,13 +251,13 @@ export const handleContactInvestNotesDrawerModal = (modalProps) => (dispatch) =>
 };
 
 
-export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
+export const getAllContactInvest = (pageNo,type) => (dispatch) => {
  
   dispatch({
     type: types.GET_ALL_CONTACT_INVEST_REQUEST,
   });
   axios
-    .get(`${base_url}/investor/contact/${pageNo}/${filter}`, {
+    .get(`${base_url}/contact/all/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -269,6 +275,41 @@ export const getAllContactInvest = (pageNo,filter) => (dispatch) => {
         type: types.GET_ALL_CONTACT_INVEST_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
+    });
+};
+
+export const getTeamsContactInvest = (userId,pageNo) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_TEAMS_CONTACT_INVEST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investor/contact/teams/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAMS_CONTACT_INVEST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TEAMS_CONTACT_INVEST_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong , reach out to support!',
+      })
     });
 };
 
@@ -426,4 +467,37 @@ export const ClearReducerDataOfContactInvest = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_REDUCER_DATA_CONTACT_INVEST,
   });
+};
+
+export const handleContactInvestPulseDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_INVEST_PULSE_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getContactInvestAllRecord = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_INVEST_ALL_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/contact/all/record/count/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_INVEST_ALL_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_INVEST_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
 };

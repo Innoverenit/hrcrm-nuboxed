@@ -36,6 +36,34 @@ export const getProducts = (pageNo) => (dispatch) => {
       });
     });
 };
+
+export const getdeleteProducts = () => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETEPRODUCTS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/deleteProductHistory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETEPRODUCTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETEPRODUCTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getService = () => (dispatch) => {
   dispatch({
     type: types.GET_SERVICE_REQUEST,
@@ -463,6 +491,34 @@ export const deleteProductData = (id) => (dispatch) => {
     });
 };
 
+export const deleteCatalogData = (data,productId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_CATALOG_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/product/delete/${productId}`,data,
+    {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getProducts(0))
+      console.log(res);
+      dispatch({
+        type: types.DELETE_CATALOG_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_CATALOG_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getSuspendProducts = () => (dispatch) => {
   dispatch({
     type: types.GET_SUSPEND_PRODUCT_REQUEST,
@@ -598,7 +654,12 @@ export const getRecords = () => (dispatch) => {
     type: types.GET_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/user/record/count`, {})
+    .get(`${base_url2}/product/record/count`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1036,6 +1097,33 @@ export const addProduct = (product, cb) => (dispatch) => {
     });
 };
 
+export const addCategory = (product, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_CATEGORY_REQUEST });
+  axios
+    .post(`${base_url2}/product/productcategory`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
 export const handleProductBuilderDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCT_BUILDER_DRAWER,
@@ -1049,11 +1137,11 @@ export const getProductbuilder = () => (dispatch) => {
   });
   axios
     .get(`${base_url2}/supplies`,
-    {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1157,7 +1245,7 @@ export const uploadCatalogueList = (data) => (dispatch) => {
     });
 };
 
-export const removeProductBuilder = (data,productSupplyLinkId) => (dispatch) => {
+export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCT_BUILDER_REQUEST,
   });
@@ -1188,8 +1276,8 @@ export const updateProSupplBuilder = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_PRO_SUPPL_BUILDER_REQUEST });
   axios
     // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {
-      .post(`${base_url2}/productionBuilder/supplies`, data, {
-    headers: {
+    .post(`${base_url2}/productionBuilder/supplies`, data, {
+      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
@@ -1289,10 +1377,11 @@ export const getAllProductList = () => (dispatch) => {
     type: types.GET_ALL_PRODUCT_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/all-product`, {
+    .get(`${base_url2}/product/productNew`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },})
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1312,8 +1401,8 @@ export const getAllProductList = () => (dispatch) => {
 export const PstoProductionBuilder = (data) => (dispatch) => {
   dispatch({ type: types.POST_PRODUCTION_BUILDER_REQUEST });
   axios
-      .post(`${base_url2}/production/productionProductBuilder`, data, {
-    headers: {
+    .post(`${base_url2}/production/productionProductBuilder`, data, {
+      headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
@@ -1337,3 +1426,36 @@ export const PstoProductionBuilder = (data) => (dispatch) => {
     });
 };
 
+export const handleCategoryModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CATEGORY_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getCategory = () => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/allProductCatagory`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CATEGORY_FAILURE,
+        payload: err,
+      });
+    });
+};

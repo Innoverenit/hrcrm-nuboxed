@@ -9,6 +9,7 @@ import {
   CloseCircleOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -22,6 +23,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {
   getAprrovalTaskTable,
   deleteTask,
+  handleProspectConfirmationModal,
   approveTaskByTaskId,
   rejectTaskByTaskId,
   handleUpdateTaskModal,
@@ -35,6 +37,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
+import AddConfirmProspectStatusModal from "./AddConfirmProspectStatusModal";
 
 const AddTaskNotesDrawerModal = lazy(() => import("./AddTaskNotesDrawerModal"));
 const UpdateTaskModal = lazy(() => import("./UpdateTaskModal"));
@@ -42,6 +45,7 @@ const ButtonGroup = Button.Group;
 
 const TaskApproveTable = (props) => {
   const [data, setData] = useState("");
+  const [rowdata, setrowData] = useState("");
   const [data1, setData1] = useState("");
   const [currentNameId, setCurrentNameId] = useState("");
   const tab = document.querySelector('.ant-layout-sider-children');
@@ -56,6 +60,9 @@ const TaskApproveTable = (props) => {
     setPage(page + 1);
     props.getAprrovalTaskTable(props.employeeId,page);
   }, []);
+  const handleRowData = (data) => {
+    setrowData(data);
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -112,239 +119,42 @@ const TaskApproveTable = (props) => {
     userDetails: { employeeId },
   } = props;
 
-  if (isMobile){
-    return (
-      <>
-        
-            <div class="rounded-lg  p-2 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-        
-  <InfiniteScroll
-          dataLength={approvalTaskTable.length}
-          next={handleLoadMore}
-        hasMore={hasMore}
-          loader={fetchingApproveTaskTable?<div class="flex items-center" >Loading...</div>:null}
-          height={"75vh"}
-          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-        >
-            {approvalTaskTable.map((item) => { 
-          const currentDate = moment();
-          const completionDate = moment(item.completionDate);
-          const endDate = moment(item.endDate);
-          const difference = currentDate.diff(endDate, 'days');
-          const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-          const completeDeviation = endDate.diff(completionDate, 'days');
-           console.log("difference",difference)
-           console.log("deviationDate",incompleteDeviationDate)
-                      return (
-                          <div>
-                               <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
-                >
-                                       <div class="flex justify-between items-center">
-                                  
-  <div className="flex  items-center"> 
-  {item.priority === "High" && (
-                        <div
-                        class="rounded-[50%] h-[2.1875em] w-[2.5rem] bg-[red]"
-                        ></div>
-                      )}
-                      {item.priority === "Medium" && (
-                        <div
-                        class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]"
-                        ></div>
-                      )}
-                      {item.priority === "Low" && (
-                        <div
-                        class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]"
-                        ></div>
-                      )}
-                      <div class=" w-1"></div>
-          
-                                          <Tooltip>
-                                          <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
-                                             
-                                              <div class="text-xs text-cardBody font-poppins cursor-pointer">                                       
-                                              {item.taskType}
-         
-                                              </div>
-                                           </div>
-                                          </Tooltip>
-                                          
-                                          </div>
-                                
-  
-                                 
-                                      {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
-                                      <div class=" text-xs text-cardBody font-semibold  font-poppins">   
-                                      <span   
-                  onClick={() => {
-                    props.handleTaskopenModal(true);               
-                    handleSetCurrentProcessName(item)
-                    // this.props.setCurrentOpportunityRecruitMentData(item);
-                  }}
-                  className="cursor-pointer text-[#042E8A]"        
-                 >
-  
-                   {`${item.taskName} `} &nbsp;
-  
-  
-                 </span>
-                                      </div>
-                                  
-                                  </div>
-                 
-                     
-                                  <div class="flex justify-between items-center">
-                                  <div class="text-xs text-cardBody font-poppins ">
-                                      <MultiAvatar
-                                      // style={{marginBottom:"0.25rem"}}
-                    primaryTitle={item.submittedBy}
-                    imgWidth={"1.8rem"}
-                    imgHeight={"1.8rem"}
-                  />
-                                      </div>
-                                      <div class="text-xs text-cardBody font-poppins ">
-                                      <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
-                                      </div>
-
-
-                                    </div>
-    
-    
-                    
-                     <div class="flex w-44 ">
-                     <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
-                      <div class=" w-36">
-                      {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
-      <>
-        <div>
-          <Button
-          onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-            style={{ backgroundColor: "teal", color: "white" }}
-          >
-            <FormattedMessage id="app.approve" defaultMessage="Approve" />
-          </Button>
-          <Button
-            style={{
-              backgroundColor: "rgb(233, 79, 79)",
-              color: "white",
-            }}
-            onClick={() => rejectTaskByTaskId(item.taskId)}
-          >
-            <FormattedMessage id="app.reject" defaultMessage="Reject" />
-          </Button>
-        </div>
-      </>
-    ) : (
-      <>
-         {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-          <CheckCircleOutlined
-            type="check-circle"
-            theme="twoTone"
-            twoToneColor="#52c41a"
-            size={140}
-            style={{ fontSize: "1rem" }}
-          />
-          ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-          <CloseCircleOutlined
-            type="close-circle"
-            theme="twoTone"
-            twoToneColor="red"
-            size={140}
-            style={{ fontSize: "1rem" }}
-          />
-        ) : (
-          <></>
-        )}
-      </>
-    )}
-    </div>
-  </div>
-  
-                            
-                      <div class=" ml-2"></div>
-                      <div class="flex flex-col justify-evenly  ">
-                      <Tooltip title="Notes">
-         <NoteAltIcon
-                  onClick={() => {
-                    handleTaskNotesDrawerModal(true);
-                    handleSetTaskNameId(item);
-                  }}
-                  className="!text-base cursor-pointer text-[#green]"
-                />
-             </Tooltip>
-    
-              </div>
-                     
-                        </div> 
-  
-                              </div>
-                          </div>
-  
-  
-                      )
-                  })}
-                      </InfiniteScroll>
-        </div>
-  
-  <UpdateTaskModal
-            updateTaskModal={updateTaskModal}
-            handleUpdateTaskModal={handleUpdateTaskModal}
-          />
-     
-  
-          <AddTaskProjectDrawerModal
-            handleTaskProjectDrawerModal={props.handleTaskProjectDrawerModal}
-            addDrawerTaskProjectModal={props.addDrawerTaskProjectModal}
-            data={data}
-          />
-  <AddTaskNotesDrawerModal
-  handleSetTaskNameId={handleSetTaskNameId}
-    handleTaskNotesDrawerModal={props.handleTaskNotesDrawerModal}
-    addDrawerTaskNotesModal={props.addDrawerTaskNotesModal}
-    currentNameId={currentNameId}
-    // taskName={currentprocessName.taskName} // Pass taskName as a prop
-  
-  />
-  
-  </>
-  ); 
-  }
+ 
 
   return (
     <>
       
-          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[10rem]"><FormattedMessage
+          <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
                         /></div>
-        <div className=" md:w-44"><FormattedMessage
+        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]"><FormattedMessage
                           id="app.name"
                           defaultMessage="name"
                         /></div>
-             <div className=" md:w-28 "><FormattedMessage
+             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] "><FormattedMessage
                           id="app.submittedby"
                           defaultMessage="submittedby"
                         /></div>
-        <div className="md:w-16"><FormattedMessage
-                          id="app.deviation"
-                          defaultMessage="deviation"
+        <div className="w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]"><FormattedMessage
+                          id="app.ageing"
+                          defaultMessage="Ageing"
                         /></div>
-        <div className="md:w-28"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
+                         <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">Info</div>
+        <div className="w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]"><FormattedMessage
+                          id="app.assignedOn"
+                          defaultMessage="Assigned On"
                         /></div>
-        <div className="md:w-28"></div>
-        <div className="md:w-[3%]"></div>
-        <div className="md:w-[5%]"></div>
+        <div className="w-[8.52rem]"></div>
+       
 </div>
 <InfiniteScroll
         dataLength={approvalTaskTable.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingApproveTaskTable?<div class="flex items-center" >Loading...</div>:null}
+        loader={fetchingApproveTaskTable?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -353,15 +163,15 @@ const TaskApproveTable = (props) => {
         const completionDate = moment(item.completionDate);
         const endDate = moment(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
-        const incompleteDeviationDate = endDate.diff(currentDate, 'days');
-        const completeDeviation = endDate.diff(completionDate, 'days');
+        const incompleteDeviationDate = currentDate.diff(endDate, 'days');
+        const completeDeviation = completionDate.diff(endDate, 'days');
          console.log("difference",difference)
          console.log("deviationDate",incompleteDeviationDate)
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3">
-                                     <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-[12.1rem] max-sm:flex-row justify-between w-full ">
+                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[9rem] max-sm:flex-col">
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex font-medium flex-col w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
                       <div
@@ -385,8 +195,8 @@ const TaskApproveTable = (props) => {
                                             {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs text-cardBody font-poppins cursor-pointer">                                       
-                                            {item.taskType}
+                                            <div class="text-xs text-cardBody font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">                                       
+                                            {item.taskType.substring(0, 20)}
        
                                             </div>
                                          </div>
@@ -395,9 +205,9 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium  items-center  md:w-[33.3rem] max-sm:flex-row w-full ">
+                                <div className=" flex font-medium  items-center  w-[10.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">   
+                                    <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
                   props.handleTaskopenModal(true);               
@@ -406,8 +216,7 @@ const TaskApproveTable = (props) => {
                 }}
                 className="cursor-pointer text-[#042E8A]"        
                >
-
-                 {`${item.taskName} `} &nbsp;
+                 {`${item.taskName.substring(0, 20)} `} &nbsp;
 
 
                </span>
@@ -417,10 +226,10 @@ const TaskApproveTable = (props) => {
                
                    
                         
-                    <div class="flex max-sm:mt-4 w-28">
-                                <div className=" flex font-medium flex-col  md:w-24 max-sm:flex-row justify-between w-full ">
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                <div className=" flex font-medium flex-col  w-[7.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Submitted By</div> */}
-                                    <div class="text-xs text-cardBody font-poppins ">
+                                    <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
                                     // style={{marginBottom:"0.25rem"}}
                   primaryTitle={item.submittedBy}
@@ -429,8 +238,16 @@ const TaskApproveTable = (props) => {
                 />
                                     </div>
                                 </div>
-                               
-                               
+                                <div className="flex font-medium flex-col w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                       
+                       
+                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+  {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
+   (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
+</div>
+                     
+                   </div>
+                             </div>  
                                 {/* <div className=" flex font-medium flex-col w-32 ">
                                     <div class=" text-sm text-cardBody font-poppins">Team</div>
 
@@ -458,82 +275,109 @@ const TaskApproveTable = (props) => {
 </Avatar.Group>
                                     </div>
                                 </div> */}
-                     
-                       
+                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                     <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                   <MultiAvatar
+                              primaryTitle={item.name}
+                              imageId={item.imageId}
+                              imageURL={item.imageURL}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                  <MultiAvatar
+                  primaryTitle={item.name}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+                />
+
+                   </div>
 
 
         
      
   
-                   </div>
-                   <div class="flex max-sm:mt-4 w-28">
-                                <div className=" flex font-medium flex-col  md:w-24 max-sm:flex-row w-full ">
+                   
+                   
+                                <div className=" flex font-medium flex-col  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned On</div> */}
-                                    <div class="text-xs text-cardBody font-poppins ">
+                                    <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <span>{` ${moment(item.assignedOn).format("ll")}`}</span>
                                     </div>
                                 </div>
-                               
-                         
-                       
+                      
+                         </div>
 
-
-        
-     
   
-                   </div>
-                   <div class="flex w-44 ">
-                   <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
-                    <div class=" w-36">
-                    {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
+                         <div class="flex  max-sm:justify-end max-sm:w-wk items-center">  
+                  
+                   <div class="flex flex-col w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="w-36 max-sm:w-auto">
+  {item.taskType === "ProspectToCustomer" ? (
     <>
-      <div>
-        <Button
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
-        >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
-        </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
+       <Tooltip title="Qualify? Prospect will move to Customer section!">
+        <ConnectWithoutContactIcon
+          onClick={() => {
+            handleRowData(item)
+            props.handleProspectConfirmationModal(true);
           }}
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
-        </Button>
-      </div>
+          className="!text-base cursor-pointer text-[blue]"
+        />
+      </Tooltip>
     </>
   ) : (
     <>
-       {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
-          type="check-circle"
-          theme="twoTone"
-          twoToneColor="#52c41a"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-        ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
-          type="close-circle"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
+      {item.filterTaskInd === true && item.approvedInd === "Pending" ? (
+        <>
+          <div>
+            <Button
+              onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+              style={{ backgroundColor: "teal", color: "white" }}
+            >
+              <FormattedMessage id="app.approve" defaultMessage="Approve" />
+            </Button>
+            <Button
+              style={{
+                backgroundColor: "rgb(233, 79, 79)",
+                color: "white",
+              }}
+              onClick={() => rejectTaskByTaskId(item.taskId)}
+            >
+              <FormattedMessage id="app.reject" defaultMessage="Reject" />
+            </Button>
+          </div>
+        </>
       ) : (
-        <></>
+        <>
+          {item.filterTaskInd === true && item.approvedInd === "Approved" ? (
+            <CheckCircleOutlined
+              type="check-circle"
+              theme="twoTone"
+              twoToneColor="#52c41a"
+              size={140}
+              style={{ fontSize: "1rem" }}
+            />
+          ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
+            <CloseCircleOutlined
+              type="close-circle"
+              theme="twoTone"
+              twoToneColor="red"
+              size={140}
+              style={{ fontSize: "1rem" }}
+            />
+          ) : (
+            <></>
+          )}
+        </>
       )}
     </>
   )}
-  </div>
+</div>
+
 </div>
 
                           
-                    <div class=" ml-2"></div>
-                    <div class="flex flex-col justify-evenly  ">
+                    
+<div class="flex flex-col w-[1.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -546,7 +390,7 @@ const TaskApproveTable = (props) => {
   
             </div>
                    
-                      </div> 
+                   </div>  
 
                             </div>
                         </div>
@@ -576,6 +420,14 @@ handleSetTaskNameId={handleSetTaskNameId}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
 />
+<AddConfirmProspectStatusModal
+handleRowData={handleRowData}
+handleProspectConfirmationModal={props.handleProspectConfirmationModal}
+addProspectConfirmationModal={props.addProspectConfirmationModal}
+rowdata={rowdata}
+  // taskName={currentprocessName.taskName} // Pass taskName as a prop
+
+/>
 
 </>
 );
@@ -586,6 +438,7 @@ handleSetTaskNameId={handleSetTaskNameId}
     userDetails: auth.userDetails,
     addDrawerTaskNotesModal: task.addDrawerTaskNotesModal,
     userId: auth.userDetails.userId,
+    addProspectConfirmationModal:task.addProspectConfirmationModal,
     approvalTaskTable:task.approvalTaskTable,
     employeeId: auth.userDetails.employeeId,
     addDrawerTaskProjectModal: task.addDrawerTaskProjectModal,
@@ -600,6 +453,7 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
     bindActionCreators(
       {
         getAprrovalTaskTable,
+        handleProspectConfirmationModal,
         handleTaskProjectDrawerModal,
         deleteTask,
         handleTaskNotesDrawerModal,
@@ -682,6 +536,56 @@ noOfPages:task.approvalTaskTable.length && task.approvalTaskTable[0].noOfPages
           color: blue;
         }
       `;
+
+
+//       <div class="flex flex-col md:w-40 justify-center  max-sm:flex-row w-full">
+//       <div class=" w-36">
+//       {item.filterTaskInd === true && item.approvedInd === "Pending"  ? (
+// <>
+// <div>
+// <Button
+// onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+// style={{ backgroundColor: "teal", color: "white" }}
+// >
+// <FormattedMessage id="app.approve" defaultMessage="Approve" />
+// </Button>
+// <Button
+// style={{
+// backgroundColor: "rgb(233, 79, 79)",
+// color: "white",
+// }}
+// onClick={() => rejectTaskByTaskId(item.taskId)}
+// >
+// <FormattedMessage id="app.reject" defaultMessage="Reject" />
+// </Button>
+// </div>
+// </>
+// ) : (
+// <>
+// {  item.filterTaskInd === true && item.approvedInd === "Approved" ? (
+// <CheckCircleOutlined
+// type="check-circle"
+// theme="twoTone"
+// twoToneColor="#52c41a"
+// size={140}
+// style={{ fontSize: "1rem" }}
+// />
+// ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
+// <CloseCircleOutlined
+// type="close-circle"
+// theme="twoTone"
+// twoToneColor="red"
+// size={140}
+// style={{ fontSize: "1rem" }}
+// />
+// ) : (
+// <></>
+// )}
+// </>
+// )}
+// </div>
+// </div>
+
 
 
     //   {approvalTaskTable.map((item) => { 

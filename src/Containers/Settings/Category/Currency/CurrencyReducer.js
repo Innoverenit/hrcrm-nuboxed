@@ -7,6 +7,19 @@ const initialState = {
     fetchingCurrencyListError: false,
     currencyList: [],
 
+    fetchingCurrencyCount: false,
+    fetchingCurrencyCountError: false,
+    currencyCount:{},
+
+    addingInvestorCurrencyToggle: false,
+    addingInvestorCurrencyToggleError: false,
+
+    addingSalesCurrencyToggle: false,
+    addingSalesCurrencyToggleError: false,
+
+    fetchingCurrencySearchData:false,
+    fetchingCurrencySearchDataError:false,
+
     addingCurrencyToggle: false,
               addingCurrencyToggleError: false,
 
@@ -81,6 +94,82 @@ export const currencyReducer = (state = initialState, action) => {
                 addingMandatoryCurrency: false,
                 addingMandatoryCurrencyError: true,
               };
+
+              case types.GET_CURRENCY_SEARCH_REQUEST:
+                return { ...state, fetchingCurrencySearchData: true };
+              case types.GET_CURRENCY_SEARCH_SUCCESS:
+                return {
+                  ...state,
+                  fetchingCurrencySearchData: false,
+                  currencyList: action.payload,
+                  // serachedData: action.payload,
+                };
+              case types.GET_CURRENCY_SEARCH_FAILURE:
+                return { ...state, fetchingCurrencySearchDataError: true };
+      
+                case types.HANDLE_CLAER_REDUCER_DATA_CURRENCY:
+                  return { ...state, 
+                    currencyList: [], 
+                    // deletedTruck: [] 
+                  };
+
+
+                  case types.LINK_SALES_CURRENCY_TOGGLE_REQUEST:
+                    return { ...state, addingSalesCurrencyToggle: true };
+                  case types.LINK_SALES_CURRENCY_TOGGLE_SUCCESS:
+                    return {
+                      ...state,
+                      addingSalesCurrencyToggle: false,
+                      currencyList: state.currencyList.map((item) => {
+                        if (item.currency_id === action.payload.currency_id) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                    };
+                  case types.LINK_SALES_CURRENCY_TOGGLE_FAILURE:
+                    return {
+                      ...state,
+                      addingSalesCurrencyToggle: false,
+                      addingSalesCurrencyToggleError: true,
+                    };
+
+
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_REQUEST:
+                      return { ...state, addingInvestorCurrencyToggle: true };
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_SUCCESS:
+                      return {
+                        ...state,
+                        addingInvestorCurrencyToggle: false,
+                        currencyList: state.currencyList.map((item) => {
+                          if (item.currency_id === action.payload.currency_id) {
+                            return action.payload;
+                          } else {
+                            return item;
+                          }
+                        }),
+                      };
+                    case types.LINK_INVESTOR_CURRENCY_TOGGLE_FAILURE:
+                      return {
+                        ...state,
+                        addingInvestorCurrencyToggle: false,
+                        addingInvestorCurrencyToggleError: true,
+                      };
+
+
+
+                      case types.GET_CURRENCY_COUNT_REQUEST:
+                        return { ...state, fetchingCurrencyCount: true };
+                      case types.GET_CURRENCY_COUNT_SUCCESS:
+                        return { ...state, fetchingCurrencyCount: false, 
+                          currencyCount: action.payload };
+                      case types.GET_CURRENCY_COUNT_FAILURE:
+                        return {
+                          ...state,
+                          fetchingCurrencyCount: false,
+                          fetchingCurrencyCountError: true,
+                        };
 
      
     default:

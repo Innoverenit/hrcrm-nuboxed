@@ -2,8 +2,10 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
+import AddContactImportModal from "./AddContactImportModal";
 import {
   handleContactModal,
+  handleContactImportModal,
   setContactsViewType,
   getPArtnerContactPagination,
   emptyContact,
@@ -103,7 +105,9 @@ const filterData = filteredData.filter(item =>
 
   const {
     addContactModal,
+    addContactImportModal,
     handleContactModal,
+    handleContactImportModal,
     setContactsViewType,
     viewType,
   } = props;
@@ -112,6 +116,7 @@ const filterData = filteredData.filter(item =>
     <React.Fragment>
       <ContactHeader
         handleContactModal={handleContactModal}
+        handleContactImportModal={handleContactImportModal}
         handlePartnerDropChange={handlePartnerDropChange}
         handleDropChange={handleDropChange}
         currentUser={currentUser}
@@ -132,6 +137,10 @@ const filterData = filteredData.filter(item =>
       <AddContactModal
         addContactModal={addContactModal}
         handleContactModal={handleContactModal}
+      />
+        <AddContactImportModal
+        addContactImportModal={addContactImportModal}
+        handleContactImportModal={handleContactImportModal}
       />
       <Suspense fallback={<BundleLoader />}>
         {props.viewType === "table" ?(
@@ -158,6 +167,7 @@ const filterData = filteredData.filter(item =>
 const mapStateToProps = ({ contact, account, auth }) => ({
   userId: auth.userDetails.userId,
   addContactModal: contact.addContactModal,
+  addContactImportModal:contact.addContactImportModal,
   viewType: contact.viewType,
   contactByUserId: contact.contactByUserId,
 });
@@ -166,6 +176,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleContactModal,
+      handleContactImportModal,
       getPArtnerContactPagination,
       setContactsViewType,
       getContactListByUserId,

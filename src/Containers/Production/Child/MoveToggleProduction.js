@@ -1,52 +1,55 @@
-import React,{useState} from "react";
-import { Switch } from "antd";
+import React from "react";
+import { Popconfirm, Switch } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { moveProduction } from "../ProductionAction";
 import dayjs from "dayjs";
 
-function MoveToggleProduction (props) {
+function MoveToggleProduction(props) {
 
-    const [checked, setChecked] = useState(false);
+  function handleDispatchToggle() {
+    props.moveProduction(
+      {
 
-    const handleToggle = () => {
-      setChecked(prevChecked => !prevChecked);
+        manufactureId: props.item.manufactureId,
+        moveToInventoryDate: dayjs(),
+        moveToInventoryInd: true,
+        locationDetailsId: props.locationId,
+      });
+  }
 
-      if (!checked) {
-        const currentDate = dayjs().format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+  return (
+    <div>
+      <Popconfirm
+        title="Confirm status change?"
+        onConfirm={handleDispatchToggle}
+        onCancel={null}
+        okText="Ok"
+        cancelText="Cancel"
+      >
+        <Switch
+          checked={props.item.moveToInventoryInd}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </Popconfirm>
 
-        props.moveProduction(
-                    {
-                       
-                        manufactureId:props.item.manufactureId,
-                        moveToInventoryDate:currentDate,
-                        moveToInventoryInd:true,
-                        locationDetailsId:props.locationId,
-                     
-                  
-                    },);
-      }
-    };
-  
-    return (
-      <div>
-        <Switch checked={checked} onChange={handleToggle} />
-      </div>
-    );
+    </div>
+  );
 
 }
 
 const mapStateToProps = ({ auth }) => ({
-    userId: auth.userDetails.userId,
-    locationId: auth.userDetails.locationId,
+  userId: auth.userDetails.userId,
+  locationId: auth.userDetails.locationId,
 
 });
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            moveProduction
-        },
-        dispatch
-    );
+  bindActionCreators(
+    {
+      moveProduction
+    },
+    dispatch
+  );
 export default connect(mapStateToProps, mapDispatchToProps)(MoveToggleProduction);

@@ -1,6 +1,7 @@
 import * as types from "./CustomerActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd"
 
@@ -49,10 +50,22 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        // dispatch(getCustomer(orgId));
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("CUSTOMER has been added successfully!");
+        dispatch(getCustomerCount(orgId));
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Type added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
         console.log(res);
         dispatch({
@@ -75,7 +88,7 @@ export const addCustomer = (sectors,orgId, cb) => (dispatch) => {
   /**
  * remove a new sector
  */
-export const removeCustomer = ( customerTypeId) => (dispatch) => {
+export const removeCustomer = ( customerTypeId,orgId) => (dispatch) => {
     // console.log(typeId);
     dispatch({
       type: types.REMOVE_CUSTOMER_REQUEST,
@@ -87,7 +100,12 @@ export const removeCustomer = ( customerTypeId) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("CUSTOMER has been deleted successfully!");
+        dispatch(getCustomerCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Type deleted Successfully!',
+        })
+        // message.success("CUSTOMER has been deleted successfully!");
         console.log(res);
         dispatch({
           type: types.REMOVE_CUSTOMER_SUCCESS,
@@ -105,7 +123,7 @@ export const removeCustomer = ( customerTypeId) => (dispatch) => {
   /**
  *update label of sector
  */
-export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
+export const updateCustomer = ( data,customerTypeId,cb) => (dispatch) => {
     
     dispatch({
       type: types.UPDATE_CUSTOMER_REQUEST,
@@ -113,7 +131,7 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
     axios
       .put(
         `${base_url}/customerType/${customerTypeId}`,
-        { name,customerTypeId,editInd:true },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -121,8 +139,11 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
         }
       )
       .then((res) => {
-        
-        message.success("CUSTOMER has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Type updated Successfully!',
+        })
+        // message.success("CUSTOMER has been updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_CUSTOMER_SUCCESS,
@@ -174,6 +195,34 @@ export const updateCustomer = ( customerTypeId,name,cb) => (dispatch) => {
     });
   };
 
+
+  export const getCustomerCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CUSTOMER_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customerType/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CUSTOMER_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_CUSTOMER_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  
 
 
   

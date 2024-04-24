@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../Opportunity/OpportunityAction"
 import { FormattedMessage } from "react-intl";
-import { Button,  Switch, Tooltip } from "antd";
+import { Button,  Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
@@ -30,6 +30,7 @@ import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { Listbox } from '@headlessui/react'
+const { Option } = Select;  
 const ButtonGroup = Button.Group;
 const suffix = (
   <AudioOutlined
@@ -99,11 +100,11 @@ function CallForm(props) {
     // resetForm();
   };
   useEffect(() => {
-    props.getAssignedToList(props.orgId);
+    // props.getAssignedToList(props.orgId);
     props.getAllSalesList();
-    props.getAllCustomerData(props.userId)
-    props.getFilteredEmailContact(userId);
-    props.getAllOpportunityData(userId)
+    // props.getAllCustomerData(props.userId)
+    // props.getFilteredEmailContact(userId);
+    // props.getAllOpportunityData(userId)
   }, []);
 
   
@@ -157,6 +158,9 @@ function CallForm(props) {
         value: item.employeeId,
       };
     });
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const sortedOpportunity =props.allOpportunityData.sort((a, b) => {
       const nameA = a.opportunityName.toLowerCase();
       const nameB = b.opportunityName.toLowerCase();
@@ -262,6 +266,180 @@ function CallForm(props) {
       var data = props.selectedCall.callCategory === "New" ? false : true;
     }
    const selectedOption = props.assignedToList.find((item) => item.empName === selected);
+   const [customer, setCustomer] = useState([]);
+   const [selectedCustomer, setSelectedCustomer] = useState(null);
+   const [isLoadingCustomer, setIsLoadingCustomer] = useState(false);
+   const [touchedCustomer, setTouchedCustomer] = useState(false);
+
+   const [contact, setContact] = useState([]);
+   const [selectedContact, setSelectedContact] = useState(null);
+   const [isLoadingContact, setIsLoadingContact] = useState(false);
+   const [touchedContact, setTouchedContact] = useState(false);
+
+
+   const [opportunity, setOpportunity] = useState([]);
+   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+   const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+   const [touchedOpportunity, setTouchedOpportunity] = useState(false);
+
+
+   const fetchCustomer = async () => {
+    setIsLoadingCustomer(true);
+    try {
+      const apiEndpoint = `
+      https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomer(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingCustomer(false);
+    }
+  };
+
+  const handleSelectChangeCustomer = (customerId) => {
+    setSelectedCustomer(customerId)
+    fetchContact(customerId);
+    fetchOpportunity(customerId)
+    // console.log('Selected user:', value);
+  };
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+     
+      fetchCustomer();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+
+
+  const fetchContact = async (customerId) => {
+    setIsLoadingContact(true);
+    try {
+      const apiEndpoint = `
+      https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContact(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingContact(false);
+    }
+  };
+
+
+  const handleSelectChangeContact = (value) => {
+    setSelectedContact(value)
+    console.log('Selected user:', value);
+  };
+
+  const handleSelectContactFocus = () => {
+    if (!touchedContact) {
+     
+      //fetchContact();
+
+      setTouchedContact(true);
+    }
+  };
+
+
+
+  const fetchOpportunity = async (customerId) => {
+    setIsLoadingOpportunity(true);
+    try {
+      const apiEndpoint = `
+      
+      https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/customer/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setOpportunity(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingOpportunity(false);
+    }
+  };
+
+
+  const handleSelectChangeOpportunity = (value) => {
+    setSelectedOpportunity(value)
+    console.log('Selected user:', value);
+  };
+
+  const handleSelectOpportunityFocus = () => {
+    if (!touchedOpportunity) {
+     
+      //fetchOpportunity();
+
+      setTouchedOpportunity(true);
+    }
+  };
+
+  const [include, setInclude] = useState([]);
+  const [isLoadingInclude, setIsLoadingInclude] = useState(false);
+  const [touchedInclude, setTouchedInclude] = useState(false);
+  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
+
+
+
+  const fetchInclude = async () => {
+    setIsLoadingInclude(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInclude(false);
+    }
+  };
+
+
+  const handleSelectChangeInclude = (values) => {
+    setSelectedIncludeValues(values); // Update selected values
+  };
+
+
+  const handleSelectIncludeFocus = () => {
+    if (!touchedInclude) {
+      fetchInclude();
+      setTouchedInclude(true);
+    }
+  };
 
    return (
       <>
@@ -275,6 +453,7 @@ function CallForm(props) {
                 callCategory:category,
 
                 callPurpose: "",
+                // customerId:selectedCustomer,
                 fullName: "",
                 timeZone: timeZone,
                 remindInd: reminder ? true : false,
@@ -291,7 +470,7 @@ function CallForm(props) {
 
                 included: [],
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                contactId: "",
+              
                 candidateId: "",
               }
              
@@ -374,10 +553,14 @@ function CallForm(props) {
               ...values,
               callCategory: category,
               callType: Type,
+              included:selectedIncludeValues,
               // startDate: `${newStartDate}T${newStartTime}`,
               // endDate: `${newEndDate}T${newEndTime}`,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
+              contactId: selectedContact,
+              opportunityId:selectedOpportunity,
+              customerId: selectedCustomer,
               // startTime: values.startTime?values.startTime:null,
               startTime: 0,
               endTime: 0,
@@ -390,6 +573,10 @@ function CallForm(props) {
                   ...values,
                   callCategory: category,
                   callType: Type,
+              
+                  customerId:selectedCustomer,
+                  contactId: selectedContact,
+                  opportunityId:selectedOpportunity,
                   startTime: values.startTime?values.startTime:null,
                   startDate: `${newStartDate}T20:00:00Z`,
                   endDate: `${newEndDate}T20:00:00Z`,
@@ -565,9 +752,11 @@ function CallForm(props) {
                           /> }
                         isColumn
                         options={[
-                          "Zoom Call",
-                          "Whatsapp call",
+                          "Phone",
+                          "Zoom ",
+                          "Whatsapp ",
                           "Google Meet",
+                          "Teams",
                           "Others",
                         ]}
                         component={SelectComponent}
@@ -792,7 +981,7 @@ function CallForm(props) {
       )}
     </Listbox>
     <div class="mt-3">
-                  <Field
+                  {/* <Field
                     name="included"
                     // label="Include"
                     label={
@@ -804,92 +993,126 @@ function CallForm(props) {
                     mode
                     placeholder="Select"
                     component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
                     value={values.included}
                     defaultValue={{
                       label: `${empName || ""} `,
                       value: employeeId,
                     }}
-                  />
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                   <Select
+          showSearch
+          style={{ width: 415 }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoadingInclude}
+          onFocus={handleSelectIncludeFocus}
+          onChange={handleSelectChangeInclude}
+          defaultValue={selectedIncludeValues} 
+          mode="multiple" 
+        >
+          {include.map(includes => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
                  </div>
-                 <div class="mt-3">
+                 <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="customerId"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.customer"
-                     defaultMessage="customer"
-                   />
-                 }
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(customerNameOption)
-                     ? customerNameOption
-                     : []
-                 }
-                 isColumn
-                 margintop={"0"}
-                 value={values.customerId}
-                 inlineLabel
-               />
+              
+     <>        
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label>
+
+<Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select prospect"
+        optionFilterProp="children"
+        loading={isLoadingCustomer}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleSelectChangeCustomer}
+      >
+        {customer.map(customers => (
+          <Option key={customers.customerId} value={customers.customerId}>
+            {customers.name}
+          </Option>
+        ))}
+      </Select>
+      </> 
                   )} 
                   </div>
                   
-                  <div class="mt-3">
+                  <div class="mt-3" style={{display:"flex",flexDirection:"column"}}>
                   {props.user.crmInd === true &&(
-                  <Field
-                    name="contactId"
-                    //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
-                    component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
-                    value={values.contactId}
-                    // isDisabled={defaultContacts}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: contactId,
-                    }}
-                    inlineLabel
-                  />
+                  
+                  <>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+
+<Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select contact"
+        optionFilterProp="children"
+        loading={isLoadingContact}
+        onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeContact}
+        disabled={!selectedCustomer} 
+      >
+        {contact.map(contacts => (
+          <Option key={contacts.contactId} value={contacts.contactId}>
+            {contacts.fullName}
+          </Option>
+        ))}
+      </Select>
+      </>
                   )} 
                   </div>
               
                   <div class="mt-3">
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="opportunityId"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="opportunity"
-                   />
-                 }
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(opportunityNameOption)
-                     ? opportunityNameOption
-                     : []
-                 }
-                 isColumn
-                 margintop={"0"}
-                 value={values.opportunityId}
-                 inlineLabel
-               />
+              //    <Field
+              //    name="opportunityId"
+              //    // selectType="customerList"
+              //    isColumnWithoutNoCreate
+              //    label={
+              //      <FormattedMessage
+              //        id="app.opportunity"
+              //        defaultMessage="opportunity"
+              //      />
+              //    }
+              //    //component={SearchSelect}
+              //    component={SelectComponent}
+              //    options={
+              //      Array.isArray(opportunityNameOption)
+              //        ? opportunityNameOption
+              //        : []
+              //    }
+              //    isColumn
+              //    margintop={"0"}
+              //    value={values.opportunityId}
+              //    inlineLabel
+              //  />
+              <>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+              <Select
+        showSearch
+        style={{ width: 417 }}
+        placeholder="Search or select opportunity"
+        optionFilterProp="children"
+        loading={isLoadingOpportunity}
+        disabled={!selectedCustomer}
+        onFocus={handleSelectOpportunityFocus}
+        onChange={handleSelectChangeOpportunity}
+      >
+        {opportunity.map(opp => (
+          <Option key={opp.opportunityId} value={opp.opportunityId}>
+            {opp.opportunityName}
+          </Option>
+        ))}
+      </Select>
+      </>
                   )} 
                   </div>
                 
@@ -1030,6 +1253,7 @@ const mapStateToProps = ({ auth, call, employee,customer, opportunity, candidate
   user: auth.userDetails,
   updatingCall: call.updatingCall,
   user: auth.userDetails,
+  token: auth.token,
   assignedToList:employee.assignedToList,
   deletingCall: call.deleteCall,
   sales: opportunity.sales,

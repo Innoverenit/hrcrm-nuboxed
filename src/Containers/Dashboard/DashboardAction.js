@@ -395,6 +395,14 @@ export const getTodosCount = (userId, startDate, endDate) => (dispatch) => {
     });
 };
 
+
+export const handleProspectDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROSPECT_DRAWER,
+    payload: modalProps,
+  });
+};
+
 export const getavgHour = (userId, startDate, endDate) => (dispatch) => {
   dispatch({ type: types.GET_AVG_HOUR_REQUEST });
 
@@ -2155,28 +2163,320 @@ export const getCompletedTaskTypeDetails = (userId, name) => (dispatch) => {
     });
 };
 
-export const getJumpOrderCount =(type) => (dispatch) => {
-    dispatch({ type: types.GET_JUMPSTART_ORDER_COUNT_REQUEST });
-    axios
-      .get(
-        `${base_url2}/order/orderCount/${type}`,
-        {
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        }
-      )
-      .then((res) => {
-        dispatch({
-          type: types.GET_JUMPSTART_ORDER_COUNT_SUCCESS,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: types.GET_JUMPSTART_ORDER_COUNT_FAILURE,
-          payload: err,
-        });
+export const getJumpOrderCount = (type) => (dispatch) => {
+  dispatch({ type: types.GET_JUMPSTART_ORDER_COUNT_REQUEST });
+  axios
+    .get(
+      `${base_url2}/order/orderCount/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_JUMPSTART_ORDER_COUNT_SUCCESS,
+        payload: res.data,
       });
-  };
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_JUMPSTART_ORDER_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
+  dispatch({ type: types.GET_JUMPSTART_ORDER_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/order/orderCount/${type}/${orderType}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_JUMPSTART_ORDER_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_JUMPSTART_ORDER_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getJumpFinanceDetail = (orgId, type,orderType) => (dispatch) => {
+  dispatch({ type: types.GET_JUMPSTART_FINANCE_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/order/finance/${orgId}/${type}/${orderType}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_JUMPSTART_FINANCE_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_JUMPSTART_FINANCE_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getProspectsData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/customer/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getProspectLifeTime = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_LIFETIME_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_LIFETIME_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_LIFETIME_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getOpenQuotation = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_QUOTATION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/open/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROSPECT_QUOTATION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROSPECT_QUOTATION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getOpenQuotationThisYear = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_OPEN_QUOTATION_YEAR_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/year/count/${country}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPEN_QUOTATION_YEAR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_OPEN_QUOTATION_YEAR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const handleQuotationYear = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUOTATION_YEAR_DRAWER,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const handleQuotationLife = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUOTATION_LIFE_DRAWER,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const getProspectTableData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROSPECT_TABLE_DATA_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/customer/country/list/${country}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_PROSPECT_TABLE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_PROSPECT_TABLE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRegionRecords = (year,quarter) => (dispatch) => {
+  dispatch({
+    type: types.GET_REGION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/regions/target/dash-board/${year}/${quarter}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REGION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REGION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getDevelopChart = (userId, startDate, endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEVELOP_CHART_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/task/dev/${userId}?endDate=${endDate}&startDate=${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_DEVELOP_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_DEVELOP_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getQuotationTableData = (country) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUOTATION_TABLE_DATA_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/opportunity/open/list/${country}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_QUOTATION_TABLE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_QUOTATION_TABLE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

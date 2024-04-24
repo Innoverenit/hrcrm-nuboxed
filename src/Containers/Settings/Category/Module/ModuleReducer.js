@@ -23,16 +23,16 @@ export const moduleReducer = (state = initialState, action) => {
             return {
               ...state,
               addingModules: false,
-              moduleList:[action.payload,...state.moduleList]
-              // moduleList: state.moduleList.map((item) => {
-              //   if (item.orgId
-              //     === action.payload.orgId
-              //   ) {
-              //     return action.payload;
-              //   } else {
-              //     return item;
-              //   }
-              // }),
+              // moduleList:[action.payload,...state.moduleList]
+              moduleList: state.moduleList.map((item) => {
+                if (item.orgId
+                  === action.payload.orgId
+                ) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
             };
           case types.ADDING_MODULE_FAILURE:
             return {

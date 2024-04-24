@@ -118,7 +118,7 @@ const AddMultipleSpare = (props) => {
                                 // placeholder={`select`}
                                 >
                                     {props.spareByBrand.map((a) => {
-                                        return <Option value={a.suppliesId}>{a.name}</Option>;
+                                        return <Option value={a.suppliesId}>{a.suppliesName}</Option>;
                                     })}
                                 </Select>
 
@@ -183,7 +183,7 @@ const AddMultipleSpare = (props) => {
                                 // placeholder={`select`}
                                 >
                                     {props.currencies.map((a) => {
-                                        return <Option value={a.currencyName}>{a.currencyName}</Option>;
+                                        return <Option value={a.currency_name}>{a.currency_name}</Option>;
                                     })}
                                 </Select>
 
@@ -213,6 +213,7 @@ const AddMultipleSpare = (props) => {
                 <Button
                     htmlType='submit'
                     type='primary'
+                    loading={props.addingSpareList}
                     onClick={buttonOnClick}
                 >
                     <FormattedMessage
@@ -231,6 +232,7 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
     currencies: auth.currencies,
+    addingSpareList: distributor.addingSpareList
 });
 
 const mapDispatchToProps = (dispatch) =>

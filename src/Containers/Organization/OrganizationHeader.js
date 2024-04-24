@@ -25,6 +25,9 @@ class OrganizationHeader extends Component {
           leftComponent={
             <OrganizationActionLeft
             viewType={viewType}
+            activeTab={this.props.activeTab}
+            organizationDetailsList={this.props.organizationDetailsList}
+            organizationDetails={this.props.organizationDetails}
             handleOnClick={this.props.handleOnClick}
             // handleChange={handleChange}
             setOrganizationViewType={setOrganizationViewType}

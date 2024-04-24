@@ -1,6 +1,6 @@
 import * as types from "./RoleActionTypes";
 import axios from "axios";
-import dayjs from "dayjs";
+import Swal from 'sweetalert2'
 import { base_url } from "../../../../Config/Auth";
 import { message } from "antd";
 
@@ -30,7 +30,7 @@ export const getRoles = (orgId) => (dispatch) => {
       });
   };
 
-  export const addRoles = (roleType,cb) => (dispatch,getState) => {
+  export const addRoles = (roleType,orgId,cb) => (dispatch,getState) => {
     const orgId = getState().auth.userDetails.organizationId;
     dispatch({
       type: types.ADD_ROLES_REQUEST,
@@ -44,11 +44,24 @@ export const getRoles = (orgId) => (dispatch) => {
       })
       .then((res) => {
         // message.error(roleType.message)
-        {res.data.message?  
-          message.success(res.data.message):
-        message.success("Role has been added successfully!");
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Role added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
         }
-        // dispatch(getRoles(orgId));
+        dispatch(getRoles(orgId));
+        dispatch(getRoleCount(orgId));
         console.log(res);
         dispatch({
           type: types.ADD_ROLES_SUCCESS,
@@ -77,7 +90,7 @@ export const getRoles = (orgId) => (dispatch) => {
   };
 
 
-  export const updateRoles = (roleTypeId, roleType,departmentId,departmentName, cb) => (dispatch) => {
+  export const updateRoles = (data,roleTypeId,  cb) => (dispatch) => {
     // console.log(leadDocumentsId, DocumentsName);
     dispatch({
       type: types.UPDATE_ROLES_REQUEST,
@@ -85,8 +98,7 @@ export const getRoles = (orgId) => (dispatch) => {
     axios
       .put(
         `${base_url}/roleType`,
-        { roleType, roleTypeId,departmentId,departmentName,editInd:"true"
-        },
+       data,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -94,7 +106,12 @@ export const getRoles = (orgId) => (dispatch) => {
         }
       )
       .then((res) => {
-        message.success("Role has been updated successfully!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Role updated Successfully!',
+        
+        })
+        // message.success("Role updated successfully!");
         console.log(res);
         dispatch({
           type: types.UPDATE_ROLES_SUCCESS,
@@ -133,7 +150,7 @@ export const getRoles = (orgId) => (dispatch) => {
         });
       });
   };
-  export const removeRole = (roleTypeId, cb) => (dispatch) => {    
+  export const removeRole = (roleTypeId,orgId, cb) => (dispatch) => {    
     dispatch({
         type: types.REMOVE_ROLE_REQUEST,
     });
@@ -144,7 +161,13 @@ export const getRoles = (orgId) => (dispatch) => {
           },
         })
         .then((res) => {
-          message.success("Role has been deleted successfully!");
+          dispatch(getRoleCount(orgId));
+          Swal.fire({
+            icon: 'success',
+            title: 'Role deleted Successfully!',
+          
+          })
+          // message.success("Role deleted successfully!");
             console.log(res);
             dispatch({
                 type: types.REMOVE_ROLE_SUCCESS,
@@ -185,7 +208,7 @@ export const getTalentRoles = (orgId) => (dispatch) => {
     });
 };
 
-export const addTalentRoles = (roleType,cb) => (dispatch) => {
+export const addTalentRoles = (roleType,orgId,cb) => (dispatch) => {
   // console.log(departments);
   dispatch({
     type: types.ADD_TALENT_ROLES_REQUEST,
@@ -198,9 +221,23 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      {res.data.message?  
-        message.success(res.data.message):
-      message.success("Role has been added successfully!");
+      dispatch(getExternalRoleCount(orgId));
+      
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Role added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
       }
       console.log(res);
       dispatch({
@@ -224,7 +261,7 @@ export const addTalentRoles = (roleType,cb) => (dispatch) => {
 };
 
 
-export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,departmentId, cb) => (dispatch) => {
+export const updateTalentRoles = (data,roleTypeExternalId, cb) => (dispatch) => {
   // console.log(leadDocumentsId, DocumentsName);
   dispatch({
     type: types.UPDATE_TALENT_ROLES_REQUEST,
@@ -232,8 +269,7 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
   axios
     .put(
       `${base_url}/roleTypeExternal`,
-      { roleType, roleTypeExternalId,editInd:"true"
-      },
+      data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -241,7 +277,12 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
       }
     )
     .then((res) => {
-      message.success("Role has been updated successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Role updated Successfully!',
+     
+      })
+      // message.success("Role updated successfully!");
       console.log(res);
       dispatch({
         type: types.UPDATE_TALENT_ROLES_SUCCESS,
@@ -257,7 +298,7 @@ export const updateTalentRoles = (roleTypeExternalId, roleType,departmentName,de
 };
 
 
-export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {    
+export const removeTalentRole = (roleTypeExternalId,orgId, cb) => (dispatch) => {    
   dispatch({
       type: types.REMOVE_TALENT_ROLE_REQUEST,
   });
@@ -268,7 +309,13 @@ export const removeTalentRole = (roleTypeExternalId, cb) => (dispatch) => {
         },
       })
       .then((res) => {
-        message.success("Role has been deleted successfully!");
+        dispatch(getExternalRoleCount(orgId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Role deleted Successfully!',
+        
+        })
+        // message.success("Role deleted successfully!");
           console.log(res);
           dispatch({
               type: types.REMOVE_TALENT_ROLE_SUCCESS,
@@ -320,5 +367,58 @@ export const searchRoleTalentName = (name) => (dispatch) => {
       });
     });
 };
+
+export const getRoleCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ROLE_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/roleType/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ROLE_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ROLE_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getExternalRoleCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EXTERNAL_ROLE_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/roleTypeExternal/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EXTERNAL_ROLE_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EXTERNAL_ROLE_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 
 
