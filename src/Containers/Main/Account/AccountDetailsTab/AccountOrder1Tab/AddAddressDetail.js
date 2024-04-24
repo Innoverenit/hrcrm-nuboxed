@@ -11,7 +11,8 @@ import { TextareaComponent } from '../../../../../Components/Forms/Formik/Textar
 import { Button, Tooltip, message } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
-import { createOrderForProduction, getContactDistributorList } from '../../AccountAction'
+import { createOrderForProduction } from '../../AccountAction'
+import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 const FormSchema = Yup.object().shape({
@@ -375,8 +376,8 @@ function AddAddressDetail(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor }) => ({
-    contactDistributor: distributor.contactDistributor,
+const mapStateToProps = ({ suppliers, auth, distributor }) => ({
+    contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     creatingOrderForProduction: distributor.creatingOrderForProduction

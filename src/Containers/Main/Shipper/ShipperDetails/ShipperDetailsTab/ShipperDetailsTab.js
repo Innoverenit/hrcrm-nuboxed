@@ -16,8 +16,8 @@ import {
   handleShipperDocumentUploadModal,
   handleShipperContactModal,
 } from "../../ShipperAction";
-import {handleSupplierDocumentUploadModal} from "../../../Suppliers/SuppliersAction";
-import {handleSupplierContactModal} from "../../../Suppliers/SuppliersAction";
+import { handleSupplierDocumentUploadModal } from "../../../Suppliers/SuppliersAction";
+import { handleSupplierContactModal } from "../../../Suppliers/SuppliersAction";
 import moment from "moment";
 import {
   PlusOutlined,
@@ -28,7 +28,7 @@ import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/S
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
 );
-const ShipperActivityTable = lazy(() =>import("./ShipperActivityTab/ShipperActivityTable")
+const ShipperActivityTable = lazy(() => import("./ShipperActivityTab/ShipperActivityTable")
 );
 
 const ContactShipperTable = lazy(() =>
@@ -156,9 +156,9 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fab fa-connectdevelop"></i>&nbsp; 
+                    <i class="fab fa-connectdevelop"></i>&nbsp;
                     <FormattedMessage id="app.activity" defaultMessage="Activity" />
-                    
+
                   </span>
                   {activeKey === "2" && (
                     <>
@@ -221,7 +221,7 @@ class ShipperDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file"></i>
-                    &nbsp; 
+                    &nbsp;
                     <FormattedMessage id="app.documents" defaultMessage="Documents" />
                   </span>
                   {activeKey === "5" && (
@@ -257,9 +257,9 @@ class ShipperDetailsTab extends Component {
                 <>
                   <span>
                     <i class="fas fa-file-contract"></i>
-                    &nbsp; 
+                    &nbsp;
                     <FormattedMessage id="app.contact" defaultMessage="Contact" />
-                    
+
                   </span>
                   {activeKey === "6" && (
                     <>
@@ -269,7 +269,7 @@ class ShipperDetailsTab extends Component {
                           tooltipTitle="Create"
                           onClick={() =>
                             //this.props.handleShipperContactModal(true)
-                            this.props.handleSupplierContactModal(  true )
+                            this.props.handleSupplierContactModal(true)
                           }
                           size="14px"
                           style={{ verticalAlign: "center", marginLeft: "5px" }}
@@ -321,24 +321,25 @@ class ShipperDetailsTab extends Component {
             }
           />  */}
           <AddSupplierDocumentModal
-           shipperId= {this.props.shipper.shipperId}
+            shipperId={this.props.shipper.shipperId}
             supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
             handleSupplierDocumentUploadModal={
               this.props.handleSupplierDocumentUploadModal
             }
           />
-         
-               <AddSupplierContactModal
+
+          <AddSupplierContactModal
             addSupplierContactModal={this.props.addSupplierContactModal}
             handleSupplierContactModal={this.props.handleSupplierContactModal}
-            shipperId= {this.props.shipper.shipperId}
+            id={this.props.shipper.shipperId}
+            type="shipper"
           />
         </Suspense>
       </>
     );
   }
 }
-const mapStateToProps = ({ shipper, auth ,suppliers}) => ({
+const mapStateToProps = ({ shipper, auth, suppliers }) => ({
   userId: auth.userDetails.userId,
   ownerId: shipper.shipperDetailsByShipperId.userId,
   addLinkShipperOrderConfigureModal: shipper.addLinkShipperOrderConfigureModal,
@@ -350,7 +351,7 @@ const mapStateToProps = ({ shipper, auth ,suppliers}) => ({
   shipperDocumentUploadModal: shipper.shipperDocumentUploadModal,
   shipperContactModal: shipper.shipperContactModal,
   addSupplierContactModal: suppliers.addSupplierContactModal,
-  supplierDocumentUploadModal:suppliers.supplierDocumentUploadModal,
+  supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
 });
 
 const mapDispatchToProps = (dispatch) =>

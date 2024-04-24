@@ -16,12 +16,9 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { addDistributor, setClearbitData } from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { getCurrency,getCategory } from "../../Auth/AuthAction";
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
 import { FormattedMessage } from "react-intl";
-import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
-import AddressFieldArray2 from "../../../Components/Forms/Formik/AddressFieldArray2";
-import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -45,11 +42,11 @@ const AddAccountForm = ({
   addingDistributor,
   addDistributor,
   customerListData,
-  currencies,
+  saleCurrencies,
   getCountry,
   getAllCustomerEmployeelist,
   getCustomer,
-  getCurrency,
+  getSaleCurrency,
   getCategory,
   category
 }) => {
@@ -58,7 +55,7 @@ const AddAccountForm = ({
     getCountry();
     getAllCustomerEmployeelist();
     getCustomer(orgId);
-    getCurrency();
+    getSaleCurrency();
     getCategory(orgId);
 
   }, []);
@@ -83,10 +80,10 @@ const AddAccountForm = ({
     };
   });
 
-  const currencyOption = currencies.map((item) => {
+  const currencyOption = saleCurrencies.map((item) => {
     return {
       label: item.currency_name || "",
-      value: item.currency_name,
+      value: item.currency_id,
     };
   });
 
@@ -110,7 +107,7 @@ const AddAccountForm = ({
         enableReinitialize
         initialValues={{
           userId: userId,
-          dCategory:"",
+          dcategory: "",
           name: "",
           phoneNo: "",
           url: "",
@@ -211,6 +208,7 @@ const AddAccountForm = ({
                     accounts={accounts}
                     isColumn
                     inlineLabel
+                    style={{ borderRight: "3px red solid" }}
                   />
                 </div>
                 <div class=" flex justify-between mt-4">
@@ -297,6 +295,8 @@ const AddAccountForm = ({
                       isColumn
                       placeholder="Select"
                       inlineLabel
+                      style={{ borderRight: "3px red solid" }}
+                      isRequired
                       component={SelectComponent}
                       options={
                         Array.isArray(CountryOptions) ? CountryOptions : []
@@ -342,6 +342,7 @@ const AddAccountForm = ({
                         />
                       }
                       isColumn
+                      style={{ borderRight: "3px red solid" }}
                       placeholder="Type"
                       component={SelectComponent}
                       options={
@@ -382,6 +383,7 @@ const AddAccountForm = ({
                       isColumn
                       placeholder="Currency"
                       component={SelectComponent}
+                      style={{ borderRight: "3px red solid" }}
                       options={
                         Array.isArray(currencyOption)
                           ? currencyOption
@@ -411,10 +413,11 @@ const AddAccountForm = ({
                   </div>
                   <div class="w-w47.5">
                     <Field
-                      name="dCategory"
+                      name="dcategory"
                       label="Category"
                       isColumn
                       placeholder="Select"
+                      style={{ borderRight: "3px red solid" }}
                       component={SelectComponent}
                       options={
                         Array.isArray(categoryOption)
@@ -605,8 +608,8 @@ const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, 
   customerListData: catgCustomer.customerListData,
   countries: auth.countries,
   clearbit: distributor.clearbit,
-  currencies: auth.currencies,
-  category:auth.category,
+  saleCurrencies: auth.saleCurrencies,
+  category: auth.category,
   country: countrys.country,
   countryDialCode1: auth.userDetails.countryDialCode1,
   addingDistributor: distributor.addingDistributor,
@@ -620,7 +623,7 @@ const mapDispatchToProps = (dispatch) =>
       getCountry,
       getCustomer,
       getAllCustomerEmployeelist,
-      getCurrency,
+      getSaleCurrency,
       getCategory
     },
     dispatch

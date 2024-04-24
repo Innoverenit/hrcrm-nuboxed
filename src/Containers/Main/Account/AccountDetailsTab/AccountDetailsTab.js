@@ -11,8 +11,8 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal
 } from "../AccountAction";
-import {handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
-import {handleSupplierContactModal} from "../../Suppliers/SuppliersAction";
+import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
+import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddIcon from '@mui/icons-material/Add';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -22,7 +22,6 @@ import { HistoryOutlined } from "@ant-design/icons";
 import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import SummaryTable from "./SummaryTable";
 import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
@@ -62,7 +61,7 @@ function AccountDetailsTab(props) {
     };
     const handleTabChange = (key) => setactiveKey(key);
     console.log(props.productionInd)
-   console.log(props.distributorData)
+    console.log(props.activeKey)
     return (
         <>
             <TabsWrapper>
@@ -72,10 +71,10 @@ function AccountDetailsTab(props) {
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
-                                <PrecisionManufacturingIcon/>
+                                    <PrecisionManufacturingIcon />
                                     <span class="ml-1">Production</span>
                                 </span>
-                                {activeKey === "1" && (
+                                {activeKey === "2" && (
                                     <>
                                         <Tooltip title="Create">
                                             <AddShoppingCartIcon
@@ -89,7 +88,7 @@ function AccountDetailsTab(props) {
                                         </Tooltip>
                                     </>
                                 )}</>}
-                        key="1"
+                        key="2"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountOrder1Table distributorId={props.distributorData.distributorId} />
@@ -113,7 +112,7 @@ function AccountDetailsTab(props) {
                                     </span>
                                 </Badge>
                                 &nbsp;
-                                {activeKey === "2" && (
+                                {activeKey === "3" && (
                                     <Tooltip title="Complete Orders">
                                         <HistoryOutlined
                                             fontSize="small"
@@ -122,7 +121,7 @@ function AccountDetailsTab(props) {
                                     </Tooltip>
                                 )}
                                 &nbsp;
-                                {activeKey === "2" && (
+                                {activeKey === "3" && (
                                     <>
                                         <Tooltip title="Add Order">
                                             <AddShoppingCartIcon
@@ -139,7 +138,7 @@ function AccountDetailsTab(props) {
 
                             </>
                         }
-                        key="2"
+                        key="3"
                     >
 
                         <Suspense fallback={"Loading ..."}>
@@ -156,15 +155,15 @@ function AccountDetailsTab(props) {
                                     <i class="fas fa-file-contract"></i>
                                     &nbsp; Contact
                                 </span>
-                                {activeKey === "3" && (
+                                {activeKey === "1" && (
                                     <>
                                         <Tooltip title="Add Contact">
                                             <AddIcon
                                                 type="plus"
                                                 tooltipTitle="Create"
                                                 onClick={() => {
-                                                  //  props.handleDistributorContactModal(true);
-                                                  props.handleSupplierContactModal( true )
+                                                    //  props.handleDistributorContactModal(true);
+                                                    props.handleSupplierContactModal(true)
                                                 }}
                                                 className="!text-base cursor-pointer ml-1"
                                             />
@@ -173,7 +172,7 @@ function AccountDetailsTab(props) {
                                 )}
                             </>
                         }
-                        key="3"
+                        key="1"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountContactTable distributorId={props.distributorData.distributorId} />
@@ -182,6 +181,7 @@ function AccountDetailsTab(props) {
                     <TabPane
                         tab={
                             <>
+
                                 <span>
                                     <i class="fab fa-connectdevelop"></i>
                                     <span class="ml-1">Activity</span>
@@ -283,13 +283,13 @@ function AccountDetailsTab(props) {
                                     {/* <i class="far fa-file"></i> */}
                                     <span class="ml-1">Sales Map</span>
                                 </span>
-                                
+
                             </>
                         }
                         key="7"
                     >
                         <Suspense fallback={"Loading ..."}>
-                           
+
                         </Suspense>
                     </TabPane>
 
@@ -300,15 +300,15 @@ function AccountDetailsTab(props) {
                                     {/* <i class="far fa-file"></i> */}
                                     <span class="ml-1">Summary</span>
                                 </span>
-                                
+
                             </>
                         }
                         key="8"
                     >
                         <Suspense fallback={"Loading ..."}>
-                        <SalesMapTable
-                               
-                               />
+                            <SalesMapTable
+
+                            />
                             {/* <SummaryTable
                                
                             /> */}
@@ -325,22 +325,23 @@ function AccountDetailsTab(props) {
                     props.handleDistributorDocumentUploadModal
                 }
             /> */}
-            <AddSupplierDocumentModal 
-             distributorId={props.distributorData.distributorId}       
-            supplierDocumentUploadModal={props.supplierDocumentUploadModal}
-            handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
-          />
+            <AddSupplierDocumentModal
+                distributorId={props.distributorData.distributorId}
+                supplierDocumentUploadModal={props.supplierDocumentUploadModal}
+                handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
+            />
             <AddAccountModal
                 handleLinkDistributorOrderConfigureModal={props.handleLinkDistributorOrderConfigureModal}
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
-            
-               <AddSupplierContactModal
-            addSupplierContactModal={props.addSupplierContactModal}
-            handleSupplierContactModal={props.handleSupplierContactModal}
-            distributorId={props.distributorData.distributorId}
-          />
+
+            <AddSupplierContactModal
+                addSupplierContactModal={props.addSupplierContactModal}
+                handleSupplierContactModal={props.handleSupplierContactModal}
+                type="distributor"
+                id={props.distributorData.distributorId}
+            />
             <AccountActivityModal
                 addDistributorActivityModal={props.addDistributorActivityModal}
                 handleDistributorActivityModal={props.handleDistributorActivityModal} />
@@ -357,7 +358,7 @@ function AccountDetailsTab(props) {
     );
 }
 
-const mapStateToProps = ({ distributor, auth,suppliers }) => ({
+const mapStateToProps = ({ distributor, auth, suppliers }) => ({
     orderRecordData: distributor.orderRecordData,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
@@ -368,7 +369,7 @@ const mapStateToProps = ({ distributor, auth,suppliers }) => ({
     productionInd: auth.userDetails.productionInd,
     repairInd: auth.userDetails.repairInd,
     addSupplierContactModal: suppliers.addSupplierContactModal,
-    supplierDocumentUploadModal:suppliers.supplierDocumentUploadModal,
+    supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -14,6 +14,10 @@ const initialState = {
   fetchingSelectdropError: false,
   selectDrop: [],
 
+  fetchingDocumentsByInvestorId: false,
+  fetchingDocumentsByInvestorIdError: false,
+  documentsByInvestorId: [],
+
   addingCustomerActivityEvent: false,
   addingCustomerActivityEventError: false,
 
@@ -46,8 +50,6 @@ const initialState = {
   fetchingCustomerProjectError: false,
   customerProject: [],
 
-
-  addCustomerActivityDrawerModal:false,
 
   fetchingCustOpenOppJumpstart: false,
   fetchingCustOpenOppJumpstartError: false,
@@ -86,6 +88,10 @@ const initialState = {
   fetchingCustomerAllRecords: false,
   fetchingCustomerAllRecordsError: false,
   customerAllRecordData: {},
+
+  fetchingDocumentsByDealId: false,
+  fetchingDocumentsByDealIdError: false,
+  documentsByInnOppId: [],
 
   callActivityModal: false,
 
@@ -206,12 +212,13 @@ const initialState = {
   fetchingWonCustomerOppValueError: false,
   WonCustomerOpp: {},
 
+  fetchingDocumentsByContactId: false,
+   fetchingDocumentsByContactIdError: false,
+   documentsByContactId:[],
+
   fetchingCustomerById: false,
   fetchingCustomerByIdError: false,
   customerById: [],
-
-  updatingActivityTask: false, 
-  updatingActivityTaskError: false,
 
   fetchingCustomerDetailsById: false,
   fetchingCustomerDetailsByIdError: false,
@@ -408,12 +415,18 @@ const initialState = {
   linkingProfileToCustomerError: false,
   profileRecruit: [],
 
+  fetchingDocumentsByOpportunityId: false,
+  fetchingDocumentsByOpportunityIdError: false,
+  documentsByOpportunityId: [],
+
   fetchingAllCustomerByAlphabet: false,
   fetchingAllCustomerByAlphabetError: false,
 
   fetchingCustomersList: false,
   fetchingCustomersListError: false,
   customerByList: [],
+
+  addCustomerActivityDrawerModal:false,
 
   fetchingAttendanceList: false,
   fetchingAttendanceListError: false,
@@ -680,7 +693,12 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         addingDocumentByCustomerId: false,
         addingDocumentByCustomerIdError: false,
+        documentUploadModal:false,
         documentsByCustomerId: [action.payload, ...state.documentsByCustomerId],
+        documentsByContactId: [action.payload, ...state.documentsByContactId],
+        documentsByOpportunityId: [action.payload, ...state.documentsByOpportunityId],
+        documentsByInnOppId: [action.payload, ...state.documentsByInnOppId],
+        documentsByInvestorId: [action.payload, ...state.documentsByInvestorId]
       };
     case types.ADD_CUSTOMER_DOCUMENT_FAILURE:
       return {
@@ -1715,11 +1733,6 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CUSTOMER_NOTE_DRAWER_MODAL:
       return { ...state, addCustomerNoteDrawerModal: action.payload };
 
-
-      case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
-        return { ...state, addCustomerActivityDrawerModal: action.payload };
-  
-
     case types.CUSTOMER_TO_ACCOUNT_CONVERT_REQUEST:
       return {
         ...state,
@@ -2135,25 +2148,90 @@ export const customerReducer = (state = initialState, action) => {
     case types.GET_WON_OPP_OF_JUMPSTART_FAILURE:
       return { ...state, fetchingCustWonOppJumpstart: false, fetchingCustWonOppJumpstartError: true };
 
+      case types.GET_CONTACT_DOCUMENTS_REQUEST:
+      return {
+        ...state,
+        fetchingDocumentsByContactId: true,
+        fetchingDocumentsByContactIdError: false,
+      };
+    case types.GET_CONTACT_DOCUMENTS_SUCCESS:
+      return {
+        ...state,
+        fetchingDocumentsByContactId: false,
+        fetchingDocumentsByContactIdError: false,
+        documentsByContactId: action.payload,
+      };
+    case types.GET_CONTACT_DOCUMENTS_FAILURE:
+      return {
+        ...state,
+        fetchingDocumentsByContactId: false,
+        fetchingDocumentsByContactIdError: true,
+      };
 
-      case types.UPDATE_ACTIVITY_TASK_REQUEST:
-        return { ...state, updatingActivityTask: true };
-      case types.UPDATE_ACTIVITY_TASK_SUCCESS:
+      case types.GET_OPPORTUNITY_DOCUMENTS_REQUEST:
         return {
           ...state,
-          updatingActivityTask: false,
-          addCustomerActivityDrawerModal: false,
-          customerActivityTimeline: state.customerActivityTimeline.map((event) =>
-          event.taskId === action.payload.taskId
-            ? action.payload
-            : event
-        ),
-         
-  
+          fetchingDocumentsByOpportunityId: true,
+          fetchingDocumentsByOpportunityIdError: false,
         };
-      case types.UPDATE_ACTIVITY_TASK_FAILURE:
-        return { ...state, updatingActivityTask: false, updatingActivityTaskError: false };
+      case types.GET_OPPORTUNITY_DOCUMENTS_SUCCESS:
+        return {
+          ...state,
+          fetchingDocumentsByOpportunityId: false,
+          fetchingDocumentsByOpportunityIdError: false,
+          documentsByOpportunityId: action.payload,
+        };
+      case types.GET_OPPORTUNITY_DOCUMENTS_FAILURE:
+        return {
+          ...state,
+          fetchingDocumentsByOpportunityId: false,
+          fetchingDocumentsByOpportunityIdError: true,
+        };
 
+
+        case types.GET_DEAL_DOCUMENTS_REQUEST:
+          return {
+            ...state,
+            fetchingDocumentsByDealId: true,
+            fetchingDocumentsByDealIdError: false,
+          };
+        case types.GET_DEAL_DOCUMENTS_SUCCESS:
+          return {
+            ...state,
+            fetchingDocumentsByDealId: false,
+            fetchingDocumentsByDealIdError: false,
+            documentsByInnOppId: action.payload,
+          };
+        case types.GET_DEAL_DOCUMENTS_FAILURE:
+          return {
+            ...state,
+            fetchingDocumentsByDealId: false,
+            fetchingDocumentsByDealIdError: true,
+          };
+
+          case types.GET_INVESTOR_DOCUMENTS_REQUEST:
+      return {
+        ...state,
+        fetchingDocumentsByInvestorId: true,
+        fetchingDocumentsByInvestorIdError: false,
+      };
+    case types.GET_INVESTOR_DOCUMENTS_SUCCESS:
+      return {
+        ...state,
+        fetchingDocumentsByInvestorId: false,
+        fetchingDocumentsByInvestorIdError: false,
+        documentsByInvestorId: action.payload,
+      };
+    case types.GET_INVESTOR_DOCUMENTS_FAILURE:
+      return {
+        ...state,
+        fetchingDocumentsByInvestorId: false,
+        fetchingDocumentsByInvestorIdError: true,
+      };
+
+      case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
+        return { ...state, addCustomerActivityDrawerModal: action.payload };
+  
 
     default:
       return state;

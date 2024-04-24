@@ -10,7 +10,8 @@ import { InputComponent } from "../../../../../../Components/Forms/Formik/InputC
 import { TextareaComponent } from '../../../../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../../../Auth/AuthAction";
-import { updateOrderStep1, getContactDistributorList, getLobList } from '../../../AccountAction'
+import { updateOrderStep1, getLobList } from '../../../AccountAction'
+import { getContactDistributorList } from "../../../../Suppliers/SuppliersAction"
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
 import { FormattedMessage } from 'react-intl';
@@ -200,17 +201,17 @@ function OrderStep1(props) {
                                             isColumn
                                         />
                                     </div>
-                                    <div class="w-[45%]">
+                                    {/* <div class="w-[45%]">
                                         <label>Required bulk QR code</label>
                                         <Switch
                                             onChange={handleBulkQr}
                                             checked={bulkQr}
                                             checkedChildren="Yes"
                                             unCheckedChildren="No" />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
+                                    {/* <div class="w-[45%]">
                                         <Field
                                             label="Units"
                                             name="totalPhoneCount"
@@ -219,7 +220,7 @@ function OrderStep1(props) {
                                             width={"100%"}
                                             isColumn
                                         />
-                                    </div>
+                                    </div> */}
                                     <div class="w-[45%]">
                                         <Field
                                             label="Contact"
@@ -442,8 +443,8 @@ function OrderStep1(props) {
     );
 }
 
-const mapStateToProps = ({ auth, distributor }) => ({
-    contactDistributor: distributor.contactDistributor,
+const mapStateToProps = ({ auth, distributor, suppliers }) => ({
+    contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     setEdittingOrder: distributor.setEdittingOrder,

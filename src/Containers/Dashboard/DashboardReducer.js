@@ -77,6 +77,10 @@ const initialState = {
   fetchingDashBoardFunnelError: false,
   dashboardFunnel: [],
 
+  fetchingQuotationTableData:false,
+  fetchingQuotationTableDataError:false,
+  quotationTableData:[],
+
   fetchingUpcomingEvents: false,
   fetchingUpcomingEventsError: false,
   upcomingEvents: [],
@@ -192,6 +196,9 @@ const initialState = {
   fetchingJumpstartBulb3: false,
   fetchingJumpstartBulb3Error: false,
   jumpstartBulb3Count: [],
+  gettingDevelopChart:false,
+  gettingDevelopChartError:false,
+  developChart:[],
 
 
   prospectQuotationYearModal:false,
@@ -1421,6 +1428,24 @@ export const dashboardReducer = (state = initialState, action) => {
         gettingInvHotColdWarmError: true,
       };
 
+
+
+
+      case types.GET_QUOTATION_TABLE_DATA_REQUEST:
+      return { ...state, fetchingQuotationTableData: true };
+    case types.GET_QUOTATION_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        quotationTableData: action.payload,
+      };
+    case types.GET_QUOTATION_TABLE_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationTableData: false,
+        fetchingQuotationTableDataError: true,
+      };
+
     case types.GET_DASH_INVESTOR_ADDED_PITCH_REQUEST:
       return { ...state, fetchingdashInvstPitchAdded: true };
     case types.GET_DASH_INVESTOR_ADDED_PITCH_SUCCESS:
@@ -1839,6 +1864,22 @@ export const dashboardReducer = (state = initialState, action) => {
             fetchingRegionRecordsCount: false,
             fetchingRegionRecordsCountError: true,
           };
+          case types.GET_DEVELOP_CHART_REQUEST:
+            return { ...state, gettingDevelopChart: true };
+      
+          case types.GET_DEVELOP_CHART_SUCCESS:
+            return {
+              ...state,
+              gettingDevelopChart: false,
+              developChart: action.payload,
+            };
+      
+          case types.GET_HOT_COLD_WARM_FAILURE:
+            return {
+              ...state,
+              gettingDevelopChart: false,
+              gettingDevelopChartError: true,
+            };
 
     default:
       return state;

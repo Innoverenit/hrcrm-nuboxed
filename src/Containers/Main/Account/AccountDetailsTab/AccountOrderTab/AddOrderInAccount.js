@@ -11,11 +11,13 @@ import { TextareaComponent } from '../../../../../Components/Forms/Formik/Textar
 import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
-import { addOrderForm, getContactDistributorList, getLobList } from '../../AccountAction'
+import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
+import { addOrderForm, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
+    lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.string().required("Input needed!"),
     contactPersonId: Yup.string().required("Input needed!"),
     orderCurrencyId: Yup.string().required("Input needed!"),
@@ -69,9 +71,7 @@ function AddOrderInAccount(props) {
                 customPayment: "",
                 comments: "",
                 orderCurrencyId: "",
-                deliverToBusinessInd: "",
-                fullLoadTruckInd: "",
-                privateInd: "",
+                totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
                 userId: props.userId,
@@ -164,6 +164,7 @@ function AddOrderInAccount(props) {
                                     <div class="w-[45%]">
                                         <Field
                                             label="Contact"
+                                            style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"
                                             component={SelectComponent}
@@ -215,6 +216,7 @@ function AddOrderInAccount(props) {
                                     <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
                                             name="advancePayment"
                                             label="Advance Payment(%)"
                                             isColumn
@@ -304,6 +306,7 @@ function AddOrderInAccount(props) {
                                             options={Array.isArray(lobOption) ? lobOption : []}
                                             inlineLabel
                                             width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
                                             isColumn
                                         />
                                     </div>
@@ -358,6 +361,7 @@ function AddOrderInAccount(props) {
                                             name="orderCurrencyId"
                                             label="Currency"
                                             isColumn
+                                            style={{ borderRight: "3px red solid" }}
                                             inlineLabel
                                             component={SelectComponent}
                                             options={Array.isArray(currencyOption) ? currencyOption : []}
@@ -448,8 +452,8 @@ function AddOrderInAccount(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor }) => ({
-    contactDistributor: distributor.contactDistributor,
+const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+    contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingOrder: distributor.addingOrder,

@@ -26,7 +26,7 @@ import {
   getCandidateTaskFilterList,
   deleteTask,
 } from "../../../Task/TaskAction";
-import {updateActivityTask} from "../../CustomerAction"
+// import {updateActivityTask} from "../../CustomerAction"
 import {
   getTaskForStages,
   getTaskForWorkflow,
@@ -1544,7 +1544,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      updateActivityTask,
+      // updateActivityTask,
       getAllCustomerData,
       getOpportunityListByCustomerId,
       getContactListByCustomerId,

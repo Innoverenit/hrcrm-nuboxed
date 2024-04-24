@@ -8,9 +8,11 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import {
-    getDealDocument,
     removeDealDocuments
 } from "../../../../DealAction";
+import {
+  getDealDocument,
+} from "../../../../../Customer/CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -126,11 +128,11 @@ class LinkedDocuments extends Component {
   }
 }
 
-const mapStateToProps = ({ contact,deal }) => ({
+const mapStateToProps = ({ contact,deal,customer }) => ({
   contact: contact.contact,
-  fetchingDocumentsByDealId: deal.fetchingDocumentsByDealId,
-  fetchingDocumentsByDealIdError: deal.fetchingDocumentsByDealIdError,
-  documentsByInnOppId: deal.documentsByInnOppId,
+  fetchingDocumentsByDealId: customer.fetchingDocumentsByDealId,
+  fetchingDocumentsByDealIdError: customer.fetchingDocumentsByDealIdError,
+  documentsByInnOppId: customer.documentsByInnOppId,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -139,7 +141,6 @@ const mapDispatchToProps = (dispatch) =>
         getDealDocument,
         removeDealDocuments
 ,
-        // deleteDocument,
     },
     dispatch
   );
