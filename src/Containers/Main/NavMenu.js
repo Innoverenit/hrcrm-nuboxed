@@ -824,6 +824,19 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )} 
+
+<Menu.Item key="/procre" style={{ height: "1.7rem", 
+paddingLeft: "1rem" , color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
+  <Link to="/procre" onClick={() => handleSelect('/procre')}>
+    <CategoryIcon
+      style={{ fontSize: "large" }}
+    />
+    <span class="text-white text-ls ml-1">
+      Procre
+    </span>
+  </Link>
+</Menu.Item>
+
         {(user.materialAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) &&  (
 
           <Menu.Item key="/supplies" style={{ height: "1.7rem",
@@ -856,6 +869,23 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/suppliers' ? 'tomato' : '#4b
   </Link>
 </Menu.Item>
  )} 
+
+{/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
+
+<Menu.Item key="/vendor" style={{ height: "1.7rem", 
+paddingLeft: "1rem" , color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
+  <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
+    <CategoryIcon
+      style={{ fontSize: "large" }}
+    />
+    <span class="text-white text-ls ml-1">
+      Vendor
+    </span>
+  </Link>
+</Menu.Item>
+ {/* )}  */}
+
+
   {(user.procurementAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.procurementInd === true) && (
 <Menu.Item key="/procurement" style={{ height: "1.7rem", 
 paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
