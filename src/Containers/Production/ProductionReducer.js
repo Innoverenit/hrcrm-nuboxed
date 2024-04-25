@@ -296,11 +296,7 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
                   fetchingStageListError: true,
           
                 };  
-   
-                // case types.HANDLE_PRODUCTION_CELL_DRAWER:
-                //   return { ...state, clickProdnDrwr: action.payload };
-
-                case types.UPDATE_ROOM_RACK_WIP_REQUEST:
+                   case types.UPDATE_ROOM_RACK_WIP_REQUEST:
                   return { ...state,updatingroomrackWip: true };
                 case types.UPDATE_ROOM_RACK_PRODN_SUCCESS:
                   return {

@@ -16,9 +16,10 @@ const { Option } = Select;
 
 
 
-const CurrencyCoversionForm = (props) => {
+const LocationCellForm = (props) => {
     useEffect(()=>{
         // props.getDepartments();
+        // props.getLoCell();
     },[]);
 
 
@@ -268,4 +269,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CurrencyCoversionForm);
+)(LocationCellForm);

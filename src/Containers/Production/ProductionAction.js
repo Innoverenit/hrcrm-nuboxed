@@ -454,12 +454,6 @@ export const getStageList = (orgId) => (dispatch) => {
       });
     });
 };
-// export const handleProdnCellDrawer =(modalProps)=>(dispatch) => {
-//   dispatch({
-//     type: types.HANDLE_PRODUCTION_CELL_DRAWER,
-//     payload: modalProps,
-//   });
-// }
 export const updateRoomRackWip = (data, cb) => (dispatch) => {
   dispatch({ type: types.UPDATE_ROOM_RACK_WIP_REQUEST });
   axios
