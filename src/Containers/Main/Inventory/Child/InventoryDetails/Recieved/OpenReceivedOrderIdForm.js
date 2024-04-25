@@ -279,7 +279,7 @@ function OpenReceivedOrderIdForm(props) {
 
                         <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.inspectionInd === 1 && item.receivePhoneInd && (
+                            {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                               <EditOutlined
                                 style={{ color: "orange" }}
                                 onClick={() => {

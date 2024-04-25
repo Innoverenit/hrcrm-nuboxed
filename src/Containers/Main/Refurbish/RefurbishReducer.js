@@ -14,6 +14,10 @@ const initialState = {
 
   showAssignRepairModal: false,
 
+  fetchingRemainingPhoneList: false,
+  fetchingRemainingPhoneListError: true,
+  remainingPhoneById: [],
+
   showProductBuilderList: false,
 
   fetchingCatalogueByUser: false,
@@ -609,6 +613,21 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingNoOfPhoneInRepair: false,
         fetchingNoOfPhoneInRepairError: true,
+      };
+
+    case types.GET_REMAINING_PHONES_LIST_REQUEST:
+      return { ...state, fetchingRemainingPhoneList: true };
+    case types.GET_REMAINING_PHONES_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingRemainingPhoneList: false,
+        remainingPhoneById: action.payload
+      };
+    case types.GET_REMAINING_PHONES_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingRemainingPhoneList: false,
+        fetchingRemainingPhoneListError: true,
 
       };
 
