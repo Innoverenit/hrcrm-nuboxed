@@ -56,27 +56,25 @@ function PurchaseOrderTable(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[30.1rem]">
+                        <div className=" w-[30.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO#"
                             /></div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                             <FormattedMessage
                                 id="app.created"
                                 defaultMessage="Created" />
                         </div>
-                        <div className=" md:w-[14.1rem]">
-                            <FormattedMessage
-                                id="app.location"
-                                defaultMessage="Location" />
+                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                            Delivery
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             <FormattedMessage
                                 id="app.value"
                                 defaultMessage="Value" />
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             <FormattedMessage
                                 id="app.currency"
                                 defaultMessage="Currency" />
@@ -105,8 +103,8 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium flex-col md:w-36 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[22.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
                                                                 onClick={() => {
@@ -123,8 +121,8 @@ function PurchaseOrderTable(props) {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[9.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
                                                                 imgWidth={"1.8rem"}
@@ -132,20 +130,20 @@ function PurchaseOrderTable(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[9.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
                                                             {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                 <Select
                                                                     value={currency}
@@ -161,8 +159,8 @@ function PurchaseOrderTable(props) {
                                                                 item.poCurrency}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[12.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Update Currency">
                                                                 {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                     <div>
@@ -186,8 +184,8 @@ function PurchaseOrderTable(props) {
                                                             </Tooltip>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
                                                                 onClick={() => {
@@ -202,8 +200,8 @@ function PurchaseOrderTable(props) {
                                                             </Button> : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-20 max-sm:justify-between w-full max-sm:flex-row ">
-                                                        <div class=" cursor-pointer font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                    <div className=" flex font-medium  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Terms and condition">
                                                                 <TerminalSharp
                                                                     onClick={() => {

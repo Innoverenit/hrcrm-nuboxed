@@ -48,7 +48,8 @@ class SupplierDetailsTab extends Component {
             <TabPane
               tab={
                 <>
-                  <i class="far fa-share-square"></i>&nbsp; Purchase Order
+                  <i class="far fa-share-square"></i>&nbsp;
+                   <label className="max-xl:text-[0.65rem]">Purchase Order</label>
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
@@ -77,7 +78,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <i class="fab fa-connectdevelop"></i>
-                  <span style={{ marginLeft: "0.25em" }}>Materials</span>
+                  <span className="max-xl:text-[0.65rem] ml-1" >Materials</span>
 
                   {/* {activeKey === "2" && (
                     <>
@@ -113,7 +114,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <ContactsIcon className="!text-base " />
-                  <span style={{ marginLeft: "0.25em" }}>Contact</span>
+                  <span className="max-xl:text-[0.65rem] ml-1">Contact</span>
 
                   {activeKey === "3" && (
                     <>
@@ -149,7 +150,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file"></i>
-                    <span style={{ marginLeft: "0.25em" }}>Documents</span>
+                    <span className="max-xl:text-[0.65rem] ml-1">Documents</span>
                   </span>
                   {activeKey === "4" && (
                     <>
@@ -183,7 +184,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file"></i>
-                    <span style={{ marginLeft: "0.25em" }}>Activity</span>
+                    <span className="max-xl:text-[0.65rem] ml-1">Activity</span>
                   </span>
                   {activeKey === "5" && (
                     <>
