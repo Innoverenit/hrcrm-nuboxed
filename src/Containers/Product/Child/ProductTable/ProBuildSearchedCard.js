@@ -141,7 +141,7 @@ function ProBuildSearchedCard (props) {
     console.log(key)
     const targetRow = data.find((row) => row.key === key);
     if (targetRow) {
-      const { suppliesName,categoryName, subCategoryName, quantity,hsn,attributeName,imageId,suppliesId, productId,subAttributeName} = targetRow;
+      const { suppliesName,categoryName, subCategoryName, quantity,hsn,attributeName,imageId,suppliesId, productId,subAttributeName,step,description} = targetRow;
      
       const result = {
         hsn: hsn,
@@ -153,7 +153,9 @@ function ProBuildSearchedCard (props) {
               quantity:quantity,
               productId:props.particularDiscountData.productId,
               suppliesId:suppliesId,
-              imageId:imageId
+              imageId:imageId,
+              step:step,
+              description:description
             };
       props.addProductBuilder(result)
     }
@@ -413,10 +415,13 @@ return (
    <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=""></div>
+          <div className=" md:w-[3rem]]">HSN</div>
           <div className=" md:w-[7%]">Name</div>
          <div className=" md:w-[4.2rem] ">Category</div>
          <div className="md:w-[5.8rem]">Sub Category</div>
          <div className=" md:w-[4.2rem] ">Unit</div>
+         <div className=" md:w-[4.2rem] ">Step</div>
+         <div className=" md:w-[4.2rem] ">Description</div>
       <div className="w-12"></div>
              </div>
                     {data.map((item) => {
@@ -439,13 +444,19 @@ return (
                      
                       <div className=" flex font-medium flex-col md:w-[7.1rem] max-sm:w-full  ">
     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                              {item.suppliesName}
+                              {item.hsn}
                             </div>
     </div>
                       </div>
                     </div>
                   </div>
-
+         
+                     <div className=" flex font-medium flex-col md:w-[7.1rem] max-sm:w-full  ">
+   <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                             {item.suppliesName}
+                           </div>
+   </div>
+                   
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
                       
@@ -466,6 +477,27 @@ return (
   style={{ width: "11em" }}
   value={item.quantity}
   onChange={(e) => handleInputChange(e.target.value, item.key, 'quantity')}
+/>
+                    </div>
+  </div>
+  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">  
+                       {/* {item.quantity} */}
+                       <Input
+  style={{ width: "11em" }}
+  value={item.step}
+  onChange={(e) => handleInputChange(e.target.value, item.key, 'step')}
+/>
+                    </div>
+  </div>
+  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">  
+                       <Input
+  style={{ width: "11em" }}
+  value={item.description}
+  onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
 />
                     </div>
   </div>

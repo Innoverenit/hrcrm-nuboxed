@@ -8,6 +8,7 @@ import {
 } from "../../../InventoryAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
+import { BorderColorOutlined} from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ReceivedDetailModal from "./ReceivedDetailModal";
@@ -25,6 +26,9 @@ const MaterialReceivedTable = (props) => {
         props.getRoomRackByLocId(props.locationId,props.orgId);
     }, [])
     const [clickStore, setclickStore] = useState(false)
+    const [selectedChamberId, setSelectedChamberId] = useState("");
+    const [selectedRoomId, setSelectedRoomId] = useState("");
+
 
     const [row, setRow] = useState({})
     const handleRow = (item) => {
@@ -35,6 +39,37 @@ const MaterialReceivedTable = (props) => {
     const handleLoadMore = () => {
         setPage(page + 1);
     };
+
+    function handleStore() {
+        setclickStore(true)
+    }
+    function handleCancelStore() {
+        setclickStore(false)
+    }
+
+    const handleChangeRoomRack = (value) => {
+        setSelectedRoomId(value)
+        props.getRackList(value)
+    }
+
+    const handleChangeChamber = (value) => {
+        setSelectedChamberId(value)
+    }
+    const handleSubmitRoomRack = (id) => {
+        const dataToSend = {
+            roomRackId: selectedRoomId,
+            poSupplierDetailsId: id,
+            roomRackChamberLinkId: selectedChamberId,
+            locationDetailsId: props.locationId,
+            roomEntryDate: dayjs()
+        };
+        props.updateRoomRackProduction(dataToSend, handleCallback())
+    }
+    function handleCallback() {
+        setSelectedChamberId("")
+        setSelectedRoomId("")
+        setclickStore(false)
+    }
 
     return (
         <>
@@ -96,39 +131,68 @@ const MaterialReceivedTable = (props) => {
                                             </div>
                                         </div>
          <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
-         {!clickStore && 
-<Button type="primary" onClick={()=> setclickStore(true)}>
-    Send to Store
-</Button>}
-                                        {clickStore && 
-                                        <>
-                                        <Select
-                                                            classNames="w-32"
-                                                            // value={item.zone}
-                                                            // onChange={handleRoomRackChange}
-                                                            
-                                                        >
-                                                            {props.roomRackbyLoc.map((s) => (
-                                                                <Option key={s.roomRackId} value={s.roomRackId}>
-                                                                    {s.zone}
-                                                                </Option>
-                                                            ))}
-                                                        </Select>
-                                                        <Select
-        classNames="w-32"
-        // value={selectedChamberId}
-        // onChange={(e) => handleChangeChamber(e,item.manufactureId)}
-        style={{marginLeft:"1.5rem"}}
-    >
-        {/* {props.racklist.map((chamber) => (
-            <Select.Option key={chamber.roomRackChamberLinkId} value={chamber.roomRackChamberLinkId}>
-                {chamber.chamber}
-            </Select.Option>
-        ))} */}
-    </Select> 
-    </>
-                        }  
+         
+                                        {/* {clickStore && row=== item.poSupplierDetailsId ?
+                                        <> */}
+                                       <Select
+                                                                classNames="w-32"
+                                                                value={selectedRoomId}
+                                                                onChange={(value) => { handleChangeRoomRack(value) }}
+                                                            >
+                                                                {props.roomRackbyLoc.map((s) => (
+                                                                    <Option value={s.roomRackId}>
+                                                                        {s.zone}
+                                                                    </Option>
+                                                                ))}
+                                                            </Select>
+                                                            <Select
+                                                                classNames="w-32"
+                                                                value={selectedChamberId}
+                                                                onChange={(val) => handleChangeChamber(val)}
+                                                            >
+                                                                {props.rackList.map((chamber) => (
+                                                                    <Option value={chamber.roomRackChamberLinkId}>
+                                                                        {chamber.chamber}
+                                                                    </Option>
+                                                                ))}
+                                                            </Select>
+                                                            <Button
+                                                                type="primary"
+                                                                onClick={() => {
+                                                                    handleSubmitRoomRack(item.poSupplierDetailsId)
+                                                                }} >
+                                                                <FormattedMessage
+                                                                    id="app.save"
+                                                                    defaultMessage="Save"
+                                                                />
+                                                            </Button>
+                                                            <Button onClick={() => handleCancelStore()}><FormattedMessage
+                                                                id="app.cancel"
+                                                                defaultMessage="Cancel"
+                                                            /></Button>
+                                                        {/* </>
+                                                        : */}
+                                                        <>
+                                                            {/* {`${item.zone || ""} - ${item.chamber || ""}`} */}
+
+                                                        </>
+                        {/* }   */}
 </div>
+<div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                {/* <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                    {item.zone ? <BorderColorOutlined
+                                                        onClick={() => {
+                                                            handleStore()
+                                                            handleRow(item)
+                                                        }}
+                                                    /> : <Button
+                                                        type="primary"
+                                                        onClick={() => {
+                                                            handleStore()
+                                                            handleRow(item)
+                                                        }}>Send To Store</Button>}
+                                                </div> */}
+                                            </div>
                                         <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 <Tooltip title="GRN list">
