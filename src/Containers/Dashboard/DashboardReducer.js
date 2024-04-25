@@ -7,6 +7,16 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+
+
+  fetchingOrderAddedList:false,
+  fetchingOrderAddedListError:false,
+  orderAddedList:[],
+
+
+
+  orderAddedModal:false,
+
   fetchingRegionRecordsCount: false,
   fetchingRegionRecordsCountError: false,
   regionRecords:[],
@@ -64,6 +74,9 @@ const initialState = {
   fetchingActionSteps: false,
   fetchingActionStepsError: false,
   actionSteps: [],
+  fetchingOrderCancelList:false,
+  fetchingOrderCancelListError:false,
+  orderCancelList:[],
 
   fetchingalldashboardTable2: false,
   fetchingalldashboardTable2Error: false,
@@ -170,6 +183,8 @@ const initialState = {
   fetchingStageActionNotifications: false,
   fetchingStageActionNotificationsError: false,
   stageactionNotifications: [],
+
+  orderCancelModal:false,
 
   billableCandidateModal: false,
 
@@ -424,6 +439,14 @@ export const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_DASHBOARD_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+      case types.HANDLE_ORDER_ADDED_MODAL:
+      return { ...state, orderAddedModal: action.payload };
+
+
+      case types.HANDLE_ORDER_CANCEL_MODAL:
+        return { ...state, orderCancelModal: action.payload };
 
     case types.GET_SKILLS_CLOUD_REQUEST:
       return { ...state, fetchingSkillsCloud: true };
@@ -1370,6 +1393,42 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingJumpstartInvestor2: false,
         fetchingJumpstartInvestor2Error: true,
       };
+
+
+
+
+      case types.GET_ORDER_CANCEL_LIST_REQUEST:
+        return { ...state, fetchingOrderCancelList: true };
+      case types.GET_ORDER_CANCEL_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderCancelList: false,
+          orderCancelList: action.payload,
+        };
+      case types.GET_ORDER_CANCEL_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderCancelList: false,
+          fetchingOrdercancelListError: true,
+        };
+
+
+
+
+      case types.GET_ORDER_ADDED_LIST_REQUEST:
+        return { ...state, fetchingOrderAddedList: true };
+      case types.GET_ORDER_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderAddedList: false,
+          orderAddedList: action.payload,
+        };
+      case types.GET_ORDER_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderAddedList: false,
+          fetchingOrderAddedListError: true,
+        };
 
     case types.GET_JUMPSTART_INVESTOR_3_REQUEST:
       return {

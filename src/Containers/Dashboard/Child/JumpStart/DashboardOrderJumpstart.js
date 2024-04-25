@@ -2,10 +2,14 @@ import React, { useEffect, } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import OrdersAddedModal from "./OrdersAddedModal"
+import OrdersCancelModal from "./OrdersCancelModal"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
-  getJumpOrderDetail
+  getJumpOrderDetail,
+handleOrderAddedModal,
+handleOrderCancelModal
 } from "../../DashboardAction";
 
 function DashboardOrderJumpstart(props) {
@@ -26,7 +30,7 @@ function DashboardOrderJumpstart(props) {
                 id="app.ordersAdded"
                 defaultMessage="Orders Added"
               />}
-              // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
+              jumpstartClick={()=>props.handleOrderAddedModal(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
             isLoading={props.fetchingorderDetails}
@@ -65,7 +69,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                 id="app.orderscancelled"
                 defaultMessage="Orders Cancelled"
               />}
-              // jumpstartClick={()=>handleDealClosedDrawer(true)}
+              jumpstartClick={()=>props.handleOrderCancelModal(true)}
               cursorData={"pointer"}
               value={props.orderinDashboard.cancelOrder}
             isLoading={props.fetchingorderDetails}
@@ -91,11 +95,15 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
         </div>
       </div>
    
-      {/* <PitchQualifiedDrawer
-      openPitchQualified={openPitchQualified}
-      handlePitchQualifiedDrawer={handlePitchQualifiedDrawer}
+     <OrdersAddedModal
+       orderAddedModal={props.orderAddedModal}
+       handleOrderAddedModal={props.handleOrderAddedModal}
       />
-       <PitchAddedDrawer
+        <OrdersCancelModal
+       orderCancelModal={props.orderCancelModal}
+       handleOrderCancelModal={props.handleOrderCancelModal}
+      />
+       {/* <PitchAddedDrawer
       openPitchAdded={openPitchAdded}
       handlePitchAddedDrawer={handlePitchAddedDrawer}
       />
@@ -106,7 +114,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
     <DealsClosedDrawer 
      openDealClosed={openDealClosed}
      handleDealClosedDrawer={handleDealClosedDrawer}
-    /> */}
+    />  */}
     </>
 
   );
@@ -117,6 +125,8 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orgId: auth.userDetails.organizationId,
   fetchingorderDetails: dashboard.fetchingorderDetails,
   userId: auth.userDetails.employeeId,
+  orderAddedModal:dashboard.orderAddedModal,
+  orderCancelModal:dashboard.orderCancelModal,
   timeRangeType: dashboard.timeRangeType,
 
 });
@@ -125,7 +135,9 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getJumpOrderCount,
-      getJumpOrderDetail
+      getJumpOrderDetail,
+      handleOrderAddedModal,
+      handleOrderCancelModal
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

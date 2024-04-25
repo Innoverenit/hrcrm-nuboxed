@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CustomerPieChart from "./CustomerPieChart"
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 
@@ -17,63 +18,53 @@ function CustomerDashJumpstart(props) {
 //   }, [props.timeRangeType])
   return (
     <>
-      <div class=" flex flex-row w-full" >
-        <div class=" flex w-full max-sm:flex-col" >
-          <div class="flex w-wk">
-            <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
-              noProgress
-              title={<FormattedMessage
-                id="app.Customers"
-                defaultMessage="Customers"
-              />}
-            // jumpstartClick={()=>handlePitchQualifiedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.qualifiedInvestorLeadsList}
-            // isLoading={props.user.fetchingJumpstartInvestor}
-            />
-
-            <JumpStartBox
+  <div class="flex flex-col w-full" style={{marginLeft:"-49px"}}>
+      <div class="flex w-full max-sm:flex-col">
+        <div class="flex w-wk">
+          <JumpStartBox
+            bgColor="linear-gradient(270deg,#F15753,orange)"
+            noProgress
+            title={<FormattedMessage
+              id="app.Customers"
+              defaultMessage="Customers"
+            />}
+          />
+          <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title={<FormattedMessage
-                id="app.opertunitiesThisYear"
-                defaultMessage="Revenue this Year"
-              />}
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
-            />
-          </div>
-          <div class="flex w-wk">
-            <JumpStartBox
-   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-              noProgress
-              title={<FormattedMessage
-                id="app.financeclosed"
-                defaultMessage="Revenue Life Time"
-              />}
-            // jumpstartClick={()=>handleDealAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.opportunityAdded}
-            // isLoading={props.fetchingJumpstartInvestor3}
-            />
-            <JumpStartBox
-                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-              noProgress
-              title={<FormattedMessage
-                id="app.financecancelled"
-                defaultMessage="Open Orders"
-              />}
-            // jumpstartClick={()=>handleDealClosedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={ props.financeDetail.closedOpportunity}
-            // isLoading={props.fetchingJumpstartInvestor4}
-            />
-          </div>
+            noProgress
+            title={<FormattedMessage
+              id="app.opertunitiesThisYear"
+              defaultMessage="Revenue this Year"
+            />}
+          />
         </div>
       </div>
+      <div class="flex w-full max-sm:flex-col">
+        <div class="flex w-wk">
+          <JumpStartBox
+            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+            noProgress
+            title={<FormattedMessage
+              id="app.financeclosed"
+              defaultMessage="Revenue Life Time"
+            />}
+          />
+          <JumpStartBox
+            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+            noProgress
+            title={<FormattedMessage
+              id="app.financecancelled"
+              defaultMessage="Open Orders"
+            />}
+          />
+        </div>
+        {/* Include PieChartComponent here */}
+        {/* <div>
+          <CustomerPieChart />
+        </div> */}
+      </div>
+    </div>
+
 
 
     </>
