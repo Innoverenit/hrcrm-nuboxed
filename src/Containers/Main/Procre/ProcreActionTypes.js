@@ -1,0 +1,3 @@
+
+export const SET_PROCRE_VIEW_TYPE = "SET_PROCRE_VIEW_TYPE";
+

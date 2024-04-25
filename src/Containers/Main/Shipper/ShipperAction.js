@@ -1194,7 +1194,11 @@ export const deleteShipperData = (id) => (dispatch, getState) => {
     type: types.DELETE_SHIPPER_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/shipper/${id}`)
+    .delete(`${base_url2}/shipper/${id}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       // dispatch(getShipperByUserId(userId));

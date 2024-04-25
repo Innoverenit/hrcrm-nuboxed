@@ -142,6 +142,14 @@ export const handleLinkDistributorOrderConfigureModal = (modalProps) => (
     payload: modalProps,
   });
 };
+export const handleLinkCustomerProcurementModal = (modalProps) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL,
+    payload: modalProps,
+  });
+};
 /**
  *  link order by distributor id
  */
