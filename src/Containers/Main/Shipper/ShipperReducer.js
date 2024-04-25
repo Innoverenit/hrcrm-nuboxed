@@ -242,10 +242,6 @@ const initialState = {
   //ContactShipper
   shipperContactModal: false,
 
-  fetchingContactShipperById: false,
-  fetchingContactShipperByIdError: false,
-  contactShipper: [],
-
   addingContactShipper: false,
   addingContactShipperError: false,
 
@@ -1199,20 +1195,7 @@ export const shipperReducer = (state = initialState, action) => {
     /**
      * get  Shipper's contact list
      */
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST:
-      return { ...state, fetchingContactShipperById: true };
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS:
-      return {
-        ...state,
-        fetchingContactShipperById: false,
-        contactShipper: action.payload,
-      };
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE:
-      return {
-        ...state,
-        fetchingContactShipperById: false,
-        fetchingContactShipperByIdError: true,
-      };
+
 
     // //get contacts of shipper
     // case types.GET_CONTACTS_OF_SHIPPER_REQUEST:

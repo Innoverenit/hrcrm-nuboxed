@@ -1238,7 +1238,6 @@ export const addContactShipper = (contact, shipperId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getContactShipperList(shipperId));
       dispatch({
         type: types.ADD_CONTACT_SHIPPER_SUCCESS,
         payload: res.data,
@@ -1256,32 +1255,7 @@ export const addContactShipper = (contact, shipperId) => (dispatch) => {
 };
 
 /*get all the contact of the Shipper */
-export const getContactShipperList = (shipperId) => (dispatch) => {
-  // const shipperId = getState().shipper.allShipper.shipperId;
-  dispatch({
-    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
-  });
-  axios
-    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 
 //SEARCH CONTACTS OF SHIPPER
 
