@@ -36,6 +36,13 @@ export const handleAddJobDetailtModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleOrderAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setDashboardViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_DASHBOARD_VIEW_TYPE, payload: viewType });
 
@@ -53,6 +60,14 @@ export const setSelectedTimeIntervalReport = (selectedTime) => (dispatch) => {
 export const handleActionDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ACTION_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleOrderCancelModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_CANCEL_MODAL,
     payload: modalProps,
   });
 };
@@ -2476,6 +2491,67 @@ export const getQuotationTableData = (country) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_QUOTATION_TABLE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const getOrderAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/all-active-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderCancelList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_CANCEL_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/all-delete-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_CANCEL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_CANCEL_LIST_FAILURE,
         payload: err,
       });
     });

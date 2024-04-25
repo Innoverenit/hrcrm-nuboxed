@@ -13,6 +13,7 @@ import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpS
 import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
+// import CustomerPieChart from "../Dashboard/Child/JumpStart/CustomerPieChart"
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
 import DashOrderFinanceJumpstart from "./Child/JumpStart/DashOrderFinanceJumpstart";
 import InvestorFunnelTab from "./Child/InvestorFunnelTab";
@@ -479,6 +480,7 @@ class Dashboard extends Component {
   
       
     </div>
+   
     </div>
  
     </div>
