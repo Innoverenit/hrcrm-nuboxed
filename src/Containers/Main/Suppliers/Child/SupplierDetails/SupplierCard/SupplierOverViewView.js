@@ -18,20 +18,20 @@ class SupplierOverViewView extends Component {
     } = this.props;
     return (
       <>
-        <div class="flex justify-between">
-          <div class="flex start-0 flex-nowrap w-full">
+        <div class="flex justify-between items-center">
+          <div class="flex start-0 flex-nowrap w-full items-center">
             <div>
               <MultiAvatar />
             </div>
             &nbsp;
-            <div class="flex-col w-wk">
-              <Title
+            <div class="flex-col w-wk max-xl:text-[0.65rem] overflow-hidden text-ellipsis text-xl ">
+              {/* <Title
                 overflow="hidden"
                 textOverflow="ellipsis"
                 fontSize={"0.875rem"}
-              >
+              > */}
                 {`${name || ""}`}
-              </Title>
+              {/* </Title> */}
             </div>
             <Tooltip title={<FormattedMessage id="app.feedback" defaultMessage="Feedback" />}>
               <span
