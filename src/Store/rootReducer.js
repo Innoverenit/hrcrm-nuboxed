@@ -100,6 +100,8 @@ import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityR
 import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
+import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
+
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
 
 const appReducer = combineReducers({
@@ -197,6 +199,7 @@ const appReducer = combineReducers({
   equipment:equipmentReducer,
   industry:industryReducer,
   categoryList:categoryListReducer,
+  vendorList:vendorReducer,
   procre:procreReducer,
 });
 
