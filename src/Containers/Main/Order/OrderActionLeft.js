@@ -115,18 +115,18 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
         <Tooltip title="ALL">
           <Badge
             size="small"
-            count={(viewType === "all" && allOrderCount.order) || 0}
+            count={(viewType === "productionAll" && allOrderCount.order) || 0}
 
             overflowCount={999}
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => setOrderViewType("all")}
+              onClick={() => setOrderViewType("productionAll")}
               style={{
-                color: viewType === "all" && "#1890ff",
+                color: viewType === "productionAll" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: viewType === "productionAll" ? "#f279ab" : "#4bc076" }}>
                 <div className="text-white">ALL</div></Avatar>
 
             </span>

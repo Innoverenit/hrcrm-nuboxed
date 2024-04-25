@@ -134,7 +134,7 @@ function AddShipperForm(props) {
                       <FastField
                         name="phoneNo"
                         label={<FormattedMessage id="app.phone" defaultMessage="Phone #" />}
-                        placeholder={<FormattedMessage id="app.phone" defaultMessage="Phone #" />}
+                        placeholder="Phone #"
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -168,7 +168,7 @@ function AddShipperForm(props) {
                     />
 
                   </div>
-                  <div>
+                  <div class=" mt-2">
                     <b> API Integrated </b>
                     <Switch
                       checked={apiInd}
@@ -178,16 +178,15 @@ function AddShipperForm(props) {
                     />
                   </div>
                 </div>
-                <div class="h-full w-w47.5 max-sm:w-full">
-                  <div class=" h-full w-full">
+                <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
+                >
+                 <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
                       {({ open }) => (
                         <>
-                          <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
-                          // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-                          >
+                         <Listbox.Label className="block font-semibold text-[0.75rem] ">
 
-                            {<FormattedMessage id="app.assignedto" defaultMessage="Assigned to" />}
+                         Assigned to
                           </Listbox.Label>
                           <div className="relative ">
                             <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -196,7 +195,7 @@ function AddShipperForm(props) {
                             {open && (
                               <Listbox.Options
                                 static
-                                className="absolute z-10 max-h-56 w-full overflow-auto mt-1  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                                className="absolute z-10 mt-1 max-h-56 w-full overflow-auto  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                               >
                                 {props.employeeAsErp.map((item) => (
                                   <Listbox.Option

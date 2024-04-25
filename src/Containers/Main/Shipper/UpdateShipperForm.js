@@ -31,7 +31,7 @@ function UpdateShipperForm(props) {
     };
   });
 
-  const [defaultOption, setDefaultOption] = useState(props.setEditingShipper.assignedTo);
+  const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = props.employeeAsErp.find((item) => item.empName === selected);
   
@@ -192,7 +192,7 @@ function UpdateShipperForm(props) {
                           active ? "text-white bg-indigo-600" : "text-gray-900"
                         }`
                       }
-                      value={item.fullName}
+                      value={item.empName}
                     >
                       {({ selected, active }) => (
                         <>
@@ -202,7 +202,7 @@ function UpdateShipperForm(props) {
                                 selected ? "font-semibold" : "font-normal"
                               }`}
                             >
-                              {item.fullName}
+                              {item.empName}
                             </span>
                           </div>
                           {selected && (
@@ -279,6 +279,7 @@ const mapStateToProps = ({ auth, shipper,shipBy,employee }) => ({
   employeeAsErp:shipper.employeeAsErp,
   fullName: auth.userDetails.fullName,
   orgId:auth.userDetails.organizationId,
+  fullName: auth.userDetails.fullName,
 
 });
 

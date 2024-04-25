@@ -358,7 +358,7 @@ export const getProductionOrder = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/order/all-Orders/${userId}/${pageNo}`, {
+    .get(`${base_url2}/order/inCompleteOrders/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -374,6 +374,58 @@ export const getProductionOrder = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_PRODUCTION_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionHistoryOrder = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_HISTORY_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/completeOrders/${userId}/${pageNo}  `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_HISTORY_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionAllOrder = (orgId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_ALL_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/ProductionOrders/${orgId}/${pageNo} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_ALL_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_ALL_ORDER_FAILURE,
         payload: err,
       });
     });
