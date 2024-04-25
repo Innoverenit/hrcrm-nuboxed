@@ -44,6 +44,11 @@ creatingLocationCellError:false,
 fetchingLocationCell: false,
 fetchingLocationCellError:false,
 showLoCell:[],
+
+fetchingAllLocationCell: false,
+fetchingAllLocationCellError:false,
+allLoCell:[],
+
   };
 
   export const locationReducer = (state = initialState, action) => {
@@ -235,6 +240,38 @@ showLoCell:[],
                                                         fetchingLocationCell: false,
                                                         fetchingLocationCellError: true,
                                                       };
+
+                                                      case types.GET_ALL_LOCATION_CELL_REQUEST:
+                                                        return { ...state, fetchingAllLocationCell: true };
+                                                      case types.GET_ALL_LOCATION_CELL_SUCCESS:
+                                                        return {
+                                                          ...state,
+                                                          fetchingAllLocationCell: false,
+                                                          allLoCell: action.payload
+                                                        };
+                                                      case types.GET_ALL_LOCATION_CELL_FAILURE:
+                                                        return {
+                                                          ...state,
+                                                          fetchingAllLocationCell: false,
+                                                          fetchingAllLocationCellError: true,
+                                                        };
+
+                                                        case types.LINK_CELL_WITH_PRODUCT_REQUEST:
+            return { ...state };
+        case types.LINK_CELL_WITH_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                allLoCell: state.allLoCell.map(
+                    (item) => {
+                        if (item.supplierId === action.payload.supplierId) {
+                            return action.payload;
+                        } else {
+                            return item;
+                        }
+                    }),
+            };
+        case types.LINK_CELL_WITH_PRODUCT_FAILURE:
+            return { ...state };
 
 
       default:
