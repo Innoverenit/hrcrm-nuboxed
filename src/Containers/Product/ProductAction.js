@@ -1250,7 +1250,7 @@ export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) =>
     type: types.REMOVE_PRODUCT_BUILDER_REQUEST,
   });
   axios
-    .put(`${base_url2}/productionBuilder/supplies/${productSupplyLinkId}`, data, {
+    .delete(`${base_url2}/productionBuilder/supplies/delete/${productSupplyLinkId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1258,7 +1258,7 @@ export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) =>
     .then((res) => {
       dispatch({
         type: types.REMOVE_PRODUCT_BUILDER_SUCCESS,
-        payload: res.data,
+        payload:productSupplyLinkId,
       });
       message.success("Confirmation Successfull");
     })
@@ -1275,7 +1275,7 @@ export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) =>
 export const updateProSupplBuilder = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_PRO_SUPPL_BUILDER_REQUEST });
   axios
-    // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {
+    // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {productionBuilder/supplies/update
     .post(`${base_url2}/productionBuilder/supplies`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1459,3 +1459,9 @@ export const getCategory = () => (dispatch) => {
       });
     });
 };
+export const handleProdCellDrawer =(modalProps)=>(dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_CELL_DRAWER,
+    payload: modalProps,
+  });
+}

@@ -1,13 +1,13 @@
 
 import React, { lazy, Component, Suspense } from "react";
-import { StyledDrawer } from "../../../Components/UI/Antd";
+import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../Components/Placeholder";
-const ProductionBldrCrd = lazy(() => import("./ProductionBldrCrd"));
+import { BundleLoader } from "../../../../Components/Placeholder";
+const ProductCellCard = lazy(() => import("./ProductCellCard"));
 
-class ProductionCellDrawer extends Component {
+class ProductCellDrawer extends Component {
   render() {
-    const { clickProdnDrwr, handleProdnCellDrawer, particularDiscountData, ...formProps } = this.props;
+    const { clickProdclDrwr, handleProdCellDrawer, particularDiscountData, ...formProps } = this.props;
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";
     return (
@@ -17,14 +17,14 @@ class ProductionCellDrawer extends Component {
           destroyOnClose
           closable
           width={drawerWidth}
-          visible={clickProdnDrwr}
-          onClose={() => handleProdnCellDrawer(false)}
+          visible={clickProdclDrwr}
+          onClose={() => handleProdCellDrawer(false)}
           footer={null}
         >
 
 
           <Suspense fallback={<BundleLoader />}>
-         Cell
+          <ProductCellCard/>
           </Suspense>
 
 
@@ -34,5 +34,5 @@ class ProductionCellDrawer extends Component {
   }
 }
 
-export default ProductionCellDrawer;
+export default ProductCellDrawer;
 

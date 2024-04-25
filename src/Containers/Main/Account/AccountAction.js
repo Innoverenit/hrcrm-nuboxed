@@ -142,6 +142,14 @@ export const handleLinkDistributorOrderConfigureModal = (modalProps) => (
     payload: modalProps,
   });
 };
+export const handleLinkCustomerProcurementModal = (modalProps) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL,
+    payload: modalProps,
+  });
+};
 /**
  *  link order by distributor id
  */
@@ -2106,7 +2114,7 @@ export const getDistributorQuoteByDistributorId = (distributorId) => (
 
 
 
-export const addLocationInOrder = (data, distributorId, cb) => (dispatch) => {
+export const addLocationInOrder = (data, cb) => (dispatch) => {
   dispatch({
     type: types.ADD_LOCATION_IN_ORDER_REQUEST,
   });

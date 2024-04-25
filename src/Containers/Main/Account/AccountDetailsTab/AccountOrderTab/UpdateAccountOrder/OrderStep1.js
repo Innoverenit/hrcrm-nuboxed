@@ -37,11 +37,7 @@ function OrderStep1(props) {
     }, [])
     console.log(props.setEdittingOrder)
     const [priority, setPriority] = useState(props.setEdittingOrder.priority)
-    const [bulkQr, setBulkQr] = useState(false)
 
-    function handleBulkQr(checked) {
-        setBulkQr(checked)
-    }
     const disabledDate = current => {
         // Disable past dates
         return current && current < dayjs().startOf('day');
@@ -72,17 +68,13 @@ function OrderStep1(props) {
                 customPayment: props.setEdittingOrder.customPayment || "",
                 comments: props.setEdittingOrder.comments || "",
                 totalPhoneCount: props.setEdittingOrder.totalPhoneCount || "",
-                deliverToBusinessInd: "",
-                fullLoadTruckInd: "",
-                privateInd: "",
                 advancePayment: props.setEdittingOrder.advancePayment || "",
-                distributorId: props.setEdittingOrder.distributorId,
+                distributorId: props.distributorId,
                 orderCurrencyId: props.setEdittingOrder.orderCurrencyId || "",
                 userId: props.userId,
                 orderId: props.setEdittingOrder.orderId || "",
                 priority: props.setEdittingOrder.priority || "",
-                lobDetsilsId: "",
-                bulkQrInd: bulkQr,
+                lobDetsilsId: props.setEdittingOrder.lobDetsilsId || "",
                 loadingAddress: [
                     {
                         addressId: props.setEdittingOrder.loadingAddress.length ?
@@ -188,42 +180,13 @@ function OrderStep1(props) {
                                                 isColumn
                                             />
                                         </div>}
+
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="LOB"
-                                            name="lobDetsilsId"
-                                            component={SelectComponent}
-                                            options={Array.isArray(lobOption) ? lobOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-                                    {/* <div class="w-[45%]">
-                                        <label>Required bulk QR code</label>
-                                        <Switch
-                                            onChange={handleBulkQr}
-                                            checked={bulkQr}
-                                            checkedChildren="Yes"
-                                            unCheckedChildren="No" />
-                                    </div> */}
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    {/* <div class="w-[45%]">
-                                        <Field
-                                            label="Units"
-                                            name="totalPhoneCount"
-                                            component={InputComponent}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div> */}
                                     <div class="w-[45%]">
                                         <Field
                                             label="Contact"
+                                            style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"
                                             component={SelectComponent}
@@ -233,11 +196,10 @@ function OrderStep1(props) {
                                             isColumn
                                         />
                                     </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
                                             name="advancePayment"
                                             label="Advance Payment(%)"
                                             isColumn
@@ -245,14 +207,29 @@ function OrderStep1(props) {
                                             component={InputComponent}
                                         />
                                     </div>
+                                </div>
+                                <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
                                             name="orderCurrencyId"
                                             label="Currency"
                                             isColumn
+                                            style={{ borderRight: "3px red solid" }}
                                             inlineLabel
                                             component={SelectComponent}
                                             options={Array.isArray(currencyOption) ? currencyOption : []}
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="LOB"
+                                            name="lobDetsilsId"
+                                            component={SelectComponent}
+                                            options={Array.isArray(lobOption) ? lobOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
+                                            isColumn
                                         />
                                     </div>
                                 </div>
@@ -264,8 +241,9 @@ function OrderStep1(props) {
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
-                                            component={DatePicker}
+
                                             disabledDate={disabledDate}
+                                            component={DatePicker}
                                             value={values.availabilityDate}
 
                                         />
@@ -277,8 +255,8 @@ function OrderStep1(props) {
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
+                                            disable={!values.availabilityDate}
                                             component={DatePicker}
-                                            value={values.deliveryDate}
                                             disabledDate={(currentDate) => {
                                                 if (values.availabilityDate) {
                                                     if (
@@ -292,12 +270,14 @@ function OrderStep1(props) {
                                                     }
                                                 }
                                             }}
+                                            value={values.deliveryDate}
+
                                         />
                                     </div>
 
                                 </div>
+                                <div class="justify-between flex mt-3">
 
-                                <div class=" mt-3 flex justify-between">
                                     <div class="w-[46%]  ml-8 mt-2">
                                         <StyledLabel><FormattedMessage
                                             id="app.priority"
@@ -370,15 +350,19 @@ function OrderStep1(props) {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class=" mt-3 flex justify-between">
+
                                     <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"
-                                            loading={props.addingOrder}
+                                            loading={props.updatingOrderStep1}
                                         >
                                             <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
+                                                id="app.update"
+                                                defaultMessage="Update"
                                             />
 
                                         </Button>
@@ -387,55 +371,7 @@ function OrderStep1(props) {
                                 </div>
                             </div>
                         </div>
-                        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <div style={{ width: "47%" }}>
-                            <Field
-                                name="availabilityDate"
-                                label="Available Date "
-                                isColumn
-                                inlineLabel
-                                width={"100%"}
-                                disabledDate={(currentDate) => {
-                                    const date = new Date()
-                                    if (
-                                        moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
-                                    ) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
 
-                                }}
-                                component={DatePicker}
-                                value={values.availabilityDate}
-
-                            />
-                        </div>
-                        <div style={{ width: "47%" }}>
-                            <Field
-                                name="deliveryDate"
-                                label="Delivery Date "
-                                isColumn
-                                inlineLabel
-                                width={"100%"}
-                                component={DatePicker}
-                                value={values.deliveryDate}
-                                disabledDate={(currentDate) => {
-                                    if (values.availabilityDate) {
-                                        if (
-                                            moment(currentDate).isBefore(
-                                                moment(values.availabilityDate)
-                                            )
-                                        ) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                    </div> */}
                     </Form>
                 </div>
             )}
@@ -450,6 +386,8 @@ const mapStateToProps = ({ auth, distributor, suppliers }) => ({
     setEdittingOrder: distributor.setEdittingOrder,
     updatingOrderStep1: distributor.updatingOrderStep1,
     orgId: auth.userDetails.organizationId,
+    lobList: distributor.lobList,
+    distributorId: distributor.distributorDetailsByDistributorId.distributorId
 });
 
 const mapDispatchToProps = (dispatch) =>

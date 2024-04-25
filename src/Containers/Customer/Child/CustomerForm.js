@@ -343,15 +343,15 @@ console.log(selectedSource)
         // enableReinitialize
         initialValues={{
           currencyId:selectedCurrency,
-          // sectorName:"",
+       
           partnerName: "",
           type:"",
-          // sectorDescription:"",
+        
           name: "",
           url: "",
           gst: "",
-          source: selectedSource,
-          sectorId: selectedSector,
+          // source: selectedSource,
+          // sectorId: selectedSector,
           country: props.user.country,
           email: "",
           potentialValue:"",
@@ -364,6 +364,7 @@ console.log(selectedSource)
           businessRegistration: "",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           department: "",
+          vatNo:"",
           address: [
             {
               address1: "",
@@ -388,10 +389,10 @@ console.log(selectedSource)
               source: selectedSource,
               sectorId: selectedSector,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
-              // assignedTo:selectedOption?selectedOption:userId,
+             
             },
             props.userId,
-            () => handleReset(resetForm)
+            resetForm()
           );
         }}
       >

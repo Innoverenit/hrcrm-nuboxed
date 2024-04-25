@@ -260,15 +260,22 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
-                                                            <Button
-                                                                style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
-                                                                class=" bg-green-500"
-                                                                onClick={() => {
-                                                                    handleCheckAwb();
-                                                                    handleSetParticularOrderData(item)
-                                                                }
-                                                                }
-                                                            ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                            <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                            >
+                                                                <Button
+                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
+                                                                    class=" bg-green-500"
+                                                                    onClick={() => {
+                                                                        handleCheckAwb();
+                                                                        handleSetParticularOrderData(item)
+                                                                    }
+                                                                    }
+                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                            </Badge>
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium   md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -301,7 +308,8 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex font-medium  items-center  md:w-[5.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{visible && (item.orderId === particularRowData.orderId) ?
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />
+                                                            {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
                                                                     type='text'
                                                                     value={price}
@@ -448,7 +456,6 @@ const AccountOrderTable = (props) => {
                                                                         handleSetParticularOrderData(item)
                                                                     }} />
                                                             </Tooltip>
-
                                                         </div>}
 
                                                     </div>

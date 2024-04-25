@@ -327,12 +327,12 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
-  export const getLoCell = (ID) => (dispatch) => {
+  export const getLoCell = (locationDetailsId,orgId) => (dispatch) => {
     dispatch({
       type: types.GET_LOCATION_CELL_REQUEST,
     });
     axios
-      .get(`${base_url2}/LOCAL/${ID}`, {
+      .get(`${base_url2}/cell/cellDetails/${locationDetailsId}/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -347,6 +347,63 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.GET_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+  export const getAlLoCell = () => (dispatch) => {
+    dispatch({
+      type: types.GET_ALL_LOCATION_CELL_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/cell/allCellChamber`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_ALL_LOCATION_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_ALL_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const linkCellwithProduct = (data) => (dispatch) => {
+    dispatch({ type: types.LINK_CELL_WITH_PRODUCT_REQUEST });
+    axios
+      .post(
+        `${base_url2}/cell/link/chamber-production`,data,
+        {
+      
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        
+        })
+      .then((res) => {
+        console.log(res);
+       
+        dispatch({
+          type: types.LINK_CELL_WITH_PRODUCT_SUCCESS,
+          payload: res.data,
+        });
+        Swal({
+          icon: 'success',
+          title: 'Satus has been changed successfully!',
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_CELL_WITH_PRODUCT_FAILURE,
           payload: err,
         });
       });

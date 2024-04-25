@@ -15,7 +15,9 @@ import {
   handleCatalogueWipModal,
   handleProductBuilderDrawer,
   handlePriceDrawer,
+  handleProdCellDrawer,
 } from "../../ProductAction";
+import CellTowerIcon from '@mui/icons-material/CellTower';
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -29,6 +31,7 @@ import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
+const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
 
 function ProductCardList(props) {
 
@@ -224,7 +227,26 @@ function ProductCardList(props) {
                         </Tooltip>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title={item.description}>
+                        <ContactSupportIcon/>
+                        </Tooltip>
+                      </div>
+<div>
+<Tooltip title="Cell">
+                                                            <CellTowerIcon 
+                                                            className=" !text-base cursor-pointer text-[blue]"
+                                                            onClick={()=>{
+                                                              handleParticularRowData(item);
+                                                                props.handleProdCellDrawer(true);
+                                                            }}
+                                                            />
+                                                          </Tooltip>
+</div>
+
+                    </div>
+                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
@@ -236,19 +258,7 @@ function ProductCardList(props) {
                           />
                         </Tooltip>
                       </div>
-
-
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title={item.description}>
-                        <ContactSupportIcon/>
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-                    <div className="mt-1 ml-2">
+                      <div className="">
                           <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}
@@ -262,6 +272,10 @@ function ProductCardList(props) {
                          
                           </StyledPopconfirm>
                         </div>
+
+                    </div>
+                    
+                
                     </div>
                    
                   </div>
@@ -286,6 +300,10 @@ function ProductCardList(props) {
           particularDiscountData={particularDiscountData}
           handlePriceDrawer={handlePriceDrawer}
           priceOpenDrawer={priceOpenDrawer}
+        />
+        <ProductCellDrawer
+        clickProdclDrwr={props.clickProdclDrwr}
+        handleProdCellDrawer={props.handleProdCellDrawer}
         />
       </Suspense>
     </>
@@ -315,6 +333,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
+  clickProdclDrwr:product.clickProdclDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -331,6 +350,7 @@ const mapDispatchToProps = (dispatch) =>
       getProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
+      handleProdCellDrawer
     },
     dispatch
   );

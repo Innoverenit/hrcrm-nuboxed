@@ -41,6 +41,7 @@ import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
+import Procre from "./Procre/Procre";
 
 const NavMenu = lazy(() =>
   import("./NavMenu")
@@ -711,6 +712,7 @@ function MainApp(props) {
                       <Route exact path="/shipper" component={Shipper} />
                       <Route exact path="/expense" component={Expense} />
                       <Route exact path="/supplies" component={Supplies} />
+                      <Route exact path="/procre" component={Procre} />
                       {/* <Route exact path="/supplier" component={Supplier} /> */}
                       <Route exact path="/order" component={Order} />
                       <Route exact path="/account" component={Account} />

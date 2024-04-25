@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { StyledLabel } from '../../../../../../Components/UI/Elements';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
-import moment from 'moment';
+import dayjs from "dayjs";
 import { Button } from 'antd';
 import { getAllShipper } from "../../../../Shipper/ShipperAction"
 import { createAwbNo, handleAddAWB } from "../../../InventoryAction"
@@ -170,19 +170,20 @@ const DispatchOrderAwb = (props) => {
                                         inlineLabel
                                         width={"100%"}
                                         disabledDate={(currentDate) => {
-                                            const date = new Date()
-                                            if (
-                                                moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
-                                            ) {
-                                                return true;
-                                            } else {
-                                                return false;
+                                            if (values.pickUpDate) {
+                                                if (
+                                                    dayjs(currentDate).isBefore(
+                                                        dayjs(values.pickUpDate)
+                                                    )
+                                                ) {
+                                                    return true;
+                                                } else {
+                                                    return false;
+                                                }
                                             }
-
                                         }}
-                                        component={DatePicker}
                                         value={values.pickUp}
-
+                                        component={DatePicker}
                                     />
                                 </div>
                             </div>
@@ -193,7 +194,7 @@ const DispatchOrderAwb = (props) => {
                                     <Field
                                         width={"100%"}
                                         name="packages"
-                                        label="Package"
+                                        label="#Package"
                                         isColumn
                                         inlineLabel
                                         component={InputComponent}
@@ -201,7 +202,7 @@ const DispatchOrderAwb = (props) => {
                                 </div>
                                 <div class=" w-[47%]" >
                                     <Field
-                                        label="Weight"
+                                        label="Weight (in Kg)"
                                         name="weight"
                                         component={InputComponent}
                                         inlineLabel

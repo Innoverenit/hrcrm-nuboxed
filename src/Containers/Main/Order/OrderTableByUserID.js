@@ -2,15 +2,13 @@
 import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
+import { Tooltip, Button, Badge, Select } from "antd";
 import moment from "moment";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { handleOrderDetailsModal } from "../Account/AccountAction";
+import { handleOrderDetailsModal, getUserByLocationDepartment } from "../Account/AccountAction";
 import {
   getOrderById,
   emptyOrders,
@@ -18,31 +16,35 @@ import {
   handleStatusOfOrder,
   handlePaidModal
 } from "./OrderAction";
-// import OrderDetailsTable from "../../Customer/Child/CustomerDetail/CustomerDetailsTab/OrderDetailsTable";
-import { CurrencySymbol } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
 import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
+import { PersonAddAlt1 } from "@mui/icons-material";
+const { Option } = Select;
 
 function OrderTableByUserID(props) {
   const [page, setPage] = useState(0);
   useEffect(() => {
     props.getOrderById(props.userId, page);
+    props.getUserByLocationDepartment(props.locationId, props.departmentId)
     setPage(page + 1);
   }, []);
-  const [hasMore, setHasMore] = useState(true);
-  const [show, setshow] = useState(false);
-  const [orderId, setorderId] = useState("");
-  const [searchText, setSearchText] = useState("");
-  const [particularRowData, setParticularRowData] = useState({});
-  const [searchedColumn, setSearchedColumn] = useState("");
 
-  function handleOrder(orderId) {
-    setshow(true);
-    setorderId(orderId);
+  const [particularRowData, setParticularRowData] = useState({});
+  const [show, setShow] = useState(false)
+  const [lead, setLead] = useState("")
+
+  function handleCancel() {
+    setShow(false)
+  }
+  function handleShow() {
+    setShow(true)
+  }
+  function handleLeadData(val) {
+    setLead(val)
   }
 
   useEffect(() => {
@@ -56,12 +58,8 @@ function OrderTableByUserID(props) {
   const handleLoadMore = () => {
     setPage(page + 1);
     props.getOrderById(props.currentUser ? props.currentUser : props.userId, page,
-
-
     );
   }
-
-
 
   return (
     <>
@@ -80,7 +78,6 @@ function OrderTableByUserID(props) {
         <InfiniteScroll
           dataLength={props.orderShowById.length}
           next={handleLoadMore}
-          hasMore={hasMore}
           loader={props.fetchingOrderById ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"75vh"}
         >
@@ -122,7 +119,6 @@ function OrderTableByUserID(props) {
                             <span
                               class="underline cursor-pointer text-[#1890ff]"
                               onClick={() => {
-                                handleOrder(item.orderId);
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
                               }}
@@ -177,25 +173,25 @@ function OrderTableByUserID(props) {
                         {item.noOfPhones}
                       </h4>
                     </div>
-             
-                   
+
+
                   </div>
                   <div class="flex flex-row items-center md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
+                    <div>
                       <MultiAvatar2
-                          primaryTitle={item.userName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-
-
+                        primaryTitle={item.userName}
+                        imageURL={item.imageURL}
+                        imgWidth={"1.8rem"}
+                        imgHeight={"1.8rem"}
+                      />
 
                     </div>
+
+
+
+                  </div>
                   <div class=" flex">
-                  <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -209,25 +205,45 @@ function OrderTableByUserID(props) {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
-                        <MultiAvatar2
-                          primaryTitle={item.lead}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
+                        {show && (particularRowData.orderId === item.orderId) ?
+                          <div class=" flex justify-between">
+                            <Select
+                              className="w-[350px]"
+                              value={lead}
+                              onChange={(value) => handleLeadData(value)}
+                            >
+                              {props.departmentUser.map((a) => {
+                                return <Option value={a.employeeId}>{a.empName}</Option>;
+                              })}
+                            </Select>
+                            <Button
+                              type="primary"
+                            >
+                              Add
+                            </Button>
+                            <Button onClick={handleCancel}>
+                              Cancel
+                            </Button>
+                          </div>
+                          :
+                          <MultiAvatar2
+                            primaryTitle={item.lead}
+                            imageURL={item.imageURL}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
 
+
+                        }
                       </div>
-
-
-
                     </div>
-                  
-                    </div>
-                    <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <span>{date}</span>
-                    </div>
+
+                  </div>
+                  <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
                   <div class="flex">
                     <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
@@ -251,14 +267,25 @@ function OrderTableByUserID(props) {
                               handleSetParticularOrderData(item);
                             }}
                           />
-
                         </Tooltip>
                       </h4>
 
 
                     </div>
 
-
+                    <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title="Add Supervisor">
+                          <PersonAddAlt1
+                            className="!text-base cursor-pointer"
+                            style={{ color: item.supervisorUserName ? "green" : "red" }}
+                            onClick={() => {
+                              handleShow()
+                              handleSetParticularOrderData(item)
+                            }} />
+                        </Tooltip>
+                      </h4>
+                    </div>
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Status">
@@ -271,8 +298,6 @@ function OrderTableByUserID(props) {
                           />
                         </Tooltip>
                       </h4>
-                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-
 
                     </div>
                     <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -289,9 +314,6 @@ function OrderTableByUserID(props) {
                         </Tooltip>
 
                       </h4>
-                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-
-
                     </div>
 
 
@@ -309,18 +331,18 @@ function OrderTableByUserID(props) {
         addNotesInOrder={props.addNotesInOrder}
         handleNotesModalInOrder={props.handleNotesModalInOrder}
       />
-      
+
       <StatusOfOrderModal
-                    handleStatusOfOrder={props.handleStatusOfOrder}
-                    addStatusOfOrder={props.addStatusOfOrder}
-                    particularRowData={particularRowData}
-                />
-         <PaidButtonModal
-                    type={props.type}
-                    addPaidButtonModal={props.addPaidButtonModal}
-                    handlePaidModal={props.handlePaidModal}
-                    particularRowData={particularRowData}
-                />
+        handleStatusOfOrder={props.handleStatusOfOrder}
+        addStatusOfOrder={props.addStatusOfOrder}
+        particularRowData={particularRowData}
+      />
+      <PaidButtonModal
+        type={props.type}
+        addPaidButtonModal={props.addPaidButtonModal}
+        handlePaidModal={props.handlePaidModal}
+        particularRowData={particularRowData}
+      />
       <AccountOrderDetailsModal
         particularRowData={particularRowData}
         handleOrderDetailsModal={props.handleOrderDetailsModal}
@@ -337,9 +359,12 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
   addPaidButtonModal: order.addPaidButtonModal,
   addStatusOfOrder: order.addStatusOfOrder,
   addNotesInOrder: order.addNotesInOrder,
+  departmentUser: distributor.departmentUser,
   fetchingOrderByIdError: order.fetchingOrderByIdError,
   fetchingOrderById: order.fetchingOrderById,
   userId: auth.userDetails.userId,
+  departmentId: auth.userDetails.departmentId,
+  locationId: auth.userDetails.locationId,
   addOrderDetailsModal: distributor.addOrderDetailsModal,
   orderShowById: order.orderShowById,
 });
@@ -352,7 +377,8 @@ const mapDispatchToProps = (dispatch) =>
       handleNotesModalInOrder,
       handleStatusOfOrder,
       handlePaidModal,
-     handleOrderDetailsModal 
+      handleOrderDetailsModal,
+      getUserByLocationDepartment
     },
     dispatch
   );

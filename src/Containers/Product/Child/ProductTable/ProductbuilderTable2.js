@@ -35,7 +35,7 @@ function ProductbuilderTable2 (props) {
     setEditsuppliesId(null);
   };
 
-  const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,
+  const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,step,description
     ) => {
     const data = {
       suppliesId:suppliesId,
@@ -44,7 +44,9 @@ function ProductbuilderTable2 (props) {
       subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
       quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
       productId:props.particularDiscountData.productId,  
-      suppliesId:suppliesId          
+      suppliesId:suppliesId,   
+      step:step,
+      description:description      
     };
   
     props.updateProSupplBuilder(data)
@@ -64,6 +66,8 @@ return (
         <div className=" md:w-[4.2rem] ">Category</div>
         <div className="md:w-[5.8rem]">Sub Category</div>
         <div className=" md:w-[4.2rem] ">Unit</div>
+        <div className=" md:w-[4.2rem] ">Step</div>
+         <div className=" md:w-[4.2rem] ">Description</div>
         <div className="w-12"></div>
             </div>
       
@@ -125,13 +129,49 @@ return (
                     )}
                     </div>
   </div>
+  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.suppliesId ? (
+                       <input
+                       class="border-[2px] border-black w-12"
+                      //  style={{border:"2px solid black"}}
+                       value={editedFields[item.suppliesId]?.step !== undefined ? editedFields[item.suppliesId].step : item.step}
+                       onChange={(e) => handleChange(item.suppliesId, 'step', e.target.value)}
+                       />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.step}</div>
+                      </div>
+                    )}
+                    </div>
+  </div>
+  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.suppliesId ? (
+                       <input
+                       class="border-[2px] border-black w-12"
+                      //  style={{border:"2px solid black"}}
+                       value={editedFields[item.suppliesId]?.description !== undefined ? editedFields[item.suppliesId].description : item.description}
+                       onChange={(e) => handleChange(item.suppliesId, 'description', e.target.value)}
+                       />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.description}</div>
+                      </div>
+                    )}
+                    </div>
+  </div>
   <div class="flex flex-col w-24 max-sm:flex-row max-sm:w-[10%]">
     <div class="flex">
     {editsuppliesId === item.suppliesId ? (
                         <>
                       <Button 
                       type="primary"
-                      onClick={() => handleUpdateSupplies(item.suppliesId,item.suppliesName,item.categoryName, item.subCategoryName )}>
+                      onClick={() => handleUpdateSupplies(item.suppliesId,item.suppliesName,item.categoryName, item.subCategoryName,item.step,item.description )}>
                         Save
                       </Button>
                         <Button 

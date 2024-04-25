@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import ProductbuilderTable2 from "./ProductbuilderTable2";
+const ProductbuilderTable2 = lazy(() => import("./ProductbuilderTable2"));
 const ProductbuilderTable = lazy(() => import("./ProductbuilderTable"));
 
 

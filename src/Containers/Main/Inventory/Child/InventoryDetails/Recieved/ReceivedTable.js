@@ -78,6 +78,7 @@ const ReceivedTable = (props) => {
               <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" w-[11.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
+              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div>
               <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
               <div className="w-[5.2rem]"></div>
@@ -140,6 +141,17 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
+                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+
+                              <MultiAvatar
+                                primaryTitle={item.userName}
+                                imageId={item.imageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                            </div>
+                          </div>
                           <div className=" flex font-medium flex-col w-[8.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
@@ -174,37 +186,7 @@ const ReceivedTable = (props) => {
 
                           <div className=" flex font-medium flex-col  w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {
-                                // locationChange && (item.orderPhoneId === rowData.orderPhoneId) ?
-                                // <>
-                                //   <Select
-                                //     value={locationValue}
-                                //     onChange={(value) =>
-                                //       handleChangeLocation(value)
-                                //     }
-                                //   >
-                                //     {productionLocation.map((a) => {
-                                //       return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
-                                //     })}
-                                //   </Select>
-                                //   <div>
-                                //     <Button
-                                //       type='primary'
-                                //       loading={props.addingLocationInOrder}
-                                //       onClick={() => {
-                                //         props.addDeliveryDate({
-                                //           transferInd: 2,
-                                //           inspectionInd: 3,
-                                //           locationId: locationValue,
-                                //           userId: props.userId,
-                                //           orderPhoneId: item.orderPhoneId
-                                //         }, handleCallback())
-                                //       }}>Save</Button>
-                                //     <Button onClick={handlelocation}>Cancel</Button>
-                                //   </div>
-                                // </>
-                                // :
-                                item.productionLocationName}
+                              {item.productionLocationName}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

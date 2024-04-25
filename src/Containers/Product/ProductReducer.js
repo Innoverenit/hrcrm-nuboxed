@@ -328,7 +328,7 @@ const initialState = {
   postingProductionBldr: false,
   postingProductionBldrError: false,
 
-
+  clickProdclDrwr:false,
 
 };
 const newDateRange = (dateRange, newDate) =>
@@ -1211,6 +1211,8 @@ export const productReducer = (state = initialState, action) => {
       };
 
 
+                case types.HANDLE_PRODUCT_CELL_DRAWER:
+                  return { ...state, clickProdclDrwr: action.payload };
 
     default:
       return state;

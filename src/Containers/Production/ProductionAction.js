@@ -454,9 +454,31 @@ export const getStageList = (orgId) => (dispatch) => {
       });
     });
 };
-// export const handleProdnCellDrawer =(modalProps)=>(dispatch) => {
-//   dispatch({
-//     type: types.HANDLE_PRODUCTION_CELL_DRAWER,
-//     payload: modalProps,
-//   });
-// }
+export const updateRoomRackWip = (data, cb) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ROOM_RACK_WIP_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/wipAdRoomAndRack `, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_WIP_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+      Swal({
+        icon: 'success',
+        title: 'Done',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_WIP_FAILURE,
+        payload: err
+      });
+    });
+};

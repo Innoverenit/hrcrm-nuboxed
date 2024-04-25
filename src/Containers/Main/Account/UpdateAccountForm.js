@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Checkbox } from "antd";
+import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
+import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { Listbox, } from '@headlessui/react'
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
@@ -15,7 +17,7 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import { FlexContainer } from "../../../Components/UI/Layout";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { updateDistributor } from "./AccountAction";
+import { updateDistributor ,setClearbitData} from "./AccountAction";
 import { FormattedMessage } from "react-intl";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
@@ -26,12 +28,13 @@ const DistributorSchema = Yup.object().shape({
   clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
-  phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 const UpdateAccountForm = ({
   fullName,
   orgId,
+  setClearbitData,
   customerListData,
   getCountry,
   getAllCustomerEmployeelist,
@@ -40,9 +43,11 @@ const UpdateAccountForm = ({
   updateDisributorById,
   updateDistributor,
   userId,
+  clearbit,
   allCustomerEmployeeList,
   countries,
   getCustomer,
+  accounts,
   getSaleCurrency,
   getCategory,
   category
@@ -89,7 +94,7 @@ const UpdateAccountForm = ({
   const handlevat = () => {
     setVatInd(!vatInd)
   }
-
+ 
   const [defaultOption, setDefaultOption] = useState(fullName);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = allCustomerEmployeeList.find((item) => item.fullName === selected);
@@ -115,6 +120,7 @@ const UpdateAccountForm = ({
           customPayment: "",
           dialCode: setEditingDistributor.dialCode || "",
           clientId: setEditingDistributor.clientName || "",
+          imageURL:setEditingDistributor.imageURL || "",
           address: [
             {
               addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
@@ -162,21 +168,55 @@ const UpdateAccountForm = ({
           <Form class="form-background">
             <div class="flex justify-between" >
               <div class=" h-full w-w47.5 max-sm:w-wk">
-                <Field
-                  isRequired
-                  name="name"
-                  type="text"
-                  disable
-                  label={<FormattedMessage
-                    id="app.name"
-                    defaultMessage="name"
-                  />}
-                  width={"100%"}
-                  component={InputComponent}
-                  placeholder="Start typing..."
-                  isColumn
-                  inlineLabel
-                />
+              <div>
+              {clearbit && clearbit.hasOwnProperty("logo") ? (
+  <ProgressiveImage
+    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+    image={clearbit.logo}
+    width={140}
+    height={150}
+    borderRadius={25}
+    padding={15}
+  />
+) : (
+  <ProgressiveImage
+    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+    image={setEditingDistributor.imageURL} 
+    width={140}
+    height={150}
+    borderRadius={25}
+    padding={15}
+  />
+)}
+
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div>
+                
+                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                  <Field
+                      defaultValue={{
+                        label: setEditingDistributor.name,
+                        value: setEditingDistributor.name,
+                      }}
+                    isRequired
+                    name="name"
+                    type="text"
+                    isColumn
+                    width={"100%"}
+                    style={{ borderRight: "3px red solid" }}
+                    setClearbitData={setClearbitData}
+                    component={ClearbitImage}
+                    accounts={accounts}
+                    inlineLabel
+                    />
                 <Spacer />
                 <div class=" flex justify-between">
                   <div class=" w-2/6">
@@ -554,6 +594,7 @@ const UpdateAccountForm = ({
 const mapStateToProps = ({ auth, distributor, catgCustomer, rule, category, employee }) => ({
   userId: auth.userDetails.userId,
   vat: rule.vat,
+  clearbit: distributor.clearbit,
   orgId: auth.userDetails.organizationId,
   customerListData: catgCustomer.customerListData,
   fullName: auth.userDetails.fullName,
@@ -573,7 +614,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomer,
       getSaleCurrency,
       getAllCustomerEmployeelist,
-      getCategory
+      getCategory,
+      setClearbitData
     },
     dispatch
   );
