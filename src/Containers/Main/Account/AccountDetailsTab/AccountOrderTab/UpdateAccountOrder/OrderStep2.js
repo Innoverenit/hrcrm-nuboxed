@@ -9,10 +9,12 @@ import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
 function OrderStep2(props) {
-    const [xlUpdateInd, setxlUpdateInd] = useState(true)
-    const handleKeepData = () => {
-        setxlUpdateInd(!xlUpdateInd)
+    const [bulkQr, setBulkQr] = useState(false)
+
+    function handleBulkQr(checked) {
+        setBulkQr(checked)
     }
+
     return (
         <>
             <Formik
@@ -20,7 +22,8 @@ function OrderStep2(props) {
                     orderPhoneId: props.orderId,
                     excelId: "",
                     userId: props.userId,
-                    awbNo: "",
+                    totalPhoneCount: "",
+                    bulkQrInd: bulkQr,
 
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -69,6 +72,26 @@ function OrderStep2(props) {
                                             width={"100%"}
                                             isColumn
                                         />
+                                    </div>
+                                    <div class=" flex justify-between">
+                                        <div class="w-[45%]">
+                                            <Field
+                                                label="Units"
+                                                name="totalPhoneCount"
+                                                component={InputComponent}
+                                                inlineLabel
+                                                width={"100%"}
+                                                isColumn
+                                            />
+                                        </div>
+                                        <div class="w-[45%]">
+                                            <label>Required bulk QR code</label>
+                                            <Switch
+                                                onChange={handleBulkQr}
+                                                checked={bulkQr}
+                                                checkedChildren="Yes"
+                                                unCheckedChildren="No" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

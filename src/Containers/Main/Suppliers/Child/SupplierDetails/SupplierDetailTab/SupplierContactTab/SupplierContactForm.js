@@ -94,7 +94,8 @@ class SupplierContactForm extends Component {
                             {
                                 ...values,
                             },
-                            this.props.id
+                            this.props.id,
+                            this.props.type
                         );
                     }}
                 >

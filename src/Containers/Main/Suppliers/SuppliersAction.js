@@ -880,10 +880,36 @@ export const handleSupplierContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const getContactShipperList = (shipperId) => (dispatch) => {
+  // const shipperId = getState().shipper.allShipper.shipperId;
+  dispatch({
+    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  *  adding a Contact for distributor
  */
-export const addSupplierContact = (supplier, id) => (dispatch) => {
+export const addSupplierContact = (supplier, id, type) => (dispatch) => {
   dispatch({
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
@@ -896,8 +922,11 @@ export const addSupplierContact = (supplier, id) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
-      dispatch(getSupplierContactList(id));
-      dispatch(getContactDistributorList(id));
+      // if (type === "distributor") {
+      //   dispatch(getContactDistributorList(id));
+      // } else {
+      //   dispatch(getSupplierContactList(id));
+      // }
       dispatch({
         type: types.ADD_SUPPLIER_CONTACT_SUCCESS,
         payload: res.data,
@@ -1574,12 +1603,12 @@ export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
     type: types.DELETE_SUPPLIER_DATA_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/deleteSupplier/${supplierId}`,{},
-    {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+    .put(`${base_url2}/supplier/deleteSupplier/${supplierId}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
       console.log(res);
       Swal.fire({
@@ -1605,7 +1634,7 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
     type: types.UPDATE_SUPPLIERS_BY_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/${id} `, data,{
+    .put(`${base_url2}/supplier/${id} `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
