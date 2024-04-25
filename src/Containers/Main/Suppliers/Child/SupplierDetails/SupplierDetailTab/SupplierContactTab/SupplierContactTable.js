@@ -32,19 +32,19 @@ function SupplierContactTable(props) {
     <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[8.1rem]">  <FormattedMessage
+            <div className=" w-[9.1rem] max-xl:text-[0.65rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
-            <div className=" md:w-[5.1rem]">
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.email" defaultMessage="Email" />
             </div>
-            <div className=" md:w-[6.8rem] ">  <FormattedMessage id="app.mobile" defaultMessage="Mobile No" /></div>
-            <div className="md:w-[7.8rem]">
+            <div className=" w-[6.8rem] max-xl:text-[0.65rem] ">  <FormattedMessage id="app.mobile" defaultMessage="Mobile No" /></div>
+            <div className="w-[7.8rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.designation" defaultMessage="Designation" />
 
             </div>
-            <div className="md:w-[7.9rem]">
+            <div className="w-[7.9rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.department" defaultMessage="Department" />
 
             </div>
@@ -68,23 +68,23 @@ function SupplierContactTable(props) {
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                            <div className=" flex font-medium  w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
 
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium  w-[12.2rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
 
                             </div>
 
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                            <div className=" flex font-medium  w-[11.34rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
                                 {item.dialCode1} {item.mobileNo}
                               </div>
 
@@ -92,21 +92,21 @@ function SupplierContactTable(props) {
                             
 
 
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                            <div className=" flex font-medium  w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium flex-col w-[8.02rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
                               </div>
 
                             </div>
                        
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium w-[8.35rem] max-sm:justify-between  max-sm:flex-row ">
                             {/* <Tooltip title="Edit">
             <EditOutlined
               style={{ cursor: "pointer" }}
