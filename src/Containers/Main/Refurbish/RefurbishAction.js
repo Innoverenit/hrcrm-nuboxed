@@ -1656,6 +1656,32 @@ export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => 
     });
 };
 
+export const getRemainingPhonesList = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REMAINING_PHONES_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}//${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const reassignPhonesToTechnician = (data, orderPhoneId, technicianId) => (dispatch) => {
   dispatch({
     type: types.REASSIGN_PHONES_REQUEST,

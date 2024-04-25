@@ -2114,7 +2114,7 @@ export const getDistributorQuoteByDistributorId = (distributorId) => (
 
 
 
-export const addLocationInOrder = (data, distributorId, cb) => (dispatch) => {
+export const addLocationInOrder = (data, cb) => (dispatch) => {
   dispatch({
     type: types.ADD_LOCATION_IN_ORDER_REQUEST,
   });

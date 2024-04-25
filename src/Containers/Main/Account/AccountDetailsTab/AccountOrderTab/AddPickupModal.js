@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-// const OrderPickUpForm = lazy(() => import("./OrderPickUpForm"));
+const OrderPickupForm = lazy(() => import("./OrderPickupForm"));
 
 const AddPickupModal = (props) => {
     const { ...formProps } = props;
@@ -11,12 +11,14 @@ const AddPickupModal = (props) => {
                 title={`Pickup Location - ${props.particularRowData.newOrderNo}`}
                 width="40vw"
                 visible={props.addpickupLocation}
+                destroyOnClose
+                closable
                 onClose={() => props.handleOrderPickupModal(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                     {/* <CardContainer /> */}
-                    {/* <OrderPickUpForm particularRowData={props.particularRowData} /> */}
+                    <OrderPickupForm particularRowData={props.particularRowData} />
                 </Suspense>
             </StyledDrawer>
         </>

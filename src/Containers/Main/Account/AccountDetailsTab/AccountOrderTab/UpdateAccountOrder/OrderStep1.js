@@ -68,16 +68,13 @@ function OrderStep1(props) {
                 customPayment: props.setEdittingOrder.customPayment || "",
                 comments: props.setEdittingOrder.comments || "",
                 totalPhoneCount: props.setEdittingOrder.totalPhoneCount || "",
-                deliverToBusinessInd: "",
-                fullLoadTruckInd: "",
-                privateInd: "",
                 advancePayment: props.setEdittingOrder.advancePayment || "",
-                distributorId: props.setEdittingOrder.distributorId,
+                distributorId: props.distributorId,
                 orderCurrencyId: props.setEdittingOrder.orderCurrencyId || "",
                 userId: props.userId,
                 orderId: props.setEdittingOrder.orderId || "",
                 priority: props.setEdittingOrder.priority || "",
-                lobDetsilsId: "",
+                lobDetsilsId: props.setEdittingOrder.lobDetsilsId || "",
                 loadingAddress: [
                     {
                         addressId: props.setEdittingOrder.loadingAddress.length ?
@@ -389,6 +386,8 @@ const mapStateToProps = ({ auth, distributor, suppliers }) => ({
     setEdittingOrder: distributor.setEdittingOrder,
     updatingOrderStep1: distributor.updatingOrderStep1,
     orgId: auth.userDetails.organizationId,
+    lobList: distributor.lobList,
+    distributorId: distributor.distributorDetailsByDistributorId.distributorId
 });
 
 const mapDispatchToProps = (dispatch) =>

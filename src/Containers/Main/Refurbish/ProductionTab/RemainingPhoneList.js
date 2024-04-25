@@ -1,66 +1,18 @@
-import { Button, DatePicker, Select, } from 'antd'
-import React, { useEffect, useState } from 'react'
+import { Select, } from 'antd'
+import React, { useEffect } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd'
-import { getDepartments } from "../../../Settings/Department/DepartmentAction"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProductionUsersById, getRemainingPhones, reassignPhonesToTechnician } from "../RefurbishAction"
+import { getRemainingPhonesList } from "../RefurbishAction"
 import QRCodeModal from '../../../../Components/UI/Elements/QRCodeModal'
 import { SubTitle } from '../../../../Components/UI/Elements';
-import dayjs from "dayjs";
 
-const { Option } = Select;
 const RemainingPhoneList = (props) => {
 
-    let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? "" : props.rowData.defaultRepairDepartmentId
-
-    const [user, setUser] = useState("")
-    const [technician, setTechnician] = useState("")
-    const [department, setDepartment] = useState(depaVal)
-    const [selectedRow, setselectedRow] = useState([]);
-
-    const rowSelection = {
-        onChange: (selectedRowKeys, selectedRows) => {
-            setselectedRow(selectedRows);
-            console.log(
-                `selectedRowKeys: ${selectedRowKeys}`,
-                "selectedRows: ",
-                selectedRows
-            );
-        },
-    };
-    const checkedValue = selectedRow.map(function (item) {
-        return item['phoneId'];
-    });
-    const handleTechnician = (val) => {
-        setTechnician(val)
-    }
-    const handleDepartment = (val) => {
-        let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? val : props.rowData.defaultRepairDepartmentId
-        setDepartment(depaVal)
-        props.getProductionUsersById(depaVal, props.locationId);
-    }
-    console.log(user)
-
-
     useEffect(() => {
-        props.getProductionUsersById(props.rowData.defaultRepairDepartmentId, props.locationId);
-        props.getRemainingPhones(props.orderPhoneId, props.row.technicianId)
-        props.getDepartments()
+        props.getRemainingPhonesList(props.orderPhoneId, props.row.technicianId);
     }, [])
 
-    const [dueDate, setDueDate] = useState("")
-
-    const hanldeOnChange = (value) => {
-        setDueDate(value)
-    }
-
-    const disabledDate = current => {
-        // Replace 'start' and 'end' with your desired start and end dates
-        const startDate = dayjs(props.rowData.availabilityDate);
-        const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
-        return current && (current < startDate || current > endDate);
-    };
     const column = [
         {
             title: "",
@@ -134,94 +86,30 @@ const RemainingPhoneList = (props) => {
     return (
         <div>
 
-            <div class="mt-[10px] flex justify-between">
-                <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Department</label>
-                    <Select
-                        className="w-[350px]"
-                        value={department}
-                        onChange={(value) => handleDepartment(value)}
-                    >
-                        {props.departments.map((a) => {
-                            return <Option value={a.departmentId}>{a.departmentName}</Option>;
-                        })}
-                    </Select>
-                </div>
-                <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
-                    <Select
-                        className="w-[350px]"
-                        value={technician}
-                        onChange={(value) => handleTechnician(value)}
-                    >
-                        {props.productionUser.map((a) => {
-                            return <Option value={a.employeeId}>{a.empName}</Option>;
-                        })}
-                    </Select>
-                </div>
-                <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
-                    <DatePicker
-                        className="w-[250px]"
-                        value={dueDate}
-                        onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={disabledDate}
-                    />
-                </div>
-            </div>
+
             <StyledTable
                 rowKey="phoneId"
-                dataSource={props.remainingPhones}
+                dataSource={props.remainingPhoneById}
                 pagination={false}
                 columns={column}
-                rowSelection={rowSelection}
-                loading={props.fetchingRemainingPhones}
+                loading={props.fetchingRemainingPhoneList}
             />
-            <div class="flex justify-end mt-1">
-                {department && technician && dueDate && checkedValue && <Button
-                    type='primary'
-                    loading={props.updatingTechnicianForRepair}
-                    onClick={() => props.reassignPhonesToTechnician({
-                        phoneDetailsList: checkedValue,
-                        orderPhoneId: props.orderPhoneId,
-                        productionRepairDispatchId: "",
-                        technicianId: technician,
-                        userId: props.userId,
-                        previouslyAssignByUserId: props.row.technicianId,
-                        defaultRepairDepartmentId: department,
-                        repairDueDate: dueDate,
-                        reAssignDate: dayjs(),
-                        reAssignByUserId: props.row.userId,
-                    }, props.orderPhoneId,
-                        props.row.technicianId
-                    )}>
-                    Submit
-                </Button>}
-            </div>
+
         </div>
     )
 }
 
 
-const mapStateToProps = ({ auth, refurbish, departments }) => ({
-    productionUser: refurbish.productionUser,
-    remainingPhones: refurbish.remainingPhones,
-    noOfPhoneById: refurbish.noOfPhoneById,
-    showAssignRepairModal: refurbish.showAssignRepairModal,
+const mapStateToProps = ({ refurbish, auth }) => ({
+    remainingPhoneById: refurbish.remainingPhoneById,
     locationId: auth.userDetails.locationId,
-    fetchingRemainingPhones: refurbish.fetchingRemainingPhones,
-    userId: auth.userDetails.userId,
-    departments: departments.departments,
-    updatingTechnicianForRepair: refurbish.updatingTechnicianForRepair
+    fetchingRemainingPhoneList: refurbish.fetchingRemainingPhoneList
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getProductionUsersById,
-            getRemainingPhones,
-            reassignPhonesToTechnician,
-            getDepartments
+            getRemainingPhonesList,
         },
         dispatch
     );
@@ -230,4 +118,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(RemainingPhoneList);
-

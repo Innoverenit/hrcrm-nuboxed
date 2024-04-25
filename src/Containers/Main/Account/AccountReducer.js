@@ -1775,7 +1775,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingLocationInOrder: false,
-        addInventoryInOrder: false,
+        addpickupLocation: false,
         distributorOrder: state.distributorOrder.map((item) => {
           if (item.orderId == action.payload.orderId) {
             return action.payload;

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getLocationList, addLocationInOrder } from "../../AccountAction"
-import { Button } from 'antd';
+import { Button, DatePicker, Select } from 'antd';
+const { Option } = Select;
 
-const OrderPickUpForm = () => {
+const OrderPickupForm = (props) => {
     useEffect(() => {
         props.getLocationList(props.orgId);
     }, [])
@@ -23,7 +24,7 @@ const OrderPickUpForm = () => {
             transferInd: 1,
             locationId: location,
             userId: props.userId,
-            orderPhoneId: props.orderPhoneId,
+            orderPhoneId: props.particularRowData.orderId,
         }
         props.addLocationInOrder(data, props.distributorId)
     }
@@ -38,7 +39,7 @@ const OrderPickUpForm = () => {
                         onChange={(value) => handleLocation(value)}
                     >
                         {props.locationlist.map((a) => {
-                            return <Option value={a.locationDetailsId}>{a.name}</Option>;
+                            return <Option value={a.locationDetailsId}>{a.locationName}</Option>;
                         })}
                     </Select>
                 </div>
@@ -55,6 +56,7 @@ const OrderPickUpForm = () => {
                 </div>
                 <div>
                     <Button
+                        loading={props.addingLocationInOrder}
                         type="primary"
                         onClick={handleSubmit}
 
@@ -68,6 +70,8 @@ const OrderPickUpForm = () => {
 const mapStateToProps = ({ auth, distributor }) => ({
     locationlist: distributor.locationlist,
     userId: auth.userDetails.userId,
+    addingLocationInOrder: distributor.addingLocationInOrder,
+    orgId: auth.userDetails.organizationId,
     distributorId: distributor.distributorDetailsByDistributorId.distributorId
 });
 
@@ -83,5 +87,5 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(OrderPickUpForm);
+)(OrderPickupForm);
 
