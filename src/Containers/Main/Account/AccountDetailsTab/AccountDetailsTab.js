@@ -5,6 +5,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {
     handleLinkDistributorOrderConfigureModal,
+    handleLinkCustomerProcurementModal,
     handleDistributorContactModal,
     handleDistributorActivityModal,
     handleDistributorDocumentUploadModal,
@@ -23,6 +24,8 @@ import AddSupplierContactModal from "../../Suppliers/Child/SupplierDetails/Suppl
 import SalesMapTable from "./AccountDocumentTab/SalesMapTable";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
+import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
+import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -148,6 +151,54 @@ function AccountDetailsTab(props) {
                             }
                         </Suspense>
                     </TabPane>}
+
+                   <TabPane
+                        tab={
+                            <>
+                                {/* <Badge
+                                    size="small"
+                                    count={(props.orderRecordData.order) || 0}
+                                    overflowCount={999}
+                                > */}
+                                    <span onClick={() => handleOrderClick(false)}>
+                                        <Tooltip title="Procure">
+                                            <DynamicFeedIcon
+                                                className="!text-base cursor-pointer"
+                                            />
+                                            <span class="ml-1 text-sm">Procure</span>
+                                        </Tooltip>
+                                    </span>
+                                {/* </Badge> */}
+                                &nbsp;  &nbsp;
+                            
+                              
+                                {activeKey === "4" && (
+                                    <>
+                                        <Tooltip title="Add Procure">
+                                            <AddShoppingCartIcon
+                                                type="plus"
+                                                tooltipTitle="Create"
+                                                onClick={() => {
+                                                    props.handleLinkCustomerProcurementModal(true);
+                                                }}
+                                                className="!text-base -ml-3 cursor-pointer "
+                                            />
+                                        </Tooltip>
+                                    </>
+                                )}
+
+                            </>
+                        }
+                        key="4"
+                    >
+
+                        <Suspense fallback={"Loading ..."}>
+                       
+                                <CustomerProcurementTable distributorId={props.distributorData.distributorId}  />
+
+                          
+                        </Suspense>
+                    </TabPane>
                     <TabPane
                         tab={
                             <>
@@ -336,6 +387,12 @@ function AccountDetailsTab(props) {
                 distributorId={props.distributorData.distributorId}
             />
 
+<AddCustomerProcurementModal
+                handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
+                addLinkCustomerProcurementModal={props.addLinkCustomerProcurementModal}
+                distributorId={props.distributorData.distributorId}
+            />
+
             <AddSupplierContactModal
                 addSupplierContactModal={props.addSupplierContactModal}
                 handleSupplierContactModal={props.handleSupplierContactModal}
@@ -360,6 +417,7 @@ function AccountDetailsTab(props) {
 
 const mapStateToProps = ({ distributor, auth, suppliers }) => ({
     orderRecordData: distributor.orderRecordData,
+    addLinkCustomerProcurementModal:distributor.addLinkCustomerProcurementModal,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
     distributorDocumentUploadModal: distributor.distributorDocumentUploadModal,
@@ -376,6 +434,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             handleLinkDistributorOrderConfigureModal,
+            handleLinkCustomerProcurementModal,
             handleDistributorContactModal,
             handleDistributorActivityModal,
             handleDistributorDocumentUploadModal,

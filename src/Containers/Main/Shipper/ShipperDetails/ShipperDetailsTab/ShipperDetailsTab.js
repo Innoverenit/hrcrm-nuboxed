@@ -24,6 +24,7 @@ import {
 } from "@ant-design/icons";
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
+import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -201,11 +202,11 @@ class ShipperDetailsTab extends Component {
               }
               key="3"
             >
-              {/* <Suspense fallback={"Loading ..."}>
-                <ShipperActivityTable
+              <Suspense fallback={"Loading ..."}>
+                <ShipperAwbTable
                   shipperId={this.props.shipper.shipperId}
                 />
-              </Suspense> */}
+              </Suspense>
             </TabPane>
 
             <TabPane

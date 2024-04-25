@@ -275,6 +275,8 @@ const initialState = {
 
   showPulseModal: false,
 
+  addLinkCustomerProcurementModal:false,
+
   showPaymentListModal: false,
 
   showRepairReasonModal: false,
@@ -541,6 +543,13 @@ export const distributorReducer = (state = initialState, action) => {
         addLinkDistributorOrderConfigureModal: action.payload,
         orderDetailsId: {}
       };
+
+      case types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL:
+        return {
+          ...state,
+          addLinkCustomerProcurementModal: action.payload,
+          // orderDetailsId: {}
+        };
     /**
      * link product
      */
