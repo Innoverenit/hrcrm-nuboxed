@@ -2,7 +2,7 @@ import * as types from "./OrderActionTypes";
 import moment from "moment";
 
 const initialState = {
-  viewType: "list",
+  viewType: "",
 
   addOrderModal: false,
 
@@ -13,6 +13,10 @@ const initialState = {
   fetchingOrderCount: false,
   fetchingOrderCountError: false,
   orderCount: {},
+
+  fetchingProductionHistoryOrder: false,
+  fetchingProductionHistoryOrderError: false,
+  productionHistoryOrder:[],
 
   fetchingProductionOrder: false,
   fetchingProductionOrderError: false,
@@ -34,6 +38,10 @@ const initialState = {
   fetchingCustomerList: false,
   fetchingCustomerListError: false,
   customerList: [],
+
+  fetchingProductionAllOrder: false,
+  fetchingProductionAllOrderError: false,
+  productionAllOrder:[],
 
   fetchingDistributorList: false,
   fetchingDistributorListError: false,
@@ -332,6 +340,40 @@ export const orderReducer = (state = initialState, action) => {
           fetchingProductionOrder: false,
           fetchingProductionOrderError: true,
         };
+
+        case types.GET_PRODUCTION_HISTORY_ORDER_REQUEST:
+          return { ...state, fetchingProductionHistoryOrder: true };
+        case types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS:
+          return {
+            ...state,
+            fetchingProductionHistoryOrder: false,
+            productionHistoryOrder: [
+              ...state.productionHistoryOrder,
+              ...action.payload]
+          };
+        case types.GET_PRODUCTION_HISTORY_ORDER_FAILURE:
+          return {
+            ...state,
+            fetchingProductionHistoryOrder: false,
+            fetchingProductionHistoryOrderError: true,
+          };
+
+          case types.GET_PRODUCTION_ALL_ORDER_REQUEST:
+            return { ...state, fetchingProductionAllOrder: true };
+          case types.GET_PRODUCTION_ALL_ORDER_SUCCESS:
+            return {
+              ...state,
+              fetchingProductionAllOrder: false,
+              productionAllOrder: [
+                ...state.productionAllOrder,
+                ...action.payload]
+            };
+          case types.GET_PRODUCTION_ALL_ORDER_FAILURE:
+            return {
+              ...state,
+              fetchingProductionAllOrder: false,
+              fetchingProductionAllOrderError: true,
+            };
     default:
       return state;
   }

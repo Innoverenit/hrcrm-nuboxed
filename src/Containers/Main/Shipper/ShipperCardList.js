@@ -84,7 +84,7 @@ function ShipperCardList(props) {
             dataLength={props.shipperByUserId.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingShipperByUserId ? <div className="flex items-center" >Loading...</div> : null}
+            loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >Loading...</div> : null}
             height={"75vh"}
           >
             {props.shipperByUserId.length ? <>

@@ -8,6 +8,7 @@ import {
 } from "./ShipperAction";
 import { Link } from "../../../Components/Common";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 function ShipperDeleteTable(props) {
   useEffect(() => {
@@ -24,6 +25,10 @@ function ShipperDeleteTable(props) {
 
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
+  }
+
+    if (props.fetchingDeletedShipper) {
+    return <BundleLoader />;
   }
 
   return (

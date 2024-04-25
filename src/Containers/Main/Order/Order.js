@@ -7,6 +7,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import CompleteOrder from "./CompleteOrder";
 import AllCompleteOrderList from "./AllCompleteOrderList";
 import ProductionOrderCardList from "./ProductionOrderCardList";
+import ProductionHistoryCardList from "./ProductionHistoryCardList";
+import ProductionAllCardList from "./ProductionAllCardList";
 
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
@@ -42,6 +44,10 @@ class Order extends Component {
             />
             ) : this.props.viewType === "production" ? (
               <ProductionOrderCardList />
+              ) : this.props.viewType === "complete" ? (
+                <ProductionHistoryCardList />
+                ) : this.props.viewType === "productionAll" ? (
+                  <ProductionAllCardList />
           ) : this.props.viewType === "all" ? (
             <AllOrderList />
           ) : this.props.viewType === "complete" ? (

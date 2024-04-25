@@ -136,7 +136,7 @@ const {
       <Tooltip title="Deleted Shipper">
       <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#4bc076" }}>
         <DeleteOutlined
-        className="!text-2xl cursor-pointer"
+        className="!text-sm text-white cursor-pointer"
           style={{
             color: props.viewType === "grid" && "red",
           }}
