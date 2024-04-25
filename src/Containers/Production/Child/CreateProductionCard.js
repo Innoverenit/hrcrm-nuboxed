@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
-import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
+import { BorderColorOutlined, } from "@mui/icons-material";
 import MoveToggleProduction from "./MoveToggleProduction";
-import { getProductionsbyLocId, updateRoomRackProduction } from "../ProductionAction"
+import { getProductionsbyLocId, updateRoomRackWip } from "../ProductionAction"
 import QRCode from "qrcode.react";
 import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 
@@ -46,7 +46,7 @@ function CreateProductionCard(props) {
             locationDetailsId: props.locationId,
             roomEntryDate: dayjs()
         };
-        props.updateRoomRackProduction(dataToSend, handleCallback())
+        props.updateRoomRackWip(dataToSend, handleCallback())
     }
     function handleCallback() {
         setSelectedChamberId("")
@@ -62,6 +62,7 @@ function CreateProductionCard(props) {
     useEffect(() => {
         props.getProductionsbyLocId(props.userId, page);
         setPage(page + 1);
+        props.getRoomRackByLocId(props.locationId, props.orgId);
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -295,7 +296,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getProductionsbyLocId,
             getRoomRackByLocId,
-            updateRoomRackProduction,
+            updateRoomRackWip,
             getRackList
         },
         dispatch

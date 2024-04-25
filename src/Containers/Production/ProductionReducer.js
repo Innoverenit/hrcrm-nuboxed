@@ -49,7 +49,7 @@ const initialState = {
   stageProduction:[],
 
   clickProdnDrwr:false,
-
+  updatingroomrackWip: false,updatingroomrackWipError:false,
 };
 
 const updateDragdpROD = (item, newProps) => {
@@ -299,6 +299,23 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
    
                 // case types.HANDLE_PRODUCTION_CELL_DRAWER:
                 //   return { ...state, clickProdnDrwr: action.payload };
+
+                case types.UPDATE_ROOM_RACK_WIP_REQUEST:
+                  return { ...state,updatingroomrackWip: true };
+                case types.UPDATE_ROOM_RACK_PRODN_SUCCESS:
+                  return {
+                    ...state,
+                    updatingroomrackWip: false,
+                    productionByLocsId: state.productionByLocsId.map((item) => {
+                      if (item.productionProductId === action.payload.productionProductId) {
+                        return action.payload;
+                      } else {
+                        return item;
+                      }
+                    }),
+                  };
+                case types.UPDATE_ROOM_RACK_WIP_FAILURE:
+                  return { ...state, updatingroomrackWip: false,updatingroomrackWipError:true, };
 
               default:
       return state;
