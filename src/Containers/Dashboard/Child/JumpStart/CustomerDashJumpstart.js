@@ -18,9 +18,10 @@ function CustomerDashJumpstart(props) {
 //   }, [props.timeRangeType])
   return (
     <>
+    <div style={{display:"flex"}}>
   <div class="flex flex-col w-full" style={{marginLeft:"-49px"}}>
       <div class="flex w-full max-sm:flex-col">
-        <div class="flex w-wk">
+        <div class="flex w-wk" style={{width:"23em"}}>
           <JumpStartBox
             bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
@@ -63,8 +64,12 @@ function CustomerDashJumpstart(props) {
           <CustomerPieChart />
         </div> */}
       </div>
-    </div>
 
+    </div>
+    <div style={{marginTop:"1px"}}>
+        <CustomerPieChart/>
+        </div>
+        </div>
 
 
     </>

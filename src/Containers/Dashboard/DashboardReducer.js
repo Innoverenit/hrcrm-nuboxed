@@ -78,6 +78,11 @@ const initialState = {
   fetchingOrderCancelListError:false,
   orderCancelList:[],
 
+
+  gettingCustomerChart:false,
+  gettingCustomerChartError:false,
+  customerDashboardChart:[],
+
   fetchingalldashboardTable2: false,
   fetchingalldashboardTable2Error: false,
   tableallDashboard2: [],
@@ -127,6 +132,9 @@ const initialState = {
   fetchingTaskDashboardGantt: false,
   fetchingTaskDashboardGanttError: false,
   tasksdashboardGantt: [],
+
+
+  orderClosedModal:false,
 
 
 
@@ -598,6 +606,10 @@ export const dashboardReducer = (state = initialState, action) => {
       };
 
 
+      case types.HANDLE_ORDER_CLOSED_MODAL:
+        return { ...state, orderClosedModal: action.payload };
+
+
 
 
       case types.GET_PROSPECT_LIFETIME_REQUEST:
@@ -915,6 +927,26 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingAllSalesDatewiseReportError: true,
         // selectedReportType: "dashboard"
       };
+
+
+
+
+      case types.GET_CUSTOMER_CHART_REQUEST:
+        return { ...state, gettingCustomerChart: true };
+  
+      case types.GET_CUSTOMER_CHART_SUCCESS:
+        return {
+          ...state,
+          gettingCustomerChart: false,
+          customerDashboardChart: action.payload,
+        };
+  
+      case types.GET_CUSTOMER_CHART_FAILURE:
+        return {
+          ...state,
+          gettingCustomerChart: false,
+          gettingCustomerChartError: true,
+        };
 
     case types.GET_ALL_DATE_WISE_REPORT_REQUEST:
       return { ...state, fetchingAllDatewiseReport: true };
