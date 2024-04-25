@@ -26,11 +26,11 @@ class SupplierDetails extends Component {
           ) : (
             <div>
               <Suspense fallback={"Loading..."}>
-                <div class="flex flex-nowrap w-full">
-                  <div class="w-[22%]">
+                <div class="flex flex-nowrap w-full max-sm:flex-col">
+                  <div class="w-[22%] max-sm:w-wk">
                     <SupplierDetailsLeft supplier={supplier} />
                   </div>
-                  <div class="w-[78%]">
+                  <div class="w-[78%] max-sm:w-wk">
                     <SupplierDetailsRight supplier={supplier} />
                   </div>
                 </div>

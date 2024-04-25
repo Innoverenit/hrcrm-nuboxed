@@ -669,7 +669,7 @@ function MainApp(props) {
                       <SettingsDropdown />
                       : null
                     }
-                    <a href="#" style={{ marginRight: 10 }}>
+                    <a href="#" style={{ marginRight: 4 }}>
                       <div class=" flex items-center "
                       >
                         <NotificationPopover />
