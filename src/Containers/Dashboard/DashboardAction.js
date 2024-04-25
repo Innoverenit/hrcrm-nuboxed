@@ -65,6 +65,14 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
 };
 
 
+export const handleOrderClosedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_CLOSED_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const handleOrderCancelModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_CANCEL_MODAL,
@@ -2552,6 +2560,38 @@ export const getOrderCancelList = (orgId,startDate,endDate) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_ORDER_CANCEL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
+export const getCustomerChart = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_CHART_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url}/distributor/typeWiseData/${orgId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CUSTOMER_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CUSTOMER_CHART_FAILURE,
         payload: err,
       });
     });

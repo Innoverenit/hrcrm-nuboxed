@@ -9,8 +9,10 @@ import {
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
-handleOrderCancelModal
+handleOrderCancelModal,
+handleOrderClosedModal
 } from "../../DashboardAction";
+import OrdersClosedModal from "./OrdersClosedModal"
 
 function DashboardOrderJumpstart(props) {
 
@@ -57,7 +59,7 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                 id="app.ordersclosed"
                 defaultMessage="Orders Closed"
               />}
-              // jumpstartClick={()=>handleDealAddedDrawer(true)}
+              jumpstartClick={()=>props.handleOrderClosedModal(true)}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
             isLoading={props.fetchingorderDetails}
@@ -103,6 +105,10 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
       />
+       <OrdersClosedModal
+       orderClosedModal={props.orderClosedModal}
+       handleOrderClosedModal={props.handleOrderClosedModal}
+      />
        {/* <PitchAddedDrawer
       openPitchAdded={openPitchAdded}
       handlePitchAddedDrawer={handlePitchAddedDrawer}
@@ -127,6 +133,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
   orderCancelModal:dashboard.orderCancelModal,
+  orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
 
 });
@@ -137,7 +144,8 @@ const mapDispatchToProps = (dispatch) =>
       getJumpOrderCount,
       getJumpOrderDetail,
       handleOrderAddedModal,
-      handleOrderCancelModal
+      handleOrderCancelModal,
+      handleOrderClosedModal
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

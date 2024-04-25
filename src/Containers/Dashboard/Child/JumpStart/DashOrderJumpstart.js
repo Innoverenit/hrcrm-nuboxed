@@ -16,7 +16,7 @@ function DashOrderJumpstart(props) {
   return (
     <>
    
-      <div class=" flex flex-row w-full" >
+      <div class=" flex flex-row w-full"  >
         <div class=" flex w-full max-sm:flex-col" >
           <div class="flex w-wk">
             <JumpStartBox
@@ -61,6 +61,7 @@ function DashOrderJumpstart(props) {
             />
           </div>
         </div>
+       
       </div>
       
     </>
