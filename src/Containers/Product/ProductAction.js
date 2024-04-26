@@ -1157,7 +1157,7 @@ export const getProductbuilder = () => (dispatch) => {
       });
     });
 };
-export const addProductBuilder = (data) => (dispatch) => {
+export const addProductBuilder = (data,productId) => (dispatch) => {
   dispatch({ type: types.ADD_PRODUCT_BUILDER_REQUEST });
   axios
     .post(`${base_url2}/productionBuilder/supplies`, data, {
@@ -1166,7 +1166,7 @@ export const addProductBuilder = (data) => (dispatch) => {
       },
     })
     .then((res) => {
-      // dispatch(getBuilderByProId(productId))
+      dispatch(getBuilderByProId(productId))
       console.log(res);
       dispatch({
         type: types.ADD_PRODUCT_BUILDER_SUCCESS,
@@ -1245,22 +1245,26 @@ export const uploadCatalogueList = (data) => (dispatch) => {
     });
 };
 
-export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) => {
+export const removeProductBuilder = (productionBuilderId,productId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCT_BUILDER_REQUEST,
   });
   axios
-    .delete(`${base_url2}/productionBuilder/supplies/delete/${productSupplyLinkId}`, data, {
+    .delete(`${base_url2}/productionBuilder/supplies/delete/${productionBuilderId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      // dispatch(getBuilderByProId(productId));
       dispatch({
         type: types.REMOVE_PRODUCT_BUILDER_SUCCESS,
-        payload:productSupplyLinkId,
+        payload:productionBuilderId,
       });
-      message.success("Confirmation Successfull");
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Deleted Successfully',
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -1268,8 +1272,11 @@ export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) =>
         type: types.REMOVE_PRODUCT_BUILDER_FAILURE,
         payload: err,
       });
-      message.error("Something went wrong");
-    });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+      })
+    })
 };
 
 export const updateProSupplBuilder = (data) => (dispatch) => {
@@ -1465,3 +1472,71 @@ export const handleProdCellDrawer =(modalProps)=>(dispatch) => {
     payload: modalProps,
   });
 }
+
+export const updateProductSuplrBuilder = (data,productionBuilderId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROD_SUPPLR_BILDR_REQUEST });
+  axios
+    .put(`${base_url2}/productionBuilder/supplies/update/${productionBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PROD_SUPPLR_BILDR_SUCCESS,
+        payload: res.data,
+      });
+      if(res.data.message!==res.data){
+      Swal.fire({
+        icon:'error',
+        title:res.data.message,
+      })
+    }
+    if(res.data ===res.data){
+    Swal.fire({
+      icon:'success',
+      title:'Updated Successfully',
+    })
+  }
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_PROD_SUPPLR_BILDR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const removeProductPrice = (productCurrencyId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_PRODUCT_PRICE_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/product/productCurrency/delete/${productCurrencyId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getBuilderByProId(productId));
+      dispatch({
+        type: types.REMOVE_PRODUCT_PRICE_SUCCESS,
+        payload:productCurrencyId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Deleted Successfully',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_PRODUCT_PRICE_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+      })
+    })
+};

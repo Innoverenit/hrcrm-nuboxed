@@ -141,7 +141,7 @@ function ProBuildSearchedCard (props) {
     console.log(key)
     const targetRow = data.find((row) => row.key === key);
     if (targetRow) {
-      const { suppliesName,categoryName, subCategoryName, quantity,hsn,attributeName,imageId,suppliesId, productId,subAttributeName,step,description} = targetRow;
+      const { suppliesName,categoryName, subCategoryName, quantity,hsn,attributeName,imageId,suppliesId, productId,subAttributeName,steps,description} = targetRow;
      
       const result = {
         hsn: hsn,
@@ -154,10 +154,10 @@ function ProBuildSearchedCard (props) {
               productId:props.particularDiscountData.productId,
               suppliesId:suppliesId,
               imageId:imageId,
-              step:step,
+              steps:steps,
               description:description
             };
-      props.addProductBuilder(result)
+      props.addProductBuilder(result,props.particularDiscountData.productId)
     }
   };
 
@@ -486,8 +486,8 @@ return (
                        {/* {item.quantity} */}
                        <Input
   style={{ width: "11em" }}
-  value={item.step}
-  onChange={(e) => handleInputChange(e.target.value, item.key, 'step')}
+  value={item.steps}
+  onChange={(e) => handleInputChange(e.target.value, item.key, 'steps')}
 />
                     </div>
   </div>

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-const LocationCellForm=lazy(()=>import("./LocationCellForm"));
+const LocationCellTab=lazy(()=>import("./LocationCellTab"));
 
 
 const LocationCellDrawer = (props) => {
@@ -19,7 +19,7 @@ const LocationCellDrawer = (props) => {
         onClose={() => handleLocnCellDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-         <LocationCellForm   storedLoc={storedLoc}/>
+         <LocationCellTab  storedLoc={storedLoc}/>
         </Suspense>
       </StyledDrawer>
     </>

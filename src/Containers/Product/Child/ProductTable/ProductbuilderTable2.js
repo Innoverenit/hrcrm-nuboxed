@@ -1,9 +1,8 @@
 import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button } from "antd";
-import { getBuilderByProId,removeProductBuilder,updateProSupplBuilder } from "../../ProductAction";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import { Tooltip,Button,Input,Popconfirm } from "antd";
+import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -16,6 +15,12 @@ function ProductbuilderTable2 (props) {
 
   const [editedFields, setEditedFields] = useState({});
   const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.builderbyProductId]);
+
 
   const handleChange = (suppliesId, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -26,35 +31,63 @@ function ProductbuilderTable2 (props) {
       },
     }));
   };
-
-  const handleEditClick = (suppliesId) => {
-    setEditsuppliesId(suppliesId);
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value } : row
+    );
+    setData(updatedData);
   };
-  const handleCancelClick = (suppliesId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
+
+  const handleEditClick = (productionBuilderId) => {
+    setEditsuppliesId(productionBuilderId);
+  };
+  const handleCancelClick = (productionBuilderId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productionBuilderId]: undefined }));
     setEditsuppliesId(null);
   };
 
-  const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,step,description
-    ) => {
-    const data = {
-      suppliesId:suppliesId,
-      suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
-      categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
-      subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
-      quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
-      productId:props.particularDiscountData.productId,  
-      suppliesId:suppliesId,   
-      step:step,
-      description:description      
-    };
+  // const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,steps,description,productionBuilderId
+  //   ) => {
+  //   const data = {
+  //     suppliesId:suppliesId,
+  //     suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
+  //     categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
+  //     subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
+  //     quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
+  //     productId:props.particularDiscountData.productId,  
+  //     productionBuilderId:productionBuilderId,   
+  //     steps:steps,
+  //     description:description      
+  //   };
   
-    props.updateProSupplBuilder(data)
-      setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
-      setEditsuppliesId(null);
+  //   props.updateProductSuplrBuilder(data)
+  //     setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
+  //     setEditsuppliesId(null);
+    
+  // };
+const handleSave = (key) => {
+    console.log(key)
+    // const targetRow = data.find((row) => row.key === key);
+      // const { } = targetRow;
+  
+      const result = {
+        hsn: key.hsn,
+        suppliesName:key.suppliesName,
+        attributeName:key.attributeName,
+        subAttributeName:key.subAttributeName,
+              categoryName:key.categoryName,
+              subCategoryName:key.subCategoryName,
+              quantity:key.quantity,
+              productId:props.particularDiscountData.productId,
+              suppliesId:key.suppliesId,
+              // imageId:imageId,
+              steps:key.steps,
+              description:key.description,
+              productionBuilderId:key.productionBuilderId
+            };
+      props.updateProductSuplrBuilder(result,key.productionBuilderId)
     
   };
-
 return (
     <>
   
@@ -71,9 +104,9 @@ return (
         <div className="w-12"></div>
             </div>
       
-             {props.builderbyProductId.map((item) => {
+             {data.map((item) => {
           return (
-<div>
+<div key={item.productionBuilderId}>
 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "    >
 <div className=" flex font-medium flex-col w-[10rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
@@ -114,13 +147,12 @@ return (
     <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.suppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.suppliesId]?.quantity !== undefined ? editedFields[item.suppliesId].quantity : item.quantity}
-                       onChange={(e) => handleChange(item.suppliesId, 'quantity', e.target.value)}
-                       />
+                   {editsuppliesId === item.productionBuilderId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.quantity}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'quantity')}
+                     />
                        
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
@@ -132,17 +164,16 @@ return (
   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.suppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.suppliesId]?.step !== undefined ? editedFields[item.suppliesId].step : item.step}
-                       onChange={(e) => handleChange(item.suppliesId, 'step', e.target.value)}
-                       />
+                   {editsuppliesId === item.productionBuilderId ? (
+                                         <Input
+                                         style={{ width: "3rem" }}
+                                         value={item.steps}
+                                         onChange={(e) => handleInputChange(e.target.value, item.key, 'steps')}
+                                       />
                        
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.step}</div>
+                        <div> {item.steps}</div>
                       </div>
                     )}
                     </div>
@@ -150,14 +181,12 @@ return (
   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.suppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.suppliesId]?.description !== undefined ? editedFields[item.suppliesId].description : item.description}
-                       onChange={(e) => handleChange(item.suppliesId, 'description', e.target.value)}
-                       />
-                       
+                   {editsuppliesId === item.productionBuilderId ? (
+                                             <Input
+                                             style={{ width: "3rem" }}
+                                             value={item.description}
+                                             onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
+                                           />
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
                         <div> {item.description}</div>
@@ -167,16 +196,16 @@ return (
   </div>
   <div class="flex flex-col w-24 max-sm:flex-row max-sm:w-[10%]">
     <div class="flex">
-    {editsuppliesId === item.suppliesId ? (
+    {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
                       type="primary"
-                      onClick={() => handleUpdateSupplies(item.suppliesId,item.suppliesName,item.categoryName, item.subCategoryName,item.step,item.description )}>
+                      onClick={() => handleSave(item)}>
                         Save
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.suppliesId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.productionBuilderId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -186,21 +215,22 @@ return (
                       className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.suppliesId)}
+                        onClick={() => handleEditClick(item.productionBuilderId)}
                       />
                     )}
     </div>
     <div>
-      <StyledPopconfirm
+      <Popconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.removeProductBuilder({active:false},item.suppliesId)}
+                          onConfirm={() => props.removeProductBuilder(item.productionBuilderId,props.particularDiscountData.productId)}
+
                           >
                      <Tooltip title="Delete">
                           <DeleteIcon
                            className="!text-base cursor-pointer text-[red]"
                           />
                        </Tooltip>
-                       </StyledPopconfirm>
+                       </Popconfirm>
                        </div>
                         </div>
 </div>
@@ -217,7 +247,8 @@ return (
 
 const mapStateToProps = ({product }) => ({
     builderbyProductId: product.builderbyProductId,
-    fetchingBuilderByProductId: product.fetchingBuilderByProductId
+    fetchingBuilderByProductId: product.fetchingBuilderByProductId,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -225,7 +256,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getBuilderByProId,
             removeProductBuilder,
-            updateProSupplBuilder
+            updateProductSuplrBuilder
             
         },
         dispatch
