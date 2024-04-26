@@ -12,7 +12,7 @@ import {
     handleInTagDrawer,
     updatePauseStatus
 } from "./RefurbishAction";
-import { Button, Tooltip, Badge } from "antd";
+import { Button, Tooltip, Badge, Slider, Progress } from "antd";
 import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -180,7 +180,9 @@ function PhoneListForRepair(props) {
                         height={"75vh"}
                     >
                         {props.repairPhone.map((item, index) => {
-
+                             const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
+                             const acivedPercentage= Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100) 
+                             const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                             let x = item.repairStatus === "In Progress"
                             let y = item.pauseInd
                             console.log(x)
@@ -327,9 +329,9 @@ function PhoneListForRepair(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                                            <div className=" flex font-medium w-[5.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[12.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Spare">
+                                                    {/* <Tooltip title="Spare">
                                                         <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
                                                             <Button
                                                                 type="primary"
@@ -341,14 +343,27 @@ function PhoneListForRepair(props) {
                                                                 }}>
                                                                 <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
                                                             </Button>
-                                                        </Badge>
+                                                        </Badge> 
+                                                    </Tooltip> */}
+                                                    { isValidPercentage ? (
+                                                     <Tooltip title="Spare">
+                                                              <Progress 
+                                                               percent={percentage}
+                                                               success={{ percent: 30 }}
+                                                               format={() => `${percentage}%`} 
+                                                                style={{width:"8rem",cursor:"pointer"}} 
+                                                               onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    hanldeSpare();
+                                                                }} />
+                                                                                                   
                                                     </Tooltip>
-
+                                                 ) : null}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[5.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Task">
+                                                    {/* <Tooltip title="Task">
                                                         <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
                                                             <Button
                                                                 style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
@@ -359,6 +374,20 @@ function PhoneListForRepair(props) {
                                                                 }}
                                                             ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
                                                         </Badge>
+                                                    </Tooltip> */}
+                                                     <Tooltip title="Task">
+                                                     <Progress
+                                                     type="circle"
+                                                      style={{ cursor: "pointer",color:"red" }}
+                                                       percent={acivedPercentage}
+
+                                                      width={30}
+                                                        strokeColor={"#005075"}
+                                                        onClick={() => {
+                                                            handleSetRowData(item);
+                                                            handleExpand(item.phoneId);
+                                                        }}
+                                                          />                                                       
                                                     </Tooltip>
 
                                                 </div>

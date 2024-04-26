@@ -10,7 +10,6 @@ const OpportunityTeamsCard = lazy(() => import("./Child/OpportunityTable/Opportu
 const OpportunityBoard = lazy(() => import("./Child/OpportunityBoard"));
 const OpportunityWonCard = lazy(() => import("./Child/OpportunityTable/OpportunityWonCard"));
 const OpportunityCardView = lazy(() => import("./OpportunityCardView"));
-const OpportunityMap = lazy(() => import("./OpportunityMap"));
 const OpportunityHeader = lazy(() => import("./Child/OpportunityHeader"));
 const AddOpportunityModal = lazy(() => import("./Child/AddOpportunityModal"));
 const OpportunityCardList = lazy(() => import("./Child/OpportunityTable/OpportunityCardList"));
@@ -73,29 +72,22 @@ class Opportunity extends Component {
              this.props.viewType === "stage" ?
              <OpportunityBoard/>
           :
-          this.props.viewType === "dashboard" ?
-            //  <OpportunityDeletedTable/> 
+          this.props.viewType === "dashboard" ?            
             <OpportunityDeletedCard/>
              :
-             this.props.viewType === "close" ?
-                    // <OpportunityCloseTable/>
+             this.props.viewType === "close" ?                  
                     <OpportunityCloseCard/>
                      :
-                     this.props.viewType === "teams" ?
-                    // <OpportunityCloseTable/>
+                     this.props.viewType === "teams" ?                   
                     <OpportunityTeamsCard/>
                      :
              this.props.viewType === "lost" ?
-             (  <OpportunityLostCard/> )
-                    // <OpportunitylostTable/>
+             (  <OpportunityLostCard/> )                   
                     :
-                    this.props.viewType === "Map" ?
-                    <OpportunityMap/> :
              this.props.viewType === "card" ?
              <OpportunityCardView/> :
              this.props.viewType === "won" ?
-             ( <OpportunityWonCard/> )
-             // <OpportunitylostTable/>
+             ( <OpportunityWonCard/> )           
             : this.props.viewType==="all" ? 
             (   <OpportunityAllCardList/> )
              : null}

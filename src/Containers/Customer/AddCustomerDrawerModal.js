@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../Components/UI/Antd";
 const CustomerWordCloud =lazy(()=> import("./CustomerWordCloud"));
 const CustomerDocumentView =lazy(()=> import("./CustomerDocumentView"));
-const Customerbutton =lazy(()=> import("./Customerbutton"));
  
 class AddCustomerDrawerModal extends Component {
 
@@ -39,10 +38,6 @@ class AddCustomerDrawerModal extends Component {
           <CustomerWordCloud
           customer={this.props.customerDrawerProps}
           // customerKeySkill={this.props.customerKeySkill}
-          />
-          <Customerbutton
-         
-         
           />
         </Suspense>
          

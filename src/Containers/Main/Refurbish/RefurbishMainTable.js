@@ -199,11 +199,11 @@ const ProductionOrderList = (props) => {
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            {/* <div className=" flex font-medium  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.suggestedPrice}
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
@@ -224,7 +224,7 @@ const ProductionOrderList = (props) => {
                                                             // </Badge>
                                                             : item.qcStartInd === 2 ? <b>QC Assigned</b>
                                                                 : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>
-                                                                    QC <CheckCircleIcon />
+                                                                    QC <CheckCircleIcon className="!text-[#03c04a]" />
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
@@ -242,7 +242,7 @@ const ProductionOrderList = (props) => {
                                                         </Tooltip>
                                                         : item.qcRepairInd === 2 ? <b>Repair Assigned</b>
                                                             : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair
-                                                                <CheckCircleIcon /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                                <CheckCircleIcon  className="!text-[#03c04a]"/> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@ const ProductionOrderList = (props) => {
                                                 <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
-                                                            className="text-base cursor-pointer"
+                                                            className="!text-xl cursor-pointer"
                                                             // style={{ cursor: "pointer" }}
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -266,7 +266,7 @@ const ProductionOrderList = (props) => {
                                                 <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Update">
                                                         <BorderColorOutlined
-                                                            className="text-base cursor-pointer"
+                                                            className="!text-xl cursor-pointer"
                                                             onClick={() => {
                                                                 props.handleTechnicianModal(true)
                                                                 handleRowData(item);

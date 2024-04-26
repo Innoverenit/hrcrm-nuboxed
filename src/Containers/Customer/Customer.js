@@ -17,7 +17,6 @@ import dayjs from "dayjs";
 const CustomerWhiteTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerWhiteTable"));
 const CustomerBlueTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerBlueTable"));
 const CustomerTeamCardList =lazy(()=> import("./Child/CustomerTable/CustomerTeamCardList"));
-const CustomerMapView =lazy(()=> import("./CustomerMapView"));
 const CustomerCardView =lazy(()=> import("./CustomerCardView"));
 const AddCustomerModal = lazy(() => import( "./Child/AddCustomerModal"));
 const CustomerHeader = lazy(() => import("./Child/CustomerHeader"));
@@ -123,8 +122,6 @@ class Customer extends Component {
         <CustomerCardView/>:
          this.props.viewType === "list" ?
           <CustomerWhiteTable /> :
-          this.props.viewType==="mapView"?
-          <CustomerMapView/>:
           this.props.viewType === "dashboard" ?
              <CustomerBlueTable/> :
              this.props.viewType === "table" ?(
