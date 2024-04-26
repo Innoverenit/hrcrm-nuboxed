@@ -16,11 +16,11 @@ const initialState = {
 
   fetchingProductionHistoryOrder: false,
   fetchingProductionHistoryOrderError: false,
-  productionHistoryOrder:[],
+  productionHistoryOrder: [],
 
   fetchingProductionOrder: false,
   fetchingProductionOrderError: false,
-  productionOrder:[],
+  productionOrder: [],
 
   fetchingOrderList: false,
   fetchingOrderListError: false,
@@ -41,7 +41,7 @@ const initialState = {
 
   fetchingProductionAllOrder: false,
   fetchingProductionAllOrderError: false,
-  productionAllOrder:[],
+  productionAllOrder: [],
 
   fetchingDistributorList: false,
   fetchingDistributorListError: false,
@@ -74,9 +74,6 @@ const initialState = {
   fetchingAllOrderListError: false,
   allOrderList: [],
 
-  fetchingOrderById: false,
-  fetchingOrderByIdError: false,
-  orderShowById: [],
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -265,23 +262,6 @@ export const orderReducer = (state = initialState, action) => {
         fetchingAllOrderList: false,
         fetchingAllOrderListError: true,
       };
-    case types.GET_ORDER_BY_ID_REQUEST:
-      return { ...state, fetchingOrderById: true };
-    case types.GET_ORDER_BY_ID_SUCCESS:
-      return {
-        ...state,
-        fetchingOrderById: false,
-        orderShowById: [
-          ...state.orderShowById,
-          ...action.payload]
-      };
-    case types.GET_ORDER_BY_ID_FAILURE:
-      return {
-        ...state,
-        fetchingOrderById: false,
-        fetchingOrderByIdError: true,
-      };
-
 
     case types.GET_ORDER_COUNT_REQUEST:
       return { ...state, fetchingOrderCount: true };
@@ -324,56 +304,56 @@ export const orderReducer = (state = initialState, action) => {
       return { ...state, addPaidButtonModal: action.payload };
 
 
-      case types.GET_PRODUCTION_ORDER_REQUEST:
-        return { ...state, fetchingProductionOrder: true };
-      case types.GET_PRODUCTION_ORDER_SUCCESS:
-        return {
-          ...state,
-          fetchingProductionOrder: false,
-          productionOrder: [
-            ...state.productionOrder,
-            ...action.payload]
-        };
-      case types.GET_PRODUCTION_ORDER_FAILURE:
-        return {
-          ...state,
-          fetchingProductionOrder: false,
-          fetchingProductionOrderError: true,
-        };
+    case types.GET_PRODUCTION_ORDER_REQUEST:
+      return { ...state, fetchingProductionOrder: true };
+    case types.GET_PRODUCTION_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionOrder: false,
+        productionOrder: [
+          ...state.productionOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionOrder: false,
+        fetchingProductionOrderError: true,
+      };
 
-        case types.GET_PRODUCTION_HISTORY_ORDER_REQUEST:
-          return { ...state, fetchingProductionHistoryOrder: true };
-        case types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS:
-          return {
-            ...state,
-            fetchingProductionHistoryOrder: false,
-            productionHistoryOrder: [
-              ...state.productionHistoryOrder,
-              ...action.payload]
-          };
-        case types.GET_PRODUCTION_HISTORY_ORDER_FAILURE:
-          return {
-            ...state,
-            fetchingProductionHistoryOrder: false,
-            fetchingProductionHistoryOrderError: true,
-          };
+    case types.GET_PRODUCTION_HISTORY_ORDER_REQUEST:
+      return { ...state, fetchingProductionHistoryOrder: true };
+    case types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionHistoryOrder: false,
+        productionHistoryOrder: [
+          ...state.productionHistoryOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_HISTORY_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionHistoryOrder: false,
+        fetchingProductionHistoryOrderError: true,
+      };
 
-          case types.GET_PRODUCTION_ALL_ORDER_REQUEST:
-            return { ...state, fetchingProductionAllOrder: true };
-          case types.GET_PRODUCTION_ALL_ORDER_SUCCESS:
-            return {
-              ...state,
-              fetchingProductionAllOrder: false,
-              productionAllOrder: [
-                ...state.productionAllOrder,
-                ...action.payload]
-            };
-          case types.GET_PRODUCTION_ALL_ORDER_FAILURE:
-            return {
-              ...state,
-              fetchingProductionAllOrder: false,
-              fetchingProductionAllOrderError: true,
-            };
+    case types.GET_PRODUCTION_ALL_ORDER_REQUEST:
+      return { ...state, fetchingProductionAllOrder: true };
+    case types.GET_PRODUCTION_ALL_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionAllOrder: false,
+        productionAllOrder: [
+          ...state.productionAllOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_ALL_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionAllOrder: false,
+        fetchingProductionAllOrderError: true,
+      };
     default:
       return state;
   }

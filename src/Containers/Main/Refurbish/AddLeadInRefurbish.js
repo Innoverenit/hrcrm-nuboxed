@@ -1,26 +1,24 @@
 import React, { lazy, Suspense } from "react";
-import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { BundleLoader } from "../../../../../Components/Placeholder";
+import { StyledDrawer } from "../../../Components/UI/Antd";
+import { BundleLoader } from "../../../Components/Placeholder";
 // import CardContainer from "./CardContainer";
-const LocationOrderForm = lazy(() => import("./LocationOrderForm"));
+const LeadRefurbishForm = lazy(() => import("./LeadRefurbishForm"));
 
-const AddLocationInOrder = (props) => {
+const AddLeadInRefurbish = (props) => {
     const { ...formProps } = props;
     return (
         <>
             <StyledDrawer
                 title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
-                width="40vw"
-                visible={props.addInventoryInOrder}
+                width="50vw"
+                visible={props.showRefurbishLead}
                 destroyOnClose
                 closable
-                onClose={() => props.handleInventoryLocationInOrder(false)}
+                onClose={() => props.handleRefurbishLead(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    {/* <CardContainer /> */}
-                    <LocationOrderForm
-                        type={props.type}
+                    <LeadRefurbishForm
                         particularRowData={props.particularRowData} />
                 </Suspense>
             </StyledDrawer>
@@ -28,4 +26,4 @@ const AddLocationInOrder = (props) => {
     );
 };
 
-export default AddLocationInOrder;
+export default AddLeadInRefurbish;
