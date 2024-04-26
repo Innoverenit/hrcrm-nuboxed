@@ -132,9 +132,9 @@ const CandidateTotalBilling = lazy(() =>
 const Location = lazy(() =>
   import("../Event/Child/Location/Location")
 );
-const PitchDetails = lazy(() =>
-  import("../Pitch/Child/PitchDetails/PitchDetails")
-);
+// const PitchDetails = lazy(() =>
+//   import("../Pitch/Child/PitchDetails/PitchDetails")
+// );
 const Navmenu2 = lazy(() =>
   import("./Navmenu2")
 );
@@ -863,11 +863,11 @@ function MainApp(props) {
                         component={SupplierDetails}
                       />
 
-                      <Route
+                      {/* <Route
                         exact
                         path="/pitch/:investorLeadsId"
                         component={PitchDetails}
-                      />
+                      /> */}
                       <Route
                         exact
                         path="/opportunity"

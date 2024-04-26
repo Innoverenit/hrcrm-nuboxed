@@ -36,7 +36,6 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 const SubMenu = Menu.SubMenu;
 
@@ -121,7 +120,7 @@ function NavMenu(props) {
  
           {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
 
-<Menu.Item key="/dashboard" style={{ height: "1.7rem", 
+<Menu.Item key="/dashboard" style={{ height: "1.5rem", 
 paddingLeft: "1rem" ,
 color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
@@ -147,7 +146,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
       
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/planner" style={{ height: "1.7rem", 
+          <Menu.Item key="/planner" style={{ height: "1.5rem", 
           paddingLeft: "1rem",color: selectedMenuItem === '/planner' ? 'tomato' : '#4bc076', }}>
             <Link to="/planner" onClick={() => handleSelect('/planner')}>
               {/* <Icon type="calendar" style={{ color: "white" }} /> */}
@@ -167,7 +166,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
         
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/call" style={{ height: "1.7rem",
+          <Menu.Item key="/call" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/call' ? 'tomato' : '#4bc076', }}>
             <Link to="/call" onClick={() => handleSelect('/call')}>
               {/* <Icon style={{ color: "white" }} type="phone" /> */}
@@ -189,7 +188,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="task" style={{ height: "1.7rem",
+          <Menu.Item key="task" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/Task' ? 'tomato' : '#4bc076' }}>
             <Link to="/Task" onClick={() => handleSelect('/Task')}>
               {/* <Icon type="file-done" /> */}
@@ -210,7 +209,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/event" style={{ height: "1.7rem",
+          <Menu.Item key="/event" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/event' ? 'tomato' : '#4bc076' }}>
             <Link to="/event" onClick={() => handleSelect('/event')}>
               {/* <Icon type="schedule" /> */}
@@ -235,7 +234,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
 
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/reports" style={{ height: "1.7rem", 
+          <Menu.Item key="/reports" style={{ height: "1.5rem", 
           paddingLeft: "1rem",color: selectedMenuItem === '/reports' ? 'tomato' : '#4bc076' }}>
             <Link to="/reports"onClick={() => handleSelect('/reports')}>
               <PictureAsPdfIcon
@@ -255,7 +254,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
         <hr />
         {(user.leadsAccessInd === true && user.crmInd === true || user.role === "ADMIN" && user.crmInd === true) && (
-          <Menu.Item key="/leads" style={{ height: "1.7rem",
+          <Menu.Item key="/leads" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/leads' ? 'tomato' : '#4bc076' }}>
             <Link to="/leads" onClick={() => handleSelect('/leads')}>
               <GroupsIcon
@@ -277,7 +276,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
 
         {(user.opportunityAccessInd === true && user.crmInd === true || user.role === "ADMIN" && user.crmInd === true) && (
-          <Menu.Item key="/opportunity" style={{ height: "1.7rem",
+          <Menu.Item key="/opportunity" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/opportunity' ? 'tomato' : '#4bc076' }}>
             <Link to="/opportunity" onClick={() => handleSelect('/opportunity')}>
             <LightbulbIcon
@@ -300,7 +299,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
 
         {(user.contactAccessInd === true && user.crmInd === true || user.role === "ADMIN" && user.crmInd === true) && (
-          <Menu.Item key="/contact" style={{ height: "1.7rem",
+          <Menu.Item key="/contact" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/contact' ? 'tomato' : '#4bc076' }}>
             <Link to="/contact" onClick={() => handleSelect('/contact')}>
 
@@ -323,7 +322,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
         {/* Customer */}
         {(user.customerAccessInd === true && user.crmInd === true || user.role === "ADMIN" && user.crmInd === true) && (
-          <Menu.Item key="/customer" style={{ height: "1.7rem",
+          <Menu.Item key="/customer" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/customer' ? 'tomato' : '#4bc076' }}>
             <Link to="/customer" onClick={() => handleSelect('/customer')}>
 
@@ -345,7 +344,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
         <hr />
         {(user.imInd === true && user.pitchAccessInd === true || user.role === "ADMIN" && user.imInd === true ) && (
-          <Menu.Item key="/pitch " style={{ height: "1.7rem",
+          <Menu.Item key="/pitch " style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/pitch' ? 'tomato' : '#4bc076' }}>
             <Link to="/pitch" onClick={() => handleSelect('/pitch')}>
               <FilePresentIcon
@@ -365,7 +364,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
 
 {(user.imInd === true && user.dataRoomAccessInd === true || user.role === "ADMIN" && user.imInd === true ) && (
-          <Menu.Item key="/dataroom " style={{ height: "1.7rem",
+          <Menu.Item key="/dataroom " style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
             <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
               <FilePresentIcon
@@ -381,7 +380,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
 )}
         {(user.imInd === true && user.dealAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/deal " style={{ height: "1.7rem", 
+          <Menu.Item key="/deal " style={{ height: "1.5rem", 
           paddingLeft: "1rem",  color: selectedMenuItem === '/deal' ? 'tomato' : '#4bc076' }}>
             <Link to="/deal" onClick={() => handleSelect('/deal')}>
               <CurrencyExchangeIcon
@@ -399,7 +398,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.imInd === true && user.investorContactAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/contactInvest" style={{ height: "1.7rem",
+          <Menu.Item key="/contactInvest" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#4bc076' }}>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
               <PermContactCalendarIcon
@@ -417,7 +416,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.imInd === true && user.investorAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/investor" style={{ height: "1.7rem", 
+          <Menu.Item key="/investor" style={{ height: "1.5rem", 
           paddingLeft: "1rem",color: selectedMenuItem === '/investor' ? 'tomato' : '#4bc076' }}>
             <Link to="/investor" onClick={() => handleSelect('/investor')}>
 
@@ -460,7 +459,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         <hr/>
         {/* Talent */}
        {((user.talentAccessInd === true && user.recruitProInd === true) || (user.role === "ADMIN" && user.recruitProInd === true)) &&  (
-            <Menu.Item key="/candidate" style={{ height: "1.7rem", 
+            <Menu.Item key="/candidate" style={{ height: "1.5rem", 
             paddingLeft: "1rem", color: selectedMenuItem === '/candidate' ? 'tomato' : '#4bc076' }}>
               <Link to="/candidate" onClick={() => handleSelect('/candidate')}>
           
@@ -484,7 +483,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/*Talent*/}
         {/*Requirement*/}
         {(user.requirementAccessInd === true && user.recruitProInd === true || user.role === "ADMIN" && user.recruitProInd === true) &&  (
-          <Menu.Item key="/requirement" style={{ height: "1.7rem",
+          <Menu.Item key="/requirement" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/requirement' ? 'tomato' : '#4bc076' }}>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
 
@@ -505,7 +504,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
            )}
           {(user.requirementAccessInd === true && user.recruitProInd === true || user.role === "ADMIN" && user.recruitProInd === true) &&  (
-         <Menu.Item key="/project" style={{ height: "1.7rem",
+         <Menu.Item key="/project" style={{ height: "1.5rem",
           paddingLeft: "1rem", color: selectedMenuItem === '/project' ? 'tomato' : '#4bc076' }}>
               <Link to="/project" onClick={() => handleSelect('/project')}>
                 <LightbulbIcon
@@ -523,7 +522,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* )} */}
         {/*Demand*/}
         {(user.userType === "USER" && user.department === "Customer" && user.recruitProInd === true || user.role === "ADMIN" && user.recruitProInd === true) && (
-          <Menu.Item key="/demand" style={{ height: "1.7rem", 
+          <Menu.Item key="/demand" style={{ height: "1.5rem", 
           paddingLeft: "1rem", color: selectedMenuItem === '/demand' ? 'tomato' : '#4bc076' }}>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
               <ContactsIcon
@@ -551,7 +550,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
             user.department !== "VENDOR" && (  */}
         {/* {(user.publishAccessInd === true  && user.recruitProInd === true) || (user.role === "ADMIN"  && user.recruitProInd === true) && (
-          <Menu.Item key="/publish" style={{ height: "1.7rem", 
+          <Menu.Item key="/publish" style={{ height: "1.5rem", 
           paddingLeft: "1rem",color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
             <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
@@ -569,7 +568,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/*Publish*/}
  
         {/* {user.department === "Management" && ( */}
-        {/* <Menu.Item key="/billing" style={{height:"1.7rem"}}>
+        {/* <Menu.Item key="/billing" style={{height:"1.5rem"}}>
             <Link to="/Billing">
               <AccessAlarmIcon
 
@@ -584,7 +583,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* )} */}
 
         {/* {user.department === "Management" && (
-            <Menu.Item key="/invoice" style={{height:"1.7rem"}}>
+            <Menu.Item key="/invoice" style={{height:"1.5rem"}}>
               <Link to="/Invoice">
                 <TextSnippetIcon
 
@@ -601,7 +600,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Customer" && user.department !== "Recruiter" &&( */}
         {/* VENDOR */}
         {/* {user.vendorAccessInd === true && (
-            <Menu.Item key="/partner" style={{height:"1.7rem"}}>
+            <Menu.Item key="/partner" style={{height:"1.5rem"}}>
               <Link to="/partner">
               
                 <HandshakeIcon
@@ -635,7 +634,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* Accessment */}
 
         {(user.eLearningInd === true && user.assessmentAccessInd === true || user.role === "ADMIN" && user.eLearningInd === true) &&  (
-            <Menu.Item key="/accessment" style={{ height: "1.7rem",
+            <Menu.Item key="/accessment" style={{ height: "1.5rem",
              paddingLeft: "1rem", color: selectedMenuItem === '/accessment' ? 'tomato' : '#4bc076' }}>
               <Link to="/Accessment" onClick={() => handleSelect('/accessment')}>
                 <ComputerIcon
@@ -654,7 +653,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           )}
 
         {(user.eLearningInd === true && user.courseAccessInd === true || user.role === "ADMIN" && user.eLearningInd === true) && (
-            <Menu.Item key="/course" style={{ height: "1.7rem",
+            <Menu.Item key="/course" style={{ height: "1.5rem",
              paddingLeft: "1rem",color: selectedMenuItem === '/course' ? 'tomato' : '#4bc076' }}>
               <Link to="/Course" onClick={() => handleSelect('/course')}>
                 <NewspaperIcon
@@ -673,7 +672,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           )}
         {/* Program */}
         {(user.eLearningInd === true && user.programAccessInd === true || user.role === "ADMIN" && user.eLearningInd === true) && (
-            <Menu.Item key="/program" style={{ height: "1.7rem",
+            <Menu.Item key="/program" style={{ height: "1.5rem",
              paddingLeft: "1rem", color: selectedMenuItem === '/program' ? 'tomato' : '#4bc076' }}>
               <Link to="/Program" onClick={() => handleSelect('/program')}>
                 <LibraryBooksIcon
@@ -730,7 +729,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
            */}
         {(user.orderAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.orderManagementInd === true) &&  (
 
-          <Menu.Item key="/order" style={{ height: "1.7rem", 
+          <Menu.Item key="/order" style={{ height: "1.5rem", 
           paddingLeft: "1rem",color: selectedMenuItem === '/order' ? 'tomato' : '#4bc076' }}>
             <Link to="/order"  onClick={() => handleSelect('/order')}>
               <DynamicFeedIcon
@@ -747,7 +746,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
         {(user.accountAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.orderManagementInd === true) &&  (
 
-          <Menu.Item key="/account" style={{ height: "1.7rem", 
+          <Menu.Item key="/account" style={{ height: "1.5rem", 
           paddingLeft: "1rem", color: selectedMenuItem === '/account' ? 'tomato' : '#4bc076' }}>
             <Link to="/account"  onClick={() => handleSelect('/account')}>
               <AcUnitIcon
@@ -762,7 +761,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.catalogAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.productionInd === true) &&  (
-        <Menu.Item key="/product" style={{ height: "1.7rem", 
+        <Menu.Item key="/product" style={{ height: "1.5rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/product' ? 'tomato' : '#4bc076' }}>
           <Link to="/product" onClick={() => handleSelect('/product')}>
             <ViewInArIcon
@@ -777,7 +776,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         </Menu.Item>
         )}
          {(user.subscriptionAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.subscriptionAccessInd === true) &&  (
-        <Menu.Item key="/subscription" style={{ height: "1.7rem", 
+        <Menu.Item key="/subscription" style={{ height: "1.5rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/subscription' ? 'tomato' : '#4bc076' }}>
           <Link to="/subscription" onClick={() => handleSelect('/subscription')}>
             <SubscriptionsIcon
@@ -794,7 +793,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         <hr />
         {(user.refurbishWorkshopInd === true && user.repairInd === true || user.role === "ADMIN" && user.repairInd === true) &&  (
 
-          <Menu.Item key="/refurbish" style={{ height: "1.7rem",
+          <Menu.Item key="/refurbish" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/refurbish' ? 'tomato' : '#4bc076' }}>
             <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
               <OnDeviceTrainingIcon
@@ -810,7 +809,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
          {(user.productionAccessInd === true && user.productionInd === true || user.role === "ADMIN" && user.productionInd === true) &&  (
-        <Menu.Item key="/production" style={{ height: "1.7rem", 
+        <Menu.Item key="/production" style={{ height: "1.5rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/production' ? 'tomato' : '#4bc076' }}>
           <Link to="/production" onClick={() => handleSelect('/production')}>
             <PrecisionManufacturingIcon
@@ -825,7 +824,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         </Menu.Item>
         )} 
 
-<Menu.Item key="/procre" style={{ height: "1.7rem", 
+<Menu.Item key="/procre" style={{ height: "1.5rem", 
 paddingLeft: "1rem" , color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>
     <CategoryIcon
@@ -839,7 +838,7 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc07
 
         {(user.materialAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) &&  (
 
-          <Menu.Item key="/supplies" style={{ height: "1.7rem",
+          <Menu.Item key="/supplies" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/supplies' ? 'tomato' : '#4bc076' }}>
             <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
               <CategoryIcon
@@ -855,7 +854,7 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc07
         )}
          {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && (
 
-<Menu.Item key="/suppliers" style={{ height: "1.7rem", 
+<Menu.Item key="/suppliers" style={{ height: "1.5rem", 
 paddingLeft: "1rem" , color: selectedMenuItem === '/suppliers' ? 'tomato' : '#4bc076'}}>
   <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
     <CategoryIcon
@@ -872,7 +871,7 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/suppliers' ? 'tomato' : '#4b
 
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
 
-<Menu.Item key="/vendor" style={{ height: "1.7rem", 
+<Menu.Item key="/vendor" style={{ height: "1.5rem", 
 paddingLeft: "1rem" , color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
   <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
     <CategoryIcon
@@ -887,7 +886,7 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc07
 
 
   {(user.procurementAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.procurementInd === true) && (
-<Menu.Item key="/procurement" style={{ height: "1.7rem", 
+<Menu.Item key="/procurement" style={{ height: "1.5rem", 
 paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
               <CrisisAlertIcon
@@ -904,7 +903,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         <hr />
         {
   (user.inventoryAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && (
-    <Menu.Item key="/inventory" style={{ height: "1.7rem", paddingLeft: "1rem", color: selectedMenuItem === '/inventory' ? 'tomato' : '#4bc076' }}>
+    <Menu.Item key="/inventory" style={{ height: "1.5rem", paddingLeft: "1rem", color: selectedMenuItem === '/inventory' ? 'tomato' : '#4bc076' }}>
       <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
         <InventoryIcon
           style={{ fontSize: "large" }}
@@ -923,7 +922,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
 
         {(user.shipperAccessInd === true && user.erpInd === true ||  user.role === "ADMIN" && user.logisticsInd === true) &&  (
 
-          <Menu.Item key="/shipper" style={{ height: "1.7rem",
+          <Menu.Item key="/shipper" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/shipper' ? 'tomato' : '#4bc076' }}>
             <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
               <LocalShippingIcon
@@ -945,7 +944,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         
   {(user.collectionAccessInd === true && user.financeInd === true || user.role === "ADMIN" && user.financeInd === true) &&  (
 
-        <Menu.Item key="/collection" style={{ height: "1.7rem",
+        <Menu.Item key="/collection" style={{ height: "1.5rem",
          paddingLeft: "1rem",color: selectedMenuItem === '/collection' ? 'tomato' : '#4bc076' }}>
           <Link to="/collection" onClick={() => handleSelect('/collection')} >
             <ReceiptIcon style={{ fontSize: "large" }} />
@@ -963,7 +962,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
 
         
         {/* {user.imInd === true  && ( */}
-        {/* <Menu.Item key="/report" style={{ height: "1.7rem", paddingLeft: "1rem" }}>
+        {/* <Menu.Item key="/report" style={{ height: "1.5rem", paddingLeft: "1rem" }}>
           <Link to="/leave">
             <i class="fas fa-luggage-cart"></i>
             <span class="text-white text-ls ml-1"><FormattedMessage
@@ -980,7 +979,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         </Menu.Item> */}
         {/* )} */}
         {/* {user.userType !== "USER" && user.imInd === true  && user.department !== "VENDOR" && (  */}
-        {/* <Menu.Item key="/mileage" style={{ height: "1.7rem", paddingLeft: "1rem" }}>
+        {/* <Menu.Item key="/mileage" style={{ height: "1.5rem", paddingLeft: "1rem" }}>
           <Link to="/mileage">
 
             <i class="fas fa-tachometer-alt"></i>
@@ -998,7 +997,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         </Menu.Item> */}
         <hr />
         {(user.leaveAccessInd === true   || user.role === "ADMIN") && ( 
-        <Menu.Item key="/report" style={{ height: "1.7rem", 
+        <Menu.Item key="/report" style={{ height: "1.5rem", 
         paddingLeft: "1rem", color: selectedMenuItem === '/report' ? 'tomato' : '#4bc076' }}>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
             <i class="fas fa-luggage-cart"></i>
@@ -1016,7 +1015,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         </Menu.Item>
        )} 
         {(user.mileageAccessInd === true|| user.role === "ADMIN") &&( 
-        <Menu.Item key="/mileage" style={{ height: "1.7rem", 
+        <Menu.Item key="/mileage" style={{ height: "1.5rem", 
         paddingLeft: "1rem", color: selectedMenuItem === '/mileage' ? 'tomato' : '#4bc076' }}>
           <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
 
@@ -1035,7 +1034,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         </Menu.Item>
         )}
      {(user.expenseAccessInd === true   || user.role === "ADMIN") && ( 
-        <Menu.Item key="/expense" style={{ height: "1.7rem",
+        <Menu.Item key="/expense" style={{ height: "1.5rem",
          paddingLeft: "1rem", color: selectedMenuItem === '/expense' ? 'tomato' : '#4bc076' }}>
           <Link to="/expense" onClick={() => handleSelect('/expense')}>
             <ReceiptIcon
@@ -1057,7 +1056,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
 
 
 {(user.holidayAccessInd === true   || user.role === "ADMIN") && ( 
-        <Menu.Item key="/holiday" style={{ height: "1.7rem", 
+        <Menu.Item key="/holiday" style={{ height: "1.5rem", 
         paddingLeft: "1rem",color: selectedMenuItem === '/holiday' ? 'tomato' : '#4bc076' }}>
           <Link to="/holiday" onClick={() => handleSelect('/holiday')}>
 
@@ -1080,7 +1079,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         {/* {user.userAccessInd === true || user.role === "ADMIN"  && ( */}
         { (user.teamsAccessInd === true &&  user.hrInd === true || user.role === "ADMIN" &&  user.hrInd === true) ? (
                
-               <Menu.Item key="/teams" style={{height:"1.7rem",
+               <Menu.Item key="/teams" style={{height:"1.5rem",
                paddingLeft:"1rem", color: selectedMenuItem === '/teams' ? 'tomato' : '#4bc076'}}>
                 <Link to="/teams" onClick={() => handleSelect('/teams')}>
                  <GroupsIcon
@@ -1097,7 +1096,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
 
         {(user.userAccessInd === true && user.hrInd === true  || user.role === "ADMIN" &&  user.hrInd === true) ? (
 
-          <Menu.Item key="/employees" style={{ height: "1.7rem",
+          <Menu.Item key="/employees" style={{ height: "1.5rem",
            paddingLeft: "1rem", color: selectedMenuItem === '/employees' ? 'tomato' : '#4bc076' }}>
             <Link to="/Employees" onClick={() => handleSelect('/employees')}>
               <GroupsIcon
@@ -1117,7 +1116,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         ):null}
         {/* )} */}
 
-        {/* <Menu.Item key="/plant" style={{ height: "1.7rem", paddingLeft: "1rem" }}>
+        {/* <Menu.Item key="/plant" style={{ height: "1.5rem", paddingLeft: "1rem" }}>
           <Link to="/plant">
             <FactoryIcon
               style={{ fontSize: "large" }}
@@ -1131,7 +1130,7 @@ paddingLeft: "1rem",color: selectedMenuItem === '/procurement' ? 'tomato' : '#4b
         </Menu.Item> */}
         {(user.locationAccessInd === true && user.hrInd === true || user.role === "ADMIN" &&  user.hrInd === true) &&  (
 
-          <Menu.Item key="/location" style={{ height: "1.7rem",
+          <Menu.Item key="/location" style={{ height: "1.5rem",
            paddingLeft: "1rem",color: selectedMenuItem === '/location' ? 'tomato' : '#4bc076' }}>
             <Link to="/location" onClick={() => handleSelect('/location')}>
               <LocationOnIcon

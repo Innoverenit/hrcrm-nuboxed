@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import LeadDetailTab from "../LeadsTab/LeadDetailTab";
+
 
 
 class LeadDetailRight extends Component {
@@ -9,9 +9,9 @@ class LeadDetailRight extends Component {
     console.log(this.props.lead);
     return (
       <div class=" w-full">
-        <LeadDetailTab 
+        {/* <LeadDetailTab 
         lead={this.props.lead} 
-        />
+        /> */}
       </div>
     );
   }
