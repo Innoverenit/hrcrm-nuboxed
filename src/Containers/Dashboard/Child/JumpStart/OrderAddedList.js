@@ -27,9 +27,9 @@ function OrderAddedList(props) {
 //   }, []);
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getOrderAddedList(props.orgId,props.startDate,props.endDate)
+    props.getOrderAddedList(props.orgId,props.endDate,props.startDate)
     }else {
-        props.getOrderAddedList(props.orgId,props.startDate,props.endDate)
+        props.getOrderAddedList(props.orgId,props.endDate,props.startDate,)
       }
    }, [props.orgId,props.startDate,props.endDate]);
 

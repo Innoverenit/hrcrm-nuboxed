@@ -39,35 +39,51 @@ import Chart from 'react-apexcharts';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getCustomerChart} from "../../DashboardAction";
+import { BundleLoader } from '../../../../Components/Placeholder';
 
-const data = {
-  series: [400, 300, 300, 200],
-  options: {
-    chart: {
-      type: 'pie',
-    },
-    labels: ['A', 'B', 'C', 'D'],
-    colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
-  },
-};
+// const data = {
+//   series: [400, 300, 300, 200],
+//   options: {
+//     chart: {
+//       type: 'pie',
+//     },
+//     labels: ['A', 'B', 'C', 'D'],
+//     colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
+//   },
+// };
 
 const PieChartComponent = (props) => {
     useEffect(()=> {
        
-       props.getCustomerChart(props.orgId,"Customer");
+       props.getCustomerChart(props.orgId);
 
       
       },[props.orgId,]);
+      if(props.gettingCustomerChart){
+        return <BundleLoader/>
+      }
+      const labels = props.customerDashboardChart.map(item => item.type);
+  const counts = props.customerDashboardChart.map(item => item.count);
+  const series = counts;
+  const options = {
+    chart: {
+      type: 'pie',
+    },
+    labels: labels,
+    colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'], // You can customize colors here
+  };
   return (
     <div className="pie-chart">
-      <Chart
+      {/* <Chart
         options={data.options}
         series={data.series}
         type="pie"
         // width="400"
         height={300} // Adjust height here
         width={300}
-      />
+      /> */}
+
+<Chart options={options} series={series} type="pie" height={300} width={300} />
     </div>
   );
 };
@@ -79,6 +95,7 @@ const mapStateToProps = ({ dashboard,auth }) => ({
     customerDashboardChart:dashboard.customerDashboardChart,
     startDate: dashboard.startDate,
     endDate: dashboard.endDate,
+    gettingCustomerChart:dashboard.gettingCustomerChart,
     // gettingHotColdWarm:dashboard.gettingHotColdWarm,
     // showHotColdWarm:dashboard.showHotColdWarm,
     // openLeadHCWdrawer:dashboard.openLeadHCWdrawer

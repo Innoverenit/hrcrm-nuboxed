@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import OrdersAddedModal from "./OrdersAddedModal"
 import OrdersCancelModal from "./OrdersCancelModal"
+import OrdersOpenModal from "./OrdersOpenModal"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
 handleOrderCancelModal,
-handleOrderClosedModal
+handleOrderClosedModal,
+handleOrderOpenModal
 } from "../../DashboardAction";
 import OrdersClosedModal from "./OrdersClosedModal"
 
@@ -45,7 +47,7 @@ function DashboardOrderJumpstart(props) {
                 id="app.ordersopen"
                 defaultMessage="Orders Open"
               />}
-              // jumpstartClick={()=>handlePitchAddedDrawer(true)}
+            jumpstartClick={()=>props.handleOrderOpenModal(true)}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
             isLoading={props.fetchingorderDetails}
@@ -109,6 +111,11 @@ bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
+
+<OrdersOpenModal
+       orderOpenModal={props.orderOpenModal}
+       handleOrderOpenModal={props.handleOrderOpenModal}
+      />
        {/* <PitchAddedDrawer
       openPitchAdded={openPitchAdded}
       handlePitchAddedDrawer={handlePitchAddedDrawer}
@@ -135,6 +142,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderCancelModal:dashboard.orderCancelModal,
   orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
+  orderOpenModal:dashboard.orderOpenModal
 
 });
 
@@ -145,7 +153,8 @@ const mapDispatchToProps = (dispatch) =>
       getJumpOrderDetail,
       handleOrderAddedModal,
       handleOrderCancelModal,
-      handleOrderClosedModal
+      handleOrderClosedModal,
+      handleOrderOpenModal
       //   getJumpInvestor2list,
       //   getJumpInvestor3list,
       //   getJumpInvestor4list,

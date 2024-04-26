@@ -54,6 +54,7 @@ function CustomerForm(props) {
     // props.getAllCustomerEmployeelist();
     // props.getSectors();
     props.getCrm();
+    // setSource("")
     // props.getCurrency();
   }, []);
 
@@ -342,7 +343,7 @@ console.log(selectedSource)
       <Formik
         // enableReinitialize
         initialValues={{
-          currencyId:selectedCurrency,
+          // currencyId:"",
        
           partnerName: "",
           type:"",
@@ -350,8 +351,8 @@ console.log(selectedSource)
           name: "",
           url: "",
           gst: "",
-          // source: selectedSource,
-          // sectorId: selectedSector,
+          // source: "",
+          // sectorId: "",
           country: props.user.country,
           email: "",
           potentialValue:"",
@@ -388,6 +389,7 @@ console.log(selectedSource)
               currencyId:selectedCurrency,
               source: selectedSource,
               sectorId: selectedSector,
+              currencyId:selectedCurrency,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
              
             },
