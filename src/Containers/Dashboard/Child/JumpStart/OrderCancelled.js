@@ -27,9 +27,9 @@ function OrderCancelled(props) {
 //   }, []);
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getOrderCancelList(props.orgId,props.startDate,props.endDate)
+    props.getOrderCancelList(props.orgId,props.endDate,props.startDate,)
     }else {
-        props.getOrderCancelList(props.orgId,props.startDate,props.endDate)
+        props.getOrderCancelList(props.orgId,props.endDate,props.startDate)
       }
    }, [props.orgId,props.startDate,props.endDate]);
 

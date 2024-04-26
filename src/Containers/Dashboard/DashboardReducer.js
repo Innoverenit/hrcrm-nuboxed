@@ -8,6 +8,11 @@ const initialState = {
   skillsCloud: [],
 
 
+  fetchingOrderClosedList:false,
+  fetchingOrderClosedListError:false,
+  orderClosedList:[],
+
+
 
   fetchingOrderAddedList:false,
   fetchingOrderAddedListError:false,
@@ -54,6 +59,10 @@ const initialState = {
   fetchingRecruiterDashboardList: false,
   fetchingRecruiterDashboardListError: false,
   listRecruiterDashboard: [],
+
+  fetchingOrderOpenList:false,
+  fetchingOrderOpenListError:false,
+  orderOpenList:[],
 
   fetchingTodos: false,
   fetchingTodosError: false,
@@ -367,6 +376,8 @@ const initialState = {
   fetchingOppoClosed: false,
   fetchingOppoClosedError: false,
   showClosedOppo: [],
+
+  orderOpenModal:false,
 
   openPitchQualified: false,
   fetchingPitchQualified: false,
@@ -723,6 +734,25 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingTodosCount: false,
         fetchingTodosCountError: true,
       };
+
+
+
+
+      case types.GET_ORDER_OPEN_LIST_REQUEST:
+        return { ...state, fetchingOrderOpenList: true };
+      case types.GET_ORDER_OPEN_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderOpenList: false,
+          orderOpenList: action.payload,
+        };
+      case types.GET_ORDER_OPEN_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderOpenList: false,
+          fetchingOrderOpenListError: true,
+        };
+
 
     case types.GET_AVG_HOUR_REQUEST:
       return { ...state, fetchingAvgHour: true, fetchingAvgHourError: false };
@@ -1446,6 +1476,11 @@ export const dashboardReducer = (state = initialState, action) => {
 
 
 
+        case types.HANDLE_ORDER_OPEN_MODAL:
+          return { ...state, orderOpenModal: action.payload };
+
+
+
 
       case types.GET_ORDER_ADDED_LIST_REQUEST:
         return { ...state, fetchingOrderAddedList: true };
@@ -1518,6 +1553,25 @@ export const dashboardReducer = (state = initialState, action) => {
         gettingInvHotColdWarm: false,
         gettingInvHotColdWarmError: true,
       };
+
+
+
+
+
+      case types.GET_ORDER_CLOSED_LIST_REQUEST:
+        return { ...state, fetchingOrderClosedList: true };
+      case types.GET_ORDER_CLOSED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderClosedList: false,
+          orderClosedList: action.payload,
+        };
+      case types.GET_ORDER_CLOSED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderClosedList: false,
+          fetchingOrderClosedListError: true,
+        };
 
 
 

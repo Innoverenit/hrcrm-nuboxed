@@ -11,7 +11,7 @@ import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import PaidIcon from '@mui/icons-material/Paid';
- import {getOrderClosedList} from "../../DashboardAction"
+ import {getOrderOpenList} from "../../DashboardAction"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { dashboardReducer } from "../../DashboardReducer";
@@ -19,7 +19,7 @@ import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
-function OrderClosedList(props) {
+function OrderOpenList(props) {
  
 //   useEffect(() => {
 //     props.getAllOrderList(props.orgId, page);
@@ -27,9 +27,9 @@ function OrderClosedList(props) {
 //   }, []);
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getOrderClosedList(props.orgId,props.endDate,props.startDate,)
+    props.getOrderOpenList(props.orgId,props.endDate,props.startDate)
     }else {
-        props.getOrderClosedList(props.orgId,props.endDate,props.startDate,)
+        props.getOrderOpenList(props.orgId,props.endDate,props.startDate,)
       }
    }, [props.orgId,props.startDate,props.endDate]);
 
@@ -58,9 +58,9 @@ useEffect(()=>{
           loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"75vh"}
         > */}
-          {props.orderClosedList.length ?
+          {props.orderOpenList.length ?
             <>
-              {props.orderClosedList.map((item) => {
+              {props.orderOpenList.map((item) => {
                 const currentdate = moment().format("DD/MM/YYYY");
                 const date = moment(item.creationDate).format("DD/MM/YYYY");
 
@@ -248,7 +248,7 @@ useEffect(()=>{
                 );
               })}
             </> :
-            !props.orderClosedList.length && !props.fetchingOrderClosedList ? <NodataFoundPage /> 
+            !props.orderOpenList.length && !props.fetchingOrderOpenList ? <NodataFoundPage /> 
             : null}
         {/* </InfiniteScroll> */}
       </OnlyWrapCard>
@@ -271,15 +271,15 @@ orgId: auth.userDetails.organizationId,
 timeRangeType:dashboard.timeRangeType,
 startDate: dashboard.startDate,
 endDate: dashboard.endDate,
-fetchingOrderClosedList:dashboard.fetchingOrderClosedList,
-orderClosedList:dashboard.orderClosedList
+fetchingOrderOpenList:dashboard.fetchingOrderOpenList,
+orderOpenList:dashboard.orderOpenList
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         // getOrderCancelList
-        getOrderClosedList
+        getOrderOpenList
     //   getAllOrderList,
     //   handleNotesModalInOrder,
     //   handleStatusOfOrder,
@@ -290,4 +290,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderClosedList);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderOpenList);

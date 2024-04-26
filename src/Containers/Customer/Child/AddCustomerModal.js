@@ -23,6 +23,7 @@ const AddCustomerModal = (props) => {
         visible={props.addCustomerModal}
         onClose={() => {
           handleClose();
+        
           props.handleCustomerModal(false);
         }}
       >

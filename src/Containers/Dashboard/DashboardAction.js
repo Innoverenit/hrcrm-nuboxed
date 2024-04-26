@@ -65,6 +65,14 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
 };
 
 
+export const handleOrderOpenModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_OPEN_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const handleOrderClosedModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_CLOSED_MODAL,
@@ -2576,7 +2584,7 @@ export const getCustomerChart = (orgId,type) => (dispatch) => {
   });
   axios
     .get(
-      `${base_url}/distributor/typeWiseData/${orgId}/${type}`,
+      `${base_url2}/distributor/typeWiseData/${orgId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2592,6 +2600,66 @@ export const getCustomerChart = (orgId,type) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_CUSTOMER_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderClosedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_CLOSED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_CLOSED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_CLOSED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderOpenList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_OPEN_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_OPEN_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_OPEN_LIST_FAILURE,
         payload: err,
       });
     });
