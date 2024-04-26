@@ -78,9 +78,9 @@ function ProductionRepairOrder(props) {
                                     <div>
                                         <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col "   >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium  w-[27.9rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium  w-[24.4rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleRepairPhone(true)
@@ -90,14 +90,14 @@ function ProductionRepairOrder(props) {
                                                     </Badge>
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
-                                                        <span class="text-[tomato] font-bold">
+                                                        <span class="text-[tomato] font-bold text-sm">
                                                             New
                                                         </span>
                                                     ) : null}
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[22rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex font-medium   w-[26rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : moment(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
@@ -109,8 +109,13 @@ function ProductionRepairOrder(props) {
                                             </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                 <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-sm text-cardBody font-poppins">
+                                                
+                                                </div>
+                                            </div>
                                                 <div className=" flex font-medium justify-center w-[31rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
-                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button
                                                                 style={{ width: "8rem" }}

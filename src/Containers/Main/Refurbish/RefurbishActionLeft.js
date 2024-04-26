@@ -28,19 +28,19 @@ class RefurbishActionLeft extends Component {
 
 
           <Tooltip title="List">
-            <span class=" md:mr-2 text-sm cursor-pointer"
+            <span class=" text-sm cursor-pointer"
               onClick={() => setProductionViewType("list")}
               style={{
                 color: viewType === "list" && "#1890ff",
               }}
             >
               <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                <HomeRepairServiceIcon className="text-white" /></Avatar>
+                <HomeRepairServiceIcon className="text-white cursor-pointer" /></Avatar>
 
             </span>
           </Tooltip>
 
-          <span class=" md:mr-2 text-sm cursor-pointer"
+          <span class=" ml-2 text-sm cursor-pointer"
             onClick={() => setProductionViewType("all")}
             style={{
               color: viewType === "all" && "#1890ff",
