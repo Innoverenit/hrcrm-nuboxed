@@ -103,6 +103,11 @@ const initialState = {
   updateCallModal: false,
   updateTaskModal: false,
 
+
+  fetchingOrderById: false,
+  fetchingOrderByIdError: false,
+  orderShowById: [],
+
   fetchingAllDistributorCount: false,
   fetchingAllDistributorCountError: false,
   allDistributorCount: {},
@@ -275,7 +280,7 @@ const initialState = {
 
   showPulseModal: false,
 
-  addLinkCustomerProcurementModal:false,
+  addLinkCustomerProcurementModal: false,
 
   showPaymentListModal: false,
 
@@ -409,6 +414,8 @@ const initialState = {
   fetchingNotesInOrdersError: false,
   notesInOrders: [],
 
+  addLeadInOrder: false,
+
   deletingSpareList: false,
   deletingSpareListError: false,
 
@@ -458,6 +465,9 @@ const initialState = {
 
   addingSupervisor: false,
   addingSupervisorError: false,
+
+  addingLead: false,
+  addingLeadError: false,
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
@@ -544,12 +554,12 @@ export const distributorReducer = (state = initialState, action) => {
         orderDetailsId: {}
       };
 
-      case types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL:
-        return {
-          ...state,
-          addLinkCustomerProcurementModal: action.payload,
-          // orderDetailsId: {}
-        };
+    case types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL:
+      return {
+        ...state,
+        addLinkCustomerProcurementModal: action.payload,
+        // orderDetailsId: {}
+      };
     /**
      * link product
      */
@@ -889,6 +899,23 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         updateOrderPaymentAmount: false,
         updateOrderPaymentAmountError: true,
+      };
+
+    case types.GET_ORDER_BY_ID_REQUEST:
+      return { ...state, fetchingOrderById: true };
+    case types.GET_ORDER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderById: false,
+        orderShowById: [
+          ...state.orderShowById,
+          ...action.payload]
+      };
+    case types.GET_ORDER_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingOrderById: false,
+        fetchingOrderByIdError: true,
       };
 
     case types.INPUT_SEARCH_DATA_REQUEST:
@@ -1848,6 +1875,9 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_NOTES_MODAL_IN_ORDER:
       return { ...state, addNotesInOrder: action.payload };
 
+    case types.HANDLE_LEAD_MODAL:
+      return { ...state, addLeadInOrder: action.payload };
+
     case types.GET_NOTES_LIST_IN_ORDER_REQUEST:
       return { ...state, fetchingNotesInOrders: true };
     case types.GET_NOTES_LIST_IN_ORDER_SUCCESS:
@@ -2495,6 +2525,28 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingSupervisor: false,
         addingSupervisorError: true,
+      };
+
+    case types.ADD_LEAD_REQUEST:
+      return { ...state, addingLead: true };
+    case types.ADD_LEAD_SUCCESS:
+      return {
+        ...state,
+        addingLead: false,
+        addLeadInOrder: false,
+        orderShowById: state.orderShowById.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.ADD_LEAD_FAILURE:
+      return {
+        ...state,
+        addingLead: false,
+        addingLeadError: true,
       };
 
     case types.GET_LOB_LIST_REQUEST:

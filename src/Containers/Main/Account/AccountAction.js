@@ -2145,6 +2145,37 @@ export const addLocationInOrder = (data, cb) => (dispatch) => {
     });
 };
 
+export const addLead = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_LEAD_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ADD_LEAD_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LEAD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const addSupervisor = (data, orderPhoneId, cb) => (dispatch) => {
   dispatch({
     type: types.ADD_SUPERVISOR_REQUEST,
@@ -2175,6 +2206,33 @@ export const addSupervisor = (data, orderPhoneId, cb) => (dispatch) => {
       });
     });
 };
+
+export const getOrderById = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/phoneOrders/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ORDER_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ORDER_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const updateSubOrderAwb = (data, orderPhoneAwbId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_SUBORDER_AWB_REQUEST,
@@ -2228,6 +2286,13 @@ export const getPhonelistById = (orderPhoneId) => (dispatch) => {
 export const handleInventoryLocationInOrder = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_INVENTORY_LOCATION_IN_ORDER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleLeadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_LEAD_MODAL,
     payload: modalProps,
   });
 };

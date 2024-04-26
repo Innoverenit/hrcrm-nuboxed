@@ -365,6 +365,13 @@ export const handlePhoneDetails = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleRefurbishLead = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REFURBISH_LEAD,
+    payload: modalProps,
+  });
+};
+
 export const setEditOutputProduction = (name) => (dispatch) => {
   dispatch({
     type: types.SET_EDIT_OUTPUT_PRODUCTION,

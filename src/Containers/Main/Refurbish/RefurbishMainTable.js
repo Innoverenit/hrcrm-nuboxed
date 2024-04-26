@@ -16,7 +16,8 @@ import {
     handleOrderPhone,
     updateFinalPrice,
     handleProductBuilder,
-    handleAllSpareList
+    handleAllSpareList,
+    handleRefurbishLead
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
@@ -25,7 +26,8 @@ import { HistoryOutlined } from "@ant-design/icons";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category'
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BorderColorOutlined } from "@mui/icons-material";
+import { BorderColorOutlined, PersonAddAlt1 } from "@mui/icons-material";
+import AddLeadInRefurbish from "./AddLeadInRefurbish";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -104,7 +106,7 @@ const ProductionOrderList = (props) => {
                         hasMore={hasMore}
                         loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
-                        style={{overflowX:"hidden"}}
+                        style={{ overflowX: "hidden" }}
                     >
                         {data.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -153,8 +155,11 @@ const ProductionOrderList = (props) => {
                                             </div>
                                             <div className=" flex font-medium  w-[5.53rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-
-                                                  Leads
+                                                    {item.teamLeadUserName && <MultiAvatar
+                                                        primaryTitle={item.teamLeadUserName}
+                                                        imgWidth={"2.1em"}
+                                                        imgHeight={"2.1em"}
+                                                    />}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[4.64rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -179,9 +184,9 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium  w-[4.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                   Final
+                                                    Final
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -204,22 +209,23 @@ const ProductionOrderList = (props) => {
 
                                             <div className=" flex font-medium  w-[8.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 1 ?
-                                                        // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
-                                                        <Tooltip title="Assign For QC">
-                                                            <Button
-                                                                className="bg-[#1685e6] text-white"
-                                                                onClick={() => {
-                                                                    props.handleAssignOrderById(true);
-                                                                    handleRowData(item);
-                                                                }}
-                                                            >Assign For QC </Button>
-                                                        </Tooltip>
-                                                        // </Badge>
-                                                        : item.qcStartInd === 2 ? <b>QC Assigned</b>
-                                                            : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>
-                                                                QC <CheckCircleIcon />
-                                                                {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                    {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
+                                                        : item.qcStartInd === 1 ?
+                                                            // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
+                                                            <Tooltip title="Assign For QC">
+                                                                <Button
+                                                                    className="bg-[#1685e6] text-white"
+                                                                    onClick={() => {
+                                                                        props.handleAssignOrderById(true);
+                                                                        handleRowData(item);
+                                                                    }}
+                                                                >Assign For QC </Button>
+                                                            </Tooltip>
+                                                            // </Badge>
+                                                            : item.qcStartInd === 2 ? <b>QC Assigned</b>
+                                                                : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>
+                                                                    QC <CheckCircleIcon />
+                                                                    {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[6.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -269,6 +275,19 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium flex-col w-[2rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                <h4 class=" text-xs text-cardBody font-poppins">
+                                                    <Tooltip title="Add Lead">
+                                                        <PersonAddAlt1
+                                                            className="!text-base cursor-pointer"
+                                                            style={{ color: item.supervisorUserName ? "green" : "red" }}
+                                                            onClick={() => {
+                                                                props.handleRefurbishLead(true)
+                                                                handleRowData(item)
+                                                            }} />
+                                                    </Tooltip>
+                                                </h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -300,6 +319,11 @@ const ProductionOrderList = (props) => {
                         showTechnicianModal={props.showTechnicianModal}
                         rowData={rowData}
                     />
+                    <AddLeadInRefurbish
+                        rowData={rowData}
+                        showRefurbishLead={props.showRefurbishLead}
+                        handleRefurbishLead={props.handleRefurbishLead}
+                    />
                 </Suspense>
             </div>
         </>
@@ -319,7 +343,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     showAssignRepairModal: refurbish.showAssignRepairModal,
     userId: auth.userDetails.userId,
     approveSpareModal: refurbish.approveSpareModal,
-    productBuilderList: refurbish.productBuilderList
+    productBuilderList: refurbish.productBuilderList,
+    showRefurbishLead: refurbish.showRefurbishLead
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -334,7 +359,8 @@ const mapDispatchToProps = (dispatch) =>
             handlePhoneByTechnician,
             handleOrderPhone,
             updateFinalPrice,
-            handleAllSpareList
+            handleAllSpareList,
+            handleRefurbishLead
         },
         dispatch
     );

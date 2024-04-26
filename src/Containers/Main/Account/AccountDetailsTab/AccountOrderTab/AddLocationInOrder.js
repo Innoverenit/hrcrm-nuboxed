@@ -12,12 +12,16 @@ const AddLocationInOrder = (props) => {
                 title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
                 width="40vw"
                 visible={props.addInventoryInOrder}
+                destroyOnClose
+                closable
                 onClose={() => props.handleInventoryLocationInOrder(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
                     {/* <CardContainer /> */}
-                    <LocationOrderForm particularRowData={props.particularRowData} />
+                    <LocationOrderForm
+                        type={props.type}
+                        particularRowData={props.particularRowData} />
                 </Suspense>
             </StyledDrawer>
         </>

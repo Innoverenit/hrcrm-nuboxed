@@ -245,6 +245,8 @@ const initialState = {
 
   showPhoneData: false,
 
+  showRefurbishLead: false,
+
   updatingProcessTask: false,
   updatingProcessTaskError: false,
 
@@ -654,6 +656,8 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_PHONE_DETAILS_MODAL:
       return { ...state, showPhoneData: action.payload };
 
+    case types.HANDLE_REFURBISH_LEAD:
+      return { ...state, showRefurbishLead: action.payload };
 
     case types.HANDLE_ASSIGN_REPAIR_MODAL:
       return { ...state, showAssignRepairModal: action.payload, catalogueInRefurbish: [] };
