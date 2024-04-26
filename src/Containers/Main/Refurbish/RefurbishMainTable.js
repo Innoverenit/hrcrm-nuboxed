@@ -59,28 +59,28 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg  max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex max-sm:hidden  justify-between w-[68%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" w-[17.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.orderid"
                             defaultMessage="orderid"
                         /></div>
-                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.customer"
                             defaultMessage="customer"
                         /></div>
-                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.contact"
                             defaultMessage="contact"
                         /></div>
-                        <div className="w-[5.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.lead"
                             defaultMessage="Lead"
                         /> </div>
-                        <div className="w-[5.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.assigned"
                             defaultMessage="Assigned"
                         /> </div>
-                        <div className="w-[3.61rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[7.61rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
                         /> </div>
@@ -88,11 +88,11 @@ const ProductionOrderList = (props) => {
                             id="app.final"
                             defaultMessage="final"
                         /></div>
-                        <div className="w-[8.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.quoted"
                             defaultMessage="Quoted"
                         /></div>
-                        <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[15.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.deliverydate"
                             defaultMessage="deliverydate"
                         /></div>
@@ -104,6 +104,7 @@ const ProductionOrderList = (props) => {
                         hasMore={hasMore}
                         loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
+                        style={{overflowX:"hidden"}}
                     >
                         {data.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
@@ -112,7 +113,7 @@ const ProductionOrderList = (props) => {
                                 <div>
                                     <div className="flex rounded-xl  mt-4 bg-white h-12 items-center justify-between p-3  max-sm:h-[8rem] max-sm:flex-col" >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[10.6rem] max-sm:w-auto ">
+                                            <div className=" flex font-medium  w-[10.9rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.totalReceiveCanRepairQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -132,7 +133,7 @@ const ProductionOrderList = (props) => {
                                                 ) : null}
                                             </div>
 
-                                            <div className=" flex font-medium   w-[10.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[11.9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
@@ -140,7 +141,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     <MultiAvatar
@@ -148,6 +149,12 @@ const ProductionOrderList = (props) => {
                                                         imgWidth={"2.1em"}
                                                         imgHeight={"2.1em"}
                                                     />
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  w-[5.53rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+
+                                                  Leads
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium  w-[4.64rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -160,7 +167,7 @@ const ProductionOrderList = (props) => {
                                                     />}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[4.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.userName && <MultiAvatar
@@ -172,7 +179,12 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                        <div className=" flex font-medium  w-[4.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                   Final
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
@@ -182,7 +194,7 @@ const ProductionOrderList = (props) => {
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.suggestedPrice}
                                                 </div>
