@@ -4,12 +4,12 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell} from "../../../Event/Child/Location/LocationAction";
-import ProductCellToggle from "./ProductCellToggle";
+// import ProductCellToggle from "./ProductCellToggle";
 
 const { Option } = Select;
 
 
-const ProductCellCard = (props) => {
+const UsersCellCard = (props) => {
     useEffect(()=>{
         props.getAlLoCell();
     },[]);
@@ -28,7 +28,7 @@ const ProductCellCard = (props) => {
             <div className=" md:w-[5.1rem]">Description</div>
             <div className="w-12"></div>             </div>
 
-           {props.allLoCell.map((item) => {
+           {/* {props.allLoCell.map((item) => {
             return (
               <div >
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
@@ -76,7 +76,7 @@ const ProductCellCard = (props) => {
                 </div>
               </div>
             );
-          })} 
+          })}  */}
 
         </div>
       </div> 
@@ -103,4 +103,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductCellCard);
+)(UsersCellCard);

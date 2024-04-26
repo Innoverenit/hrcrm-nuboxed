@@ -297,39 +297,15 @@ const initialState = {
 
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
-  productAlls: [
-//     {
-//     "productId": "PD68170822484172024",
-//     "productName": "Accelerator testing 1 2 ",
-//     "creationDate": "2024-04-17T08:57:17.261Z",
-//     "categoryName": "paneer",
-// },
-// {
-//     "productId": "PD5118276228082024",
-//     "productName": "Palak Phulka Phulka Palak 2.0 3.0",
-//     "creationDate": "2024-04-16T08:21:46.026Z",
-// "categoryName": "Phulka",
-// },
-// {
-//     "productId": "PD1920247105482024",
-//     "productName": "Jowar Phulka - Gluten Free Phulka Jowar  ",
-//     "creationDate": "2024-04-08T13:00:18.227Z",
-// "categoryName": "Phulka",
-// },
-
-// {
-//     "productId": "PD7213203342382024",
-//     "productName": "Paneer Stuffed Bhatura Dough Dough Paneer Stuffed Bhatura  ",
-//     "creationDate": "2024-04-08T12:36:08.306Z",
-// "categoryName": "Dough",
-// },
-],
+  productAlls: [],
 
   postingProductionBldr: false,
   postingProductionBldrError: false,
 
   clickProdclDrwr:false,
-
+  removingProductPrice: false,
+  removingProductPriceError:false,
+  
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1042,13 +1018,13 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         addingProductBuilder: false,
         addedProBuilder: action.payload,
-        searchedBuilders: state.searchedBuilders.map((item) => {
-          if (item.suppliesId == action.payload.suppliesId) {
-            return action.payload;
-          } else {
-            return item;
-          }
-        }),
+        // searchedBuilders: state.searchedBuilders.map((item) => {
+        //   if (item.suppliesId == action.payload.suppliesId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
         // builderbyProductId:[action.payload,...state.builderbyProductId]
       };
     case types.ADD_PRODUCT_BUILDER_FAILURE:
@@ -1101,9 +1077,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         removingProductBuilder: false,
-        builderbyProductId: state.builderbyProductId.filter(
-          (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
-        ),
+        builderbyProductId: state.builderbyProductId.filter((item) => item.productionBuilderId !== action.payload),
       };
     case types.REMOVE_PRODUCT_BUILDER_FAILURE:
       return {
@@ -1210,10 +1184,44 @@ export const productReducer = (state = initialState, action) => {
         postingProductionBldrError: true,
       };
 
-
                 case types.HANDLE_PRODUCT_CELL_DRAWER:
                   return { ...state, clickProdclDrwr: action.payload };
 
+                  case types.UPDATE_PROD_SUPPLR_BILDR_REQUEST:
+                    return { ...state, addingProductBuilder: true };
+                  case types.UPDATE_PROD_SUPPLR_BILDR_SUCCESS:
+                    return {
+                      ...state,
+                      addingProductBuilder: false,
+                      builderbyProductId: state.builderbyProductId.map((item) => {
+                        if (item.productionBuilderId == action.payload.productionBuilderId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                    };
+                  case types.UPDATE_PROD_SUPPLR_BILDR_FAILURE:
+                    return {
+                      ...state,
+                      addingProductBuilder: false,
+                      addingProductBuilderError: true,
+                    };
+
+                    case types.REMOVE_PRODUCT_PRICE_REQUEST:
+                      return { ...state, removingProductPrice: true };
+                    case types.REMOVE_PRODUCT_PRICE_SUCCESS:
+                      return {
+                        ...state,
+                        removingProductPrice: false,
+                        ProductCurrency: state.ProductCurrency.filter((item) => item.productCurrencyId !== action.payload),
+                      };
+                    case types.REMOVE_PRODUCT_PRICE_FAILURE:
+                      return {
+                        ...state,
+                        removingProductPrice: false,
+                        removingProductPriceError: true,
+                      };
     default:
       return state;
   }

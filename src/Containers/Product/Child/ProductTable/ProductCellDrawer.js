@@ -24,7 +24,7 @@ class ProductCellDrawer extends Component {
 
 
           <Suspense fallback={<BundleLoader />}>
-          <ProductCellCard/>
+          <ProductCellCard  particularDiscountData={particularDiscountData}/>
           </Suspense>
 
 

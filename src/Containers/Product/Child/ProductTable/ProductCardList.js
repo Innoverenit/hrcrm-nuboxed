@@ -302,6 +302,7 @@ function ProductCardList(props) {
           priceOpenDrawer={priceOpenDrawer}
         />
         <ProductCellDrawer
+         particularDiscountData={particularDiscountData}
         clickProdclDrwr={props.clickProdclDrwr}
         handleProdCellDrawer={props.handleProdCellDrawer}
         />

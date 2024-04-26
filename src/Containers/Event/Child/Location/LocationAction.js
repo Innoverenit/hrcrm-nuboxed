@@ -389,13 +389,11 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         
         })
       .then((res) => {
-        console.log(res);
-       
         dispatch({
           type: types.LINK_CELL_WITH_PRODUCT_SUCCESS,
           payload: res.data,
         });
-        Swal({
+        Swal.fire({
           icon: 'success',
           title: 'Satus has been changed successfully!',
         })

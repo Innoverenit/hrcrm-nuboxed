@@ -1,65 +1,60 @@
 import React,{useState} from "react";
-import { Switch,Popconfirm } from "antd";
+import { Switch,Popconfirm,Modal } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { linkCellwithProduct } from "../../../Event/Child/Location/LocationAction";
 
 function ProductCellToggle (props) {
-  const [toggle, setToggle] = React.useState(false)
+  const [toggle, setToggle] = useState(false);
+  const [confirmVisible, setConfirmVisible] = useState(false);
+ 
+  const handleToggle = () => {
+    setConfirmVisible(true);
+  };
 
+  const handleConfirm = (confirmed) => {
+    if (confirmed) {
+      props.linkCellwithProduct({
+        cellChamberLinkId: props.item.cellChamberLinkId,
+        productId:  props.particularDiscountData.productId,
+        locationDetailsId: props.locationId,
+        userId: props.userId,
+        orgId: props.organizationId,
+      });
+      setToggle(!toggle);
+    }
+    setConfirmVisible(false);
+  };
 
-  function handleToggleCollection(item) {
-      if (props.item.supplierSuppliesInd) {
-        props.linkCellwithProduct(
-          {
-              supplierId:props.item.supplierId,
-              suppliesId:props.suppliesId,
-            //   supplierSuppliesInd: props.item.supplierSuppliesInd ? false : true,
-            },
-       
-          );
-        //   setToggle( props.item.supplierSuppliesInd ? false : true);
-      } else {
-          props.linkCellwithProduct(
-              {
-                supplierId:props.item.supplierId,
-              suppliesId:props.suppliesId,
-            //   supplierSuppliesInd: props.item.supplierSuppliesInd ? false : true,
-              },
-             
-          );
-        //   setToggle( props.item.supplierSuppliesInd ? false : true);
-      }
-  }
-
-  function handleCancel() {
-    //   if (props.item.supplierSuppliesInd) 
-    if (false)
-      {
-          setToggle(true);
-      } else {
-          setToggle(false);
-      }
-  }
+     
 
   return (
       <>
           <div>
               <Popconfirm
                   title="Confirm status change?"
-                  onConfirm={() => handleToggleCollection()}
-                  onCancel={handleCancel}
+                  onConfirm={() => handleConfirm(true)}
+                  onCancel={() => handleConfirm(false)}
                   okText="Ok"
                   cancelText="Cancel"
               >
                   <Switch
-                    //   checked={toggle || props.item.supplierSuppliesInd}
-                      // disabled={props.status}
+                      checked={toggle}
+                      onChange={handleToggle}
                       isLoading={true}
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                   />
               </Popconfirm>
+
+              {/* <Modal
+        title="Confirm Action"
+        visible={confirmVisible}
+        onOk={() => handleConfirm(true)}
+        onCancel={() => handleConfirm(false)}
+      >
+        <p>Are you sure you want to perform this action?</p>
+      </Modal> */}
           </div>
       </>
   );

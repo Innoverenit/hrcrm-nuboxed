@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { Switch, Modal } from "antd";
+import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { createProductionLink } from "../ProductionAction";
 
 function ProductionSearchedToggle(props) {
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
 
   const handleToggle = () => {
-    setConfirmVisible(true); // Show confirmation dialog
+    // Show confirmation dialog
+    setConfirmVisible(true);
   };
 
   const handleConfirm = (confirmed) => {
     if (confirmed) {
-      // User confirmed the action, update the state
-      setChecked(!checked);
-
-      // Perform the action (e.g., createProductionLink) if confirmed
       props.createProductionLink({
         productName: props.item.name,
         productId: props.item.productId,
@@ -26,31 +23,30 @@ function ProductionSearchedToggle(props) {
         userId: props.userId,
         orgId: props.organizationId,
         workflow: props.productionWorkflowDetailsId,
-        stage:props.productionStagesId
+        stage: props.productionStagesId
       });
+      setIsChecked(!isChecked);
     }
-
-    setConfirmVisible(false); // Hide the confirmation dialog
+    setConfirmVisible(false);
   };
 
   return (
     <div>
-      <Switch
-        checkedChildren="Yes"
-        unCheckedChildren="No"
-        checked={checked}
-        onChange={handleToggle}
-      />
-
-      {/* Confirmation modal */}
-      <Modal
-        title="Confirm Action"
+      <Popconfirm
+        title="Are you sure you want to perform this action?"
         visible={confirmVisible}
-        onOk={() => handleConfirm(true)}
+        onConfirm={() => handleConfirm(true)}
         onCancel={() => handleConfirm(false)}
+        okText="Yes"
+        cancelText="No"
       >
-        <p>Are you sure you want to perform this action?</p>
-      </Modal>
+        <Switch
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+          checked={isChecked}
+          onChange={handleToggle}
+        />
+      </Popconfirm>
     </div>
   );
 }
@@ -61,6 +57,10 @@ const mapStateToProps = ({ auth }) => ({
   organizationId: auth.userDetails.organizationId
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ createProductionLink }, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ createProductionLink }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductionSearchedToggle);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductionSearchedToggle);
