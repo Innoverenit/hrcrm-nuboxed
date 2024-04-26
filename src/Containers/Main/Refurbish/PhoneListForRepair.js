@@ -148,7 +148,7 @@ function PhoneListForRepair(props) {
                         /></div>
                         <div className="w-[4.01rem]"></div>
                         <div className="w-[5.3rem]"></div>
-                        <div className="w-[6.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[7.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <FormattedMessage
                                 id="app.estimate"
                                 defaultMessage="Estimate"

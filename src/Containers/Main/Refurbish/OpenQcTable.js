@@ -25,10 +25,7 @@ function OpenQcTable(props) {
             {props.fetchingOpenQc ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[34.12rem]"><FormattedMessage
-                            id="app.order"
-                            defaultMessage="order"
-                        /></div>
+                        <div className=" md:w-[34.12rem]">Order#</div>
                         <div className=" md:w-[35.1rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
