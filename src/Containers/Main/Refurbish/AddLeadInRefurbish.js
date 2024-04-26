@@ -9,7 +9,7 @@ const AddLeadInRefurbish = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
+                title={`Tag Lead - ${props.rowData.newOrderNo}`}
                 width="50vw"
                 visible={props.showRefurbishLead}
                 destroyOnClose
@@ -19,7 +19,7 @@ const AddLeadInRefurbish = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     <LeadRefurbishForm
-                        particularRowData={props.particularRowData} />
+                        rowData={props.rowData} />
                 </Suspense>
             </StyledDrawer>
         </>

@@ -9,7 +9,7 @@ const AddLeadModal = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Tag Supervisor - ${props.particularRowData.newOrderNo}`}
+                title={`Tag Lead - ${props.particularRowData.newOrderNo}`}
                 width="50vw"
                 visible={props.addLeadInOrder}
                 destroyOnClose

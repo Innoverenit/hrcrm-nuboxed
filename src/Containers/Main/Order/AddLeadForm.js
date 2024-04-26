@@ -30,17 +30,21 @@ function AddLeadForm(props) {
 
     }
     const handleSubmit = () => {
-        props.addLead({})
+        props.addLead({
+            teamLeadUserId: technician
+        },
+            props.particularRowData.orderId
+        )
     }
     return (
         <>
             {props.fetchingDepartments ? <BundleLoader /> :
                 <>
                     <div class=" flex justify-between">
-                        <div className=" w-1/3">
+                        <div className=" w-1/4">
                             <label>Department</label>
                             <Select
-                                className="w-[250px]"
+                                className="w-[200px]"
                                 value={department}
                                 onChange={(value) => handleDepartment(value)}
                             >
@@ -50,10 +54,10 @@ function AddLeadForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-1/3">
+                        <div className=" w-1/4">
                             <label>Location</label>
                             <Select
-                                className="w-[250px]"
+                                className="w-[200px]"
                                 value={location}
                                 onChange={(value) => handleLocation(value)}
                             >
@@ -63,10 +67,10 @@ function AddLeadForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-1/3">
+                        <div className=" w-1/4">
                             <label>Lead</label>
                             <Select
-                                className="w-[250px]"
+                                className="w-[200px]"
                                 value={technician}
                                 onChange={(value) => handleTechnician(value)}
                             >

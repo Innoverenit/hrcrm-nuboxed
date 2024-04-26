@@ -180,12 +180,11 @@ function OrderTableByUserID(props) {
                     </div>
                     <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
-                        <MultiAvatar2
-                          primaryTitle={item.lead}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
+                        {item.teamLeadUserName && <MultiAvatar2
+                          primaryTitle={item.teamLeadUserName}
+                          imgWidth={"2.1em"}
+                          imgHeight={"2.1em"}
+                        />}
                       </div>
                     </div>
 
@@ -313,9 +312,10 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
   addStatusOfOrder: order.addStatusOfOrder,
   addNotesInOrder: order.addNotesInOrder,
   departmentUser: distributor.departmentUser,
-  fetchingOrderByIdError: order.fetchingOrderByIdError,
-  fetchingOrderById: order.fetchingOrderById,
+  fetchingOrderByIdError: distributor.fetchingOrderByIdError,
+  fetchingOrderById: distributor.fetchingOrderById,
   userId: auth.userDetails.userId,
+
   addLeadInOrder: distributor.addLeadInOrder,
   addOrderDetailsModal: distributor.addOrderDetailsModal,
   orderShowById: distributor.orderShowById,

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addSupervisor, addLead, getLocationList, getUserByLocationDepartment } from "../Account/AccountAction"
+import {
+    addSupervisor,
+    addLead,
+    getLocationList,
+    getUserByLocationDepartment,
+} from "../Account/AccountAction"
+import { getProductionOrderId } from "./RefurbishAction"
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { Button, Select } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -30,7 +36,12 @@ function LeadRefurbishForm(props) {
 
     }
     const handleSubmit = () => {
-        props.addLead({})
+        props.addLead({
+            teamLeadUserId: technician
+        }, props.rowData.orderPhoneId, handleCallback())
+    }
+    const handleCallback = () => {
+        props.getProductionOrderId(props.userId)
     }
     return (
         <>
@@ -103,6 +114,7 @@ const mapDispatchToProps = (dispatch) =>
         addSupervisor,
         getDepartments,
         addLead,
+        getProductionOrderId,
         getLocationList
     }, dispatch);
 
