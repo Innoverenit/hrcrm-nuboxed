@@ -2,15 +2,18 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button } from "antd";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
+//import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field,} from "formik";
 import { Select, StyledLabel } from "../../../../Components/UI/Elements";
 import * as Yup from "yup";
-import {createLoCell, getLoCell} from "./LocationAction";
+import {createLoCell, getLoCell,deleteLocationCell} from "./LocationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getUserByLocationDepartment } from "../../../Main/Account/AccountAction"
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -19,10 +22,17 @@ const { Option } = Select;
 const LocationCellForm = (props) => {
     useEffect(()=>{
         // props.getDepartments();
-        props.getLoCell(props.locationId,props.orgId);
+        props.getLoCell(props.storedLoc.locationDetailsId,props.orgId);
     },[]);
 
-
+    const handleDelete = (item) => {
+      // let data = {
+      // active:false,
+      //   reason: "",
+      //   productId:item.productId,
+      // };
+       props.deleteLocationCell(item.cellId);
+    };
 
     return (
       <>
@@ -40,6 +50,7 @@ const LocationCellForm = (props) => {
                     onSubmit={(values, { resetForm }) => {
                         props.createLoCell({
                             ...values,
+                            cellUnit:parseInt(values.cellUnit)
                             
                         },
                  
@@ -134,7 +145,7 @@ const LocationCellForm = (props) => {
 
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                    {item.rack}
+                    {item.cell}
                     </div>
                   </div>
 
@@ -143,7 +154,7 @@ const LocationCellForm = (props) => {
                     <div class=" text-xs text-cardBody font-poppins">
                     
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.rack}</div>
+                        <div> {item.cellUnit}</div>
                       </div>
                     
                     </div>
@@ -172,7 +183,18 @@ const LocationCellForm = (props) => {
                     <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
                       <div>
                       
-                      
+                      <StyledPopconfirm
+                            title="Do you want to delete?"
+                            onConfirm={() => handleDelete(item)}
+
+                          >
+                            
+                            <DeleteOutlined
+                              type="delete"
+                              className=" !text-base cursor-pointer text-[red]"
+                            />
+                         
+                          </StyledPopconfirm>
                       </div>
 
                     </div>
@@ -206,7 +228,8 @@ const mapDispatchToProps = (dispatch) =>
             getUserByLocationDepartment,
             createLoCell,
             getDepartments,
-            getLoCell
+            getLoCell,
+            deleteLocationCell
         },
         dispatch
     );

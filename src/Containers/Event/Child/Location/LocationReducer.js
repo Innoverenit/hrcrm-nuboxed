@@ -3,6 +3,11 @@ const initialState = {
     addlocationModal:false ,
     viewType:"card",
 
+
+    fetchingCatalogueCell:false,
+    fetchingCatalogueCellError:false,
+    catalogueCell:[],
+
     fetchingLocationData: false,
     fetchingLocationDataError: false,
     showLocation:[],
@@ -28,9 +33,20 @@ const initialState = {
   
    creatingShiftLocationError:false,
 
+
+   fetchingUserListLocation:false,
+   fetchingUserListLocationError:false,
+   userListLocation:[],
+
+   fetchingUserCell:false,
+   fetchingUserCellError:false,
+   userCell:[],
+
    fetchingAlLocShift: false,
    fetchingAlLocShiftError:false,
    alLocShift:[],
+
+   creatingUserCell:false,
 
    fetchingLocationRecords: false,
    fetchingLocationRecordsError: false,
@@ -45,9 +61,22 @@ fetchingLocationCell: false,
 fetchingLocationCellError:false,
 showLoCell:[],
 
+
+
+deletingLocationCellData:false,
+deletingLocationCellDataError:false,
+
+fetchingCellCode:false,
+fetchingCellCodeError:false,
+cellCode:[],
+
 fetchingAllLocationCell: false,
 fetchingAllLocationCellError:false,
 allLoCell:[],
+
+
+deletingUserCellData:false,
+deletingUserCellDataError:false,
 
   };
 
@@ -120,6 +149,49 @@ allLoCell:[],
                 return { ...state, deletingLocations: false, deletingLocationsError: false };
 
 
+
+
+                case types.DELETE_LOCATION_CELL_REQUEST:
+        return { ...state, deletingLocationCellData: true };
+      case types.DELETE_LOCATION_CELL_SUCCESS:
+        return {
+          ...state,
+          deletingLocationCellData: false,
+          showLoCell: state.showLoCell.filter(
+            (item) => item.cellId !== action.payload
+          ),
+        };
+      case types.DELETE_LOCATION_CELL_FAILURE:
+        return {
+          ...state,
+          deletingLocationCellData: false,
+          deletingLocationCellDataError: true,
+        };
+
+
+
+
+
+
+        case types.GET_USER_CELL_REQUEST:
+                                                  return { ...state, fetchingUserCell: true };
+                                                case types.GET_USER_CELL_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    fetchingUserCell: false,
+                                                    userCell:action.payload
+                                                    //showLoCell:[action.payload,...state.showLoCell]
+                             
+                                                  };
+                                                case types.GET_USER_CELL_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    fetchingUserCell: false,
+                                                    fetchingUserCellError: true,
+                                    
+                                                  };
+
+
                 case types.CREATE_SHIFT_LOCATION_REQUEST:
                   return { ...state, creatingShiftLocation: true };
                 case types.CREATE_SHIFT_LOCATION_SUCCESS:
@@ -160,6 +232,24 @@ allLoCell:[],
                                           fetchingAlLocShift: false,
                                           fetchingAlLocShiftError: true,
                                         }; 
+
+
+
+
+                                        case types.GET_CELL_CODE_REQUEST:
+                                                        return { ...state, fetchingCellCode: true };
+                                                      case types.GET_CELL_CODE_SUCCESS:
+                                                        return {
+                                                          ...state,
+                                                          fetchingCellCode: false,
+                                                          cellCode: action.payload
+                                                        };
+                                                      case types.GET_CELL_CODE_FAILURE:
+                                                        return {
+                                                          ...state,
+                                                          fetchingCellCode: false,
+                                                          fetchingCellCodeError: true,
+                                                        };
                                         
                                         case types.HANDLE_LOCATION_CUSTOMER_DRAWER:
                                           return { ...state, locationCustomerdrawr: action.payload }; 
@@ -206,6 +296,46 @@ allLoCell:[],
                                                   addingLocationToggle: false,
                                                   addingLocationToggleError: true,
                                                 };
+
+
+
+                                                case types.CREATE_USER_CELL_REQUEST:
+                                                  return { ...state, creatingUserCell: true };
+                                                case types.CREATE_USER_CELL_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    creatingUserCell: false,
+                                                    userCell:[action.payload,...state.userCell]
+                             
+                                                  };
+                                                case types.CREATE_USER_CELL_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    creatingUserCell: false,
+                                                    creatingUserCellError: true,
+                                    
+                                                  };
+
+
+
+
+                                                  case types.DELETE_USER_CELL_REQUEST:
+        return { ...state, deletingUserCellData: true };
+      case types.DELETE_USER_CELL_SUCCESS:
+        return {
+          ...state,
+          deletingUserCellData: false,
+          userCell: state.userCell.filter(
+            (item) => item.cellChamberUserLinkId !== action.payload
+          ),
+        };
+      case types.DELETE_USER_CELL_FAILURE:
+        return {
+          ...state,
+          deletingUserCellData: false,
+          deletingUserCellDataError: true,
+        };
+
                                                                                   
                                                 case types.HANDLE_LOCATION_CELL_DRAWER:
                                                   return { ...state, clickLocDrwr: action.payload };
@@ -216,6 +346,7 @@ allLoCell:[],
                                                     return {
                                                       ...state,
                                                       creatingLocationCell: false,
+                                                      showLoCell:[action.payload,...state.showLoCell]
                                
                                                     };
                                                   case types.CREATE_LOCATION_CELL_FAILURE:
@@ -241,6 +372,22 @@ allLoCell:[],
                                                         fetchingLocationCellError: true,
                                                       };
 
+
+                                                      case types.GET_CATALOGUE_CELL_REQUEST:
+                                                        return { ...state, fetchingCatalogueCell: true };
+                                                      case types.GET_CATALOGUE_CELL_SUCCESS:
+                                                        return {
+                                                          ...state,
+                                                          fetchingCatalogueCell: false,
+                                                          catalogueCell: action.payload
+                                                        };
+                                                      case types.GET_CATALOGUE_CELL_FAILURE:
+                                                        return {
+                                                          ...state,
+                                                          fetchingCatalogueCell: false,
+                                                          fetchingCatalogueCellError: true,
+                                                        };
+
                                                       case types.GET_ALL_LOCATION_CELL_REQUEST:
                                                         return { ...state, fetchingAllLocationCell: true };
                                                       case types.GET_ALL_LOCATION_CELL_SUCCESS:
@@ -255,6 +402,22 @@ allLoCell:[],
                                                           fetchingAllLocationCell: false,
                                                           fetchingAllLocationCellError: true,
                                                         };
+
+
+                                                        case types.GET_USER_LIST_LOCATION_REQUEST:
+                                                          return { ...state, fetchingUserListLocation: true };
+                                                        case types.GET_USER_LIST_LOCATION_SUCCESS:
+                                                          return {
+                                                            ...state,
+                                                            fetchingUserListLocation: false,
+                                                            userListLocation: action.payload
+                                                          };
+                                                        case types.GET_USER_LIST_LOCATION_FAILURE:
+                                                          return {
+                                                            ...state,
+                                                            fetchingUserListLocation: false,
+                                                            fetchingUserListLocationError: true,
+                                                          };
 
                                                         case types.LINK_CELL_WITH_PRODUCT_REQUEST:
             return { ...state };

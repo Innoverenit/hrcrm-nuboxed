@@ -3,7 +3,7 @@ import { FlexContainer } from "../../../Components/UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined, AlipayOutlined } from "@ant-design/icons";
-import { Tooltip, Avatar } from "antd";
+import { Tooltip, Avatar,Badge } from "antd";
 import MenuIcon from '@mui/icons-material/Menu';
 import { getRecords } from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
@@ -20,6 +20,11 @@ const ProductActionLeft = (props) => {
   return (
     <FlexContainer alignItems="center">
       <Tooltip title="Product List">
+      <Badge
+          size="small"
+           count={( props.recordData.product) || 0}
+          overflowCount={999}
+        >
         <div
           class=" mr-2 text-sm cursor-pointer"
           style={{
@@ -33,6 +38,7 @@ const ProductActionLeft = (props) => {
           </Avatar>
 
         </div>
+        </Badge>
       </Tooltip>
 
       {/* <Tooltip
