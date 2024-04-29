@@ -34,30 +34,21 @@ function InspectedPhoneByOrder(props) {
             <div className='flex justify-end sticky ticky top-0 z-10 '>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
+                        <div className=" md:w-[7.12rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage
+                        <div className=" md:w-[7.1rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
                         /></div>
-                        <div className=" md:w-[7.8rem] "><FormattedMessage
+                        <div className=" md:w-[6.8rem] "><FormattedMessage
                             id="app.imei"
                             defaultMessage="imei"
                         /></div>
-                        <div className="md:w-[4.6rem]"><FormattedMessage
-                            id="app.os"
-                            defaultMessage="os"
-                        /> </div>
-                        <div className="md:w-[5.8rem]"><FormattedMessage
-                            id="app.gb"
-                            defaultMessage="gb"
-                        /></div>
-                        <div className="md:w-[7.7rem]"><FormattedMessage
-                            id="app.color"
-                            defaultMessage="color"
-                        /></div>
+                        <div className="md:w-[8.6rem]">Issue </div>
+                        
+                        <div className="md:w-[4.7rem]">Info</div>
                         <div className="md:w-[5.9rem]"><FormattedMessage
                             id="app.conditions"
                             defaultMessage="conditions"
@@ -89,27 +80,27 @@ function InspectedPhoneByOrder(props) {
                                                     {item.imei}
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+
+
+<div class=" text-sm text-cardBody font-poppins">
+
+   Issue
+</div>
+</div>
                                         </div>
 
-                                        <div className=" flex font-medium  md:w-[4.52rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium  md:w-[10.52rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
 
-                                                {item.os}
+                                                {item.os} {item.gb} {item.color}
 
 
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium  md:w-[6.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {item.gb}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium  md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {item.color}
-                                            </div>
-                                        </div>
+                                       
                                         <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" text-xs text-cardBody font-poppins text-center">
                                                 {item.conditions}

@@ -146,13 +146,10 @@ function PhoneListForRepair(props) {
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
-                        <div className="w-[4.01rem]"></div>
-                        <div className="w-[5.3rem]"></div>
-                        <div className="w-[7.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <FormattedMessage
-                                id="app.estimate"
-                                defaultMessage="Estimate"
-                            />
+                        <div className="w-[4.01rem]">Issue</div>
+                        <div className="w-[11.31rem]"></div>
+                        <div className="w-[8.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            Estimate (hours)
                         </div>
                         <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.start"
@@ -168,8 +165,8 @@ function PhoneListForRepair(props) {
                             defaultMessage="TAT"
                         /></div>
 
-                        <div className="w-[5.01rem]"></div>
-                        <div className="w-[5.02rem]"></div>
+                        <div className="w-[7.81rem]">Spare</div>
+                        <div className="w-[5.02rem]">Task</div>
                         <div className="w-[5.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
@@ -190,7 +187,7 @@ function PhoneListForRepair(props) {
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  w-full  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col "
+                                    <div className="flex rounded-xl  w-full  mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[8rem] max-sm:flex-col "
 
                                     >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
@@ -207,6 +204,11 @@ function PhoneListForRepair(props) {
                                             <div className=" flex font-medium  w-[6.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.imei}
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  w-[6.68rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                 
                                                 </div>
                                             </div>
                                         </div>
@@ -320,7 +322,7 @@ function PhoneListForRepair(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
@@ -329,7 +331,7 @@ function PhoneListForRepair(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                                            <div className=" flex font-medium w-[12.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[10.09rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {/* <Tooltip title="Spare">
                                                         <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>

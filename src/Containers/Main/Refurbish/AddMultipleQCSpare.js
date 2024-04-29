@@ -138,12 +138,9 @@ const AddMultipleQCSpare = (props) => {
                                     }
                                 />
                             </div>
-                            <div class="w-[15%]">
+                            <div class="w-[22%]">
                                 <label>
-                                    <FormattedMessage
-                                        id="app.hours"
-                                        defaultMessage="Hours"
-                                    />
+                                    Effort (hours)
                                 </label>
                                 <Input
                                     type='text'

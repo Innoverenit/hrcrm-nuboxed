@@ -23,8 +23,8 @@ function OpenRepairTable(props) {
 
     return (
         <>
-            {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded-lg m-2 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.order"
@@ -57,7 +57,7 @@ function OpenRepairTable(props) {
                                 const date = moment(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col ">
+                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[28.8rem] max-xl:w- max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
