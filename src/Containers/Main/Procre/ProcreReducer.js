@@ -5,6 +5,10 @@ const initialState = {
 
 
   viewType: "card",
+
+  fetchingAllProcure: false,
+  fetchingAllProcureError: false,
+  allProcure:[],
  
  
 
@@ -23,6 +27,21 @@ export const procreReducer = (state = initialState, action) => {
         viewType: action.payload,
         
       };
+
+      case types.GET_ALL_PROCURE_REQUEST:
+        return { ...state, fetchingAllProcure: true };
+      case types.GET_ALL_PROCURE_SUCCESS:
+        return {
+          ...state,
+          fetchingAllProcure: false,
+          allProcure: action.payload,
+        };
+      case types.GET_ALL_PROCURE_FAILURE:
+        return {
+          ...state,
+          fetchingAllProcure: false,
+          fetchingAllProcureError: true,
+        };
 
     
 

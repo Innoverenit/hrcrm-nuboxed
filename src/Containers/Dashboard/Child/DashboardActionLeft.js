@@ -345,7 +345,7 @@ const DashboardActionLeft = (props) => {
       </Tooltip>
     </span>
   </Badge>
-)}  
+ )}   
             <Badge size="small">
               <span
                 className="cursor-pointer mr-1"

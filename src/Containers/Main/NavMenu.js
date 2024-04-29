@@ -831,7 +831,7 @@ paddingLeft: "1rem" , color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc07
       style={{ fontSize: "large" }}
     />
     <span class="text-white text-ls ml-1">
-      Procre
+      Procure
     </span>
   </Link>
 </Menu.Item>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,10 +8,19 @@ import { JumpStartBox } from "../../../Components/UI/Elements";
 // import AddInvestmentDrawerModal from "./AddInvestmentDrawerModal";
 
 function MultiOrgInvestorRegionalJumpstartBox(props) {
+  const [totalOrgValue, setTotalOrgValue] = useState(0);
+
   const {
     handleInvestmentModal,
     addInvestmentModal
   } = props;
+  useEffect(() => {
+    const totalValue = props.multiOrgRecords.reduce(
+      (accumulator, region) => accumulator + region.orgValue,
+      0
+    );
+    setTotalOrgValue(totalValue);
+  }, [props.multiOrgRecords]);
 
   useEffect(() => {
     props.getRegions(props.organizationId);
@@ -27,26 +36,25 @@ function MultiOrgInvestorRegionalJumpstartBox(props) {
       {/* <div className="font-bold flex-col justify-center flex text-lg">Investment</div> */}
       <div className="flex flex-col w-full">
       <div>
-  <JumpStartBox
-    noProgress
-    cursorData={"pointer"}
-    // value={region.sales}
-    title="Total"
-  />
+      <JumpStartBox
+          noProgress
+          cursorData={"pointer"}
+          value={totalOrgValue}
+          title="Total"
+        />
   </div>
   <div className="flex w-full mt-8 max-sm:flex-col">
-    {props.regionRecords.map((region, index) => (
+    {props.multiOrgRecords.map((region, index) => (
       <React.Fragment key={index}>
         {region.investment !== 0 && (
           <div className="flex w-wk">
             <JumpStartBox
               // bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              value={region.investment}
-            //   jumpstartClick={() => handleInvestmentModal(true)}
               cursorData={"pointer"}
               bgColor={colors[index % colors.length]}
-              title={region.regions}
+              value={region.orgValue}
+              title={region.orgName}
               isLoading={props.user.fetchingJumpstartInvestor}
             />
           </div>

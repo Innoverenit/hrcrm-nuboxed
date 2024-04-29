@@ -161,6 +161,9 @@ const initialState = {
   fetchingLobListError: false,
   lobList: [],
 
+  addingOrderProcurement: false,
+  addingOrderProcurementError: false,
+
   fetchingFeedbackByOrderId: false,
   fetchingFeedbackByOrderIdError: false,
   orderFeedbacks: [],
@@ -277,6 +280,10 @@ const initialState = {
   fetchingRenewOrderByOrderId: false,
   fetchingRenewOrderByOrderIdError: false,
   RenewOrder: [],
+
+  fetchingOrderProcurement: false,
+  fetchingOrderProcurementError: false,
+  procurementOrder:[],
 
   showPulseModal: false,
 
@@ -2630,6 +2637,40 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderStatusError: true,
 
       };
+
+
+      case types.ADD_ORDER_PROCUREMENT_REQUEST:
+        return { ...state, addingOrderProcurement: true };
+      case types.ADD_ORDER_PROCUREMENT_SUCCESS:
+        return {
+          ...state,
+          addingOrderProcurement: false,
+           procurementOrder: [action.payload, ...state.procurementOrder],
+          // orderDetailsId: action.payload
+          addLinkCustomerProcurementModal: false,
+  
+        };
+      case types.ADD_ORDER_PROCUREMENT_FAILURE:
+        return {
+          ...state,
+          addingOrderProcurement: false,
+          addingOrderProcurementError: true,
+        };
+
+        case types.GET_ORDER_PROCUREMENT_REQUEST:
+          return { ...state, fetchingOrderProcurement: true };
+        case types.GET_ORDER_PROCUREMENT_SUCCESS:
+          return {
+            ...state,
+            fetchingOrderProcurement: false,
+            procurementOrder: [...state.procurementOrder, ...action.payload]
+          };
+        case types.GET_ORDER_PROCUREMENT_FAILURE:
+          return {
+            ...state,
+            fetchingOrderProcurement: false,
+            fetchingOrderProcurementError: true,
+          };
     default:
       return state;
   }
