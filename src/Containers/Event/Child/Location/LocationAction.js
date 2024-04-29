@@ -264,6 +264,64 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       });
   }; 
 
+
+
+  export const deleteLocationCell = (cellId) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_LOCATION_CELL_REQUEST,
+    });
+    axios
+      .delete(`${base_url2}/cell/cellDetails/delete/${cellId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        //dispatch(getProducts(0))
+        console.log(res);
+        dispatch({
+          type: types.DELETE_LOCATION_CELL_SUCCESS,
+          payload: cellId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.DELETE_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getCellCode = (locationDetailsId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CELL_CODE_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/cell/chamber/link/drop-down/${locationDetailsId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_CELL_CODE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_CELL_CODE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const addingLocationToggle = (data,orgId) => (dispatch) => {
     //console.log(permissions, userId);
    // const userId = getState().auth.userDetails.userId;
@@ -402,6 +460,146 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.LINK_CELL_WITH_PRODUCT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+  export const getUserListLocation = (locationId,departmentId) => (dispatch) => {
+    dispatch({
+      type: types.GET_USER_LIST_LOCATION_REQUEST,
+    });
+    axios
+      .get(`${base_url}/employee/user/list/drop-down/${locationId}/${departmentId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_USER_LIST_LOCATION_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_USER_LIST_LOCATION_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+  export const createUserCell = (data) => (dispatch) => {
+    // const { locationId,organizationId } = getState().auth.userDetails;
+    
+    dispatch({ type: types.CREATE_USER_CELL_REQUEST });
+    axios
+      .post(`${base_url2}/cell/chamber/link/user/save`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(getRoomRackByLocId(locationId,organizationId))
+        dispatch({
+          type: types.CREATE_USER_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_USER_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const getCatalogueCell = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CATALOGUE_CELL_REQUEST,
+    });
+    axios
+      .get(`${base_url}/locationDetails/getLocationDetailsList/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_CATALOGUE_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+
+        dispatch({
+          type: types.GET_CATALOGUE_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const getUserCell = (locationDetailsId) => (dispatch) => {
+    dispatch({
+      type: types.GET_USER_CELL_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/cell/chamber/link/user/get-all/${locationDetailsId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_USER_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_USER_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const deleteUserCell = (cellChamberUserLinkId) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_USER_CELL_REQUEST,
+    });
+    axios
+      .delete(`${base_url2}/cell/chamber/link/user/delete/${cellChamberUserLinkId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        //dispatch(getProducts(0))
+        console.log(res);
+        dispatch({
+          type: types.DELETE_USER_CELL_SUCCESS,
+          payload: cellChamberUserLinkId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.DELETE_USER_CELL_FAILURE,
           payload: err,
         });
       });

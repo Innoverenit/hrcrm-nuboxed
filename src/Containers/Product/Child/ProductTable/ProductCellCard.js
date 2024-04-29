@@ -1,23 +1,53 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,Tabs } from "antd";
 import { Select } from "../../../../Components/UI/Elements";
-import{getAlLoCell} from "../../../Event/Child/Location/LocationAction";
+import{getAlLoCell,getCatalogueCell} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
 
 const { Option } = Select;
 
+const { TabPane } = Tabs;
+
 
 const ProductCellCard = (props) => {
+  const users = [
+    { value: '1', label: 'John Doe' },
+    { value: '2', label: 'Jane Smith' },
+    { value: '3', label: 'David Johnson' },
+    { value: '4', label: 'Emily Brown' },
+  ];
     useEffect(()=>{
         props.getAlLoCell();
+        props.getCatalogueCell(props.orgId)
     },[]);
 
 
 
     return (
       <>
+       <Tabs type="card" 
+      //  activeKey={activeTab} 
+      //  onChange={handleTabClick}
+       >
+      {props.catalogueCell.filter(item => item.productionInd === true)
+      .map(item => (
+        <TabPane key={item.locationDetailsId} tab={item.locationName}>
+         {/* {loading ? (
+             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+             <Spin />
+           </div>
+          ) : (
+          <MatrixData
+            activeTab={activeTab}
+            matrixData={props.matrixData}
+          />
+        
+          )} */}
+        </TabPane>
+   ))}
+    </Tabs>
 
 <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -89,13 +119,15 @@ const mapStateToProps = ({ auth,location,distributor, departments, }) => ({
     orgId:auth.userDetails.organizationId,
     locationId:auth.userDetails.locationId,
     allLoCell:location.allLoCell,
+    catalogueCell:location.catalogueCell
 
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAlLoCell
+            getAlLoCell,
+            getCatalogueCell
         },
         dispatch
     );

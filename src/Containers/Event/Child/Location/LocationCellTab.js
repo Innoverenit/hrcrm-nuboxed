@@ -20,7 +20,7 @@ function LocationCellTab(props) {
                         </div>
                     </TabPane>
                     <TabPane tab={`User`} key="2">
-                       <UsersCellCard/>
+                       <UsersCellCard storedLoc={props.storedLoc}/>
                     </TabPane>
                 </StyledTabs>
             </TabsWrapper>
