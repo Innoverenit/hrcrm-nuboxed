@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {handleFullFillmentModal} from "../../DashboardPage/RegionalDashAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -7,6 +7,7 @@ import { JumpStartBox } from "../../../Components/UI/Elements";
 // import AddFullFillmentDrawerModal from "./AddFullFillmentDrawerModal";
 
 function MultiOrgFullFillMentJumpstartBox(props) {
+  const [totalOrgValue, setTotalOrgValue] = useState(0);
   const {
     handleFullFillmentModal,
     addFullFillmentModal
@@ -15,6 +16,13 @@ function MultiOrgFullFillMentJumpstartBox(props) {
   useEffect(() => {
     props.getRegions(props.organizationId);
   }, []);
+  useEffect(() => {
+    const totalValue = props.multiOrgRecords.reduce(
+      (accumulator, region) => accumulator + region.orgValue,
+      0
+    );
+    setTotalOrgValue(totalValue);
+  }, [props.multiOrgRecords]);
   const colors = [
     "linear-gradient(270deg,#F15753,orange)", 
     "linear-gradient(270deg,#3db8b5,#41e196)",
@@ -29,12 +37,12 @@ function MultiOrgFullFillMentJumpstartBox(props) {
   <JumpStartBox
     noProgress
     cursorData={"pointer"}
-    // value={region.sales}
+    value={totalOrgValue}
     title="Total"
   />
   </div>
       <div className="flex w-full mt-8 max-sm:flex-col">
-        {props.regionRecords.map((region, index) => (
+        {props.multiOrgRecords.map((region, index) => (
            <React.Fragment key={index}>
              {region.fulfilment !== 0 && (
           <div  className="flex w-wk">
@@ -44,9 +52,10 @@ function MultiOrgFullFillMentJumpstartBox(props) {
               noProgress
             //   jumpstartClick={()=>handleFullFillmentModal(true)}
               cursorData={"pointer"}
-              value={region.fulfilment}
+            
               bgColor={colors[index % colors.length]} 
-              title={region.regions}
+              value={region.orgValue}
+              title={region.orgName}
            sLoading={props.user.fetchingJumpstartInvestor}
             />
           

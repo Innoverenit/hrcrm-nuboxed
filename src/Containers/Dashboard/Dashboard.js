@@ -10,7 +10,7 @@ import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerViewGoogleMap from "./CustomerViewGoogleMap"
 import CustomerAccountGoogleMap from "../Dashboard/CustomerAccountGoogleMap"
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
-import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
 // import CustomerPieChart from "../Dashboard/Child/JumpStart/CustomerPieChart"
@@ -78,6 +78,10 @@ class Dashboard extends Component {
     await this.props.getRegionRecords(currentYear, tabKey
    
     );
+    await this.props.getMultiOrgRegionRecords(this.props.emailId,currentYear, tabKey
+   
+      );
+    
   };
 
   showModal = () => {
@@ -211,7 +215,8 @@ class Dashboard extends Component {
                  tabKey={this.state.activeTab}
                 
                  handleTabClick={this.handleTabClick}
-                regionRecords={this.props.regionRecords}/>
+                 multiOrgRecords={this.props.multiOrgRecords}
+         />
               </CardElement>
             ) 
             
@@ -339,7 +344,7 @@ class Dashboard extends Component {
      {this.state.activeButton === "multiOrg" && activeTab && (
         <CardElement>
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-            <MultiOrgFullFillMentMJumpstartBox regionRecords={this.props.regionRecords}/>
+            <MultiOrgFullFillMentMJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
         </CardElement>
     )}
 
@@ -410,7 +415,7 @@ class Dashboard extends Component {
                            : this.state.activeButton === "multiOrg" && activeTab  ?
                            <CardElement>
                            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-                           <MultiOrgInvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
+                           <MultiOrgInvestorRegionalJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
                            </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
@@ -500,7 +505,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
+  emailId: auth.userDetails.emailId,
   regionRecords:dashboard.regionRecords,
+  multiOrgRecords:dashboard.multiOrgRecords,
   fetchingProspectData:dashboard.fetchingProspectData,
   prospectLifeTime:dashboard.prospectLifeTime,
   fetchingProspectLifetime:dashboard.fetchingProspectLifetime,
@@ -515,6 +522,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,
   getProspectLifeTime,
   getRegionRecords,
+  getMultiOrgRegionRecords,
   getOpenQuotationThisYear,
   getProspectsData,
   getOpenQuotation

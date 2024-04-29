@@ -53,7 +53,7 @@ const AccountOrderTable = (props) => {
         setPage(page + 1);
 
         props.getLocationList(props.orgId);
-        props.getDistributorOrderByDistributorId(props.distributorId, page)
+        props.getDistributorOrderByDistributorId(props.distributorId, page,"repair")
     }, [])
 
     const [print, setprint] = useState(false);
@@ -73,7 +73,7 @@ const AccountOrderTable = (props) => {
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getDistributorOrderByDistributorId(props.distributorId, page)
+        props.getDistributorOrderByDistributorId(props.distributorId, page,"repair")
     };
     const [visible, setVisible] = useState(false)
     const handleUpdateRevisePrice = () => {

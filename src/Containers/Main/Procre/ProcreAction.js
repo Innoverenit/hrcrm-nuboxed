@@ -15,3 +15,29 @@ export const setProcreViewType = (viewType) => (dispatch) => {
   });
 };
 
+export const getAllProcure = (orgId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_PROCURE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-procure/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_PROCURE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ALL_PROCURE_FAILURE,
+        payload: err,
+      });
+    });
+};
+

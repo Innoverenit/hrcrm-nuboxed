@@ -448,14 +448,14 @@ export const generateOrderByDistributorId = (data, cb) => (dispatch) => {
     });
 };
 
-export const getDistributorOrderByDistributorId = (distributorId, pageNo) => (
+export const getDistributorOrderByDistributorId = (distributorId, pageNo,type) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_DISTRIBUTOR_ORDER_BY_DISTRIBUTOR_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/all-phoneOrders/${distributorId}/${pageNo}`,
+    .get(`${base_url2}/phoneOrder/all-phoneOrders/${distributorId}/${pageNo}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3438,4 +3438,68 @@ export const setContactRoleForAccount = (data, contactId,) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+export const addOrderProcurementForm = (customer, distributorId) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_ORDER_PROCUREMENT_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/phoneOrder-save`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Order Created',
+      //   showConfirmButton: true,
+      // })
+      // dispatch(getOrderRecords(distributorId));
+      dispatch({
+        type: types.ADD_ORDER_PROCUREMENT_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_ORDER_PROCUREMENT_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+export const getOrderProcurement = (distributorId, pageNo,type) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_ORDER_PROCUREMENT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-phoneOrders/${distributorId}/${pageNo}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ORDER_PROCUREMENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ORDER_PROCUREMENT_FAILURE,
+        payload: err,
+      });
+    });
 };

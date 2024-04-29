@@ -2454,6 +2454,31 @@ export const getRegionRecords = (year,quarter) => (dispatch) => {
       });
     });
 };
+export const getMultiOrgRegionRecords = (emailId,year,quarter) => (dispatch) => {
+  dispatch({
+    type: types.GET_MULTI_ORG_REGION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/multi-org/dash-board/${emailId}/${year}/${quarter}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MULTI_ORG_REGION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MULTI_ORG_REGION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 export const getDevelopChart = (userId, startDate, endDate) => (dispatch) => {
