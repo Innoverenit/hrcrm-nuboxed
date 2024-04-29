@@ -34,8 +34,8 @@ function ProductionOrderListById(props) {
     }
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded-lg max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[36.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order #</div>
                         <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -65,11 +65,11 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col "
+                                        <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col "
 
                                         >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium w-[23.8rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium w-[17.9rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
@@ -89,8 +89,19 @@ function ProductionOrderListById(props) {
                                                         </span>
                                                     ) : null}
                                                 </div>
+                                                <div className=" flex font-medium w-[6.5rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                {item.priority === "High" && (
+                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                    )}
+                    {item.priority === "Medium" && (
+                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                    )}
+                    {item.priority === "Low" && (
+                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                    )}
+                    </div>
 
-                                                <div className=" flex font-medium   w-[23.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[25.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>

@@ -59,7 +59,7 @@ function RepairSpareListTable(props) {
             width: "15%",
         },
         {
-            title: "Hours",
+            title: "Effort (hours)",
             dataIndex: "hours",
             width: "15%",
         },

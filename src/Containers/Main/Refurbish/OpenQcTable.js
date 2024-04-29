@@ -22,8 +22,8 @@ function OpenQcTable(props) {
     };
     return (
         <>
-            {props.fetchingOpenQc ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            {props.fetchingOpenQc ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded-lg m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[34.12rem]">Order#</div>
                         <div className=" md:w-[35.1rem]"><FormattedMessage
@@ -53,7 +53,7 @@ function OpenQcTable(props) {
                             {props.openQc.map((item) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
+                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-[2.75rem] items-center p-3 ">
                                             <div class="flex">
                                                 <div className=" flex font-medium  md:w-[32.6rem] max-sm:w-full  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
