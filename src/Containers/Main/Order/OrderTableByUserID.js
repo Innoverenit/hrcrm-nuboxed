@@ -223,7 +223,7 @@ function OrderTableByUserID(props) {
 
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
                       <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Add Lead">
+                        {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
                             className="!text-base cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
@@ -231,7 +231,7 @@ function OrderTableByUserID(props) {
                               props.handleLeadModal(true)
                               handleSetParticularOrderData(item)
                             }} />
-                        </Tooltip>
+                        </Tooltip>}
                       </h4>
                     </div>
                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">

@@ -68,7 +68,7 @@ const TechnicianListByOrderId = (props) => {
                             <div>
                                 <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
                                     <div class="flex">
-                                        <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
+                                        <div className=" flex font-medium  md:w-[12rem] max-sm:w-full  ">
                                             <span
                                                 onClick={() => handleRowdata(item)}
                                                 style={{
@@ -81,15 +81,33 @@ const TechnicianListByOrderId = (props) => {
                                             </span>
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.mobileNo}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium   md:w-[8.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.totalPhone}
+                                            </div>
+
+                                        </div>
+                                        <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                {item.qcToStartPhoneCount}
+                                            </div>
+
+                                        </div>
+                                        <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                {item.qcInProgressPhoneCount}
+                                            </div>
+
+                                        </div>
+                                        <div className=" flex font-medium   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                {item.qcCompletePhoneCount}
                                             </div>
 
                                         </div>

@@ -73,6 +73,7 @@ function AddOrderInAccount(props) {
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
+                orderType: "repair",
                 priority: priority || "",
                 orgId: props.orgId,
                 loadingAddress: [
