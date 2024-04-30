@@ -5,6 +5,7 @@ import { Button,Tabs,Spin } from "antd";
 import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell,getCatalogueCell,getcellCardList} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -60,7 +61,9 @@ const ProductCellCard = (props) => {
       }
     }, [props.catalogueCell]);
 
-
+if(props.fetchingCatalogueCell){
+  return <BundleLoader/>;
+}
 
     return (
       <>
@@ -71,9 +74,9 @@ const ProductCellCard = (props) => {
       {props.catalogueCell.filter(item => item.productionInd === true)
       .map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
-         {loading ? (
+         {props.fetchingCellCardList ? (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-             <Spin />
+             <BundleLoader/>
            </div>
           ) : (
             <div className=' flex justify-end sticky z-auto'>
@@ -84,6 +87,7 @@ const ProductCellCard = (props) => {
              
                 {/* <div className=" md:w-[5.1rem]">Description</div> */}
                 <div className="w-12"></div>             </div>
+                
     
                {props.cellCardList.map((item) => {
                 return (
@@ -145,6 +149,8 @@ const mapStateToProps = ({ auth,location,distributor, departments, }) => ({
     allLoCell:location.allLoCell,
     catalogueCell:location.catalogueCell,
     cellCardList:location.cellCardList,
+    fetchingCellCardList:location.fetchingCellCardList,
+    fetchingCatalogueCell:location.fetchingCatalogueCell,
     fetchingCellCardList:location.fetchingCellCardList
 
 });
