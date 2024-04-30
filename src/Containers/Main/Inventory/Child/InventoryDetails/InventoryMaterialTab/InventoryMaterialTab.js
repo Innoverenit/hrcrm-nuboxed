@@ -49,7 +49,7 @@ class InventoryMaterialTab extends PureComponent {
                             tab={
                                 <>
                                     <span>
-                                        <i class="far fa-share-square"></i>&nbsp;Stock(Inventory)
+                                        <i class="far fa-share-square"></i>&nbsp;Stock
 
                                     </span>
 
@@ -66,7 +66,7 @@ class InventoryMaterialTab extends PureComponent {
                             tab={
                                 <>
                                     <span>
-                                        <i class="far fa-share-square"></i>&nbsp;Stock(Cell)
+                                        <i class="far fa-share-square"></i>&nbsp;Cell
 
                                     </span>
 

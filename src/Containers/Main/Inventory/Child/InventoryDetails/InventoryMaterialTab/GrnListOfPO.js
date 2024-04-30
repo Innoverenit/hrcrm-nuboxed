@@ -10,7 +10,7 @@ import { ListAltRounded } from "@mui/icons-material";
 import ItemWiseReceivedModal from "./ItemWiseReceivedModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
-
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 const { Option } = Select;
 
 const GrnListOfPO = (props) => {
@@ -23,11 +23,8 @@ const GrnListOfPO = (props) => {
     const handleRow = (item) => {
         setRow(item)
     }
-    let chamberId = props.row.roomRackChamberLinkId === null ? "" : props.row.roomRackChamberLinkId
-    let roomId = props.row.roomRackId === null ? "" : props.row.roomRackId
-
-    const [selectedChamberId, setSelectedChamberId] = useState(chamberId);
-    const [selectedRoomId, setSelectedRoomId] = useState(roomId);
+    const [selectedChamberId, setSelectedChamberId] = useState("");
+    const [selectedRoomId, setSelectedRoomId] = useState("");
     const [selectZone, setSelectZone] = useState(false);
 
     const handleSelectZone = () => {
@@ -35,7 +32,7 @@ const GrnListOfPO = (props) => {
     }
 
     const handleCancelZone = () => {
-        setSelectZone(false)
+        setSelectZone(faClose)
     }
     const handleChangeRoomRack = (value) => {
         setSelectedRoomId(value)
@@ -143,12 +140,11 @@ const GrnListOfPO = (props) => {
                                                             value={selectedRoomId}
                                                             onChange={(value) => { handleChangeRoomRack(value) }}
                                                         >
-                                                            {props.roomRackbyLoc.filter((type) => type.zoneType === "entry")
-                                                                .map((s) => (
-                                                                    <Option value={s.roomRackId}>
-                                                                        {s.zone}
-                                                                    </Option>
-                                                                ))}
+                                                            {props.roomRackbyLoc.map((s) => (
+                                                                <Option value={s.roomRackId}>
+                                                                    {s.zone}
+                                                                </Option>
+                                                            ))}
                                                         </Select>
                                                         <Select
                                                             classNames="w-32"
@@ -161,27 +157,12 @@ const GrnListOfPO = (props) => {
                                                                 </Option>
                                                             ))}
                                                         </Select>
-                                                    </> :
-                                                    <div>
-                                                        {item.zone}{item.chamber}
-                                                    </div>
-                                                }
-
-                                                {item.chamber === null ? <Button
-                                                    type="primary"
-                                                    onClick={() => {
-                                                        handleSelectZone()
-                                                        handleRow(item)
-                                                    }}
-                                                >Select Zone</Button> :
-                                                    <Button
-                                                        type="primary"
+                                                    </> : <Button
                                                         onClick={() => {
                                                             handleSelectZone()
                                                             handleRow(item)
                                                         }}
-                                                    >Change</Button>
-                                                }
+                                                    >Select Zone</Button>}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
