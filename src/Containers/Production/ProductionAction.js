@@ -482,3 +482,33 @@ export const updateRoomRackWip = (data, cb) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const getProductionTable = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_TABLE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/product/${userId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_FAILURE,
+        payload: err,
+      });
+    });
+};
