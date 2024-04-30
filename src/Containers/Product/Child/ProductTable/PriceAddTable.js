@@ -2,22 +2,26 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCurrency } from "../../../Auth/AuthAction";
-import { Button, Input, Select, } from "antd";
-import { getProductCurrency, createProductCurrency, handleDiscountModal, handleOfferModal } from "../../ProductAction";
+import { Button, Input, Select,Popconfirm,Tooltip } from "antd";
+import { getProductCurrency, createProductCurrency,
+   handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getSaleCurrency} from "../../../Auth/AuthAction";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const { Option } = Select;
 
 function ProductbuilderTable(props) {
 
+  const [editedFields, setEditedFields] = useState({});
   const [data, setData] = useState([]);
   const [showNoDataAlert, setShowNoDataAlert] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
 
   useEffect(() => {
     props.getProductCurrency(props.particularDiscountData.productId);
-    // props.getCurrency();
     props.getSaleCurrency()
   }, []);
 
@@ -74,32 +78,28 @@ function ProductbuilderTable(props) {
 
   const handleSave = (key) => {
     console.log(key)
-    const targetRow = data.find((row) => row.key === key);
-    if (targetRow) {
-      const { price, priceB2C, vat, currency_id, skillLevelLinkId } = targetRow;
-      console.log(`Skill ID: ${currency_id}, Level 1: ${price}, Level 2: ${priceB2C}, Level 3: ${vat}`);
+    // const targetRow = data.find((row) => row.key === key);
+    // if (targetRow) {
       const result = {
-        currencyId: currency_id,
-        price: price,
-        priceB2C: priceB2C,
-        vat: vat,
-        skillLevelLinkId: skillLevelLinkId,
+        currencyId: key.currency_id,
+        price: key.price,
+        priceB2C: key.priceB2C,
+        vat: key.vat,
+        skillLevelLinkId: key.skillLevelLinkId,
         productId: props.particularDiscountData.productId,
         userId: props.userId
       };
       props.createProductCurrency(result)
-    }
+    
   };
 
-  // useEffect(() => {
-  //   if (showNoDataAlert) {
-  //     Swal.fire({
-  //       icon: 'info',
-  //       title: 'No data',
-  //     });
-  //   }
-  // }, [showNoDataAlert]);
-
+  const handleEditClick = (productCurrencyId) => {
+    setEditsuppliesId(productCurrencyId);
+  };
+  const handleCancelClick = (productCurrencyId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
+    setEditsuppliesId(null);
+  };
   if (isMobile) {
     <div>
       <Button type="primary" onClick={handleAddRow} >
@@ -215,6 +215,7 @@ function ProductbuilderTable(props) {
 
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    {editsuppliesId === item.productCurrencyId ? (
                       <Select
                         classNames="w-32"
                         value={item.currencyName}
@@ -226,11 +227,16 @@ function ProductbuilderTable(props) {
                           </Option>
                         ))}
                       </Select>
+                    ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.currencyName}</div>
+                    </div>
+                  )}
                     </div>
                   </div>
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
+                  {editsuppliesId === item.productCurrencyId ? (
                     <div class=" text-xs text-cardBody font-poppins">
                       <Input
                         className="w-32"
@@ -238,23 +244,32 @@ function ProductbuilderTable(props) {
                         onChange={(e) => handleInputChange(e.target.value, item.key, 'price')}
                       />
                     </div>
-
+ ):(
+  <div className="font-normal text-sm text-cardBody font-poppins">
+  <div> {item.price}</div>
+</div>
+)}
                   </div>
 
 
 
                   <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.productCurrencyId ? (
                     <div class=" text-xs text-cardBody font-poppins">
-
                       <Input
                         className="w-32"
                         value={item.priceB2C}
                         onChange={(e) => handleInputChange(e.target.value, item.key, 'priceB2C')}
                       />
                     </div>
+                     ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.priceB2C}</div>
+                    </div>
+                    )}
                   </div>
                   <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-
+                  {editsuppliesId === item.productCurrencyId ? (
 
                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                       <Input
@@ -263,19 +278,59 @@ function ProductbuilderTable(props) {
                         onChange={(e) => handleInputChange(e.target.value, item.key, 'vat')}
                       />
                     </div>
+                     ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.vat}</div>
+                    </div>
+                    )}
                   </div>
 
                   <div class="flex md:items-center">
 
 
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                    {/* <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
                       <div>
                         <Button type="primary" onClick={() => handleSave(item.key)}>
                           Save
                         </Button>
                       </div>
 
-                    </div>
+                    </div> */}
+ {editsuppliesId === item.productCurrencyId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      onClick={() => handleSave(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.productCurrencyId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.productCurrencyId)}
+                      />
+                    )}
+ <div>
+      <Popconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => props.removeProductPrice(item.productCurrencyId)}
+
+                          >
+                     <Tooltip title="Delete">
+                          <DeleteIcon
+                           className="!text-base cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                       </Popconfirm>
+                       </div>
                   </div>
 
                 </div>
@@ -312,7 +367,8 @@ const mapDispatchToProps = (dispatch) =>
       handleDiscountModal,
       handleOfferModal,
       getCurrency,
-      getSaleCurrency
+      getSaleCurrency,
+      removeProductPrice
     },
     dispatch
   );
