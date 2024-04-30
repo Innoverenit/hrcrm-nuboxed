@@ -56,6 +56,7 @@ const OrderPickupForm = (props) => {
                 </div>
                 <div>
                     <Button
+                        disabled={!location.length}
                         loading={props.addingLocationInOrder}
                         type="primary"
                         onClick={handleSubmit}

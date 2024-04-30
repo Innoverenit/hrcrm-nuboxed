@@ -15,11 +15,11 @@ const { Option } = Select;
 const AssignPhoneByTechnician = (props) => {
 
     let depaVal = props.rowData.defaultQcDepartmentId === "null" ? "" : props.rowData.defaultQcDepartmentId
-    const [user, setUser] = useState("")
+
     const [technician, setTechnician] = useState("")
     const [department, setDepartment] = useState(depaVal)
     const [selectedRow, setselectedRow] = useState([]);
-    console.log(department)
+    // console.log(department)
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -52,7 +52,7 @@ const AssignPhoneByTechnician = (props) => {
         props.getNoOfPhoneById(props.rowData.orderPhoneId);
         props.getDepartments()
     }, [])
-
+    // console.log(department, technician, rowSelection.length, dueDate)
     const [dueDate, setDueDate] = useState("")
 
     const hanldeOnChange = (value) => {
@@ -69,6 +69,7 @@ const AssignPhoneByTechnician = (props) => {
         const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
         return current && (current < startDate || current > endDate);
     };
+
     const column = [
         {
             title: "",
@@ -89,28 +90,39 @@ const AssignPhoneByTechnician = (props) => {
         {
             title: "IMEI",
             dataIndex: "imei",
-            width: "12%",
+            width: "10%",
         },
         {
             title: "OS",
             dataIndex: "os",
-            width: "12%",
+            width: "10%",
 
         },
         {
             title: "GB",
             dataIndex: "gb",
-            width: "12%",
+            width: "10%",
         },
         {
             title: "Color",
             dataIndex: "color",
-            width: "12%",
+            width: "10%",
         },
         {
             title: "Condition",
-            dataIndex: "conditions",
-            width: "12%",
+            dataIndex: "cannotRepairInd",
+            width: "10%",
+        },
+        {
+            title: "Status",
+            width: "10%",
+            render: (name, item, i) => {
+                return (
+                    <>
+                        {item.cannotRepairInd ? <b>Can't Repair</b> : <b>Repair</b>}
+                    </>
+                );
+            },
         },
         {
             title: "QR",
@@ -188,7 +200,8 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                {department && technician && dueDate && rowSelection.length && <Button
+                {/* {department && technician && dueDate && rowSelection.length && */}
+                <Button
                     loading={props.updatingtechnicianByPhone}
                     type='primary'
                     // disabled={!department && !technician && !dueDate && !checkedValue}
@@ -206,7 +219,8 @@ const AssignPhoneByTechnician = (props) => {
                         handleCallback()
                     )}>
                     Submit
-                </Button>}
+                </Button>
+                {/* } */}
             </div>
         </div>
     )

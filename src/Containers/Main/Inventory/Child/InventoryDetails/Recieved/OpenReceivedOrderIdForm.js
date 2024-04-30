@@ -123,6 +123,12 @@ function OpenReceivedOrderIdForm(props) {
               </div>
               <div className="md:w-[7rem]">
               </div>
+              <div className="md:w-[7rem]">
+                <FormattedMessage
+                  id="app.Status"
+                  defaultMessage="Status"
+                />
+              </div>
             </div>
             <div class="overflow-y-auto h-[65vh]">
               <InfiniteScroll
@@ -308,10 +314,27 @@ function OpenReceivedOrderIdForm(props) {
                                       }, item.phoneId)
                                     }}>
                                     Can't Repair
-                                  </Button> : item.inspectionInd === 3 && item.cannotRepairInd === false ? null :
-                                    <Tooltip title="Can't Repair">
-                                      <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" /></Tooltip>}
+                                  </Button> :
+                                  <Button
+                                    // loading={props.updatingRepairStatus}
+                                    onClick={() => {
+                                      props.updateRepairStatus({
+                                        cannotRepairInd: false,
+                                        orderPhoneId: props.rowData.orderPhoneId
+                                      }, item.phoneId)
+                                    }}>
+                                    Update Status
+                                  </Button>
+                                  //   <Tooltip title="Can't Repair">
+                                  //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
+                                  // </Tooltip>
+                                }
                               </>}
+                          </div>
+                        </div>
+                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div class=" text-xs text-cardBody font-poppins">
+                            {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
                           </div>
                         </div>
                         <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">

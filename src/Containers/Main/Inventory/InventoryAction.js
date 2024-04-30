@@ -1475,7 +1475,7 @@ export const getGrnListOfaPoInStock = (locationId) => (dispatch) => {
     });
 };
 
-export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch) => {
+export const trnasferGrnItemToStock = (data, poSupplierSuppliesId, cb) => (dispatch) => {
   dispatch({
     type: types.TRANSFER_PO_GRN_TO_STOCK_REQUEST,
   });
@@ -1495,6 +1495,7 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch)
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
         payload: res.data,
       });
+      cb()
     })
     .catch((err) => {
       console.log(err);

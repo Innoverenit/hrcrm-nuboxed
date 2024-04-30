@@ -10,10 +10,13 @@ function TransferToStock(props) {
         props.trnasferGrnItemToStock({
             grnReceivedInd: true,
             grnStockInd: true,
+            roomRackId: props.roomRackId,
+            roomRackChamberLinkId: props.roomRackChamberLinkId,
             allowGrnInd: props.allowGrnInd,
             poSupplierSuppliesId: props.poSupplierSuppliesId
         },
-            props.poSupplierSuppliesId
+            props.poSupplierSuppliesId,
+            props.handleCancelZone()
         )
     };
     return (

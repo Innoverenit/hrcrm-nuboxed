@@ -2,8 +2,8 @@ import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
-import { Button, Tooltip,Progress } from "antd";
-import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
+import { Button, Tooltip, Progress } from "antd";
+import { RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -76,9 +76,9 @@ function OrderPhoneListById(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "22px" }}></i>
+                    <i className={`fas${iconType}`} style={{ fontSize: "22px" }}></i>
                 </Button>
-            </Tooltip>
+            </Tooltip >
         );
     }
 
@@ -161,15 +161,15 @@ function OrderPhoneListById(props) {
                             height={"75vh"}
                         >
                             {props.orderPhoneList.map((item, index) => {
-                                 const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
-                                 const acivedPercentage= Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100) 
-                                 const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
+                                const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
+                                const acivedPercentage = Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
+                                const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                                 const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                                 return (
                                     <div>
                                         <div className="flex rounded-xl justify-between  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col ">
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium  w-[7.2rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                                     {item.company}
                                                 </div>
@@ -190,46 +190,71 @@ function OrderPhoneListById(props) {
                                                         Issue
                                                     </div>
                                                 </div>
-                                                </div>
-                                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[4rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <SubTitle>
-                                                        {item.qrCodeId ? (
-                                                            <QRCodeModal
-                                                                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                imgHeight={"2.8em"}
-                                                                imgWidth={"2.8em"}
-                                                                imgRadius={20}
-                                                            />
-                                                        ) : (
-                                                            <span class="text-[0.6rem] font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                                No QR
-                                                            </span>
-                                                        )}
-                                                    </SubTitle>
-
-                                                </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[7.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
-                                                    <div>
-                                                        {props.rowData.qcInspectionInd === 1 ?
-                                                            <ButtonGroup>
-                                                                {item.qcStatus === "To Start" && backToComplete === false && <StatusIcon
-                                                                    type="In Progress"
-                                                                    iconType="fa-hourglass-half"
-                                                                    tooltip="In Progress"
-                                                                    id={item.phoneId}
-                                                                    indStatus={item.qcStatus}
-                                                                    phoneId={RowData.phoneId}
-                                                                    status={active}
-                                                                    onClick={() => {
-                                                                        handleQCStatus("In Progress", item)
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                <div className=" flex font-medium w-[4rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <SubTitle>
+                                                            {item.qrCodeId ? (
+                                                                <QRCodeModal
+                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+                                                                    imgHeight={"2.8em"}
+                                                                    imgWidth={"2.8em"}
+                                                                    imgRadius={20}
+                                                                />
+                                                            ) : (
+                                                                <span class="text-[0.6rem] font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                                    No QR
+                                                                </span>
+                                                            )}
+                                                        </SubTitle>
 
-                                                                    }}
-                                                                />}
-                                                                {item.qcStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium  w-[7.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
+                                                        <div>
+                                                            {props.rowData.qcInspectionInd === 1 ?
+                                                                <ButtonGroup>
+                                                                    {item.qcStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                                        type="In Progress"
+                                                                        iconType="fa-hourglass-half"
+                                                                        tooltip="In Progress"
+                                                                        id={item.phoneId}
+                                                                        indStatus={item.qcStatus}
+                                                                        phoneId={RowData.phoneId}
+                                                                        status={active}
+                                                                        onClick={() => {
+                                                                            handleQCStatus("In Progress", item)
+
+                                                                        }}
+                                                                    />}
+                                                                    {item.qcStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                                        type="Complete"
+                                                                        iconType="fa-hourglass"
+                                                                        tooltip="Complete"
+                                                                        indStatus={item.qcStatus}
+                                                                        status={active}
+                                                                        id={item.phoneId}
+                                                                        phoneId={RowData.phoneId}
+                                                                        onClick={() => {
+                                                                            handleQCStatus("Complete", item);
+                                                                        }}
+                                                                    />}
+                                                                </ButtonGroup> :
+                                                                (item.qcStatus === "Complete" && backToComplete === false)
+                                                                    ?
+                                                                    <div>
+                                                                        <Tooltip title="Back To Process">
+                                                                            <RollbackOutlined
+                                                                                onClick={handleChangeBack}
+                                                                                style={{ marginRight: "0.3rem", color: "#1890ff" }} />
+                                                                        </Tooltip>
+                                                                    </div>
+                                                                    : null}
+
+                                                            {backToComplete && props.RowData.phoneId === item.phoneId &&
+                                                                <StatusIcon
                                                                     type="Complete"
                                                                     iconType="fa-hourglass"
                                                                     tooltip="Complete"
@@ -240,70 +265,45 @@ function OrderPhoneListById(props) {
                                                                     onClick={() => {
                                                                         handleQCStatus("Complete", item);
                                                                     }}
-                                                                />}
-                                                            </ButtonGroup> :
-                                                            (item.qcStatus === "Complete" && backToComplete === false)
-                                                                ?
-                                                                <div>
-                                                                    <Tooltip title="Back To Process">
-                                                                        <RollbackOutlined
-                                                                            onClick={handleChangeBack}
-                                                                            style={{ marginRight: "0.3rem", color: "#1890ff" }} />
-                                                                    </Tooltip>
-                                                                </div>
-                                                                : null}
+                                                                />
+                                                            }
 
-                                                        {backToComplete && props.RowData.phoneId === item.phoneId &&
-                                                            <StatusIcon
-                                                                type="Complete"
-                                                                iconType="fa-hourglass"
-                                                                tooltip="Complete"
-                                                                indStatus={item.qcStatus}
-                                                                status={active}
-                                                                id={item.phoneId}
-                                                                phoneId={RowData.phoneId}
-                                                                onClick={() => {
-                                                                    handleQCStatus("Complete", item);
-                                                                }}
-                                                            />
-                                                        }
+                                                        </div>
 
                                                     </div>
-
                                                 </div>
-                                            </div>
-                                            <div className=" flex font-medium  w-[7.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.totalhours}
+                                                <div className=" flex font-medium  w-[7.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.totalhours}
 
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartTime === null ? "" : dayjs(item.qcStartTime).format('HH:mm:ss')}
+                                                <div className=" flex font-medium  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.qcStartTime === null ? "" : dayjs(item.qcStartTime).format('HH:mm:ss')}
 
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div className=" flex font-medium  w-[7.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
+                                                <div className=" flex font-medium  w-[7.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className=" flex font-medium w-[7rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
+                                                <div className=" flex font-medium w-[7rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {/* <Tooltip title="Spare">
+                                                <div className=" flex font-medium w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {/* <Tooltip title="Spare">
 
 
                                                         <Button
@@ -316,27 +316,27 @@ function OrderPhoneListById(props) {
                                                             <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
 
                                                     </Tooltip> */}
-                                                   { isValidPercentage ? (
-                                                     <Tooltip title="Spare">
-                                                              <Progress 
-                                                               percent={percentage}
-                                                               success={{ percent: 30 }}
-                                                               format={() => `${percentage}%`} 
-                                                                style={{width:"8rem",cursor:"pointer"}} 
-                                                               onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                    hanldeSpare();
-                                                                }} />
-                                                                                                   
-                                                    </Tooltip>
-                                                 ) : null}
+                                                        {isValidPercentage ? (
+                                                            <Tooltip title="Spare">
+                                                                <Progress
+                                                                    percent={percentage}
+                                                                    success={{ percent: 30 }}
+                                                                    format={() => `${percentage}%`}
+                                                                    style={{ width: "8rem", cursor: "pointer" }}
+                                                                    onClick={() => {
+                                                                        handleSetRowData(item);
+                                                                        hanldeSpare();
+                                                                    }} />
+
+                                                            </Tooltip>
+                                                        ) : null}
 
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className=" flex font-medium  w-[4.01rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {/* <Tooltip title="Task">
+                                                <div className=" flex font-medium  w-[4.01rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {/* <Tooltip title="Task">
                                                         <Button
                                                             type="primary"
                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
@@ -347,78 +347,78 @@ function OrderPhoneListById(props) {
                                                         ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
 
                                                     </Tooltip> */}
-                                                    <Tooltip title="Task">
-                                                     <Progress
-                                                     type="circle"
-                                                      style={{ cursor: "pointer",color:"red" }}
-                                                       percent={acivedPercentage}
+                                                        <Tooltip title="Task">
+                                                            <Progress
+                                                                type="circle"
+                                                                style={{ cursor: "pointer", color: "red" }}
+                                                                percent={acivedPercentage}
 
-                                                      width={30}
-                                                        strokeColor={"#005075"}
-                                                        onClick={() => {
-                                                            handleSetRowData(item);
-                                                            handleExpand(item.phoneId);
-                                                        }}
-                                                          />                                                       
-                                                    </Tooltip>
+                                                                width={30}
+                                                                strokeColor={"#005075"}
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    handleExpand(item.phoneId);
+                                                                }}
+                                                            />
+                                                        </Tooltip>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className=" flex font-medium  w-[2rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
-                                                        <NoteAddOutlined
+                                                <div className=" flex font-medium  w-[2rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title="Notes">
+                                                            <NoteAddOutlined
 
-                                                            style={{ cursor: "pointer", fontSize: "1rem" }}
-                                                            onClick={() => {
-                                                                handleSetRowData(item);
-                                                                props.handleQCPhoneNotesOrderModal(true);
-                                                            }}
-                                                        />
+                                                                style={{ cursor: "pointer", fontSize: "1rem" }}
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    props.handleQCPhoneNotesOrderModal(true);
+                                                                }}
+                                                            />
 
-                                                    </Tooltip>
+                                                        </Tooltip>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className=" flex font-medium   w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.Print"
-                                                        defaultMessage="Print"
-                                                    />}>
-                                                        {/* <PrintOutlined
+                                                <div className=" flex font-medium   w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={<FormattedMessage
+                                                            id="app.Print"
+                                                            defaultMessage="Print"
+                                                        />}>
+                                                            {/* <PrintOutlined
                                                                             // onClick={handlePrint}
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
-                                                        <ReactToPrint
-                                                            trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
-                                                            content={() => componentRefs.current[index]}
-                                                        />
-                                                    </Tooltip>
+                                                            <ReactToPrint
+                                                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
 
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div
+                                                    ref={(el) => (componentRefs.current[index] = el)}
+                                                    style={{
+                                                        fontSize: "16px",
+                                                        marginBottom: "20px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                        alignItems: "center",
+                                                    }}
+                                                >
+                                                    <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                        <QRCode size={150} value={item.imei} />
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                                 </div>
                                             </div>
-
-
-                                        </div>
-                                        <div style={{ display: "none", textAlign: "center" }}>
-
-                                            <div
-                                                ref={(el) => (componentRefs.current[index] = el)}
-                                                style={{
-                                                    fontSize: "16px",
-                                                    marginBottom: "20px",
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    alignItems: "center",
-                                                }}
-                                            >
-                                                <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
-                                                    <QRCode size={150} value={item.imei} />
-                                                </div>
-                                                <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
-                                            </div>
-                                        </div>
                                         </div>
                                     </div>
                                 )

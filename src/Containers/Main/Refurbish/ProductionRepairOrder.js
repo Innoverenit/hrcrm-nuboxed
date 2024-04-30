@@ -11,13 +11,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
 function ProductionRepairOrder(props) {
-    // useEffect(() => {
-    //     if (props.inspectionRequiredInd) {
-    //         props.getOrderIdForCatalogueItem(props.userId)
-    //     } else {
-    //         props.getRepairOrderByUser( props.userId)
-    //     }
-    // }, [])
 
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -60,7 +53,7 @@ function ProductionRepairOrder(props) {
                                 defaultMessage="Lead"
                             />
                         </div>
-                        <div className="w-[5.6rem]"></div>
+                        <div className="w-[5.6rem]">Status</div>
                         <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
                     <div class="">
@@ -120,11 +113,17 @@ function ProductionRepairOrder(props) {
                                             </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                 <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins">
-                                                
+                                                <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-sm text-cardBody font-poppins">
+
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div className=" flex font-medium   w-[10.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.repairInProgressPhoneCount} In Progress
+                                                    </div>
+
+                                                </div>
                                                 <div className=" flex font-medium justify-center w-[31rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
