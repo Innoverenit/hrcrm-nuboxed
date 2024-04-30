@@ -65,43 +65,34 @@ function OpenReceivedOrderIdForm(props) {
   return (
     <>
       {props.fetchingPhoneListById ? <BundleLoader /> :
-        <div className='flex justify-end sticky ticky top-0 z-10 '>
-          <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className='flex justify-center sticky ticky z-10 '>
+          <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" md:w-[2rem]"></div>
-              <div className=" md:w-[6.7rem]"><FormattedMessage
+              <div className=" md:w-[6.74rem]"><FormattedMessage
                 id="app.oem"
                 defaultMessage="OEM"
               /></div>
-              <div className=" md:w-[6.7rem]"><FormattedMessage
+              <div className=" md:w-[6.73rem]"><FormattedMessage
                 id="app.model"
                 defaultMessage="model"
               /></div>
-              <div className=" md:w-[6.7rem] "><FormattedMessage
+              <div className=" md:w-[6.07rem] "><FormattedMessage
                 id="app.imei"
                 defaultMessage="imei"
               /></div>
-              <div className="md:w-[6.7rem]"><FormattedMessage
-                id="app.os"
-                defaultMessage="os"
-              /> </div>
-              <div className="md:w-[6.7rem]"><FormattedMessage
-                id="app.gb"
-                defaultMessage="gb"
-              /></div>
-              <div className="md:w-[6.7rem]"><FormattedMessage
-                id="app.color"
-                defaultMessage="color"
-              /></div>
-              <div className="md:w-[6.7rem]"><FormattedMessage
+              <div className="md:w-[6.71rem]">Info</div>
+              
+              
+              <div className="md:w-[6.75rem]"><FormattedMessage
                 id="app.conditions"
                 defaultMessage="conditions"
               /></div>
-              <div className="md:w-[8rem]"><FormattedMessage
+              <div className="md:w-[15rem]"><FormattedMessage
                 id="app.issue"
                 defaultMessage="Issue"
               /></div>
-              <div className="md:w-[3rem]">
+              <div className="md:w-[5.1rem]">
                 {/* QR */}
               </div>
               <div className="md:w-[2rem]">
@@ -110,33 +101,33 @@ function OpenReceivedOrderIdForm(props) {
               <div className="md:w-[2rem]">
                 {/* notes */}
               </div>
-              <div className="md:w-[8rem]">
+              <div className="md:w-[4.1rem]">
                 <FormattedMessage
                   id="app.Received"
                   defaultMessage="Received"
                 />
               </div>
-              <div className="md:w-[8.4rem]">
+              <div className="md:w-[5.4rem]">
 
               </div>
               <div className="md:w-[2rem]">
               </div>
-              <div className="md:w-[7rem]">
+              <div className="md:w-[7.02rem]">
               </div>
-              <div className="md:w-[7rem]">
+              <div className="md:w-[7.3rem]">
                 <FormattedMessage
                   id="app.Status"
                   defaultMessage="Status"
                 />
               </div>
             </div>
-            <div class="overflow-y-auto h-[65vh]">
+            <div >
               <InfiniteScroll
                 dataLength={props.phoneListById.length}
                 // next={handleLoadMore}
                 // hasMore={hasMore}
                 // loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                height={"65vh"}
+                height={"72vh"}
               >
                 {props.phoneListById.map((item, index) => {
                   return (
@@ -152,7 +143,7 @@ function OpenReceivedOrderIdForm(props) {
                               } />
                             </div>}
                           </div>
-                          <div className=" flex font-medium  md:w-[5rem] max-sm:w-full  ">
+                          <div className=" flex font-medium  md:w-[5.03rem] max-sm:w-full  ">
                             {item.company}
                           </div>
 
@@ -170,29 +161,19 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[12.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
 
-                            {item.os}
+                            {item.os} {item.gb}  {item.color}
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.gb}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-xs text-cardBody font-poppins text-center">
-                            {item.color}
-                          </div>
-                        </div>
-                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[6.63rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.conditions}
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.issue}
                           </div>
@@ -221,7 +202,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip title="Task">
                               <FileDoneOutlined style={{ color: "black", fontSize: "1rem" }} type="file-done"
@@ -234,7 +215,7 @@ function OpenReceivedOrderIdForm(props) {
                             </Tooltip>
                           </div>
                         </div>
-                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip title="Notes">
                               <NoteAltIcon
@@ -249,7 +230,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             <Tooltip>
                               {item.inspectionInd === 1 &&
@@ -263,7 +244,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.receivePhoneUserName !== null &&
                               <>
@@ -283,7 +264,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                               <EditOutlined
@@ -300,7 +281,7 @@ function OpenReceivedOrderIdForm(props) {
                           </div>
                         </div>
 
-                        <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-xs text-cardBody font-poppins text-center">
                             {item.inspectionInd !== 0 && item.receivePhoneInd &&
                               <>
@@ -332,12 +313,12 @@ function OpenReceivedOrderIdForm(props) {
                               </>}
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium   md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title={<FormattedMessage
                               id="app.Print"
@@ -355,7 +336,7 @@ function OpenReceivedOrderIdForm(props) {
 
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex font-medium   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title={<FormattedMessage
                               id="app.scan"
