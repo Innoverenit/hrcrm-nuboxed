@@ -13,7 +13,7 @@ function ProductCellToggle (props) {
   };
 
   const handleConfirm = (confirmed) => {
-    if (confirmed) {
+    if (props.usedInd) {
       props.linkCellwithProduct({
         // cellChamberLinkId: props.item.cellChamberLinkId,
         // productId:  props.particularDiscountData.productId,
@@ -21,30 +21,51 @@ function ProductCellToggle (props) {
         // userId: props.userId,
         // orgId: props.organizationId,
         cellId:props.cellId,
-        usedInd:props.usedInd,
+        usedInd:props.usedInd?false:true,
         cellChamberLinkId:props.cellChamberLinkId,
         productId:props.particularDiscountData.productId,
 
-      });
+      } 
+    );
       setToggle(!toggle);
+    }else{
+      props.linkCellwithProduct({
+        // cellChamberLinkId: props.item.cellChamberLinkId,
+        // productId:  props.particularDiscountData.productId,
+        // locationDetailsId: props.locationId,
+        // userId: props.userId,
+        // orgId: props.organizationId,
+        cellId:props.cellId,
+        usedInd:props.usedInd?false:true,
+        cellChamberLinkId:props.cellChamberLinkId,
+        productId:props.particularDiscountData.productId,
+
+      } 
+    );
     }
-    setConfirmVisible(false);
+    // setConfirmVisible(false);
   };
 
-     
+  function handleCancel() {
+    if (props.userInd) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  }
 
   return (
       <>
           <div>
               <Popconfirm
                   title="Confirm status change?"
-                  onConfirm={() => handleConfirm(true)}
-                  onCancel={() => handleConfirm(false)}
+                  onConfirm={() => handleConfirm()}
+                  onCancel={() => handleCancel()}
                   okText="Ok"
                   cancelText="Cancel"
               >
                   <Switch
-                      checked={toggle}
+                      checked={props.usedInd||toggle}
                       onChange={handleToggle}
                       isLoading={true}
                       checkedChildren="Yes"
