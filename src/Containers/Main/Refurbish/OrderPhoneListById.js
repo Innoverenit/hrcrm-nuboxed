@@ -9,7 +9,6 @@ import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
 import QRCode from "qrcode.react";
-import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -105,10 +104,7 @@ function OrderPhoneListById(props) {
             setBackComplete(false)
         }
     }
-    // const handleCallBack = () => {
-    //     props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
-    //     props.getOrderByUser(props.locationId, props.userId)
-    // }
+
     const [hide, setHide] = useState(false);
 
     function handlePuaseButton() {

@@ -70,7 +70,7 @@ function ProductionOrderListById(props) {
 
                                         >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium w-[17.9rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium w-[13rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
@@ -91,18 +91,18 @@ function ProductionOrderListById(props) {
                                                     ) : null}
                                                 </div>
                                                 <div className=" flex font-medium w-[6.5rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
-                                                {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
-                    )}
-                    {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
-                    )}
-                    {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
-                    )}
-                    </div>
+                                                    {item.priority === "High" && (
+                                                        <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                                                    )}
+                                                    {item.priority === "Medium" && (
+                                                        <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                                                    )}
+                                                    {item.priority === "Low" && (
+                                                        <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                                                    )}
+                                                </div>
 
-                                                <div className=" flex font-medium   w-[25.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[15rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -112,18 +112,11 @@ function ProductionOrderListById(props) {
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium   w-[10.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-
+                                                        {item.lead}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
-
-                                                    <div class=" text-sm text-cardBody font-poppins text-center">
-                                                        {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
-
-                                                    </div>
-                                                </div>
                                                 <div className=" flex font-medium   w-[10.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} In Progress
@@ -194,12 +187,6 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductionOrderListById);
-
-
-
-
-
-
 
 
 
