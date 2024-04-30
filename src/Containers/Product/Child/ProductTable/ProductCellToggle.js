@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { linkCellwithProduct } from "../../../Event/Child/Location/LocationAction";
 
 function ProductCellToggle (props) {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(props.usedInd);
   const [confirmVisible, setConfirmVisible] = useState(false);
  
   const handleToggle = () => {
@@ -15,11 +15,16 @@ function ProductCellToggle (props) {
   const handleConfirm = (confirmed) => {
     if (confirmed) {
       props.linkCellwithProduct({
-        cellChamberLinkId: props.item.cellChamberLinkId,
-        productId:  props.particularDiscountData.productId,
-        locationDetailsId: props.locationId,
-        userId: props.userId,
-        orgId: props.organizationId,
+        // cellChamberLinkId: props.item.cellChamberLinkId,
+        // productId:  props.particularDiscountData.productId,
+        // locationDetailsId: props.locationId,
+        // userId: props.userId,
+        // orgId: props.organizationId,
+        cellId:props.cellId,
+        usedInd:props.usedInd,
+        cellChamberLinkId:props.cellChamberLinkId,
+        productId:props.particularDiscountData.productId,
+
       });
       setToggle(!toggle);
     }
