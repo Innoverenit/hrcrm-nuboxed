@@ -129,6 +129,10 @@ const initialState = {
   fetchingOrderDetailsByIdError: false,
   orderByOrderId: [],
 
+  fetchingAwbShipper: false,
+  fetchingAwbShipperError: false,
+  awbShipper:[],
+
   feedbackModal: false,
 
   addShipperOrderModal: false,
@@ -1363,6 +1367,22 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingEmployeeAsErp: false,
         fetchingEmployeeAsErpError: true,
       };
+
+
+      case types.GET_AWB_LIST_BY_SHIPPERID_REQUEST:
+        return { ...state, fetchingAwbShipper: true };
+      case types.GET_AWB_LIST_BY_SHIPPERID_SUCCESS:
+        return {
+          ...state,
+          fetchingAwbShipper: false,
+          awbShipper: action.payload,
+        };
+      case types.GET_AWB_LIST_BY_SHIPPERID_FAILURE:
+        return {
+          ...state,
+          fetchingAwbShipper: false,
+          fetchingAwbShipperError: true,
+        };
 
 
     default:

@@ -2,8 +2,8 @@ import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
-import { Button, Tooltip } from "antd";
-import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
+import { Button, Tooltip, Progress } from "antd";
+import { RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -13,7 +13,6 @@ import CategoryIcon from '@mui/icons-material/Category'
 import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { updateRepairStatus } from "../Inventory/InventoryAction"
 import ReactToPrint from "react-to-print";
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
@@ -77,9 +76,9 @@ function OrderPhoneListById(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "22px" }}></i>
+                    <i className={`fas${iconType}`} style={{ fontSize: "22px" }}></i>
                 </Button>
-            </Tooltip>
+            </Tooltip >
         );
     }
 
@@ -120,7 +119,7 @@ function OrderPhoneListById(props) {
             {props.fetchingOrderIdByUserId ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto'>
                 <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden  w-[98.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
@@ -132,33 +131,27 @@ function OrderPhoneListById(props) {
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
-                        <div className="w-[3.001rem]"></div>
-                        <div className="w-[2.3rem]"></div>
-                        <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <FormattedMessage
-                                id="app.totalhr"
-                                defaultMessage="Total Hours"
-                            />
+                        <div className="w-[3.001rem]">Issue</div>
+                        <div className="w-[8.3rem]"></div>
+                        <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            Estimate (hours)
                         </div>
                         <div className="w-[4.510rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
                         /></div>
-                        <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.end"
                             defaultMessage="End"
                         /></div>
 
-                        <div className="w-[9.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.actualeffort"
-                            defaultMessage="actualeffort"
-                        /></div>
+                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
 
-                        <div className="w-[5.01rem]"></div>
-                        <div className="w-[7.023rem]"></div>
+                        <div className="w-[6.012rem]">Spare</div>
+                        <div className="w-[5.523rem]">Task</div>
                         <div className="w-[2rem]"></div>
                     </div>
-                    <div class="overflow-y-auto h-[65vh]">
+                    <div class=" ">
 
                         <InfiniteScroll
                             dataLength={props.orderPhoneList.length}
@@ -168,7 +161,9 @@ function OrderPhoneListById(props) {
                             height={"75vh"}
                         >
                             {props.orderPhoneList.map((item, index) => {
-
+                                const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
+                                const acivedPercentage = Math.floor((item.totalCompleteTaskCount / item.totalTaskCount) * 100)
+                                const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                                 const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                                 const endtimme = time.format('YYYY-MM-DDTHH:mm:ss.SSSZ'); // Using ISO 8601 format
                                 return (
@@ -188,6 +183,11 @@ function OrderPhoneListById(props) {
                                                 <div className=" flex font-medium  w-[7.12rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.imei}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium  w-[5.13rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        Issue
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,7 +272,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[7.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.totalhours}
 
@@ -287,87 +287,79 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  w-[8.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[7.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium w-[11rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium w-[7rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {item.inspectionInd !== 0 && item.receivePhoneInd &&
-                                                        <>
-                                                            {!item.cannotRepairInd && item.inspectionInd !== 3 ?
-                                                                <Button
-                                                                    // loading={props.updatingRepairStatus}
-                                                                    onClick={() => {
-                                                                        props.updateRepairStatus({
-                                                                            cannotRepairInd: true,
-                                                                            orderPhoneId: props.rowData.orderId
-                                                                        }, item.phoneId)
-                                                                    }}>
-                                                                    Can't Repair
-                                                                </Button> :
-                                                                <Button
-                                                                    // loading={props.updatingRepairStatus}
-                                                                    onClick={() => {
-                                                                        props.updateRepairStatus({
-                                                                            cannotRepairInd: false,
-                                                                            orderPhoneId: props.rowData.orderId
-                                                                        }, item.phoneId)
-                                                                    }}>
-                                                                    Repair
-                                                                </Button>
-                                                                //   <Tooltip title="Can't Repair">
-                                                                //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
-                                                                // </Tooltip>
-                                                            }
-                                                        </>}
-                                                </div>
-                                            </div>
-                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins">
-                                                    {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
-                                                </div>
-                                            </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                                <div className=" flex font-medium w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title="Spare">
+                                                        {/* <Tooltip title="Spare">
 
 
-                                                            <Button
-                                                                type="primary"
-                                                                style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                                onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                    hanldeSpare();
-                                                                }}>
-                                                                <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                hanldeSpare();
+                                                            }}>
+                                                            <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
 
-                                                        </Tooltip>
+                                                    </Tooltip> */}
+                                                        {isValidPercentage ? (
+                                                            <Tooltip title="Spare">
+                                                                <Progress
+                                                                    percent={percentage}
+                                                                    success={{ percent: 30 }}
+                                                                    format={() => `${percentage}%`}
+                                                                    style={{ width: "8rem", cursor: "pointer" }}
+                                                                    onClick={() => {
+                                                                        handleSetRowData(item);
+                                                                        hanldeSpare();
+                                                                    }} />
+
+                                                            </Tooltip>
+                                                        ) : null}
+
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[5.01rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[4.01rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {/* <Tooltip title="Task">
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                handleExpand(item.phoneId);
+                                                            }}
+                                                        ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
+
+                                                    </Tooltip> */}
                                                         <Tooltip title="Task">
-                                                            <Button
-                                                                type="primary"
-                                                                style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                            <Progress
+                                                                type="circle"
+                                                                style={{ cursor: "pointer", color: "red" }}
+                                                                percent={acivedPercentage}
+
+                                                                width={30}
+                                                                strokeColor={"#005075"}
                                                                 onClick={() => {
                                                                     handleSetRowData(item);
                                                                     handleExpand(item.phoneId);
                                                                 }}
-                                                            ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
-
+                                                            />
                                                         </Tooltip>
 
                                                     </div>
@@ -388,7 +380,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   w-[3.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.Print"
@@ -399,7 +391,7 @@ function OrderPhoneListById(props) {
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                                                             <ReactToPrint
-                                                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print </Button>}
+                                                                trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
                                                                 content={() => componentRefs.current[index]}
                                                             />
                                                         </Tooltip>
@@ -479,7 +471,6 @@ const mapDispatchToProps = (dispatch) =>
             getPhoneOrderIdByUser,
             updateQCStatus,
             handleQCPhoneNotesOrderModal,
-            updateRepairStatus,
             getOrderByUser
         },
         dispatch

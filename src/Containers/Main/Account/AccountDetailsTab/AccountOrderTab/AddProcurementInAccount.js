@@ -13,7 +13,7 @@ import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
-import { addOrderForm, getLobList } from '../../AccountAction'
+import { addOrderProcurementForm, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
@@ -67,6 +67,7 @@ function AddProcurementInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
+                orderType:"procure",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,
@@ -106,21 +107,21 @@ function AddProcurementInAccount(props) {
             }}
 
             validationSchema={FormSchema}
-            // onSubmit={(values, { resetForm }) => {
-            //     console.log(priority)
+            onSubmit={(values, { resetForm }) => {
+                console.log(priority)
 
-            //     if (values.advancePayment < 100) {
-            //         props.addOrderForm({
-            //             ...values,
-            //             orderSource: "erp",
-            //             priority: priority || "",
-            //             paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
+                if (values.advancePayment < 100) {
+                    props.addOrderProcurementForm({
+                        ...values,
+                        orderSource: "erp",
+                        priority: priority || "",
+                        paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
-            //         }, props.distributorId);
-            //     } else {
-            //         message.success("Advance payment should be less than 100")
-            //     }
-            // }}
+                    }, props.distributorId);
+                } else {
+                    message.success("Advance payment should be less than 100")
+                }
+            }}
         >
             {({ values, handleChange }) => (
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
@@ -361,7 +362,7 @@ function AddProcurementInAccount(props) {
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"
-                                            loading={props.addingOrder}
+                                            loading={props.addingOrderProcurement}
                                         >
                                             <FormattedMessage
                                                 id="app.save"
@@ -386,7 +387,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
-    addingOrder: distributor.addingOrder,
+    addingOrderProcurement: distributor.addingOrderProcurement,
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
 });
@@ -394,7 +395,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addOrderForm,
+            addOrderProcurementForm,
             getSaleCurrency,
             getLobList,
             getContactDistributorList

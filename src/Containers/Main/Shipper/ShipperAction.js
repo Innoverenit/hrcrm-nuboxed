@@ -1030,12 +1030,16 @@ export const getShipperOrderPayment = (orderId) => (dispatch) => {
 };
 
 //get all the deleted Shipper of the user
-export const getDeletedShipper = (id) => (dispatch) => {
+export const getDeletedShipper = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_DELETED_SHIPPER_REQUEST,
   });
   axios
-    .get(`${base_url}/distributor/${id}`, {})
+    .get(`${base_url2}/shipper/delete/${userId}/${pageNo}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1430,6 +1434,32 @@ export const getEmployeelistAsErp = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_EMPLOYEE_LIST_AS_ERP_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAwbListByShipperId = (shipperId) => (dispatch) => {
+  dispatch({
+    type: types.GET_AWB_LIST_BY_SHIPPERID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/get-awb/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_AWB_LIST_BY_SHIPPERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_AWB_LIST_BY_SHIPPERID_FAILURE,
         payload: err,
       });
     });

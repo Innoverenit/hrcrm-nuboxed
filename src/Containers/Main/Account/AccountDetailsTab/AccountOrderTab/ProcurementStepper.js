@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import AddProcurementInAccount from "./AddProcurementInAccount";
+import AccountProcureSecondStep from "./AccountProcureSecondStep";
 
 const Step = StyledSteps.Step;
 
@@ -48,16 +49,16 @@ class ProcurementStepper extends Component {
                 icon: <UserOutlined />,
                 content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
-            // {
-            //     title: <FormattedMessage
-            //         id="app.phonedetails"
-            //         defaultMessage="Phone details"
-            //     />,
-            //     icon: <PhoneOutlined
-            //         style={{ color: "blue" }}
-            //     />,
-            //     content: <AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
-            // },
+            {
+                title: <FormattedMessage
+                    id="app.phonedetails"
+                    defaultMessage="Phone details"
+                />,
+                icon: <PhoneOutlined
+                    style={{ color: "blue" }}
+                />,
+                content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+            },
 
 
         ];
@@ -72,13 +73,13 @@ class ProcurementStepper extends Component {
                             defaultMessage="Order Details"
                         />}
                     />
-                    {/* <Step
+                    <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
                         />}
-                    /> */}
+                    />
 
                 </StyledSteps>
                 <div

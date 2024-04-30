@@ -3,13 +3,11 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleSalesModal} from "../RegionalDashAction"
-
- import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
 // import AddSalesDrawerModal from "./AddSalesDrawerModal";
 
 function MultiOrgSales(props) {
-
+  const [totalOrgValue, setTotalOrgValue] = useState(0);
   const [rowdata, setrowdata] = useState("");
   const handleRowData = (data) => {
     setrowdata(data);
@@ -18,10 +16,16 @@ function MultiOrgSales(props) {
     handleSalesModal,
     addSalesModal
   } = props;
-
+  useEffect(() => {
+    const totalValue = props.multiOrgRecords.reduce(
+      (accumulator, region) => accumulator + region.orgValue,
+      0
+    );
+    setTotalOrgValue(totalValue);
+  }, [props.multiOrgRecords]);
   useEffect(() => {
     const currentYear = new Date().getFullYear();
-    props.getRegions(props.organizationId);
+    // props.getRegions(props.organizationId);
     // props.getRegionRecords(currentYear);
   }, []);
 
@@ -40,13 +44,13 @@ function MultiOrgSales(props) {
   <JumpStartBox
     noProgress
     cursorData={"pointer"}
-    // value={region.sales}
+    value={totalOrgValue}
     title="Total"
   />
   </div>
 
   <div className="flex w-full mt-8 max-sm:flex-col">
-    {props.regionRecords.map((region, index) => (
+    {props.multiOrgRecords.map((region, index) => (
       <React.Fragment key={index}>
         {/* Check if sales for the region is not 0 */}
         {region.sales !== 0 && (
@@ -61,8 +65,8 @@ function MultiOrgSales(props) {
               // jumpstartClick={()=>handleSalesModal(true);
               // handleRowData(item);}
               cursorData={"pointer"}
-              value={region.sales}
-              title={region.regions}
+              value={region.orgValue}
+              title={region.orgName}
               // sLoading={props.user.fetchingJumpstartInvestor}
             />
           </div>
@@ -99,7 +103,7 @@ const mapStateToProps = ({ dashboard, region,dashboardRegional, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRegions,
+      // getRegions,
       handleSalesModal
     },
     dispatch

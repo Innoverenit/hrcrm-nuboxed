@@ -7,9 +7,8 @@ import {
   PhoneOutlined,
   ScheduleOutlined,
 } from "@ant-design/icons";
-import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
-  getActivityListByShipperId,
+  getAwbListByShipperId,
   handleUpdateEventModal,
   handleUpdateTaskModal,
   handleUpdateCallModal,
@@ -19,22 +18,26 @@ import { setEditTask } from "../../../../../Task/TaskAction";
 import moment from "moment";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class ShipperAwbTable extends Component {
-//   componentDidMount() {
-//     this.props.getActivityListByShipperId(this.props.shipperId);
-//   }
+  componentDidMount() {
+    this.props.getAwbListByShipperId(this.props.shipperId);
+  }
 
   render() {
     const {
       handleUpdateEventModal,
       updateEventModal,
       handleUpdateCallModal,
-      updateCallModal,
+      fetchingAwbShipper,
       handleUpdateTaskModal,
       updateTaskModal,
     } = this.props;
 
+  if (fetchingAwbShipper) {
+    return <BundleLoader />;
+  }
 
     return (
       <>
@@ -43,42 +46,34 @@ class ShipperAwbTable extends Component {
                     <div className=" flex justify-between w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[7.4rem]"><FormattedMessage id="app.awb#" defaultMessage="AWB #"/></div>
-                        <div className=" md:w-[5.1rem]"><FormattedMessage id="app.created" defaultMessage="Created"/></div>
+                        <div className=" md:w-[10.1rem]"><FormattedMessage id="app.created" defaultMessage="Created"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.pickUp" defaultMessage="Pick Up"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className="md:w-[6.12rem]"></div>
-                        <div className="md:w-[6.12rem]"></div>
+                      
                      
 
 
                     </div>
                     <div class="overflow-x-auto h-[64vh]">
-                        {this.props.activityShipper.map((item) => {
+                        {this.props.awbShipper.map((item) => {
                             
                             return (
                                 <div >
                                     <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                         <div class="flex w-3/4">
-                                            <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
-
-
-                                                <Tooltip>
-                                                    <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                        <h4 class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                                        {item.activity === "Call" && <PhoneOutlined />}
-              {item.activity === "Event" && <ScheduleOutlined />}
-              {item.activity === "Task" && <FileDoneOutlined />}
-
-                                                        </h4>
-                                                    </div>
-                                                </Tooltip>
+                                            <div className=" flex font-medium flex-col md:w-[14.56rem] max-sm:w-full  ">
+                                            <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    {item.newAwbNo}
+                                                </div>
 
                                             </div>
 
-                                            <div className=" flex font-medium flex-col  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col  md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {item.type}
+                                                   
+                                                    {` ${moment(item.createAt).format("lll")}`}
                                                 </div>
                                             </div>
 
@@ -91,19 +86,19 @@ class ShipperAwbTable extends Component {
                                             </div>
                                             <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {` ${moment(item.startDate).format("lll")}`}
+                                                {` ${moment(item.pickUp).format("lll")}`}
                                                 </div>
                                             </div>
 
                                             <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {` ${moment(item.endDate).format("lll")}`}
+                                                {/* {` ${moment(item.endDate).format("lll")}`} */}
 
                                                 </div>
                                             </div>
                                         </div>
-                          
+{/*                           
                                         <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <h4 class=" text-xs text-cardBody font-poppins">
                                             <Tooltip title="Edit">
@@ -137,7 +132,7 @@ class ShipperAwbTable extends Component {
             </Tooltip>
                                             </h4>
 
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 
@@ -155,8 +150,8 @@ class ShipperAwbTable extends Component {
 }
 
 const mapStateToProps = ({ shipper }) => ({
-  activityShipper: shipper.activityShipper,
-  fetchingActivityShipper: shipper.fetchingActivityShipper,
+  awbShipper: shipper.awbShipper,
+  fetchingAwbShipper: shipper.fetchingAwbShipper,
   updateEventModal: shipper.updateEventModal,
   updateCallModal: shipper.updateCallModal,
   updateTaskModal: shipper.updateTaskModal,
@@ -165,7 +160,7 @@ const mapStateToProps = ({ shipper }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getActivityListByShipperId,
+      getAwbListByShipperId,
       handleUpdateEventModal,
       handleUpdateCallModal,
       handleUpdateTaskModal,

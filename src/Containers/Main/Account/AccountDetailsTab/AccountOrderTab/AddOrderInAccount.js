@@ -67,6 +67,7 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
+                orderType:"repair",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,

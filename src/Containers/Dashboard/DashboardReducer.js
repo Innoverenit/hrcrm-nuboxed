@@ -318,6 +318,10 @@ const initialState = {
   fetchingJumpstartTasklistError: false,
   jumpstartTasklistCount: {},
 
+  fetchingMultiRegionRecordsCount: false,
+  fetchingMultiRegionRecordsCountError: false,
+  multiOrgRecords:[],
+
   fetchingdashCustoContactsAdded: false,
   fetchingdashCustoContactsAddedError: false,
   dashCustoContactsAdded: [],
@@ -2009,6 +2013,19 @@ export const dashboardReducer = (state = initialState, action) => {
             fetchingRegionRecordsCount: false,
             fetchingRegionRecordsCountError: true,
           };
+
+
+          case types.GET_MULTI_ORG_REGION_RECORDS_REQUEST:
+            return { ...state, fetchingMultiRegionRecordsCount: true };
+          case types.GET_MULTI_ORG_REGION_RECORDS_SUCCESS:
+            return { ...state, fetchingMultiRegionRecordsCount: false, 
+              multiOrgRecords: action.payload };
+          case types.GET_MULTI_ORG_REGION_RECORDS_FAILURE:
+            return {
+              ...state,
+              fetchingMultiRegionRecordsCount: false,
+              fetchingMultiRegionRecordsCountError: true,
+            };
           case types.GET_DEVELOP_CHART_REQUEST:
             return { ...state, gettingDevelopChart: true };
       
