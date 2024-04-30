@@ -70,6 +70,33 @@ export const getSuppliersList = (userId, pageNo) => (dispatch) => {
     });
 };
 
+
+export const getSuppliersPriceList = (supplierId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERS_PRICE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/latest-poSupplierDetails/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERS_PRICE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERS_PRICE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  * get supplier details by supplierId
  */
@@ -1690,5 +1717,12 @@ export const getSuppliersDeletedList = (userId, pageNo) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const handleSuppliersPriceDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_PRICE_DRAWER,
+    payload: modalProps,
+  });
 };
 
