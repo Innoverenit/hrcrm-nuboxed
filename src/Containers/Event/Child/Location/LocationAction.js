@@ -604,3 +604,30 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
+
+
+
+  export const getcellCardList = (locationDetailsId,productId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CELL_CARD_LIST_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/cell/product/cell-chamber/link-list/${locationDetailsId}/${productId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_CELL_CARD_LIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_CELL_CARD_LIST_FAILURE,
+          payload: err,
+        });
+      });
+  };

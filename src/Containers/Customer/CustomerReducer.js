@@ -1055,7 +1055,8 @@ export const customerReducer = (state = initialState, action) => {
     // Add File Recruit Modal
     case types.HANDLE_FILE_RECRUIT_MODAL:
       return { ...state, addFileRecruitModal: action.payload };
-
+      case types.EMPTY_CLEARBIT_TABLE:
+        return { ...state,  clearbit: {} };
     case types.ADD_ATTENDENCE_REQUEST:
       return { ...state, addingAttendence: true };
     case types.ADD_ATTENDENCE_SUCCESS:

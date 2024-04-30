@@ -11,7 +11,8 @@ import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
   addCustomer,
-  setClearbitData
+  setClearbitData,
+  emptyClearbit
 } from "../CustomerAction";
 import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
@@ -54,6 +55,7 @@ function CustomerForm(props) {
     // props.getAllCustomerEmployeelist();
     // props.getSectors();
     props.getCrm();
+    props.emptyClearbit()
     // setSource("")
     // props.getCurrency();
   }, []);
@@ -940,6 +942,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addCustomer,
       setClearbitData,
+      emptyClearbit,
       getSectors,
       getAllCustomerEmployeelist,
       getCrm,
