@@ -2,7 +2,7 @@ import * as types from "./ProductionActionType";
 
 const initialState = {
   openProductiondrawer: false,
-  viewType: "card",
+  viewType: "table",
 
   creatingProductionLink: false,
   creatingProductionLinkError: false,
@@ -34,6 +34,13 @@ const initialState = {
   archieveProduction: [],
   updateProductionStatus:false,
   updateProductionStatusError:false,
+
+  
+
+  fetchingProductionTable:false,
+  fetchingProductionTableError:false,
+
+  productionTableData:{},
 
   settingInpectdn: false,settingInpectdnError:false,
 
@@ -124,6 +131,15 @@ export const productionReducer = (state = initialState, action) => {
       return { ...state, fetchingProductionLocId: false, productionByLocsId: action.payload };
     case types.GET_PRODUCTION_BYLOC_ID_FAILURE:
       return { ...state, fetchingProductionLocId: false, fetchingProductionLocIdError: true };
+
+
+
+      case types.GET_PRODUCTION_TABLE_REQUEST:
+        return { ...state, fetchingProductionTable: true, fetchingProductionTable: false };
+      case types.GET_PRODUCTION_TABLE_SUCCESS:
+        return { ...state, fetchingProductionTable: false, productionTableData: action.payload };
+      case types.GET_PRODUCTION_TABLE_FAILURE:
+        return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
 
     case types.REMOVE_PRODUCTION_REQUEST:
       return { ...state, removingProduction: true };
