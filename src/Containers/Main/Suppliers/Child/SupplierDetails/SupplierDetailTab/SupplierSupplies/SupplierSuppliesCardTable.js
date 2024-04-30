@@ -72,9 +72,9 @@ function SupplierSuppliesCardTable(props) {
               <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
               </div>
-            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
-              id="app.attachwithsuplier"
-              defaultMessage="Attach with Supplier"
+            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
+              id="app.tagwithsuplier"
+              defaultMessage="Tag with Supplier"
             /></div>
             {/* <div className=" md:w-[5.1rem]">
               <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
@@ -146,10 +146,10 @@ supplierId={props.supplier.supplierId}
 
 
 </div>
-<div className="w-[8.1rem]">   
+<div className="w-[13.1rem]">   
 {item.supplierSuppliesInd &&( 
   <>
-<div class="flex flex-row items-center w-[8rem]  max-sm:flex-row  max-sm:justify-end">
+<div class="flex flex-row items-center w-[14rem]  max-sm:flex-row  max-sm:justify-end">
   {/* <div class="flex">                
 {props.supplierSuppliesQuality.map((dt)=>{
 
@@ -177,7 +177,7 @@ supplierId={props.supplier.supplierId}
   </div>          */}
   <Select
           showSearch
-          
+          style={{width:"100%"}}
           placeholder="Search or select include"
           optionFilterProp="children"
           // loading={isLoadingInclude}

@@ -77,11 +77,17 @@ const initialState = {
   fetchingSupplierListError: false,
   supplierList: [],
 
+  fetchingSupplierPriceList: false,
+  fetchingSupplierPriceListError: false,
+  supplierPriceList:[],
+
   pOSupplierDetailsId: "",
 
   addLinkSuppliersOrderConfigureModal: false,
 
   clearbitPurchase: {},
+
+  suppliersPriceOpenDrawer:false,
 
   clearbitPurchaseProduct: {},
   addPoListmModal: false,
@@ -420,6 +426,23 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierList: false,
         fetchingSupplierListError: true,
       };
+
+
+      case types.GET_SUPPLIERS_PRICE_LIST_REQUEST:
+        return { ...state, fetchingSupplierPriceList: true };
+      case types.GET_SUPPLIERS_PRICE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          supplierPriceList: [...state.supplierPriceList, ...action.payload]
+        };
+      case types.GET_SUPPLIERS_PRICE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          fetchingSupplierPriceListError: true,
+        };
+  
 
     case types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST:
       return { ...state, fetchingSuppliesListById: true };
@@ -1470,6 +1493,10 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierDeletedList: false,
         fetchingSupplierDeletedListError: true,
       };
+
+
+      case types.HANDLE_SUPPLIERS_PRICE_DRAWER:
+        return { ...state, suppliersPriceOpenDrawer: action.payload };
 
     default:
       return state;

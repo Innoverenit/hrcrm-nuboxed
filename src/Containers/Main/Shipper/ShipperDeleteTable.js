@@ -66,7 +66,7 @@ function ShipperDeleteTable(props) {
         <div className="md:w-[5.9rem]"><FormattedMessage id="app.shipby" defaultMessage="Ship By"/></div>
         <div className="md:w-[7.8rem]"><FormattedMessage id="app.address" defaultMessage="Address"/></div>
         <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City"/></div>
-        <div className="md:w-[5.2rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code"/></div>
+        <div className="md:w-[9.2rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code"/></div>
         {/* <div className="w-[3.8rem]"></div> */}
         </div>
         <InfiniteScroll

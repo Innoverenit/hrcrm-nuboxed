@@ -132,6 +132,9 @@ const initialState = {
 
   setEditingOrder: {},
 
+
+  setEdittingProcure:{},
+
   updateOrderDetailModal: false,
 
   updateDisributorOrderById: false,
@@ -207,6 +210,8 @@ const initialState = {
   updatingDistributorCall: false,
   updatingDistributorCallError: false,
 
+  updateProcureDetailModal:false,
+
   updatingDistributorEvent: false,
   updatingDistributorEventError: false,
 
@@ -280,6 +285,9 @@ const initialState = {
   fetchingRenewOrderByOrderId: false,
   fetchingRenewOrderByOrderIdError: false,
   RenewOrder: [],
+
+  updatingProcureStep1: false,
+  updatingProcureStep1Error: false,
 
   fetchingOrderProcurement: false,
   fetchingOrderProcurementError: false,
@@ -2646,7 +2654,7 @@ export const distributorReducer = (state = initialState, action) => {
           ...state,
           addingOrderProcurement: false,
            procurementOrder: [action.payload, ...state.procurementOrder],
-          // orderDetailsId: action.payload
+          orderDetailsId: action.payload,
           addLinkCustomerProcurementModal: false,
   
         };
@@ -2671,6 +2679,37 @@ export const distributorReducer = (state = initialState, action) => {
             fetchingOrderProcurement: false,
             fetchingOrderProcurementError: true,
           };
+
+          case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
+            return { ...state, updateProcureDetailModal: action.payload };
+
+
+            case types.SET_PROCURE_EDIT:
+              return { ...state, setEdittingProcure: action.payload };
+
+
+              case types.UPDATE_PROCURE_STEP1_REQUEST:
+                return { ...state, updatingProcureStep1: true };
+              case types.UPDATE_PROCURE_STEP1_SUCCESS:
+                return {
+                  ...state,
+                  updatingProcureStep1: false,
+                  updateProcureDetailModal:false,
+                  procurementOrder: state.procurementOrder.map((item) => {
+                    if (item.orderId == action.payload.orderId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.UPDATE_PROCURE_STEP1_FAILURE:
+                return {
+                  ...state,
+                  updatingProcureStep1: false,
+                  updatingProcureStep1Error: true,
+                };
+      
     default:
       return state;
   }
