@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
+import React from "react";
+import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { trnasferGrnItemToStock } from "../../../InventoryAction"

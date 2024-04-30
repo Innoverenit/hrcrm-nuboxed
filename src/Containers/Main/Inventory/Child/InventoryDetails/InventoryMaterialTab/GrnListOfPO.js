@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
@@ -134,68 +134,64 @@ const GrnListOfPO = (props) => {
                                                 {item.grnNumber}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[18rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins flex justify-between">
-                                                {selectZone && item.poSupplierSuppliesId === row.poSupplierSuppliesId ?
-                                                    <>
-                                                        <Select
-                                                            classNames="w-32"
-                                                            value={selectedRoomId}
-                                                            onChange={(value) => { handleChangeRoomRack(value) }}
-                                                        >
-                                                            {props.roomRackbyLoc.filter((type) => type.zoneType === "entry")
-                                                                .map((s) => (
-                                                                    <Option value={s.roomRackId}>
-                                                                        {s.zone}
+                                        {item.grnNumber !== null &&
+                                            <div className=" flex font-medium flex-col  w-[18rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins flex justify-between">
+
+                                                    {selectZone && item.poSupplierSuppliesId === row.poSupplierSuppliesId ?
+                                                        <>
+                                                            <Select
+                                                                classNames="w-32"
+                                                                value={selectedRoomId}
+                                                                onChange={(value) => { handleChangeRoomRack(value) }}
+                                                            >
+                                                                {props.roomRackbyLoc.filter((type) => type.zoneType === "entry")
+                                                                    .map((s) => (
+                                                                        <Option value={s.roomRackId}>
+                                                                            {s.zone}
+                                                                        </Option>
+                                                                    ))}
+                                                            </Select>
+                                                            <Select
+                                                                classNames="w-32"
+                                                                value={selectedChamberId}
+                                                                onChange={(val) => handleChangeChamber(val)}
+                                                            >
+                                                                {props.rackList.map((chamber) => (
+                                                                    <Option value={chamber.roomRackChamberLinkId}>
+                                                                        {chamber.chamber}
                                                                     </Option>
                                                                 ))}
-                                                        </Select>
-                                                        <Select
-                                                            classNames="w-32"
-                                                            value={selectedChamberId}
-                                                            onChange={(val) => handleChangeChamber(val)}
-                                                        >
-                                                            {props.rackList.map((chamber) => (
-                                                                <Option value={chamber.roomRackChamberLinkId}>
-                                                                    {chamber.chamber}
-                                                                </Option>
-                                                            ))}
-                                                        </Select>
-                                                    </> :
-                                                    <div>
-                                                        {item.zone}{item.chamber}
-                                                    </div>
-                                                }
+                                                            </Select>
+                                                        </> :
+                                                        item.chamber === null ? <Button
+                                                            type="primary"
+                                                            onClick={() => {
+                                                                handleSelectZone()
+                                                                handleRow(item)
+                                                            }}
+                                                        >Select Zone</Button> :
+                                                            <div>
+                                                                {item.zone}{item.chamber}
+                                                            </div>
+                                                    }
 
-                                                {item.chamber === null ? <Button
-                                                    type="primary"
-                                                    onClick={() => {
-                                                        handleSelectZone()
-                                                        handleRow(item)
-                                                    }}
-                                                >Select Zone</Button> :
-                                                    <Button
-                                                        type="primary"
-                                                        onClick={() => {
-                                                            handleSelectZone()
-                                                            handleRow(item)
-                                                        }}
-                                                    >Change</Button>
-                                                }
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
                                         <div className=" flex font-medium flex-col  w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-
-                                                <TransferToStock
-                                                    roomRackId={selectedRoomId}
-                                                    roomRackChamberLinkId={selectedChamberId}
-                                                    allowGrnInd={item.allowGrnInd}
-                                                    grnStockInd={item.grnStockInd}
-                                                    handleCancelZone={handleCancelZone}
-                                                    poSupplierSuppliesId={item.poSupplierSuppliesId}
-                                                    poSupplierDetailsId={props.row.poSupplierDetailsId}
-                                                />
+                                                {item.grnNumber !== null &&
+                                                    <TransferToStock
+                                                        roomRackId={selectedRoomId}
+                                                        roomRackChamberLinkId={selectedChamberId}
+                                                        allowGrnInd={item.allowGrnInd}
+                                                        grnStockInd={item.grnStockInd}
+                                                        handleCancelZone={handleCancelZone}
+                                                        poSupplierSuppliesId={item.poSupplierSuppliesId}
+                                                        poSupplierDetailsId={props.row.poSupplierDetailsId}
+                                                    />
+                                                }
                                             </div>
                                         </div>
                                     </div>

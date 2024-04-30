@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
 import { Button, Tooltip, Progress } from "antd";
-import { RollbackOutlined } from "@ant-design/icons";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -13,6 +12,7 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
+// import { updateRepairStatus } from "../Inventory/InventoryAction"
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
@@ -32,12 +32,9 @@ function OrderPhoneListById(props) {
         props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
     }, [props.rowData.orderPhoneId, props.userId])
 
-    // const [hasMore, setHasMore] = useState(true);
-    // const handleLoadMore = () => {
-    //     setPage(page + 1);
-    //     props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
-    // };
-
+    const handleCallback = () => {
+        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+    }
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
         setRowData(item);
@@ -75,7 +72,7 @@ function OrderPhoneListById(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas${iconType}`} style={{ fontSize: "22px" }}></i>
+                    <i class={iconType} style={{ fontSize: "22px" }}></i>
                 </Button>
             </Tooltip >
         );
@@ -99,7 +96,7 @@ function OrderPhoneListById(props) {
             qcTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
-        props.updateQCStatus(data, item.phoneId, props.locationId, props.userId)
+        props.updateQCStatus(data, item.phoneId, props.userId)
         if (type === "Complete") {
             setBackComplete(false)
         }
@@ -110,6 +107,7 @@ function OrderPhoneListById(props) {
     function handlePuaseButton() {
         setHide(hide)
     }
+    console.log(props.rowData.qcInspectionInd)
     return (
         <>
             {props.fetchingOrderIdByUserId ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto'>
@@ -142,6 +140,13 @@ function OrderPhoneListById(props) {
                         /></div>
 
                         <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
+                        <div className="w-[6.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        </div>
+
+                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FormattedMessage
+                            id="app.status"
+                            defaultMessage="Status"
+                        /></div>
 
                         <div className="w-[6.012rem]">Spare</div>
                         <div className="w-[5.523rem]">Task</div>
@@ -212,9 +217,9 @@ function OrderPhoneListById(props) {
                                                         <div>
                                                             {props.rowData.qcInspectionInd === 1 ?
                                                                 <ButtonGroup>
-                                                                    {item.qcStatus === "To Start" && backToComplete === false && <StatusIcon
+                                                                    {item.qcStatus === "To Start" && <StatusIcon
                                                                         type="In Progress"
-                                                                        iconType="fa-hourglass-half"
+                                                                        iconType="fa fa-hourglass-half"
                                                                         tooltip="In Progress"
                                                                         id={item.phoneId}
                                                                         indStatus={item.qcStatus}
@@ -225,9 +230,9 @@ function OrderPhoneListById(props) {
 
                                                                         }}
                                                                     />}
-                                                                    {item.qcStatus === "In Progress" && backToComplete === false && <StatusIcon
+                                                                    {item.qcStatus === "In Progress" && <StatusIcon
                                                                         type="Complete"
-                                                                        iconType="fa-hourglass"
+                                                                        iconType="fa fa-hourglass"
                                                                         tooltip="Complete"
                                                                         indStatus={item.qcStatus}
                                                                         status={active}
@@ -237,32 +242,8 @@ function OrderPhoneListById(props) {
                                                                             handleQCStatus("Complete", item);
                                                                         }}
                                                                     />}
-                                                                </ButtonGroup> :
-                                                                (item.qcStatus === "Complete" && backToComplete === false)
-                                                                    ?
-                                                                    <div>
-                                                                        <Tooltip title="Back To Process">
-                                                                            <RollbackOutlined
-                                                                                onClick={handleChangeBack}
-                                                                                style={{ marginRight: "0.3rem", color: "#1890ff" }} />
-                                                                        </Tooltip>
-                                                                    </div>
-                                                                    : null}
-
-                                                            {backToComplete && props.RowData.phoneId === item.phoneId &&
-                                                                <StatusIcon
-                                                                    type="Complete"
-                                                                    iconType="fa-hourglass"
-                                                                    tooltip="Complete"
-                                                                    indStatus={item.qcStatus}
-                                                                    status={active}
-                                                                    id={item.phoneId}
-                                                                    phoneId={RowData.phoneId}
-                                                                    onClick={() => {
-                                                                        handleQCStatus("Complete", item);
-                                                                    }}
-                                                                />
-                                                            }
+                                                                </ButtonGroup>
+                                                                : null}
 
                                                         </div>
 
@@ -294,6 +275,45 @@ function OrderPhoneListById(props) {
                                                         {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    {item.qcStatus === "In Progress" &&
+                                                        <>
+                                                            {!item.cannotRepairInd ?
+                                                                <Button
+                                                                // loading={props.updatingRepairStatus}
+                                                                //     onClick={() => {
+                                                                //         props.updateRepairStatus({
+                                                                //             cannotRepairInd: true,
+                                                                //             orderPhoneId: props.rowData.orderId
+                                                                //         }, item.phoneId, handleCallback())
+                                                                // }}
+                                                                >
+                                                                    Can't Repair
+                                                                </Button> :
+                                                                <Button
+                                                                // loading={props.updatingRepairStatus}
+                                                                //     onClick={() => {
+                                                                //         props.updateRepairStatus({
+                                                                //             cannotRepairInd: false,
+                                                                //             orderPhoneId: props.rowData.orderId
+                                                                //         }, item.phoneId, handleCallback())
+                                                                // }}
+                                                                >
+                                                                    Update Status
+                                                                </Button>
+                                                                //   <Tooltip title="Can't Repair">
+                                                                //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
+                                                                // </Tooltip>
+                                                            }
+                                                        </>}
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins">
+                                                    {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
@@ -467,7 +487,8 @@ const mapDispatchToProps = (dispatch) =>
             getPhoneOrderIdByUser,
             updateQCStatus,
             handleQCPhoneNotesOrderModal,
-            getOrderByUser
+            getOrderByUser,
+            // updateRepairStatus
         },
         dispatch
     );

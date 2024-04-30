@@ -28,7 +28,7 @@ export const getTodayProduction = (date) => (dispatch) => {
       });
     });
 };
-export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dispatch) => {
+export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
   axios
@@ -38,7 +38,7 @@ export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dis
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(locationDetailsId, userId))
+      dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
