@@ -15,6 +15,15 @@ export const handleCustomerModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const emptyClearbit = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_CLEARBIT_TABLE,
+    
+  });
+};
+
 export const handleCustomerProjectModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_PROJECT_MODAL,

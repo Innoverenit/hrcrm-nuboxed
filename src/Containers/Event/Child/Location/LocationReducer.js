@@ -34,6 +34,11 @@ const initialState = {
    creatingShiftLocationError:false,
 
 
+   fetchingCellCardList:false,
+   fetchingCellCardListError:false,
+   cellCardList:[],
+
+
    fetchingUserListLocation:false,
    fetchingUserListLocationError:false,
    userListLocation:[],
@@ -167,6 +172,24 @@ deletingUserCellDataError:false,
           deletingLocationCellData: false,
           deletingLocationCellDataError: true,
         };
+
+
+
+
+        case types.GET_CELL_CARD_LIST_REQUEST:
+          return { ...state, fetchingCellCardList: true };
+        case types.GET_CELL_CARD_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingCellCardList: false,
+            cellCardList: action.payload
+          };
+        case types.GET_CELL_CARD_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingCellCardList: false,
+            fetchingCellCardListError: true,
+          };
 
 
 
