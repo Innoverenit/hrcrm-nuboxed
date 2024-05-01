@@ -207,6 +207,7 @@ const GrnListOfPO = (props) => {
                                                     <i class="far fa-share-square"
                                                         //    className="!text-base cursor-pointer text-[tomato]"
                                                         onClick={() => {
+                                                            handleItemClick(item)
                                                             props.handleStockUsedDrawer(true);
                                                         }}
                                                         style={{ cursor: "pointer" }}

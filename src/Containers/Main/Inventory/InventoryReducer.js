@@ -137,6 +137,10 @@ const initialState = {
   addingReason: false,
   addingReasonError: false,
   setEditingInventoryOutput: {},
+
+  fetchingItemInCellStock: false,
+  fetchingItemInCellStockError: false,
+  cellStock: [],
   //output reason list
   // fetchingOutputReasonList: false,
   // fetchingOutputReasonListError: false,
@@ -446,6 +450,27 @@ export const inventoryReducer = (state = initialState, action) => {
         addCreateAwb: false,
       };
 
+
+    case types.SENT_ITEM_TO_STOCK_REQUEST:
+      return { ...state, sendingItemToStock: true };
+    case types.SENT_ITEM_TO_STOCK_SUCCESS:
+      return {
+        ...state,
+        sendingItemToStock: false,
+        stockUseDrwr: false,
+        poGrnList: state.poGrnList.map((item) =>
+          item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId
+            ? action.payload : item
+        ),
+
+      };
+    case types.SENT_ITEM_TO_STOCK_FAILURE:
+      return {
+        ...state,
+        sendingItemToStock: false,
+        sendingItemToStockError: true,
+        stockUseDrwr: false,
+      };
     //get received
     case types.GET_RECEIVED_REQUEST:
       return { ...state, fetchingReceivedUserList: true };
@@ -1262,8 +1287,24 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingGrnListOfAPo: false,
         fetchingGrnListOfAPoError: true,
+      };
+
+    case types.GET_ITEM_IN_CELL_STOCK_REQUEST:
+      return { ...state, fetchingItemInCellStock: true };
+    case types.GET_ITEM_IN_CELL_STOCK_SUCCESS:
+      return {
+        ...state,
+        fetchingItemInCellStock: false,
+        cellStock: action.payload
+      };
+    case types.GET_ITEM_IN_CELL_STOCK_FAILURE:
+      return {
+        ...state,
+        fetchingItemInCellStock: false,
+        fetchingItemInCellStockError: true,
 
       };
+
 
     case types.TRANSFER_PO_GRN_TO_STOCK_REQUEST:
       return { ...state, transferingPoGrnToStock: true };

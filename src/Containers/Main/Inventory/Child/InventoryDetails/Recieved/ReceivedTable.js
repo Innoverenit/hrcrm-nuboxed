@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Select,Progress } from "antd";
+import { Tooltip, Button, Select, Progress } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getReceivedUserList,
@@ -173,14 +173,14 @@ const ReceivedTable = (props) => {
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
-                                                           
-                                                                <Progress
-                                                                    percent={percentage}
-                                                                    success={{ percent: 30 }}
-                                                                    format={() => `${percentage}%`}
-                                                                    style={{ width: "8rem", cursor: "pointer" }}
-                                                                   />
-                                                        ) : null}
+
+                                <Progress
+                                  percent={percentage}
+                                  success={{ percent: 30 }}
+                                  format={() => `${percentage}%`}
+                                  style={{ width: "8rem", cursor: "pointer" }}
+                                />
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -227,11 +227,9 @@ const ReceivedTable = (props) => {
                                 : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
                                     className="cursor-pointer text-base"
-                                    // onClick={() => {
-                                    //   handleRowData(item)
-                                    //   handlelocation();
-                                    // }}
+                                    loading={item.orderId === rowData.orderId && props.addingDeliverDate}
                                     onClick={() => {
+                                      handleRowData(item);
                                       props.addDeliveryDate({
                                         transferInd: 2,
                                         inspectionInd: 3,
@@ -329,6 +327,7 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   inventory: inventory.inventory,
+  addingDeliverDate: inventory.addingDeliverDate,
   mismatchPhoneModal: inventory.mismatchPhoneModal
 });
 

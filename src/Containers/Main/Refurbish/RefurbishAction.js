@@ -891,6 +891,30 @@ export const getPhoneOrderIdByUser = (orderPhoneId, technicianId) => (dispatch) 
       });
     });
 };
+export const updateCantRepairQC = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_CANT_REPAIR_QC_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/canNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getRepairPhoneByUser = (orderPhoneId, technicianId) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_PHONE_BY_USER_REQUEST,

@@ -82,8 +82,8 @@ function OpenReceivedOrderIdForm(props) {
                 defaultMessage="imei"
               /></div>
               <div className="md:w-[6.71rem]">Info</div>
-              
-              
+
+
               <div className="md:w-[6.75rem]"><FormattedMessage
                 id="app.conditions"
                 defaultMessage="conditions"
@@ -287,8 +287,9 @@ function OpenReceivedOrderIdForm(props) {
                               <>
                                 {!item.cannotRepairInd && item.inspectionInd !== 3 ?
                                   <Button
-                                    // loading={props.updatingRepairStatus}
+                                    loading={particularRowData.phoneId === item.phoneId && props.updatingRepairStatus}
                                     onClick={() => {
+                                      handleSetParticularOrderData(item);
                                       props.updateRepairStatus({
                                         cannotRepairInd: true,
                                         orderPhoneId: props.rowData.orderPhoneId
@@ -297,8 +298,9 @@ function OpenReceivedOrderIdForm(props) {
                                     Can't Repair
                                   </Button> :
                                   <Button
-                                    // loading={props.updatingRepairStatus}
+                                    loading={particularRowData.phoneId === item.phoneId && props.updatingRepairStatus}
                                     onClick={() => {
+                                      handleSetParticularOrderData(item);
                                       props.updateRepairStatus({
                                         cannotRepairInd: false,
                                         orderPhoneId: props.rowData.orderPhoneId
