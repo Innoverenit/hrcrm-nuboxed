@@ -131,6 +131,7 @@ function ProductionOrderListById(props) {
                                                                 type="primary"
                                                                 loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQcInspectionButton}
                                                                 onClick={() => {
+                                                                    handleRowData(item)
                                                                     props.qcInspectionButton({
                                                                         productionDispatchId: item.productionDispatchId,
                                                                         orderPhoneId: item.orderPhoneId,

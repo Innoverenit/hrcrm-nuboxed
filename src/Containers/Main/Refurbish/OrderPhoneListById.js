@@ -1,7 +1,13 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getPhoneOrderIdByUser, handleQCPhoneNotesOrderModal, getOrderByUser, updateQCStatus } from "./RefurbishAction";
+import {
+    getPhoneOrderIdByUser,
+    handleQCPhoneNotesOrderModal,
+    getOrderByUser,
+    updateCantRepairQC,
+    updateQCStatus
+} from "./RefurbishAction";
 import { Button, Tooltip, Progress } from "antd";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
@@ -12,7 +18,6 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
-// import { updateRepairStatus } from "../Inventory/InventoryAction"
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
@@ -33,7 +38,10 @@ function OrderPhoneListById(props) {
     }, [props.rowData.orderPhoneId, props.userId])
 
     const handleCallback = () => {
-        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+        if (!props.updatingCantRepairQc) {
+            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+        }
+
     }
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -283,24 +291,26 @@ function OrderPhoneListById(props) {
                                                         <>
                                                             {!item.cannotRepairInd ?
                                                                 <Button
-                                                                // loading={props.updatingRepairStatus}
-                                                                //     onClick={() => {
-                                                                //         props.updateRepairStatus({
-                                                                //             cannotRepairInd: true,
-                                                                //             orderPhoneId: props.rowData.orderId
-                                                                //         }, item.phoneId, handleCallback())
-                                                                // }}
+                                                                    loading={RowData.phoneId === item.phoneId && props.updatingCantRepairQc}
+                                                                    onClick={() => {
+                                                                        handleSetRowData(item);
+                                                                        props.updateCantRepairQC({
+                                                                            cannotRepairInd: true,
+                                                                            orderPhoneId: props.rowData.orderId
+                                                                        }, item.phoneId)
+                                                                    }}
                                                                 >
                                                                     Can't Repair
                                                                 </Button> :
                                                                 <Button
-                                                                // loading={props.updatingRepairStatus}
-                                                                //     onClick={() => {
-                                                                //         props.updateRepairStatus({
-                                                                //             cannotRepairInd: false,
-                                                                //             orderPhoneId: props.rowData.orderId
-                                                                //         }, item.phoneId, handleCallback())
-                                                                // }}
+                                                                    loading={RowData.phoneId === item.phoneId && props.updatingCantRepairQc}
+                                                                    onClick={() => {
+                                                                        handleSetRowData(item);
+                                                                        props.updateCantRepairQC({
+                                                                            cannotRepairInd: false,
+                                                                            orderPhoneId: props.rowData.orderId
+                                                                        }, item.phoneId)
+                                                                    }}
                                                                 >
                                                                     Update Status
                                                                 </Button>
@@ -308,7 +318,8 @@ function OrderPhoneListById(props) {
                                                                 //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
                                                                 // </Tooltip>
                                                             }
-                                                        </>}
+                                                        </>
+                                                    }
                                                 </div>
                                             </div>
                                             <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -473,10 +484,11 @@ function OrderPhoneListById(props) {
 
 }
 
-const mapStateToProps = ({ refurbish, auth }) => ({
+const mapStateToProps = ({ refurbish, auth, inventory }) => ({
     orderPhoneList: refurbish.orderPhoneList,
     locationId: auth.userDetails.locationId,
     userId: auth.userDetails.userId,
+    updatingCantRepairQc: refurbish.updatingCantRepairQc,
     fetchingOrderIdByUserId: refurbish.fetchingOrderIdByUserId,
     phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
 });
@@ -488,9 +500,10 @@ const mapDispatchToProps = (dispatch) =>
             updateQCStatus,
             handleQCPhoneNotesOrderModal,
             getOrderByUser,
-            // updateRepairStatus
+            updateCantRepairQC
         },
         dispatch
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderPhoneListById);
+

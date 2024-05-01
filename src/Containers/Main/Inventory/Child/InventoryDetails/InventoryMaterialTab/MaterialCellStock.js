@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
+import { getItemInCellStock } from "../../../InventoryAction"
 
 
 const MaterialCellStock = (props) => {
-    // useEffect(() => {
-    //     props.getGrnListOfaPoInStock(props.locationDetailsId);
-    // }, [])
+    useEffect(() => {
+        props.getItemInCellStock(props.locationDetailsId);
+    }, [])
 
 
     return (
@@ -30,13 +31,13 @@ const MaterialCellStock = (props) => {
                         <div className=""></div>
                     </div>
                     {/* <InfiniteScroll
-                        dataLength={props.poGrnList.length}
+                        dataLength={props.cellStock.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingItemInCellStock ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"75vh"}
                     >
-                        {props.poGrnList.map((item,index) => {
+                        {props.cellStock.map((item,index) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
@@ -184,13 +185,14 @@ const MaterialCellStock = (props) => {
 
 
 const mapStateToProps = ({ inventory, auth }) => ({
-
+    fetchingItemInCellStock: inventory.fetchingItemInCellStock,
+    cellStock: inventory.cellStock
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-
+            getItemInCellStock
         },
         dispatch
     );

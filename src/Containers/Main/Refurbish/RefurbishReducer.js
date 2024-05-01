@@ -49,6 +49,9 @@ const initialState = {
   fetchingAllProductionConsumptionError: false,
   allConsumption: [],
 
+  updatingCantRepairQc: false,
+  updatingCantRepairQcError: false,
+
   addingProductBuilderById: false,
   addingProductBuilderByIdError: false,
 
@@ -766,6 +769,26 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingRepairStatus: false,
         updatingRepairStatusError: true,
+      };
+
+    case types.UPDATE_CANT_REPAIR_QC_REQUEST:
+      return { ...state, updatingCantRepairQc: true };
+    case types.UPDATE_CANT_REPAIR_QC_SUCCESS:
+      return {
+        ...state,
+        updatingCantRepairQc: false,
+        orderPhoneList: state.orderPhoneList.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
+      };
+    case types.UPDATE_CANT_REPAIR_QC_FAILURE:
+      return {
+        ...state,
+        updatingCantRepairQc: false,
+        updatingCantRepairQcError: true,
       };
 
     case types.GET_REPAIR_PHONE_BY_USER_REQUEST:
