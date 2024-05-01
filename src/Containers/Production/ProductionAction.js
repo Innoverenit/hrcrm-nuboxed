@@ -491,7 +491,7 @@ export const getProductionTable = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_TABLE_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/product/${userId}/${pageNo}`,
+    .get(`${base_url2}/production/productionProductLink/${userId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

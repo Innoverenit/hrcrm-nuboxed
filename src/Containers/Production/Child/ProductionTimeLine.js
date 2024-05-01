@@ -34,7 +34,7 @@ import { Steps } from 'antd';
 
 const { Step } = Steps;
 
-const Component2 = () => {
+const Component2 = (props) => {
     // Hardcoded JSON data for the Steps component
     const stepsData = [
         { title: 'Step 1', description: 'Description for Step 1' },
@@ -46,11 +46,21 @@ const Component2 = () => {
     return (
         <div className=' flex justify-end sticky top-28 z-auto'>
              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-            <h2>Vertical Steps Component</h2>
-            <Steps direction="vertical" current={0}>
+            <h2>Steps</h2>
+            {/* <Steps direction="vertical" current={0}>
                 {stepsData.map((item, index) => (
                     <Step key={index} title={item.title} description={item.description} />
                 ))}
+            </Steps> */}
+              <Steps direction="vertical" current={0}>
+                {props.productionTableData?.steps?.map((step, index) => (
+                    <Step key={index} title={`${step.suppliesName} (${step.quantity})`} description={step.description}>
+                        {/* <p>Quantity: {step.quantity}</p>
+                        <p>Steps: {step.steps}</p> */}
+                    </Step>
+                )) ?? (
+                    <Step title="No Steps Data" description="No steps data available" />
+                )}
             </Steps>
         </div>
         </div>

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
+import { createProductionLink } from "../ProductionAction";
 
 
 function ProductionActionRight (props) {
@@ -16,7 +17,7 @@ function ProductionActionRight (props) {
           <Button
             type="primary"
          
-            onClick={() => handleCreateProduction(true)}
+            onClick={() => props.createProductionLink()}
           >
             Add
           </Button>
@@ -32,7 +33,9 @@ const mapStateToProps = ({ auth }) => ({
   role: auth.userDetails.role,
   user: auth.userDetails,
 });
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+createProductionLink
+}, dispatch);
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ProductionActionRight)
 );
