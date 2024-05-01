@@ -458,7 +458,11 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         sendingItemToStock: false,
         stockUseDrwr: false,
-        addAwbNo: false
+        poGrnList: state.poGrnList.map((item) =>
+          item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId
+            ? action.payload : item
+        ),
+
       };
     case types.SENT_ITEM_TO_STOCK_FAILURE:
       return {

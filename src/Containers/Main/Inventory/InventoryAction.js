@@ -1506,7 +1506,7 @@ export const getItemInCellStock = (locationId) => (dispatch) => {
     type: types.GET_ITEM_IN_CELL_STOCK_REQUEST,
   });
   axios
-    .get(`${base_url2}/po/cellstock/${locationId}`, {
+    .get(`${base_url2}/po/getPoCellItemlist/${locationId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

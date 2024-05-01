@@ -14,11 +14,11 @@ function StockUsedForm(props) {
             <Formik
                 initialValues={{
 
-                    poSupplierDetailsId: "",
-                    poSupplierSuppliesId: "",
+                    poSupplierDetailsId: props.row.poSupplierDetailsId || "",
+                    poSupplierSuppliesId: props.row.poSupplierSuppliesId || "",
                     unitUsed: "",
                     unitWasted: "",
-                    userId: ""
+                    userId: props.userId || ""
 
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -99,6 +99,7 @@ function StockUsedForm(props) {
 
 const mapStateToProps = ({ inventory, auth }) => ({
     sendingItemToStock: inventory.sendingItemToStock,
+    userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
