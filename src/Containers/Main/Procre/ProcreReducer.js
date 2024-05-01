@@ -9,6 +9,10 @@ const initialState = {
   fetchingAllProcure: false,
   fetchingAllProcureError: false,
   allProcure:[],
+
+  fetchingRecords: false,
+  fetchingRecordsError: false,
+  recordData:{},
  
  
 
@@ -42,6 +46,26 @@ export const procreReducer = (state = initialState, action) => {
           fetchingAllProcure: false,
           fetchingAllProcureError: true,
         };
+
+
+        case types.EMPTY_PROCURE_LIST:
+          return { ...state, allProcure: [] };
+
+
+          case types.GET_RECORDS_REQUEST:
+            return { ...state, fetchingRecords: true };
+          case types.GET_RECORDS_SUCCESS:
+            return {
+              ...state,
+              fetchingRecords: false,
+              recordData: action.payload,
+            };
+          case types.GET_RECORDS_FAILURE:
+            return {
+              ...state,
+              fetchingRecords: false,
+              fetchingRecordsError: true,
+            };
 
     
 

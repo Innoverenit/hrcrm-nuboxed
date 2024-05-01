@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { setProcreViewType } from "../Procre/ProcreAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import ProcreCardList from "./ProcreCardList";
+import ProcureHeader from "./Child/ProcureHeader";
 
 
 function Procre(props) {
@@ -22,11 +23,11 @@ function Procre(props) {
     }, []);
     return (
         <React.Fragment>
-            {/* <SuppliesHeader
+            <ProcureHeader
                 setProcreViewType={setProcreViewType}
                 viewType={viewType}
-                handleSuppliesModal={handleSuppliesModal}
-            /> */}
+                // handleSuppliesModal={handleSuppliesModal}
+            />
 
             <Suspense fallback={<BundleLoader />}>
                 {viewType === "card" ? (

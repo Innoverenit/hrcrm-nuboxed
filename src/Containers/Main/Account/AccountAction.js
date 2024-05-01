@@ -2737,12 +2737,12 @@ export const getAccountRecords = (userId) => (dispatch) => {
       });
     });
 };
-export const getOrderRecords = (distributorId) => (dispatch) => {
+export const getOrderRecords = (distributorId,type) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/record/count/${distributorId} `, {
+    .get(`${base_url2}/phoneOrder/record/count/${distributorId}/${type} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2758,6 +2758,32 @@ export const getOrderRecords = (distributorId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ORDER_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProcureRecords = (distributorId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCURE_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/record/count/${distributorId}/${type} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCURE_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROCURE_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -3554,4 +3580,12 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
         payload: err,
       });
     });
+};
+
+
+export const emptyClearbit = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_CLEARBIT_TABLE,
+    
+  });
 };

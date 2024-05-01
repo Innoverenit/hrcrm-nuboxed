@@ -14,7 +14,7 @@ import { Listbox } from '@headlessui/react'
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { addDistributor, setClearbitData } from "./AccountAction";
+import { addDistributor, setClearbitData ,emptyClearbit} from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
@@ -26,7 +26,7 @@ const CustomerSchema = Yup.object().shape({
   clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
-  phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 const AddAccountForm = ({
@@ -48,6 +48,7 @@ const AddAccountForm = ({
   getCustomer,
   getSaleCurrency,
   getCategory,
+  emptyClearbit,
   category
 }) => {
 
@@ -58,7 +59,13 @@ const AddAccountForm = ({
     getSaleCurrency();
     getCategory(orgId);
 
+
   }, []);
+  useEffect(() => {
+    return () => {
+      emptyClearbit(); 
+    };
+  }, [emptyClearbit]);
 
   const [billingSameAsCommunication, setBillingSameAsCommunication] = useState(false);
 
@@ -618,6 +625,7 @@ const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      emptyClearbit,
       addDistributor,
       setClearbitData,
       getCountry,

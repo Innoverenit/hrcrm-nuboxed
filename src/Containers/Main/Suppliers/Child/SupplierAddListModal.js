@@ -2,23 +2,24 @@ import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import SuppliersPriceCardList from "./SuppliersPriceCardList";
+import SuppliersListForm from "./SuppliersListForm";
+// import SuppliersPriceCardList from "./SuppliersPriceCardList";
 
-const SupplierPriceModal = (props) => {
+const SupplierAddListModal = (props) => {
   const { ...formProps } = props;
   return (
     <>
       <StyledDrawer
         title={props.rowdata.name}
         width="60%"
-        visible={props.suppliersPriceOpenDrawer}
+        visible={props.suppliersListOpenDrawer}
         maskClosable={false}
         destroyOnClose
-        onClose={() => props.handleSuppliersPriceDrawer(false)}
+        onClose={() => props.handleSuppliersListDrawer(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <SuppliersPriceCardList
+          <SuppliersListForm
             rowdata={props.rowdata}
           // shipperId={props.shipperId} 
           />
@@ -28,4 +29,4 @@ const SupplierPriceModal = (props) => {
   );
 };
 
-export default SupplierPriceModal;
+export default SupplierAddListModal;

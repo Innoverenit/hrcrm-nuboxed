@@ -20,7 +20,7 @@ function SupplierSuppliesCardTable(props) {
 
   const [hasMore, setHasMore] = useState(true);
 
-  const [currentType, setCurrentType] = useState("");
+  const [currentType, setCurrentType] = useState({});
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
 
@@ -30,13 +30,28 @@ function SupplierSuppliesCardTable(props) {
   const handleRowData = (data) => {
     setrowData(data);
   };
-
   const handleSetCurrentType = (value, item) => {
+    const qualityIds = value || [];
+    const payload = {
+      type: qualityIds.map((qualityId) => ({ qualityId })),
+      suppliesId: item.suppliesId,
+      supplierId: props.supplier.supplierId,
+      supplierSuppliesInd: true
+    };
+    props.setSupplierSuppliesType(payload);
+
     setCurrentType({
       ...currentType,
       [item.suppliesId]: value
     });
   };
+
+  // const handleSetCurrentType = (value, item) => {
+  //   setCurrentType({
+  //     ...currentType,
+  //     [item.suppliesId]: value
+  //   });
+  // };
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -72,7 +87,7 @@ function SupplierSuppliesCardTable(props) {
               <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
               </div>
-            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
+            <div className=" w-[18.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
               id="app.tagwithsuplier"
               defaultMessage="Tag with Supplier"
             /></div>
@@ -146,10 +161,10 @@ supplierId={props.supplier.supplierId}
 
 
 </div>
-<div className="w-[13.1rem]">   
+<div className="w-[18.1rem]">   
 {item.supplierSuppliesInd &&( 
   <>
-<div class="flex flex-row items-center w-[14rem]  max-sm:flex-row  max-sm:justify-end">
+<div class="flex flex-row items-center justify-between w-[14rem]  max-sm:flex-row  max-sm:justify-end">
   {/* <div class="flex">                
 {props.supplierSuppliesQuality.map((dt)=>{
 
@@ -174,7 +189,9 @@ supplierId={props.supplier.supplierId}
                   </div>
                  
                   )})}
-  </div>          */}
+  </div> 
+       */}
+         <div class=" w-[12rem]">  
   <Select
           showSearch
           style={{width:"100%"}}
@@ -192,6 +209,8 @@ supplierId={props.supplier.supplierId}
             </Option>
           ))}
         </Select>
+        </div>  
+        {/* <div>  
         <Button type="primary"
                         // type={dt.type}
                         // role={item.type}
@@ -206,6 +225,7 @@ supplierId={props.supplier.supplierId}
                       >
 Save
                     </Button>
+                    </div>   */}
                 </div>
                 </>
               )}

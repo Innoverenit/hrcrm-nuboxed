@@ -81,6 +81,9 @@ const initialState = {
   fetchingSupplierPriceListError: false,
   supplierPriceList:[],
 
+  updatingQualitySuppliers: false,
+  updatingQualitySuppliersError: false,
+
   pOSupplierDetailsId: "",
 
   addLinkSuppliersOrderConfigureModal: false,
@@ -142,6 +145,8 @@ const initialState = {
   fetchingSuppliesList: false,
   fetchingSuppliesListError: false,
   suppliesList: [],
+
+  suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
   fetchingSuppliesListByIdError: false,
@@ -411,6 +416,21 @@ export const suppliersReducer = (state = initialState, action) => {
         addingSuppliersError: true,
         addSuppliersModal: false,
       };
+
+      case types.UPDATE_QUALITY_SUPPLIERS_REQUEST:
+        return { ...state, updatingQualitySuppliers: true };
+      case types.UPDATE_QUALITY_SUPPLIERS_SUCCESS:
+        return {
+          ...state, updatingQualitySuppliers: false, suppliersListOpenDrawer: false,
+          // supplierList: [action.payload, ...state.supplierList]
+        };
+      case types.UPDATE_QUALITY_SUPPLIERS_FAILURE:
+        return {
+          ...state,
+          updatingQualitySuppliers: false,
+          updatingQualitySuppliersError: true,
+          suppliersListOpenDrawer: false,
+        };
 
     case types.GET_SUPPLIERS_LIST_REQUEST:
       return { ...state, fetchingSupplierList: true };
@@ -1345,6 +1365,9 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
+      case types.EMPTY_SUPPLIER_PRICE_LIST:
+        return { ...state, supplierPriceList: [] };
+
     case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
       return { ...state, supplierSuppliesdrwr: action.payload };
 
@@ -1497,6 +1520,9 @@ export const suppliersReducer = (state = initialState, action) => {
 
       case types.HANDLE_SUPPLIERS_PRICE_DRAWER:
         return { ...state, suppliersPriceOpenDrawer: action.payload };
+
+        case types.HANDLE_SUPPLIERS_LIST_DRAWER:
+          return { ...state, suppliersListOpenDrawer: action.payload };
 
     default:
       return state;
