@@ -3328,3 +3328,10 @@ export const getRegionSalesQuotationList = (userId,quarter,year) => (dispatch) =
     });
 };
 
+
+export const handleOpportunityRowEmailModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPPOORTUNITY_ROW_EMAIL_MODAL,
+    payload: modalProps,
+  });
+};

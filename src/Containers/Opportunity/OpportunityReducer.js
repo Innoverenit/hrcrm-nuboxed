@@ -225,6 +225,8 @@ const initialState = {
   fetchingOppLinkedStagesError: false,
   oppLinkStages:[],
 
+  addOpportunityRowEmailModal:false,
+
   fetchingCloseOpportunity: false,
   fetchingCloseOpportunityError: false,
   closeOpportunity:[],
@@ -2593,6 +2595,10 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
             opportunityContractStatus: false,
             opportunityContractStatusError: true,
           };
+
+          case types.HANDLE_OPPOORTUNITY_ROW_EMAIL_MODAL:
+                        return { ...state, addOpportunityRowEmailModal: action.payload };
+ 
 
                                             default:
                                             return state;
