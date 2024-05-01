@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select} from "antd";
 import { FormattedMessage } from "react-intl";
+import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitImage";
 import {getSources} from "../../../Settings/Category/Source/SourceAction"
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
@@ -13,6 +15,8 @@ import {
     updateLeads,
     setEditLeads,
     setClearbitData, 
+    emptyClearbit,
+
     getCrm
 } from "../../../Leads/LeadsAction";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
@@ -41,6 +45,8 @@ function UpdateLeadsForm (props) {
     props.getAllCustomerEmployeelist();
     props.getSources(props.orgId);
     props.getCrm();
+     props.emptyClearbit();
+
     fetchSector();
     if (props.setEditingLeads.source) {
       setSelectedSource(props.setEditingLeads.source);
@@ -61,6 +67,7 @@ function UpdateLeadsForm (props) {
       user,
       // user: { userId, firstName },
       isEditing,
+      clearbit,
       prefillAccount,
       updateLeadsById,
       updateLeads,
@@ -382,10 +389,36 @@ function UpdateLeadsForm (props) {
                         </div>              
                          </div>
                   </div>
+                  <div>
+                    {clearbit && clearbit.hasOwnProperty("logo") && (
+                      <ProgressiveImage
+                        preview={
+                          "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+                        }
+                        image={clearbit.logo}
+                        width={140}
+                        height={150}
+                        borderRadius={25}
+                        padding={15}
 
+                      />
+                    )}
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
                   <Field
-                 
+                    defaultValue={{
+                      label: props.setEditingLeads.companyName,
+                      value: props.setEditingLeads.companyName,
+                    }}
                     name="companyName"
                     type="text"
                     //label="Name"
@@ -394,9 +427,9 @@ function UpdateLeadsForm (props) {
                     }
                     isColumn
                     width={"100%"}
-                    component={InputComponent}
-                    // setClearbitData={props.setClearbitData}
-                    // component={ClearbitImage}
+                    // component={InputComponent}
+                    setClearbitData={props.setClearbitData}
+                    component={ClearbitImage}
                     accounts={accounts}
                     inlineLabel
                     />
@@ -652,6 +685,7 @@ const mapStateToProps = ({ auth, leads,employee,source, }) => ({
     updateLeadsByIdError: leads.updateLeadsByIdError,
     user: auth.userDetails,
     sources: source.sources,
+    clearbit: leads.clearbit,
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     organizationId: auth.userDetails.organizationId,
@@ -669,6 +703,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         updateLeads,
         setEditLeads,
+        emptyClearbit,
       getAllCustomerEmployeelist,
       setClearbitData,
       getSources,

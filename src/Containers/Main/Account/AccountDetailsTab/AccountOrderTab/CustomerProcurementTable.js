@@ -7,6 +7,7 @@ import {
   getOrderProcurement,
   handleUpdateProcureDetailModal,
   setEditProcure,
+  getProcureRecords
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
@@ -16,6 +17,7 @@ import UpdateProcureModal from "./UpdateProcureModal";
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
   useEffect(() => {
+    props.getProcureRecords(props.distributorId,"procure");
     props.getOrderProcurement(props.distributorId, page,"procure");
     setPage(page + 1);
   }, []);
@@ -184,6 +186,7 @@ const mapStateToProps = ({ distributor }) => ({
   procurementOrder: distributor.procurementOrder,
   updateProcureDetailModal:distributor.updateProcureDetailModal,
   fetchingOrderProcurement: distributor.fetchingOrderProcurement,
+  procureRecordData:distributor.procureRecordData,
 
 });
 
@@ -192,7 +195,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       getOrderProcurement,
       handleUpdateProcureDetailModal,
-      setEditProcure
+      setEditProcure,
+      getProcureRecords
     },
     dispatch
   );

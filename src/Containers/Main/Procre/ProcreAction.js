@@ -40,4 +40,35 @@ export const getAllProcure = (orgId,pageNo) => (dispatch) => {
       });
     });
 };
+export const emptyProcre = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_PROCURE_LIST,
+  });
+};
 
+
+export const getRecords = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/record/count/all/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

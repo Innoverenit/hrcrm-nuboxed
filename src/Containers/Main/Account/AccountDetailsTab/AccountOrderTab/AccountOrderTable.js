@@ -24,6 +24,7 @@ import {
     handleUpdateOrder,
     setEditOrder,
     removeOrderAcc,
+    getOrderRecords,
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
@@ -51,7 +52,7 @@ const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-
+        props.getOrderRecords(props.distributorId,"repair");
         props.getLocationList(props.orgId);
         props.getDistributorOrderByDistributorId(props.distributorId, page,"repair")
     }, [])
@@ -614,6 +615,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
+    getOrderRecords
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);

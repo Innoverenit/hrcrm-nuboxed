@@ -7,7 +7,8 @@ import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
-  getAllProcure
+  getAllProcure,
+  emptyProcre
 } from "../Procre/ProcreAction";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import moment from "moment";
@@ -25,9 +26,9 @@ function ProcreCardList(props) {
 
   const [particularRowData, setParticularRowData] = useState({});
 
-  // useEffect(() => {
-  //   return () => props.emptyOrders();
-  // }, []);
+  useEffect(() => {
+    return () => props.emptyProcre();
+  }, []);
   function handleSetParticularOrderData(item, data) {
     console.log(item);
     setParticularRowData(item);
@@ -57,13 +58,12 @@ if (props.fetchingAllProcure) {
             hasMore={hasMore}
           dataLength={props.allProcure.length}
           next={handleLoadMore}
-          loader={props.fetchingAllProcure ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+          loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
           height={"75vh"}
         >
           {props.allProcure.map((item) => {
-            const currentdate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
-
+          const currentdate = moment().format("DD/MM/YYYY");
+          const date = moment(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
               moment().diff(moment(item.lastRequirementOn), "days")
             );
@@ -115,7 +115,17 @@ if (props.fetchingAllProcure) {
                         <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.newOrderNo}
+                              {item.newOrderNo}  &nbsp;&nbsp;
+                              {date === currentdate ? (
+                                <span
+                                  style={{
+                                    color: "tomato",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  New
+                                </span>
+                              ) : null}
                             </div>
                           </Tooltip>
                         </div>
@@ -181,7 +191,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
 
     {
-getAllProcure
+getAllProcure,
+emptyProcre
     },
     dispatch
   );

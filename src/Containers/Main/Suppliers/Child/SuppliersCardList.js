@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSuppliersList, emptysUPPLIERS ,deleteSupplierData,
   handleUpdateSupplierModal,setEditSuppliers,
-  handleSuppliersPriceDrawer} from "../SuppliersAction"
+  handleSuppliersPriceDrawer,
+  handleSuppliersListDrawer} from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
@@ -12,9 +13,11 @@ import { DeleteOutlined } from "@ant-design/icons";
 import {Popconfirm,Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
+import SupplierAddListModal from "./SupplierAddListModal";
 
 function SuppliersCardList(props) {
 
@@ -191,6 +194,18 @@ function SuppliersCardList(props) {
                           />
           </Tooltip>
           </div>
+          <div>
+<Tooltip title="">
+<AssignmentIcon
+                            className="!text-base cursor-pointer text-[green]"
+                            onClick={() => {
+                               props.setEditSuppliers(item);
+                              handleRowData(item);
+                              props.handleSuppliersListDrawer(true);
+                            }}
+                          />
+          </Tooltip>
+          </div>
             </div> 
             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
@@ -253,11 +268,19 @@ className=" !text-[1rem] cursor-pointer text-[red]"
         handleRowData={handleRowData}
         handleSuppliersPriceDrawer={props.handleSuppliersPriceDrawer}
       />
+            <SupplierAddListModal
+        rowdata={rowdata}
+     
+        suppliersListOpenDrawer={props.suppliersListOpenDrawer}
+        handleRowData={handleRowData}
+        handleSuppliersListDrawer={props.handleSuppliersListDrawer}
+      />
     </>
   )
 }
 const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   supplierList: suppliers.supplierList,
+  suppliersListOpenDrawer:suppliers.suppliersListOpenDrawer,
   userId: auth.userDetails.userId,
   fetchingSupplierList: suppliers.fetchingSupplierList,
   suppliersPriceOpenDrawer:suppliers.suppliersPriceOpenDrawer,
@@ -276,7 +299,8 @@ const mapDispatchToProps = (dispatch) =>
       deleteSupplierData,
       setEditSuppliers,
       handleUpdateSupplierModal,
-      handleSuppliersPriceDrawer
+      handleSuppliersPriceDrawer,
+      handleSuppliersListDrawer
     },
     dispatch
   );

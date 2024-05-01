@@ -17,7 +17,7 @@ class AddAccountModal extends Component {
                     maskClosable={false}
                     maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
                     onClose={() => handleLinkDistributorOrderConfigureModal(false)}
-                    footer={null}
+                    // footer={null}
                 >
                     <AccountStepper distributorId={this.props.distributorId} />
 

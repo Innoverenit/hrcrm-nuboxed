@@ -42,6 +42,31 @@ export const addSuppliers = (data, userId) => (dispatch) => {
     });
 };
 
+export const updateQualitySuppliers = (data, userId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_QUALITY_SUPPLIERS_REQUEST });
+  axios
+    .post(`${base_url2}/po/quality/updatePrice `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QUALITY_SUPPLIERS_FAILURE,
+        payload: err,
+      });
+      // cb();
+    });
+};
+
 // get suppliers
 
 export const getSuppliersList = (userId, pageNo) => (dispatch) => {
@@ -1412,6 +1437,13 @@ export const emptysUPPLIERS = () => (dispatch) => {
   });
 };
 
+export const emptysUPPLIERSPrice = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_SUPPLIER_PRICE_LIST,
+  });
+};
+
+
 export const handlePoListModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PO_LIST_MODAL,
@@ -1725,4 +1757,12 @@ export const handleSuppliersPriceDrawer = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleSuppliersListDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_LIST_DRAWER,
+    payload: modalProps,
+  });
+};
+
 

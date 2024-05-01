@@ -24,6 +24,10 @@ const initialState = {
   fetchingOrderRecordsError: false,
   orderRecordData: {},
 
+  fetchingProcureRecords: false,
+  fetchingProcureRecordsError: false,
+  procureRecordData:{},
+
   addingDistributor: false,
   addingDistributorError: false,
 
@@ -495,7 +499,7 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, viewType: action.payload };
 
     case types.HANDLE_DISTRIBUTOR_MODAL:
-      return { ...state, addDistributorModal: action.payload, clearbit: {} };
+      return { ...state, addDistributorModal: action.payload, };
 
     /**
      * Add a distributor
@@ -2105,6 +2109,21 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderRecordsError: true,
       };
 
+      case types.GET_PROCURE_RECORDS_REQUEST:
+        return { ...state, fetchingProcureRecords: true };
+      case types.GET_PROCURE_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingProcureRecords: false,
+          procureRecordData: action.payload,
+        };
+      case types.GET_PROCURE_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingProcureRecords: false,
+          fetchingProcureRecordsError: true,
+        };
+
     case types.HANDLE_REPAIR_REASON_MODAL:
       return { ...state, showRepairReasonModal: action.payload };
 
@@ -2709,6 +2728,10 @@ export const distributorReducer = (state = initialState, action) => {
                   updatingProcureStep1: false,
                   updatingProcureStep1Error: true,
                 };
+
+                case types.EMPTY_CLEARBIT_TABLE:
+                  return { ...state,  clearbit: {} };
+
       
     default:
       return state;
