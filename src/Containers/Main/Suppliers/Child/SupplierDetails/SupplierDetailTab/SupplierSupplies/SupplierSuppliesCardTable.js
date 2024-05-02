@@ -121,7 +121,7 @@ function SupplierSuppliesCardTable(props) {
               {props.supplierSuppliesList.length ?
                 <>
                   {props.supplierSuppliesList.map((item) => {
-                    const initialSelectedValues = item.type ? item.type.map(({ qualityId }) => qualityId) : [];
+                    const initialSelectedValues = item.quality ? item.quality.map(({ qualityId }) => qualityId) : [];
                     return (
                       <>
                         <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"

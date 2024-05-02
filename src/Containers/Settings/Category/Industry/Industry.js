@@ -20,6 +20,8 @@ import {
     updateIndustry
 } from "../Industry/IndustryAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import CountryStatusToggle from "../Country/CountryStatusToggle";
+import IndustryStatusToggle from "./IndustryStatusToggle";
 
 
 const Industry = (props) => {
@@ -171,6 +173,28 @@ return <div><BundleLoader/></div>;
                                         New
                                       </span> : null}</div>
             )}
+
+<div className=" flex font-medium flex-col md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
+
+<div class=" text-sm text-cardBody font-medium font-poppins">
+
+Industry
+
+</div>
+
+
+<div class=" font-normal text-sm text-cardBody font-poppins">
+<div class=" w-2/6">
+<IndustryStatusToggle
+// editInd={region.editInd}
+// mandatoryInd={region.mandatoryInd}
+// country_name={region.country_name}
+// country_id={region.country_id}
+/>  
+</div>
+</div>
+
+</div>
 
             {/* Action buttons */}
             <div className="actions">

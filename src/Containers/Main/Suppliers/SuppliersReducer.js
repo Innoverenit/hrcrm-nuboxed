@@ -146,6 +146,10 @@ const initialState = {
   fetchingSuppliesListError: false,
   suppliesList: [],
 
+  fetchingMaterialWiseQuality: false,
+   fetchingMaterialWiseQualityError: false ,
+   materialwiseQuality:[],
+
   suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
@@ -218,6 +222,9 @@ const initialState = {
   addingDocumentBySupplierIdError: false,
 
   addDeleteSuppliesModal: false,
+
+  updatePriceSupplierListItem: false,
+  updatePriceSupplierListItemError: false,
 
   deletingSuppliesData: false,
   deletingSuppliesDataError: false,
@@ -1523,6 +1530,38 @@ export const suppliersReducer = (state = initialState, action) => {
 
         case types.HANDLE_SUPPLIERS_LIST_DRAWER:
           return { ...state, suppliersListOpenDrawer: action.payload };
+
+
+
+          case types.UPDATE_PRICE_OF_SUPPLIER_REQUEST:
+            return { ...state, updatePriceSupplierListItem: true };
+          case types.UPDATE_PRICE_OF_SUPPLIER_SUCCESS:
+            return {
+              ...state,
+              updatePriceSupplierListItem: false,
+              supplierPriceList: state.supplierPriceList.map((item) => {
+                if (item.suppliesId == action.payload.suppliesId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            };
+          case types.UPDATE_PRICE_OF_SUPPLIER_FAILURE:
+            return {
+              ...state,
+              updatePriceSupplierListItem: false,
+              updatePriceSupplierListItemError: true,
+            };
+
+
+            case types.GET_SUPPLIER_WISE_QUALITY_REQUEST:
+              return { ...state, fetchingMaterialWiseQuality: true };
+            case types.GET_SUPPLIER_WISE_QUALITY_SUCCESS:
+              return { ...state, fetchingMaterialWiseQuality: false, materialwiseQuality: action.payload };
+            case types.GET_SUPPLIER_WISE_QUALITY_FAILURE:
+              return { ...state, fetchingMaterialWiseQuality: false, fetchingMaterialWiseQualityError: true };
+      
 
     default:
       return state;
