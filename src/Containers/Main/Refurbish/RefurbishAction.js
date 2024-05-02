@@ -1768,3 +1768,34 @@ export const getRemainingPhones = (orderPhoneId, technicianId) => (dispatch) => 
       });
     });
 };
+
+export const addLeadInRefurbish = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_LEAD_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ADD_LEAD_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LEAD_FAILURE,
+        payload: err,
+      });
+    });
+};

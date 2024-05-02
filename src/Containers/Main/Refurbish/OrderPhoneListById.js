@@ -99,7 +99,7 @@ function OrderPhoneListById(props) {
         console.log(item)
         const data = {
             qcStatus: type,
-            orderPhoneId: props.rowData.orderId,
+            orderPhoneId: props.rowData.orderPhoneId,
             phoneId: item.phoneId,
             qcTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
@@ -296,7 +296,7 @@ function OrderPhoneListById(props) {
                                                                         handleSetRowData(item);
                                                                         props.updateCantRepairQC({
                                                                             cannotRepairInd: true,
-                                                                            orderPhoneId: props.rowData.orderId
+                                                                            orderPhoneId: props.rowData.orderPhoneId
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >
@@ -308,7 +308,7 @@ function OrderPhoneListById(props) {
                                                                         handleSetRowData(item);
                                                                         props.updateCantRepairQC({
                                                                             cannotRepairInd: false,
-                                                                            orderPhoneId: props.rowData.orderId
+                                                                            orderPhoneId: props.rowData.orderPhoneId
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >

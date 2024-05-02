@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     addSupervisor,
-    addLead,
     getLocationList,
     getUserByLocationDepartment,
 } from "../Account/AccountAction"
-import { getProductionOrderId } from "./RefurbishAction"
+import { getProductionOrderId, addLeadInRefurbish } from "./RefurbishAction"
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { Button, Select } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -36,7 +35,7 @@ function LeadRefurbishForm(props) {
 
     }
     const handleSubmit = () => {
-        props.addLead({
+        props.addLeadInRefurbish({
             teamLeadUserId: technician
         }, props.rowData.orderPhoneId, handleCallback())
     }
@@ -113,7 +112,7 @@ const mapDispatchToProps = (dispatch) =>
         getUserByLocationDepartment,
         addSupervisor,
         getDepartments,
-        addLead,
+        addLeadInRefurbish,
         getProductionOrderId,
         getLocationList
     }, dispatch);
