@@ -1766,3 +1766,61 @@ export const handleSuppliersListDrawer = (modalProps) => (dispatch) => {
 };
 
 
+export const updatePriceSuppliers = (data) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_PRICE_OF_SUPPLIER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/quality/updatePrice`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Price updated Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      dispatch({
+        type: types.UPDATE_PRICE_OF_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PRICE_OF_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSupplierwiseQuality = (supplierId,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_WISE_QUALITY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/quality/drop-down/${supplierId}/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_WISE_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_WISE_QUALITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+

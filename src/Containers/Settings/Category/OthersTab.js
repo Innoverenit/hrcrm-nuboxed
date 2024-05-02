@@ -17,6 +17,7 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
 import Industry from "./Industry/Industry";
+import IndustryTab from "./Industry/IndustryTab";
 
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -71,7 +72,7 @@ class OthersTab extends Component {
         case "9":
           return   <ServiceLine />;
           case "10":
-            return     <Industry />;
+            return     <IndustryTab />;
        
         
       default:

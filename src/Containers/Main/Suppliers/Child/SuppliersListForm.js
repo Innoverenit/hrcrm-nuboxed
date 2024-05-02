@@ -68,7 +68,7 @@ const SuppliersListForm = (props) => {
         
         };
 
-        props.updateQualitySuppliers(payload, props.userId);
+        // props.updateQualitySuppliers(payload, props.userId);
 
         resetForm();
       }}
@@ -87,32 +87,8 @@ const SuppliersListForm = (props) => {
                   options={props.materialOption || []}
                   inlineLabel
                 />
-                <div className="flex justify-between">
-                  <div className="w-[30%] max-sm:w-[40%]">
-                    <Field
-                      isRequired
-                      name="price"
-                      type="text"
-                      label={<FormattedMessage id="app.Price" defaultMessage="Price" />}
-                      width={"100%"}
-                      component={InputComponent}
-                      isColumn
-                      inlineLabel
-                    />
-                  </div>
-                  <div className="w-[68%] max-sm:w-[50%]">
-                    <Field
-                      name="currency"
-                      label={<FormattedMessage id="app.currency" defaultMessage="Currency" />}
-                      isColumn
-                      width={"100%"}
-                      component={SelectComponent}
-                      options={props.currencyNameOption || []}
-                      inlineLabel
-                    />
-                  </div>
-                </div>
-                <div className="w-full">
+                <div className="flex justify-between mt-2">
+                <div className="w-w47.5">
                   <Field
                     name="date"
                     label={<FormattedMessage id="app.date" defaultMessage="Date" />}
@@ -124,26 +100,55 @@ const SuppliersListForm = (props) => {
                     inlineLabel
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-w47.5">
                
-                  <label style={{ fontWeight: "bold", fontSize: "0.75rem" }}>Quality</label>
+               <label style={{ fontWeight: "bold", fontSize: "0.75rem" }}>Quality</label>
 
-                  <Field
-               name="quality"
+               <Field
+            name="quality"
 
-              style={{width:"10rem"}}
-               mode
-               placeholder="Select"
-               component={SelectComponent}
-               options={Array.isArray(qualityData) ? qualityData : []}
-               value={values.quality}
+           style={{width:"10rem"}}
+            mode
+            placeholder="Select"
+            component={SelectComponent}
+            options={Array.isArray(qualityData) ? qualityData : []}
+            value={values.quality}
+          
+          />
+
              
-             />
- 
-                
+             </div>
                 </div>
+               
               </div>
-              <div className="h-full w-w47.5 max-sm:w-full"></div>
+              <div className="h-full w-w47.5 max-sm:w-full">
+              <div className="flex justify-between">
+                  <div className="w-w47.5 max-sm:w-[40%]">
+                    <Field
+                      isRequired
+                      name="price"
+                      type="text"
+                      label={<FormattedMessage id="app.Price" defaultMessage="Price" />}
+                      width={"100%"}
+                      component={InputComponent}
+                      isColumn
+                      inlineLabel
+                    />
+                  </div>
+                  <div className="w-w47.5 max-sm:w-[50%]">
+                    <Field
+                      name="currency"
+                      label={<FormattedMessage id="app.currency" defaultMessage="Currency" />}
+                      isColumn
+                      width={"100%"}
+                      component={SelectComponent}
+                      options={props.currencyNameOption || []}
+                      inlineLabel
+                    />
+                  </div>
+                </div>
+             
+              </div>
             </div>
             <div className="flex justify-end mt-3">
               <Button type="primary" htmlType="submit" loading={props.updatingQualitySuppliers}>

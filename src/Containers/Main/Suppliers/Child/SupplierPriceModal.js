@@ -10,7 +10,7 @@ const SupplierPriceModal = (props) => {
     <>
       <StyledDrawer
         title={props.rowdata.name}
-        width="60%"
+        width="65%"
         visible={props.suppliersPriceOpenDrawer}
         maskClosable={false}
         destroyOnClose
