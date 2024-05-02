@@ -592,7 +592,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOpportunity: false,
-        addOpportunityModal: false,
+        //addOpportunityModal: false,
         opportunityByUserId:[action.payload,...state.opportunityByUserId]
         // clearbit: null,
       };
@@ -601,7 +601,7 @@ export const OpportunityReducer = (state = initialState, action) => {
         ...state,
         addingOpportunity: false,
         addingOpportunityError: true,
-        addOpportunityModal: false,
+        //addOpportunityModal: false,
       };
 
     /* Get a opportunity  */

@@ -2246,6 +2246,32 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
     });
 };
 
+export const getJumpDistributorDetail = (type) => (dispatch) => {
+  dispatch({ type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/distributor/count/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getJumpFinanceDetail = (orgId, type,orderType) => (dispatch) => {
   dispatch({ type: types.GET_JUMPSTART_FINANCE_DETAIL_REQUEST });
   axios

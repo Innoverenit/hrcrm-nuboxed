@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import {getJumpDistributorDetail} from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
@@ -27,6 +28,9 @@ class CustomerDashboardJumpStart extends React.Component{
   };
 }
 
+componentDidMount() {
+   this.props.getJumpDistributorDetail(this.props.timeRangeType);
+}
 // componentDidMount() {
   
 //    if (this.props.role==="USER"&&this.props.user.department==="Recruiter"){
@@ -92,6 +96,7 @@ render() {
                 defaultMessage="Customer Added"
               />
             }
+            value={this.props.distributorinDashboard.totalDistributor}
             // value={this.props.leaveFetching.leaveBalance}
             // value={
             //   this.props.user.department === "Recruiter"
@@ -115,6 +120,7 @@ render() {
                 defaultMessage="Contacts Added"
               />
             }
+            value={this.props.distributorinDashboard.totalContactPerson}
             // title="AV hours this month  "
             // value={
             //   // this.props.user.department === "Recruiter"
@@ -149,6 +155,7 @@ render() {
                 defaultMessage="Orders Added"
               />
             }
+            value={this.props.distributorinDashboard.totalOrder}
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
             // value={this.props.showDatelist.selectted}
             // value={
@@ -174,6 +181,7 @@ render() {
                 defaultMessage="Orders Completed"
               />
             }
+            value={this.props.distributorinDashboard.completeOrder}
             // title="Joining Date"
            // bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
         //    value={formattedDate}
@@ -262,10 +270,13 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   dateOfJoining: auth.userDetails && auth.userDetails.dateOfJoining,
   taskperCount:dashboard.taskperCount,
   avgHour:dashboard.avgHour,
-  fetchingAvgHour:dashboard.fetchingAvgHour
+  fetchingAvgHour:dashboard.fetchingAvgHour,
+  timeRangeType: dashboard.timeRangeType,
+  distributorinDashboard:dashboard.distributorinDashboard,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getJumpDistributorDetail
 //   getDateWiseList,
 //   getSalesDateWiseList,
 //   getTasklist,

@@ -900,7 +900,7 @@ const filteredEmployeesData = AllEmplo.filter(
   
             </div>
             <Spacer />
-            <div class="flex justify-end w-wk bottom-2 mr-2 absolute ">
+            <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute ">
               <Button
                 type="primary"
                 htmlType="submit"

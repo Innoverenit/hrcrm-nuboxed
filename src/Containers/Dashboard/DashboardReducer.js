@@ -450,6 +450,10 @@ const initialState = {
   fetchingorderDetailsError: false,
   orderinDashboard: [],
 
+  fetchingdistributorDetails: false,
+  fetchingdistributorDetailsError: false,
+  distributorinDashboard:[],
+
 
   prospectDrawerModal:false,
 
@@ -1965,6 +1969,22 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingorderDetailsError: true,
 
       };
+
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST:
+        return { ...state, fetchingdistributorDetails: true };
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_SUCCESS:
+        return {
+          ...state,
+          fetchingdistributorDetails: false,
+          distributorinDashboard: action.payload,
+        };
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_FAILURE:
+        return {
+          ...state,
+          fetchingdistributorDetails: false,
+          fetchingdistributorDetailsError: true,
+  
+        };
 
 
 
