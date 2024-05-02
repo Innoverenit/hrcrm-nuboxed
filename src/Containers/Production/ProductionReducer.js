@@ -18,6 +18,9 @@ const initialState = {
   fetchingProductionLocId: false, fetchingProductionLocIdError: false,
   productionByLocsId: [],
 
+
+  
+
   openbUILDERProductiondrawer: false,
   clickedProductionIdrwr: false,
 
@@ -28,6 +31,9 @@ const initialState = {
   fetchingWorkflowList: false,
   fetchingWorkflowListError: true,
   workflowProduction: [],
+
+
+  addSparePartsDrawerModal:false,
 
   fetchingArchieveProduction: false,
   fetchingArchieveProductionError: false,
@@ -76,6 +82,11 @@ export const productionReducer = (state = initialState, action) => {
 
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+
+      case types.ADD_SPARE_PARTS_DRAWER_MODAL:
+                                          return { ...state, addSparePartsDrawerModal: action.payload };
 
 
     case types.CREATE_PRODUCTION_LINK_REQUEST:
