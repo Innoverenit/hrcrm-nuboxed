@@ -29,12 +29,18 @@
 // export default ProductionTimeLine;
 
 
-import React from 'react';
-import { Steps } from 'antd';
+import React, { useState } from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import AddSpareStepsModal from "../Child/AddSpareStepsModal"
+import { Button, Steps } from 'antd';
+
+import {addSpareStepsModal} from "../ProductionAction"
 
 const { Step } = Steps;
 
 const Component2 = (props) => {
+    const[step,setStep]=useState("")
     // Hardcoded JSON data for the Steps component
     const stepsData = [
         { title: 'Step 1', description: 'Description for Step 1' },
@@ -43,7 +49,14 @@ const Component2 = (props) => {
         { title: 'Step 4', description: 'Description for Step 4' },
     ];
 
+
+    function handleSteps(step) {
+        setStep(step);
+        // console.log("opp",item);
+      }
+
     return (
+        <>
         <div className=' flex justify-end sticky top-28 z-auto'>
              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <h2>Steps</h2>
@@ -52,20 +65,81 @@ const Component2 = (props) => {
                     <Step key={index} title={item.title} description={item.description} />
                 ))}
             </Steps> */}
-              <Steps direction="vertical" current={0}>
+              {/* <Steps direction="vertical" current={0}>
                 {props.productionTableData?.steps?.map((step, index) => (
-                    <Step key={index} title={`${step.suppliesName} (${step.quantity})`} description={step.description}>
-                        {/* <p>Quantity: {step.quantity}</p>
-                        <p>Steps: {step.steps}</p> */}
+                    <Step key={index} title={`${step.suppliesName} (${step.quantity})`} 
+                    description=
+                    {step.description} 
+                    >
+                       
+                       
                     </Step>
                 )) ?? (
                     <Step title="No Steps Data" description="No steps data available" />
                 )}
+            </Steps> */}
+
+
+
+<Steps direction="vertical" current={0}>
+                {props.productionTableData?.steps?.map((step, index) => (
+                    <Step
+                        key={index}
+                        // title={status.title}
+                        title={`${step.suppliesName} (${step.quantity})`} 
+                        description={
+                            <div style={{display:"flex"}}>
+                                {step.description}
+                               
+                                    <div className="actions">
+                                        
+                                            <Button
+                                                type="primary"
+                                                onClick={() => {
+                                                    props.addSpareStepsModal(true)
+                                                    handleSteps(step);
+                                                   
+                                                }}
+                                            >
+                                                Add Parts
+                                            </Button>
+                                      
+                                     
+                                    </div>
+                               
+                            </div>
+                        }
+                    />
+                ))}
             </Steps>
+
+
+
         </div>
         </div>
+        <AddSpareStepsModal
+        step={step}
+        productionTableData={props.productionTableData}
+        addSpareStepsModal={props.addSpareStepsModal}
+        addSparePartsDrawerModal={props.addSparePartsDrawerModal}
+        />
+        </>
     );
 };
 
-export default Component2;
+
+
+const mapStateToProps = ({ auth, account, opportunity,production }) => ({
+    addSparePartsDrawerModal:production.addSparePartsDrawerModal
+  });
+  const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+      {
+        addSpareStepsModal,
+      },
+      dispatch
+    );
+  export default connect(mapStateToProps, mapDispatchToProps)(Component2);
+
+
 

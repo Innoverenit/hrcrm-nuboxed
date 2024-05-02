@@ -4,11 +4,12 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button, Popconfirm, Switch, Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
+import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
-import MoveToggleProduction from "../Child/MoveToggleProduction";
+
 import ButtonGroup from "antd/lib/button/button-group";
 import {updateProStatus} from "../ProductionAction"
 // import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer, updateRoomRackProduction } from "../ProductionAction"
@@ -16,6 +17,8 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
 import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+import InpectProductionToggle from "./InpectProductionToggle.js";
+import MoveToggleProduction from "../Child/MoveToggleProduction.js"
 // import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
 // import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 // import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -247,19 +250,81 @@ function ProductionTableView(props) {
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  
-                        <div className="md:w-[3rem]"></div>
-                        <div className="md:w-[2rem]"></div>
+                        {/* <div className="md:w-[3rem]"></div>
+                        <div className="md:w-[2rem]"></div> */}
                     </div>
                  
-                            
+                    <div >
+                                           
+                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                                
+
+                                                
+                                                
+
+
+                                                
+                                                
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins" >
+                                                        {/* {stage} */}
+                                                        {props.productionTableData.workflowName}
+                                                    </div>
+                                                </div>
+                                              
+
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {/* {stage} */}
+
+                                                        {props.productionTableData.stage}
+                                                    </div>
+                                                </div>
+
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {/* {stage} */}
+
+                                                        <InpectProductionToggle item={props.productionTableData} /> &nbsp;&nbsp;
+                                                            {props.productionTableData.inspectedInd ?
+                                                                <MultiAvatar
+                                                                    primaryTitle={props.productionTableData.inspectedUserName}
+                                                                    imgWidth={"1.8rem"}
+                                                                    imgHeight={"1.8rem"}
+                                                                /> : null}
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {/* {props.productionTableData.inspectedInd &&  */}
+                                                        <MoveToggleProduction item={props.productionTableData} />
+                                                        {/* } */}
+                                                    </div>
+                                                </div>
+                                               
+                                               
+                                               
+                                               
+                                            </div>          
+                                        </div>
                                       
                                     
                             
                            
                 </div>
+ 
             </div>
 
-        
+
+           
+            <OnboardingProduction
+            productionTableData={props.productionTableData}
+            />
+
+       
         </>
     );
 }

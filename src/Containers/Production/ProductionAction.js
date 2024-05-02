@@ -10,6 +10,13 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+export const addSpareStepsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SPARE_PARTS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setProductionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_PRODUCTION_VIEW_TYPE, payload: viewType });
 
