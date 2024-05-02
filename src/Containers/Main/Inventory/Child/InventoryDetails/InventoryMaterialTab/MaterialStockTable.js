@@ -10,6 +10,8 @@ import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, tr
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
+import { PlusOutlined } from "@ant-design/icons";
+import ItemHistoryInStock from "./ItemHistoryInStock";
 
 const { Option } = Select;
 
@@ -40,6 +42,12 @@ const GrnListOfPO = (props) => {
 
     const handleSelectZone = () => {
         setSelectZone(true)
+    }
+
+    const [itemHistory, setItemHistory] = useState(false);
+
+    const handleItemHistory = () => {
+        setItemHistory(!itemHistory)
     }
 
     const handleCancelZone = () => {
@@ -102,6 +110,19 @@ const GrnListOfPO = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                                        <div class="flex">
+                                            <div className=" flex font-medium flex-col md:w-[4.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                    <PlusOutlined
+                                                        onClick={() => {
+                                                            handleItemHistory()
+                                                            handleItemClick(item)
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
@@ -247,7 +268,10 @@ const GrnListOfPO = (props) => {
                                         </div>
 
                                     </div>
-
+                                    <div>
+                                        {itemHistory && (row.poSupplierSuppliesId === item.poSupplierSuppliesId)
+                                            && <ItemHistoryInStock row={row} />}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -264,6 +288,7 @@ const GrnListOfPO = (props) => {
                 stockUseDrwr={props.stockUseDrwr}
                 handleStockUsedDrawer={props.handleStockUsedDrawer}
             />
+
         </>
     );
 }

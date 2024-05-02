@@ -1809,3 +1809,28 @@ export const getRackList = (roomRackId) => (dispatch) => {
       });
     });
 };
+
+export const getItemHistoryInstock = (pOSupplierSuppliesDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_HISTORY_IN_STOCK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/unitList/${pOSupplierSuppliesDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -141,11 +141,11 @@ const initialState = {
   fetchingItemInCellStock: false,
   fetchingItemInCellStockError: false,
   cellStock: [],
-  //output reason list
-  // fetchingOutputReasonList: false,
-  // fetchingOutputReasonListError: false,
-  // outputReasonList: [],
-  //consumptionReasonModal
+
+  fetchingItemHistoryInStock: false,
+  fetchingItemHistoryInStockError: false,
+  itemHistoryInStock: [],
+
   consumptionReasonModal: false,
   //addReason
   addingConsumptionReason: false,
@@ -472,19 +472,20 @@ export const inventoryReducer = (state = initialState, action) => {
         stockUseDrwr: false,
       };
     //get received
-    case types.GET_RECEIVED_REQUEST:
-      return { ...state, fetchingReceivedUserList: true };
-    case types.GET_RECEIVED_SUCCESS:
+    case types.GET_ITEM_HISTORY_IN_STOCK_REQUEST:
+      return { ...state, fetchingItemHistoryInStock: true };
+    case types.GET_ITEM_HISTORY_IN_STOCK_SUCCESS:
       return {
         ...state,
-        fetchingReceivedUserList: false,
-        allReceivedUser: action.payload,
+        fetchingItemHistoryInStock: false,
+        itemHistoryInStock: action.payload,
       };
-    case types.GET_RECEIVED_FAILURE:
+    case types.GET_ITEM_HISTORY_IN_STOCK_FAILURE:
       return {
         ...state,
-        fetchingReceivedUserList: false,
-        fetchingReceivedUserListError: true,
+        fetchingItemHistoryInStock: false,
+        fetchingItemHistoryInStockError: true,
+
       };
 
     case types.HANDLE_FILE_DAMAGED_MODAL:
