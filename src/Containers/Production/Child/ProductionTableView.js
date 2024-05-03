@@ -77,10 +77,10 @@ function ProductionTableView(props) {
                         <div className=" md:w-[9rem]">ID</div>
                         <div className=" md:w-[6rem]">Created</div>
                         <div className="md:w-[2rem]"></div>
-                        <div className=" md:w-[6rem]">Item</div>
-                        <div className="md:w-[5rem]">Category</div>
-                        <div className="md:w-[5rem]">Attribute</div>
-                        <div className=" md:w-[5rem] ">Status</div>
+                        <div className=" md:w-[4.3rem]">Item</div>
+                        <div className="md:w-[5.4rem]">Category</div>
+                        <div className="md:w-[5.5rem]">Attribute</div>
+                        <div className=" md:w-[5.51rem] ">Status</div>
    
  
                         <div className="md:w-[3rem]"></div>
@@ -96,7 +96,7 @@ function ProductionTableView(props) {
                                         <div key={item.productId} >
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 <div class="flex">
-                                                    <div className=" flex font-medium flex-col  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             // onClick={() => {
@@ -115,7 +115,7 @@ function ProductionTableView(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
@@ -130,7 +130,7 @@ function ProductionTableView(props) {
 
                                                     </div>
 
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
 <div class=" text-xs text-cardBody font-poppins">
     {/* {props.productionTableData.createdBy} */}
@@ -138,7 +138,7 @@ function ProductionTableView(props) {
 </div>
 
 </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center  md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {item.productName}
@@ -148,7 +148,7 @@ function ProductionTableView(props) {
 
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
                                                         {item.categoryName} 
@@ -159,19 +159,19 @@ function ProductionTableView(props) {
 
                                                 
                                                 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
                                                     </div>
                                                 </div>
                                               
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.type === "In Progress" && item.pauseInd === true &&
 
@@ -248,14 +248,13 @@ function ProductionTableView(props) {
 
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=""></div>
+                    <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">                       
                         <div className=" md:w-[9rem]">Workflow</div>
-                        <div className=" md:w-[6rem]">Stage</div>
+                        <div className=" md:w-[6.06rem]">Stage</div>
                         <div className="md:w-[2rem]"></div>
-                        <div className=" md:w-[6rem]">Store</div>
-                        <div className="md:w-[5rem]">Inspected</div>
-                        <div className="md:w-[5rem]">Dispatch</div>
+                        <div className=" md:w-[6.07rem]">Store</div>
+                        <div className="md:w-[5.08rem]">Inspected</div>
+                        <div className="md:w-[5.07rem]">Dispatch</div>
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  
@@ -278,7 +277,7 @@ function ProductionTableView(props) {
 
                                                 
                                                 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins" >
                                                         {/* {stage} */}
                                                         {item.workflowName}
@@ -286,7 +285,7 @@ function ProductionTableView(props) {
                                                 </div>
                                               
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[8.54rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
 
@@ -294,11 +293,11 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[13.081rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
 
-                                                        <InpectProductionToggle item={item} /> &nbsp;&nbsp;
+                                                        <InpectProductionToggle item={item} />
                                                             {item.inspectedInd ?
                                                                 <MultiAvatar
                                                                     primaryTitle={item.inspectedUserName}
@@ -310,7 +309,7 @@ function ProductionTableView(props) {
 
 
 
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {props.productionTableData.inspectedInd &&  */}
                                                         <MoveToggleProduction item={item} />

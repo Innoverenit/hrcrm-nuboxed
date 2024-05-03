@@ -25,6 +25,9 @@ class OpportunityRowEmailModal extends Component {
       files: null,
       file:null,
       flag: null,
+      pdfFileName: null,
+      pdfContent: null,
+      formattedFile: null,
       status: "done",
     };
   }
@@ -112,8 +115,35 @@ class OpportunityRowEmailModal extends Component {
     doc.rect(0, 276, 230, 15, 'F');
   
     doc.save("Quotation.pdf")
+
+    const pdfDataUri = doc.output('datauristring');
+
   
+    const fileName = this.props.initialFileName || "document.pdf"; // Use the initialFileName prop or fallback to a default
+    this.setState({
+      pdfFileName: fileName,
+      pdfContent: pdfDataUri
+    });
+
+    // Format PDF content into a file object
+    const file = {
+      uid: `rc-upload-${Date.now()}`,
+      name: fileName,
+      lastModified: Date.now(), 
+      size: this.calculateFileSize(pdfDataUri), 
+      type: 'application/pdf',
+      originFileObj: null, 
+      percent: 0, 
+      status: 'done' 
+    };
+    this.setState({ formattedFile: file });
   }
+
+  calculateFileSize = (dataUri) => {
+  
+    const byteString = atob(dataUri.split(',')[1]);
+    return byteString.length;
+  };
 
   onEditorStateChange = (editorState) => {
     console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -136,6 +166,7 @@ class OpportunityRowEmailModal extends Component {
   };
 
   render() {
+    console.log(this.state.formattedFile)
     const { editorState, placeholder } = this.state;
     const {
       customerById: { name, middleName, lastName, customerId },
@@ -174,14 +205,17 @@ class OpportunityRowEmailModal extends Component {
             }}
             // validationSchema={NoteSchema}
             onSubmit={(values, { resetForm }) => {
+              let formData = new FormData();
+    formData.append("file", this.state.formattedFile);
               //debugger
+              console.log(formData)
               console.log(
                 draftToHtml(convertToRaw(editorState.getCurrentContent()))
               );
               const htmlBody = draftToHtml(
                 convertToRaw(editorState.getCurrentContent())
               );
-               this.props.sendEmail({ ...values,body:htmlBody, cc: values.cc, bcc: values.bcc, attachment: this.state.file }, 
+               this.props.sendEmail({ ...values,body:htmlBody, cc: values.cc, bcc: values.bcc,  formData }, 
                 // () => setEmailModalVisible(false)
               )
             }}
@@ -270,15 +304,17 @@ class OpportunityRowEmailModal extends Component {
                      onEditorStateChange={this.onEditorStateChange}
                     placeholder={placeholder || "Type here"}
                   />
-                  <div class=" flex justify-end" >
-                  <div class="w-6">
-        {/* <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon/>
-                           </span> */}
+                  <div class=" flex justify-between items-center" >
+                  <div class="w-24">
+        <span onClick={() => this.exportPDFAnnexure()}>
+          <Button type="primary">
+            Generate Pdf
+            </Button>
+                           </span>
           </div>
                     <div class=" flex flex-row"
                     >
-                      <Upload
+                      {/* <Upload
                         onChange={this.onFileChoose}
                         onRemove={this.handleRemove}
                       >
@@ -291,7 +327,7 @@ class OpportunityRowEmailModal extends Component {
                         >
                           Upload
                         </Button>
-                      </Upload>
+                      </Upload> */}
 
                       <Button
                         type="primary"

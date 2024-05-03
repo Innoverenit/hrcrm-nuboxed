@@ -105,7 +105,7 @@ export const sendEmail = (email, blank, cb) => dispatch => {
     type: types.SEND_EMAIL_REQUEST
   });
   axios
-    .post(`${base_url}/sendEmail`, email, {
+    .post(`${base_url}/email/send`, email, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         "Content-Type": "multipart/form-data",
