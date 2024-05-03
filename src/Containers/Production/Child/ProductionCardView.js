@@ -129,19 +129,19 @@ function ProductionCardView(props) {
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" md:w-[9rem]">ID</div>
-                        <div className=" md:w-[6rem]">Created</div>
-                        <div className=" md:w-[6rem]">Item</div>
-                        <div className="md:w-[5rem]">Category</div>
-                        <div className="md:w-[5rem]">Attribute</div>
-                        <div className=" md:w-[5rem] ">Status</div>
-                        <div className="md:w-[5rem]">Workflow</div>
-                        <div className="md:w-[5rem]">Stage</div>
-                        <div className="md:w-[5rem]"></div>
-                        <div className="md:w-[8rem]">Store</div>
+                        <div className=" md:w-[9.02rem]">ID</div>
+                        <div className=" md:w-[5.01rem]">Created</div>
+                        <div className=" md:w-[6.02rem]">Item</div>
+                        <div className="md:w-[4.02rem]">Category</div>
+                        <div className="md:w-[4.03rem]">Attribute</div>
+                        <div className=" md:w-[3.06rem] ">Status</div>
+                        <div className="md:w-[5.04rem]">Workflow</div>
+                        <div className="md:w-[5.012rem]">Stage</div>
+                        <div className="md:w-[1.023rem]"></div>
+                        <div className="md:w-[9rem]">Store</div>
                         <div className="md:w-[4rem]"></div>
-                        <div className="md:w-[4rem]">Inspected</div>
-                        <div className="md:w-[4rem]"> Dispatch </div>
+                        <div className="md:w-[5.01rem]">Inspected</div>
+                        <div className="md:w-[9.02rem]"> Dispatch </div>
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
@@ -162,7 +162,7 @@ function ProductionCardView(props) {
                                         <div key={item.productionProductId}>
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 <div class="flex">
-                                                    <div className=" flex font-medium flex-col  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             onClick={() => {
@@ -181,14 +181,14 @@ function ProductionCardView(props) {
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center  md:w-[6.021rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {date}
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center  md:w-[6.022rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {item.productName}
@@ -198,20 +198,20 @@ function ProductionCardView(props) {
 
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
                                                         {item.categoryName}  {item.subCategoryName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.attributeName}  {item.subAttributeName}
                                                     </div>
                                                 </div>
 
 
-                                                <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.type === "In Progress" && item.pauseInd === true &&
 
@@ -269,17 +269,17 @@ function ProductionCardView(props) {
                                                         </ButtonGroup>
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.workFlow}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.18rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[5.16rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     {item.type === "In Progress" ?
                                                         <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                             <Button
@@ -294,7 +294,7 @@ function ProductionCardView(props) {
                                                         </div> : null}
                                                 </div>
 
-                                                <div className=" flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[8.14rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {store && particularDiscountData.manufactureId === item.manufactureId ?
                                                             <>
@@ -349,7 +349,7 @@ function ProductionCardView(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[7.34rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.zone ? <BorderColorOutlined
                                                             onClick={() => {
@@ -364,7 +364,7 @@ function ProductionCardView(props) {
                                                             }}>Send To Store</Button>}
                                                     </div>
                                                 </div>
-                                                <div className=" flex flex-col font-medium md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex items-center font-medium md:w-[12.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <>
                                                         <div class="flex">
                                                             <InpectProductionToggle item={item} /> &nbsp;&nbsp;
@@ -389,12 +389,12 @@ function ProductionCardView(props) {
 
                                                     </>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[4.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {item.inspectedInd && <MoveToggleProduction item={item} />}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex font-medium items-center md:w-[4.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.Print"
@@ -410,7 +410,7 @@ function ProductionCardView(props) {
                                                     </div>
                                                 </div>
                                                 {(user.productionDeleteInd === true || user.role === "ADMIN") && (
-                                                    <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium items-center md:w-[2.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <Tooltip title="Delete">
                                                                 <Popconfirm

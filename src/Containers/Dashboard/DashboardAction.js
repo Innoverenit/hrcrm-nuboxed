@@ -2756,3 +2756,30 @@ export const getCustomerAddedList = (orgId,startDate,endDate) => (dispatch) => {
       });
     });
 };
+
+export const getContactAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/contactPerson/all-contactPerson/${orgId}/${startDate}/${endDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CONTACT_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CONTACT_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

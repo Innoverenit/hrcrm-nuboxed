@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import CustomerAddedList from "./CustomerAddedList";
+import ContactAddedList from "./ContactAddedList";
 
  
 class CustomerAddedModal extends Component {
@@ -32,7 +33,7 @@ class CustomerAddedModal extends Component {
         
         >
           <Suspense fallback={<BundleLoader />}>
-{/* <CustomerAddedList/> */}
+<ContactAddedList/>
         </Suspense>
          
         </StyledDrawer>

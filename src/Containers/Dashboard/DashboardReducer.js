@@ -7,6 +7,10 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingContactAddedList: false,
+  fetchingContactAddedListError: false,
+  contactAddedList:[],
+
 
   fetchingOrderClosedList:false,
   fetchingOrderClosedListError:false,
@@ -1532,6 +1536,21 @@ export const dashboardReducer = (state = initialState, action) => {
           ...state,
           fetchingCustomerAddedList: false,
           fetchingCustomerAddedListError: true,
+        };
+
+        case types.GET_CONTACT_ADDED_LIST_REQUEST:
+        return { ...state, fetchingContactAddedList: true };
+      case types.GET_CONTACT_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingContactAddedList: false,
+          contactAddedList: action.payload,
+        };
+      case types.GET_CONTACT_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingContactAddedList: false,
+          fetchingContactAddedListError: true,
         };
 
     case types.GET_JUMPSTART_INVESTOR_3_REQUEST:
