@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { Button } from 'antd'
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
-// import { getCatalogueOnebyOne } from "../../CustomerAction";
+import {getlinkedProductWithOpportunity} from "../OpportunityAction";
 
-const OnebyOneCatalogue = (props) => {
+const OppoProduLinkedCard = (props) => {
     useEffect(() => {
-      //  props.getCatalogueOnebyOne();
+       props.getlinkedProductWithOpportunity(props.addedOpportunity.opportunityId);
     }, [])
     // const handleFinalSubmit = () => {
     //     props.addAllProductInOrder({
@@ -59,7 +59,7 @@ const OnebyOneCatalogue = (props) => {
                         </div>
                     </div>
                     <div class="overflow-x-auto h-[38vh]">
-                        {/* {props.productByDistributor.map((item) => {
+                        {/* {props.linkedProdOppolist.map((item) => {
 
                             return (
                                 <div >
@@ -105,12 +105,12 @@ const OnebyOneCatalogue = (props) => {
         </>
     )
 }
-const mapStateToProps = ({ customer, auth }) => ({
-    oneByOneCatalogue: customer.oneByOneCatalogue,
-    fetchingCatalogueOneByOne: customer.fetchingCatalogueOneByOne
+const mapStateToProps = ({ opportunity, auth }) => ({
+    linkedProdOppolist: opportunity.linkedProdOppolist,
+    getlinkingProductOpportunity: opportunity.getlinkingProductOpportunity
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-    //getCatalogueOnebyOne
+    getlinkedProductWithOpportunity
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(OnebyOneCatalogue);
+export default connect(mapStateToProps, mapDispatchToProps)(OppoProduLinkedCard);

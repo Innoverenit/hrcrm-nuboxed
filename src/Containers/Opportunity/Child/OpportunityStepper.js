@@ -9,7 +9,7 @@ import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate
 import { StyledSteps } from "../../../Components/UI/Antd";
 import AddCatalogueForm from "./AddCatalogueForm";
 import OpportunityForm from "./OpportunityForm";
-
+import {handleOpportunityModal} from "../OpportunityAction";
 
 const Step = StyledSteps.Step;
 
@@ -89,27 +89,10 @@ class OpportunityStepper extends Component {
        
 
     handleComplete = () => {
-       let data= {
-  catalogues: [
-    {
-      catalogueId:this.state.catalogueId,
-      unit:this.state.unit,
-      price:this.state.price,
-    }
-  ],
-  advPayment: this.state.advancePayment,
-  comment:this.state.comments,
-  contactId: this.props.contactId,
-  currency:this.state.currency,
-  deliveryDate:this.state.deliveryDate,
-  paymentTerms: this.state.paymentInTerms,
-  priority:this.state.priority,
-  reqId:this.props.rowItem.requirementId,
-  serviceId: this.props.serviceId
-}
-setTimeout(() => {
-    window.location.reload(true);
-           }, 5000);
+        this.props.handleOpportunityModal(false);
+// setTimeout(() => {
+//     window.location.reload(true);
+//            }, 5000);
 //this.props.addCustomerOffer(this.props.offerStep1.offerId)
     };
 
@@ -144,7 +127,7 @@ componentDidMount(){
                 // unit={this.state.unit}
                 // handlePrice={this.handlePrice}
                 // price={this.state.price}
-                // offerStep1={this.props.offerStep1}
+                addedOpportunity={this.props.addedOpportunity}
                 // createdOffers={this.props.createdOffers}
             />,
             },
@@ -232,16 +215,17 @@ componentDidMount(){
     }
 }
 
-const mapStateToProps = ({ auth, customer }) => ({
+const mapStateToProps = ({ auth, opportunity }) => ({
 //serviceId:auth.serviceDetails.serviceId,
 // contactId:auth.serviceDetails.contactId,
-// offerStep1:customer.offerStep1,
+addedOpportunity:opportunity.addedOpportunity,
 // createdOffers:customer.createdOffers
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     // addCustomerOffer,
     // getCreatedOffers
+    handleOpportunityModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpportunityStepper);

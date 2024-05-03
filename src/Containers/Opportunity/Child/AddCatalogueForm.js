@@ -7,16 +7,15 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../Components/Placeholder';
-import OnebyOneCatalogue from './OnebyOneCatalogue';
+import OppoProduLinkedCard from "./OppoProduLinkedCard";
 // import {getCatalogueById,addCatalogueOnebyOne,getAllCatalogueSearch} from "../../CustomerAction";
-
+import {linkProductWithOpportunity,getAllCatalogueSearch} from "../OpportunityAction";
 
 const { Option } = Select;
 
 const AddCatalogueForm = (props) => {
     useEffect(() => {
         // props.getCatalogueById(props.serviceId);
-        
             }, [])
 
             const [searchTerm, setSearchTerm] = useState('');
@@ -45,9 +44,10 @@ const handleSearchChange = (value) => {
                     <Formik
                     enableReinitialize
                       initialValues={{
-                       
-                        catalogueId:selectedItem ? selectedItem.catalogueId : "",
+                        opportunityId:props.addedOpportunity.opportunityId ? props.addedOpportunity.opportunityId:"",
+                        productId:selectedItem ? selectedItem.productId : "",
                         unit: "",
+                        inputPrice:"",
                         categoryName:selectedItem ? selectedItem.categoryName : "",
                         subCategory: selectedItem ? selectedItem.subCategory : "",
                         attribute: selectedItem ? selectedItem.subCategory : "",
@@ -56,7 +56,7 @@ const handleSearchChange = (value) => {
                     // validationSchema={FormSchema}
                     onSubmit={(values, { resetForm }) => {
                         console.log(values)
-                        props.addCatalogueOnebyOne(
+                        props.linkProductWithOpportunity(
                             {
                                 ...values,
                             },
@@ -104,11 +104,10 @@ const handleSearchChange = (value) => {
                                         style={{backgroundColor:"white",borderRadius:"2rem"}}
     type="text"
     value={searchTerm ? searchTerm : (selectedItem ? selectedItem.name : '')}
-    // defaultValue={selectedItem ? selectedItem.name:""}
-    onChange={(e) => handleSearchChange(e.target.value)} // Update this line
+    onChange={(e) => handleSearchChange(e.target.value)} 
     onKeyDown={(e) => {
         if (e.key === 'Backspace') {
-            setShowList(false); // Hide the list on backspace press
+            setShowList(false); 
         }
     }}
 />
@@ -116,8 +115,8 @@ const handleSearchChange = (value) => {
             {showList && props.searchedCatalogue && props.searchedCatalogue.length > 0 && (
                 <ul class="bg-white cursor-pointer p-1 overflow-hidden absolute w-96 text-center text-sm font-medium">
                     {props.searchedCatalogue.map((item) => (
-                        <li key={item.catalogueId} onClick={() => handleSelectItem(item)}>
-                            {item.name} {/* Display whatever information you want */}
+                        <li key={item.productId} onClick={() => handleSelectItem(item)}>
+                            {item.name} 
                         </li>
                     ))}
                 </ul>
@@ -136,9 +135,7 @@ const handleSearchChange = (value) => {
                                             inlineLabel
                                             width={"100%"}
                                             component={InputComponent}
-                                            value={props.unit}
-                                            onChange={props.handleUnit}
-
+                                        
                                         />
                                     </div>
                                     <div class="flex justify-between w-wk">
@@ -162,7 +159,7 @@ const handleSearchChange = (value) => {
                                   
                                     <div class="w-[45%]">
                                         <Field
-                                            name="Price"
+                                            name="inputPrice"
                                             label={<FormattedMessage
                                                 id="app.inputprice"
                                                 defaultMessage="Input Price"
@@ -172,8 +169,6 @@ const handleSearchChange = (value) => {
                                             inlineLabel
                                             width={"100%"}
                                             component={InputComponent}
-                                            value={props.price}
-                                            onChange={props.handlePrice}
 
                                         />
                                     </div>
@@ -200,7 +195,7 @@ const handleSearchChange = (value) => {
                                     </div>          
                                     <div class="w-[45%]">
                                         <Field
-                                            name="subCategory"
+                                            name="subCategoryName"
                                             label={<FormattedMessage
                                                 id="app.subcategory"
                                                 defaultMessage="Sub Category"
@@ -217,7 +212,7 @@ const handleSearchChange = (value) => {
                                     <div class="flex justify-between w-wk">
                 <div class="w-[45%]">
                                         <Field
-                                            name="attribute"
+                                            name="attributeName"
                                             label={<FormattedMessage
                                                 id="app.attribute"
                                                 defaultMessage="Attribute"
@@ -232,7 +227,7 @@ const handleSearchChange = (value) => {
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
-                                            name="subAttribute"
+                                            name="subAttributeName"
                                             label={<FormattedMessage
                                                 id="app.subattribute"
                                                 defaultMessage="Sub Attribute"
@@ -284,7 +279,7 @@ const handleSearchChange = (value) => {
                                 <div class="flex justify-end">
                                     <Button type="primary"
                                       htmlType="submit"
-                                      loading={props.addingCatalogueOnebyOne}
+                                      loading={props.linkingProductOpportunity}
                                       >
                                         Submit
                                     </Button>
@@ -293,26 +288,26 @@ const handleSearchChange = (value) => {
                         )}
                     </Formik>
                     <Suspense fallback={"Loading"}>
-                        <OnebyOneCatalogue
-                        
-                             />
+                        <OppoProduLinkedCard
+                        addedOpportunity={props.addedOpportunity}
+                        />
                     </Suspense>
                 </>
             
         </>
     )
 }
-const mapStateToProps = ({ customer, auth }) => ({
+const mapStateToProps = ({ opportunity, auth }) => ({
     // cataloguesById: customer.cataloguesById,
     // serviceId:auth.serviceDetails.serviceId,
-    // addingCatalogueOnebyOne: customer.addingCatalogueOnebyOne,
+    linkingProductOpportunity: opportunity.linkingProductOpportunity,
     // fetchingAllProductList: distributor.fetchingAllProductList,
     // searchedCatalogue: customer.searchedCatalogue
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
     // getCatalogueById,
-    // addCatalogueOnebyOne,
-    // getAllCatalogueSearch
+    linkProductWithOpportunity,
+    getAllCatalogueSearch
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCatalogueForm);
