@@ -280,6 +280,11 @@ const initialState = {
   fetchingRacklist: false,
   fetchingRacklistError: false,
   rackList: [],
+
+  rejectPhoneList: false,
+  rejectPhoneListError: false,
+
+  rejectedReasonModal: false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -1464,6 +1469,29 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingRacklistError: true,
       };
 
+    case types.HANDLE_REJECTED_REASON_MODAL:
+      return { ...state, rejectedReasonModal: action.payload };
+
+    case types.REJECT_PHONE_REQUEST:
+      return { ...state, rejectPhoneList: true };
+    case types.REJECT_PHONE_SUCCESS:
+      return {
+        ...state,
+        rejectPhoneList: false,
+        rejectedReasonModal: false,
+        updateDispatchList: state.updateDispatchList.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+
+      };
+    case types.REJECT_PHONE_FAILURE:
+      return {
+        ...state,
+        rejectPhoneList: false,
+        rejectPhoneListError: true,
+        rejectedReasonModal: false,
+      };
     default:
       return state;
   }

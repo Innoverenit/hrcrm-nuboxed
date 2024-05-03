@@ -17,7 +17,8 @@ import {
     updateFinalPrice,
     handleProductBuilder,
     handleAllSpareList,
-    handleRefurbishLead
+    handleRefurbishLead,
+    refurbishRejectPhone
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
@@ -28,6 +29,7 @@ import CategoryIcon from '@mui/icons-material/Category'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BorderColorOutlined, PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadInRefurbish from "./AddLeadInRefurbish";
+import RefurbishRejectModal from "./RefurbishRejectModal";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -257,6 +259,23 @@ const ProductionOrderList = (props) => {
                                                                 <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium  w-[9.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.rejectOrderCount > 0 &&
+                                                        <Tooltip title="Reject">
+                                                            <Badge size="small" count={`${item.rejectOrderCount} `} overflowCount={3000}>
+                                                                <Button
+                                                                    className="bg-[#1685e6] text-white"
+                                                                    onClick={() => {
+                                                                        props.refurbishRejectPhone(true);
+                                                                        handleRowData(item);
+                                                                    }}
+                                                                >Reject</Button>
+                                                            </Badge>
+                                                        </Tooltip>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -336,6 +355,11 @@ const ProductionOrderList = (props) => {
                         showRefurbishLead={props.showRefurbishLead}
                         handleRefurbishLead={props.handleRefurbishLead}
                     />
+                    <RefurbishRejectModal
+                        rowData={rowData}
+                        refurbhsReject={props.refurbhsReject}
+                        refurbishRejectPhone={props.refurbishRejectPhone}
+                    />
                 </Suspense>
             </div>
         </>
@@ -356,7 +380,8 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     userId: auth.userDetails.userId,
     approveSpareModal: refurbish.approveSpareModal,
     productBuilderList: refurbish.productBuilderList,
-    showRefurbishLead: refurbish.showRefurbishLead
+    showRefurbishLead: refurbish.showRefurbishLead,
+    refurbhsReject: refurbish.refurbhsReject
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -372,7 +397,8 @@ const mapDispatchToProps = (dispatch) =>
             handleOrderPhone,
             updateFinalPrice,
             handleAllSpareList,
-            handleRefurbishLead
+            handleRefurbishLead,
+            refurbishRejectPhone
         },
         dispatch
     );

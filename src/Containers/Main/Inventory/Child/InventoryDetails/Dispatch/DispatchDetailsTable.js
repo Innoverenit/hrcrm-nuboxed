@@ -6,12 +6,14 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   getDispatchUpdateList,
   updateDispatchInspectionButton,
+  handleRejectReasonModal
 } from "../../../InventoryAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import moment from "moment";
+import RejectedReasonModal from "./RejectedReasonModal";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const DispatchTaskTable = lazy(() => import("./DispatchTaskTable"))
 const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
@@ -142,6 +144,7 @@ function OpenReceivedOrderIdForm(props) {
         );
       },
     },
+
     {
       title: "Inspected",
       width: "8%",
@@ -161,6 +164,35 @@ function OpenReceivedOrderIdForm(props) {
     },
     {
       dataIndex: "dispatchPhoneUserName",
+      width: "10%",
+    },
+    {
+      title: "",
+      width: "8%",
+      render: (name, item, i) => {
+        //debugger
+        return (
+          <Tooltip>
+            {!item.rejectInd ? <Button
+              onClick={() => {
+                handleRowData(item)
+                props.handleRejectReasonModal(true)
+              }}
+            >Reject</Button>
+              :
+              <Button
+              // onClick={() => {
+              //   handleRowData(item)
+              //   props.handleRejectReasonModal(true)
+              // }}
+              >Rejected</Button>
+            }
+          </Tooltip>
+        );
+      },
+    },
+    {
+      dataIndex: "reason",
       width: "10%",
     },
 
@@ -195,12 +227,18 @@ function OpenReceivedOrderIdForm(props) {
           </div>}
       </div>
       {task && <DispatchTaskTable phoneId={phoneId} />}
+      <RejectedReasonModal
+        rowData={rowData}
+        rejectedReasonModal={props.rejectedReasonModal}
+        handleRejectReasonModal={props.handleRejectReasonModal}
+      />
     </>
   );
 }
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updateDispatchList: inventory.updateDispatchList,
+  rejectedReasonModal: inventory.rejectedReasonModal,
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
@@ -212,6 +250,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getDispatchUpdateList,
       updateDispatchInspectionButton,
+      handleRejectReasonModal
     },
     dispatch
   );

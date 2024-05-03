@@ -1627,6 +1627,8 @@ export const gettASKItemCounts = (phoneId) => (dispatch) => {
 export const closeRepairModal = (close) => (dispatch) =>
   dispatch({ type: types.SET_CLOSE_REPAIR_MODAL, payload: close });
 
+export const refurbishRejectPhone = (close) => (dispatch) =>
+  dispatch({ type: types.REFURBISH_REJECT_PHONE, payload: close });
 
 
 export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
@@ -1682,6 +1684,33 @@ export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => 
       console.log(err);
       dispatch({
         type: types.GET_COMPLETED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRejectedPhoneList = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECTED_PHONE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/rejectPhoneDetails/${orderPhoneId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECTED_PHONE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REJECTED_PHONE_LIST_FAILURE,
         payload: err,
       });
     });
@@ -1795,6 +1824,64 @@ export const addLeadInRefurbish = (data, orderPhoneId, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.ADD_LEAD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRejectedPhonesByTechnician = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECTED_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/rejected/RepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECTED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REJECTED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const assignRejectedPhones = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ASSIGN_REJECTED_PHONES_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/rejected/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ASSIGN_REJECTED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ASSIGN_REJECTED_PHONES_FAILURE,
         payload: err,
       });
     });
