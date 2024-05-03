@@ -228,6 +228,14 @@ export const handleReceivedModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleRejectReasonModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REJECTED_REASON_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleCreateAWB = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CREATE_AWB_MODAL,
@@ -1830,6 +1838,30 @@ export const getItemHistoryInstock = (pOSupplierSuppliesDetailsId) => (dispatch)
       console.log(err);
       dispatch({
         type: types.GET_ITEM_HISTORY_IN_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const rejectPhoneData = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.REJECT_PHONE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/reject/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.REJECT_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.REJECT_PHONE_FAILURE,
         payload: err,
       });
     });

@@ -49,6 +49,10 @@ const initialState = {
   fetchingAllProductionConsumptionError: false,
   allConsumption: [],
 
+  fetchingRejectedPhoneList: false,
+  fetchingRejectedPhoneListError: false,
+  rejectPhoneById: [],
+
   updatingCantRepairQc: false,
   updatingCantRepairQcError: false,
 
@@ -270,7 +274,16 @@ const initialState = {
 
   fetchingItemTaskCount: false,
   fetchingItemTaskCountError: false,
-  itemTaskcount: {}
+  itemTaskcount: {},
+
+  refurbhsReject: false,
+
+  reassigningrejectedphone: false,
+  reassigningrejectedphoneError: false,
+
+  fetchingRejectedPhonesByTechnician: false,
+  fetchingRejectedPhonesByTechnicianError: false,
+  rejectPhoneByUser: []
 
 };
 
@@ -278,6 +291,9 @@ export const refurbishReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+    case types.REFURBISH_REJECT_PHONE:
+      return { ...state, refurbhsReject: action.payload };
 
     case types.GET_TODAY_PRODUCTION_REQUEST:
       return { ...state, fetchingTodayProduction: true };
@@ -292,6 +308,21 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingTodayProduction: false,
         fetchingTodayProductionError: true,
+      };
+
+    case types.GET_REJECTED_PHONE_LIST_REQUEST:
+      return { ...state, fetchingRejectedPhoneList: true };
+    case types.GET_REJECTED_PHONE_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingRejectedPhoneList: false,
+        rejectPhoneById: action.payload,
+      };
+    case types.GET_REJECTED_PHONE_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingRejectedPhoneList: false,
+        fetchingRejectedPhoneListError: true,
       };
 
     case types.UPDATE_SPARE_PACKET_REQUEST:
@@ -1375,6 +1406,37 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         addingLead: false,
         addingLeadError: true,
+      };
+
+
+    case types.GET_REJECTED_PHONES_REQUEST:
+      return { ...state, fetchingRejectedPhonesByTechnician: true };
+    case types.GET_REJECTED_PHONES_SUCCESS:
+      return {
+        ...state,
+        fetchingRejectedPhonesByTechnician: false,
+        rejectPhoneByUser: action.payload,
+      };
+    case types.GET_REJECTED_PHONES_FAILURE:
+      return {
+        ...state,
+        fetchingRejectedPhonesByTechnician: false,
+        fetchingRejectedPhonesByTechnicianError: true,
+
+      };
+
+    case types.ASSIGN_REJECTED_PHONES_REQUEST:
+      return { ...state, reassigningrejectedphone: true };
+    case types.ASSIGN_REJECTED_PHONES_SUCCESS:
+      return {
+        ...state,
+        reassigningrejectedphone: false,
+      };
+    case types.ASSIGN_REJECTED_PHONES_FAILURE:
+      return {
+        ...state,
+        reassigningrejectedphone: false,
+        reassigningrejectedphoneError: true,
       };
     default:
       return state;
