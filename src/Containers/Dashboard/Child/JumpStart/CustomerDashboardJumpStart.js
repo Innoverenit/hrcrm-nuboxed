@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-import {getJumpDistributorDetail} from "../../DashboardAction";
+import {getJumpDistributorDetail,
+  handleCustomerAddedModal,handleContactAddedModal} from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import CustomerAddedModal from "./CustomerAddedModal";
+import ContactAddedModal from "./ContactAddedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class CustomerDashboardJumpStart extends React.Component{
@@ -97,17 +100,7 @@ render() {
               />
             }
             value={this.props.distributorinDashboard.totalDistributor}
-            // value={this.props.leaveFetching.leaveBalance}
-            // value={
-            //   this.props.user.department === "Recruiter"
-            //     ? this.props.showDatelist.openRequirement
-            //     : this.props.showSalesDatelist.openRequirement
-            // }
-            // isLoading={
-            //   this.props.user.department === "Recruiter"
-            //     ? this.props.fetchingDatewiseReport
-            //     : this.props.fetchingSalesDatewiseReport
-            // }
+            jumpstartClick={()=>this.props.handleCustomerAddedModal(true)}
           />
   
        
@@ -121,20 +114,7 @@ render() {
               />
             }
             value={this.props.distributorinDashboard.totalContactPerson}
-            // title="AV hours this month  "
-            // value={
-            //   // this.props.user.department === "Recruiter"
-            //   // ?this.props.showDatelist.openPosition
-            //   // :this.props.showSalesDatelist.openPosition
-            //   this.props.avgHour.hours
-            // }
-            // isLoading={this.props.fetchingAvgHour} 
-            // isLoading={
-            //   this.props.user.department === "Recruiter"
-            //   ?this.props.fetchingDatewiseReport
-            //   :this.props.fetchingSalesDatewiseReport
-            // }
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+            jumpstartClick={()=>this.props.handleContactAddedModal(true)}
           />
           </div>
           {/* <JumpStartBox
@@ -248,6 +228,15 @@ render() {
           />
           <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
         </FlexContainer> */}
+         <CustomerAddedModal
+       customerAddedModal={this.props.customerAddedModal}
+       handleCustomerAddedModal={this.props.handleCustomerAddedModal}
+      />
+
+<ContactAddedModal
+       contactAddedModal={this.props.contactAddedModal}
+       handleContactAddedModal={this.props.handleContactAddedModal}
+      />
       </div>
     
   ); 
@@ -273,10 +262,14 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   fetchingAvgHour:dashboard.fetchingAvgHour,
   timeRangeType: dashboard.timeRangeType,
   distributorinDashboard:dashboard.distributorinDashboard,
+  customerAddedModal:dashboard.customerAddedModal,
+  contactAddedModal:dashboard.contactAddedModal
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getJumpDistributorDetail
+  getJumpDistributorDetail,
+  handleCustomerAddedModal,
+  handleContactAddedModal
 //   getDateWiseList,
 //   getSalesDateWiseList,
 //   getTasklist,

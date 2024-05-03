@@ -75,7 +75,10 @@ function OpportunityCardList(props) {
 
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
   const [currentItem, setCurrentItem] = useState("");
-
+  const [rowdata, setrowdata] = useState("");
+  const handleRowData = (data) => {
+    setrowdata(data);
+  };
   const exportPDFAnnexure = async () => {
     var doc = new jsPDF();
     const {
@@ -440,6 +443,7 @@ imgHeight={"1.8em"}
                 style={{ cursor: "pointer",fontSize: "1.25rem" }}
                 onClick={() => {
                   props.handleOpportunityRowEmailModal(true);
+                  handleSetCurrentOpportunityId(item);
                 }}
               />
   </div>
@@ -449,7 +453,7 @@ imgHeight={"1.8em"}
             <PictureAsPdfIcon/>
                            </span>
           </div>
-<div>
+<div class="flex items-center">
 <Tooltip
           placement="right"
           title={
@@ -485,7 +489,7 @@ imgHeight={"1.8em"}
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
-            className=" !text-xl cursor-pointer text-[grey]"
+            className=" !text-xl cursor-pointer text-[grey] mb-1"
               onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
@@ -529,8 +533,10 @@ imgHeight={"1.8em"}
       />
 
 <OpportunityRowEmailModal
+  opportunityData={currentOpportunityId}
         addOpportunityRowEmailModal={addOpportunityRowEmailModal}
         handleOpportunityRowEmailModal={handleOpportunityRowEmailModal}
+        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
       />
 
        <AddOpportunityNotesDrawerModal

@@ -22,6 +22,10 @@ const initialState = {
 
   orderAddedModal:false,
 
+  customerAddedModal:false,
+
+  contactAddedModal:false,
+
   fetchingRegionRecordsCount: false,
   fetchingRegionRecordsCountError: false,
   regionRecords:[],
@@ -144,6 +148,10 @@ const initialState = {
 
 
   orderClosedModal:false,
+
+  fetchingCustomerAddedList: false,
+  fetchingCustomerAddedListError: false,
+  customerAddedList:[],
 
 
 
@@ -471,6 +479,11 @@ export const dashboardReducer = (state = initialState, action) => {
       case types.HANDLE_ORDER_ADDED_MODAL:
       return { ...state, orderAddedModal: action.payload };
 
+      case types.HANDLE_CUSTOMER_ADDED_MODAL:
+      return { ...state, customerAddedModal: action.payload };
+
+      case types.HANDLE_CONTACT_ADDED_MODAL:
+      return { ...state, contactAddedModal: action.payload };
 
       case types.HANDLE_ORDER_CANCEL_MODAL:
         return { ...state, orderCancelModal: action.payload };
@@ -1503,6 +1516,22 @@ export const dashboardReducer = (state = initialState, action) => {
           ...state,
           fetchingOrderAddedList: false,
           fetchingOrderAddedListError: true,
+        };
+
+
+        case types.GET_CUSTOMER_ADDED_LIST_REQUEST:
+        return { ...state, fetchingCustomerAddedList: true };
+      case types.GET_CUSTOMER_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingCustomerAddedList: false,
+          customerAddedList: action.payload,
+        };
+      case types.GET_CUSTOMER_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingCustomerAddedList: false,
+          fetchingCustomerAddedListError: true,
         };
 
     case types.GET_JUMPSTART_INVESTOR_3_REQUEST:

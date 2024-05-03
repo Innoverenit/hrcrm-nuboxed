@@ -2715,3 +2715,44 @@ export const getOrderOpenList = (orgId,startDate,endDate) => (dispatch) => {
       });
     });
 };
+
+export const handleCustomerAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CUSTOMER_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleContactAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getCustomerAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/distributor/all-distributors/${orgId}/${startDate}/${endDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CUSTOMER_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CUSTOMER_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
