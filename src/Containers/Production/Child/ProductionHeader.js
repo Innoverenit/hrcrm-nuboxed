@@ -20,6 +20,7 @@ class ProductionHeader extends Component {
           }
           rightComponent={
             <ProductionActionRight
+            viewType={viewType} 
               openProductiondrawer={openProductiondrawer}
               handleCreateProduction={handleCreateProduction}
             />

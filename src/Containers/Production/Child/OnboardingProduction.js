@@ -8,6 +8,7 @@ import moment from 'moment';
 import styled from "styled-components";
  
 import { Field } from 'formik';
+import {updateProductionstage} from "../ProductionAction"
 
 import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from '../../../Components/Forms/Formik/SelectComponent';
@@ -141,18 +142,19 @@ const handleStages = (val) => {
     //   updateOpportunitydragstage,
 
     // } = props;
-    // let data={
-    //   unboardingStagesId:destination.droppableId,
-    //   unboardingWorkflowDetailsId:result.draggableId,
-    //   employeeId:props.employeeName.employeeId
-    // } 
-    // props.updateUserdragstage(data,
-    //   source.droppableId,
-    //   destination.droppableId,
-    //   draggableId,
-    //   props.employeeName.employeeId
+    let data={
+      unboardingStagesId:destination.droppableId,
+      unboardingWorkflowDetailsId:result.draggableId,
+      //employeeId:props.employeeName.employeeId
+    } 
+    props.updateProductionstage(
+      draggableId,
+      destination.droppableId,
+      props.userId
+    
+      // props.employeeName.employeeId
 
-    // );
+    );
   }
 
   function dragStart() {
@@ -176,10 +178,11 @@ const handleStages = (val) => {
               >
                 <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}>
                   <>
-                    {props.productionTableData?.stageList?.
-                       map((stage, index) => (
+                    {props.productionTableData.map((item, index) => (
+                      <>
+                      {item.stageList.map((stage, stageIndex) => (
                         <Droppable
-                        key={index}
+                        key={stageIndex}
                         droppableId={stage.productionStagesId}
                         type="stage"
                       
@@ -212,9 +215,10 @@ const handleStages = (val) => {
                                       
                                         
                                             <StageProductionColumns
-                                               key={index}
+                                               key={stageIndex}
                                               employee={stage}
-                                              index={index}
+                                              data={item}
+                                              index={stageIndex}
                                               // history={props.history}
                                             />
                                             {/* Hello */}
@@ -226,6 +230,8 @@ const handleStages = (val) => {
                             </>
                          )}
                         </Droppable>
+                         ))}
+                         </>
                       ))}
                   </>
                 </Container>
@@ -237,7 +243,7 @@ const handleStages = (val) => {
 
 const mapStateToProps = ({ settings, employee,auth }) => ({
 //   onboardingProcessStages:settings.onboardingProcessStages,
-//   orgId: auth.userDetails && auth.userDetails.organizationId,
+userId: auth.userDetails.userId
 //   onboardingProcess: settings.onboardingProcess,
 //   userStageList:employee.userStageList,
 //   fetchingUserStageList:employee.fetchingUserStageList,
@@ -247,6 +253,7 @@ const mapStateToProps = ({ settings, employee,auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      updateProductionstage
     //   getProcessForOnboarding,
     //   getProcessStagesForOnboarding,
     //   addOnboardingEmployee,
