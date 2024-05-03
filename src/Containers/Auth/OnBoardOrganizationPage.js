@@ -20,9 +20,9 @@ class OnBoardOrganizationPage extends Component {
     super(props);
     this.state = {
       organizationName: "",
-      date:"",
+      fiscalStartDate:"",
       preferedLanguage:"",
-      month:"",
+      fiscalStartMonth:"",
       firstName:"",
       middleName:"",
       lastName:"",
@@ -143,7 +143,7 @@ class OnBoardOrganizationPage extends Component {
     }
     // placeholder="Select Industry" 
     isColumn
-    options={["E-Waste Recycle", "Manufacturing", "Retail"]}
+    options={["Real Estate", "Manufacturing", "Refurbish"]}
     component={SelectComponent}
     inlineLabel
 />
@@ -168,7 +168,7 @@ class OnBoardOrganizationPage extends Component {
                     <Spacer />
                     <div class=" flex flex-row justify-between">
                     <FastField
-                            name="date"
+                            name="fiscalStartDate"
                             placeholder={
                               <FormattedMessage
                               id="app.selectedDate"
@@ -183,7 +183,7 @@ class OnBoardOrganizationPage extends Component {
                           />
                             <Spacer />
                             <FastField
-    name="month"
+    name="fiscalStartMonth"
     placeholder="Select Month"  
     isColumn
     options={["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]}
@@ -192,7 +192,7 @@ class OnBoardOrganizationPage extends Component {
 />
 </div>
                     <Spacer />
-                    <h2>User Details</h2>
+                    <h2>Admin Details</h2>
                     <Spacer />
                      <Field
                       className="gvbmIs"
