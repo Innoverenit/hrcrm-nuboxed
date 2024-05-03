@@ -114,7 +114,7 @@ function SuppliersPriceCardList(props) {
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
                           <div className="font-semibold text-[0.85rem] text-cardBody font-poppins">{item.suppliesFullName}</div>
-                          {date === currentdate && <div className="text-xs text-[tomato] font-bold">New</div>}
+                          &nbsp;{date === currentdate && <div className="text-xs text-[tomato] font-bold">New</div>}
                         </div>
                         <div className="flex font-medium flex-col w-[13.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem]">
                           <div className="font-normal text-[0.85rem] text-cardBody font-poppins">{item.categoryName}</div>

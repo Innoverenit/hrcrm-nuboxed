@@ -47,7 +47,7 @@ const AddPurchaseOrder = (props) => {
         const handleMaterial = async (val) => {
             setMaterial(val);
         
-            await props.getSupplierwiseQuality(val,props.supplier.supplierId);
+            await props.getSupplierwiseQuality(props.supplier.supplierId,val);
           
             setQuality(""); 
         };
@@ -105,7 +105,7 @@ const AddPurchaseOrder = (props) => {
                             {
                                 ...values,
                                 suppliesId:material,
-                                qualityId:quality,
+                                quality:quality,
                             },
                             props.supplier.supplierId
                         );
@@ -165,7 +165,7 @@ const AddPurchaseOrder = (props) => {
                         onChange={(value) => handleQuality(value)}
                       >
                         {props.materialwiseQuality.map((a) => {
-                          return <Option value={a.qualityId}>{a.quality}</Option>;
+                          return <Option value={a.qualityId}>{a.code}</Option>;
                         })}
                       </Select>
 
@@ -248,7 +248,7 @@ const AddPurchaseOrder = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    <div class="w-[15%] mt-4">
+                                    <div class="w-[95%] mt-4">
                                         <Button
                                             type="primary"
                                             htmlType="submit"

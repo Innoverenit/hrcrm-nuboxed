@@ -87,9 +87,13 @@ function SupplierSuppliesCardTable(props) {
               <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">
               <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
               </div>
-            <div className=" w-[18.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
+            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
               id="app.tagwithsuplier"
               defaultMessage="Tag with Supplier"
+            /></div>
+                <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
+              id="app.quality"
+              defaultMessage="Quality"
             /></div>
             {/* <div className=" md:w-[5.1rem]">
               <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
