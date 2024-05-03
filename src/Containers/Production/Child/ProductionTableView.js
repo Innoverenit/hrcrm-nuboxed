@@ -19,6 +19,7 @@ import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InpectProductionToggle from "./InpectProductionToggle.js";
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
 // import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
 // import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 // import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -86,9 +87,10 @@ function ProductionTableView(props) {
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
+                    
                  {/* {productionByLocsId.length ?
                             <> */}
-                                {props.productionTableData.map((item, index) => {
+                                {!props.fetchingProductionTable && props.productionTableData.length === 0 ?<NodataFoundPage />:props.productionTableData.map((item, index) => {
                                     // const currentdate = dayjs().format("DD/MM/YYYY");
                                     // const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (

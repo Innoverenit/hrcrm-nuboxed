@@ -99,7 +99,7 @@ export const productionReducer = (state = initialState, action) => {
         ...state,
         creatingProductionLink: false,
         openProductiondrawer: false,
-        productionByLocsId: [action.payload, ...state.productionByLocsId]
+        productionTableData: [action.payload, ...state.productionTableData]
       };
     case types.CREATE_PRODUCTION_LINK_FAILURE:
       return {
