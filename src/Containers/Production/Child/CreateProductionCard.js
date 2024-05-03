@@ -60,7 +60,8 @@ function CreateProductionCard(props) {
         window.print();
     };
     useEffect(() => {
-        props.getProductionsbyLocId(props.userId, page);
+   
+        props.getProductionsbyLocId(props.inventory.locationDetailsId, page);
         setPage(page + 1);
         props.getRoomRackByLocId(props.locationId, props.orgId);
     }, []);
@@ -77,7 +78,7 @@ function CreateProductionCard(props) {
             if (props.productionByLocsId) {
                 if (page < proPag) {
                     setPage(page + 1);
-                    props.getProductionsbyLocId(props.userId, page);
+                    props.getProductionsbyLocId(props.inventory.locationDetailsId, page);
                 }
                 if (page === proPag) {
                     setHasMore(false)

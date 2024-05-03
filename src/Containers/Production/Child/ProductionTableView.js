@@ -352,6 +352,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     // locationId: auth.userDetails.locationId,
     // orgId: auth.userDetails.organizationId,
     // user: auth.userDetails,
+    
     //productionTableData:production.productionTableData,
     // openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     // clickedProductionIdrwr: production.clickedProductionIdrwr,

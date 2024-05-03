@@ -17,6 +17,7 @@ const ProductionDashCard = (props) => {
                 {/* Component 1 goes here */}
                 {/* <Component1 /> */}
                 <ProductionTableView
+                fetchingProductionTable={props.fetchingProductionTable}
                 productionTableData={props.productionTableData}
                 />
             </div>
@@ -38,6 +39,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     // locationId: auth.userDetails.locationId,
     // orgId: auth.userDetails.organizationId,
     // user: auth.userDetails,
+    fetchingProductionTable:production.fetchingProductionTable,
     productionTableData:production.productionTableData,
     // openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     // clickedProductionIdrwr: production.clickedProductionIdrwr,
