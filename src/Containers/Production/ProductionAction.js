@@ -81,7 +81,7 @@ export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_BYLOC_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/product/${userId}/${pageNo}`,
+    .get(`${base_url2}/production/product/wip/${userId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
