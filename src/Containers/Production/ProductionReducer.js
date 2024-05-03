@@ -46,7 +46,10 @@ const initialState = {
   fetchingProductionTable:false,
   fetchingProductionTableError:false,
 
-  productionTableData:{},
+  productionTableData:[],
+
+
+  updatingProductionStage:false,
 
   settingInpectdn: false,settingInpectdnError:false,
 
@@ -168,6 +171,27 @@ export const productionReducer = (state = initialState, action) => {
         removingProduction: false,
         removingProductionError: true,
       };
+
+
+
+
+
+      case types.UPDATE_PRODUCTION_STAGE_REQUEST:
+        return {
+          ...state,
+          updatingProductionStage: true,
+        
+          // candidateRequirement: action.payload,
+        };
+      case types.UPDATE_PRODUCTION_STAGE_SUCCESS:
+        return { ...state, 
+          updatingProductionStage: false ,
+          //userStageList: updatedDragUser(state.userStageList, action.payload),
+         // candidateRequirement: [action.payload]
+
+        };
+      case types.UPDATE_PRODUCTION_STAGE_FAILURE:
+        return { ...state };  
 
     case types.HANDLE_BUILDER_PRODUCTION_DRAWER:
       return { ...state, openbUILDERProductiondrawer: action.payload };

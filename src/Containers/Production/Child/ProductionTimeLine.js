@@ -82,9 +82,11 @@ const Component2 = (props) => {
 
 
 <Steps direction="vertical" current={0}>
-                {props.productionTableData?.steps?.map((step, index) => (
+                {props.productionTableData.map((item, index) => (
+                    <>
+                      {item.steps.map((step, stageIndex) => (
                     <Step
-                        key={index}
+                        key={stageIndex}
                         // title={status.title}
                         title={`${step.suppliesName} (${step.quantity})`} 
                         description={
@@ -110,6 +112,8 @@ const Component2 = (props) => {
                             </div>
                         }
                     />
+                ))}
+                </>
                 ))}
             </Steps>
 

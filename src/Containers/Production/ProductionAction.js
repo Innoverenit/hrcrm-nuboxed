@@ -519,3 +519,62 @@ export const getProductionTable = (userId, pageNo) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const updateProductionstage = (
+  
+  productionProductId,
+  stageId,
+  userId,
+
+  cb
+) => (dispatch) => {
+  //console.log(sourceStageId, destinationStageId, opportunityId);
+  // if (destinationStageId === "won") {
+  //   message.success("stage is won");
+  // }
+  // if (destinationStageId === "loss") {
+  //   message.error("stage is loss");
+  // }
+  // getUserStageList
+  dispatch({
+    type: types.UPDATE_PRODUCTION_STAGE_REQUEST,
+    payload: {
+    
+    },
+    
+  });
+  axios
+    .put(
+      `${base_url2}/production/productionProductLink/update/stage/${productionProductId}/${stageId}`,{}, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+dispatch(getProductionTable(userId));
+      dispatch({
+        type: types.UPDATE_PRODUCTION_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_PRODUCTION_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};

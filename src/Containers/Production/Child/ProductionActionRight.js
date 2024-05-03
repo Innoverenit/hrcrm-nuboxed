@@ -8,12 +8,12 @@ import { createProductionLink } from "../ProductionAction";
 
 
 function ProductionActionRight (props) {
-  
+  console.log(props.viewType)
     const { handleCreateProduction, userId,user } = props;
     return (
       <>
         <div class=" flex items-center">
-          {(user.productionCreateInd === true || user.role === "ADMIN") &&(
+          {/* {(user.productionCreateInd === true || user.role === "ADMIN") &&(
           <Button
             type="primary"
         
@@ -21,7 +21,18 @@ function ProductionActionRight (props) {
           >
             Add
           </Button>
-          )}
+          )} */}
+
+{(props.viewType === 'table') && (  // Use !(props.viewtype === 'table') to check if viewtype is NOT 'table'
+    (user.productionCreateInd === true || user.role === "ADMIN") && (
+      <Button
+        type="primary"
+        onClick={() => props.createProductionLink()}
+      >
+        Add
+      </Button>
+    )
+  )}
         </div>
       </>
     );

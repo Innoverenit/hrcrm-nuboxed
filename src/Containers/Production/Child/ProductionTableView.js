@@ -86,9 +86,14 @@ function ProductionTableView(props) {
                         <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div>
                     </div>
-                 
+                 {/* {productionByLocsId.length ?
+                            <> */}
+                                {props.productionTableData.map((item, index) => {
+                                    // const currentdate = dayjs().format("DD/MM/YYYY");
+                                    // const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
                             
-                                        <div >
+                                        <div key={item.productId} >
                                             <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 <div class="flex">
                                                     <div className=" flex font-medium flex-col  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -99,7 +104,7 @@ function ProductionTableView(props) {
                                                             //     props.handleProductionIDrawer(true)
                                                             // }}
                                                         >
-                                                            {props.productionTableData.manufactureId}
+                                                            {item.manufactureId}
                                                             &nbsp;&nbsp;
                                                             {/* {date === currentdate ? (
                                                                 <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
@@ -115,7 +120,7 @@ function ProductionTableView(props) {
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             {/* {props.productionTableData.createdBy} */}
                                                             <MultiAvatar
-                  primaryTitle={props.productionTableData.createdBy}
+                  primaryTitle={item.createdBy}
                   // imageId={item.ownerImageId}
                   // imageURL={item.imageURL}
                   imgWidth={"2.1em"}
@@ -129,14 +134,14 @@ function ProductionTableView(props) {
 
 <div class=" text-xs text-cardBody font-poppins">
     {/* {props.productionTableData.createdBy} */}
-    {`  ${moment.utc(props.productionTableData.creationDate).format("DD-MM-YYYY")}`}
+    {`  ${moment.utc(item.creationDate).format("DD-MM-YYYY")}`}
 </div>
 
 </div>
                                                     <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            {props.productionTableData.productName}
+                                                            {item.productName}
                                                         </div>
 
                                                     </div>
@@ -146,7 +151,7 @@ function ProductionTableView(props) {
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
-                                                        {props.productionTableData.categoryName} 
+                                                        {item.categoryName} 
                                                     </div>
                                                 </div>
                                                 
@@ -168,27 +173,27 @@ function ProductionTableView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {props.productionTableData.type === "In Progress" && props.productionTableData.pauseInd === true &&
+                                                        {item.type === "In Progress" && item.pauseInd === true &&
 
                                                             <PlayCircleFilledSharp
                                                                 // class=" cursor-pointer"
                                                                 onClick={() => {
                                                                     let data = {
-                                                                        userId: props.userId,
-                                                                        phoneId: props.productionTableData.manufactureId,
+                                                                        userId: item.userId,
+                                                                        phoneId: item.productionTableData.manufactureId,
                                                                         pauseInd: false
                                                                     }
                                                                     props.updatePauseStatus(data)
                                                                 }} />
                                                         }
-                                                        {props.productionTableData.type === "In Progress" && props.productionTableData.pauseInd === false &&
+                                                        {item.type === "In Progress" && item.pauseInd === false &&
 
                                                             <PauseCircleFilled
                                                                 class=" cursor-pointer text-orange-400"
                                                                 onClick={() => {
                                                                     let data = {
                                                                         userId: props.userId,
-                                                                        phoneId: props.productionTableData.manufactureId,
+                                                                        phoneId:item.manufactureId,
                                                                         pauseInd: true
                                                                     }
                                                                     props.updatePauseStatus(data)
@@ -196,29 +201,29 @@ function ProductionTableView(props) {
                                                             />
                                                         }
                                                         <ButtonGroup>
-                                                            {props.productionTableData.type === "null" && (
+                                                            {item.type === "null" && (
                                                                 <StatusIcon
                                                                     type="In Progress"
                                                                     iconType="fa-hourglass-half"
                                                                     tooltip="In Progress"
-                                                                    role={props.productionTableData.type}
+                                                                    role={item.type}
                                                                     onClick={() => {
                                                                         props.updateProStatus({
                                                                             type: "In Progress",
-                                                                        }, props.productionTableData.productionProductId);
+                                                                        }, item.productionProductId);
                                                                     }}
                                                                 />)}
 
-                                                            {props.productionTableData.type === "In Progress" ?
+                                                            {item.type === "In Progress" ?
                                                                 <StatusIcon
                                                                     type="Complete"
                                                                     iconType="fa-hourglass"
                                                                     tooltip="Complete"
-                                                                    role={props.productionTableData.type}
+                                                                    role={item.type}
                                                                     onClick={() => {
                                                                         props.updateProStatus({
                                                                             type: "Complete",
-                                                                        }, props.productionTableData.productionProductId);
+                                                                        }, item.productionProductId);
                                                                     }}
                                                                 /> : null}
                                                         </ButtonGroup>
@@ -230,6 +235,10 @@ function ProductionTableView(props) {
                                             </div>
                                             
                                         </div>
+                                        
+                                    );
+                                })}
+                                    
                                     
                             
                            
@@ -253,8 +262,12 @@ function ProductionTableView(props) {
                         {/* <div className="md:w-[3rem]"></div>
                         <div className="md:w-[2rem]"></div> */}
                     </div>
-                 
-                    <div >
+
+                  {props.productionTableData.map((item, index) => {
+                                    // const currentdate = dayjs().format("DD/MM/YYYY");
+                                    // const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
+                    <div key={item.productId} >
                                            
                     <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
                                                 
@@ -268,7 +281,7 @@ function ProductionTableView(props) {
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins" >
                                                         {/* {stage} */}
-                                                        {props.productionTableData.workflowName}
+                                                        {item.workflowName}
                                                     </div>
                                                 </div>
                                               
@@ -277,7 +290,7 @@ function ProductionTableView(props) {
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
 
-                                                        {props.productionTableData.stage}
+                                                        {item.stage}
                                                     </div>
                                                 </div>
 
@@ -285,10 +298,10 @@ function ProductionTableView(props) {
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
 
-                                                        <InpectProductionToggle item={props.productionTableData} /> &nbsp;&nbsp;
-                                                            {props.productionTableData.inspectedInd ?
+                                                        <InpectProductionToggle item={item} /> &nbsp;&nbsp;
+                                                            {item.inspectedInd ?
                                                                 <MultiAvatar
-                                                                    primaryTitle={props.productionTableData.inspectedUserName}
+                                                                    primaryTitle={item.inspectedUserName}
                                                                     imgWidth={"1.8rem"}
                                                                     imgHeight={"1.8rem"}
                                                                 /> : null}
@@ -300,7 +313,7 @@ function ProductionTableView(props) {
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {props.productionTableData.inspectedInd &&  */}
-                                                        <MoveToggleProduction item={props.productionTableData} />
+                                                        <MoveToggleProduction item={item} />
                                                         {/* } */}
                                                     </div>
                                                 </div>
@@ -310,6 +323,9 @@ function ProductionTableView(props) {
                                                
                                             </div>          
                                         </div>
+                                                 
+                                    );
+                                })}
                                       
                                     
                             
