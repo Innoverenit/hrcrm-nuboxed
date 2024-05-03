@@ -24,6 +24,10 @@ const initialState = {
   fetchingOrderRecordsError: false,
   orderRecordData: {},
 
+  fetchingProcureRecords: false,
+  fetchingProcureRecordsError: false,
+  procureRecordData:{},
+
   addingDistributor: false,
   addingDistributorError: false,
 
@@ -132,6 +136,9 @@ const initialState = {
 
   setEditingOrder: {},
 
+
+  setEdittingProcure:{},
+
   updateOrderDetailModal: false,
 
   updateDisributorOrderById: false,
@@ -207,6 +214,8 @@ const initialState = {
   updatingDistributorCall: false,
   updatingDistributorCallError: false,
 
+  updateProcureDetailModal:false,
+
   updatingDistributorEvent: false,
   updatingDistributorEventError: false,
 
@@ -280,6 +289,9 @@ const initialState = {
   fetchingRenewOrderByOrderId: false,
   fetchingRenewOrderByOrderIdError: false,
   RenewOrder: [],
+
+  updatingProcureStep1: false,
+  updatingProcureStep1Error: false,
 
   fetchingOrderProcurement: false,
   fetchingOrderProcurementError: false,
@@ -487,7 +499,7 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, viewType: action.payload };
 
     case types.HANDLE_DISTRIBUTOR_MODAL:
-      return { ...state, addDistributorModal: action.payload, clearbit: {} };
+      return { ...state, addDistributorModal: action.payload, };
 
     /**
      * Add a distributor
@@ -2097,6 +2109,21 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderRecordsError: true,
       };
 
+      case types.GET_PROCURE_RECORDS_REQUEST:
+        return { ...state, fetchingProcureRecords: true };
+      case types.GET_PROCURE_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingProcureRecords: false,
+          procureRecordData: action.payload,
+        };
+      case types.GET_PROCURE_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingProcureRecords: false,
+          fetchingProcureRecordsError: true,
+        };
+
     case types.HANDLE_REPAIR_REASON_MODAL:
       return { ...state, showRepairReasonModal: action.payload };
 
@@ -2646,7 +2673,7 @@ export const distributorReducer = (state = initialState, action) => {
           ...state,
           addingOrderProcurement: false,
            procurementOrder: [action.payload, ...state.procurementOrder],
-          // orderDetailsId: action.payload
+          orderDetailsId: action.payload,
           addLinkCustomerProcurementModal: false,
   
         };
@@ -2671,6 +2698,41 @@ export const distributorReducer = (state = initialState, action) => {
             fetchingOrderProcurement: false,
             fetchingOrderProcurementError: true,
           };
+
+          case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
+            return { ...state, updateProcureDetailModal: action.payload };
+
+
+            case types.SET_PROCURE_EDIT:
+              return { ...state, setEdittingProcure: action.payload };
+
+
+              case types.UPDATE_PROCURE_STEP1_REQUEST:
+                return { ...state, updatingProcureStep1: true };
+              case types.UPDATE_PROCURE_STEP1_SUCCESS:
+                return {
+                  ...state,
+                  updatingProcureStep1: false,
+                  updateProcureDetailModal:false,
+                  procurementOrder: state.procurementOrder.map((item) => {
+                    if (item.orderId == action.payload.orderId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.UPDATE_PROCURE_STEP1_FAILURE:
+                return {
+                  ...state,
+                  updatingProcureStep1: false,
+                  updatingProcureStep1Error: true,
+                };
+
+                case types.EMPTY_CLEARBIT_TABLE:
+                  return { ...state,  clearbit: {} };
+
+      
     default:
       return state;
   }

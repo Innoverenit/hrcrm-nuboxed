@@ -1122,6 +1122,10 @@ case types.HANDLE_LEADS_MODAL:
 
                                     case types.UPDATE_LEADS_NOTE_DRAWER_MODAL:
                                       return { ...state, updatingLeadsNoteDrawerModal: action.payload };
+
+
+                                      case types.EMPTY_CLEARBIT_TABLE:
+                                        return { ...state,  clearbit: {} };
           
                       
 

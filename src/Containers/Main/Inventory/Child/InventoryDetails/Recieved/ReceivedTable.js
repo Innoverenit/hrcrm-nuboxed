@@ -1,7 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Select, } from "antd";
+import { Tooltip, Button, Select, Progress } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getReceivedUserList,
@@ -18,7 +18,7 @@ import { getLocationList } from "../../../../Account/AccountAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import { MultiAvatar } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar1, MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceivedOrderToggle from "./ReceivedOrderToggle";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -72,19 +72,19 @@ const ReceivedTable = (props) => {
   return (
     <>
       {props.fetchingReceivedUserList ? <BundleLoader /> :
-        <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=' flex justify-center sticky  z-auto'>
+          <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className=" w-[11.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+              <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
-              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div>
-              <div className="w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
+              <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div>
+              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phones #" /></div>
               <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.inspectedby" defaultMessage="Inspected By" /></div>
-              <div className="w-[5.2rem]"></div>
+              <div className="w-[11.2rem]"></div>
               <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
               <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.location" defaultMessage="Location" /></div>
-              <div className="w-[7.31rem]"></div>
+              <div className="w-[2.31rem]"></div>
               <div className="w-[2.1rem]"></div>
               <div className="w-[2.01rem]"></div>
             </div>
@@ -99,11 +99,13 @@ const ReceivedTable = (props) => {
                 {props.allReceivedUser.map((item, key) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
+                  const percentage = Math.floor((item.phoneReceiveCount / item.phoneCount) * 100)
+                  const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
                       <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[11rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
+                          <div className=" flex font-medium  w-[9.02rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
                                 <span
@@ -122,7 +124,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[11.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.distributorName}
@@ -130,10 +132,10 @@ const ReceivedTable = (props) => {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
-                              <MultiAvatar
+                              <MultiAvatar2
                                 primaryTitle={item.contactPersonName}
                                 imageId={item.imageId}
                                 imgWidth={"1.8rem"}
@@ -141,7 +143,7 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[4.51rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar
@@ -152,12 +154,12 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[8.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[7.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5.5rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[4.52rem] max-xl:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd !== 0 && <MultiAvatar
                                 primaryTitle={item.startInspectionUserName}
@@ -167,14 +169,23 @@ const ReceivedTable = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.phoneReceiveCount}/{item.phoneCount}
+                              {/* {item.phoneReceiveCount}/{item.phoneCount} */}
+                              {isValidPercentage ? (
+
+                                <Progress
+                                  percent={percentage}
+                                  success={{ percent: 30 }}
+                                  format={() => `${percentage}%`}
+                                  style={{ width: "8rem", cursor: "pointer" }}
+                                />
+                              ) : null}
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[7.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div>
                               {item.inspectionInd === 0 ? <ReceivedOrderToggle
                                 orderId={item.orderPhoneId}
@@ -184,12 +195,18 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col  w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                          <div className=" flex font-medium   w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.productionLocationName}
+                              {/* {item.productionLocationName} */}
+                              <MultiAvatar
+                                primaryTitle={item.productionLocationName}
+                                imageId={item.imageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button
@@ -210,11 +227,9 @@ const ReceivedTable = (props) => {
                                 : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
                                     className="cursor-pointer text-base"
-                                    // onClick={() => {
-                                    //   handleRowData(item)
-                                    //   handlelocation();
-                                    // }}
+                                    loading={item.orderId === rowData.orderId && props.addingDeliverDate}
                                     onClick={() => {
+                                      handleRowData(item);
                                       props.addDeliveryDate({
                                         transferInd: 2,
                                         inspectionInd: 3,
@@ -236,7 +251,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div class="flex flex-col w-[3rem] max-sm:flex-row max-sm:w-auto">
+                          <div class="flex  w-[3rem] max-sm:flex-row max-sm:w-auto">
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
@@ -250,7 +265,7 @@ const ReceivedTable = (props) => {
                               </Tooltip>
                             </div>
                           </div>
-                          <div class="flex flex-col w-[2rem] max-sm:flex-row max-sm:w-auto">
+                          <div class="flex  w-[2rem] max-sm:flex-row max-sm:w-auto">
                             {item.mismatchOrderInd &&
                               <div>
                                 <Tooltip title="Mismatch Phones">
@@ -312,6 +327,7 @@ const mapStateToProps = ({ inventory, distributor, auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   inventory: inventory.inventory,
+  addingDeliverDate: inventory.addingDeliverDate,
   mismatchPhoneModal: inventory.mismatchPhoneModal
 });
 

@@ -2737,12 +2737,12 @@ export const getAccountRecords = (userId) => (dispatch) => {
       });
     });
 };
-export const getOrderRecords = (distributorId) => (dispatch) => {
+export const getOrderRecords = (distributorId,type) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/record/count/${distributorId} `, {
+    .get(`${base_url2}/phoneOrder/record/count/${distributorId}/${type} `, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2758,6 +2758,32 @@ export const getOrderRecords = (distributorId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ORDER_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProcureRecords = (distributorId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCURE_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/record/count/${distributorId}/${type} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PROCURE_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PROCURE_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -3440,14 +3466,14 @@ export const setContactRoleForAccount = (data, contactId,) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const addOrderProcurementForm = (customer, distributorId) => (dispatch, getState) => {
+export const addOrderProcurementForm = (customer) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_ORDER_PROCUREMENT_REQUEST,
   });
 
   axios
-    .post(`${base_url2}/phoneOrder-save`, customer, {
+    .post(`${base_url2}/phoneOrder`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3502,4 +3528,64 @@ export const getOrderProcurement = (distributorId, pageNo,type) => (
         payload: err,
       });
     });
+};
+
+export const handleUpdateProcureDetailModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_PROCURE_ORDER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const setEditProcure = (name) => (dispatch) => {
+  dispatch({
+    type: types.SET_PROCURE_EDIT,
+    payload: name,
+  });
+};
+
+export const updateProcureStep1 = (data, orderPhoneId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.UPDATE_PROCURE_STEP1_REQUEST,
+  });
+  axios
+    .put(`${base_url2}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Details Updated',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.UPDATE_PROCURE_STEP1_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully',
+        showConfirmButton: true,
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCURE_STEP1_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const emptyClearbit = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_CLEARBIT_TABLE,
+    
+  });
 };

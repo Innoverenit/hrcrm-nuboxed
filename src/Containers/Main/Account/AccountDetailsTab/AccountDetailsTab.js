@@ -10,7 +10,8 @@ import {
     handleDistributorActivityModal,
     handleDistributorDocumentUploadModal,
     handleOrderGenerateModal,
-    handleAddOrderModal
+    handleAddOrderModal,
+    getOrderRecords
 } from "../AccountAction";
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
@@ -41,10 +42,11 @@ const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActi
 const TabPane = StyledTabs.TabPane;
 
 function AccountDetailsTab(props) {
-    useEffect(() => {
-        // props.getOrderRecords(props.distributorData.distributorId);
+    // useEffect(() => {
+    //     props.getOrderRecords(props.distributorData.distributorId,"repair");
+    //     props.getOrderRecords(props.distributorData.distributorId,"repair");
 
-    }, []);
+    // }, []);
     const [activeKey, setactiveKey] = useState("1")
     const [breadCumb, setBreadCumb] = useState(false)
     const [openOrder, setOpenOrder] = useState(false)
@@ -155,11 +157,11 @@ function AccountDetailsTab(props) {
                    <TabPane
                         tab={
                             <>
-                                {/* <Badge
+                                <Badge
                                     size="small"
-                                    count={(props.orderRecordData.order) || 0}
+                                    count={(props.procureRecordData.order) || 0}
                                     overflowCount={999}
-                                > */}
+                                >
                                     <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title="Procure">
                                             <DynamicFeedIcon
@@ -168,7 +170,7 @@ function AccountDetailsTab(props) {
                                             <span class="ml-1 text-sm">Procure</span>
                                         </Tooltip>
                                     </span>
-                                {/* </Badge> */}
+                              </Badge>
                                 &nbsp;  &nbsp;
                             
                               
@@ -428,6 +430,8 @@ const mapStateToProps = ({ distributor, auth, suppliers }) => ({
     repairInd: auth.userDetails.repairInd,
     addSupplierContactModal: suppliers.addSupplierContactModal,
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
+    procureRecordData:distributor.procureRecordData,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -441,7 +445,8 @@ const mapDispatchToProps = (dispatch) =>
             handleOrderGenerateModal,
             handleSupplierDocumentUploadModal,
             handleAddOrderModal,
-            handleSupplierContactModal
+            handleSupplierContactModal,
+            getOrderRecords
         },
         dispatch
     );

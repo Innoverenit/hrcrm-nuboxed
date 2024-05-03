@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addSupervisor, addLead, getLocationList, getUserByLocationDepartment } from "../Account/AccountAction"
+import { addLead, getLocationList, getUserByLocationDepartment } from "../Account/AccountAction"
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { Button, Select } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -104,7 +104,6 @@ const mapStateToProps = ({ distributor, departments, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
         getUserByLocationDepartment,
-        addSupervisor,
         getDepartments,
         addLead,
         getLocationList

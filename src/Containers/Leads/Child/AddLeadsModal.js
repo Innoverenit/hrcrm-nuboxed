@@ -22,11 +22,12 @@ class AddLeadsModal extends Component {
             defaultMessage="Add Leads"
           />}
           width={drawerWidth}
+          destroyOnClose
           visible={addLeadsModal}
           onClose={() =>{
-            handleClose();
+            // handleClose();
              handleLeadsModal(false)}}
-          footer={null}
+        
         >
         <Suspense fallback={<BundleLoader />}>
           <LeadsForm />{" "}

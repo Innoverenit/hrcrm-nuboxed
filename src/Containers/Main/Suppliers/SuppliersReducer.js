@@ -77,11 +77,20 @@ const initialState = {
   fetchingSupplierListError: false,
   supplierList: [],
 
+  fetchingSupplierPriceList: false,
+  fetchingSupplierPriceListError: false,
+  supplierPriceList:[],
+
+  updatingQualitySuppliers: false,
+  updatingQualitySuppliersError: false,
+
   pOSupplierDetailsId: "",
 
   addLinkSuppliersOrderConfigureModal: false,
 
   clearbitPurchase: {},
+
+  suppliersPriceOpenDrawer:false,
 
   clearbitPurchaseProduct: {},
   addPoListmModal: false,
@@ -136,6 +145,12 @@ const initialState = {
   fetchingSuppliesList: false,
   fetchingSuppliesListError: false,
   suppliesList: [],
+
+  fetchingMaterialWiseQuality: false,
+   fetchingMaterialWiseQualityError: false ,
+   materialwiseQuality:[],
+
+  suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
   fetchingSuppliesListByIdError: false,
@@ -207,6 +222,9 @@ const initialState = {
   addingDocumentBySupplierIdError: false,
 
   addDeleteSuppliesModal: false,
+
+  updatePriceSupplierListItem: false,
+  updatePriceSupplierListItemError: false,
 
   deletingSuppliesData: false,
   deletingSuppliesDataError: false,
@@ -406,6 +424,21 @@ export const suppliersReducer = (state = initialState, action) => {
         addSuppliersModal: false,
       };
 
+      case types.UPDATE_QUALITY_SUPPLIERS_REQUEST:
+        return { ...state, updatingQualitySuppliers: true };
+      case types.UPDATE_QUALITY_SUPPLIERS_SUCCESS:
+        return {
+          ...state, updatingQualitySuppliers: false, suppliersListOpenDrawer: false,
+          // supplierList: [action.payload, ...state.supplierList]
+        };
+      case types.UPDATE_QUALITY_SUPPLIERS_FAILURE:
+        return {
+          ...state,
+          updatingQualitySuppliers: false,
+          updatingQualitySuppliersError: true,
+          suppliersListOpenDrawer: false,
+        };
+
     case types.GET_SUPPLIERS_LIST_REQUEST:
       return { ...state, fetchingSupplierList: true };
     case types.GET_SUPPLIERS_LIST_SUCCESS:
@@ -420,6 +453,23 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierList: false,
         fetchingSupplierListError: true,
       };
+
+
+      case types.GET_SUPPLIERS_PRICE_LIST_REQUEST:
+        return { ...state, fetchingSupplierPriceList: true };
+      case types.GET_SUPPLIERS_PRICE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          supplierPriceList: [...state.supplierPriceList, ...action.payload]
+        };
+      case types.GET_SUPPLIERS_PRICE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          fetchingSupplierPriceListError: true,
+        };
+  
 
     case types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST:
       return { ...state, fetchingSuppliesListById: true };
@@ -1322,6 +1372,9 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
+      case types.EMPTY_SUPPLIER_PRICE_LIST:
+        return { ...state, supplierPriceList: [] };
+
     case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
       return { ...state, supplierSuppliesdrwr: action.payload };
 
@@ -1470,6 +1523,45 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierDeletedList: false,
         fetchingSupplierDeletedListError: true,
       };
+
+
+      case types.HANDLE_SUPPLIERS_PRICE_DRAWER:
+        return { ...state, suppliersPriceOpenDrawer: action.payload };
+
+        case types.HANDLE_SUPPLIERS_LIST_DRAWER:
+          return { ...state, suppliersListOpenDrawer: action.payload };
+
+
+
+          case types.UPDATE_PRICE_OF_SUPPLIER_REQUEST:
+            return { ...state, updatePriceSupplierListItem: true };
+          case types.UPDATE_PRICE_OF_SUPPLIER_SUCCESS:
+            return {
+              ...state,
+              updatePriceSupplierListItem: false,
+              supplierPriceList: state.supplierPriceList.map((item) => {
+                if (item.suppliesId == action.payload.suppliesId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+            };
+          case types.UPDATE_PRICE_OF_SUPPLIER_FAILURE:
+            return {
+              ...state,
+              updatePriceSupplierListItem: false,
+              updatePriceSupplierListItemError: true,
+            };
+
+
+            case types.GET_SUPPLIER_WISE_QUALITY_REQUEST:
+              return { ...state, fetchingMaterialWiseQuality: true };
+            case types.GET_SUPPLIER_WISE_QUALITY_SUCCESS:
+              return { ...state, fetchingMaterialWiseQuality: false, materialwiseQuality: action.payload };
+            case types.GET_SUPPLIER_WISE_QUALITY_FAILURE:
+              return { ...state, fetchingMaterialWiseQuality: false, fetchingMaterialWiseQualityError: true };
+      
 
     default:
       return state;

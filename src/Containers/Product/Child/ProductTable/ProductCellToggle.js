@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { linkCellwithProduct } from "../../../Event/Child/Location/LocationAction";
 
 function ProductCellToggle (props) {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(props.usedInd);
   const [confirmVisible, setConfirmVisible] = useState(false);
  
   const handleToggle = () => {
@@ -13,33 +13,59 @@ function ProductCellToggle (props) {
   };
 
   const handleConfirm = (confirmed) => {
-    if (confirmed) {
+    if (props.usedInd) {
       props.linkCellwithProduct({
-        cellChamberLinkId: props.item.cellChamberLinkId,
-        productId:  props.particularDiscountData.productId,
-        locationDetailsId: props.locationId,
-        userId: props.userId,
-        orgId: props.organizationId,
-      });
+        // cellChamberLinkId: props.item.cellChamberLinkId,
+        // productId:  props.particularDiscountData.productId,
+        // locationDetailsId: props.locationId,
+        // userId: props.userId,
+        // orgId: props.organizationId,
+        cellId:props.cellId,
+        usedInd:props.usedInd?false:true,
+        cellChamberLinkId:props.cellChamberLinkId,
+        productId:props.particularDiscountData.productId,
+
+      } 
+    );
       setToggle(!toggle);
+    }else{
+      props.linkCellwithProduct({
+        // cellChamberLinkId: props.item.cellChamberLinkId,
+        // productId:  props.particularDiscountData.productId,
+        // locationDetailsId: props.locationId,
+        // userId: props.userId,
+        // orgId: props.organizationId,
+        cellId:props.cellId,
+        usedInd:props.usedInd?false:true,
+        cellChamberLinkId:props.cellChamberLinkId,
+        productId:props.particularDiscountData.productId,
+
+      } 
+    );
     }
-    setConfirmVisible(false);
+    // setConfirmVisible(false);
   };
 
-     
+  function handleCancel() {
+    if (props.userInd) {
+      setToggle(true);
+    } else {
+      setToggle(false);
+    }
+  }
 
   return (
       <>
           <div>
               <Popconfirm
                   title="Confirm status change?"
-                  onConfirm={() => handleConfirm(true)}
-                  onCancel={() => handleConfirm(false)}
+                  onConfirm={() => handleConfirm()}
+                  onCancel={() => handleCancel()}
                   okText="Ok"
                   cancelText="Cancel"
               >
                   <Switch
-                      checked={toggle}
+                      checked={props.usedInd||toggle}
                       onChange={handleToggle}
                       isLoading={true}
                       checkedChildren="Yes"

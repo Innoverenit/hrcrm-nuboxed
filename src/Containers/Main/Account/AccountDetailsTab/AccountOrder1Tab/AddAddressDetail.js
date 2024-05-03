@@ -56,6 +56,7 @@ function AddAddressDetail(props) {
                 deliverToBusinessInd: "",
                 fullLoadTruckInd: "",
                 privateInd: "",
+                orgId: props.orgId,
                 advancePayment: "",
                 distributorId: props.distributorId,
                 userId: props.userId,
@@ -380,6 +381,7 @@ const mapStateToProps = ({ suppliers, auth, distributor }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
+    orgId: auth.userDetails.organizationId,
     creatingOrderForProduction: distributor.creatingOrderForProduction
 });
 

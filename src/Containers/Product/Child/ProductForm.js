@@ -155,7 +155,8 @@ class Productform extends Component {
             subscriptionInd: this.state.subscriptionAvailable ? true : false,
             orgId:this.props.orgId,
             brand:"",
-            model:""
+            model:"",
+            WorkflowId:""
 ,          }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -286,6 +287,22 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
+
+                  <div class="w-[48%]">
+                      <Field
+                        name="WorkflowId"
+                        label="Workflow"
+                        //placeholder="Search or Create"
+                        //optionLabel="subAttributeName"
+                       // optionValue="subAttributeName"
+                       // url={`${base_url2}/product/subattribute`}
+                       component={SelectComponent}
+                       options={Array.isArray(workFlowOption) ? workFlowOption : []}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
                   {/* <div class="flex justify-between ">
                   <div class="w-[47%]">
                     <Field

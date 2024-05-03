@@ -95,7 +95,7 @@ useEffect(() => {
     <div style={{marginTop:"-14px",textAlign:"center",fontWeight:"bold"}}>{moment.utc(weekendStart).format("DD-MM-YYYY")}-{moment.utc(weekendEnd).format("DD-MM-YYYY")}</div>
     {/* {`  ${moment.utc(weekendStart).format("DD-MM-YYYY")-moment.utc(weekendEnd
   ).format("DD-MM-YYYY")}`} */}
-    <BarChart width={600} height={162} data={data}>
+    <BarChart width={540} height={162} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis yAxisId="left" />

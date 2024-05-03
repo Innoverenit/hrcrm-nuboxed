@@ -12,6 +12,7 @@ import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { MultiAvatar, MultiAvatar2,  } from "../../../../Components/UI/Elements";
 import {
   getOpportunityListByUserId,
@@ -34,12 +35,18 @@ import {
          StatusRecruit,
          lostStatusRecruit,
          LinkStageOpportunity,
-         getOpportunityForecast
+         getOpportunityForecast,
+         handleOpportunityRowEmailModal
 } from "../../OpportunityAction";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import AddOpportunityDrawerModal from "../../Child/OpportunityTable/AddOpportunityDrawerModal"
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
+import { base_url } from "../../../../Config/Auth";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -69,7 +76,78 @@ function OpportunityCardList(props) {
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
   const [currentItem, setCurrentItem] = useState("");
 
-
+  const exportPDFAnnexure = async () => {
+    var doc = new jsPDF();
+    const {
+      userDetails:
+      {address},
+        imageId
+    }=props
+   
+    let cityd=`${address.city}`
+    let countryd=`${address.country}`
+    let addressde=`${address.state}`
+    let cityde=`${address.street}`
+    var imageUrl = `${base_url}/image/${imageId || ""}`;
+    var name1 = `East Repair Inc `
+    var name2 =`1912 Harvest Lane New York ,NY 12210 ${cityd}`
+    var name3 =`BILL TO`
+    var name4 = `SHIP TO`
+    var name5 = `QUOTE #`
+    var name6 = `QUOTE DATE`
+    var name7 = `P.O.#`
+    var name8 = `Quote Total`
+    var name9 = `QTY`
+    var name10 = `DESCRIPTION`
+    var name11 = `UNIT PRICE`
+    var name12 = `AMOUNT`
+    var name13= `TERM & CONDITIONS`
+    var name14= `Payement id due within 15 days`
+    var name15= `Please make checks payble to: East repair Inc. `
+  
+  
+    doc.setFont("Montserrat");
+    doc.setFillColor(62, 115, 185);
+    doc.rect(0, 0, 230, 13, 'F');
+    doc.setFontSize(25);
+    doc.setFontSize(14);
+    doc.setDrawColor(0, 0, 0)
+    doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
+    doc.text(name1, 8, 25);
+    doc.setFontSize(10);
+    let yPosition = 32;
+    address.forEach(item => {
+      doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
+      yPosition += 4
+  });
+    // doc.text(name2, 8, 32);
+    doc.setFontSize(12);
+    doc.text(name3, 8, 50);
+    doc.text(name4, 60, 50);
+    doc.text(name5, 120, 50);
+    doc.text(name6, 120, 58);
+    doc.text(name7, 120, 66);
+    doc.line(8, 80, 200, 80);
+    doc.setFontSize(22);
+    doc.text(name8, 8, 90);
+    doc.line(8, 100, 200, 100);
+    doc.setFontSize(10);
+    doc.text(name9, 8, 110);
+    doc.text(name10, 30, 110);
+    doc.text(name11, 90, 110);
+    doc.text(name12, 140, 110);
+    doc.setFontSize(12);
+    doc.text(name13, 8, 250);
+    doc.setFontSize(9);
+    doc.text(name14, 8, 260);
+    doc.text(name15, 8, 270);
+    //footer
+    doc.setFillColor(62, 115, 185);
+    doc.rect(0, 276, 230, 15, 'F');
+  
+    doc.save("Quotation.pdf")
+  
+  }
 
 
 
@@ -111,13 +189,15 @@ function OpportunityCardList(props) {
     updateOpportunityModal,
     deleteOpportunityData,
     history,
-    fetchingOpportunity
+    fetchingOpportunity,
+    handleOpportunityRowEmailModal,
+    addOpportunityRowEmailModal
   } = props;
   
   // if (fetchingOpportunity) {
   //   return <BundleLoader />;
   // }
-
+console.log(props.userDetails.imageId)
   return (
     <>
     
@@ -127,10 +207,10 @@ function OpportunityCardList(props) {
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingOpportunity?<div style={{ textAlign: 'center' }}>Loading...</div> :null}
-                height={"75vh"}
+                height={"85vh"}
             >
 
-<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
+<div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
 { !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -266,7 +346,7 @@ imgHeight={"1.8em"}
         </div>
     
         <div class="w-full " >
-            <div class="flex justify-between w-wk mt-1">
+            <div class="flex justify-between w-wk items-center">
               <div>
               {item.approveInd&&item.opportunityOwner ? (
 <>
@@ -353,6 +433,22 @@ imgHeight={"1.8em"}
 </>
 )}
 </div>
+<div class="flex items-center">
+<div class="w-6">
+<MailOutlineIcon
+                type="mail"
+                style={{ cursor: "pointer",fontSize: "1.25rem" }}
+                onClick={() => {
+                  props.handleOpportunityRowEmailModal(true);
+                }}
+              />
+  </div>
+
+<div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon/>
+                           </span>
+          </div>
 <div>
 <Tooltip
           placement="right"
@@ -414,7 +510,7 @@ imgHeight={"1.8em"}
           </StyledPopconfirm>
 
               </div>
-            
+            </div>
               </div>
            
         </div>
@@ -431,6 +527,12 @@ imgHeight={"1.8em"}
         handleUpdateOpportunityModal={handleUpdateOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
       />
+
+<OpportunityRowEmailModal
+        addOpportunityRowEmailModal={addOpportunityRowEmailModal}
+        handleOpportunityRowEmailModal={handleOpportunityRowEmailModal}
+      />
+
        <AddOpportunityNotesDrawerModal
         addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
         opportunityData={currentOpportunityId}
@@ -487,8 +589,9 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
     opportunityForecast:opportunity.opportunityForecast,
     allRecruitmentByOppId: opportunity.allRecruitmentByOppId,
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
-    fetchingOpportunitySkills:opportunity.fetchingOpportunitySkills
-  
+    fetchingOpportunitySkills:opportunity.fetchingOpportunitySkills,
+    addOpportunityRowEmailModal:opportunity.addOpportunityRowEmailModal,
+    userDetails: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -514,6 +617,7 @@ const mapDispatchToProps = (dispatch) =>
          lostStatusRecruit,
          emptyOpportunity,
          LinkStageOpportunity,
+         handleOpportunityRowEmailModal
     },
     dispatch
   );

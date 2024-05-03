@@ -2,7 +2,7 @@ import * as types from "./ProductionActionType";
 
 const initialState = {
   openProductiondrawer: false,
-  viewType: "card",
+  viewType: "table",
 
   creatingProductionLink: false,
   creatingProductionLinkError: false,
@@ -18,6 +18,9 @@ const initialState = {
   fetchingProductionLocId: false, fetchingProductionLocIdError: false,
   productionByLocsId: [],
 
+
+  
+
   openbUILDERProductiondrawer: false,
   clickedProductionIdrwr: false,
 
@@ -29,11 +32,21 @@ const initialState = {
   fetchingWorkflowListError: true,
   workflowProduction: [],
 
+
+  addSparePartsDrawerModal:false,
+
   fetchingArchieveProduction: false,
   fetchingArchieveProductionError: false,
   archieveProduction: [],
   updateProductionStatus:false,
   updateProductionStatusError:false,
+
+  
+
+  fetchingProductionTable:false,
+  fetchingProductionTableError:false,
+
+  productionTableData:{},
 
   settingInpectdn: false,settingInpectdnError:false,
 
@@ -69,6 +82,11 @@ export const productionReducer = (state = initialState, action) => {
 
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+
+      case types.ADD_SPARE_PARTS_DRAWER_MODAL:
+                                          return { ...state, addSparePartsDrawerModal: action.payload };
 
 
     case types.CREATE_PRODUCTION_LINK_REQUEST:
@@ -124,6 +142,15 @@ export const productionReducer = (state = initialState, action) => {
       return { ...state, fetchingProductionLocId: false, productionByLocsId: action.payload };
     case types.GET_PRODUCTION_BYLOC_ID_FAILURE:
       return { ...state, fetchingProductionLocId: false, fetchingProductionLocIdError: true };
+
+
+
+      case types.GET_PRODUCTION_TABLE_REQUEST:
+        return { ...state, fetchingProductionTable: true, fetchingProductionTable: false };
+      case types.GET_PRODUCTION_TABLE_SUCCESS:
+        return { ...state, fetchingProductionTable: false, productionTableData: action.payload };
+      case types.GET_PRODUCTION_TABLE_FAILURE:
+        return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
 
     case types.REMOVE_PRODUCTION_REQUEST:
       return { ...state, removingProduction: true };

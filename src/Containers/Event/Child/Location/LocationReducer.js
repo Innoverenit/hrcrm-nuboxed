@@ -34,6 +34,11 @@ const initialState = {
    creatingShiftLocationError:false,
 
 
+   fetchingCellCardList:false,
+   fetchingCellCardListError:false,
+   cellCardList:[],
+
+
    fetchingUserListLocation:false,
    fetchingUserListLocationError:false,
    userListLocation:[],
@@ -167,6 +172,24 @@ deletingUserCellDataError:false,
           deletingLocationCellData: false,
           deletingLocationCellDataError: true,
         };
+
+
+
+
+        case types.GET_CELL_CARD_LIST_REQUEST:
+          return { ...state, fetchingCellCardList: true };
+        case types.GET_CELL_CARD_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingCellCardList: false,
+            cellCardList: action.payload
+          };
+        case types.GET_CELL_CARD_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingCellCardList: false,
+            fetchingCellCardListError: true,
+          };
 
 
 
@@ -424,17 +447,17 @@ deletingUserCellDataError:false,
         case types.LINK_CELL_WITH_PRODUCT_SUCCESS:
             return {
                 ...state,
-                allLoCell: state.allLoCell.filter(
-                  (item) => item.cellChamberLinkId !== action.payload.cellChamberLinkId
-                ),
-                // allLoCell: state.allLoCell.map(
-                //     (item) => {
-                //         if (item.cellChamberLinkId === action.payload.cellChamberLinkId) {
-                //             return action.payload;
-                //         } else {
-                //             return item;
-                //         }
-                //     }),
+                // cellCardList: state.cellCardList.filter(
+                //   (item) => item.cellChamberLinkId !== action.payload.cellChamberLinkId
+                // ),
+                cellCardList: state.cellCardList.map(
+                    (item) => {
+                        if (item.cellChamberLinkId === action.payload.cellChamberLinkId) {
+                            return action.payload;
+                        } else {
+                            return item;
+                        }
+                    }),
             };
         case types.LINK_CELL_WITH_PRODUCT_FAILURE:
             return { ...state };

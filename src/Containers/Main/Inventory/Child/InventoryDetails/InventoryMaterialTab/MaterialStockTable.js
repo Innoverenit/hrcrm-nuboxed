@@ -4,63 +4,82 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Tooltip,Button} from "antd";
-import { getGrnListOfaPoInStock, handleSTockItemModal,handleStockUsedDrawer } from "../../../InventoryAction"
+import { Tooltip, Button, Select } from "antd";
+import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
+import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
+import { PlusOutlined } from "@ant-design/icons";
+import ItemHistoryInStock from "./ItemHistoryInStock";
+
+const { Option } = Select;
 
 const GrnListOfPO = (props) => {
     useEffect(() => {
+        props.getRoomRackByLocId(props.locationId, props.orgId);
         props.getGrnListOfaPoInStock(props.locationDetailsId);
     }, [])
 
-    const [row, setRow] = useState({})
-    const [editedFields, setEditedFields] = useState({});
-    const [editsuppliesId, setEditsuppliesId] = useState(null);
 
-    const handleItemClick = (item) => {
-        setRow(item)
-    }
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
     const handleLoadMore = () => {
         setPage(page + 1);
     };
 
-    const handleChange = (poSupplierSuppliesId, fieldName, value) => {
-        setEditedFields((prevFields) => ({
-          ...prevFields,
-          [poSupplierSuppliesId]: {
-            ...prevFields[poSupplierSuppliesId],
-            [fieldName]: value,
-          },
-        }));
-      };
-      const handleEditClick = (poSupplierSuppliesId) => {
-        setEditsuppliesId(poSupplierSuppliesId);
-      };
-      const handleCancelClick = (poSupplierSuppliesId) => {
-        setEditedFields((prevFields) => ({ ...prevFields, [poSupplierSuppliesId]: undefined }));
-        setEditsuppliesId(null);
-      };
-      const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,
-      ) => {
-      const data = {
-        suppliesId:suppliesId,
-        // suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
-        // categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
-        // subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
-        // quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
-        // productId:props.particularDiscountData.productId,  
-        // suppliesId:suppliesId          
-      };
-    
-    //   props.updateProSupplBuilder(data)
-        setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
-        setEditsuppliesId(null);
-      
+    const [row, setRow] = useState({})
+
+    const handleItemClick = (item) => {
+        setRow(item)
+    }
+    let chamberId = row.roomRackChamberLinkId === null ? "" : row.roomRackChamberLinkId
+    let roomId = row.roomRackId === null ? "" : row.roomRackId
+
+    const [selectedChamberId, setSelectedChamberId] = useState(chamberId);
+    const [selectedRoomId, setSelectedRoomId] = useState(roomId);
+    const [selectZone, setSelectZone] = useState(false);
+
+    const handleSelectZone = () => {
+        setSelectZone(true)
+    }
+
+    const [itemHistory, setItemHistory] = useState(false);
+
+    const handleItemHistory = () => {
+        setItemHistory(!itemHistory)
+    }
+
+    const handleCancelZone = () => {
+        setSelectZone(false)
+    }
+    const handleChangeRoomRack = (value) => {
+        setSelectedRoomId(value)
+        props.getRackList(value)
+    }
+
+    const handleChangeChamber = (value) => {
+        setSelectedChamberId(value)
+    }
+    const handleUpdateSupplies = (
+    ) => {
+        const data = {
+            grnReceivedInd: true,
+            grnStockInd: true,
+            roomRackId: selectedRoomId,
+            roomRackChamberLinkId: selectedChamberId,
+            allowGrnInd: row.allowGrnInd,
+            poSupplierSuppliesId: row.poSupplierSuppliesId
+        };
+        props.trnasferGrnItemToStock(data, row.poSupplierSuppliesId, handlecallback()
+        )
+
     };
+    const handlecallback = () => {
+        setSelectZone(false)
+    }
+    console.log(selectZone)
+    console.log(row.poSupplierSuppliesId)
 
     return (
         <>
@@ -87,18 +106,31 @@ const GrnListOfPO = (props) => {
                         loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"75vh"}
                     >
-                        {props.poGrnList.map((item,index) => {
+                        {props.poGrnList.map((item, index) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                                    <div class="flex">
+                                        <div class="flex">
+                                            <div className=" flex font-medium flex-col md:w-[4.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
+                                                    <PlusOutlined
+                                                        onClick={() => {
+                                                            handleItemHistory()
+                                                            handleItemClick(item)
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     {item.newPoNumber}
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold font-poppins cursor-pointer underline text-blue-600">
@@ -113,7 +145,7 @@ const GrnListOfPO = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
                                         <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.grnNumber}
@@ -146,82 +178,100 @@ const GrnListOfPO = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                            {editsuppliesId === item.poSupplierSuppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.poSupplierSuppliesId]?.room !== undefined ? editedFields[item.poSupplierSuppliesId].room : item.room}
-                       onChange={(e) => handleChange(item.poSupplierSuppliesId, 'room', e.target.value)}
-                       />
-                       
-                    ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.room}</div>
-                      </div>
-                    )}
+                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
+
+                                                    <Select
+                                                        classNames="w-32"
+                                                        value={selectedRoomId}
+                                                        onChange={(value) => { handleChangeRoomRack(value) }}
+                                                    >
+                                                        {props.roomRackbyLoc.filter((type) => type.zoneType === "entry")
+                                                            .map((s) => (
+                                                                <Option value={s.roomRackId}>
+                                                                    {s.zone}
+                                                                </Option>
+                                                            ))}
+                                                    </Select>
+                                                ) : (
+                                                    <div className="font-normal text-sm text-cardBody font-poppins">
+                                                        <div> {item.zone}</div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                            {editsuppliesId === item.poSupplierSuppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.poSupplierSuppliesId]?.room !== undefined ? editedFields[item.poSupplierSuppliesId].room : item.room}
-                       onChange={(e) => handleChange(item.poSupplierSuppliesId, 'room', e.target.value)}
-                       />
-                       
-                    ) : (
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.room}</div>
-                      </div>
-                    )}
+                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
+                                                    <Select
+                                                        classNames="w-32"
+                                                        value={selectedChamberId}
+                                                        onChange={(val) => handleChangeChamber(val)}
+                                                    >
+                                                        {props.rackList.map((chamber) => (
+                                                            <Option value={chamber.roomRackChamberLinkId}>
+                                                                {chamber.chamber}
+                                                            </Option>
+                                                        ))}
+                                                    </Select>
+
+                                                ) : (
+                                                    <div className="font-normal text-sm text-cardBody font-poppins">
+                                                        <div> {item.chamber}</div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-            
-                      <div>
-                        <Tooltip title="">
-                        <i class="far fa-share-square"
-                        //    className="!text-base cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.handleStockUsedDrawer(true);
-                            }}
-                            style={{cursor:"pointer"}}
-                          />
-                        </Tooltip>
-                      </div>
-                      <div>
-                      {editsuppliesId === item.poSupplierSuppliesId ? (
-                        <>
-                      <Button 
-                      type="primary"
-                    //   onClick={() => handleUpdateSupplies(item.suppliesId,item.suppliesName,item.categoryName, item.subCategoryName )}
-                      >
-                        Save
-                      </Button>
-                        <Button 
-                         type="primary"
-                        onClick={() => handleCancelClick(item.poSupplierSuppliesId)} className="ml-[0.5rem]">
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <BorderColorIcon
-                        className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
-                        iconType="edit"
-                        onClick={() => handleEditClick(item.poSupplierSuppliesId)}
-                      />
-                    )}
-                      </div>
-                    
-                    <div></div>
-                  </div>
+
+                                            <div>
+                                                <Tooltip title="">
+                                                    <i class="far fa-share-square"
+                                                        //    className="!text-base cursor-pointer text-[tomato]"
+                                                        onClick={() => {
+                                                            handleItemClick(item)
+                                                            props.handleStockUsedDrawer(true);
+                                                        }}
+                                                        style={{ cursor: "pointer" }}
+                                                    />
+                                                </Tooltip>
+                                            </div>
+                                            <div>
+                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
+                                                    <>
+                                                        <Button
+                                                            type="primary"
+                                                            onClick={() => handleUpdateSupplies()}
+                                                        >
+                                                            Save
+                                                        </Button>
+                                                        <Button
+                                                        // type="primary"
+                                                        // onClick={handleCancelZone()}
+                                                        >
+                                                            Cancel
+                                                        </Button>
+                                                    </>
+
+                                                ) : (
+                                                    <BorderColorIcon
+                                                        className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+
+                                                        onClick={() => {
+                                                            handleItemClick(item)
+                                                            handleSelectZone()
+                                                        }}
+                                                    />
+                                                )}
+                                            </div>
+
+                                            <div></div>
+                                        </div>
 
                                     </div>
-
+                                    <div>
+                                        {itemHistory && (row.poSupplierSuppliesId === item.poSupplierSuppliesId)
+                                            && <ItemHistoryInStock row={row} />}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -234,10 +284,11 @@ const GrnListOfPO = (props) => {
                 showStockItem={props.showStockItem}
             />
             <TheStockUsedDrawer
-            row={row}
-            stockUseDrwr={props.stockUseDrwr}
-            handleStockUsedDrawer={props.handleStockUsedDrawer}
+                row={row}
+                stockUseDrwr={props.stockUseDrwr}
+                handleStockUsedDrawer={props.handleStockUsedDrawer}
             />
+
         </>
     );
 }
@@ -247,9 +298,13 @@ const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     poGrnList: inventory.poGrnList,
+    locationId: auth.userDetails.locationId,
+    roomRackbyLoc: inventory.roomRackbyLoc,
+    rackList: inventory.rackList,
+    orgId: auth.userDetails.organizationId,
     showStockItem: inventory.showStockItem,
     fetchingGrnListOfAPo: inventory.fetchingGrnListOfAPo,
-    stockUseDrwr:inventory.stockUseDrwr
+    stockUseDrwr: inventory.stockUseDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -257,7 +312,10 @@ const mapDispatchToProps = (dispatch) =>
         {
             getGrnListOfaPoInStock,
             handleSTockItemModal,
-            handleStockUsedDrawer
+            handleStockUsedDrawer,
+            getRackList,
+            getRoomRackByLocId,
+            trnasferGrnItemToStock
         },
         dispatch
     );

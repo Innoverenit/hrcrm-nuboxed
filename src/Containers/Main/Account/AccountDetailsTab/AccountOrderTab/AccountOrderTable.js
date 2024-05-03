@@ -24,6 +24,7 @@ import {
     handleUpdateOrder,
     setEditOrder,
     removeOrderAcc,
+    getOrderRecords,
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
@@ -51,9 +52,9 @@ const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-
+        props.getOrderRecords(props.distributorId,"repair");
         props.getLocationList(props.orgId);
-        props.getDistributorOrderByDistributorId(props.distributorId, page,"repair")
+        props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
     }, [])
 
     const [print, setprint] = useState(false);
@@ -73,7 +74,7 @@ const AccountOrderTable = (props) => {
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getDistributorOrderByDistributorId(props.distributorId, page,"repair")
+        props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
     };
     const [visible, setVisible] = useState(false)
     const handleUpdateRevisePrice = () => {
@@ -446,17 +447,17 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                        {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer">
-                                                            <Tooltip title="Add Supervisor">
-                                                                <PersonAddAlt1
-                                                                    className="!text-base cursor-pointer"
-                                                                    style={{ color: item.supervisorUserName ? "green" : "red" }}
-                                                                    onClick={() => {
-                                                                        props.handleInventoryLocationInOrder(true)
-                                                                        handleSetParticularOrderData(item)
-                                                                    }} />
-                                                            </Tooltip>
-                                                        </div>}
+                                                        {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
+                                                        <Tooltip title="Add Supervisor">
+                                                            <PersonAddAlt1
+                                                                className="!text-base cursor-pointer"
+                                                                style={{ color: item.supervisorUserName ? "green" : "red" }}
+                                                                onClick={() => {
+                                                                    props.handleInventoryLocationInOrder(true)
+                                                                    handleSetParticularOrderData(item)
+                                                                }} />
+                                                        </Tooltip>
+                                                        {/* </div>} */}
 
                                                     </div>
                                                     <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -614,6 +615,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     deleteDistributorData,
     getLocationList,
     updateSubOrderAwb,
+    getOrderRecords
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountOrderTable);

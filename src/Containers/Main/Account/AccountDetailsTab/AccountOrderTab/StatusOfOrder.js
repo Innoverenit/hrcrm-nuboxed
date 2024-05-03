@@ -103,7 +103,7 @@ const StatusOfOrder = (props) => {
                                 status: 'progress',
                                 description: <>
                                     {orderStatus.transferInd !== 0 &&
-                                        <b>By {orderStatus.orderPickUpUser} On {moment(orderStatus.orderPickUpDate).format("DD-MM-YYYY")} </b>
+                                        <b>By {orderStatus.orderPickUpUser} On {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} </b>
                                     }
                                 </>
                             },

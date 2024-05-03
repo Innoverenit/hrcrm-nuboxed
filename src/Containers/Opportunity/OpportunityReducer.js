@@ -225,6 +225,8 @@ const initialState = {
   fetchingOppLinkedStagesError: false,
   oppLinkStages:[],
 
+  addOpportunityRowEmailModal:false,
+
   fetchingCloseOpportunity: false,
   fetchingCloseOpportunityError: false,
   closeOpportunity:[],
@@ -590,7 +592,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOpportunity: false,
-        addOpportunityModal: false,
+        //addOpportunityModal: false,
         opportunityByUserId:[action.payload,...state.opportunityByUserId]
         // clearbit: null,
       };
@@ -599,7 +601,7 @@ export const OpportunityReducer = (state = initialState, action) => {
         ...state,
         addingOpportunity: false,
         addingOpportunityError: true,
-        addOpportunityModal: false,
+        //addOpportunityModal: false,
       };
 
     /* Get a opportunity  */
@@ -2593,6 +2595,10 @@ case types.REINSTATE_TOGGLE_FOR_OPPORTUNITY_FAILURE:
             opportunityContractStatus: false,
             opportunityContractStatusError: true,
           };
+
+          case types.HANDLE_OPPOORTUNITY_ROW_EMAIL_MODAL:
+                        return { ...state, addOpportunityRowEmailModal: action.payload };
+ 
 
                                             default:
                                             return state;

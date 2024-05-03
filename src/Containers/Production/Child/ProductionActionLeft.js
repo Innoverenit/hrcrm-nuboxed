@@ -8,6 +8,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import TocIcon from '@mui/icons-material/Toc';
 import { TableOutlined } from "@ant-design/icons";
 import {getProductRecords} from "../ProductionAction";
+import { TableBarOutlined } from "@mui/icons-material";
 
 const ProductionActionLeft = (props) => {
   const { setProductionViewType, viewType } = props
@@ -18,6 +19,26 @@ const ProductionActionLeft = (props) => {
   }, [props.viewType, props.locationId]);
   return (
     <div class="flex items-center">
+       <Tooltip title="Table ">
+                    <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        //overflowCount={999}
+                    >
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setProductionViewType("table")}
+                            style={{
+
+                                color: viewType === "table" && "#1890ff",
+                            }}
+                        >
+                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                                {/* <div className="text-white">All</div> */}
+                                <TableBarOutlined/>
+                                </Avatar>
+
+                        </span>
+                    </Badge>
+                </Tooltip>
       <Tooltip
         title={<FormattedMessage id="app.listView" defaultMessage="List View" />}>
  <Badge
@@ -93,6 +114,10 @@ const ProductionActionLeft = (props) => {
                         </span>
                     </Badge>
                 </Tooltip>
+
+
+
+               
                
     </div>
   );

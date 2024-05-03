@@ -164,12 +164,16 @@ class Dashboard extends Component {
         activeButton={this.state.activeButton}
         />
         <Suspense fallback={<BundleLoader />}>
-        <MainWrapper style={{marginTop:"0.5rem",overflow:"hidden",height:"21rem"}}
+        <MainWrapper
+         style={{marginTop:"0.5rem",overflow:"hidden"}}
     >
-          <div class="  max-sm:h-[36rem] max-sm:overflow-x-auto">
+       {/* <div className=" rounded-md shadow-[0em_0.25em_0.625em_-0.125em]
+         border-[0625em] border-solid m-1 p-1 w-full font-poppins  mt-2 overflow-hidden h-[21rem] max-sm:h-[30rem]
+        "></div> */}
+          <div class=" h-[21rem] max-sm:h-[19rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col " >
+           <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME"?(
              <DashboardJumpstartAll/> )
              :viewType==="bulb" ? (<DashboardBulbJumpstart/>
@@ -278,8 +282,8 @@ class Dashboard extends Component {
   // ) 
   : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
-    ) : this.state.activeButton === "Customer"  ? (
-      <FunnelTab />
+    // ) : this.state.activeButton === "Customer"  ? (
+    //   <FunnelTab />
    
   ) : this.state.activeButton === "Finance" ? (
     null
@@ -295,7 +299,7 @@ class Dashboard extends Component {
 ) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
   ) : (
-    this.state.activeButton === "Customer"   ? null : <StackedClosureChart />
+    this.state.activeButton === "Customer"   ? null : null
     // null
   )}
 </div>
@@ -383,16 +387,17 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
-    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
+   
+    <MainWrapper style={{marginTop:"1rem",overflow:"none"}}
     >
-    <div class="   max-sm:h-[36rem] max-sm:overflow-x-auto">
+    <div class=" h-[21rem]   max-sm:h-[12rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[47.5%] max-sm:w-wk">
            <div class=" flex flex-col " >
           
      
 
-    <div class=" flex justify-between" >
+    <div class=" flex justify-between " >
                 
               
                  
@@ -494,6 +499,7 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
+    
     </Suspense>
 
 

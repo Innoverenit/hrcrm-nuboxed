@@ -78,9 +78,10 @@ const MaterialReceivedTable = (props) => {
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" w-[11.12rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        <div className=" w-[13.52rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" w-[11.122rem]">Supplier</div>
-                        <div className=" w-[11.122rem]">Store</div>
+                        <div className=" w-[11.22rem]">Zone</div>
+                        <div className=" w-[11.322rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -113,7 +114,7 @@ const MaterialReceivedTable = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[10.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <MultiAvatar
@@ -124,16 +125,20 @@ const MaterialReceivedTable = (props) => {
                                             </div>
 
                                         </div>
+                                        <div className=" flex font-medium flex-col  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+
+                                            {date}
+
+                                        </div>
                                         <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
                                                {item.supplierName}
                                             </div>
                                         </div>
-         <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+         {/* <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
          
-                                        {/* {clickStore && row=== item.poSupplierDetailsId ?
-                                        <> */}
+                                       
                                        <Select
                                                                 classNames="w-32"
                                                                 value={selectedRoomId}
@@ -170,15 +175,13 @@ const MaterialReceivedTable = (props) => {
                                                                 id="app.cancel"
                                                                 defaultMessage="Cancel"
                                                             /></Button>
-                                                        {/* </>
-                                                        : */}
+                                                        
                                                         <>
-                                                            {/* {`${item.zone || ""} - ${item.chamber || ""}`} */}
-
+                                                           
                                                         </>
-                        {/* }   */}
-</div>
-<div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    
+</div> */}
+<div className=" flex font-medium flex-col md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 {/* <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                     {item.zone ? <BorderColorOutlined
                                                         onClick={() => {
@@ -195,14 +198,23 @@ const MaterialReceivedTable = (props) => {
                                             </div>
                                         <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
-                                                <Tooltip title="GRN list">
-                                                <ListAltOutlined
+                                                {/* <Tooltip title="GRN "> */}
+                                                    <Button
                                                     onClick={() => {
                                                         handleRow(item);
                                                         props.handlegrnlistmodal(true)
                                                     }}
-                                                />
-                                                </Tooltip>
+                                                    type="primary"
+                                                    >
+                                                    GRN
+                                                    </Button>
+                                                {/* <ListAltOutlined
+                                                    onClick={() => {
+                                                        handleRow(item);
+                                                        props.handlegrnlistmodal(true)
+                                                    }}
+                                                /> */}
+                                                {/* </Tooltip> */}
                                             </div>
 
                                         </div>

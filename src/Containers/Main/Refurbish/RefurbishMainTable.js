@@ -86,12 +86,12 @@ const ProductionOrderList = (props) => {
                             id="app.owner"
                             defaultMessage="owner"
                         /> </div>
-                       
+
                         <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.quoted"
                             defaultMessage="Quoted"
                         /></div>
-                         <div className="md:w-[5.8rem]"><FormattedMessage
+                        <div className="md:w-[5.8rem]"><FormattedMessage
                             id="app.final"
                             defaultMessage="Final"
                         /></div>
@@ -117,7 +117,7 @@ const ProductionOrderList = (props) => {
                                     <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center justify-between p-3  max-sm:h-[8rem] max-sm:flex-col" >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[10.9rem] max-sm:w-auto ">
-                                                <Badge size="small" count={`${item.totalReceiveCanRepairQuantity} / ${item.phoneCount}`} overflowCount={5000}>
+                                                <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
@@ -195,7 +195,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
@@ -205,7 +205,7 @@ const ProductionOrderList = (props) => {
                                                     Final
                                                 </div>
                                             </div>
-                                           
+
                                             <div className=" flex font-medium  w-[5.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
@@ -254,7 +254,7 @@ const ProductionOrderList = (props) => {
                                                         </Tooltip>
                                                         : item.qcRepairInd === 2 ? <b>Repair Assigned</b>
                                                             : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair
-                                                                <CheckCircleIcon  className="!text-[#03c04a]"/> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                                                                <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
                                         </div>

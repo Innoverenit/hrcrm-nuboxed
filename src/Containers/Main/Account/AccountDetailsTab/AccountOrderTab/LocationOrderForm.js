@@ -58,7 +58,9 @@ function LocationOrderForm(props) {
                     </div>
                     <div>
                         <Button
+                            disabled={!technician.length}
                             type="primary"
+                            loading={props.addingSupervisor}
                             onClick={handleSubmit}>Submit</Button>
                     </div>
                 </>}
@@ -70,6 +72,7 @@ const mapStateToProps = ({ distributor, departments, auth }) => ({
     userId: auth.userDetails.userId,
     departments: departments.departments,
     departmentUser: distributor.departmentUser,
+    addingSupervisor: distributor.addingSupervisor,
     fetchingDepartments: departments.fetchingDepartments
 });
 

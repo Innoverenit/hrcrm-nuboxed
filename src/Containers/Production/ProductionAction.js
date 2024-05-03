@@ -10,6 +10,13 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+export const addSpareStepsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SPARE_PARTS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setProductionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_PRODUCTION_VIEW_TYPE, payload: viewType });
 
@@ -479,6 +486,36 @@ export const updateRoomRackWip = (data, cb) => (dispatch) => {
       dispatch({
         type: types.UPDATE_ROOM_RACK_WIP_FAILURE,
         payload: err
+      });
+    });
+};
+
+
+
+
+export const getProductionTable = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_TABLE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/productionProductLink/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_FAILURE,
+        payload: err,
       });
     });
 };

@@ -7,15 +7,18 @@ import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
-  getAllProcure
+  getAllProcure,
+  emptyProcre
 } from "../Procre/ProcreAction";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import moment from "moment";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     props.getAllProcure(props.orgId, page);
     setPage(page + 1);
@@ -23,9 +26,9 @@ function ProcreCardList(props) {
 
   const [particularRowData, setParticularRowData] = useState({});
 
-  // useEffect(() => {
-  //   return () => props.emptyOrders();
-  // }, []);
+  useEffect(() => {
+    return () => props.emptyProcre();
+  }, []);
   function handleSetParticularOrderData(item, data) {
     console.log(item);
     setParticularRowData(item);
@@ -35,33 +38,32 @@ function ProcreCardList(props) {
     props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
     );
   }
-
+if (props.fetchingAllProcure) {
+    return <BundleLoader />;
+  }
   return (
     <>
     <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.priority" defaultMessage="Priority"/></div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.orderId" defaultMessage="Order Id"/></div>
-                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.deliveryDate" defaultMessage="Delivery Date"/></div>
-                        <div className=" md:w-[8.1rem]"><FormattedMessage id="app.deliveryLocation" defaultMessage="Delivery Location"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
-                        <div className="md:w-[6.8rem]"><FormattedMessage id="app.ownerLocation" defaultMessage="Owner Location"/></div>
+    
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className=" md:w-[7.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
 
-                        <div className="md:w-[6.12rem]"></div>
-                     
-          <div className="md:w-24"></div>
+                        <div className="md:w-[3.12rem]"></div>
         </div>
         <InfiniteScroll
+            hasMore={hasMore}
           dataLength={props.allProcure.length}
           next={handleLoadMore}
-          loader={props.fetchingAllProcure ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+          loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
           height={"75vh"}
         >
           {props.allProcure.map((item) => {
-            const currentdate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
-
+          const currentdate = moment().format("DD/MM/YYYY");
+          const date = moment(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
               moment().diff(moment(item.lastRequirementOn), "days")
             );
@@ -91,18 +93,29 @@ function ProcreCardList(props) {
                   <div class="flex">
                     <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-[11.03rem]">
-                          <Badge size="small" count={item.productNum}>
-                            <span
-                              class="underline cursor-pointer text-[#1890ff] text-sm"
-                              onClick={() => {
-                                handleSetParticularOrderData(item);
-                                props.handleOrderDetailsModal(true);
-                              }}
+                      <div className=" flex font-medium  md:w-[6.56rem] max-sm:w-full  ">
+                                                        <Tooltip>
+                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                                <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
-                            >{`${item.newOrderNo} `}
+                                                                    {item.priority === "High" && (
+                                                                        <div
+                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                    )}
+                                                                    {item.priority === "Medium" && (
+                                                                        <div
+                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                    {item.priority === "Low" && (
+                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                </div>
+                                                            </div>
+                                                        </Tooltip>
+                                                    </div>
 
-                              &nbsp;&nbsp;
+                        <div class="max-sm:w-full md:w-[8.02rem]">
+                          <Tooltip>
+                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                              {item.newOrderNo}  &nbsp;&nbsp;
                               {date === currentdate ? (
                                 <span
                                   style={{
@@ -113,40 +126,33 @@ function ProcreCardList(props) {
                                   New
                                 </span>
                               ) : null}
-                            </span>
-                          </Badge>
-                        </div>
-
-                        <div class="max-sm:w-full md:w-[14.02rem]">
-                          <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.distributorName}
                             </div>
                           </Tooltip>
                         </div>
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[4.023rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.contactPersonName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
+                    <div class="flex flex-row items-center md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between">
+                  
+                      
+                  <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                  {` ${moment(item.deliveryDate).format("ll")}`}
+                        </div>
 
-                      </div>
-                    </div>
+               
+                </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[23.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
-                        {item.noOfPhones}
+
+                      {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].state) || ""},${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
+         
+        `}
                       </h4>
                     </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -156,106 +162,7 @@ function ProcreCardList(props) {
                       />
                     </div>
                   </div>
-                  <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.supervisorUserName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-                    </div>
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        {item.teamLeadUserName && <MultiAvatar2
-                          primaryTitle={item.teamLeadUserName}
-                          imgWidth={"2.1em"}
-                          imgHeight={"2.1em"}
-                        />}
-                      </div>
-                    </div>
-
-                  </div>
-                  <div className=" flex text-sm font-medium flex-col md:w-[5.012rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <h4 class=" text-sm text-cardBody font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                      </h4>
-                    </div>
-                    <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
-                      {item.orderStatus}
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
-
-                      {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Notes">
-                          <NoteAltIcon
-                            style={{ cursor: "pointer", color: "green", fontSize: "1.25rem" }}
-                            onClick={() => {
-
-                              props.handleNotesModalInOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </h4>
-
-
-                    </div>
-
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Add Lead">
-                          <PersonAddAlt1
-                            className="!text-base cursor-pointer"
-                            style={{ color: item.supervisorUserName ? "green" : "red" }}
-                            onClick={() => {
-                              props.handleLeadModal(true)
-                              handleSetParticularOrderData(item)
-                            }} />
-                        </Tooltip>
-                      </h4>
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Status">
-                          <EventRepeatIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
-                            onClick={() => {
-                              props.handleStatusOfOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </h4>
-
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Collection">
-                          <PaidIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
-                            onClick={() => {
-                              props.handlePaidModal(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          // style={{ color: "blue" }}
-                          />
-                        </Tooltip>
-
-                      </h4>
-                    </div>
-
-
-                  </div>
+                 
 
                 </div>
               </div>
@@ -284,7 +191,8 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
 
     {
-getAllProcure
+getAllProcure,
+emptyProcre
     },
     dispatch
   );

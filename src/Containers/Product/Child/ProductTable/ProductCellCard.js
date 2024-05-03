@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Tabs } from "antd";
+import { Button,Tabs,Spin } from "antd";
 import { Select } from "../../../../Components/UI/Elements";
-import{getAlLoCell,getCatalogueCell} from "../../../Event/Child/Location/LocationAction";
+import{getAlLoCell,getCatalogueCell,getcellCardList} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -12,104 +13,131 @@ const { TabPane } = Tabs;
 
 
 const ProductCellCard = (props) => {
+  const [activeTab, setActiveTab] = useState("");
+  const [loading, setLoading] = useState(false);
   const users = [
     { value: '1', label: 'John Doe' },
     { value: '2', label: 'Jane Smith' },
     { value: '3', label: 'David Johnson' },
     { value: '4', label: 'Emily Brown' },
   ];
+  console.log(activeTab)
     useEffect(()=>{
         props.getAlLoCell();
+       // props.getcellCardList(activeTab,props.particularDiscountData.productId);
         props.getCatalogueCell(props.orgId)
     },[]);
 
 
+    useEffect(() => {
+      const fetchData = async () => {
+        if (activeTab) {
+          setLoading(true);
+          try {
+            await props.getcellCardList(activeTab, props.particularDiscountData.productId);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          } finally {
+            setLoading(false);
+          }
+        }
+      };
+  
+      fetchData();
+    }, [activeTab]);
+
+
+
+    const handleTabClick = (key) => {
+      props.getcellCardList(key,props.particularDiscountData.productId);
+      //props.getMatrixdata(key,props.particularDiscountData.productId);
+    };
+
+
+
+    useEffect(() => {
+      if (props.catalogueCell.length > 0) {
+        setActiveTab(props.catalogueCell[0]?.locationDetailsId);
+      }
+    }, [props.catalogueCell]);
+
+if(props.fetchingCatalogueCell){
+  return <BundleLoader/>;
+}
 
     return (
       <>
        <Tabs type="card" 
-      //  activeKey={activeTab} 
-      //  onChange={handleTabClick}
+      activeKey={activeTab} 
+     onChange={handleTabClick}
        >
       {props.catalogueCell.filter(item => item.productionInd === true)
       .map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
-         {/* {loading ? (
+         {props.fetchingCellCardList ? (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-             <Spin />
+             <BundleLoader/>
            </div>
           ) : (
-          <MatrixData
-            activeTab={activeTab}
-            matrixData={props.matrixData}
-          />
+            <div className=' flex justify-end sticky z-auto'>
+            <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+              <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+                <div className=" md:w-[6rem]">#Cell</div>
+                <div className=" md:w-[4.2rem] ">Production</div>
+             
+                {/* <div className=" md:w-[5.1rem]">Description</div> */}
+                <div className="w-12"></div>             </div>
+                
+    
+               {props.cellCardList.map((item) => {
+                return (
+                  <div >
+                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+    
+                      <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
+                        <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                          <div className="font-normal text-sm text-cardBody font-poppins">
+                            <div> {item.cellChamber}</div>
+                          </div>
+                        </div>
+                      </div>
+    
+                      <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+    
+                        <div class=" text-xs text-cardBody font-poppins">
+                        
+                          <div className="font-normal text-sm text-cardBody font-poppins">
+                            {/* <div> {item.cellChamber}</div> */}
+                            <ProductCellToggle 
+                            cellId={item.cellId}
+                            usedInd={item.usedInd}
+                            cellChamberLinkId={item.cellChamberLinkId}
+                            item={item}  
+                            particularDiscountData={props.particularDiscountData}/>
+                          </div>
+                    
+                        </div>
+    
+                      </div>
+                     
+                     
+    
+                  
+    
+                    </div>
+                  </div>
+                );
+              })} 
+    
+            </div>
+          </div> 
         
-          )} */}
+          )}
         </TabPane>
    ))}
     </Tabs>
 
-<div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-            <div className=" md:w-[6rem]">Cell Code</div>
-            <div className=" md:w-[4.2rem] ">#Cell</div>
-         
-            <div className=" md:w-[5.1rem]">Description</div>
-            <div className="w-12"></div>             </div>
 
-           {props.allLoCell.map((item) => {
-            return (
-              <div >
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
-
-                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.cell}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                    <div class=" text-xs text-cardBody font-poppins">
-                    
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.cellChamber}</div>
-                      </div>
-                
-                    </div>
-
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
-                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.description}</div>
-                      </div>
-                    </div>
-                  </div>
-                 
-
-                  <div class="flex md:items-center">
-
-
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
-                   <div>
-                    <ProductCellToggle item={item}  particularDiscountData={props.particularDiscountData}/>
-                   </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            );
-          })} 
-
-        </div>
-      </div> 
       </>
     );
    }
@@ -119,7 +147,11 @@ const mapStateToProps = ({ auth,location,distributor, departments, }) => ({
     orgId:auth.userDetails.organizationId,
     locationId:auth.userDetails.locationId,
     allLoCell:location.allLoCell,
-    catalogueCell:location.catalogueCell
+    catalogueCell:location.catalogueCell,
+    cellCardList:location.cellCardList,
+    fetchingCellCardList:location.fetchingCellCardList,
+    fetchingCatalogueCell:location.fetchingCatalogueCell,
+    fetchingCellCardList:location.fetchingCellCardList
 
 });
 
@@ -127,7 +159,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getAlLoCell,
-            getCatalogueCell
+            getCatalogueCell,
+            getcellCardList
         },
         dispatch
     );

@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProductionDashCard from "./ProductionDashCard"
 import ProductionHeader from "./Child/ProductionHeader";
 import { handleCreateProduction, setProductionViewType } from "./ProductionAction";
 import { BundleLoader } from "../../Components/Placeholder";
@@ -36,6 +37,8 @@ function Production(props) {
         <ProductionAllCardView viewType={props.viewType} /> :
         props.viewType === "stage" ?
         <ProductionBoard /> :
+        props.viewType === "table" ?
+        <ProductionDashCard /> :
           null}
       </Suspense>
 

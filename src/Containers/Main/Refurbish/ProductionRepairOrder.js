@@ -11,13 +11,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
 function ProductionRepairOrder(props) {
-    // useEffect(() => {
-    //     if (props.inspectionRequiredInd) {
-    //         props.getOrderIdForCatalogueItem(props.userId)
-    //     } else {
-    //         props.getRepairOrderByUser( props.userId)
-    //     }
-    // }, [])
 
     const [page, setPage] = useState(0);
     useEffect(() => {
@@ -44,24 +37,24 @@ function ProductionRepairOrder(props) {
         <>
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex max-sm:hidden w-[82.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[33.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className=" flex max-sm:hidden w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                        <div className=" w-[45.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.order#"
                             defaultMessage="Order #"
                         /></div>
-                        <div className=" w-[35.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[46.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
                         />
                         </div>
-                        <div className=" md:w-[9.8rem] ">
+                        <div className=" md:w-[28.8rem] ">
                             <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
                             />
                         </div>
-                        <div className="w-[5.6rem]"></div>
-                        <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+                        <div className="w-[23.6rem]">Status</div>
+                        <div className="w-[0.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -95,19 +88,19 @@ function ProductionRepairOrder(props) {
                                                         </span>
                                                     ) : null}
                                                 </div>
-                                                <div className=" flex font-medium w-[6.8rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium w-[6.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                 {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
+                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
+                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
+                      <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[teal]" ></div>
                     )}
                     </div>
 
-                                                <div className=" flex font-medium   w-[26rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[14rem] max-xl:w-[15rem] max-lg:w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : moment(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -120,12 +113,18 @@ function ProductionRepairOrder(props) {
                                             </div> */}
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                 <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-sm text-cardBody font-poppins">
-                                                
+                                                <div className=" flex font-medium  md:w-[2.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-sm text-cardBody font-poppins">
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                                <div className=" flex font-medium justify-center w-[31rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex font-medium   w-[8.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.repairInProgressPhoneCount} In Progress
+                                                    </div>
+
+                                                </div>
+                                                <div className=" flex font-medium justify-center w-[21rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button

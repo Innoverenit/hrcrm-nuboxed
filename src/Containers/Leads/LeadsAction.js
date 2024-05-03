@@ -1604,5 +1604,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       payload: modalProps,
     });
   };
+
+  export const emptyClearbit = () => (dispatch) => {
+    dispatch({
+      type: types.EMPTY_CLEARBIT_TABLE,
+      
+    });
+  };
   
 

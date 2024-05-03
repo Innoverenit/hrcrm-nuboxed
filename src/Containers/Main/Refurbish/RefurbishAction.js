@@ -28,7 +28,7 @@ export const getTodayProduction = (date) => (dispatch) => {
       });
     });
 };
-export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dispatch) => {
+export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
   axios
@@ -38,7 +38,7 @@ export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dis
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(locationDetailsId, userId))
+      dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
@@ -887,6 +887,30 @@ export const getPhoneOrderIdByUser = (orderPhoneId, technicianId) => (dispatch) 
       console.log(err);
       dispatch({
         type: types.GET_ORDERID_BY_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateCantRepairQC = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_CANT_REPAIR_QC_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/canNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_FAILURE,
         payload: err,
       });
     });
@@ -1740,6 +1764,37 @@ export const getRemainingPhones = (orderPhoneId, technicianId) => (dispatch) => 
       console.log(err);
       dispatch({
         type: types.GET_REMAINING_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addLeadInRefurbish = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_LEAD_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ADD_LEAD_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LEAD_FAILURE,
         payload: err,
       });
     });

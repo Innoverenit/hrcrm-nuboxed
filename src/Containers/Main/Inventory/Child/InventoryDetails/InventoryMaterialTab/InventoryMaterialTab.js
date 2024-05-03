@@ -6,6 +6,7 @@ import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import MaterialReceivedTable from "./MaterialReceivedTable";
 import MaterialStockTable from "./MaterialStockTable";
+import MaterialCellStock from "./MaterialCellStock";
 
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTab extends PureComponent {
@@ -61,7 +62,22 @@ class InventoryMaterialTab extends PureComponent {
                             </Suspense>
                         </TabPane>
 
+                        <TabPane
+                            tab={
+                                <>
+                                    <span>
+                                        <i class="far fa-share-square"></i>&nbsp;Cell
 
+                                    </span>
+
+                                </>
+                            }
+                            key="3"
+                        >
+                            <Suspense fallback={"Loading..."}>
+                                <MaterialCellStock />
+                            </Suspense>
+                        </TabPane>
                     </StyledTabs>
                 </TabsWrapper>
 

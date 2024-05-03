@@ -46,6 +46,7 @@ export const addInventory = (data) => (dispatch) => {
     });
 };
 
+
 //get inventory data
 
 export const getInventory = (orgId) => (dispatch) => {
@@ -275,6 +276,31 @@ export const createAwbNo = (data, id) => (dispatch) => {
     });
 };
 
+export const sentItemToStock = (data, id) => (dispatch) => {
+  dispatch({
+    type: types.SENT_ITEM_TO_STOCK_REQUEST,
+  });
+
+  axios
+    .put(`${base_url2}/po/unitUpdate`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SENT_ITEM_TO_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SENT_ITEM_TO_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
 //get received user list
 export const getReceivedUserList = (locationDetailsId) => (dispatch) => {
   dispatch({
@@ -1475,7 +1501,31 @@ export const getGrnListOfaPoInStock = (locationId) => (dispatch) => {
     });
 };
 
-export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch) => {
+export const getItemInCellStock = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_IN_CELL_STOCK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoCellItemlist/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_IN_CELL_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_IN_CELL_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const trnasferGrnItemToStock = (data, poSupplierSuppliesId, cb) => (dispatch) => {
   dispatch({
     type: types.TRANSFER_PO_GRN_TO_STOCK_REQUEST,
   });
@@ -1495,6 +1545,7 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch)
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
         payload: res.data,
       });
+      cb()
     })
     .catch((err) => {
       console.log(err);
@@ -1754,6 +1805,31 @@ export const getRackList = (roomRackId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_RACK_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getItemHistoryInstock = (pOSupplierSuppliesDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_HISTORY_IN_STOCK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/unitList/${pOSupplierSuppliesDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_FAILURE,
         payload: err,
       });
     });

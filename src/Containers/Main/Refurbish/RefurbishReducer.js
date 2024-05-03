@@ -49,6 +49,9 @@ const initialState = {
   fetchingAllProductionConsumptionError: false,
   allConsumption: [],
 
+  updatingCantRepairQc: false,
+  updatingCantRepairQcError: false,
+
   addingProductBuilderById: false,
   addingProductBuilderByIdError: false,
 
@@ -159,6 +162,10 @@ const initialState = {
 
   assignOrderById: false,
   productionOrderIdModal: false,
+
+  addingLead: false,
+  addingLeadError: false,
+
   phoNoteProductionModal: false,
 
   updatingCatalogueInRefurbish: false,
@@ -768,6 +775,26 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingRepairStatusError: true,
       };
 
+    case types.UPDATE_CANT_REPAIR_QC_REQUEST:
+      return { ...state, updatingCantRepairQc: true };
+    case types.UPDATE_CANT_REPAIR_QC_SUCCESS:
+      return {
+        ...state,
+        updatingCantRepairQc: false,
+        orderPhoneList: state.orderPhoneList.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload
+            : item
+        ),
+
+      };
+    case types.UPDATE_CANT_REPAIR_QC_FAILURE:
+      return {
+        ...state,
+        updatingCantRepairQc: false,
+        updatingCantRepairQcError: true,
+      };
+
     case types.GET_REPAIR_PHONE_BY_USER_REQUEST:
       return { ...state, fetchingRepairPhoneByUser: true };
     case types.GET_REPAIR_PHONE_BY_USER_SUCCESS:
@@ -1326,6 +1353,28 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingPauseStatus: false,
         updatingPauseStatusError: true,
+      };
+
+    case types.ADD_LEAD_REQUEST:
+      return { ...state, addingLead: true };
+    case types.ADD_LEAD_SUCCESS:
+      return {
+        ...state,
+        addingLead: false,
+        showRefurbishLead: false,
+        productionOrder: state.productionOrder.map((item) => {
+          if (item.orderPhoneId == action.payload.orderPhoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.ADD_LEAD_FAILURE:
+      return {
+        ...state,
+        addingLead: false,
+        addingLeadError: true,
       };
     default:
       return state;
