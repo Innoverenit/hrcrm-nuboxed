@@ -18,6 +18,36 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 function SuppliersPriceCardList(props) {
+  const [editRowId, setEditRowId] = useState(null);
+  const [inputPrice, setInputPrice] = useState("");
+
+  const handleEditRow = (itemId) => {
+    setEditRowId(itemId);
+    setInputPrice(""); 
+  };
+
+  const handleCancelEdit = () => {
+    setEditRowId(null);
+    setInputPrice(""); 
+  };
+
+  const handleInputChange = (e) => {
+    setInputPrice(e.target.value);
+  };
+
+  const handleUpdatePrice = (item) => {
+    if (inputPrice.trim() !== "") {
+      props.updatePriceSuppliers({
+        updatePrice: inputPrice,
+        supplierId: item.supplierId,
+        userId: props.userId,
+        suppliesId: item.suppliesId,
+        poSupplierDetailsId: item.poSupplierDetailsId,
+      });
+      setEditRowId(null); 
+      setInputPrice(""); 
+    }
+  };
   const [price, setPrice] = useState("");
   const [edit, setEdit] = useState(false);
   const [row, setRow] = useState({});
@@ -103,44 +133,33 @@ function SuppliersPriceCardList(props) {
                         </div> */}
                         <div className="flex font-medium flex-col md:w-[13rem] max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] text-cardBody font-poppins">
-                            {edit && row.suppliesId === item.suppliesId ? (
-                              <>
-                                <Input
-                                  value={price}
-                                  type="text"
-                                  placeholder="Enter Price"
-                                  onChange={(e) => handleInputPrice(e.target.value)}
-                                />
-                                <Button
+                          {editRowId === item.suppliesId ? (
+                            <>
+                              <Input
+                                value={inputPrice}
+                                type="text"
+                                placeholder="Enter Price"
+                                onChange={handleInputChange}
+                              />
+                              <Button
                                 loading={props.updatePriceSupplierListItem}
-                                  type="primary"
-                                  onClick={() =>
-                                    props.updatePriceSuppliers({
-                                      updatePrice: price,
-                                      supplierId: item.supplierId,
-                                      userId: props.userId,
-                                      suppliesId: item.suppliesId,
-                                      poSupplierDetailsId: item.poSupplierDetailsId
-                                    }, handleCallback)
-                                  }
-                                >
-                                  Add
-                                </Button>
-                                <Button onClick={handlePrice}>Cancel</Button>
-                              </>
-                            ) : (
-                              <span>{item.updatePrice}</span>
-                            )}
+                                type="primary"
+                                onClick={() => handleUpdatePrice(item)}
+                              >
+                                Add
+                              </Button>
+                              <Button onClick={handleCancelEdit}>Cancel</Button>
+                            </>
+                          ) : (
+                            <span>{item.updatePrice}</span>
+                          )}
                           </div>
                         </div>
                         <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] text-cardBody font-poppins">
-                            <BorderColorIcon
+                          <BorderColorIcon
                               className="!text-base cursor-pointer text-[tomato]"
-                              onClick={() => {
-                                handlePrice();
-                                handleRowData(item);
-                              }}
+                              onClick={() => handleEditRow(item.suppliesId)}
                             />
                           </div>
                         </div>
