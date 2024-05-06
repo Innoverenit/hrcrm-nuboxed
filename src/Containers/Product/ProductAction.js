@@ -1541,3 +1541,9 @@ export const removeProductPrice = (productCurrencyId) => (dispatch) => {
     })
 };
 
+export const handleProductNotesDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};

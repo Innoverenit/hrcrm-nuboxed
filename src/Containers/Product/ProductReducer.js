@@ -76,6 +76,8 @@ const initialState = {
   fetchingdeleteProductsError: false,
   deleteproducts:[],
 
+  addDrawerProductNotesModal:false,
+
   fetchingLatestProductsByOrganizationId: false,
   fetchingLatestProductsByOrganizationIdError: false,
   latestProductsByOrganizationId: [],
@@ -1222,6 +1224,10 @@ export const productReducer = (state = initialState, action) => {
                         removingProductPrice: false,
                         removingProductPriceError: true,
                       };
+
+                      case types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL:
+                        return { ...state, addDrawerProductNotesModal: action.payload };
+
     default:
       return state;
   }
