@@ -4,11 +4,14 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
-  handleCustomerAddedModal,handleContactAddedModal} from "../../DashboardAction";
+  handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
+  handleOrderClosedModal,} from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
+import OrdersAddedModal from "./OrdersAddedModal";
+import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class CustomerDashboardJumpStart extends React.Component{
@@ -136,20 +139,8 @@ render() {
               />
             }
             value={this.props.distributorinDashboard.totalOrder}
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-            // value={this.props.showDatelist.selectted}
-            // value={
-            //   // this.props.user.department === "Recruiter"
-            //   // ?this.props.showDatelist.selectted
-            //   // :this.props.showSalesDatelist.selectted
-            //   this.props.taskperCount.totalTask
-            // }
-            //  isLoading={this.props.fetchingTaskper}
-            // isLoading={
-            //   this.props.user.department === "Recruiter"
-            //   ?this.props.fetchingDatewiseReport
-            //   :this.props.fetchingSalesDatewiseReport
-            // }
+            jumpstartClick={()=>this.props.handleOrderAddedModal(true)}
+            cursorData={"pointer"}
             
           />
           <JumpStartBox
@@ -162,24 +153,8 @@ render() {
               />
             }
             value={this.props.distributorinDashboard.completeOrder}
-            // title="Joining Date"
-           // bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-        //    value={formattedDate}
-            // value={this.props.showDatelist.onboarded}
-            // value={
-            //   this.props.dateOfJoining
-
-            //   // this.props.user.department === "Recruiter"
-            //   // ?this.props.showDatelist.onboarded
-            //   // :this.props.showSalesDatelist.onboarded
-            // }
-            
-            // isLoading={this.props.fetchingDatewiseReport}
-            // isLoading={
-            //   this.props.user.department === "Recruiter"
-            //   ?this.props.fetchingDatewiseReport
-            //   :this.props.fetchingSalesDatewiseReport
-            // }
+            jumpstartClick={()=>this.props.handleOrderClosedModal(true)}
+            cursorData={"pointer"}
             
           />
            </div>
@@ -237,6 +212,14 @@ render() {
        contactAddedModal={this.props.contactAddedModal}
        handleContactAddedModal={this.props.handleContactAddedModal}
       />
+        <OrdersAddedModal
+       orderAddedModal={this.props.orderAddedModal}
+       handleOrderAddedModal={this.props.handleOrderAddedModal}
+      />
+      <OrdersClosedModal
+       orderClosedModal={this.props.orderClosedModal}
+       handleOrderClosedModal={this.props.handleOrderClosedModal}
+      />
       </div>
     
   ); 
@@ -263,13 +246,17 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   timeRangeType: dashboard.timeRangeType,
   distributorinDashboard:dashboard.distributorinDashboard,
   customerAddedModal:dashboard.customerAddedModal,
-  contactAddedModal:dashboard.contactAddedModal
+  contactAddedModal:dashboard.contactAddedModal,
+  orderAddedModal:dashboard.orderAddedModal,
+  orderClosedModal:dashboard.orderClosedModal,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getJumpDistributorDetail,
   handleCustomerAddedModal,
-  handleContactAddedModal
+  handleContactAddedModal,
+  handleOrderAddedModal,
+  handleOrderClosedModal,
 //   getDateWiseList,
 //   getSalesDateWiseList,
 //   getTasklist,
