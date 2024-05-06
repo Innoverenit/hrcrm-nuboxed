@@ -97,6 +97,7 @@ function AddedSuppliesTable (props)  {
                         <div className=" md:w-[5.1rem]">
                         Quality
                         </div>
+                   
                         
                        
                     </div>

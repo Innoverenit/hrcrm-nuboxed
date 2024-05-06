@@ -89,7 +89,7 @@ export const updateSupplies = (data, suppliesId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_SUPPLIES_BY_ID_REQUEST });
   axios
-    .put(`${base_url2}/supplies/${suppliesId}/rtr`, { ...data })
+    .put(`${base_url2}/supplies/${suppliesId}`, { ...data })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -406,6 +406,32 @@ export const getSuppliesCount = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_SUPPLIES_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSuppliesDeletedCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_DELETED_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_DELETED_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIES_DELETED_COUNT_FAILURE,
         payload: err,
       });
     });

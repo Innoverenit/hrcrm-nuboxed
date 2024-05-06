@@ -16,6 +16,7 @@ import { Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import moment from "moment";
 
 function SuppliersPriceCardList(props) {
   const [editRowId, setEditRowId] = useState(null);
@@ -84,7 +85,7 @@ function SuppliersPriceCardList(props) {
         <div className="flex justify-end sticky z-auto">
           <div className="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className="flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
-              <div className="w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
+              <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
                 <FormattedMessage id="app.name" defaultMessage="Name" />
               </div>
               <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
@@ -151,7 +152,7 @@ function SuppliersPriceCardList(props) {
                               <Button onClick={handleCancelEdit}>Cancel</Button>
                             </>
                           ) : (
-                            <span>{item.updatePrice}</span>
+                            <span>{item.updatePrice} &nbsp; {moment(item.updateDate).format('ll')}</span>
                           )}
                           </div>
                         </div>

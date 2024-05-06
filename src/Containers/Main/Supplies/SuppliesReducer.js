@@ -68,6 +68,10 @@ const initialState = {
     fetchingSuppliescountError: false,
     suppliesCount: {},
 
+    fetchingSuppliesDeletedcount: false,
+     fetchingSuppliesDeletedcountError: false,
+     suppliesDeletedCount:{},
+
     materialBuildrawer: false,
 
     addingMaterialBuilder: false,
@@ -370,6 +374,13 @@ export const suppliesReducer = (state = initialState, action) => {
             return { ...state, fetchingSuppliescount: false, suppliesCount: action.payload };
         case types.GET_SUPPLIES_COUNT_FAILURE:
             return { ...state, fetchingSuppliescount: false, fetchingSuppliescountError: true };
+
+            case types.GET_SUPPLIES_DELETED_COUNT_REQUEST:
+                return { ...state, fetchingSuppliesDeletedcount: true };
+            case types.GET_SUPPLIES_DELETED_COUNT_SUCCESS:
+                return { ...state, fetchingSuppliesDeletedcount: false, suppliesDeletedCount: action.payload };
+            case types.GET_SUPPLIES_DELETED_COUNT_FAILURE:
+                return { ...state, fetchingSuppliesDeletedcount: false, fetchingSuppliesDeletedcountError: true };
 
         case types.HANDLE_MATERIAL_BUILDER_DRAWER:
             return { ...state, materialBuildrawer: action.payload };
