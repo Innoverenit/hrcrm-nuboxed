@@ -95,6 +95,7 @@ function SuppliesTable(props) {
             {props.purchaseList.length ?
               <>
                 {props.purchaseList.map((item) => {
+                    const currentDate = moment().format("DD/MM/YYYY");
                   return (
                     <>
                       <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
@@ -103,7 +104,7 @@ function SuppliesTable(props) {
                           <div className=" flex font-medium flex-col w-[15.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
-
+<span>
                                 <MultiAvatar
                                   // primaryTitle={item.name}
                                   imageId={item.imageId}
@@ -111,6 +112,7 @@ function SuppliesTable(props) {
                                   imgWidth={"1.8rem"}
                                   imgHeight={"1.8rem"}
                                 />
+                                </span>
 
                               </div>
                               <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
@@ -121,13 +123,17 @@ function SuppliesTable(props) {
 
                                 <div className=" flex font-medium flex-col w-[10rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                   <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    {item.hsn}
+                                  <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                    <span className="text-xs text-[tomato] font-bold">
+                      New
+                    </span>
+                  ) : null} </span> &nbsp;  {item.hsn}
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[10.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.suppliesName}
                             </div>
@@ -152,23 +158,31 @@ function SuppliesTable(props) {
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[9.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[3.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.reorder}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              {`${moment(item.creationDate).format("ll")}`}
+                            <MultiAvatar
+                              primaryTitle={item.userName}
+                              imageId={item.imageId}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                               {`${moment(item.creationDate).format("ll")}`}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           
                             </div>
                           </div>
                           
+                          
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                       
-                      </div>
-                    </div>
+                   
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
                             <div>

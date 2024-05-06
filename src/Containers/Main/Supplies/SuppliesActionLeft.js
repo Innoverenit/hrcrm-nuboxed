@@ -5,14 +5,19 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import { AudioOutlined } from '@ant-design/icons';
-import { getSuppliesCount } from "./SuppliesAction";
+import { getSuppliesCount,getSuppliesDeletedCount } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 function SuppliesActionLeft (props) {
 
-    useEffect(() => {
-        props.getSuppliesCount();
-    }, [props.viewType, props.userId]);
+  useEffect(() => {
+    if (props.viewType === "all") {
+      props.getSuppliesCount();
+    } else if (props.viewType === "dashboard") {
+      props.getSuppliesDeletedCount(props.userId);
+    }
+  }, [props.viewType, props.userId]);
+
    
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
@@ -36,6 +41,7 @@ function SuppliesActionLeft (props) {
             viewType,
             setSuppliesViewType,
             suppliesCount,
+            suppliesDeletedCount,
         } = props;
 
         const handleChange = (e) => {
@@ -94,8 +100,8 @@ function SuppliesActionLeft (props) {
 
 
                 <Tooltip title="Deleted Materials">
-                    <Badge
-                        size="small"
+                <Badge size="small"
+                        count={(viewType === "dashboard" && suppliesDeletedCount.count) || 0}
                         overflowCount={999}
                     >
                         <span class=" md:mr-2 text-sm cursor-pointer"
@@ -126,12 +132,14 @@ function SuppliesActionLeft (props) {
         );
 }
 const mapStateToProps = ({ supplies }) => ({
-    suppliesCount: supplies.suppliesCount
+    suppliesCount: supplies.suppliesCount,
+    suppliesDeletedCount:supplies.suppliesDeletedCount,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getSuppliesCount
+            getSuppliesCount,
+            getSuppliesDeletedCount
         },
         dispatch
     );
