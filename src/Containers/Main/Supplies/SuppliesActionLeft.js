@@ -5,7 +5,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import { AudioOutlined } from '@ant-design/icons';
-import { getSuppliesCount,getSuppliesDeletedCount } from "./SuppliesAction";
+import { getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 function SuppliesActionLeft (props) {
@@ -49,15 +49,15 @@ function SuppliesActionLeft (props) {
         
             if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
               setPage(pageNo + 1);
-            //   props.getLeads(props.userId, pageNo, "creationdate");
-            //   props.ClearReducerDataOfLead()
+               props.getSuppliesList(pageNo);
+              props.ClearReducerDataOfMaterial()
               setSearchOnEnter(false);
             }
           };
           const handleSearch = () => {
             if (currentData.trim() !== "") {
               // Perform the search
-            //   props.inputLeadsDataSearch(currentData);
+               props.inputSuppliesDataSearch(currentData);
               setSearchOnEnter(true);  //Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
@@ -101,7 +101,7 @@ function SuppliesActionLeft (props) {
 
                 <Tooltip title="Deleted Materials">
                 <Badge size="small"
-                        count={(viewType === "dashboard" && suppliesDeletedCount.count) || 0}
+                        count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}
                     >
                         <span class=" md:mr-2 text-sm cursor-pointer"
@@ -139,7 +139,10 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getSuppliesCount,
-            getSuppliesDeletedCount
+            getSuppliesDeletedCount,
+            inputSuppliesDataSearch,
+            ClearReducerDataOfMaterial,
+            getSuppliesList
         },
         dispatch
     );
