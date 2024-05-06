@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import * as Yup from "yup";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field,FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
@@ -12,6 +12,7 @@ import { updateSupplies } from "./SuppliesAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { getCurrency } from "../../Auth/AuthAction"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 
 const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -44,7 +45,7 @@ console.log("f",newimageId)
             category:props.particularDiscountData.category || "",
             categoryName:props.particularDiscountData.categoryName || "",
             description:props.particularDiscountData.description || "",
-            imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
+            // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
             // imageId: props.particularDiscountData.imageId,
             name:props.particularDiscountData.suppliesName || "",
             hsn:props.particularDiscountData.hsn || "",
@@ -69,7 +70,7 @@ console.log("f",newimageId)
            props.updateSupplies(
               {
                 ...values,
-                imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
+                // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
                 // imageId: props.particularDiscountData.imageId,
               },
              props.particularDiscountData.suppliesId
@@ -91,12 +92,7 @@ console.log("f",newimageId)
                   <div class="flex-nowrap">
                     <div class="w-[40%]">
                       <div class="mt-3">
-                        <EditUpload
-                          imageId={props.particularDiscountData.imageId}
-                          imgWidth={100}
-                          imgHeight={100}
-                          getImage={setImage}
-                        />
+                      <FastField name="imageId" component={PostImageUpld} />
 
                       </div>
                     </div>
