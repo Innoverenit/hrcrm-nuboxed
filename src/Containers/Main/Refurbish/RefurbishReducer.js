@@ -119,6 +119,13 @@ const initialState = {
 
   showPhoneList: false,
 
+  fetchingSpareListById: false,
+  fetchingSpareListByIdError: false,
+  rcvSpareList: [],
+
+  updatingSpareReceives: false,
+  updatingSpareReceivesError: false,
+
   deletingTaskList: false,
   deletingTaskListError: false,
 
@@ -183,6 +190,8 @@ const initialState = {
 
   productBuilderList: false,
   addOrderPhone: false,
+
+  reassignRejectItem: false,
 
   fetchingRepairPhoneByUser: false,
   fetchingRepairPhoneByUserError: false,
@@ -278,6 +287,9 @@ const initialState = {
 
   refurbhsReject: false,
 
+  reassigningRejectedPhones: false,
+  reassigningRejectedPhonesError: false,
+
   reassigningrejectedphone: false,
   reassigningrejectedphoneError: false,
 
@@ -294,6 +306,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.REFURBISH_REJECT_PHONE:
       return { ...state, refurbhsReject: action.payload };
+
+    case types.HANDLE_REJECT_REASSIGN_MODAL:
+      return { ...state, reassignRejectItem: action.payload };
 
     case types.GET_TODAY_PRODUCTION_REQUEST:
       return { ...state, fetchingTodayProduction: true };
@@ -1437,6 +1452,49 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         reassigningrejectedphone: false,
         reassigningrejectedphoneError: true,
+      };
+
+    case types.GET_SPARE_LIST_BY_ID_REQUEST:
+      return { ...state, fetchingSpareListById: true };
+    case types.GET_SPARE_LIST_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingSpareListById: false,
+        rcvSpareList: action.payload,
+      };
+    case types.GET_SPARE_LIST_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingSpareListById: false,
+        fetchingSpareListByIdError: true,
+      };
+
+    case types.UPDATE_SPARE_RECEIVE_REQUEST:
+      return { ...state, updatingSpareReceives: true };
+    case types.UPDATE_SPARE_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        updatingSpareReceives: false,
+      };
+    case types.UPDATE_SPARE_RECEIVE_FAILURE:
+      return {
+        ...state,
+        updatingSpareReceives: false,
+        updatingSpareReceivesError: true,
+      };
+
+    case types.REASSIGN_REJECTED_PHONE_REQUEST:
+      return { ...state, reassigningRejectedPhones: true };
+    case types.REASSIGN_REJECTED_PHONE_SUCCESS:
+      return {
+        ...state,
+        reassigningRejectedPhones: false,
+      };
+    case types.REASSIGN_REJECTED_PHONE_FAILURE:
+      return {
+        ...state,
+        reassigningRejectedPhones: false,
+        reassigningRejectedPhonesError: true,
       };
     default:
       return state;

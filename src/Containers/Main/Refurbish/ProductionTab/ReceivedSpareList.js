@@ -2,23 +2,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip } from "antd";
 import { StyledTable } from "../../../../Components/UI/Antd";
-// import { updateSparePacket } from "./RefurbishAction"
-// import { getSpareListByPhoneId, deleteSpareList } from "../Account/AccountAction";
-// import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Popconfirm } from "antd";
-
+import { getSpareListById } from "../RefurbishAction"
+import ReciveSpareItemToggle from "./ReciveSpareItemToggle";
 
 function ReceivedSpareList(props) {
-    // useEffect(() => {
-    //     props.getSpareListByPhoneId(props.RowData.phoneId)
-    // }, [])
+    useEffect(() => {
+        props.getSpareListById(props.data.phoneId)
+    }, [])
 
-    // let data = props.spareList.every((item) => item.spareUseInd)
-    // console.log(data)
-    // let phoneSpare = props.spareList.map((item) => item.phoneSpareId)
     const columns = [
         {
             title: "",
@@ -68,11 +60,13 @@ function ReceivedSpareList(props) {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <></>
-                    // <RepairSpareApproveToggle
-                    //     spareUseInd={item.spareUseInd}
-                    //     phoneSpareId={item.phoneSpareId}
-                    // />
+                    <>
+                        <ReciveSpareItemToggle
+                            spareUseInd={item.spareUseInd}
+                            phoneSpareId={item.phoneSpareId}
+                        />
+                    </>
+
                 )
             }
 
@@ -90,42 +84,25 @@ function ReceivedSpareList(props) {
         <>
             <StyledTable
                 columns={columns}
-                // dataSource={props.spareList}
+                dataSource={props.rcvSpareList}
                 pagination={false}
-                loading={props.fetchingSpareListByPhoneId}
+                loading={props.fetchingSpareListById}
             />
-            {/* {data && <div class=" flex justify-end"> */}
 
-            <Button
-                // loading={props.updatingSparePacket}
-                type="primary"
-            // onClick={() => {
-            //     props.updateSparePacket({
-            //         sparePacketId: "",
-            //         phoneId: props.RowData.phoneId,
-            //         orderPhoneId: props.orderPhoneId,
-            //         spareList: phoneSpare
-            //     });
-            // }}
-            >Release Spare Packet</Button>
-            {/* </div>} */}
         </>
     );
 }
 
-const mapStateToProps = ({ distributor, refurbish, auth }) => ({
-    fetchingSpareListByPhoneId: distributor.fetchingSpareListByPhoneId,
-    updatingSparePacket: refurbish.updatingSparePacket,
-    spareList: distributor.spareList,
+const mapStateToProps = ({ refurbish, auth }) => ({
+    fetchingSpareListById: refurbish.fetchingSpareListById,
+    rcvSpareList: refurbish.rcvSpareList,
     userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // getSpareListByPhoneId,
-            // deleteSpareList,
-            // updateSparePacket
+            getSpareListById,
         },
         dispatch
     );
