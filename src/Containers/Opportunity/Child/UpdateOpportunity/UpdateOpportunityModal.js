@@ -2,7 +2,7 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const UpdateOpportunityForm = lazy(() => import("./UpdateOpportunityForm"));
+import OpportunityUpdateStepper from "./OpportunityUpdateStepper";
 
 const UpdateOpportunityModal = (props) => {
   return (
@@ -14,7 +14,7 @@ const UpdateOpportunityModal = (props) => {
         onClose={() => props.handleUpdateOpportunityModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateOpportunityForm opportunityId={props.opportunityData.opportunityId} />{" "}
+          <OpportunityUpdateStepper opportunityId={props.opportunityData.opportunityId}/>{" "}
         </Suspense>
       </StyledDrawer>
     </>
