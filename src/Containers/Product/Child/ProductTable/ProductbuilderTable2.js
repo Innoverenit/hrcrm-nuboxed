@@ -7,6 +7,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
   useEffect(()=> {
@@ -17,6 +18,7 @@ function ProductbuilderTable2 (props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [currentCustomer, setCurrentCustomer] = useState("");
+  const [rowdata, setrowdata] = useState("");
 
   useEffect(() => {
     setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
@@ -31,6 +33,9 @@ function ProductbuilderTable2 (props) {
         [fieldName]: value,
       },
     }));
+  };
+  const handleRowData = (data) => {
+    setrowdata(data);
   };
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
@@ -93,6 +98,10 @@ const handleSave = (key) => {
       props.updateProductSuplrBuilder(result,key.productionBuilderId)
     
   };
+  const {
+    addDrawerProductNotesModal,
+    handleProductNotesDrawerModal
+  } = props;
 return (
     <>
   
@@ -237,21 +246,22 @@ return (
                        </Tooltip>
                        </Popconfirm>
                        </div>
-                       <div>
+                       
+                       
+                        </div>
+                        <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
                               className=" !text-xl cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 handleProductNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
-                               // handleRowData(item);
+                                handleRowData(item);
                               }}
 
                             />
                           </Tooltip>
 
-                        </div>
-                       
                         </div>
 </div>
 </div>
@@ -261,6 +271,13 @@ return (
               </div>
               </div>
  
+              <AddProductNotesDrawerModal
+        rowdata={rowdata}
+       addDrawerProductNotesModal={addDrawerProductNotesModal}
+        handleProductNotesDrawerModal={handleProductNotesDrawerModal}
+        handleSetCurrentCustomer={handleSetCurrentCustomer}
+      />
+
     </>
 );
 }

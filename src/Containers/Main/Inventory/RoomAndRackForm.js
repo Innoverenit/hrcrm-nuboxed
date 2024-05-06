@@ -99,7 +99,7 @@ const RoomAndRackForm = (props) => {
           Add Zone
         </Button>
         {rows.map((row, index) => (
-          <div key={index} class="flex">
+          <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
                 <label>Zone Code</label>
@@ -109,6 +109,7 @@ const RoomAndRackForm = (props) => {
                     value={row.zone}
                     onChange={(e) => handleChange(index, 'zone', e.target.value)}
                     placeholder="Zone"
+                    required 
                   />
                 </div>
               </div>
@@ -120,7 +121,11 @@ const RoomAndRackForm = (props) => {
 
                   value={row.rack}
                   onChange={(e) => handleChange(index, 'rack', e.target.value)}
-                  placeholder="Rack"
+                  placeholder="# Number"
+                  type="number"
+                  min="0"  
+                  step="1"
+                  required 
                 /></div>
               <div>
                 <label>Zone Type</label>
@@ -128,7 +133,7 @@ const RoomAndRackForm = (props) => {
                   <Select
                     value={row.zoneType}
                     onChange={(value) => handleChange(index, 'zoneType', value)}
-                    placeholder="Zone Type"
+                    placeholder="Select"
                   >
                     <Option value="entry">Entry</Option>
                     <Option value="exit">Exit</Option>
@@ -145,10 +150,11 @@ const RoomAndRackForm = (props) => {
                 </div>
               </div>
             </div>
-
+            <div class="mt-4">
             <Button type="primary" onClick={() => handleSubmit(index)}>
               Submit
             </Button>
+            </div>
             <CloseOutlined onClick={() => handleRemoveRow(index)} />
           </div>
         ))}
