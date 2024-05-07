@@ -410,6 +410,12 @@ export const handleProductionNotesModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleRejectedReassignModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REJECTED_REASSIGN_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const getProductionUsersById = (departmentId, locationId) => (dispatch) => {
   dispatch({
@@ -1630,6 +1636,12 @@ export const closeRepairModal = (close) => (dispatch) =>
 export const refurbishRejectPhone = (close) => (dispatch) =>
   dispatch({ type: types.REFURBISH_REJECT_PHONE, payload: close });
 
+export const hanldeRejectReassignItem = (modalProps) => (dispatch) =>
+  dispatch({
+    type: types.HANDLE_REJECT_REASSIGN_MODAL,
+    payload: modalProps
+  });
+
 
 export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
   dispatch({
@@ -1883,6 +1895,78 @@ export const assignRejectedPhones = (data, orderPhoneId, cb) => (dispatch) => {
       dispatch({
         type: types.ASSIGN_REJECTED_PHONES_FAILURE,
         payload: err,
+      });
+    });
+};
+
+export const getSpareListById = (phoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/sparePacketLink/${phoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateSpareReceive = (data, sparePacketId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_SPARE_RECEIVE_REQUEST });
+  axios
+    .put(`${base_url2}/phoneSpare/releaseSpare/${sparePacketId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_SPARE_RECEIVE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SPARE_RECEIVE_FAILURE,
+      });
+    });
+};
+
+export const reassignRejectedPhone = (data, productionRepairDispatchLinkId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.REASSIGN_REJECTED_PHONE_REQUEST });
+  axios
+    .put(`${base_url2}/RejectItem/ReassignRepair/${productionRepairDispatchLinkId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+
+      dispatch({
+        type: types.REASSIGN_REJECTED_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REASSIGN_REJECTED_PHONE_FAILURE,
       });
     });
 };

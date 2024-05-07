@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getRejectedPhoneList } from "./RefurbishAction"
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { StyledTable } from '../../../Components/UI/Antd'
+import { Button } from 'antd'
+import RejectedReassignPhon from './RejectedReassignPhon'
 
 const RejectedPhoneList = (props) => {
     useEffect(() => {
         props.getRejectedPhoneList(props.rowData.orderPhoneId)
     }, [])
+    const [row, setRow] = useState({})
+    const handleSetdata = (item) => {
+        setRow(item)
+    }
+    const [reassign, setReassign] = useState(false)
+    const handleReassign = (item) => {
+        setReassign(!reassign)
+    }
     const column = [
         {
             title: "",
@@ -56,6 +66,27 @@ const RejectedPhoneList = (props) => {
             dataIndex: "reason",
             width: "10%",
         },
+        {
+            title: "Technician",
+            dataIndex: "technicianName",
+            width: "10%",
+        },
+        {
+            title: "Reassign",
+            dataIndex: "",
+            width: "10%",
+            render: (text, item) => {
+                return (
+                    <Button
+                        style={{ color: reassign && item.phoneId === row.phoneId ? 'blue' : 'orange' }}
+                        onClick={() => {
+                            handleSetdata(item)
+                            handleReassign()
+                        }}
+                    >Reassign</Button>
+                )
+            }
+        },
     ];
     return (
         <>
@@ -66,10 +97,11 @@ const RejectedPhoneList = (props) => {
                 columns={column}
                 loading={props.fetchingRejectedPhoneList}
             />
+            {reassign && <RejectedReassignPhon row={row} />}
         </>
     )
 }
-const mapStateToProps = ({ auth, refurbish }) => ({
+const mapStateToProps = ({ refurbish }) => ({
     rejectPhoneById: refurbish.rejectPhoneById,
     fetchingRejectedPhoneList: refurbish.fetchingRejectedPhoneList
 });
@@ -77,7 +109,7 @@ const mapStateToProps = ({ auth, refurbish }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getRejectedPhoneList
+            getRejectedPhoneList,
         },
         dispatch
     );

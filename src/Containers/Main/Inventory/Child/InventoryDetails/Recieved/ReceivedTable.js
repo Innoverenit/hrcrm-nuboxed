@@ -287,7 +287,7 @@ const ReceivedTable = (props) => {
                   );
                 })}
               </> : !props.allReceivedUser.length
-                && !props.fetchingReceivedUserList ? <NodataFoundPage /> : null}
+                && !props.fetchingReceivedUser ? <NodataFoundPage /> : null}
 
             </InfiniteScroll>
           </div>
@@ -317,7 +317,7 @@ const ReceivedTable = (props) => {
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updatingInspection: inventory.updatingInspection,
-  fetchingReceivedUserList: inventory.fetchingReceivedUserList,
+  fetchingReceivedUser: inventory.fetchingReceivedUser,
   allReceivedUser: inventory.allReceivedUser,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   addDeliverDate: inventory.addDeliverDate,

@@ -10,7 +10,6 @@ import RemainingPhoneList from './ProductionTab/RemainingPhoneList'
 import CompletedPhones from './ProductionTab/CompletedPhones'
 import { Button } from 'antd'
 import ReassignView from './ReassignView'
-import RejectReassignForm from "./RejectReassignForm"
 
 const RepairTechnicianList = (props) => {
 
@@ -190,16 +189,7 @@ const RepairTechnicianList = (props) => {
                                                 >Reassign</Button>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
-                                                <Button
-                                                    onClick={() => {
-                                                        handleRejectReassign();
-                                                        handleRowdata(item)
-                                                    }}
-                                                >Rejected</Button>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                 </div>
@@ -219,9 +209,7 @@ const RepairTechnicianList = (props) => {
                 rowData={props.rowData}
                 orderPhoneId={props.rowData.orderPhoneId} />}
             {complete && <CompletedPhones row={row} orderPhoneId={props.rowData.orderPhoneId} />}
-            {reject && <RejectReassignForm row={row}
-                rowData={props.rowData}
-                orderPhoneId={props.rowData.orderPhoneId} />}
+
         </>
     )
 }
