@@ -20,6 +20,8 @@ class ProductionHeader extends Component {
           }
           rightComponent={
             <ProductionActionRight
+            fetchingProductionTable={this.props.fetchingProductionTable}
+            productionTableData={this.props.productionTableData}
             viewType={viewType} 
               openProductiondrawer={openProductiondrawer}
               handleCreateProduction={handleCreateProduction}

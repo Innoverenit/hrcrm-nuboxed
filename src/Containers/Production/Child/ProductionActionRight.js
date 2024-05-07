@@ -23,7 +23,7 @@ function ProductionActionRight (props) {
           </Button>
           )} */}
 
-{(props.viewType === 'table') && (  // Use !(props.viewtype === 'table') to check if viewtype is NOT 'table'
+{(props.viewType === 'table') && (props.productionTableData.length===0)&&(  // Use !(props.viewtype === 'table') to check if viewtype is NOT 'table'
     (user.productionCreateInd === true || user.role === "ADMIN") && (
       <Button
         type="primary"

@@ -15,6 +15,7 @@ import { SelectComponent } from '../../../Components/Forms/Formik/SelectComponen
 //import StageEmployeeColumns1 from './StageEmployeeColumns1';
 import { BundleLoader } from '../../../Components/Placeholder';
 import StageProductionColumns from "../Child/StageProductionColumns"
+import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
 const { Option } = Select;
 
 const Container = styled.div`
@@ -176,11 +177,11 @@ const handleStages = (val) => {
                 type="stage"
                  onDragStart={dragStart}
               >
-                <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}>
+                {/* <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}> */}
                   <>
                     {props.productionTableData.map((item, index) => (
                       <>
-                      {item.stageList.map((stage, stageIndex) => (
+                      {item.stageList.length===0?<NodataFoundPage1/>:item.stageList.map((stage, stageIndex) => (
                         <Droppable
                         key={stageIndex}
                         droppableId={stage.productionStagesId}
@@ -234,7 +235,7 @@ const handleStages = (val) => {
                          </>
                       ))}
                   </>
-                </Container>
+                {/* </Container> */}
               </DragDropContext>
             </div>
     </>

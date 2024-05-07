@@ -90,7 +90,7 @@ function ProductionTableView(props) {
                     
                  {/* {productionByLocsId.length ?
                             <> */}
-                                {!props.fetchingProductionTable && props.productionTableData.length === 0 ?<NodataFoundPage />:props.productionTableData.map((item, index) => {
+                                {props.productionTableData.map((item, index) => {
                                     // const currentdate = dayjs().format("DD/MM/YYYY");
                                     // const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (

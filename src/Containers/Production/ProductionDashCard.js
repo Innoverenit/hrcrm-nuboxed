@@ -4,30 +4,53 @@ import { bindActionCreators } from "redux";
 import {getProductionTable} from "./ProductionAction"
 import ProductionTableView from "./Child/ProductionTableView"
 import ProductionTimeLine from "./Child/ProductionTimeLine"
+import NodataFoundPage from '../../Helpers/ErrorBoundary/NodataFoundPage';
 
 const ProductionDashCard = (props) => {
-    useEffect(() => {
-        props.getProductionTable(props.userId);
-        // setPage(page + 1);
-        // props.getRoomRackByLocId(props.locationId, props.orgId);
-    }, []);
+   
     return (
+        // <div className="parentContainer">
+            
+        //     <div className="leftContainer">
+             
+        //         <ProductionTableView
+        //         fetchingProductionTable={props.fetchingProductionTable}
+        //         productionTableData={props.productionTableData}
+        //         />
+        //     </div>
+        //     <div className="rightContainer">
+               
+        //         <ProductionTimeLine 
+        //         productionTableData={props.productionTableData}
+        //         />
+        //     </div>
+        // </div>
         <div className="parentContainer">
+
+    {!props.fetchingProductionTable && props.productionTableData.length === 0 ? (
+       <div style={{marginLeft:"27em"}}>
+        <NodataFoundPage/>
+        </div>
+    ) : (
+        
+        <>
             <div className="leftContainer">
-                {/* Component 1 goes here */}
-                {/* <Component1 /> */}
+                {/* Render ProductionTableView */}
                 <ProductionTableView
-                fetchingProductionTable={props.fetchingProductionTable}
-                productionTableData={props.productionTableData}
+                    fetchingProductionTable={props.fetchingProductionTable}
+                    productionTableData={props.productionTableData}
                 />
             </div>
             <div className="rightContainer">
-                {/* Component 2 goes here */}
+                {/* Render ProductionTimeLine */}
                 <ProductionTimeLine 
-                productionTableData={props.productionTableData}
+                    productionTableData={props.productionTableData}
                 />
             </div>
-        </div>
+        </>
+    )}
+</div>
+
     );
 };
 
@@ -39,8 +62,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     // locationId: auth.userDetails.locationId,
     // orgId: auth.userDetails.organizationId,
     // user: auth.userDetails,
-    fetchingProductionTable:production.fetchingProductionTable,
-    productionTableData:production.productionTableData,
+   
     // openbUILDERProductiondrawer: production.openbUILDERProductiondrawer,
     // clickedProductionIdrwr: production.clickedProductionIdrwr,
     // organizationId: auth.userDetails.organizationId,
