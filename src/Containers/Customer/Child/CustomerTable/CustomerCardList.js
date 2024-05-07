@@ -78,24 +78,24 @@ function CustomerCardList(props) {
 
   console.log(props.viewType)
 
-  useEffect(() => {
-    
-      props.emptyCustomer()
-      props.getCustomerListByUserId(props.viewType==="table"?props.userId:props.viewType, props.viewType==="table"?page:props.viewType==="teams"?page1:props.viewType==="all"?page2:null, "creationdate");
-   
-  }, [props.viewType]);
   // useEffect(() => {
-  //   if (props.viewType === "table") {
+    
   //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
-  //   } else if (props.viewType === "teams") { 
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-  //   } else {     
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-  //   }
+  //     props.getCustomerListByUserId(props.viewType==="table"?props.userId:props.viewType, props.viewType==="table"?page:props.viewType==="teams"?page1:props.viewType==="all"?page2:null, "creationdate");
+   
   // }, [props.viewType]);
+  useEffect(() => {
+    if (props.viewType === "table") {
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.userId, page, "creationdate");
+    } else if (props.viewType === "teams") { 
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.viewType, page1, "creationdate");
+    } else {     
+      props.emptyCustomer()
+      props.getCustomerListByUserId(props.viewType, page2, "creationdate");
+    }
+  }, [props.viewType,page,page1,page2]);
 
 
   useEffect(() => {
@@ -168,45 +168,52 @@ function CustomerCardList(props) {
     props.customerToAccount(customerId);
   };
 
-  const handleLoadMore = () => {
-  
-    if(props.viewType==="table"){
-      // setPage(page + 1)
-      setPage(prevPage => prevPage + 1)
-      props.getCustomerListByUserId(props.userId, page+1, "creationdate");
-    }else if (props.viewType==="teams"){
-      // setPage1(page1 + 1)
-      setPage1(prevPage => prevPage + 1)
-    props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-    }else if (props.viewType==="all"){
-      // setPage2(page2 + 1)
-      setPage2(prevPage => prevPage + 1)
-    props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
-    }
-     
-    //  setPage(page + 1);
-    // setPage(prevPage => prevPage + 1);
-    //   props.getCustomerListByUserId(props.viewType === "table"?props.userId:props.viewType, page+1, "creationdate");
-    
-  };
   // const handleLoadMore = () => {
   
-  //   if (props.viewType === "table") {
+  //   if(props.viewType==="table"){
+  //     // setPage(page + 1)
+  //     setPage(prevPage => prevPage + 1)
+  //     props.getCustomerListByUserId(props.userId, page+1, "creationdate");
+  //   }else if (props.viewType==="teams"){
+  //     // setPage1(page1 + 1)
+  //     setPage1(prevPage => prevPage + 1)
+  //   props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
+  //   }else if (props.viewType==="all"){
+  //     // setPage2(page2 + 1)
+  //     setPage2(prevPage => prevPage + 1)
+  //   props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
+  //   }
      
   //   //  setPage(page + 1);
-  //   setPage(prevPage => prevPage + 1); 
-  //     props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
-  //   } else if (props.viewType === "teams") {
- 
-  //     setPage1(prevPage1 => prevPage1 + 1); 
-  //     props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-  //   } else {
-     
-  //   //  setPage2(page2 + 1);
-  //    setPage2(prevPage2 => prevPage2 + 1); 
-  //     props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
-  //   }
+  //   // setPage(prevPage => prevPage + 1);
+  //   //   props.getCustomerListByUserId(props.viewType === "table"?props.userId:props.viewType, page+1, "creationdate");
+    
   // };
+
+
+  const handleLoadMore = () => {
+    if (props.viewType === "table") {
+      setPage(prevPage => {
+        console.log("Previous page (table):", prevPage);
+        return prevPage + 1;
+      });
+      props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
+    } else if (props.viewType === "teams") {
+      setPage1(prevPage => {
+        console.log("Previous page (teams):", prevPage);
+        return prevPage + 1;
+      });
+      props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
+    } else if (props.viewType === "all") {
+      setPage2(prevPage => {
+        console.log("Previous page (all):", prevPage);
+        return prevPage + 1;
+      });
+      props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
+    }
+  };
+  
+  
 
   const {
     fetchingCustomers,

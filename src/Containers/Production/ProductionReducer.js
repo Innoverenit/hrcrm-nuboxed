@@ -164,6 +164,9 @@ export const productionReducer = (state = initialState, action) => {
         productionByLocsId: state.productionByLocsId.filter(
           (item) => item.productionProductId !== action.payload.productionProductId
         ),
+        productionTableData: state.productionTableData.filter(
+          (item) => item.productionProductId !== action.payload.productionProductId
+        ),
       };
     case types.REMOVE_PRODUCTION_FAILURE:
       return {
