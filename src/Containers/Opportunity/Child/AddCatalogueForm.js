@@ -36,7 +36,6 @@ const handleSearchChange = (value) => {
         setShowList(false); 
     };
 
-
     return (
         <>
           
@@ -49,9 +48,9 @@ const handleSearchChange = (value) => {
                         unit: "",
                         inputPrice:"",
                         categoryName:selectedItem ? selectedItem.categoryName : "",
-                        subCategory: selectedItem ? selectedItem.subCategory : "",
-                        attribute: selectedItem ? selectedItem.subCategory : "",
-                        subAttribute: selectedItem ? selectedItem.subAttribute : "",
+                        subCategoryName: selectedItem ? selectedItem.subCategoryName : "",
+                        attributeName: selectedItem ? selectedItem.attributeName : "",
+                        subAttributeName: selectedItem ? selectedItem.subAttributeName : "",
                     }}
                     // validationSchema={FormSchema}
                     onSubmit={(values, { resetForm }) => {
@@ -298,11 +297,11 @@ const handleSearchChange = (value) => {
     )
 }
 const mapStateToProps = ({ opportunity, auth }) => ({
-    // cataloguesById: customer.cataloguesById,
+    addedOpportunity: opportunity.addedOpportunity,
     // serviceId:auth.serviceDetails.serviceId,
     linkingProductOpportunity: opportunity.linkingProductOpportunity,
     // fetchingAllProductList: distributor.fetchingAllProductList,
-    // searchedCatalogue: customer.searchedCatalogue
+    searchedCatalogue: opportunity.searchedCatalogue
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
     // getCatalogueById,

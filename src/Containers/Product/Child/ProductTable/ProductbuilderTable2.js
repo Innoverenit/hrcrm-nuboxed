@@ -2,11 +2,12 @@ import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Popconfirm } from "antd";
-import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder } from "../../ProductAction";
+import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder,handleProductNotesDrawerModal } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
-
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
   useEffect(()=> {
@@ -16,6 +17,8 @@ function ProductbuilderTable2 (props) {
   const [editedFields, setEditedFields] = useState({});
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
+  const [currentCustomer, setCurrentCustomer] = useState("");
+  const [rowdata, setrowdata] = useState("");
 
   useEffect(() => {
     setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
@@ -31,12 +34,19 @@ function ProductbuilderTable2 (props) {
       },
     }));
   };
+  const handleRowData = (data) => {
+    setrowdata(data);
+  };
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value } : row
     );
     setData(updatedData);
   };
+
+  function handleSetCurrentCustomer(item) {
+    setCurrentCustomer(item);
+  }
 
   const handleEditClick = (productionBuilderId) => {
     setEditsuppliesId(productionBuilderId);
@@ -88,6 +98,10 @@ const handleSave = (key) => {
       props.updateProductSuplrBuilder(result,key.productionBuilderId)
     
   };
+  const {
+    addDrawerProductNotesModal,
+    handleProductNotesDrawerModal
+  } = props;
 return (
     <>
   
@@ -232,6 +246,22 @@ return (
                        </Tooltip>
                        </Popconfirm>
                        </div>
+                       
+                       
+                        </div>
+                        <div>
+                          <Tooltip title="Notes">
+                            <NoteAltIcon
+                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              onClick={() => {
+                                handleProductNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+
+                            />
+                          </Tooltip>
+
                         </div>
 </div>
 </div>
@@ -241,6 +271,13 @@ return (
               </div>
               </div>
  
+              <AddProductNotesDrawerModal
+        rowdata={rowdata}
+       addDrawerProductNotesModal={addDrawerProductNotesModal}
+        handleProductNotesDrawerModal={handleProductNotesDrawerModal}
+        handleSetCurrentCustomer={handleSetCurrentCustomer}
+      />
+
     </>
 );
 }
@@ -248,7 +285,7 @@ return (
 const mapStateToProps = ({product }) => ({
     builderbyProductId: product.builderbyProductId,
     fetchingBuilderByProductId: product.fetchingBuilderByProductId,
-
+    addDrawerProductNotesModal:product.addDrawerProductNotesModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -256,7 +293,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getBuilderByProId,
             removeProductBuilder,
-            updateProductSuplrBuilder
+            updateProductSuplrBuilder,
+            handleProductNotesDrawerModal
             
         },
         dispatch

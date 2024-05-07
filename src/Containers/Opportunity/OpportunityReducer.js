@@ -588,7 +588,7 @@ export const OpportunityReducer = (state = initialState, action) => {
         ...state,
         addingOpportunity: false,
         //addOpportunityModal: false,
-        addedOpportunity:{},
+        addedOpportunity:action.payload,
         opportunityByUserId: [action.payload, ...state.opportunityByUserId],
         // clearbit: null,
       };
@@ -683,7 +683,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         updateOpportunityById: false,
-        updateOpportunityModal: false,
+        // updateOpportunityModal: false,
         // opportunity:action.payload,
         opportunityByUserId: state.opportunityByUserId.map((item) => {
           if (item.opportunityId === action.payload.opportunityId) {
@@ -2606,7 +2606,7 @@ export const OpportunityReducer = (state = initialState, action) => {
         return {
           ...state,
           getlinkingProductOpportunity: false,
-          linkedProdOppolist:[],
+          linkedProdOppolist:action.payload,
         };
       case types.GET_LINK_PRODUCT_WITH_OPPORTUNITY_FAILURE:
         return {

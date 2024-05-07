@@ -11,7 +11,7 @@ const OppoProduLinkedCard = (props) => {
        props.getlinkedProductWithOpportunity(props.addedOpportunity.opportunityId);
     }, [])
     // const handleFinalSubmit = () => {
-    //     props.addAllProductInOrder({
+    //     props.addAllProductInOrder({ OIG3636847723762024 
     //         type: "Catalogue",
     //         distributorId: props.distributorId,
     //         orderId: props.orderId,
@@ -59,7 +59,7 @@ const OppoProduLinkedCard = (props) => {
                         </div>
                     </div>
                     <div class="overflow-x-auto h-[38vh]">
-                        {/* {props.linkedProdOppolist.map((item) => {
+                        {props.linkedProdOppolist.map((item) => {
 
                             return (
                                 <div >
@@ -96,7 +96,7 @@ const OppoProduLinkedCard = (props) => {
                                 </div>
 
                             )
-                        })} */}
+                        })}
                     </div>
                 </div>
                 

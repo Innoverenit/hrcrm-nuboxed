@@ -8,7 +8,7 @@ import { getlocation, handleLocationShiftDrawer,
   deleteLocation,addingLocationToggle,
   handleLocnCellDrawer } from "./LocationAction";
 import styled from "styled-components";
-import CellTowerIcon from '@mui/icons-material/CellTower';
+import TokenIcon from '@mui/icons-material/Token';
 import { Popconfirm, Switch, Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -262,7 +262,7 @@ const handleLoadMore = () => {
                      {item.productionInd ?
                       <div>
                       <Tooltip title="Cell">
-                                                            <CellTowerIcon 
+                                                            <TokenIcon 
                                                             className=" !text-base cursor-pointer text-[blue]"
                                                             onClick={()=>{
                                                               handleStoredLocations(item);

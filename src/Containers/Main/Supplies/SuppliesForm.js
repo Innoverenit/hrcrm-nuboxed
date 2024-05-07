@@ -197,7 +197,7 @@ class Suppliesform extends Component {
                     <div class="w-[47%]">
                       <Field
                         name="netUnit"
-                        label="Units"
+                        label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}
@@ -222,7 +222,7 @@ class Suppliesform extends Component {
                     <div class="w-[47%]">
                       <Field
                         name="grossUnit"
-                        label="Units"
+                        label="UOM"
                         isColumn
                         inlineLabel
                         component={SelectComponent}

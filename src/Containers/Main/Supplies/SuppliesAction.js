@@ -28,7 +28,7 @@ export const addSupplies = (purchase) => (dispatch) => {
     .post(`${base_url2}/supplies`, purchase, {})
     .then((res) => {
       console.log(res);
-      dispatch(getSuppliesList());
+      dispatch(getSuppliesList(0));
       dispatch({
         type: types.ADD_SUPPLIES_SUCCESS,
         payload: res.data,
@@ -45,12 +45,12 @@ export const addSupplies = (purchase) => (dispatch) => {
     });
 };
 
-export const getSuppliesList = () => (dispatch) => {
+export const getSuppliesList = (pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_SUPPLIES_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies`, {
+    .get(`${base_url2}/supplies/all-supplies/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -89,7 +89,7 @@ export const updateSupplies = (data, suppliesId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_SUPPLIES_BY_ID_REQUEST });
   axios
-    .put(`${base_url2}/supplies/${suppliesId}/rtr`, { ...data })
+    .put(`${base_url2}/supplies/${suppliesId}`, { ...data })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -202,7 +202,7 @@ export const reinstateToggleForSupplies = (data, suppliesId) => (
     .then((res) => {
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_SUPPLIES_SUCCESS,
-        payload: res.data,
+        payload: suppliesId,
       });
       message.success("Reinstated Successfully");
     })
@@ -321,7 +321,7 @@ export const addMasterList = (data) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getSuppliesList())
+      dispatch(getSuppliesList(0))
       dispatch({
         type: types.ADD_MASTER_LIST_SUCCESS,
         payload: res.data,
@@ -406,6 +406,32 @@ export const getSuppliesCount = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_SUPPLIES_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSuppliesDeletedCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_DELETED_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/delete/count`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_DELETED_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SUPPLIES_DELETED_COUNT_FAILURE,
         payload: err,
       });
     });
@@ -623,4 +649,67 @@ export const setSuppliesSupplierType = (data) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const linkMaterialToggle = ( data,currencyId) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_MATERIAL_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/`, data, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_MATERIAL_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MATERIAL_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+
+export const inputSuppliesDataSearch = (name) => (dispatch) => {
+  dispatch({
+    type: types.INPUT_SUPPLIES_SEARCH_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/suppliesName/${name}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+
+      dispatch({
+        type: types.INPUT_SUPPLIES_SEARCH_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      message.error("Material list is empty");
+      dispatch({
+        type: types.INPUT_SUPPLIES_SEARCH_DATA_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+
+export const ClearReducerDataOfMaterial = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_MATERIAL,
+  });
 };

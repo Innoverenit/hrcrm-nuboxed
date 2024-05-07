@@ -3,7 +3,6 @@ import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import OpportunityStepper from "./OpportunityStepper";
-const OpportunityForm = lazy(() => import("./OpportunityForm"));
 
 const AddOpportunityModal = (props) => {
   const { addOpportunityModal, handleOpportunityModal, ...formProps } = props;
