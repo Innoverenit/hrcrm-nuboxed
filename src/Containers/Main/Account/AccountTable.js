@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Popconfirm, Tooltip } from "antd";
 import { Link } from 'react-router-dom';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
@@ -15,6 +16,7 @@ import {
   deleteDistributor,
   handleBillingAddressModal,
   handleUpdateAccountModal,
+  handleAccountModal,
   emptyDistributor,
   handleAccountPulse
 } from "./AccountAction";
@@ -25,6 +27,7 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
+import AccountModal from "./AccountModal";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -47,6 +50,7 @@ function AccountTable(props) {
 
   const {
     handleUpdateAccountModal,
+    handleAccountModal,
   } = props;
   useEffect(() => {
     return () => props.emptyDistributor();
@@ -205,6 +209,28 @@ function AccountTable(props) {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
+                        <div class="flex md:flex-col">
+
+<div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+  <div class=" text-xs text-cardBody font-poppins">
+    <Tooltip title="">
+      <AcUnitIcon
+        className=" !text-base cursor-pointer text-[tomato]"
+        onClick={() => {
+          // props.setEditDistributor(item)
+          handleAccountModal(true);
+          handleCurrentRowData(item);
+        }}
+      />
+
+    </Tooltip>
+  </div>
+
+
+</div>
+
+</div>
+
                           <div class="flex md:flex-col">
                             <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div>
@@ -301,6 +327,11 @@ function AccountTable(props) {
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
       />
+        <AccountModal
+        RowData={RowData}
+        accountModal={props.accountModal}
+        handleAccountModal={handleAccountModal}
+      />
 
     </>
   );
@@ -316,7 +347,8 @@ const mapStateToProps = ({ distributor, auth }) => ({
   addDistributorOrderModal: distributor.addDistributorOrderModal,
   addDistributorActivityTableModal:
     distributor.addDistributorActivityTableModal,
-  addBillToAddress: distributor.addBillToAddress
+  addBillToAddress: distributor.addBillToAddress,
+  accountModal:distributor.accountModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -330,6 +362,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteDistributor,
       handleBillingAddressModal,
       handleUpdateAccountModal,
+      handleAccountModal,
       emptyDistributor,
       handleAccountPulse
     },

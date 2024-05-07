@@ -3551,7 +3551,7 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
     type: types.UPDATE_PROCURE_STEP1_REQUEST,
   });
   axios
-    .put(`${base_url2}`, data,
+  .put(`${base_url2}/phoneOrder/orderUpdate/${orderPhoneId}`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3587,5 +3587,12 @@ export const emptyClearbit = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CLEARBIT_TABLE,
     
+  });
+};
+
+export const handleAccountModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACCOUNT_MODAL,
+    payload: modalProps,
   });
 };
