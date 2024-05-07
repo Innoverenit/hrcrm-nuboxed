@@ -78,8 +78,10 @@ const UsersCellCard = (props) => {
       }
     
       
-      props.createUserCell(data)
-      
+      props.createUserCell(data);
+      setCell("");
+      setDepartment("");
+      setUser("");
       // console.log(`Selected user: ${value}`);
       // You can handle the selected user value here
     }
@@ -103,6 +105,7 @@ const UsersCellCard = (props) => {
       placeholder="Select a cell"
       style={{ width: 200 }}
       onChange={handleCellChange}
+      value={cell} 
     >
       {props.cellCode.map(cell => (
         <Option key={cell.cellChamberLinkId} value={cell.cellChamberLinkId}>
@@ -117,6 +120,7 @@ const UsersCellCard = (props) => {
       placeholder="Select a department"
       style={{ width: 200 }}
       onChange={handleChangeDepartment}
+      value={department} 
     >
       {props.departments.map(department => (
         <Option key={department.departmentId} value={department.departmentId}>
@@ -134,6 +138,7 @@ const UsersCellCard = (props) => {
       placeholder="Select a user"
       style={{ width: 200 }}
       onChange={handleChange}
+      value={user} 
     >
      {props.userListLocation.map(user => (
         <Option key={user.employeeId} value={user.employeeId}>

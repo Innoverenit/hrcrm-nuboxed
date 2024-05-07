@@ -119,7 +119,7 @@ function SuppliesActionLeft (props) {
 
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by Name or Sector"
+          placeholder="Search by Name "
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}

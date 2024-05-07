@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import DeletedLocationCard from "./DeletedLocationCard";
 import { handleLocationModal,setLocationViewType } from "./LocationAction";
 const LocationHeader = lazy(() => import("./LocationHeader"));
 const LocationCard = lazy(() => import("./LocationCard"));
@@ -37,6 +38,10 @@ class Location extends Component {
             
             <LocationCard2/>
              )
+             :this.props.viewType === "delete" ? (
+            
+              <DeletedLocationCard/>
+               )
           : null}
           </Suspense>
        

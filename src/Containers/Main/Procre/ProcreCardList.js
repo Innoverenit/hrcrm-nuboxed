@@ -115,8 +115,7 @@ if (props.fetchingAllProcure) {
                         <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.newOrderNo}  &nbsp;&nbsp;
-                              {date === currentdate ? (
+                              {item.newOrderNo} &nbsp;&nbsp;{date === currentdate ? (
                                 <span
                                   style={{
                                     color: "tomato",
@@ -126,6 +125,8 @@ if (props.fetchingAllProcure) {
                                   New
                                 </span>
                               ) : null}
+                            
+                            
                             </div>
                           </Tooltip>
                         </div>

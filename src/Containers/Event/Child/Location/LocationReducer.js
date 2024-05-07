@@ -66,6 +66,10 @@ fetchingLocationCell: false,
 fetchingLocationCellError:false,
 showLoCell:[],
 
+fetchingDeletedLocationHistory: false,
+fetchingDeletedLocationHistoryError: false,
+deletedLocationHistory:[],
+
 
 
 deletingLocationCellData:false,
@@ -75,9 +79,16 @@ fetchingCellCode:false,
 fetchingCellCodeError:false,
 cellCode:[],
 
+reInstatedLocationById: false,
+reInstatedLocationByIdError: false,
+
 fetchingAllLocationCell: false,
 fetchingAllLocationCellError:false,
 allLoCell:[],
+
+fetchingLocationDeletedcount: false, 
+fetchingLocationDeletedcountError: false, 
+locationDeletedCount:{},
 
 
 deletingUserCellData:false,
@@ -462,6 +473,47 @@ deletingUserCellDataError:false,
         case types.LINK_CELL_WITH_PRODUCT_FAILURE:
             return { ...state };
 
+            case types.GET_LOCATION_DELETE_HISTORY_REQUEST:
+              return { ...state, fetchingDeletedLocationHistory: true };
+          case types.GET_LOCATION_DELETE_HISTORY_SUCCESS:
+              return {
+                  ...state,
+                  fetchingDeletedLocationHistory: false,
+                  deletedLocationHistory: action.payload,
+              };
+          case types.GET_LOCATION_DELETE_HISTORY_FAILURE:
+              return {
+                  ...state,
+                  fetchingDeletedLocationHistory: false,
+                  fetchingDeletedLocationHistoryError: true,
+              };
+
+
+              case types.GET_LOCATION_DELETED_COUNT_REQUEST:
+                return { ...state, fetchingLocationDeletedcount: true };
+            case types.GET_LOCATION_DELETED_COUNT_SUCCESS:
+                return { ...state, fetchingLocationDeletedcount: false, locationDeletedCount: action.payload };
+            case types.GET_LOCATION_DELETED_COUNT_FAILURE:
+                return { ...state, fetchingLocationDeletedcount: false, fetchingLocationDeletedcountError: true };
+
+
+                case types.REINSTATE_TOGGLE_FOR_LOCATION_REQUEST:
+                  return { ...state, reInstatedLocationById: true };
+              case types.REINSTATE_TOGGLE_FOR_LOCATION_SUCCESS:
+                  return {
+                      ...state,
+                      reInstatedLocationById: false,
+                      deletedLocationHistory: state.deletedLocationHistory.filter(
+                          (item) => item.locationDetailsId !== action.payload
+                        ),
+                
+                  };
+              case types.REINSTATE_TOGGLE_FOR_LOCATION_FAILURE:
+                  return {
+                      ...state,
+                      reInstatedLocationById: false,
+                      reInstatedLocationByIdError: true,
+                  };
 
       default:
     return state;

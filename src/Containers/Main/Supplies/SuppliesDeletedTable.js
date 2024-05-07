@@ -82,7 +82,7 @@ function SuppliesDeletedTable(props) {
                               </div>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[7.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.suppliesName}
                             </div>

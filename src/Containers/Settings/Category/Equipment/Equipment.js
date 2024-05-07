@@ -28,16 +28,20 @@ const Equipment = (props) => {
   const [editingId, setEditingId] = useState(null);
   const [addingRegion, setAddingRegion] = useState(false);
   const [newEquipmentName, setEquipmentName] = useState('');
+  const [newQuantityName, setQuantityName] = useState('');
+  const [newDescriptionName, setDescriptionName] = useState('');
   useEffect(() => {
       props.getEquipment(); 
       props.getEquipmentCount() 
   }, [])
 
-  const editRegion = (equipmentId, name) => {
+  const editRegion = (equipmentId, name,quantity,description) => {
     console.log(name)
     console.log(name)
       setEditingId(equipmentId);
       setEquipmentName(name);
+      setQuantityName(quantity);
+      setDescriptionName(description);
   };
 
 
@@ -45,13 +49,17 @@ const Equipment = (props) => {
   const handleAddEquipment = () => {
       setAddingRegion(true);
       setEquipmentName("")
+      setQuantityName("")
+      setDescriptionName("")
   };
 
   const handleUpdateEquipment=(region)=>{
       console.log(region)
       let data={
         equipmentId:region.equipmentId,
-        name:newEquipmentName
+        name:newEquipmentName,
+        quantity:newQuantityName,
+        description:newDescriptionName,
        
       }
 props.updateEquipment(data,region.equipmentId)
@@ -62,6 +70,8 @@ setEditingId(null);
  
       let data={
         name:newEquipmentName,
+        quantity:newQuantityName,
+        description:newDescriptionName,
         orgId:props.orgId,
       }
       props.addEquipment(data,props.orgId)
@@ -89,6 +99,8 @@ setEditingId(null);
 
   const handleCancelAdd = () => {
     setEquipmentName('');
+    setQuantityName('');
+    setDescriptionName("");
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -132,12 +144,26 @@ return <div><BundleLoader/></div>;
               {addingRegion ? (
                   <div>
                       <input 
-                      style={{border:"2px solid black",width:"53%"}}
+                      style={{border:"2px solid black",width:"29%"}}
                           type="text" 
-                          placeholder="Add Equipment"
+                          placeholder="Name"
                           value={newEquipmentName} 
                           onChange={(e) => setEquipmentName(e.target.value)} 
                       />
+                        <input 
+                      style={{border:"2px solid black",width:"24%"}}
+                          type="text" 
+                          placeholder="Quanity"
+                          value={newQuantityName} 
+                          onChange={(e) => setQuantityName(e.target.value)} 
+                      />
+                             <input 
+                            placeholder="Description"
+                        style={{border:"2px solid black"}}
+                            type="text" 
+                            value={newDescriptionName} 
+                            onChange={(e) => setDescriptionName(e.target.value)} 
+                        />
                       <button 
                     
                          loading={props.addingEquipment}
@@ -165,12 +191,38 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setEquipmentName(e.target.value)}
                 />
             ) : (
-                <div className="region">{region.name}&nbsp;&nbsp;&nbsp;
+                <div className="region" style={{width:"13rem"}}>{region.name}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
                                       </span> : null}</div>
             )}
+
+{editingId === region.equipmentId ? (
+                <input
+                placeholder="Update Quantity"
+                style={{border:"2px solid black"}}
+                    type="text"
+                    value={newQuantityName}
+                    onChange={(e) => setQuantityName(e.target.value)}
+                />
+            ) : (
+                <div className="region" style={{width:"13rem"}}>{region.quantity}
+                </div>
+            )}
+            
+            {editingId === region.equipmentId ? (
+                  <input
+                  style={{border:"2px solid black"}}
+                      type="text"
+                      placeholder="Description"
+                      value={newDescriptionName}
+                      onChange={(e) => setDescriptionName(e.target.value)}
+                  />
+              ) : (
+                  <div className="region" style={{width:"39rem"}}>{region.description}
+                  </div>
+              )}
 
             {/* Action buttons */}
             <div className="actions">
@@ -181,7 +233,7 @@ return <div><BundleLoader/></div>;
                         <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.equipmentId, region.name)} />
+                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.equipmentId, region.name,region.quantity,region.description)} />
                 )}
 
                 {/* Delete button */}

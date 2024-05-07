@@ -159,6 +159,8 @@ const initialState = {
   fetchingRecordsError: false,
   accountRecordData: {},
 
+  accountModal:false,
+
   addingLocationInOrder: false,
   addingLocationInOrderError: false,
 
@@ -1121,6 +1123,11 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_ACCOUNT_UPDATE_MODAL:
       return { ...state, updateAccountModal: action.payload };
+
+
+      case types.HANDLE_ACCOUNT_MODAL:
+        return { ...state, accountModal: action.payload };
+  
 
     case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };

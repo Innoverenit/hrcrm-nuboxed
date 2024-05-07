@@ -1,5 +1,6 @@
 import * as types from "./LocationActionType";
 import axios from "axios";
+import { message } from "antd";
 import { base_url,base_url2 } from "../../../../Config/Auth";
 import Swal from 'sweetalert2';
 
@@ -629,5 +630,88 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           type: types.GET_CELL_CARD_LIST_FAILURE,
           payload: err,
         });
+      });
+  };
+
+  export const getLocationDeleteHistory = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_DELETE_HISTORY_REQUEST,
+    });
+    axios
+      .get(`${base_url}/locationDetails/deleteLocationHistory/${orgId}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LOCATION_DELETE_HISTORY_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_LOCATION_DELETE_HISTORY_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+  export const getLocationDeletedCount = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_DELETED_COUNT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/locationDetails/delete/location/record/count/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LOCATION_DELETED_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LOCATION_DELETED_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const reinstateToggleForLocation = (data, locationDetailsId) => (
+    dispatch
+  ) => {
+    // debugger;
+    dispatch({
+      type: types.REINSTATE_TOGGLE_FOR_LOCATION_REQUEST,
+    });
+    axios
+      .put(`${base_url}/locationDetails/locationReInState/${locationDetailsId}`, data,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_LOCATION_SUCCESS,
+          payload: locationDetailsId,
+        });
+        message.success("Reinstated Successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_LOCATION_FAILURE,
+          payload: err,
+        });
+        message.error("Something went wrong")
       });
   };

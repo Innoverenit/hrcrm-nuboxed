@@ -362,8 +362,8 @@ function ProcureStep1(props) {
                                             loading={props.updatingProcureStep1}
                                         >
                                             <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
+                                                id="app.update"
+                                                defaultMessage="Update"
                                             />
 
                                         </Button>

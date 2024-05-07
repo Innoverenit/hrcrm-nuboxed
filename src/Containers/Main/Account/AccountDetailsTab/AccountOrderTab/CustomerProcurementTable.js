@@ -59,8 +59,7 @@ function CustomerProcurementTable(props) {
           height={"75vh"}
         >
           {props.procurementOrder.map((item) => {
-            const currentdate = moment().format("DD/MM/YYYY");
-            const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentDate = moment().format("DD/MM/YYYY");
 
             const diff = Math.abs(
               moment().diff(moment(item.lastRequirementOn), "days")
@@ -113,7 +112,12 @@ function CustomerProcurementTable(props) {
                         <div class="max-sm:w-full md:w-[14.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.newOrderNo}
+                              {item.newOrderNo} &nbsp;&nbsp; <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                    <span className="text-xs text-[tomato] font-bold">
+                      New
+                    </span>
+                  ) : null} </span>
+                             
                             </div>
                           </Tooltip>
                         </div>
