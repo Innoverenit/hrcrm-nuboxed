@@ -169,6 +169,8 @@ const initialState = {
 
   productioNoteModal: false,
 
+  rejectedReassign: false,
+
   showTechnicianModal: false,
 
   assignOrderById: false,
@@ -558,6 +560,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCTION_NOTES_MODAL:
       return { ...state, productioNoteModal: action.payload };
+
+    case types.HANDLE_REJECTED_REASSIGN_MODAL:
+      return { ...state, rejectedReassign: action.payload };
 
     case types.HANDLE_ALL_SPARE_MODAL:
       return { ...state, approveSpareModal: action.payload };

@@ -25,36 +25,25 @@ function ReceivedSpareList(props) {
         {
             title: "Category",
             width: "15%",
-            // render: (text, item) => {
-            //     return (
-            //         <>
-            //             {item.categoryName} {item.subCategoryName}
-            //         </>
-            //     )
-            // },
+            render: (text, item) => {
+                return (
+                    <>
+                        {item.categoryName} {item.subCategoryName}
+                    </>
+                )
+            },
         },
         {
             title: "Attribute",
-            // render: (text, item) => {
-            //     return (
-            //         <>
-            //             {item.attribute} {item.subAttribute}
-            //         </>
-            //     )
-            // },
+            render: (text, item) => {
+                return (
+                    <>
+                        {item.attribute} {item.subAttribute}
+                    </>
+                )
+            },
             width: "15%",
         },
-        {
-            title: "Units",
-            dataIndex: "noOfSpare",
-            width: "15%",
-        },
-        {
-            title: "Hours",
-            dataIndex: "hours",
-            width: "15%",
-        },
-
         {
             title: "Recived",
             width: "10%",
@@ -62,8 +51,8 @@ function ReceivedSpareList(props) {
                 return (
                     <>
                         <ReciveSpareItemToggle
-                            spareUseInd={item.spareUseInd}
-                            phoneSpareId={item.phoneSpareId}
+                            spareReleaseInd={item.spareReleaseInd}
+                            sparePacketId={item.sparePacketId}
                         />
                     </>
 
@@ -74,8 +63,17 @@ function ReceivedSpareList(props) {
         {
             title: "",
             width: "10%",
+            render: (text, item) => {
+                return (
+                    <>
+                        <ReciveSpareItemToggle
+                            spareReleaseInd={item.spareReleaseInd}
+                            sparePacketId={item.sparePacketId}
+                        />
+                    </>
 
-
+                )
+            }
         },
 
     ];

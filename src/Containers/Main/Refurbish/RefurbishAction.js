@@ -410,6 +410,12 @@ export const handleProductionNotesModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleRejectedReassignModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REJECTED_REASSIGN_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const getProductionUsersById = (departmentId, locationId) => (dispatch) => {
   dispatch({

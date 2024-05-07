@@ -9,10 +9,11 @@ function ReciveSpareItemToggle(props) {
     function handleToggleCollection(item) {
         props.updateSpareReceive(
             {
-
-                spareCompleteUserId: props.userId
+                spareReleaseInd: props.spareReleaseInd ? false : true,
+                rcvSpareUser: props.userId
 
             },
+            props.sparePacketId
         );
     }
 

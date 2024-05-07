@@ -36,6 +36,10 @@ const initialState = {
 
   addCreateAwb: false,
 
+  fetchingReceivedUser: false,
+  fetchingReceivedUserError: false,
+  allReceivedUser: [],
+
   updatingValidationInRecive: false,
   updatingValidationInReciveError: false,
 
@@ -66,10 +70,7 @@ const initialState = {
   addingReceivedUser: false,
   addingReceivedUserError: false,
   receivedModal: false,
-  //get received
-  fetchingReceivedUserList: false,
-  fetchingReceivedUserListError: false,
-  allReceivedUser: [],
+
   //file damaged
   fileDamagedModal: false,
 
@@ -1380,6 +1381,21 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingGrnNoByPoIdError: true,
       };
 
+    case types.GET_RECEIVED_REQUEST:
+      return { ...state, fetchingReceivedUser: true };
+    case types.GET_RECEIVED_SUCCESS:
+      return {
+        ...state,
+        fetchingReceivedUser: false,
+        allReceivedUser: action.payload
+      };
+    case types.GET_RECEIVED_FAILURE:
+      return {
+        ...state,
+        fetchingReceivedUser: false,
+        fetchingReceivedUserError: true,
+
+      };
 
     case types.UPDATE_ORDER_RECEIVE_REQUEST:
       return { ...state, updatingOrderReceive: true };

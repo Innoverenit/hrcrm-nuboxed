@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getRejectedPhoneList, hanldeRejectReassignItem } from "./RefurbishAction"
+import { getRejectedPhoneList } from "./RefurbishAction"
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { StyledTable } from '../../../Components/UI/Antd'
@@ -68,7 +68,7 @@ const RejectedPhoneList = (props) => {
         },
         {
             title: "Technician",
-            dataIndex: "username",
+            dataIndex: "technicianName",
             width: "10%",
         },
         {
@@ -78,6 +78,7 @@ const RejectedPhoneList = (props) => {
             render: (text, item) => {
                 return (
                     <Button
+                        style={{ color: reassign && item.phoneId === row.phoneId ? 'blue' : 'orange' }}
                         onClick={() => {
                             handleSetdata(item)
                             handleReassign()
@@ -96,11 +97,11 @@ const RejectedPhoneList = (props) => {
                 columns={column}
                 loading={props.fetchingRejectedPhoneList}
             />
-            {reassign && <RejectedReassignPhon />}
+            {reassign && <RejectedReassignPhon row={row} />}
         </>
     )
 }
-const mapStateToProps = ({ auth, refurbish }) => ({
+const mapStateToProps = ({ refurbish }) => ({
     rejectPhoneById: refurbish.rejectPhoneById,
     fetchingRejectedPhoneList: refurbish.fetchingRejectedPhoneList
 });
@@ -109,7 +110,6 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getRejectedPhoneList,
-            hanldeRejectReassignItem
         },
         dispatch
     );

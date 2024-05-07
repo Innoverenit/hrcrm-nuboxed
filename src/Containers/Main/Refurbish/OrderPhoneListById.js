@@ -330,20 +330,19 @@ function OrderPhoneListById(props) {
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex font-medium w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {/* <Tooltip title="Spare">
+                                                        <Tooltip title="Spare">
+                                                            <Button
+                                                                type="primary"
+                                                                style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
+                                                                onClick={() => {
+                                                                    handleSetRowData(item);
+                                                                    hanldeSpare();
+                                                                }}>
+                                                                {/* <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> */}
+                                                                Spares </Button>
 
-
-                                                        <Button
-                                                            type="primary"
-                                                            style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                            onClick={() => {
-                                                                handleSetRowData(item);
-                                                                hanldeSpare();
-                                                            }}>
-                                                            <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> Spares </Button>
-
-                                                    </Tooltip> */}
-                                                        {isValidPercentage ? (
+                                                        </Tooltip>
+                                                        {/* {isValidPercentage ? (
                                                             <Tooltip title="Spare">
                                                                 <Progress
                                                                     percent={percentage}
@@ -356,7 +355,7 @@ function OrderPhoneListById(props) {
                                                                     }} />
 
                                                             </Tooltip>
-                                                        ) : null}
+                                                        ) : null} */}
 
 
                                                     </div>
