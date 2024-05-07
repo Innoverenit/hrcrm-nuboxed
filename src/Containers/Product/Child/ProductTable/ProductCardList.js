@@ -17,7 +17,7 @@ import {
   handlePriceDrawer,
   handleProdCellDrawer,
 } from "../../ProductAction";
-import CellTowerIcon from '@mui/icons-material/CellTower';
+import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -162,7 +162,7 @@ function ProductCardList(props) {
                     <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                        {item.categoryName} {item.subCategoryName}
+                        {item.categoryName}  {item.subCategoryName}
                       </div>
                     </div>
                    
@@ -171,7 +171,7 @@ function ProductCardList(props) {
 
 
                       <div class=" text-xs text-cardBody max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {item.attributeName}{item.subAttributeName}
+                        {item.attributeName}  {item.subAttributeName}
                       </div>
                     </div>
 </div>
@@ -235,7 +235,7 @@ function ProductCardList(props) {
                       </div>
 <div>
 <Tooltip title="Cell">
-                                                            <CellTowerIcon 
+                                                            <Token 
                                                             className=" !text-base cursor-pointer text-[blue]"
                                                             onClick={()=>{
                                                               handleParticularRowData(item);

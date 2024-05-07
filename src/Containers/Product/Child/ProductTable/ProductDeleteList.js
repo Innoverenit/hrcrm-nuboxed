@@ -15,6 +15,7 @@ import {
   handleCatalogueWipModal,
   handleProductBuilderDrawer,
   handlePriceDrawer,
+  reInstateProducts
 } from "../../ProductAction";
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -26,6 +27,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
+import ReInstateProductToggle from "./ReInstateProductToggle";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -100,6 +102,7 @@ function ProductDeleteList(props) {
             <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
             <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
             <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
+            <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Reinstate</div>
             <div className="w-12"></div>
           </div>
           {/* <InfiniteScroll
@@ -190,6 +193,11 @@ function ProductDeleteList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
+                      <div className=" flex font-medium flex-col  w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+<ReInstateProductToggle item={item} />
+
+</div>
                       <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
                       <div>
                         <Tooltip title="Add Price">
@@ -322,6 +330,7 @@ const mapDispatchToProps = (dispatch) =>
       getdeleteProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
+      reInstateProducts
     },
     dispatch
   );
