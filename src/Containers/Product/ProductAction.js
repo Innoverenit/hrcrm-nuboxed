@@ -503,7 +503,7 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getProducts(0))
+      // dispatch(getProducts(0))
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,
@@ -1546,4 +1546,31 @@ export const handleProductNotesDrawerModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL,
     payload: modalProps,
   });
+};
+export const reInstateProducts = (data,productId) => (dispatch) => {
+  dispatch({ type: types.REINSTATE_DELETED_PRODUCTS_REQUEST });
+  axios
+    .put(`${base_url2}/leads/reinstate/${productId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.REINSTATE_DELETED_PRODUCTS_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully',
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_DELETED_PRODUCTS_FAILURE,
+        payload: err,
+      });
+    });
 };

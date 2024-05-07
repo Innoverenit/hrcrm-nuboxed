@@ -307,6 +307,9 @@ const initialState = {
   clickProdclDrwr:false,
   removingProductPrice: false,
   removingProductPriceError:false,
+
+  reInstatingProducts: false,
+  reInstatingProductsError:false,
   
 };
 const newDateRange = (dateRange, newDate) =>
@@ -610,6 +613,7 @@ export const productReducer = (state = initialState, action) => {
           products: state.products.filter(
             (item) => item.productId !== action.payload
           ),
+          deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
         };
       case types.DELETE_CATALOG_DATA_FAILURE:
         return {
@@ -1227,6 +1231,22 @@ export const productReducer = (state = initialState, action) => {
 
                       case types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL:
                         return { ...state, addDrawerProductNotesModal: action.payload };
+
+                        case types.REINSTATE_DELETED_PRODUCTS_REQUEST:
+                          return { ...state, reInstatingProducts: true };
+                        case types.REINSTATE_DELETED_PRODUCTS_SUCCESS:
+                          return {
+                            ...state,
+                            reInstatingProducts: false,
+                            deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
+                          };
+                        case types.REINSTATE_DELETED_PRODUCTS_FAILURE:
+                          return {
+                            ...state,
+                            reInstatingProducts: false,
+                            reInstatingProductsError: true,
+                          }; 
+
 
     default:
       return state;

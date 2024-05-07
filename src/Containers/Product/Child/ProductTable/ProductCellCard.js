@@ -71,8 +71,7 @@ if(props.fetchingCatalogueCell){
       activeKey={activeTab} 
      onChange={handleTabClick}
        >
-      {props.catalogueCell.filter(item => item.productionInd === true)
-      .map(item => (
+      {props.catalogueCell.filter(item => item.productionInd === true).map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
          {props.fetchingCellCardList ? (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
@@ -81,18 +80,16 @@ if(props.fetchingCatalogueCell){
           ) : (
             <div className=' flex justify-end sticky z-auto'>
             <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-              <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+              <div className=" flex justify-between w-[42%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
                 <div className=" md:w-[6rem]">#Cell</div>
-                <div className=" md:w-[4.2rem] ">Production</div>
-             
-                {/* <div className=" md:w-[5.1rem]">Description</div> */}
-                <div className="w-12"></div>             </div>
+                <div className="md:w-[6.2rem] ">Tag Production</div>
+                <div className="w-12"></div>    </div>
                 
     
                {props.cellCardList.map((item) => {
                 return (
                   <div >
-                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
+                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3">
     
                       <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                         <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
@@ -107,7 +104,6 @@ if(props.fetchingCatalogueCell){
                         <div class=" text-xs text-cardBody font-poppins">
                         
                           <div className="font-normal text-sm text-cardBody font-poppins">
-                            {/* <div> {item.cellChamber}</div> */}
                             <ProductCellToggle 
                             cellId={item.cellId}
                             usedInd={item.usedInd}
