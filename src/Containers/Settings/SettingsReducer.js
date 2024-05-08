@@ -42,6 +42,8 @@ const initialState = {
 
   addingSequence: false,
   addingSequenceError: false,
+  organizationType:false,
+  organizationTypeError:false,
 
   fetchingSequence: false,
   fetchingSequenceError: false,
@@ -466,6 +468,10 @@ const initialState = {
   fetchingScheduler: false,
   fetchingSchedulerError: false,
   scheduler: [],
+
+
+  fetchingOrgType:false,
+  orgTypeData:{},
 
   addingThirdPartyAccess: false,
   addingThirdPartyAccessError: false,
@@ -1749,6 +1755,30 @@ export const settingsReducer = (state = initialState, action) => {
         addingDepartmentAccessError: true,
       };
 
+
+
+      case types.UPDATE_ORGANIZATION_TYPE_REQUEST:
+        return { ...state, organizationType: true };
+      case types.UPDATE_ORGANIZATION_TYPE_SUCCESS:
+        return {
+          ...state,
+          organizationType: false,
+          // updateCustomerModal: false,
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.UPDATE_ORGANIZATION_TYPE_FAILURE:
+        return {
+          ...state,
+          organizationType: false,
+          organizationTypeError: true,
+        };
+
     //get
     case types.GET_DEPARTMENT_ACCESS_REQUEST:
       return { ...state, fetchingDepartmentAccess: true };
@@ -2211,6 +2241,24 @@ export const settingsReducer = (state = initialState, action) => {
         addingProcessForOpportunity: false,
         addingProcessForOpportunityError: true,
         addProcessHiringModal: false,
+      };
+
+
+
+
+      case types.GET_ORG_TYPE_REQUEST:
+      return { ...state, fetchingOrgType: true };
+    case types.GET_ORG_TYPE_SUCCESS:
+      return {
+        ...state,
+        fetchingOrgType: false,
+        orgTypeData: action.payload,
+      };
+    case types.GET_ORG_TYPE_FAILURE:
+      return {
+        ...state,
+        fetchingOrgType: false,
+        fetchingOrgTypeError: false,
       };
 
 
