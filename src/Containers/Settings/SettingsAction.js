@@ -5416,7 +5416,7 @@ export const updateOrganizationType = (data, customerId) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.UPDATE_ORGANIZATION_TYPE_FAILURE,merging
+        type: types.UPDATE_ORGANIZATION_TYPE_FAILURE,
         payload: err,
       });
     });
