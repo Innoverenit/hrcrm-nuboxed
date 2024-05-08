@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FastField } from "formik";
 import {
   Select,
 } from "../../../../Components/UI/Elements";
@@ -10,10 +10,11 @@ import { MainWrapper, } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Button, } from "antd";
-// import {
-//   updateRequirement,
-//   getRequirementsDuration,
-// } from "../../../../Settings/SettingsAction";
+import {
+  updateOrganizationType,
+  getOrgType
+  //getRequirementsDuration,
+} from "../../../Settings/SettingsAction";
 import moment from "moment";
 
 
@@ -28,9 +29,17 @@ function IndustryForm(props) {
   const handleBirthday = (checked) => {
     setBirthday(checked);
   };
-//   useEffect(() => {
-//     props.getRequirementsDuration(props.orgId);
-//   }, []);
+  useEffect(() => {
+    props.getOrgType(props.orgId);
+  }, []);
+
+  useEffect(() => {
+    // Check if data is available
+    if (props.orgTypeData.length > 0) {
+      // Update activeTab when data is available
+      //setActiveTab(props.organizationDetailsList[0]?.organizationId);
+    }
+  }, [props.orgTypeData]);
 
 
   return (
@@ -39,40 +48,24 @@ function IndustryForm(props) {
         enableReinitialize
         initialValues={{
           // jobAniEmailInd:props.requirementDuration.jobAniEmailInd,
-          timePeriod: props.requirementDuration.timePeriod === 0 ? "Not Applicable" : props.requirementDuration.timePeriod || "",
-          oppTimePeriod: props.requirementDuration.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
-          userId: props.userId,
-          orgId: props.organizationId,
-          jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
-          birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
-          trnsfrEvthngToErpInd:props.requirementDuration.trnsfrEvthngToErpInd,
-          trnsfrToErpQtionWinInd:props.requirementDuration.trnsfrToErpQtionWinInd,
-          partNoInd:props.requirementDuration.partNoInd,
-          typeInd: props.requirementDuration.typeInd,
-          repairOrdInd: props.requirementDuration.repairOrdInd,
-          qcInd: props.requirementDuration.qcInd,
-          
-          
-          proInd: props.requirementDuration.proInd,
-          
-          repairProcessInd: props.requirementDuration.repairProcessInd,
-          processInd: props.requirementDuration.processInd,
-          fifoInd: props.requirementDuration.fifoInd,
+          orgType: props.orgTypeData.orgType,
+         
 
         }}
-        // onSubmit={(values) => {
-        //   console.log(values)
+        onSubmit={(values) => {
+          console.log(values)
         
-        //   props.updateRequirement(
-        //     {
-        //       ...values,
+          props.updateOrganizationType(
+            {
+              ...values,
+              orgType:values.orgType,
               
-        //       timePeriod: values.timePeriod === "Not Applicable" ? "0" : values.timePeriod,
-        //       oppTimePeriod: values.oppTimePeriod === "Not Applicable" ? "0" : values.oppTimePeriod,
-        //     },
-        //     props.orgId
-        //   );
-        // }}
+              // timePeriod: values.timePeriod === "Not Applicable" ? "0" : values.timePeriod,
+              // oppTimePeriod: values.oppTimePeriod === "Not Applicable" ? "0" : values.oppTimePeriod,
+            },
+            // props.orgId
+          );
+        }}
       >
         {({ values }) => (
           <MainWrapper style={{  width: "",overflow:"auto"  }}>
@@ -94,7 +87,7 @@ function IndustryForm(props) {
                       <div class=" text-sm  ml-2 font-bold ">Repair</div>
                       </div> */}
 
-                      <div class=" flex flex-row justify-between w-[13rem] mt-2">
+                      {/* <div class=" flex flex-row justify-between w-[13rem] mt-2">
                       <div class=" text-sm  ml-2 ">Real Estate</div>
                       <div>
                         <Field
@@ -132,7 +125,27 @@ function IndustryForm(props) {
                               width={"4rem"}
                             />
                               </div>
-                          </div>
+                          </div> */}
+
+<div class=" w-[47%]" >
+                          <FastField
+                            name="orgType"
+                            type="text"
+                            style={{width:"16em"}}
+                            // label="Salutation"
+                            // label={
+                            //   <FormattedMessage
+                            //     id="app.gender"
+                            //     defaultMessage="Sl"
+                            //   />
+                            // }
+                            options={["Real Estate", "Retail", "Manufacture"]}
+                            component={SelectComponent}
+                            inlineLabel
+                            // className="field"
+                            isColumn
+                          />
+                        </div>
                         
              
                     
@@ -151,7 +164,7 @@ function IndustryForm(props) {
                   <Button
                     type="primary"
                     htmlType="submit"
-                    Loading={props.updateRequirement}
+                    Loading={props.organizationType}
                   >
                     <FormattedMessage id="app.update" defaultMessage="Update" />
                     {/* Update */}
@@ -176,12 +189,16 @@ const mapStateToProps = ({ settings, auth }) => ({
   requirementDuration: settings.requirementDuration,
   orgId: auth.userDetails.organizationId,
   updateRequirement: settings.updateRequirement,
+  organizationType:settings.organizationType,
+  orgTypeData:settings.orgTypeData,
   updateRequirementError: settings.updateRequirementError,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      updateOrganizationType,
+      getOrgType
     //   updateRequirement,
     //   getRequirementsDuration,
     },
