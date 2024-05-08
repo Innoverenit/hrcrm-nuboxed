@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Formik, Form, Field } from 'formik';
 import { connect } from "react-redux";
 import { Button, } from "antd";
+import { bindActionCreators } from "redux";
+import {getChatgpt} from "../Account/AccountAction"
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 
 function AccountIconForm(props) {
     const [showDescription, setShowDescription] = useState(false);
+    // useEffect(() => {
+    //     props.getChatgpt()
+    //    }, []);
+    const handleAboutCustomerClick = () => {
 
+        props.getChatgpt();
+      };
     return (
         <Formik
             initialValues={{
-                comments: "",
+              
+                comments:props.chatGpt.comments || "",
                 orgId: props.orgId,
             }}
         >
@@ -23,7 +32,11 @@ function AccountIconForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    onClick={() => setShowDescription(!showDescription)}
+                                    onClick={() => {
+                                        setShowDescription(!showDescription);
+                                        handleAboutCustomerClick(); 
+                                      }}
+                                    // onClick={() => setShowDescription(!showDescription)}
                                     // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                 >
                                     {showDescription ? "Hide Description" : "About Customer"}
@@ -50,6 +63,17 @@ function AccountIconForm(props) {
     );
 }
 
-const mapStateToProps = ({ supplies }) => ({});
+const mapStateToProps = ({ distributor }) => ({
+    chatGpt:distributor.chatGpt,
+    fetchingChatgpt:distributor.fetchingChatgpt,
+});
 
-export default connect(mapStateToProps)(AccountIconForm);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+        getChatgpt
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountIconForm);

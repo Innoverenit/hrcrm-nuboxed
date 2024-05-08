@@ -8,7 +8,6 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   UploadOutlined,
-WeiboSquareOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -19,7 +18,6 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
 import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
 import {
@@ -40,8 +38,7 @@ import {
   handleTaskDocumentDrawerModal
 } from "../TaskAction";
 import UpdateDocumentDrawerModal from "../Child/UpdateDocumentDrawerModal"
-import { MultiAvatar, } from "../../../Components/UI/Elements";
-import InfoIcon from '@mui/icons-material/Info';
+import { MultiAvatar, MultiAvatar2, } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddTaskStepperDrawerModal from "./TaskStepper/AddTaskStepperDrawerModal";
 const AddTaskProjectDrawerModal = lazy(() => import("../Child/AddTaskProjectDrawerModal"));
@@ -161,7 +158,7 @@ const TaskCardList = (props) => {
                           id="app.ageing"
                           defaultMessage="Ageing"
                         /></div>
-                        <div className="w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
+                        <div className="w-[18.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
         <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"><FormattedMessage
                           id="app.assignedto"
                           defaultMessage="assignedto"
@@ -196,7 +193,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col">
+                            <div className="flex rounded-xl justify-between mt-1 bg-white h-11 items-center p-3 max-sm:h-[8rem] max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -319,7 +316,7 @@ const TaskCardList = (props) => {
                     </div> */}
                     </div>
                    
-                    <div className="flex font-medium flex-col w-[3.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex font-medium flex-col w-[6.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        {/* <div class="text-sm text-cardBody font-poppins max-sm:hidden">Deviation</div> */}
                        {/* <div class="text-xs text-cardBody font-poppins"> 
@@ -332,18 +329,13 @@ const TaskCardList = (props) => {
                      
                    </div>
                    <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                   <MultiAvatar
-                              primaryTitle={item.name}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
-                  <MultiAvatar
-                  primaryTitle={item.name}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
+                   {item.customerName ? (
+  <>{item.customerName}</>
+) : null}
+&nbsp;&nbsp;&nbsp;
+{item.contact ? (
+  <>{item.contact}</>
+) : null}        
 
                    </div>
                    </div>
@@ -360,10 +352,12 @@ const TaskCardList = (props) => {
                   
                   null
                 ) : (
-                <MultiAvatar
+                  <MultiAvatar2
                   primaryTitle={item.assignedToName}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
+                  // className="!bg-[#94b3e4]"
+                  // // style={{ backgroundColor: "#94b3e4" }}
                 />
                 )}
                 </>
@@ -378,7 +372,7 @@ const TaskCardList = (props) => {
                                     <div class="text-xs text-cardBody font-poppins ">
                                     <MultiAvatar
                                    
-                  primaryTitle={item.submittedBy}
+                  primaryTitle={item.ownerName}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />

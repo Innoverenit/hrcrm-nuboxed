@@ -207,8 +207,11 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setQuantityName(e.target.value)}
                 />
             ) : (
-                <div className="region" style={{width:"13rem"}}>{region.quantity}
+              region.quantity > 0 ? (
+                <div className="region" style={{ width: "13rem" }}>
+                    {region.quantity}
                 </div>
+            ) : null
             )}
             
             {editingId === region.equipmentId ? (
