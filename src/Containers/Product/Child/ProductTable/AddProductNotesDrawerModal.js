@@ -5,10 +5,6 @@ import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import LinkedProductNotes from "./LinkedProductNotes";
 
-
-
-
-
 class AddProductNotesDrawerModal extends Component {
   render() {
     return (

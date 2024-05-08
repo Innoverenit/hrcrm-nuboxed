@@ -310,7 +310,14 @@ const initialState = {
 
   reInstatingProducts: false,
   reInstatingProductsError:false,
-  
+
+  fetchingNotesofProducts: false, 
+  fetchingNotesofProductsError:false,
+  notesofPRoducts:[],
+
+  addingNotesOfProducts: false,
+  addingNotesOfProductsError: false,
+
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -1247,6 +1254,30 @@ export const productReducer = (state = initialState, action) => {
                             reInstatingProductsError: true,
                           }; 
 
+                          case types.GET_NOTES_OF_PRODUCT_REQUEST:
+                            return { ...state, fetchingNotesofProducts: true, fetchingNotesofProductsError: false };
+                          case types.GET_NOTES_OF_PRODUCT_SUCCESS:
+                            return { ...state, fetchingNotesofProducts: false, notesofPRoducts: action.payload };
+                          case types.GET_NOTES_OF_PRODUCT_FAILURE:
+                            return { ...state, fetchingNotesofProducts: false, fetchingNotesofProductsError: true };
+
+        
+                              case types.ADD_NOTES_OF_PRODUCT_REQUEST:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: true,
+                                };
+                              case types.ADD_NOTES_OF_PRODUCT_SUCCESS:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: false,
+                                };
+                              case types.ADD_NOTES_OF_PRODUCT_FAILURE:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: false,
+                                  addingNotesOfProductsError: true,
+                                };
 
     default:
       return state;

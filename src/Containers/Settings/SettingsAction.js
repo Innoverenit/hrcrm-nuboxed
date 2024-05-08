@@ -5392,3 +5392,28 @@ export const AddLangWords = (word) => (dispatch) => {
 
     });
 };
+export const updateSkillLevel = (data) => (dispatch, getState) => {
+  dispatch({
+    type: types.UPDATE_SKILL_LEVEL_REQUEST,
+  });
+  axios
+    .put(`${base_url}/skillLevel/ID`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SKILL_LEVEL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SKILL_LEVEL_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -538,15 +538,6 @@ function ProductbuilderTable(props) {
       props.createProductCurrency(result)
       setRows([{ currencyId: '', price: '', priceB2C: '', vat: '' }]);
   };
-  const handleUpChange = (roomRackId, fieldName, value) => {
-    setEditedFields((prevFields) => ({
-      ...prevFields,
-      [roomRackId]: {
-        ...prevFields[roomRackId],
-        [fieldName]: value,
-      },
-    }));
-  };
   const handleEditClick = (productCurrencyId) => {
     setEditsuppliesId(productCurrencyId);
   };
@@ -565,7 +556,8 @@ function ProductbuilderTable(props) {
       productId: props.particularDiscountData.productId,
       userId: props.userId
     };
-    // props.createProductCurrency(updatedData);
+    props.createProductCurrency(updatedData);
+    setEditsuppliesId(null);
   };
 
   return (
