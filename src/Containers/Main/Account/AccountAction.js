@@ -3530,6 +3530,35 @@ export const getOrderProcurement = (distributorId, pageNo,type) => (
     });
 };
 
+export const getChatgpt = (distributorId, pageNo,type) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_CHATGPT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CHATGPT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CHATGPT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const handleUpdateProcureDetailModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPDATE_PROCURE_ORDER_MODAL,

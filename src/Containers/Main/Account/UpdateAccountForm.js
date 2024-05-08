@@ -168,11 +168,11 @@ const UpdateAccountForm = ({
           <Form class="form-background">
             <div class="flex justify-between" >
               <div class=" h-full w-w47.5 max-sm:w-wk">
-              <div>
+              {/* <div>
               {clearbit && clearbit.hasOwnProperty("logo") ? (
   <ProgressiveImage
     preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
-    image={clearbit.logo}
+    image={clearbit.logo }
     width={140}
     height={150}
     borderRadius={25}
@@ -189,6 +189,30 @@ const UpdateAccountForm = ({
   />
 )}
 
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div> */}
+                     <div>
+                    {clearbit && clearbit.hasOwnProperty("logo") && (
+                      <ProgressiveImage
+                        preview={
+                          "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+                        }
+                        image={clearbit.logo}
+                        width={140}
+                        height={150}
+                        borderRadius={25}
+                        padding={15}
+
+                      />
+                    )}
                     {clearbit && clearbit.hasOwnProperty("logo") ? (
                       <a
                         href="https://clearbit.com"

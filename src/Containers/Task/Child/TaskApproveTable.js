@@ -12,7 +12,7 @@ import {
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { OnlyWrapCard } from '../../../Components/UI/Layout';
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
 import moment from "moment";
@@ -130,7 +130,7 @@ const TaskApproveTable = (props) => {
                           id="app.type"
                           defaultMessage="type"
                         /></div>
-        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]"><FormattedMessage
+        <div className=" w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]"><FormattedMessage
                           id="app.name"
                           defaultMessage="name"
                         /></div>
@@ -169,7 +169,7 @@ const TaskApproveTable = (props) => {
          console.log("deviationDate",incompleteDeviationDate)
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[9rem] max-sm:flex-col">
+                            <div className="flex rounded-xl justify-between mt-1 bg-white h-11 items-center p-3 max-sm:h-[9rem] max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex font-medium flex-col w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 
@@ -205,7 +205,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium  items-center  w-[10.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium  items-center  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody  font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -227,12 +227,12 @@ const TaskApproveTable = (props) => {
                    
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col  w-[7.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex font-medium flex-col  w-[5.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Submitted By</div> */}
                                     <div class="text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
                                     // style={{marginBottom:"0.25rem"}}
-                  primaryTitle={item.submittedBy}
+                  primaryTitle={item.ownerName}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />
@@ -277,18 +277,13 @@ const TaskApproveTable = (props) => {
                                 </div> */}
                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                      <div className="flex font-medium  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                   <MultiAvatar
-                              primaryTitle={item.name}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
-                              imgHeight={"1.8rem"}
-                            />
-                  <MultiAvatar
-                  primaryTitle={item.name}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
+                     {item.customerName ? (
+  <>{item.customerName}</>
+) : null}
+&nbsp;&nbsp;
+{item.contact ? (
+  <>{item.contact}</>
+) : null}        
 
                    </div>
 
@@ -320,7 +315,7 @@ const TaskApproveTable = (props) => {
             handleRowData(item)
             props.handleProspectConfirmationModal(true);
           }}
-          className="!text-base cursor-pointer text-[blue]"
+          className="!text-lg cursor-pointer text-[blue]"
         />
       </Tooltip>
     </>
@@ -349,12 +344,13 @@ const TaskApproveTable = (props) => {
       ) : (
         <>
           {item.filterTaskInd === true && item.approvedInd === "Approved" ? (
-            <CheckCircleOutlined
+            <CheckCircleIcon
               type="check-circle"
               theme="twoTone"
               twoToneColor="#52c41a"
               size={140}
-              style={{ fontSize: "1rem" }}
+              className="!text-2xl cursor-pointer text-[green]"
+             
             />
           ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
             <CloseCircleOutlined
@@ -362,7 +358,7 @@ const TaskApproveTable = (props) => {
               theme="twoTone"
               twoToneColor="red"
               size={140}
-              style={{ fontSize: "1rem" }}
+              className="!text-2xl cursor-pointer text-[red]"
             />
           ) : (
             <></>
@@ -384,7 +380,7 @@ const TaskApproveTable = (props) => {
                   handleTaskNotesDrawerModal(true);
                   handleSetTaskNameId(item);
                 }}
-                className="!text-base cursor-pointer text-[#green]"
+                className="!text-lg cursor-pointer text-[#green]"
               />
            </Tooltip>
   

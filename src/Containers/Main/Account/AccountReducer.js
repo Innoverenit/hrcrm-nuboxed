@@ -62,6 +62,10 @@ const initialState = {
   fetchingActivityDistributorError: false,
   activityDistributor: [],
 
+  fetchingChatgpt: false,
+  fetchingChatgptError: false,
+  chatGpt:[],
+
   addDistributorActivityModal: false,
 
   addingDistributorActivityCall: false,
@@ -2704,6 +2708,22 @@ export const distributorReducer = (state = initialState, action) => {
             ...state,
             fetchingOrderProcurement: false,
             fetchingOrderProcurementError: true,
+          };
+
+
+          case types.GET_CHATGPT_REQUEST:
+          return { ...state, fetchingChatgpt: true };
+        case types.GET_CHATGPT_SUCCESS:
+          return {
+            ...state,
+            fetchingChatgpt: false,
+            chatGpt: action.payload,
+          };
+        case types.GET_CHATGPT_FAILURE:
+          return {
+            ...state,
+            fetchingChatgpt: false,
+            fetchingChatgptError: true,
           };
 
           case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
