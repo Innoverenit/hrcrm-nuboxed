@@ -4041,8 +4041,35 @@ export const settingsReducer = (state = initialState, action) => {
                                                             addingLangWordsError: true,
                                                           };              
                     
-        
-          
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_REQUEST:
+                                                            return { ...state, addingScheduler: true };
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_SUCCESS:
+                                                            return {
+                                                              ...state,
+                                                              addingScheduler: false,
+                                                            };
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_FAILURE:
+                                                            return {
+                                                              ...state,
+                                                              addingScheduler: false,
+                                                              addingSchedulerError: false,
+                                                            };   
+                                                            case types.UPDATE_SKILL_LEVEL_REQUEST:
+                                                              return { ...state, updatingSkillLevel: true };
+                                                            case types.UPDATE_SKILL_LEVEL_SUCCESS:
+                                                              return { ...state, 
+                                                                updatingSkillLevel: false, 
+                                                                matrixData:state.matrixData.map((item) => {
+                                                                  if (item.skillLevelLinkId === action.payload.skillLevelLinkId) {
+                                                                    return action.payload;
+                                                                  } else {
+                                                                    return item;
+                                                                  }
+                                                                }),
+                                                              };
+                                                            case types.UPDATE_SKILL_LEVEL_FAILURE:
+                                                              return { ...state, updatingSkillLevel: false,  
+                                                              };      
 
     default:
       return state;

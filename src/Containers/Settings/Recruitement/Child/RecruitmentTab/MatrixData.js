@@ -113,100 +113,111 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(MatrixData);
 
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Select, Button } from 'antd';
+import { Table, Input, Select, Button,Popconfirm,Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getLibrarys } from '../../../Library/LibraryAction';
-import { addSkillLevel } from '../../../SettingsAction';
+import { addSkillLevel,updateSkillLevel } from '../../../SettingsAction';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import DeleteIcon from '@mui/icons-material/Delete';
+import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const { Option } = Select;
 
 const EditableTable = (props) => {
   const [data, setData] = useState([]);
+  const [rows, setRows] = useState([]);
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [editedFields, setEditedFields] = useState({});
 
   useEffect(() => {
     props.getLibrarys(props.organizationId);
   }, [props.organizationId]);
 
   useEffect(() => {
-    // Update component state when matrixData changes
     setData(props.matrixData.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.matrixData]);
 
   const handleAddRow = () => {
     const newRow = {
-      key: String(data.length + 1),
+      // key: String(data.length + 1),
       skill: '',
       level1: '',
       level2: '',
       level3: '',
       skillDefinationId: '',
-      skillLevelLinkId:""
+      // skillLevelLinkId:""
     };
-    setData([...data, newRow]);
+    setRows([...rows, newRow]);
   };
 
-  const columns = [
-    {
-      title: 'Skill',
-      dataIndex: 'skill',
-      render: (_, record) => (
-        <Select
-          style={{ width: 120 }}
-          value={record.skillDefinationId} // Updated to use definationId instead of skill
-          onChange={(value) => handleSelectChange(value, record.key, 'skillDefinationId')}
-        >
-          {props.librarys.map((s) => (
-            <Option key={s.definationId} value={s.definationId}>
-              {s.name}
-            </Option>
-          ))}
-        </Select>
-      ),
-    },
-    {
-      title: 'Level 1',
-      dataIndex: 'level1',
-      render: (_, record) => (
-        <Input
-        style={{width:"11em"}}
-          value={record.level1}
-          onChange={(e) => handleInputChange(e.target.value, record.key, 'level1')}
-        />
-      ),
-    },
-    {
-      title: 'Level 2',
-      dataIndex: 'level2',
-      render: (_, record) => (
-        <Input
-        style={{width:"11em"}}
-          value={record.level2}
-          onChange={(e) => handleInputChange(e.target.value, record.key, 'level2')}
-        />
-      ),
-    },
-    {
-      title: 'Level 3',
-      dataIndex: 'level3',
-      render: (_, record) => (
-        <Input
-        style={{width:"11em"}}
-          value={record.level3}
-          onChange={(e) => handleInputChange(e.target.value, record.key, 'level3')}
-        />
-      ),
-    },
-    {
-      title: 'Action',
-      dataIndex: 'action',
-      render: (_, record) => (
-        <Button type="primary" onClick={() => handleSave(record.key)}>
-          Save
-        </Button>
-      ),
-    },
-  ];
+  const handleChange = (index, key, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index][key] = value;
+    setRows(updatedRows);
+  };
+
+  // const columns = [
+  //   {
+  //     title: 'Skill',
+  //     dataIndex: 'skill',
+  //     render: (_, record) => (
+  //       <Select
+  //         style={{ width: 120 }}
+  //         value={record.skillDefinationId} // Updated to use definationId instead of skill
+  //         onChange={(value) => handleSelectChange(value, record.key, 'skillDefinationId')}
+  //       >
+  //         {props.librarys.map((s) => (
+  //           <Option key={s.definationId} value={s.definationId}>
+  //             {s.name}
+  //           </Option>
+  //         ))}
+  //       </Select>
+  //     ),
+  //   },
+  //   {
+  //     title: 'Level 1',
+  //     dataIndex: 'level1',
+  //     render: (_, record) => (
+  //       <Input
+  //       style={{width:"11em"}}
+  //         value={record.level1}
+  //         onChange={(e) => handleInputChange(e.target.value, record.key, 'level1')}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     title: 'Level 2',
+  //     dataIndex: 'level2',
+  //     render: (_, record) => (
+  //       <Input
+  //       style={{width:"11em"}}
+  //         value={record.level2}
+  //         onChange={(e) => handleInputChange(e.target.value, record.key, 'level2')}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     title: 'Level 3',
+  //     dataIndex: 'level3',
+  //     render: (_, record) => (
+  //       <Input
+  //       style={{width:"11em"}}
+  //         value={record.level3}
+  //         onChange={(e) => handleInputChange(e.target.value, record.key, 'level3')}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     title: 'Action',
+  //     dataIndex: 'action',
+  //     render: (_, record) => (
+  //       <Button type="primary" onClick={() => handleSave(record.key)}>
+  //         Save
+  //       </Button>
+  //     ),
+  //   },
+  // ];
 
   const handleSelectChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
@@ -222,22 +233,39 @@ const EditableTable = (props) => {
     setData(updatedData);
   };
 
-  const handleSave = (key) => {
-    console.log(key)
-    const targetRow = data.find((row) => row.key === key);
-    if (targetRow) {
-      const { level1, level2, level3, skillDefinationId,skillLevelLinkId } = targetRow;
-      console.log(`Skill ID: ${skillDefinationId}, Level 1: ${level1}, Level 2: ${level2}, Level 3: ${level3}`);
+  const handleSave = (index) => {
+     const row = rows[index];
+     console.log('Submitting Row:', row);
       const result = {
-              skillDefinationId: skillDefinationId,
-              level1: level1,
-              level2: level2,
-              level3: level3,
-              skillLevelLinkId:skillLevelLinkId,
+              skillDefinationId: row.skillDefinationId,
+              level1: row.level1,
+              level2: row.level2,
+              level3: row.level3,
+              // skillLevelLinkId:row.skillLevelLinkId,
               countryId:props.activeTab
             };
       props.addSkillLevel(result)
-    }
+      setRows([{ skillDefinationId: '', level1: '', level2: '', level3: '' }]);
+  };
+  const handleEditClick = (productCurrencyId) => {
+    setEditsuppliesId(productCurrencyId);
+  };
+  const handleCancelClick = (productCurrencyId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
+    setEditsuppliesId(null);
+  };
+  function handleUpdate(key) {
+    console.log('Submitting Row:', key);
+    const updatedData = {
+      skillDefinationId: key.skillDefinationId,
+      level1: key.level1,
+      level2: key.level2,
+      level3: key.level3,
+      // skillLevelLinkId:row.skillLevelLinkId,
+      countryId:props.activeTab
+    };
+    props.updateSkillLevel(updatedData);
+    setEditsuppliesId(null);
   };
 
   return (
@@ -245,7 +273,205 @@ const EditableTable = (props) => {
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
         Add Row
       </Button>
-      <Table dataSource={data} columns={columns} />
+      {rows.map((row, index) => (
+          <div key={index} class="flex items-center">
+            <div class="flex justify-around w-[30rem]">
+              <div>
+                <label>Skill</label>
+                <div class="w-24">
+                <Select
+                        classNames="w-32"
+                        value={row.skillDefinationId}
+                        onChange={(value) => handleChange(index, 'skillDefinationId',value)}
+                      >
+                        {props.librarys.map((d) => (
+                          <Option key={d.definationId} value={d.definationId}>
+                            {d.name}
+                          </Option>
+                        ))}
+                      </Select>
+
+                </div>
+              </div>
+
+              <div>
+                <label>Level 1</label>
+                <div class="w-24"></div>
+                <Input
+                        className="w-32"
+                        value={row.level1}
+                        onChange={(e) => handleChange(index,'level1',e.target.value)}
+                      /></div>
+              <div>
+                <label>Level 2</label>
+                <div class="w-24">
+                <Input
+                        className="w-32"
+                        value={row.level2}
+                        onChange={(e) => handleChange(index,'level2',e.target.value)}
+                      /></div></div>
+              <div>
+                <label>Level 3</label>
+                <div class="w-24">
+                <Input
+                        className="w-32"
+                        value={row.level3}
+                        onChange={(e) => handleChange(index,'level3',e.target.value)}
+                      />
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+            <Button type="primary" onClick={() => handleSave(index)}>
+              Submit
+            </Button>
+            </div>
+            
+          </div>
+        ))}
+      {/* <Table dataSource={data} columns={columns} /> */}
+      <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+            <div className=" md:w-[7%]">Skill</div>
+            <div className=" md:w-[6.1rem]">Level 1</div>
+            <div className=" md:w-[4.2rem] ">Level 2</div>
+            <div className="md:w-[5.8rem]">Level 3</div>
+            <div className="w-12"></div>             </div>
+
+          {data.length ? data.map((item) => {
+            return (
+              <div key={item.skillLevelLinkId}>
+                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "
+                >
+
+                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
+                    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                    {editsuppliesId === item.skillLevelLinkId ? (
+                      <Select
+                        classNames="w-32"
+                        value={item.skill}
+                        onChange={(value) => handleSelectChange(value, item.key, 'skill')}
+                      >
+                        {props.librarys.map((d) => (
+                          <Option key={d.definationId} value={d.definationId}>
+                            {d.name}
+                          </Option>
+                        ))}
+                      </Select>
+                    ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.skill}</div>
+                    </div>
+                  )}
+                    </div>
+                  </div>
+
+                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  {editsuppliesId === item.skillLevelLinkId ? (
+                    <div class=" text-xs text-cardBody font-poppins">
+                      <Input
+                        className="w-32"
+                        value={item.level1}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level1')}
+                      />
+                    </div>
+ ):(
+  <div className="font-normal text-sm text-cardBody font-poppins">
+  <div> {item.level1}</div>
+</div>
+)}
+                  </div>
+
+
+
+                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.skillLevelLinkId ? (
+                    <div class=" text-xs text-cardBody font-poppins">
+                      <Input
+                        className="w-32"
+                        value={item.level2}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level2')}
+                      />
+                    </div>
+                     ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.level2}</div>
+                    </div>
+                    )}
+                  </div>
+                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {editsuppliesId === item.skillLevelLinkId ? (
+
+                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                      <Input
+                        className="w-32"
+                        value={item.level3}
+                        onChange={(e) => handleInputChange(e.target.value, item.key, 'level3')}
+                      />
+                    </div>
+                     ):(
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                      <div> {item.level3}</div>
+                    </div>
+                    )}
+                  </div>
+
+                  <div class="flex md:items-center">
+
+
+                    {/* <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                      <div>
+                        <Button type="primary" onClick={() => handleSave(item.key)}>
+                          Save
+                        </Button>
+                      </div>
+
+                    </div> */}
+ {editsuppliesId === item.skillLevelLinkId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      onClick={() => handleUpdate(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.skillLevelLinkId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.skillLevelLinkId)}
+                      />
+                    )}
+ {/* <div>
+      <Popconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => props.removeProductPrice(item.skillLevelLinkId)}
+
+                          >
+                     <Tooltip title="Delete">
+                          <DeleteIcon
+                           className="!text-base cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                       </Popconfirm>
+                       </div> */}
+                  </div>
+
+                </div>
+              </div>
+            );
+          }) : !data.length && !props.fetchingProductCurrency ? <NodataFoundPage /> : null}
+
+        </div>
+      </div>
     </div>
   );
 };
@@ -253,6 +479,7 @@ const EditableTable = (props) => {
 const mapStateToProps = ({ librarys, auth }) => ({
   librarys: librarys.librarys,
   organizationId: auth.userDetails.organizationId,
+  
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -260,6 +487,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getLibrarys,
       addSkillLevel,
+      updateSkillLevel
     },
     dispatch
   );

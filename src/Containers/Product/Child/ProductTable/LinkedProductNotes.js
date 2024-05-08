@@ -4,44 +4,47 @@ import { bindActionCreators } from "redux";
 import { Timeline } from "antd";
 import { BorderBox } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
-// import { getNotesListByCustomerId } from "../../../../../CustomerAction";
+import { getNotesofPRoduct } from "../../ProductAction";
 import { SingleNote } from "../../../../Components/Common";
-// const NoteForm =lazy(()=> import("./NoteForm"));
+import SingleNoteProductNoteForm from "./SingleNoteProductNoteForm";
+
+const LinkedProductNoteForm =lazy(()=> import("./LinkedProductNoteForm"));
 
 class LinkedProductNotes extends Component {
   componentDidMount() {
-   // this.props.getNotesListByCustomerId(this.props.rowdata.customerId);
+    // const data={productionBuilderId:this.props.rowdata.productionBuilderId}
+   this.props.getNotesofPRoduct();
   }
 
   render() {
-    const { fetchingNotesListByCustomerId, notesListByCustomerId } = this.props;
+    const { fetchingNotesofProducts, notesofPRoducts } = this.props;
 
     return (
       <>
         <div style={{ backgroundColor: "#dcdcdc" }}>
-          {/* <NoteForm
-            type={"customer"}
-            customerId={this.props.rowdata.customerId}
+          <LinkedProductNoteForm
+            type={"product"}
+            productionBuilderId={this.props.rowdata.productionBuilderId}
             callback={() =>
-              this.props.getNotesListByCustomerId(this.props.rowdata.customerId)
+              this.props.getNotesofPRoduct
             }
-          /> */}
+          />
         </div>
         <br />
 
         <BorderBox>
           <div class="h-80 overflow-auto p-[0.3rem]">
-            {fetchingNotesListByCustomerId ? (
+            {fetchingNotesofProducts ? (
               <BundleLoader />
             ) : (
                 <Timeline>
-                  {notesListByCustomerId &&
-                    notesListByCustomerId.map((item, index) => (
+                  {notesofPRoducts &&
+                    notesofPRoducts.map((item, index) => (
                       <Timeline.Item
                         key={index}
                         style={{ paddingBottom: "0.625em" }}
                       >
-                        {/* <SingleNote {...item} userId={this.props.userId} /> */}
+                        <SingleNoteProductNoteForm {...item} userId={this.props.userId} rowdata={this.props.rowdata}/>
                       </Timeline.Item>
                     ))}
                 </Timeline>
@@ -53,17 +56,17 @@ class LinkedProductNotes extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, customer }) => ({
+const mapStateToProps = ({ auth, product }) => ({
   userId: auth.userDetails.userId,
-  notesListByCustomerId: customer.notesListByCustomerId,
-  fetchingNotesListByCustomerId: customer.fetchingNotesListByCustomerId,
-  customerId: customer.customer.customerId,
+  notesofPRoducts: product.notesofPRoducts,
+  fetchingNotesofProducts: product.fetchingNotesofProducts,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     // getNotesListByCustomerId,
+      getNotesofPRoduct,
     },
     dispatch
   );

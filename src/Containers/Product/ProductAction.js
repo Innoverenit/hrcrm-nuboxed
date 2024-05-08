@@ -509,6 +509,10 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
         type: types.DELETE_CATALOG_DATA_SUCCESS,
         payload: res.data,
       });
+      Swal.fire({
+        icon: 'success',
+        title: res.data,
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -516,6 +520,10 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
         type: types.DELETE_CATALOG_DATA_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: err.data,
+      })
     });
 };
 
@@ -1572,5 +1580,58 @@ export const reInstateProducts = (data,productId) => (dispatch) => {
         type: types.REINSTATE_DELETED_PRODUCTS_FAILURE,
         payload: err,
       });
+    });
+};
+
+export const getNotesofPRoduct = (type,id) => (dispatch) => {
+  dispatch({
+    type: types.GET_NOTES_OF_PRODUCT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/notes/get/all/${type}/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addNoteOfProduct = (note,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_NOTES_OF_PRODUCT_REQUEST });
+  axios
+    .post(`${base_url}/notes/save`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.note,
+      });
+      console.log(res);
+      cb && cb();
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+      console.log(err);
+      cb && cb();
     });
 };
