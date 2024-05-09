@@ -117,6 +117,10 @@ const initialState = {
   updatingRepairStatus: false,
   updatingRepairStatusError: false,
 
+  fetchingAllRefurbishCount: false,
+  fetchingAllRefurbishCountError: false,
+  allCountRefurbish:{},
+
   showPhoneList: false,
 
   fetchingSpareListById: false,
@@ -1520,6 +1524,22 @@ export const refurbishReducer = (state = initialState, action) => {
         reassigningRejectedPhones: false,
         reassigningRejectedPhonesError: true,
       };
+
+
+      case types.GET_ALL_REFURBISH_COUNT_REQUEST:
+        return { ...state, fetchingAllRefurbishCount: true };
+      case types.GET_ALL_REFURBISH_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingAllRefurbishCount: false,
+          allCountRefurbish: action.payload,
+        };
+      case types.GET_ALL_REFURBISH_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingAllRefurbishCount: false,
+          fetchingAllRefurbishCountError: true,
+        };
     default:
       return state;
   }

@@ -39,6 +39,9 @@ const initialState = {
   fetchingCustomerListError: false,
   customerList: [],
 
+  deletingOrderRepairData: false,
+  deletingOrderRepairDataError: false,
+
   fetchingProductionAllOrder: false,
   fetchingProductionAllOrderError: false,
   productionAllOrder: [],
@@ -354,6 +357,24 @@ export const orderReducer = (state = initialState, action) => {
         fetchingProductionAllOrder: false,
         fetchingProductionAllOrderError: true,
       };
+
+
+      case types.DELETE_ORDER_REPAIR_DATA_REQUEST:
+        return { ...state, deletingOrderRepairData: true };
+      case types.DELETE_ORDER_REPAIR_DATA_SUCCESS:
+        return {
+          ...state,
+          deletingOrderRepairData: false,
+          orderShowById: state.orderShowById.filter(
+            (item) => item.orderPhoneId !== action.payload
+          ),
+        };
+      case types.DELETE_ORDER_REPAIR_DATA_FAILURE:
+        return {
+          ...state,
+          deletingOrderRepairData: false,
+          deletingOrderRepairDataError: true,
+        };
     default:
       return state;
   }

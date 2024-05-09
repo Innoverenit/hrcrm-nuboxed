@@ -189,6 +189,8 @@ const initialState = {
   fetchingProductByDistributorError: false,
   productByDistributor: [],
 
+  addAccountOpportunityModal:false,
+
   addPaidButtonModal: false,
 
   addingPaidByDistributorId: false,
@@ -2758,6 +2760,10 @@ export const distributorReducer = (state = initialState, action) => {
 
                 case types.EMPTY_CLEARBIT_TABLE:
                   return { ...state,  clearbit: {} };
+
+
+                  case types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL:
+      return { ...state, addAccountOpportunityModal: action.payload };
 
       
     default:

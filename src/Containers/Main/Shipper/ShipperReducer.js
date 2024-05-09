@@ -75,12 +75,19 @@ const initialState = {
   addingShipper: false,
   addingShipperError: false,
 
+  reInstatedShipperById: false,
+  reInstatedShipperByIdError: false,
+
   fetchingInputShipperData: false,
   fetchingInputShipperDataError: false,
 
   fetchingShipperByUserId: false,
   fetchingShipperByUserIdError: false,
   shipperByUserId: [],
+
+  fetchingDeletedShipperRecords: false,
+  fetchingDeletedShipperRecordsError: false,
+  recordDeletedData:{},
 
   fetchingAllShipper: false,
   fetchingAllShipperError: false,
@@ -485,6 +492,22 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingAllRecords: false,
         fetchingAllRecordsError: true,
       };
+
+
+      case types.GET_DELETED_SHIPPER_RECORDS_REQUEST:
+        return { ...state, fetchingDeletedShipperRecords: true };
+      case types.GET_DELETED_SHIPPER_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedShipperRecords: false,
+          recordDeletedData: action.payload,
+        };
+      case types.GET_DELETED_SHIPPER_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedShipperRecords: false,
+          fetchingDeletedShipperRecordsError: true,
+        };
 
     /**
      * handle order modal
@@ -1383,6 +1406,25 @@ export const shipperReducer = (state = initialState, action) => {
           fetchingAwbShipper: false,
           fetchingAwbShipperError: true,
         };
+
+
+        case types.REINSTATE_TOGGLE_FOR_SHIPPER_REQUEST:
+          return { ...state, reInstatedShipperById: true };
+      case types.REINSTATE_TOGGLE_FOR_SHIPPER_SUCCESS:
+          return {
+              ...state,
+              reInstatedShipperById: false,
+              deletedShipper: state.deletedShipper.filter(
+                  (item) => item.shipperId !== action.payload
+                ),
+           
+          };
+      case types.REINSTATE_TOGGLE_FOR_SHIPPER_FAILURE:
+          return {
+              ...state,
+              reInstatedShipperById: false,
+              reInstatedShipperByIdError: true,
+          };
 
 
     default:

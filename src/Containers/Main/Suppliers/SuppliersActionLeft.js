@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
-    setTimeRange,getSupplierCount,getSupplierAllCount
+    setTimeRange,getSupplierCount,getSupplierAllCount,
+    getSupplierDeletedCount
 } from "./SuppliersAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
@@ -25,6 +26,9 @@ function SuppliersActionLeft (props) {
           props.getSupplierCount(props.userId);
         } else if (props.viewType === "all") {
           props.getSupplierAllCount(props.orgId);
+        } 
+        else if (props.viewType === "delete") {
+          props.getSupplierDeletedCount(props.orgId);
         } 
       }, [props.viewType, props.userId, props.orgId]);
     
@@ -118,11 +122,11 @@ const {
                     </Badge>
                 </Tooltip>
                 <Tooltip title="Deleted List">
-                {/* <Badge
+                <Badge
           size="small"
-          count={(props.viewType === "all" && props.allCountSupplier.AllSupplierCount) || 0}
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
           overflowCount={999}
-        > */}
+        >
                     <span class=" mr-2 text-sm cursor-pointer"
                         onClick={() => setSuppliersViewType("delete")}
                         style={{
@@ -133,7 +137,7 @@ const {
                         <DeleteOutlined className="text-white" /></Avatar>
 
                     </span>
-                    {/* </Badge> */}
+                    </Badge>
                 </Tooltip>
 
                 &nbsp;&nbsp;
@@ -162,7 +166,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
     orgId:auth.userDetails.organizationId,
     countSupplier:suppliers.countSupplier,
-    allCountSupplier:suppliers.allCountSupplier
+    allCountSupplier:suppliers.allCountSupplier,
+    deletedCountSupplier:suppliers.deletedCountSupplier,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -172,7 +177,8 @@ const mapDispatchToProps = (dispatch) =>
             setSelectedTimeInterval,
             setTimeRange,
             getSupplierCount,
-            getSupplierAllCount
+            getSupplierAllCount,
+            getSupplierDeletedCount
         },
         dispatch
     );

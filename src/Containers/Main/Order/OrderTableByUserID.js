@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Badge, Select } from "antd";
+import { Tooltip, Button, Badge, Select ,Popconfirm} from "antd";
 import moment from "moment";
 import PaidIcon from '@mui/icons-material/Paid';
+import { DeleteOutlined } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,7 +15,8 @@ import {
   emptyOrders,
   handleNotesModalInOrder,
   handleStatusOfOrder,
-  handlePaidModal
+  handlePaidModal,
+  deleteOrderRepairData
 } from "./OrderAction";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
@@ -263,6 +265,22 @@ function OrderTableByUserID(props) {
 
                       </h4>
                     </div>
+                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <h4 class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title="Collection">
+                        <Popconfirm
+                              title="Do you want to delete?"
+                              // onConfirm={() => props.deleteOrderRepairData(item.orderPhoneId)}
+                            >
+                              <DeleteOutlined
+                                className=" !text-base cursor-pointer text-[red]"
+
+                              />
+                            </Popconfirm>
+                        </Tooltip>
+
+                      </h4>
+                    </div>
 
 
                   </div>
@@ -330,7 +348,8 @@ const mapDispatchToProps = (dispatch) =>
       handleStatusOfOrder,
       handlePaidModal,
       handleOrderDetailsModal,
-      handleLeadModal
+      handleLeadModal,
+      deleteOrderRepairData
     },
     dispatch
   );

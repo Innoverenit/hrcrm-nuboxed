@@ -77,6 +77,10 @@ const initialState = {
   fetchingSupplierListError: false,
   supplierList: [],
 
+  fetchingDeletedSupplierCount: false,
+  fetchingDeletedSupplierCountError: false,
+  deletedCountSupplier:{},
+
   fetchingSupplierPriceList: false,
   fetchingSupplierPriceListError: false,
   supplierPriceList:[],
@@ -141,6 +145,9 @@ const initialState = {
 
   addingSuppliesToSupplier: false,
   addingSuppliesToSupplierError: false,
+
+  reInstatedSupplierById: false,
+  reInstatedSupplierByIdError: false,
 
   fetchingSuppliesList: false,
   fetchingSuppliesListError: false,
@@ -1446,6 +1453,22 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingAllSupplierCountError: true,
       };
 
+
+      case types.GET_DELETED_SUPPLIER_COUNT_REQUEST:
+        return { ...state, fetchingDeletedSupplierCount: true };
+      case types.GET_DELETED_SUPPLIER_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedSupplierCount: false,
+          deletedCountSupplier: action.payload,
+        };
+      case types.GET_DELETED_SUPPLIER_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedSupplierCount: false,
+          fetchingDeletedSupplierCountError: true,
+        };
+
     case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
       return {
         ...state,
@@ -1561,6 +1584,26 @@ export const suppliersReducer = (state = initialState, action) => {
               return { ...state, fetchingMaterialWiseQuality: false, materialwiseQuality: action.payload };
             case types.GET_SUPPLIER_WISE_QUALITY_FAILURE:
               return { ...state, fetchingMaterialWiseQuality: false, fetchingMaterialWiseQualityError: true };
+
+
+
+              case types.REINSTATE_TOGGLE_FOR_SUPPLIER_REQUEST:
+                return { ...state, reInstatedSupplierById: true };
+            case types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS:
+                return {
+                    ...state,
+                    reInstatedSupplierById: false,
+                    supplierDeletedList: state.supplierDeletedList.filter(
+                        (item) => item.supplierId !== action.payload
+                      ),
+                 
+                };
+            case types.REINSTATE_TOGGLE_FOR_SUPPLIER_FAILURE:
+                return {
+                    ...state,
+                    reInstatedSupplierById: false,
+                    reInstatedSupplierByIdError: true,
+                };
       
 
     default:

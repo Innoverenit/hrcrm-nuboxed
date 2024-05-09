@@ -1996,3 +1996,30 @@ export const reassignRejectedPhone = (data, productionRepairDispatchLinkId) => (
       });
     });
 };
+
+
+export const getRefurbishAllCount = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_REFURBISH_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/count-all/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_REFURBISH_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_REFURBISH_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

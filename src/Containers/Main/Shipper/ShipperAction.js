@@ -2,6 +2,8 @@ import * as types from "./ShipperActionType";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import moment from "moment";
+import Swal from 'sweetalert2'
+import { message } from "antd"
 /**
  * handle Shipper modal action
  */
@@ -164,12 +166,12 @@ export const getRecords = (userId) => (dispatch) => {
     });
 };
 
-export const getAllRecords = () => (dispatch) => {
+export const getShipperAllRecords = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/user/record/count`, {
+    .get(`${base_url2}/shipper/all/shipper/record/count/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -185,6 +187,32 @@ export const getAllRecords = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getShipperDeletedRecords = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_SHIPPER_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/delete/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_SHIPPER_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETED_SHIPPER_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -1462,5 +1490,36 @@ export const getAwbListByShipperId = (shipperId) => (dispatch) => {
         type: types.GET_AWB_LIST_BY_SHIPPERID_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+export const reinstateToggleForShipper = (data, shipperId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.REINSTATE_TOGGLE_FOR_SHIPPER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/shipper/reinitiate/Shipper/${shipperId} `, data)
+    .then((res) => {
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SHIPPER_SUCCESS,
+        payload: shipperId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully!',
+      })
+      // message.success("Reinstated Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SHIPPER_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
     });
 };

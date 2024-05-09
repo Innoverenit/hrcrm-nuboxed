@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { PlusOutlined } from "@ant-design/icons";
+import { FormattedMessage } from "react-intl";
 import {
     handleLinkDistributorOrderConfigureModal,
     handleLinkCustomerProcurementModal,
@@ -11,7 +14,8 @@ import {
     handleDistributorDocumentUploadModal,
     handleOrderGenerateModal,
     handleAddOrderModal,
-    getOrderRecords
+    getOrderRecords,
+    handleAccountOpportunityModal
 } from "../AccountAction";
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
@@ -27,6 +31,10 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
 import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
+import LinkedOpportunity from "../../../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/LinkedOpportunity";
+import AddOpportunityModal from "../../../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerOpportunityModal";
+import LinkedOpportunityTable from "./LinkedOpportunityTable";
+import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -368,6 +376,61 @@ function AccountDetailsTab(props) {
                         </Suspense>
                     </TabPane>
 
+                    <TabPane
+              tab={
+                <>
+                  <span>
+                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                      <FormattedMessage
+                        id="app.quotation"
+                        defaultMessage="Quotation"
+                      />
+                    </span>
+                  </span>
+                  {activeKey === "9" && (
+                    <>
+                      <Tooltip 
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
+                        }
+                      >
+                        {props.user.opportunityCreateInd === true && (
+                          <PlusOutlined
+                            type="plus"
+                            
+                            tooltiptitle={
+                              <FormattedMessage
+                                id="app.Create"
+                                defaultMessage="Create"
+                              />
+                            }
+                            onClick={() => {
+                              props.handleAccountOpportunityModal(true);
+                            }}
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                        )}
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="9"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <LinkedOpportunityTable distributorData={props.distributorData} />
+              </Suspense>
+            </TabPane>
+
                 </StyledTabs>
             </TabsWrapper>
             {/* <AddDistributorDocumentModal
@@ -388,6 +451,14 @@ function AccountDetailsTab(props) {
                 addLinkDistributorOrderConfigureModal={props.addLinkDistributorOrderConfigureModal}
                 distributorId={props.distributorData.distributorId}
             />
+               <AddAccountOpportunityModal
+                distributorId={props.distributorData.distributorId}
+            addAccountOpportunityModal={props.addAccountOpportunityModal}
+            handleAccountOpportunityModal={props.handleAccountOpportunityModal}
+            // defaultCustomers={[{ label: name, value: customerId }]}
+            // customerId={{ value: customerId }}
+            // callback={() => getOpportunityListByCustomerId(customerId)}
+          />
 
 <AddCustomerProcurementModal
                 handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
@@ -417,8 +488,9 @@ function AccountDetailsTab(props) {
     );
 }
 
-const mapStateToProps = ({ distributor, auth, suppliers }) => ({
+const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     orderRecordData: distributor.orderRecordData,
+    user: auth.userDetails,
     addLinkCustomerProcurementModal:distributor.addLinkCustomerProcurementModal,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
@@ -431,6 +503,7 @@ const mapStateToProps = ({ distributor, auth, suppliers }) => ({
     addSupplierContactModal: suppliers.addSupplierContactModal,
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
     procureRecordData:distributor.procureRecordData,
+    addAccountOpportunityModal: distributor.addAccountOpportunityModal,
 
 });
 
@@ -446,7 +519,8 @@ const mapDispatchToProps = (dispatch) =>
             handleSupplierDocumentUploadModal,
             handleAddOrderModal,
             handleSupplierContactModal,
-            getOrderRecords
+            getOrderRecords,
+            handleAccountOpportunityModal
         },
         dispatch
     );
