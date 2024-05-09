@@ -16,6 +16,7 @@ import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaC
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
+import { property } from "lodash";
 
 
 const { Option } = Select;
@@ -174,6 +175,9 @@ class UpdateContactForm extends Component {
               },
             ],
             notes: this.props.setEditingContact.notes || "",
+            bedrooms:"",
+            price:"",
+            propertyType:"",
           }}
           validationSchema={UpdateContactSchema}
           onSubmit={(values, { resetForm }) => {
@@ -430,7 +434,7 @@ class UpdateContactForm extends Component {
                   <div class=" flex  justify-between max-sm:mt-20">
                     <div class="  w-w47.5">
                       <Field
-                        name="customer"
+                        name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label="Bedrooms"
@@ -455,7 +459,7 @@ class UpdateContactForm extends Component {
                    
                     <div class=" w-w47.5" style={{marginLeft:"125px"}}>
                     <FastField
-                            name="source"
+                            name="price"
                             label="Price"
                             //isColumnWithoutNoCreate
                             //selectType="sourceName"
@@ -473,7 +477,7 @@ class UpdateContactForm extends Component {
                   <div class=" flex justify-between">         
                   <div class="  w-w47.5">
                     <Field
-                      name="departmentId"
+                      name="propertyType"
                       label="Property Type"
                       width="100%"
                       isColumn

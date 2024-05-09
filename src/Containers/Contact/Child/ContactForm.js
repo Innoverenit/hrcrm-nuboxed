@@ -172,6 +172,9 @@ class ContactForm extends Component {
             emailId: "",
             alternateEmail:"",
             linkedinPublicUrl: "",
+            bedrooms:"",
+        
+            propertyType:"",
             whatsapp: this.state.whatsapp ? "Different" : "Same",
             address: [
               {
@@ -200,6 +203,7 @@ class ContactForm extends Component {
                 {
                   ...values,
                   whatsapp: this.state.whatsapp ? "Different" : "Same",
+                  price:values.price,
                 },
                 this.props.userId,
                 () => this.handleReset(resetForm)
@@ -443,7 +447,7 @@ class ContactForm extends Component {
                   <div class=" flex  justify-between max-sm:mt-20">
                     <div class="  w-w47.5">
                       <Field
-                        name="customerId"
+                        name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label="Bedrooms"
@@ -468,7 +472,7 @@ class ContactForm extends Component {
                    
                     <div class=" w-w47.5" style={{marginLeft:"125px"}}>
                     <FastField
-                            name="source"
+                            name="price"
                             label="Price"
                             //isColumnWithoutNoCreate
                             //selectType="sourceName"
@@ -486,7 +490,7 @@ class ContactForm extends Component {
                   <div class=" flex justify-between">         
                   <div class="  w-w47.5">
                     <Field
-                      name="departmentId"
+                      name="propertyType"
                       label="Property Type"
                       width="100%"
                       isColumn
