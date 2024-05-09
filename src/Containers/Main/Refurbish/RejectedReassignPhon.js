@@ -13,6 +13,8 @@ const RejectedReassignPhon = (props) => {
     const [dueDate, setDueDate] = useState("")
     const [toggle, setToggle] = useState(false)
 
+    console.log(technician)
+    console.log(props.userId)
     const handleToggle = () => {
         setToggle(!toggle)
     }
@@ -36,18 +38,11 @@ const RejectedReassignPhon = (props) => {
     // }
     return (
         <div>
-            Reassign to :
-            <Switch
-                checked={toggle}
-                onChange={handleToggle}
-                checkedChildren={props.row.technicianName}
-                unCheckedChildren="Others"
-            />
 
             {toggle ?
                 <>
                     <div class="mt-[10px] flex justify-between">
-                        <div class=" w-1/4">
+                        <div class=" w-1/5">
                             <label class="text-[15px] font-semibold m-[10px]">Department</label>
                             <Select
                                 className="w-[350px]"
@@ -59,7 +54,7 @@ const RejectedReassignPhon = (props) => {
                                 })}
                             </Select>
                         </div>
-                        <div class=" w-1/4">
+                        <div class=" w-1/5">
                             <label class="text-[15px] font-semibold m-[10px]">Technician</label>
                             <Select
                                 className="w-[350px]"
@@ -72,7 +67,7 @@ const RejectedReassignPhon = (props) => {
                             </Select>
                         </div>
 
-                        <div class=" w-1/4">
+                        <div class=" w-1/5">
                             <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
                             <DatePicker
                                 className="w-[250px]"
@@ -80,6 +75,7 @@ const RejectedReassignPhon = (props) => {
                                 onChange={(value) => hanldeOnChange(value)}
                             />
                         </div>
+
                     </div>
                     <div class="flex justify-end mt-1">
                         {department && technician && dueDate && <Button
@@ -88,26 +84,48 @@ const RejectedReassignPhon = (props) => {
                             onClick={() => props.reassignRejectedPhone({
                                 rejectReceiveUserId: technician,
                                 duplicateRepairDueDate: dueDate
-                            }, props.row.productionRepairDispatchLinkId
+                            }, props.row.productionRepairDispatchId
 
                             )}>
                             Submit
                         </Button>}
                     </div>
                 </> :
-                <div class="flex justify-end mt-1">
-                    <Button
-                        type='primary'
-                        // loading={props.updatingTechnicianForRepair}
-                        onClick={() => props.reassignRejectedPhone({
-                            rejectReceiveUserId: technician,
-                            duplicateRepairDueDate: dueDate
-                        }, props.row.productionRepairDispatchLinkId
+                <>
+                    <div class="mt-[10px] flex justify-between">
+                        <div class=" w-1/5 font-bold"> Reassign to :</div>
+                        <div class=" w-1/5">
+                            <Switch
+                                checked={toggle}
+                                onChange={handleToggle}
+                                checkedChildren="Others"
+                                unCheckedChildren={props.row.technicianName}
+                            />
+                        </div>
 
-                        )}>
-                        Submit
-                    </Button>
-                </div>
+                        <div class=" w-1/5">
+                            <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                            <DatePicker
+                                className="w-[250px]"
+                                value={dueDate}
+                                onChange={(value) => hanldeOnChange(value)}
+                            />
+                        </div>
+                        <div class=" w-1/5">
+                            <Button
+                                type='primary'
+                                // loading={props.updatingTechnicianForRepair}
+                                onClick={() => props.reassignRejectedPhone({
+                                    rejectReceiveUserId: props.row.technicianId,
+                                    duplicateRepairDueDate: dueDate
+                                }, props.row.productionRepairDispatchId
+
+                                )}>
+                                Submit
+                            </Button>
+                        </div>
+                    </div>
+                </>
             }
         </div>
     )
