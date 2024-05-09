@@ -480,62 +480,46 @@ function UpdateTaskForm(props) {
                             />
                           
                         </div>
-                      
-                        <div class="flex">
-                          <Tooltip title="High">
-                            <Button
-                              type="primary"
-                               shape="circle"
-                         
-                              onClick={() => handleButtonClick("High")}
-                              style={{
-                                backgroundColor:
-                                  priority === "High"
-                                    ? "red"
-                                    : "white",
-                                    borderRadius: "50%", 
-                                    width: "31px", 
-                                    height: "31px"
-                              }}
-                            />
-                          </Tooltip>
-                          &nbsp;
-                          <Tooltip title="Medium">
-                            <Button
-                              type="primary"
-                               shape="circle"
-             
-                              onClick={() => handleButtonClick("Medium")}
-                              style={{
-                                backgroundColor:
-                                  priority === "Medium"
-                                    ? "Orange"
-                                    : "white",
-                                    borderRadius: "50%", 
-                                    width: "31px", 
-                                    height: "31px",
-                              }}
-                            />
-                          </Tooltip>
-                          &nbsp;
-                          <Tooltip title="Low">
-                            <Button
-                              type="primary"
-                               shape="circle"
-                  
-                              onClick={() => handleButtonClick("Low")}
-                              style={{
-                                backgroundColor:
-                                  priority === "Low"
-                                    ? "teal"
-                                    : "white",
-                                    borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                    width: "31px", // Adjust the width as needed
-                                    height: "31px"
-                              }}
-                            ></Button>
-                          </Tooltip>
-                        </div>
+                        <div className="flex">
+  <Tooltip title="High">
+    <Button
+      shape="circle"
+      onClick={() => handleButtonClick("High")}
+      style={{
+        backgroundColor: priority === "High" ? "red" : "white",
+        borderRadius: "50%",
+        width: "31px",
+        height: "31px"
+      }}
+    />
+  </Tooltip>
+  &nbsp;
+  <Tooltip title="Medium">
+    <Button
+      shape="circle"
+      onClick={() => handleButtonClick("Medium")}
+      style={{
+        backgroundColor: priority === "Medium" ? "orange" : "white",
+        borderRadius: "50%",
+        width: "31px",
+        height: "31px"
+      }}
+    />
+  </Tooltip>
+  &nbsp;
+  <Tooltip title="Low">
+    <Button
+      shape="circle"
+      onClick={() => handleButtonClick("Low")}
+      style={{
+        backgroundColor: priority === "Low" ? "teal" : "white",
+        borderRadius: "50%",
+        width: "31px",
+        height: "31px"
+      }}
+    />
+  </Tooltip>
+</div>
                       </div>
                   <div class=" w-1/2 max-sm:w-wk">
                    
@@ -1209,7 +1193,8 @@ function UpdateTaskForm(props) {
               <Button
                 type="primary"
                 htmlType="submit"
-                loading={isEditing ? updatingTask : addingTask}
+                loading={updatingTask}
+                // loading={isEditing ? updatingTask : addingTask}
               >
                 {isEditing ? (
                   "Update"
