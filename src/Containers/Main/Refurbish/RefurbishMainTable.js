@@ -236,8 +236,8 @@ const ProductionOrderList = (props) => {
                                                                 >Assign For QC </Button>
                                                             </Tooltip>
                                                             // </Badge>
-                                                            : item.qcStartInd === 2 ? <b>QC Assigned</b>
-                                                                : item.qcStartInd === 3 ? <b style={{ color: "deepgreen" }}>
+                                                            : item.qcStartInd === 2 ? <b style={{ color: "#ff6347" }}>QC Assigned</b>
+                                                                : item.qcStartInd === 3 ? <b style={{ color: "#32CD32" }}>
                                                                     QC <CheckCircleIcon className="!text-[#03c04a]" />
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
@@ -254,8 +254,8 @@ const ProductionOrderList = (props) => {
                                                                 }}
                                                             >Assign For Repair</Button>
                                                         </Tooltip>
-                                                        : item.qcRepairInd === 2 ? <b>Repair Assigned</b>
-                                                            : item.qcRepairInd === 3 ? <b style={{ color: "deepgreen" }}>Repair
+                                                        : item.qcRepairInd === 2 ? <b style={{ color: "#ff6347" }}>Repair Assigned</b>
+                                                            : item.qcRepairInd === 3 ? <b style={{ color: "#32CD32" }}>Repair
                                                                 <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>

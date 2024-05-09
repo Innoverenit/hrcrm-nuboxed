@@ -4,7 +4,13 @@ import { StyledTable } from '../../../Components/UI/Antd'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProductionUsersById, getRepairPhoneById, closeRepairModal, UpdateTechnicianForRepairPhone } from "./RefurbishAction"
+import {
+    getProductionUsersById,
+    getRepairPhoneById,
+    closeRepairModal,
+    UpdateTechnicianForRepairPhone,
+    getTATQuality
+} from "./RefurbishAction"
 import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
 import { SubTitle } from '../../../Components/UI/Elements';
 import dayjs from "dayjs";
@@ -34,6 +40,8 @@ const AssignRepairForm = (props) => {
     });
     const handleTechnician = (val) => {
         setTechnician(val)
+        props.getTATQuality(val)
+
     }
     const handleDepartment = (val) => {
         let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? val : props.rowData.defaultRepairDepartmentId
@@ -67,6 +75,7 @@ const AssignRepairForm = (props) => {
         const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
         return current && (current < startDate || current > endDate);
     };
+    console.log(props.tatQuality)
     const column = [
         {
             title: "",
@@ -219,6 +228,7 @@ const AssignRepairForm = (props) => {
 const mapStateToProps = ({ auth, refurbish, departments }) => ({
     productionUser: refurbish.productionUser,
     repairPhoneByOrder: refurbish.repairPhoneByOrder,
+    tatQuality: refurbish.tatQuality,
     noOfPhoneById: refurbish.noOfPhoneById,
     showAssignRepairModal: refurbish.showAssignRepairModal,
     locationId: auth.userDetails.locationId,
@@ -234,7 +244,8 @@ const mapDispatchToProps = (dispatch) =>
             getProductionUsersById,
             getRepairPhoneById,
             UpdateTechnicianForRepairPhone,
-            getDepartments
+            getDepartments,
+            getTATQuality
         },
         dispatch
     );

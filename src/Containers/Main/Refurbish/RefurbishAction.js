@@ -587,6 +587,32 @@ export const getRepairPhoneById = (orderPhoneId) => (dispatch) => {
     });
 };
 
+export const getTATQuality = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_TAT_QUALITY_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/avg/tat/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TAT_QUALITY_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TAT_QUALITY_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const handleTechnicianModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TECHNICIAN_MODAL_MODAL,

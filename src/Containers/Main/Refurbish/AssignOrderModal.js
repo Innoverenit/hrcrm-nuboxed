@@ -8,7 +8,7 @@ const AssignOrderModal = (props) => {
     return (
         <>
             <StyledDrawer
-                title="Assign For QC"
+                title={`Assign For QC - ${props.rowData.receiveRemainingQuantity} units remaining to be assigned`}
                 width="60%"
                 visible={assignOrderById}
                 closable

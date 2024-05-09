@@ -229,6 +229,10 @@ const initialState = {
   fetchingProductionNotesInOrdersError: false,
   notesProdInOrders: [],
 
+  fetchingTatQualityById: false,
+  fetchingTatQualityByIdError: false,
+  tatQuality: [],
+
   fetchingRepairPhoneById: false,
   fetchingRepairPhoneByIdError: false,
   repairPhoneByOrder: [],
@@ -340,6 +344,21 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingRejectedPhoneList: false,
         fetchingRejectedPhoneListError: true,
+      };
+
+    case types.GET_TAT_QUALITY_BY_ID_REQUEST:
+      return { ...state, fetchingTatQualityById: true };
+    case types.GET_TAT_QUALITY_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingTatQualityById: false,
+        tatQuality: action.payload,
+      };
+    case types.GET_TAT_QUALITY_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingTatQualityById: false,
+        fetchingTatQualityByIdError: true,
       };
 
     case types.UPDATE_SPARE_PACKET_REQUEST:
