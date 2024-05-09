@@ -20,6 +20,9 @@ import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+ import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {
   getTaskListRangeByUserId,
   deleteTask,
@@ -254,8 +257,20 @@ const TaskCardList = (props) => {
                                 <div class="flex flex-col w-[5.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
+                      <Tooltip title={`To Start - ${difference}`}>
+                      <HourglassEmptyIcon   type="To Start"
+  status={item.taskStatus}
+  difference={difference} 
+  onClick={() =>
+    linkTaskStatus(item.taskId, {
+      taskStatus: "To Start",
+    })
+  }/>
+  </Tooltip>
+                      <HourglassTopIcon/>
+                      <HourglassBottomIcon/>
                    
-                    <ButtonGroup >
+                    {/* <ButtonGroup >
          
           <StatusIcon
   type="To Start"
@@ -269,10 +284,7 @@ const TaskCardList = (props) => {
     })
   }
 />
-          {/* )} */}
-
-
-          {/* {item.complitionStatus === "In Progress" && ( */}
+        
             <StatusIcon
               type="In Progress"
               iconType="fa-hourglass-half"
@@ -286,8 +298,7 @@ const TaskCardList = (props) => {
                 })
               }
             />
-          {/* )} */}
-          {/* {item.complitionStatus === "completed" && ( */}
+         
             <StatusIcon
               type="Completed"
               iconType="fa-hourglass"
@@ -301,8 +312,8 @@ const TaskCardList = (props) => {
                 })
               }
             />
-          {/* )} */}
-        </ButtonGroup>
+          
+        </ButtonGroup> */}
         <div></div>
                         </div>
                         {/* <div>
