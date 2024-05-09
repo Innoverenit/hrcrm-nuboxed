@@ -173,19 +173,19 @@ function OpenReceivedOrderIdForm(props) {
         //debugger
         return (
           <Tooltip>
-            {!item.rejectInd ? <Button
+            {item.dispatchPhoneInd ? <Button
               onClick={() => {
                 handleRowData(item)
                 props.handleRejectReasonModal(true)
               }}
             >Reject</Button>
-              :
-              <Button
-              // onClick={() => {
-              //   handleRowData(item)
-              //   props.handleRejectReasonModal(true)
-              // }}
-              >Rejected</Button>
+              : item.dispatchPhoneInd ?
+                <Button
+                // onClick={() => {
+                //   handleRowData(item)
+                //   props.handleRejectReasonModal(true)
+                // }}
+                >Rejected</Button> : null
             }
           </Tooltip>
         );
