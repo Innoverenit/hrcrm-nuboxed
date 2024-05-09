@@ -216,6 +216,9 @@ function UpdateLeadsForm (props) {
             middleName:props.setEditingLeads.middleName || "",
             lastName:props.setEditingLeads.lastName || "",
             source:props.setEditingLeads.source || "",
+            bedrooms:"",
+        
+            propertyType:"",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
             address: [
               {
@@ -240,6 +243,7 @@ function UpdateLeadsForm (props) {
                 leadsId: props.leadsId,
                 source: selectedSource,
                 lob:selectedLob,
+                price:values.price,
                 sectorId: selectedSector,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
               },
@@ -499,7 +503,7 @@ function UpdateLeadsForm (props) {
                   <div class=" flex  justify-between max-sm:mt-20">
                     <div class="  w-w47.5">
                       <Field
-                        name="customerId"
+                        name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label="Bedrooms"
@@ -524,7 +528,7 @@ function UpdateLeadsForm (props) {
                    
                     <div class=" w-w47.5" style={{marginLeft:"125px"}}>
                     <FastField
-                            name="source"
+                            name="price"
                             label="Price"
                             //isColumnWithoutNoCreate
                             //selectType="sourceName"
@@ -542,7 +546,7 @@ function UpdateLeadsForm (props) {
                   <div class=" flex justify-between">         
                   <div class="  w-w47.5">
                     <Field
-                      name="departmentId"
+                      name="propertyType"
                       label="Property Type"
                       width="100%"
                       isColumn

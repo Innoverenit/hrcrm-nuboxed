@@ -232,6 +232,11 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                                             />
                                           );
                                         })}
+                                         {props.opportunityByUserId.length === 0 && (
+    <div className="loader-container">
+      <Spin/>
+    </div>
+  )}
                                     </StageColumn>
                                   </Spin>
                                 </div>

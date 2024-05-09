@@ -193,6 +193,9 @@ props.emptyClearbit();
             proposalValue:"",
             opportunityName:"",
             countryDialCode:"",
+            bedrooms:"",
+        
+            propertyType:"",
             address: [
               {
                 address1: "",
@@ -214,6 +217,7 @@ props.emptyClearbit();
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lob:selectedLob,
+                price:values.price,
                
                 sectorId: selectedSector,
               },
@@ -479,7 +483,7 @@ props.emptyClearbit();
                   <div class=" flex  justify-between max-sm:mt-20">
                     <div class="  w-w47.5">
                       <Field
-                        name="customerId"
+                        name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label="Bedrooms"
@@ -504,7 +508,7 @@ props.emptyClearbit();
                    
                     <div class=" w-w47.5" style={{marginLeft:"125px"}}>
                     <FastField
-                            name="source"
+                            name="price"
                             label="Price"
                             //isColumnWithoutNoCreate
                             //selectType="sourceName"
@@ -522,7 +526,7 @@ props.emptyClearbit();
                   <div class=" flex justify-between">         
                   <div class="  w-w47.5">
                     <Field
-                      name="departmentId"
+                      name="propertyType"
                       label="Property Type"
                       width="100%"
                       isColumn
