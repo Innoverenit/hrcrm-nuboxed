@@ -2,6 +2,9 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+// import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+// import HourglassTopIcon from '@mui/icons-material/HourglassTop'
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import AddTaskDocumentDrawerModal from "../Child/AddTaskDocumentDrawerModal"
 import styled from "styled-components";
 import {
@@ -20,7 +23,7 @@ import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+//import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {
@@ -257,8 +260,8 @@ const TaskCardList = (props) => {
                                 <div class="flex flex-col w-[5.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
-                      <Tooltip title={`To Start - ${difference}`}>
-                      <HourglassEmptyIcon   type="To Start"
+                      {/* <Tooltip title={`To Start - ${difference}`}>
+                      <StatusIcon   type="To Start"
   status={item.taskStatus}
   difference={difference} 
   onClick={() =>
@@ -266,15 +269,15 @@ const TaskCardList = (props) => {
       taskStatus: "To Start",
     })
   }/>
-  </Tooltip>
-                      <HourglassTopIcon/>
-                      <HourglassBottomIcon/>
+  </Tooltip> */}
+                     
                    
-                    {/* <ButtonGroup >
+                    <ButtonGroup >
          
           <StatusIcon
   type="To Start"
-  iconType="fa-hourglass-start"
+  iconType={<HourglassEmptyIcon />} 
+ // iconType="fa-hourglass-start"
   tooltip="To Start"
   status={item.taskStatus}
   difference={difference} 
@@ -287,7 +290,7 @@ const TaskCardList = (props) => {
         
             <StatusIcon
               type="In Progress"
-              iconType="fa-hourglass-half"
+             iconType={<HourglassTopIcon/>}
               tooltip="In Progress"
               status={item.taskStatus}
               difference={difference}
@@ -301,7 +304,7 @@ const TaskCardList = (props) => {
          
             <StatusIcon
               type="Completed"
-              iconType="fa-hourglass"
+            iconType={<HourglassBottomIcon/>}
               tooltip="Completed"
               status={item.taskStatus}
               difference={difference}
@@ -313,7 +316,7 @@ const TaskCardList = (props) => {
               }
             />
           
-        </ButtonGroup> */}
+        </ButtonGroup>
         <div></div>
                         </div>
                         {/* <div>
@@ -796,7 +799,9 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
             }}
             onClick={onClick}
           >
-            <i className={`fas ${iconType}`} style={{ fontSize: "1.375em" }} />
+            {/* <i className={`fas ${iconType}`} style={{ fontSize: "1.375em" }} /> */}
+            {iconType}
+            {/* <HourglassEmptyIcon/> */}
 {/* 
             {status === type && <span style={{ fontSize: "0.82rem",display:"flex" }}>{daysLabel}</span>} */}
          
