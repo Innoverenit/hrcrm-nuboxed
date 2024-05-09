@@ -36,6 +36,13 @@ const UpdateOpportunitySchema = Yup.object().shape({
   oppWorkflow: Yup.string().required("Input needed!"),
 });
 function UpdateOpportunityForm (props) {
+  const [customers, setCustomers] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
 
   useEffect(()=> {
     props.getCustomerData(props.userId);
@@ -61,6 +68,71 @@ function UpdateOpportunityForm (props) {
     console.log("test", includeOption)
   
   }, [props.setEditingOpportunity]);
+
+
+
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+  const fetchContacts = async (customerId) => {
+    setIsLoadingContacts(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    fetchContacts(customerId);
+  };
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
 
 
   const sortedCurrency =props.saleCurrencies.sort((a, b) => {
@@ -302,6 +374,8 @@ function UpdateOpportunityForm (props) {
                 included: includeNames,
                 opportunityId: props.opportunityId,
                 orgId: props.organizationId,
+                customerId:selectedCustomer,
+                contactId:selectedContact,
                 // description: transcript ? transcript : text,
                 // customerId: props.customerId,
                 userId: props.userId,
@@ -600,7 +674,7 @@ function UpdateOpportunityForm (props) {
     </div>
     <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">       
     <div class=" w-2/5 max-sm:w-wk">
-                  <Field
+                  {/* <Field
                     name="customerId"
                     isColumnWithoutNoCreate
                     label={
@@ -619,11 +693,25 @@ function UpdateOpportunityForm (props) {
                     }
                     value={values.customerId}
                     inlineLabel
-                  />
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
+      <Select
+        style={{ width: 200 }}
+        placeholder="Select Customer"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.customerId} value={customer.customerId}>
+            {customer.name}
+          </Option>
+        ))}
+      </Select>
 </div>
                   <Spacer />
                   <div class=" w-2/5 max-sm:w-wk">
-                  <Field
+                  {/* <Field
                     name="contactId"
                     isColumnWithoutNoCreate
                     label={
@@ -648,7 +736,21 @@ function UpdateOpportunityForm (props) {
                     disabled={!values.customerId}
                     value={values.contactId}
                     inlineLabel
-                  />
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+      <Select
+        style={{ width: 200 }}
+        placeholder="Select Contact"
+        loading={isLoadingContacts}
+        onChange={handleContactChange}
+        disabled={!selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select>
 </div>
      </div>
                   <Spacer />
@@ -753,6 +855,7 @@ const mapStateToProps = ({ auth, opportunity,currency,employee, customer,leads, 
   saleCurrencies: auth.saleCurrencies,
   assignedToList:employee.assignedToList,
   currencies: auth.currencies,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>
