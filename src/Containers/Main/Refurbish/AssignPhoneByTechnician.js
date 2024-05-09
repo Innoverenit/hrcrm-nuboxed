@@ -69,6 +69,11 @@ const AssignPhoneByTechnician = (props) => {
         const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
         return current && (current < startDate || current > endDate);
     };
+    console.log(department)
+    console.log(technician)
+    console.log(checkedValue)
+    console.log(dueDate)
+
 
     const column = [
         {
@@ -200,27 +205,26 @@ const AssignPhoneByTechnician = (props) => {
                 />
             )}
             <div class="flex justify-end mt-1">
-                {/* {department && technician && dueDate && rowSelection.length && */}
-                <Button
-                    loading={props.updatingtechnicianByPhone}
-                    type='primary'
-                    // disabled={!department && !technician && !dueDate && !checkedValue}
-                    onClick={() => props.UpdateTechnicianByPhone({
-                        phoneDetailsList: checkedValue,
-                        orderPhoneId: props.rowData.orderPhoneId,
-                        productionDispatchId: "",
-                        technicianId: technician,
-                        userId: props.userId,
-                        dueDate: dueDate,
-                        defaultQcDepartmentId: department
-                    },
-                        props.rowData.orderPhoneId,
-                        props.locationId,
-                        handleCallback()
-                    )}>
-                    Submit
-                </Button>
-                {/* } */}
+                {department && technician && dueDate && checkedValue &&
+                    <Button
+                        loading={props.updatingtechnicianByPhone}
+                        type='primary'
+                        onClick={() => props.UpdateTechnicianByPhone({
+                            phoneDetailsList: checkedValue,
+                            orderPhoneId: props.rowData.orderPhoneId,
+                            productionDispatchId: "",
+                            technicianId: technician,
+                            userId: props.userId,
+                            dueDate: dueDate,
+                            defaultQcDepartmentId: department
+                        },
+                            props.rowData.orderPhoneId,
+                            props.locationId,
+                            handleCallback()
+                        )}>
+                        Submit
+                    </Button>
+                }
             </div>
         </div>
     )

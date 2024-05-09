@@ -324,7 +324,7 @@ class AccountContactTable extends Component {
                                                         )
                                                     }}
                                                 ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
-                                            </div> : item.accessInd === 2 ? <b>Login Applied</b> : <b>Login Approved</b>
+                                            </div> : item.accessInd === 2 ? <b>Login Applied</b> : <b style={{ color: "#32CD32" }}>Login Approved</b>
 
                                             }
 
@@ -350,7 +350,7 @@ class AccountContactTable extends Component {
 }
 
 const mapStateToProps = ({ distributor, suppliers, auth }) => ({
-    applyingForLoginInContact: distributor.applyingForLoginInContact,
+    applyingForLoginInContact: suppliers.applyingForLoginInContact,
     contactDistributor: suppliers.contactDistributor,
     updateDistributorContactModal: distributor.updateDistributorContactModal,
     fetchingContactDistributorsById: distributor.fetchingContactDistributorsById,
