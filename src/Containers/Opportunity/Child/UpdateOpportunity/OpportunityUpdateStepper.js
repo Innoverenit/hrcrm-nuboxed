@@ -54,7 +54,9 @@ class OpportunityUpdateStepper extends Component {
                     defaultMessage="Order"
                 />,
                 icon: <UserOutlined />,
-                content: <UpdateOpportunityForm/>,
+                content: <UpdateOpportunityForm
+                opportunityId={this.props.opportunityId}
+                />,
             },
             {
                 title: <FormattedMessage

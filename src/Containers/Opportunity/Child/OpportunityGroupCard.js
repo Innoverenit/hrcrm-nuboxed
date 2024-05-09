@@ -1,7 +1,7 @@
 import React from "react";
 import {  Popconfirm,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
-import { StopTwoTone, DeleteOutlined } from "@ant-design/icons";
+import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { FlexContainer, MainWrapper } from "../../../Components/UI/Layout";
 import {
@@ -135,10 +135,16 @@ const BussinessCard = (props) => {
           <FlexContainer
             style={{ flexBasis: "10%", alignSelf: "flex-start" }}
           ></FlexContainer>
+          <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
+          <EditOutlined
+          onClick={props.handleEdit}
+          />
+        </SubTitle>
         </FlexContainer>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-        </SubTitle>
+       
+
+        
       {/* </div> */}
       </MainWrapper>
     </div>
