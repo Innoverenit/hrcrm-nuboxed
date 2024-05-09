@@ -73,6 +73,7 @@ const handleLoadMore = () => {
         <div className=" md:w-[9.1rem]">Country</div>
         <div className=" md:w-[11.1rem] ">Address</div>
         <div className=" md:w-[8.2rem] ">Production</div>
+        <div className=" md:w-[8.2rem] ">Refurbish</div>
         <div className="md:w-[8.5rem]">Inventory</div>
         <div className="md:w-[7.5rem]">Billing</div>
         <div className="md:w-[8.51rem]">Corporate</div>
@@ -119,22 +120,23 @@ const handleLoadMore = () => {
                   </div>
                 </div>
 
-                    {/* <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                     
-
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <RefurbishToggle
-                        locationDetailsId={item.locationDetailsId}
-                        productionInd={item.productionInd}
-                        />
-                      </div>
-                    </div> */}
+                
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <ProductionToggle
                     locationDetailsId={item.locationDetailsId}
                     productionInd={item.productionInd}
+                        />
+                      </div>
+                    </div>
+                        <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                     
+
+                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                        <RefurbishToggle
+                        locationDetailsId={item.locationDetailsId}
+                        refurbishInd={item.refurbishInd}
                         />
                       </div>
                     </div>

@@ -18,6 +18,12 @@ const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 // const base_url2 = "https://erp.celltechnologies.nl";
 // const asses_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
 
+// const login_url = "https://develop.tekorero.com/testHr";
+// const base_url = "https://develop.tekorero.com/testHr/api/v1";
+// const base_url2 = "https://develop.tekorero.com/Erp";
+// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
+
+
 export { base_url, login_url, asses_url, base_url2 };
 
 

@@ -3625,3 +3625,9 @@ export const handleAccountModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleAccountOpportunityModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL,
+    payload: modalProps,
+  });
+};

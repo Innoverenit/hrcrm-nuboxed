@@ -1866,3 +1866,30 @@ export const rejectPhoneData = (data, phoneId) => (dispatch) => {
       });
     });
 };
+
+
+export const getInventoryLocationRecords = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVENTORY_LOCATION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/locationCount/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_INVENTORY_LOCATION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};

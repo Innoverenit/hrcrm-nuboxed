@@ -243,6 +243,10 @@ const initialState = {
   fetchingMaterialReceiveDetailDataError: false,
   receivedDetailData: [],
 
+  fetchingInventoryLocationRecords: false,
+  fetchingInventoryLocationRecordsError: false,
+  inventoryLocationCount:{},
+
   fetchingGrnListOfAPo: false,
   fetchingGrnListOfAPoError: false,
   poGrnList: [],
@@ -1508,6 +1512,23 @@ export const inventoryReducer = (state = initialState, action) => {
         rejectPhoneListError: true,
         rejectedReasonModal: false,
       };
+
+
+      
+      case types.GET_INVENTORY_LOCATION_RECORDS_REQUEST:
+        return { ...state, fetchingInventoryLocationRecords: true };
+      case types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingInventoryLocationRecords: false,
+          inventoryLocationCount: action.payload,
+        };
+      case types.GET_INVENTORY_LOCATION_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingInventoryLocationRecords: false,
+          fetchingInventoryLocationRecordsError: true,
+        };
     default:
       return state;
   }

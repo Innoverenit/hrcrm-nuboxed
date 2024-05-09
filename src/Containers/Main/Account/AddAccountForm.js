@@ -7,6 +7,7 @@ import { StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
+import { getCrm } from "../../Leads/LeadsAction";
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
@@ -37,6 +38,7 @@ const AddAccountForm = ({
   countryDialCode1,
   orgId,
   accounts, clearbit, fullName, allCustomerEmployeeList,
+  crmAllData,
   countries,
   setClearbitData,
   addingDistributor,
@@ -45,6 +47,7 @@ const AddAccountForm = ({
   saleCurrencies,
   getCountry,
   getAllCustomerEmployeelist,
+  getCrm,
   getCustomer,
   getSaleCurrency,
   getCategory,
@@ -55,6 +58,7 @@ const AddAccountForm = ({
   useEffect(() => {
     getCountry();
     getAllCustomerEmployeelist();
+    getCrm();
     getCustomer(orgId);
     getSaleCurrency();
     getCategory(orgId);
@@ -106,7 +110,7 @@ const AddAccountForm = ({
 
   const [defaultOption, setDefaultOption] = useState(fullName);
   const [selected, setSelected] = useState(defaultOption);
-  const selectedOption = allCustomerEmployeeList.find((item) => item.fullName === selected);
+  const selectedOption = crmAllData.find((item) => item.empName === selected);
   // console.log(category.categoryId)
   return (
     <>
@@ -454,74 +458,77 @@ const AddAccountForm = ({
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class=" h-full w-full mt-3">
-                  <Listbox value={selected} onChange={setSelected}>
-                    {({ open }) => (
-                      <>
-                        <Listbox.Label className="block font-semibold text-[0.75rem] ">
-                          <FormattedMessage
-                            id="app.assignedto"
-                            defaultMessage="assignedto"
-                          />
-                        </Listbox.Label>
-                        <div className="relative mt-[0.1rem]">
-                          <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                            {selected}
-                          </Listbox.Button>
-                          {open && (
-                            <Listbox.Options
-                              static
-                              className="absolute z-10 mt-1 max-h-56 w-full overflow-auto  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                <Listbox value={selected} onChange={setSelected}>
+                        {({ open }) => (
+                          <>
+                            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
+                            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
                             >
-                              {allCustomerEmployeeList.map((item) => (
-                                <Listbox.Option
-                                  key={item.employeeId}
-                                  className={({ active }) =>
-                                    `relative cursor-default select-none py-2 pl-3 pr-9 ${active ? "text-white bg-indigo-600" : "text-gray-900"
-                                    }`
-                                  }
-                                  value={item.fullName}
-                                >
-                                  {({ selected, active }) => (
-                                    <>
-                                      <div className="flex items-center">
-                                        <span
-                                          className={`ml-3 block truncate ${selected ? "font-semibold" : "font-normal"
-                                            }`}
-                                        >
-                                          {item.fullName}
-                                        </span>
-                                      </div>
-                                      {selected && (
-                                        <span
-                                          className={`absolute inset-y-0 right-0 flex items-center pr-4 ${active ? "text-white" : "text-indigo-600"
-                                            }`}
-                                        >
+                              <FormattedMessage
+                                id="app.assignedTo"
+                                defaultMessage="Assigned to"
+                              />
 
-                                          <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-5 w-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                          >
-                                            <path
-                                              fillRule="evenodd"
-                                              d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                              clipRule="evenodd"
-                                            />
-                                          </svg>
-                                        </span>
+                            </Listbox.Label>
+                            <div className="relative ">
+                              <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                                {selected}
+                              </Listbox.Button>
+                              {open && (
+                                <Listbox.Options
+                                  static
+                                  className="absolute z-10 max-h-56 w-full overflow-auto mt-1  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                                >
+                                  {crmAllData.map((item) => (
+                                    <Listbox.Option
+                                      key={item.employeeId}
+                                      className={({ active }) =>
+                                        `relative cursor-default select-none py-2 pl-3 pr-9 ${active ? "text-white bg-indigo-600" : "text-gray-900"
+                                        }`
+                                      }
+                                      value={item.empName}
+                                    >
+                                      {({ selected, active }) => (
+                                        <>
+                                          <div className="flex items-center">
+                                            <span
+                                              className={`ml-3 block truncate ${selected ? "font-semibold" : "font-normal"
+                                                }`}
+                                            >
+                                              {item.empName}
+                                            </span>
+                                          </div>
+                                          {selected && (
+                                            <span
+                                              className={`absolute inset-y-0 right-0 flex items-center pr-4 ${active ? "text-white" : "text-indigo-600"
+                                                }`}
+                                            >
+
+                                              <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-5 w-5"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                              >
+                                                <path
+                                                  fillRule="evenodd"
+                                                  d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                  clipRule="evenodd"
+                                                />
+                                              </svg>
+                                            </span>
+                                          )}
+                                        </>
                                       )}
-                                    </>
-                                  )}
-                                </Listbox.Option>
-                              ))}
-                            </Listbox.Options>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </Listbox>
+                                    </Listbox.Option>
+                                  ))}
+                                </Listbox.Options>
+                              )}
+                            </div>
+                          </>
+                        )}
+                      </Listbox>
                 </div>
                 <div class="mt-4">
                   <StyledLabel >Billing Address</StyledLabel>
@@ -604,7 +611,7 @@ const AddAccountForm = ({
   );
 };
 
-const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, rule, groups, category }) => ({
+const mapStateToProps = ({ auth, countrys, leads,employee, catgCustomer, distributor, rule, groups, category }) => ({
   userId: auth.userDetails.userId,
   groupId: auth.userDetails.groupId,
   vat: rule.vat,
@@ -620,6 +627,7 @@ const mapStateToProps = ({ auth, countrys, employee, catgCustomer, distributor, 
   country: countrys.country,
   countryDialCode1: auth.userDetails.countryDialCode1,
   addingDistributor: distributor.addingDistributor,
+  crmAllData:leads.crmAllData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -630,6 +638,7 @@ const mapDispatchToProps = (dispatch) =>
       setClearbitData,
       getCountry,
       getCustomer,
+      getCrm,
       getAllCustomerEmployeelist,
       getSaleCurrency,
       getCategory

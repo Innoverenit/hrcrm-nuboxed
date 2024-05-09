@@ -1630,6 +1630,32 @@ export const getSupplierAllCount = (orgId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierDeletedCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_SUPPLIER_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/deleted/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_SUPPLIER_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_SUPPLIER_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getSupplierSuppliesQuality = () => (dispatch) => {
   dispatch({
     type: types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST,
@@ -1823,4 +1849,34 @@ export const getSupplierwiseQuality = (supplierId,suppliesId) => (dispatch) => {
     });
 };
 
+
+export const reinstateToggleForSupplier = (data, supplierId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/reinitiate/suppliers/${supplierId}`, data)
+    .then((res) => {
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS,
+        payload: supplierId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully!',
+      })
+      // message.success("Reinstated Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
 

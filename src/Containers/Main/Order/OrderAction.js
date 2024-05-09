@@ -405,3 +405,32 @@ export const getProductionAllOrder = (orgId, pageNo) => (dispatch) => {
       });
     });
 };
+
+
+export const deleteOrderRepairData = (orderPhoneId) => (dispatch, getState) => {
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.DELETE_ORDER_REPAIR_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/phoneOrder/delete/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getShipperByUserId(userId));
+      dispatch({
+        type: types.DELETE_ORDER_REPAIR_DATA_SUCCESS,
+        payload: orderPhoneId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_ORDER_REPAIR_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
