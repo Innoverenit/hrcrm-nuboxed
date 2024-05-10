@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState,useRef } from "react";
 import styled from "styled-components";
 import { Timeline, Button, Popconfirm } from 'antd';
 import moment from "moment";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { removeLeadsNote,updateLeadsNote } from "../../ProductAction";
+import { removeNotesOfProduct,updateNoteOfProduct } from "../../ProductAction";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Spacer, SubTitle } from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
@@ -13,7 +13,37 @@ import Item from "antd/es/list/Item";
 
 const NotesWrapper = styled.div``;
 
+const stripHtmlTags = (html) => {
+  // Remove HTML tags using regex
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+};
+
 const SingleNoteProductNoteForm = (props) => {
+  const [editedNotes, setEditedNotes] = useState(stripHtmlTags(props.notes)); 
+  const [editing, setEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setEditing(true);
+  };
+
+  const handleCancelClick = () => {
+    setEditing(false);
+    setEditedNotes(stripHtmlTags(props.notes));
+  };
+
+  const handleUpdate = (key) => {
+    props.updateNoteOfProduct({ notes: editedNotes,productionBuilderId:props.rowdata.productionBuilderId }, props.notesId);
+    setEditing(false);
+  };
+
+  const toggleEditing = () => {
+    if (editing) {
+      handleUpdate();
+    } else {
+      handleEditClick();
+    }
+  };
+
   const {
     comment,
     notes,
@@ -24,26 +54,36 @@ const SingleNoteProductNoteForm = (props) => {
     creatorId,
   } = props;
 
+
   return (
     <>
     <NotesWrapper>
-      <div dangerouslySetInnerHTML={{ __html: notes }} />
+    {editing ? (
+          <textarea
+            value={editedNotes}
+            onChange={(e) => setEditedNotes(e.target.value)}
+            style={{ width: "100%", minHeight: "100px" }}
+          />
+        ) : (
+          <div>{stripHtmlTags(editedNotes)}</div>
+        )}
       <SubTitle
         fontSize="0.875em"
         fontFamily="poppins"
         style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
         <Spacer />
+
         {`${moment.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
      
           <DeleteOutlined
           onClick={() => {
             const data = {
-            //  leadsId:props.rowdata.leadsId,
-            //    notesId:props.notesId,
+              productionBuilderId:props.rowdata.productionBuilderId,
+               noteId:props.notesId,
            
             };
-            // props.removeLeadsNote(data);
+            props.removeNotesOfProduct(data);
           }}
            
             style={{
@@ -52,14 +92,21 @@ const SingleNoteProductNoteForm = (props) => {
             }}
           />
            &nbsp;&nbsp;
-            <BorderColorIcon
-             style={{fontSize:"1rem", cursor:"pointer"}}
-            onClick={() => {
-            //   props.updateLeadsNoteDrawerModal(true);
-            }}
-       />
-  
-      </SubTitle>
+           <BorderColorIcon
+            style={{ fontSize: "1rem", cursor: "pointer" }}
+            onClick={toggleEditing}
+          />
+          {editing && (
+            <>
+             <Button 
+                      type="primary" onClick={handleUpdate}> Update</Button>
+              <Button 
+                      type="primary" onClick={handleCancelClick}>
+                      Cancel
+                      </Button>
+            </>
+          )}
+            </SubTitle>
     </NotesWrapper>
         {/* <UpdateLeadsNotesListDrawerModal
         rowdata={props.rowdata}
@@ -79,9 +126,8 @@ userId: auth.userDetails.userId,
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   removeLeadsNote,
-    //   updateLeadsNote,
-    //   updateLeadsNoteDrawerModal
+      removeNotesOfProduct,
+      updateNoteOfProduct,
     },
     dispatch
   );

@@ -5,7 +5,6 @@ import { Timeline } from "antd";
 import { BorderBox } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { getNotesofPRoduct } from "../../ProductAction";
-import { SingleNote } from "../../../../Components/Common";
 import SingleNoteProductNoteForm from "./SingleNoteProductNoteForm";
 
 const LinkedProductNoteForm =lazy(()=> import("./LinkedProductNoteForm"));
@@ -13,7 +12,7 @@ const LinkedProductNoteForm =lazy(()=> import("./LinkedProductNoteForm"));
 class LinkedProductNotes extends Component {
   componentDidMount() {
     // const data={productionBuilderId:this.props.rowdata.productionBuilderId}
-   this.props.getNotesofPRoduct();
+   this.props.getNotesofPRoduct("productBuilder",this.props.rowdata.productionBuilderId);
   }
 
   render() {
@@ -23,10 +22,11 @@ class LinkedProductNotes extends Component {
       <>
         <div style={{ backgroundColor: "#dcdcdc" }}>
           <LinkedProductNoteForm
+          rowdata={this.props.rowdata}
             type={"product"}
             productionBuilderId={this.props.rowdata.productionBuilderId}
             callback={() =>
-              this.props.getNotesofPRoduct
+              this.props.getNotesofPRoduct("productBuilder",this.props.rowdata.productionBuilderId)
             }
           />
         </div>
@@ -44,7 +44,7 @@ class LinkedProductNotes extends Component {
                         key={index}
                         style={{ paddingBottom: "0.625em" }}
                       >
-                        <SingleNoteProductNoteForm {...item} userId={this.props.userId} rowdata={this.props.rowdata}/>
+                        <SingleNoteProductNoteForm  rowdata={this.props.rowdata} {...item} userId={this.props.userId}/>
                       </Timeline.Item>
                     ))}
                 </Timeline>

@@ -15,7 +15,6 @@ import {
   handleCatalogueWipModal,
   handleProductBuilderDrawer,
   handlePriceDrawer,
-  reInstateProducts
 } from "../../ProductAction";
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -113,7 +112,7 @@ function ProductDeleteList(props) {
             height={"75vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           > */}
-            {deleteproducts.map((item) => {
+            {props.deleteproducts.map((item) => {
               return (
                 <div>
                   <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
@@ -330,7 +329,6 @@ const mapDispatchToProps = (dispatch) =>
       getdeleteProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
-      reInstateProducts
     },
     dispatch
   );

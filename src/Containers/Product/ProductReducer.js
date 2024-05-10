@@ -318,6 +318,11 @@ const initialState = {
   addingNotesOfProducts: false,
   addingNotesOfProductsError: false,
 
+  updatingNotesOfProducts: false,
+  updatingNotesOfProductsError:false,
+  removingNotesOfProducts: false,
+  removingNotesOfProductsError:false,
+
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -617,9 +622,7 @@ export const productReducer = (state = initialState, action) => {
         return {
           ...state,
           deletingCatalogData: false,
-          products: state.products.filter(
-            (item) => item.productId !== action.payload
-          ),
+          products: state.products.filter((item) => item.productId !== action.payload),
           deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
         };
       case types.DELETE_CATALOG_DATA_FAILURE:
@@ -1239,20 +1242,20 @@ export const productReducer = (state = initialState, action) => {
                       case types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL:
                         return { ...state, addDrawerProductNotesModal: action.payload };
 
-                        case types.REINSTATE_DELETED_PRODUCTS_REQUEST:
-                          return { ...state, reInstatingProducts: true };
-                        case types.REINSTATE_DELETED_PRODUCTS_SUCCESS:
-                          return {
-                            ...state,
-                            reInstatingProducts: false,
-                            deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
-                          };
-                        case types.REINSTATE_DELETED_PRODUCTS_FAILURE:
-                          return {
-                            ...state,
-                            reInstatingProducts: false,
-                            reInstatingProductsError: true,
-                          }; 
+                        // case types.REINSTATE_DELETED_PRODUCTS_REQUEST:
+                        //   return { ...state, reInstatingProducts: true };
+                        // case types.REINSTATE_DELETED_PRODUCTS_SUCCESS:
+                        //   return {
+                        //     ...state,
+                        //     reInstatingProducts: false,
+                        //     deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
+                        //   };
+                        // case types.REINSTATE_DELETED_PRODUCTS_FAILURE:
+                        //   return {
+                        //     ...state,
+                        //     reInstatingProducts: false,
+                        //     reInstatingProductsError: true,
+                        //   }; 
 
                           case types.GET_NOTES_OF_PRODUCT_REQUEST:
                             return { ...state, fetchingNotesofProducts: true, fetchingNotesofProductsError: false };
@@ -1266,11 +1269,13 @@ export const productReducer = (state = initialState, action) => {
                                 return {
                                   ...state,
                                   addingNotesOfProducts: true,
+
                                 };
                               case types.ADD_NOTES_OF_PRODUCT_SUCCESS:
                                 return {
                                   ...state,
                                   addingNotesOfProducts: false,
+                                  notesofPRoducts:action.payload,
                                 };
                               case types.ADD_NOTES_OF_PRODUCT_FAILURE:
                                 return {
@@ -1278,6 +1283,49 @@ export const productReducer = (state = initialState, action) => {
                                   addingNotesOfProducts: false,
                                   addingNotesOfProductsError: true,
                                 };
+
+                                case types.UPDATE_NOTES_OF_PRODUCT_REQUEST:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: true,
+                                  };
+                                case types.UPDATE_NOTES_OF_PRODUCT_SUCCESS:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: false,
+                                    notesofPRoducts:state.notesofPRoducts.map((item) => {
+                                      if (item.productId == action.payload.productId) {
+                                        return action.payload;
+                                      } else {
+                                        return item;
+                                      }
+                                    }),
+                                  };
+                                case types.UPDATE_NOTES_OF_PRODUCT_FAILURE:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: false,
+                                    updatingNotesOfProductsError: true,
+                                  };
+
+                                  case types.REMOVE_NOTES_OF_PRODUCT_REQUEST:
+                                    return { ...state, removingNotesOfProducts: true };
+                                  case types.REMOVE_NOTES_OF_PRODUCT_SUCCESS:
+                                    const { notesId } = action.payload;
+                                      return {
+                                        ...state,
+                                        removingNotesOfProducts: false,
+                                        notesofPRoducts: state.notesofPRoducts.filter(item => item.notesId !== notesId),
+                                        
+                                      };
+                                    
+                                  case types.REMOVE_NOTES_OF_PRODUCT_FAILURE:
+                                    return {
+                                      ...state,
+                                      removingNotesOfProducts: false,
+                                      removingNotesOfProductsError: true,
+                                    };
+
 
     default:
       return state;

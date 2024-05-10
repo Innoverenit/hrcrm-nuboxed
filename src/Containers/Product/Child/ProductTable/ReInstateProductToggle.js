@@ -18,6 +18,7 @@ function ReInstateProductToggle(props) {
       props.deleteCatalogData({
         active:true,
         productId: props.item.productId,
+        reason: "",
       },props.item.productId);
       setIsChecked(!isChecked);
     }
