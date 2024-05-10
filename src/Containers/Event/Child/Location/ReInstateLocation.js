@@ -12,7 +12,8 @@ function ReInstateLocation(props) {
             {
                 locationDetailsId: props.locationDetailsId,
             },
-            props.locationDetailsId
+            props.locationDetailsId,
+            props.orgId,
         );
     }
 
@@ -39,7 +40,7 @@ function ReInstateLocation(props) {
 }
 
 const mapStateToProps = ({ auth, collection }) => ({
-
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
