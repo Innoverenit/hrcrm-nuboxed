@@ -366,7 +366,7 @@ export const orderReducer = (state = initialState, action) => {
           ...state,
           deletingOrderRepairData: false,
           orderShowById: state.orderShowById.filter(
-            (item) => item.orderPhoneId !== action.payload
+            (item) => item.orderId !== action.payload
           ),
         };
       case types.DELETE_ORDER_REPAIR_DATA_FAILURE:

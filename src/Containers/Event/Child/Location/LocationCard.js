@@ -290,7 +290,7 @@ const handleLoadMore = () => {
                         <div>
                         <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.deleteLocation(item.locationDetailsId)}
+                          onConfirm={() => props.deleteLocation(item.locationDetailsId,props.orgId)}
                         >
                             <Tooltip title="Delete">
                           <DeleteOutlined
