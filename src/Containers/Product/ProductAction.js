@@ -1609,36 +1609,33 @@ export const getNotesofPRoduct = (type,id) => (dispatch) => {
 };
 
 
-export const addNoteOfProduct = (note,cb) => (dispatch) => {
+export const addNoteOfProduct = (note,id) => (dispatch) => {
   dispatch({ type: types.ADD_NOTES_OF_PRODUCT_REQUEST });
   axios
-    .post(`${base_url}/notes/save`, note, {
+    .post(`${base_url2}/notes/save`, note, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      dispatch(getNotesofPRoduct("productBuilder",id));
       dispatch({
         type: types.ADD_NOTES_OF_PRODUCT_SUCCESS,
         payload: res.note,
       });
-      console.log(res);
-      cb && cb();
     })
     .catch((err) => {
       dispatch({
         type: types.ADD_NOTES_OF_PRODUCT_FAILURE,
         payload: err,
       });
-      console.log(err);
-      cb && cb();
     });
 };
 
 export const updateNoteOfProduct = (note,id) => (dispatch) => {
   dispatch({ type: types.UPDATE_NOTES_OF_PRODUCT_REQUEST });
   axios
-    .put(`${base_url}/notes/update/${id}`, note, {
+    .put(`${base_url2}/notes/update/${id}`, note, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1657,12 +1654,12 @@ export const updateNoteOfProduct = (note,id) => (dispatch) => {
     });
 };
 
-export const removeNotesOfProduct = (data) => (dispatch) => {
+export const removeNotesOfProduct = (data,notesId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_NOTES_OF_PRODUCT_REQUEST,
   });
   axios
-    .put(`${base_url}/notes/delete`,data, {
+    .put(`${base_url2}/notes/delete`,data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1671,7 +1668,7 @@ export const removeNotesOfProduct = (data) => (dispatch) => {
       // dispatch(getCallTimeline(leadsId));
       dispatch({
         type: types.REMOVE_NOTES_OF_PRODUCT_SUCCESS,
-        payload: res.data,
+        payload:{ notesId },
       });
     })
     .catch((err) => {

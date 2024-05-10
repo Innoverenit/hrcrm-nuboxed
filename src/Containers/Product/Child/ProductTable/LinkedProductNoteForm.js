@@ -46,28 +46,18 @@ class LinkedProductNoteForm extends Component {
     };
   }
   onEditorStateChange = (editorState) => {
-    console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
     this.setState({
       editorState,
       edit: false,
     });
   };
+
   createCallback = () => {
-    this.setState({ editorState: EditorState.createEmpty(), edit: true }, () =>
-      this.props.callback()
-    );
+    this.setState({ editorState: EditorState.createEmpty(), edit: true });
   };
 
   render() {
-    const {
-      user: { userId, firstName, lastName },
-      addNote,
-      customerId,
-      employeeId,
-      notes,
-      rowdata,
-      fetchingNotesListByLeadsId,
-    } = this.props;
+    
     const { editorState, placeholder } = this.state;
     return (
       <>
@@ -79,23 +69,16 @@ class LinkedProductNoteForm extends Component {
   userId:this.props.userId
           }}
           onSubmit={(values, { resetForm }) => {
-            console.log(
-              draftToHtml(convertToRaw(editorState.getCurrentContent()))
-            );
             const htmlBody = draftToHtml(
               convertToRaw(editorState.getCurrentContent())
             );
-            // const htmlBody = 'draftToHtml(convertToRaw(editorState.getCurrentContent()))'
-            addNoteOfProduct(
+            this.props.addNoteOfProduct(
               {
                 ...values, notes: htmlBody
               },
-              
+              this.props.productionBuilderId,
               this.createCallback
-        
             );
-          
-           
             resetForm();
           }}
         >
@@ -109,15 +92,10 @@ class LinkedProductNoteForm extends Component {
             values,
             ...rest
           }) => {
-            console.log(editorState.getCurrentContent());
-
+          
             return (
               <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
+
                 <Editor
                   editorState={editorState}
                   wrapperClassName="demo-wrapper"
@@ -129,7 +107,6 @@ class LinkedProductNoteForm extends Component {
                   }}
                   onEditorStateChange={this.onEditorStateChange}
                   placeholder={placeholder || "Type here"}
-                  // editorState={editorState}
                   toolbar={toolbarOption}
                 />
                 <div class=" flex justify-end" >

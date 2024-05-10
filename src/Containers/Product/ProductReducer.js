@@ -1269,11 +1269,13 @@ export const productReducer = (state = initialState, action) => {
                                 return {
                                   ...state,
                                   addingNotesOfProducts: true,
+
                                 };
                               case types.ADD_NOTES_OF_PRODUCT_SUCCESS:
                                 return {
                                   ...state,
                                   addingNotesOfProducts: false,
+                                  notesofPRoducts:action.payload,
                                 };
                               case types.ADD_NOTES_OF_PRODUCT_FAILURE:
                                 return {
@@ -1309,13 +1311,14 @@ export const productReducer = (state = initialState, action) => {
                                   case types.REMOVE_NOTES_OF_PRODUCT_REQUEST:
                                     return { ...state, removingNotesOfProducts: true };
                                   case types.REMOVE_NOTES_OF_PRODUCT_SUCCESS:
-                                    return {
-                                      ...state,
-                                      removingNotesOfProducts: false,
-                                      notesofPRoducts: state.notesofPRoducts.filter(
-                                        (item) => item.notesId !== action.payload.notesId
-                                      ),
-                                    };
+                                    const { notesId } = action.payload;
+                                      return {
+                                        ...state,
+                                        removingNotesOfProducts: false,
+                                        notesofPRoducts: state.notesofPRoducts.filter(item => item.notesId !== notesId),
+                                        
+                                      };
+                                    
                                   case types.REMOVE_NOTES_OF_PRODUCT_FAILURE:
                                     return {
                                       ...state,
