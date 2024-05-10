@@ -56,7 +56,6 @@ export const getdeleteProducts = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err.response);
       dispatch({
         type: types.GET_DELETEPRODUCTS_FAILURE,
         payload: err,
@@ -507,7 +506,7 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,
-        payload: res.data,
+        payload: productId,
       });
       Swal.fire({
         icon: 'success',
@@ -1555,33 +1554,33 @@ export const handleProductNotesDrawerModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
-export const reInstateProducts = (data,productId) => (dispatch) => {
-  dispatch({ type: types.REINSTATE_DELETED_PRODUCTS_REQUEST });
-  axios
-    .put(`${base_url2}/leads/reinstate/${productId}`, data, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.REINSTATE_DELETED_PRODUCTS_SUCCESS,
-        payload: res.data,
-      });
-      Swal.fire({
-        icon: 'success',
-        title: 'Reinstated Successfully',
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.REINSTATE_DELETED_PRODUCTS_FAILURE,
-        payload: err,
-      });
-    });
-};
+// export const reInstateProducts = (data,productId) => (dispatch) => {
+//   dispatch({ type: types.REINSTATE_DELETED_PRODUCTS_REQUEST });
+//   axios
+//     .put(`${base_url2}/leads/reinstate/${productId}`, data, {
+//       headers: {
+//         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//       },
+//     })
+//     .then((res) => {
+//       console.log(res);
+//       dispatch({
+//         type: types.REINSTATE_DELETED_PRODUCTS_SUCCESS,
+//         payload: res.data,
+//       });
+//       Swal.fire({
+//         icon: 'success',
+//         title: 'Reinstated Successfully',
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       dispatch({
+//         type: types.REINSTATE_DELETED_PRODUCTS_FAILURE,
+//         payload: err,
+//       });
+//     });
+// };
 
 export const getNotesofPRoduct = (type,id) => (dispatch) => {
   dispatch({
@@ -1633,5 +1632,53 @@ export const addNoteOfProduct = (note,cb) => (dispatch) => {
       });
       console.log(err);
       cb && cb();
+    });
+};
+
+export const updateNoteOfProduct = (note,id) => (dispatch) => {
+  dispatch({ type: types.UPDATE_NOTES_OF_PRODUCT_REQUEST });
+  axios
+    .put(`${base_url}/notes/update/${id}`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.note,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const removeNotesOfProduct = (data) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_NOTES_OF_PRODUCT_REQUEST,
+  });
+  axios
+    .put(`${base_url}/notes/delete`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getCallTimeline(leadsId));
+      dispatch({
+        type: types.REMOVE_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+  
+      dispatch({
+        type: types.REMOVE_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
     });
 };
