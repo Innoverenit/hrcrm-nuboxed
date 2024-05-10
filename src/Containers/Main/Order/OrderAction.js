@@ -407,13 +407,13 @@ export const getProductionAllOrder = (orgId, pageNo) => (dispatch) => {
 };
 
 
-export const deleteOrderRepairData = (orderPhoneId) => (dispatch, getState) => {
+export const deleteOrderRepairData = (orderId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_ORDER_REPAIR_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/phoneOrder/delete/${orderPhoneId}`, {
+    .delete(`${base_url2}/phoneOrder/delete/${orderId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -423,7 +423,7 @@ export const deleteOrderRepairData = (orderPhoneId) => (dispatch, getState) => {
       // dispatch(getShipperByUserId(userId));
       dispatch({
         type: types.DELETE_ORDER_REPAIR_DATA_SUCCESS,
-        payload: orderPhoneId,
+        payload: orderId,
       });
     })
     .catch((err) => {

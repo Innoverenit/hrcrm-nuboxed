@@ -3479,11 +3479,11 @@ export const addOrderProcurementForm = (customer) => (dispatch, getState) => {
       },
     })
     .then((res) => {
-      // Swal.fire({
-      //   icon: 'success',
-      //   title: 'Order Created',
-      //   showConfirmButton: true,
-      // })
+      Swal.fire({
+        icon: 'success',
+        title: 'Procure Created',
+        showConfirmButton: true,
+      })
       // dispatch(getOrderRecords(distributorId));
       dispatch({
         type: types.ADD_ORDER_PROCUREMENT_SUCCESS,

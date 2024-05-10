@@ -1858,7 +1858,11 @@ export const reinstateToggleForSupplier = (data, supplierId) => (
     type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/reinitiate/suppliers/${supplierId}`, data)
+    .put(`${base_url2}/supplier/reinitiate/suppliers/${supplierId}`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS,
