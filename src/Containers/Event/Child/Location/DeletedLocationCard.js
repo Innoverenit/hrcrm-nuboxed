@@ -36,11 +36,12 @@ const handleLoadMore = () => {
         height={"75vh"}
       >
       <div className=" flex justify-between w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[10.5rem]">Name</div>
-        <div className=" md:w-[9.1rem]">Country</div>
-        <div className=" md:w-[11.1rem] ">Address</div>
+        <div className=" md:w-[7.5rem]">Name</div>
+        <div className=" md:w-[12.1rem]">Country</div>
+        <div className=" md:w-[4.1rem] ">Address</div>
        
-        <div className="md:w-[8.9rem]">Regions</div>
+        <div className="md:w-[1.9rem]">Regions</div>
+        <div className="md:w-[30.9rem]">Reinstate</div>
       </div>
       <div class="">
           {props.deletedLocationHistory.map((item) => {
@@ -48,12 +49,15 @@ const handleLoadMore = () => {
               <div >
                 <div class=" flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 ">
                   <div class="flex">
-                    <div className=" flex font-medium flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                     
+                  <div className=" flex font-medium  md:w-[15.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                      
 
-                      <div class=" font-normal text-[0.82rem]text-cardBody font-poppins md:w-[10.1rem]">
+                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+             
+
                         {item.locationName}
                       </div>
+                    </div>
                    
 
                     <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
@@ -65,7 +69,7 @@ const handleLoadMore = () => {
                         {item.countryAlpha2Code}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex font-medium flex-col md:w-[19rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
 
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
@@ -88,7 +92,7 @@ const handleLoadMore = () => {
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocation locationDetailsId={item.locationDetailsId} />
                             </div>
-                          </div>
+                          
                   </div>
                 </div>
 

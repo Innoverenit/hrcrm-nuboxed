@@ -111,7 +111,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
-  export const deleteLocation = (locationDetailsId) => (dispatch) => {
+  export const deleteLocation = (locationDetailsId,orgId) => (dispatch) => {
     dispatch({
       type: types.DELETE_LOCATIONS_REQUEST,
     });
@@ -122,6 +122,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getLocationRecords(orgId))
         console.log(res);
         dispatch({
           type: types.DELETE_LOCATIONS_SUCCESS,
@@ -686,7 +687,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const reinstateToggleForLocation = (data, locationDetailsId) => (
+  export const reinstateToggleForLocation = (data, locationDetailsId,orgId) => (
     dispatch
   ) => {
     // debugger;
@@ -700,11 +701,16 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        dispatch(getLocationDeletedCount(orgId))
         dispatch({
           type: types.REINSTATE_TOGGLE_FOR_LOCATION_SUCCESS,
           payload: locationDetailsId,
         });
-        message.success("Reinstated Successfully");
+        Swal.fire({
+          icon: 'success',
+          title: 'Reinstated Successfully',
+        })
+        // message.success("Reinstated Successfully");
       })
       .catch((err) => {
         console.log(err);

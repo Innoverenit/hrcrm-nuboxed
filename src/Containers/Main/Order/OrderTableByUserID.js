@@ -270,7 +270,7 @@ function OrderTableByUserID(props) {
                         <Tooltip title="Collection">
                         <Popconfirm
                               title="Do you want to delete?"
-                              // onConfirm={() => props.deleteOrderRepairData(item.orderPhoneId)}
+                               onConfirm={() => props.deleteOrderRepairData(item.orderId)}
                             >
                               <DeleteOutlined
                                 className=" !text-base cursor-pointer text-[red]"
