@@ -215,16 +215,31 @@ class OpportunityRowEmailModal extends Component {
                 convertToRaw(editorState.getCurrentContent())
               );
               console.log(this.state.formattedFile)
+              
               // const blobData = new Blob([this.state.formattedFile],);
               // console.log(blobData)
               let formData = new FormData();
 
-  // Append the file object to FormData with the key "file"
-  // formData.append("file", [this.state.formattedFile]);
-  formData.append("type", this.state.formattedFile.type);
-  formData.append("status", this.state.formattedFile.status);
-  formData.append("size", this.state.formattedFile.size);
-  formData.append("uid", this.state.formattedFile.uid);
+
+            //   Object.keys(this.state.formattedFile).forEach(key => {
+            //     formData.append(key, this.state.formattedFile[key]);
+            // });
+
+            const file = new File([/* ArrayBuffer, Blob, or Typed Array representing file content */], this.state.formattedFile.name, { type: this.state.formattedFile.type });
+
+// Append file and other properties to FormData
+formData.append('file', file); // 'file' is the key for the file content
+// Object.keys(this.state.formattedFile).forEach(key => {
+//     formData.append(key, this.state.formattedFile[key]);
+// });
+            
+
+  
+  // formData.append("name", this.state.formattedFile.name);
+  // formData.append("type", this.state.formattedFile.type);
+  // formData.append("status", this.state.formattedFile.status);
+  // formData.append("size", this.state.formattedFile.size);
+  // formData.append("uid", this.state.formattedFile.uid);
 
 
   // Append other form values
