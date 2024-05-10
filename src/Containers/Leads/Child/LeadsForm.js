@@ -217,7 +217,7 @@ props.emptyClearbit();
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lob:selectedLob,
-                price:parseInt(values.price),
+                price:values.price,
                
                 sectorId: selectedSector,
               },

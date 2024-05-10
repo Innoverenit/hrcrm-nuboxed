@@ -109,7 +109,7 @@ export const sendEmail = (email, blank, cb) => dispatch => {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         "Content-Type": "multipart/form-data",
-        enctype: "multipart/form-data"
+        // enctype: "multipart/form-data"
       }
     })
     .then(res => {

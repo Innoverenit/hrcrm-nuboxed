@@ -175,9 +175,9 @@ class UpdateContactForm extends Component {
               },
             ],
             notes: this.props.setEditingContact.notes || "",
-            bedrooms:"",
-            price:"",
-            propertyType:"",
+            bedrooms:this.props.setEditingContact.bedrooms || "",
+            price:this.props.setEditingContact.price || "",
+            propertyType:this.props.setEditingContact.propertyType || "",
           }}
           validationSchema={UpdateContactSchema}
           onSubmit={(values, { resetForm }) => {
