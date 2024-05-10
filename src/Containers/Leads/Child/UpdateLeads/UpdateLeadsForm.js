@@ -216,9 +216,10 @@ function UpdateLeadsForm (props) {
             middleName:props.setEditingLeads.middleName || "",
             lastName:props.setEditingLeads.lastName || "",
             source:props.setEditingLeads.source || "",
-            bedrooms:"",
+            price:props.setEditingLeads.price || "",
+            bedrooms:props.setEditingLeads.bedrooms || "",
         
-            propertyType:"",
+            propertyType:props.setEditingLeads.propertyType || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
             address: [
               {
@@ -243,7 +244,7 @@ function UpdateLeadsForm (props) {
                 leadsId: props.leadsId,
                 source: selectedSource,
                 lob:selectedLob,
-                price:values.price,
+                
                 sectorId: selectedSector,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
               },

@@ -205,17 +205,33 @@ class OpportunityRowEmailModal extends Component {
             }}
             // validationSchema={NoteSchema}
             onSubmit={(values, { resetForm }) => {
-              let formData = new FormData();
-    formData.append("file", this.state.formattedFile);
+             
               //debugger
-              console.log(formData)
+             
               console.log(
                 draftToHtml(convertToRaw(editorState.getCurrentContent()))
               );
               const htmlBody = draftToHtml(
                 convertToRaw(editorState.getCurrentContent())
               );
-               this.props.sendEmail({ ...values,body:htmlBody, cc: values.cc, bcc: values.bcc,  formData }, 
+              console.log(this.state.formattedFile)
+              // const blobData = new Blob([this.state.formattedFile],);
+              // console.log(blobData)
+              let formData = new FormData();
+
+  // Append the file object to FormData with the key "file"
+  // formData.append("file", [this.state.formattedFile]);
+  formData.append("type", this.state.formattedFile.type);
+  formData.append("status", this.state.formattedFile.status);
+  formData.append("size", this.state.formattedFile.size);
+  formData.append("uid", this.state.formattedFile.uid);
+
+
+  // Append other form values
+  formData.append("body", htmlBody);
+  formData.append("cc", values.cc);
+  formData.append("bcc", values.bcc);
+               this.props.sendEmail(formData, 
                 // () => setEmailModalVisible(false)
               )
             }}
