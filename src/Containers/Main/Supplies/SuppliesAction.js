@@ -651,14 +651,14 @@ export const setSuppliesSupplierType = (data) => (dispatch) => {
     });
 };
 
-export const linkMaterialToggle = ( data,currencyId) => (dispatch, getState) => {
+export const linkMaterialToggle = ( id,uniqueId) => (dispatch, getState) => {
   //console.log(permissions, userId);
   const orgId = getState().auth.userDetails.organizationId;
   dispatch({
     type: types.LINK_MATERIAL_TOGGLE_REQUEST,
   });
   axios
-  .put(`${base_url2}/`, data, {
+  .put(`${base_url2}/supplies/uniqueId/${id}/${uniqueId}`, {}, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },

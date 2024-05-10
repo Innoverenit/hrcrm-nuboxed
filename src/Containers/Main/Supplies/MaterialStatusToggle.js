@@ -5,62 +5,29 @@ import { bindActionCreators } from "redux";
 import { linkMaterialToggle } from "../Supplies/SuppliesAction";
 
 function MaterialStatusToggle(props) {
-  const[data,setData]=useState(props.purchaseList)
-  useEffect(()=>{
-    setData(props.purchaseList)
-  },[props.purchaseList])
-  const [toggle, setToggle] = React.useState(props.ind);
-  console.log(props.ind)
-
-  function handleToggleCollection(item) {
-    if (props.ind) {
-      props.linkMaterialToggle({
-        suppliesId: props.suppliesId,
-        ind: props.ind ? false : true,
-         
-      },props.suppliesId);
-      setToggle( props.ind ? false : true);
- 
-    } else {
-      props.linkMaterialToggle({
-        suppliesId: props.suppliesId,
-        ind: props.ind ? false : true,
-      },props.suppliesId);
-      setToggle( props.ind ? false : true);
-    }
+  const [assignedIndicator, setAssignedIndicator] = React.useState(false);
+  const [toggle, setToggle] = React.useState(props.uniqueIdInd);
+console.log("suppliesId",props.suppliesId)
+  function handleToggleClick(value) {
+    // setAssignedIndicator(!assignedIndicator);
+    setToggle(value)
+    props.linkMaterialToggle(props.suppliesId,value)
   }
 
-  function handleCancel() {
-    if (props.ind) {
-      setToggle(true);
-    } else {
-      setToggle(false);
-    }
-  }
+
   return (
     <>
-      
-        <Popconfirm
-          title="Confirm status change?"
-          onConfirm={() => handleToggleCollection()}
-          onCancel={handleCancel}
-          okText="Yes"
-          cancelText="No"
-        >
+      <div>
+     
           <Switch
-            className="toggle-clr"
-            checked={props.ind || toggle}
-            // disabled={props.status}
+            checked={ toggle}
             isLoading={true}
-            style={{
-              width: "5em",
-              backgroundColor: props.ind || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
-            }}
+             onChange={handleToggleClick}
             checkedChildren="Yes"
             unCheckedChildren="No"
           />
-        </Popconfirm>
-      
+  
+      </div>
     </>
   );
 }

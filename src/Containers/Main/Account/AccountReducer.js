@@ -2687,7 +2687,7 @@ export const distributorReducer = (state = initialState, action) => {
           addingOrderProcurement: false,
            procurementOrder: [action.payload, ...state.procurementOrder],
           orderDetailsId: action.payload,
-          addLinkCustomerProcurementModal: false,
+          // addLinkCustomerProcurementModal: false,
   
         };
       case types.ADD_ORDER_PROCUREMENT_FAILURE:

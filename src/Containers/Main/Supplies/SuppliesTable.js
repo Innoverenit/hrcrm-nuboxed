@@ -119,7 +119,7 @@ function SuppliesTable(props) {
                       <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[15.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                          <div className=" flex font-medium flex-col w-[13.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
 <span>
@@ -195,8 +195,8 @@ function SuppliesTable(props) {
                           <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <MaterialStatusToggle
-mandatoryInd={item.mandatoryInd}
-currency_name={item.currency_name}
+// mandatoryInd={item.mandatoryInd}
+uniqueIdInd={item.uniqueIdInd}
 suppliesId={item.suppliesId}
 /> 
                             </div>
