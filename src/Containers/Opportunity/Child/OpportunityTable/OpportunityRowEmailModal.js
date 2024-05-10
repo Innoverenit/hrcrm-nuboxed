@@ -197,9 +197,9 @@ class OpportunityRowEmailModal extends Component {
             enableReinitialize
             initialValues={{
               subject: "Quotation",
-              body: "",
-              cc: [],
-              bcc: [],
+              text: "",
+              //cc: [],
+              //bcc: [],
               to:  [],
               from: [],
             }}
@@ -243,9 +243,11 @@ formData.append('file', file); // 'file' is the key for the file content
 
 
   // Append other form values
-  formData.append("body", htmlBody);
-  formData.append("cc", values.cc);
-  formData.append("bcc", values.bcc);
+  
+  formData.append("to", values.to);
+  formData.append("from", values.from);
+  formData.append("subject",values.subject);
+  formData.append("text", htmlBody);
                this.props.sendEmail(formData, 
                 // () => setEmailModalVisible(false)
               )
@@ -287,14 +289,14 @@ formData.append('file', file); // 'file' is the key for the file content
                     <div class="w-[88%]" >
                       
                     <Field
-                      name="cc"
+                      name="from"
                       component={InputComponent}
                       width="100%"
                     />
                       </div>
                   </div>
                  
-                  <div class=" flex items-center" >
+                  {/* <div class=" flex items-center" >
                   <div class=" w-[12%]" >
                <StyledLabel>BCC</StyledLabel>
                     </div>
@@ -306,7 +308,7 @@ formData.append('file', file); // 'file' is the key for the file content
                       width="100%"
                     />
                       </div>
-                  </div>
+                  </div> */}
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
                <StyledLabel>Subject</StyledLabel>
