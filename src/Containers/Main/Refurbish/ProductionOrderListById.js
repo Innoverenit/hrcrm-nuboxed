@@ -90,7 +90,7 @@ function ProductionOrderListById(props) {
                                                         </span>
                                                     ) : null}
                                                 </div>
-                                                <div className=" flex font-medium w-[8.9rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium w-[8.1rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                                                     )}
@@ -110,14 +110,14 @@ function ProductionOrderListById(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium   w-[7.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[20.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} In Progress
                                                     </div>

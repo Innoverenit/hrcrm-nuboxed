@@ -315,7 +315,7 @@ const DashboardActionLeft = (props) => {
       <Tooltip title="Region">
         <Button
           style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
-        
+        type="primary"
         >
           <span class=" text-white">Region</span>
         </Button>

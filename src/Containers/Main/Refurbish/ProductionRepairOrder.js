@@ -71,7 +71,7 @@ function ProductionRepairOrder(props) {
                                     <div>
                                         <div className="flex rounded-xl justify-between mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col "   >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium  w-[18.4rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                                <div className=" flex font-medium  w-[17.4rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-sm text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
@@ -124,7 +124,7 @@ function ProductionRepairOrder(props) {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium justify-center w-[21rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex font-medium justify-center w-[20rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button
