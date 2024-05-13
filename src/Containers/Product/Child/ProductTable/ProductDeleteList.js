@@ -27,6 +27,7 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import ReInstateProductToggle from "./ReInstateProductToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -80,13 +81,16 @@ function ProductDeleteList(props) {
     updateProductModal,
     user,
     proBuilderDrawer,
+    fetchingdeleteProducts,
     handleProductBuilderDrawer,
     handlePriceDrawer,
     priceOpenDrawer,
     deleteCatalogData,
     deleteproducts
   } = props;
-
+ if (fetchingdeleteProducts) {
+    return <BundleLoader />;
+  }
   return (
     <>
 
@@ -139,7 +143,7 @@ function ProductDeleteList(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[13.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
@@ -313,6 +317,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
+  fetchingdeleteProducts:product.fetchingdeleteProducts,
 });
 
 const mapDispatchToProps = (dispatch) =>

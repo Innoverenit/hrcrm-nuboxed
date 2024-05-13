@@ -1220,7 +1220,7 @@ export const inputDataSearch = (name) => (dispatch) => {
     });
 };
 
-export const deleteShipperData = (id) => (dispatch, getState) => {
+export const deleteShipperData = (id,userId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_SHIPPER_DATA_REQUEST,
@@ -1232,8 +1232,12 @@ export const deleteShipperData = (id) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully!',
+      })
       console.log(res);
-      // dispatch(getShipperByUserId(userId));
+      dispatch(getShipperRecords(userId));
       dispatch({
         type: types.DELETE_SHIPPER_DATA_SUCCESS,
         payload: id,
@@ -1494,7 +1498,7 @@ export const getAwbListByShipperId = (shipperId) => (dispatch) => {
 };
 
 
-export const reinstateToggleForShipper = (data, shipperId) => (
+export const reinstateToggleForShipper = (data, shipperId,userId) => (
   dispatch
 ) => {
   // debugger;
@@ -1502,8 +1506,13 @@ export const reinstateToggleForShipper = (data, shipperId) => (
     type: types.REINSTATE_TOGGLE_FOR_SHIPPER_REQUEST,
   });
   axios
-    .put(`${base_url2}/shipper/reinitiate/Shipper/${shipperId} `, data)
+    .put(`${base_url2}/shipper/reinitiate/Shipper/${shipperId} `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
+      dispatch(getShipperDeletedRecords(userId))
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_SHIPPER_SUCCESS,
         payload: shipperId,

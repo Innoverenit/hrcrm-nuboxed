@@ -12,7 +12,8 @@ function ReInstateSuppliers(props) {
             {
                 supplierId: props.supplierId,
             },
-            props.supplierId
+            props.supplierId,
+            props.orgId,
         );
     }
 
@@ -39,7 +40,7 @@ function ReInstateSuppliers(props) {
 }
 
 const mapStateToProps = ({ auth, collection }) => ({
-
+    orgId:auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

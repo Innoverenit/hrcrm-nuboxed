@@ -12,7 +12,8 @@ function ReInstateShipper(props) {
             {
                 shipperId: props.shipperId,
             },
-            props.shipperId
+            props.shipperId,
+            props.userId
         );
     }
 
@@ -39,7 +40,7 @@ function ReInstateShipper(props) {
 }
 
 const mapStateToProps = ({ auth, collection }) => ({
-
+    userId: auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>

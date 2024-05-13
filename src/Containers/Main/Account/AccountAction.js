@@ -728,14 +728,14 @@ export const deleteDistributor = (data, distributorId, userId) => (
       })
     .then((res) => {
       console.log(res);
-      // dispatch(getDistributorsByUserId(userId));
+      dispatch(getRecords(userId));
       dispatch({
         type: types.DELETE_DISTRIBUTOR_SUCCESS,
         payload: res.data,
       });
       Swal.fire({
         icon: 'success',
-        title: 'Updated Successfully',
+        title: 'Deleted Successfully',
         showConfirmButton: true,
       })
     })

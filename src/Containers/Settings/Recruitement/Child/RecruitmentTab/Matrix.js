@@ -106,28 +106,28 @@ const Matrix = (props) => {
     }
   }, [props.countries]);
 
-  // useEffect(() => {
-  //   if (activeTab) {
-  //     props.getMatrixdata(activeTab, props.organizationId);
-  //   }
-  // }, [activeTab]);
-
   useEffect(() => {
-    const fetchData = async () => {
-      if (activeTab) {
-        setLoading(true);
-        try {
-          await props.getMatrixdata(activeTab, props.organizationId);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchData();
+    if (activeTab) {
+      props.getMatrixdata(activeTab, props.organizationId);
+    }
   }, [activeTab]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (activeTab) {
+  //       setLoading(true);
+  //       try {
+  //         await props.getMatrixdata(activeTab, props.organizationId);
+  //       } catch (error) {
+  //         console.error("Error fetching data:", error);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [activeTab]);
 
   return (
     <Tabs type="card" activeKey={activeTab} onChange={handleTabClick}>
