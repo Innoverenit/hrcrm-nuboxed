@@ -209,14 +209,15 @@ const handleStages = (val) => {
                                       ref={provided.innerRef}
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
-                                      droppableProps={{ hello: "world" }}
+                                      //droppableProps={{ hello: "world" }}
                                       className="scrollbar"
                                       id="style-3"
                                     >
                                       
                                         
                                             <StageProductionColumns
-                                               key={stageIndex}
+                                              //  key={stageIndex}
+                                              key={stage.productionStagesId}
                                               employee={stage}
                                               data={item}
                                               index={stageIndex}
