@@ -69,6 +69,7 @@ class LeadsNoteForm extends Component {
       fetchingNotesListByLeadsId,
     } = this.props;
     const { editorState, placeholder } = this.state;
+    console.log(rowdata)
     return (
       <>
         <Formik
