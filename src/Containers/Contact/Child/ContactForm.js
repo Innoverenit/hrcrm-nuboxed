@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
-import { HeaderLabel, Spacer } from "../../../Components/UI/Elements";
+import { HeaderLabel,  } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -440,159 +440,9 @@ class ContactForm extends Component {
                       )}
                     </div>
                   </div>
-                  <Spacer />
-                  {this.props.orgType==="Real Estate"&&(
-                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "
-                >
-                  <div class=" flex  justify-between max-sm:mt-20">
-                    <div class="  w-w47.5">
-                      <Field
-                        name="bedrooms"
-                        // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        label="Bedrooms"
-                        style={{width:"12em"}}
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
-                        options={["1", "2", "3","4","5","6"]}
-                        component={SelectComponent}
-                        isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
-                        inlineLabel
-                      />
-                    </div>
-
-                   
-                    <div class=" w-w47.5" style={{marginLeft:"125px"}}>
-                    <FastField
-                            name="price"
-                            label="Price"
-                            //isColumnWithoutNoCreate
-                            //selectType="sourceName"
-                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
-                            component={SelectComponent}
-                            style={{width:"12em"}}
-                            // value={values.source}
-                            isColumn
-                          />
-                        </div>
-                     
-                    
-                  </div>
-                  <Spacer />
-                  <div class=" flex justify-between">         
-                  <div class="  w-w47.5">
-                    <Field
-                      name="propertyType"
-                      label="Property Type"
-                      width="100%"
-                      isColumn
-                      isColumnWithoutNoCreate
-                      options={["Studio", "Row house", "Villa"]}
-                      component={SelectComponent}
-                      style={{width:"12em"}}
-                      // value={values.departmentId}
-                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
-                      inlineLabel
-                    />
-                  </div>
-                
-                  </div>
                  
                  
-
-                  <Spacer />
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                  <Spacer /> */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  <Spacer />
-                  <div class=" flex  justify-between">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-                  <Spacer />
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
-                </div>
-                )}
-                  < div class=" flex justify-between">
+                  < div class=" flex justify-between mt-3">
                     <div class=" w-full">
                       <FastField
                         type="text"
@@ -668,8 +518,8 @@ class ContactForm extends Component {
                      
                     
                   </div>
-                  <Spacer />
-                  <div class=" flex justify-between">         
+                 
+                  <div class=" flex justify-between mt-3">         
                   <div class="  w-w47.5">
                     <Field
                       name="departmentId"
@@ -724,7 +574,75 @@ class ContactForm extends Component {
                     )}
                   />
 
-                  <Spacer />
+                 
+                  {this.props.orgType==="Real Estate"&&(
+                  <div class=" h-3/4 max-sm:w-wk mt-3 "
+                >
+                  <div class=" flex  justify-between max-sm:mt-20">
+                    <div class="  w-w47.5">
+                      <Field
+                        name="bedrooms"
+                        // selectType="customerList"
+                        isColumnWithoutNoCreate
+                        label="Bedrooms"
+                      
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.tagCompany"
+                        //     defaultMessage="Tag Company"
+                        //   />
+                        // }
+                        options={["1", "2", "3","4","5","6"]}
+                        component={SelectComponent}
+                        isColumn
+                        //value={values.customerId}
+                        //isDisabled={defaultCustomers}
+                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
+                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        inlineLabel
+                      />
+                    </div>
+
+                   
+                    <div class=" w-w47.5" >
+                    <FastField
+                            name="price"
+                            label="Price"
+                            //isColumnWithoutNoCreate
+                            //selectType="sourceName"
+                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
+                            component={SelectComponent}
+                           
+                            // value={values.source}
+                            isColumn
+                          />
+                        </div>
+                     
+                    
+                  </div>
+                  
+                  <div class=" flex justify-between mt-3">         
+                  <div class="  w-w47.5">
+                    <Field
+                      name="propertyType"
+                      label="Property Type"
+                      width="100%"
+                      isColumn
+                      isColumnWithoutNoCreate
+                      options={["Studio", "Row house", "Villa"]}
+                      component={SelectComponent}
+                     
+                      // value={values.departmentId}
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                      inlineLabel
+                    />
+                  </div>
+                
+                  </div>
+                 
+                 
+
+                 
                   {/* <Field
                     name="address[0].address1"
                     // label="Address"
@@ -738,7 +656,7 @@ class ContactForm extends Component {
                     isColumn
                     width="100%"
                   />
-                  <Spacer /> */}
+                 */}
                   {/* <Field
                     name="address[0].street"
                     //label="Street"
@@ -753,8 +671,8 @@ class ContactForm extends Component {
                     isColumn
                     width="100%"
                   /> */}
-                  <Spacer />
-                  <div class=" flex  justify-between">
+                 
+                  <div class=" flex  justify-between mt-3">
                     {/* <div style={{ width: "47%" }}>
                       <Field
                         name="address[0].city"
@@ -771,7 +689,90 @@ class ContactForm extends Component {
                       />
                     </div> */}
                   </div>
-                  <Spacer />
+                
+                  {/* <FlexContainer justifyContent="space-between">
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].state"
+                        //label="State"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].State"
+                            defaultMessage="State"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].postalCode"
+                        //label="Zip Code"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].postalCode"
+                            defaultMessage="Pin Code"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                  </FlexContainer> */}
+                </div>
+                )}
+                  {/* <Field
+                    name="address[0].address1"
+                    // label="Address"
+                    label={
+                      <FormattedMessage
+                        id="app.address[0].address1"
+                        defaultMessage="Address"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  />
+                   */}
+                  {/* <Field
+                    name="address[0].street"
+                    //label="Street"
+
+                    label={
+                      <FormattedMessage
+                        id="app.street"
+                        defaultMessage="Street"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  /> */}
+                 
+                  <div class=" flex  justify-between mt-3">
+                    {/* <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].city"
+                        //label="City"
+                        label={
+                          <FormattedMessage
+                            id="app.ddress[0].city"
+                            defaultMessage="City"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div> */}
+                  </div>
+                 
                   {/* <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -808,8 +809,8 @@ class ContactForm extends Component {
                   </FlexContainer> */}
                 </div>
               </div>
-              <Spacer />
-              <div class="flex justify-end md:w-wk bottom-2 md:mr-2 md:absolute ">
+             
+              <div class="flex justify-end mt-3 md:w-wk bottom-2 md:mr-2 md:absolute ">
                 <Button
                   type="primary"
                   htmlType="submit"
