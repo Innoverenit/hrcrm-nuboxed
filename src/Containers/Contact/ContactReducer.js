@@ -443,6 +443,7 @@ export const contactReducer = (state = initialState, action) => {
         ...state,
         addingContactOpportunity: false,
         addContactOpportunityModal: false,
+        opportunityByContactId: [action.payload, ...state.opportunityByContactId],
         // clearbit: null,
       };
     case types.ADD_CONTACT_OPPORTUNITY_FAILURE:

@@ -1,104 +1,122 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getCustomerData } from "../../../../../Customer/CustomerAction";
+import { getContactData,addContactOpportunity } from "../../../../../Contact/ContactAction";
 import { FormattedMessage } from "react-intl";
-import { Button } from "antd";
-import { Formik, Form, Field } from "formik";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { Button, Tooltip,Select } from "antd";
+import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
-import {getCurrency} from "../../../../../Auth/AuthAction"
+import DraggableUpload1 from "../../../../../../Components/Forms/Formik/DraggableUpload1";
+import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-//import { addCustomerOpportunity } from "../../../../CustomerAction";
-import { getWorkflow, getStages,
+import {
+  addOpportunity,
+  getInitiative,
+  getOppLinkedWorkflow,
+  getOppLinkedStages,
 } from "../../../../../Opportunity/OpportunityAction";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
+import {getAssignedToList} from "../../../../../Employees/EmployeeAction"
+import { getCrm} from "../../../../../Leads/LeadsAction";
+import {getSaleCurrency} from "../../../../../Auth/AuthAction"
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
-import { getCrm} from "../../../../../Leads/LeadsAction";
-import { Listbox, } from '@headlessui/react'
+import { Listbox } from "@headlessui/react";
+import { getAllEmployeelist } from "../../../../../Investor/InvestorAction";
+
 /**
  * yup validation scheme for creating a opportunity
  */
-
+const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
-  opportunityName: Yup.string().required("Please provide Opportunity name"),
-  currency: Yup.string().required("Currency needed!"),
+  opportunityName: Yup.string().required("Input needed!"),
   oppWorkflow: Yup.string().required("Input needed!"),
+  currency: Yup.string().required("Input needed!"),
   oppStage: Yup.string().required("Input needed!"),
+  //customerId:Yup.string().required("Input needed!"),
 });
 function ContactOpportunityForm(props) {
-  const handleReset = (resetForm) => {
-    resetForm();
-  };
-
   useEffect(() => {
-    props.getCurrency();
-    props.getWorkflow(props.orgId);
-    props.getStages(props.orgId);
-    props. getCrm();
+    // props.getContactData(props.userId);
+    // props.getCustomerData(props.userId);
+    props.getInitiative(props.userId);
+     props.getOppLinkedStages(props.orgId);
+     props.getOppLinkedWorkflow(props.orgId);
+     props.getCrm();
+    //  props.getAssignedToList(props.orgId);
+     props.getAllEmployeelist();
+     props.getSaleCurrency();
   }, []);
 
-  const {
-    addingCustomerOpportunity,
-    customerId,
-    startDate,
-    endDate,
-    defaultCustomers,
-    userId,
-  } = props;
-  function getAreaOptions(filterOptionKey, filterOptionValue) {
-    const contactOptions =
-      props.contactByUserId.length &&
-      props.contactByUserId
-        .filter((option) => {
-          if (option.customerId === filterOptionValue && option.probability !== 0) {
-            return option;
-          }
-        })
-        .map((option) => ({
-          label: option.fullName || "",
-          value: option.contactId,
-        }));
+  const [defaultOption, setDefaultOption] = useState(props.fullName);
+  const [selected, setSelected] = useState(defaultOption);
 
-    return contactOptions;
-  }
+  const [include, setInclude] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [touched, setTouched] = useState(false);
+  const [selectedValues, setSelectedValues] = useState([]);
+
+
+  const [customers, setCustomers] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+
+  // useEffect(() => {
+  //   fetchCustomers();
+  // }, []);
+
+
  
 
+ 
 
-  function getStagesOptions(filterOptionKey, filterOptionValue) {
-    const StagesOptions =
-      props.stages.length &&
-      props.stages
-        .filter((option) => {
-          if (option.opportunityWorkflowDetailsId === filterOptionValue && option.probability !== 0) {
-            return option;
-          }
-        })
-        .sort((a, b) => {
-          if (a.probability < b.probability) {
-            return -1; // Sort in increasing order
-          } else if (a.probability > b.probability) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
+ 
+  const fetchInclude = async () => {
+    setIsLoading(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.organizationId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-        .map((option) => ({
-          label: `${option.stageName}  ${option.probability}`,
-          value: option.opportunityStagesId,
-        }));
 
-    return StagesOptions;
-  }
-  const WorkflowOptions = props.workflow.map((item) => {
-    return {
-      label: `${item.workflowName || ""}`,
-      value: item.opportunityWorkflowDetailsId,
-    };
-  });
-  const sortedCurrency =props.currencies.sort((a, b) => {
+  const handleSelectChange = (values) => {
+    setSelectedValues(values); // Update selected values
+  };
+
+  const handleSelectFocus = () => {
+    if (!touched) {
+      fetchInclude();
+      setTouched(true);
+    }
+  };
+
+  const sortedCurrency =props.saleCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -116,42 +134,154 @@ function ContactOpportunityForm(props) {
       value: item.currency_name,
     };
   });
-  
 
 
-  const [defaultOption, setDefaultOption] = useState(props.fullName);
-  const [selected, setSelected] = useState(defaultOption);
-  const selectedOption = props.sales.find((item) => item.fullName === selected);
+  function getAreaOptions(filterOptionKey, filterOptionValue) {
+    const contactOptions = props.contactData
+      .filter((option) => option.customerId === filterOptionValue && option.probability !== 0)
+      .map((option) => ({
+        label: option.fullName || "",
+        value: option.contactId,
+      }))
+      .sort((a, b) => {
+        // Replace 'propertyToSortBy' with the actual property you want to sort by
+        const propertyToSortByA = a.label.toLowerCase();
+        const propertyToSortByB = b.label.toLowerCase();
+        
+        // Use localeCompare for case-insensitive string comparison
+        return propertyToSortByA.localeCompare(propertyToSortByB);
+      });
   
+    return contactOptions;
+  }
+  
+  function getStagesOptions(filterOptionKey, filterOptionValue) {
+    const StagesOptions =
+      props.oppLinkStages.length &&
+      props.oppLinkStages
+        .filter((option) => {
+          if (
+            option.opportunityWorkflowDetailsId === filterOptionValue &&
+            option.probability !== 0
+          ) {
+            return option;
+          }
+        })
+        .sort((a, b) => {
+          if (a.probability < b.probability) {
+            return -1; // Sort in increasing order
+          } else if (a.probability > b.probability) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
+
+        .map((option) => ({
+          // label: `${option.stageName || ""}`,
+           label: `${option.stageName}  ${option.probability}`,
+          value: option.opportunityStagesId,
+        }));
+
+    return StagesOptions;
+  }
+  const sortedWorkflow =props.oppLinkWorkflow.sort((a, b) => {
+    const nameA = a.workflowName.toLowerCase();
+    const nameB = b.workflowName.toLowerCase();
+    // Compare department names
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  const WorkflowOptions = sortedWorkflow.map((item) => {
+    return {
+      label: `${item.workflowName || ""}`,
+      value: item.opportunityWorkflowDetailsId,
+    };
+  });
+
+  const customerNameOption = props.customerData
+    .sort((a, b) => {
+      const libraryNameA = a.name && a.name.toLowerCase();
+      const libraryNameB = b.name && b.name.toLowerCase();
+      if (libraryNameA < libraryNameB) {
+        return -1;
+      }
+      if (libraryNameA > libraryNameB) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    })
+    .map((item) => {
+      return {
+        label: `${item.name || ""}`,
+        value: item.customerId,
+      };
+    });
+
+const AllEmplo = props.assignedToList.map((item) => {
+  return {
+    label: `${item.empName || ""}`,
+    value: item.employeeId,
+  };
+});
+const filteredEmployeesData = AllEmplo.filter(
+  (item) => item.value !== props.user.userId
+);
+
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
+  const {
+    user: { userId,empName, },
+    addingOpportunity,
+    startDate,
+    employeeId,
+    endDate,
+  } = props;
+  const selectedOption = props.crmAllData.find((item) => item.empName === selected);
+  console.log(selectedValues)
   return (
     <>
       <Formik
         initialValues={{
           opportunityName: "",
-          // startDate: "",
-          // endDate: "",
           startDate: startDate || dayjs(),
           endDate: endDate || null,
           endDate: dayjs(),
+          userId: props.userId,
+          description: "",
           proposalAmount: "",
-          // contactId:"",
-
+          // excelId: "",
           currency: props.user.currency,
           orgId: props.organizationId,
-          customerId: customerId ? customerId.value : "",
-          contactId: customerId ? customerId.value : "",
-          description: "",
-          salesUserIds: selectedOption ? selectedOption.employeeId:userId,
-          opportunitySkill: [
-            {
-              noOfPosition: "",
-              oppInnitiative: "",
-              // opportunityId: "",
-              // opportunitySkillLinkId: "",
-              skill: ""
-            }
-          ],
-
+          userId: props.userId,
+          // customerId: undefined,
+          oppWorkflow: "",
+          contactId: undefined,
+          oppInnitiative: "",
+          oppStage: "",
+          contactId:props.contactId,
+          salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
+          // included: selectedValues,
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -187,8 +317,7 @@ function ContactOpportunityForm(props) {
           var firstStartTimeSplit = firstStartHours.split(":"); // removing the colon
           console.log(firstStartTimeSplit);
 
-          var minutes =
-            +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1]; // converting hours into minutes
+          var minutes = +firstStartTimeSplit[0] * 60 + +firstStartTimeSplit[1]; // converting hours into minutes
           console.log(minutes);
 
           var firstStartTimeminutes = minutes - timeZoneminutes; // start time + time zone
@@ -228,16 +357,19 @@ function ContactOpportunityForm(props) {
           console.log(`${finalEndTime}${timeEndPart}`);
 
           let newEndTime = `${finalEndTime}${timeEndPart}`;
-          props.addCustomerOpportunity(
+
+          props.addContactOpportunity(
             {
               ...values,
-              startDate: `${newStartDate}T00:00:00Z`,
-              endDate: `${newEndDate}T00:00:00Z`,
-              customerId: props.customerId,
-              userId: props.userId,
-              salesUserIds: selectedOption ? selectedOption.employeeId:userId,
+              
+              startDate: `${newStartDate}T20:00:00Z`,
+              endDate: `${newEndDate}T20:00:00Z`,
+              included: selectedValues,
+              description: transcript ? transcript : text,
+              salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
             },
             props.userId,
+            props.customerId,
             resetForm()
           );
         }}
@@ -251,41 +383,35 @@ function ContactOpportunityForm(props) {
           values,
           ...rest
         }) => (
+          <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
-            <div  class=" flex justify-between">
-          
-            <div class=" h-full w-[47.5%] mt-3"
-                >
+            <div class=" flex justify-between max-sm:flex-col">
+              <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
+               
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
-
                   //label="Name"
 
                   label={
-                    <FormattedMessage
-                      id="app.name"
-                      defaultMessage="Name"
-                    />
+                    <FormattedMessage id="app.name" defaultMessage="Name" />
                   }
                   isColumn
-
                   width={"100%"}
                   component={InputComponent}
                   // accounts={accounts}
                   inlineLabel
                 />
-           
-                <div class=" flex justify-between mt-3">
-                  <div class=" w-2/4">
+                <Spacer />
+                <div class="flex justify-between max-sm:flex-col">
+                <div class=" w-w47.5 max-sm:w-wk">
                     <Field
-                      isRequired
                       name="startDate"
                       //label="Start "
                       label={
                         <FormattedMessage
-                          id="app.startdate"
+                          id="app.startDate"
                           defaultMessage="Start Date"
                         />
                       }
@@ -295,28 +421,25 @@ function ContactOpportunityForm(props) {
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-2/5">
+                  <div class=" w-w47.5 max-sm:w-wk">
                     <Field
-                      isRequired
+                      // isRequired
                       name="endDate"
                       // label="End Date"
                       label={
                         <FormattedMessage
-                          id="app.enddate"
+                          id="app.endDate"
                           defaultMessage="End Date"
                         />
                       }
                       isColumn
                       component={DatePicker}
-                      // value={values.endDate}
                       value={values.endDate || values.startDate}
                       inlineLabel
                       disabledDate={(currentDate) => {
                         if (values.startDate) {
                           if (
-                            dayjs(currentDate).isBefore(
-                              dayjs(values.startDate)
-                            )
+                            dayjs(currentDate).isBefore(dayjs(values.startDate))
                           ) {
                             return true;
                           } else {
@@ -327,16 +450,16 @@ function ContactOpportunityForm(props) {
                     />
                   </div>
                 </div>
-          
-                <div class=" flex justify-between mt-3">
-                  <div class=" w-2/4">
+                <Spacer />
+                <div class="flex justify-between max-sm:flex-col">
+                <div class=" w-w47.5 max-sm:w-wk">
                     <Field
                       name="proposalAmount"
                       //label="Value"
 
                       label={
                         <FormattedMessage
-                          id="app.Value"
+                          id="app.proposalamount"
                           defaultMessage="Value"
                         />
                       }
@@ -345,8 +468,8 @@ function ContactOpportunityForm(props) {
                       component={InputComponent}
                     />
                   </div>
-                  <div class=" w-2/5">
-                  <Field
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
@@ -369,32 +492,59 @@ function ContactOpportunityForm(props) {
                           : []
                       }
                     />
-                  
                   </div>
                 </div>
-               
-<div class=" mt-3">
-                <Field
-                  name="description"
-                  // label="Notes"
-                  label={
-                    <FormattedMessage id="app.description" defaultMessage="Description" />
-                  }
-                  width={"100%"}
-                  isColumn
-                  component={TextareaComponent}
-                />
+                <Spacer />
+                <StyledLabel>Description</StyledLabel>
+                <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span style={{ fontSize: "1.5em", color: "red" }}>
+                          <PlayCircleFilledIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span
+                          style={{
+                            fontSize: "1.5em",
+                            color: "green",
+                            marginLeft: "3px",
+                          }}
+                        >
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span style={{ fontSize: "1.5em", marginLeft: "3px" }}>
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
                 </div>
               </div>
-          
-              <div class=" h-full w-[47.5%]"
-                >
-                    <Listbox value={selected} onChange={setSelected}>
+            <div
+               class=" h-full w-[47.5%] max-sm:w-wk">
+              <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2  "
-            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-            >
+            <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
               Assigned to
             </Listbox.Label>
             <div className="relative mt-1">
@@ -404,7 +554,7 @@ function ContactOpportunityForm(props) {
               {open && (
                 <Listbox.Options
                   static
-                  className="absolute z-10 mt-1 max-h-56 w-full overflow-auto  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                  className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
                   {props.crmAllData.map((item) => (
                     <Listbox.Option
@@ -459,78 +609,117 @@ function ContactOpportunityForm(props) {
           </>
         )}
       </Listbox>
-                {/* <Field
-                  name="salesUserIds"
-                  // selectType="employee"
-                  isColumnWithoutNoCreate
-                  // label="Assigned to"
-                  label={
-                    <FormattedMessage
-                      id="app.assignedto"
-                      defaultMessage="Assigned to"
-                    />
-                  }
-                  component={SelectComponent}
-                  options={Array.isArray(salesNameOption) ? salesNameOption : []}
-                  // margintop={"0"}
-                  isColumn
-                  // value={values.employeeId}
-                  // defaultValue={{
-                  //   label: `${fullName}`,
-                  //   value: employeeId,
-                  // }}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                /> */}
-                 <div class="mt-3">
-                <Field
-                  name="customerId"
-                  isColumnWithoutNoCreate
-                  // selectType="customerList"
-                  // label="Customer"
 
-                  label={
-                    <FormattedMessage
-                      id="app.customer"
-                      defaultMessage="Customer"
-                    />
-                  }
-                  // isRequired
-                  component={SelectComponent}
-                  isColumn
-                  options={[]}
-                  // value={values.customerId}
-                  isDisabled={defaultCustomers}
-                  defaultValue={defaultCustomers ? defaultCustomers : null}
-                  inlineLabel
+       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>
+       {/* <Field
+                    name="included"
+                    // label="Include"
+                    label={
+                      <FormattedMessage
+                        id="app.include"
+                        defaultMessage="include"
+                      />
+                    }
+                    mode
+                    placeholder="Select"
+                    component={SelectComponent}
+                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
+                    value={values.included}
+                    defaultValue={{
+                      label: `${empName || ""} `,
+                      value: employeeId,
+                    }}
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
+                   <Select
+          showSearch
+          style={{ width: 415 }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoading}
+          onFocus={handleSelectFocus}
+          onChange={handleSelectChange}
+          defaultValue={selectedValues} 
+          mode="multiple" 
+        >
+          {include.map(includes => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
+        </div>        
+<div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
+<div class=" w-w47.5 max-sm:w-wk">
+                  {/* <Field
+                    name="customerId"
+                    // selectType="customerList"
+                    isColumnWithoutNoCreate
+                    label={
+                      <FormattedMessage
+                        id="app.customer"
+                        defaultMessage="Customer"
+                      />
+                    }
+                    //component={SearchSelect}
+                    component={SelectComponent}
+                    options={
+                      Array.isArray(customerNameOption)
+                        ? customerNameOption
+                        : []
+                    }
+                    isColumn
+                    margintop={"0"}
+                    value={values.customerId}
+                    inlineLabel
+                  /> */}
 
-                />
-                </div>
-         <div class=" mt-3">
-                <Field
-                  name="contactId"
-                  isColumnWithoutNoCreate
-                  selectType="contactOpportunityList"
-                  // label="Contact"
-                  label={
-                    <FormattedMessage
-                      id="app.contact"
-                      defaultMessage="Contact"
-                    />
-                  }
-                  component={SearchSelect}
-                  isColumn
-                  value={values.contactId}
-                  inlineLabel
-                />
-</div>
-                <div class=" flex justify-between mt-3">
-                  <div class=" w-2/4">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> 
+
+          
+            </div>
+         
+                        </div>
+              
+                {/* <StyledLabel>
+                  <Field
+                    name="oppInnitiative"
+                    //selectType="initiativeName"
+                    isColumnWithoutNoCreate
+                    label={
+                      <FormattedMessage
+                        id="app.initiative"
+                        defaultMessage="Initiative"
+                      />
+                    }
+                    component={SelectComponent}
+                    options={
+                      Array.isArray(
+                        getInitiativeOptions("customerId", values.customerId)
+                      )
+                        ? getInitiativeOptions("customerId", values.customerId)
+                        : []
+                    }
+                    value={values.initiativeDetailsId}
+                    filterOption={{
+                      filterType: "customerId",
+                      filterValue: values.customerId,
+                    }}
+                    disabled={!values.customerId}
+                    isColumn
+                    inlineLabel
+                  />
+                </StyledLabel> */}
+                <Spacer />
+
+                <div class="flex justify-between max-sm:flex-col">
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <StyledLabel>
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
+                        isRequired
+                        placeolder="Select type"
                         label={
                           <FormattedMessage
                             id="app.workflow"
@@ -539,19 +728,21 @@ function ContactOpportunityForm(props) {
                         }
                         // component={SearchSelect}
                         component={SelectComponent}
-                        options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
+                        options={
+                          Array.isArray(WorkflowOptions) ? WorkflowOptions : []
+                        }
                         value={values.oppWorkflow}
                         isColumn
                         inlineLabel
                       />
-                    </div>
+                    </StyledLabel>
                   </div>
-                
-                  <div class=" w-2/5 ">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> 
+                  <Spacer />
+                  <div class=" w-w47.5 max-sm:w-wk">
+                    <StyledLabel>
                       <Field
                         name="oppStage"
-                        //selectType="initiativeName"
+                        isRequired
                         isColumnWithoutNoCreate
                         label={
                           <FormattedMessage
@@ -561,8 +752,13 @@ function ContactOpportunityForm(props) {
                         }
                         component={SelectComponent}
                         options={
-                          Array.isArray(getStagesOptions("oppWorkflow", values.oppWorkflow))
-                            ? getStagesOptions("oppWorkflow", values.oppWorkflow)
+                          Array.isArray(
+                            getStagesOptions("oppWorkflow", values.oppWorkflow)
+                          )
+                            ? getStagesOptions(
+                                "oppWorkflow",
+                                values.oppWorkflow
+                              )
                             : []
                         }
                         value={values.oppStage}
@@ -574,60 +770,84 @@ function ContactOpportunityForm(props) {
                         isColumn
                         inlineLabel
                       />
-                    </div>
+                    </StyledLabel>
                   </div>
                 </div>
-              </div>
+                <div class="mt-3">
+                                        <Field
+                                            name="excelId"
+                                            // isRequired
+                                            component={DraggableUpload1}
+                                        />
+                                    </div>
+              </div> 
+  
             </div>
-          
-            <div class=" flex justify-end mt-3">
+            <Spacer />
+            <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute ">
               <Button
                 type="primary"
                 htmlType="submit"
-                Loading={addingCustomerOpportunity}
+                loading={props.addingContactOpportunity}
               >
                 <FormattedMessage id="app.create" defaultMessage="Create" />
-    
+                {/* Create */}
               </Button>
             </div>
           </Form>
+          </div>
         )}
       </Formik>
     </>
   );
-
 }
 
-const mapStateToProps = ({ auth, opportunity, currency, customer,leads }) => ({
+const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact, customer,leads }) => ({
   user: auth.userDetails,
+  crmAllData:leads.crmAllData,
+  addingContactOpportunity:contact.addingContactOpportunity,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
-  // contactId: contact.contactByUserId.contactId,
+  //contactId: contact.contactByUserId.contactId,
   customerId: customer.customer.customerId,
-  addingCustomerOpportunity: customer.addingCustomerOpportunity,
-  addingCustomerOpportunityError: customer.addingCustomerOpportunity,
-  currencies: auth.currencies,
-  sales: opportunity.sales,
-  workflow: opportunity.workflow,
-  stages: opportunity.stages,
+  initiativesByCustomerId: customer.initiativesByCustomerId,
+  addingOpportunity: opportunity.addingOpportunity,
+  addingOpportunityError: opportunity.addingOpportunityError,
   orgId: auth.userDetails.organizationId,
+  oppLinkStages: opportunity.oppLinkStages,
+  stages:opportunity.stages,
+  contactByUserId: contact.contactByUserId,
+  customerByUserId: customer.customerByUserId,
+  initiatives: opportunity.initiatives,
+  workflow:opportunity.workflow,
+  token: auth.token,
+  oppLinkWorkflow: opportunity.oppLinkWorkflow,
+  organizationId: auth.userDetails.organizationId,
+  customerData: customer.customerData,
+  contactData: contact.contactData,
   fullName: auth.userDetails.fullName,
-  crmAllData:leads.crmAllData,
+  allEmployeeList:investor.allEmployeeList,
+  assignedToList:employee.assignedToList,
+  currencies: auth.currencies,
+  saleCurrencies: auth.saleCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // addCustomerOpportunity,
-      getCurrency,
-      getWorkflow,
-      getStages, 
+      addOpportunity,
+      getContactData,
+      getCustomerData,
+      getInitiative,
+      getOppLinkedWorkflow,
+      getOppLinkedStages,
       getCrm,
+      getAllEmployeelist,
+      getAssignedToList,
+      addContactOpportunity,
+      getSaleCurrency
     },
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContactOpportunityForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactOpportunityForm);

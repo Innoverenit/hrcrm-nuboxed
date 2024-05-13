@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { PlusOutlined } from "@ant-design/icons";
+import LinkedOpportunity from "../ContactTab/Opportunity/LinkedOpportunity"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
@@ -10,6 +11,7 @@ import { handleDocumentUploadModal } from "../../../ContactAction";
 import { handleContactReactSpeechModal,handleContactOpportunityModal } from "../../../ContactAction";
 import { getOpportunityListByContactId } from "../../../ContactAction";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+
 const LinkedDocuments =lazy(()=>import("./Document/LinkedDocuments"));
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
 const AddContactOpportunityModal =lazy(()=>import("../../../Child/ContactDetail/ContactTab/Opportunity/AddContactOpportunityModal"));
@@ -180,8 +182,8 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <LinkedDocuments /> */}
-                Hello
+                <LinkedOpportunity />
+              
               </Suspense>
             </TabPane>
           </StyledTabs>
@@ -193,6 +195,7 @@ class ContactDetailTab extends Component {
             contactId={ contactId }
           />
           <AddContactOpportunityModal
+           contactId={ contactId }
             addContactOpportunityModal={addContactOpportunityModal}
             handleContactOpportunityModal={handleContactOpportunityModal}
             // defaultContacts={[
