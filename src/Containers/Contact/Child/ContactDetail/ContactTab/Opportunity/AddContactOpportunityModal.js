@@ -13,7 +13,7 @@ const AddContactOpportunityModal = (props) => {
         title={
           <FormattedMessage id="app.opportunity" defaultMessage="Opportunity" />
         }
-        width="45%"
+        width="63%"
         visible={props.addContactOpportunityModal}
         maskClosable={false}
         destroyOnClose
@@ -23,7 +23,9 @@ const AddContactOpportunityModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactOpportunityForm {...formProps} />{" "}
+          <ContactOpportunityForm 
+           contactId={ props.contactId }
+          {...formProps} />{" "}
         </Suspense>
       </StyledDrawer>
     </>
