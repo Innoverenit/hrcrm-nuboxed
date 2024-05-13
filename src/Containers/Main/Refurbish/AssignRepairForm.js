@@ -176,7 +176,7 @@ const AssignRepairForm = (props) => {
                 </div>
                 <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
-                    <div class=" text-base text-green-600">{props.tatQuality.avgTime.toFixed(2)}</div>
+                    {/* {technician && <div class=" text-base text-green-600">{props.tatQuality.avgTime.toFixed(2)}</div>} */}
                 </div>
                 <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">Quality</label>
