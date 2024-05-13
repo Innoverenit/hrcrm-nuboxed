@@ -2327,7 +2327,7 @@ export const settingsReducer = (state = initialState, action) => {
     case types.ADD_SKILL_LEVEL_SUCCESS:
       return { ...state, 
         addingSkillLevel: false, 
-       
+        matrixData:[action.payload,...state.matrixData]
     
       };
     case types.ADD_SKILL_LEVEL_FAILURE:
@@ -4059,13 +4059,17 @@ export const settingsReducer = (state = initialState, action) => {
                                                             case types.UPDATE_SKILL_LEVEL_SUCCESS:
                                                               return { ...state, 
                                                                 updatingSkillLevel: false, 
-                                                                matrixData:state.matrixData.map((item) => {
-                                                                  if (item.skillLevelLinkId === action.payload.skillLevelLinkId) {
-                                                                    return action.payload;
-                                                                  } else {
-                                                                    return item;
-                                                                  }
-                                                                }),
+                                                                matrixData: state.matrixData.map((equipment) =>
+                                                                equipment.skillLevelLinkId === action.payload.skillLevelLinkId ? action.payload : equipment
+                                                                ),
+                                                             
+                                                                // matrixData:state.matrixData.map((item) => {
+                                                                //   if (item.skillLevelLinkId === action.payload.skillLevelLinkId) {
+                                                                //     return action.payload;
+                                                                //   } else {
+                                                                //     return item;
+                                                                //   }
+                                                                // }),
                                                               };
                                                             case types.UPDATE_SKILL_LEVEL_FAILURE:
                                                               return { ...state, updatingSkillLevel: false,  

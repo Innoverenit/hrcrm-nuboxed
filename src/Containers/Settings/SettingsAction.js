@@ -5443,17 +5443,18 @@ export const getOrgType = (orgId) => (dispath) => {
       });
     });
 };
-export const updateSkillLevel = (data) => (dispatch, getState) => {
+export const updateSkillLevel = (data,activeTab,organizationId) => (dispatch, getState) => {
   dispatch({
     type: types.UPDATE_SKILL_LEVEL_REQUEST,
   });
   axios
-    .put(`${base_url}/skillLevel/ID`, data, {
+    .post(`${base_url}/skillLevel`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      dispatch(getMatrixdata(activeTab,organizationId,))
       console.log(res);
       dispatch({
         type: types.UPDATE_SKILL_LEVEL_SUCCESS,

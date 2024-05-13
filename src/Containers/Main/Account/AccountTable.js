@@ -346,7 +346,7 @@ function AccountTable(props) {
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Popconfirm
                                   title="Do you want to delete?"
-                                  onConfirm={() => props.deleteDistributor({}, item.distributorId)}
+                                  onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
                                   <DeleteOutlined
                                     className=" !text-base cursor-pointer text-[red]"

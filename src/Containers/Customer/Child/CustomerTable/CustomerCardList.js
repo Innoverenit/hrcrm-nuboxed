@@ -407,7 +407,23 @@ console.log(page)
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {`${item.countryDialCode} ${item.phoneNumber}`}
+                        {
+  
+  (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
+  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
+
+ 
+  `${item.countryDialCode} ${item.phoneNumber}` :
+
+  
+  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
+  `${item.phoneNumber}` : 
+  '' 
+}
+
+                          {/* {
+                          `${item.countryDialCode} ${item.phoneNumber}`
+                          } */}
                         </div>
 
                       </div>

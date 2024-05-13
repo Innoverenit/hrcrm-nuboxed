@@ -226,7 +226,7 @@ function SuppliersCardList(props) {
           <div>
           <Popconfirm
               title="Do you want to delete?"
-             onConfirm={() => props.deleteSupplierData(item.supplierId)}
+             onConfirm={() => props.deleteSupplierData(item.supplierId,props.userId)}
             >
               <DeleteOutlined
 

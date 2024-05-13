@@ -502,7 +502,7 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       },
     })
     .then((res) => {
-      // dispatch(getProducts(0))
+      dispatch(getRecords())
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,

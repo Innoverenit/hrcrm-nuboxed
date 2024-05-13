@@ -668,7 +668,11 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/supplier/supplierName/${name}`, {})
+    .get(`${base_url}/supplier/supplierName/${name}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       dispatch({
         type: types.INPUT_SEARCH_DATA_SUCCESS,
@@ -1682,7 +1686,7 @@ export const getSupplierSuppliesQuality = () => (dispatch) => {
     });
 };
 
-export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
+export const deleteSupplierData = (supplierId,userId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_SUPPLIER_DATA_REQUEST,
@@ -1695,6 +1699,7 @@ export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
         },
       })
     .then((res) => {
+      dispatch(getSupplierCount(userId))
       console.log(res);
       Swal.fire({
         icon: 'success',
@@ -1850,7 +1855,7 @@ export const getSupplierwiseQuality = (supplierId,suppliesId) => (dispatch) => {
 };
 
 
-export const reinstateToggleForSupplier = (data, supplierId) => (
+export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
   dispatch
 ) => {
   // debugger;
@@ -1864,6 +1869,7 @@ export const reinstateToggleForSupplier = (data, supplierId) => (
       },
     })
     .then((res) => {
+      dispatch(getSupplierDeletedCount(orgId))
       dispatch({
         type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS,
         payload: supplierId,

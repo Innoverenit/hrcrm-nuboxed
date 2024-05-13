@@ -190,7 +190,7 @@ function ShipperCardList(props) {
                           <div>
                             <Popconfirm
                               title="Do you want to delete?"
-                              onConfirm={() => props.deleteShipperData(item.shipperId)}
+                              onConfirm={() => props.deleteShipperData(item.shipperId,props.userId)}
                             >
                               <DeleteOutlined
                                 className=" !text-base cursor-pointer text-[red]"

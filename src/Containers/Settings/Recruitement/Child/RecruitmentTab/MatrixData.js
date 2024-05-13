@@ -129,10 +129,27 @@ const EditableTable = (props) => {
   const [rows, setRows] = useState([]);
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [editedFields, setEditedFields] = useState({});
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     props.getLibrarys(props.organizationId);
   }, [props.organizationId]);
+
+  const validateRow = (index) => {
+    const row = rows[index];
+    const errors = {};
+  
+    if (!row.skillDefinationId) {
+      errors.skill = 'Skill is required';
+    }
+  
+    setValidationErrors((prevErrors) => ({
+      ...prevErrors,
+      [index]: errors,
+    }));
+  
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
 
   useEffect(() => {
     setData(props.matrixData.map((item, index) => ({ ...item, key: String(index) })));
@@ -232,21 +249,44 @@ const EditableTable = (props) => {
     );
     setData(updatedData);
   };
-
   const handleSave = (index) => {
-     const row = rows[index];
-     console.log('Submitting Row:', row);
+    const isValid = validateRow(index);
+  
+    if (isValid) {
+      const row = rows[index];
       const result = {
-              skillDefinationId: row.skillDefinationId,
-              level1: row.level1,
-              level2: row.level2,
-              level3: row.level3,
-              // skillLevelLinkId:row.skillLevelLinkId,
-              countryId:props.activeTab
-            };
-      props.addSkillLevel(result)
+        skillDefinationId: row.skillDefinationId,
+        level1: row.level1,
+        level2: row.level2,
+        level3: row.level3,
+        skillLevelLinkId: '',
+        countryId: props.activeTab
+      };
+  
+      props.addSkillLevel(result);
       setRows([{ skillDefinationId: '', level1: '', level2: '', level3: '' }]);
+    } else {
+      // Display error message or handle invalid state (e.g., highlight fields)
+      console.log('Row validation failed:', validationErrors[index]);
+    }
   };
+  
+
+  // const handleSave = (index) => {
+  //    const row = rows[index];
+  //    console.log('Submitting Row:', row);
+  //     const result = {
+  //             skillDefinationId: row.skillDefinationId,
+  //             level1: row.level1,
+  //             level2: row.level2,
+  //             level3: row.level3,
+  //             // skillLevelLinkId:row.skillLevelLinkId,
+  //             skillLevelLinkId:"",
+  //             countryId:props.activeTab
+  //           };
+  //     props.addSkillLevel(result)
+  //     setRows([{ skillDefinationId: '', level1: '', level2: '', level3: '' }]);
+  // };
   const handleEditClick = (productCurrencyId) => {
     setEditsuppliesId(productCurrencyId);
   };
@@ -254,17 +294,17 @@ const EditableTable = (props) => {
     setEditedFields((prevFields) => ({ ...prevFields, [productCurrencyId]: undefined }));
     setEditsuppliesId(null);
   };
-  function handleUpdate(key) {
-    console.log('Submitting Row:', key);
+  function handleUpdate(item) {
+    console.log('Submitting Row:', item);
     const updatedData = {
-      skillDefinationId: key.skillDefinationId,
-      level1: key.level1,
-      level2: key.level2,
-      level3: key.level3,
-      // skillLevelLinkId:row.skillLevelLinkId,
+      skillDefinationId: item.skillDefinationId,
+      level1: item.level1,
+      level2: item.level2,
+      level3: item.level3,
+      skillLevelLinkId:item.skillLevelLinkId,
       countryId:props.activeTab
     };
-    props.updateSkillLevel(updatedData);
+    props.updateSkillLevel(updatedData,props.activeTab,props.organizationId);
     setEditsuppliesId(null);
   };
 
@@ -273,55 +313,60 @@ const EditableTable = (props) => {
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
         Add Row
       </Button>
+      <label class=" ml-4">Currency is in Local Value</label>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]">
+            <div class="flex justify-around w-[40rem]">
               <div>
                 <label>Skill</label>
-                <div class="w-24">
+                {/* <div class="w-[6rem]"> */}
                 <Select
-                        classNames="w-32"
-                        value={row.skillDefinationId}
-                        onChange={(value) => handleChange(index, 'skillDefinationId',value)}
-                      >
-                        {props.librarys.map((d) => (
-                          <Option key={d.definationId} value={d.definationId}>
-                            {d.name}
-                          </Option>
-                        ))}
-                      </Select>
+  style={{ width: '7rem', borderColor: validationErrors[index]?.skill && 'red' }}
+  value={row.skillDefinationId}
+  onChange={(value) => handleChange(index, 'skillDefinationId', value)}
+>
+  {props.librarys.map((d) => (
+    <Option key={d.definationId} value={d.definationId}>
+      {d.name}
+    </Option>
+  ))}
+</Select>
+{validationErrors[index]?.skill && (
+  <div style={{ color: 'red' }}>{validationErrors[index].skill}</div>
+)}
 
-                </div>
+
+                {/* </div> */}
               </div>
 
               <div>
                 <label>Level 1</label>
-                <div class="w-24"></div>
+        
                 <Input
-                        className="w-32"
+                        style={{ width:"6rem"}}
                         value={row.level1}
                         onChange={(e) => handleChange(index,'level1',e.target.value)}
                       /></div>
               <div>
                 <label>Level 2</label>
-                <div class="w-24">
+                
                 <Input
-                        className="w-32"
+                   style={{ width:"6rem"}}
                         value={row.level2}
                         onChange={(e) => handleChange(index,'level2',e.target.value)}
-                      /></div></div>
+                      /></div>
               <div>
                 <label>Level 3</label>
-                <div class="w-24">
+              
                 <Input
-                        className="w-32"
+                       style={{ width:"6rem"}}
                         value={row.level3}
                         onChange={(e) => handleChange(index,'level3',e.target.value)}
                       />
-                </div>
+             
               </div>
             </div>
-            <div class="mt-4">
+            <div class="w-[4rem]">
             <Button type="primary" onClick={() => handleSave(index)}>
               Submit
             </Button>
