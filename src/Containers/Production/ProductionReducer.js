@@ -252,6 +252,13 @@ export const productionReducer = (state = initialState, action) => {
               return item;
             }
           }),
+          productionTableData: state.productionTableData.map((item) => {
+            if (item.productionProductId === action.payload.productionProductId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
         };
       case types.UPDATE_PRODCUTION_STATUS_FAILURE:
         return { ...state, updateProductionStatus: false,updateProductionStatusError:true, };

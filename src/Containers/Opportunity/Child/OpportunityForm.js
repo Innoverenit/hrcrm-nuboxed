@@ -37,7 +37,7 @@ import { getAllEmployeelist } from "../../Investor/InvestorAction";
  */
 const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
-  opportunityName: Yup.string().required("Input needed!"),
+  //opportunityName: Yup.string().required("Input needed!"),
   oppWorkflow: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
   oppStage: Yup.string().required("Input needed!"),
@@ -446,7 +446,7 @@ const filteredEmployeesData = AllEmplo.filter(
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
                
                 <Field
-                  isRequired
+                  //isRequired
                   name="opportunityName"
                   type="text"
                   //label="Name"
