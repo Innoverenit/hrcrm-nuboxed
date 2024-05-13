@@ -12,8 +12,9 @@ const ProductBuilderDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Product Builder for ${particularDiscountData.name ? `${particularDiscountData.name}`:""} 
-        ${particularDiscountData.articleNo ? `${particularDiscountData.articleNo}` : ""}`}
+        // title={`Product Builder for ${particularDiscountData.name ? `${particularDiscountData.name}`:""} 
+        // ${particularDiscountData.articleNo ? `${particularDiscountData.articleNo}` : ""}`}
+        title={`${particularDiscountData.name} &nbsp; ${particularDiscountData.categoryName} ${particularDiscountData.subCategoryName} ${particularDiscountData.attributeName} ${particularDiscountData.subAttributeName} ${particularDiscountData.brand} ${particularDiscountData.model}`}
         width={drawerWidth}
         visible={proBuilderDrawer}
         destroyOnClose

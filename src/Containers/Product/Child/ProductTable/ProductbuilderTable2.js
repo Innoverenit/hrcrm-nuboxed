@@ -111,6 +111,7 @@ return (
          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
          <div className=" md:w-[9.5rem]">Name</div>
+         <div className=" md:w-[8.2rem] ">HSN</div>
         <div className=" md:w-[8.2rem] ">Category</div>
         <div className="md:w-[9.8rem]">Attribute</div>
         <div className=" md:w-[4.21rem] ">Unit</div>
@@ -146,6 +147,13 @@ return (
                       </div>
                     </div>
                   </div>
+                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div class=" text-xs text-cardBody font-poppins">
+                      
+                      {item.hsn}
+                     
+                    </div>
+    </div>
 
     <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
@@ -207,7 +215,7 @@ return (
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
                         <Tooltip title={item.description}>
-                        <div> {item.description.substring(0, 20)}</div>
+                        <div> {item.description}</div>
                         </Tooltip>
                       </div>
                     )}

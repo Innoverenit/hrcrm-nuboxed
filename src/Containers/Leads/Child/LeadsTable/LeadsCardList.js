@@ -344,6 +344,7 @@ const LeadsCardList = (props) => {
                     </div>
                   </div>
                      <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                      {item.assignedBy && (
                     <div>
                     <Tooltip title={item.assignedBy}>
                 <div class="max-sm:flex justify-end">
@@ -359,6 +360,7 @@ const LeadsCardList = (props) => {
             </div>
           </Tooltip>
                     </div>
+                    )}
                   </div>
                   <div className=" flex font-medium flex-col w-16  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
