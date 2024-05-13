@@ -76,6 +76,7 @@ function ProductionTableView(props) {
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[9rem]">ID</div>
+                        <div className=" md:w-[6rem]">Cell</div>
                         <div className=" md:w-[6rem]">Created</div>
                         <div className="md:w-[2rem]"></div>
                         <div className=" md:w-[4.3rem]">Item</div>
@@ -117,6 +118,13 @@ function ProductionTableView(props) {
                                                         </div>
 
                                                     </div>
+
+                                                    <div class=" text-xs text-cardBody font-poppins">
+
+{item.cellChamberName}
+</div>
+
+                                                    
                                                     <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
@@ -129,21 +137,22 @@ function ProductionTableView(props) {
                   imgHeight={"2.1em"}
                 />
                                                         </div>
+                                                        <div class=" text-xs text-cardBody font-poppins">
+    {/* {props.productionTableData.createdBy} */}
+    {`  ${moment.utc(item.creationDate).format("DD-MM-YYYY")}`}
+</div>
 
                                                     </div>
 
                                                     <div className=" flex font-medium items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody font-poppins">
-    {/* {props.productionTableData.createdBy} */}
-    {`  ${moment.utc(item.creationDate).format("DD-MM-YYYY")}`}
-</div>
+
 
 </div>
                                                     <div className=" flex font-medium items-center  md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            {item.productName}
+                                                            {item.categoryName} {item.subCategoryName}
                                                         </div>
 
                                                     </div>
@@ -153,7 +162,7 @@ function ProductionTableView(props) {
                                                 <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins">
 
-                                                        {item.categoryName} 
+                                                        {item.attributeName}  {item.subAttributeName} 
                                                     </div>
                                                 </div>
                                                 
@@ -253,10 +262,10 @@ function ProductionTableView(props) {
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">                       
                         <div className=" md:w-[9rem]">Workflow</div>
                         <div className=" md:w-[6.06rem]">Stage</div>
-                        <div className="md:w-[2rem]"></div>
+                        <div className="md:w-[2rem]">Inspected</div>
                         <div className=" md:w-[6.07rem]">Store</div>
-                        <div className="md:w-[5.08rem]">Inspected</div>
-                        <div className="md:w-[5.07rem]">Dispatch</div>
+                        <div className="md:w-[5.08rem]"></div>
+                        <div className="md:w-[5.07rem]">To Dispatch</div>
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  
