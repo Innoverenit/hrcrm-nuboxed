@@ -7,6 +7,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { DeleteOutlined } from "@ant-design/icons";
 import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
@@ -109,12 +110,12 @@ return (
   <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
-         <div className=" md:w-[7%]">Name</div>
-        <div className=" md:w-[4.2rem] ">Category</div>
-        <div className="md:w-[5.8rem]">Sub Category</div>
-        <div className=" md:w-[4.2rem] ">Unit</div>
-        <div className=" md:w-[4.2rem] ">Step</div>
-         <div className=" md:w-[4.2rem] ">Description</div>
+         <div className=" md:w-[9.5rem]">Name</div>
+        <div className=" md:w-[8.2rem] ">Category</div>
+        <div className="md:w-[9.8rem]">Attribute</div>
+        <div className=" md:w-[4.21rem] ">Unit</div>
+        <div className=" md:w-[3.22rem] ">Step</div>
+         <div className=" md:w-[8.23rem] ">Description</div>
         <div className="w-12"></div>
             </div>
       
@@ -122,7 +123,7 @@ return (
           return (
 <div key={item.productionBuilderId}>
 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "    >
-<div className=" flex font-medium flex-col w-[10rem]   max-sm:w-full">
+<div className=" flex font-medium  w-[9rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
                       <div>
                        
@@ -137,8 +138,8 @@ return (
 
                       <div class="max-sm:w-full md:flex items-center">
                      
-                      <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                      <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
+    <div class="text-xs text-cardBody   font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
     </div>
@@ -146,19 +147,21 @@ return (
                     </div>
                   </div>
 
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
                       
-                      {item.categoryName}
+                      {item.categoryName}{item.subCategoryName}
+                     
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                      {item.subCategoryName}
+        <div class=" text-xs text-cardBody   font-poppins">
+        {item.attribute}{item.subattribute}
+       
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -175,7 +178,7 @@ return (
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex font-medium  md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -192,7 +195,7 @@ return (
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex font-medium  md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
@@ -203,12 +206,14 @@ return (
                                            />
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.description}</div>
+                        <Tooltip title={item.description}>
+                        <div> {item.description.substring(0, 20)}</div>
+                        </Tooltip>
                       </div>
                     )}
                     </div>
   </div>
-  <div class="flex flex-col w-24 max-sm:flex-row max-sm:w-[10%]">
+  <div class="flex flex-col w-8 max-sm:flex-row max-sm:w-[10%]">
     <div class="flex">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
@@ -240,8 +245,8 @@ return (
 
                           >
                      <Tooltip title="Delete">
-                          <DeleteIcon
-                           className="!text-base cursor-pointer text-[red]"
+                          <DeleteOutlined
+                           className=" !text-base cursor-pointer !text-[red]"
                           />
                        </Tooltip>
                        </Popconfirm>

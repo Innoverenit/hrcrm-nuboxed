@@ -18,7 +18,6 @@ import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
-import { HeaderLabel, Spacer } from "../../../Components/UI/Elements";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
 const { Option } = Select; 
@@ -441,7 +440,7 @@ props.emptyClearbit();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+        //style={{ width: 200 }}
         placeholder="Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -462,7 +461,7 @@ props.emptyClearbit();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       // style={{ width: 200 }}
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -477,164 +476,14 @@ props.emptyClearbit();
       </Select>
                         </div>
                     </div>
-                    {props.orgType==="Real Estate"&&(
-                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "
-                >
-                  <div class=" flex  justify-between max-sm:mt-20">
-                    <div class="  w-w47.5">
-                      <Field
-                        name="bedrooms"
-                        // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        label="Bedrooms"
-                        style={{width:"12em"}}
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
-                        options={["1", "2", "3","4","5","6"]}
-                        component={SelectComponent}
-                        isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
-                        inlineLabel
-                      />
-                    </div>
-
-                   
-                    <div class=" w-w47.5" style={{marginLeft:"125px"}}>
-                    <FastField
-                            name="price"
-                            label="Price"
-                            //isColumnWithoutNoCreate
-                            //selectType="sourceName"
-                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
-                            component={SelectComponent}
-                            style={{width:"12em"}}
-                            // value={values.source}
-                            isColumn
-                          />
-                        </div>
-                     
-                    
-                  </div>
-                  <Spacer />
-                  <div class=" flex justify-between">         
-                  <div class="  w-w47.5">
-                    <Field
-                      name="propertyType"
-                      label="Property Type"
-                      width="100%"
-                      isColumn
-                      isColumnWithoutNoCreate
-                      options={["Studio", "Row house", "Villa"]}
-                      component={SelectComponent}
-                      style={{width:"12em"}}
-                      // value={values.departmentId}
-                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
-                      inlineLabel
-                    />
-                  </div>
-                
-                  </div>
-                 
-                 
-
-                  <Spacer />
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                  <Spacer /> */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  <Spacer />
-                  <div class=" flex  justify-between">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-                  <Spacer />
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
-                </div>
-                )}
+                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
                     <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       
         placeholder="Search or select LOB"
         optionFilterProp="children"
         loading={isLoadingLob}
@@ -812,7 +661,157 @@ props.emptyClearbit();
                     )}
                   />
                   </div>
+                  {props.orgType==="Real Estate"&&(
+                  <div class=" h-3/4  max-sm:w-wk "
+                >
+                  <div class=" flex  justify-between max-sm:mt-20">
+                    <div class="w-[47.5%]">
+                      <Field
+                        name="bedrooms"
+                        // selectType="customerList"
+                        isColumnWithoutNoCreate
+                        label="Bedrooms"
+                       
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.tagCompany"
+                        //     defaultMessage="Tag Company"
+                        //   />
+                        // }
+                        options={["1", "2", "3","4","5","6"]}
+                        component={SelectComponent}
+                        isColumn
+                        //value={values.customerId}
+                        //isDisabled={defaultCustomers}
+                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
+                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        inlineLabel
+                      />
+                    </div>
+
+                   
+                    <div class="w-[47.5%]">
+                    <FastField
+                            name="price"
+                            label="Price"
+                            //isColumnWithoutNoCreate
+                            //selectType="sourceName"
+                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
+                            component={SelectComponent}
+                            
+                            // value={values.source}
+                            isColumn
+                          />
+                        </div>
+                     
+                    
+                  </div>
+                 
+                  <div class=" flex justify-between mt-3">         
+                  <div class="  w-w47.5">
+                    <Field
+                      name="propertyType"
+                      label="Property Type"
+                      width="100%"
+                      isColumn
+                      isColumnWithoutNoCreate
+                      options={["Studio", "Row house", "Villa"]}
+                      component={SelectComponent}
+                     
+                      // value={values.departmentId}
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                      inlineLabel
+                    />
+                  </div>
+                
+                  </div>
+                 
+                 
+
+                 
+                  {/* <Field
+                    name="address[0].address1"
+                    // label="Address"
+                    label={
+                      <FormattedMessage
+                        id="app.address[0].address1"
+                        defaultMessage="Address"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  />
+                   */}
+                  {/* <Field
+                    name="address[0].street"
+                    //label="Street"
+
+                    label={
+                      <FormattedMessage
+                        id="app.street"
+                        defaultMessage="Street"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  /> */}
                   
+                  <div class=" flex  justify-between mt-3">
+                    {/* <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].city"
+                        //label="City"
+                        label={
+                          <FormattedMessage
+                            id="app.ddress[0].city"
+                            defaultMessage="City"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div> */}
+                  </div>
+                  
+                  {/* <FlexContainer justifyContent="space-between">
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].state"
+                        //label="State"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].State"
+                            defaultMessage="State"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].postalCode"
+                        //label="Zip Code"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].postalCode"
+                            defaultMessage="Pin Code"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                  </FlexContainer> */}
+                </div>
+                )}
                 <div class=" mt-3">
                   <Field
                     name="notes"

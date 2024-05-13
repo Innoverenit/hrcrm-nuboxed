@@ -257,7 +257,7 @@ const LeadsCardList = (props) => {
                   </div>
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[6.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                  <div className=" flex font-medium flex-col w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.countryDialCode && item.phoneNumber
