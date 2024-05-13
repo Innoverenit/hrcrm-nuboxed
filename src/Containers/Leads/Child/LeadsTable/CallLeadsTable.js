@@ -61,7 +61,7 @@ const CallLeadsTable = (props) => {
           ))}
       </Timeline>
       <AddLeadsNotesListDrawerModal
-    rowdata={props.rowdata}
+    rowdata={rowdata}
     handleRowData={handleRowData}
     callTimeline={props.callTimeline}
     notesListOfLeads={props.notesListOfLeads}
