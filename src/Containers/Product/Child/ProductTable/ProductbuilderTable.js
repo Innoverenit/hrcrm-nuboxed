@@ -54,7 +54,10 @@ function ProductbuilderTable (props) {
                                     <div class="flex justify-between">
                                     <div class={`${isMobile ? "w-wk" : "w-[18%]"}`}>
                                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">HSN</div>
-      <Select value={selectedValue} onChange={handleChange}>
+      <Select value={selectedValue}
+     placeholder="Select "
+     style={{ width: 200 }}
+       onChange={handleChange}>
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>
 })}
