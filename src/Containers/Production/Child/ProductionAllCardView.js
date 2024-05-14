@@ -20,7 +20,7 @@ function ProductionAllCardView(props) {
     const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
-        props.getAllProductionsbyOrgId(props.organizationId, page);
+        props.getAllProductionsbyOrgId(props.organizationId);
         setPage(page + 1);
     }, []);
 
@@ -86,6 +86,8 @@ function ProductionAllCardView(props) {
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[10rem]">ID</div>
+                        <div className=" md:w-[7rem]">Location</div>
+                        <div className=" md:w-[7rem]">Cell</div>
                         <div className=" md:w-[7rem]">Created</div>
                         <div className=" md:w-[7rem]">Item</div>
                         <div className="md:w-[5rem]">Category</div>
@@ -137,6 +139,16 @@ function ProductionAllCardView(props) {
                                                         </div>
 
                                                     </div>
+                                                    <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.locationName}
+                                                    </div>
+                                                </div>
+                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                                        {item.cellChamberName}
+                                                    </div>
+                                                </div>
                                                     <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
@@ -178,7 +190,7 @@ function ProductionAllCardView(props) {
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {item.workFlow}
+                                                        {item.workflowName}
                                                     </div>
                                                 </div>
                                                 <div className=" flex font-medium flex-col md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">

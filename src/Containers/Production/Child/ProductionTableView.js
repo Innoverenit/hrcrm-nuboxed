@@ -1,6 +1,9 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Popconfirm, Switch, Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
@@ -31,6 +34,20 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
 const { Option } = Select;
 
 function ProductionTableView(props) {
+    const [zone, setZone] = useState([]);
+  const [rack, setRack] = useState([]);
+  const [isLoadingZone, setIsLoadingZone] = useState(false);
+  const [isLoadingRack, setIsLoadingRack] = useState(false);
+  const [selectedRack, setSelectedRack] = useState(null);
+  const [selectedZone, setSelectedZone] = useState(null);
+  const [touchedZone, setTouchedZone] = useState(false);
+    const fruitOptions = [
+        { value: 'apple', label: 'Apple' },
+        { value: 'banana', label: 'Banana' },
+        { value: 'orange', label: 'Orange' },
+        { value: 'mango', label: 'Mango' },
+        { value: 'strawberry', label: 'Strawberry' },
+      ];
 
   
     // useEffect(() => {
@@ -56,7 +73,8 @@ function ProductionTableView(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "22px" }}></i>
+                     {iconType}
+                    {/* <i className={`fas ${iconType}`} style={{ fontSize: "22px" }}></i> */}
                 </Button>
             </Tooltip>
         );
@@ -68,6 +86,78 @@ function ProductionTableView(props) {
     //     user,
     //     openbUILDERProductiondrawer, handleBuilderProduction, clickedProductionIdrwr, handleProductionIDrawer
     // } = props;
+
+
+
+    const fetchZone = async () => {
+        setIsLoadingZone(true);
+        try {
+          // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+          // setCustomers(response.data);
+          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/exit/roomAndRackDetails/${props.orgId}`;
+          const response = await fetch(apiEndpoint,{
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${props.token}`,
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          });
+          const data = await response.json();
+          setZone(data);
+        } catch (error) {
+          console.error('Error fetching customers:', error);
+        } finally {
+          setIsLoadingZone(false);
+        }
+      };
+
+
+      const handleSelectZoneFocus = () => {
+        if (!touchedZone) {
+          fetchZone();
+          // fetchSector();
+    
+          setTouchedZone(true);
+        }
+      };
+
+
+
+      const fetchRack = async (roomRackId) => {
+        setIsLoadingRack(true);
+        try {
+          // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+          // setContacts(response.data);
+          const apiEndpoint = `https://erp.celltechnologies.nl/roomrack/${roomRackId}`;
+          const response = await fetch(apiEndpoint,{
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${props.token}`,
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          });
+          const data = await response.json();
+          setRack(data);
+        } catch (error) {
+          console.error('Error fetching contacts:', error);
+        } finally {
+          setIsLoadingRack(false);
+        }
+      };
+
+
+
+      const handleZoneChange = (roomRackId) => {
+        setSelectedZone(roomRackId);
+        fetchRack(roomRackId);
+      };
+
+
+      const handleRackChange=(value)=>{
+        setSelectedRack(value);
+      }
 
     return (
         <>
@@ -101,7 +191,7 @@ function ProductionTableView(props) {
                                                 <div class="flex">
                                                     <div className=" flex font-medium  items-center  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                                                        <div class=" underline text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
+                                                        <div class=" text-[#1890ff] cursor-pointer w-[8rem] flex text-xs  font-poppins"
                                                             // onClick={() => {
                                                             //     handleParticularRowData(item);
                                                             //     props.handleProductionIDrawer(true)
@@ -215,8 +305,9 @@ function ProductionTableView(props) {
                                                             {item.type === "null" && (
                                                                 <StatusIcon
                                                                     type="In Progress"
-                                                                    iconType="fa-hourglass-half"
+                                                                    //iconType="fa-hourglass-half"
                                                                     tooltip="In Progress"
+                                                                    iconType={<HourglassTopIcon/>}
                                                                     role={item.type}
                                                                     onClick={() => {
                                                                         props.updateProStatus({
@@ -228,7 +319,8 @@ function ProductionTableView(props) {
                                                             {item.type === "In Progress" ?
                                                                 <StatusIcon
                                                                     type="Complete"
-                                                                    iconType="fa-hourglass"
+                                                                    //iconType="fa-hourglass"
+                                                                    iconType={<HourglassBottomIcon/>}
                                                                     tooltip="Complete"
                                                                     role={item.type}
                                                                     onClick={() => {
@@ -320,11 +412,54 @@ function ProductionTableView(props) {
 
 
 
+
+                                                <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs text-cardBody font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                        {item.inspectedInd===true&&(
+                                                    <Select placeholder="Select zone" 
+                                                    style={{ width: 146 }}
+                                                    loading={isLoadingZone}
+                                                    onFocus={handleSelectZoneFocus}
+                                                    onChange={handleZoneChange}
+                                                    >
+      
+        {zone.map((zone) => (
+          <Option key={zone.roomRackId} value={zone.roomRackId}>
+            {zone.zone}
+          </Option>
+        ))}
+      </Select>
+                                                        )}
+{item.inspectedInd===true&&(
+      <Select placeholder="Select rack" 
+      style={{ width: 146,marginLeft:"1em" }}
+      loading={isLoadingRack}
+      onChange={handleRackChange}
+      disabled={!selectedZone} 
+      >
+      
+      {rack.map((rack) => (
+        <Option key={rack.roomRackChamberLinkId} value={rack.roomRackChamberLinkId}>
+          {rack.chamber}
+        </Option>
+      ))}
+    </Select>
+)}
+                                                    </div>
+                                                </div>
+
+
+
                                                 <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {/* {props.productionTableData.inspectedInd &&  */}
-                                                        <MoveToggleProduction item={item} />
-                                                        {/* } */}
+                                                        {selectedRack &&  
+                                                        <MoveToggleProduction 
+                                                        item={item} 
+                                                        selectedZone={selectedZone}
+                                                        selectedRack={selectedRack}
+
+                                                        />
+                                                        }
                                                     </div>
                                                 </div>
                                                
@@ -357,6 +492,7 @@ function ProductionTableView(props) {
 
 
 const mapStateToProps = ({ production, auth, inventory }) => ({
+    token: auth.token,
     // productionByLocsId: production.productionByLocsId,
     // fetchingProductionLocId: production.fetchingProductionLocId,
     // locationId: auth.userDetails.locationId,
@@ -368,6 +504,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     // clickedProductionIdrwr: production.clickedProductionIdrwr,
     // organizationId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
+    orgId: auth.userDetails.organizationId,
     // roomRackbyLoc: inventory.roomRackbyLoc,
     // rackList: inventory.rackList,
     // orgId: auth.userDetails.organizationId,

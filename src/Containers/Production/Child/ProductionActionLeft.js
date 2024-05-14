@@ -83,7 +83,7 @@ const ProductionActionLeft = (props) => {
           </span>
           </Badge>
         </Tooltip>
-      <Tooltip title="Archiev List">
+      <Tooltip title="Archive">
         <span class=" md:mr-2 text-sm cursor-pointer"
           onClick={() => setProductionViewType("arch")}
           style={{
@@ -96,7 +96,7 @@ const ProductionActionLeft = (props) => {
 
         </span>
       </Tooltip>
-      <Tooltip title="All ">
+      <Tooltip title="ALL ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
