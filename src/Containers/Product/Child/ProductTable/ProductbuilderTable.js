@@ -2,7 +2,8 @@ import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductbuilder,addProductBuilder,getSearchBuilder } from "../../ProductAction";
-import {  Select } from "../../../../Components/UI/Elements";
+// import {  Select } from "../../../../Components/UI/Elements";
+import { Select } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ProBuildSearchedCard =lazy(()=>import("./ProBuildSearchedCard"));
@@ -54,10 +55,13 @@ function ProductbuilderTable (props) {
                                     <div class="flex justify-between">
                                     <div class={`${isMobile ? "w-wk" : "w-[18%]"}`}>
                                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">HSN</div>
-      <Select value={selectedValue}
-     placeholder="Select "
-     style={{ width: 200 }}
-       onChange={handleChange}>
+                                    <Select
+                                    showSearch
+                // value={selectedValue}
+                style={{ width: "100%" }}
+                onChange={handleChange}
+                placeholder="Select"
+              >
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>
 })}
