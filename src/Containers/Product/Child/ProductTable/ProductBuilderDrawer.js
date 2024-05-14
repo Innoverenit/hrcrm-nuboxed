@@ -4,18 +4,43 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 const ProductbuilderTable2 = lazy(() => import("./ProductbuilderTable2"));
 const ProductbuilderTable = lazy(() => import("./ProductbuilderTable"));
 
-
 const ProductBuilderDrawer = (props) => {
   const { proBuilderDrawer, handleProductBuilderDrawer, particularDiscountData, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "60%";
+  const generateTitle = () => {
+    const {
+      name,
+      categoryName,
+      subCategoryName,
+      attributeName,
+      subAttributeName,
+      brand,
+      model
+    } = particularDiscountData;
+
+    
+    const titleParts = [
+      name || "",
+      categoryName || "",
+      subCategoryName || "",
+      attributeName || "",
+      subAttributeName || "",
+      brand || "",
+      model || ""
+    ];
+    return titleParts.filter(part => part !== "").join(" ").trim();
+  };
+
   return (
     <>
       <StyledDrawer
-        // title={`Product Builder for ${particularDiscountData.name ? `${particularDiscountData.name}`:""} 
+          // title={`Product Builder for ${particularDiscountData.name ? `${particularDiscountData.name}`:""} 
         // ${particularDiscountData.articleNo ? `${particularDiscountData.articleNo}` : ""}`}
-        title={`${particularDiscountData.name} &nbsp; ${particularDiscountData.categoryName} ${particularDiscountData.subCategoryName} ${particularDiscountData.attributeName} ${particularDiscountData.subAttributeName} ${particularDiscountData.brand} ${particularDiscountData.model}`}
-        width={drawerWidth}
+        // title={`${particularDiscountData.name}  ${particularDiscountData.categoryName} ${particularDiscountData.subCategoryName} ${particularDiscountData.attributeName} ${particularDiscountData.subAttributeName} ${particularDiscountData.brand} ${particularDiscountData.model}`}
+        title={generateTitle()}
+         width={drawerWidth}
+     
         visible={proBuilderDrawer}
         destroyOnClose
         closable
