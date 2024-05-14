@@ -58,19 +58,20 @@ const Component2 = (props) => {
 
     return (
         <>
-        <div className=' flex justify-end sticky top-28 z-auto'>
+        <div className=' flex justify-end sticky top-28 z-auto' style={{height:"43em"}}>
              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <h2>Steps</h2>
            
 
 
 
-<Steps direction="vertical" current={0}>
+<Steps direction="vertical" current={0} style={{display:"flex"}}>
                 {props.productionTableData.map((item, index) => (
                     <>
                       {item.steps.map((step, stageIndex) => (
                     <Step
                         key={stageIndex}
+                        style={{display:"flex"}}
                         // title={status.title}
                         title={`${step.suppliesName} (${step.quantity})`} 
                         description={
@@ -95,7 +96,8 @@ const Component2 = (props) => {
                                
                             </div>
                         }
-                    />
+                    >
+                        </Step>
                 ))}
                 </>
                 ))}
@@ -166,6 +168,12 @@ const mapStateToProps = ({ auth, account, opportunity,production }) => ({
       dispatch
     );
   export default connect(mapStateToProps, mapDispatchToProps)(Component2);
+
+
+
+
+
+  
 
 
 

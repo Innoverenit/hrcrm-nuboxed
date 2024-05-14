@@ -15,6 +15,8 @@ function MoveToggleProduction(props) {
         moveToInventoryDate: dayjs(),
         moveToInventoryInd: true,
         locationDetailsId: props.locationId,
+        roomRackId:props.selectedZone,
+        roomRackChamberLinkId:props.selectedRack
       });
   }
 

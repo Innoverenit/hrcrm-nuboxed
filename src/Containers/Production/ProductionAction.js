@@ -277,12 +277,12 @@ export const setInspectProdn = (data) => (dispatch) => {
     });
 };
 
-export const getAllProductionsbyOrgId = (orgId, pageNo) => (dispatch) => {
+export const getAllProductionsbyOrgId = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_PRODUCTION_BYORG_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/productByOrgId/${orgId}/${pageNo}`,
+    .get(`${base_url2}/production/productionProduct/${orgId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

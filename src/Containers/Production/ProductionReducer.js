@@ -270,6 +270,13 @@ export const productionReducer = (state = initialState, action) => {
           return {
             ...state,
             settingInpectdn: false,
+            productionTableData: state.productionTableData.map((item) => {
+              if (item.productionProductId === action.payload.productionProductId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
              
           };
         case types.SET_INSPECT_PRODN_FAILURE:
