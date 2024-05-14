@@ -26,7 +26,7 @@ const initialState = {
 
   fetchingProcureRecords: false,
   fetchingProcureRecordsError: false,
-  procureRecordData:{},
+  procureRecordData: {},
 
   addingDistributor: false,
   addingDistributorError: false,
@@ -64,7 +64,7 @@ const initialState = {
 
   fetchingChatgpt: false,
   fetchingChatgptError: false,
-  chatGpt:[],
+  chatGpt: [],
 
   addDistributorActivityModal: false,
 
@@ -141,7 +141,7 @@ const initialState = {
   setEditingOrder: {},
 
 
-  setEdittingProcure:{},
+  setEdittingProcure: {},
 
   updateOrderDetailModal: false,
 
@@ -163,7 +163,7 @@ const initialState = {
   fetchingRecordsError: false,
   accountRecordData: {},
 
-  accountModal:false,
+  accountModal: false,
 
   addingLocationInOrder: false,
   addingLocationInOrderError: false,
@@ -189,7 +189,7 @@ const initialState = {
   fetchingProductByDistributorError: false,
   productByDistributor: [],
 
-  addAccountOpportunityModal:false,
+  addAccountOpportunityModal: false,
 
   addPaidButtonModal: false,
 
@@ -222,7 +222,7 @@ const initialState = {
   updatingDistributorCall: false,
   updatingDistributorCallError: false,
 
-  updateProcureDetailModal:false,
+  updateProcureDetailModal: false,
 
   updatingDistributorEvent: false,
   updatingDistributorEventError: false,
@@ -303,7 +303,7 @@ const initialState = {
 
   fetchingOrderProcurement: false,
   fetchingOrderProcurementError: false,
-  procurementOrder:[],
+  procurementOrder: [],
 
   showPulseModal: false,
 
@@ -1131,9 +1131,9 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, updateAccountModal: action.payload };
 
 
-      case types.HANDLE_ACCOUNT_MODAL:
-        return { ...state, accountModal: action.payload };
-  
+    case types.HANDLE_ACCOUNT_MODAL:
+      return { ...state, accountModal: action.payload };
+
 
     case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };
@@ -1895,7 +1895,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPhoneListById: false,
-        phoneListById: action.payload
+        phoneListById: [...state.phoneListById, ...action.payload]
       };
     case types.GET_PHONE_LIST_BY_ID_FAILURE:
       return {
@@ -2122,20 +2122,20 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderRecordsError: true,
       };
 
-      case types.GET_PROCURE_RECORDS_REQUEST:
-        return { ...state, fetchingProcureRecords: true };
-      case types.GET_PROCURE_RECORDS_SUCCESS:
-        return {
-          ...state,
-          fetchingProcureRecords: false,
-          procureRecordData: action.payload,
-        };
-      case types.GET_PROCURE_RECORDS_FAILURE:
-        return {
-          ...state,
-          fetchingProcureRecords: false,
-          fetchingProcureRecordsError: true,
-        };
+    case types.GET_PROCURE_RECORDS_REQUEST:
+      return { ...state, fetchingProcureRecords: true };
+    case types.GET_PROCURE_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingProcureRecords: false,
+        procureRecordData: action.payload,
+      };
+    case types.GET_PROCURE_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingProcureRecords: false,
+        fetchingProcureRecordsError: true,
+      };
 
     case types.HANDLE_REPAIR_REASON_MODAL:
       return { ...state, showRepairReasonModal: action.payload };
@@ -2679,93 +2679,93 @@ export const distributorReducer = (state = initialState, action) => {
       };
 
 
-      case types.ADD_ORDER_PROCUREMENT_REQUEST:
-        return { ...state, addingOrderProcurement: true };
-      case types.ADD_ORDER_PROCUREMENT_SUCCESS:
-        return {
-          ...state,
-          addingOrderProcurement: false,
-           procurementOrder: [action.payload, ...state.procurementOrder],
-          orderDetailsId: action.payload,
-          // addLinkCustomerProcurementModal: false,
-  
-        };
-      case types.ADD_ORDER_PROCUREMENT_FAILURE:
-        return {
-          ...state,
-          addingOrderProcurement: false,
-          addingOrderProcurementError: true,
-        };
+    case types.ADD_ORDER_PROCUREMENT_REQUEST:
+      return { ...state, addingOrderProcurement: true };
+    case types.ADD_ORDER_PROCUREMENT_SUCCESS:
+      return {
+        ...state,
+        addingOrderProcurement: false,
+        procurementOrder: [action.payload, ...state.procurementOrder],
+        orderDetailsId: action.payload,
+        // addLinkCustomerProcurementModal: false,
 
-        case types.GET_ORDER_PROCUREMENT_REQUEST:
-          return { ...state, fetchingOrderProcurement: true };
-        case types.GET_ORDER_PROCUREMENT_SUCCESS:
-          return {
-            ...state,
-            fetchingOrderProcurement: false,
-            procurementOrder: [...state.procurementOrder, ...action.payload]
-          };
-        case types.GET_ORDER_PROCUREMENT_FAILURE:
-          return {
-            ...state,
-            fetchingOrderProcurement: false,
-            fetchingOrderProcurementError: true,
-          };
+      };
+    case types.ADD_ORDER_PROCUREMENT_FAILURE:
+      return {
+        ...state,
+        addingOrderProcurement: false,
+        addingOrderProcurementError: true,
+      };
 
-
-          case types.GET_CHATGPT_REQUEST:
-          return { ...state, fetchingChatgpt: true };
-        case types.GET_CHATGPT_SUCCESS:
-          return {
-            ...state,
-            fetchingChatgpt: false,
-            chatGpt: action.payload,
-          };
-        case types.GET_CHATGPT_FAILURE:
-          return {
-            ...state,
-            fetchingChatgpt: false,
-            fetchingChatgptError: true,
-          };
-
-          case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
-            return { ...state, updateProcureDetailModal: action.payload };
+    case types.GET_ORDER_PROCUREMENT_REQUEST:
+      return { ...state, fetchingOrderProcurement: true };
+    case types.GET_ORDER_PROCUREMENT_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderProcurement: false,
+        procurementOrder: [...state.procurementOrder, ...action.payload]
+      };
+    case types.GET_ORDER_PROCUREMENT_FAILURE:
+      return {
+        ...state,
+        fetchingOrderProcurement: false,
+        fetchingOrderProcurementError: true,
+      };
 
 
-            case types.SET_PROCURE_EDIT:
-              return { ...state, setEdittingProcure: action.payload };
+    case types.GET_CHATGPT_REQUEST:
+      return { ...state, fetchingChatgpt: true };
+    case types.GET_CHATGPT_SUCCESS:
+      return {
+        ...state,
+        fetchingChatgpt: false,
+        chatGpt: action.payload,
+      };
+    case types.GET_CHATGPT_FAILURE:
+      return {
+        ...state,
+        fetchingChatgpt: false,
+        fetchingChatgptError: true,
+      };
+
+    case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
+      return { ...state, updateProcureDetailModal: action.payload };
 
 
-              case types.UPDATE_PROCURE_STEP1_REQUEST:
-                return { ...state, updatingProcureStep1: true };
-              case types.UPDATE_PROCURE_STEP1_SUCCESS:
-                return {
-                  ...state,
-                  updatingProcureStep1: false,
-                  updateProcureDetailModal:false,
-                  procurementOrder: state.procurementOrder.map((item) => {
-                    if (item.orderId == action.payload.orderId) {
-                      return action.payload;
-                    } else {
-                      return item;
-                    }
-                  }),
-                };
-              case types.UPDATE_PROCURE_STEP1_FAILURE:
-                return {
-                  ...state,
-                  updatingProcureStep1: false,
-                  updatingProcureStep1Error: true,
-                };
-
-                case types.EMPTY_CLEARBIT_TABLE:
-                  return { ...state,  clearbit: {} };
+    case types.SET_PROCURE_EDIT:
+      return { ...state, setEdittingProcure: action.payload };
 
 
-                  case types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL:
+    case types.UPDATE_PROCURE_STEP1_REQUEST:
+      return { ...state, updatingProcureStep1: true };
+    case types.UPDATE_PROCURE_STEP1_SUCCESS:
+      return {
+        ...state,
+        updatingProcureStep1: false,
+        updateProcureDetailModal: false,
+        procurementOrder: state.procurementOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCURE_STEP1_FAILURE:
+      return {
+        ...state,
+        updatingProcureStep1: false,
+        updatingProcureStep1Error: true,
+      };
+
+    case types.EMPTY_CLEARBIT_TABLE:
+      return { ...state, clearbit: {} };
+
+
+    case types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL:
       return { ...state, addAccountOpportunityModal: action.payload };
 
-      
+
     default:
       return state;
   }

@@ -312,7 +312,7 @@ function OrderPhoneListById(props) {
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >
-                                                                    Update Status
+                                                                    Change Status
                                                                 </Button>
                                                                 //   <Tooltip title="Can't Repair">
                                                                 //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
@@ -324,7 +324,7 @@ function OrderPhoneListById(props) {
                                             </div>
                                             <div className=" flex font-medium   md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                    {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
+                                                    {item.cannotRepairInd && "Can't Repair"}
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">

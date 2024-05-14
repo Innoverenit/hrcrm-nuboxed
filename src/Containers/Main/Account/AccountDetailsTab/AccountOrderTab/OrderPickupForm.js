@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getLocationList, addLocationInOrder } from "../../AccountAction"
 import { Button, DatePicker, Select } from 'antd';
+import dayjs from "dayjs";
 const { Option } = Select;
+
 
 const OrderPickupForm = (props) => {
     useEffect(() => {
@@ -18,6 +20,10 @@ const OrderPickupForm = (props) => {
     const handleDate = (val) => {
         setDate(val)
     }
+    console.log(location)
+    console.log(date)
+    console.log(props.particularRowData.creationDate)
+
     const handleSubmit = () => {
         let data = {
             inventoryPickUpDate: date,
@@ -28,6 +34,12 @@ const OrderPickupForm = (props) => {
         }
         props.addLocationInOrder(data, props.distributorId)
     }
+
+    const givenDate = props.particularRowData.creationDate
+
+    const disabledDate = (current, givenDate) => {
+        return current && current < dayjs(givenDate).startOf('day');
+    };
     return (
         <div>
             <div class="mt-[10px] flex justify-between">
@@ -50,19 +62,17 @@ const OrderPickupForm = (props) => {
                         className="w-[300]"
                         value={date}
                         onChange={(value) => handleDate(value)}
-                    // disabledDate={disabledDate}
-
+                        disabledDate={current => disabledDate(current, givenDate)}
                     />
                 </div>
-                <div>
+                {(location.length === 0 && date.length === 0) ? null : <div>
                     <Button
-                        disabled={!location.length}
                         loading={props.addingLocationInOrder}
                         type="primary"
                         onClick={handleSubmit}
 
                     >Submit</Button>
-                </div>
+                </div>}
             </div>
         </div>
     )

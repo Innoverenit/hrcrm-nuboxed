@@ -35,13 +35,13 @@ const ReceivedTable = (props) => {
   useEffect(() => {
     setPage(page + 1);
     props.getLocationList(props.orgId);
-    props.getReceivedUserList(props.locationDetailsId)
+    props.getReceivedUserList(props.locationDetailsId, page)
   }, [])
 
   const [hasMore, setHasMore] = useState(true);
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getReceivedUserList(props.locationDetailsId)
+    props.getReceivedUserList(props.locationDetailsId, page)
   };
 
   const [rowData, setRowData] = useState({})
@@ -71,7 +71,7 @@ const ReceivedTable = (props) => {
   })
   return (
     <>
-      {props.fetchingReceivedUserList ? <BundleLoader /> :
+      {props.fetchingReceivedUser ? <BundleLoader /> :
         <div className=' flex justify-center sticky  z-auto'>
           <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
@@ -90,9 +90,9 @@ const ReceivedTable = (props) => {
             </div>
             <InfiniteScroll
               dataLength={props.allReceivedUser.length}
-              // next={handleLoadMore}
-              // hasMore={hasMore}
-              // loader={props.fetchingReceivedUserList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+              next={handleLoadMore}
+              hasMore={hasMore}
+              loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"75vh"}
             >
               {props.allReceivedUser.length ? <>
@@ -197,13 +197,13 @@ const ReceivedTable = (props) => {
 
                           <div className=" flex font-medium   w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {/* {item.productionLocationName} */}
-                              <MultiAvatar
+
+                              {item.productionLocationName && <MultiAvatar
                                 primaryTitle={item.productionLocationName}
                                 imageId={item.imageId}
                                 imgWidth={"1.8rem"}
                                 imgHeight={"1.8rem"}
-                              />
+                              />}
                             </div>
                           </div>
                           <div className=" flex font-medium  w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">

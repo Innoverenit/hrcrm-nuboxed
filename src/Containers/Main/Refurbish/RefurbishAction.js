@@ -1973,6 +1973,30 @@ export const updateSpareReceive = (data, sparePacketId) => (dispatch) => {
     });
 };
 
+export const cantRepairByTechnician = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.CANT_REPAIR_BY_TECHNICIAN_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/phone/dispatchCanNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CANT_REPAIR_BY_TECHNICIAN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.CANT_REPAIR_BY_TECHNICIAN_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const reassignRejectedPhone = (data, productionRepairDispatchLinkId) => (dispatch) => {
   // debugger;
   dispatch({ type: types.REASSIGN_REJECTED_PHONE_REQUEST });

@@ -448,7 +448,7 @@ export const generateOrderByDistributorId = (data, cb) => (dispatch) => {
     });
 };
 
-export const getDistributorOrderByDistributorId = (distributorId, pageNo,type) => (
+export const getDistributorOrderByDistributorId = (distributorId, pageNo, type) => (
   dispatch
 ) => {
   dispatch({
@@ -2256,12 +2256,12 @@ export const updateSubOrderAwb = (data, orderPhoneAwbId) => (dispatch) => {
       });
     });
 };
-export const getPhonelistById = (orderPhoneId) => (dispatch) => {
+export const getPhonelistById = (orderPhoneId, page) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}`, {
+    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2737,7 +2737,7 @@ export const getAccountRecords = (userId) => (dispatch) => {
       });
     });
 };
-export const getOrderRecords = (distributorId,type) => (dispatch) => {
+export const getOrderRecords = (distributorId, type) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_RECORDS_REQUEST,
   });
@@ -2763,7 +2763,7 @@ export const getOrderRecords = (distributorId,type) => (dispatch) => {
     });
 };
 
-export const getProcureRecords = (distributorId,type) => (dispatch) => {
+export const getProcureRecords = (distributorId, type) => (dispatch) => {
   dispatch({
     type: types.GET_PROCURE_RECORDS_REQUEST,
   });
@@ -3501,7 +3501,7 @@ export const addOrderProcurementForm = (customer) => (dispatch, getState) => {
     });
 };
 
-export const getOrderProcurement = (distributorId, pageNo,type) => (
+export const getOrderProcurement = (distributorId, pageNo, type) => (
   dispatch
 ) => {
   dispatch({
@@ -3530,7 +3530,7 @@ export const getOrderProcurement = (distributorId, pageNo,type) => (
     });
 };
 
-export const getChatgpt = (distributorId, pageNo,type) => (
+export const getChatgpt = (distributorId, pageNo, type) => (
   dispatch
 ) => {
   dispatch({
@@ -3580,7 +3580,7 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
     type: types.UPDATE_PROCURE_STEP1_REQUEST,
   });
   axios
-  .put(`${base_url2}/phoneOrder/orderUpdate/${orderPhoneId}`, data,
+    .put(`${base_url2}/phoneOrder/orderUpdate/${orderPhoneId}`, data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3615,7 +3615,7 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
 export const emptyClearbit = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CLEARBIT_TABLE,
-    
+
   });
 };
 

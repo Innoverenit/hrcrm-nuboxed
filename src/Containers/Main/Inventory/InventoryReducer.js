@@ -245,7 +245,7 @@ const initialState = {
 
   fetchingInventoryLocationRecords: false,
   fetchingInventoryLocationRecordsError: false,
-  inventoryLocationCount:{},
+  inventoryLocationCount: {},
 
   fetchingGrnListOfAPo: false,
   fetchingGrnListOfAPoError: false,
@@ -1086,7 +1086,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPhoneListById: false,
-        phoneListById: action.payload
+        phoneListById: [...state.phoneListById, ...action.payload]
       };
     case types.GET_PHONE_LIST_BY_ID_FAILURE:
       return {
@@ -1391,7 +1391,7 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingReceivedUser: false,
-        allReceivedUser: action.payload
+        allReceivedUser: [...state.allReceivedUser, ...action.payload]
       };
     case types.GET_RECEIVED_FAILURE:
       return {
@@ -1418,6 +1418,8 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingOrderReceive: false,
         updatingOrderReceiveError: true,
       };
+
+
 
     case types.UPDATE_REPAIR_STATUS_REQUEST:
       return { ...state, updatingRepairStatus: true };
@@ -1514,21 +1516,21 @@ export const inventoryReducer = (state = initialState, action) => {
       };
 
 
-      
-      case types.GET_INVENTORY_LOCATION_RECORDS_REQUEST:
-        return { ...state, fetchingInventoryLocationRecords: true };
-      case types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS:
-        return {
-          ...state,
-          fetchingInventoryLocationRecords: false,
-          inventoryLocationCount: action.payload,
-        };
-      case types.GET_INVENTORY_LOCATION_RECORDS_FAILURE:
-        return {
-          ...state,
-          fetchingInventoryLocationRecords: false,
-          fetchingInventoryLocationRecordsError: true,
-        };
+
+    case types.GET_INVENTORY_LOCATION_RECORDS_REQUEST:
+      return { ...state, fetchingInventoryLocationRecords: true };
+    case types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingInventoryLocationRecords: false,
+        inventoryLocationCount: action.payload,
+      };
+    case types.GET_INVENTORY_LOCATION_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingInventoryLocationRecords: false,
+        fetchingInventoryLocationRecordsError: true,
+      };
     default:
       return state;
   }

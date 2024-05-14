@@ -119,7 +119,7 @@ const initialState = {
 
   fetchingAllRefurbishCount: false,
   fetchingAllRefurbishCountError: false,
-  allCountRefurbish:{},
+  allCountRefurbish: {},
 
   showPhoneList: false,
 
@@ -235,7 +235,7 @@ const initialState = {
 
   fetchingTatQualityById: false,
   fetchingTatQualityByIdError: false,
-  tatQuality: [],
+  tatQuality: {},
 
   fetchingRepairPhoneById: false,
   fetchingRepairPhoneByIdError: false,
@@ -305,7 +305,10 @@ const initialState = {
 
   fetchingRejectedPhonesByTechnician: false,
   fetchingRejectedPhonesByTechnicianError: false,
-  rejectPhoneByUser: []
+  rejectPhoneByUser: [],
+
+  updatingCantRepairStatusByTech: false,
+  updatingCantRepairStatusByTechError: false,
 
 };
 
@@ -1526,20 +1529,38 @@ export const refurbishReducer = (state = initialState, action) => {
       };
 
 
-      case types.GET_ALL_REFURBISH_COUNT_REQUEST:
-        return { ...state, fetchingAllRefurbishCount: true };
-      case types.GET_ALL_REFURBISH_COUNT_SUCCESS:
-        return {
-          ...state,
-          fetchingAllRefurbishCount: false,
-          allCountRefurbish: action.payload,
-        };
-      case types.GET_ALL_REFURBISH_COUNT_FAILURE:
-        return {
-          ...state,
-          fetchingAllRefurbishCount: false,
-          fetchingAllRefurbishCountError: true,
-        };
+    case types.GET_ALL_REFURBISH_COUNT_REQUEST:
+      return { ...state, fetchingAllRefurbishCount: true };
+    case types.GET_ALL_REFURBISH_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingAllRefurbishCount: false,
+        allCountRefurbish: action.payload,
+      };
+    case types.GET_ALL_REFURBISH_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingAllRefurbishCount: false,
+        fetchingAllRefurbishCountError: true,
+      };
+
+    case types.CANT_REPAIR_BY_TECHNICIAN_REQUEST:
+      return { ...state, updatingCantRepairStatusByTech: true };
+    case types.CANT_REPAIR_BY_TECHNICIAN_SUCCESS:
+      return {
+        ...state,
+        updatingCantRepairStatusByTech: false,
+        rejectPhoneById: state.rejectPhoneById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+      };
+    case types.CANT_REPAIR_BY_TECHNICIAN_FAILURE:
+      return {
+        ...state,
+        updatingCantRepairStatusByTech: false,
+        updatingCantRepairStatusByTechError: true,
+      };
     default:
       return state;
   }

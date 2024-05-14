@@ -127,6 +127,11 @@ function InspectedPhoneByOrder(props) {
                                                     </SubTitle>
                                                 </div>
                                             </div>
+                                            <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div class=" text-xs text-cardBody font-poppins text-center">
+                                                    {item.cannotRepairInd ? "Can't Repair" : null}
+                                                </div>
+                                            </div>
                                             <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     <Button
@@ -205,3 +210,4 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(InspectedPhoneByOrder);
+

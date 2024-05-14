@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip, Input } from "antd";
 import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
@@ -30,6 +30,7 @@ import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsM
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
+const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
   const componentRefs = useRef([]);
@@ -37,10 +38,17 @@ function OpenReceivedOrderIdForm(props) {
   const handlePrint = () => {
     window.print();
   };
-
+  const [page, setPage] = useState(0);
   useEffect(() => {
-    props.getPhonelistByOrderId(props.rowData.orderPhoneId)
-  }, [props.rowData.orderPhoneId])
+    setPage(page + 1);
+    props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
+  }, [])
+
+  const [hasMore, setHasMore] = useState(true);
+  const handleLoadMore = () => {
+    setPage(page + 1);
+    props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
+  };
 
   const [show, setShow] = useState(false);
   const handleMismatchItem = () => {
@@ -62,8 +70,44 @@ function OpenReceivedOrderIdForm(props) {
     setExpand(!expand);
     setphoneId(phoneId);
   }
+  const onSearch = (value) => console.log(value);
   return (
     <>
+      <div class=" flex justify-between">
+        <div class=" w-3/6">
+          <div style={{ display: "flex", marginLeft: "8rem" }}>
+
+            <Button type="primary">
+              Scan
+            </Button>
+            <div style={{ marginLeft: '10px' }}>
+              <Search placeholder="input search text" onSearch={onSearch} enterButton />
+            </div>
+          </div>
+        </div>
+        <div class=" w-3/6">
+          <div style={{ display: "flex", marginLeft: "20rem" }}>
+            {props.rowData.inspectionInd === 1 &&
+              <Button type="primary"
+                onClick={handlePauseResume}>
+                {pause ? "Resume" : "Pause"}</Button>}
+            {props.rowData.inspectionInd === 1 &&
+              <div style={{ marginLeft: '10px' }}>
+                <Button
+                  loading={props.updatingInspection}
+                  onClick={() => props.updateInspection({
+                    inspectionInd: 2,
+                    stopInspectionUser: props.userId,
+                    stopInspectionDate: dayjs()
+                  },
+                    props.rowData.orderPhoneId,
+                    props.locationDetailsId)}
+                  type="primary"
+                >Inspection Completed</Button>
+              </div>}
+          </div>
+        </div>
+      </div>
       {props.fetchingPhoneListById ? <BundleLoader /> :
         <div className='flex justify-center sticky ticky z-10 '>
           <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -124,9 +168,9 @@ function OpenReceivedOrderIdForm(props) {
             <div >
               <InfiniteScroll
                 dataLength={props.phoneListById.length}
-                // next={handleLoadMore}
-                // hasMore={hasMore}
-                // loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                next={handleLoadMore}
+                hasMore={hasMore}
+                loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                 height={"72vh"}
               >
                 {props.phoneListById.map((item, index) => {
@@ -306,7 +350,7 @@ function OpenReceivedOrderIdForm(props) {
                                         orderPhoneId: props.rowData.orderPhoneId
                                       }, item.phoneId)
                                     }}>
-                                    Update Status
+                                    Change Status
                                   </Button>
                                   //   <Tooltip title="Can't Repair">
                                   //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
@@ -317,7 +361,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                         <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs text-cardBody font-poppins">
-                            {!item.cannotRepairInd ? "Repair" : "Can't Repair"}
+                            {item.cannotRepairInd && "Can't Repair"}
                           </div>
                         </div>
                         <div className=" flex font-medium   md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -326,10 +370,7 @@ function OpenReceivedOrderIdForm(props) {
                               id="app.Print"
                               defaultMessage="Print"
                             />}>
-                              {/* <PrintOutlined
-                                                                            // onClick={handlePrint}
-                                                                            className="!text-base cursor-pointer"
-                                                                        /> */}
+
                               <ReactToPrint
                                 trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
                                 content={() => componentRefs.current[index]}
@@ -338,26 +379,7 @@ function OpenReceivedOrderIdForm(props) {
 
                           </div>
                         </div>
-                        <div className=" flex font-medium   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          <div class=" text-xs text-cardBody font-poppins">
-                            <Tooltip title={<FormattedMessage
-                              id="app.scan"
-                              defaultMessage="scan"
-                            />}>
 
-                              <Button
-                                onClick={() => {
-                                  props.handleInTagDrawer(true)
-                                  handleSetParticularOrderData(item);
-                                }}
-                                class=" bg-green-600 cursor-pointer text-gray-50"
-                              >
-                                Scan </Button>
-
-                            </Tooltip>
-
-                          </div>
-                        </div>
                       </div>
                       {/* 2nd part */}
                       {(show && particularRowData.phoneId === item.phoneId) && <div className="flex rounded-xl  mt-4 bg-pink-200 h-8 items-center p-3 " >
@@ -430,26 +452,7 @@ function OpenReceivedOrderIdForm(props) {
                 })}
               </InfiniteScroll>
             </div>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              {props.rowData.inspectionInd === 1 &&
-                <Button type="primary"
-                  onClick={handlePauseResume}>
-                  {pause ? "Resume" : "Pause"}</Button>}
-              {props.rowData.inspectionInd === 1 &&
-                <div style={{ marginLeft: '10px' }}>
-                  <Button
-                    loading={props.updatingInspection}
-                    onClick={() => props.updateInspection({
-                      inspectionInd: 2,
-                      stopInspectionUser: props.userId,
-                      stopInspectionDate: dayjs()
-                    },
-                      props.rowData.orderPhoneId,
-                      props.locationDetailsId)}
-                    type="primary"
-                  >Inspection Completed</Button>
-                </div>}
-            </div>
+
 
             {expand && (
               <AccountPhoneTaskTable
