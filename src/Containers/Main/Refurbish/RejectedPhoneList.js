@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getRejectedPhoneList } from "./RefurbishAction"
+import { getRejectedPhoneList, cantRepairByTechnician } from "./RefurbishAction"
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { StyledTable } from '../../../Components/UI/Antd'
@@ -77,13 +77,42 @@ const RejectedPhoneList = (props) => {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <Button
-                        style={{ color: reassign && item.phoneId === row.phoneId ? 'blue' : 'orange' }}
-                        onClick={() => {
-                            handleSetdata(item)
-                            handleReassign()
-                        }}
-                    >Reassign</Button>
+                    <>
+                        {!item.rejectReassignInd &&
+                            <Button
+                                style={{ color: reassign && item.phoneId === row.phoneId ? 'blue' : 'orange' }}
+                                onClick={() => {
+                                    handleSetdata(item)
+                                    handleReassign()
+                                }}
+                            >Reassign</Button>
+                        }
+                    </>
+
+
+                )
+            }
+        },
+        {
+            title: "",
+            dataIndex: "",
+            width: "10%",
+            render: (text, item) => {
+                return (
+                    <>
+                        {!item.cannotRepairInd ? <Button
+                            loading={item.phoneId === row.phoneId && props.updatingCantRepairStatusByTech}
+                            onClick={() => {
+                                handleSetdata(item)
+                                props.cantRepairByTechnician({ cannotRepairInd: true }, item.phoneId)
+                            }}
+
+                        >Can't Repair</Button> :
+                            "Can't Repair"
+                        }
+                    </>
+
+
                 )
             }
         },
@@ -103,6 +132,7 @@ const RejectedPhoneList = (props) => {
 }
 const mapStateToProps = ({ refurbish }) => ({
     rejectPhoneById: refurbish.rejectPhoneById,
+    updatingCantRepairStatusByTech: refurbish.updatingCantRepairStatusByTech,
     fetchingRejectedPhoneList: refurbish.fetchingRejectedPhoneList
 });
 
@@ -110,6 +140,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getRejectedPhoneList,
+            cantRepairByTechnician
         },
         dispatch
     );

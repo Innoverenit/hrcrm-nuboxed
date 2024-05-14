@@ -30,13 +30,13 @@ function DistributorPauseForm(props) {
     const [page, setPage] = useState(0);
     useEffect(() => {
         setPage(page + 1);
-        props.getPhonelistById(props.particularRowData.orderId)
+        props.getPhonelistById(props.particularRowData.orderId, page)
     }, [])
 
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getPhonelistById(props.particularRowData.orderId)
+        props.getPhonelistById(props.particularRowData.orderId, page)
     };
 
     const [RowData, setRowData] = useState({});
@@ -102,7 +102,7 @@ function DistributorPauseForm(props) {
                                     /></div>
                                     <div className="md:w-[6.2rem]">Unique ID</div>
                                     <div className=" md:w-[9.2rem]">Info</div>
-                                    
+
                                     <div className=" md:w-[7.5rem]"><FormattedMessage
                                         id="app.condition"
                                         defaultMessage="Condition"
@@ -136,6 +136,8 @@ function DistributorPauseForm(props) {
                                 <div >
                                     <InfiniteScroll
                                         dataLength={props.phoneListById.length}
+                                        next={handleLoadMore}
+                                        hasMore={hasMore}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                                         height={"64vh"}
                                     >

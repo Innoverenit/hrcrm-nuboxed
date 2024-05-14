@@ -43,8 +43,7 @@ const StatusOfOrder = (props) => {
                                     defaultMessage="progress"
                                 />,
                                 description: <>
-                                    <b>On {moment(orderStatus.creationDate).format("DD-MM-YYYY")}
-                                        by {orderStatus.userName}</b>
+                                    <b>On {moment(orderStatus.creationDate).format("DD-MM-YYYY")} by {orderStatus.userName}</b>
                                 </>
                             },
                             {
@@ -92,7 +91,7 @@ const StatusOfOrder = (props) => {
                                                     </>
                                                     : <b> QC approved on {moment(orderStatus.qcStartDate).format("DD-MM-YYYY")}
                                                         &nbsp;  by {orderStatus.qcStartUser}</b>} |
-                                            <b>Advance as per Order - {orderStatus.advancePayment} % </b>
+                                            <b>Advance as per Order - {orderStatus.advancePayment} % </b> |
                                             <b>Received - {orderStatus.receivePayment || 0} % </b>
                                         </div>
 
@@ -103,7 +102,7 @@ const StatusOfOrder = (props) => {
                                 status: 'progress',
                                 description: <>
                                     {orderStatus.transferInd !== 0 &&
-                                        <b>By {orderStatus.orderPickUpUser} On {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} </b>
+                                        <b>By {orderStatus.orderPickUpUser} on {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} </b>
                                     }
                                 </>
                             },
@@ -114,11 +113,10 @@ const StatusOfOrder = (props) => {
                                 description: <>
                                     {/* {orderStatus.transferInd === 2 && */}
                                     {orderStatus.transferInd === 1 && <b>
-                                        Picked Up on {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")}
-                                        by {orderStatus.inventoryUserName} Arrived at {orderStatus.locationName}   &nbsp;
+                                        Picked Up on {moment(orderStatus.pickUpDate).format("DD-MM-YYYY")} by {orderStatus.inventoryUserName} | Arrived at {orderStatus.locationName}   &nbsp;
                                     </b>}
                                     {orderStatus.inventoryReceiveInd && <b>
-                                        On {moment(orderStatus.inventoryReceiveDate).format("DD-MM-YYYY")},
+                                        on {moment(orderStatus.inventoryReceiveDate).format("DD-MM-YYYY")},
                                         Received by {orderStatus.inventoryReceiveUser} |  &nbsp;
                                     </b>}
                                     {orderStatus.inspectionInd === 1
@@ -127,8 +125,7 @@ const StatusOfOrder = (props) => {
                                             &nbsp;{moment(orderStatus.startInspectionDate).format("DD-MM-YYYY")} | &nbsp;
                                         </b>}
                                     {orderStatus.inspectionInd === 2 && <b>
-                                        Inspection completed by {orderStatus.stopInspectionUserName} on
-                                        &nbsp;{moment(orderStatus.stoptInspectionDate).format("DD-MM-YYYY")}
+                                        Inspection completed by {orderStatus.stopInspectionUserName} on&nbsp;{moment(orderStatus.stoptInspectionDate).format("DD-MM-YYYY")}
                                     </b>}
                                     {/* } */}
                                 </>

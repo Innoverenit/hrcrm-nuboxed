@@ -310,12 +310,12 @@ export const sentItemToStock = (data, id) => (dispatch) => {
     });
 };
 //get received user list
-export const getReceivedUserList = (locationDetailsId) => (dispatch) => {
+export const getReceivedUserList = (locationDetailsId, page) => (dispatch) => {
   dispatch({
     type: types.GET_RECEIVED_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-all/${locationDetailsId}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-all/${locationDetailsId}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1184,12 +1184,12 @@ export const updateInspection = (data, orderPhoneId) => (dispatch) => {
     });
 };
 
-export const getPhonelistByOrderId = (orderPhoneId) => (dispatch) => {
+export const getPhonelistByOrderId = (orderPhoneId, page) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}`, {
+    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1893,3 +1893,4 @@ export const getInventoryLocationRecords = (orgId) => (dispatch) => {
       });
     });
 };
+

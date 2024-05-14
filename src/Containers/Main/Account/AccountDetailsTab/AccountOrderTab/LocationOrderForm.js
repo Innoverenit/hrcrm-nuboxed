@@ -32,7 +32,9 @@ function LocationOrderForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-2/5">
+                            <label>Department</label>
                             <Select
+                                placeholder="Select"
                                 className="w-[350px]"
                                 value={department}
                                 onChange={(value) => handleDepartment(value)}
@@ -44,8 +46,9 @@ function LocationOrderForm(props) {
                         </div>
 
                         <div className=" w-2/5">
-
+                            <label>Team Member</label>
                             <Select
+                                placeholder="Select"
                                 className="w-[350px]"
                                 value={technician}
                                 onChange={(value) => handleTechnician(value)}

@@ -83,7 +83,8 @@ const RejectedReassignPhon = (props) => {
                             // loading={props.updatingTechnicianForRepair}
                             onClick={() => props.reassignRejectedPhone({
                                 rejectReceiveUserId: technician,
-                                duplicateRepairDueDate: dueDate
+                                duplicateRepairDueDate: dueDate,
+                                rejectReassignInd: true
                             }, props.row.productionRepairDispatchId
 
                             )}>
@@ -117,7 +118,8 @@ const RejectedReassignPhon = (props) => {
                                 // loading={props.updatingTechnicianForRepair}
                                 onClick={() => props.reassignRejectedPhone({
                                     rejectReceiveUserId: props.row.technicianId,
-                                    duplicateRepairDueDate: dueDate
+                                    duplicateRepairDueDate: dueDate,
+                                    rejectReassignInd: true
                                 }, props.row.productionRepairDispatchId
 
                                 )}>
