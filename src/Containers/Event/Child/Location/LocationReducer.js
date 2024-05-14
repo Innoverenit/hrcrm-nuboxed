@@ -38,10 +38,17 @@ const initialState = {
    fetchingCellCardListError:false,
    cellCardList:[],
 
+   reInstatedLocationCellById: false,
+   reInstatedLocationCellByIdError: false,
+
 
    fetchingUserListLocation:false,
    fetchingUserListLocationError:false,
    userListLocation:[],
+
+   fetchingDeletedLocationCell: false,
+   fetchingDeletedLocationCellError: false,
+   deletedLoCell:[],
 
    fetchingUserCell:false,
    fetchingUserCellError:false,
@@ -514,6 +521,41 @@ deletingUserCellDataError:false,
                       reInstatedLocationById: false,
                       reInstatedLocationByIdError: true,
                   };
+
+
+                  case types.GET_DELETED_LOCATION_CELL_REQUEST:
+                    return { ...state, fetchingDeletedLocationCell: true };
+                  case types.GET_DELETED_LOCATION_CELL_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingDeletedLocationCell: false,
+                      deletedLoCell: action.payload
+                    };
+                  case types.GET_DELETED_LOCATION_CELL_FAILURE:
+                    return {
+                      ...state,
+                      fetchingDeletedLocationCell: false,
+                      fetchingDeletedLocationCellError: true,
+                    };
+
+
+                    case types.REINSTATE_TOGGLE_FOR_LOC_CELL_REQUEST:
+                      return { ...state, reInstatedLocationCellById: true };
+                  case types.REINSTATE_TOGGLE_FOR_LOC_CELL_SUCCESS:
+                      return {
+                          ...state,
+                          reInstatedLocationCellById: false,
+                          deletedLoCell: state.deletedLoCell.filter(
+                              (item) => item.cellId !== action.payload
+                            ),
+                       
+                      };
+                  case types.REINSTATE_TOGGLE_FOR_LOC_CELL_FAILURE:
+                      return {
+                          ...state,
+                          reInstatedLocationCellById: false,
+                          reInstatedLocationCellByIdError: true,
+                      };
 
       default:
     return state;

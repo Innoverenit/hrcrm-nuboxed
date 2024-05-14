@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import {  DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
@@ -38,11 +39,13 @@ import {
   handleUpdateDealModal,
   emptyDeals,
   handleDealsNotesDrawerModal,
+  handleDealContactsDrawerModal,
   LinkStageDeal,
   sendToWon,
   deleteDealsData
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
@@ -311,6 +314,26 @@ function DealCardList(props) {
                       )}
                     </div>
                     <div>
+                    <Tooltip
+                        placement="right"
+                        title={
+                          <FormattedMessage
+                            id="app.contact"
+                            defaultMessage="Contact"
+                          />
+                        }
+                      >
+                        <span
+                          onClick={() => {
+                            props.handleDealContactsDrawerModal(true);
+                            handleSetCurrentItem(item);
+                          }}
+                        >
+                          <PermContactCalendarIcon
+                           className="!text-xl cursor-pointer text-[blue]"
+                          />
+                        </span>
+                      </Tooltip>
                       <Tooltip
                         placement="right"
                         title={
@@ -389,6 +412,12 @@ function DealCardList(props) {
         handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
+          <AddDealsContactDrawerModal
+        currentItem={currentItem}
+        addDrawerDealsContactsModal={props.addDrawerDealsContactsModal}
+        handleDealContactsDrawerModal={props.handleDealContactsDrawerModal}
+        handleSetCurrentItem={handleSetCurrentItem}
+      />
       {/*
 <AddOpportunityDrawerModal
  opportunityData={currentItem}
@@ -413,6 +442,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 
 const mapStateToProps = ({ auth, deal, opportunity }) => ({
   dealsByuserId: deal.dealsByuserId,
+  addDrawerDealsContactsModal:deal.addDrawerDealsContactsModal,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
@@ -452,6 +482,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateDealModal,
       handleOpportunityDrawerModal,
       handleDealsNotesDrawerModal,
+      handleDealContactsDrawerModal,
       setEditOpportunity,
       deleteDealsData,
       updateOwneroppById,

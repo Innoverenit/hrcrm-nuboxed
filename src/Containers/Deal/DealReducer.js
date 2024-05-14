@@ -50,6 +50,10 @@ const initialState = {
   fetchingNotesListByDealIdError: false,
   notesListByDealId:[],
 
+  fetchingDealsContactList: false,
+  fetchingDealsContactListError: false,
+  dealsContactList:[],
+
   fetchingLostDeals: false,
   fetchingLostDealsError: false,
   lostDeals:[],
@@ -63,6 +67,8 @@ const initialState = {
   fetchingAllDealsData: false,
   fetchingAllDealsDataError: false,
   allDealsData:[],
+
+  addDrawerDealsContactsModal:false,
 
   fetchingDealLinkedStages: false,
   fetchingDealLinkedStagesError: false,
@@ -368,6 +374,11 @@ export const dealReducer = (state = initialState, action) => {
             };
           case types.HANDLE_DEALS_NOTES_DRAWER_MODAL:
             return { ...state, addDrawerDealsNotesModal: action.payload };
+
+
+            case types.HANDLE_DEALS_CONTACTS_DRAWER_MODAL:
+              return { ...state, addDrawerDealsContactsModal: action.payload };
+  
 
 
             case types.LINK_DEAL_REQUEST:
@@ -683,6 +694,40 @@ export const dealReducer = (state = initialState, action) => {
                       fetchingLostRecords: false,
                       fetchingLostRecordsError: true,
                     };
+
+
+                    case types.GET_DEALS_CONTACT_REQUEST:
+                      return { ...state, fetchingDealsContactList: true };
+                  case types.GET_DEALS_CONTACT_SUCCESS:
+                      return {
+                          ...state,
+                          fetchingDealsContactList: false,
+                          dealsContactList: action.payload,
+                      };
+                  case types.GET_DEALS_CONTACT_FAILURE:
+                      return {
+                          ...state,
+                          fetchingDealsContactList: false,
+                          fetchingDealsContactListError: true,
+                      };
+
+
+                      case types.SET_DEALS_CONTACT_REQUEST:
+                        return { ...state };
+                    case types.SET_DEALS_CONTACT_SUCCESS:
+                        return {
+                            ...state,
+                            dealsContactList: state.dealsContactList.map(
+                                (item) => {
+                                    if (item.invOpportunityId === action.payload.invOpportunityId) {
+                                        return action.payload;
+                                    } else {
+                                        return item;
+                                    }
+                                }),
+                        };
+                    case types.SET_DEALS_CONTACT_FAILURE:
+                        return { ...state };
 
     default:
       return state;

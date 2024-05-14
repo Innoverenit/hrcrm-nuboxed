@@ -11,7 +11,8 @@ const LocationCellDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Location Cell`}
+        // title={`Location Cell`}
+        title={storedLoc.locationName}
         width={drawerWidth}
         visible={clickLocDrwr}
         destroyOnClose

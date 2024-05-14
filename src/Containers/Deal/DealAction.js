@@ -430,6 +430,13 @@ export const handleDealsNotesDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleDealContactsDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEALS_CONTACTS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const LinkStageDeal = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEAL_REQUEST });
 
@@ -953,5 +960,64 @@ export const getLostDeals = (userId,pageNo) => (dispatch) => {
         icon: 'error',
         title: 'Something went wrong , reach out to support!',
       })
+    });
+};
+
+export const getDealsContactList = (invOpportunityId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEALS_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunit/fund/${invOpportunityId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEALS_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DEALS_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setDealsContactType = (data) => (dispatch) => {
+  dispatch({ type: types.SET_DEALS_CONTACT_REQUEST });
+  axios
+    .post(
+      `${base_url}/investorOpportunit/fund/update`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.SET_DEALS_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_DEALS_CONTACT_FAILURE,
+        payload: err,
+      });
     });
 };
