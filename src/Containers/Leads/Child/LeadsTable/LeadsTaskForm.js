@@ -468,7 +468,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     complexity: complexity,
 
                     // startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
+                    endDate: `${newEndDate}T20:00:00Z`,
                     startTime: 0,
                     endTime: 0,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
@@ -486,7 +486,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     complexity: complexity,
                     ownerIds: userId === userId ? [userId] : [],
                     // startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
+                    endDate: `${newEndDate}T20:00:00Z`,
                     startTime: 0,
                     endTime: 0,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
