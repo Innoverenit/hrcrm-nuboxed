@@ -721,3 +721,54 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         message.error("Something went wrong")
       });
   };
+
+  export const getDeletedLoCell = (locationDetailsId,orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_DELETED_LOCATION_CELL_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: types.GET_DELETED_LOCATION_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_DELETED_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const reinstateToggleForLocCell = (data, cellId) => (
+    dispatch
+  ) => {
+    // debugger;
+    dispatch({
+      type: types.REINSTATE_TOGGLE_FOR_LOC_CELL_REQUEST,
+    });
+    axios
+      .put(`${base_url2}/cell/reinitiate/cell/${cellId}`, data)
+      .then((res) => {
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_LOC_CELL_SUCCESS,
+          payload: cellId,
+        });
+        message.success("Reinstated Successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_LOC_CELL_FAILURE,
+          payload: err,
+        });
+        message.error("Something went wrong")
+      });
+  };

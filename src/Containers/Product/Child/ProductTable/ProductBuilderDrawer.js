@@ -7,7 +7,7 @@ const ProductbuilderTable = lazy(() => import("./ProductbuilderTable"));
 const ProductBuilderDrawer = (props) => {
   const { proBuilderDrawer, handleProductBuilderDrawer, particularDiscountData, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
-  const drawerWidth = isSmallScreen ? "90%" : "60%";
+  const drawerWidth = isSmallScreen ? "90%" : "75%";
   const generateTitle = () => {
     const {
       name,

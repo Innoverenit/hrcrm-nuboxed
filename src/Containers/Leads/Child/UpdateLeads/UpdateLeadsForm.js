@@ -215,6 +215,7 @@ function UpdateLeadsForm (props) {
             middleName:props.setEditingLeads.middleName || "",
             lastName:props.setEditingLeads.lastName || "",
             source:props.setEditingLeads.source || "",
+            lob:props.setEditingLeads.lob || "",
             price:props.setEditingLeads.price || "",
             bedrooms:props.setEditingLeads.bedrooms || "",
         

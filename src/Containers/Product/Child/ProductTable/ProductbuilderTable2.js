@@ -115,12 +115,13 @@ return (
          <div className=" md:w-[8.2rem] ">HSN</div>
         <div className=" md:w-[8.2rem] ">Category</div>
         <div className="md:w-[9.8rem]">Attribute</div>
+    
         <div className=" md:w-[4.21rem] ">Unit</div>
         <div className=" md:w-[3.22rem] ">Step</div>
-         <div className=" md:w-[8.23rem] ">Description</div>
+         <div className=" md:w-[10.23rem] ">Description</div>
         <div className="w-12"></div>
             </div>
-            <div className="z-auto" style={{ maxHeight: "400px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
              {data.map((item) => {
           return (
 <div key={item.productionBuilderId}>
@@ -160,14 +161,14 @@ return (
     <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
                       
-                      {item.categoryName}{item.subCategoryName}
+                      {item.categoryName} {item.subCategoryName}
                      
                     </div>
     </div>
     <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
         <div class=" text-xs text-cardBody   font-poppins">
-        {item.attribute}{item.subattribute}
+        {item.attributeName} {item.subAttributeName}
        
                     </div>
     </div>
@@ -223,8 +224,7 @@ return (
                     )}
                     </div>
   </div>
-  <div class="flex flex-col w-8 max-sm:flex-row max-sm:w-[10%]">
-    <div class="flex">
+  <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
@@ -248,6 +248,8 @@ return (
                       />
                     )}
     </div>
+  <div class="flex flex-col w-4 max-sm:flex-row max-sm:w-[10%]">
+   
     <div>
       <Popconfirm
                           title="Do you want to delete?"
