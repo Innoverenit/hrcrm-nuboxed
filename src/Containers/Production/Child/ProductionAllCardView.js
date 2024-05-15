@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Popconfirm,Switch } from "antd";
+import moment from "moment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import MoveToggleProduction from "../Child/MoveToggleProduction";
@@ -240,7 +241,7 @@ function ProductionAllCardView(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                {/* <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 {item.type==="Complete" ? 
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         <Button
@@ -253,7 +254,7 @@ function ProductionAllCardView(props) {
                                                             Add Parts
                                                         </Button>
                                                     </div>:null}
-                                                </div>
+                                                </div> */}
                                                 <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* <InpectProductionToggle item={item}/> */}
@@ -267,9 +268,10 @@ function ProductionAllCardView(props) {
                   imgHeight={"2.1em"}
                 />
                                                         </div>
-                                                        {/* <div class=" text-xs text-cardBody font-poppins">
-                                                            {date}
-                                                        </div> */}
+                                                        <div class=" text-xs text-cardBody font-poppins">
+                                                            {/* {date} */}
+                                                            {`  ${moment.utc(item.inspectedDate).format("DD-MM-YYYY")}`}
+                                                        </div>
                                                    
         
                                                     </div>

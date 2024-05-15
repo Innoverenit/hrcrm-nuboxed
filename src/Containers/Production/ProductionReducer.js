@@ -19,6 +19,12 @@ const initialState = {
   productionByLocsId: [],
 
 
+
+  fetchingProductionSteps:false,
+  fetchingProductionStepsError:false,
+  productionTableSteps:[],
+
+
   
 
   openbUILDERProductiondrawer: false,
@@ -281,6 +287,18 @@ export const productionReducer = (state = initialState, action) => {
           };
         case types.SET_INSPECT_PRODN_FAILURE:
           return { ...state, settingInpectdn: false,settingInpectdnError:true, };
+
+
+
+
+          case types.GET_PRODUCTION_STEPS_REQUEST:
+        return { ...state, fetchingProductionSteps: true, 
+          // fetchingProductionTable: false 
+        };
+      case types.GET_PRODUCTION_STEPS_SUCCESS:
+        return { ...state, fetchingProductionSteps: false, productionTableSteps: action.payload };
+      case types.GET_PRODUCTION_STEPS_FAILURE:
+        return { ...state, fetchingProductionSteps: false, fetchingProductionStepsError: true };
   
           case types.GET_ALL_PRODUCTION_BYORG_ID_REQUEST:
             return { ...state, fetchingAllProductionOrgId: true, fetchingAllProductionOrgIdError: false };

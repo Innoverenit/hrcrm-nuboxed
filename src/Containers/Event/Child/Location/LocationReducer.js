@@ -82,6 +82,12 @@ deletedLocationHistory:[],
 deletingLocationCellData:false,
 deletingLocationCellDataError:false,
 
+
+
+fetchingLocationMachine:false,
+fetchingLocationMachineError:false,
+locationMachine:[],
+
 fetchingCellCode:false,
 fetchingCellCodeError:false,
 cellCode:[],
@@ -502,6 +508,17 @@ deletingUserCellDataError:false,
                 return { ...state, fetchingLocationDeletedcount: false, locationDeletedCount: action.payload };
             case types.GET_LOCATION_DELETED_COUNT_FAILURE:
                 return { ...state, fetchingLocationDeletedcount: false, fetchingLocationDeletedcountError: true };
+
+
+
+                case types.GET_LOCATION_MACHINE_REQUEST:
+        return { ...state, fetchingLocationMachine: true, 
+          // fetchingProductionTable: false 
+        };
+      case types.GET_LOCATION_MACHINE_SUCCESS:
+        return { ...state, fetchingLocationMachine: false, locationMachine: action.payload };
+      case types.GET_LOCATION_MACHINE_FAILURE:
+        return { ...state, fetchingLocationMachine: false, fetchingLocationMachineError: true };
 
 
                 case types.REINSTATE_TOGGLE_FOR_LOCATION_REQUEST:

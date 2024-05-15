@@ -5,6 +5,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
+import UsersMachineCard from "../Location/UsersMachineCard"
 import ReinstateCellTable from "./ReinstateCellTable";
 const UsersCellCard=lazy(()=>import("./UsersCellCard"));
 const LocationCellForm=lazy(()=>import("./LocationCellForm"));
@@ -144,6 +145,15 @@ class LocationCellTab extends Component {
 
                 <TabPane tab="User" key="2">
                     <UsersCellCard storedLoc={this.props.storedLoc} />
+                </TabPane>
+            
+
+                <TabPane tab="Machinery" key="3">
+                {/* Hello */}
+                <UsersMachineCard
+                storedLoc={this.props.storedLoc}
+                />
+                    {/* <UsersCellCard storedLoc={this.props.storedLoc} /> */}
                 </TabPane>
               </StyledTabs>
             </TabsWrapper>
