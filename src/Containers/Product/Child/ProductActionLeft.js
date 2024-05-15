@@ -5,18 +5,27 @@ import { connect } from "react-redux";
 import { DeleteOutlined, AlipayOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar,Badge } from "antd";
 import MenuIcon from '@mui/icons-material/Menu';
-import { getRecords } from "../ProductAction";
+import { getRecords ,getDeletedProductRecords} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
 
 const ProductActionLeft = (props) => {
-  useEffect(() => {
-    props.getRecords()
-  }, []);
   const {
     viewType,
     setProductViewType,
     user,
   } = props;
+  // useEffect(() => {
+  //   props.getRecords()
+  // }, []);
+  useEffect(() => {
+    if (props.viewType === "table") {
+      props.getRecords();
+    } else if (props.viewType === "dashboard") {
+      props.getDeletedProductRecords();
+    } 
+
+  }, [props.viewType]);
+
   return (
     <FlexContainer alignItems="center">
       <Tooltip title="Product List">
@@ -57,6 +66,11 @@ const ProductActionLeft = (props) => {
       </Tooltip> */}
 
       <Tooltip title="Suspended Product">
+      <Badge
+          size="small"
+           count={( props.deletedProductCount.deletedProduct) || 0}
+          overflowCount={999}
+        >
         <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
           <DeleteOutlined
             className="!text-2xl cursor-pointer "
@@ -67,6 +81,7 @@ const ProductActionLeft = (props) => {
             onClick={() => props.setProductViewType("dashboard")}
           />
         </Avatar>
+        </Badge>
       </Tooltip>
 
       <Tooltip title="Category List">
@@ -91,13 +106,15 @@ const ProductActionLeft = (props) => {
 }
 const mapStateToProps = ({ product, auth }) => ({
   user: auth.userDetails,
+  deletedProductCount:product.deletedProductCount,
   recordData: product.recordData,
   userId: auth.userDetails.userId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getRecords
+      getRecords,
+      getDeletedProductRecords
     },
     dispatch
   );

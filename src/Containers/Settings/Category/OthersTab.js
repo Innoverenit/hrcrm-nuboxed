@@ -73,6 +73,8 @@ class OthersTab extends Component {
           return   <ServiceLine />;
           case "10":
             return     <IndustryTab />;
+            // case "11":
+            //   return     <Machinary />;
        
         
       default:
@@ -259,6 +261,24 @@ class OthersTab extends Component {
                     </>
                   }
                   key="10"
+                >
+         
+                </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      {/* <Badge
+                count={this.props.industryCount.IndustryCount}
+                overflowCount={999}
+              > */}
+                      <span class=" ml-1" >
+                Machinary
+                      </span>
+                      {/* </Badge> */}
+                    </>
+                  }
+                  key="11"
                 >
          
                 </TabPane>

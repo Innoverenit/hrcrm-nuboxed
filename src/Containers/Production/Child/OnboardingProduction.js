@@ -177,7 +177,7 @@ const handleStages = (val) => {
                 type="stage"
                  onDragStart={dragStart}
               >
-                {/* <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}> */}
+                <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}>
                   <>
                     {props.productionTableData.map((item, index) => (
                       <>
@@ -191,7 +191,7 @@ const handleStages = (val) => {
                         {(provided, snapshot) => (
                           
                             <>
-                            
+                             
                             <div class=" flex"
                                 >
                                   <StageHeader 
@@ -201,6 +201,7 @@ const handleStages = (val) => {
                                     <div>
                                     </div>
                                   </StageHeader>
+                                
                                   {/* <Spin
                                     tip="Loading..."
                                     //spinning={udatingOpp ? true : false}
@@ -209,7 +210,7 @@ const handleStages = (val) => {
                                       ref={provided.innerRef}
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
-                                      //droppableProps={{ hello: "world" }}
+                                      droppableProps={{ hello: "world" }}
                                       className="scrollbar"
                                       id="style-3"
                                     >
@@ -228,15 +229,17 @@ const handleStages = (val) => {
                                     </StageColumn>
                                   {/* </Spin> */}
                                 </div>
-                              
+                               
                             </>
+                          
                          )}
+                          
                         </Droppable>
                          ))}
                          </>
                       ))}
                   </>
-                {/* </Container> */}
+                </Container>
               </DragDropContext>
             </div>
     </>

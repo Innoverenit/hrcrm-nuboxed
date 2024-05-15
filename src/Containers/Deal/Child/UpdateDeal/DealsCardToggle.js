@@ -13,7 +13,7 @@ function DealsCardToggle (props) {
       if (props.item.borrowInd) {
         props.setDealsContactType(
           {
-            //   supplierId:props.item.supplierId,
+            contactId:props.item.contactId,
               invOpportunityId:props.invOpportunityId,
               borrowInd: props.item.borrowInd ? false : true,
             },
@@ -23,7 +23,7 @@ function DealsCardToggle (props) {
       } else {
           props.setDealsContactType(
               {
-                // supplierId:props.item.supplierId,
+                contactId:props.item.contactId,
                 invOpportunityId:props.invOpportunityId,
                 borrowInd: props.item.borrowInd ? false : true,
               },
