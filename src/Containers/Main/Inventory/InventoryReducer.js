@@ -40,6 +40,10 @@ const initialState = {
   fetchingReceivedUserError: false,
   allReceivedUser: [],
 
+  fetchingCellNumber: false,
+  fetchingCellNumberError: false,
+  cellById:[],
+
   updatingValidationInRecive: false,
   updatingValidationInReciveError: false,
 
@@ -1094,6 +1098,22 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingPhoneListById: false,
         fetchingPhoneListByIdError: true,
       };
+    
+      case types.GET_CELL_NUMBER_REQUEST:
+        return { ...state, fetchingCellNumber: true };
+      case types.GET_CELL_NUMBER_SUCCESS:
+        return {
+          ...state,
+          fetchingCellNumber: false,
+          cellById: action.payload,
+        };
+      case types.GET_CELL_NUMBER_FAILURE:
+        return {
+          ...state,
+          fetchingCellNumber: false,
+          fetchingCellNumberError: true,
+          
+        };
 
     case types.SET_PHONELIST_EDIT:
       return { ...state, setEdittingPhone: action.payload };
