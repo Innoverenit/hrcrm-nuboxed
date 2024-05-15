@@ -39,7 +39,7 @@ const ReceivedUnitList = (props) => {
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" w-[17.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" w-[21.32rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
+                        <div className=" w-[12.42rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
                         <div className=" w-[15.05rem]"><FormattedMessage id="app.part" defaultMessage="Part #" /></div>
                         <div className=""></div>
                     </div>
@@ -55,21 +55,21 @@ const ReceivedUnitList = (props) => {
                                         </div>
                                     </div>
                                     <div class="flex">
-                                        <div className=" flex font-medium flex-col w-[15.10rem] max-sm:w-full  ">
+                                        <div className=" flex font-medium flex-col w-[14.6rem] max-sm:w-full  ">
                                             <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                             {item.supplierSuppliesUniqueNumberId}
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className=" flex font-medium flex-col  w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                    {/* <div className=" flex font-medium flex-col  w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                         <div class=" text-xs text-cardBody font-poppins">
                                             {item.unit}
                                         </div>
-                                    </div>
+                                    </div> */}
 
-                                    <div className=" flex font-medium flex-col w-[6.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                    <div className=" flex font-medium  w-[12.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                        <div class=" font-normal flex text-[0.85rem] text-cardBody font-poppins">
 
                                             {edit && row.supplierSuppliesUniqueNumberId === item.supplierSuppliesUniqueNumberId ?
                                                 <>

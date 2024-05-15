@@ -53,9 +53,9 @@ function ProductionArchieveCard(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div className="w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Manufacture ID</div>
-                        <div className=" w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
-                        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
+                    <div className="w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Manufacture ID</div>
+                        <div className=" w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
+                        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
                         <div className=" w-[21.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Attribute</div>  
                         <div className="w-12"></div>
                     </div>
