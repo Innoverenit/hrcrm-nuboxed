@@ -1015,7 +1015,7 @@ export const addProcureDetails = (customer, id, cb) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url2}/`, customer, {
+    .post(`${base_url2}/phoneOrder/procure/order`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

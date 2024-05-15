@@ -41,9 +41,9 @@ const ReinstateCellTable = (props) => {
             <div className=" md:w-[6rem]">Cell Code</div>
             <div className=" md:w-[4.2rem] ">#Cell</div> 
             <div className=" md:w-[5.1rem]">Description</div>
-            <div className="w-12"></div>
+            <div className="w-12">Reinstate</div>
                          </div>
-                         {/* <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+                    <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
            {props.deletedLoCell.map((item) => {
             return (
               <div key={item.roomRackId}>
@@ -92,7 +92,7 @@ const ReinstateCellTable = (props) => {
               </div>
             );
           })} 
-            </div> */}
+            </div>
 
         </div>
       </div>

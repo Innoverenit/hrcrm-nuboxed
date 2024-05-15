@@ -64,6 +64,9 @@ const initialState = {
   fetchingDealLinkedWorkflowError: false,
   dealLinkWorkflow:[],
 
+  updatingDealsContactValue: false,
+  updatingDealsContactValueError: false,
+
   fetchingAllDealsData: false,
   fetchingAllDealsDataError: false,
   allDealsData:[],
@@ -719,7 +722,7 @@ export const dealReducer = (state = initialState, action) => {
                             ...state,
                             dealsContactList: state.dealsContactList.map(
                                 (item) => {
-                                    if (item.invOpportunityId === action.payload.invOpportunityId) {
+                                    if (item.contactId === action.payload.contactId) {
                                         return action.payload;
                                     } else {
                                         return item;
@@ -728,6 +731,27 @@ export const dealReducer = (state = initialState, action) => {
                         };
                     case types.SET_DEALS_CONTACT_FAILURE:
                         return { ...state };
+
+
+                        case types.SET_DEALS_CONTACT_VALUE_REQUEST:
+                          return { ...state, updatingDealsContactValue: true };
+                        case types.SET_DEALS_CONTACT_VALUE_SUCCESS:
+                          // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+                          return {
+                            ...state,
+                            updatingDealsContactValue: false,
+                            dealsContactList: state.dealsContactList.map((sector) =>
+                              sector.contactId === action.payload.contactId
+                                ? action.payload
+                                : sector
+                            ),
+                          };
+                        case types.SET_DEALS_CONTACT_VALUE_FAILURE:
+                          return {
+                            ...state,
+                            updatingDealsContactValue: false,
+                            updatingDealsContactValueError: true,
+                          };
 
     default:
       return state;
