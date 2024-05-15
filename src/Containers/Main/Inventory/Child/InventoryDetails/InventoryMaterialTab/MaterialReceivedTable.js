@@ -8,22 +8,22 @@ import {
 } from "../../../InventoryAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { BorderColorOutlined} from "@mui/icons-material";
+import { BorderColorOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ReceivedDetailModal from "./ReceivedDetailModal";
 import { ListAltOutlined } from "@mui/icons-material";
 import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip,Select,Button } from "antd";
-import { getRoomRackByLocId,getRackList } from "../../../../Inventory/InventoryAction";
+import { Tooltip, Select, Button } from "antd";
+import { getRoomRackByLocId, getRackList } from "../../../../Inventory/InventoryAction";
 
 const { Option } = Select;
 
 const MaterialReceivedTable = (props) => {
     useEffect(() => {
         props.getMaterialReceiveData(props.locationDetailsId);
-        props.getRoomRackByLocId(props.locationId,props.orgId);
+        props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
     const [clickStore, setclickStore] = useState(false)
     const [selectedChamberId, setSelectedChamberId] = useState("");
@@ -80,7 +80,7 @@ const MaterialReceivedTable = (props) => {
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
                         <div className=" w-[13.52rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
                         <div className=" w-[11.122rem]">Supplier</div>
-                        <div className=" w-[11.22rem]">Zone</div>
+
                         <div className=" w-[11.322rem]"></div>
                     </div>
                     <InfiniteScroll
@@ -133,10 +133,10 @@ const MaterialReceivedTable = (props) => {
                                         <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs text-cardBody font-poppins">
-                                               {item.supplierName}
+                                                {item.supplierName}
                                             </div>
                                         </div>
-         {/* <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        {/* <div className=" flex font-medium  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
          
                                        
                                        <Select
@@ -181,8 +181,8 @@ const MaterialReceivedTable = (props) => {
                                                         </>
                     
 </div> */}
-<div className=" flex font-medium flex-col md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                {/* <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                                        <div className=" flex font-medium flex-col md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            {/* <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                     {item.zone ? <BorderColorOutlined
                                                         onClick={() => {
                                                             handleStore()
@@ -195,19 +195,19 @@ const MaterialReceivedTable = (props) => {
                                                             handleRow(item)
                                                         }}>Send To Store</Button>}
                                                 </div> */}
-                                            </div>
+                                        </div>
                                         <div className=" flex font-medium flex-col  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 {/* <Tooltip title="GRN "> */}
-                                                    <Button
+                                                <Button
                                                     onClick={() => {
                                                         handleRow(item);
                                                         props.handlegrnlistmodal(true)
                                                     }}
                                                     type="primary"
-                                                    >
+                                                >
                                                     GRN
-                                                    </Button>
+                                                </Button>
                                                 {/* <ListAltOutlined
                                                     onClick={() => {
                                                         handleRow(item);
@@ -244,14 +244,14 @@ const MaterialReceivedTable = (props) => {
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
     locationId: auth.userDetails.locationId,
-    orgId:auth.userDetails.organizationId,
+    orgId: auth.userDetails.organizationId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialReceiveData: inventory.materialReceiveData,
     addMaterialReceived: inventory.addMaterialReceived,
     showGrnListOfPo: inventory.showGrnListOfPo,
     fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData,
     roomRackbyLoc: inventory.roomRackbyLoc,
-    rackList:inventory.rackList
+    rackList: inventory.rackList
 });
 
 const mapDispatchToProps = (dispatch) =>
