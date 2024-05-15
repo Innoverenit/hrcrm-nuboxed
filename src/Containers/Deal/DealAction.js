@@ -993,7 +993,8 @@ export const setDealsContactType = (data) => (dispatch) => {
   dispatch({ type: types.SET_DEALS_CONTACT_REQUEST });
   axios
     .post(
-      `${base_url}/investorOpportunit/fund/update`,data,
+  
+      `${base_url}/investorOpportunit/fund/toggle/update`,data,
       {
     
         headers: {
@@ -1017,6 +1018,40 @@ export const setDealsContactType = (data) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.SET_DEALS_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setDealsContactValue = (data) => (dispatch) => {
+  dispatch({ type: types.SET_DEALS_CONTACT_VALUE_REQUEST });
+  axios
+    .post(
+  
+      `${base_url}/investorOpportunit/fund/update`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+      Swal({
+        icon: 'success',
+        title: 'Updated successfully!',
+      })
+      dispatch({
+        type: types.SET_DEALS_CONTACT_VALUE_SUCCESS,
+        payload: res.data,
+      });
+   
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_DEALS_CONTACT_VALUE_FAILURE,
         payload: err,
       });
     });

@@ -2,67 +2,94 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getDealsContactList,setDealsContactType  } from "../../DealAction"
-import InfiniteScroll from "react-infinite-scroll-component";
+import { getDealsContactList,setDealsContactValue  } from "../../DealAction"
+import {getCurrency} from "../../../Auth/AuthAction";
 import { FormattedMessage } from "react-intl";
-import { Link } from 'react-router-dom';
+import moment from "moment";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { Tooltip,Button } from "antd";
+import { Tooltip,Button ,Input} from "antd";
+import { DatePicker } from "antd";
 import DealsCardToggle from "./DealsCardToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
 function LinkedDealContact(props) {
+  const [editingId, setEditingId] = useState(null);
+  const [newAmount, setNewAmount] = useState('');
+  const [newMonth, setNewMonth] = useState('');
+  const [newInterest, setNewInterest] = useState('');
+  const [currencyId, setCurrencyId] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+
   useEffect(() => {
+    props.getCurrency();
     props.getDealsContactList(props.currentItem.invOpportunityId);
   }, []);
 
-  const [inputValue1, setInputValue1] = useState('');
-  const [inputValue2, setInputValue2] = useState('');
-  const [inputValue3, setInputValue3] = useState('');
-  const [showBorrowInputs, setShowBorrowInputs] = useState(false);
-  
-  // Update input values
-  const handleInputChange1 = (e) => {
-    setInputValue1(e.target.value);
+  const handleEditAmount = (contactId, amount,repayMonth,interest,currency) => {
+    setEditingId(contactId);
+    setNewAmount(amount);
+    setNewMonth(repayMonth);
+    setNewInterest(interest);
+    setCurrencyId(currency)
   };
-  
-  const handleInputChange2 = (e) => {
-    setInputValue2(e.target.value);
-  };
-  
-  const handleInputChange3 = (e) => {
-    setInputValue3(e.target.value);
+  const handleCurrency = (event) => {
+    const currencyId = event.target.value;
+    setCurrencyId(currencyId);
   };
 
-  const handleSaveInputs = (item) => {
-    const payload = {
-      suppliesId: item.suppliesId,
-      supplierId: props.supplier.supplierId,
-      supplierSuppliesInd: true,
-      inputValue1: inputValue1,  
-      inputValue2: inputValue2,  
-      inputValue3: inputValue3   
+  const handleUpdateAmount = (item) => {
+    const formattedDate = selectedDate ? moment(selectedDate).toISOString() : null;
+    const data = {
+      contactId: item.contactId,
+      invOpportunityId: props.invOpportunityId,
+      amount: newAmount,
+      interest:newInterest,
+      repayMonth: newMonth,
+      currency:currencyId,
+      borrowDate: formattedDate,
+      borrowInd:item.borrowInd,
+ 
+
     };
-    props.setSupplierSuppliesType(payload);
-    setShowBorrowInputs(false);
+    props.setDealsContactValue(data);
+    setEditingId(null);
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+  };
+ const onDateChange = (date, dateString) => {
+    if (dateString) {
+      const selectedYear = parseInt(dateString, 10);
+      
+     
+      console.log('Selected Year:', selectedYear);
+      this.setState({ selectedYear });
+      // this.props.getHolidayyear(this.props.workplace,selectedYear);
+    }
+   
+  };
+  const handleDateChange = (date, dateString) => {
+    setSelectedDate(dateString); // Store the selected date as a string
   };
 
 
 
-  const handleCancelInputs = () => {
-    setInputValue1('');
-    setInputValue2('');
-    setInputValue3('');
-    setShowBorrowInputs(false); // Hide the inputs without saving
-  };
 
-  useEffect(() => {
-    // props.emptysUPPLIERS();
-  }, []);
+  
+ 
 
+
+if (props.fetchingDealsContactList) {
+    return <BundleLoader />;
+  }
+  
+  const currentYear = moment().format('YYYY');
 
   return (
+    
     <>
       <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -91,14 +118,14 @@ function LinkedDealContact(props) {
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex font-medium flex-col md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium flex-col md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                {item.name}
 
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex font-medium flex-col md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
 
 
 
@@ -115,37 +142,72 @@ invOpportunityId={props.currentItem.invOpportunityId}
 </div>
 </div>
 {item.borrowInd && (
-  <div className="flex flex-row items-center md:w-[6rem] max-sm:flex-row w-full max-sm:justify-end">
-    <button onClick={() => setShowBorrowInputs(true)}>Open</button>
+  <div className="flex flex-row items-center md:w-[30rem] max-sm:flex-row w-full max-sm:justify-end">
+  
+  <div className="flex flex-row w-[30rem] ">
+  
+                {editingId === item.contactId ? (
+                  <div className="flex flew-row">
+                    <Input
+                     style={{width:"55%"}}
+                      placeholder="Amount"
+                      value={newAmount}
+                      onChange={(e) => setNewAmount(e.target.value)}
+                    />
+                                     <Input
+                     style={{width:"55%"}}
+                      placeholder="Month"
+                      value={newMonth}
+                      onChange={(e) => setNewMonth(e.target.value)}
+                    />
+                                      <Input
+                     style={{width:"55%"}}
+                      placeholder="Interent"
+                      value={newInterest}
+                      onChange={(e) => setNewInterest(e.target.value)}
+                    />
+                    <select 
+                            //  defaultValue={region.taskType}
+                             className="customize-select"
+                             onChange={handleCurrency}
+                         >
+                             <option value="">Currency</option>
+                             {props.currencies.map((item) => (
+                                 <option 
+                                     key={item.currency_id} value={item.currency_id}>
+                                     {item.currency_name}
+                                 </option>
+                             ))}
+                         </select> 
+                         <DatePicker
+                          defaultValue={moment(item.borrowDate)}
+  value={selectedDate ? moment(selectedDate) : null} 
+  onChange={handleDateChange}
+  picker="date" 
+/>
+                    <Button onClick={() => handleUpdateAmount(item)}>Save</Button>
+                    <Button onClick={cancelEdit}>Cancel</Button>
+                  </div>
+                ) : (
+                  <div className="flex fle-row">
+                    <div className="flex ml-2 w-[3rem]">{item.amount}</div>
+                    <div className="flex ml-2 w-[3rem]">{item.repayMonth}</div>
+                    <div className="flex ml-2 w-[3rem]">{item.interest}</div>
+                    <div className="flex ml-2 w-[4rem]">{item.currency}</div>
+                    <div className="flex ml-2 w-[8rem]">{moment(item.borrowDate).format("ll")}</div>
+                    <Button style={{marginLeft:"1rem"}} onClick={() => handleEditAmount(item.contactId, item.amount,item.repayMonth,item.interest,item.currency,item.borrowDate)}>
+                      Edit
+                    </Button>
+                  </div>
+                )}
+              
+  </div>
+ 
+
   </div>
 )}
 
-{showBorrowInputs && item.borrowInd && (
-  <div className="flex flex-col mt-2">
-    <input
-      type="text"
-      value={inputValue1}
-      onChange={(e) => setInputValue1(e.target.value)}
-      placeholder="Input 1"
-    />
-    <input
-      type="text"
-      value={inputValue2}
-      onChange={(e) => setInputValue2(e.target.value)}
-      placeholder="Input 2"
-    />
-    <input
-      type="text"
-      value={inputValue3}
-      onChange={(e) => setInputValue3(e.target.value)}
-      placeholder="Input 3"
-    />
-    <ButtonGroup>
-    <Button onClick={handleCancelInputs}>Cancel</Button>
-      onClick={() => handleSaveInputs(item)}
-    </ButtonGroup>
-  </div>
-)}
+
 
                           </div>
                         </div>
@@ -167,14 +229,16 @@ invOpportunityId={props.currentItem.invOpportunityId}
 const mapStateToProps = ({  deal, auth }) => ({
     dealsContactList: deal.dealsContactList,
   userId: auth.userDetails.userId,
-  fetchingDealsContactList:deal.fetchingDealsContactList
+  fetchingDealsContactList:deal.fetchingDealsContactList,
+  currencies: auth.currencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getDealsContactList,
-        setDealsContactType
+        setDealsContactValue,
+        getCurrency
  
     },
     dispatch

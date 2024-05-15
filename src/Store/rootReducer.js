@@ -103,6 +103,7 @@ import { categoryListReducer } from "../Containers/Settings/Category/CategoryLis
 import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
 
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
+import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -201,6 +202,7 @@ const appReducer = combineReducers({
   categoryList:categoryListReducer,
   vendorList:vendorReducer,
   procre:procreReducer,
+  machinary:machinaryReducer,
 });
 
 const rootReducer = (state, action) => {
