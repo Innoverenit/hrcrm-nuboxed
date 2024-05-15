@@ -578,3 +578,33 @@ dispatch(getProductionTable(userId));
       cb && cb("failure");
     });
 };
+
+
+
+
+export const getProductionSteps = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_STEPS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/productionBuilder/steps/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_STEPS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_STEPS_FAILURE,
+        payload: err,
+      });
+    });
+};

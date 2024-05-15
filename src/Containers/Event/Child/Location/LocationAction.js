@@ -776,3 +776,33 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         message.error("Something went wrong")
       });
   };
+
+
+
+
+  export const getLocationMachine = (userId, pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_MACHINE_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/machinary/ALL`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LOCATION_MACHINE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LOCATION_MACHINE_FAILURE,
+          payload: err,
+        });
+      });
+  };

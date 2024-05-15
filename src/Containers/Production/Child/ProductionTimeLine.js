@@ -29,19 +29,24 @@
 // export default ProductionTimeLine;
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddSpareStepsModal from "../Child/AddSpareStepsModal"
 import { Button, Steps } from 'antd';
 
-import {addSpareStepsModal} from "../ProductionAction"
+import {addSpareStepsModal,getProductionSteps} from "../ProductionAction"
 import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
 
 const { Step } = Steps;
 
 const Component2 = (props) => {
     const[step,setStep]=useState("")
+    useEffect(() => {
+        props.getProductionSteps(props.userId);
+        // setPage(page + 1);
+        // props.getRoomRackByLocId(props.locationId, props.orgId);
+    }, []);
     // Hardcoded JSON data for the Steps component
     const stepsData = [
         { title: 'Step 1', description: 'Description for Step 1' },
@@ -64,11 +69,10 @@ const Component2 = (props) => {
            
 
 
-
+            {props.productionTableSteps.length > 0 ? (
 <Steps direction="vertical" current={0} style={{display:"flex"}}>
-                {props.productionTableData.map((item, index) => (
-                    <>
-                      {item.steps.map((step, stageIndex) => (
+               
+                      {props.productionTableSteps.map((step, stageIndex) => (
                     <Step
                         key={stageIndex}
                         style={{display:"flex"}}
@@ -99,10 +103,11 @@ const Component2 = (props) => {
                     >
                         </Step>
                 ))}
-                </>
-                ))}
+                
             </Steps>
-
+ ) : (
+    <div>No steps available</div>
+  )}
 {/* {props.productionTableData.map((item, index) => (
     <React.Fragment key={index}>
         {item.steps.length > 0 ? (
@@ -158,12 +163,15 @@ const Component2 = (props) => {
 
 
 const mapStateToProps = ({ auth, account, opportunity,production }) => ({
-    addSparePartsDrawerModal:production.addSparePartsDrawerModal
+    addSparePartsDrawerModal:production.addSparePartsDrawerModal,
+    userId: auth.userDetails.userId,
+    productionTableSteps:production.productionTableSteps
   });
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
         addSpareStepsModal,
+        getProductionSteps,
       },
       dispatch
     );
