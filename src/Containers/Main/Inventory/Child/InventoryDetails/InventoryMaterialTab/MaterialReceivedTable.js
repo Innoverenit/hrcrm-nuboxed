@@ -206,7 +206,7 @@ const MaterialReceivedTable = (props) => {
                                                     }}
                                                     type="primary"
                                                 >
-                                                    GRN
+                                                    GRN To Stock
                                                 </Button>
                                                 {/* <ListAltOutlined
                                                     onClick={() => {
