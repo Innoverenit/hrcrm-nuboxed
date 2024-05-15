@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { StyledLabel } from '../../../../../../Components/UI/Elements';
+import { MultiAvatar, StyledLabel } from '../../../../../../Components/UI/Elements';
 
 const { Option } = Select;
 
@@ -103,13 +103,12 @@ const ReceivedDetailCard = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
-                        <div className=" w-[28.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" w-[22.02rem]"><FormattedMessage id="app.Category" defaultMessage="Category" /></div>
+                        <div className=" w-[29.51rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                        <div className=" w-[23.02rem]"><FormattedMessage id="app.Category" defaultMessage="Category" /></div>
                         <div className=" w-[13.01rem]"><FormattedMessage id="app.Attribute" defaultMessage="Attribute" /></div>
-                        <div className=" w-[10.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div>
-                        <div className=" w-[11.02rem]"><FormattedMessage id="app.Unit" defaultMessage="Units" /></div>
-                        <div className=" w-[15.12rem]"><FormattedMessage id="app.Received" defaultMessage="Received" /></div>
-                        <div className=" w-[10.14rem]"><FormattedMessage id="app.created" defaultMessage="Created" /></div>
+                        {/* <div className=" w-[10.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div> */}
+                        <div className=" w-[12.02rem]"><FormattedMessage id="app.Unit" defaultMessage="Units" /></div>
+                        <div className=" w-[18.12rem]"><FormattedMessage id="app.Received" defaultMessage="Received" /></div>
                         <div className=" w-[15.21rem]"><FormattedMessage id="app.Received" defaultMessage="Receive" /></div>
                         <div className=" w-[15.17rem]"><FormattedMessage id="app.Damaged" defaultMessage="Damaged" /></div>
                         <div className=" w-[28.47rem]"><FormattedMessage id="app.Remark" defaultMessage="Remark" /></div>
@@ -131,13 +130,13 @@ const ReceivedDetailCard = (props) => {
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                         <div class="flex">
-                                            <div className=" flex font-medium flex-col w-[11.122rem] max-sm:w-full  ">
+                                            <div className=" flex font-medium flex-col w-[12.422rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[11.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.categoryName} {item.subCategoryName}
                                             </div>
@@ -148,18 +147,19 @@ const ReceivedDetailCard = (props) => {
                                                 {item.attributeName} {item.subAttributeName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[5.02rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        {/* <div className=" flex font-medium flex-col  w-[5.02rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.price}
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col  w-[4.10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        </div> */}
+                                        <div className=" flex font-medium flex-col  w-[5.10rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[4.03rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
+                                        <div className=" flex font-medium flex-col  w-[8.03rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class="flex items-center">
+                                            <div class=" text-xs text-cardBody font-poppins mr-1">
                                                 <PoReceiveToggle
                                                     poSupplierDetailsId={props.row.poSupplierDetailsId}
                                                     suppliesId={item.suppliesId}
@@ -167,12 +167,18 @@ const ReceivedDetailCard = (props) => {
                                                     unitReceiveInd={item.unitReceiveInd}
                                                 />
                                             </div>
+                                            <MultiAvatar
+                                                    primaryTitle={item.userName}
+                                                    imgWidth={"1.8rem"}
+                                                    imgHeight={"1.8rem"}
+                                                />
+                                                </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8.04rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        {/* <div className=" flex font-medium flex-col  w-[8.04rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.userName}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className=" flex font-medium flex-col  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
