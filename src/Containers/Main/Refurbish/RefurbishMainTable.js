@@ -64,32 +64,32 @@ const ProductionOrderList = (props) => {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.orderid"
                             defaultMessage="orderid"
                         /></div>
-                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.customer"
                             defaultMessage="customer"
                         /></div>
-                        <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.contact"
                             defaultMessage="contact"
                         /></div>
-                        <div className="w-[6.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.lead"
                             defaultMessage="Lead"
                         /> </div>
-                        <div className="w-[8.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.assigned"
                             defaultMessage="Assigned"
                         /> </div>
-                        <div className="w-[7.61rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[4.61rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
                         /> </div>
 
-                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.quoted"
                             defaultMessage="Quoted"
                         /></div>
@@ -97,7 +97,7 @@ const ProductionOrderList = (props) => {
                             id="app.final"
                             defaultMessage="Final"
                         /></div>
-                        <div className="w-[18.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[22.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.deliverydate"
                             defaultMessage="deliverydate"
                         /></div>
@@ -118,7 +118,7 @@ const ProductionOrderList = (props) => {
                                 <div>
                                     <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center justify-between p-3  max-sm:h-[8rem] max-sm:flex-col" >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[10.9rem] max-sm:w-auto ">
+                                            <div className=" flex font-medium  w-[9.2rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class="underline text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -148,7 +148,7 @@ const ProductionOrderList = (props) => {
                       <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
                     )}
                     </div> */}
-                                            <div className=" flex font-medium   w-[11.9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[10.9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
@@ -156,7 +156,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[4.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[3.6rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     <MultiAvatar
@@ -166,7 +166,7 @@ const ProductionOrderList = (props) => {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[5.53rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[3.53rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.teamLeadUserName && <MultiAvatar
                                                         primaryTitle={item.teamLeadUserName}
@@ -175,7 +175,7 @@ const ProductionOrderList = (props) => {
                                                     />}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[4.64rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[3.64rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.supervisorUserName && <MultiAvatar
@@ -185,7 +185,7 @@ const ProductionOrderList = (props) => {
                                                     />}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[4.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[3.7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.userName && <MultiAvatar
@@ -197,7 +197,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[5.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
@@ -208,7 +208,7 @@ const ProductionOrderList = (props) => {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium  w-[5.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[5.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
@@ -259,7 +259,7 @@ const ProductionOrderList = (props) => {
                                                                 <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[9.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[6.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.rejectOrderCount > 0 &&
                                                         <Tooltip title="Reject">
@@ -278,7 +278,7 @@ const ProductionOrderList = (props) => {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
                                                         <NoteAltIcon
@@ -293,7 +293,7 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-base text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Update">
                                                         <BorderColorOutlined
@@ -306,7 +306,7 @@ const ProductionOrderList = (props) => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col w-[2rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                 <h4 class=" text-xs text-cardBody font-poppins">
                                                     <Tooltip title="Add Lead">
                                                         <PersonAddAlt1
