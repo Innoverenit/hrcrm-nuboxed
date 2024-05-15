@@ -23,10 +23,8 @@ const ItemHistoryInStock = (props) => {
                         <div className=" md:w-[15.52rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
                         <div className=" md:w-[15.25rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" md:w-[22.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" md:w-[15.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
-                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
-                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.room" defaultMessage="Cell" /></div>
+                        <div className=" md:w-[22.10rem]"><FormattedMessage id="app.wasted" defaultMessage="Wasted" /></div>
+                        <div className=" md:w-[22.01rem]"><FormattedMessage id="app.cell" defaultMessage="Cell" /></div>
 
                         <div className=""></div>
                     </div>
@@ -69,24 +67,20 @@ const ItemHistoryInStock = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.totalUnitUsed}
+                                                {item.unitUsed}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.unitReceived}
+                                                {item.unitWasted}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.unitDamaged}
+                                                {item.cell}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs text-cardBody font-poppins">
-                                                {item.remark}
-                                            </div>
-                                        </div>
+
 
                                     </div>
                                 </div>

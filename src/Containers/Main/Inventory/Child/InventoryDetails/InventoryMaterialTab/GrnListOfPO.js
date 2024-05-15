@@ -58,11 +58,11 @@ const GrnListOfPO = (props) => {
                         <div className=""></div>
                         <div className=" w-[15rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                         <div className=" w-[7.12rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div>
-                        <div className=" w-[8rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
-                        <div className=" w-[8rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" w-[8rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
-                        <div className=" w-[8rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
-                        <div className=" w-[5rem]"></div>
+                        <div className=" w-[8.1rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
+                        <div className=" w-[8.2rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
+                        <div className=" w-[8.3rem]"><FormattedMessage id="app.damage" defaultMessage="Damage" /></div>
+                        <div className=" w-[8.01rem]"><FormattedMessage id="app.final" defaultMessage="Final" /></div>
+                        <div className=" w-[5.01rem]"></div>
                         <div className=" w-[10rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
                         <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         <div className=" w-[15rem]"></div>
@@ -81,40 +81,42 @@ const GrnListOfPO = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl justify-between  mt-2 bg-white h-12 items-center p-3 ">
-                                        <div class="flex">
-                                            <div className=" flex font-medium flex-col w-[12rem] max-sm:w-full  ">
+                                        <div class="flex w-[22rem]">
+                                            <div className=" flex font-medium  w-[12.5rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                       
+                                        <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.price}
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8.02rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[6.023rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        </div>
+                                        <div class="flex w-[20rem]">
+                                        <div className=" flex font-medium   w-[7.033rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[5.043rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[8rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[3.053rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {`${item.unitReceived - item.unitDamaged}`}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[3.2rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins cursor-pointer">
                                                 <ListAltRounded
                                                     onClick={() => {
@@ -124,18 +126,21 @@ const GrnListOfPO = (props) => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        </div>
+                                        <div class="flex w-[29rem]">
+                                        
+                                        <div className=" flex font-medium   w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  w-[10.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.grnNumber}
                                             </div>
                                         </div>
                                         {item.grnNumber !== null &&
-                                            <div className=" flex font-medium flex-col  w-[18rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row  max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins flex justify-between">
 
                                                     {selectZone && item.poSupplierSuppliesId === row.poSupplierSuppliesId ?
@@ -179,7 +184,7 @@ const GrnListOfPO = (props) => {
                                                 </div>
                                             </div>
                                         }
-                                        <div className=" flex font-medium flex-col  w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex font-medium   w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.grnNumber !== null &&
                                                     <TransferToStock
@@ -193,6 +198,7 @@ const GrnListOfPO = (props) => {
                                                     />
                                                 }
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
 

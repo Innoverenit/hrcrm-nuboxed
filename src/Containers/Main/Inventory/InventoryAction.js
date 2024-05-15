@@ -336,6 +336,31 @@ export const getReceivedUserList = (locationDetailsId, page) => (dispatch) => {
     });
 };
 
+export const getCellById = (locationDetailsId, page) => (dispatch) => {
+  dispatch({
+    type: types.GET_CELL_NUMBER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/cell/allCellChamber/${locationDetailsId}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CELL_NUMBER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CELL_NUMBER_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const handleFileDamagedModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_FILE_DAMAGED_MODAL,
