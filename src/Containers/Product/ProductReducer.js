@@ -168,6 +168,10 @@ const initialState = {
   fetchingDiscountHistoryError: false,
   discountHistory: [],
 
+  fetchingDeletedProductRecords: false,
+  fetchingDeletedProductRecordsError: false,
+  deletedProductCount:{},
+
   addingDiscount: false,
   addingDiscountError: false,
 
@@ -727,6 +731,22 @@ export const productReducer = (state = initialState, action) => {
         fetchingRecordsByUserId: false,
         fetchingRecordsByUserIdError: true,
       };
+
+
+      case types.GET_DELETED_PRODUCT_RECORDS_REQUEST:
+        return { ...state, fetchingDeletedProductRecords: true };
+      case types.GET_DELETED_PRODUCT_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedProductRecords: false,
+          deletedProductCount: action.payload,
+        };
+      case types.GET_DELETED_PRODUCT_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedProductRecords: false,
+          fetchingDeletedProductRecordsError: true,
+        };
 
     case types.GET_ALL_PRODUCT_REQUEST:
       return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };

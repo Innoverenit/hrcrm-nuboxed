@@ -503,6 +503,8 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
     })
     .then((res) => {
       dispatch(getRecords())
+      dispatch(getDeletedProductRecords())
+      
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,
@@ -678,6 +680,33 @@ export const getRecords = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDeletedProductRecords = () => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_PRODUCT_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/deleteProduct/count`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_PRODUCT_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETED_PRODUCT_RECORDS_FAILURE,
         payload: err,
       });
     });

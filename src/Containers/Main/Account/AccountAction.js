@@ -1006,6 +1006,40 @@ export const addCarDetails = (customer, id, cb) => (dispatch, getState) => {
       cb && cb();
     });
 };
+
+
+export const addProcureDetails = (customer, id, cb) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_PROCURE_DETAILS_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ADD_PROCURE_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PROCURE_DETAILS_FAILURE,
+        payload: err,
+      });
+      cb && cb();
+    });
+};
 /**
  * get distributor  feedback
  */

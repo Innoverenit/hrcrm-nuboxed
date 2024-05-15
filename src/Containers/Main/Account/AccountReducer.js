@@ -285,6 +285,9 @@ const initialState = {
   addingCar: false,
   addingCarError: false,
 
+  addingProcureDetails: false,
+          addingProcureDetailsError:false,
+
   //get document
   fetchingDocumentsByDistributorId: false,
   fetchingDocumentsByDistributorIdError: false,
@@ -1387,6 +1390,30 @@ export const distributorReducer = (state = initialState, action) => {
         ...state, addingCar: false,
         // addCustomerModal: false 
       };
+
+
+      case types.ADD_PROCURE_DETAILS_REQUEST:
+        return { ...state, addingProcureDetails: true };
+      case types.ADD_PROCURE_DETAILS_SUCCESS:
+        return {
+          ...state,
+          addingProcureDetails: false,
+          // updateOrderModal: false,
+          // addLinkDistributorOrderConfigureModal: false,
+          // distributorOrder: state.distributorOrder.map((item) => {
+          //   if (item.orderId == action.payload.orderId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADD_PROCURE_DETAILS_FAILURE:
+        return {
+          ...state, addingProcureDetails: false,
+          addingProcureDetailsError:true,
+          // addCustomerModal: false 
+        };
 
     /**
      * update product detail modal
