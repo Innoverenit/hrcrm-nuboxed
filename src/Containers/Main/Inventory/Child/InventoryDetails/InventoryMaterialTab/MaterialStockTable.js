@@ -158,7 +158,7 @@ const GrnListOfPO = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.unit}
+                                                {item.remainingCorrectUnit}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
