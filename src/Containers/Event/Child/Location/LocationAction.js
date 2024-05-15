@@ -759,13 +759,21 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       type: types.REINSTATE_TOGGLE_FOR_LOC_CELL_REQUEST,
     });
     axios
-      .put(`${base_url2}/cell/reinitiate/cell/${cellId}`, data)
+      .put(`${base_url2}/cell/reinitiate/cell/${cellId}`, data,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
       .then((res) => {
         dispatch({
           type: types.REINSTATE_TOGGLE_FOR_LOC_CELL_SUCCESS,
           payload: cellId,
         });
-        message.success("Reinstated Successfully");
+        Swal.fire({
+          icon: 'success',
+          title: 'Reinstated Successfully',
+        })
+        // message.success("Reinstated Successfully");
       })
       .catch((err) => {
         console.log(err);
