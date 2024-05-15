@@ -280,6 +280,10 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Cell Deleted Succefully!',
+        })
         //dispatch(getProducts(0))
         console.log(res);
         dispatch({
@@ -727,7 +731,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       type: types.GET_DELETED_LOCATION_CELL_REQUEST,
     });
     axios
-      .get(`${base_url2}/`, {
+      .get(`${base_url2}/cell/deleteCellHistory`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
