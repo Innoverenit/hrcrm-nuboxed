@@ -5,7 +5,7 @@ import { Button ,Select,Input} from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 //import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
-import {getLocationMachine,createMachinary} from "../../Child/Location/LocationAction"
+import {getLocationMachine,createMachinary,getLocationMachineData} from "../../Child/Location/LocationAction"
 //import { Select } from "../../../../Components/UI/Elements";
 //import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell} from "../../../Event/Child/Location/LocationAction";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -18,10 +18,7 @@ const { Option } = Select;
 
 const UserMachineCrd = (props) => {
   console.log(props.storedLoc.locationDetailsId)
-//   useEffect(()=>{
-//     // props.getDepartments();
-//     props.getMachinaryList(props.storedLoc.locationDetailsId,props.orgId);
-// },[]);
+ 
   const [machine,setMachine]=useState("")
   const[machinecode,setMachineCode]=useState("")
   const[cell,setCell]=useState("")
@@ -34,6 +31,7 @@ const UserMachineCrd = (props) => {
   ];
     useEffect(()=>{
         props.getLocationMachine();
+        props.getLocationMachineData(props.storedLoc.locationDetailsId);
         // props.getDepartments();
         // props.getUserCell(props.storedLoc.locationDetailsId);
         // props.getCellCode(props.storedLoc.locationDetailsId);
@@ -276,13 +274,14 @@ const UserMachineCrd = (props) => {
 const mapStateToProps = ({ auth,location,departments,distributor, }) => ({
     userId: auth.userDetails.userId,
     orgId:auth.userDetails.organizationId,
-    locationId:auth.userDetails.locationId,
+    //locationId:auth.userDetails.locationId,
     allLoCell:location.allLoCell,
     cellCode:location.cellCode,
     userCell:location.userCell,
     departments: departments.departments,
     userListLocation:location.userListLocation,
     locationMachine:location.locationMachine,
+    locationMachineData:location.locationMachineData
 
 });
 
@@ -290,7 +289,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
           getLocationMachine,
-          createMachinary
+          createMachinary,
+          getLocationMachineData
         //     getAlLoCell,
         //    getDepartments,
         //    getUserListLocation,

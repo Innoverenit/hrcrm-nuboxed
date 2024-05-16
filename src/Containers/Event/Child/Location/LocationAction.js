@@ -822,7 +822,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
     
     dispatch({ type: types.CREATE_MACHINARY_REQUEST });
     axios
-      .post(`${base_url}/machinary`, data, {
+      .post(`${base_url}/machinary/location`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -839,6 +839,35 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(err);
         dispatch({
           type: types.CREATE_MACHINARY_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const getLocationMachineData = (locationId, pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_MACHINE_DATA_REQUEST,
+    });
+    axios
+      .get(`${base_url}/machinary/location/${locationId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LOCATION_MACHINE_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LOCATION_MACHINE_DATA_FAILURE,
           payload: err,
         });
       });
