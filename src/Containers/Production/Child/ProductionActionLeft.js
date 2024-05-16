@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
 import ArchiveIcon from '@mui/icons-material/Archive';
+import TokenIcon from '@mui/icons-material/Token';
 import TocIcon from '@mui/icons-material/Toc';
 import { TableOutlined } from "@ant-design/icons";
 import {getProductRecords} from "../ProductionAction";
@@ -113,6 +114,25 @@ const ProductionActionLeft = (props) => {
 
                         </span>
                     </Badge>
+                </Tooltip>
+
+
+                <Tooltip title="Cell">
+                    {/* <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        overflowCount={999}
+                    > */}
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setProductionViewType("cell")}
+                            style={{
+
+                                color: viewType === "cell" && "#1890ff",
+                            }}
+                        >
+                            <TokenIcon  />
+
+                        </span>
+                    {/* </Badge> */}
                 </Tooltip>
 
 
