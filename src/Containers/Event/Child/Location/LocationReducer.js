@@ -70,6 +70,11 @@ const initialState = {
 
    clickLocDrwr:false,
 
+
+   fetchingLocationMachineData:false,
+   fetchingLocationMachineDataError:false,
+   locationMachineData:[],
+
    creatingLocationCell: false,
 creatingLocationCellError:false,
 
@@ -401,7 +406,7 @@ deletingUserCellDataError:false,
                                                   return {
                                                     ...state,
                                                     creatingMachine: false,
-                                                   // userCell:[action.payload,...state.userCell]
+                                                    locationMachineData:[action.payload,...state.locationMachineData]
                              
                                                   };
                                                 case types.CREATE_MACHINARY_FAILURE:
@@ -602,6 +607,18 @@ deletingUserCellDataError:false,
                           reInstatedLocationCellById: false,
                           reInstatedLocationCellByIdError: true,
                       };
+
+
+
+
+                      case types.GET_LOCATION_MACHINE_DATA_REQUEST:
+                        return { ...state, fetchingLocationMachineData: true, 
+                          // fetchingProductionTable: false 
+                        };
+                      case types.GET_LOCATION_MACHINE_DATA_SUCCESS:
+                        return { ...state, fetchingLocationMachineData: false, locationMachineData: action.payload };
+                      case types.GET_LOCATION_MACHINE_DATA_FAILURE:
+                        return { ...state, fetchingLocationMachineData: false, fetchingLocationMachineDataError: true };
 
       default:
     return state;
