@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Tabs,Spin } from "antd";
+import { Button,Tabs,Spin,Input } from "antd";
+// import { Input, Button } from 'antd';
 import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell,getCatalogueCell,getcellCardList} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
@@ -83,7 +84,7 @@ if(props.fetchingCatalogueCell){
               <div className=" flex justify-between w-[42%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
                 <div className=" md:w-[6rem]">#Cell</div>
                 <div className="md:w-[6.2rem] ">Tag Production</div>
-                <div className="w-12"></div>    </div>
+                <div className="w-12">Units/day</div>    </div>
                 
     
                {props.cellCardList.map((item) => {
@@ -115,6 +116,35 @@ if(props.fetchingCatalogueCell){
                         </div>
     
                       </div>
+
+
+
+                      <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="text-xs text-cardBody font-poppins">
+                <div className="font-normal text-sm text-cardBody font-poppins" style={{display:"flex",width:"14em"}}>
+                  {/* {item.tagProduction ? ( */}
+                    <>
+                      <Input
+                        //value={productionInput}
+                        //onChange={(e) => setProductionInput(e.target.value)}
+                        className="mr-2"
+                        placeholder="Enter units"
+                      />
+                      <Button
+                        type="primary"
+                        onClick={() => {
+                          // Implement your submit logic here
+                          //console.log('Submit clicked for cellId:', item.cellId, 'Value:', productionInput);
+                          // Add logic to handle submission
+                        }}
+                      >
+                        Submit
+                      </Button>
+                    </>
+                  {/* ) : null} */}
+                </div>
+              </div>
+            </div>
                      
                      
     
