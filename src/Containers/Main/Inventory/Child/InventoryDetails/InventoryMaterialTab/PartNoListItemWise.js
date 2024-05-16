@@ -23,7 +23,7 @@ const PartNoListItemWise = (props) => {
                     <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
 
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                        {/* <div className=" md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div> */}
                         <div className=" md:w-[22.12rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
                         <div className=" md:w-[15.5rem]"><FormattedMessage id="app.part" defaultMessage="Part #" /></div>
                         <div className=""></div>
@@ -40,18 +40,18 @@ const PartNoListItemWise = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                                        <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
+                                        <div className=" flex font-medium flex-col md:w-[36.1rem] max-sm:w-full  ">
                                             <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                 {item.supplierSuppliesUniqueNumberId}
                                             </div>
                                         </div>
-                                        <div class="flex">
+                                        {/* <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     {item.suppliesFullName}
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
 
                                         <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">

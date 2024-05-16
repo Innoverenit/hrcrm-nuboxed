@@ -47,7 +47,7 @@ const InventoryCard = (props) => {
             <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.country" defaultMessage="Country" /></div>
             <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
-            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div>
+            {/* <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div> */}
             <div className="w-[4.3rem]"></div>
           </div>
           <InfiniteScroll
@@ -64,7 +64,7 @@ const InventoryCard = (props) => {
                   <div>
                     <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[15.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
+                        <div className=" flex font-medium  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 
 
                           <Tooltip>
@@ -88,7 +88,7 @@ const InventoryCard = (props) => {
                         </div>
 
 
-                        <div className=" flex font-medium flex-col w-[10.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex font-medium  w-[20.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                           {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -101,7 +101,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[10.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex font-medium  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -109,7 +109,7 @@ const InventoryCard = (props) => {
 
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col w-[26.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex font-medium  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
