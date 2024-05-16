@@ -76,13 +76,13 @@ const AccountOrder1Table = (props) => {
                     </div>
 
 
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto ">
                         <InfiniteScroll
                             dataLength={props.productionOrder.length}
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingProductionOrderById ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"75vh"}
+                            height={"67vh"}
                         >
                             {props.productionOrder.length ? <>
                                 {props.productionOrder.map((item) => {
@@ -112,7 +112,7 @@ const AccountOrder1Table = (props) => {
                                                     </div>
 
                                                     <div class="flex">
-                                                        <div className="ml-1 font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                        <div className="ml-1 font-medium flex items-center md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                             <div class=" text-xs text-cardBody font-poppins">
                                                                 <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
@@ -135,7 +135,7 @@ const AccountOrder1Table = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -146,7 +146,7 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium  md:w-[17.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             {item.type === "Catalogue" ?
                                                                 item.productionLocationDetailsViewDTO && item.productionLocationDetailsViewDTO.name || "" :
@@ -154,14 +154,14 @@ const AccountOrder1Table = (props) => {
                                                         </div>
                                                     </div>
 
-                                                    <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium items-center  md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             {item.count}
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium items-center  md:w-[11.52rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             <Button
@@ -176,7 +176,7 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex font-medium items-center  md:w-[11.53rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
