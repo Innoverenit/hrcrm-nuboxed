@@ -1,6 +1,7 @@
 import React, { lazy, Suspense ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProductionCellList from "../Production/ProductionCellList"
 import ProductionDashCard from "./ProductionDashCard"
 import ProductionHeader from "./Child/ProductionHeader";
 import { handleCreateProduction, setProductionViewType,getProductionTable } from "./ProductionAction";
@@ -43,6 +44,8 @@ function Production(props) {
         <ProductionAllCardView viewType={props.viewType} /> :
         props.viewType === "stage" ?
         <ProductionBoard /> :
+        props.viewType === "cell" ?
+        <ProductionCellList /> :
         props.viewType === "table" ?
         <ProductionDashCard 
         fetchingProductionTable={props.fetchingProductionTable}
