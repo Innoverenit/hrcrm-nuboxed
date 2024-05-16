@@ -109,6 +109,8 @@ function DealCardList(props) {
                 findProbability = element.probability;
               }
             });
+            const percentage = Math.floor((item.proposalAmount/item.collectedAmount) * 100)
+            const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
             return (
               <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
               text-[#444444] m-2 p-1 w-[16vw] flex flex-col justify-center max-sm:w-wk  ">
@@ -158,6 +160,7 @@ function DealCardList(props) {
                     </div>
                   </div>
                 </div>
+
                 <div className="flex ">
         
         <div>
@@ -224,7 +227,21 @@ function DealCardList(props) {
                     />
                   </span>
                 </div>
+ <div className="flex justify-around">
+                  <div>
+                    {/* hii */}
+                  {isValidPercentage ? (
 
+<Progress
+  percent={percentage}
+  success={{ percent: 30 }}
+  format={() => `${percentage}%`}
+  style={{ width: "8rem", cursor: "pointer" }}
+/>
+) : null}
+                  </div>
+                 
+                </div>
                 <div class="w-full ">
                   <div class="flex justify-between w-wk mt-1">
                     <div>

@@ -1023,12 +1023,10 @@ export const setDealsContactType = (data) => (dispatch) => {
     });
 };
 
-export const setDealsContactValue = (data) => (dispatch) => {
+export const setDealsContactValue = (data,invOpportunityId) => (dispatch) => {
   dispatch({ type: types.SET_DEALS_CONTACT_VALUE_REQUEST });
   axios
-    .post(
-  
-      `${base_url}/investorOpportunit/fund/update`,data,
+    .post(`${base_url}/investorOpportunit/fund/update`,data,
       {
     
         headers: {
@@ -1037,10 +1035,10 @@ export const setDealsContactValue = (data) => (dispatch) => {
       
       })
     .then((res) => {
-      console.log(res);
-      Swal({
+      dispatch(getDealsContactList(invOpportunityId))
+      Swal.fire({
         icon: 'success',
-        title: 'Updated successfully!',
+        title: 'Updated Successfully!',
       })
       dispatch({
         type: types.SET_DEALS_CONTACT_VALUE_SUCCESS,
