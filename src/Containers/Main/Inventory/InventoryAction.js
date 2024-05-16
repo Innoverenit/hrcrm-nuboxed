@@ -1388,6 +1388,30 @@ export const getMaterialReceivedDetailData = (pOSupplierDetailsId) => (dispatch)
     });
 };
 
+export const getCellData = (locationDetailsId, orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CELL_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/cellChamber/material/${locationDetailsId}/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_CELL_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CELL_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const updateReceivedDamagedUnit = (data, poSupplierDetailsId, suppliesId) => (dispatch) => {
   dispatch({ type: types.UPDATE_RECEIVED_DAMAGED_UNIT_REQUEST });
   axios
