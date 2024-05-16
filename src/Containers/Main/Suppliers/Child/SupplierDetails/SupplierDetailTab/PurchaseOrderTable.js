@@ -103,7 +103,7 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[22.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[23.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"

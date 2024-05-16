@@ -98,9 +98,9 @@ const UsersCellCard = (props) => {
 
     return (
       <>
-      <div style={{display:"flex"}}>
-      <div>
-<label style={{display: 'block'}}>Cell Code</label>
+      <div class="flex justify-between" >
+      <div class="ml-2">
+<label class="block" >Cell Code</label>
     <Select
       placeholder="Select a cell"
       style={{ width: 200 }}
@@ -114,7 +114,7 @@ const UsersCellCard = (props) => {
       ))}
     </Select>
     </div>
-      <div style={{marginLeft:"19px"}}>
+      <div >
         <label style={{display: 'block'}}>Department</label>
     <Select
       placeholder="Select a department"
@@ -132,8 +132,8 @@ const UsersCellCard = (props) => {
 
 
 
-    <div style={{marginLeft:"19px"}}>
-    <label style={{display: 'block'}}>User Name</label>
+    <div >
+    <label style={{display: 'block'}}>User </label>
     <Select
       placeholder="Select a user"
       style={{ width: 200 }}
@@ -147,7 +147,7 @@ const UsersCellCard = (props) => {
          ))}
     </Select>
     </div>
-    <div style={{marginTop:"18px",marginLeft:"21px"}}>
+    <div class="mt-[1.125rem]">
                                          
                                         <Button
                                     type="primary"
@@ -167,11 +167,12 @@ const UsersCellCard = (props) => {
 
 <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">   
+                
             <div className=" md:w-[6rem]">Cell Code</div>
             <div className=" md:w-[4.2rem] ">Department</div>
          
-            <div className=" md:w-[5.1rem]">User Name</div>
+            <div className=" md:w-[5.1rem]">User </div>
             <div className="w-12"></div>             </div>
 
            {props.userCell.map((item) => {
@@ -179,7 +180,7 @@ const UsersCellCard = (props) => {
               <div >
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
-                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
+                  <div className=" flex font-medium  md:w-[12.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                       <div className="font-normal text-sm text-cardBody font-poppins">
                         <div> {item.cellChamber}</div>
@@ -187,7 +188,7 @@ const UsersCellCard = (props) => {
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex font-medium   md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                     <div class=" text-xs text-cardBody font-poppins">
                     
@@ -198,7 +199,7 @@ const UsersCellCard = (props) => {
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins">
                    
                       <div className="font-normal text-sm text-cardBody font-poppins">
@@ -208,7 +209,7 @@ const UsersCellCard = (props) => {
                   </div>
 
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins">
                    
                       <div className="font-normal text-sm text-cardBody font-poppins">
@@ -217,7 +218,7 @@ const UsersCellCard = (props) => {
                             onConfirm={() => handleDelete(item)}
 
                           >
-                        <DeleteOutlined/>
+                        <DeleteOutlined className="!text-red-500"/>
                         </StyledPopconfirm>
                       </div>
                     </div>

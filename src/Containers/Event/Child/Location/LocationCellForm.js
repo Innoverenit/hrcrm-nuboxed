@@ -73,7 +73,7 @@ const LocationCellForm = (props) => {
                                 <div class=" w-full h-full">
 
                                     <div class="flex justify-between">
-                                        <div class=" w-[18%]" >
+                                        <div class=" w-[18%] ml-2" >
                                             <Field
                                                 name="cell"
                                                 isColumn
@@ -113,7 +113,7 @@ const LocationCellForm = (props) => {
                                     loading={props.creatingLocationCell}
                                     style={{
                                         marginTop: "20px",
-                                        marginLeft: "286px",
+                                      
                                     }}
                                 >
                                     Submit
@@ -192,7 +192,7 @@ const LocationCellForm = (props) => {
                             
                             <DeleteOutlined
                               type="delete"
-                              className=" !text-base cursor-pointer text-[red]"
+                              className=" !text-base cursor-pointer !text-[red]"
                             />
                          
                           </StyledPopconfirm>
