@@ -214,7 +214,7 @@ function OpenReceivedOrderIdForm(props) {
       />
       <div class=" flex justify-end" >
         {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>}
-        {props.rowData.dispatchInspectionInd === 1 &&
+        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
           <div class=" ml-[10px]" >
             <Button
               loading={props.updatingDispatchInspectionButton}

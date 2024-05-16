@@ -6,7 +6,8 @@ import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import MaterialReceivedTable from "./MaterialReceivedTable";
 import MaterialStockTable from "./MaterialStockTable";
-import MaterialCellStock from "./MaterialCellStock";
+// import MaterialCellStock from "./MaterialCellStock";
+import MaterialCellCardView from "./MaterialCellCardView";
 
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTab extends PureComponent {
@@ -75,7 +76,8 @@ class InventoryMaterialTab extends PureComponent {
                             key="3"
                         >
                             <Suspense fallback={"Loading..."}>
-                                <MaterialCellStock />
+                                {/* <MaterialCellStock /> */}
+                                <MaterialCellCardView />
                             </Suspense>
                         </TabPane>
                     </StyledTabs>
