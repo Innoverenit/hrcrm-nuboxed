@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { getDealsContactList,setDealsContactValue  } from "../../DealAction"
 import {getCurrency} from "../../../Auth/AuthAction";
 import { FormattedMessage } from "react-intl";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import moment from "moment";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button ,Input} from "antd";
@@ -27,12 +28,14 @@ function LinkedDealContact(props) {
     props.getDealsContactList(props.currentItem.invOpportunityId);
   }, []);
 
-  const handleEditAmount = (contactId, amount,repayMonth,interest,currency) => {
+  const handleEditAmount = (contactId, amount,currencyId,repayMonth,interest,borrowDate) => {
     setEditingId(contactId);
     setNewAmount(amount);
+    setCurrencyId(currencyId);
     setNewMonth(repayMonth);
     setNewInterest(interest);
-    setCurrencyId(currency)
+   
+    setSelectedDate(borrowDate);
   };
   const handleCurrency = (event) => {
     const currencyId = event.target.value;
@@ -53,7 +56,7 @@ function LinkedDealContact(props) {
  
 
     };
-    props.setDealsContactValue(data);
+    props.setDealsContactValue(data,props.currentItem.invOpportunityId);
     setEditingId(null);
   };
 
@@ -94,11 +97,38 @@ if (props.fetchingDealsContactList) {
       <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[8.1rem]">  <FormattedMessage
+            <div className=" md:w-[10.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
-            <div className="w-[3.8rem]">
+            <div className="w-[8.8rem]"><FormattedMessage
+              id="app.tagCustomer"
+              defaultMessage="Tag Customer"
+            />
+            </div>
+            <div className="w-[3.8rem]"><FormattedMessage
+              id="app.amount"
+              defaultMessage="Amount"
+            />
+            </div>
+          
+            <div className="w-[8.8rem]"><FormattedMessage
+              id="app.payout"
+              defaultMessage="Payout (in months)"
+            />
+            </div>
+            <div className="w-[3.8rem]"><FormattedMessage
+              id="app.Interest"
+              defaultMessage="Interest"
+            />
+            </div>
+           
+            <div className="w-[3.8rem]"><FormattedMessage
+              id="app.Collected"
+              defaultMessage="Collected"
+            />
+            </div>
+            <div className="w-[2.8rem]">
             </div>
           </div>
           <div class="overflow-x-auto h-[64vh]">
@@ -126,13 +156,7 @@ if (props.fetchingDealsContactList) {
 
                             </div>
                             <div className=" flex font-medium flex-col md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
-
-
-
-                         
-                        
-
-       
+     
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
 
  <DealsCardToggle
@@ -141,11 +165,12 @@ invOpportunityId={props.currentItem.invOpportunityId}
  />
 </div>
 </div>
-{item.borrowInd && (
-  <div className="flex flex-row items-center md:w-[30rem] max-sm:flex-row w-full max-sm:justify-end">
-  
+
+  <div className="flex flex-row items-center md:w-[42rem] max-sm:flex-row w-full max-sm:justify-end">
+ 
   <div className="flex flex-row w-[30rem] ">
-  
+  {item.borrowInd && (
+    <>
                 {editingId === item.contactId ? (
                   <div className="flex flew-row">
                     <Input
@@ -154,35 +179,39 @@ invOpportunityId={props.currentItem.invOpportunityId}
                       value={newAmount}
                       onChange={(e) => setNewAmount(e.target.value)}
                     />
+                        <select
+                 style={{marginLeft:"0.5rem"}}
+                 //  defaultValue={region.taskType}
+                  className="customize-select"
+                  value={item.currency} 
+                  onChange={handleCurrency}
+              >
+                  <option value="">Currency</option>
+                  {props.currencies.map((item) => (
+                      <option 
+                          key={item.currency_id} value={item.currency_id}>
+                          {item.currency_name}
+                      </option>
+                  ))}
+              </select> 
                                      <Input
-                     style={{width:"55%"}}
+                     style={{width:"55%",marginLeft:"0.5rem"}}
                       placeholder="Month"
                       value={newMonth}
                       onChange={(e) => setNewMonth(e.target.value)}
                     />
                                       <Input
-                     style={{width:"55%"}}
+                     style={{width:"55%",marginLeft:"0.5rem"}}
                       placeholder="Interent"
                       value={newInterest}
                       onChange={(e) => setNewInterest(e.target.value)}
                     />
-                    <select 
-                            //  defaultValue={region.taskType}
-                             className="customize-select"
-                             onChange={handleCurrency}
-                         >
-                             <option value="">Currency</option>
-                             {props.currencies.map((item) => (
-                                 <option 
-                                     key={item.currency_id} value={item.currency_id}>
-                                     {item.currency_name}
-                                 </option>
-                             ))}
-                         </select> 
+                
                          <DatePicker
-                          defaultValue={moment(item.borrowDate)}
+                            style={{marginLeft:"0.5rem"}}
+                          // defaultValue={moment(item.borrowDate)}
   value={selectedDate ? moment(selectedDate) : null} 
-  onChange={handleDateChange}
+  onChange={(date, dateString) => setSelectedDate(dateString)}
   picker="date" 
 />
                     <Button onClick={() => handleUpdateAmount(item)}>Save</Button>
@@ -190,22 +219,29 @@ invOpportunityId={props.currentItem.invOpportunityId}
                   </div>
                 ) : (
                   <div className="flex fle-row">
-                    <div className="flex ml-2 w-[3rem]">{item.amount}</div>
-                    <div className="flex ml-2 w-[3rem]">{item.repayMonth}</div>
-                    <div className="flex ml-2 w-[3rem]">{item.interest}</div>
-                    <div className="flex ml-2 w-[4rem]">{item.currency}</div>
+                    <div className="flex ml-2 w-[7rem]">{item.amount} {item.currency}</div>
+                    <div className="flex ml-2 w-[7rem]">{item.repayMonth}</div>
+                    <div className="flex ml-2 w-[4rem]">{item.interest}</div>
+             
                     <div className="flex ml-2 w-[8rem]">{moment(item.borrowDate).format("ll")}</div>
-                    <Button style={{marginLeft:"1rem"}} onClick={() => handleEditAmount(item.contactId, item.amount,item.repayMonth,item.interest,item.currency,item.borrowDate)}>
-                      Edit
-                    </Button>
+                    <BorderColorIcon
+                      tooltipTitle="Edit"
+                      iconType="edit"
+                      onClick={() => handleEditAmount(item.contactId, item.amount,item.currency,item.repayMonth,item.interest,item.borrowDate)}
+                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}
+                    />
+                    
                   </div>
                 )}
+                </>
+
+)}
               
   </div>
  
 
   </div>
-)}
+
 
 
 

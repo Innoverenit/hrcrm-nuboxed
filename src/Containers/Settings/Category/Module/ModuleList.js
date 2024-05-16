@@ -14,6 +14,7 @@ import FWLogo3 from "../../../../Assets/Images/Recruitpro.jpg";
 import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import ModuleTrading from "./ModuleTrading";
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
@@ -613,6 +614,7 @@ logisticsStatus={logisticsStatus}
                     //   setCurrentData={this.setCurrentData}
                     //  handleDeleteDepartment={this.handleDeleteDepartment}
                     />
+                    <ModuleTrading/>
                   {/* )) */}
                   {/* ) : (
                     <p>No Data Available</p>
