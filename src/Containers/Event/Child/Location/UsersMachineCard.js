@@ -98,9 +98,9 @@ const UserMachineCrd = (props) => {
 
     return (
       <>
-      <div style={{display:"flex"}}>
-      <div>
-<label style={{display: 'block'}}>Machine</label>
+      <div class="flex">
+      <div class="ml-2">
+<label class="block">Machine</label>
     <Select
       placeholder="Select a cell"
       style={{ width: 200 }}
@@ -157,9 +157,10 @@ const UserMachineCrd = (props) => {
 
 <div className=' flex justify-end sticky z-auto'>
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">    
+              
             <div className=" md:w-[6rem]">Machine</div>
-            <div className=" md:w-[4.2rem] ">Machine Code</div>
+            <div className=" md:w-[7.2rem] ">Machine Code</div>
          
             <div className=" md:w-[5.1rem]">Tag to Cell</div>
             <div className="w-12"></div>             </div>

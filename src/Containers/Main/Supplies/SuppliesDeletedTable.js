@@ -22,16 +22,15 @@ function SuppliesDeletedTable(props) {
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
+            <div className=" w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
             <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Category</div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sub Category</div>
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
-            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
+            <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
             <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
-            {/* <div className="md:w-[4.2rem]">Scan</div> */}
-            <div className="w-[3.8rem]"></div>
+            
           </div>
 
           <InfiniteScroll
@@ -40,6 +39,7 @@ function SuppliesDeletedTable(props) {
             hasMore={hasMore}
             loader={props.fetchingDeletedSuppliesHistory ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"75vh"}
+            style={{overflowX:"hidden"}}
           >
             {props.deleteSuppliesHistory.length ?
               <>
@@ -50,7 +50,7 @@ function SuppliesDeletedTable(props) {
                       <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[15.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                          <div className=" flex font-medium flex-col w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
 <span>
@@ -64,7 +64,7 @@ function SuppliesDeletedTable(props) {
                                 </span>
 
                               </div>
-                              <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
+                              <div class="w-[2.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
 
                               </div>
 
@@ -82,38 +82,38 @@ function SuppliesDeletedTable(props) {
                               </div>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[7.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.suppliesName}
                             </div>
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[9.81rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.categoryName}
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col w-[9.23rem] max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[9.3rem] max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.subCategoryName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[10.32rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[8.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.attributeName} {item.subAttributeName}
                             </div>
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[3.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex font-medium flex-col w-[9.41rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               {item.reorder}
                             </div>
                           </div>
                           <div className=" flex font-medium flex-col w-[9.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class=" font-normal text-[0.82rem] items-center flex max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <MultiAvatar
                               primaryTitle={item.userName}
                               imageId={item.imageId}
@@ -131,11 +131,7 @@ function SuppliesDeletedTable(props) {
                           
                           
                           </div>
-                          <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                       
-                      </div>
-                    </div>
+                          
                         
                         </div>
                       </div>
