@@ -115,7 +115,7 @@ const RejectedReassignPhon = (props) => {
                         <div class=" w-1/5">
                             <Button
                                 type='primary'
-                                // loading={props.updatingTechnicianForRepair}
+                                loading={props.reassigningRejectedPhones}
                                 onClick={() => props.reassignRejectedPhone({
                                     rejectReceiveUserId: props.row.technicianId,
                                     duplicateRepairDueDate: dueDate,
@@ -138,6 +138,7 @@ const mapStateToProps = ({ auth, refurbish, departments }) => ({
     departments: departments.departments,
     fetchingDepartments: departments.fetchingDepartments,
     productionUser: refurbish.productionUser,
+    reassigningRejectedPhones: refurbish.reassigningRejectedPhones,
     locationId: auth.userDetails.locationId,
 
 });

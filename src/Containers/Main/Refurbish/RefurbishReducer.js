@@ -1520,6 +1520,10 @@ export const refurbishReducer = (state = initialState, action) => {
       return {
         ...state,
         reassigningRejectedPhones: false,
+        rejectPhoneById: state.rejectPhoneById.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
       };
     case types.REASSIGN_REJECTED_PHONE_FAILURE:
       return {
