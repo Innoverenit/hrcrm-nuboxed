@@ -54,6 +54,11 @@ const initialState = {
 
   productionTableData:[],
 
+  fetchingProductionStage:false,
+  fetchingProductionStageError:false,
+
+  productionTableStage:[],
+
 
   updatingProductionStage:false,
 
@@ -160,6 +165,15 @@ export const productionReducer = (state = initialState, action) => {
         return { ...state, fetchingProductionTable: false, productionTableData: action.payload };
       case types.GET_PRODUCTION_TABLE_FAILURE:
         return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
+
+
+
+        case types.GET_PRODUCTION_STAGE_REQUEST:
+          return { ...state, fetchingProductionStage: true, fetchingProductionStageError: false };
+        case types.GET_PRODUCTION_STAGE_SUCCESS:
+          return { ...state, fetchingProductionStage: false, productionTableStage: action.payload };
+        case types.GET_PRODUCTION_STAGE_FAILURE:
+          return { ...state, fetchingProductionStage: false, fetchingProductionStageError: true };
 
     case types.REMOVE_PRODUCTION_REQUEST:
       return { ...state, removingProduction: true };

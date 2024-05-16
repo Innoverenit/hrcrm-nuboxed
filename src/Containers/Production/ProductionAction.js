@@ -608,3 +608,33 @@ export const getProductionSteps = (userId, pageNo) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const getProductionStage = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_STAGE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/stageList/productionProductLink/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_STAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+};
