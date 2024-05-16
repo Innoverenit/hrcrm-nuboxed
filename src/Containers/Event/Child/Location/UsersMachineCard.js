@@ -5,7 +5,7 @@ import { Button ,Select,Input} from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 //import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
-import {getLocationMachine} from "../../Child/Location/LocationAction"
+import {getLocationMachine,createMachinary} from "../../Child/Location/LocationAction"
 //import { Select } from "../../../../Components/UI/Elements";
 //import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell} from "../../../Event/Child/Location/LocationAction";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -18,7 +18,12 @@ const { Option } = Select;
 
 const UserMachineCrd = (props) => {
   console.log(props.storedLoc.locationDetailsId)
-  const [department,setDepartment]=useState("")
+//   useEffect(()=>{
+//     // props.getDepartments();
+//     props.getMachinaryList(props.storedLoc.locationDetailsId,props.orgId);
+// },[]);
+  const [machine,setMachine]=useState("")
+  const[machinecode,setMachineCode]=useState("")
   const[cell,setCell]=useState("")
   const[user,setUser]=useState("")
   const users = [
@@ -35,24 +40,42 @@ const UserMachineCrd = (props) => {
         // props.getUserListLocation()
     },[]);
 
-    const handleChange=(value)=> {
-      setUser(value)
-     
-      
-      console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
-    }
-
-
-
-    function handleChangeDepartment(value) {
+    function handleChangeMachine(value) {
     
-      setDepartment(value)
-      props.getUserListLocation(props.storedLoc.locationDetailsId,value)
+      setMachine(value)
+      //props.getUserListLocation(props.storedLoc.locationDetailsId,value)
       
       // console.log(`Selected user: ${value}`);
       // You can handle the selected user value here
     }
+
+
+   
+
+
+    const handleChangeCode = (e) => {
+      setMachineCode(e.target.value);
+    };
+
+
+    // const handleChange=(value)=> {
+    //   setUser(value)
+     
+      
+    //   console.log(`Selected user: ${value}`);
+    //   // You can handle the selected user value here
+    // }
+
+
+
+    // function handleChangeDepartment(value) {
+    
+    //   setDepartment(value)
+    //   props.getUserListLocation(props.storedLoc.locationDetailsId,value)
+      
+    //   // console.log(`Selected user: ${value}`);
+    //   // You can handle the selected user value here
+    // }
 
 
 
@@ -96,6 +119,28 @@ const UserMachineCrd = (props) => {
     //    props.deleteUserCell(item.cellChamberUserLinkId);
     // };
 
+
+    const handleSaveMachine=()=> {
+      let data={
+        machine:machine,
+        machineCode:machinecode
+        // cellChamberLinkId:cell,
+
+        // // cellId:cell,
+        // department:department,
+        // locationId:props.storedLoc.locationDetailsId,
+        // user:user,
+      }
+    
+      
+      props.createMachinary(data);
+      setMachine("");
+      setMachineCode("");
+      // setUser("");
+      // console.log(`Selected user: ${value}`);
+      // You can handle the selected user value here
+    }
+
     return (
       <>
       <div style={{display:"flex"}}>
@@ -104,17 +149,15 @@ const UserMachineCrd = (props) => {
     <Select
       placeholder="Select a cell"
       style={{ width: 200 }}
-      onChange={handleCellChange}
-      value={cell} 
+      onChange={handleChangeMachine}
+      // value={cell} 
     >
-      {/* {props.cellCode.map(cell => (
-        <Option key={cell.cellChamberLinkId} value={cell.cellChamberLinkId}>
-          {cell.cellChamber}
+      {props.locationMachine.map(machine => (
+        <Option key={machine.machinaryId} value={machine.machinaryId}>
+          {machine.name}
         </Option>
-      ))} */}
-      <Option>A</Option>
-      <Option>A</Option>
-      <Option>A</Option>
+      ))}
+    
     </Select>
     </div>
       <div style={{marginLeft:"19px"}}>
@@ -131,7 +174,9 @@ const UserMachineCrd = (props) => {
         </Option>
       ))}
     </Select> */}
-    <Input/>
+    <Input
+     onChange={handleChangeCode}
+    />
     </div>
 
 
@@ -142,7 +187,7 @@ const UserMachineCrd = (props) => {
                                         <Button
                                     type="primary"
                                     htmlType="submit"
-                                    //onClick={handleSaveCell}
+                                    onClick={handleSaveMachine}
                                     //loading={props.creatingLocationCell}
                                     // style={{
                                     //     marginTop: "20px",
@@ -243,7 +288,8 @@ const mapStateToProps = ({ auth,location,departments,distributor, }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-          getLocationMachine
+          getLocationMachine,
+          createMachinary
         //     getAlLoCell,
         //    getDepartments,
         //    getUserListLocation,

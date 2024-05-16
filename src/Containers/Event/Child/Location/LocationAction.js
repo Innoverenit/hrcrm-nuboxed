@@ -793,7 +793,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       type: types.GET_LOCATION_MACHINE_REQUEST,
     });
     axios
-      .get(`${base_url2}/machinary/ALL`,
+      .get(`${base_url}/machinary/All`,
         {
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -810,6 +810,35 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_LOCATION_MACHINE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const createMachinary = (data) => (dispatch) => {
+    // const { locationId,organizationId } = getState().auth.userDetails;
+    
+    dispatch({ type: types.CREATE_MACHINARY_REQUEST });
+    axios
+      .post(`${base_url}/machinary`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(getRoomRackByLocId(locationId,organizationId))
+        dispatch({
+          type: types.CREATE_MACHINARY_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_MACHINARY_FAILURE,
           payload: err,
         });
       });

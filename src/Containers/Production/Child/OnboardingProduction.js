@@ -8,7 +8,7 @@ import moment from 'moment';
 import styled from "styled-components";
  
 import { Field } from 'formik';
-import {updateProductionstage} from "../ProductionAction"
+import {updateProductionstage,getProductionStage} from "../ProductionAction"
 
 import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from '../../../Components/Forms/Formik/SelectComponent';
@@ -74,16 +74,20 @@ const [selectedWork, setSelectedWork] = useState("");
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
  
-
+  useEffect(() => {
+    props.getProductionStage(props.userId);
+    // setPage(page + 1);
+    // props.getRoomRackByLocId(props.locationId, props.orgId);
+}, []);
 
   useEffect(() => {
     
     
-    if (props.productionTableData.length > 0) {
+    if (props.productionTableStage.length > 0) {
       //setSelectedWork(props.userStageList[0]?.unboardingWorkflowDetailsName)
      
     }
-  }, [props.productionTableData]);
+  }, [props.productionTableStage]);
 
   // useEffect(() => {
   //   if (
@@ -178,10 +182,10 @@ const handleStages = (val) => {
                  onDragStart={dragStart}
               >
                 <Container style={{ marginTop: "0.75em",marginLeft:"2em" }}>
-                  <>
-                    {props.productionTableData.map((item, index) => (
+                 
+                  
                       <>
-                      {item.stageList.length===0?<NodataFoundPage1/>:item.stageList.map((stage, stageIndex) => (
+                      {props.productionTableStage.length===0?<NodataFoundPage1/>:props.productionTableStage.map((stage, stageIndex) => (
                         <Droppable
                         key={stageIndex}
                         droppableId={stage.productionStagesId}
@@ -220,7 +224,7 @@ const handleStages = (val) => {
                                               //  key={stageIndex}
                                               key={stage.productionStagesId}
                                               employee={stage}
-                                              data={item}
+                                              // data={item}
                                               index={stageIndex}
                                               // history={props.history}
                                             />
@@ -237,8 +241,8 @@ const handleStages = (val) => {
                         </Droppable>
                          ))}
                          </>
-                      ))}
-                  </>
+                      
+              
                 </Container>
               </DragDropContext>
             </div>
@@ -246,9 +250,10 @@ const handleStages = (val) => {
   );
 };
 
-const mapStateToProps = ({ settings, employee,auth }) => ({
+const mapStateToProps = ({ settings, employee,auth,production }) => ({
 //   onboardingProcessStages:settings.onboardingProcessStages,
-userId: auth.userDetails.userId
+userId: auth.userDetails.userId,
+productionTableStage:production.productionTableStage
 //   onboardingProcess: settings.onboardingProcess,
 //   userStageList:employee.userStageList,
 //   fetchingUserStageList:employee.fetchingUserStageList,
@@ -258,7 +263,8 @@ userId: auth.userDetails.userId
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      updateProductionstage
+      updateProductionstage,
+      getProductionStage
     //   getProcessForOnboarding,
     //   getProcessStagesForOnboarding,
     //   addOnboardingEmployee,

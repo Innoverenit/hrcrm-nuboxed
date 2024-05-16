@@ -54,6 +54,10 @@ const initialState = {
    fetchingUserCellError:false,
    userCell:[],
 
+
+   creatingMachine:false,
+   creatingMachineError:false,
+
    fetchingAlLocShift: false,
    fetchingAlLocShiftError:false,
    alLocShift:[],
@@ -381,7 +385,32 @@ deletingUserCellDataError:false,
           ...state,
           deletingUserCellData: false,
           deletingUserCellDataError: true,
+
+
+
+
+
         };
+
+
+
+
+        case types.CREATE_MACHINARY_REQUEST:
+                                                  return { ...state, creatingMachine: true };
+                                                case types.CREATE_MACHINARY_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    creatingMachine: false,
+                                                   // userCell:[action.payload,...state.userCell]
+                             
+                                                  };
+                                                case types.CREATE_MACHINARY_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    creatingMachine: false,
+                                                    creatingMachineError: true,
+                                    
+                                                  };
 
                                                                                   
                                                 case types.HANDLE_LOCATION_CELL_DRAWER:
