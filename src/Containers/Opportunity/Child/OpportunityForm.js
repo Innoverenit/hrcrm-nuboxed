@@ -11,8 +11,7 @@ import { Button, Tooltip,Select } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import {  StyledLabel } from "../../../Components/UI/Elements";
 import {
   addOpportunity,
   getInitiative,
@@ -440,7 +439,7 @@ const filteredEmployeesData = AllEmplo.filter(
           values,
           ...rest
         }) => (
-          <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+          <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
@@ -460,8 +459,8 @@ const filteredEmployeesData = AllEmplo.filter(
                   // accounts={accounts}
                   inlineLabel
                 />
-                <Spacer />
-                <div class="flex justify-between max-sm:flex-col">
+                
+                <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
                     <Field
                       name="startDate"
@@ -507,8 +506,8 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-                <Spacer />
-                <div class="flex justify-between max-sm:flex-col">
+               
+                <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
                     <Field
                       name="proposalAmount"
@@ -551,8 +550,8 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-                <Spacer />
-                <StyledLabel>Description</StyledLabel>
+              
+                <div className="mt-3">Description</div>
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -597,14 +596,14 @@ const filteredEmployeesData = AllEmplo.filter(
                 </div>
               </div>
             <div
-               class=" h-full w-[47.5%] max-sm:w-wk">
+               class=" h-full w-[47.5%] max-sm:w-wk mr-1">
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
               Assigned to
             </Listbox.Label>
-            <div className="relative mt-1">
+            <div className="relative">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
               </Listbox.Button>
@@ -690,7 +689,7 @@ const filteredEmployeesData = AllEmplo.filter(
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label>
                    <Select
           showSearch
-          style={{ width: 415 }}
+
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoading}
@@ -706,7 +705,7 @@ const filteredEmployeesData = AllEmplo.filter(
           ))}
         </Select>
         </div>        
-<div class="flex justify-between max-sm:flex-col mt-[0.85rem]">
+<div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
 <div class=" w-w47.5 max-sm:w-wk">
                   {/* <Field
                     name="customerId"
@@ -733,7 +732,7 @@ const filteredEmployeesData = AllEmplo.filter(
 
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
       <Select
-        style={{ width: 200 }}
+       
         placeholder="Select Customer"
         loading={isLoadingCustomers}
         onFocus={handleSelectCustomerFocus}
@@ -780,7 +779,7 @@ const filteredEmployeesData = AllEmplo.filter(
 
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
       <Select
-        style={{ width: 200 }}
+       
         placeholder="Select Contact"
         loading={isLoadingContacts}
         onChange={handleContactChange}
@@ -825,9 +824,9 @@ const filteredEmployeesData = AllEmplo.filter(
                     inlineLabel
                   />
                 </StyledLabel> */}
-                <Spacer />
+                
 
-                <div class="flex justify-between max-sm:flex-col">
+                <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
                     <StyledLabel>
                       <Field
@@ -853,8 +852,8 @@ const filteredEmployeesData = AllEmplo.filter(
                       />
                     </StyledLabel>
                   </div>
-                  <Spacer />
-                  <div class=" w-w47.5 max-sm:w-wk">
+                 
+                  <div class=" w-w47.5 max-sm:w-wk ">
                     <StyledLabel>
                       <Field
                         name="oppStage"
@@ -899,8 +898,8 @@ const filteredEmployeesData = AllEmplo.filter(
               </div> 
   
             </div>
-            <Spacer />
-            <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute ">
+          
+            <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
               <Button
                 type="primary"
                 htmlType="submit"

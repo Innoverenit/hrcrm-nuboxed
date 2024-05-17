@@ -93,7 +93,8 @@ const ReceivedTable = (props) => {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"75vh"}
+              height={"72vh"}
+              style={{overflowX:"hidden"}}
             >
               {props.allReceivedUser.length ? <>
                 {props.allReceivedUser.map((item, key) => {
@@ -105,7 +106,7 @@ const ReceivedTable = (props) => {
                     <div>
                       <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[9.02rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
+                          <div className=" flex font-medium  w-[8.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <div class=" flex ">
                                 <span
@@ -124,7 +125,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium  w-[11.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[10.12rem] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.distributorName}
@@ -143,7 +144,7 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[4.51rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[4.1rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar
@@ -154,7 +155,7 @@ const ReceivedTable = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[7.21rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[6.81rem] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
@@ -169,7 +170,7 @@ const ReceivedTable = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex font-medium  w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex font-medium  w-[9.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
@@ -195,7 +196,7 @@ const ReceivedTable = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex font-medium   w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                          <div className=" flex font-medium   w-[5.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.productionLocationName && <MultiAvatar

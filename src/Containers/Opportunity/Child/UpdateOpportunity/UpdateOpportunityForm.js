@@ -7,8 +7,7 @@ import { SelectComponent } from "../../../../Components/Forms/Formik/SelectCompo
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {getSaleCurrency} from "../../../Auth/AuthAction"
-import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
-import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
+import {  StyledLabel } from "../../../../Components/UI/Elements";
 import { updateOpportunity, getAllSalesList } from "../../OpportunityAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
@@ -397,12 +396,12 @@ function UpdateOpportunityForm (props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-[47.5%] max-sm:w-wk">
-                  <Spacer />
-                  <StyledLabel>
+                 
+                  <div className="mt-3">
                     <Field
                       isRequired
                       name="opportunityName"
@@ -420,9 +419,9 @@ function UpdateOpportunityForm (props) {
                       // accounts={accounts}
                       inlineLabel
                     />
-                  </StyledLabel>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
+                  </div>
+                
+                  <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-1/2 max-sm:w-wk">
                       <StyledLabel>
                         <Field
@@ -475,8 +474,8 @@ function UpdateOpportunityForm (props) {
                       </StyledLabel>
                     </div>
                   </div>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
+                  
+                  <div class="flex justify-between max-sm:flex-col ">
                     <div class=" w-1/2 max-sm:w-wk">
                       <StyledLabel>
                         <Field
@@ -523,7 +522,7 @@ function UpdateOpportunityForm (props) {
                     
                     </div>
                   </div>
-                  {/* <Spacer />
+                  {/* 
                 <StyledLabel>Description</StyledLabel>
                 <div>
                   <div>
@@ -568,7 +567,7 @@ function UpdateOpportunityForm (props) {
                   </div>
                 </div> */}
                 </div>
-                <div class=" h-full w-[47.5%] max-sm:w-wk">
+                <div class=" h-full w-[47.5%] max-sm:w-wk mr-1">
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
@@ -673,7 +672,7 @@ function UpdateOpportunityForm (props) {
                   /> */}
     </div>
     <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">       
-    <div class=" w-2/5 max-sm:w-wk">
+    <div class=" w-[47.5%] max-sm:w-wk">
                   {/* <Field
                     name="customerId"
                     isColumnWithoutNoCreate
@@ -696,7 +695,7 @@ function UpdateOpportunityForm (props) {
                   /> */}
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
       <Select
-        style={{ width: 200 }}
+       
         placeholder="Select Customer"
         loading={isLoadingCustomers}
         onFocus={handleSelectCustomerFocus}
@@ -709,8 +708,8 @@ function UpdateOpportunityForm (props) {
         ))}
       </Select>
 </div>
-                  <Spacer />
-                  <div class=" w-2/5 max-sm:w-wk">
+              
+                  <div class=" w-[47.5%] max-sm:w-wk ">
                   {/* <Field
                     name="contactId"
                     isColumnWithoutNoCreate
@@ -739,7 +738,7 @@ function UpdateOpportunityForm (props) {
                   /> */}
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
       <Select
-        style={{ width: 200 }}
+       
         placeholder="Select Contact"
         loading={isLoadingContacts}
         onChange={handleContactChange}
@@ -753,9 +752,9 @@ function UpdateOpportunityForm (props) {
       </Select>
 </div>
      </div>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">
+                
+                  <div class="flex justify-between max-sm:flex-col mt-3">
+                    <div class=" w-[47.5%] max-sm:w-wk">
                       <StyledLabel>
                       <Field
                         name="oppWorkflow"
@@ -780,8 +779,8 @@ function UpdateOpportunityForm (props) {
                       />
                       </StyledLabel>
                     </div>
-                    <Spacer />
-                    <div class=" w-2/5 max-sm:w-wk">
+                  
+                    <div class=" w-[47.5%] max-sm:w-wk ">
                       <StyledLabel>
                       <Field
                         name="oppStage"
@@ -816,11 +815,11 @@ function UpdateOpportunityForm (props) {
                       </StyledLabel>
                     </div>
                   </div>
-                  <Spacer />
+                 
                 </div>
               </div>
-              <Spacer />
-              <div class="flex justify-end w-wk bottom-2 mr-2 absolute ">
+             
+              <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
                 <Button
                   type="primary"
                   htmlType="submit"

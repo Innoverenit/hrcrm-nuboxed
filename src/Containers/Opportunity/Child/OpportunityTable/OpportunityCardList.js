@@ -223,7 +223,7 @@ console.log(props.userDetails.imageId)
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
-                  text-[#444444] m-3 p-1 w-[15vw] max-sm:w-wk flex flex-col  ">
+                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col  ">
         <div class="flex items-center flex-no-wrap h-[2.81em]">
           <div class=" flex basis-[15%] mr-[0.2rem]" >
             <MultiAvatar
@@ -248,7 +248,7 @@ title={`${item.opportunityName}`}>
           </div> 
           </div>
         </div>
-        <div className="flex justify-around max-sm:justify-between">
+        <div className="flex justify-between max-sm:justify-between">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -275,7 +275,7 @@ title={`${item.opportunityName}`}>
           </div>
           </div>
           </div>
-          <div className="flex justify-around mt-1 max-sm:justify-between">      
+          <div className="flex justify-between mt-1 max-sm:justify-between">      
 <div>
 <span>
 <Dropdown
@@ -349,7 +349,7 @@ imgHeight={"1.8em"}
         </div>
     
         <div class="w-full " >
-            <div class="flex justify-between w-wk items-center">
+            <div class="flex justify-between w-wk items-center mt-1">
               <div>
               {item.approveInd&&item.opportunityOwner ? (
 <>
@@ -364,7 +364,7 @@ imgHeight={"1.8em"}
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
-      style={{fontSize:"1rem" 
+      style={{fontSize:"1.25rem" 
      }}
     />
   </Tooltip>
@@ -377,7 +377,7 @@ imgHeight={"1.8em"}
       type="stop"
       theme="twoTone"
       twoToneColor="red"         
-      style={{ fontSize:"1rem" , marginLeft: "0.875em" }}
+      style={{ fontSize:"1.25rem" , marginLeft: "0.875em" }}
     />
   </Tooltip>
 </>
@@ -450,7 +450,7 @@ imgHeight={"1.8em"}
 
 <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon/>
+            <PictureAsPdfIcon className="!text-xl"/>
                            </span>
           </div>
 <div class="flex items-center">
@@ -473,7 +473,7 @@ imgHeight={"1.8em"}
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
+                 <NoteAltIcon className="!text-xl cursor-pointer text-[green]" />
               </span>
         
           </Tooltip>
@@ -489,14 +489,14 @@ imgHeight={"1.8em"}
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
-            className=" !text-xl cursor-pointer text-[grey] mb-1"
+            className="!text-xl cursor-pointer text-[grey] mb-1"
               onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <BorderColorIcon  className=" !text-xl cursor-pointer"/>
+                 <BorderColorIcon  className="!text-xl cursor-pointer"/>
               </span>
            )}
           </Tooltip>
@@ -509,7 +509,7 @@ imgHeight={"1.8em"}
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
             <DeleteOutlined
             // loading={props.deleteOpportunityData}
-            type="delete" className=" !text-xl cursor-pointer text-[red]" />
+            type="delete" className="!text-xl cursor-pointer text-[red]" />
              )}
           </StyledPopconfirm>
 
