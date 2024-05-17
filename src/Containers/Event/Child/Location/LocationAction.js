@@ -872,3 +872,32 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
+
+
+
+  export const addLocationCell = (data) => (dispatch) => {
+    // const { locationId,organizationId } = getState().auth.userDetails;
+    
+    dispatch({ type: types.ADD_LOCATION_CELL_REQUEST });
+    axios
+      .put(`${base_url2}/cell/unitPerDay/chamber-production`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(getRoomRackByLocId(locationId,organizationId))
+        dispatch({
+          type: types.ADD_LOCATION_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_LOCATION_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };

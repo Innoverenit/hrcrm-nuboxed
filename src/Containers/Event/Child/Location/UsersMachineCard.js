@@ -120,7 +120,7 @@ const UserMachineCrd = (props) => {
 
     const handleSaveMachine=()=> {
       let data={
-        machine:machine,
+        machinaryName:machine,
         machineCode:machinecode
         // cellChamberLinkId:cell,
 
@@ -186,6 +186,7 @@ const UserMachineCrd = (props) => {
                                     type="primary"
                                     htmlType="submit"
                                     onClick={handleSaveMachine}
+                                    disabled={!machinecode}
                                     //loading={props.creatingLocationCell}
                                     // style={{
                                     //     marginTop: "20px",
@@ -208,7 +209,7 @@ const UserMachineCrd = (props) => {
             <div className=" md:w-[5.1rem]">Tag to Cell</div>
             <div className="w-12"></div>             </div>
 
-           {/* {props.userCell.map((item) => {
+           {props.locationMachineData.map((item) => {
             return (
               <div >
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
@@ -216,7 +217,7 @@ const UserMachineCrd = (props) => {
                   <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.cellChamber}</div>
+                        <div> {item.machinaryName}</div>
                       </div>
                     </div>
                   </div>
@@ -226,23 +227,16 @@ const UserMachineCrd = (props) => {
                     <div class=" text-xs text-cardBody font-poppins">
                     
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.departmentName}</div>
+                        <div> {item.machineCode}</div>
                       </div>
                 
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
-                   
-                      <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.userName}</div>
-                      </div>
-                    </div>
-                  </div>
+                
 
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {/* <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins">
                    
                       <div className="font-normal text-sm text-cardBody font-poppins">
@@ -255,7 +249,7 @@ const UserMachineCrd = (props) => {
                         </StyledPopconfirm>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                  
 
               
@@ -263,7 +257,7 @@ const UserMachineCrd = (props) => {
                 </div>
               </div>
             );
-          })}  */}
+          })} 
 
         </div>
       </div> 
