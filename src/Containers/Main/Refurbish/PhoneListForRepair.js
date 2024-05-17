@@ -8,7 +8,7 @@ import {
     updaterepairStatus,
     getCatalogueByUser,
     handleRepairPhoneNotesOrderModal,
-    handlePhoneDetails,
+    handlePhoneDetails, 
     handleInTagDrawer,
     updatePauseStatus
 } from "./RefurbishAction";
@@ -19,6 +19,7 @@ import ButtonGroup from "antd/lib/button/button-group";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import CategoryIcon from '@mui/icons-material/Category'
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -399,8 +400,7 @@ function PhoneListForRepair(props) {
                                             <div className=" flex font-medium  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title="Notes">
-                                                        <NoteAddOutlined
-                                                            style={{ cursor: "pointer", fontSize: "1rem" }}
+                                                    <NoteAltIcon className="!text-xl mr-1 cursor-pointer text-[green]" 
                                                             onClick={() => {
                                                                 handleSetRowData(item);
                                                                 props.handleRepairPhoneNotesOrderModal(true);
@@ -412,7 +412,7 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium ml-1   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={<FormattedMessage
                                                         id="app.Print"
