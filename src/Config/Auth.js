@@ -5,7 +5,7 @@ const base_url2 = "https://develop.tekorero.com/Erp";
 const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 
 
-//Nubox
+ //Nubox
 // const login_url = "https://hrnuboxed.azurewebsites.net";
 // const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";
 // const base_url2 = "https://erpnuboxed.azurewebsites.net";
