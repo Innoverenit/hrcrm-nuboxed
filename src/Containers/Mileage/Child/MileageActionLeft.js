@@ -3,7 +3,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import TocIcon from '@mui/icons-material/Toc';
 import { FormattedMessage } from "react-intl";
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
-import { Tooltip,Avatar } from "antd";
+import { Tooltip,Avatar,Badge } from "antd";
 import { connect } from "react-redux";
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import { bindActionCreators } from "redux";
@@ -15,24 +15,32 @@ const MileageActionLeft = (props) => {
           <Tooltip
         title={<FormattedMessage id="app.card" defaultMessage="Card" />}
       >
-       
-          <span class=" mr-2 cursor-pointer"
+        <Badge
+          size="small"
+          // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+          overflowCount={999}
+        >
+          <span class=" md:mr-2 text-sm cursor-pointer"
             onClick={() => props.setMileageViewType("card")}
             style={{
               color: props.viewType === "card" && "#1890ff",
             }}
           >
              <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <GridViewIcon   />
+            <GridViewIcon  className="text-white"  />
             </Avatar>
           </span>
-       
+          </Badge>
       </Tooltip>
 
       <Tooltip
         title={<FormattedMessage id="app.List" defaultMessage="List" />}
       >
-       
+       <Badge
+          size="small"
+          // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+          overflowCount={999}
+        >
        <span class=" mr-2 cursor-pointer text-4"
             onClick={() => props.setMileageViewType("tile")}
             style={{
@@ -45,9 +53,14 @@ const MileageActionLeft = (props) => {
              />
              </Avatar>
           </span>
-    
+          </Badge>
       </Tooltip>
       <Tooltip title="Category">
+      <Badge
+          size="small"
+          // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+          overflowCount={999}
+        >
       <span class=" mr-2 cursor-pointer text-4"
             onClick={() => props.setMileageViewType("list")}
             style={{
@@ -58,12 +71,17 @@ const MileageActionLeft = (props) => {
             <ViewWeekIcon/>
             </Avatar>
           </span>
+          </Badge>
       </Tooltip>
       {props.user.mileageFullListInd === true && (
       <Tooltip
         title="All"
       >
-       
+       <Badge
+          size="small"
+          // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+          overflowCount={999}
+        >
        <span class=" mr-2 cursor-pointer text-[1rem]"
             onClick={() => props.setExpenseViewType("all")}
             style={{
@@ -76,7 +94,7 @@ const MileageActionLeft = (props) => {
              />
              </Avatar>
           </span>
-    
+          </Badge>
       </Tooltip>
        )}
 
