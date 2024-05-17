@@ -739,8 +739,8 @@ function CallForm(props) {
                         //   marginLeft: "0.3125em"
                         // }}
                         name="mode"
-                        checkedChildren="Audio"
-                        unCheckedChildren="Video"
+                        checkedChildren="Video"
+                        unCheckedChildren="Audio"
                       />
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">

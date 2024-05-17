@@ -1611,5 +1611,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       
     });
   };
+
+  export const updateLeadsNoteDrawer = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_MODAL,
+      payload: modalProps,
+    });
+  };
   
 

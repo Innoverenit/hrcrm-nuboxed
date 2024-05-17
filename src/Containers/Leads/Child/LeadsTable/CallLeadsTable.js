@@ -34,7 +34,7 @@ const CallLeadsTable = (props) => {
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
-                  ) : null} {status.category} - {status.activityType} on {moment.utc(status.startDate).format('DD/MM/YYYY')} - {status.woner !==props.fullName ?  
+                  ) : null} {status.category} - {status.activityType} on <span class=" font-bold">{moment.utc(status.startDate).format('DD/MM/YYYY')}</span> - {status.woner !==props.fullName ?  
                     <Tooltip title={status.woner}> 
                       <MultiAvatar
                         primaryTitle={status.woner}
