@@ -9,7 +9,7 @@ const LeaveNoteDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Note - ${leavesItems.leaveId}`}
+        title={`Notes - ${leavesItems.leaveId}`}
         width="60%"
         visible={noteLeaveDrawer}
         onClose={() => handleLeaveNoteDrawer(false)}

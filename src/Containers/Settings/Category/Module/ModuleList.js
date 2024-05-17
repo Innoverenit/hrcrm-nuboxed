@@ -123,6 +123,43 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+
+  
+  const { tradingInd } = props.moduleList;
+  console.log(tradingInd);
+  const [tradingStatus, setTradingStatus] = useState(tradingInd);
+  useEffect(() => {
+    setTradingStatus(tradingInd);
+  }, [tradingInd]);
+  
+  const handleTradingClick = (checked) => {
+    setTradingStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "trading",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+  const { ecomModInd } = props.moduleList;
+  console.log(ecomModInd);
+  const [ecomStatus, setEcomStatus] = useState(ecomModInd);
+  useEffect(() => {
+    setEcomStatus(ecomModInd);
+  }, [ecomModInd]);
+  
+  const handleEcomClick = (checked) => {
+    setEcomStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "ecomModule",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
   const { imInd } = props.moduleList;
   console.log(imInd);
   const [imStatus, setImStatus] = useState(imInd);
@@ -614,7 +651,15 @@ logisticsStatus={logisticsStatus}
                     //   setCurrentData={this.setCurrentData}
                     //  handleDeleteDepartment={this.handleDeleteDepartment}
                     />
-                    <ModuleTrading/>
+                    <ModuleTrading
+                     handleRowData={handleRowData}
+                     rowdata={rowdata}
+                          moduleList={props.moduleList}
+                    tradingStatus={tradingStatus}
+                    handleTradingClick={handleTradingClick}
+                    ecomStatus={ecomStatus}
+                    handleEcomClick={handleEcomClick}
+                    />
                   {/* )) */}
                   {/* ) : (
                     <p>No Data Available</p>

@@ -217,7 +217,7 @@ dispatch({
 })
 };
 
-export const addLeaveNote = (data) => (dispatch, getState) => {
+export const addLeaveNote = (data,leaveId) => (dispatch, getState) => {
   dispatch({ type: types.ADD_LEAVE_NOTE_REQUEST });
 
   axios
@@ -227,6 +227,7 @@ export const addLeaveNote = (data) => (dispatch, getState) => {
           },
       })
       .then((res) => {
+        dispatch(getLeaveNotes(leaveId))
           console.log(res);
           dispatch({
               type: types.ADD_LEAVE_NOTE_SUCCESS,

@@ -3665,3 +3665,55 @@ export const handleAccountOpportunityModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const getBrand = () => (dispatch) => {
+  dispatch({
+      type: types.GET_BRAND_REQUEST,
+  });
+  axios
+      .get(`${base_url2}/masterlist/brand/drop-down`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_BRAND_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_BRAND_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+export const getModel = (brandName) => (dispatch) => {
+  dispatch({
+      type: types.GET_MODEL_REQUEST,
+  });
+  axios
+      .get(`${base_url2}/masterlist/model/drop-down/${brandName}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_MODEL_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_MODEL_FAILURE,
+              payload: err,
+          });
+      });
+};
