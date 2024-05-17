@@ -429,8 +429,8 @@ function LeadsCallForm(props) {
                       </div>
                       <Switch
                         name="mode"
-                        checkedChildren="Audio"
-                        unCheckedChildren="Video"
+                        checkedChildren="Video"
+                        unCheckedChildren="Audio"
                       />
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">

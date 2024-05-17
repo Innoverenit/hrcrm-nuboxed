@@ -115,6 +115,7 @@ class UpdateEmployeeForm extends Component {
   handlereportingManager = (val) => {
     this.setState({ reportingManager: val });
   }
+
   handleDeptChange = (event) => {
     const selectedDept = event.target.value;
     const filteredRoles = this.props.roles.filter((item) => item.departmentId === selectedDept);
@@ -195,8 +196,14 @@ class UpdateEmployeeForm extends Component {
 
     return StagesOptions;
   }
+  componentDidMount () {
+    this.setState({active:this.props.currentEmployeeId.job_type==="Full Time"?true : false,
+  checked:this.props.currentEmployeeId.job_type==="Part Time"? false  : true
+  })
+};
 
   render() {
+  
     const { user, reportingManager, department,secondatDepartment,secondaryReportingManager, selectedRow, dueDate } = this.state;
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
@@ -262,8 +269,11 @@ class UpdateEmployeeForm extends Component {
     } = this.props;
 
     const { clearbit, currentEmployeeId } = this.props;
+ 
+
     console.log(currentEmployeeId)
     console.log(this.props.userDetails)
+ 
     return (
       <>
         <Formik
@@ -273,8 +283,8 @@ class UpdateEmployeeForm extends Component {
             lastName: currentEmployeeId.lastName || "",
             emailId: currentEmployeeId.emailId || "",
             salary: currentEmployeeId.salary || "",
-            // timeZone: currentEmployeeId.timeZone || "",
-            timeZone: timeZone,
+            timeZone: currentEmployeeId.timeZone || "",
+            // timeZone: timeZone,
             countryDialCode: currentEmployeeId.countryDialCode || "",
             countryDialCode1: currentEmployeeId.countryDialCode1 || "",
             phoneNo: currentEmployeeId.phoneNo || "",
@@ -316,6 +326,7 @@ class UpdateEmployeeForm extends Component {
               this.props.updateEmployee(
                 {
                   ...values,
+                  timeZone: timeZone,
                   // workplace: currentEmployeeId.country_name ,
                   // location: currentEmployeeId.locationDetailsId ,
                   reportingManagerDeptId: department,
@@ -617,9 +628,10 @@ class UpdateEmployeeForm extends Component {
                     <div class=" w-full mt-4" >
                     <Field
                     isRequired
-                    defaultValue={{ label: timeZone, value: userId }}
+                    // defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
+                    placeholder="timeZone"
                     //label="TimeZone "
                     label={
                       <FormattedMessage
@@ -627,10 +639,14 @@ class UpdateEmployeeForm extends Component {
                         defaultMessage="time Zone"
                       />
                     }
-                    selectType="timeZone"
+                    options={
+                      Array.isArray(timeZoneOption)
+                        ? timeZoneOption
+                        : []
+                    }
                     isColumn
                     value={values.timeZone}
-                    component={SearchSelect}
+                    component={SelectComponent}
                     inlineLabel
                   />
                     </div>

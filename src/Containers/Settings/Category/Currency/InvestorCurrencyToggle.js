@@ -53,11 +53,11 @@ function InvestorCurrencyToggle(props) {
             // disabled={props.status}
             isLoading={true}
             style={{
-              width: "9em",
+              width: "5em",
               backgroundColor: props.investorInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
             }}
-            checkedChildren="Required"
-            unCheckedChildren="Not Required"
+            checkedChildren="Yes"
+            unCheckedChildren="No"
           />
         </Popconfirm>
       

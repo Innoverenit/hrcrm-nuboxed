@@ -108,6 +108,8 @@ const initialState = {
   updateLeadsInitiatives: false,
   updateLeadsInitiativesError: false,
 
+  updatingLeadsNoteDrawer:false,
+
   addDrawerLeadsEmailModal:false,
 
   addingLeadsActivityTask: false,
@@ -1126,6 +1128,10 @@ case types.HANDLE_LEADS_MODAL:
 
                                       case types.EMPTY_CLEARBIT_TABLE:
                                         return { ...state,  clearbit: {} };
+
+                                        case types.UPDATE_LEADS_NOTE_MODAL:
+                                          return { ...state, updatingLeadsNoteDrawer: action.payload };
+    
           
                       
 
