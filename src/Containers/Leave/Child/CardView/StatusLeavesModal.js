@@ -12,6 +12,8 @@ const StatusLeavesModal = (props) => {
         //title="Apply for Leaves"
         title={`Status - ${leaveId}`}
         width="60%"
+        destroyOnClose
+        closable
         visible={updateStatusLeaveModal}
         onClose={() => handleStatusLeaveModal(false)}
       >

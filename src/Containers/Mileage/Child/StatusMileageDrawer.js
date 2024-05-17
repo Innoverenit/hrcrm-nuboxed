@@ -17,6 +17,8 @@ const StatusMileageDrawer = (props) => {
         //   defaultMessage="Status "
         // />}
         width="60%"
+        destroyOnClose
+        closable
         visible={updateStatusMileageModal}
         onClose={() => handleStatusMileageModal(false)}
         footer={null}
