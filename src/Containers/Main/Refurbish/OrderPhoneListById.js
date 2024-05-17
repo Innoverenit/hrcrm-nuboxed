@@ -8,6 +8,7 @@ import {
     updateCantRepairQC,
     updateQCStatus
 } from "./RefurbishAction";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress } from "antd";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
@@ -322,7 +323,7 @@ function OrderPhoneListById(props) {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium   md:w-[6.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium   md:w-[1.64rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins">
                                                     {item.cannotRepairInd && "Can't Repair"}
                                                 </div>
@@ -393,9 +394,9 @@ function OrderPhoneListById(props) {
                                                 <div className=" flex font-medium  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Notes">
-                                                            <NoteAddOutlined
+                                                        <NoteAltIcon className="!text-xl mr-1 cursor-pointer text-[green]" 
 
-                                                                style={{ cursor: "pointer", fontSize: "1rem" }}
+                                                              
                                                                 onClick={() => {
                                                                     handleSetRowData(item);
                                                                     props.handleQCPhoneNotesOrderModal(true);
@@ -406,7 +407,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={<FormattedMessage
                                                             id="app.Print"
