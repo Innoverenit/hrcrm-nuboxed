@@ -58,6 +58,10 @@ const initialState = {
    creatingMachine:false,
    creatingMachineError:false,
 
+
+   addingLocationCell:false,
+   addingLocationCellError:false,
+
    fetchingAlLocShift: false,
    fetchingAlLocShiftError:false,
    alLocShift:[],
@@ -534,6 +538,27 @@ deletingUserCellDataError:false,
                   fetchingDeletedLocationHistory: false,
                   fetchingDeletedLocationHistoryError: true,
               };
+
+
+
+
+              case types.ADD_LOCATION_CELL_REQUEST:
+                return { ...state, addingLocationCell: true };
+              case types.ADD_LOCATION_CELL_SUCCESS:
+                return {
+                  ...state,
+                  addingLocationCell: false,
+                  //userCell:[action.payload,...state.userCell]
+
+                };
+              case types.ADD_LOCATION_CELL_FAILURE:
+                return {
+                  ...state,
+                  addingLocationCell: false,
+                  addingLocationCellError: true,
+  
+                };
+
 
 
               case types.GET_LOCATION_DELETED_COUNT_REQUEST:

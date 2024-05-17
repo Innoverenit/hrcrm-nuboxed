@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button,Tabs,Spin,Input } from "antd";
 // import { Input, Button } from 'antd';
 import { Select } from "../../../../Components/UI/Elements";
-import{getAlLoCell,getCatalogueCell,getcellCardList} from "../../../Event/Child/Location/LocationAction";
+import{getAlLoCell,getCatalogueCell,getcellCardList,addLocationCell} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -46,6 +46,45 @@ const ProductCellCard = (props) => {
   
       fetchData();
     }, [activeTab]);
+
+
+    const initialInputs = {};
+    props.cellCardList.forEach(item => {
+      initialInputs[item.cellChamberLinkId] = '0';
+    });
+  
+    const [inputs, setInputs] = useState(initialInputs);
+  
+    const handleInputChange = (cellChamberLinkId, value) => {
+      setInputs({ ...inputs, [cellChamberLinkId]: value });
+    };
+
+
+
+    const handleSubmit = (cellChamberLinkId) => {
+      const inputValue = inputs[cellChamberLinkId] || '0';
+      const cellChhamberValue = props.cellCardList.find(item => item.cellChamberLinkId === cellChamberLinkId)?.locationDetailsId || '';
+  
+      console.log('Cell ID:', cellChamberLinkId, 'User Input:', inputValue, 'Cell Chamber:', cellChhamberValue);
+      let data={
+        LocationDetailsId:cellChhamberValue,
+        productId:props.particularDiscountData.productId,
+        unitPerDay:inputValue,
+        cellChamberLinkId:cellChamberLinkId,
+
+      }
+      props.addLocationCell(data)
+  
+      // const updatedData = data.map(item => {
+      //   if (item.cellId === cellId) {
+      //     return { ...item, amount: inputValue };
+      //   }
+      //   return item;
+      // });
+  
+      // Update the state to reflect the new data with updated amount
+      // setData(updatedData); // Assuming you have a way to update the state with updatedData
+    };
 
 
 
@@ -125,6 +164,8 @@ if(props.fetchingCatalogueCell){
                   {/* {item.tagProduction ? ( */}
                     <>
                       <Input
+                       value={inputs[item.cellChamberLinkId]}
+                       onChange={(e) => handleInputChange(item.cellChamberLinkId, e.target.value)}
                         //value={productionInput}
                         //onChange={(e) => setProductionInput(e.target.value)}
                         className="mr-2"
@@ -132,11 +173,7 @@ if(props.fetchingCatalogueCell){
                       />
                       <Button
                         type="primary"
-                        onClick={() => {
-                          // Implement your submit logic here
-                          //console.log('Submit clicked for cellId:', item.cellId, 'Value:', productionInput);
-                          // Add logic to handle submission
-                        }}
+                        onClick={() => handleSubmit(item.cellChamberLinkId)}
                       >
                         Submit
                       </Button>
@@ -186,7 +223,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getAlLoCell,
             getCatalogueCell,
-            getcellCardList
+            getcellCardList,
+            addLocationCell
         },
         dispatch
     );
