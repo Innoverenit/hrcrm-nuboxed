@@ -147,192 +147,198 @@ console.log(this.state.firstCase)
             ...rest
           }) => (
             <Form className="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                >
-                  {/* <Radio.Group name="radiogroup">
-                                            <Radio
-                                                value={this.state.Project}
-                                                checked={this.state.Project}
-                                                onChange={this.handleProject}
-                                            >
-                                                Project
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Travel}
-                                                checked={this.state.Travel}
-                                                onChange={this.handleTravel}
-                                            >
-                                                Travel
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Holiday}
-                                                checked={this.state.Holiday}
-                                                onChange={this.handleHoliday}
-                                            >
-                                                Holiday
-                        </Radio>
-                                            <Radio
-                                                value={this.state.Account}
-                                                checked={this.state.Account}
-                                                onChange={this.handleAccount}
-                                            >
-                                                Account
-                        </Radio>
-                                        </Radio.Group> */}
+            <div class="flex justify-between  pr-2 max-sm:flex-col">
+              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              
+              
+               {/* <Radio.Group name="radiogroup">
+                              <Radio
+                                  value={this.state.Project}
+                                  checked={this.state.Project}
+                                  onChange={this.handleProject}
+                              >
+                                  Project
+          </Radio>
+                              <Radio
+                                  value={this.state.Travel}
+                                  checked={this.state.Travel}
+                                  onChange={this.handleTravel}
+                              >
+                                  Travel
+          </Radio>
+                              <Radio
+                                  value={this.state.Holiday}
+                                  checked={this.state.Holiday}
+                                  onChange={this.handleHoliday}
+                              >
+                                  Holiday
+          </Radio>
+                              <Radio
+                                  value={this.state.Account}
+                                  checked={this.state.Account}
+                                  onChange={this.handleAccount}
+                              >
+                                  Account
+          </Radio>
+                          </Radio.Group> */}
 
-                  
-                  <div class="mt-3 flex flex-col justify-between w-[100%]">
-                    <div class="w-[47%]">
-                      <Field
-                        isRequired
-                        name="startDate"
+    
+    <div class="mt-3 flex flex-col justify-between w-[100%]">
+      <div class="w-[47%]">
+        <Field
+          isRequired
+          name="startDate"
 
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />}
-                        component={DatePicker}
-                        // width="100%"
-                        value={values.startDate}
-                        isColumn
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
+          // label="Start Date"
+          label={<FormattedMessage
+            id="app.startDate"
+            defaultMessage="Start Date"
+          />}
+          component={DatePicker}
+          // width="100%"
+          value={values.startDate}
+          isColumn
+          inlineLabel
+          style={{
+            width: "100%",
+          }}
+        />
 
-                     
-                    </div>
-                    <div style={{ width: "47%" }}>
-                   <Field
-                     isRequired
-                     name="endDate"
-                     // label="End Date "
+       
+      </div>
+      <div style={{ width: "47%" }}>
+     <Field
+       isRequired
+       name="endDate"
+       // label="End Date "
 
-                     label={<FormattedMessage
-                       id="app.endDate"
-                       defaultMessage="End Date"
-                     />}
-                     isColumn
-                     component={DatePicker}
-                     value={values.endDate || values.startDate}
-                     inlineLabel
-                     style={{
-                       width: "100%",
-                     }}
-                     disabledDate={(currentDate) => {
-                       if (values.startDate) {
-                         if (
-                           dayjs(currentDate).isBefore(
-                             dayjs(values.startDate)
-                           )
-                         ) {
-                           return true;
-                         } else {
-                           return false;
-                         }
-                       }
-                     }}
-                   />
-                 </div>
-                    <div>
-                    {/* <StyledLabel><FormattedMessage
-                      id="app.employeetype"
-                      defaultMessage="Employee Type"
-                    />
-                    </StyledLabel> */}
-                    
-                  </div>
-                  <div class="flex flex-row">
-                  <div class=" w-3/12 max-sm:w-wk ml-4"
-                      style={{
-                       
-                        fontWeight: "bold",
-                      }}
-                    >
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> Half Day</div>
-                      <Switch
-                         onChange={this.radioClick}
-                        checked={this.state.isAccepted}
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
-                      />
-                      
-                    </div>
-                  {this.state.isAccepted?(
-                <div class=" flex items-center h-16 flex-row-reverse mr-4  max-sm:w-wk"
-                style={{
-                 
-                  fontWeight: "bold",
-                }}
-              >
-                
-                <Switch
-                   onChange={this.handleSwitchChange}
-                  checked={this.state.firstCase}
-                  checkedChildren="1st hlf"
-                  unCheckedChildren="2nd hlf"
-                />
-                
-              </div>
-                 
-                
-                 
-                  ): null}
-                
-                </div>
-                    
-                    
+       label={<FormattedMessage
+         id="app.endDate"
+         defaultMessage="End Date"
+       />}
+       isColumn
+       component={DatePicker}
+       value={values.endDate || values.startDate}
+       inlineLabel
+       style={{
+         width: "100%",
+       }}
+       disabledDate={(currentDate) => {
+         if (values.startDate) {
+           if (
+             dayjs(currentDate).isBefore(
+               dayjs(values.startDate)
+             )
+           ) {
+             return true;
+           } else {
+             return false;
+           }
+         }
+       }}
+     />
+   </div>
+      <div>
+      {/* <StyledLabel><FormattedMessage
+        id="app.employeetype"
+        defaultMessage="Employee Type"
+      />
+      </StyledLabel> */}
+      
+    </div>
+    <div class="flex flex-row mt-2">
+    <div class=" w-3/12 max-sm:w-wk ml-4"
+        style={{
          
-                  </div>
-           
-                  <div class="mt-3 w-w47.5 max-sm:w-wk">
-                  <Field
-                    name="coverDetails"
-                    //label="Cover"
-                    label={<FormattedMessage
-                      id="app.coverDetails"
-                      defaultMessage="Cover"
-                    />}
-                    width={"100%"}
-                    component={InputComponent}
-                    isColumn
-                  />
-                </div>
-                <div class="mt-3">
+          fontWeight: "bold",
+        }}
+      >
+        <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> Half Day</div>
+        <Switch
+           onChange={this.radioClick}
+          checked={this.state.isAccepted}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+        
+      </div>
+    {this.state.isAccepted?(
+  <div class=" flex items-center h-16 flex-row-reverse mr-4  max-sm:w-wk"
+  style={{
+   
+    fontWeight: "bold",
+  }}
+>
+  
+  <Switch
+     onChange={this.handleSwitchChange}
+    checked={this.state.firstCase}
+    checkedChildren="1st hlf"
+    unCheckedChildren="2nd hlf"
+  />
+  
+</div>
+   
+  
+   
+    ): null}
+  
+  </div>
+  </div>  
+
+
+              
+ 
+
 
                
-                  <Field
-                    isRequired
-                    name="reason"
-                    //  / label="Reason"
-                    label={<FormattedMessage
-                      id="app.reason"
-                      defaultMessage="Reason"
-                    />}
-                    width={"100%"}
-                    component={TextareaComponent}
-                    inlineLabel
-                  />
+              </div>
+              <div class=" h-3/4 w-w47.5 max-sm:w-wk "
+              >
+
+<div class="mt-3 w-w47.5 max-sm:w-wk">
+    <Field
+      name="coverDetails"
+      //label="Cover"
+      label={<FormattedMessage
+        id="app.coverDetails"
+        defaultMessage="Cover"
+      />}
+      width={"100%"}
+      component={InputComponent}
+      isColumn
+    />
+  </div>
+  <div class="mt-3">
+
+ 
+    <Field
+      isRequired
+      name="reason"
+      //  / label="Reason"
+      label={<FormattedMessage
+        id="app.reason"
+        defaultMessage="Reason"
+      />}
+      width={"100%"}
+      component={TextareaComponent}
+      inlineLabel
+    />
 </div>
-            
-                </div>
-              </div>
+
               
-              <div class="mt-3 flex justify-end w-wk bottom-2 mr-2 md:absolute ">
-                &nbsp;
-                <Button htmlType="submit" type="primary"
-                  Loading={addingLeaves}>
-                  Submit
-                </Button>
+             
+
               </div>
-            </Form>
+            </div>
+
+            <div class="flex justify-end mt-3 w-wk bottom-2 mr-2 md:absolute ">
+            <Button htmlType="submit" type="primary"
+    Loading={addingLeaves}>
+    Submit
+  </Button>
+            </div>
+          </Form>
           )}
         </Formik>
       </>

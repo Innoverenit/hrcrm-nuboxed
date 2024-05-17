@@ -47,7 +47,7 @@ class ModuleTrading extends Component {
                     <div   class="  ml-2">
                     <Popconfirm
         title="Do you wish to change Status?"
-        // onConfirm={() => this.props.handleErpClick(!this.props.erpStatus)}
+         onConfirm={() => this.props.handleTradingClick(!this.props.tradingStatus)}
         okText="Yes"
         cancelText="No"
       >
@@ -55,7 +55,7 @@ class ModuleTrading extends Component {
                               onChange={() => {}}
                       
                           className="w-[4rem]"
-                        //   checked={this.props.erpStatus || this.props.moduleList.erpInd}
+                           checked={this.props.tradingStatus || this.props.moduleList.tradingInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -77,16 +77,16 @@ class ModuleTrading extends Component {
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        // onConfirm={() => this.props.handleProductionClick(!this.props.productionStatus)}
-                        // onCancel={this.props.handleProductionCancel}
+                         onConfirm={() => this.props.handleEcomClick(!this.props.ecomStatus)}
+                       
                         okText="Yes"
                         cancelText="No"
                       >
                         <Switch
                           className="w-[4rem]"
                           onChange={() => {}}
-                        //  onChange={this.props.handleProductionClick}
-                        //  checked={this.props.productionStatus || this.props.moduleList.productionInd}
+                       
+                          checked={this.props.ecomStatus || this.props.moduleList.ecomModInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />

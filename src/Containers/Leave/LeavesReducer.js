@@ -165,7 +165,8 @@ export const LeavesReducer = (state = initialState, action) => {
       return {
         ...state,
         addingLeaveNote: false,
-        leavesNotes:[...state.leavesNotes],
+        // leavesNotes:[action.payload,...state.leavesNotes]
+        // leavesNotes:[...state.leavesNotes],
       };
     case types.ADD_LEAVE_NOTE_FAILURE:
       return {

@@ -3,13 +3,12 @@ import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getBrandModel} from "../../../../Settings/Category/Brand&Model/BrandModelAction"
-import { addProcureDetails } from "../../AccountAction"
+import { addProcureDetails,getBrand,getModel } from "../../AccountAction"
 const { Option } = Select;
 function AddProcureExcel(props) {
   
   useEffect(() => {
-    props.getBrandModel(); 
+    props.getBrand(); 
   }, [])
    
 
@@ -24,6 +23,7 @@ function AddProcureExcel(props) {
       const updatedRows = [...rows];
       updatedRows[index].brand = value;
       setRows(updatedRows);
+      props.getModel(value);
   };
   const handleModelChange = (value, index) => {
     const updatedRows = [...rows];
@@ -64,34 +64,52 @@ function AddProcureExcel(props) {
               <label>Brand</label>
              <div class="w-[13rem]">
              <Select
+                      style={{ width: 200 }}
+                        value={row.brand}
+                        onChange={(value) => handleBrandChange(value, index)}
+                      >
+                        {props.brand.map((a) => {
+                          return <Option value={a.phoneMasterListId}>{a.brand}</Option>;
+                        })}
+                      </Select>
+             {/* <Select
                     showSearch
                     style={{ width: 200 }}
                     placeholder="Select brand"
                     onChange={(value) => handleBrandChange(value, index)}
                 >
-                    {props.brandModel.map(item => (
+                    {props.brand.map(item => (
                         <Option key={item.phoneMasterListId} value={item.phoneMasterListId}>
                             {item.brand} 
                         </Option>
                     ))}
-                </Select>
+                </Select> */}
             </div>
             </div>
             <div>
               <label>Model</label>
              <div class="w-[13rem]">
              <Select
+                         style={{ width: 200 }}
+                        value={row.model}
+                        onChange={(value) => handleModelChange(value, index)}
+                      >
+                        {props.model.map((a) => {
+                          return <Option value={a.employeeId}>{a.model}</Option>;
+                        })}
+                      </Select>
+             {/* <Select
                     showSearch
                     style={{ width: 200 }}
                     placeholder="Select model"
                     onChange={(value) => handleModelChange(value, index)}
                 >
-                    {props.brandModel.map(item => (
+                    {props.model.map(item => (
                         <Option key={item.phoneMasterListId} value={item.phoneMasterListId}>
                             {item.model}
                         </Option>
                     ))}
-                </Select>
+                </Select> */}
             </div>
             </div>
             <div>
@@ -123,14 +141,16 @@ const mapStateToProps = ({ distributor,brandmodel,auth }) => ({
   orderDetailsId: distributor.orderDetailsId,
   addingProcureDetails: distributor.addingProcureDetails,
   orgId: auth.userDetails.organizationId,
-  brandModel: brandmodel.brandModel,
+  brand: distributor.brand,
+  model: distributor.model,
   token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
       addProcureDetails,
-      getBrandModel
+      getBrand,
+      getModel
     }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProcureExcel);

@@ -24,14 +24,15 @@ const StatusLeavesForm = (props) => {
 {status.createdOn ? (
   `Sent on ${dayjs(status.createdOn).format("DD-MM-YYYY")}`
 ) : (
-  "Yet to be approved"
+  "Waiting for Approval"
 )}
+&nbsp;
  ||
-&nbsp;&nbsp;
+&nbsp;
 {status.approvedDate ? (
   `Approved on ${dayjs(status.approvedDate).format("DD-MM-YYYY")}`
 ) : (
-  "Yet to be approved"
+  "Waiting for Approval"
 )}
 
               {/* {`sent on ${dayjs(status.createdOn).format("DD-MM-YYYY")} | approved on ${dayjs(status.approvedDate).format("DD-MM-YYYY")}`} */}

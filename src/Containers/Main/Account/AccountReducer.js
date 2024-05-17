@@ -81,6 +81,10 @@ const initialState = {
   fetchingNotesListByDistributorIdError: false,
   notesListByDistributorId: [],
 
+  fetchingBrand: false,
+   fetchingBrandError: false,
+   brand:[],
+
   fetchingAllProductList: false,
   fetchingAllProductListError: false,
   allProduct: [],
@@ -151,6 +155,10 @@ const initialState = {
   fetchingOrderHistoryById: false,
   fetchingOrderHistoryByIdError: true,
   orderHistory: [],
+
+  fetchingModel: false,
+   fetchingModelError: false.valueOf,
+   model:[],
 
   updatingDistributorById: false,
   updatingDistributorByIdError: false,
@@ -2791,6 +2799,24 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL:
       return { ...state, addAccountOpportunityModal: action.payload };
+
+
+      case types.GET_BRAND_REQUEST:
+        return { ...state, fetchingBrand: true };
+    case types.GET_BRAND_SUCCESS:
+        return { ...state, fetchingBrand: false, brand: action.payload };
+    case types.GET_BRAND_FAILURE:
+        return { ...state, fetchingBrand: false, fetchingBrandError: true };
+
+
+
+        case types.GET_MODEL_REQUEST:
+          return { ...state, fetchingModel: true };
+      case types.GET_MODEL_SUCCESS:
+          return { ...state, fetchingModel: false, model: action.payload };
+      case types.GET_MODEL_FAILURE:
+          return { ...state, fetchingModel: false, fetchingModelError: true };
+  
 
 
     default:
