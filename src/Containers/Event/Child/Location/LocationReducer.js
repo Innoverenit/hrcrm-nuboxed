@@ -50,6 +50,9 @@ const initialState = {
    fetchingDeletedLocationCellError: false,
    deletedLoCell:[],
 
+   creatingMachineCell:false,
+   creatingMachineCellError:false,
+
    fetchingUserCell:false,
    fetchingUserCellError:false,
    userCell:[],
@@ -644,6 +647,25 @@ deletingUserCellDataError:false,
                         return { ...state, fetchingLocationMachineData: false, locationMachineData: action.payload };
                       case types.GET_LOCATION_MACHINE_DATA_FAILURE:
                         return { ...state, fetchingLocationMachineData: false, fetchingLocationMachineDataError: true };
+
+
+
+                        case types.CREATE_MACHINARY_CELL_REQUEST:
+                                                  return { ...state, creatingMachineCell: true };
+                                                case types.CREATE_MACHINARY_CELL_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    creatingMachineCell: false,
+                                                    //locationMachineData:[action.payload,...state.locationMachineData]
+                             
+                                                  };
+                                                case types.CREATE_MACHINARY_CELL_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    creatingMachineCell: false,
+                                                    creatingMachineCellError: true,
+                                    
+                                                  };
 
       default:
     return state;

@@ -901,3 +901,32 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
+
+
+
+  export const createMachinaryCell = (data) => (dispatch) => {
+    // const { locationId,organizationId } = getState().auth.userDetails;
+    
+    dispatch({ type: types.CREATE_MACHINARY_CELL_REQUEST });
+    axios
+      .post(`${base_url}/machinary/location/cell`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(getRoomRackByLocId(locationId,organizationId))
+        dispatch({
+          type: types.CREATE_MACHINARY_CELL_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_MACHINARY_CELL_FAILURE,
+          payload: err,
+        });
+      });
+  };

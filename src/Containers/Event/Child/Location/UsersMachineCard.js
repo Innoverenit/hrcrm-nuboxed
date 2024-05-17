@@ -5,7 +5,7 @@ import { Button ,Select,Input} from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 //import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
-import {getLocationMachine,createMachinary,getLocationMachineData} from "../../Child/Location/LocationAction"
+import {getLocationMachine,createMachinary,createMachinaryCell,getLocationMachineData} from "../../Child/Location/LocationAction"
 //import { Select } from "../../../../Components/UI/Elements";
 //import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell} from "../../../Event/Child/Location/LocationAction";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -23,6 +23,7 @@ const UserMachineCrd = (props) => {
   const[machinecode,setMachineCode]=useState("")
   const[cell,setCell]=useState("")
   const[user,setUser]=useState("")
+  const [selectedValues, setSelectedValues] = useState({});
   const users = [
     { value: '1', label: 'John Doe' },
     { value: '2', label: 'Jane Smith' },
@@ -118,10 +119,22 @@ const UserMachineCrd = (props) => {
     // };
 
 
+    const handleSelectChange = (machinaryId, value) => {
+      setSelectedValues({ ...selectedValues, [machinaryId]: value });
+    };
+  
+    const handleSubmit = (machineCode, machinaryId) => {
+      const selectedValue = selectedValues[machinaryId];
+      console.log('Selected Value:', selectedValue, 'Machine Code:', machineCode, 'Machine ID:', machinaryId);
+      props.createMachinaryCell()
+    };
+
+
     const handleSaveMachine=()=> {
       let data={
         machinaryName:machine,
-        machineCode:machinecode
+        machineCode:machinecode,
+        locationId:props.storedLoc.locationDetailsId,
         // cellChamberLinkId:cell,
 
         // // cellId:cell,
@@ -224,7 +237,7 @@ const UserMachineCrd = (props) => {
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
-                    <div class=" text-xs text-cardBody font-poppins">
+                    <div class=" text-xs text-cardBody font-poppins" style={{marginLeft:"-9em"}}>
                     
                       <div className="font-normal text-sm text-cardBody font-poppins">
                         <div> {item.machineCode}</div>
@@ -233,6 +246,37 @@ const UserMachineCrd = (props) => {
                     </div>
 
                   </div>
+
+
+
+                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+<div class=" text-xs text-cardBody font-poppins">
+
+  <div className="font-normal text-sm text-cardBody font-poppins" style={{marginLeft:"-7em"}}>
+    <div>   <Select
+            style={{ width: '85%',marginLeft:"-6em" }}
+            placeholder="Select a value"
+            onChange={(value) => handleSelectChange(item.machinaryId, value)}
+          >
+            <Option value="option1">Option 1</Option>
+            <Option value="option2">Option 2</Option>
+            <Option value="option3">Option 3</Option>
+          </Select>
+          {selectedValues[item.machinaryId] && (
+            <Button
+              type="primary"
+              style={{ marginTop: 1,marginLeft:"1em" }}
+              onClick={() => handleSubmit(item.machineCode, item.machinaryId)}
+            >
+              Submit
+            </Button>
+          )}</div>
+  </div>
+
+</div>
+
+</div>
                 
 
 
@@ -284,7 +328,8 @@ const mapDispatchToProps = (dispatch) =>
         {
           getLocationMachine,
           createMachinary,
-          getLocationMachineData
+          getLocationMachineData,
+          createMachinaryCell
         //     getAlLoCell,
         //    getDepartments,
         //    getUserListLocation,
