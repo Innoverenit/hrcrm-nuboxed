@@ -158,7 +158,7 @@ class ApproveForm extends Component {
                                      
                                      
                                         <div>
-                                        <div class=" flex justify-between "
+                                        {/* <div class=" flex justify-between "
                                         
                                         >
                                                 <div class=" flex w-[20%] mb-[2%]"
@@ -184,100 +184,22 @@ class ApproveForm extends Component {
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                           
                                         <div class=" mt-4" >
-                                            {values.approvalType ? (
+                                           
                                                 <LevelApproveForm
                                                   
                                                     approvalIndicator={values.approvalIndicator ? true : false}
                                                     approvalType={values.approvalType ? "Standard" : "Exception"}
                                                 />
-                                            ) : ( 
-                                                <div class=" flex justify-between" >
-                                                    <div class=" w-[32%]">
-                                                        <Field
-                                                            name="departmentId"
-                                                            label="Department"
-                                                            options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.departmentId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        />
-                                                    </div>
-
-                                                    <div class=" w-[32%]">
-                                                    {/* <Field
-                                                            name="roleTypeId"
-                                                            label="Role"
-                                                            options={Array.isArray(roleNameOption) ? roleNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.roleTypeId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        /> */}
-                                                 <Field
-                    name="roleTypeId"
-                    label={<FormattedMessage
-                      id="app.role"
-                      defaultMessage="Role"
-                    />}
-                    isColumnWithoutNoCreate
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.getRoleOptions(
-                          "departmentId",
-                          values.departmentId
-                        )
-                      )
-                        ? this.getRoleOptions(
-                            "departmentId",
-                            values.departmentId
-                          )
-                        : []
-                    }
-                    value={values.roleTypeId}
-                    filterOption={{
-                      filterType: "departmentId",
-                      filterValue: values.departmentId,
-                    }}
-                    disabled={!values.departmentId}
-                    isColumn
-                    margintop={"0"}
-                    inlineLabel
-                    style={{ flexBasis: "80%" }}
-                    // value={values.roleTypeId}
-                    // width={"100%"}
-                    // isColumn
-                    // selectType="roleType"
-                     />
-                                                    </div>
-                                                    {/* <div style={{ width: "32%" }}>
-                                                        <Field
-                                                            name="jobLevel"
-                                                            label="Job Level"
-                                                            options={["1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14"]}
-                                                            component={SelectComponent}
-                                                            // placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        />
-                                                    </div> */}
-                                                </div>
-                                            )} 
+                      
                                         </div>
 
 
-                                        {!values.approvalType ?
-                                            <div class=" flex justify-end " 
+                                        {/* {!values.approvalType ? */}
+                                            {/* <div class=" flex justify-end " 
                                                 // style={{ marginLeft: "104%", marginTop: "52px" }}
                                                 >
                                                 <Button
@@ -292,8 +214,8 @@ class ApproveForm extends Component {
                                                 >
                                                     Update
                                                 </Button>
-                                            </div>
-                                           : null}
+                                            </div> */}
+                                           {/* : null} */}
                                     </div>
                                  ) : (null)} 
 

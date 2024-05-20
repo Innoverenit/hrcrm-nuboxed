@@ -152,6 +152,10 @@ const initialState = {
   updateDisributorOrderById: false,
   updateDisributorOrderByIdError: false,
 
+  fetchingProcureDetails: false, 
+  fetchingProcureDetailsError: false,
+  procureDetails:[],
+
   fetchingOrderHistoryById: false,
   fetchingOrderHistoryByIdError: true,
   orderHistory: [],
@@ -308,6 +312,10 @@ const initialState = {
   fetchingRenewOrderByOrderId: false,
   fetchingRenewOrderByOrderIdError: false,
   RenewOrder: [],
+
+
+  updatingProcureDetails: false,
+  updatingProcureDetailsError: false,
 
   updatingProcureStep1: false,
   updatingProcureStep1Error: false,
@@ -506,6 +514,9 @@ const initialState = {
 
   addingLead: false,
   addingLeadError: false,
+
+  deletingProcureData: false,
+   deletingProcureDataError: false,
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
@@ -2816,8 +2827,50 @@ export const distributorReducer = (state = initialState, action) => {
           return { ...state, fetchingModel: false, model: action.payload };
       case types.GET_MODEL_FAILURE:
           return { ...state, fetchingModel: false, fetchingModelError: true };
-  
 
+
+          case types.GET_PROCURE_DETAILS_REQUEST:
+            return { ...state, fetchingProcureDetails: true };
+        case types.GET_PROCURE_DETAILS_SUCCESS:
+            return { ...state, fetchingProcureDetails: false, procureDetails: action.payload };
+        case types.GET_PROCURE_DETAILS_FAILURE:
+            return { ...state, fetchingProcureDetails: false, fetchingProcureDetailsError: true };
+    
+  
+            case types.DELETE_PROCURE_DATA_REQUEST:
+              return { ...state, deletingProcureData: true };
+            case types.DELETE_PROCURE_DATA_SUCCESS:
+              return {
+                ...state,
+                deletingProcureData: false,
+                procureDetails: state.procureDetails.filter(
+                  (item) => item.id !== action.payload
+                ),
+              };
+            case types.DELETE_PROCURE_DATA_FAILURE:
+              return { ...state, deletingProcureData: false, deletingProcureDataError: false };
+    
+
+
+              case types.UPDATE_PROCURE_DETAILS_REQUEST:
+                return { ...state, updatingProcureDetails: true };
+              case types.UPDATE_PROCURE_DETAILS_SUCCESS:
+                // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+                return {
+                  ...state,
+                  updatingProcureDetails: false,
+                  procureDetails: state.procureDetails.map((sector) =>
+                    sector.id === action.payload.id
+                      ? action.payload
+                      : sector
+                  ),
+                };
+              case types.UPDATE_PROCURE_DETAILS_FAILURE:
+                return {
+                  ...state,
+                  updatingProcureDetails: false,
+                  updatingProcureDetailsError: true,
+                };
 
     default:
       return state;
