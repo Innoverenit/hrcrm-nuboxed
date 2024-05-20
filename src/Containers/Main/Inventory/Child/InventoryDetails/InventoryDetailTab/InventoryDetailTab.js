@@ -135,7 +135,9 @@ class InventoryDetailTab extends PureComponent {
               key="2"
             >
               <Suspense fallback={"Loading..."}>
-                <DispatchTable />
+                <DispatchTable 
+                   inventory={this.props.inventory}
+                />
               </Suspense>
             </TabPane>
 

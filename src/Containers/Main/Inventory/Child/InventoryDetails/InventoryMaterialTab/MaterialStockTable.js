@@ -284,6 +284,7 @@ const GrnListOfPO = (props) => {
                 showStockItem={props.showStockItem}
             />
             <TheStockUsedDrawer
+             inventory={props.inventory}
                 row={row}
                 stockUseDrwr={props.stockUseDrwr}
                 handleStockUsedDrawer={props.handleStockUsedDrawer}

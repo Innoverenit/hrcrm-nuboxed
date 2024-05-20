@@ -22,7 +22,10 @@ class TheStockUsedDrawer extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <StockUsedForm row={row} />
+                        <StockUsedForm 
+                        row={row} 
+                        inventory={this.props.inventory}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </>

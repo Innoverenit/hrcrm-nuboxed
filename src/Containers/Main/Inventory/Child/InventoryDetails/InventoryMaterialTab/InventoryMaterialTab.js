@@ -59,7 +59,9 @@ class InventoryMaterialTab extends PureComponent {
                             key="2"
                         >
                             <Suspense fallback={"Loading..."}>
-                                <MaterialStockTable />
+                                <MaterialStockTable 
+                                inventory={this.props.inventory}
+                                />
                             </Suspense>
                         </TabPane>
 
