@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 function StockUsedForm(props) {
     useEffect(() => {
-        props.getCellById(props.locationId, props.orgId)
+        props.getCellById(props.inventory.locationDetailsId, props.orgId)
     }, [])
     const cellOption = props.cellById.map((item) => {
         return {
@@ -130,7 +130,7 @@ const mapStateToProps = ({ inventory, location, auth }) => ({
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     cellById: inventory.cellById,
-    locationId: auth.userDetails.locationId,
+    //locationId: auth.userDetails.locationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
