@@ -664,6 +664,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  
+
   export const getNotesListByLeadsId = (leadsId) => (dispatch) => {
     dispatch({
       type: types.GET_NOTES_LIST_BY_LEADS_ID_REQUEST,

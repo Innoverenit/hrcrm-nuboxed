@@ -1008,7 +1008,7 @@ export const addCarDetails = (customer, id, cb) => (dispatch, getState) => {
 };
 
 
-export const addProcureDetails = (customer, id, cb) => (dispatch, getState) => {
+export const addProcureDetails = (customer, orderPhoneId, cb) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_PROCURE_DETAILS_REQUEST,
@@ -1021,6 +1021,7 @@ export const addProcureDetails = (customer, id, cb) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      dispatch(getProcureDetails(orderPhoneId))
       Swal.fire({
         icon: 'success',
         title: 'list added',
@@ -3716,4 +3717,96 @@ export const getModel = (brandName) => (dispatch) => {
               payload: err,
           });
       });
+};
+
+export const getProcureDetails = (orderPhoneId) => (dispatch) => {
+  dispatch({
+      type: types.GET_PROCURE_DETAILS_REQUEST,
+  });
+  axios
+      .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_PROCURE_DETAILS_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_PROCURE_DETAILS_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+export const deleteProcureData = (id,orgId) => (dispatch, getState) => {
+  const { userId } = getState("auth").auth.userDetails;
+  // console.log("inside deleteCall", callId);
+  dispatch({
+    type: types.DELETE_PROCURE_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/phoneOrder/procure/order/delete/${id}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      //  dispatch(getScheduler(orgId));
+      dispatch({
+        type: types.DELETE_PROCURE_DATA_SUCCESS,
+        payload: id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_PROCURE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const updateProcureDetails = (data, id,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.UPDATE_PROCURE_DETAILS_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/phoneOrder/procure/order/update/${id}`,
+     data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Procure updated Successfully!',
+      })
+      // message.success("Sector has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_PROCURE_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCURE_DETAILS_FAILURE,
+      });
+    });
 };

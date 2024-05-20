@@ -3,140 +3,124 @@ import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addProcureDetails,getBrand,getModel } from "../../AccountAction"
+import { addProcureDetails, getBrand, getModel, } from "../../AccountAction";
+import ProcureDetailsCardList from "./ProcureDetailsCardList";
 const { Option } = Select;
+
 function AddProcureExcel(props) {
   
   useEffect(() => {
     props.getBrand(); 
-  }, [])
-   
+  }, []);
+  
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '' }]);
 
-    const [rows, setRows] = useState([{ brand: '',model:"", unit: '' }]);
-
-    const handleUnitChange = (index, key, value) => {
-      const updatedRows = [...rows];
-      updatedRows[index][key] = value;
-      setRows(updatedRows);
-    };
-    const handleBrandChange = (value, index) => {
-      const updatedRows = [...rows];
-      updatedRows[index].brand = value;
-      setRows(updatedRows);
-      props.getModel(value);
+  const handleUnitChange = (index, key, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index][key] = value;
+    setRows(updatedRows);
   };
+
+  const handleBrandChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].brand = value;
+    updatedRows[index].model = ""; // Reset model when brand changes
+    updatedRows[index].modelId = ""; // Reset modelId when brand changes
+    setRows(updatedRows);
+    props.getModel(value);
+  };
+
   const handleModelChange = (value, index) => {
+    const selectedModel = props.model.find((model) => model.model === value);
     const updatedRows = [...rows];
     updatedRows[index].model = value;
+    updatedRows[index].modelId = selectedModel.id; // Assuming model object has an 'id' field
     setRows(updatedRows);
-};
+  };
   
-    const handleAddRow = () => {
-      setRows([...rows, { brand: '',model:"", unit: '' }]);
-    };
-  
-    const handleRemoveRow = (index) => {
-      const updatedRows = [...rows];
-      updatedRows.splice(index, 1);
-      setRows(updatedRows);
-    };
-    const handleSubmit = () => {
-      const dataToSend = rows.map((row) => ({
-        brand: row.brand,
-        model:row.model,
-        unit: row.unit,
-      }));
-  
-      // Make the API call
-      props.addProcureDetails(dataToSend);
-  setRows([{ brand: '',model:"", unit: '' }]);
-    };
-    return (
-      <div>
-        {rows.map((row, index) => (
-          
-          <div key={index}>
-             <div class="flex justify-around w-[30rem]">
-             {/* <div>
-                    <b>{`Data ${index + 1}`}</b>
-                  </div> */}
-              <div>
+  const handleAddRow = () => {
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '' }]);
+  };
+
+  const handleRemoveRow = (index) => {
+    const updatedRows = [...rows];
+    updatedRows.splice(index, 1);
+    setRows(updatedRows);
+  };
+
+  const handleSubmit = () => {
+    const dataToSend = rows.map((row) => ({
+      // brand: row.brand,
+      orderPhoneId: props.orderDetailsId.orderId,
+      brandId: row.modelId, 
+      unit: row.unit,
+    }));
+
+    // Make the API call
+    props.addProcureDetails(dataToSend,props.orderDetailsId.orderId);
+    setRows([{ brand: '', model: '', modelId: '', unit: '' }]);
+  };
+
+  return (
+    <>
+    <div>
+      {rows.map((row, index) => (
+        <div key={index}>
+          <div className="flex justify-around w-[30rem]">
+            <div>
               <label>Brand</label>
-             <div class="w-[13rem]">
-             <Select
-                      style={{ width: 200 }}
-                        value={row.brand}
-                        onChange={(value) => handleBrandChange(value, index)}
-                      >
-                        {props.brand.map((a) => {
-                          return <Option value={a.phoneMasterListId}>{a.brand}</Option>;
-                        })}
-                      </Select>
-             {/* <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select brand"
-                    onChange={(value) => handleBrandChange(value, index)}
+              <div className="w-[13rem]">
+                <Select
+                  style={{ width: 200 }}
+                  value={row.brand}
+                  onChange={(value) => handleBrandChange(value, index)}
                 >
-                    {props.brand.map(item => (
-                        <Option key={item.phoneMasterListId} value={item.phoneMasterListId}>
-                            {item.brand} 
-                        </Option>
-                    ))}
-                </Select> */}
-            </div>
+                  {props.brand.map((a) => (
+                    <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                  ))}
+                </Select>
+              </div>
             </div>
             <div>
               <label>Model</label>
-             <div class="w-[13rem]">
-             <Select
-                         style={{ width: 200 }}
-                        value={row.model}
-                        onChange={(value) => handleModelChange(value, index)}
-                      >
-                        {props.model.map((a) => {
-                          return <Option value={a.employeeId}>{a.model}</Option>;
-                        })}
-                      </Select>
-             {/* <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select model"
-                    onChange={(value) => handleModelChange(value, index)}
+              <div className="w-[13rem]">
+                <Select
+                  style={{ width: 200 }}
+                  value={row.model}
+                  onChange={(value) => handleModelChange(value, index)}
                 >
-                    {props.model.map(item => (
-                        <Option key={item.phoneMasterListId} value={item.phoneMasterListId}>
-                            {item.model}
-                        </Option>
-                    ))}
-                </Select> */}
-            </div>
+                  {props.model.map((a) => (
+                    <Option key={a.model} value={a.model}>{a.model}</Option>
+                  ))}
+                </Select>
+              </div>
             </div>
             <div>
               <label>Unit</label>
-            <div class="w-24">
-            <Input
-              type="text"
-              value={row.unit}
-              onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
-              placeholder="Enter unit"
-            />
+              <div className="w-24">
+                <Input
+                  type="text"
+                  value={row.unit}
+                  onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
+                  placeholder="Enter unit"
+                />
+              </div>
             </div>
+            <div className="w-4 mt-[1.5rem]">
+              <CloseOutlined onClick={() => handleRemoveRow(index)} />
             </div>
-            <div class="w-4 mt-[1.5rem]">
-         <CloseOutlined onClick={() => handleRemoveRow(index)}/>
-         </div>
-         </div>
           </div>
-        ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingProcureDetails} onClick={handleSubmit}>Submit</Button>
-      </div>
-    );
-  }
+        </div>
+      ))}
+      <Button type="primary" onClick={handleAddRow}>Add</Button>
+      <Button type="primary" loading={props.addingProcureDetails} onClick={handleSubmit}>Submit</Button>
+    </div>
+   <ProcureDetailsCardList/>
+    </>
+  );
+}
 
-
-const mapStateToProps = ({ distributor,brandmodel,auth }) => ({
+const mapStateToProps = ({ distributor, brandmodel, auth }) => ({
   userId: auth.userDetails.userId,
   orderDetailsId: distributor.orderDetailsId,
   addingProcureDetails: distributor.addingProcureDetails,
@@ -147,11 +131,12 @@ const mapStateToProps = ({ distributor,brandmodel,auth }) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators({
-      addProcureDetails,
-      getBrand,
-      getModel
-    }, dispatch);
+  bindActionCreators({
+    addProcureDetails,
+    getBrand,
+    getModel,
+ 
+  }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProcureExcel);
 

@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-// import NotesLeadsForm from "./NotesLeadsForm";
+import UpdateNotesLeadsForm from "./UpdateNotesLeadsForm";
 
 class UpdateLeadsNote extends Component {
 
@@ -25,12 +25,13 @@ class UpdateLeadsNote extends Component {
         }
         
         >
-          {/* <Suspense fallback={<BundleLoader />}>
+          <Suspense fallback={<BundleLoader />}>
 
-          <NotesLeadsForm
-            rowdata={this.props.rowdata}
+          <UpdateNotesLeadsForm
+          notes={this.props.notes}
+            notesId={this.props.notesId}
           />
-        </Suspense> */}
+        </Suspense>
          
         </StyledDrawer>
       </div>
