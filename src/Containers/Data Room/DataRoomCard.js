@@ -8,6 +8,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../Components/Placeholder";
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import {getDataRoom} from "./DataRoomAction";
+import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 
 
 
@@ -17,26 +19,26 @@ const DataRoomCard = (props) => {
   const [page, setPage] = useState(0);
 
   const {
-    getInventory,
+    getDataRoom,
     handleInventoryRoomRackModal,
     inventory,
-    orgId,
-    addroomrackininventory,
+    userId,
+    dataRoomlist,
     fetchingInventoryList
   } = props;
 
-//   useEffect(() => {
-//     getInventory(orgId);
-//   }, [getInventory, orgId]);
-  const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getInventory(orgId);
-  };
+  useEffect(() => {
+    getDataRoom(userId);
+  }, [getDataRoom, userId]);
+//   const handleLoadMore = () => {
+//     setPage(page + 1);
+//     props.getInventory(orgId);
+//   };
 
-  const filteredData = inventory.filter((item) => item.inventoryInd === true);
+
   return (
     <>
-      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
+       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
@@ -53,12 +55,12 @@ const DataRoomCard = (props) => {
                 </div>    
             <div className="w-[4.3rem]"></div>
           </div>
-          <InfiniteScroll
-            dataLength={filteredData.length}
+          {/* <InfiniteScroll
+            dataLength={dataRoomlist.length}
             height={"75vh"}
-          >
-            {/* {filteredData.length ? <>
-              {filteredData.map((item) => {
+          > */}
+          <>
+              {dataRoomlist.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
                 const countryCode = item.address[0].country_alpha2_code
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -143,32 +145,29 @@ const DataRoomCard = (props) => {
                 )
               })}
             </>
-              : !filteredData.length
-                && !props.fetchingInventoryList ? <NodataFoundPage /> : null} */}
+ 
 
-          </InfiniteScroll>
+          {/* </InfiniteScroll> */}
         </div>
       </div>
-      }
+      
 
      
     </>
   );
 };
 
-const mapStateToProps = ({ inventory, auth, locations }) => ({
+const mapStateToProps = ({ inventory, auth, datRoom }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  fetchingInventoryList: inventory.fetchingInventoryList,
-  inventory: inventory.inventory,
-  // locationsType: locations.locationsType,
-  addroomrackininventory: inventory.addroomrackininventory,
+  dataRoomlist: datRoom.dataRoomlist
+  
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     
+        getDataRoom 
     },
     dispatch
   );
