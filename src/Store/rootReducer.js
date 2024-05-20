@@ -13,6 +13,7 @@ import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/B
 import { plannerReducer } from "../Containers/Planner/PlannerReducer";
 import { settingsReducer } from "../Containers/Settings/SettingsReducer";
 import { refurbishReducer } from "../Containers/Main/Refurbish/RefurbishReducer";
+import {dataRoomReducer} from "../Containers/Data Room/DataRoomReducer";
 import { themeReducer } from "../Containers/Settings/Theme/ThemeReducer";
 
 import { ruleReducer } from "../Containers/Rules/RulesReducer";
@@ -182,6 +183,7 @@ const appReducer = combineReducers({
   collection: collectionReducer,
   product: productReducer,
   refurbish: refurbishReducer,
+  datRoom: dataRoomReducer,
   investorList:investorListReducer,
   procurement:procurementReducer,
   payments:catgPaymentReducer,
