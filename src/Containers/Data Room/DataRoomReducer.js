@@ -6,6 +6,10 @@ const initialState = {
     addDataroomModal:false,
 
     addDrawerDataroomNotesModal:false,
+
+    fetchingDataroomList: false,
+    fetchingDataroomListError: false,
+    dataRoomlist:[]
   
   };
 
@@ -19,6 +23,22 @@ const initialState = {
 
       case types.HANDLE_DATAROOM_NOTES_DRAWER_MODAL:
     return { ...state, addDrawerDataroomNotesModal: action.payload };
+
+    case types.GET_DATAROOM_REQUEST:
+      return { ...state, fetchingDataroomList: true };
+    case types.GET_DATAROOM_SUCCESS:
+      return {
+        ...state,
+        fetchingDataroomList: false,
+        dataRoomlist: action.payload,
+      };
+    case types.GET_DATAROOM_FAILURE:
+      return {
+        ...state,
+        fetchingDataroomList: false,
+        fetchingDataroomListError: true,
+      };
+
 
       default:
         return state;
