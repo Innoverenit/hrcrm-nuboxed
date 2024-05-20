@@ -5,33 +5,24 @@ const DataRoomActionLeft=lazy(()=> import("../Data Room/DataRoomActionLeft"));
 
 class DataRoomHeader extends Component {
   render() {
-    // const {
-    //   handleLeadsModal,
-    //   viewType,
-    //   setPitchViewType,
-   
-    //   currentUser,
-    //   setLeadsViewType,
-    //   handleChange,
-    //   currentData,
-    //   handleClear,
-    //   handleCurrentData
-    // } = this.props;
+    const {
+      handleDataroomModal
+    } = this.props;
     return (
       <div>
         <ActionHeader
-        //   leftComponent={
-        //     <DataRoomActionLeft
-           
+          leftComponent={
+            <DataRoomActionLeft
+            setDataRoomViewTyp={this.props.setDataRoomViewType}
+      viewType={this.props.viewType}
+     
              
-        //     />
-        //   }
+            />
+          }
           rightComponent={
             <DataRoomActionRight
-            // viewType={viewType}
-            // currentUser={this.props.currentUser} 
-            // handleDropChange={this.props.handleDropChange}
-            // handlePitchModal={this.props.handlePitchModal} 
+            viewType={this.props.viewType}
+            handleDataroomModal={handleDataroomModal}
             />
           }
         />

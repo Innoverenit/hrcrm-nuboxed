@@ -23,15 +23,9 @@ const NotesForm = (props) => {
 
   return (
     <>
-      <div style={{ backgroundColor: "#dcdcdc", height: "14.375em" }}>
-        <NoteFile
-          type={"lead"}
-          leadsId={props.rowdata.leadsId}
-          callback={() => props.getNotesListByLeadsId(props.rowdata.leadsId)}
-        />
-      </div>
+     
 
-      <br />
+      
 
       <div className="border-spacing-2 rounded-md shadow-2xl mb-1 mt-9">
         <div style={{ height: "41vh", overflow: "auto", padding: "1rem" }}>
@@ -48,6 +42,14 @@ const NotesForm = (props) => {
             </Timeline>
           )}
         </div>
+      </div>
+      <br />
+      <div style={{ backgroundColor: "#dcdcdc", height: "14.375em" }}>
+        <NoteFile
+          type={"lead"}
+          leadsId={props.rowdata.leadsId}
+          callback={() => props.getNotesListByLeadsId(props.rowdata.leadsId)}
+        />
       </div>
     </>
   );
