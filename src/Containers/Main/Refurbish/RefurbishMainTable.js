@@ -199,9 +199,9 @@ const ProductionOrderList = (props) => {
                                                     {item.expectedPrice}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[4.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    
+                                                   {item.payableOfferPrice} 
                                                 </div>
                                             </div>
 
