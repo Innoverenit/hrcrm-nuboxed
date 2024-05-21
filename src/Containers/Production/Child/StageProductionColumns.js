@@ -13,7 +13,7 @@ class StageProductionColumn extends Component {
     return (
       
       <Draggable
-      draggableId={employee.productionWorkflowDetailsId}
+      draggableId={employee.productionProductId}
       index={index}
       type="stage"
     >
