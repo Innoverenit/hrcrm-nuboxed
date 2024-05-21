@@ -157,7 +157,7 @@ class PhonesPairApproveForm extends Component {
                                 {values.approvalIndicator ? (
                                      <div class=" mt-4">
                                      
-                                        <div>
+                                        {/* <div>
                                         <div class=" flex justify-between "
                                         
                                         >
@@ -185,9 +185,14 @@ class PhonesPairApproveForm extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div class=" mt-4" >
-                                            {values.approvalType ? (
+                                        <PhonesPairLevelApproveForm
+                                                  
+                                                  approvalIndicator={values.approvalIndicator ? true : false}
+                                                  approvalType={values.approvalType ? "Standard" : "Exception"}
+                                              />
+                                            {/* {values.approvalType ? (
                                                 <PhonesPairLevelApproveForm
                                                   
                                                     approvalIndicator={values.approvalIndicator ? true : false}
@@ -210,17 +215,7 @@ class PhonesPairApproveForm extends Component {
                                                     </div>
 
                                                     <div class=" w-[32%]">
-                                                    {/* <Field
-                                                            name="roleTypeId"
-                                                            label="Role"
-                                                            options={Array.isArray(roleNameOption) ? roleNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.roleTypeId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        /> */}
+                                                
                                                  <Field
                     name="roleTypeId"
                     label={<FormattedMessage
@@ -252,19 +247,16 @@ class PhonesPairApproveForm extends Component {
                     margintop={"0"}
                     inlineLabel
                     style={{ flexBasis: "80%" }}
-                    // value={values.roleTypeId}
-                    // width={"100%"}
-                    // isColumn
-                    // selectType="roleType"
+                    
                      /> 
                                                     </div>
                                                
                                                 </div>
-                                            )} 
+                                            )}  */}
                                         </div>
 
                                   
-                                        {!values.approvalType ?
+                                        {/* {!values.approvalType ?
                                                 <div class=" flex justify-end " 
                                                 // style={{ marginLeft: "104%", marginTop: "52px" }}
                                                 >
@@ -281,7 +273,7 @@ class PhonesPairApproveForm extends Component {
                                                     Update
                                                 </Button>
                                             </div>
-                                           : null}
+                                           : null} */}
                                     </div>
                                  ) : (null)} 
 

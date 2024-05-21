@@ -122,6 +122,7 @@ function SuppliesTable(props) {
                           <div className=" flex font-medium flex-col w-[13.91rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
+                                {item.imageId && (
 <span>
                                 <MultiAvatar
                                   // primaryTitle={item.name}
@@ -131,7 +132,7 @@ function SuppliesTable(props) {
                                   imgHeight={"1.8rem"}
                                 />
                                 </span>
-
+)}
                               </div>
                               <div class="w-[3.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
 

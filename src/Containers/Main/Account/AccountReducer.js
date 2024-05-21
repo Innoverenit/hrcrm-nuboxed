@@ -412,6 +412,8 @@ const initialState = {
   fetchingTaggedSuppliesByBrandError: false,
   spareByBrand: [],
 
+  addProcureDetailsModal:false,
+
   fetchingDistributorByGroup: false,
   fetchingDistributorByGroupError: false,
   distributorGroup: [],
@@ -2871,6 +2873,11 @@ export const distributorReducer = (state = initialState, action) => {
                   updatingProcureDetails: false,
                   updatingProcureDetailsError: true,
                 };
+
+
+                case types.HANDLE_PROCURE_DETAILS_MODAL:
+                  return { ...state, addProcureDetailsModal: action.payload, phoneListById: [] };
+            
 
     default:
       return state;

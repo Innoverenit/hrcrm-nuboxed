@@ -3,22 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   getProcureDetails,
-  deleteProcureData,
-  getBrand,
-  getModel,
-  updateProcureDetails
-} from "../../AccountAction";
+} from "../AccountAction";
 import { DeleteOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../../../Components/Placeholder";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
-function ProcureDetailsCardList(props) {
+function AccountProcureDetails(props) {
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
   const [brand, setBrand] = useState("");
@@ -28,8 +24,7 @@ function ProcureDetailsCardList(props) {
   const [particularRowData, setParticularRowData] = useState({});
 
   useEffect(() => {
-    props.getBrand();
-    props.getProcureDetails(props.orderDetailsId.orderId);
+    props.getProcureDetails(props.particularRowData.orderId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -115,116 +110,35 @@ function ProcureDetailsCardList(props) {
             <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
               <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={brand}
-                      onChange={(e) => handleBrandChange(e.target.value)}
-                    >
-                      {props.brand.map((brandItem, brandIndex) => (
-                        <option key={brandIndex} value={brandItem.brand}>
-                          {brandItem.brand}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
+                 
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.brand}</div>
-                  )}
+                 
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                  {editContactId === item.id ? (
-                    <Select
-                      className="w-32"
-                      value={model}
-                      onChange={handleModelChange}
-                    >
-                      {props.model.map((modelItem) => (
-                        <Option key={modelItem.id} value={modelItem.id}>
-                          {modelItem.model}
-                        </Option>
-                      ))}
-                    </Select>
-                  ) : (
+                
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
-                  )}
+                
                 </div>
               </div>
 
               <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                  {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
-                      type="text"
-                      value={newUnitName}
-                      onChange={(e) => setUnitName(e.target.value)}
-                    />
-                  ) : (
+                
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
-                  )}
+                
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                  {editContactId === item.id ? (
-                    <Select
-                      style={{ width: 100 }}
-                      value={specs}
-                      onChange={handleSpecsChange}
-                    >
-                      <Option value="US">US</Option>
-                      <Option value="CE">CE</Option>
-                      <Option value="IND">IND</Option>
-                      <Option value="HK">HK</Option>
-                    </Select>
-                  ) : (
+                 
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.specs}</div>
-                  )}
+                
                 </div>
               </div>
 
-              <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
-                <div className="flex">
-                  {editContactId === item.id ? (
-                    <>
-                      <Button onClick={() => handleUpdate(item.id)}>
-                        Save
-                      </Button>
-                      <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
-                      </Button>
-                    </>
-                  ) : (
-                    <BorderColorIcon
-                      tooltipTitle="Edit"
-                      iconType="edit"
-                      onClick={() => handleEditClick(item.id, item.brand, item.model, item.unit, item.specs)}
-                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
-                    />
-                  )}
-                </div>
-                <div>
-                  <StyledPopconfirm
-                    title="Do you want to delete?"
-                    onConfirm={() => props.deleteProcureData(item.id)}
-                  >
-                    <Tooltip title="Delete">
-                      <DeleteOutlined
-                        type="delete"
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          fontSize: "1rem",
-                        }}
-                      />
-                    </Tooltip>
-                  </StyledPopconfirm>
-                </div>
-              </div>
+             
             </div>
           );
         })}
@@ -245,12 +159,9 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getProcureDetails,
-      deleteProcureData,
-      getBrand,
-      getModel,
-      updateProcureDetails
+ 
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProcureDetailsCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountProcureDetails);

@@ -134,10 +134,12 @@ function SupplierSuppliesCardTable(props) {
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                             <div className=" flex font-medium  w-[12.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem]">
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem]"
+                                {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem]"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.suppliesName}`}
-                                >{item.suppliesName}</Link>
+                                > */}
+                                  {item.suppliesName}
+                                  {/* </Link> */}
 
                               </div>
 

@@ -186,7 +186,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         // cb && cb("failuer");
       });
   };
-  export const deleteLeadsData = (leadsId,orgId) => (dispatch, getState) => {
+  export const deleteLeadsData = (leadsId,userId) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;
     // console.log("inside deleteCall", callId);
     dispatch({
@@ -199,8 +199,13 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead Deleted Successfully!',
+      
+        })
         console.log(res);
-        //  dispatch(getScheduler(orgId));
+        dispatch(getLeadsRecords(userId));
         dispatch({
           type: types.DELETE_LEADS_DATA_SUCCESS,
           payload: leadsId,

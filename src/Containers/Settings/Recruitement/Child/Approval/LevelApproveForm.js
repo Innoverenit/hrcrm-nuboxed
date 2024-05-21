@@ -23,12 +23,12 @@ function LevelApproveForm(props) {
       setRows(
         props.approvalData.level.map((level, index) => ({
           ...level,
-          roleTypeId: props.approvalData.roleTypeId ? props.approvalData.roleTypeId[index] : "",
+          roleType: props.approvalData.roleType ? props.approvalData.roleType[index] : "",
         }))
       );
       setIsLoading(false);
     }
-  }, [props.approvalData.level, props.approvalData.roleTypeId]);
+  }, [props.approvalData.level, props.approvalData.roleType]);
 
   function buttonOnClick() {
     const data = {
@@ -36,10 +36,10 @@ function LevelApproveForm(props) {
       level: rows.map((row) => ({
         level: row.level,
         threshold: row.threshold,
-        roleTypeId: row.roleTypeId,
+        roleType: row.roleTypeId,
       })),
       approvalIndicator: props.approvalIndicator,
-      approvalType: props.approvalType,
+      approvalType: "Standard",
       subProcessName: "Leave",
     };
 
@@ -119,7 +119,7 @@ function LevelApproveForm(props) {
                       >
                         {getRoleOptions(row.level).map((option) => (
                           <Option key={option.value} value={option.value}>
-                            {option.label}
+                              {option.label} 
                           </Option>
                         ))}
                       </Select>

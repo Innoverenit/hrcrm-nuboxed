@@ -79,6 +79,7 @@
 import React, { PureComponent,lazy, Suspense, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { getDepartmentList } from "../../../SettingsAction"
@@ -108,9 +109,15 @@ class Access extends PureComponent {
         });
 
     };
+    
+ 
     render() {
+        if (this.props.fetchingDepartmentList) {
+            return <BundleLoader />;
+          }
         const { departmentList } = this.props;
         console.log(this.state.departmentData.departmentId)
+      
         return (
             <>
                 <TabsWrapper style={{height:"150vh" }}>
@@ -153,6 +160,7 @@ class Access extends PureComponent {
 const mapStateToProps = ({ settings, opportunity, auth }) => ({
     departmentList: settings.departmentList,
     orgId:auth.userDetails.organizationId,
+    fetchingDepartmentList:settings.fetchingDepartmentList,
 
 });
 

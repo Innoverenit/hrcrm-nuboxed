@@ -38,6 +38,7 @@ const LeadsJunkList = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     props.getJunkedLeads(props.userId);
+    setPage(page + 1);
   }, []);
   useEffect(() => {
     const handleResize = () => {
@@ -59,21 +60,47 @@ const LeadsJunkList = (props) => {
   //   return <BundleLoader />;
   // }
   const handleLoadMore = () => {
-      setPage(page + 1);
-      props.getJunkedLeads(props.userId);
-};
+    const callPageMapd = props.junkedLeadsData && props.junkedLeadsData.length &&props.junkedLeadsData[0].pageCount
+    setTimeout(() => {
+      const {
+        getJunkedLeads,
+        userDetails: { employeeId },
+      } = props;
+      if  (props.junkedLeadsData)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getJunkedLeads(props.userId);
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+//   const handleLoadMore = () => {
+//       setPage(page + 1);
+//       props.getJunkedLeads(props.userId);
+// };
 if (isMobile){
   return (
     <>
  <div class="rounded-lg  p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
- 
-      <InfiniteScroll
+ <InfiniteScroll
+        dataLength={junkedLeadsData.length}
+        next={handleLoadMore}
+      hasMore={hasMore}
+        loader={fetchingJunkedLeads?<div class="flex justify-center">Loading...</div>:null}
+        height={"75vh"}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+      >
+      {/* <InfiniteScroll
         dataLength={junkedLeadsData.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingJunkedLeads?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"75vh"}
-      >
+      > */}
       {junkedLeadsData.map((item) => { 
          const currentdate = moment().format("DD/MM/YYYY");
          const date = moment(item.creationDate).format("DD/MM/YYYY");
@@ -399,7 +426,7 @@ Resinstate
         <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
         <div className="w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
         <div className="w-[6.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
         <div className="w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         <div className="w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
         <div className="w-12 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Action</div>
