@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field,  FastField,setFieldValue  } from "formik";
 import * as Yup from "yup";
-//   addLeads,  
-//   setClearbitData,
-//   emptyClearbit,
-//   getCrm
-// } from "../../Leads/LeadsAction";
+import  {addDataroom,getuserList} from  "./DataRoomAction";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 
@@ -29,10 +25,9 @@ function DataRooForm (props) {
     resetForm();
   };
  
-//   useEffect(()=> {
-// props. getCrm();
-// props.emptyClearbit();
-//   },[]);
+  useEffect(()=> {
+props. getuserList(props.orgId);
+  },[]);
 
     const {
       accounts,
@@ -42,7 +37,7 @@ function DataRooForm (props) {
       isEditing,
       prefillAccount,
       addingLeads,
-      addLeads,
+      addDataroom,
       clearbit,
       setClearbitData,
     } = props;
@@ -62,6 +57,12 @@ function DataRooForm (props) {
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const typeOption = props.userRoomlist.map((item) => {
+      return {
+        label: `${item.empName}`,
+        value: item.employeeId,
+      };
+    });
 
     return (
       <>
@@ -104,7 +105,7 @@ function DataRooForm (props) {
           validationSchema={LeadsSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
-            addLeads(
+            addDataroom(
               {
                 ...values,
                 companyName: "",
@@ -135,18 +136,18 @@ function DataRooForm (props) {
            
              <div class="flex justify-between  pr-2 max-sm:flex-col" >
                    
-                <div class=" h-full w-w47.5 max-sm:w-wk"   >
+                <div class=" h-full w-wk max-sm:w-wk"   >
                   <div class=" flex  flex-nowrap">
 
                    
-                    <div>
+                    <div class="w-w47.5">
                       <div class=" flex justify-between max-sm:flex-col">
                        
                         <div class=" w-wk max-sm:w-full ">
                           <FastField
                             isRequired
                             name="firstName"
-                            label="Room name"
+                            label="Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -156,10 +157,10 @@ function DataRooForm (props) {
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        {/* <div class=" w-[47.5%] max-sm:w-full">
                           <FastField
                             name="middleName"
-                            label="Room member list"
+                            label="Members"
                            
                             type="text"
                             width={"100%"}
@@ -167,9 +168,13 @@ function DataRooForm (props) {
                             component={InputComponent}
                             inlineLabel
                           />
-                          {/* <Field
+                          
+                        </div> */}
+                        <div class=" w-wk max-sm:w-full">
+                         
+                          <Field
       name="type"
-      label="Room member list"
+      label="Include User"
       isColumn
       width={"100%"}
      component={SelectComponent}
@@ -179,24 +184,13 @@ function DataRooForm (props) {
           : []
       }
       inlineLabel
-    /> */}
-                        </div>
-                        <div class=" w-1/2 max-sm:w-full">
-                          <FastField
-                            name="lastName"
-                            label="List of user"
-                            type="text"
-                            width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
+    />
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <Field
+                  {/* <Field
                     isRequired
                     name="email"
                     type="text"
@@ -205,7 +199,7 @@ function DataRooForm (props) {
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                  /> 
+                  />  */}
                                
                  
               
@@ -245,7 +239,7 @@ function DataRooForm (props) {
     );
 }
 
-const mapStateToProps = ({ auth, leads,lob }) => ({
+const mapStateToProps = ({ auth, leads,lob,datRoom }) => ({
   addingLeads: leads.addingLeads,
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
@@ -258,16 +252,14 @@ const mapStateToProps = ({ auth, leads,lob }) => ({
   userId: auth.userDetails.userId,
   fullName: auth.userDetails.fullName,
   token: auth.token,
-
+  userRoomlist:datRoom.userRoomlist
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //    addLeads,
-    //    getCrm,
-    //   setClearbitData,
-    //   emptyClearbit
+        addDataroom,
+        getuserList
 
     },
     dispatch
