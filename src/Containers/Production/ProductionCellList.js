@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense ,useEffect} from 'react';
 import { Card, Progress } from 'antd';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {getProductionCellList} from "../Production/ProductionAction"
+import { MultiAvatar } from '../../Components/UI/Elements';
 
 const data = [
   {
@@ -26,18 +30,49 @@ const data = [
   // Add more objects as needed
 ];
 
-const ItemCards = () => {
+const ItemCards = (props) => {
+  useEffect(() => {
+    props.getProductionCellList(props.orgId);
+    // setPage(page + 1);
+    // props.getRoomRackByLocId(props.locationId, props.orgId);
+}, []);
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
-      {data.map((item, index) => (
-        <Card key={index} title={`${item.location} - ${item.cellname}`}>
-          <p><strong>Item Name:</strong> {item.itemName}</p>
-          <p><strong>User List:</strong> {item.userList.join(', ')}</p>
-          <Progress percent={item.progress} />
+      {/* {data.map((item, index) => ( */}
+         {props.productionCellList.map((item, index) => (
+        <Card key={index} title={`${item.locationName} - ${item.cellChamberName}`}>
+          <p><strong>Item Name:</strong> {item.productName}</p>
+          <Progress percent={item.percent==="Infinity"?0:item.percent} />
+          {item.userList.map((itemlist, ind) => {
+              return (
+          // <p><strong>User List:</strong> {item.userList.join(', ')}</p>
+          <MultiAvatar
+          primaryTitle={itemlist.userName}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
+          />
+              )
+        })}
         </Card>
       ))}
     </div>
   );
 };
 
-export default ItemCards;
+
+const mapStateToProps = ({ production,auth }) => ({
+  
+  productionCellList:production.productionCellList,
+  userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+    
+      getProductionCellList,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCards);

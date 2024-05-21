@@ -79,7 +79,9 @@ class InventoryMaterialTab extends PureComponent {
                         >
                             <Suspense fallback={"Loading..."}>
                                 {/* <MaterialCellStock /> */}
-                                <MaterialCellCardView />
+                                <MaterialCellCardView 
+                                 inventory={this.props.inventory}
+                                />
                             </Suspense>
                         </TabPane>
                     </StyledTabs>
