@@ -174,6 +174,7 @@ props.emptyClearbit();
           // enableReinitialize
           initialValues={{
             partnerName: "",
+            // price:"",
             source: selectedSource,
             url: "",
             sectorId: selectedSector,
@@ -192,9 +193,9 @@ props.emptyClearbit();
             proposalValue:"",
             opportunityName:"",
             countryDialCode:"",
-            bedrooms:"",
+            // bedrooms:"",
         
-            propertyType:"",
+            // propertyType:"",
             address: [
               {
                 address1: "",
@@ -216,7 +217,7 @@ props.emptyClearbit();
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lob:selectedLob,
-                price:values.price,
+                // price:values.price,
                
                 sectorId: selectedSector,
               },
