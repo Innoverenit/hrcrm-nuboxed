@@ -135,7 +135,7 @@ function PhoneListForRepair(props) {
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
                 <div class=" rounded-lg m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[98.5%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
@@ -143,16 +143,16 @@ function PhoneListForRepair(props) {
                             id="app.model"
                             defaultMessage="model"
                         /></div>
-                        <div className=" w-[5.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
                         <div className="w-[4.01rem]">Issue</div>
-                        <div className="w-[11.31rem]"></div>
+                        <div className="w-[8.31rem]"></div>
                         <div className="w-[8.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             Estimate (hours)
                         </div>
-                        <div className="w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[5.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
                         /></div>
@@ -166,8 +166,8 @@ function PhoneListForRepair(props) {
                             defaultMessage="TAT"
                         /></div>
 
-                        <div className="w-[7.81rem]">Spare</div>
-                        <div className="w-[5.02rem]">Task</div>
+                        <div className="w-[5.81rem]">Spare</div>
+                        <div className="w-[4.5rem]">Task</div>
                         <div className="w-[5.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
@@ -202,12 +202,12 @@ function PhoneListForRepair(props) {
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium  w-[6.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[8.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.imei}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[6.68rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[7.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                  
                                                 </div>
@@ -332,7 +332,7 @@ function PhoneListForRepair(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                                            <div className=" flex font-medium w-[9.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[7.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {/* <Tooltip title="Spare">
                                                         <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
@@ -428,7 +428,7 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium   w-[4.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex font-medium   w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={<FormattedMessage
                                                         id="app.scan"

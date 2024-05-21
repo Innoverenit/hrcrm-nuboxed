@@ -47,7 +47,7 @@ function LeadRefurbishForm(props) {
             {props.fetchingDepartments ? <BundleLoader /> :
                 <>
                     <div class=" flex justify-between">
-                        <div className=" w-1/3">
+                        <div className=" w-[30%]">
                             <label>Department</label>
                             <Select
                                 className="w-[250px]"
@@ -60,7 +60,7 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-1/3">
+                        <div className=" w-[30%]">
                             <label>Location</label>
                             <Select
                                 className="w-[250px]"
@@ -73,7 +73,7 @@ function LeadRefurbishForm(props) {
                             </Select>
                         </div>
 
-                        <div className=" w-1/3">
+                        <div className=" w-[30%]">
                             <label>Lead</label>
                             <Select
                                 className="w-[250px]"

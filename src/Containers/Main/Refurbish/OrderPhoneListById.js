@@ -126,39 +126,39 @@ function OrderPhoneListById(props) {
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
-                        <div className=" w-[4.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[8.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
                         /></div>
-                        <div className=" w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
                         <div className="w-[3.001rem]">Issue</div>
-                        <div className="w-[8.3rem]"></div>
-                        <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[6.3rem]"></div>
+                        <div className="w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             Estimate (hours)
                         </div>
                         <div className="w-[4.510rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
                         /></div>
-                        <div className="w-[6.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[5.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.end"
                             defaultMessage="End"
                         /></div>
 
-                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
-                        <div className="w-[6.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
+                        <div className="w-[5.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         </div>
 
-                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FormattedMessage
+                        <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FormattedMessage
                             id="app.status"
                             defaultMessage="Status"
                         /></div>
 
-                        <div className="w-[6.012rem]">Spare</div>
-                        <div className="w-[5.523rem]">Task</div>
+                        <div className="w-[4.012rem]">Spare</div>
+                        <div className="w-[7.523rem]">Task</div>
                         <div className="w-[2rem]"></div>
                     </div>
                     <div class=" ">
@@ -180,22 +180,22 @@ function OrderPhoneListById(props) {
                                     <div>
                                         <div className="flex rounded-xl justify-between  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium  w-[5.2rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                                <div className=" flex font-medium  w-[4.2rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                                     {item.company}
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[3.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[5.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium  w-[5.82rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[8.82rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[5.13rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[4.13rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         Issue
                                                     </div>
@@ -221,7 +221,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[6.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[3.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
                                                             {props.rowData.qcInspectionInd === 1 ?
@@ -258,7 +258,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium  w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.totalhours}
 
@@ -273,13 +273,13 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  w-[6.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[4.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium w-[7rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium w-[4rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
@@ -329,7 +329,7 @@ function OrderPhoneListById(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium w-[6.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                                <div className=" flex font-medium w-[4.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Spare">
                                                             <Button

@@ -259,6 +259,10 @@ const { Option } = Select;
 function CustomerForm(props) {
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
+  const [include, setInclude] = useState([]);
+  const [isLoadingInclude, setIsLoadingInclude] = useState(false);
+  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
+  const [touchedInclude, setTouchedInclude] = useState(false);
 
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
@@ -272,9 +276,42 @@ function CustomerForm(props) {
       !checked
     );
   };
+
+  const fetchInclude = async () => {
+    setIsLoadingInclude(true);
+    try {
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInclude(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInclude(false);
+    }
+  };
+
   useEffect(() => {
     props. getuserList(props.orgId);
   }, []);
+
+  const handleSelectChangeInclude = (values) => {
+    setSelectedIncludeValues(values); // Update selected values
+  };
+
+  const handleSelectIncludeFocus = () => {
+    if (!touchedInclude) {
+      fetchInclude();
+      setTouchedInclude(true);
+    }
+  };
 
     const {
      
@@ -283,12 +320,12 @@ function CustomerForm(props) {
      
     } = props;
 
-  const typeOption = props.userRoomlist.map((item) => {
-    return {
-      label: `${item.empName}`,
-      value: item.employeeId,
-    };
-  });
+  // const typeOption = props.userRoomlist.map((item) => {
+  //   return {
+  //     label: `${item.empName}`,
+  //     value: item.employeeId,
+  //   };
+  // });
   return (
     <>
       <Formik
@@ -296,7 +333,7 @@ function CustomerForm(props) {
         initialValues={{
          
           name: "",
-          included:""
+          included:selectedIncludeValues,
         }}
         validationSchema={CustomerSchema}
         onSubmit={(values, { resetForm }) => {
@@ -304,7 +341,7 @@ function CustomerForm(props) {
           addDataroom(
             {
               ...values,
-             
+              included:selectedIncludeValues,
              
             },
             //props.userId,
@@ -347,22 +384,10 @@ function CustomerForm(props) {
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-[47.5%] max-sm:w-full">
-                          <FastField
-                            name="middleName"
-                            label="Members"
-                           
-                            type="text"
-                            width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
-                          
-                        </div> */}
+                        
                         <div class=" w-wk max-sm:w-full">
                          
-                          <Field
+                          {/* <Field
       name="included"
       label="Include User"
       isColumn
@@ -374,7 +399,25 @@ function CustomerForm(props) {
           : []
       }
       inlineLabel
-    />
+    /> */}
+     <label className="font-bold text-xs">Include User</label>
+        <Select
+          showSearch
+          style={{ width: "-webkit-fill-available" }}
+          placeholder="Search or select include"
+          optionFilterProp="children"
+          loading={isLoadingInclude}
+          onFocus={handleSelectIncludeFocus}
+          onChange={handleSelectChangeInclude}
+          defaultValue={selectedIncludeValues}
+          mode="multiple"
+        >
+          {props.userRoomlist.map((includes) => (
+            <Option key={includes.employeeId} value={includes.employeeId}>
+              {includes.empName}
+            </Option>
+          ))}
+        </Select>
                         </div>
                       </div>
                     </div>
