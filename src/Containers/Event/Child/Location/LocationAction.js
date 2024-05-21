@@ -459,7 +459,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Satus has been changed successfully!',
+          title: 'Status has been changed successfully!',
         })
       })
       .catch((err) => {

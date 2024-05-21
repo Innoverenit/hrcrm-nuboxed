@@ -133,7 +133,7 @@ const LocationCellForm = (props) => {
         <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
           
-            <div className=" md:w-[6rem]">Cell Code</div>
+            {/* <div className=" md:w-[6rem]">Cell Code</div> */}
             <div className=" md:w-[4.2rem] ">#Cell</div> 
             <div className=" md:w-[5.1rem]">Description</div>
             <div className="w-12"></div>
@@ -144,18 +144,18 @@ const LocationCellForm = (props) => {
               <div key={item.roomRackId}>
                 <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3">
 
-                  <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
+                  {/* <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                     {item.cell}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                     <div class=" text-xs text-cardBody font-poppins">
                     
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div> {item.cellUnit}</div>
+                        <div>   {item.cell} {item.cellUnit}</div>
                       </div>
                     
                     </div>

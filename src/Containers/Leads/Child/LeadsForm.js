@@ -192,7 +192,7 @@ props.emptyClearbit();
             lastName:"",
             proposalValue:"",
             opportunityName:"",
-            countryDialCode:"",
+            countryDialCode:props.user.countryDialCode,
             // bedrooms:"",
         
             // propertyType:"",
@@ -217,6 +217,7 @@ props.emptyClearbit();
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lob:selectedLob,
+                countryDialCode:values.countryDialCode,
                 // price:values.price,
                
                 sectorId: selectedSector,
