@@ -126,7 +126,8 @@ if(props.fetchingCatalogueCell){
                 <div className="w-12">Units/day</div>    </div>
                 
     
-               {props.cellCardList.map((item) => {
+               {props.cellCardList .sort((a, b) => b.usedInd - a.usedInd)
+  .map((item) => {
                 return (
                   <div >
                     <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3">
@@ -161,7 +162,7 @@ if(props.fetchingCatalogueCell){
                       <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
               <div className="text-xs text-cardBody font-poppins">
                 <div className="font-normal text-sm text-cardBody font-poppins" style={{display:"flex",width:"14em"}}>
-                  {/* {item.tagProduction ? ( */}
+                  {item.usedInd ? (
                     <>
                       <Input
                        value={inputs[item.cellChamberLinkId]}
@@ -178,7 +179,7 @@ if(props.fetchingCatalogueCell){
                         Submit
                       </Button>
                     </>
-                  {/* ) : null} */}
+                   ) : null} 
                 </div>
               </div>
             </div>
