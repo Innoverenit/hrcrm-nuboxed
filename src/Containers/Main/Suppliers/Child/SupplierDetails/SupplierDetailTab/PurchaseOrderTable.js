@@ -56,7 +56,7 @@ function PurchaseOrderTable(props) {
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[30.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                        <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO#"
@@ -87,7 +87,7 @@ function PurchaseOrderTable(props) {
                         </div>
                         <div className=" md:w-[5.1rem]"> </div>
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="">
                         <InfiniteScroll
                             dataLength={props.purchaseList.length}
                             next={handleLoadMore}
@@ -103,7 +103,7 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[23.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
