@@ -111,7 +111,7 @@ if(props.fetchingCatalogueCell){
       activeKey={activeTab} 
      onChange={handleTabClick}
        >
-      {props.catalogueCell.filter(item => item.productionInd === true).map(item => (
+      {props.catalogueCell.filter(item => item.productionInd === true&&item.inventoryInd === true).map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
          {props.fetchingCellCardList ? (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>

@@ -246,6 +246,7 @@ function UpdateLeadsForm (props) {
                 lob:selectedLob,
                 
                 sectorId: selectedSector,
+                countryDialCode:values.countryDialCode,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
               },
               props.leadsId,
