@@ -839,7 +839,7 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingRepairStatus: false,
         repairPhone: state.repairPhone.map((item) =>
-          item.phoneId === action.payload.phoneId
+          item.orderPhoneId === action.payload.orderPhoneId
             ? action.payload
             : item
         ),

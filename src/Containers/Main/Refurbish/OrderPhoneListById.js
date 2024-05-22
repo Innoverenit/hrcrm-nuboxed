@@ -25,7 +25,7 @@ const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
 
 function OrderPhoneListById(props) {
-    const [page, setPage] = useState(0);
+    const [pageNo, setPageNo] = useState(0);
 
     const componentRefs = useRef([]);
 
@@ -34,13 +34,33 @@ function OrderPhoneListById(props) {
     };
 
     useEffect(() => {
-        setPage(page + 1);
-        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+        setPageNo(pageNo + 1);
+        props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
     }, [props.rowData.orderPhoneId, props.userId])
+    const [hasMore, setHasMore] = useState(true);
+    const handleLoadMore = () => {
+        const callPageMapd = props.orderPhoneList && props.orderPhoneList.length &&props.orderPhoneList[0].pageCount
+        setTimeout(() => {
+          const {
+            getPhoneOrderIdByUser,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.orderPhoneList)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
 
     const handleCallback = () => {
         if (!props.updatingCantRepairQc) {
-            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId)
+            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
         }
 
     }
@@ -130,12 +150,12 @@ function OrderPhoneListById(props) {
                             id="app.model"
                             defaultMessage="model"
                         /></div>
-                        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        <div className=" w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
                         /></div>
-                        <div className="w-[3.001rem]">Issue</div>
-                        <div className="w-[6.3rem]"></div>
+                        <div className="w-[5.001rem]">Issue</div>
+                        <div className="w-[2.3rem]"></div>
                         <div className="w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             Estimate (hours)
                         </div>
@@ -158,17 +178,18 @@ function OrderPhoneListById(props) {
                         /></div>
 
                         <div className="w-[4.012rem]">Spare</div>
-                        <div className="w-[7.523rem]">Task</div>
+                        <div className="w-[6.523rem]">Task</div>
                         <div className="w-[2rem]"></div>
                     </div>
                     <div class=" ">
 
                         <InfiniteScroll
                             dataLength={props.orderPhoneList.length}
-                            // next={handleLoadMore}
-                            // hasMore={hasMore}
+                             next={handleLoadMore}
+                             hasMore={hasMore}
                             loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"65vh"}
+                            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                             {props.orderPhoneList.map((item, index) => {
                                 const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
@@ -180,11 +201,11 @@ function OrderPhoneListById(props) {
                                     <div>
                                         <div className="flex rounded-xl justify-between  mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium  w-[4.2rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                                <div className=" flex font-medium  w-[5.21rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                                     {item.company}
                                                 </div>
 
-                                                <div className=" flex font-medium   w-[5.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex font-medium   w-[6.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.model}
                                                     </div>
@@ -197,12 +218,12 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 <div className=" flex font-medium  w-[4.13rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        Issue
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex font-medium w-[2rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                {/* <div className=" flex font-medium w-[2rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <SubTitle>
                                                             {item.qrCodeId ? (
@@ -220,7 +241,7 @@ function OrderPhoneListById(props) {
                                                         </SubTitle>
 
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <div className=" flex font-medium  w-[3.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
@@ -273,7 +294,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  w-[4.51rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex font-medium  w-[4.81rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 

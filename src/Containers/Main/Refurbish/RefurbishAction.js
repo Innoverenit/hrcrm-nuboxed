@@ -379,12 +379,12 @@ export const setEditOutputProduction = (name) => (dispatch) => {
   });
 };
 
-export const getProductionOrderId = (userId) => (dispatch) => {
+export const getProductionOrderId = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_ORDER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -729,12 +729,12 @@ export const handlePhoneByTechnician = (modalProps) => (dispatch) => {
   })
 }
 
-export const getphoneListByUser = (orderPhoneId, technicianId) => (dispatch) => {
+export const getphoneListByUser = (orderPhoneId, technicianId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}`, {
+    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -898,12 +898,12 @@ export const handleRepairPhone = (modalProps) => (dispatch) => {
   })
 }
 
-export const getPhoneOrderIdByUser = (orderPhoneId, technicianId) => (dispatch) => {
+export const getPhoneOrderIdByUser = (orderPhoneId, technicianId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ORDERID_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}`, {
+    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -972,7 +972,7 @@ export const getRepairPhoneByUser = (orderPhoneId, technicianId) => (dispatch) =
       });
     });
 };
-export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
+export const updaterepairStatus = (data,orderPhoneId, phoneId, userId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_REPAIR_STATUS_REQUEST });
   axios
@@ -982,7 +982,7 @@ export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      // dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+     dispatch(getRepairPhoneByUser(orderPhoneId, userId))
       dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
