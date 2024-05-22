@@ -667,3 +667,30 @@ export const getProductionCellList = (orgId, pageNo) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const updateProductionPauseStatus = (data) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_PRODUCTION_PAUSE_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/production/start-pause/production/manufacture/by-user`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PRODUCTION_PAUSE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PRODUCTION_PAUSE_STATUS_FAILURE,
+      });
+    });
+};

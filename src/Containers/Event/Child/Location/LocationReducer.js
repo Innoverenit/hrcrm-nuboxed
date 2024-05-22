@@ -203,7 +203,7 @@ deletingUserCellDataError:false,
           ...state,
           deletingLocationCellData: false,
           showLoCell: state.showLoCell.filter(
-            (item) => item.cellId !== action.payload
+            (item) => item.cellChamberLinkId !== action.payload
           ),
         };
       case types.DELETE_LOCATION_CELL_FAILURE:

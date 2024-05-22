@@ -13,7 +13,7 @@ class ProductCellDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={`${this.props.particularDiscountData.name} ${this.props.particularDiscountData.subCategoryName} ${this.props.particularDiscountData.categoryName}`}
+          title={`${this.props.particularDiscountData.name} ${this.props.particularDiscountData.subCategoryName} ${this.props.particularDiscountData.categoryName} ${this.props.particularDiscountData.attributeName}  ${this.props.particularDiscountData.subAttributeName}`}
           destroyOnClose
           closable
           width={drawerWidth}

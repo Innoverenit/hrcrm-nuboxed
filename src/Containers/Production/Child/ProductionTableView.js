@@ -14,10 +14,10 @@ import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
 
 import ButtonGroup from "antd/lib/button/button-group";
-import {updateProStatus} from "../ProductionAction"
+import {updateProStatus,updateProductionPauseStatus} from "../ProductionAction"
 // import { getProductionsbyLocId, updateProStatus, handleBuilderProduction, handleProductionIDrawer, updateRoomRackProduction } from "../ProductionAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
+//import { updatePauseStatus } from "../../Main/Refurbish/RefurbishAction.js"
 import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InpectProductionToggle from "./InpectProductionToggle.js";
@@ -259,30 +259,40 @@ function ProductionTableView(props) {
 
                                                 <div className=" flex font-medium items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {item.type === "In Progress" && item.pauseInd === true &&
+                                                        {item.type === "In Progress" && item.startInd === false &&
 
                                                             <PlayCircleFilledSharp
                                                                 // class=" cursor-pointer"
                                                                 onClick={() => {
                                                                     let data = {
-                                                                        userId: item.userId,
-                                                                        phoneId: item.productionTableData.manufactureId,
-                                                                        pauseInd: false
+                                                                        // userId: item.userId,
+                                                                        // phoneId: item.productionTableData.manufactureId,
+                                                                        // pauseInd: false
+                                                                        manufactureId:item.manufactureId,
+                                                                        productionProductId:item.productionProductId,
+                                                                        userId:item.userId,
+                                                                        startInd:true,
+                                                                        orgId:props.orgId,
                                                                     }
-                                                                    props.updatePauseStatus(data)
+                                                                    props.updateProductionPauseStatus(data)
                                                                 }} />
                                                         }
-                                                        {item.type === "In Progress" && item.pauseInd === false &&
+                                                        {item.type === "In Progress" && item.startInd === true &&
 
                                                             <PauseCircleFilled
                                                                 class=" cursor-pointer text-orange-400"
                                                                 onClick={() => {
                                                                     let data = {
-                                                                        userId: props.userId,
-                                                                        phoneId:item.manufactureId,
-                                                                        pauseInd: true
+                                                                        manufactureId:item.manufactureId,
+                                                                        productionProductId:item.productionProductId,
+                                                                        userId:item.userId,
+                                                                        startInd:false,
+                                                                        orgId:props.orgId,
+                                                                        // userId: props.userId,
+                                                                        // phoneId:item.manufactureId,
+                                                                        // pauseInd: true
                                                                     }
-                                                                    props.updatePauseStatus(data)
+                                                                    props.updateProductionPauseStatus(data)
                                                                 }}
                                                             />
                                                         }
@@ -499,7 +509,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             updateProStatus,
-            updatePauseStatus
+            updateProductionPauseStatus
             //getProductionTable,
             // getProductionsbyLocId,
             // handleBuilderProduction,

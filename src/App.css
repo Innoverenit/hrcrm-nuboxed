@@ -1125,6 +1125,29 @@ h1{
 }
 
 
+
+.field-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px; /* Space between description and upload components */
+  margin-bottom: 16px;
+}
+
+.description-textarea {
+  flex: 1;
+  height: 100px;
+  width: 100%;
+}
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 100px;
+}
+
+
 /* HeaderLabel
 -------------
 

@@ -173,7 +173,25 @@ export const productionReducer = (state = initialState, action) => {
         return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
 
 
-
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_REQUEST:
+          return { ...state, updatingProductionPauseStatus: true };
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_SUCCESS:
+          return {
+            ...state,
+            updatingProductionPauseStatus: false,
+            productionTableData: state.productionTableData.map((item) =>
+              item.productionProductId === action.payload.productionProductId
+                ? action.payload
+                : item
+            ),
+    
+          };
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_FAILURE:
+          return {
+            ...state,
+            updatingProductionPauseStatus: false,
+            updatingProductionPauseStatusError: true,
+          };
         case types.GET_PRODUCTION_STAGE_REQUEST:
           return { ...state, fetchingProductionStage: true, fetchingProductionStageError: false };
         case types.GET_PRODUCTION_STAGE_SUCCESS:

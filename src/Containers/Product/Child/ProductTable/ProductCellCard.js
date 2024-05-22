@@ -111,7 +111,7 @@ if(props.fetchingCatalogueCell){
       activeKey={activeTab} 
      onChange={handleTabClick}
        >
-      {props.catalogueCell.filter(item => item.productionInd === true&&item.inventoryInd === true).map(item => (
+      {props.catalogueCell.map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
          {props.fetchingCellCardList ? (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
@@ -123,7 +123,7 @@ if(props.fetchingCatalogueCell){
               <div className=" flex justify-between w-[42%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
                 <div className=" md:w-[6rem]">#Cell</div>
                 <div className="md:w-[6.2rem] ">Tag Production</div>
-                <div className="w-12">Units/day</div>    </div>
+                <div className="w-12">Target Units/day</div>    </div>
                 
     
                {props.cellCardList .sort((a, b) => b.usedInd - a.usedInd)
