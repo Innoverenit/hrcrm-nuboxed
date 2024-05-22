@@ -846,7 +846,7 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
     });
 };
 
-export const deleteDealsData = (invOpportunityId) => (dispatch) => {
+export const deleteDealsData = (invOpportunityId,userId) => (dispatch) => {
   dispatch({
     type: types.DELETE_DEAL_DATA_REQUEST,
   });
@@ -857,6 +857,7 @@ export const deleteDealsData = (invOpportunityId) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getdealsRecord(userId));
       Swal.fire({
         icon: 'success',
         title: 'Deal Deleted Successfully',

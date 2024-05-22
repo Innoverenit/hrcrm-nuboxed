@@ -6,9 +6,12 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   getProcureDetails,
+  deleteProcureData,
+  getBrand,
+  getModel,
+  updateProcureDetails
 } from "../AccountAction";
 import { DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -21,9 +24,10 @@ function AccountProcureDetails(props) {
   const [model, setModel] = useState("");
   const [newUnitName, setUnitName] = useState('');
   const [specs, setSpecs] = useState("");
-  const [particularRowData, setParticularRowData] = useState({});
+  // const [particularRowData, setParticularRowData] = useState({});
 
   useEffect(() => {
+    props.getBrand();
     props.getProcureDetails(props.particularRowData.orderId);
   }, []);
 
@@ -65,9 +69,9 @@ function AccountProcureDetails(props) {
 
   const handleUpdate = (id) => {
     const data = {
-      model: model,
-      orderPhoneId: props.orderDetailsId.orderId,
-      brandId: brand,
+      model: brand,
+      orderPhoneId: props.particularRowData.orderId,
+      brandId: model,
       unit: newUnitName,
       specs: specs,
     };
@@ -78,9 +82,9 @@ function AccountProcureDetails(props) {
     setEditContactId(null);
   };
 
-  const handleSetParticularOrderData = (item) => {
-    setParticularRowData(item);
-  };
+  // const handleSetParticularOrderData = (item) => {
+  //   setParticularRowData(item);
+  // };
 
   if (props.fetchingProcureDetails) {
     return <BundleLoader />;
@@ -93,52 +97,135 @@ function AccountProcureDetails(props) {
           <div className="md:w-[7.4rem]">
             <FormattedMessage id="app.brand" defaultMessage="Brand" />
           </div>
-          <div className="md:w-[3.1rem]">
+          <div className="md:w-[7.1rem]">
             <FormattedMessage id="app.model" defaultMessage="Model" />
-          </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
           </div>
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
+          <div className="md:w-[8.8rem]">
+            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          </div>
+        
           <div className="md:w-[6.12rem]"></div>
         </div>
 
         {props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
-              <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                 
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={brand}
+                      onChange={(e) => handleBrandChange(e.target.value)}
+                    >
+                      {props.brand.map((brandItem, brandIndex) => (
+                        <option key={brandIndex} value={brandItem.brand}>
+                          {brandItem.brand}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.brand}</div>
-                 
+                  )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                
+                  {editContactId === item.id ? (
+                    <Select
+                      className="w-32"
+                      value={model}
+                      onChange={handleModelChange}
+                    >
+                      {props.model.map((modelItem) => (
+                        <Option key={modelItem.id} value={modelItem.id}>
+                          {modelItem.model}
+                        </Option>
+                      ))}
+                    </Select>
+                  ) : (
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
-                
-                </div>
-              </div>
-
-              <div className="flex font-medium flex-col ml-2 md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
-                
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
-                
+                  )}
                 </div>
               </div>
               <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
-                 
+                  {editContactId === item.id ? (
+                    <Select
+                      style={{ width: 100 }}
+                      value={specs}
+                      onChange={handleSpecsChange}
+                    >
+                      <Option value="US">US</Option>
+                      <Option value="CE">CE</Option>
+                      <Option value="IND">IND</Option>
+                      <Option value="HK">HK</Option>
+                    </Select>
+                  ) : (
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.specs}</div>
-                
+                  )}
                 </div>
               </div>
 
+              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Unit"
+                      style={{border:"2px solid black"}}
+                      type="text"
+                      value={newUnitName}
+                      onChange={(e) => setUnitName(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
+                  )}
+                </div>
+              </div>
              
+
+              <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                <div className="flex">
+                  {editContactId === item.id ? (
+                    <>
+                      <Button onClick={() => handleUpdate(item.id)}>
+                        Save
+                      </Button>
+                      <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
+                        Cancel
+                      </Button>
+                    </>
+                  ) : (
+                    <BorderColorIcon
+                      tooltipTitle="Edit"
+                      iconType="edit"
+                      onClick={() => handleEditClick(item.id, item.brand, item.model, item.unit, item.specs)}
+                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
+                    />
+                  )}
+                </div>
+                <div>
+                  <StyledPopconfirm
+                    title="Do you want to delete?"
+                    onConfirm={() => props.deleteProcureData(item.id)}
+                  >
+                    <Tooltip title="Delete">
+                      <DeleteOutlined
+                        type="delete"
+                        style={{
+                          cursor: "pointer",
+                          color: "red",
+                          fontSize: "1rem",
+                        }}
+                      />
+                    </Tooltip>
+                  </StyledPopconfirm>
+                </div>
+              </div>
             </div>
           );
         })}
@@ -159,7 +246,10 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getProcureDetails,
- 
+      deleteProcureData,
+      getBrand,
+      getModel,
+      updateProcureDetails
     },
     dispatch
   );

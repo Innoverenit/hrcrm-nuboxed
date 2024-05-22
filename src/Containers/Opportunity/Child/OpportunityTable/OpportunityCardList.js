@@ -262,6 +262,15 @@ console.log(props.userDetails.imageId)
           &nbsp;
           <div class="flex flex-col basis-[100%] overflow-hidden">
           
+          <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
+        
+    {item.newOppId}
+
+        </div> 
+        </div>
+          &nbsp;
+          <div class="flex flex-col basis-[100%] overflow-hidden">
+          
             <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
@@ -273,6 +282,7 @@ title={`${item.opportunityName}`}>
 </Link> */}
           </div> 
           </div>
+       
         </div>
         <div className="flex justify-between max-sm:justify-between">
           <div>

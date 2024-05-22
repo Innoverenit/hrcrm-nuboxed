@@ -170,14 +170,14 @@ function AccountDetailsTab(props) {
                                     count={(props.procureRecordData.order) || 0}
                                     overflowCount={999}
                                 >
-                                    <span onClick={() => handleOrderClick(false)}>
+                                   
                                         <Tooltip title="Procure">
                                             <DynamicFeedIcon
                                                 className="!text-base cursor-pointer"
                                             />
                                             <span class="ml-1 text-sm">Procure</span>
                                         </Tooltip>
-                                    </span>
+                 
                               </Badge>
                                 &nbsp;  &nbsp;
                             
@@ -247,7 +247,7 @@ function AccountDetailsTab(props) {
                                     <i class="fab fa-connectdevelop"></i>
                                     <span class="ml-1">Activity</span>
                                 </span>
-                                {activeKey === "4" && (
+                                {activeKey === "5" && (
                                     <>
                                         <Tooltip title="Create">
                                             <AddIcon
@@ -263,7 +263,7 @@ function AccountDetailsTab(props) {
                                 )}
                             </>
                         }
-                        key="4"
+                        key="5"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountActivityTable distributorId={props.distributorData.distributorId} />
@@ -279,7 +279,7 @@ function AccountDetailsTab(props) {
                                 </span>
                             </>
                         }
-                        key="5"
+                        key="6"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <LinkedDistributorNotes />
@@ -309,7 +309,7 @@ function AccountDetailsTab(props) {
                                     <i class="far fa-file"></i>
                                     <span class="ml-1">Documents</span>
                                 </span>
-                                {activeKey === "6" && (
+                                {activeKey === "7" && (
                                     <>
                                         <Tooltip title="Create">
                                             <AddIcon
@@ -328,7 +328,7 @@ function AccountDetailsTab(props) {
                                 )}
                             </>
                         }
-                        key="6"
+                        key="7"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <DistributorDocumentTable
@@ -347,7 +347,7 @@ function AccountDetailsTab(props) {
 
                             </>
                         }
-                        key="7"
+                        key="8"
                     >
                         <Suspense fallback={"Loading ..."}>
 
@@ -364,7 +364,7 @@ function AccountDetailsTab(props) {
 
                             </>
                         }
-                        key="8"
+                        key="9"
                     >
                         <Suspense fallback={"Loading ..."}>
                             <SalesMapTable
@@ -388,7 +388,7 @@ function AccountDetailsTab(props) {
                       />
                     </span>
                   </span>
-                  {activeKey === "9" && (
+                  {activeKey === "10" && (
                     <>
                       <Tooltip 
                         title={
@@ -423,7 +423,7 @@ function AccountDetailsTab(props) {
                   )}
                 </>
               }
-              key="9"
+              key="10"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}

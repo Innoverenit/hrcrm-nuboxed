@@ -100,7 +100,7 @@ function DealCardList(props) {
         }
         height={"87vh"}
       >
-        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
+    <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
 
         { !fetchingDeal && dealsByuserId.length === 0 ?<NodataFoundPage />:dealsByuserId.map((item,index) =>  {
             var findProbability = item.probability;
@@ -112,8 +112,8 @@ function DealCardList(props) {
             const percentage = Math.floor((item.proposalAmount/item.collectedAmount) * 100)
             const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
             return (
-              <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
-              text-[#444444] m-2 p-1 w-[16vw] flex flex-col justify-center max-sm:w-wk  ">
+              <div class="rounded-md border-2 justify-center bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
+              text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-wk  ">
                 <div class=" flex  flex-nowrap items-center h-[2.81em]"
                 >
                   <div class=" mr-[0.2rem] flex basis-[15%]">
@@ -227,7 +227,7 @@ function DealCardList(props) {
                     />
                   </span>
                 </div>
- <div className="flex justify-around">
+ <div className="flex justify-around mt-2">
                   <div>
                     {/* hii */}
                   {isValidPercentage ? (
@@ -289,11 +289,10 @@ function DealCardList(props) {
                             }
                           >
                             <CheckCircleTwoTone
+                               className="!text-xl text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
-                              size={140}
-                              style={{ fontSize: "1rem" }}
                               onClick={() =>
                                 props.sendToWon(
                                   item.invOpportunityId,
@@ -305,7 +304,7 @@ function DealCardList(props) {
                               }
                             />
                           </Tooltip>
-                          &nbsp; &nbsp;
+                        
                           <Tooltip
                             title={
                               <FormattedMessage
@@ -315,11 +314,11 @@ function DealCardList(props) {
                             }
                           >
                             <StopTwoTone
+                            className="!text-xl text-[red] cursor-pointer ml-2"
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
-                              size={140}
-                              style={{ fontSize: "1rem" }}
+                              size={140}    
                               onClick={() =>
                                 props.lostStatusRecruit(item.opportunityId, {
                                   lostInd: true,
@@ -396,7 +395,7 @@ function DealCardList(props) {
                       <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
-                          deleteDealsData(item.invOpportunityId)
+                          deleteDealsData(item.invOpportunityId,props.userId)
                         }
                       >
                          <Tooltip title="Delete">
@@ -435,24 +434,7 @@ function DealCardList(props) {
         handleDealContactsDrawerModal={props.handleDealContactsDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
-      {/*
-<AddOpportunityDrawerModal
- opportunityData={currentItem}
-opportunityForecast={props.opportunityForecast}
-opportunityInitiativesSkillsDetails={props.opportunityInitiativesSkillsDetails}
- handleSetCurrentItem={handleSetCurrentItem}
- 
- fetchingOpportunitySkills={props.fetchingOpportunitySkills}
- item={currentItem}
- opportunitySkills={props.opportunitySkills}
-allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
-             allRecruitmentByOppId={props.allRecruitmentByOppId}
-             allRecruitmentPositionFilledByOppId={props.allRecruitmentPositionFilledByOppId}
-             allRecruitmentAvgTimeByOppId={props.allRecruitmentAvgTimeByOppId}
-             allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
-               handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
-               addDrawerOpportunityModal={props.addDrawerOpportunityModal}
-      /> */}
+
     </>
   );
 }

@@ -3759,6 +3759,10 @@ export const deleteProcureData = (id,orgId) => (dispatch, getState) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Item deleted Successfully!',
+      })
       console.log(res);
       //  dispatch(getScheduler(orgId));
       dispatch({
@@ -3794,7 +3798,7 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Procure updated Successfully!',
+        title: 'Item updated Successfully!',
       })
       // message.success("Sector has been updated successfully!");
       console.log(res);
