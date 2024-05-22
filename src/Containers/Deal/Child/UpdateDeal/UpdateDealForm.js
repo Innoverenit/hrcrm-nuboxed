@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
 import {getInvestorCurrency} from "../../../Auth/AuthAction"
-import {getAssignedToList} from "../../../Employees/EmployeeAction"
 import {getAllEmployeelist} from "../../../Investor/InvestorAction"
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
@@ -17,7 +16,8 @@ import { getInvestorData } from "../../../Customer/CustomerAction";
 import { getContactData } from "../../../Contact/ContactAction";
 import {
   getDealLinkedWorkflow,
-  getDealLinkedStages
+  getDealLinkedStages,
+  getActiveAssignedToList
 } from "../../DealAction";
 import { Listbox } from "@headlessui/react";
 const { Option } = Select;
@@ -42,7 +42,7 @@ function UpdateDealForm (props) {
   const [includeNames, setInclude] = useState(includeOption);
   useEffect(()=> {
     props.getAllEmployeelist();
-    props.getAssignedToList(props.orgId);
+    props.getActiveAssignedToList(props.orgId,"Included");
     props.getInvestorCurrency();
     props.getInvestorData(props.userId);
     props.getContactData(props.userId);
@@ -505,7 +505,7 @@ function UpdateDealForm (props) {
   defaultValue={includeNames}
   onChange={handleChangeInclude}
 >
-  {props.assignedToList.map((item) => {
+  {props.activeAssignedToList.map((item) => {
     const isCurrentUser = item.employeeId === props.user.userId;
 
     if (!isCurrentUser) {
@@ -682,7 +682,7 @@ const mapStateToProps = ({ auth,deal,investor,employee, opportunity, customer, c
   currencies: auth.currencies,
   investorCurrencies:auth.investorCurrencies,
   allEmployeeList:investor.allEmployeeList,
-  assignedToList:employee.assignedToList,
+  activeAssignedToList:deal.activeAssignedToList,
   userId: auth.userDetails.userId,
   organizationId: auth.userDetails.organizationId,
   setEditingOpportunity: opportunity.setEditingOpportunity,
@@ -703,7 +703,7 @@ const mapDispatchToProps = (dispatch) =>
       updateDeal,
       getInvestorCurrency,
       getAllEmployeelist,
-      getAssignedToList,
+      getActiveAssignedToList,
       getDealLinkedWorkflow,
       getDealLinkedStages,
       getContactData,

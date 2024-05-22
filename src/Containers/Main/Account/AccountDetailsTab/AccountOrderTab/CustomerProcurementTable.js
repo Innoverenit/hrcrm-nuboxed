@@ -16,6 +16,7 @@ import { FormattedMessage } from "react-intl";
 import UpdateProcureModal from "./UpdateProcureModal";
 import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../../Components/Placeholder";
+import { MultiAvatar } from "../../../../../Components/UI/Elements";
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -46,11 +47,14 @@ function CustomerProcurementTable(props) {
     <>
     <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-<div class=" w-[0.5rem]"></div>
+<div class=" w-[8.5rem]"></div>
                         <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -115,9 +119,9 @@ function CustomerProcurementTable(props) {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full items-center  md:w-[14.02rem]">
+                        <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full items-center justify-between flex md:flex-col text-sm">
+                            <div class="max-sm:w-full  justify-between flex md: flex flex-row text-sm">
                             <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
@@ -125,7 +129,7 @@ function CustomerProcurementTable(props) {
                                                                         props.handleProcureDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
-                                                                 &nbsp;&nbsp; <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                 <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
@@ -148,7 +152,7 @@ function CustomerProcurementTable(props) {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[23.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[12.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -160,6 +164,23 @@ function CustomerProcurementTable(props) {
                   <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
                         {item.budget}
+                      </h4>
+                  </div>
+               
+                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <h4 class="text-cardBody font-poppins text-sm">
+                        {/* {item.contactPersonName} */}
+                        <MultiAvatar
+                                primaryTitle={item.contactPersonName}
+                            
+                                imgWidth={"1.9rem"}
+                                imgHeight={"1.9rem"}
+                              />
+                      </h4>
+                  </div>
+                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <h4 class="text-cardBody font-poppins text-sm">
+                        {item.paymentInTerms}
                       </h4>
                   </div>
                
