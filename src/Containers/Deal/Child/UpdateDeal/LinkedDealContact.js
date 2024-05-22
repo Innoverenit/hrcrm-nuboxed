@@ -223,7 +223,7 @@ invOpportunityId={props.currentItem.invOpportunityId}
                     <div className="flex ml-2 w-[7rem]">{item.repayMonth}</div>
                     <div className="flex ml-2 w-[4rem]">{item.interest}</div>
              
-                    <div className="flex ml-2 w-[8rem]">{moment(item.borrowDate).format("ll")}</div>
+                    <div className="flex ml-2 w-[8rem]">{item.borrowDate ? moment(item.borrowDate).format("ll") : ""}</div>
                     <BorderColorIcon
                       tooltipTitle="Edit"
                       iconType="edit"

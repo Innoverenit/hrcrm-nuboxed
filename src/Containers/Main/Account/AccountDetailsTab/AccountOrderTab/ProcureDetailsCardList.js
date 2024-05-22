@@ -70,9 +70,9 @@ function ProcureDetailsCardList(props) {
 
   const handleUpdate = (id) => {
     const data = {
-      model: model,
+      model: brand,
       orderPhoneId: props.orderDetailsId.orderId,
-      brandId: brand,
+      brandId: model,
       unit: newUnitName,
       specs: specs,
     };
@@ -102,18 +102,19 @@ function ProcureDetailsCardList(props) {
             <FormattedMessage id="app.model" defaultMessage="Model" />
           </div>
           <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
-          </div>
-          <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
+          <div className="md:w-[8.8rem]">
+            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          </div>
+        
           <div className="md:w-[6.12rem]"></div>
         </div>
 
         {props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
-              <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -152,22 +153,6 @@ function ProcureDetailsCardList(props) {
                   )}
                 </div>
               </div>
-
-              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm text-cardBody font-poppins">
-                  {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
-                      type="text"
-                      value={newUnitName}
-                      onChange={(e) => setUnitName(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
-                  )}
-                </div>
-              </div>
               <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
@@ -186,6 +171,23 @@ function ProcureDetailsCardList(props) {
                   )}
                 </div>
               </div>
+
+              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Unit"
+                      style={{border:"2px solid black"}}
+                      type="text"
+                      value={newUnitName}
+                      onChange={(e) => setUnitName(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>
+                  )}
+                </div>
+              </div>
+             
 
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">

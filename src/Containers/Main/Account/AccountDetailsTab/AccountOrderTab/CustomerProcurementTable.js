@@ -88,15 +88,15 @@ function CustomerProcurementTable(props) {
             return (
               <div>
                 <div
-                  className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
+                  className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-3"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
                   <div class="flex">
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
-                      <div className=" flex font-medium  md:w-[8.56rem] max-sm:w-full  ">
+                    <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                      <div className="flex items-center max-sm:w-full">
+                      <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -115,9 +115,9 @@ function CustomerProcurementTable(props) {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full md:w-[14.02rem]">
+                        <div class="max-sm:w-full items-center  md:w-[14.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                            <div class="max-sm:w-full items-center justify-between flex md:flex-col text-sm">
                             <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
@@ -151,7 +151,7 @@ function CustomerProcurementTable(props) {
                     <div className=" flex font-medium flex-col  md:w-[23.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
 
-                      {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].state) || ""},${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
+                      {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
         `}
                       </h4>

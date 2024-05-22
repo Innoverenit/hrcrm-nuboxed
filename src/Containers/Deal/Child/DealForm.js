@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import {getCurrency} from "../../Auth/AuthAction"
+import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Button, Tooltip,message } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
@@ -44,7 +44,7 @@ const OpportunitySchema = Yup.object().shape({
 });
 function DealForm(props) {
   useEffect(() => {
-    props.getCurrency();
+    props.getInvestorCurrency();
     props.getRecruiterName();
     props.getAllEmployeelist();
     props.getAssignedToList(props.orgId);
@@ -128,7 +128,7 @@ function DealForm(props) {
   const filteredEmployeesData = AllEmplo.filter(
     (item) => item.value !== props.user.userId
   );
-  const sortedCurrency =props.currencies.sort((a, b) => {
+  const sortedCurrency =props.investorCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -169,13 +169,25 @@ function DealForm(props) {
       };
     });
 
-
-  const SourceOptions = props.sources.map((item) => {
-    return {
-      label: `${item.name || ""}`,
-      value: item.sourceId,
-    };
-  });
+    const sortedSource =props.sources.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const sourceOptions = sortedSource.map((item) => {
+      return {
+        label: `${item.name}`,
+        value: item.sourceId,
+      };
+    });
+ 
 
   const allEmplo = props.allEmployeeList.map((item) => {
     return {
@@ -625,7 +637,7 @@ function DealForm(props) {
                 </div>
             </div>
                 <div class=" w-w47.5 max-sm:w-wk">
-                <FastField
+                <Field
                             name="source"
                              label={
                               <FormattedMessage
@@ -636,11 +648,11 @@ function DealForm(props) {
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                     options={
-                      Array.isArray(SourceOptions)
-                        ? SourceOptions
+                      Array.isArray(sourceOptions)
+                        ? sourceOptions
                         : []
                     }
-                            isColumn
+                   isColumn
                           />
                         </div>
                         </div>
@@ -803,7 +815,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   sales: opportunity.sales,
   allEmployeeList:investor.allEmployeeList,
   dealStages: deal.dealStages,
-  currencies: auth.currencies,
+  investorCurrencies: auth.investorCurrencies,
   contactByUserId: contact.contactByUserId,
   customerByUserId: customer.customerByUserId,
   initiatives: opportunity.initiatives,
@@ -824,7 +836,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       createDeals,
-      getCurrency,
+      getInvestorCurrency,
       getdealsContactdata,
       getRecruiterName,
       getAllEmployeelist,

@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { Timeline, Button } from 'antd';
+import { Timeline, Button,Avatar } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
@@ -34,14 +34,32 @@ const CallLeadsTable = (props) => {
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
-                  ) : null} {status.category} - {status.activityType} on <span class=" font-bold">{moment.utc(status.startDate).format('DD/MM/YYYY')}</span> - {status.woner !==props.fullName ?  
-                    <Tooltip title={status.woner}> 
-                      <MultiAvatar
-                        primaryTitle={status.woner}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </Tooltip> : null}
+                  ) : null} {status.category} - {status.activityType} on <span class=" font-bold">{moment.utc(status.startDate).format('DD/MM/YYYY')}</span>  
+                  
+                  <span class=" ml-2">
+                     <Avatar.Group
+                     maxCount={7}
+                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                  >
+                      {status.included &&
+                   status.included.map((candidate, i) => {
+                     
+                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                     return (
+                       <Tooltip title={candidate.empName} key={i}>
+                       <Avatar style={{ backgroundColor: "#f56a00" }}>
+                       {data1}
+                     
+                     </Avatar>
+                     </Tooltip>
+                      
+ 
+                    
+                     );
+                   })}
+ 
+              </Avatar.Group> 
+              </span>
                 </div>
                 <div class=" w-[20rem]">
                   <label class=" cursor-pointer text-blue "
