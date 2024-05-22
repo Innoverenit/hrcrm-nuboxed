@@ -39,6 +39,26 @@ function DistributorPauseForm(props) {
         props.getPhonelistById(props.particularRowData.orderId, page)
     };
 
+    // const handleLoadMore = () => {
+    //     const callPageMapd = props.opportunityByUserId && props.opportunityByUserId.length &&props.opportunityByUserId[0].pageCount
+    //     setTimeout(() => {
+    //       const {
+    //         getOpportunityListByUserId,
+    //         userDetails: { employeeId },
+    //       } = props;
+    //       if  (props.opportunityByUserId)
+    //       {
+    //         if (page < callPageMapd) {
+    //           setPage(page + 1);
+    //           getOpportunityListByUserId(props.userId,page); 
+    //       }
+    //       if (page === callPageMapd){
+    //         setHasMore(false)
+    //       }
+    //     }
+    //     }, 100);
+    //   };
+
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
         setRowData(item);

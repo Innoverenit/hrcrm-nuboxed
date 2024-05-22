@@ -124,7 +124,7 @@ function PhoneListForRepair(props) {
             repairTechnicianId: props.userId,
             qcInspectionInd: type === "Complete" ? 2 : 1
         }
-        props.updaterepairStatus(data, item.phoneId, props.userId)
+        props.updaterepairStatus(data,props.rowData.orderPhoneId, item.phoneId, props.userId)
         if (type === "Complete") {
             setBackComplete(false)
         }
@@ -139,7 +139,7 @@ function PhoneListForRepair(props) {
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
-                        <div className=" w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[6.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
                         /></div>
@@ -207,14 +207,14 @@ function PhoneListForRepair(props) {
                                                     {item.imei}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[7.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[8.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                  
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[3.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            {/* <div className=" flex font-medium w-[3.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <SubTitle>
                                                         {item.qrCodeId ? (
@@ -237,9 +237,9 @@ function PhoneListForRepair(props) {
                                                         )}
                                                     </SubTitle>
                                                 </div>
-                                            </div>
+                                            </div> */}
 
-                                            <div className=" flex font-medium  w-[6.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium  w-[8.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody flex w-[3.5rem] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
                                                         <Tooltip title="Pause">

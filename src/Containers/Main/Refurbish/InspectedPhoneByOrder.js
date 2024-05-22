@@ -58,7 +58,7 @@ function InspectedPhoneByOrder(props) {
                             /></div>
                             <div className="md:w-[7.2rem]"></div>
                         </div>
-                        <div class="overflow-y-auto h-[40vh]">
+                        <div class="overflow-y-auto h-[70vh]">
                             {props.updateDispatchList.map((item, index) => {
                                 return (
                                     <div>

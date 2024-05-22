@@ -1,16 +1,38 @@
-import React, { useEffect, lazy } from 'react';
+import React, { useState,useEffect, lazy } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNoOfPhoneInQCById } from "./RefurbishAction";
 import { SubTitle } from '../../../Components/UI/Elements';
 import { FormattedMessage } from 'react-intl';
+import InfiniteScroll from 'react-infinite-scroll-component';
 const QRCodeModal = lazy(() => import('../../../Components/UI/Elements/QRCodeModal'));
 
 const QCPhoneListByTechnician = (props) => {
-
+    const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
-        props.getNoOfPhoneInQCById(props.orderPhoneId, props.row.technicianId)
+        setPageNo(pageNo + 1);
+        props.getNoOfPhoneInQCById(props.orderPhoneId, props.row.technicianId,pageNo)
     }, [])
+    const [hasMore, setHasMore] = useState(true);
+    const handleLoadMore = () => {
+        const callPageMapd = props.phoneByTechId && props.phoneByTechId.length &&props.phoneByTechId[0].pageCount
+        setTimeout(() => {
+          const {
+            getNoOfPhoneInQCById,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.phoneByTechId)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getNoOfPhoneInQCById(props.orderPhoneId, props.row.technicianId,pageNo); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
     return (
         <>
             <div className=' flex justify-end sticky z-10 h-60'>
@@ -46,6 +68,14 @@ const QCPhoneListByTechnician = (props) => {
                         /></div>
                         <div className="md:w-[7.2rem]"></div>
                     </div>
+                    <InfiniteScroll
+                            dataLength={props.orderPhoneList.length}
+                             next={handleLoadMore}
+                             hasMore={hasMore}
+                            loader={props.fetchingNoOfPhoneInQcById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                            height={"65vh"}
+                            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                        >
                     {props.phoneByTechId.map((item) => {
                         return (
                             <div>
@@ -120,6 +150,7 @@ const QCPhoneListByTechnician = (props) => {
                             </div>
                         )
                     })}
+                    </InfiniteScroll>
                 </div>
 
             </div>

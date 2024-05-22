@@ -41,16 +41,35 @@ const ProductionOrderList = (props) => {
     const handleRowData = (item) => {
         setRowData(item)
     }
-    const [page, setPage] = useState(0);
+    const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
-        setPage(page + 1);
-        props.getProductionOrderId(props.userId)
+        setPageNo(pageNo + 1);
+        props.getProductionOrderId(props.userId,pageNo)
     }, [])
     const [hasMore, setHasMore] = useState(true);
+    // const handleLoadMore = () => {
+    //     setPageNo(pageNo + 1);
+    //     props.getProductionOrderId(props.userId)
+    // };
     const handleLoadMore = () => {
-        setPage(page + 1);
-        props.getProductionOrderId(props.userId)
-    };
+        const callPageMapd = props.productionOrder && props.productionOrder.length &&props.productionOrder[0].pageCount
+        setTimeout(() => {
+          const {
+            getProductionOrderId,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.productionOrder)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getProductionOrderId(props.userId,pageNo); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -107,6 +126,7 @@ const ProductionOrderList = (props) => {
                         loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"75vh"}
                         style={{ overflowX: "hidden" }}
+                        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
                         {data.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
