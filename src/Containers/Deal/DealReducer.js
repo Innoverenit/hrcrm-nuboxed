@@ -50,6 +50,10 @@ const initialState = {
   fetchingNotesListByDealIdError: false,
   notesListByDealId:[],
 
+  fetchingActiveAssignedToList: false,
+  fetchingActiveAssignedToListError: false,
+  activeAssignedToList:[],
+
   fetchingDealsContactList: false,
   fetchingDealsContactListError: false,
   dealsContactList:[],
@@ -752,6 +756,22 @@ export const dealReducer = (state = initialState, action) => {
                             updatingDealsContactValue: false,
                             updatingDealsContactValueError: true,
                           };
+
+
+                          case types.GET_ACTIVE_ASSIGENED_TO_REQUEST:
+                            return { ...state, fetchingActiveAssignedToList: true };
+                          case types.GET_ACTIVE_ASSIGENED_TO_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingActiveAssignedToList: false,
+                              activeAssignedToList: action.payload,           
+                            };
+                          case types.GET_ACTIVE_ASSIGENED_TO_FAILURE:
+                            return {
+                              ...state,
+                              fetchingActiveAssignedToList: false,
+                              fetchingActiveAssignedToListError: true,
+                            };
 
     default:
       return state;

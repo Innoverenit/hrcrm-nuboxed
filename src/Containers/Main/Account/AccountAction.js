@@ -477,6 +477,92 @@ export const getDistributorOrderByDistributorId = (distributorId, pageNo, type) 
     });
 };
 
+
+export const getDistributorOrderOfHigh = (distributorId, pageNo, type,ptype) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_DISTRIBUTOR_ORDER_OF_HIGH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/priorityHighOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_HIGH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_HIGH_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getDistributorOrderOfMedium = (distributorId, pageNo, type,ptype) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/priorityLowOrders/${distributorId}/${pageNo}/${type}/${ptype} `,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getDistributorOrderOfLow = (distributorId, pageNo, type,ptype) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/priorityMediumOrders/${distributorId}/${pageNo}/${type}/${ptype}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_LOW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISTRIBUTOR_ORDER_OF_LOW_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getCompleteOrders = (distributorId, pageNo) => (
   dispatch
 ) => {

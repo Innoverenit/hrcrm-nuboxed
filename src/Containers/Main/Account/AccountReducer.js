@@ -175,6 +175,10 @@ const initialState = {
   fetchingRecordsError: false,
   accountRecordData: {},
 
+  fetchingDistributorOfHigh: false,
+  fetchingDistributorOfHighError: false,
+  highDistributorOrder:[],
+
   accountModal: false,
 
   addingLocationInOrder: false,
@@ -246,6 +250,10 @@ const initialState = {
   fetchingDeletedDistributorsError: false,
   deletedDistributors: [],
 
+  fetchingDistributorOfMedium: false,
+  fetchingDistributorOfMediumError: false,
+  mediumDistributorOrder:[],
+
   fetchingRecordsByUserId: false,
   fetchingRecordsByUserIdError: false,
   recordData: {},
@@ -287,6 +295,10 @@ const initialState = {
   fetchingPhoneListById: false,
   fetchingPhoneListByIdError: false,
   phoneListById: [],
+
+  fetchingDistributorOfLow: false,
+  fetchingDistributorOfLowError: false,
+  lowDistributorOrder:[],
 
   //document
   distributorDocumentUploadModal: false,
@@ -798,6 +810,52 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDistributorByDistributorId: false,
         fetchingDistributorByDistributorIdError: true,
       };
+
+
+      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_REQUEST:
+        return { ...state, fetchingDistributorOfHigh: true };
+      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_SUCCESS:
+        return {
+          ...state,
+          fetchingDistributorOfHigh: false,
+          highDistributorOrder: [...state.highDistributorOrder, ...action.payload]
+        };
+      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_FAILURE:
+        return {
+          ...state,
+          fetchingDistributorOfHigh: false,
+          fetchingDistributorOfHighError: true,
+        };
+
+        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST:
+          return { ...state, fetchingDistributorOfMedium: true };
+        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_SUCCESS:
+          return {
+            ...state,
+            fetchingDistributorOfMedium: false,
+            mediumDistributorOrder: [...state.mediumDistributorOrder, ...action.payload]
+          };
+        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_FAILURE:
+          return {
+            ...state,
+            fetchingDistributorOfMedium: false,
+            fetchingDistributorOfMediumError: true,
+          };
+
+          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST:
+            return { ...state, fetchingDistributorOfLow: true };
+          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_SUCCESS:
+            return {
+              ...state,
+              fetchingDistributorOfLow: false,
+              lowDistributorOrder: [...state.lowDistributorOrder, ...action.payload]
+            };
+          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_FAILURE:
+            return {
+              ...state,
+              fetchingDistributorOfLow: false,
+              fetchingDistributorOfLowError: true,
+            };
     /**
      * renewal modal
      */
@@ -1478,7 +1536,10 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOrder: false,
-        distributorOrder: [action.payload, ...state.distributorOrder],
+        // distributorOrder: [action.payload, ...state.distributorOrder],
+        highDistributorOrder: [action.payload, ...state.highDistributorOrder],
+        mediumDistributorOrder: [action.payload, ...state.mediumDistributorOrder],
+        lowDistributorOrder: [action.payload, ...state.lowDistributorOrder],
         orderDetailsId: action.payload
         // addDriverModal: false,
 

@@ -12,7 +12,6 @@ import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Button, Tooltip,message } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
-import {getAssignedToList} from "../../Employees/EmployeeAction"
 import {
   getRecruiterName,
   getInitiative,
@@ -29,7 +28,8 @@ import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import {createDeals,  getAllDealStages,
   getDealLinkedWorkflow,
-  getDealLinkedStages
+  getDealLinkedStages,
+  getActiveAssignedToList
 } from "../DealAction";
 import Swal from 'sweetalert2'
 /**
@@ -47,7 +47,7 @@ function DealForm(props) {
     props.getInvestorCurrency();
     props.getRecruiterName();
     props.getAllEmployeelist();
-    props.getAssignedToList(props.orgId);
+    props.getActiveAssignedToList(props.orgId,"Included");
     props.getSources(props.orgId);
     props.getdealsContactdata(props.userId);
     props.getInvestorData(props.userId)
@@ -119,7 +119,7 @@ function DealForm(props) {
     };
   });
 
-  const AllEmplo = props.assignedToList.map((item) => {
+  const AllEmplo = props.activeAssignedToList.map((item) => {
     return {
       label: `${item.empName || ""}`,
       value: item.employeeId,
@@ -828,7 +828,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   fullName: auth.userDetails.fullName,
   sources: source.sources,
   creatingDeal:deal.creatingDeal,
-  assignedToList:employee.assignedToList,
+  activeAssignedToList:deal.activeAssignedToList,
   // opportunitySkills:opportunity.opportunitySkills
 });
 
@@ -844,7 +844,7 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerData,
       getInvestorData,
       getInitiative,
-      getAssignedToList,
+      getActiveAssignedToList,
       // getWorkflow,
       getStages,
       getSources,

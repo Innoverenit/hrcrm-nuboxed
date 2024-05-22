@@ -1055,3 +1055,30 @@ export const setDealsContactValue = (data,invOpportunityId) => (dispatch) => {
       });
     });
 };
+
+export const getActiveAssignedToList = (orgId,type) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_ACTIVE_ASSIGENED_TO_REQUEST,
+  });
+  axios
+    .get(`${base_url}/employee/active/user/type/drop-down/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ACTIVE_ASSIGENED_TO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ACTIVE_ASSIGENED_TO_FAILURE,
+        payload: err,
+      });
+    });
+};
