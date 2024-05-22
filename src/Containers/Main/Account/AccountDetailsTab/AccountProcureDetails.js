@@ -93,7 +93,7 @@ function AccountProcureDetails(props) {
           <div className="md:w-[7.4rem]">
             <FormattedMessage id="app.brand" defaultMessage="Brand" />
           </div>
-          <div className="md:w-[7.1rem]">
+          <div className="md:w-[3.1rem]">
             <FormattedMessage id="app.model" defaultMessage="Model" />
           </div>
           <div className="md:w-[8.8rem]">
@@ -123,7 +123,7 @@ function AccountProcureDetails(props) {
                 </div>
               </div>
 
-              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col ml-2 md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                 
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.unit}</div>

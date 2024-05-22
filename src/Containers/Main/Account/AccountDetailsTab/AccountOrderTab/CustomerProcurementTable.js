@@ -15,6 +15,7 @@ import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import UpdateProcureModal from "./UpdateProcureModal";
 import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -36,6 +37,9 @@ function CustomerProcurementTable(props) {
     setPage(page + 1);
     props.getOrderProcurement(props.currentUser ? props.currentUser : props.distributorId, page,"procure"
     );
+  }
+   if (props.fetchingOrderProcurement) {
+    return <BundleLoader />;
   }
 
   return (
