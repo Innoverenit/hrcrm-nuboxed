@@ -107,6 +107,88 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getLeadsHot = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_HOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_HOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_HOT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getLeadsWarm = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_WARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_WARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_WARM_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getLeadsCold = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_COLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_COLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_COLD_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
 
   export const getCrm = () => (dispatch) => {
  

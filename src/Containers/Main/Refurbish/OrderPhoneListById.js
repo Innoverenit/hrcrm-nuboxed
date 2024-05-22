@@ -139,7 +139,8 @@ function OrderPhoneListById(props) {
     console.log(props.rowData.qcInspectionInd)
     return (
         <>
-            {props.fetchingOrderIdByUserId ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto'>
+            {/* {props.fetchingOrderIdByUserId ? <BundleLoader /> : */}
+             <div className=' flex justify-end sticky flex-col z-auto'>
                 <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex max-sm:hidden  w-[98.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -497,7 +498,8 @@ function OrderPhoneListById(props) {
                     phoNotesQCOrderModal={props.phoNotesQCOrderModal}
                     handleQCPhoneNotesOrderModal={props.handleQCPhoneNotesOrderModal}
                 />
-            </div>}
+            </div>
+            {/* } */}
         </>
     )
 

@@ -13,6 +13,21 @@ const initialState = {
 
   addCallTaskModal:false,
 
+  fetchingLeadsHot: false,
+  fetchingLeadsHotError: false,
+  leadsAllDataHot:[],
+
+  fetchingLeadsWarm: false,
+  fetchingLeadsWarmError: false,
+  leadsAllDataWarm:[],
+
+  fetchingLeadsCold: false,
+  fetchingLeadsColdError: false,
+  leadsAllDataCold:[],
+
+
+
+
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
             teamLeads:[],
@@ -263,6 +278,54 @@ case types.HANDLE_LEADS_MODAL:
             ...state,
             fetchingLeads: false,
             fetchingLeadsError: true,
+          };
+
+        case types.GET_LEADS_HOT_REQUEST:
+          return { ...state, fetchingLeadsHot: true };
+        case types.GET_LEADS_HOT_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsHot: false,
+            leadsAllDataHot: action.payload,
+            clearbit:null
+          };
+        case types.GET_LEADS_HOT_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsHot: false,
+            fetchingLeadsHotError: true,
+          };
+
+          case types.GET_LEADS_WARM_REQUEST:
+          return { ...state, fetchingLeadsWarm: true };
+        case types.GET_LEADS_WARM_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsWarm: false,
+            leadsAllDataWarm: action.payload,
+            clearbit:null
+          };
+        case types.GET_LEADS_WARM_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsWarm: false,
+            fetchingLeadsWarmError: true,
+          };
+
+          case types.GET_LEADS_COLD_REQUEST:
+          return { ...state, fetchingLeadsCold: true };
+        case types.GET_LEADS_COLD_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsCold: false,
+            leadsAllDataCold: action.payload,
+            clearbit:null
+          };
+        case types.GET_LEADS_COLD_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsCold: false,
+            fetchingLeadsColdError: true,
           };
 
           case types.GET_CRM_REQUEST:

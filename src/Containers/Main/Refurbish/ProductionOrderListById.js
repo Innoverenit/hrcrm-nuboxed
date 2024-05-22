@@ -11,16 +11,35 @@ const OrderPhoneModal = lazy(() => import('./OrderPhoneModal'));
 
 function ProductionOrderListById(props) {
 
-    const [page, setPage] = useState(0);
+    const [pageNo, setPageNo] = useState(0);
     useEffect(() => {
-        setPage(page + 1);
-        props.getOrderByUser(props.userId)
+        setPageNo(pageNo + 1);
+        props.getOrderByUser(props.userId,pageNo)
     }, [])
     const [hasMore, setHasMore] = useState(true);
+    // const handleLoadMore = () => {
+    //     setPage(page + 1);
+    //     props.getOrderByUser(props.userId)
+    // };
     const handleLoadMore = () => {
-        setPage(page + 1);
-        props.getOrderByUser(props.userId)
-    };
+        const callPageMapd = props.orderByUser && props.orderByUser.length &&props.orderByUser[0].pageCount
+        setTimeout(() => {
+          const {
+            getOrderByUser,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.orderByUser)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getOrderByUser(props.userId,pageNo); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
 
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
@@ -61,6 +80,7 @@ function ProductionOrderListById(props) {
                             hasMore={hasMore}
                             loader={props.fetchingOrderByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                             height={"75vh"}
+                            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
                             {props.orderByUser.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
