@@ -65,9 +65,28 @@ function OpportunityCardList(props) {
     return () => props.emptyOpportunity();
   }, []);
 
-  const handleLoadMore = () => {
-          setPage(page + 1);
-          props.getOpportunityListByUserId(props.userId,page);   
+//   const handleLoadMore = () => {
+//           setPage(page + 1);
+//           props.getOpportunityListByUserId(props.userId,page);   
+// };
+const handleLoadMore = () => {
+  const callPageMapd = props.opportunityByUserId && props.opportunityByUserId.length &&props.opportunityByUserId[0].pageCount
+  setTimeout(() => {
+    const {
+      getOpportunityListByUserId,
+      userDetails: { employeeId },
+    } = props;
+    if  (props.opportunityByUserId)
+    {
+      if (page < callPageMapd) {
+        setPage(page + 1);
+        getOpportunityListByUserId(props.userId,page); 
+    }
+    if (page === callPageMapd){
+      setHasMore(false)
+    }
+  }
+  }, 100);
 };
   
   
@@ -203,15 +222,22 @@ function OpportunityCardList(props) {
 console.log(props.userDetails.imageId)
   return (
     <>
-    
+       <InfiniteScroll
+        dataLength={opportunityByUserId.length}
+        next={handleLoadMore}
+      hasMore={hasMore}
+        loader={fetchingOpportunity?<div class="flex justify-center">Loading...</div>:null}
+        height={"85vh"}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+      >
 
-<InfiniteScroll
+{/* <InfiniteScroll
                 dataLength={opportunityByUserId.length}
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingOpportunity?<div style={{ textAlign: 'center' }}>Loading...</div> :null}
                 height={"85vh"}
-            >
+            > */}
 
 <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
 { !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
