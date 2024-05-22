@@ -156,9 +156,9 @@ class ExpenseApproveForm extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                {/* {values.approvalIndicator ? ( */}
+                                {values.approvalIndicator ? (
                                      <div class=" mt-4">
-                                     
+{/*                                      
                                         <div>
                                         <div class=" flex justify-between "
                                         
@@ -187,10 +187,15 @@ class ExpenseApproveForm extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                      
                                         <div class=" mt-4" >
-                                            {values.approvalType ? (
+                                        <ExpenseLevelApproveForm
+                                                  
+                                                  approvalIndicator={values.approvalIndicator ? true : false}
+                                                  approvalType={values.approvalType ? "Standard" : "Exception"}
+                                              />
+                                            {/* {values.approvalType ? (
                                                 <ExpenseLevelApproveForm
                                                   
                                                     approvalIndicator={values.approvalIndicator ? true : false}
@@ -213,17 +218,7 @@ class ExpenseApproveForm extends Component {
                                                     </div>
 
                                                     <div class=" w-[32%]">
-                                                    {/* <Field
-                                                            name="roleTypeId"
-                                                            label="Role"
-                                                            options={Array.isArray(roleNameOption) ? roleNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.roleTypeId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        /> */}
+                                                
                                                  <Field
                     name="roleTypeId"
                     label={<FormattedMessage
@@ -255,19 +250,16 @@ class ExpenseApproveForm extends Component {
                     margintop={"0"}
                     inlineLabel
                     style={{ flexBasis: "80%" }}
-                    // value={values.roleTypeId}
-                    // width={"100%"}
-                    // isColumn
-                    // selectType="roleType"
+                   
                      /> 
                                                     </div>
                                               
                                                 </div>
-                                            )} 
+                                            )}  */}
                                         </div>
 
                                     
-                                        {!values.approvalType ?
+                                        {/* {!values.approvalType ?
                                            <div class=" flex justify-end " 
                                            // style={{ marginLeft: "104%", marginTop: "52px" }}
                                            >
@@ -284,9 +276,9 @@ class ExpenseApproveForm extends Component {
                                                     Update
                                                 </Button>
                                             </div>
-                                           : null}
+                                           : null} */}
                                     </div>
-                                 {/* ) : (null)}  */}
+                               ) : (null)} 
 
                             </div>
                         </Form>

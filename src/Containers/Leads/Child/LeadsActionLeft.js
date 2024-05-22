@@ -151,7 +151,7 @@ const LeadsActionLeft = (props) => {
           </Tooltip>
         )}
       </div>
-      <div class="md:mr-1 max-sm:ml-1">
+      <div class="md:mr-1 ml-2 max-sm:ml-1">
         <Badge
           size="small"
           count={(props.viewType === "list" && props.leadsCountJunked.junkedList) || 0}
@@ -196,8 +196,8 @@ const LeadsActionLeft = (props) => {
       </div>
 
 
-      <div class="w-[28%] mt-2 ml-2">
-        <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
+      <div class="w-[35%] mt-2 ml-2">
+        <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
           <Option value="ascending">A To Z</Option>
           <Option value="descending">Z To A</Option>

@@ -68,14 +68,37 @@ const LeadsCardList = (props) => {
     setrowData(item);
   };
   const handleLoadMore = () => {
+    const callPageMapd = props.leadsAllData && props.leadsAllData.length &&props.leadsAllData[0].pageCount
+    setTimeout(() => {
+      const {
+        getLeads,
+        userDetails: { employeeId },
+      } = props;
+      if  (props.leadsAllData)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getLeads(
+            props.currentUser ? props.currentUser : props.userId,
+            page,
+            props.filter?props.filter:"creationdate"
+          );
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+//   const handleLoadMore = () => {
    
-    setPage(page + 1);
-    props.getLeads(
-      props.currentUser ? props.currentUser : props.userId,
-      page,
-      props.filter?props.filter:"creationdate"
-    );
-};
+//     setPage(page + 1);
+//     props.getLeads(
+//       props.currentUser ? props.currentUser : props.userId,
+//       page,
+//       props.filter?props.filter:"creationdate"
+//     );
+// };
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
@@ -104,14 +127,14 @@ const LeadsCardList = (props) => {
         <div className=" w-[12.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
         <div className=" w-[18.1rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[7.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
-        <div className=" w-[22.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Company</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
-        <div className= " w-[6.1rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
-        <div className= " w-[6.12rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
+        <div className=" w-[5.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
+        <div className=" w-[10.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Company</div>
+        <div className=" w-[5.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
+        <div className= " w-[8.8rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
+        <div className= " w-[8.8rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
         <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
-        <div className=" w-[5.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
-        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
+        <div className=" w-[4.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
+        <div className=" w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         <div className=" w-[3.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Qualify</div>
         <div className="w-12"></div>
 
@@ -119,12 +142,22 @@ const LeadsCardList = (props) => {
       <InfiniteScroll
         dataLength={leadsAllData.length}
         next={handleLoadMore}
+      hasMore={hasMore}
+        loader={fetchingLeads?<div class="flex justify-center">Loading...</div>:null}
+        height={"75vh"}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+      >
+      {/* <InfiniteScroll
+        dataLength={leadsAllData.length}
+        next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingLeads?<div class="flex justify-center" >Loading...</div>:null}
         height={"75vh"}
         style={{overflowX:"hidden"}}
-      >
+        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+      > */}
            { !fetchingLeads && leadsAllData.length === 0 ?<NodataFoundPage />:leadsAllData.map((item,index) =>  {
+          //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code;
@@ -346,9 +379,9 @@ const LeadsCardList = (props) => {
                      <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
-                    <Tooltip title={item.assignedBy}>
+                    {/* <Tooltip title={item.assignedBy}> */}
                 <div class="max-sm:flex justify-end">
-                <Tooltip title={item.assignedBy}>
+                {/* <Tooltip title={item.assignedBy}> */}
               <MultiAvatar
               
                 primaryTitle={item.assignedBy}
@@ -356,26 +389,26 @@ const LeadsCardList = (props) => {
                 imgWidth={"1.9rem"}
                 imgHeight={"1.9rem"}
               />
-            </Tooltip>
+            {/* </Tooltip> */}
             </div>
-          </Tooltip>
+          {/* </Tooltip> */}
                     </div>
                     )}
                   </div>
                   <div className=" flex font-medium flex-col w-16  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                    <Tooltip title={item.ownerName}>
+                    {/* <Tooltip title={item.ownerName}> */}
                 <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
+                {/* <Tooltip title={item.ownerName}> */}
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
                 imgWidth={"1.9rem"}
                 imgHeight={"1.9rem"}
               />
-            </Tooltip>
+            {/* </Tooltip> */}
             </div>
-          </Tooltip>
+          {/* </Tooltip> */}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
@@ -457,7 +490,7 @@ const LeadsCardList = (props) => {
                        
                         <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId)}>
+                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title="Delete">
                           <DeleteOutlined
                             type="delete"

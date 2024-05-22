@@ -3810,3 +3810,10 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
       });
     });
 };
+
+export const handleProcureDetailsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROCURE_DETAILS_MODAL,
+    payload: modalProps,
+  });
+};

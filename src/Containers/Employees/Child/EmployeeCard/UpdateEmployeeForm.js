@@ -37,7 +37,7 @@ class UpdateEmployeeForm extends Component {
     this.state = {
       active: false,
       checked: true,
-      typeInd: false,
+      typeInd:this.props.currentEmployeeId.typeInd || "",
       role: [],
       reportingManager: this.props.currentEmployeeId.reportingManager || "",
       department: this.props.currentEmployeeId.reportingManagerDeptId || "",
@@ -48,7 +48,7 @@ class UpdateEmployeeForm extends Component {
       selectedDept: "",
       locations: [],
       selectedLocation: "",
-      workType: "employee",
+      workType:this.props.currentEmployeeId.employee_type || "",
     };
   }
 

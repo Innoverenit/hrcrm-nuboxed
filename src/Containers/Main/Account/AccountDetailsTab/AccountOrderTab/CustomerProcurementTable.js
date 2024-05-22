@@ -7,12 +7,14 @@ import {
   getOrderProcurement,
   handleUpdateProcureDetailModal,
   setEditProcure,
-  getProcureRecords
+  getProcureRecords,
+  handleProcureDetailsModal
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import UpdateProcureModal from "./UpdateProcureModal";
+import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -112,7 +114,14 @@ function CustomerProcurementTable(props) {
                         <div class="max-sm:w-full md:w-[14.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.newOrderNo} &nbsp;&nbsp; <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                            <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        props.handleProcureDetailsModal(true);
+                                                                    }}
+                                                                >{item.newOrderNo}</span>
+                                                                 &nbsp;&nbsp; <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
@@ -179,6 +188,11 @@ function CustomerProcurementTable(props) {
                     handleUpdateProcureDetailModal={props.handleUpdateProcureDetailModal}
                     updateProcureDetailModal={props.updateProcureDetailModal}
                 />
+
+                <AccountProcureDetailsModal
+                particularRowData={particularRowData}
+                handleProcureDetailsModal={props.handleProcureDetailsModal}
+                addProcureDetailsModal={props.addProcureDetailsModal} />
     </>
   );
 
@@ -187,6 +201,7 @@ function CustomerProcurementTable(props) {
 }
 
 const mapStateToProps = ({ distributor }) => ({
+  addProcureDetailsModal:distributor.addProcureDetailsModal,
   procurementOrder: distributor.procurementOrder,
   updateProcureDetailModal:distributor.updateProcureDetailModal,
   fetchingOrderProcurement: distributor.fetchingOrderProcurement,
@@ -200,7 +215,8 @@ const mapDispatchToProps = (dispatch) =>
       getOrderProcurement,
       handleUpdateProcureDetailModal,
       setEditProcure,
-      getProcureRecords
+      getProcureRecords,
+      handleProcureDetailsModal
     },
     dispatch
   );
