@@ -268,12 +268,12 @@ export const setLocationViewType = (viewType) => (dispatch) => {
 
 
 
-  export const deleteLocationCell = (cellId) => (dispatch) => {
+  export const deleteLocationCell = (cellChamberLinkId) => (dispatch) => {
     dispatch({
       type: types.DELETE_LOCATION_CELL_REQUEST,
     });
     axios
-      .delete(`${base_url2}/cell/cellDetails/delete/${cellId}`,
+      .delete(`${base_url2}/cell/cellChamber/delete/${cellChamberLinkId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -288,7 +288,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         console.log(res);
         dispatch({
           type: types.DELETE_LOCATION_CELL_SUCCESS,
-          payload: cellId,
+          payload: cellChamberLinkId,
         });
       })
       .catch((err) => {
@@ -532,7 +532,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       type: types.GET_CATALOGUE_CELL_REQUEST,
     });
     axios
-      .get(`${base_url}/locationDetails/getLocationDetailsList/${orgId}`, {
+      .get(`${base_url}/locationDetails/productionInd/inventoryInd/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

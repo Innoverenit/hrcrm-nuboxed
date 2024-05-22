@@ -34,6 +34,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddSpareStepsModal from "../Child/AddSpareStepsModal"
 import { Button, Steps } from 'antd';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 
 import {addSpareStepsModal,getProductionSteps} from "../ProductionAction"
 import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
@@ -94,6 +95,15 @@ const Component2 = (props) => {
                                             >
                                                 Add Parts
                                             </Button>
+
+                                            <NoteAltIcon
+                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                            //   onClick={() => {
+                            //     handleCustomerNotesDrawerModal(true);
+                            //     handleSetCurrentCustomer(item);
+                            //     handleRowData(item);
+                            //   }}
+                              />
                                       
                                      
                                     </div>

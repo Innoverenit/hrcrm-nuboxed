@@ -31,7 +31,7 @@ const LocationCellForm = (props) => {
       //   reason: "",
       //   productId:item.productId,
       // };
-       props.deleteLocationCell(item.cellId);
+       props.deleteLocationCell(item.cellChamberLinkId);
     };
 
     return (
@@ -155,7 +155,7 @@ const LocationCellForm = (props) => {
                     <div class=" text-xs text-cardBody font-poppins">
                     
                       <div className="font-normal text-sm text-cardBody font-poppins">
-                        <div>   {item.cell} {item.cellUnit}</div>
+                        <div>   {item.cellChamber} </div>
                       </div>
                     
                     </div>
