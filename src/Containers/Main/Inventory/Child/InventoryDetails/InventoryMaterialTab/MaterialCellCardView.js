@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Card } from 'antd';
+import { Card,Progress } from 'antd';
 import { getCellData } from "../../../InventoryAction"
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 
 const data = [
     {
@@ -38,18 +39,23 @@ const data = [
 const MaterialCellCardView = (props) => {
 
     useEffect(() => {
-        props.getCellData(props.locationId, props.orgId)
+        props.getCellData(props.inventory.locationDetailsId, props.orgId)
     }, [])
     console.log(props.cellData)
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, marginLeft: "1rem" }}>
-            {data.map((item, index) => (
-                <Card key={index} title={`${item.cellname}`}>
-                    {item.itemList.map((itemlist, ind) => {
+            {props.cellData.map((item, index) => (
+                <Card key={index} title={`${item.cellChamber}`}>
+                    {item.suppliesData.map((itemlist, ind) => {
                         return (
                             <div key={ind} class=" flex justify-between">
-                                <div><strong>{itemlist.name}</strong> </div>
-                                <div><strong>{itemlist.unit}</strong> </div>
+                                <div><strong>{itemlist.suppliesFullName}</strong> </div>
+                                
+                                  
+                                   
+                                    <Progress percent={itemlist.unitUsed} />
+                                    
+                                    {/* <Progress percent={itemlist.unitUsed} /> */}
                             </div>
                         )
                     })}

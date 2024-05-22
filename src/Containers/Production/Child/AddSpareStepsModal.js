@@ -11,7 +11,8 @@ const AddSpareStepsModal = (props) => {
   return (
     <>
       <StyledDrawer
-       title="Steps"
+       title={`${props.step.categoryName} ${props.step.subCategoryName}-${props.step.attributeName} ${props.step.
+        subAttributeName}`}
         width="60%"
         visible={props.addSparePartsDrawerModal}
         onClose={() => props.addSpareStepsModal(false)}

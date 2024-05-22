@@ -42,29 +42,29 @@ function PoSupplierDetailsTable(props) {
             {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[99.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[23.1rem]">
+                        <div className=" md:w-[16.1rem]">
                             <FormattedMessage
                                 id="app.name"
                                 defaultMessage="Name"
                             /></div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" md:w-[13.1rem]">
                             <FormattedMessage
                                 id="app.category"
                                 defaultMessage="Category" />
                         </div>
 
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" md:w-[10.12rem]">
                             <FormattedMessage
                                 id="app.attribute"
                                 defaultMessage="Attribute" />
                         </div>
 
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" md:w-[8.13rem]">
                             <FormattedMessage
                                 id="app.unit"
                                 defaultMessage="Unit" />
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className=" md:w-[21.14rem]">
                             <FormattedMessage
                                 id="app.price"
                                 defaultMessage="Price/Unit" />
@@ -82,8 +82,8 @@ function PoSupplierDetailsTable(props) {
                             return (
                                 <>
                                     <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
-                                        <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
+                                        <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
+                                            <div className=" flex font-medium flex-col w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                     <span>
                                                         {item.suppliesFullName}
@@ -91,7 +91,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
+                                            <div className=" flex font-medium flex-col w-[9.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                     <span>
                                                         {item.categoryName} {item.subCategoryName}
@@ -99,7 +99,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
+                                            <div className=" flex font-medium flex-col w-[6.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                     <span>
                                                         {item.attributeName} {item.subAttributeName}
@@ -108,7 +108,7 @@ function PoSupplierDetailsTable(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
+                                            <div className=" flex font-medium flex-col w-[5.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                     <span>
                                                         {item.unit}
@@ -116,8 +116,8 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
-                                                <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                            <div className=" flex font-medium  w-[12.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class=" font-normal flex text-[0.85rem] text-cardBody font-poppins">
 
                                                     {edit && row.suppliesId === item.suppliesId ?
                                                         <>
@@ -146,7 +146,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
+                                            <div className=" flex font-medium flex-col w-[1.5rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                     <BorderColorIcon
                                                         className=" !text-base cursor-pointer text-[tomato]"

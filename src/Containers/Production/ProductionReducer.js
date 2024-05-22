@@ -4,6 +4,12 @@ const initialState = {
   openProductiondrawer: false,
   viewType: "table",
 
+
+
+  fetchingProductionCellList:false,
+  fetchingProductionCellListError:false,
+  productionCellList:[],
+
   creatingProductionLink: false,
   creatingProductionLinkError: false,
 
@@ -280,6 +286,15 @@ export const productionReducer = (state = initialState, action) => {
             }
           }),
         };
+
+
+
+        case types.GET_PRODUCTION_CELL_LIST_REQUEST:
+          return { ...state, fetchingProductionCellList: true, fetchingProductionCellList: false };
+        case types.GET_PRODUCTION_CELL_LIST_SUCCESS:
+          return { ...state, fetchingProductionCellList: false, productionCellList: action.payload };
+        case types.GET_PRODUCTION_CELL_LIST_FAILURE:
+          return { ...state, fetchingProductionCellList: false, fetchingProductionCellListError: true };
       case types.UPDATE_PRODCUTION_STATUS_FAILURE:
         return { ...state, updateProductionStatus: false,updateProductionStatusError:true, };
 

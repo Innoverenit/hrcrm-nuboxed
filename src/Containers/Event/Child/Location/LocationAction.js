@@ -396,7 +396,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
       type: types.GET_LOCATION_CELL_REQUEST,
     });
     axios
-      .get(`${base_url2}/cell/cellDetails/${locationDetailsId}/${orgId}`, {
+      .get(`${base_url2}/cell/allCellChamber/${locationDetailsId}/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -459,7 +459,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Satus has been changed successfully!',
+          title: 'Status has been changed successfully!',
         })
       })
       .catch((err) => {

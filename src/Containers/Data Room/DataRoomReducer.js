@@ -9,8 +9,15 @@ const initialState = {
 
     fetchingDataroomList: false,
     fetchingDataroomListError: false,
-    dataRoomlist:[]
+    dataRoomlist:[],
   
+    addingDataroom: false, 
+    addingDataroomError: false,
+
+    fetchingUserList: false,
+    fetchingUserListError: false,
+    userRoomlist:[],
+    
   };
 
   export const dataRoomReducer = (state = initialState, action) => {
@@ -38,6 +45,36 @@ const initialState = {
         fetchingDataroomList: false,
         fetchingDataroomListError: true,
       };
+
+      case types.GET_USERLIST_REQUEST:
+        return { ...state, fetchingUserList: true };
+      case types.GET_USERLIST_SUCCESS:
+        return {
+          ...state,
+          fetchingUserList: false,
+          userRoomlist: action.payload,
+        };
+      case types.GET_USERLIST_FAILURE:
+        return {
+          ...state,
+          fetchingUserList: false,
+          fetchingUserListError: true,
+        };
+  
+
+      case types.ADD_DATAROOM_REQUEST:
+        return { ...state, addingDataroom: true };
+      case types.ADD_DATAROOM_SUCCESS:
+        return { ...state, 
+          addingDataroom: false, 
+          // addLeadsModal: false ,
+          // leadsAllData:[action.payload,...state.leadsAllData],
+          // allleadsInfo:[action.payload,...state.allleadsInfo]
+        };
+      case types.ADD_DATAROOM_FAILURE:
+        return { ...state,
+           addingDataroom: false, 
+          addingDataroomError: false };    
 
 
       default:
