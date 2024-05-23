@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Select } from "antd";
+import { Button,Select, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
@@ -68,6 +68,11 @@ props.emptyClearbit();
     const [selectedSource, setSelectedSource] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [priority,setpriority]=useState(props.selectedTask
+      ? props.selectedTask.priority
+      : "Hot");
+
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -123,6 +128,10 @@ props.emptyClearbit();
       setIsLoadingSector(false);
     }
   };
+
+  const handleButtonClick = (type) => {
+    setpriority(type);
+    };
 
   const handleSelectSector = (value) => {
     setSelectedSector(value)
@@ -188,6 +197,7 @@ props.emptyClearbit();
             department: "",
             salutation:"",
             firstName:"",
+            type:priority,
             middleName:"",
             lastName:"",
             proposalValue:"",
@@ -219,7 +229,7 @@ props.emptyClearbit();
                 lob:selectedLob,
                 countryDialCode:values.countryDialCode,
                 // price:values.price,
-               
+                type:priority,
                 sectorId: selectedSector,
               },
               props.userId,
@@ -499,7 +509,55 @@ props.emptyClearbit();
         ))}
       </Select>
                     </div>
-                  
+                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex">
+                       <Tooltip title="Hot">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("Hot")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Warm">
+                         <Button
+                           
+                            shape="circle"
+             
+                           onClick={() => handleButtonClick("Warm")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Cold">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("Cold")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
+                      </div>
+
+
                   </div>
                
                  

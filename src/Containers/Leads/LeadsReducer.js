@@ -258,7 +258,10 @@ case types.HANDLE_LEADS_MODAL:
           addingLeads: false, 
           addLeadsModal: false ,
           leadsAllData:[action.payload,...state.leadsAllData],
-          allleadsInfo:[action.payload,...state.allleadsInfo]
+          allleadsInfo:[action.payload,...state.allleadsInfo],
+          leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
+          leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
+          leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
         };
       case types.ADD_LEADS_FAILURE:
         return { ...state, addingLeads: false, addLeadsModal: false };    
@@ -286,7 +289,7 @@ case types.HANDLE_LEADS_MODAL:
           return {
             ...state,
             fetchingLeadsHot: false,
-            leadsAllDataHot: action.payload,
+            leadsAllDataHot: [...state.leadsAllDataHot, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_HOT_FAILURE:
@@ -302,7 +305,8 @@ case types.HANDLE_LEADS_MODAL:
           return {
             ...state,
             fetchingLeadsWarm: false,
-            leadsAllDataWarm: action.payload,
+            // leadsAllDataWarm: action.payload,
+            leadsAllDataWarm: [...state.leadsAllDataWarm, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_WARM_FAILURE:
@@ -318,7 +322,8 @@ case types.HANDLE_LEADS_MODAL:
           return {
             ...state,
             fetchingLeadsCold: false,
-            leadsAllDataCold: action.payload,
+            leadsAllDataCold:[...state.leadsAllDataCold, ...action.payload],
+            // leadsAllDataCold: action.payload,
             clearbit:null
           };
         case types.GET_LEADS_COLD_FAILURE:

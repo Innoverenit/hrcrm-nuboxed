@@ -249,7 +249,8 @@ disabled={startInd===true}
         disabled={!drop1}
         type="primary"
        style={{backgroundColor:!startInd?"#77dd77" : "#ff7158bf"}} onClick={handleClick}>
-        {!startInd ? "Start" : "Stop"}
+          {/* {!startInd ? "Start" : "Stop"} */}
+        {startInd ? "Start" : "Stop"}
       </Button>
       </div>
 

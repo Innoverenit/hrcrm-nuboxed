@@ -12,24 +12,18 @@ import {
     handleInTagDrawer,
     updatePauseStatus
 } from "./RefurbishAction";
-import { Button, Tooltip, Badge, Slider, Progress } from "antd";
-import { FileDoneOutlined, RollbackOutlined } from "@ant-design/icons";
-import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
-import ButtonGroup from "antd/lib/button/button-group";
+import { Button, Tooltip,  Progress } from "antd";
+import {  RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
-import CategoryIcon from '@mui/icons-material/Category'
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { NoteAddOutlined, PauseCircleFilled, PlayCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
-import { FormattedMessage } from "react-intl";
+import {  PauseCircleFilled,  PlayCircleFilledSharp } from "@mui/icons-material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { SubTitle } from "../../../Components/UI/Elements";
 import AddSpareInRepair from "./AddSpareInRepair";
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
-import TagInDrawer from "./ProductionTab/TagInDrawer";
-import { base_url2 } from "../../../Config/Auth";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { FormattedMessage } from "react-intl";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
@@ -93,7 +87,35 @@ function PhoneListForRepair(props) {
                     }}
                     onClick={onClick}
                 >
-                    <i className={`fas ${iconType}`} style={{ fontSize: "1rem" }}></i>
+                    <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"orange" }}></i>
+                </Button>
+            </Tooltip>
+        );
+    }
+
+    function StatusIcon1({ type, size, iconType, tooltip, indStatus, status, id, onClick, phoneId }) {
+        const start = type;
+        console.log(start);
+        //////debugger;
+        if (status === type) {
+            size = "30px";
+        } else {
+            size = "16px";
+        }
+        return (
+            <Tooltip title={tooltip}>
+                <Button
+
+                    ghost={status !== type}
+                    style={{
+                        padding: "6px",
+                        borderColor: "transparent",
+                        color: indStatus === type ? "orange" : "grey",
+                        // color: status === type && id === phoneId ? "orange" : "grey",
+                    }}
+                    onClick={onClick}
+                >
+                    <i className={`fas ${iconType}`} style={{ fontSize: "1rem",color:"green" }}></i>
                 </Button>
             </Tooltip>
         );
@@ -255,7 +277,8 @@ function PhoneListForRepair(props) {
                                                                 }} />
                                                         </Tooltip>
                                                     }
-                                                    {item.repairStatus === "To Start" && <StatusIcon
+                                                    {props.updatingRepairStatus && <span>Loading...</span>}
+                                                    {item.repairStatus === "To Start" && <StatusIcon 
                                                         type="In Progress"
                                                         iconType="fa-hourglass-half"
                                                         tooltip="In Progress"
@@ -263,6 +286,7 @@ function PhoneListForRepair(props) {
                                                         indStatus={item.repairStatus}
                                                         phoneId={RowData.phoneId}
                                                         status={active}
+                                                       
                                                         onClick={() => {
                                                             handleQCRepairStatus("In Progress", item)
 
@@ -284,7 +308,7 @@ function PhoneListForRepair(props) {
                                                         </Tooltip>
                                                     }
 
-                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon
+                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon1
                                                         type="Complete"
                                                         iconType="fa-hourglass"
                                                         tooltip="Complete"
@@ -292,6 +316,7 @@ function PhoneListForRepair(props) {
                                                         status={active}
                                                         id={item.phoneId}
                                                         phoneId={RowData.phoneId}
+                                                      
                                                         onClick={() => {
                                                             handleQCRepairStatus("Complete", item);
                                                         }}
@@ -524,6 +549,7 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     fetchingRepairPhoneByUser: refurbish.fetchingRepairPhoneByUser,
     showPhoneData: refurbish.showPhoneData,
     clickTagInDrawr: refurbish.clickTagInDrawr,
+    updatingRepairStatus:refurbish.updatingRepairStatus
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -982,8 +982,8 @@ export const updaterepairStatus = (data,orderPhoneId, phoneId, userId, cb) => (d
       },
     })
     .then((res) => {
-     dispatch(getRepairPhoneByUser(orderPhoneId, userId))
-      dispatch(getRepairOrderByUser(userId))
+     //dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+      //dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
         payload: res.data,
