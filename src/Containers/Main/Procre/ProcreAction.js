@@ -72,3 +72,10 @@ export const getRecords = (orgId,type) => (dispatch) => {
       });
     });
 };
+
+export const handleProcureOrderModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PROCURE_ORDER_MODAL,
+    payload: modalProps,
+  });
+};

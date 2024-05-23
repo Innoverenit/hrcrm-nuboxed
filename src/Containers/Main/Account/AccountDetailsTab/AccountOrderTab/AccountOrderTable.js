@@ -124,11 +124,11 @@ const AccountOrderTable = (props) => {
 
     return (
         <>
-        <label class=" font-bold">High</label>
+      
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[3.54rem]"> </div>
+                        <div className=" md:w-[3.54rem]">Urgent </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -215,9 +215,9 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                            <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium  md:w-[1.56rem] max-sm:w-full  ">
+                                                    <div className=" flex font-medium  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -370,7 +370,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-base cursor-pointer text-[tomato]"
+                                                                className="!text-xl cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -425,7 +425,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    className="!text-xl cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -442,7 +442,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -457,7 +457,7 @@ const AccountOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -470,7 +470,7 @@ const AccountOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-base cursor-pointer"
+                                                                className="!text-xl cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -488,7 +488,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-base cursor-pointer" />
+                                                                    className="!text-xl cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -498,7 +498,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -512,7 +512,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-base cursor-pointer text-[tomato]"
+                                                                    className=" !text-xl cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -527,7 +527,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteIcon
-                                                                    className="!text-base cursor-pointer text-[red]"
+                                                                    className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -554,11 +554,11 @@ const AccountOrderTable = (props) => {
                 </div>
             </div >
             
-            <label class=" font-bold">Medium</label>
+           
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[3.54rem]"> </div>
+                        <div className=" md:w-[5.54rem]">High </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -645,9 +645,9 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                                                                      <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium  md:w-[1.56rem] max-sm:w-full  ">
+                                                    <div className=" flex font-medium  md:w-[3.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -800,7 +800,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-base cursor-pointer text-[tomato]"
+                                                                className="!text-xl cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -855,7 +855,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    className="!text-xl cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -872,7 +872,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -887,7 +887,7 @@ const AccountOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -900,7 +900,7 @@ const AccountOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-base cursor-pointer"
+                                                                className="!text-xl cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -918,7 +918,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-base cursor-pointer" />
+                                                                    className="!text-xl cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -928,7 +928,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -942,7 +942,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-base cursor-pointer text-[tomato]"
+                                                                    className=" !text-xl cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -957,7 +957,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteIcon
-                                                                    className="!text-base cursor-pointer text-[red]"
+                                                                    className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -983,11 +983,11 @@ const AccountOrderTable = (props) => {
 
                 </div>
             </div >
-            <label class=" font-bold">Low</label>
+         
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[3.54rem]"> </div>
+                        <div className=" md:w-[3.54rem]">Normal </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -1074,9 +1074,9 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                            <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
                                                 <div class="flex ">
-                                                    <div className=" flex font-medium  md:w-[1.56rem] max-sm:w-full  ">
+                                                    <div className=" flex font-medium  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -1229,7 +1229,7 @@ const AccountOrderTable = (props) => {
                                                                     handleUpdateRevisePrice()
                                                                     handleSetParticularOrderData(item)
                                                                 }}
-                                                                className="!text-base cursor-pointer text-[tomato]"
+                                                                className="!text-xl cursor-pointer text-[tomato]"
                                                             />
                                                         </Tooltip> : null}
 
@@ -1284,7 +1284,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Notes"
                                                             />}>
                                                                 <NoteAltIcon
-                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    className="!text-xl cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                         props.handleNotesModalInOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -1301,7 +1301,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatusOfOrder(true);
                                                                         handleSetParticularOrderData(item);
@@ -1316,7 +1316,7 @@ const AccountOrderTable = (props) => {
                                                         <div>
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -1329,7 +1329,7 @@ const AccountOrderTable = (props) => {
                                                         {/* {item.locationName && !item.inventoryReceiveInd && <div class=" cursor-pointer"> */}
                                                         <Tooltip title="Add Supervisor">
                                                             <PersonAddAlt1
-                                                                className="!text-base cursor-pointer"
+                                                                className="!text-xl cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
                                                                 onClick={() => {
                                                                     props.handleInventoryLocationInOrder(true)
@@ -1347,7 +1347,7 @@ const AccountOrderTable = (props) => {
                                                             />}>
                                                                 <StarBorderIcon
 
-                                                                    className="!text-base cursor-pointer" />
+                                                                    className="!text-xl cursor-pointer" />
                                                             </Tooltip>
 
                                                         </div>
@@ -1357,7 +1357,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Feedback"
                                                             />}>
                                                                 <FeedbackIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                 />
                                                             </Tooltip>
 
@@ -1371,7 +1371,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Update Order"
                                                             />}>
                                                                 <BorderColorIcon
-                                                                    className=" !text-base cursor-pointer text-[tomato]"
+                                                                    className=" !text-xl cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditOrder(item)
                                                                         props.handleUpdateOrder(true)
@@ -1386,7 +1386,7 @@ const AccountOrderTable = (props) => {
                                                                 defaultMessage="Detele"
                                                             />}>
                                                                 <DeleteIcon
-                                                                    className="!text-base cursor-pointer text-[red]"
+                                                                    className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>

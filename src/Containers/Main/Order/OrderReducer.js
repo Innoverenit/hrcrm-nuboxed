@@ -6,6 +6,14 @@ const initialState = {
 
   addOrderModal: false,
 
+  fetchingAllHighOrderList: false,
+  fetchingAllHighOrderListError: false,
+  allHighCompleteOrder:[],
+
+  fetchingAllLowOrderList: false,
+  fetchingAllLowOrderListError: false,
+  allLowCompleteOrder:[],
+
   addNotesInOrder: false,
 
   addStatusOfOrder: false,
@@ -45,6 +53,10 @@ const initialState = {
   fetchingProductionAllOrder: false,
   fetchingProductionAllOrderError: false,
   productionAllOrder: [],
+
+  fetchingAllMediumOrderList: false,
+  fetchingAllMediumOrderListError: false,
+  allMediumCompleteOrder:[],
 
   fetchingDistributorList: false,
   fetchingDistributorListError: false,
@@ -265,6 +277,57 @@ export const orderReducer = (state = initialState, action) => {
         fetchingAllOrderList: false,
         fetchingAllOrderListError: true,
       };
+
+
+      case types.GET_ALL_HIGH_ORDER_LIST_REQUEST:
+        return { ...state, fetchingAllHighOrderList: true };
+      case types.GET_ALL_HIGH_ORDER_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingAllHighOrderList: false,
+  
+          allHighCompleteOrder: [...state.allHighCompleteOrder, ...action.payload]
+        };
+      case types.GET_ALL_HIGH_ORDER_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingAllHighOrderList: false,
+          fetchingAllHighOrderListError: true,
+        };
+
+
+        case types.GET_ALL_MEDIUM_ORDER_LIST_REQUEST:
+          return { ...state, fetchingAllMediumOrderList: true };
+        case types.GET_ALL_MEDIUM_ORDER_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingAllMediumOrderList: false,
+    
+            allMediumCompleteOrder: [...state.allMediumCompleteOrder, ...action.payload]
+          };
+        case types.GET_ALL_MEDIUM_ORDER_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingAllMediumOrderList: false,
+            fetchingAllMediumOrderListError: true,
+          };
+
+
+          case types.GET_ALL_LOW_ORDER_LIST_REQUEST:
+            return { ...state, fetchingAllLowOrderList: true };
+          case types.GET_ALL_LOW_ORDER_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingAllLowOrderList: false,
+      
+              allLowCompleteOrder: [...state.allLowCompleteOrder, ...action.payload]
+            };
+          case types.GET_ALL_LOW_ORDER_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingAllLowOrderList: false,
+              fetchingAllLowOrderListError: true,
+            };
 
     case types.GET_ORDER_COUNT_REQUEST:
       return { ...state, fetchingOrderCount: true };

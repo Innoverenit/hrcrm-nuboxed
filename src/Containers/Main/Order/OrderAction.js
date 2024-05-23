@@ -204,6 +204,86 @@ export const getAllOrderList = (orgId, pageNo) => (dispatch) => {
     });
 };
 
+
+export const getAllHighOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeHighOrder/${orgId}/${pageNo}/${ptype} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllMediumOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeMediumOrder/${orgId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllLowOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeLowOrder/${orgId}/${pageNo}/${ptype} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_LOW_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getAllComepleteOrderList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_COMPLETE_ORDER_LIST_REQUEST,
