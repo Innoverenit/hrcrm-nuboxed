@@ -1536,10 +1536,14 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOrder: false,
+     
         // distributorOrder: [action.payload, ...state.distributorOrder],
-        highDistributorOrder: [action.payload, ...state.highDistributorOrder],
-        mediumDistributorOrder: [action.payload, ...state.mediumDistributorOrder],
-        lowDistributorOrder: [action.payload, ...state.lowDistributorOrder],
+        highDistributorOrder: action.payload.priority === 'High' ? [action.payload, ...state.highDistributorOrder] : state.highDistributorOrder,
+        mediumDistributorOrder: action.payload.priority === 'Medium' ? [action.payload, ...state.mediumDistributorOrder] : state.mediumDistributorOrder,
+        lowDistributorOrder: action.payload.priority === 'Low' ? [action.payload, ...state.lowDistributorOrder] : state.lowDistributorOrder,
+        // highDistributorOrder: [action.payload, ...state.highDistributorOrder],
+        // mediumDistributorOrder: [action.payload, ...state.mediumDistributorOrder],
+        // lowDistributorOrder: [action.payload, ...state.lowDistributorOrder],
         orderDetailsId: action.payload
         // addDriverModal: false,
 
@@ -2441,7 +2445,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         removingOrderAcc: false,
-        distributorOrder: state.distributorOrder.filter(
+        highDistributorOrder: state.highDistributorOrder.filter(
+          (item) => item.orderId !== action.payload.orderId
+        ),
+        mediumDistributorOrder: state.mediumDistributorOrder.filter(
+          (item) => item.orderId !== action.payload.orderId
+        ),
+        lowDistributorOrder: state.lowDistributorOrder.filter(
           (item) => item.orderId !== action.payload.orderId
         ),
       };
@@ -2794,7 +2804,10 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOrderProcurement: false,
-        procurementOrder: [action.payload, ...state.procurementOrder],
+        highDistributorOrder: action.payload.priority === 'High' ? [action.payload, ...state.highDistributorOrder] : state.highDistributorOrder,
+        mediumDistributorOrder: action.payload.priority === 'Medium' ? [action.payload, ...state.mediumDistributorOrder] : state.mediumDistributorOrder,
+        lowDistributorOrder: action.payload.priority === 'Low' ? [action.payload, ...state.lowDistributorOrder] : state.lowDistributorOrder,
+        // procurementOrder: [action.payload, ...state.procurementOrder],
         orderDetailsId: action.payload,
         // addLinkCustomerProcurementModal: false,
 

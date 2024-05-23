@@ -10,6 +10,8 @@ const initialState = {
   fetchingAllProcureError: false,
   allProcure:[],
 
+  addProcureOrderModal:false,
+
   fetchingRecords: false,
   fetchingRecordsError: false,
   recordData:{},
@@ -66,6 +68,10 @@ export const procreReducer = (state = initialState, action) => {
               fetchingRecords: false,
               fetchingRecordsError: true,
             };
+
+            case types.HANDLE_PROCURE_ORDER_MODAL:
+              return { ...state, addProcureOrderModal: action.payload, phoneListById: [] };
+        
 
     
 

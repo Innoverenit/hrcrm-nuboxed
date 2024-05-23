@@ -8,13 +8,15 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import {
   getAllProcure,
-  emptyProcre
+  emptyProcre,
+  handleProcureOrderModal
 } from "../Procre/ProcreAction";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import moment from "moment";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
+import ProcureOrderModal from "./Child/ProcureOrderModal";
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
@@ -26,13 +28,13 @@ function ProcreCardList(props) {
 
   const [particularRowData, setParticularRowData] = useState({});
 
+  function handleSetParticularOrderData(item) {
+    setParticularRowData(item);
+}
   useEffect(() => {
     return () => props.emptyProcre();
   }, []);
-  function handleSetParticularOrderData(item, data) {
-    console.log(item);
-    setParticularRowData(item);
-  }
+
   const handleLoadMore = () => {
     setPage(page + 1);
     props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
@@ -85,7 +87,7 @@ if (props.fetchingAllProcure) {
             return (
               <div>
                 <div
-                  className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
+                  className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -115,7 +117,13 @@ if (props.fetchingAllProcure) {
                         <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                              {item.newOrderNo} &nbsp;&nbsp;{date === currentdate ? (
+                            <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        props.handleProcureOrderModal(true);
+                                                                    }}
+                                                                >{item.newOrderNo} </span>{date === currentdate ? (
                                 <span
                                   style={{
                                     color: "tomato",
@@ -147,7 +155,7 @@ if (props.fetchingAllProcure) {
                     <div className=" flex font-medium flex-col  md:w-[23.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
 
-                      {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].state) || ""},${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
+                      {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
         `}
                       </h4>
@@ -172,6 +180,11 @@ if (props.fetchingAllProcure) {
           })}
         </InfiniteScroll>
       </div>
+
+      <ProcureOrderModal
+                particularRowData={particularRowData}
+                handleProcureOrderModal={props.handleProcureOrderModal}
+                addProcureOrderModal={props.addProcureOrderModal} />
     </>
   );
 
@@ -186,6 +199,7 @@ const mapStateToProps = ({ shipper,procre,auth }) => ({
   updateCallModal: shipper.updateCallModal,
   updateTaskModal: shipper.updateTaskModal,
   orgId: auth.userDetails.organizationId,
+  addProcureOrderModal:procre.addProcureOrderModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -193,7 +207,8 @@ const mapDispatchToProps = (dispatch) =>
 
     {
 getAllProcure,
-emptyProcre
+emptyProcre,
+handleProcureOrderModal
     },
     dispatch
   );

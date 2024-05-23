@@ -118,7 +118,8 @@ function AddOrderInAccount(props) {
                         priority: priority || "",
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
-                    }, props.distributorId);
+                    }, props.distributorId,);
+                    // "0","High","Medium","Low"
                 } else {
                     message.success("Advance payment should be less than 100")
                 }
