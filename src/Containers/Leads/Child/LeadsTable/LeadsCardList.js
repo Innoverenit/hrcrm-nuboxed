@@ -51,8 +51,9 @@ const LeadsCardList = (props) => {
     setPage(page + 1);
     //props.getLeads(props.userId, page,"creationdate");
     props.getLeadsHot(props.userId, page,"creationdate","hot");
-    props.getLeadsWarm(props.userId, page,"creationdate","cold");
     props.getLeadsCold(props.userId, page,"creationdate","warm");
+    props.getLeadsWarm(props.userId, page,"creationdate","cold");
+    
   }, []);
 
   useEffect(() => {
@@ -636,17 +637,9 @@ const LeadsCardList = (props) => {
         height={"19vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {/* <InfiniteScroll
-        dataLength={leadsAllData.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={fetchingLeads?<div class="flex justify-center" >Loading...</div>:null}
-        height={"75vh"}
-        style={{overflowX:"hidden"}}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-      > */}
+      
            { !props.fetchingLeadsWarm && props.leadsAllDataWarm.length === 0 ?<NodataFoundPage />:props.leadsAllDataWarm.map((item,index) =>  {
-          //  {leadsAllData.map((item,index) => {
+          
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.address[0].country_alpha2_code;
@@ -868,27 +861,27 @@ const LeadsCardList = (props) => {
                      <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
-                    {/* <Tooltip title={item.assignedBy}> */}
+                  
                 <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.assignedBy}> */}
+              
               <MultiAvatar
               
                 primaryTitle={item.assignedBy}
-                // imageId={item.ownerImageId}
+              
                 imgWidth={"1.9rem"}
                 imgHeight={"1.9rem"}
               />
-            {/* </Tooltip> */}
+         
             </div>
-          {/* </Tooltip> */}
+        
                     </div>
                     )}
                   </div>
                   <div className=" flex font-medium flex-col w-16  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                    {/* <Tooltip title={item.ownerName}> */}
+                   
                 <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.ownerName}> */}
+              
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
@@ -1022,7 +1015,7 @@ const LeadsCardList = (props) => {
                   <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
                     <div>
                       <Tooltip
-                        // overlayStyle={{ maxWidth: "300px" }}
+                       
                         title={item.CreationType}
                       >
                           <div className="cursor-pointer">

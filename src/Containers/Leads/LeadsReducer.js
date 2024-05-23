@@ -259,11 +259,11 @@ case types.HANDLE_LEADS_MODAL:
           addLeadsModal: false ,
           leadsAllData:[action.payload,...state.leadsAllData],
           allleadsInfo:[action.payload,...state.allleadsInfo],
-          leadsAllDataHot: action.payload.type === 'Hot' ? 
+          leadsAllDataHot: action.payload.type === 'hot' ? 
           [action.payload, ...state.leadsAllDataHot] : state.leadsAllDataHot,
           leadsAllDataWarm: action.payload.type === 'warm' ? 
           [action.payload, ...state.leadsAllDataWarm] : state.leadsAllDataWarm,
-          leadsAllDataCold: action.payload.type === 'Cold' ? 
+          leadsAllDataCold: action.payload.type === 'cold' ? 
           [action.payload, ...state.leadsAllDataCold] : state.leadsAllDataCold,
           // leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
           // leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],

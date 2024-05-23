@@ -71,7 +71,7 @@ props.emptyClearbit();
 
     const [priority,setpriority]=useState(props.selectedTask
       ? props.selectedTask.priority
-      : "Hot");
+      : "hot");
 
     const fetchSource = async () => {
       setIsLoading(true);
@@ -515,7 +515,7 @@ props.emptyClearbit();
                          <Button
                            
                             shape="circle"
-                           onClick={() => handleButtonClick("Hot")}
+                           onClick={() => handleButtonClick("hot")}
                            style={{
                              backgroundColor:"red",
                                  borderRadius: "50%", 
@@ -530,7 +530,7 @@ props.emptyClearbit();
                            
                             shape="circle"
              
-                           onClick={() => handleButtonClick("Warm")}
+                           onClick={() => handleButtonClick("warm")}
                            style={{
                              backgroundColor:"orange",
                                  borderRadius: "50%", 
@@ -545,7 +545,7 @@ props.emptyClearbit();
                            
                             shape="circle"
                    
-                           onClick={() => handleButtonClick("Cold")}
+                           onClick={() => handleButtonClick("cold")}
                            style={{
                              backgroundColor:"teal",
                                  borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
