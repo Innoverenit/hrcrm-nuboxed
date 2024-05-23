@@ -4,7 +4,9 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
 import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
-import { setLeadsViewType, handleLeadsModal,handleLeadsImportModal } from "./LeadsAction";
+import { 
+  // setLeadsViewType, 
+  handleLeadsModal,handleLeadsImportModal } from "./LeadsAction";
 const LeadsHeader=lazy(()=>import ("./Child/LeadsHeader"));
 const AddLeadsModal=lazy(()=>import ("./Child/AddLeadsModal"));
 const LeadsTeamCardList = lazy(()=>import("./Child/LeadsTable/LeadsTeamCardList"));
@@ -13,8 +15,18 @@ const LeadsJunkList=lazy(()=>import ("./Child/LeadsTable/LeadsJunkList"));
 const LeadsAllCardList = lazy(()=>import("./Child/LeadsTable/LeadsAllCardList"));
 
 class Leads extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewType: null, // Default viewType
+      teamsAccessInd: props.teamsAccessInd ,// Default UerInd
+      currentData: "",currentUser:"", 
+    };
+  }
 
-  state = { currentData: "",currentUser:"", filter:"creationdate",isMobile: false, };
+  setLeadsViewType = (viewType) => {
+    this.setState({ viewType, teamsAccessInd: false });
+  };
   handleClear = () => {
     this.setState({ currentData: "" });
     this.props.getLeads(this.props.userId);
@@ -55,13 +67,15 @@ class Leads extends Component {
 
   };
   render() {
+    const { viewType, teamsAccessInd } = this.state;
     const {isMobile } = this.state;
     const {
       addLeadsModal,
         handleLeadsModal,
         setLeadsViewType,
-      viewType,     
+      // viewType,     
     } = this.props;
+    console.log(viewType)
     return (
       <React.Fragment>
         <LeadsHeader
@@ -70,8 +84,9 @@ class Leads extends Component {
         handleDropChange={this.handleDropChange}
         currentUser={this.state.currentUser}
             handleLeadsModal={handleLeadsModal}
-        setLeadsViewType={setLeadsViewType}
+        setLeadsViewType={this.setLeadsViewType}
           viewType={viewType}
+          teamsAccessInd={teamsAccessInd}
           handleChange={this.handleChange}
           handleClear={this.handleClear}
           currentData={this.state.currentData}
@@ -89,13 +104,22 @@ class Leads extends Component {
        
         {/* <LeadsTable/>  */}
         <Suspense fallback={<BundleLoader />}>
-          {viewType==="card" ? (
+          {/* {viewType==="card" ? (
   <LeadsCardList  filter={this.state.filter}/>
           ):viewType==="list" ? (<LeadsJunkList/>)
         :viewType==="all" ? (<LeadsAllCardList/>)
         :viewType==="teams" ? (<LeadsTeamCardList/>)
         
-        :null}
+        :null} */}
+         {teamsAccessInd ? (
+          <LeadsTeamCardList />
+        ) : (
+          <>
+            {viewType === 'card' && <LeadsCardList  filter={this.state.filter}/>}
+            {viewType === 'all' && <LeadsAllCardList />}
+            {viewType === 'teams' && <LeadsTeamCardList />}
+          </>
+        )}
        
         </Suspense>
  
@@ -106,15 +130,16 @@ class Leads extends Component {
 
 const mapStateToProps = ({ leads,auth }) => ({
     addLeadsModal:leads.addLeadsModal,
-   viewType: leads.viewType,
+   //viewType: leads.viewType,
    userId: auth.userDetails.userId,
    addLeadsImportModal:leads.addLeadsImportModal,
+   teamsAccessInd:auth.userDetails.teamsAccessInd
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        setLeadsViewType,
+        //setLeadsViewType,
          handleLeadsModal,
          getLeads,
          handleLeadsImportModal

@@ -1075,7 +1075,7 @@ case types.HANDLE_LEADS_MODAL:
                     };
 
                     case types.EMPTY_LEADS_LIST:
-                      return { ...state, leadsAllData: [] }; 
+                      return { ...state, allleadsInfo: [] }; 
 
                       case types.GET_LEADS_ACTIVITY_RECORDS_REQUEST:
                         return { ...state, fetchingLeadsActivityCount: true };
