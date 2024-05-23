@@ -178,6 +178,7 @@ const LeadsCardList = (props) => {
     <>
      <div className=' flex  justify-center  sticky top-28 z-auto'>
      <div class="rounded-lg m-1 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="font-semibold">Hot</div>
       <div className=" flex  w-[92%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[12.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
         <div className=" w-[18.1rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
@@ -202,15 +203,7 @@ const LeadsCardList = (props) => {
         height={"19vh"}
         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {/* <InfiniteScroll
-        dataLength={leadsAllData.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={fetchingLeads?<div class="flex justify-center" >Loading...</div>:null}
-        height={"75vh"}
-        style={{overflowX:"hidden"}}
-        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-      > */}
+     
            { !props.fetchingLeadsHot && props.leadsAllDataHot.length === 0 ?<NodataFoundPage />:props.leadsAllDataHot.map((item,index) =>  {
           //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
@@ -618,6 +611,7 @@ const LeadsCardList = (props) => {
 
       <div className=' flex  justify-center  sticky top-28 z-auto mt-6'>
      <div class="rounded-lg m-1 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div class="font-semibold">Warm</div>
       <div className=" flex  w-[92%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[12.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
         <div className=" w-[18.1rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
@@ -1058,6 +1052,7 @@ const LeadsCardList = (props) => {
 
       <div className=' flex  justify-center  sticky top-28 z-auto mt-1'>
      <div class="rounded-lg m-1 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+     <div class="font-semibold">Cold</div>
       <div className=" flex  w-[92%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[12.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
         <div className=" w-[18.1rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>

@@ -839,9 +839,16 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingRepairStatus: false,
         repairPhone: state.repairPhone.map((item) =>
-          item.orderPhoneId === action.payload.orderPhoneId
+          item.phoneId === action.payload.phoneId
             ? action.payload
             : item
+          // {
+          //   if (item.imei === action.payload.imei) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }
         ),
 
       };
