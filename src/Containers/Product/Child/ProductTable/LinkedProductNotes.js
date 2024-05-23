@@ -73,27 +73,63 @@
 
 // export default connect(mapStateToProps, mapDispatchToProps)(LinkedProductNotes);
 import React, { useState } from 'react';
+import { base_url } from "../../../../Config/Auth";
 import { Button, Form, Upload, Input, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-//import './styles.css'; // Import the CSS file
+import axios from 'axios';
+// import './styles.css'; // Import the CSS file
 
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-};
+// Replace with your actual token
+
+
 
 const DynamicFields = () => {
-  const [fields, setFields] = useState([{ key: 0, description: '', file: null, imageUrl: '' }]);
+  const [fields, setFields] = useState([{ key: 0, description: '', file: null, imageUrl: '', imageId: '' }]);
 
   const addField = () => {
-    setFields([...fields, { key: fields.length, description: '', file: null, imageUrl: '' }]);
+    setFields([...fields, { key: fields.length, description: '', file: null, imageUrl: '', imageId: '' }]);
+  };
+
+  const token = sessionStorage.getItem("token");
+
+  const beforeUpload = async (file, index, fields, setFields) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+      return false;
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+      return false;
+    }
+  
+    // Handle the file upload manually
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    try {
+      const response = await axios.post(`${base_url}/image`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const imageId = response.data.imageId;
+  
+      // Update the field with the new imageId and imageUrl
+      const newFields = fields.slice();
+      newFields[index].imageId = imageId;
+      newFields[index].imageUrl = URL.createObjectURL(file);
+      newFields[index].file = file;
+      setFields(newFields);
+  
+      message.success('Upload successful!');
+      return false; // Return false since we've handled the upload manually
+    } catch (error) {
+      message.error('Upload failed.');
+      return false;
+    }
   };
 
   const handleDescriptionChange = (index, event) => {
@@ -102,13 +138,11 @@ const DynamicFields = () => {
     setFields(newFields);
   };
 
-  const handleChange = (index, info) => {
-    if (info.file.status === 'done') {
-      const newFields = fields.slice();
-      newFields[index].imageUrl = URL.createObjectURL(info.file.originFileObj);
-      newFields[index].file = info.file.originFileObj;
-      setFields(newFields);
-    }
+  const handleSubmit = (index) => {
+    const field = fields[index];
+    console.log('Submitted field:', field);
+    // Perform submit action here, e.g., send data to API
+    message.success(`Field submitted successfully with Image ID: ${field.imageId}`);
   };
 
   return (
@@ -117,7 +151,7 @@ const DynamicFields = () => {
         Add More
       </Button>
       {fields.map((field, index) => (
-        <div key={field.key} className="field-container">
+        <div key={field.key} className="field-container" style={{ display: 'flex', marginBottom: 16 }}>
           <Form.Item label={`Description ${index + 1}`} style={{ flex: 1 }}>
             <Input.TextArea
               value={field.description}
@@ -127,15 +161,13 @@ const DynamicFields = () => {
               className="description-textarea"
             />
           </Form.Item>
-          <Form.Item label={`Upload ${index + 1}`} className="upload-container">
+          <Form.Item label={`Upload ${index + 1}`} className="upload-container" style={{ marginRight: 16 }}>
             <Upload
               name="avatar"
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
-              action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-              beforeUpload={beforeUpload}
-              onChange={(info) => handleChange(index, info)}
+              beforeUpload={(file) => beforeUpload(file, index, fields, setFields)}
             >
               {field.imageUrl ? (
                 <img src={field.imageUrl} alt="avatar" style={{ width: '100%', height: '100%' }} />
@@ -147,6 +179,9 @@ const DynamicFields = () => {
               )}
             </Upload>
           </Form.Item>
+          <Button type="primary" onClick={() => handleSubmit(index)} style={{ alignSelf: 'flex-end' }}>
+            Submit
+          </Button>
         </div>
       ))}
     </div>
