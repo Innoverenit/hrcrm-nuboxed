@@ -110,16 +110,16 @@ const LeadsActionLeft = (props) => {
           >
             <Badge
               size="small"
-              count={(props.viewType === "teams" && props.leadsTeamCountData.LeadsTeam) || 0}
+              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.LeadsTeam : 0)}
               overflowCount={999}
             >
               <span class=" md:mr-1 text-sm cursor-pointer"
                 onClick={() => props.setLeadsViewType("teams")}
-                style={{
-                  color: props.viewType === "teams" && "#1890ff",
-                }}
+                // style={{
+                //   color: props.viewType === "teams" && "#1890ff",
+                // }}
               >
-                <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                <Avatar style={{ background: props.teamsAccessInd||props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
                   <PeopleIcon className="text-white" /></Avatar>
 
               </span>

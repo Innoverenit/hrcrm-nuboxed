@@ -50,7 +50,7 @@ const LeadsAllCardList = (props) => {
 
   }, []);
   useEffect(() => {
-    return () => props.emptyLeads();
+   props.emptyLeads();
   }, []);
   useEffect(() => {
     const handleResize = () => {
