@@ -38,9 +38,21 @@ const initialState = {
   fetchingALlCompleteOrderListError: true,
   allCompleteOrder: [],
 
+  fetchingRepairHighOrderList: false,
+  fetchingRepairHighOrderListError: false,
+  repairHighCompleteOrder:[],
+
   fetchingAllOrderCount: false,
   fetchingAllOrderCountError: false,
   allOrderCount: {},
+
+  fetchingRepairLowOrderList: false,
+  fetchingRepairLowOrderListError: false,
+  repairLowCompleteOrder:[],
+
+  fetchingRepairMediumOrderList: false,
+  fetchingRepairMediumOrderListError: false,
+  repairMediumCompleteOrder:[],
 
 
   fetchingCustomerList: false,
@@ -438,6 +450,61 @@ export const orderReducer = (state = initialState, action) => {
           deletingOrderRepairData: false,
           deletingOrderRepairDataError: true,
         };
+
+
+
+  
+    
+    
+          case types.GET_REPAIR_HIGH_ORDER_LIST_REQUEST:
+            return { ...state, fetchingRepairHighOrderList: true };
+          case types.GET_REPAIR_HIGH_ORDER_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingRepairHighOrderList: false,
+      
+              repairHighCompleteOrder: [...state.repairHighCompleteOrder, ...action.payload]
+            };
+          case types.GET_REPAIR_HIGH_ORDER_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingRepairHighOrderList: false,
+              fetchingRepairHighOrderListError: true,
+            };
+    
+    
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_REQUEST:
+              return { ...state, fetchingRepairMediumOrderList: true };
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_SUCCESS:
+              return {
+                ...state,
+                fetchingRepairMediumOrderList: false,
+        
+                repairMediumCompleteOrder: [...state.repairMediumCompleteOrder, ...action.payload]
+              };
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_FAILURE:
+              return {
+                ...state,
+                fetchingRepairMediumOrderList: false,
+                fetchingRepairMediumOrderListError: true,
+              };
+
+              case types.GET_REPAIR_LOW_ORDER_LIST_REQUEST:
+                return { ...state, fetchingRepairLowOrderList: true };
+              case types.GET_REPAIR_LOW_ORDER_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingRepairLowOrderList: false,
+          
+                  repairLowCompleteOrder: [...state.repairLowCompleteOrder, ...action.payload]
+                };
+              case types.GET_REPAIR_LOW_ORDER_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingRepairLowOrderList: false,
+                  fetchingRepairLowOrderListError: true,
+                };
+    
     default:
       return state;
   }

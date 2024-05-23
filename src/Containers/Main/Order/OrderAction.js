@@ -514,3 +514,82 @@ export const deleteOrderRepairData = (orderId) => (dispatch, getState) => {
       });
     });
 };
+
+
+export const getRepairHighOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/highPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairMediumOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/mediumPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairLowOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/lowPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_LOW_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
