@@ -452,13 +452,13 @@ export const completeShipperContact = (data, dispatchId) => (dispatch) => {
 // };
 
 //get dispatch list
-export const getDispatchList = (locationId) => (dispatch) => {
+export const getDispatchList = (locationId,pageNo) => (dispatch) => {
   // const dispatchId = getState().inventory.dispatch.dispatchId;
   dispatch({
     type: types.GET_DISPATCH_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-dispatchData/${locationId}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-dispatchData/${locationId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

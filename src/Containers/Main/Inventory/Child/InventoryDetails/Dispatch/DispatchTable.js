@@ -25,14 +25,32 @@ const DispatchValidationToggle = lazy(() => import("./DispatchValidationToggle")
 const DispatchOrderAwbModal = lazy(() => import("./DispatchOrderAwbModal"));
 
 function DispatchTable(props) {
+  const [pageNo, setPageNo] = useState(0);
   useEffect(() => {
-    props.getDispatchList(props.locationDetailsId);
+    setPageNo(pageNo + 1);
+    props.getDispatchList(props.locationDetailsId,pageNo);
     props.getAllShipper()
   }, []);
-
+  
   const [hasMore, setHasMore] = useState(true);
   const handleLoadMore = () => {
-    props.getDispatchList(props.locationDetailsId);
+    const callPageMapd = props.allDispatchList && props.allDispatchList.length &&props.allDispatchList[0].pageCount
+    setTimeout(() => {
+      const {
+        getDispatchList,
+       // userDetails: { employeeId },
+      } = props;
+      if  (props.allDispatchList)
+      {
+        if (pageNo < callPageMapd) {
+            setPageNo(pageNo + 1);
+            getDispatchList(props.locationDetailsId,pageNo); 
+      }
+      if (pageNo === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
   const [rowData, setRowData] = useState({})
   const handleRowData = (item) => {
@@ -41,7 +59,7 @@ function DispatchTable(props) {
 
   return (
     <>
-      {props.fetchingDispatchList ? <BundleLoader /> :
+    
         <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
@@ -62,10 +80,12 @@ function DispatchTable(props) {
             </div>
             <InfiniteScroll
               dataLength={props.allDispatchList.length}
-              // next={handleLoadMore}
-              // hasMore={hasMore}
-              // loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+               next={handleLoadMore}
+               hasMore={hasMore}
+               loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"75vh"}
+              style={{ overflowX: "hidden" }}
+              endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
               {props.allDispatchList.length ? <>
                 {props.allDispatchList.map((item) => {
@@ -221,7 +241,7 @@ function DispatchTable(props) {
                   && !props.fetchingDispatchList ? <NodataFoundPage /> : null}
             </InfiniteScroll>
           </div>
-        </div>}
+        </div>
 
 
 
