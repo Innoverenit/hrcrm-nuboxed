@@ -259,9 +259,15 @@ case types.HANDLE_LEADS_MODAL:
           addLeadsModal: false ,
           leadsAllData:[action.payload,...state.leadsAllData],
           allleadsInfo:[action.payload,...state.allleadsInfo],
-          leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
-          leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
-          leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
+          leadsAllDataHot: action.payload.type === 'Hot' ? 
+          [action.payload, ...state.leadsAllDataHot] : state.leadsAllDataHot,
+          leadsAllDataWarm: action.payload.type === 'warm' ? 
+          [action.payload, ...state.leadsAllDataWarm] : state.leadsAllDataWarm,
+          leadsAllDataCold: action.payload.type === 'Cold' ? 
+          [action.payload, ...state.leadsAllDataCold] : state.leadsAllDataCold,
+          // leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
+          // leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
+          // leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
         };
       case types.ADD_LEADS_FAILURE:
         return { ...state, addingLeads: false, addLeadsModal: false };    
