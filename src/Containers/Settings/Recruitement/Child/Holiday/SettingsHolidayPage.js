@@ -77,14 +77,15 @@ class SettingsHolidayPage extends React.Component {
    
   };
   handleAddStage = () => {
+    const formattedDate = dayjs(this.state.date).format('YYYY-MM-DD') + 'T00:00:00Z';
     console.log(this.state.holidayName);
-    console.log(dayjs(this.state.date).toISOString());
+    // console.log(dayjs(this.state.date).toISOString());
     console.log(this.state.holidayType ? "Optional" : "Mandatory");
     this.props.addHoliday(
       {
         country:this.props.country_id,
         holidayName: this.state.holidayName,
-        date: dayjs(this.state.date).toISOString(),
+        date: formattedDate,
         holidayType: this.state.holidayType ? "Optional" : "Mandatory",
       },
       this.handleCallBack
@@ -102,13 +103,28 @@ class SettingsHolidayPage extends React.Component {
   };
   handleChange = ({ target: { name, value } }) =>
     this.setState({ [name]: value });
-  onChangeDatePicker = (date, dateString) => {
-    console.log(date, dateString);
-    this.setState({ date: dayjs(dateString) });
-  };
+    onChangeDatePicker = (date, dateString) => {
+      if (dateString) {
+        const selectedYear = parseInt(dateString, 10);
+        
+       
+        console.log('Selected Year:', selectedYear);
+        this.setState({ selectedYear });
+       
+      }
+     
+    };
+  // onChangeDatePicker = (date, dateString) => {
+  //   console.log(date, dateString);
+  //   this.setState({ date: dayjs(dateString) });
+  // };
   handleUpdateHoliday = (id, holidayName, date, holidayType) => {
-    this.props.updateHoliday(id, holidayName, date, holidayType);
+    const formattedDate = dayjs(date).format('YYYY-MM-DD') + 'T00:00:00Z';
+    this.props.updateHoliday(id, holidayName, formattedDate, holidayType);
   };
+  // handleUpdateHoliday = (id, holidayName, date, holidayType) => {
+  //   this.props.updateHoliday(id, holidayName, date, holidayType);
+  // };
   handleDeleteHoliday = (id) => {
     this.props.deleteHoliday(id);
     this.setState({ holidayType: "", singleHoliday: "" });
@@ -153,69 +169,24 @@ handleYearChange = (date) => {
               >
                 Holiday List-
                 <div>
-                {/* <DatePicker
-          {...yearPickerConfig}
-          value={moment(selectedYear, 'YYYY')}
-          onChange={this.handleYearChange}
-        /> */}
+         
                  <DatePicker 
                 //  format="YYYY"
                 defaultValue={moment(currentYear, 'YYYY')}
-                // value={this.state.selectedYear ? moment(this.state.selectedYear, 'YYYY') : null}
-                    //  value={selectedYear}
+             
                  onChange={this.onChange}
                   picker="year" />
                  </div>
-                 {/* <Spacer/>
-                 <div>Optional Allowed
-                  <input
-                  type="number"
-                  ></input>
-                 </div> */}
-              {/* <div
-                style={{
-                  marginLeft:"326px"
-                }}>
-                Mandatory-10
-              </div> */}
+            
               </h1>
              
             
-              {/* <FlexContainer
-                justifyContent="space-between"
-                style={{ fontSize: "1.2em", fontWeight: "bold" }}
-              >
-                <div style={{ marginLeft: "1.4375em" }}>Name</div>
-                <div style={{ marginLeft: "5.375em" }}>Date</div>
-                <div style={{ marginRight: "8.4375em" }}>Type</div>
-              </FlexContainer> */}
+           
 
 
-
-              {/* {this.props.role === "ADMIN" && (
-                <div>
-                {this.props.holidays.map((item, i) => (
-                  <SingleHoliday
-                    holidays={item}
-                    newHolidayName="holidayName"
-                    handleUpdateHoliday={this.handleUpdateHoliday}
-                  />
-                ))}
-                </div>
-              )}
 
           
-              {this.props.role !== "ADMIN" && (
-                <div>
-                {this.props.holidays.map((item, i) => (
-                  <SingleHoliday2
-                    holidays={item}
-                    newHolidayName="holidayName"
-                    handleUpdateHoliday={this.handleUpdateHoliday}
-                  />
-                ))}
-                </div>
-              )} */}
+          
               <div>
                 {this.props.holidays.map((item, i) => (
                   <SettingsSingleHoliday
