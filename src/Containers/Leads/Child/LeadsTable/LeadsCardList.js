@@ -51,8 +51,8 @@ const LeadsCardList = (props) => {
     setPage(page + 1);
     //props.getLeads(props.userId, page,"creationdate");
     props.getLeadsHot(props.userId, page,"creationdate","hot");
-    props.getLeadsCold(props.userId, page,"creationdate","warm");
-    props.getLeadsWarm(props.userId, page,"creationdate","cold");
+    props.getLeadsCold(props.userId, page,"creationdate","cold");
+    props.getLeadsWarm(props.userId, page,"creationdate","warm");
     
   }, []);
 
