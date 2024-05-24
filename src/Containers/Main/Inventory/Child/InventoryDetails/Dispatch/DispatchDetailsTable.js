@@ -35,8 +35,9 @@ function OpenReceivedOrderIdForm(props) {
   const handleRowData = (data) => {
     setRowData(data)
   }
-  const itemValue = props.updateDispatchList.every((item) => item.dispatchInspectionInd === true)
+  const itemValue = props.updateDispatchList.every((item) => item.dispatchInspectionInd === 1)
   console.log(itemValue)
+  console.log("dispatch",props.rowData.dispatchInspectionInd)
   const columns = [
     {
       title: "",
