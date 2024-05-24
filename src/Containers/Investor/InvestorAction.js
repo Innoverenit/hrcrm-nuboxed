@@ -1184,3 +1184,34 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       payload: modalProps,
     });
   };
+
+  export const deleteInvestorData = (investorId,userId) => (dispatch) => {
+    dispatch({
+      type: types.DELETE_INVESTOR_DATA_REQUEST,
+    });
+    axios
+      .delete(`${base_url}/investor/delete/${investorId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        dispatch(getInvestor(userId));
+        Swal.fire({
+          icon: 'success',
+          title: 'Investor Deleted Successfully',
+        
+        })
+        dispatch({
+          type: types.DELETE_INVESTOR_DATA_SUCCESS,
+          payload: investorId,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.DELETE_INVESTOR_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };

@@ -87,28 +87,28 @@ function OpenReceivedOrderIdForm(props) {
     },
 
 
-    {
-      title: "QR",
-      width: "8%",
-      render: (name, item, i) => {
-        return (
-          <SubTitle>
-            {item.qrCodeId ? (
-              <QRCodeModal
-                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                imgHeight={"2.8em"}
-                imgWidth={"2.8em"}
-                imgRadius={20}
-              />
-            ) : (
-              <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
-                No QR
-              </span>
-            )}
-          </SubTitle>
-        );
-      },
-    },
+    // {
+    //   title: "QR",
+    //   width: "8%",
+    //   render: (name, item, i) => {
+    //     return (
+    //       <SubTitle>
+    //         {item.qrCodeId ? (
+    //           <QRCodeModal
+    //             qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+    //             imgHeight={"2.8em"}
+    //             imgWidth={"2.8em"}
+    //             imgRadius={20}
+    //           />
+    //         ) : (
+    //           <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
+    //             No QR
+    //           </span>
+    //         )}
+    //       </SubTitle>
+    //     );
+    //   },
+    // },
     {
       title: "",
       width: "3%",
@@ -208,14 +208,19 @@ function OpenReceivedOrderIdForm(props) {
     <>
       <StyledTable
         columns={columns}
+        loading={
+          props.fetchingUpdateDispatchList || props.fetchingUpdateDispatchListError
+                    }
+        // loading={props.fetchingUpdateDispatchList}
         dataSource={props.updateDispatchList}
         pagination={false}
         scroll={{ y: tableHeight }}
       />
       <div class=" flex justify-end" >
-        {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>}
+        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
+        {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>}
         {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
-          <div class=" ml-[10px]" >
+          <div class=" ml-2" >
             <Button
               loading={props.updatingDispatchInspectionButton}
               onClick={() => props.updateDispatchInspectionButton({
@@ -241,6 +246,8 @@ function OpenReceivedOrderIdForm(props) {
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updateDispatchList: inventory.updateDispatchList,
+  fetchingUpdateDispatchList:inventory.fetchingUpdateDispatchList,
+  fetchingUpdateDispatchListError:inventory.fetchingUpdateDispatchListError,
   rejectedReasonModal: inventory.rejectedReasonModal,
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,

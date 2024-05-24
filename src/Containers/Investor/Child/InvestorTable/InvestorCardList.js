@@ -5,6 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
+import {  DeleteOutlined } from "@ant-design/icons";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -24,12 +25,14 @@ import {
   handleCustomerEmailDrawerModal,
   getCustomerById,
 } from "../../../Customer/CustomerAction";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import ReactCountryFlag from 'react-country-flag';
 import {getInvestorsbyId,
   handleInvestorContModal,
   handleUpdateInvestorModal,
   handleInvestorPulseDrawerModal,
   handleInvestorNotesDrawerModal,emptyInvestor,
+  deleteInvestorData,
 } from "../../InvestorAction";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -108,6 +111,7 @@ function InvestorCardList(props) {
     addDrawerInvestorContactModal,
     updateInvestorModal,
     investor,
+    deleteInvestorData,
     fetchingInvestorsError,
     fetchingAllCustomers,
     user,
@@ -351,7 +355,21 @@ function InvestorCardList(props) {
                 />
              </Tooltip>
                           </div>
-
+                          <StyledPopconfirm
+                        title="Do you want to delete?"
+                        onConfirm={() =>
+                          deleteInvestorData(item.investorId,props.userId)
+                        }
+                      >
+                         <Tooltip title="Delete">
+                       
+                          <DeleteOutlined
+                            type="delete"
+                            className="!text-xl text-[red] cursor-pointer"
+                          />
+                       
+                        </Tooltip>
+                      </StyledPopconfirm>
           
                       </div> 
                                 <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
@@ -537,6 +555,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getInvestorsbyId,
+      deleteInvestorData,
       handleUpdateInvestorModal,
       handleInvestorContModal,
       emptyInvestor,
