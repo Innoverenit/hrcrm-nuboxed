@@ -84,9 +84,17 @@ const initialState = {
   fetchingTaskListRangeByUserIdForReportError: false,
   taskListRangeByUserIdForReport: [],
 
+  fetchingHighTaskList: false,
+  fetchingHighTaskListError: false,
+  highTaskList:[],
+
   fetchingTasksCompleted: false,
   fetchingTasksCompletedError: false,
   taskCompleted: "",
+
+  fetchingLowTaskList: false,
+  fetchingLowTaskListError: false,
+  lowTaskList:[],
 
   fetchingTasksInProgress: false,
   fetchingTasksInProgressError: false,
@@ -103,6 +111,10 @@ const initialState = {
   fetchingProjectTaskList:false,
   fetchingProjectTaskListError:false,
   projectTaskList:[],
+
+  fetchingMediumTaskList: false,
+  fetchingMediumTaskListError: false,
+  mediumTaskList:[],
 
   deletingStepperTaskData: false, 
   deletingStepperTaskDataError: false, 
@@ -448,7 +460,10 @@ export const TaskReducer = (state = initialState, action) => {
          addTaskModal: false,
          callActivityModal:false,
          addPitchactivityModal:false,
-         taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
+         highTaskList: action.payload.priority === 'High' ? [action.payload, ...state.highTaskList] : state.highTaskList,
+         mediumTaskList: action.payload.priority === 'Medium' ? [action.payload, ...state.mediumTaskList] : state.mediumTaskList,
+         lowTaskList: action.payload.priority === 'Low' ? [action.payload, ...state.lowTaskList] : state.lowTaskList,
+        //  taskListRangeByUserId: [action.payload, ...state.taskListRangeByUserId], 
         };
     case types.ADD_TASK_FAILURE:
       return {
@@ -1141,7 +1156,56 @@ export const TaskReducer = (state = initialState, action) => {
                                           case types.DELETE_SREPPER_TASK_DATA_FAILURE:
                                             return { ...state, deletingStepperTaskData: false, deletingStepperTaskDataError: false };
                                       
-                                
+                                            case types.GET_TASK_LIST_OF_HIGH_REQUEST:
+                                              return { ...state, fetchingHighTaskList: true };
+                                            case types.GET_TASK_LIST_OF_HIGH_SUCCESS:
+                                              return {
+                                                ...state,
+                                                fetchingHighTaskList: false,
+                                                highTaskList: [...state.highTaskList, ...action.payload]
+                                                // taskListRangeByUserId: action.payload,
+                                              };
+                                            case types.GET_TASK_LIST_OF_HIGH_FAILURE:
+                                              return {
+                                                ...state,
+                                                fetchingHighTaskList: false,
+                                                fetchingHighTaskListError: true,
+                                              };     
+                                              
+                                              
+
+                                              case types.GET_TASK_LIST_OF_MEDIUM_REQUEST:
+                                                return { ...state, fetchingMediumTaskList: true };
+                                              case types.GET_TASK_LIST_OF_MEDIUM_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  fetchingMediumTaskList: false,
+                                                  mediumTaskList: [...state.mediumTaskList, ...action.payload]
+                                                  // taskListRangeByUserId: action.payload,
+                                                };
+                                              case types.GET_TASK_LIST_OF_MEDIUM_FAILURE:
+                                                return {
+                                                  ...state,
+                                                  fetchingMediumTaskList: false,
+                                                  fetchingMediumTaskListError: true,
+                                                };  
+
+
+                                                case types.GET_TASK_LIST_OF_LOW_REQUEST:
+                                                  return { ...state, fetchingLowTaskList: true };
+                                                case types.GET_TASK_LIST_OF_LOW_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    fetchingLowTaskList: false,
+                                                    lowTaskList: [...state.lowTaskList, ...action.payload]
+                                                    // taskListRangeByUserId: action.payload,
+                                                  };
+                                                case types.GET_TASK_LIST_OF_LOW_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    fetchingLowTaskList: false,
+                                                    fetchingLowTaskListError: true,
+                                                  };  
                                 
                           
 

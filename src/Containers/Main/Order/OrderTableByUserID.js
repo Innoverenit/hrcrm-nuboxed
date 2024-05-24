@@ -84,6 +84,7 @@ const handleLoadMoreLow = () => {
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
+          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
           <div className="md:w-24"></div>
                     </div>
@@ -92,8 +93,11 @@ const handleLoadMoreLow = () => {
                     <InfiniteScroll
           dataLength={props.repairHighCompleteOrder.length}
           next={handleLoadMore}
+          
           loader={props.fetchingRepairHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+         
           height={"19vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairHighCompleteOrder.length ?
                             <>
@@ -201,13 +205,18 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
                           imgWidth={"2.1em"}
                           imgHeight={"2.1em"}
                         />}
+                      </div>
+                    </div>
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
                       </div>
                     </div>
 
@@ -329,6 +338,7 @@ const handleLoadMoreLow = () => {
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
+          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
           <div className="md:w-24"></div>
                     </div>
@@ -339,6 +349,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreMedium}
           loader={props.fetchingRepairMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"19vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairMediumCompleteOrder.length ?
                             <>
@@ -446,7 +457,7 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
@@ -455,7 +466,11 @@ const handleLoadMoreLow = () => {
                         />}
                       </div>
                     </div>
-
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
+                      </div>
+                    </div>
                   </div>
                   <div className=" flex text-sm font-medium flex-col md:w-[5.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
@@ -574,6 +589,7 @@ const handleLoadMoreLow = () => {
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
+          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
           <div className="md:w-24"></div>
                     </div>
@@ -584,6 +600,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreLow}
           loader={props.fetchingRepairLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"19vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairLowCompleteOrder.length ?
                             <>
@@ -691,13 +708,18 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
                           imgWidth={"2.1em"}
                           imgHeight={"2.1em"}
                         />}
+                      </div>
+                    </div>
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
                       </div>
                     </div>
 

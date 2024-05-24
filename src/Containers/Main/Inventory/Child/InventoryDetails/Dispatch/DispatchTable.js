@@ -157,14 +157,11 @@ function DispatchTable(props) {
                                 : item.dispatchInspectionInd === 2 ||
                                   item.dispatchInspectionInd === 3 ||
                                   item.dispatchInspectionInd === 4 ?
-                                  <b>Completed</b>
+                                  <div class=" text-[green]">Completed</div>
                                   : item.dispatchInspectionInd === 1 ?
-                                    <Button
-                                      style={{ fontWeight: "500", color: "white" }}
-                                      // onClick={() => props.updateDispatchInspectionButton({ dispatchInspectionInd : 1 }, item.orderPhoneId, props.locationDetailsId)}
-                                      type="primary">
-                                      Pause
-                                    </Button> :
+                                    <div class=" text-[tomato]">
+                                  In Progress
+                                    </div> :
                                     null}
                             </div>
                           </div>

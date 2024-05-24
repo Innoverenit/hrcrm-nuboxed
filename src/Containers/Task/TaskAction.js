@@ -1707,3 +1707,115 @@ export const deleteStepperTaskData = (id,orgId) => (dispatch, getState) => {
       });
     });
 };
+
+
+export const getHighTaskListRange = (employeeId,priority,pageNo, startDate, endDate) => (
+  dispatch
+) => {
+  let api_url = "";
+  if (startDate === undefined || endDate === undefined) {
+    api_url = `/task/employee/${employeeId}/${priority}/${pageNo}`;
+  } else {
+    api_url = `/task/employee/${employeeId}?startDate=${startDate}&endDate=${endDate}`;
+  }
+  console.log(api_url);
+  dispatch({
+    type: types.GET_TASK_LIST_OF_HIGH_REQUEST,
+  });
+  axios
+    .get(`${base_url}${api_url}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      ////debugger;
+      console.log(res);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_HIGH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      ////debugger;
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_HIGH_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMediumTaskListRange = (employeeId,priority,pageNo, startDate, endDate) => (
+  dispatch
+) => {
+  let api_url = "";
+  if (startDate === undefined || endDate === undefined) {
+    api_url = `/task/employee/${employeeId}/${priority}/${pageNo}`;
+  } else {
+    api_url = `/task/employee/${employeeId}?startDate=${startDate}&endDate=${endDate}`;
+  }
+  console.log(api_url);
+  dispatch({
+    type: types.GET_TASK_LIST_OF_MEDIUM_REQUEST,
+  });
+  axios
+    .get(`${base_url}${api_url}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      ////debugger;
+      console.log(res);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_MEDIUM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      ////debugger;
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_MEDIUM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getLowTaskListRange = (employeeId,priority,pageNo, startDate, endDate) => (
+  dispatch
+) => {
+  let api_url = "";
+  if (startDate === undefined || endDate === undefined) {
+    api_url = `/task/employee/${employeeId}/${priority}/${pageNo}`;
+  } else {
+    api_url = `/task/employee/${employeeId}?startDate=${startDate}&endDate=${endDate}`;
+  }
+  console.log(api_url);
+  dispatch({
+    type: types.GET_TASK_LIST_OF_LOW_REQUEST,
+  });
+  axios
+    .get(`${base_url}${api_url}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      ////debugger;
+      console.log(res);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_LOW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      ////debugger;
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_LIST_OF_LOW_FAILURE,
+        payload: err,
+      });
+    });
+};

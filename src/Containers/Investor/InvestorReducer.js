@@ -69,6 +69,9 @@ const initialState = {
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
 
+  deleteInvestorData: false, 
+  deleteInvestorDataError: false ,
+
   fetchingWonInvPipelineValue: false,
   fetchingWonInvPipelineValueError: false,
   WonInvestorPipeline: {},
@@ -810,7 +813,20 @@ export const investorReducer = (state = initialState, action) => {
                                               return { ...state, addInvestorActivityJumpstartModal: action.payload };
                               
               
-                              
+                                              case types.DELETE_INVESTOR_DATA_REQUEST:
+                                                return { ...state, deleteInvestorData: true };
+                                              case types.DELETE_INVESTOR_DATA_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  deleteInvestorData: false,
+                                                  investorsbyId: state.investorsbyId.filter(
+                                                    (item) => item.investorId !== action.payload
+                                                ), 
+                                  
+                                                };
+                                              case types.DELETE_INVESTOR_DATA_FAILURE:
+                                                return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };
+                                                       
 
 
 default:

@@ -101,6 +101,7 @@ const handleLoadMoreLow = () => {
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
+          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
           <div className="md:w-[9rem]"></div>
         </div>
@@ -110,6 +111,7 @@ const handleLoadMoreLow = () => {
           hasMore={hasMore}
           loader={props.fetchingAllHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"19vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {props.allHighCompleteOrder.length ?
             <>
@@ -186,7 +188,7 @@ const handleLoadMoreLow = () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[12.02rem]">
+                        <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -282,6 +284,11 @@ const handleLoadMoreLow = () => {
 
 
                         }
+                      </div>
+                    </div>
+                       <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
                       </div>
                     </div>
 
@@ -401,6 +408,7 @@ const handleLoadMoreLow = () => {
           <div className="md:w-[5.031rem]">Owner</div>
           <div className="md:w-[5.2rem]">Supervisor</div>
           <div className="md:w-[5.06rem]">Lead</div>
+          <div className="md:w-[5.06rem]">Type</div>
           <div className="md:w-[9.73rem]">Created</div>
           <div className="md:w-[9rem]"></div>
         </div>
@@ -410,6 +418,7 @@ const handleLoadMoreLow = () => {
           hasMore={hasMore}
           loader={props.fetchingAllMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
           height={"19vh"}
+          endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {props.allMediumCompleteOrder.length ?
             <>
@@ -486,7 +495,7 @@ const handleLoadMoreLow = () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[12.02rem]">
+                        <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -584,7 +593,11 @@ const handleLoadMoreLow = () => {
                         }
                       </div>
                     </div>
-
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
+                      </div>
+                    </div>
                   </div>
                   <div className=" flex text-sm font-medium flex-col md:w-[7.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
@@ -701,6 +714,7 @@ const handleLoadMoreLow = () => {
            <div className="md:w-[5.031rem]">Owner</div>
            <div className="md:w-[5.2rem]">Supervisor</div>
            <div className="md:w-[5.06rem]">Lead</div>
+           <div className="md:w-[5.06rem]">Type</div>
            <div className="md:w-[9.73rem]">Created</div>
            <div className="md:w-[9rem]"></div>
          </div>
@@ -708,8 +722,9 @@ const handleLoadMoreLow = () => {
            dataLength={props.allLowCompleteOrder.length}
            next={handleLoadMoreLow}
            hasMore={hasMore}
-           loader={props.allLowCompleteOrder ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+           loader={props.fetchingAllLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
            height={"19vh"}
+           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
          >
            {props.allLowCompleteOrder.length ?
              <>
@@ -786,7 +801,7 @@ const handleLoadMoreLow = () => {
                          </div>
                        
  
-                         <div class="max-sm:w-full md:w-[12.02rem]">
+                         <div class="max-sm:w-full md:w-[8.02rem]">
                            <Tooltip>
                              <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                                {item.distributorName}
@@ -884,7 +899,11 @@ const handleLoadMoreLow = () => {
                          }
                        </div>
                      </div>
- 
+                     <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div>
+                      {item.orderType}
+                      </div>
+                    </div>
                    </div>
                    <div className=" flex text-sm font-medium flex-col md:w-[7.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                      <span>{date}</span>
@@ -986,7 +1005,7 @@ const handleLoadMoreLow = () => {
                  );
                })}
              </> :
-             !props.allLowCompleteOrder.length && !props.allLowCompleteOrder ? <NodataFoundPage /> : null}
+             !props.allLowCompleteOrder.length && !props.fetchingAllLowOrderList ? <NodataFoundPage /> : null}
          </InfiniteScroll>
        </div>
        </div>
