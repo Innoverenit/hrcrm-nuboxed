@@ -2,7 +2,8 @@ import React, { useState,useEffect,Suspense, lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
-import {handleContactInvestModal,setContactInvetViewType,
+import {handleContactInvestModal,
+  // setContactInvetViewType,
   getContactInvestByUserId,
   getContactInvestFilterData} from "./ContactInvestAction";
 const ContactInvestTeamsCardList = lazy(() => import("./Child/ContactInvestTable/ContactInvestTeamsCardList"));
@@ -21,6 +22,8 @@ function ContactInvest (props) {
     const [filterText, setFilterText] = useState('');
   const [filteredData, setFilteredData] = useState(props.contactiNVESTbyId);
   const [filter, setFilter] = useState("creationdate");
+  const [viewType, setViewType] = useState(null);
+  const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const handleCountryChange = (event) => {
     const country = event.target.value;
     setSelectedCountry(country);
@@ -31,6 +34,10 @@ function ContactInvest (props) {
       const filteredJobs = props.contactiNVESTbyId.filter((job) => job.department ===country );
       setFilteredData(filteredJobs);
     }
+};
+const  setContactInvetViewType = (viewType) => {
+  setViewType(viewType);
+  setTeamsAccessInd(false);
 };
 const handleFilterChange = (data) => {
   setFilter(data);
@@ -96,12 +103,13 @@ function handleCurrentData (value){
   }, [props.contactiNVESTbyId, filterText]);
 
 const{handleContactInvestModal,addContactInvestModal,
-    setContactInvetViewType,viewType
+    // setContactInvetViewType,viewType
 }=props;
         return (
             <React.Fragment>
                 <ContactInvestHeader
                 viewType={viewType}
+                teamsAccessInd={teamsAccessInd}
                 setContactInvetViewType={setContactInvetViewType}
                 addContactInvestModal={addContactInvestModal}
                 handleContactInvestModal={handleContactInvestModal}
@@ -124,14 +132,24 @@ const{handleContactInvestModal,addContactInvestModal,
         handleContactInvestModal={handleContactInvestModal}
       />
        <Suspense fallback={<BundleLoader />}>
-        {viewType === "card" ?
+
+       {teamsAccessInd ? (
+        <ContactInvestTeamsCardList     />
+        ) : (
+          <>
+            {viewType === 'card' &&   <ContactInvestCardList currentUser={currentUser}  filterData={filterData}/> }
+            {viewType === 'all' &&  <ContactInvestAllCardList     /> }
+            {viewType === 'teams' && <ContactInvestTeamsCardList     />}
+          </>
+        )}
+        {/* {viewType === "card" ?
           <ContactInvestCardList currentUser={currentUser}  filterData={filterData}/> 
 
          :viewType === "all" ?
          <ContactInvestAllCardList     /> 
          :viewType === "teams" ?
          <ContactInvestTeamsCardList     /> 
-         : null}
+         : null} */}
       </Suspense>
             </React.Fragment>
         )
@@ -139,14 +157,15 @@ const{handleContactInvestModal,addContactInvestModal,
 
 const mapStateToProps = ({ contactinvest,auth }) => ({
     addContactInvestModal:contactinvest.addContactInvestModal,
-    viewType:contactinvest.viewType,
+    // viewType:contactinvest.viewType,
+    teamsAccessInd:auth.userDetails.teamsAccessInd,
     contactiNVESTbyId: contactinvest.contactiNVESTbyId,
     userId: auth.userDetails.userId,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     handleContactInvestModal,
-    setContactInvetViewType,
+    // setContactInvetViewType,
     getContactInvestByUserId,
     getContactInvestFilterData
 }, dispatch)

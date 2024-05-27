@@ -351,7 +351,7 @@ case types.GET_PITCH_REQUEST:
               ...state,
               deletingPitchData: false,
               pitchData: state.pitchData.filter(
-                (item) => item.investorleadsId !== action.payload
+                (item) => item.investorLeadsId !== action.payload
               ),
             };
           case types.DELETE_PITCH_DATA_FAILURE:

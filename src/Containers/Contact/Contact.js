@@ -6,7 +6,7 @@ import AddContactImportModal from "./AddContactImportModal";
 import {
   handleContactModal,
   handleContactImportModal,
-  setContactsViewType,
+  // setContactsViewType,
   getPArtnerContactPagination,
   emptyContact,
   getContactListByUserId,
@@ -28,10 +28,16 @@ function Contact(props) {
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
   const [filterText, setFilterText] = useState('');
+  const [viewType, setViewType] = useState(null);
+  const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const [filter, setFilter] = useState("creationdate");
 const [filteredData, setFilteredData] = useState(props.contactByUserId);
 const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
 
+const setContactsViewType = (viewType) => {
+  setViewType(viewType);
+  setTeamsAccessInd(false);
+};
 const handleCountryChange = (event) => {
   const country = event.target.value;
   setSelectedCountry(country);
@@ -108,8 +114,8 @@ const filterData = filteredData.filter(item =>
     addContactImportModal,
     handleContactModal,
     handleContactImportModal,
-    setContactsViewType,
-    viewType,
+    // setContactsViewType,
+    // viewType,
   } = props;
 
   return (
@@ -122,6 +128,7 @@ const filterData = filteredData.filter(item =>
         currentUser={currentUser}
         currentPartnerUser={currentPartnerUser}
         setContactsViewType={setContactsViewType}
+        teamsAccessInd={teamsAccessInd}
         viewType={viewType}
         text={text}
         handleChange={handleChange}
@@ -143,7 +150,22 @@ const filterData = filteredData.filter(item =>
         handleContactImportModal={handleContactImportModal}
       />
       <Suspense fallback={<BundleLoader />}>
-        {props.viewType === "table" ?(
+
+      {teamsAccessInd ? (
+        <ContactTeamCardList/>
+        ) : (
+          <>
+            {viewType === 'table' &&  <ContactCardList
+           
+           currentUser={currentUser} 
+           filter={filter}
+            filterData={filterData}
+            />}
+            {viewType === 'all' && <ContactAllCardList/>}
+            {viewType === 'teams' &&  <ContactTeamCardList/>}
+          </>
+        )}
+        {/* {props.viewType === "table" ?(
         
         <ContactCardList
            
@@ -158,7 +180,7 @@ const filterData = filteredData.filter(item =>
          
           <ContactTeamCardList/>)
 
-        : null}
+        : null} */}
       </Suspense>
     </React.Fragment>
   );
@@ -168,7 +190,8 @@ const mapStateToProps = ({ contact, account, auth }) => ({
   userId: auth.userDetails.userId,
   addContactModal: contact.addContactModal,
   addContactImportModal:contact.addContactImportModal,
-  viewType: contact.viewType,
+  // viewType: contact.viewType,
+  teamsAccessInd:auth.userDetails.teamsAccessInd,
   contactByUserId: contact.contactByUserId,
 });
 
@@ -178,7 +201,7 @@ const mapDispatchToProps = (dispatch) =>
       handleContactModal,
       handleContactImportModal,
       getPArtnerContactPagination,
-      setContactsViewType,
+      // setContactsViewType,
       getContactListByUserId,
       getFilterContactList,
       getContactPartnerListByUserId,

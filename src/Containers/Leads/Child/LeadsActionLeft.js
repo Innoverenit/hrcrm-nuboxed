@@ -110,7 +110,7 @@ const LeadsActionLeft = (props) => {
           >
             <Badge
               size="small"
-              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.LeadsTeam : 0)}
+              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
               overflowCount={999}
             >
               <span class=" md:mr-1 text-sm cursor-pointer"

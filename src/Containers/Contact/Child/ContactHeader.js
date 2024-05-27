@@ -12,6 +12,7 @@ class ContactHeader extends Component {
       currentData,
       handleButtonClick,
       visibility,
+      teamsAccessInd,
       handleSecondFilterChange,
       currentSecondData,
     } = this.props;
@@ -20,6 +21,7 @@ class ContactHeader extends Component {
         <ActionHeader
           leftComponent={
             <ContactActionLeft
+            teamsAccessInd={teamsAccessInd}
               currentData={this.props.currentData}
               handleChange={this.props.handleChange}
               text={this.props.text}

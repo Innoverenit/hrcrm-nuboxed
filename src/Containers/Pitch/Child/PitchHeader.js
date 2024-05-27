@@ -9,7 +9,7 @@ class PitchHeader extends Component {
       handleLeadsModal,
       viewType,
       setPitchViewType,
-   
+      teamsAccessInd,
       currentUser,
       setLeadsViewType,
       handleChange,
@@ -24,7 +24,7 @@ class PitchHeader extends Component {
             <PitchActionLeft
             setPitchViewType={setPitchViewType}
             viewType={viewType}
-            // viewType={viewType}
+            teamsAccessInd={teamsAccessInd}
             currentUser={currentUser}
             currentData={currentData}
             handleClear={handleClear}

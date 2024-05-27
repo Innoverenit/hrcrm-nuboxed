@@ -47,7 +47,8 @@ export const addDistributor = (distributor) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Customer Created Successfully',
-          showConfirmButton: true,
+          showConfirmButton: false,
+   timer: 1500,
         })
       }
 
@@ -341,7 +342,8 @@ export const addOrderForm = (customer, distributorId,) => (dispatch, getState) =
       Swal.fire({
         icon: 'success',
         title: 'Order Created',
-        showConfirmButton: true,
+        showConfirmButton: false,
+   timer: 1500,
       })
       dispatch(getOrderRecords(distributorId));
       // dispatch(getDistributorOrderOfHigh(distributorId,"0","repair","High"));
@@ -790,7 +792,8 @@ export const updateDistributor = (data, distributorId, userId) => (
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+   timer: 1500,
       })
     })
     .catch((err) => {
@@ -825,7 +828,9 @@ export const deleteDistributor = (data, distributorId, userId) => (
       Swal.fire({
         icon: 'success',
         title: 'Deleted Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
+
       })
     })
     .catch((err) => {
@@ -1079,7 +1084,8 @@ export const addCarDetails = (customer, id, cb) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Item list added',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_CAR_SUCCESS,
@@ -1114,7 +1120,8 @@ export const addProcureDetails = (customer, orderPhoneId, cb) => (dispatch, getS
       Swal.fire({
         icon: 'success',
         title: 'list added',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_PROCURE_DETAILS_SUCCESS,
@@ -1257,7 +1264,8 @@ export const addPaidOrder = (data, orderId,) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Payment Successful!',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1891,7 +1899,8 @@ export const deleteOrderPaymentData = (data, paymentId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Order Payment Deleted Successfully !',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.DELETE_ORDER_PAYMENT_DATA_SUCCESS,
@@ -2252,7 +2261,8 @@ export const addLocationInOrder = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Repair facility selected',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_LOCATION_IN_ORDER_SUCCESS,
@@ -2283,7 +2293,8 @@ export const addLead = (data, orderPhoneId, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Lead Tagged',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_LEAD_SUCCESS,
@@ -2314,7 +2325,8 @@ export const addSupervisor = (data, orderPhoneId, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Supervisor Tagged',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_SUPERVISOR_SUCCESS,
@@ -2590,7 +2602,8 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       Swal.fire({
         icon: 'success',
         title: 'Spare Deleted Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -2671,7 +2684,8 @@ export const startQCStatus = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'QC Started',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
 
       dispatch({
@@ -2699,7 +2713,8 @@ export const startRepairInStatus = (data, id) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Repair Started',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
 
       // dispatch(getDistributorOrderByDistributorId(id, 0));
@@ -3070,7 +3085,8 @@ export const saveUnitForCatalogueItem = (data, id, orderId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Items added successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch(getProductListByDistributor(id, orderId));
       dispatch({
@@ -3100,7 +3116,8 @@ export const addAllProductInOrder = (data, id, orderId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Items added to the order',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch(getProductListByDistributor(id, orderId));
       dispatch(getProductionOrder(id, 0))
@@ -3222,7 +3239,8 @@ export const updateOrderStep1 = (data, orderPhoneId) => (
       Swal.fire({
         icon: 'success',
         title: 'Order Details Updated',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_ORDER_STEP1_SUCCESS,
@@ -3231,7 +3249,8 @@ export const updateOrderStep1 = (data, orderPhoneId) => (
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -3264,7 +3283,8 @@ export const updateOrderPayment = (data, paymentId) => (
       Swal.fire({
         icon: 'success',
         title: 'Order Payment Updated Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -3321,7 +3341,8 @@ export const createOrderForProduction = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Order Created Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -3606,7 +3627,8 @@ export const addOrderProcurementForm = (customer) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Order Created',
-        showConfirmButton: true,
+        showConfirmButton: false,
+   timer: 1500,
       })
       // dispatch(getOrderRecords(distributorId));
       dispatch({
@@ -3714,7 +3736,8 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
       Swal.fire({
         icon: 'success',
         title: 'Order Details Updated',
-        showConfirmButton: true,
+        showConfirmButton: false,
+   timer: 1500,
       })
       dispatch({
         type: types.UPDATE_PROCURE_STEP1_SUCCESS,
@@ -3723,7 +3746,8 @@ export const updateProcureStep1 = (data, orderPhoneId) => (
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+   timer: 1500,
       })
     })
     .catch((err) => {
