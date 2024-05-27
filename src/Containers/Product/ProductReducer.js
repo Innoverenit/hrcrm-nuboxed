@@ -148,6 +148,10 @@ const initialState = {
   updateServiceById: false,
   updateServiceByIdError: false,
 
+  fetchingProductsDesc:false,
+  fetchingProductsDescError:false,
+  productsDesc:[],
+
   updateProductById: false,
   updateProductByIdError: false,
 
@@ -280,6 +284,10 @@ const initialState = {
   addingProductBuilder: false,
   addingProductBuilderError: false,
   addedProBuilder: [],
+
+
+  addingProductDesc:false,
+  addingProductDescError:false,
 
   fetchingBuilderByProductId: false,
   fetchingBuilderByProductIdError: false,
@@ -466,6 +474,24 @@ export const productReducer = (state = initialState, action) => {
         addingServiceError: true,
         addConfigureModal: false,
       };
+
+
+      case types.ADD_PRODUCT_DESC_REQUEST:
+        return { ...state, addingProductDesc: true };
+      case types.ADD_PRODUCT_DESC_SUCCESS:
+        return {
+          ...state, addingProductDesc: false, 
+          // addConfigureModal: false,
+          productsDesc: [action.payload, ...state.productsDesc]
+        };
+      case types.ADD_PRODUCT_DESC_FAILURE:
+        return {
+          ...state,
+          addingProductDesc: false,
+          addingProductDescError:false,
+          // addingProductDesc: true,
+          // addConfigureModal: false,
+        };
 
     case types.GET_LATEST_PRODUCTS_BY_ORGANIZATION_ID_REQUEST:
       return { ...state, fetchingLatestProductsByOrganizationId: true };
@@ -1106,6 +1132,14 @@ export const productReducer = (state = initialState, action) => {
         uploadingCatalogueList: false,
         uploadingCatalogueListError: true,
       };
+
+
+      case types.GET_PRODUCT_DESC_REQUEST:
+        return { ...state, fetchingProductsDesc: true, fetchingProductsDescError: false };
+      case types.GET_PRODUCT_DESC_SUCCESS:
+        return { ...state, fetchingProductsDesc: false, productsDesc: action.payload };
+      case types.GET_PRODUCT_DESC_FAILURE:
+        return { ...state, fetchingProductsDesc: false, fetchingProductsDescError: true };
 
     case types.REMOVE_PRODUCT_BUILDER_REQUEST:
       return { ...state, removingProductBuilder: true };

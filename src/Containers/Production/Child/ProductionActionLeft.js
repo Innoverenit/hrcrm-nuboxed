@@ -40,25 +40,7 @@ const ProductionActionLeft = (props) => {
                         </span>
                     </Badge>
                 </Tooltip>
-      <Tooltip
-        title={<FormattedMessage id="app.listView" defaultMessage="List View" />}>
- <Badge
-          size="small"
-          count={(props.viewType === "card" && props.productrecordData.product) || 0}
-          overflowCount={999}
-        >
-        <span class=" md:mr-2 text-sm cursor-pointer"
-          onClick={() => setProductionViewType("card")}
-          style={{
-            color: viewType === "card" && "#1890ff",
-          }}
-        >
-          <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon className="text-white" /></Avatar>
-
-        </span>
-        </Badge>
-      </Tooltip>
+    
       <Tooltip
           title={
             <FormattedMessage id="app.stageview" defaultMessage="Stage View" />

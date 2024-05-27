@@ -1007,6 +1007,36 @@ export const getCategoryImage = () => (dispatch) => {
     });
 };
 
+
+
+export const getProductDesc = (productionBuilderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_DESC_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/productionBuilder/product/menu/${productionBuilderId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_DESC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCT_DESC_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const productPublishToggle = (data, productId, groupId) => (
   dispatch
 ) => {
@@ -1106,11 +1136,11 @@ export const uploadproductlist = (product, groupId) => (dispatch) => {
       });
     });
 };
-export const addProduct = (product, cb) => (dispatch) => {
+export const addProduct = (key,description,imageId,userId,productionBuilderId,orgId, cb) => (dispatch) => {
   console.log("inside add product");
   dispatch({ type: types.ADD_PROFESSIONALDUCT_REQUEST });
   axios
-    .post(`${base_url2}/product`, product, {
+    .post(`${base_url2}/product`, key,description,imageId,userId,productionBuilderId,orgId, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1706,5 +1736,36 @@ export const removeNotesOfProduct = (data,notesId) => (dispatch) => {
         type: types.REMOVE_NOTES_OF_PRODUCT_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+
+
+
+export const addProductDesc = (product, cb) => (dispatch) => {
+  // console.log("inside add product");
+  dispatch({ type: types.ADD_PRODUCT_DESC_REQUEST });
+  axios
+    .post(`${base_url2}/productionBuilder/product/menu/save`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PRODUCT_DESC_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PRODUCT_DESC_FAILURE,
+        payload: err,
+      });
+      cb();
     });
 };

@@ -6,6 +6,10 @@ const initialState = {
 
 
 
+  addSpareNotesDrawerModal:false,
+
+
+
   fetchingProductionCellList:false,
   fetchingProductionCellListError:false,
   productionCellList:[],
@@ -171,6 +175,11 @@ export const productionReducer = (state = initialState, action) => {
         return { ...state, fetchingProductionTable: false, productionTableData: action.payload };
       case types.GET_PRODUCTION_TABLE_FAILURE:
         return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
+
+
+
+        case types.ADD_SPARE_NOTES_DRAWER_MODAL:
+                                          return { ...state, addSpareNotesDrawerModal: action.payload };
 
 
         case types.UPDATE_PRODUCTION_PAUSE_STATUS_REQUEST:
