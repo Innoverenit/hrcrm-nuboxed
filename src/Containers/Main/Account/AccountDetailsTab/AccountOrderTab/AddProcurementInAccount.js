@@ -67,7 +67,7 @@ function AddProcurementInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
-                orderType:"procure",
+                orderType:"Procure",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,

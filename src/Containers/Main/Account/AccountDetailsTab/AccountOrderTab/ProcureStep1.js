@@ -72,7 +72,7 @@ function ProcureStep1(props) {
             distributorId: props.distributorId,
             orderCurrencyId: props.setEdittingProcure.orderCurrencyId || "",
             userId: props.userId,
-            orderType: "procure",
+            orderType: "Procure",
             orderId: props.setEdittingProcure.orderId || "",
             priority: props.setEdittingProcure.priority || "",
             lobDetsilsId: props.setEdittingProcure.lobDetsilsId || "",
