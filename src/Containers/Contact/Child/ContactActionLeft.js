@@ -73,9 +73,11 @@ const ContactActionLeft = (props) => {
   console.log(transcript);
   console.log(transcript);
   useEffect(() => {
-    // props.getContactRecord(props.userId);
     props.getDepartments();
-    }, [props.userId]);
+    if (props.teamsAccessInd) {
+      props.getContactTeamRecord(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
     useEffect(() => {
       if (props.viewType === "table") {
         props.getContactRecord(props.userId);
