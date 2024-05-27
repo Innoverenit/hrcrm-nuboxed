@@ -5,7 +5,7 @@ import { BundleLoader } from "../../Components/Placeholder";
 import {
     handleCustomerModal,
     getCustomerListByUserId,
-    setCustomerViewType,
+    // setCustomerViewType,
     getCustomerPagination,
     emptyCustomer,
     getLatestCustomer,
@@ -23,10 +23,20 @@ const CustomerHeader = lazy(() => import("./Child/CustomerHeader"));
 const CustomerCardList=lazy(() => import("./Child/CustomerTable/CustomerCardList"));
 const CustomerAllCardList=lazy(() => import("./Child/CustomerTable/CustomerAllCardList"));
 class Customer extends Component {
-  state = { currentData: "",
+  constructor(props) {
+    super(props);
+  this.state = { 
+    currentData: "",
   filter:"creationdate",
+  viewType: null, // Default viewType
+  teamsAccessInd: props.teamsAccessInd ,
   currentUser:"",
   isMobile: false, };
+  }
+
+  setCustomerViewType = (viewType) => {
+    this.setState({ viewType, teamsAccessInd: false });
+  };
   handleClear = () => {
     const startDate = dayjs()
       .startOf("month")
@@ -93,6 +103,7 @@ class Customer extends Component {
   };
 
   render() {
+    const { viewType, teamsAccessInd } = this.state;
     const {isMobile } = this.state;
     const {
       addCustomerModal,
@@ -104,7 +115,8 @@ class Customer extends Component {
             handleDropChange={this.handleDropChange}
             currentUser={this.state.currentUser}
            viewType={this.props.viewType}
-           setCustomerViewType={this.props.setCustomerViewType}
+           setCustomerViewType={this.setCustomerViewType}
+           teamsAccessInd={teamsAccessInd}
           handleCustomerModal={handleCustomerModal}
           handleClear={this.handleClear}
           handleChange={this.handleChange}
@@ -118,7 +130,29 @@ class Customer extends Component {
           handleCustomerModal={handleCustomerModal}
         />
         <Suspense fallback={<BundleLoader />}>
-        { this.props.viewType==="card"?
+
+        {teamsAccessInd ? (
+            <CustomerTeamCardList/>
+        ) : (
+          <>
+            {viewType === 'card' &&   <CustomerCardView/>}
+            {viewType === 'list' &&   <CustomerWhiteTable /> }
+            {viewType === 'dashboard' &&    <CustomerBlueTable/> }
+            {viewType === 'table' &&    <CustomerCardList
+             filter={this.state.filter}
+             currentUser={this.state.currentUser} 
+             viewType={this.props.viewType}
+             /> }
+            {viewType === 'map' &&    <CustomerMap/> }
+            {viewType === 'all' &&        <CustomerCardList
+             filter={this.state.filter}
+             currentUser={this.state.currentUser} 
+             viewType={this.props.viewType}
+             />  }
+            {viewType === 'teams' && <CustomerTeamCardList/> }
+          </>
+        )}
+        {/* { this.props.viewType==="card"?
         <CustomerCardView/>:
          this.props.viewType === "list" ?
           <CustomerWhiteTable /> :
@@ -133,10 +167,7 @@ class Customer extends Component {
           this.props.viewType==="map"?
           <CustomerMap/>:
           this.props.viewType==="all" ?(
-            // <CustomerAllCardList 
-            // filter={this.state.filter}
-            //  currentUser={this.state.currentUser} 
-            // />
+          
             <CustomerCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
@@ -152,7 +183,7 @@ class Customer extends Component {
             currentUser={this.state.currentUser} 
             /> 
           )
-            : null} 
+            : null}  */}
         </Suspense> 
         {/* <FloatButton.Group
       trigger="click"
@@ -174,7 +205,8 @@ class Customer extends Component {
 const mapStateToProps = ({ customer, auth }) => ({
   userId: auth.userDetails.userId,
   addCustomerModal: customer.addCustomerModal,
-  viewType: customer.viewType,
+  // viewType: customer.viewType,
+  teamsAccessInd:auth.userDetails.teamsAccessInd
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -182,7 +214,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       handleCustomerModal,
       getCustomerListByUserId,
-      setCustomerViewType,
+      // setCustomerViewType,
       getCustomerPagination,
       emptyCustomer,
       getLatestCustomer,

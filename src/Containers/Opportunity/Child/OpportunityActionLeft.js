@@ -199,12 +199,14 @@ const OpportunityActionLeft = (props) => {
       </Tooltip>
     
   {/* <div class="ml-2"> */}
+  {user.teamsAccessInd === true && (
   <Tooltip
           title="Teams"
         >
                  <Badge
         size="small"
-        count={(viewType === "teams" && opportunityTeamRecordData.OpportunityTeam) || 0}
+        count={(props.teamsAccessInd||viewType=== "teams" ?opportunityTeamRecordData.OpportunityTeam : 0)}
+        // count={(viewType === "teams" && opportunityTeamRecordData.OpportunityTeam) || 0}
         overflowCount={999}
       >
           <span
@@ -215,12 +217,13 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
             <PeopleIcon/>
             </Avatar>
           </span>
           </Badge>
         </Tooltip>
+          )}
   {/* </div> */}
   {/* <div class="ml-2"> */}
     {user.crmInd=== true && user.opportunityFullListInd===true && ( 

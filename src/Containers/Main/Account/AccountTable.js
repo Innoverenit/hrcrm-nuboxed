@@ -345,6 +345,7 @@ function AccountTable(props) {
                             <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Popconfirm
+                                loading={props.deletingDistributorById}
                                   title="Do you want to delete?"
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
@@ -401,6 +402,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     distributor.addDistributorActivityTableModal,
   addBillToAddress: distributor.addBillToAddress,
   accountModal:distributor.accountModal,
+  deletingDistributorById:distributor.deletingDistributorById,
 });
 
 const mapDispatchToProps = (dispatch) =>

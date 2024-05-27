@@ -2,7 +2,9 @@ import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader, } from "../../Components/Placeholder";
-import {setInvestorViewType,handleInvestorModal} from "./InvestorAction";
+import {
+  // setInvestorViewType
+  handleInvestorModal} from "./InvestorAction";
 import {getInvestorsbyId,emptyInvestor,getInvestorsFilterData} from "./InvestorAction";
 import {
   getLatestCustomer,
@@ -18,7 +20,12 @@ function Investor (props) {
 const [currentData,setcurrentData]=useState("");
 const [currentUser,setcurrentUser]=useState("");
 const [filter, setFilter] = useState("creationdate");
-
+const [viewType, setViewType] = useState(null);
+  const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
+  const setInvestorViewType = (viewType) => {
+    setViewType(viewType);
+    setTeamsAccessInd(false);
+  };
 // function handleClear () {
 //   const startDate = moment()
 //     .startOf("month")
@@ -50,8 +57,8 @@ const handleChange = (e) => {
   const {
     addInvestorModal,
     handleInvestorModal,
-    viewType,
-    setInvestorViewType,
+    // viewType,
+    // setInvestorViewType,
 
   } = props;
         return (
@@ -59,6 +66,7 @@ const handleChange = (e) => {
           <InvestorHeader
           viewType={viewType}
           setInvestorViewType={setInvestorViewType}
+          teamsAccessInd={teamsAccessInd}
           handleInvestorModal={handleInvestorModal}
           currentUser={currentUser}
           currentData={currentData}
@@ -74,7 +82,16 @@ const handleChange = (e) => {
           handleInvestorModal={handleInvestorModal}
           />
  <Suspense fallback={<BundleLoader />}>
- {  viewType === "list" ?
+ {teamsAccessInd ? (
+       <InvestorTeamCardList/>
+        ) : (
+          <>
+            {viewType === 'list' && <InvestorCardList/> }
+            {viewType === 'all' && <InvestorAllCardList  filter={filter}/> }
+            {viewType === 'teams' &&  <InvestorTeamCardList/>}
+          </>
+        )}
+ {/* {  viewType === "list" ?
           <InvestorCardList/> 
  
   :viewType==="all" ?
@@ -82,20 +99,21 @@ const handleChange = (e) => {
  :viewType==="teams" ? (<InvestorTeamCardList/>)
 // <CustomerCardView/>  
 
-          :null}
+          :null} */}
  </Suspense>
             </React.Fragment>
         )
 }
 
 const mapStateToProps = ({ investor,auth }) => ({
-  viewType:investor.viewType,
+  // viewType:investor.viewType,
+  teamsAccessInd:auth.userDetails.teamsAccessInd,
   userId: auth.userDetails.userId,
   addInvestorModal:investor.addInvestorModal
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  setInvestorViewType,
+  // setInvestorViewType,
   handleInvestorModal,
   getLatestCustomer,
   getCustomerCloser,

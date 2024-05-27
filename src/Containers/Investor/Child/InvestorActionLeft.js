@@ -112,13 +112,13 @@ useEffect(() => {
         </Badge>
       </Tooltip>
    
-      
+      {props.user.teamsAccessInd === true && (
       <Tooltip 
       title={<FormattedMessage id="app.teams" defaultMessage="Teams" />}
 >
         <Badge
           size="small"
-        count={(props.viewType === "teams" && props.investorTeamRecord.InvestorTeam) || 0}
+        count={(props.teamsAccessInd||props.viewType === "teams" && props.investorTeamRecord.InvestorTeam) || 0}
           overflowCount={999}
         >
           <span
@@ -128,12 +128,13 @@ useEffect(() => {
               color: props.viewType === "teams" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
           <PeopleIcon/>
           </Avatar>
           </span>
         </Badge>
       </Tooltip>
+       )}
       {(props.user.investorFullListInd===true || props.user.role==="ADMIN") && (
       <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
         <Badge

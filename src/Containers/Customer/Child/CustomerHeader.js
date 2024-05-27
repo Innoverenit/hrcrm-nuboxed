@@ -8,6 +8,7 @@ class CustomerHeader extends Component {
     const {
       handleCustomerModal,
       viewType,
+      teamsAccessInd,
       setCustomerViewType,
       handleChange,
       currentData,
@@ -19,6 +20,7 @@ class CustomerHeader extends Component {
           leftComponent={
             <CustomerActionLeft
             viewType={viewType}
+            teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
             setCustomerViewType={setCustomerViewType}
               currentData={currentData}
