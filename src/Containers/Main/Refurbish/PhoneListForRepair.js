@@ -10,9 +10,11 @@ import {
     handleRepairPhoneNotesOrderModal,
     handlePhoneDetails, 
     handleInTagDrawer,
-    updatePauseStatus
+    updatePauseStatus,
+    searchimeiNamerapir,
+    ClearReducerDataOfrepair
 } from "./RefurbishAction";
-import { Button, Tooltip,  Progress } from "antd";
+import { Button, Tooltip,  Progress,Input } from "antd";
 import {  RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
@@ -20,9 +22,11 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {  PauseCircleFilled,  PlayCircleFilledSharp } from "@mui/icons-material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddSpareInRepair from "./AddSpareInRepair";
+import { AudioOutlined } from '@ant-design/icons';
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import { BundleLoader } from "../../../Components/Placeholder";
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { FormattedMessage } from "react-intl";
 const RepairPhoneNotesOrderModal = lazy(() => import('./RepairPhoneNotesOrderModal'));
 const RepairTaskList = lazy(() => import('./RepairTaskList'));
@@ -30,7 +34,8 @@ const RepairTaskList = lazy(() => import('./RepairTaskList'));
 
 function PhoneListForRepair(props) {
     const [page, setPage] = useState(0);
-
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const componentRefs = useRef([]);
 
     const handlePrint = () => {
@@ -40,11 +45,45 @@ function PhoneListForRepair(props) {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
     }, [])
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
     // const [hasMore, setHasMore] = useState(true);
     // const handleLoadMore = () => {
     //     setPage(page + 1);
     //     props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
     // };
+
+    const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {
+            setPage(page + 1);
+            props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
+            props.ClearReducerDataOfrepair()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.searchimeiNamerapir(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -151,11 +190,51 @@ function PhoneListForRepair(props) {
             setBackComplete(false)
         }
     }
-
+    const suffix = (
+        <AudioOutlined
+          onClick={SpeechRecognition.startListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
     return (
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>
                 <div class=" rounded-lg m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="flex items-center">
+                <div class=" w-72 ml-4 max-sm:w-28">
+          <Input
+            placeholder="Search by Imei"
+            width={"100%"}
+            suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+             value={currentData}
+        
+          />
+        </div>
+        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title={<FormattedMessage
+                                                        id="app.scan"
+                                                        defaultMessage="scan"
+                                                    />}>
+
+                                                        <Button
+                                                            // onClick={() => {
+                                                            //     props.handleInTagDrawer(true)
+                                                            //     handleSetRowData(item)
+                                                            // }}
+                                                            class=" bg-green-600 cursor-pointer text-gray-50"
+                                                        >
+                                                            Scan </Button>
+
+                                                    </Tooltip>
+
+                                                </div>
+                                                </div>
                     <div className=" flex  w-[98.5%] max-sm:hidden p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
@@ -454,7 +533,7 @@ function PhoneListForRepair(props) {
                                             </div>
 
                                             <div className=" flex font-medium   w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                {/* <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={<FormattedMessage
                                                         id="app.scan"
                                                         defaultMessage="scan"
@@ -471,7 +550,7 @@ function PhoneListForRepair(props) {
 
                                                     </Tooltip>
 
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                         <div style={{ display: "none", textAlign: "center" }}>
@@ -561,7 +640,9 @@ const mapDispatchToProps = (dispatch) =>
             getCatalogueByUser,
             handleRepairPhoneNotesOrderModal,
             handlePhoneDetails,
-            updatePauseStatus
+            updatePauseStatus,
+            searchimeiNamerapir,
+            ClearReducerDataOfrepair
         },
         dispatch
     );

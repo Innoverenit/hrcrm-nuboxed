@@ -6,10 +6,13 @@ import {
     handleQCPhoneNotesOrderModal,
     getOrderByUser,
     updateCantRepairQC,
-    updateQCStatus
+    updateQCStatus,
+    searchimeiName,
+    ClearReducerDataOfrefurbish
 } from "./RefurbishAction";
+import { AudioOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Progress } from "antd";
+import { Button, Tooltip, Progress,Input } from "antd";
 import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -19,6 +22,7 @@ import { NoteAddOutlined } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
@@ -26,6 +30,8 @@ const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable
 
 function OrderPhoneListById(props) {
     const [pageNo, setPageNo] = useState(0);
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
 
     const componentRefs = useRef([]);
 
@@ -37,6 +43,20 @@ function OrderPhoneListById(props) {
         setPageNo(pageNo + 1);
         props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
     }, [props.rowData.orderPhoneId, props.userId])
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         const callPageMapd = props.orderPhoneList && props.orderPhoneList.length &&props.orderPhoneList[0].pageCount
@@ -56,6 +76,26 @@ function OrderPhoneListById(props) {
           }
         }
         }, 100);
+      };
+
+      const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {
+            setPageNo(pageNo + 1);
+            props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
+            props.ClearReducerDataOfrefurbish()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.searchimeiName(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
       };
 
     const handleCallback = () => {
@@ -137,11 +177,56 @@ function OrderPhoneListById(props) {
         setHide(hide)
     }
     console.log(props.rowData.qcInspectionInd)
+    const suffix = (
+        <AudioOutlined
+          onClick={SpeechRecognition.startListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
     return (
         <>
             {/* {props.fetchingOrderIdByUserId ? <BundleLoader /> : */}
              <div className=' flex justify-end sticky flex-col z-auto'>
+
+
+             
+
                 <div class="rounded-lg m-5  max-sm:m-1 p-2 w-full shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="flex items-center">
+                <div class=" w-72 ml-4 max-sm:w-28">
+          <Input
+            placeholder="Search by Imei"
+            width={"100%"}
+            suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+             value={currentData}
+        
+          />
+        </div>
+        <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title={<FormattedMessage
+                                                        id="app.scan"
+                                                        defaultMessage="scan"
+                                                    />}>
+
+                                                        <Button
+                                                            // onClick={() => {
+                                                            //     props.handleInTagDrawer(true)
+                                                            //     handleSetRowData(item)
+                                                            // }}
+                                                            class=" bg-green-600 cursor-pointer text-gray-50"
+                                                        >
+                                                            Scan </Button>
+
+                                                    </Tooltip>
+
+                                                </div>
+                                                </div>
                     <div className=" flex max-sm:hidden  w-[98.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.oem"
@@ -523,7 +608,9 @@ const mapDispatchToProps = (dispatch) =>
             updateQCStatus,
             handleQCPhoneNotesOrderModal,
             getOrderByUser,
-            updateCantRepairQC
+            updateCantRepairQC,
+            searchimeiName,
+            ClearReducerDataOfrefurbish
         },
         dispatch
     );

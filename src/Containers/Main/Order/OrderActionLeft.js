@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyledRangePicker, StyledSelect } from "../../../Components/UI/Antd";
+import {  StyledSelect } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
@@ -7,7 +7,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
 import { getOrderCount, getAllOrderCount } from "../Order/OrderAction";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import TocIcon from '@mui/icons-material/Toc';
+
 const { Search } = Input;
 const Option = StyledSelect.Option;
 

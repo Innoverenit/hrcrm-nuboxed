@@ -225,6 +225,12 @@ const initialState = {
   fetchingOpenRepairByUserError: false,
   openRepair: [],
 
+  fetchingimeiSearchData:false,
+  fetchingimeiSearchDataError:false,
+
+  fetchingimeiSearchRepair:false,
+  fetchingimeiSearchRepairError:false,
+
   fetchingOpenQc: false,
   fetchingOpenQcError: false,
   openQc: [],
@@ -1572,6 +1578,43 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingCantRepairStatusByTech: false,
         updatingCantRepairStatusByTechError: true,
       };
+
+
+      case types.GET_SEARCH_IMEI_REQUEST:
+        return { ...state, fetchingimeiSearchData: true };
+      case types.GET_SEARCH_IMEI_SUCCESS:
+        return {
+          ...state,
+          fetchingimeiSearchData: false,
+          orderPhoneList: action.payload,
+         
+        };
+      case types.GET_SEARCH_IMEI_FAILURE:
+        return { ...state, fetchingimeiSearchDataError: true };
+
+        case types.HANDLE_CLAER_REDUCER_DATA_REFURBISH:
+                  return { ...state, 
+                    orderPhoneList: [], 
+                  };
+
+             
+      case types.GET_SEARCH_IMEIREPAIR_REQUEST:
+        return { ...state, fetchingimeiSearchRepair: true };
+      case types.GET_SEARCH_IMEIREPAIR_SUCCESS:
+        return {
+          ...state,
+          fetchingimeiSearchRepair: false,
+          repairPhone: action.payload,
+         
+        };
+      case types.GET_SEARCH_IMEIREPAIR_FAILURE:
+        return { ...state, fetchingimeiSearchRepairError: true };
+
+        case types.HANDLE_CLAER_REDUCER_DATAREAPIR_REFURBISH:
+                  return { ...state, 
+                    repairPhone: [], 
+                  };     
+
     default:
       return state;
   }

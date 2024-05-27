@@ -91,7 +91,7 @@ const handleLoadMoreLow = () => {
   return (
     <>
         <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
       <div className=" md:w-[3.54rem]">Urgent </div>
           <div className=" md:w-[9.3rem]">Order ID</div>
@@ -110,7 +110,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingAllHighOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"19vh"}
+          height={"22vh"}
           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {props.allHighCompleteOrder.length ?
@@ -139,11 +139,11 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-              <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+              <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
                   <div class="flex">
-                  <div className=" flex font-medium  md:w-[5.56rem] max-sm:w-full  ">
+                  <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -159,9 +159,9 @@ const handleLoadMoreLow = () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                    <div className=" flex font-medium items-center    max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-[11.03rem]">
+                        <div class="w-[9.53rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] text-sm"
@@ -172,7 +172,10 @@ const handleLoadMoreLow = () => {
 
                             >{`${item.newOrderNo} `}
 
-                              &nbsp;&nbsp;
+                             
+                            </span>
+                          </Badge>
+                          &nbsp;&nbsp;
                               {date === currentdate ? (
                                 <span
                                   style={{
@@ -183,12 +186,10 @@ const handleLoadMoreLow = () => {
                                   New
                                 </span>
                               ) : null}
-                            </span>
-                          </Badge>
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[8.02rem]">
+                        <div class="max-sm:w-full md:w-[12.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -199,7 +200,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -215,7 +216,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
                         {item.noOfPhones}
                       </h4>
@@ -223,7 +224,7 @@ const handleLoadMoreLow = () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -238,7 +239,7 @@ const handleLoadMoreLow = () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -252,7 +253,7 @@ const handleLoadMoreLow = () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -293,7 +294,7 @@ const handleLoadMoreLow = () => {
                     </div>
 
                   </div>
-                  <div className=" flex text-sm font-medium flex-col md:w-[7.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   <div class="flex">
@@ -398,7 +399,7 @@ const handleLoadMoreLow = () => {
       </div>
       </div>
       <div className=' flex justify-end sticky  z-auto'>
-      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
       <div className=" md:w-[3.54rem]">High </div>
           <div className=" md:w-[9.3rem]">Order ID</div>
@@ -417,7 +418,7 @@ const handleLoadMoreLow = () => {
           next={handleLoadMoreMedium}
           hasMore={hasMore}
           loader={props.fetchingAllMediumOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"19vh"}
+          height={"22vh"}
           endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
           {props.allMediumCompleteOrder.length ?
@@ -446,9 +447,9 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-                 <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                 <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
                   <div class="flex">
-                  <div className=" flex font-medium  md:w-[5.56rem] max-sm:w-full  ">
+                  <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -466,9 +467,9 @@ const handleLoadMoreLow = () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                    <div className=" flex font-medium items-center    max-sm:w-full">
                       <div className="flex max-sm:w-full">
-                        <div class="w-[11.03rem]">
+                        <div class="w-[9.53rem]">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] text-sm"
@@ -479,7 +480,10 @@ const handleLoadMoreLow = () => {
 
                             >{`${item.newOrderNo} `}
 
-                              &nbsp;&nbsp;
+                             
+                            </span>
+                          </Badge>
+                          &nbsp;&nbsp;
                               {date === currentdate ? (
                                 <span
                                   style={{
@@ -490,12 +494,10 @@ const handleLoadMoreLow = () => {
                                   New
                                 </span>
                               ) : null}
-                            </span>
-                          </Badge>
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[8.02rem]">
+                        <div class="max-sm:w-full md:w-[12.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                               {item.distributorName}
@@ -506,7 +508,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -522,7 +524,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <h4 class="text-cardBody font-poppins text-sm">
                         {item.noOfPhones}
                       </h4>
@@ -530,7 +532,7 @@ const handleLoadMoreLow = () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -545,7 +547,7 @@ const handleLoadMoreLow = () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -559,7 +561,7 @@ const handleLoadMoreLow = () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -599,7 +601,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                   </div>
-                  <div className=" flex text-sm font-medium flex-col md:w-[7.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   <div class="flex">
@@ -704,7 +706,7 @@ const handleLoadMoreLow = () => {
       </div>
       </div>
       <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
        <div className=" md:w-[3.54rem]">Normal </div>
            <div className=" md:w-[9.3rem]">Order ID</div>
@@ -723,7 +725,7 @@ const handleLoadMoreLow = () => {
            next={handleLoadMoreLow}
            hasMore={hasMore}
            loader={props.fetchingAllLowOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-           height={"19vh"}
+           height={"22vh"}
            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
          >
            {props.allLowCompleteOrder.length ?
@@ -752,9 +754,9 @@ const handleLoadMoreLow = () => {
                    } `;
                  return (
                    <div>
-                <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
                    <div class="flex">
-                   <div className=" flex font-medium  md:w-[5.56rem] max-sm:w-full  ">
+                   <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -772,9 +774,9 @@ const handleLoadMoreLow = () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                     <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                     <div className=" flex font-medium items-center    max-sm:w-full">
                        <div className="flex max-sm:w-full">
-                         <div class="w-[11.03rem]">
+                         <div class="w-[9.53rem]">
                            <Badge size="small" count={item.productNum}>
                              <span
                                class="underline cursor-pointer text-[#1890ff] text-sm"
@@ -785,7 +787,10 @@ const handleLoadMoreLow = () => {
  
                              >{`${item.newOrderNo} `}
  
-                               &nbsp;&nbsp;
+                               
+                             </span>
+                           </Badge>
+                           &nbsp;&nbsp;
                                {date === currentdate ? (
                                  <span
                                    style={{
@@ -796,12 +801,10 @@ const handleLoadMoreLow = () => {
                                    New
                                  </span>
                                ) : null}
-                             </span>
-                           </Badge>
                          </div>
                        
  
-                         <div class="max-sm:w-full md:w-[8.02rem]">
+                         <div class="max-sm:w-full md:w-[12.02rem]">
                            <Tooltip>
                              <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
                                {item.distributorName}
@@ -812,7 +815,7 @@ const handleLoadMoreLow = () => {
                        </div>
                      </div>
  
-                     <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[5.823rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.contactPersonName}
@@ -828,7 +831,7 @@ const handleLoadMoreLow = () => {
                      </div>
                    </div>
                    <div class="flex">
-                     <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     <div className=" flex font-medium flex-col  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                        <h4 class="text-cardBody font-poppins text-sm">
                          {item.noOfPhones}
                        </h4>
@@ -836,7 +839,7 @@ const handleLoadMoreLow = () => {
  
  
                    </div>
-                   <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                      <div>
                        <MultiAvatar
                          primaryTitle={item.userName}
@@ -851,7 +854,7 @@ const handleLoadMoreLow = () => {
  
                    </div>
                    <div class=" flex">
-                     <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.supervisorUserName}
@@ -865,7 +868,7 @@ const handleLoadMoreLow = () => {
  
  
                      </div>
-                     <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[5.023rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          {show && (particularRowData.orderId === item.orderId) ?
                            <div class=" flex justify-between">
@@ -905,7 +908,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                    </div>
-                   <div className=" flex text-sm font-medium flex-col md:w-[7.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div className=" flex text-sm font-medium flex-col md:w-[10.012rem] max-sm:flex-row w-full max-sm:justify-between ">
                      <span>{date}</span>
                    </div>
                    <div class="flex">
