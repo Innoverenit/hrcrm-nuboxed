@@ -362,6 +362,14 @@ export const shipperReducer = (state = initialState, action) => {
         ...state,
         addingShipper: false,
         addShipperModal: false,
+        // shipperByUserId: state.shipperByUserId.map((item) => {
+        //   if (item.shipperId === action.payload.shipperId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+        shipperByUserId: [action.payload, ...state.shipperByUserId],
       };
     case types.ADD_SHIPPER_FAILURE:
       return {

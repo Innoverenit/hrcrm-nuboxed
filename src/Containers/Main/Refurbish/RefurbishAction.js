@@ -2047,3 +2047,65 @@ export const getRefurbishAllCount = (userId) => (dispatch) => {
       });
     });
 };
+
+export const searchimeiName = (imei) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEI_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEI_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEI_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerDataOfrefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_REFURBISH,
+  });
+};
+
+export const searchimeiNamerapir = (imei) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEIREPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIREPAIR_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIREPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerDataOfrepair = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATAREAPIR_REFURBISH,
+  });
+};
