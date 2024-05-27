@@ -67,14 +67,14 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
-                orderType:"repair",
+              
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
-                orderType: "repair",
+                orderType: "Repair",
                 priority: priority || "",
                 orgId: props.orgId,
                 loadingAddress: [

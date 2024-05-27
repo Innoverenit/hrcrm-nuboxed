@@ -72,7 +72,7 @@ function OrderStep1(props) {
                 distributorId: props.distributorId,
                 orderCurrencyId: props.setEdittingOrder.orderCurrencyId || "",
                 userId: props.userId,
-                orderType: "repair",
+                orderType: "Repair",
                 orderId: props.setEdittingOrder.orderId || "",
                 priority: props.setEdittingOrder.priority || "",
                 lobDetsilsId: props.setEdittingOrder.lobDetsilsId || "",

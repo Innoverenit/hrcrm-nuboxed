@@ -135,7 +135,7 @@ const ContactInvestActionLeft = (props) => {
           size="small"
           count={
             (props.teamsAccessInd||props.viewType === "teams" &&
-              props.teamContactInvest.InvestorContactTeam
+              props.teamContactInvest.investorContactTeam
               ) ||
             0
           }
