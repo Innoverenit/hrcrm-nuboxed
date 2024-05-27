@@ -10,6 +10,14 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const addSpareNotesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SPARE_NOTES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const addSpareStepsModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.ADD_SPARE_PARTS_DRAWER_MODAL,
@@ -561,7 +569,7 @@ export const updateProductionstage = (
       // } else {
       //   message.error("Loss");
       // }
-dispatch(getProductionTable(userId));
+dispatch(getProductionStage(userId));
       dispatch({
         type: types.UPDATE_PRODUCTION_STAGE_SUCCESS,
         payload: res.data,

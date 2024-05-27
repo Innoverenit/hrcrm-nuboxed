@@ -32,11 +32,12 @@
 import React, { useState,useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddSpareNotesModal from "../Child/AddSpareNotesModal"
 import AddSpareStepsModal from "../Child/AddSpareStepsModal"
 import { Button, Steps } from 'antd';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 
-import {addSpareStepsModal,getProductionSteps} from "../ProductionAction"
+import {addSpareStepsModal,getProductionSteps,addSpareNotesModal} from "../ProductionAction"
 import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
 
 const { Step } = Steps;
@@ -98,11 +99,11 @@ const Component2 = (props) => {
 
                                             <NoteAltIcon
                               className=" !text-xl cursor-pointer text-[#4bc076]"
-                            //   onClick={() => {
-                            //     handleCustomerNotesDrawerModal(true);
-                            //     handleSetCurrentCustomer(item);
-                            //     handleRowData(item);
-                            //   }}
+                              onClick={() => {
+                                props.addSpareNotesModal(true);
+                                // handleSetCurrentCustomer(item);
+                                // handleRowData(item);
+                              }}
                               />
                                       
                                      
@@ -166,6 +167,13 @@ const Component2 = (props) => {
         addSpareStepsModal={props.addSpareStepsModal}
         addSparePartsDrawerModal={props.addSparePartsDrawerModal}
         />
+
+<AddSpareNotesModal
+        step={step}
+        // productionTableData={props.productionTableData}
+        addSpareNotesModal={props.addSpareNotesModal}
+        addSpareNotesDrawerModal={props.addSpareNotesDrawerModal}
+        />
         </>
     );
 };
@@ -175,6 +183,7 @@ const Component2 = (props) => {
 const mapStateToProps = ({ auth, account, opportunity,production }) => ({
     addSparePartsDrawerModal:production.addSparePartsDrawerModal,
     userId: auth.userDetails.userId,
+    addSpareNotesDrawerModal:production.addSpareNotesDrawerModal,
     productionTableSteps:production.productionTableSteps
   });
   const mapDispatchToProps = (dispatch) =>
@@ -182,6 +191,7 @@ const mapStateToProps = ({ auth, account, opportunity,production }) => ({
       {
         addSpareStepsModal,
         getProductionSteps,
+        addSpareNotesModal
       },
       dispatch
     );
