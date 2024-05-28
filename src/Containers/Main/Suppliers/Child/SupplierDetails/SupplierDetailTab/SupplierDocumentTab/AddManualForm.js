@@ -19,7 +19,7 @@ function AddManualForm(props) {
     props.getCategorylist();
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currencies:'' }]);
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currencies:'',id:'' }]);
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -70,7 +70,7 @@ function AddManualForm(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'' }]);
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'',id:'' }]);
   };
 
   const handleRemoveRow = (index) => {
@@ -87,13 +87,14 @@ function AddManualForm(props) {
       specs: row.specs,
       price: row.price,
       quality: row.quality,
-      currencies:row.currency_id
+      currencies:row.currency_id,
+      category:row.id
                            // Include specs in the payload
     }));
 
     // Make the API call
     props.addManual(dataToSend, props.orderDetailsId.orderId);
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'' }]);
+    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'',id:'' }]);
   };
 
   return (
@@ -108,11 +109,11 @@ function AddManualForm(props) {
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
-                    value={row.brand}
+                    value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
