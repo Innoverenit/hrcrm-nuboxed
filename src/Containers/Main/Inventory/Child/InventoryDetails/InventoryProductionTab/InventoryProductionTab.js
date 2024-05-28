@@ -42,7 +42,10 @@ class InventoryProductionTab extends PureComponent {
                         >
 
                             <Suspense fallback={"Loading..."}>
-                                <CreateProductionCard />
+                                <CreateProductionCard 
+                                
+                                inventory={this.props.inventory}
+                                />
                             </Suspense>
                         </TabPane>
                         <TabPane

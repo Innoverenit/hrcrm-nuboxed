@@ -28,7 +28,7 @@ export const getTodayProduction = (date) => (dispatch) => {
       });
     });
 };
-export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dispatch) => {
+export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_QC_STATUS_REQUEST });
   axios
@@ -38,7 +38,7 @@ export const updateQCStatus = (data, phoneId, locationDetailsId, userId) => (dis
       },
     })
     .then((res) => {
-      dispatch(getOrderByUser(locationDetailsId, userId))
+      dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
@@ -365,6 +365,13 @@ export const handlePhoneDetails = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleRefurbishLead = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REFURBISH_LEAD,
+    payload: modalProps,
+  });
+};
+
 export const setEditOutputProduction = (name) => (dispatch) => {
   dispatch({
     type: types.SET_EDIT_OUTPUT_PRODUCTION,
@@ -372,12 +379,12 @@ export const setEditOutputProduction = (name) => (dispatch) => {
   });
 };
 
-export const getProductionOrderId = (userId) => (dispatch) => {
+export const getProductionOrderId = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_ORDER_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}`, {
+    .get(`${base_url2}/orderProductionLocationLink/get-all/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -400,6 +407,12 @@ export const getProductionOrderId = (userId) => (dispatch) => {
 export const handleProductionNotesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCTION_NOTES_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleRejectedReassignModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REJECTED_REASSIGN_MODAL,
     payload: modalProps,
   });
 };
@@ -574,6 +587,32 @@ export const getRepairPhoneById = (orderPhoneId) => (dispatch) => {
     });
 };
 
+export const getTATQuality = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_TAT_QUALITY_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/avg/tat/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TAT_QUALITY_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TAT_QUALITY_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const handleTechnicianModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TECHNICIAN_MODAL_MODAL,
@@ -690,12 +729,12 @@ export const handlePhoneByTechnician = (modalProps) => (dispatch) => {
   })
 }
 
-export const getphoneListByUser = (orderPhoneId, technicianId) => (dispatch) => {
+export const getphoneListByUser = (orderPhoneId, technicianId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}`, {
+    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -859,12 +898,12 @@ export const handleRepairPhone = (modalProps) => (dispatch) => {
   })
 }
 
-export const getPhoneOrderIdByUser = (orderPhoneId, technicianId) => (dispatch) => {
+export const getPhoneOrderIdByUser = (orderPhoneId, technicianId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ORDERID_BY_USER_REQUEST,
   });
   axios
-    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}`, {
+    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -880,6 +919,30 @@ export const getPhoneOrderIdByUser = (orderPhoneId, technicianId) => (dispatch) 
       console.log(err);
       dispatch({
         type: types.GET_ORDERID_BY_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateCantRepairQC = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_CANT_REPAIR_QC_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/canNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_CANT_REPAIR_QC_FAILURE,
         payload: err,
       });
     });
@@ -909,7 +972,7 @@ export const getRepairPhoneByUser = (orderPhoneId, technicianId) => (dispatch) =
       });
     });
 };
-export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
+export const updaterepairStatus = (data,orderPhoneId, phoneId, userId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.UPDATE_REPAIR_STATUS_REQUEST });
   axios
@@ -919,8 +982,8 @@ export const updaterepairStatus = (data, phoneId, userId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      // dispatch(getRepairPhoneByUser(orderPhoneId, userId))
-      dispatch(getRepairOrderByUser(userId))
+     //dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+      //dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
         payload: res.data,
@@ -1596,6 +1659,14 @@ export const gettASKItemCounts = (phoneId) => (dispatch) => {
 export const closeRepairModal = (close) => (dispatch) =>
   dispatch({ type: types.SET_CLOSE_REPAIR_MODAL, payload: close });
 
+export const refurbishRejectPhone = (close) => (dispatch) =>
+  dispatch({ type: types.REFURBISH_REJECT_PHONE, payload: close });
+
+export const hanldeRejectReassignItem = (modalProps) => (dispatch) =>
+  dispatch({
+    type: types.HANDLE_REJECT_REASSIGN_MODAL,
+    payload: modalProps
+  });
 
 
 export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
@@ -1656,6 +1727,59 @@ export const getCompletedPhones = (orderPhoneId, technicianId) => (dispatch) => 
     });
 };
 
+export const getRejectedPhoneList = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECTED_PHONE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/rejectPhoneDetails/${orderPhoneId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECTED_PHONE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REJECTED_PHONE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRemainingPhonesList = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REMAINING_PHONES_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}//${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REMAINING_PHONES_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const reassignPhonesToTechnician = (data, orderPhoneId, technicianId) => (dispatch) => {
   dispatch({
     type: types.REASSIGN_PHONES_REQUEST,
@@ -1710,4 +1834,278 @@ export const getRemainingPhones = (orderPhoneId, technicianId) => (dispatch) => 
         payload: err,
       });
     });
+};
+
+export const addLeadInRefurbish = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ADD_LEAD_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ADD_LEAD_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LEAD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRejectedPhonesByTechnician = (orderPhoneId, technicianId) => (dispatch) => {
+  dispatch({
+    type: types.GET_REJECTED_PHONES_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/rejected/RepairPhone/${orderPhoneId}/${technicianId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REJECTED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REJECTED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const assignRejectedPhones = (data, orderPhoneId, cb) => (dispatch) => {
+  dispatch({
+    type: types.ASSIGN_REJECTED_PHONES_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/rejected/teamLeadAssign/${orderPhoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Lead Tagged',
+        showConfirmButton: true,
+      })
+      dispatch({
+        type: types.ASSIGN_REJECTED_PHONES_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ASSIGN_REJECTED_PHONES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSpareListById = (phoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/sparePacketLink/${phoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateSpareReceive = (data, sparePacketId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_SPARE_RECEIVE_REQUEST });
+  axios
+    .put(`${base_url2}/phoneSpare/releaseSpare/${sparePacketId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_SPARE_RECEIVE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SPARE_RECEIVE_FAILURE,
+      });
+    });
+};
+
+export const cantRepairByTechnician = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.CANT_REPAIR_BY_TECHNICIAN_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/phone/dispatchCanNotRepair/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.CANT_REPAIR_BY_TECHNICIAN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.CANT_REPAIR_BY_TECHNICIAN_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const reassignRejectedPhone = (data, productionRepairDispatchLinkId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.REASSIGN_REJECTED_PHONE_REQUEST });
+  axios
+    .put(`${base_url2}/RejectItem/ReassignRepair/${productionRepairDispatchLinkId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+
+      dispatch({
+        type: types.REASSIGN_REJECTED_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REASSIGN_REJECTED_PHONE_FAILURE,
+      });
+    });
+};
+
+
+export const getRefurbishAllCount = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_REFURBISH_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/count-all/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_REFURBISH_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_REFURBISH_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const searchimeiName = (imei) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEI_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEI_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEI_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerDataOfrefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_REFURBISH,
+  });
+};
+
+export const searchimeiNamerapir = (imei) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEIREPAIR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIREPAIR_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIREPAIR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerDataOfrepair = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATAREAPIR_REFURBISH,
+  });
 };

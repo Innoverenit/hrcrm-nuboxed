@@ -77,7 +77,7 @@ class MileageCard extends React.Component {
                             <h3 class="text-sm">Voucher Date</h3>
                             <div class="text-[0.82rem]">{dayjs(item.voucherDate).format("MMM Do YY")}</div>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between mb-[0.4rem]">
                     <div class="text-sm">Amount</div> 
                     <h5 class="text-[0.82rem]">{item.amount}</h5>
                     </div>
@@ -112,7 +112,7 @@ this.handleExpand(item.voucherId)
 }}
 >
                  <Tooltip  title={"Status"}>
-                 <AssistantIcon  className="!text-base cursor-pointer text-[grey] "/>
+                 <AssistantIcon  className="!text-[1.2rem] cursor-pointer text-[grey] "/>
    </Tooltip> 
 
    </div>
@@ -131,7 +131,7 @@ this.handleExpand(item.voucherId)
             >
               <DeleteOutlined
                 type="delete"
-                className="!text-base cursor-pointer text-[red]" 
+                className="!text-[1.2rem] cursor-pointer text-[red]" 
                 // onClick={() => {
                 // this.props.deleteMileageVoucher(item.voucherId);
                   

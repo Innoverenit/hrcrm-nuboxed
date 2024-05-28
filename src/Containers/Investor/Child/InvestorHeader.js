@@ -9,6 +9,7 @@ function InvestorHeader (props) {
     const {
       handleInvestorModal,
       viewType,
+      teamsAccessInd,
       setInvestorViewType,
       handleChange,
       currentData,
@@ -25,6 +26,7 @@ function InvestorHeader (props) {
         <ActionHeader
           leftComponent={
             <InvestorActionLeft
+            teamsAccessInd={teamsAccessInd}
             viewType={viewType}
             setInvestorViewType={setInvestorViewType}
             currentUser={currentUser}

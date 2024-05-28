@@ -77,6 +77,13 @@ function CustomerCardList(props) {
 
 
   console.log(props.viewType)
+
+  // useEffect(() => {
+    
+  //     props.emptyCustomer()
+  //     props.getCustomerListByUserId(props.viewType==="table"?props.userId:props.viewType, props.viewType==="table"?page:props.viewType==="teams"?page1:props.viewType==="all"?page2:null, "creationdate");
+   
+  // }, [props.viewType]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.emptyCustomer()
@@ -88,7 +95,8 @@ function CustomerCardList(props) {
       props.emptyCustomer()
       props.getCustomerListByUserId(props.viewType, page2, "creationdate");
     }
-  }, [props.viewType]);
+  }, [props.viewType,page,page1,page2]);
+
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -159,24 +167,53 @@ function CustomerCardList(props) {
     // Call the function to change the status to "Lost" here
     props.customerToAccount(customerId);
   };
-  const handleLoadMore = () => {
+
+  // const handleLoadMore = () => {
   
-    if (props.viewType === "table") {
+  //   if(props.viewType==="table"){
+  //     // setPage(page + 1)
+  //     setPage(prevPage => prevPage + 1)
+  //     props.getCustomerListByUserId(props.userId, page+1, "creationdate");
+  //   }else if (props.viewType==="teams"){
+  //     // setPage1(page1 + 1)
+  //     setPage1(prevPage => prevPage + 1)
+  //   props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
+  //   }else if (props.viewType==="all"){
+  //     // setPage2(page2 + 1)
+  //     setPage2(prevPage => prevPage + 1)
+  //   props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
+  //   }
      
-    //  setPage(page + 1);
-    setPage(prevPage => prevPage + 1); 
+  //   //  setPage(page + 1);
+  //   // setPage(prevPage => prevPage + 1);
+  //   //   props.getCustomerListByUserId(props.viewType === "table"?props.userId:props.viewType, page+1, "creationdate");
+    
+  // };
+
+
+  const handleLoadMore = () => {
+    if (props.viewType === "table") {
+      setPage(prevPage => {
+        console.log("Previous page (table):", prevPage);
+        return prevPage + 1;
+      });
       props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
     } else if (props.viewType === "teams") {
- 
-      setPage1(prevPage1 => prevPage1 + 1); 
-      props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-    } else {
-     
-    //  setPage2(page2 + 1);
-     setPage2(prevPage2 => prevPage2 + 1); 
-      props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
+      setPage1(prevPage => {
+        console.log("Previous page (teams):", prevPage);
+        return prevPage + 1;
+      });
+      props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
+    } else if (props.viewType === "all") {
+      setPage2(prevPage => {
+        console.log("Previous page (all):", prevPage);
+        return prevPage + 1;
+      });
+      props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
     }
   };
+  
+  
 
   const {
     fetchingCustomers,
@@ -370,7 +407,23 @@ console.log(page)
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {`${item.countryDialCode} ${item.phoneNumber}`}
+                        {
+  
+  (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
+  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
+
+ 
+  `${item.countryDialCode} ${item.phoneNumber}` :
+
+  
+  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
+  `${item.phoneNumber}` : 
+  '' 
+}
+
+                          {/* {
+                          `${item.countryDialCode} ${item.phoneNumber}`
+                          } */}
                         </div>
 
                       </div>

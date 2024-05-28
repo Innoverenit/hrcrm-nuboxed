@@ -1,6 +1,7 @@
-import React, {  } from "react";
+import React, { } from "react";
 import { Switch, Popconfirm, } from "antd";
 import { connect } from "react-redux";
+import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
 import { updateDispatchInspectionButton } from "../../../InventoryAction"
 
@@ -8,7 +9,9 @@ function DispatchPackedToggle(props) {
 
     function onChange() {
         props.updateDispatchInspectionButton({
-            dispatchInspectionInd: 3
+            dispatchInspectionInd: 3,
+            packedUserId: props.userId,
+            packedDate: dayjs()
         },
             props.item.orderPhoneId,
             props.locationDetailsId
@@ -40,7 +43,7 @@ function DispatchPackedToggle(props) {
 }
 
 const mapStateToProps = ({ auth, inventory }) => ({
-
+    userId: auth.userDetails.userId,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(

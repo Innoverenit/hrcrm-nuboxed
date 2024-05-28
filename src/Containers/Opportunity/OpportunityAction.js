@@ -2,7 +2,7 @@ import * as types from "./OpportunityActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
 import Swal from 'sweetalert2'
-import { base_url } from "../../Config/Auth";
+import { base_url,base_url2 } from "../../Config/Auth";
 import { message } from "antd";
 import { ActionHeader } from "../../Components/Utils";
 
@@ -3328,3 +3328,81 @@ export const getRegionSalesQuotationList = (userId,quarter,year) => (dispatch) =
     });
 };
 
+
+export const handleOpportunityRowEmailModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPPOORTUNITY_ROW_EMAIL_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const linkProductWithOpportunity= (data,opportunityId) => (dispatch) => {
+  dispatch({
+    type: types.LINK_PRODUCT_WITH_OPPORTUNITY_REQUEST,
+  });
+  axios
+    .post(`${base_url}/opportunity/link-product`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.LINK_PRODUCT_WITH_OPPORTUNITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_PRODUCT_WITH_OPPORTUNITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getlinkedProductWithOpportunity= (opportunityId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LINK_PRODUCT_WITH_OPPORTUNITY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/link-product/${opportunityId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_LINK_PRODUCT_WITH_OPPORTUNITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LINK_PRODUCT_WITH_OPPORTUNITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllCatalogueSearch=(name)=>(dispatch)=>{
+  dispatch({
+    type: types.GET_ALL_CATALOGUE_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/productName/${name}`,{     headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },})
+    .then((res) => {
+      dispatch({
+        type: types.GET_ALL_CATALOGUE_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ALL_CATALOGUE_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};

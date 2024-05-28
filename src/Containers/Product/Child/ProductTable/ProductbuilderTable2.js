@@ -1,13 +1,14 @@
 import React, {useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button } from "antd";
-import { getBuilderByProId,removeProductBuilder,updateProSupplBuilder } from "../../ProductAction";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import { Tooltip,Button,Input,Popconfirm } from "antd";
+import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder,handleProductNotesDrawerModal } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
-
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { DeleteOutlined } from "@ant-design/icons";
+import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
   useEffect(()=> {
@@ -16,6 +17,14 @@ function ProductbuilderTable2 (props) {
 
   const [editedFields, setEditedFields] = useState({});
   const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [data, setData] = useState([]);
+  const [currentCustomer, setCurrentCustomer] = useState("");
+  const [rowdata, setrowdata] = useState("");
+
+  useEffect(() => {
+    setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
+  }, [props.builderbyProductId]);
+
 
   const handleChange = (suppliesId, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -26,52 +35,99 @@ function ProductbuilderTable2 (props) {
       },
     }));
   };
-
-  const handleEditClick = (suppliesId) => {
-    setEditsuppliesId(suppliesId);
+  const handleRowData = (data) => {
+    setrowdata(data);
   };
-  const handleCancelClick = (suppliesId) => {
-    setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = data.map((row) =>
+      row.key === key ? { ...row, [dataIndex]: value } : row
+    );
+    setData(updatedData);
+  };
+
+  function handleSetCurrentCustomer(item) {
+    setCurrentCustomer(item);
+  }
+
+  const handleEditClick = (productionBuilderId) => {
+    setEditsuppliesId(productionBuilderId);
+  };
+  const handleCancelClick = (productionBuilderId) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [productionBuilderId]: undefined }));
     setEditsuppliesId(null);
   };
 
-  const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,
-    ) => {
-    const data = {
-      suppliesId:suppliesId,
-      suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
-      categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
-      subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
-      quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
-      productId:props.particularDiscountData.productId,  
-      suppliesId:suppliesId          
-    };
+  // const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,steps,description,productionBuilderId
+  //   ) => {
+  //   const data = {
+  //     suppliesId:suppliesId,
+  //     suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
+  //     categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
+  //     subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
+  //     quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
+  //     productId:props.particularDiscountData.productId,  
+  //     productionBuilderId:productionBuilderId,   
+  //     steps:steps,
+  //     description:description      
+  //   };
   
-    props.updateProSupplBuilder(data)
-      setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
-      setEditsuppliesId(null);
+  //   props.updateProductSuplrBuilder(data)
+  //     setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
+  //     setEditsuppliesId(null);
+    
+  // };
+const handleSave = (key) => {
+    console.log(key)
+    // const targetRow = data.find((row) => row.key === key);
+      // const { } = targetRow;
+  
+      const result = {
+        hsn: key.hsn,
+        suppliesName:key.suppliesName,
+        attributeName:key.attributeName,
+        subAttributeName:key.subAttributeName,
+              categoryName:key.categoryName,
+              subCategoryName:key.subCategoryName,
+              quantity:key.quantity,
+              productId:props.particularDiscountData.productId,
+              suppliesId:key.suppliesId,
+              // imageId:imageId,
+              steps:key.steps,
+              description:key.description,
+              productionBuilderId:key.productionBuilderId
+            };
+      props.updateProductSuplrBuilder(result,key.productionBuilderId)
     
   };
-
+  const {
+    addDrawerProductNotesModal,
+    handleProductNotesDrawerModal
+  } = props;
 return (
     <>
   
   <div className=' flex justify-end sticky z-auto'> 
+
   <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
-         <div className=" md:w-[7%]">Name</div>
-        <div className=" md:w-[4.2rem] ">Category</div>
-        <div className="md:w-[5.8rem]">Sub Category</div>
-        <div className=" md:w-[4.2rem] ">Unit</div>
+         <div className=" md:w-[9.5rem]">Name</div>
+         <div className=" md:w-[8.2rem] ">HSN</div>
+        <div className=" md:w-[8.2rem] ">Category</div>
+        <div className="md:w-[9.8rem]">Attribute</div>
+    
+        <div className=" md:w-[4.21rem] ">Unit</div>
+        <div className=" md:w-[3.22rem] ">Step</div>
+         <div className=" md:w-[10.23rem] ">Description</div>
         <div className="w-12"></div>
             </div>
-      
-             {props.builderbyProductId.map((item) => {
+            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+             {data.map((item) => {
           return (
-<div>
-<div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "    >
-<div className=" flex font-medium flex-col w-[10rem]   max-sm:w-full">
+<div key={item.productionBuilderId}>
+
+<div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3  "    >
+<div className=" flex font-medium  w-[9rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
                       <div>
                        
@@ -86,37 +142,45 @@ return (
 
                       <div class="max-sm:w-full md:flex items-center">
                      
-                      <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
-    <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
+                      <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
+    <div class="text-xs text-cardBody   font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
     </div>
                       </div>
                     </div>
                   </div>
-
-    <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
                       
-                      {item.categoryName}
+                      {item.hsn}
+                     
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+    <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div class=" text-xs text-cardBody font-poppins">
+                      
+                      {item.categoryName} {item.subCategoryName}
+                     
+                    </div>
+    </div>
+    <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-        <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                      {item.subCategoryName}
+        <div class=" text-xs text-cardBody   font-poppins">
+        {item.attributeName} {item.subAttributeName}
+       
                     </div>
     </div>
-    <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                   {editsuppliesId === item.suppliesId ? (
-                       <input
-                       class="border-[2px] border-black w-12"
-                      //  style={{border:"2px solid black"}}
-                       value={editedFields[item.suppliesId]?.quantity !== undefined ? editedFields[item.suppliesId].quantity : item.quantity}
-                       onChange={(e) => handleChange(item.suppliesId, 'quantity', e.target.value)}
-                       />
+                   {editsuppliesId === item.productionBuilderId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.quantity}
+                       onChange={(e) => handleInputChange(e.target.value, item.key, 'quantity')}
+                     />
                        
                     ) : (
                       <div className="font-normal text-sm text-cardBody font-poppins">
@@ -125,18 +189,52 @@ return (
                     )}
                     </div>
   </div>
-  <div class="flex flex-col w-24 max-sm:flex-row max-sm:w-[10%]">
-    <div class="flex">
-    {editsuppliesId === item.suppliesId ? (
+  <div className=" flex font-medium  md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.productionBuilderId ? (
+                                         <Input
+                                         style={{ width: "3rem" }}
+                                         value={item.steps}
+                                         onChange={(e) => handleInputChange(e.target.value, item.key, 'steps')}
+                                       />
+                       
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <div> {item.steps}</div>
+                      </div>
+                    )}
+                    </div>
+  </div>
+  <div className=" flex font-medium  md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+      
+      <div class=" text-xs text-cardBody font-semibold  font-poppins">
+                   {editsuppliesId === item.productionBuilderId ? (
+                                             <Input
+                                             style={{ width: "3rem" }}
+                                             value={item.description}
+                                             onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
+                                           />
+                    ) : (
+                      <div className="font-normal text-sm text-cardBody font-poppins">
+                        <Tooltip title={item.description}>
+                        <div> {item.description}</div>
+                        </Tooltip>
+                      </div>
+                    )}
+                    </div>
+  </div>
+  <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
                       type="primary"
-                      onClick={() => handleUpdateSupplies(item.suppliesId,item.suppliesName,item.categoryName, item.subCategoryName )}>
+                      onClick={() => handleSave(item)}>
                         Save
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.suppliesId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(item.productionBuilderId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
@@ -146,38 +244,67 @@ return (
                       className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
-                        onClick={() => handleEditClick(item.suppliesId)}
+                        onClick={() => handleEditClick(item.productionBuilderId)}
                       />
                     )}
     </div>
+  <div class="flex flex-col w-4 max-sm:flex-row max-sm:w-[10%]">
+   
     <div>
-      <StyledPopconfirm
+      <Popconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.removeProductBuilder({active:false},item.suppliesId)}
+                          onConfirm={() => props.removeProductBuilder(item.productionBuilderId,props.particularDiscountData.productId)}
+
                           >
                      <Tooltip title="Delete">
-                          <DeleteIcon
-                           className="!text-base cursor-pointer text-[red]"
+                          <DeleteOutlined
+                           className=" !text-base cursor-pointer !text-[red]"
                           />
                        </Tooltip>
-                       </StyledPopconfirm>
+                       </Popconfirm>
                        </div>
+                       
+                       
+                        </div>
+                        <div>
+                          <Tooltip title="Notes">
+                            <NoteAltIcon
+                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              onClick={() => {
+                                handleProductNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+
+                            />
+                          </Tooltip>
+
                         </div>
 </div>
+
 </div>
           );
         })}
-             
+            </div>  
               </div>
+          
               </div>
  
+              <AddProductNotesDrawerModal
+        rowdata={rowdata}
+       addDrawerProductNotesModal={addDrawerProductNotesModal}
+        handleProductNotesDrawerModal={handleProductNotesDrawerModal}
+        handleSetCurrentCustomer={handleSetCurrentCustomer}
+      />
+
     </>
 );
 }
 
 const mapStateToProps = ({product }) => ({
     builderbyProductId: product.builderbyProductId,
-    fetchingBuilderByProductId: product.fetchingBuilderByProductId
+    fetchingBuilderByProductId: product.fetchingBuilderByProductId,
+    addDrawerProductNotesModal:product.addDrawerProductNotesModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -185,7 +312,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getBuilderByProId,
             removeProductBuilder,
-            updateProSupplBuilder
+            updateProductSuplrBuilder,
+            handleProductNotesDrawerModal
             
         },
         dispatch

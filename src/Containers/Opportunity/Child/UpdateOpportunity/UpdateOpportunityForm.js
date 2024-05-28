@@ -7,8 +7,7 @@ import { SelectComponent } from "../../../../Components/Forms/Formik/SelectCompo
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {getSaleCurrency} from "../../../Auth/AuthAction"
-import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
-import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
+import {  StyledLabel } from "../../../../Components/UI/Elements";
 import { updateOpportunity, getAllSalesList } from "../../OpportunityAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
@@ -36,6 +35,13 @@ const UpdateOpportunitySchema = Yup.object().shape({
   oppWorkflow: Yup.string().required("Input needed!"),
 });
 function UpdateOpportunityForm (props) {
+  const [customers, setCustomers] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
 
   useEffect(()=> {
     props.getCustomerData(props.userId);
@@ -61,6 +67,71 @@ function UpdateOpportunityForm (props) {
     console.log("test", includeOption)
   
   }, [props.setEditingOpportunity]);
+
+
+
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+  const fetchContacts = async (customerId) => {
+    setIsLoadingContacts(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    fetchContacts(customerId);
+  };
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
 
 
   const sortedCurrency =props.saleCurrencies.sort((a, b) => {
@@ -302,6 +373,8 @@ function UpdateOpportunityForm (props) {
                 included: includeNames,
                 opportunityId: props.opportunityId,
                 orgId: props.organizationId,
+                customerId:selectedCustomer,
+                contactId:selectedContact,
                 // description: transcript ? transcript : text,
                 // customerId: props.customerId,
                 userId: props.userId,
@@ -323,12 +396,12 @@ function UpdateOpportunityForm (props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
             <Form className="form-background">
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-[47.5%] max-sm:w-wk">
-                  <Spacer />
-                  <StyledLabel>
+                 
+                  <div className="mt-3">
                     <Field
                       isRequired
                       name="opportunityName"
@@ -346,9 +419,9 @@ function UpdateOpportunityForm (props) {
                       // accounts={accounts}
                       inlineLabel
                     />
-                  </StyledLabel>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
+                  </div>
+                
+                  <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-1/2 max-sm:w-wk">
                       <StyledLabel>
                         <Field
@@ -401,8 +474,8 @@ function UpdateOpportunityForm (props) {
                       </StyledLabel>
                     </div>
                   </div>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
+                  
+                  <div class="flex justify-between max-sm:flex-col ">
                     <div class=" w-1/2 max-sm:w-wk">
                       <StyledLabel>
                         <Field
@@ -449,7 +522,7 @@ function UpdateOpportunityForm (props) {
                     
                     </div>
                   </div>
-                  {/* <Spacer />
+                  {/* 
                 <StyledLabel>Description</StyledLabel>
                 <div>
                   <div>
@@ -494,7 +567,7 @@ function UpdateOpportunityForm (props) {
                   </div>
                 </div> */}
                 </div>
-                <div class=" h-full w-[47.5%] max-sm:w-wk">
+                <div class=" h-full w-[47.5%] max-sm:w-wk mr-1">
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
@@ -599,8 +672,8 @@ function UpdateOpportunityForm (props) {
                   /> */}
     </div>
     <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">       
-    <div class=" w-2/5 max-sm:w-wk">
-                  <Field
+    <div class=" w-[47.5%] max-sm:w-wk">
+                  {/* <Field
                     name="customerId"
                     isColumnWithoutNoCreate
                     label={
@@ -619,11 +692,25 @@ function UpdateOpportunityForm (props) {
                     }
                     value={values.customerId}
                     inlineLabel
-                  />
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Customer</label>
+      <Select
+       
+        placeholder="Select Customer"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.customerId} value={customer.customerId}>
+            {customer.name}
+          </Option>
+        ))}
+      </Select>
 </div>
-                  <Spacer />
-                  <div class=" w-2/5 max-sm:w-wk">
-                  <Field
+              
+                  <div class=" w-[47.5%] max-sm:w-wk ">
+                  {/* <Field
                     name="contactId"
                     isColumnWithoutNoCreate
                     label={
@@ -648,12 +735,26 @@ function UpdateOpportunityForm (props) {
                     disabled={!values.customerId}
                     value={values.contactId}
                     inlineLabel
-                  />
+                  /> */}
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+      <Select
+       
+        placeholder="Select Contact"
+        loading={isLoadingContacts}
+        onChange={handleContactChange}
+        disabled={!selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select>
 </div>
      </div>
-                  <Spacer />
-                  <div class="flex justify-between max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">
+                
+                  <div class="flex justify-between max-sm:flex-col mt-3">
+                    <div class=" w-[47.5%] max-sm:w-wk">
                       <StyledLabel>
                       <Field
                         name="oppWorkflow"
@@ -678,8 +779,8 @@ function UpdateOpportunityForm (props) {
                       />
                       </StyledLabel>
                     </div>
-                    <Spacer />
-                    <div class=" w-2/5 max-sm:w-wk">
+                  
+                    <div class=" w-[47.5%] max-sm:w-wk ">
                       <StyledLabel>
                       <Field
                         name="oppStage"
@@ -714,11 +815,11 @@ function UpdateOpportunityForm (props) {
                       </StyledLabel>
                     </div>
                   </div>
-                  <Spacer />
+                 
                 </div>
               </div>
-              <Spacer />
-              <div class="flex justify-end w-wk bottom-2 mr-2 absolute ">
+             
+              <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -753,6 +854,7 @@ const mapStateToProps = ({ auth, opportunity,currency,employee, customer,leads, 
   saleCurrencies: auth.saleCurrencies,
   assignedToList:employee.assignedToList,
   currencies: auth.currencies,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -66,13 +66,35 @@ const LeadsTeamCardList = (props) => {
     setrowData(data);
   };
   const handleLoadMore = () => {
-   
-    setPage(page + 1);
-    props.getTeamLeads(
+    const callPageMapd = props.teamLeads && props.teamLeads.length &&props.teamLeads[0].pageCount
+    setTimeout(() => {
+      const {
+        getTeamLeads,
+        userDetails: { employeeId },
+      } = props;
+      if  (props.teamLeads)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+    getTeamLeads(
       props.currentUser ? props.currentUser : props.userId,
       page,
     );
-};
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+//   const handleLoadMore = () => {
+   
+//     setPage(page + 1);
+//     props.getTeamLeads(
+//       props.currentUser ? props.currentUser : props.userId,
+//       page,
+//     );
+// };
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
@@ -101,7 +123,7 @@ const LeadsTeamCardList = (props) => {
         <div className=" w-[5.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
         <div className= " w-[8.8rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
         <div className= " w-[8.8rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
-        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned to</div>
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
         <div className=" w-[4.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
         <div className=" w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         <div className=" w-[3.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Qualify</div>
@@ -114,6 +136,7 @@ const LeadsTeamCardList = (props) => {
         hasMore={hasMore}
         loader={fetchingLeads?<div class="flex justify-center">Loading...</div>:null}
         height={"75vh"}
+        endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
        { !fetchingLeads && teamLeads.length === 0 ?<NodataFoundPage />:teamLeads.map((item,index) =>  {
           const currentdate = moment().format("DD/MM/YYYY");
@@ -335,9 +358,9 @@ const LeadsTeamCardList = (props) => {
                   </div>
                      <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                    <Tooltip title={item.assignedBy}>
+                    {/* <Tooltip title={item.assignedBy}> */}
                 <div class="max-sm:flex justify-end">
-                <Tooltip title={item.assignedBy}>
+                {/* <Tooltip title={item.assignedBy}> */}
               <MultiAvatar
               
                 primaryTitle={item.assignedBy}
@@ -345,25 +368,25 @@ const LeadsTeamCardList = (props) => {
                 imgWidth={"1.9rem"}
                 imgHeight={"1.9rem"}
               />
-            </Tooltip>
+            {/* </Tooltip> */}
             </div>
-          </Tooltip>
+          {/* </Tooltip> */}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col w-16  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
-                    <Tooltip title={item.ownerName}>
+                    {/* <Tooltip title={item.ownerName}> */}
                 <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
+                {/* <Tooltip title={item.ownerName}> */}
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
                 imgWidth={"1.9rem"}
                 imgHeight={"1.9rem"}
               />
-            </Tooltip>
+            {/* </Tooltip> */}
             </div>
-          </Tooltip>
+          {/* </Tooltip> */}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">

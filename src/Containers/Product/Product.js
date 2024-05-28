@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import ProductHeader from "./Child/ProductHeader";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
-import ProductDeleteList from "./Child/ProductTable/ProductDeleteList";
+const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
 const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
 const ProductListingTable =lazy(()=>import("./Child/ProductTable/ProductListingTable"));
 const ProductCardList =lazy(()=>import("./Child/ProductTable/ProductCardList"));

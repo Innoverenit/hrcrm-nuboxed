@@ -24,6 +24,7 @@ import {
 } from "@ant-design/icons";
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
+import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -188,12 +189,36 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span>
+                    <i class="fab fa-connectdevelop"></i>&nbsp;
+                    <FormattedMessage id="app.awb" defaultMessage="AWB" />
+
+                  </span>
+                  {activeKey === "3" && (
+                    <>
+                    
+                    </>
+                  )}
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                <ShipperAwbTable
+                  shipperId={this.props.shipper.shipperId}
+                />
+              </Suspense>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <>
+                  <span>
                     <i className="fa fa-sticky-note" aria-hidden="true"></i>
                     &nbsp; <FormattedMessage id="app.notes" defaultMessage="Notes" />
                   </span>
                 </>
               }
-              key="3"
+              key="4"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}

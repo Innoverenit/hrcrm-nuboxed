@@ -430,6 +430,13 @@ export const handleDealsNotesDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleDealContactsDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEALS_CONTACTS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const LinkStageDeal = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEAL_REQUEST });
 
@@ -839,7 +846,7 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
     });
 };
 
-export const deleteDealsData = (invOpportunityId) => (dispatch) => {
+export const deleteDealsData = (invOpportunityId,userId) => (dispatch) => {
   dispatch({
     type: types.DELETE_DEAL_DATA_REQUEST,
   });
@@ -850,6 +857,7 @@ export const deleteDealsData = (invOpportunityId) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getdealsRecord(userId));
       Swal.fire({
         icon: 'success',
         title: 'Deal Deleted Successfully',
@@ -953,5 +961,124 @@ export const getLostDeals = (userId,pageNo) => (dispatch) => {
         icon: 'error',
         title: 'Something went wrong , reach out to support!',
       })
+    });
+};
+
+export const getDealsContactList = (invOpportunityId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEALS_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunit/fund/${invOpportunityId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEALS_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DEALS_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setDealsContactType = (data) => (dispatch) => {
+  dispatch({ type: types.SET_DEALS_CONTACT_REQUEST });
+  axios
+    .post(
+  
+      `${base_url}/investorOpportunit/fund/toggle/update`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.SET_DEALS_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_DEALS_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setDealsContactValue = (data,invOpportunityId) => (dispatch) => {
+  dispatch({ type: types.SET_DEALS_CONTACT_VALUE_REQUEST });
+  axios
+    .post(`${base_url}/investorOpportunit/fund/update`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      dispatch(getDealsContactList(invOpportunityId))
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully!',
+      })
+      dispatch({
+        type: types.SET_DEALS_CONTACT_VALUE_SUCCESS,
+        payload: res.data,
+      });
+   
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SET_DEALS_CONTACT_VALUE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getActiveAssignedToList = (orgId,type) => (dispatch) => {
+ 
+  dispatch({
+    type: types.GET_ACTIVE_ASSIGENED_TO_REQUEST,
+  });
+  axios
+    .get(`${base_url}/employee/active/user/type/drop-down/${orgId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ACTIVE_ASSIGENED_TO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_ACTIVE_ASSIGENED_TO_FAILURE,
+        payload: err,
+      });
     });
 };

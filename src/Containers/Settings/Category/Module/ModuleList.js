@@ -14,6 +14,7 @@ import FWLogo3 from "../../../../Assets/Images/Recruitpro.jpg";
 import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import ModuleTrading from "./ModuleTrading";
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
@@ -118,6 +119,43 @@ const handleFinanceClick = (checked) => {
       value: checked,
       orgId: props.orgId,
       type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+  
+  const { tradingInd } = props.moduleList;
+  console.log(tradingInd);
+  const [tradingStatus, setTradingStatus] = useState(tradingInd);
+  useEffect(() => {
+    setTradingStatus(tradingInd);
+  }, [tradingInd]);
+  
+  const handleTradingClick = (checked) => {
+    setTradingStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "trading",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+  const { ecomModInd } = props.moduleList;
+  console.log(ecomModInd);
+  const [ecomStatus, setEcomStatus] = useState(ecomModInd);
+  useEffect(() => {
+    setEcomStatus(ecomModInd);
+  }, [ecomModInd]);
+  
+  const handleEcomClick = (checked) => {
+    setEcomStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "ecomModule",
     };
     props.addingModules(data, props.orgId);
   };
@@ -612,6 +650,15 @@ logisticsStatus={logisticsStatus}
                     //   currentData={this.state.currentData}
                     //   setCurrentData={this.setCurrentData}
                     //  handleDeleteDepartment={this.handleDeleteDepartment}
+                    />
+                    <ModuleTrading
+                     handleRowData={handleRowData}
+                     rowdata={rowdata}
+                          moduleList={props.moduleList}
+                    tradingStatus={tradingStatus}
+                    handleTradingClick={handleTradingClick}
+                    ecomStatus={ecomStatus}
+                    handleEcomClick={handleEcomClick}
                     />
                   {/* )) */}
                   {/* ) : (

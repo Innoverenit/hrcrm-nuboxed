@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { Timeline, Button } from 'antd';
+import { Timeline, Button,Avatar } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
@@ -18,9 +18,10 @@ const CallLeadsTable = (props) => {
   const { callTimeline, ratingValue } = props;
   const currentDate = moment().format("DD/MM/YYYY");
   if (props.fetchingCallTimelineStatus) return <BundleLoader/>;
-  const handleRowData = (data) => {
-    setrowdata(data);
+  const handleRowData = (status) => {
+    setrowdata(status);
   };
+  console.log(props.rowdata.leadsId)
   return (
     <div className="mt-4">
       <Timeline>
@@ -33,14 +34,32 @@ const CallLeadsTable = (props) => {
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
-                  ) : null} {status.category} - {status.activityType} on {moment.utc(status.startDate).format('DD/MM/YYYY')} - {status.woner !==props.fullName ?  
-                    <Tooltip title={status.woner}> 
-                      <MultiAvatar
-                        primaryTitle={status.woner}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-                    </Tooltip> : null}
+                  ) : null} {status.category} - {status.activityType} on <span class=" font-bold">{moment.utc(status.startDate).format('DD/MM/YYYY')}</span>  
+                  
+                  <span class=" ml-2">
+                     <Avatar.Group
+                     maxCount={7}
+                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                  >
+                      {status.included &&
+                   status.included.map((candidate, i) => {
+                     
+                     const data1 = candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : "No data"
+                     return (
+                       <Tooltip title={candidate.empName} key={i}>
+                       <Avatar style={{ backgroundColor: "#f56a00" }}>
+                       {data1}
+                     
+                     </Avatar>
+                     </Tooltip>
+                      
+ 
+                    
+                     );
+                   })}
+ 
+              </Avatar.Group> 
+              </span>
                 </div>
                 <div class=" w-[20rem]">
                   <label class=" cursor-pointer text-blue "
@@ -48,7 +67,7 @@ const CallLeadsTable = (props) => {
                     style={{ margin: '0 8px', padding: 0 }}
                     onClick={() => {
                       props.handleLeadsNoteDrawerModal(true);
-                      handleRowData(status);
+                       handleRowData(status);
                        props.getNotesListOfLeads(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null)
                     }}
                   >
@@ -61,6 +80,8 @@ const CallLeadsTable = (props) => {
       </Timeline>
       <AddLeadsNotesListDrawerModal
     rowdata={rowdata}
+    handleRowData={handleRowData}
+    callTimeline={props.callTimeline}
     notesListOfLeads={props.notesListOfLeads}
        addLeadsNoteDrawerModal={props.addLeadsNoteDrawerModal}
        handleLeadsNoteDrawerModal={props.handleLeadsNoteDrawerModal

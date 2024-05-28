@@ -1,0 +1,197 @@
+
+import React, { Component, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
+import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
+import moment from "moment";
+
+import InfiniteScroll from "react-infinite-scroll-component";
+
+import PaidIcon from '@mui/icons-material/Paid';
+import {getCustomerAddedList} from "../../DashboardAction"
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import { dashboardReducer } from "../../DashboardReducer";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
+
+function CustomerAddedList(props) {
+ 
+//   useEffect(() => {
+//     props.getAllOrderList(props.orgId, page);
+//     setPage(page + 1);
+//   }, []);
+useEffect(()=>{
+    if (props.timeRangeType === "today") {
+    props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
+    }else {
+        props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
+      }
+   }, [props.orgId,props.startDate,props.endDate]);
+
+
+
+
+  return (
+    <>
+   
+   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[12rem]">Name</div>
+          <div className=" md:w-[10.4rem]">Work#
+</div>
+          <div className=" md:w-[12.01rem] ">Category</div>
+          <div className="md:w-[8.12rem]">Type</div>
+          <div className="md:w-[4rem]">Payment(Days)
+</div>
+          <div className="md:w-[7.1rem]">Tax#
+</div>
+          <div className="md:w-[37rem]">Billing Address</div>
+
+
+        </div>
+        {/* <InfiniteScroll
+          dataLength={props.allCompleteOrder.length}
+          next={handleLoadMore}
+          hasMore={hasMore}
+          loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
+          height={"75vh"}
+        > */}
+        <div class="h-[65vh] overflow-auto">
+          {props.customerAddedList.length ?
+            <>
+              {props.customerAddedList.map((item) => {
+                const currentdate = moment().format("DD/MM/YYYY");
+                const date = moment(item.creationDate).format("DD/MM/YYYY");
+
+                const diff = Math.abs(
+                  moment().diff(moment(item.lastRequirementOn), "days")
+                );
+                const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
+                  } 
+                   Street : ${item.address && item.address.length && item.address[0].street
+                  }   
+                  State : ${item.address && item.address.length && item.address[0].state
+                  }
+                 Country : ${(item.address &&
+                    item.address.length &&
+                    item.address[0].country) ||
+                  ""
+                  } 
+                   PostalCode : ${item.address &&
+                  item.address.length &&
+                  item.address[0].postalCode
+                  } `;
+                  return (
+                    <div>
+                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col w-[11rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                            <div className="flex max-sm:w-auto">
+                              <div>
+                                <MultiAvatar
+                                  primaryTitle={item.name}
+                                  imageId={item.imageId}
+                                  imageURL={item.imageURL}
+                                  imgWidth={"1.8rem"}
+                                  imgHeight={"1.8rem"}
+                                />
+                              </div>
+                              <div class="w-[0.25rem]"></div>
+                              <div class="max-sm:w-auto flex items-center">
+                              {item.name}
+                              </div>
+                            </div>
+                          </div>
+                          <div className=" flex font-medium  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+
+                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
+                              {item.dialCode} {item.phoneNo}
+                            </div>
+
+                          </div>
+
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[13.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {/* {item.url} */}
+                              {item.dcategoryName}
+                            </div>
+                          </div>
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.clientName}
+
+                            </div>
+                          </div>
+
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.payment}
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+
+                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {item.countryValue}
+                            </div>
+
+                          </div>
+                          <div className=" flex font-medium flex-col max-sm:w-auto  w-[17.1rem] max-xl:w-[9rem] max-lg:w-[8.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs text-cardBody font-poppins max-w-[40ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {dataLoc}
+                            </div>
+
+                          </div>
+
+                         
+
+                        </div>
+                    
+                      </div>
+                    </div>
+
+
+                  )
+              })}
+            </> :
+            !props.customerAddedList.length && !props.fetchingCustomerAddedList ? <NodataFoundPage /> 
+            : null}
+            </div>
+        {/* </InfiniteScroll> */}
+      </div>
+    </>
+  );
+
+}
+
+const mapStateToProps = ({ order, auth,dashboard, distributor }) => ({
+customerAddedList:dashboard.customerAddedList,
+fetchingCustomerAddedList:dashboard.fetchingCustomerAddedList,
+orgId: auth.userDetails.organizationId,
+timeRangeType:dashboard.timeRangeType,
+startDate: dashboard.startDate,
+endDate: dashboard.endDate,
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+        getCustomerAddedList
+    //   getAllOrderList,
+    //   handleNotesModalInOrder,
+    //   handleStatusOfOrder,
+    //   handlePaidModal,
+    //   emptyOrders,
+    //   handleOrderDetailsModal
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerAddedList);

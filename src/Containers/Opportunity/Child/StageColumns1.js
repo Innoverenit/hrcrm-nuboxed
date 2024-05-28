@@ -4,12 +4,14 @@ import { bindActionCreators } from "redux";
 import { Draggable } from "react-beautiful-dnd";
 import OpportunityGroupCard from "../Child/OpportunityGroupCard";
 import { elipsize } from "../../../Helpers/Function/Functions";
-import {  StatusRecruit, lostStatusRecruit,deleteOpportunityData} from "../OpportunityAction";
+import {  StatusRecruit, lostStatusRecruit,deleteOpportunityData,setEditOpportunity,handleUpdateOpportunityModal} from "../OpportunityAction";
+import UpdateOpportunityModal from "./UpdateOpportunity/UpdateOpportunityModal";
 
 class StageColumns1 extends Component {
   render() {
     const { opportunity, index, history } = this.props;
     return (
+      <>
       <Draggable
       draggableId={opportunity.opportunityId}
       index={index}
@@ -50,18 +52,30 @@ class StageColumns1 extends Component {
               handleDelete={()=>{
                 this.props.deleteOpportunityData(opportunity.opportunityId)
               }}
+              handleEdit={()=>{
+                this.props.setEditOpportunity(opportunity);
+                this.props.handleUpdateOpportunityModal(true)
+              }}
             />
              
             </div>
             )}
                  </Draggable>
-         
+
+                 <UpdateOpportunityModal
+        updateOpportunityModal={this.props.updateOpportunityModal}
+        opportunityData={opportunity}
+        handleUpdateOpportunityModal={this.props.handleUpdateOpportunityModal}
+        //handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+      />
+                 </>
     );
   }
 }
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  updateOpportunityModal: opportunity.updateOpportunityModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -69,7 +83,9 @@ const mapDispatchToProps = (dispatch) =>
     
          StatusRecruit,
          lostStatusRecruit,
-         deleteOpportunityData
+         deleteOpportunityData,
+         setEditOpportunity,
+         handleUpdateOpportunityModal
     },
     dispatch
   );

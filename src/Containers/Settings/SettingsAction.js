@@ -5392,3 +5392,81 @@ export const AddLangWords = (word) => (dispatch) => {
 
     });
 };
+export const updateOrganizationType = (data, customerId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ORGANIZATION_TYPE_REQUEST });
+  axios
+    .post(`${base_url}/organization/industry`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect Info updated Successfully!',
+      //   // showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ORGANIZATION_TYPE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ORGANIZATION_TYPE_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getOrgType = (orgId) => (dispath) => {
+  dispath({ type: types.GET_ORG_TYPE_REQUEST });
+  axios
+    .get(`${base_url}/organization/industry/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispath({
+        type: types.GET_ORG_TYPE_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_ORG_TYPE_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateSkillLevel = (data,activeTab,organizationId) => (dispatch, getState) => {
+  dispatch({
+    type: types.UPDATE_SKILL_LEVEL_REQUEST,
+  });
+  axios
+    .post(`${base_url}/skillLevel`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getMatrixdata(activeTab,organizationId,))
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SKILL_LEVEL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SKILL_LEVEL_FAILURE,
+        payload: err,
+      });
+    });
+};
+

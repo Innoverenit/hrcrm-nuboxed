@@ -7,6 +7,9 @@ const initialState = {
 
     addBrandModel: false,
 
+    addingMaterialToggle: false,
+    addingMaterialToggleError: false,
+
     addingPurchase: false,
     addingPurchaseError: false,
 
@@ -23,6 +26,11 @@ const initialState = {
 
     updateSuppliesById: false,
     updateSuppliesByIdError: false,
+
+    fetchingSuppliesInputSearchData:false,
+    fetchingSuppliesInputSearchDataError:false,
+
+  
 
     fetchingSuppliesHistory: false,
     fetchingSuppliesHistoryError: false,
@@ -67,6 +75,10 @@ const initialState = {
     fetchingSuppliescount: false,
     fetchingSuppliescountError: false,
     suppliesCount: {},
+
+    fetchingSuppliesDeletedcount: false,
+     fetchingSuppliesDeletedcountError: false,
+     suppliesDeletedCount:{},
 
     materialBuildrawer: false,
 
@@ -236,6 +248,9 @@ export const suppliesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 reInstatedSuppliesById: false,
+                deleteSuppliesHistory: state.deleteSuppliesHistory.filter(
+                    (item) => item.suppliesId !== action.payload
+                  ),
                 // updateSuppliesDrawer: false,
                 // purchaseList: state.purchaseList.map((item) => {
                 //     if (item.suppliesId == action.payload.suppliesId) {
@@ -370,6 +385,13 @@ export const suppliesReducer = (state = initialState, action) => {
             return { ...state, fetchingSuppliescount: false, suppliesCount: action.payload };
         case types.GET_SUPPLIES_COUNT_FAILURE:
             return { ...state, fetchingSuppliescount: false, fetchingSuppliescountError: true };
+
+            case types.GET_SUPPLIES_DELETED_COUNT_REQUEST:
+                return { ...state, fetchingSuppliesDeletedcount: true };
+            case types.GET_SUPPLIES_DELETED_COUNT_SUCCESS:
+                return { ...state, fetchingSuppliesDeletedcount: false, suppliesDeletedCount: action.payload };
+            case types.GET_SUPPLIES_DELETED_COUNT_FAILURE:
+                return { ...state, fetchingSuppliesDeletedcount: false, fetchingSuppliesDeletedcountError: true };
 
         case types.HANDLE_MATERIAL_BUILDER_DRAWER:
             return { ...state, materialBuildrawer: action.payload };
@@ -511,6 +533,49 @@ export const suppliesReducer = (state = initialState, action) => {
             };
         case types.SET_SUPPLIES_SUPPLIER_FAILURE:
             return { ...state };
+
+
+
+            case types.LINK_MATERIAL_TOGGLE_REQUEST:
+                return { ...state, addingMaterialToggle: true };
+              case types.LINK_MATERIAL_TOGGLE_SUCCESS:
+                return {
+                  ...state,
+                  addingMaterialToggle: false,
+                  purchaseList: state.purchaseList.map((item) => {
+                    if (item.suppliesId === action.payload.suppliesId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.LINK_MATERIAL_TOGGLE_FAILURE:
+                return {
+                  ...state,
+                  addingMaterialToggle: false,
+                  addingMaterialToggleError: true,
+                };
+
+                case types.INPUT_SUPPLIES_SEARCH_DATA_REQUEST:
+                    return { ...state, fetchingSuppliesInputSearchData: true };
+                  case types.INPUT_SUPPLIES_SEARCH_DATA_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingSuppliesInputSearchData: false,
+                      purchaseList: action.payload,
+                       deleteSuppliesHistory: action.payload,
+                   
+                    };
+                  case types.INPUT_SUPPLIES_SEARCH_DATA_FAILURE:
+                    return { ...state, fetchingSuppliesInputSearchDataError: true };
+                  
+                    case types.HANDLE_CLAER_REDUCER_DATA_MATERIAL:
+                        return {
+                          ...state,
+                          purchaseList: [],
+                          // deletedTruck: []
+                        };   
 
 
         default:

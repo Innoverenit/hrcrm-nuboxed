@@ -42,6 +42,8 @@ const initialState = {
 
   addingSequence: false,
   addingSequenceError: false,
+  organizationType:false,
+  organizationTypeError:false,
 
   fetchingSequence: false,
   fetchingSequenceError: false,
@@ -466,6 +468,10 @@ const initialState = {
   fetchingScheduler: false,
   fetchingSchedulerError: false,
   scheduler: [],
+
+
+  fetchingOrgType:false,
+  orgTypeData:{},
 
   addingThirdPartyAccess: false,
   addingThirdPartyAccessError: false,
@@ -1749,6 +1755,30 @@ export const settingsReducer = (state = initialState, action) => {
         addingDepartmentAccessError: true,
       };
 
+
+
+      case types.UPDATE_ORGANIZATION_TYPE_REQUEST:
+        return { ...state, organizationType: true };
+      case types.UPDATE_ORGANIZATION_TYPE_SUCCESS:
+        return {
+          ...state,
+          organizationType: false,
+          // updateCustomerModal: false,
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.UPDATE_ORGANIZATION_TYPE_FAILURE:
+        return {
+          ...state,
+          organizationType: false,
+          organizationTypeError: true,
+        };
+
     //get
     case types.GET_DEPARTMENT_ACCESS_REQUEST:
       return { ...state, fetchingDepartmentAccess: true };
@@ -2214,6 +2244,24 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
 
+
+
+      case types.GET_ORG_TYPE_REQUEST:
+      return { ...state, fetchingOrgType: true };
+    case types.GET_ORG_TYPE_SUCCESS:
+      return {
+        ...state,
+        fetchingOrgType: false,
+        orgTypeData: action.payload,
+      };
+    case types.GET_ORG_TYPE_FAILURE:
+      return {
+        ...state,
+        fetchingOrgType: false,
+        fetchingOrgTypeError: false,
+      };
+
+
     case types.GET_PROCESS_FOR_OPPORTUNITY_REQUEST:
       return {
         ...state,
@@ -2279,7 +2327,7 @@ export const settingsReducer = (state = initialState, action) => {
     case types.ADD_SKILL_LEVEL_SUCCESS:
       return { ...state, 
         addingSkillLevel: false, 
-       
+        matrixData:[action.payload,...state.matrixData]
     
       };
     case types.ADD_SKILL_LEVEL_FAILURE:
@@ -3993,8 +4041,39 @@ export const settingsReducer = (state = initialState, action) => {
                                                             addingLangWordsError: true,
                                                           };              
                     
-        
-          
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_REQUEST:
+                                                            return { ...state, addingScheduler: true };
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_SUCCESS:
+                                                            return {
+                                                              ...state,
+                                                              addingScheduler: false,
+                                                            };
+                                                          case types.ADD_SCHEDULER_BY_ORG_ID_FAILURE:
+                                                            return {
+                                                              ...state,
+                                                              addingScheduler: false,
+                                                              addingSchedulerError: false,
+                                                            };   
+                                                            case types.UPDATE_SKILL_LEVEL_REQUEST:
+                                                              return { ...state, updatingSkillLevel: true };
+                                                            case types.UPDATE_SKILL_LEVEL_SUCCESS:
+                                                              return { ...state, 
+                                                                updatingSkillLevel: false, 
+                                                                matrixData: state.matrixData.map((equipment) =>
+                                                                equipment.skillLevelLinkId === action.payload.skillLevelLinkId ? action.payload : equipment
+                                                                ),
+                                                             
+                                                                // matrixData:state.matrixData.map((item) => {
+                                                                //   if (item.skillLevelLinkId === action.payload.skillLevelLinkId) {
+                                                                //     return action.payload;
+                                                                //   } else {
+                                                                //     return item;
+                                                                //   }
+                                                                // }),
+                                                              };
+                                                            case types.UPDATE_SKILL_LEVEL_FAILURE:
+                                                              return { ...state, updatingSkillLevel: false,  
+                                                              };      
 
     default:
       return state;

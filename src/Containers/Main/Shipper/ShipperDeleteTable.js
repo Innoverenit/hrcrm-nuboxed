@@ -6,24 +6,54 @@ import {
   getDeletedShipper,
   handleShipperActivityTableModal,
 } from "./ShipperAction";
+import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Link } from "../../../Components/Common";
 import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../Components/Placeholder";
+import ReInstateShipper from "./ReInstateShipper";
 
 function ShipperDeleteTable(props) {
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
   useEffect(() => {
-    props.getDeletedShipper();
+    setPage(page + 1);
+    props.getDeletedShipper(props.userId,page);
   }, []);
-
   const {
     handleUpdateShipperModal,
     updateShipperModal,
     deletedShipper,
   } = props;
 
+  const handleLoadMore = () => {
+    const PageMapd = deletedShipper && deletedShipper.length &&deletedShipper[0].pageCount
+    setTimeout(() => {
+      const {
+        getDeletedShipper,
+        userId
+      } = props;
+      if  (deletedShipper)
+      {
+        if (page < PageMapd) {
+          setPage(page + 1);
+          getDeletedShipper(userId, page);
+      }
+      if (page === PageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+
   const [currentShipperId, setCurrentShipperId] = useState("");
 
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
+  }
+
+    if (props.fetchingDeletedShipper) {
+    return <BundleLoader />;
   }
 
   return (
@@ -37,19 +67,21 @@ function ShipperDeleteTable(props) {
         <div className="md:w-[5.9rem]"><FormattedMessage id="app.shipby" defaultMessage="Ship By"/></div>
         <div className="md:w-[7.8rem]"><FormattedMessage id="app.address" defaultMessage="Address"/></div>
         <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City"/></div>
-        <div className="md:w-[5.2rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code"/></div>
-        <div className="w-[3.8rem]"></div>
+        <div className="md:w-[9.2rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code"/></div>
+        <div className="w-[3.8rem]"><FormattedMessage id="app.reinstate" defaultMessage="Reinstate"/></div>
         </div>
-        {/* <InfiniteScroll
-        dataLength={props.shipperByUserId.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={props.fetchingShipperByUserId?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"75vh"}
-      > */}
-{deletedShipper.map((item) => {
-  return (
-    <>
+        <InfiniteScroll
+            dataLength={deletedShipper.length}
+            next={handleLoadMore}
+            hasMore={hasMore}
+            loader={props.fetchingDeletedShipper ? <div className="flex justify-center" >Loading...</div> : null}
+            height={"75vh"}
+          >
+            {deletedShipper.length ? <>
+              {deletedShipper.map((item) => {
+                return (
+               
+                     <>
      <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"               >
  <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
@@ -59,8 +91,8 @@ function ShipperDeleteTable(props) {
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
 <Link
           toUrl={`shipper/${item.shipperId}`}
-          title={`${item.name}`}
-        >{item.name}</Link>
+          title={`${item.shipperName}`}
+        >{item.shipperName}</Link>
 </div>
 
 </div>
@@ -88,35 +120,40 @@ function ShipperDeleteTable(props) {
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{`${(item.addresses && item.addresses.length && item.addresses[0].address1) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].state) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].street) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].city) || ""}
-          ${(item.addresses && item.addresses.length && item.addresses[0].pinCode) || ""}`}
+{`${(item.address && item.address.length && item.address[0].address1) || ""}
+          ${(item.address && item.address.length && item.address[0].state) || ""}
+         
+        `}
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.addresses &&
-           item.addresses.length &&
-           item.addresses[0].city) ||
-          ""}
+{(item.address &&
+                              item.address.length &&
+                              item.address[0].city) ||
+                              ""}
 </div>
 
 </div>
 <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
-{(item.addresses &&
-          item.addresses.length &&
-          item.addresses[0].pinCode) ||
-          ""}
+{(item.address &&
+                              item.address.length &&
+                              item.address[0].postalCode) ||
+                              ""}
 </div>
 
 </div>
-<div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
+
+<div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <ReInstateShipper shipperId={item.shipperId} />
+                            </div>
+                          </div>
+{/* <div class="flex flex-col w-[3%] max-sm:flex-row max-sm:w-[10%]">
  <div>
  <Tooltip title="Activity">
             <span>
@@ -131,7 +168,7 @@ function ShipperDeleteTable(props) {
             </span>
           </Tooltip>
           </div>
-            </div>
+            </div> */}
 
 
  </div>
@@ -141,8 +178,13 @@ function ShipperDeleteTable(props) {
 
                 </div>
     </>
-  )
-})}
+                 
+                )
+              })}
+            </> : !deletedShipper.length
+              && !props.fetchingDeletedShipper ? <NodataFoundPage /> : null}
+
+          </InfiniteScroll>
   </div>
   </div>
 
@@ -168,207 +210,3 @@ const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShipperDeleteTable);
 
-// import React, { useEffect, useState } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { StyledTable } from "../../../Components/UI/Antd";
-// import { Tooltip } from "antd";
-// import { Spacer } from "../../../Components/UI/Elements";
-// import {
-//   getDeletedShipper,
-//   handleShipperActivityTableModal,
-// } from "./ShipperAction";
-// import ShipperDetailsView from "./ShipperDetailsView";
-// import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
-
-// function ShipperDeleteTable(props) {
-//   useEffect(() => {
-//     props.getDeletedShipper();
-//   }, []);
-
-//   const {
-//     handleUpdateShipperModal,
-//     updateShipperModal,
-//     deletedShipper,
-//   } = props;
-
-//   const [currentShipperId, setCurrentShipperId] = useState("");
-
-//   function handleSetCurrentShipperId(shipperId) {
-//     setCurrentShipperId(shipperId);
-//   }
-
-//   const columns = [
-//     {
-//       title: "",
-//       width: "2%",
-//     },
-//     {
-//       title: "Name",
-//       // width: "15%",
-//       defaultSortOrder: "descend",
-//       // sorter: (a, b) => a.name - b.name,
-//       render: (name, item, i) => (
-//         <ShipperDetailsView shipperId={item.shipperId} name={item.name} />
-//       ),
-//     },
-
-//     {
-//       title: "Phone #",
-//       dataIndex: "phoneNo",
-//       render: (name, item, i) => {
-//         return (
-//           <>
-//             {item.dialCode} {item.phoneNo}
-//           </>
-//         );
-//       },
-//     },
-//     {
-//       title: "Email",
-//       dataIndex: "emailId",
-//     },
-
-//     {
-//       title: "Mobile No",
-//       dataIndex: "mobileNo",
-//     },
-
-//     {
-//       title: "Ship By",
-//       dataIndex: "shipBy",
-//     },
-//     {
-//       title: "Address",
-//       //  dataIndex: "addressId",
-//       render: (name, item, i) => {
-//         return `${(item.addresses &&
-//           item.addresses.length &&
-//           item.addresses[0].address1) ||
-//           ""},
-//                       ${(item.addresses &&
-//                         item.addresses.length &&
-//                         item.addresses[0].state) ||
-//                         ""},
-//                       ${(item.addresses &&
-//                         item.addresses.length &&
-//                         item.addresses[0].street) ||
-//                         ""},
-//                       ${(item.addresses &&
-//                         item.addresses.length &&
-//                         item.addresses[0].city) ||
-//                         ""},
-//                       ${(item.addresses &&
-//                         item.addresses.length &&
-//                         item.addresses[0].pinCode) ||
-//                         ""}`;
-//       },
-//     },
-
-//     {
-//       title: "Pin Code",
-//       render: (name, item, i) => {
-//         return `${(item.addresses &&
-//           item.addresses.length &&
-//           item.addresses[0].pinCode) ||
-//           ""}`;
-//       },
-//     },
-//     {
-//       title: "City",
-//       render: (name, item, i) => {
-//         return `${(item.addresses &&
-//           item.addresses.length &&
-//           item.addresses[0].city) ||
-//           ""}`;
-//       },
-//     },
-//     {
-//       title: props.recriutmentInd ? "Status" : "",
-//       width: props.recriutmentInd ? "10%" : "",
-//     },
-//     // {
-//     //     title: "",
-//     //     dataIndex: "documentId",
-//     //     render: (name, item, i) => {
-//     //         return (
-//     //             <Tooltip title="Order">
-//     //                 <ShoppingCartOutlined
-
-//     //                     style={{ marginLeft: "35px" }}
-//     //                     // style={{ cursor: "pointer", fontSize: "12px" }}
-//     //                     onClick={() => {
-//     //                         props.handleShipperOrderModal(true);
-//     //                         handleSetCurrentShipperId(item.ShipperId);
-//     //                     }}
-//     //                 />
-//     //             </Tooltip>
-//     //         );
-//     //     },
-//     // },
-//     {
-//       title: "",
-//       dataIndex: "documentId",
-//       render: (name, item, i) => {
-//         return (
-//           <Tooltip title="Activity">
-//             <span>
-//               <i
-//                 class="fab fa-connectdevelop"
-//                 style={{ cursor: "pointer" }}
-//                 onClick={() => {
-//                   props.handleShipperActivityTableModal(true);
-//                   handleSetCurrentShipperId(item.shipperId);
-//                 }}
-//               ></i>
-//             </span>
-//           </Tooltip>
-//         );
-//       },
-//     },
-//   ];
-//   if (props.fetchingDeletedShipperError) {
-//     return <APIFailed />;
-//   }
-
-//   return (
-//     <>
-//       <StyledTable
-//         rowKey=""
-//         columns={columns}
-//         dataSource={deletedShipper}
-//         loading={
-//           props.fetchingDeletedShipper || props.fetchingDeletedShipperError
-//         }
-//         pagination={false}
-//         scroll={{ y: 320 }}
-//       />
-//       {/* <AddShipperActivityModal
-//         addShipperActivityTableModal={props.addShipperActivityTableModal}
-//         handleShipperActivityTableModal={props.handleShipperActivityTableModal}
-//         shipperId={currentShipperId}
-//         handleSetCurrentShipperId={handleSetCurrentShipperId}
-//       /> */}
-//       <Spacer />
-//     </>
-//   );
-// }
-// const mapStateToProps = ({ shipper, auth }) => ({
-//   fetchingDeletedShipper: shipper.fetchingShipper,
-//   fetchingDeletedShipperError: shipper.fetchingShipperError,
-//   deletedShipper: shipper.deletedShipper,
-//   userId: auth.userDetails.userId,
-//   // addShipperOrderModal: shipper.addShipperOrderModal,
-//   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       getDeletedShipper,
-//       handleShipperActivityTableModal,
-//     },
-//     dispatch
-//   );
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ShipperDeleteTable);

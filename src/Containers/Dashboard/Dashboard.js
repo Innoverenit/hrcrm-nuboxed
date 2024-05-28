@@ -10,9 +10,10 @@ import CustomerGoogleMap from "./Child/Chart/CustomerGoogleMap";
 import CustomerViewGoogleMap from "./CustomerViewGoogleMap"
 import CustomerAccountGoogleMap from "../Dashboard/CustomerAccountGoogleMap"
 import CustomerDashboardJumpStart from "./Child/JumpStart/CustomerDashboardJumpStart";
-import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords} from "./DashboardAction";
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
 import DashboardProspectJumpstart from "./Child/JumpStart/DashboardProspectJumpstart";
 import CustomerDashJumpstart from "./Child/JumpStart/CustomerDashJumpstart";
+// import CustomerPieChart from "../Dashboard/Child/JumpStart/CustomerPieChart"
 import DashOrderJumpstart from "./Child/JumpStart/DashOrderJumpstart";
 import DashOrderFinanceJumpstart from "./Child/JumpStart/DashOrderFinanceJumpstart";
 import InvestorFunnelTab from "./Child/InvestorFunnelTab";
@@ -77,6 +78,10 @@ class Dashboard extends Component {
     await this.props.getRegionRecords(currentYear, tabKey
    
     );
+    await this.props.getMultiOrgRegionRecords(this.props.emailId,currentYear, tabKey
+   
+      );
+    
   };
 
   showModal = () => {
@@ -159,12 +164,16 @@ class Dashboard extends Component {
         activeButton={this.state.activeButton}
         />
         <Suspense fallback={<BundleLoader />}>
-        <MainWrapper style={{marginTop:"0.5rem",overflow:"hidden",height:"21rem"}}
+        <MainWrapper
+         style={{marginTop:"0.5rem",overflow:"hidden"}}
     >
-          <div class="  max-sm:h-[36rem] max-sm:overflow-x-auto">
+       {/* <div className=" rounded-md shadow-[0em_0.25em_0.625em_-0.125em]
+         border-[0625em] border-solid m-1 p-1 w-full font-poppins  mt-2 overflow-hidden h-[21rem] max-sm:h-[30rem]
+        "></div> */}
+          <div class=" h-[21rem] max-sm:h-[19rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col " >
+           <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME"?(
              <DashboardJumpstartAll/> )
              :viewType==="bulb" ? (<DashboardBulbJumpstart/>
@@ -210,7 +219,8 @@ class Dashboard extends Component {
                  tabKey={this.state.activeTab}
                 
                  handleTabClick={this.handleTabClick}
-                regionRecords={this.props.regionRecords}/>
+                 multiOrgRecords={this.props.multiOrgRecords}
+         />
               </CardElement>
             ) 
             
@@ -272,8 +282,8 @@ class Dashboard extends Component {
   // ) 
   : this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType} />
-    ) : this.state.activeButton === "Customer"  ? (
-      <FunnelTab />
+    // ) : this.state.activeButton === "Customer"  ? (
+    //   <FunnelTab />
    
   ) : this.state.activeButton === "Finance" ? (
     null
@@ -289,7 +299,7 @@ class Dashboard extends Component {
 ) : this.state.activeButton === "Customer" ? (
     null // Put your condition for StackedClosureChart here if needed
   ) : (
-    this.state.activeButton === "Customer"   ? null : <StackedClosureChart />
+    this.state.activeButton === "Customer"   ? null : null
     // null
   )}
 </div>
@@ -338,7 +348,7 @@ class Dashboard extends Component {
      {this.state.activeButton === "multiOrg" && activeTab && (
         <CardElement>
             <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-            <MultiOrgFullFillMentMJumpstartBox regionRecords={this.props.regionRecords}/>
+            <MultiOrgFullFillMentMJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
         </CardElement>
     )}
 
@@ -377,16 +387,17 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
-    <MainWrapper style={{marginTop:"1rem",overflow:"none",height:"21rem"}}
+   
+    <MainWrapper style={{marginTop:"1rem",overflow:"none"}}
     >
-    <div class="   max-sm:h-[36rem] max-sm:overflow-x-auto">
+    <div class=" h-[21rem]   max-sm:h-[12rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[47.5%] max-sm:w-wk">
            <div class=" flex flex-col " >
           
      
 
-    <div class=" flex justify-between" >
+    <div class=" flex justify-between " >
                 
               
                  
@@ -409,7 +420,7 @@ class Dashboard extends Component {
                            : this.state.activeButton === "multiOrg" && activeTab  ?
                            <CardElement>
                            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-                           <MultiOrgInvestorRegionalJumpstartBox regionRecords={this.props.regionRecords}/>
+                           <MultiOrgInvestorRegionalJumpstartBox multiOrgRecords={this.props.multiOrgRecords}/>
                            </CardElement>
                         : this.state.activeButton === "Investors" ? (
                           <CustomerGoogleMap />)
@@ -479,6 +490,7 @@ class Dashboard extends Component {
   
       
     </div>
+   
     </div>
  
     </div>
@@ -487,6 +499,7 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
+    
     </Suspense>
 
 
@@ -498,7 +511,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
+  emailId: auth.userDetails.emailId,
   regionRecords:dashboard.regionRecords,
+  multiOrgRecords:dashboard.multiOrgRecords,
   fetchingProspectData:dashboard.fetchingProspectData,
   prospectLifeTime:dashboard.prospectLifeTime,
   fetchingProspectLifetime:dashboard.fetchingProspectLifetime,
@@ -513,6 +528,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,
   getProspectLifeTime,
   getRegionRecords,
+  getMultiOrgRegionRecords,
   getOpenQuotationThisYear,
   getProspectsData,
   getOpenQuotation

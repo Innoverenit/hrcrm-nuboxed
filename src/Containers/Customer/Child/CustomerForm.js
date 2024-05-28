@@ -11,7 +11,8 @@ import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
   addCustomer,
-  setClearbitData
+  setClearbitData,
+  emptyClearbit
 } from "../CustomerAction";
 import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
@@ -54,6 +55,8 @@ function CustomerForm(props) {
     // props.getAllCustomerEmployeelist();
     // props.getSectors();
     props.getCrm();
+    props.emptyClearbit()
+    // setSource("")
     // props.getCurrency();
   }, []);
 
@@ -342,16 +345,16 @@ console.log(selectedSource)
       <Formik
         // enableReinitialize
         initialValues={{
-          currencyId:selectedCurrency,
-          // sectorName:"",
+          // currencyId:"",
+       
           partnerName: "",
           type:"",
-          // sectorDescription:"",
+        
           name: "",
           url: "",
           gst: "",
-          source: selectedSource,
-          sectorId: selectedSector,
+          // source: "",
+          // sectorId: "",
           country: props.user.country,
           email: "",
           potentialValue:"",
@@ -364,6 +367,7 @@ console.log(selectedSource)
           businessRegistration: "",
           assignedTo: selectedOption ? selectedOption.employeeId : userId,
           department: "",
+          vatNo:"",
           address: [
             {
               address1: "",
@@ -387,11 +391,12 @@ console.log(selectedSource)
               currencyId:selectedCurrency,
               source: selectedSource,
               sectorId: selectedSector,
+              currencyId:selectedCurrency,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
-              // assignedTo:selectedOption?selectedOption:userId,
+             
             },
             props.userId,
-            () => handleReset(resetForm)
+            resetForm()
           );
         }}
       >
@@ -937,6 +942,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addCustomer,
       setClearbitData,
+      emptyClearbit,
       getSectors,
       getAllCustomerEmployeelist,
       getCrm,

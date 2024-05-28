@@ -13,8 +13,8 @@ import * as Yup from "yup";
 const { Option } = Select;
 
 const currSchema = Yup.object().shape({
-    reportingCurrency: Yup.string().required("Input needed!"),
-    conversionCurrency: Yup.string().required("Input needed!"),
+    // reportingCurrency: Yup.string().required("Input needed!"),
+    // conversionCurrency: Yup.string().required("Input needed!"),
     conversionFactor: Yup.string().required("Input needed!"),
   });
 
@@ -47,12 +47,14 @@ const CurrencyCoversionForm = (props) => {
                         reportingCurrency:reportingCurrency,
                         conversionCurrency:conversionCurrency,
                         conversionFactor:"",
-                        reportingFactor:"1",
                         userId:props.userId,
                         orgId:props.orgId
                     }}
                     validationSchema={currSchema}
                     onSubmit={(values, { resetForm }) => {
+                        if (!reportingCurrency || !conversionCurrency) {
+                            return;
+                          }
                         props.createCurrencyConversion({
                             ...values,
                             reportingCurrency:reportingCurrency,
@@ -87,6 +89,9 @@ const CurrencyCoversionForm = (props) => {
            </Option>
 })}
         </Select>
+        {!reportingCurrency && (
+  <div class="text-[tomato] font-semibold">Input needed!</div>
+)}
         </div>
 
         <div class=" w-[18%]">
@@ -99,6 +104,9 @@ const CurrencyCoversionForm = (props) => {
              </Option>
 })}
         </Select>
+        {!conversionCurrency && (
+  <div class="text-[tomato] font-semibold">Input needed!</div>
+)}
         </div>
         <div class=" w-[18%]" >
                                             <Field

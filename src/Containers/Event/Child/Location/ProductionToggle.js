@@ -49,6 +49,7 @@ function ProductionToggle(props) {
             className="toggle-clr"
             checked={props.productionInd || toggle}
             isLoading={true}
+            disabled={!props.productionInd}
             style={{
               width: "4em",
               // backgroundColor: props.productionInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
@@ -66,7 +67,7 @@ function ProductionToggle(props) {
 const mapStateToProps = ({ auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  repairInd: auth.userDetails.repairInd,
+  productionInd:auth.userDetails.productionInd,
 });
 
 const mapDispatchToProps = (dispatch) =>

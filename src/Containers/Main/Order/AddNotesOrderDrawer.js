@@ -12,12 +12,10 @@ const AddNotesOrderDrawer = (props) => {
     <>
       <StyledDrawer
         title={`Notes`}
-        width="64%"
+        width="70%"
         visible={props.addNotesInOrder}
         // maskClosable={false}
         destroyOnClose
-        maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{marginTop:"5rem"}}
         onClose={() => props.handleNotesModalInOrder(false)}
         footer={null}
       >

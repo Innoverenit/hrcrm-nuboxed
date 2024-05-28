@@ -127,14 +127,15 @@ const ContactInvestActionLeft = (props) => {
           </div>
         </Badge>
       </Tooltip>
+      {user.teamsAccessInd === true && (
       <Tooltip
        title={<FormattedMessage id="app.teams" defaultMessage="Teams" />}
       >
       <Badge
           size="small"
           count={
-            (props.viewType === "teams" &&
-              props.teamContactInvest.InvestorContactTeam
+            (props.teamsAccessInd||props.viewType === "teams" &&
+              props.teamContactInvest.investorContactTeam
               ) ||
             0
           }
@@ -147,12 +148,13 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "teams" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
            <PeopleIcon className=" text-base cursor-pointer"/>
            </Avatar>
           </div>
         </Badge>
-      </Tooltip>
+      </Tooltip> 
+      )}
       <Tooltip
        title={<FormattedMessage id="app.all" defaultMessage="All" />}
       >
@@ -221,6 +223,7 @@ const ContactInvestActionLeft = (props) => {
 
 const mapStateToProps = ({ auth, contactinvest }) => ({
   userId: auth.userDetails.userId,
+  user: auth.userDetails,
   orgId: auth.userDetails.organizationId,
   contactInvest:contactinvest.contactInvest,
   teamContactInvest:contactinvest.teamContactInvest,

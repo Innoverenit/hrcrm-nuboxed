@@ -4,13 +4,12 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import {
   handleOpportunityModal,
-  setOpportunityViewType,
+  // setOpportunityViewType,
 } from "./OpportunityAction";
 const OpportunityTeamsCard = lazy(() => import("./Child/OpportunityTable/OpportunityTeamsCard"));
 const OpportunityBoard = lazy(() => import("./Child/OpportunityBoard"));
 const OpportunityWonCard = lazy(() => import("./Child/OpportunityTable/OpportunityWonCard"));
 const OpportunityCardView = lazy(() => import("./OpportunityCardView"));
-const OpportunityMap = lazy(() => import("./OpportunityMap"));
 const OpportunityHeader = lazy(() => import("./Child/OpportunityHeader"));
 const AddOpportunityModal = lazy(() => import("./Child/AddOpportunityModal"));
 const OpportunityCardList = lazy(() => import("./Child/OpportunityTable/OpportunityCardList"));
@@ -20,7 +19,11 @@ const OpportunityDeletedCard=lazy(()=>import("./Child/OpportunityTable/Opportuni
 const OpportunityAllCardList = lazy(() => import("./Child/OpportunityTable/OpportunityAllCardList"));
 
 class Opportunity extends Component {
-  state = { currentData: "",isMobile: false };
+  constructor(props) {
+    super(props);
+  this.state = { currentData: "",isMobile: false, viewType: null, // Default viewType
+  teamsAccessInd: props.teamsAccessInd , };
+  };
   handleClear = () => {
     this.setState({ currentData: "" });
   };
@@ -34,7 +37,9 @@ class Opportunity extends Component {
   
     window.addEventListener('resize', this.handleResize);
   }
-  
+  setOpportunityViewType = (viewType) => {
+    this.setState({ viewType, teamsAccessInd: false });
+  };
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
@@ -47,6 +52,7 @@ class Opportunity extends Component {
     localStorage.setItem('isMobile', JSON.stringify(isMobile));
   };
   render() {
+    const { viewType, teamsAccessInd } = this.state;
     const {isMobile } = this.state;
     const {
       addOpportunityModal,
@@ -56,7 +62,8 @@ class Opportunity extends Component {
       <React.Fragment>
         <OpportunityHeader
           viewType={this.props.viewType}
-          setOpportunityViewType={this.props.setOpportunityViewType}
+          teamsAccessInd={teamsAccessInd}
+          setOpportunityViewType={this.setOpportunityViewType}
           handleOpportunityModal={handleOpportunityModal}
           handleClear={this.handleClear}
           currentData={this.state.currentData}
@@ -67,38 +74,47 @@ class Opportunity extends Component {
           handleOpportunityModal={handleOpportunityModal}
         />
         <Suspense fallback={<BundleLoader />}>
-          {  this.props.viewType === "table" ?    
+
+        {teamsAccessInd ? (
+          <OpportunityTeamsCard/>
+        ) : (
+          <>
+            {viewType === "table" && <OpportunityCardList/>}
+            { viewType === "stage" &&  <OpportunityBoard/>}
+            { viewType === "dashboard" &&  <OpportunityDeletedCard/>}
+            {  viewType === "close" &&  <OpportunityCloseCard/>}
+            { viewType === "teams" &&  <OpportunityTeamsCard/>}
+            {   viewType === "lost" &&  <OpportunityLostCard/>}
+            { viewType === "card" &&  <OpportunityCardView/>}
+            {  viewType === "won" &&   <OpportunityWonCard/>}
+            { viewType==="all" &&  <OpportunityAllCardList/>}
+          </>
+        )}
+          {/* {  this.props.viewType === "table" ?    
             <OpportunityCardList/> :
           
              this.props.viewType === "stage" ?
              <OpportunityBoard/>
           :
-          this.props.viewType === "dashboard" ?
-            //  <OpportunityDeletedTable/> 
+          this.props.viewType === "dashboard" ?            
             <OpportunityDeletedCard/>
              :
-             this.props.viewType === "close" ?
-                    // <OpportunityCloseTable/>
+             this.props.viewType === "close" ?                  
                     <OpportunityCloseCard/>
                      :
-                     this.props.viewType === "teams" ?
-                    // <OpportunityCloseTable/>
+                     this.props.viewType === "teams" ?                   
                     <OpportunityTeamsCard/>
                      :
              this.props.viewType === "lost" ?
-             (  <OpportunityLostCard/> )
-                    // <OpportunitylostTable/>
+             (  <OpportunityLostCard/> )                   
                     :
-                    this.props.viewType === "Map" ?
-                    <OpportunityMap/> :
              this.props.viewType === "card" ?
              <OpportunityCardView/> :
              this.props.viewType === "won" ?
-             ( <OpportunityWonCard/> )
-             // <OpportunitylostTable/>
+             ( <OpportunityWonCard/> )           
             : this.props.viewType==="all" ? 
             (   <OpportunityAllCardList/> )
-             : null}
+             : null} */}
         </Suspense>
       </React.Fragment>
     );
@@ -108,13 +124,14 @@ class Opportunity extends Component {
 const mapStateToProps = ({ opportunity, auth }) => ({
   userId: auth.userDetails.userId,
   addOpportunityModal: opportunity.addOpportunityModal,
-  viewType: opportunity.viewType,
+  // viewType: opportunity.viewType,
+  teamsAccessInd:auth.userDetails.teamsAccessInd
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleOpportunityModal,
-      setOpportunityViewType,
+      // setOpportunityViewType,
     },
     dispatch
   );

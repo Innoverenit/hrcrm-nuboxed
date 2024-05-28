@@ -4,31 +4,34 @@ import { bindActionCreators } from "redux";
 import AddDataRoomModal from "../Data Room/AddDataRoomModal"
 import DataRoomHeader from "../Data Room/DataRoomHeader"
 import DataRoomCard from "../Data Room/DataRoomCard"
-// import {handlePitchModal,getPitch,setPitchViewType } from "../Pitch/PitchAction";
 import { BundleLoader, } from "../../Components/Placeholder";
-// const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
-// const PitchCardList =lazy(()=>import("./Child/PitchCardList"));
-// const AddPitchModal =lazy(()=>import("../Pitch/Child/AddPitchModal"));
-// const PitchAllCardList =lazy(()=>import("./Child/PitchAllCardList"));
-// const PitchTeamCardlist =lazy(()=>import("./Child/PitchTeamCardlist"));
+import {setDataRoomViewType,handleDataroomModal} from "./DataRoomAction";
+import DataRoomTab from './DataRoomTab';
 
 function DataRoom (props) {
-
+    const {
+        handleDataroomModal ,
+        addDataroomModal   
+      } = props;
         return (
             <React.Fragment>
             <DataRoomHeader
-      
+      setDataRoomViewType={props.setDataRoomViewType}
+      viewType={props.viewType}
+      handleDataroomModal={handleDataroomModal}
             />
-             {/* <AddDataRoomModal
-             
-             
-            /> */}
+             <AddDataRoomModal
+          addDataroomModal={addDataroomModal}
+          handleDataroomModal={handleDataroomModal}
+        /> 
            
           
             <Suspense fallback={<BundleLoader />}>
-     
-            {/* <DataRoomCard/> */}
-            Hello
+            {props.viewType === "list" ? (
+           //<DataRoomTab />
+         <DataRoomCard/>
+          ) : null}
+           
    
             </Suspense>
      
@@ -36,15 +39,13 @@ function DataRoom (props) {
         )
 }
 
-const mapStateToProps = ({ pitch,auth }) => ({
-    // addPitchModal:pitch.addPitchModal,
-    // viewType:pitch.viewType,
-    // userId: auth.userDetails.userId,
+const mapStateToProps = ({ datRoom }) => ({
+    viewType: datRoom.viewType,
+    addDataroomModal: datRoom.addDataroomModal
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    // handlePitchModal,
-    // setPitchViewType,
-    // getPitch
+    setDataRoomViewType,
+    handleDataroomModal
 }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(DataRoom);

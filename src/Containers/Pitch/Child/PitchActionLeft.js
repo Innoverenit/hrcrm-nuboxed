@@ -65,7 +65,7 @@ const PitchActionLeft = (props) => {
   //   props.getPitchAllRecords
   //   }, [props.userId]);
  
- 
+  const { user } = props;
   const suffix = (
     <AudioOutlined
       onClick={SpeechRecognition.startListening}
@@ -105,13 +105,13 @@ const PitchActionLeft = (props) => {
     
      
 
-   
+      {user.teamsAccessInd === true && (
       <Tooltip
         title= "Teams"
       >
           <Badge
         size="small"
-         count={(props.viewType === "card" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
+         count={(props.teamsAccessInd||props.viewType === "teams" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
         
         overflowCount={999}
       >
@@ -121,12 +121,13 @@ const PitchActionLeft = (props) => {
            color: props.viewType === "teams" && "#1890ff",
           }}
         >
-          <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
          <PeopleIcon/>
          </Avatar>
         </span>
         </Badge>
       </Tooltip>
+       )}
       {(props.user.pitchFullListInd===true || props.user.role==="ADMIN") && (
 
       <Tooltip

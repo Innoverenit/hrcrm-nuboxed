@@ -105,3 +105,81 @@ export const updateBrandModel = (phoneMasterListId, brand, model) => (dispatch) 
             });
         });
 };
+
+export const addModel = (model,orgId,cb) => (dispatch,getState) => {
+    const orgId = getState().auth.userDetails.organizationId;
+    dispatch({
+      type: types.ADD_MODEL_REQUEST,
+    });
+    axios
+      .post(`${base_url2}/`, model, 
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // message.error(model.message)
+        if (res.data.message) {
+          Swal.fire({
+            icon: 'error',
+            title: res.data.message,
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        } else {
+         
+          Swal.fire({
+            icon: 'success',
+            title: 'Model added Successfully!',
+            // showConfirmButton: false,
+            // timer: 1500
+          });
+        }
+        // dispatch(getRoles(orgId));
+        // dispatch(getRoleCount(orgId));
+        console.log(res);
+        dispatch({
+          type: types.ADD_MODEL_SUCCESS,
+          payload: { 
+            ...model, 
+           
+          },
+        });
+        cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_MODEL_FAILURE,
+        });
+    
+        cb();
+      });
+  };
+
+  export const getModels = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_MODELS_REQUEST,
+    });
+    axios
+      .get(`${base_url2}}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_MODELS_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_MODELS_FAILURE,
+          payload: err,
+        });
+      });
+  };

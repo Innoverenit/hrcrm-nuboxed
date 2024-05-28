@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
-import { BorderColorOutlined, PauseCircleFilled, PlayCircleFilledSharp } from "@mui/icons-material";
+import { BorderColorOutlined, } from "@mui/icons-material";
 import MoveToggleProduction from "./MoveToggleProduction";
-import { getProductionsbyLocId, updateRoomRackProduction } from "../ProductionAction"
+import { getProductionsbyLocId, updateRoomRackWip } from "../ProductionAction"
 import QRCode from "qrcode.react";
 import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 
@@ -46,7 +46,7 @@ function CreateProductionCard(props) {
             locationDetailsId: props.locationId,
             roomEntryDate: dayjs()
         };
-        props.updateRoomRackProduction(dataToSend, handleCallback())
+        props.updateRoomRackWip(dataToSend, handleCallback())
     }
     function handleCallback() {
         setSelectedChamberId("")
@@ -60,8 +60,10 @@ function CreateProductionCard(props) {
         window.print();
     };
     useEffect(() => {
-        props.getProductionsbyLocId(props.userId, page);
+   
+        props.getProductionsbyLocId(props.inventory.locationDetailsId, page);
         setPage(page + 1);
+        props.getRoomRackByLocId(props.locationId, props.orgId);
     }, []);
 
     const [particularDiscountData, setParticularDiscountData] = useState({});
@@ -76,7 +78,7 @@ function CreateProductionCard(props) {
             if (props.productionByLocsId) {
                 if (page < proPag) {
                     setPage(page + 1);
-                    props.getProductionsbyLocId(props.userId, page);
+                    props.getProductionsbyLocId(props.inventory.locationDetailsId, page);
                 }
                 if (page === proPag) {
                     setHasMore(false)
@@ -295,7 +297,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             getProductionsbyLocId,
             getRoomRackByLocId,
-            updateRoomRackProduction,
+            updateRoomRackWip,
             getRackList
         },
         dispatch

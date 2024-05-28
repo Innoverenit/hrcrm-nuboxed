@@ -479,7 +479,7 @@ onClick={()=>{
 
                         <StyledPopconfirm
             title="Do you want to delete?"
-            onConfirm={() => deletePitchData(item.investorleadsId)}
+            onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
           > <Tooltip title="Delete">
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
             <DeleteOutlined

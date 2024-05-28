@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
-import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import { DistributorCollectionArchiveToday } from "../CollectionAction";
 import moment from "moment";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -17,33 +16,33 @@ function DistributorColletcionArchive(props) {
         <DistributorColletcionArchiveForm />
       </Suspense>
 
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" md:w-[9.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-            <div className=" md:w-[8.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-            <div className=" md:w-[7rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
-            <div className="md:w-[6rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
-            <div className="md:w-[6rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-            <div className="md:w-[7rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
-            <div className="md:w-[7rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
-            <div className="w-[6rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
+      <div className=' flex justify-end sticky  z-auto'>
+      <div class="rounded-lg m-2 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=" w-[9.1rem] max-xl:w-[13.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
+            <div className=" w-[8.2rem] max-xl:w-[9.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
+            <div className=" w-[7.32rem] max-xl:w-[6.32rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
+            <div className="w-[6.023rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
+            <div className="w-[6.12rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
+            <div className="w-[7.12rem] max-xl:w-[5.12rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
+            <div className="w-[7.21rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
+            <div className="w-[6rem] max-xl:w-[3rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
           </div>
 
 
           {props.todayDisArchive.map((item) => {
             return (
               <div>
-                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 ">
-                  <div class="flex">
-                    <div className=" flex font-medium flex-col  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         {item.orderSourceName}
                       </div>
 
                     </div>
 
-                    <div className=" flex font-medium flex-col  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                    <div className=" flex font-medium   w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         {item.orderId}
                       </div>
@@ -51,8 +50,8 @@ function DistributorColletcionArchive(props) {
                     </div>
 
                   </div>
-                  <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    <div className=" flex font-medium  w-[10.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                       <div class=" text-xs text-cardBody font-poppins text-center">
@@ -60,38 +59,39 @@ function DistributorColletcionArchive(props) {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium  w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       <div class=" text-xs text-cardBody font-poppins text-center">
                         {item.paymentType}
 
                       </div>
                     </div>
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     <div class=" text-xs text-cardBody font-poppins text-center">
                       {` ${moment(item.date).format("DD-MM-YY")}`}
 
                     </div>
                   </div>
+                  </div>
+                 
 
-                  <div class="flex md:items-center">
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                   
+                      <div className=" flex font-medium   w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex font-medium   w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                         <div class=" text-xs text-cardBody font-poppins">
                           {item.paymentModeName}
                         </div>
 
                       </div>
-                    </div>
+                   
 
-                    <div class="flex">
-                      <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                    
+                      <div className=" flex font-medium   w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
 
 
                         <div class=" text-xs text-cardBody font-poppins">
@@ -106,7 +106,7 @@ function DistributorColletcionArchive(props) {
 
                       </div>
 
-                    </div>
+                   
 
                   </div>
                 </div>
@@ -114,7 +114,7 @@ function DistributorColletcionArchive(props) {
             )
           })}
 
-        </OnlyWrapCard>
+        </div>
       </div>
     </>
   );

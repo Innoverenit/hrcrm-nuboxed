@@ -17,20 +17,10 @@ class NotesLeadsForm extends Component {
 
   render() {
     const { fetchingNotesListOfLeads, notesListOfLeads } = this.props;
-
+    console.log(this.props.rowdata.leadsId)
     return (
       <>
-        <div style={{ backgroundColor: "#dcdcdc" }}>
-          <LeadsNoteForm
-           rowdata={this.props.rowdata}
-            type={"customer"}
-            customerId={this.props.rowdata.customerId}
-            callback={() =>
-              this.props.getNotesListOfLeads(this.props.rowdata.category,this.props.rowdata.category==="Task"?this.props.rowdata.taskId:this.props.rowdata.category==="Event"?this.props.rowdata.eventId:this.props.rowdata.category==="Call"?this.props.rowdata.callId:null)
-            }
-          />
-        </div>
-        <br />
+       
 
         <BorderBox>
           <div class="h-80 overflow-auto p-[0.3rem]">
@@ -54,6 +44,17 @@ class NotesLeadsForm extends Component {
                )} 
           </div>
         </BorderBox>
+        <div style={{ backgroundColor: "#dcdcdc" }}>
+          <LeadsNoteForm
+           rowdata={this.props.rowdata}
+            type={"customer"}
+            customerId={this.props.rowdata.customerId}
+            callback={() =>
+              this.props.getNotesListOfLeads(this.props.rowdata.category,this.props.rowdata.category==="Task"?this.props.rowdata.taskId:this.props.rowdata.category==="Event"?this.props.rowdata.eventId:this.props.rowdata.category==="Call"?this.props.rowdata.callId:null)
+            }
+          />
+        </div>
+      
       </>
     );
   }

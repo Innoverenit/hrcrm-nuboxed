@@ -7,12 +7,11 @@ import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import {getCurrency} from "../../Auth/AuthAction"
+import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Button, Tooltip,message } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
-import {getAssignedToList} from "../../Employees/EmployeeAction"
 import {
   getRecruiterName,
   getInitiative,
@@ -29,7 +28,8 @@ import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import {createDeals,  getAllDealStages,
   getDealLinkedWorkflow,
-  getDealLinkedStages
+  getDealLinkedStages,
+  getActiveAssignedToList
 } from "../DealAction";
 import Swal from 'sweetalert2'
 /**
@@ -44,10 +44,10 @@ const OpportunitySchema = Yup.object().shape({
 });
 function DealForm(props) {
   useEffect(() => {
-    props.getCurrency();
+    props.getInvestorCurrency();
     props.getRecruiterName();
     props.getAllEmployeelist();
-    props.getAssignedToList(props.orgId);
+    props.getActiveAssignedToList(props.orgId,"Included");
     props.getSources(props.orgId);
     props.getdealsContactdata(props.userId);
     props.getInvestorData(props.userId)
@@ -119,7 +119,7 @@ function DealForm(props) {
     };
   });
 
-  const AllEmplo = props.assignedToList.map((item) => {
+  const AllEmplo = props.activeAssignedToList.map((item) => {
     return {
       label: `${item.empName || ""}`,
       value: item.employeeId,
@@ -128,7 +128,7 @@ function DealForm(props) {
   const filteredEmployeesData = AllEmplo.filter(
     (item) => item.value !== props.user.userId
   );
-  const sortedCurrency =props.currencies.sort((a, b) => {
+  const sortedCurrency =props.investorCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
     const nameB = b.currency_name.toLowerCase();
     // Compare department names
@@ -169,13 +169,25 @@ function DealForm(props) {
       };
     });
 
-
-  const SourceOptions = props.sources.map((item) => {
-    return {
-      label: `${item.name || ""}`,
-      value: item.sourceId,
-    };
-  });
+    const sortedSource =props.sources.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      // Compare department names
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    const sourceOptions = sortedSource.map((item) => {
+      return {
+        label: `${item.name}`,
+        value: item.sourceId,
+      };
+    });
+ 
 
   const allEmplo = props.allEmployeeList.map((item) => {
     return {
@@ -625,7 +637,7 @@ function DealForm(props) {
                 </div>
             </div>
                 <div class=" w-w47.5 max-sm:w-wk">
-                <FastField
+                <Field
                             name="source"
                              label={
                               <FormattedMessage
@@ -636,11 +648,11 @@ function DealForm(props) {
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                     options={
-                      Array.isArray(SourceOptions)
-                        ? SourceOptions
+                      Array.isArray(sourceOptions)
+                        ? sourceOptions
                         : []
                     }
-                            isColumn
+                   isColumn
                           />
                         </div>
                         </div>
@@ -803,7 +815,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   sales: opportunity.sales,
   allEmployeeList:investor.allEmployeeList,
   dealStages: deal.dealStages,
-  currencies: auth.currencies,
+  investorCurrencies: auth.investorCurrencies,
   contactByUserId: contact.contactByUserId,
   customerByUserId: customer.customerByUserId,
   initiatives: opportunity.initiatives,
@@ -816,7 +828,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   fullName: auth.userDetails.fullName,
   sources: source.sources,
   creatingDeal:deal.creatingDeal,
-  assignedToList:employee.assignedToList,
+  activeAssignedToList:deal.activeAssignedToList,
   // opportunitySkills:opportunity.opportunitySkills
 });
 
@@ -824,7 +836,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       createDeals,
-      getCurrency,
+      getInvestorCurrency,
       getdealsContactdata,
       getRecruiterName,
       getAllEmployeelist,
@@ -832,7 +844,7 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerData,
       getInvestorData,
       getInitiative,
-      getAssignedToList,
+      getActiveAssignedToList,
       // getWorkflow,
       getStages,
       getSources,

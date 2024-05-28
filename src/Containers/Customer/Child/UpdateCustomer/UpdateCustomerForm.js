@@ -10,7 +10,7 @@ import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldA
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { updateCustomer,setEditCustomer ,setClearbitData} from "../../CustomerAction";
+import { updateCustomer,setEditCustomer ,setClearbitData,emptyClearbit} from "../../CustomerAction";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -32,6 +32,7 @@ function UpdateCustomerForm (props) {
     props.getCrm();
     props.getCustomer(props.orgId); 
     props.getCurrency();
+    props.emptyClearbit()
     if (props.setEditingCustomer.currency) {
       setSelectedCurrency(props.setEditingCustomer.currency);
     }
@@ -130,7 +131,7 @@ function UpdateCustomerForm (props) {
         setTouchedCurrency(true);
       }
     };
-    
+    console.log(clearbit)
     return (
       <>
         <Formik
@@ -199,6 +200,19 @@ function UpdateCustomerForm (props) {
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk" >
                 <div>
+                {clearbit && Object.keys(clearbit).length === 0 && (
+         <ProgressiveImage
+         preview={
+           "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+         }
+         image={setEditingCustomer.imageURL}
+         width={140}
+         height={150}
+         borderRadius={25}
+         padding={15}
+
+       />
+      )}
                     {clearbit && clearbit.hasOwnProperty("logo") && (
                       <ProgressiveImage
                         preview={
@@ -617,6 +631,7 @@ const mapDispatchToProps = (dispatch) =>
       updateCustomer,
       setClearbitData,
       setEditCustomer,
+      emptyClearbit,
       getCrm,
       getCustomer,
       getCurrency

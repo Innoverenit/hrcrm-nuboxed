@@ -15,7 +15,9 @@ import {
   handleCatalogueWipModal,
   handleProductBuilderDrawer,
   handlePriceDrawer,
+  handleProdCellDrawer,
 } from "../../ProductAction";
+import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -29,6 +31,7 @@ import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
+const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
 
 function ProductCardList(props) {
 
@@ -140,13 +143,13 @@ function ProductCardList(props) {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex font-medium flex-col w-[5.6rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                      <div className=" flex font-medium flex-col w-[5.3rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs text-cardBody  max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[13.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[11.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
@@ -156,10 +159,10 @@ function ProductCardList(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium flex-col w-[9.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                        {item.categoryName} {item.subCategoryName}
+                        {item.categoryName}  {item.subCategoryName}
                       </div>
                     </div>
                    
@@ -168,7 +171,7 @@ function ProductCardList(props) {
 
 
                       <div class=" text-xs text-cardBody max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {item.attributeName}{item.subAttributeName}
+                        {item.attributeName}  {item.subAttributeName}
                       </div>
                     </div>
 </div>
@@ -179,7 +182,7 @@ function ProductCardList(props) {
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[12.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex font-medium flex-col w-[10.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
@@ -194,12 +197,12 @@ function ProductCardList(props) {
                                 <div class="max-sm:text-sm"> Print QR Code</div>
                                 </Button>
                       </div> */}
-                      <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
+                      <div class="flex flex-col w-[1.5rem] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
@@ -224,8 +227,27 @@ function ProductCardList(props) {
                         </Tooltip>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
+                        <Tooltip title={item.description}>
+                        <ContactSupportIcon className="!text-xl"/>
+                        </Tooltip>
+                      </div>
+<div>
+<Tooltip title="Cell">
+                                                            <Token 
+                                                            className=" !text-base cursor-pointer text-[blue]"
+                                                            onClick={()=>{
+                                                              handleParticularRowData(item);
+                                                                props.handleProdCellDrawer(true);
+                                                            }}
+                                                            />
+                                                          </Tooltip>
+</div>
+
+                    </div>
+                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div class=" text-xs text-cardBody font-poppins mt-1">
                         <Tooltip title="Edit">
                           <BorderColorIcon
                             className="!text-base cursor-pointer text-[tomato]"
@@ -236,19 +258,7 @@ function ProductCardList(props) {
                           />
                         </Tooltip>
                       </div>
-
-
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title={item.description}>
-                        <ContactSupportIcon/>
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-                    <div className="mt-1 ml-2">
+                      <div className="mt-1">
                           <StyledPopconfirm
                             title="Do you want to delete?"
                             onConfirm={() => handleDelete(item)}
@@ -262,6 +272,10 @@ function ProductCardList(props) {
                          
                           </StyledPopconfirm>
                         </div>
+
+                    </div>
+                    
+                
                     </div>
                    
                   </div>
@@ -286,6 +300,11 @@ function ProductCardList(props) {
           particularDiscountData={particularDiscountData}
           handlePriceDrawer={handlePriceDrawer}
           priceOpenDrawer={priceOpenDrawer}
+        />
+        <ProductCellDrawer
+         particularDiscountData={particularDiscountData}
+        clickProdclDrwr={props.clickProdclDrwr}
+        handleProdCellDrawer={props.handleProdCellDrawer}
         />
       </Suspense>
     </>
@@ -315,6 +334,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
+  clickProdclDrwr:product.clickProdclDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -331,6 +351,7 @@ const mapDispatchToProps = (dispatch) =>
       getProducts,
       handleProductBuilderDrawer,
       handlePriceDrawer,
+      handleProdCellDrawer
     },
     dispatch
   );

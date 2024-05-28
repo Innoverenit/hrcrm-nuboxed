@@ -5,9 +5,11 @@ import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
 import { FormattedMessage } from "react-intl";
 import ArchiveIcon from '@mui/icons-material/Archive';
+import TokenIcon from '@mui/icons-material/Token';
 import TocIcon from '@mui/icons-material/Toc';
 import { TableOutlined } from "@ant-design/icons";
 import {getProductRecords} from "../ProductionAction";
+import { TableBarOutlined } from "@mui/icons-material";
 
 const ProductionActionLeft = (props) => {
   const { setProductionViewType, viewType } = props
@@ -18,25 +20,27 @@ const ProductionActionLeft = (props) => {
   }, [props.viewType, props.locationId]);
   return (
     <div class="flex items-center">
-      <Tooltip
-        title={<FormattedMessage id="app.listView" defaultMessage="List View" />}>
- <Badge
-          size="small"
-          count={(props.viewType === "card" && props.productrecordData.product) || 0}
-          overflowCount={999}
-        >
-        <span class=" md:mr-2 text-sm cursor-pointer"
-          onClick={() => setProductionViewType("card")}
-          style={{
-            color: viewType === "card" && "#1890ff",
-          }}
-        >
-          <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <TocIcon className="text-white" /></Avatar>
+       <Tooltip title="Table ">
+                    <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        //overflowCount={999}
+                    >
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setProductionViewType("table")}
+                            style={{
 
-        </span>
-        </Badge>
-      </Tooltip>
+                                color: viewType === "table" && "#1890ff",
+                            }}
+                        >
+                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                                {/* <div className="text-white">All</div> */}
+                                <TableBarOutlined/>
+                                </Avatar>
+
+                        </span>
+                    </Badge>
+                </Tooltip>
+    
       <Tooltip
           title={
             <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
@@ -62,7 +66,7 @@ const ProductionActionLeft = (props) => {
           </span>
           </Badge>
         </Tooltip>
-      <Tooltip title="Archiev List">
+      <Tooltip title="Archive">
         <span class=" md:mr-2 text-sm cursor-pointer"
           onClick={() => setProductionViewType("arch")}
           style={{
@@ -75,7 +79,7 @@ const ProductionActionLeft = (props) => {
 
         </span>
       </Tooltip>
-      <Tooltip title="All ">
+      <Tooltip title="ALL ">
                     <Badge size="small"
                         // count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
@@ -93,6 +97,29 @@ const ProductionActionLeft = (props) => {
                         </span>
                     </Badge>
                 </Tooltip>
+
+
+                <Tooltip title="Cell">
+                    {/* <Badge size="small"
+                        // count={(viewType === "all" && suppliesCount.count) || 0}
+                        overflowCount={999}
+                    > */}
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setProductionViewType("cell")}
+                            style={{
+
+                                color: viewType === "cell" && "#1890ff",
+                            }}
+                        >
+                            <TokenIcon  />
+
+                        </span>
+                    {/* </Badge> */}
+                </Tooltip>
+
+
+
+               
                
     </div>
   );

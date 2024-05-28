@@ -75,12 +75,19 @@ const initialState = {
   addingShipper: false,
   addingShipperError: false,
 
+  reInstatedShipperById: false,
+  reInstatedShipperByIdError: false,
+
   fetchingInputShipperData: false,
   fetchingInputShipperDataError: false,
 
   fetchingShipperByUserId: false,
   fetchingShipperByUserIdError: false,
   shipperByUserId: [],
+
+  fetchingDeletedShipperRecords: false,
+  fetchingDeletedShipperRecordsError: false,
+  recordDeletedData:{},
 
   fetchingAllShipper: false,
   fetchingAllShipperError: false,
@@ -128,6 +135,10 @@ const initialState = {
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
   orderByOrderId: [],
+
+  fetchingAwbShipper: false,
+  fetchingAwbShipperError: false,
+  awbShipper:[],
 
   feedbackModal: false,
 
@@ -242,10 +253,6 @@ const initialState = {
   //ContactShipper
   shipperContactModal: false,
 
-  fetchingContactShipperById: false,
-  fetchingContactShipperByIdError: false,
-  contactShipper: [],
-
   addingContactShipper: false,
   addingContactShipperError: false,
 
@@ -355,6 +362,14 @@ export const shipperReducer = (state = initialState, action) => {
         ...state,
         addingShipper: false,
         addShipperModal: false,
+        // shipperByUserId: state.shipperByUserId.map((item) => {
+        //   if (item.shipperId === action.payload.shipperId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+        shipperByUserId: [action.payload, ...state.shipperByUserId],
       };
     case types.ADD_SHIPPER_FAILURE:
       return {
@@ -485,6 +500,22 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingAllRecords: false,
         fetchingAllRecordsError: true,
       };
+
+
+      case types.GET_DELETED_SHIPPER_RECORDS_REQUEST:
+        return { ...state, fetchingDeletedShipperRecords: true };
+      case types.GET_DELETED_SHIPPER_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedShipperRecords: false,
+          recordDeletedData: action.payload,
+        };
+      case types.GET_DELETED_SHIPPER_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedShipperRecords: false,
+          fetchingDeletedShipperRecordsError: true,
+        };
 
     /**
      * handle order modal
@@ -1199,20 +1230,7 @@ export const shipperReducer = (state = initialState, action) => {
     /**
      * get  Shipper's contact list
      */
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST:
-      return { ...state, fetchingContactShipperById: true };
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS:
-      return {
-        ...state,
-        fetchingContactShipperById: false,
-        contactShipper: action.payload,
-      };
-    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE:
-      return {
-        ...state,
-        fetchingContactShipperById: false,
-        fetchingContactShipperByIdError: true,
-      };
+
 
     // //get contacts of shipper
     // case types.GET_CONTACTS_OF_SHIPPER_REQUEST:
@@ -1380,6 +1398,41 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingEmployeeAsErp: false,
         fetchingEmployeeAsErpError: true,
       };
+
+
+      case types.GET_AWB_LIST_BY_SHIPPERID_REQUEST:
+        return { ...state, fetchingAwbShipper: true };
+      case types.GET_AWB_LIST_BY_SHIPPERID_SUCCESS:
+        return {
+          ...state,
+          fetchingAwbShipper: false,
+          awbShipper: action.payload,
+        };
+      case types.GET_AWB_LIST_BY_SHIPPERID_FAILURE:
+        return {
+          ...state,
+          fetchingAwbShipper: false,
+          fetchingAwbShipperError: true,
+        };
+
+
+        case types.REINSTATE_TOGGLE_FOR_SHIPPER_REQUEST:
+          return { ...state, reInstatedShipperById: true };
+      case types.REINSTATE_TOGGLE_FOR_SHIPPER_SUCCESS:
+          return {
+              ...state,
+              reInstatedShipperById: false,
+              deletedShipper: state.deletedShipper.filter(
+                  (item) => item.shipperId !== action.payload
+                ),
+           
+          };
+      case types.REINSTATE_TOGGLE_FOR_SHIPPER_FAILURE:
+          return {
+              ...state,
+              reInstatedShipperById: false,
+              reInstatedShipperByIdError: true,
+          };
 
 
     default:

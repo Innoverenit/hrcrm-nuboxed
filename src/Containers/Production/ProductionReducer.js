@@ -2,7 +2,17 @@ import * as types from "./ProductionActionType";
 
 const initialState = {
   openProductiondrawer: false,
-  viewType: "card",
+  viewType: "table",
+
+
+
+  addSpareNotesDrawerModal:false,
+
+
+
+  fetchingProductionCellList:false,
+  fetchingProductionCellListError:false,
+  productionCellList:[],
 
   creatingProductionLink: false,
   creatingProductionLinkError: false,
@@ -18,6 +28,15 @@ const initialState = {
   fetchingProductionLocId: false, fetchingProductionLocIdError: false,
   productionByLocsId: [],
 
+
+
+  fetchingProductionSteps:false,
+  fetchingProductionStepsError:false,
+  productionTableSteps:[],
+
+
+  
+
   openbUILDERProductiondrawer: false,
   clickedProductionIdrwr: false,
 
@@ -29,11 +48,29 @@ const initialState = {
   fetchingWorkflowListError: true,
   workflowProduction: [],
 
+
+  addSparePartsDrawerModal:false,
+
   fetchingArchieveProduction: false,
   fetchingArchieveProductionError: false,
   archieveProduction: [],
   updateProductionStatus:false,
   updateProductionStatusError:false,
+
+  
+
+  fetchingProductionTable:false,
+  fetchingProductionTableError:false,
+
+  productionTableData:[],
+
+  fetchingProductionStage:false,
+  fetchingProductionStageError:false,
+
+  productionTableStage:[],
+
+
+  updatingProductionStage:false,
 
   settingInpectdn: false,settingInpectdnError:false,
 
@@ -49,7 +86,7 @@ const initialState = {
   stageProduction:[],
 
   clickProdnDrwr:false,
-
+  updatingroomrackWip: false,updatingroomrackWipError:false,
 };
 
 const updateDragdpROD = (item, newProps) => {
@@ -71,6 +108,11 @@ export const productionReducer = (state = initialState, action) => {
       return { ...state, viewType: action.payload };
 
 
+
+      case types.ADD_SPARE_PARTS_DRAWER_MODAL:
+                                          return { ...state, addSparePartsDrawerModal: action.payload };
+
+
     case types.CREATE_PRODUCTION_LINK_REQUEST:
       return { ...state, creatingProductionLink: true };
     case types.CREATE_PRODUCTION_LINK_SUCCESS:
@@ -78,7 +120,7 @@ export const productionReducer = (state = initialState, action) => {
         ...state,
         creatingProductionLink: false,
         openProductiondrawer: false,
-        productionByLocsId: [action.payload, ...state.productionByLocsId]
+        productionTableData: [action.payload, ...state.productionTableData]
       };
     case types.CREATE_PRODUCTION_LINK_FAILURE:
       return {
@@ -125,6 +167,47 @@ export const productionReducer = (state = initialState, action) => {
     case types.GET_PRODUCTION_BYLOC_ID_FAILURE:
       return { ...state, fetchingProductionLocId: false, fetchingProductionLocIdError: true };
 
+
+
+      case types.GET_PRODUCTION_TABLE_REQUEST:
+        return { ...state, fetchingProductionTable: true, fetchingProductionTable: false };
+      case types.GET_PRODUCTION_TABLE_SUCCESS:
+        return { ...state, fetchingProductionTable: false, productionTableData: action.payload };
+      case types.GET_PRODUCTION_TABLE_FAILURE:
+        return { ...state, fetchingProductionTable: false, fetchingProductionTableError: true };
+
+
+
+        case types.ADD_SPARE_NOTES_DRAWER_MODAL:
+                                          return { ...state, addSpareNotesDrawerModal: action.payload };
+
+
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_REQUEST:
+          return { ...state, updatingProductionPauseStatus: true };
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_SUCCESS:
+          return {
+            ...state,
+            updatingProductionPauseStatus: false,
+            productionTableData: state.productionTableData.map((item) =>
+              item.productionProductId === action.payload.productionProductId
+                ? action.payload
+                : item
+            ),
+    
+          };
+        case types.UPDATE_PRODUCTION_PAUSE_STATUS_FAILURE:
+          return {
+            ...state,
+            updatingProductionPauseStatus: false,
+            updatingProductionPauseStatusError: true,
+          };
+        case types.GET_PRODUCTION_STAGE_REQUEST:
+          return { ...state, fetchingProductionStage: true, fetchingProductionStageError: false };
+        case types.GET_PRODUCTION_STAGE_SUCCESS:
+          return { ...state, fetchingProductionStage: false, productionTableStage: action.payload };
+        case types.GET_PRODUCTION_STAGE_FAILURE:
+          return { ...state, fetchingProductionStage: false, fetchingProductionStageError: true };
+
     case types.REMOVE_PRODUCTION_REQUEST:
       return { ...state, removingProduction: true };
     case types.REMOVE_PRODUCTION_SUCCESS:
@@ -134,6 +217,9 @@ export const productionReducer = (state = initialState, action) => {
         productionByLocsId: state.productionByLocsId.filter(
           (item) => item.productionProductId !== action.payload.productionProductId
         ),
+        productionTableData: state.productionTableData.filter(
+          (item) => item.productionProductId !== action.payload.productionProductId
+        ),
       };
     case types.REMOVE_PRODUCTION_FAILURE:
       return {
@@ -141,6 +227,27 @@ export const productionReducer = (state = initialState, action) => {
         removingProduction: false,
         removingProductionError: true,
       };
+
+
+
+
+
+      case types.UPDATE_PRODUCTION_STAGE_REQUEST:
+        return {
+          ...state,
+          updatingProductionStage: true,
+        
+          // candidateRequirement: action.payload,
+        };
+      case types.UPDATE_PRODUCTION_STAGE_SUCCESS:
+        return { ...state, 
+          updatingProductionStage: false ,
+          //userStageList: updatedDragUser(state.userStageList, action.payload),
+         // candidateRequirement: [action.payload]
+
+        };
+      case types.UPDATE_PRODUCTION_STAGE_FAILURE:
+        return { ...state };  
 
     case types.HANDLE_BUILDER_PRODUCTION_DRAWER:
       return { ...state, openbUILDERProductiondrawer: action.payload };
@@ -198,7 +305,23 @@ export const productionReducer = (state = initialState, action) => {
               return item;
             }
           }),
+          productionTableData: state.productionTableData.map((item) => {
+            if (item.productionProductId === action.payload.productionProductId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
         };
+
+
+
+        case types.GET_PRODUCTION_CELL_LIST_REQUEST:
+          return { ...state, fetchingProductionCellList: true, fetchingProductionCellList: false };
+        case types.GET_PRODUCTION_CELL_LIST_SUCCESS:
+          return { ...state, fetchingProductionCellList: false, productionCellList: action.payload };
+        case types.GET_PRODUCTION_CELL_LIST_FAILURE:
+          return { ...state, fetchingProductionCellList: false, fetchingProductionCellListError: true };
       case types.UPDATE_PRODCUTION_STATUS_FAILURE:
         return { ...state, updateProductionStatus: false,updateProductionStatusError:true, };
 
@@ -209,10 +332,29 @@ export const productionReducer = (state = initialState, action) => {
           return {
             ...state,
             settingInpectdn: false,
+            productionTableData: state.productionTableData.map((item) => {
+              if (item.productionProductId === action.payload.productionProductId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
              
           };
         case types.SET_INSPECT_PRODN_FAILURE:
           return { ...state, settingInpectdn: false,settingInpectdnError:true, };
+
+
+
+
+          case types.GET_PRODUCTION_STEPS_REQUEST:
+        return { ...state, fetchingProductionSteps: true, 
+          // fetchingProductionTable: false 
+        };
+      case types.GET_PRODUCTION_STEPS_SUCCESS:
+        return { ...state, fetchingProductionSteps: false, productionTableSteps: action.payload };
+      case types.GET_PRODUCTION_STEPS_FAILURE:
+        return { ...state, fetchingProductionSteps: false, fetchingProductionStepsError: true };
   
           case types.GET_ALL_PRODUCTION_BYORG_ID_REQUEST:
             return { ...state, fetchingAllProductionOrgId: true, fetchingAllProductionOrgIdError: false };
@@ -296,9 +438,22 @@ case types.UPDATE_ROOM_RACK_PRODN_REQUEST:
                   fetchingStageListError: true,
           
                 };  
-   
-                // case types.HANDLE_PRODUCTION_CELL_DRAWER:
-                //   return { ...state, clickProdnDrwr: action.payload };
+                   case types.UPDATE_ROOM_RACK_WIP_REQUEST:
+                  return { ...state,updatingroomrackWip: true };
+                case types.UPDATE_ROOM_RACK_PRODN_SUCCESS:
+                  return {
+                    ...state,
+                    updatingroomrackWip: false,
+                    productionByLocsId: state.productionByLocsId.map((item) => {
+                      if (item.productionProductId === action.payload.productionProductId) {
+                        return action.payload;
+                      } else {
+                        return item;
+                      }
+                    }),
+                  };
+                case types.UPDATE_ROOM_RACK_WIP_FAILURE:
+                  return { ...state, updatingroomrackWip: false,updatingroomrackWipError:true, };
 
               default:
       return state;

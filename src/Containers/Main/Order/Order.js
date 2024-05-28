@@ -7,6 +7,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import CompleteOrder from "./CompleteOrder";
 import AllCompleteOrderList from "./AllCompleteOrderList";
 import ProductionOrderCardList from "./ProductionOrderCardList";
+import ProductionHistoryCardList from "./ProductionHistoryCardList";
+import ProductionAllCardList from "./ProductionAllCardList";
 
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
@@ -36,11 +38,16 @@ class Order extends Component {
         />
 
         <Suspense fallback={<BundleLoader />}>
+          
           {this.props.viewType === "list" ? (
             <OrderTableByUserID
             />
             ) : this.props.viewType === "production" ? (
               <ProductionOrderCardList />
+              ) : this.props.viewType === "complete" ? (
+                <ProductionHistoryCardList />
+                ) : this.props.viewType === "productionAll" ? (
+                  <ProductionAllCardList />
           ) : this.props.viewType === "all" ? (
             <AllOrderList />
           ) : this.props.viewType === "complete" ? (
@@ -56,6 +63,7 @@ class Order extends Component {
 
 const mapStateToProps = ({ order, auth }) => ({
   viewType: order.viewType,
+  user: auth.userDetails,
   userId: auth.userDetails.userId,
 });
 

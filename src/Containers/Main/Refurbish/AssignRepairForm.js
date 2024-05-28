@@ -4,7 +4,13 @@ import { StyledTable } from '../../../Components/UI/Antd'
 import { getDepartments } from "../../Settings/Department/DepartmentAction"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProductionUsersById, getRepairPhoneById, closeRepairModal, UpdateTechnicianForRepairPhone } from "./RefurbishAction"
+import {
+    getProductionUsersById,
+    getRepairPhoneById,
+    closeRepairModal,
+    UpdateTechnicianForRepairPhone,
+    getTATQuality
+} from "./RefurbishAction"
 import QRCodeModal from '../../../Components/UI/Elements/QRCodeModal'
 import { SubTitle } from '../../../Components/UI/Elements';
 import dayjs from "dayjs";
@@ -34,6 +40,8 @@ const AssignRepairForm = (props) => {
     });
     const handleTechnician = (val) => {
         setTechnician(val)
+        props.getTATQuality(val)
+
     }
     const handleDepartment = (val) => {
         let depaVal = props.rowData.defaultRepairDepartmentId === "null" ? val : props.rowData.defaultRepairDepartmentId
@@ -67,6 +75,7 @@ const AssignRepairForm = (props) => {
         const endDate = dayjs(props.rowData.deliveryDate).subtract(1, 'days')
         return current && (current < startDate || current > endDate);
     };
+    console.log(props.tatQuality.length === undefined)
     const column = [
         {
             title: "",
@@ -142,6 +151,15 @@ const AssignRepairForm = (props) => {
 
             <div class="mt-[10px] flex justify-between">
                 <div class=" w-1/5">
+                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                    <DatePicker
+                        className="w-[250px]"
+                        value={dueDate}
+                        onChange={(value) => hanldeOnChange(value)}
+                        disabledDate={disabledDate}
+                    />
+                </div>
+                <div class=" w-1/5">
                     <label class="text-[15px] font-semibold m-[10px]">Department</label>
                     <Select
                         className="w-[350px]"
@@ -167,21 +185,14 @@ const AssignRepairForm = (props) => {
                 </div>
                 <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
-                    <div class=" text-base"></div>
+                    {props.tatQuality.length === undefined ? null :
+                        <div class=" text-base text-green-600">{props.tatQuality.avgTime}</div>}
                 </div>
                 <div class=" w-1/6">
                     <label class="text-[15px] font-semibold m-[10px]">Quality</label>
                     <div class=" text-base"></div>
                 </div>
-                <div class=" w-1/5">
-                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
-                    <DatePicker
-                        className="w-[250px]"
-                        value={dueDate}
-                        onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={disabledDate}
-                    />
-                </div>
+
             </div>
             <StyledTable
                 rowKey="phoneId"
@@ -219,6 +230,7 @@ const AssignRepairForm = (props) => {
 const mapStateToProps = ({ auth, refurbish, departments }) => ({
     productionUser: refurbish.productionUser,
     repairPhoneByOrder: refurbish.repairPhoneByOrder,
+    tatQuality: refurbish.tatQuality,
     noOfPhoneById: refurbish.noOfPhoneById,
     showAssignRepairModal: refurbish.showAssignRepairModal,
     locationId: auth.userDetails.locationId,
@@ -234,7 +246,8 @@ const mapDispatchToProps = (dispatch) =>
             getProductionUsersById,
             getRepairPhoneById,
             UpdateTechnicianForRepairPhone,
-            getDepartments
+            getDepartments,
+            getTATQuality
         },
         dispatch
     );

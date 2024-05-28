@@ -73,9 +73,11 @@ const ContactActionLeft = (props) => {
   console.log(transcript);
   console.log(transcript);
   useEffect(() => {
-    // props.getContactRecord(props.userId);
     props.getDepartments();
-    }, [props.userId]);
+    if (props.teamsAccessInd) {
+      props.getContactTeamRecord(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
     useEffect(() => {
       if (props.viewType === "table") {
         props.getContactRecord(props.userId);
@@ -149,20 +151,20 @@ const ContactActionLeft = (props) => {
         <Badge
           size="small"
           count={
-            (props.viewType === "teams" &&
-              props.contactTeamRecord.ContactTeam) ||
-            0
+            (props.teamsAccessInd||props.viewType === "teams" &&
+              props.contactTeamRecord.contactTeam ||
+            null)
           }
           overflowCount={5000}
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setContactsViewType("teams")}
-            style={{
-              color: props.viewType === "teams" && "#1890ff",
-            }}
+            // style={{
+            //   color: props.viewType === "teams" && "#1890ff",
+            // }}
           >
-            <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
          <PeopleIcon className="text-white"/>
          </Avatar>
           </span>

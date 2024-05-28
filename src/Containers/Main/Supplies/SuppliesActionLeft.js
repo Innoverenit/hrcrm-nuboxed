@@ -5,14 +5,19 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import { AudioOutlined } from '@ant-design/icons';
-import { getSuppliesCount } from "./SuppliesAction";
+import { getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 function SuppliesActionLeft (props) {
 
-    useEffect(() => {
-        props.getSuppliesCount();
-    }, [props.viewType, props.userId]);
+  useEffect(() => {
+    if (props.viewType === "all") {
+      props.getSuppliesCount();
+    } else if (props.viewType === "dashboard") {
+      props.getSuppliesDeletedCount(props.userId);
+    }
+  }, [props.viewType, props.userId]);
+
    
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
@@ -36,6 +41,7 @@ function SuppliesActionLeft (props) {
             viewType,
             setSuppliesViewType,
             suppliesCount,
+            suppliesDeletedCount,
         } = props;
 
         const handleChange = (e) => {
@@ -43,15 +49,15 @@ function SuppliesActionLeft (props) {
         
             if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
               setPage(pageNo + 1);
-            //   props.getLeads(props.userId, pageNo, "creationdate");
-            //   props.ClearReducerDataOfLead()
+               props.getSuppliesList(pageNo);
+              props.ClearReducerDataOfMaterial()
               setSearchOnEnter(false);
             }
           };
           const handleSearch = () => {
             if (currentData.trim() !== "") {
               // Perform the search
-            //   props.inputLeadsDataSearch(currentData);
+               props.inputSuppliesDataSearch(currentData);
               setSearchOnEnter(true);  //Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
@@ -94,8 +100,8 @@ function SuppliesActionLeft (props) {
 
 
                 <Tooltip title="Deleted Materials">
-                    <Badge
-                        size="small"
+                <Badge size="small"
+                        count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}
                     >
                         <span class=" md:mr-2 text-sm cursor-pointer"
@@ -113,7 +119,7 @@ function SuppliesActionLeft (props) {
 
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by Name or Sector"
+          placeholder="Search by Name "
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -126,12 +132,17 @@ function SuppliesActionLeft (props) {
         );
 }
 const mapStateToProps = ({ supplies }) => ({
-    suppliesCount: supplies.suppliesCount
+    suppliesCount: supplies.suppliesCount,
+    suppliesDeletedCount:supplies.suppliesDeletedCount,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getSuppliesCount
+            getSuppliesCount,
+            getSuppliesDeletedCount,
+            inputSuppliesDataSearch,
+            ClearReducerDataOfMaterial,
+            getSuppliesList
         },
         dispatch
     );

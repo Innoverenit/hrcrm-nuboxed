@@ -8,6 +8,8 @@ import RecommendIcon from '@mui/icons-material/Recommend';
 import SourceIcon from '@mui/icons-material/Source';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
+import Model from "../Model/Model";
+import BrandCategory from "../BrandCategory/BrandCategory";
 const ItemTask = lazy(() =>
   import("../ItemTask/ItemTask")
 );
@@ -43,6 +45,8 @@ class OrderTab extends Component {
           case "2":
             return     <BrandModel/>;
             case "3":
+              return     <BrandCategory/>;
+            case "4":
               return     <Quality/>;
 
       default:
@@ -105,7 +109,7 @@ class OrderTab extends Component {
                     <>
                       <SourceIcon />
                       <span class=" ml-1">
-                        BrandModel
+                        Brand Model
                       </span>
                     </>
                   }
@@ -115,6 +119,32 @@ class OrderTab extends Component {
                     <BrandModel />
                   </Suspense> */}
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <SourceIcon />
+                      <span class=" ml-1">
+                     Category
+                      </span>
+                    </>
+                  }
+                  key="3"
+                >
+                 
+                </TabPane>
+              {/* <TabPane
+                  tab={
+                    <>
+                      <SourceIcon />
+                      <span class=" ml-1">
+                        Model
+                      </span>
+                    </>
+                  }
+                  key="3"
+                >
+                 
+                </TabPane> */}
                 <TabPane
                   tab={
                     <>
@@ -129,7 +159,7 @@ class OrderTab extends Component {
                       </Badge>
                     </>
                   }
-                  key="3"
+                  key="4"
                 >
 
                 </TabPane>

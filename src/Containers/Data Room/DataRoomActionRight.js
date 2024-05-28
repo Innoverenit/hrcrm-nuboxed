@@ -20,7 +20,7 @@ class DataRoomActionRight extends React.Component {
     });
   };
   render() {
-    const { handleLeadsModal, user } = this.props;
+    const { handleDataroomModal, user } = this.props;
     return (
       <>
        
@@ -43,10 +43,7 @@ class DataRoomActionRight extends React.Component {
            {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
 <Button
   type="primary"
-//   onClick={() => this.props.handlePitchModal(true)}
-//   className="focus:outline-none focus:shadow-outline transition bg-[#ff7158bf] border-[1px solid #8eca9a] text-white px-3 py-1 rounded-md"
-//   onMouseOver={(e) => (e.target.style.backgroundColor = 'rgba(142, 202, 154, 0.95)')}
-//   onMouseOut={(e) => (e.target.style.backgroundColor = 'rgba(255, 113, 88, 0.75)')}
+  onClick={() => this.props.handleDataroomModal(true)}
 >
   <FormattedMessage id="app.add" defaultMessage="Add" />
 </Button>

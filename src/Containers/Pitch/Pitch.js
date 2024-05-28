@@ -1,7 +1,9 @@
 import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {handlePitchModal,getPitch,setPitchViewType } from "../Pitch/PitchAction";
+import {handlePitchModal,getPitch,
+  // setPitchViewType
+ } from "../Pitch/PitchAction";
 import { BundleLoader, } from "../../Components/Placeholder";
 const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
 const PitchCardList =lazy(()=>import("./Child/PitchCardList"));
@@ -13,7 +15,14 @@ function Pitch (props) {
   const [currentData,setcurrentData]=useState("");
   const [currentUser,setcurrentUser]=useState("");
   const [filter, setFilter] = useState("creationdate");
+  const [viewType, setViewType] = useState(null);
+  const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   // const [filter, setFilter] = useState("creationdate");
+
+  const setPitchViewType = (viewType) => {
+    setViewType(viewType);
+    setTeamsAccessInd(false);
+  };
   const handleClear = () => {
     setcurrentData("");
     props.getPitch(currentUser || props.userId);
@@ -31,8 +40,8 @@ function Pitch (props) {
   const {
     addInvestorModal,
     handleInvestorModal,
-    viewType,
-    setPitchViewType,
+    // viewType,
+    // setPitchViewType,
 
   } = props;
         return (
@@ -40,6 +49,7 @@ function Pitch (props) {
             <PitchHeader
             setPitchViewType={setPitchViewType}
             viewType={viewType}
+            teamsAccessInd={teamsAccessInd}
             // handleDropChange={this.handleDropChange}
             // currentUser={this.state.currentUser}
             handleFilterChange={handleFilterChange}
@@ -61,19 +71,31 @@ function Pitch (props) {
            
           
             <Suspense fallback={<BundleLoader />}>
+
+
+              
+      {teamsAccessInd ? (
+      <PitchTeamCardlist/>
+        ) : (
+          <>
+            {viewType === 'card' &&     <PitchCardList       filter={filter}/>}
+            {viewType === 'all' &&  <PitchAllCardList       filter={filter}/> }
+            {viewType === 'teams' &&  <PitchTeamCardlist/>}
+          </>
+        )}
               {/* {viewType==="card" ? (
      <LeadsCardList/>
               ):viewType==="list" ? (<LeadsJunkList/>)
             :null} */}
             
-            {  viewType === "card" ?
+            {/* {  viewType === "card" ?
           <PitchCardList       filter={filter}/> 
  
   :viewType==="all" ?
  <PitchAllCardList       filter={filter}/> 
  :viewType==="teams" ? (<PitchTeamCardlist/>)
 // <CustomerCardView/>  
-          :null}
+          :null} */}
             </Suspense>
      
           </React.Fragment>
@@ -82,13 +104,14 @@ function Pitch (props) {
 
 const mapStateToProps = ({ pitch,auth }) => ({
     addPitchModal:pitch.addPitchModal,
-    viewType:pitch.viewType,
+    // viewType:pitch.viewType,
+    teamsAccessInd:auth.userDetails.teamsAccessInd,
     userId: auth.userDetails.userId,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     handlePitchModal,
-    setPitchViewType,
+    // setPitchViewType,
     getPitch
 }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Pitch);

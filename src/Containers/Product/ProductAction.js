@@ -56,7 +56,6 @@ export const getdeleteProducts = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err.response);
       dispatch({
         type: types.GET_DELETEPRODUCTS_FAILURE,
         payload: err,
@@ -503,12 +502,18 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getProducts(0))
+      dispatch(getRecords())
+      dispatch(getDeletedProductRecords())
+      
       console.log(res);
       dispatch({
         type: types.DELETE_CATALOG_DATA_SUCCESS,
-        payload: res.data,
+        payload: productId,
       });
+      Swal.fire({
+        icon: 'success',
+        title: res.data,
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -516,6 +521,10 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
         type: types.DELETE_CATALOG_DATA_FAILURE,
         payload: err,
       });
+      Swal.fire({
+        icon: 'error',
+        title: err.data,
+      })
     });
 };
 
@@ -671,6 +680,33 @@ export const getRecords = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDeletedProductRecords = () => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_PRODUCT_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/deleteProduct/count`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_PRODUCT_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETED_PRODUCT_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -971,6 +1007,36 @@ export const getCategoryImage = () => (dispatch) => {
     });
 };
 
+
+
+export const getProductDesc = (productionBuilderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_DESC_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/productionBuilder/product/menu/${productionBuilderId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_DESC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCT_DESC_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const productPublishToggle = (data, productId, groupId) => (
   dispatch
 ) => {
@@ -1070,11 +1136,11 @@ export const uploadproductlist = (product, groupId) => (dispatch) => {
       });
     });
 };
-export const addProduct = (product, cb) => (dispatch) => {
+export const addProduct = (key,description,imageId,userId,productionBuilderId,orgId, cb) => (dispatch) => {
   console.log("inside add product");
   dispatch({ type: types.ADD_PROFESSIONALDUCT_REQUEST });
   axios
-    .post(`${base_url2}/product`, product, {
+    .post(`${base_url2}/product`, key,description,imageId,userId,productionBuilderId,orgId, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1157,7 +1223,7 @@ export const getProductbuilder = () => (dispatch) => {
       });
     });
 };
-export const addProductBuilder = (data) => (dispatch) => {
+export const addProductBuilder = (data,productId) => (dispatch) => {
   dispatch({ type: types.ADD_PRODUCT_BUILDER_REQUEST });
   axios
     .post(`${base_url2}/productionBuilder/supplies`, data, {
@@ -1166,7 +1232,7 @@ export const addProductBuilder = (data) => (dispatch) => {
       },
     })
     .then((res) => {
-      // dispatch(getBuilderByProId(productId))
+      dispatch(getBuilderByProId(productId))
       console.log(res);
       dispatch({
         type: types.ADD_PRODUCT_BUILDER_SUCCESS,
@@ -1245,22 +1311,26 @@ export const uploadCatalogueList = (data) => (dispatch) => {
     });
 };
 
-export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) => {
+export const removeProductBuilder = (productionBuilderId,productId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_PRODUCT_BUILDER_REQUEST,
   });
   axios
-    .put(`${base_url2}/productionBuilder/supplies/${productSupplyLinkId}`, data, {
+    .delete(`${base_url2}/productionBuilder/supplies/delete/${productionBuilderId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
+      // dispatch(getBuilderByProId(productId));
       dispatch({
         type: types.REMOVE_PRODUCT_BUILDER_SUCCESS,
-        payload: res.data,
+        payload:productionBuilderId,
       });
-      message.success("Confirmation Successfull");
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Deleted Successfully',
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -1268,14 +1338,17 @@ export const removeProductBuilder = (data, productSupplyLinkId) => (dispatch) =>
         type: types.REMOVE_PRODUCT_BUILDER_FAILURE,
         payload: err,
       });
-      message.error("Something went wrong");
-    });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+      })
+    })
 };
 
 export const updateProSupplBuilder = (data) => (dispatch) => {
   dispatch({ type: types.UPDATE_PRO_SUPPL_BUILDER_REQUEST });
   axios
-    // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {
+    // .put(`${base_url2}/productionBuilder/suppliesUpdate/${productSupplyLinkId}`, data, {productionBuilder/supplies/update
     .post(`${base_url2}/productionBuilder/supplies`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1459,3 +1532,271 @@ export const getCategory = () => (dispatch) => {
       });
     });
 };
+export const handleProdCellDrawer =(modalProps)=>(dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_CELL_DRAWER,
+    payload: modalProps,
+  });
+}
+
+export const updateProductSuplrBuilder = (data,productionBuilderId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PROD_SUPPLR_BILDR_REQUEST });
+  axios
+    .put(`${base_url2}/productionBuilder/supplies/update/${productionBuilderId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PROD_SUPPLR_BILDR_SUCCESS,
+        payload: res.data,
+      });
+      if(res.data.message!==res.data){
+      Swal.fire({
+        icon:'error',
+        title:res.data.message,
+      })
+    }
+    if(res.data ===res.data){
+    Swal.fire({
+      icon:'success',
+      title:'Updated Successfully',
+    })
+  }
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_PROD_SUPPLR_BILDR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const removeProductPrice = (productCurrencyId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_PRODUCT_PRICE_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/product/productCurrency/delete/${productCurrencyId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getBuilderByProId(productId));
+      dispatch({
+        type: types.REMOVE_PRODUCT_PRICE_SUCCESS,
+        payload:productCurrencyId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Items Deleted Successfully',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_PRODUCT_PRICE_FAILURE,
+        payload: err,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong',
+      })
+    })
+};
+
+export const handleProductNotesDrawerModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+// export const reInstateProducts = (data,productId) => (dispatch) => {
+//   dispatch({ type: types.REINSTATE_DELETED_PRODUCTS_REQUEST });
+//   axios
+//     .put(`${base_url2}/leads/reinstate/${productId}`, data, {
+//       headers: {
+//         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+//       },
+//     })
+//     .then((res) => {
+//       console.log(res);
+//       dispatch({
+//         type: types.REINSTATE_DELETED_PRODUCTS_SUCCESS,
+//         payload: res.data,
+//       });
+//       Swal.fire({
+//         icon: 'success',
+//         title: 'Reinstated Successfully',
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       dispatch({
+//         type: types.REINSTATE_DELETED_PRODUCTS_FAILURE,
+//         payload: err,
+//       });
+//     });
+// };
+
+export const getNotesofPRoduct = (type,id) => (dispatch) => {
+  dispatch({
+    type: types.GET_NOTES_OF_PRODUCT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/notes/get/all/${type}/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addNoteOfProduct = (note,id) => (dispatch) => {
+  dispatch({ type: types.ADD_NOTES_OF_PRODUCT_REQUEST });
+  axios
+    .post(`${base_url2}/notes/save`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getNotesofPRoduct("productBuilder",id));
+      dispatch({
+        type: types.ADD_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.note,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateNoteOfProduct = (note,id) => (dispatch) => {
+  dispatch({ type: types.UPDATE_NOTES_OF_PRODUCT_REQUEST });
+  axios
+    .put(`${base_url2}/notes/update/${id}`, note, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_NOTES_OF_PRODUCT_SUCCESS,
+        payload: res.note,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const removeNotesOfProduct = (data,notesId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_NOTES_OF_PRODUCT_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/notes/delete`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getCallTimeline(leadsId));
+      dispatch({
+        type: types.REMOVE_NOTES_OF_PRODUCT_SUCCESS,
+        payload:{ notesId },
+      });
+    })
+    .catch((err) => {
+  
+      dispatch({
+        type: types.REMOVE_NOTES_OF_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const addProductDesc = (product, cb) => (dispatch) => {
+  // console.log("inside add product");
+  dispatch({ type: types.ADD_PRODUCT_DESC_REQUEST });
+  axios
+    .post(`${base_url2}/productionBuilder/product/menu/save`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PRODUCT_DESC_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PRODUCT_DESC_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+
+
+
+export const getProductionSpareData = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_SPARE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/cellStockPart/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PRODUCTION_SPARE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_SPARE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+

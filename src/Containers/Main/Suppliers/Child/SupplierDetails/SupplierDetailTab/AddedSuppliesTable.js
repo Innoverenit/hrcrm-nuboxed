@@ -94,6 +94,10 @@ function AddedSuppliesTable (props)  {
                         <div className=" md:w-[5.1rem]">
                         Units
                         </div>
+                        <div className=" md:w-[5.1rem]">
+                        Quality
+                        </div>
+                   
                         
                        
                     </div>
@@ -113,7 +117,7 @@ function AddedSuppliesTable (props)  {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium flex-col w-[10rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium flex-col w-[5rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                         {item.categoryName}
                                                         </div>
@@ -138,6 +142,11 @@ function AddedSuppliesTable (props)  {
                                                     <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                            {item.unit}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex font-medium flex-col w-12 max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                           {item.quality}
                                                         </div>
                                                     </div>
                                                     

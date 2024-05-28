@@ -1,8 +1,9 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Select } from "antd";
+import { Button,Select, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
+import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
@@ -10,6 +11,7 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import {
   addLeads, 
   setClearbitData,
+  emptyClearbit,
   getCrm
 } from "../../Leads/LeadsAction";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
@@ -36,6 +38,7 @@ function LeadsForm (props) {
  
   useEffect(()=> {
 props. getCrm();
+props.emptyClearbit();
   },[]);
 
     const {
@@ -65,6 +68,11 @@ props. getCrm();
     const [selectedSource, setSelectedSource] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [priority,setpriority]=useState(props.selectedTask
+      ? props.selectedTask.priority
+      : "hot");
+
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -121,6 +129,10 @@ props. getCrm();
     }
   };
 
+  const handleButtonClick = (type) => {
+    setpriority(type);
+    };
+
   const handleSelectSector = (value) => {
     setSelectedSector(value)
     console.log('Selected user:', value);
@@ -171,6 +183,7 @@ props. getCrm();
           // enableReinitialize
           initialValues={{
             partnerName: "",
+            // price:"",
             source: selectedSource,
             url: "",
             sectorId: selectedSector,
@@ -184,11 +197,15 @@ props. getCrm();
             department: "",
             salutation:"",
             firstName:"",
+            type:priority,
             middleName:"",
             lastName:"",
             proposalValue:"",
             opportunityName:"",
-            countryDialCode:"",
+            countryDialCode:props.user.countryDialCode,
+            // bedrooms:"",
+        
+            // propertyType:"",
             address: [
               {
                 address1: "",
@@ -210,7 +227,9 @@ props. getCrm();
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 source: selectedSource,
                 lob:selectedLob,
-               
+                countryDialCode:values.countryDialCode,
+                // price:values.price,
+                type:priority,
                 sectorId: selectedSector,
               },
               props.userId,
@@ -433,7 +452,7 @@ props. getCrm();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+        //style={{ width: 200 }}
         placeholder="Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -454,7 +473,7 @@ props. getCrm();
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       // style={{ width: 200 }}
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -469,13 +488,14 @@ props. getCrm();
       </Select>
                         </div>
                     </div>
+                  
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
                     <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>LOB</label>
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       
         placeholder="Search or select LOB"
         optionFilterProp="children"
         loading={isLoadingLob}
@@ -489,7 +509,55 @@ props. getCrm();
         ))}
       </Select>
                     </div>
-                  
+                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex">
+                       <Tooltip title="Hot">
+                         <Button
+                           
+                            shape="circle"
+                           onClick={() => handleButtonClick("hot")}
+                           style={{
+                             backgroundColor:"red",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px"
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Warm">
+                         <Button
+                           
+                            shape="circle"
+             
+                           onClick={() => handleButtonClick("warm")}
+                           style={{
+                             backgroundColor:"orange",
+                                 borderRadius: "50%", 
+                                 width: "31px", 
+                                 height: "31px",
+                           }}
+                         />
+                       </Tooltip>
+                       &nbsp;
+                       <Tooltip title="Cold">
+                         <Button
+                           
+                            shape="circle"
+                   
+                           onClick={() => handleButtonClick("cold")}
+                           style={{
+                             backgroundColor:"teal",
+                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
+                                 width: "31px", // Adjust the width as needed
+                                 height: "31px"
+                           }}
+                         ></Button>
+                       </Tooltip>
+                     </div>
+                      </div>
+
+
                   </div>
                
                  
@@ -653,7 +721,157 @@ props. getCrm();
                     )}
                   />
                   </div>
+                  {props.orgType==="Real Estate"&&(
+                  <div class=" h-3/4  max-sm:w-wk "
+                >
+                  <div class=" flex  justify-between max-sm:mt-20">
+                    <div class="w-[47.5%]">
+                      <Field
+                        name="bedrooms"
+                        // selectType="customerList"
+                        isColumnWithoutNoCreate
+                        label="Bedrooms"
+                       
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.tagCompany"
+                        //     defaultMessage="Tag Company"
+                        //   />
+                        // }
+                        options={["1", "2", "3","4","5","6"]}
+                        component={SelectComponent}
+                        isColumn
+                        //value={values.customerId}
+                        //isDisabled={defaultCustomers}
+                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
+                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        inlineLabel
+                      />
+                    </div>
+
+                   
+                    <div class="w-[47.5%]">
+                    <FastField
+                            name="price"
+                            label="Price"
+                            //isColumnWithoutNoCreate
+                            //selectType="sourceName"
+                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
+                            component={SelectComponent}
+                            
+                            // value={values.source}
+                            isColumn
+                          />
+                        </div>
+                     
+                    
+                  </div>
+                 
+                  <div class=" flex justify-between mt-3">         
+                  <div class="  w-w47.5">
+                    <Field
+                      name="propertyType"
+                      label="Property Type"
+                      width="100%"
+                      isColumn
+                      isColumnWithoutNoCreate
+                      options={["Studio", "Row house", "Villa"]}
+                      component={SelectComponent}
+                     
+                      // value={values.departmentId}
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                      inlineLabel
+                    />
+                  </div>
+                
+                  </div>
+                 
+                 
+
+                 
+                  {/* <Field
+                    name="address[0].address1"
+                    // label="Address"
+                    label={
+                      <FormattedMessage
+                        id="app.address[0].address1"
+                        defaultMessage="Address"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  />
+                   */}
+                  {/* <Field
+                    name="address[0].street"
+                    //label="Street"
+
+                    label={
+                      <FormattedMessage
+                        id="app.street"
+                        defaultMessage="Street"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  /> */}
                   
+                  <div class=" flex  justify-between mt-3">
+                    {/* <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].city"
+                        //label="City"
+                        label={
+                          <FormattedMessage
+                            id="app.ddress[0].city"
+                            defaultMessage="City"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div> */}
+                  </div>
+                  
+                  {/* <FlexContainer justifyContent="space-between">
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].state"
+                        //label="State"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].State"
+                            defaultMessage="State"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].postalCode"
+                        //label="Zip Code"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].postalCode"
+                            defaultMessage="Pin Code"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                  </FlexContainer> */}
+                </div>
+                )}
                 <div class=" mt-3">
                   <Field
                     name="notes"
@@ -692,6 +910,7 @@ const mapStateToProps = ({ auth, leads,lob }) => ({
   crmAllData:leads.crmAllData,
   addingLeadsError: leads.addingLeadsError,
    clearbit: leads.clearbit,
+   orgType:auth.userDetails.orgType,
   user: auth.userDetails,
   lobListData: lob.lobListData,
   organizationId: auth.userDetails.organizationId,
@@ -708,6 +927,7 @@ const mapDispatchToProps = (dispatch) =>
        addLeads,
        getCrm,
       setClearbitData,
+      emptyClearbit
 
     },
     dispatch

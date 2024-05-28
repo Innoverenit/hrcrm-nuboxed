@@ -104,7 +104,7 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
   };
 
 
-  export const deletePitchData = (investorleadsId,orgId) => (dispatch, getState) => {
+  export const deletePitchData = (investorleadsId,userId) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;
     // console.log("inside deleteCall", callId);
     dispatch({
@@ -118,7 +118,12 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       })
       .then((res) => {
         console.log(res);
-        //  dispatch(getScheduler(orgId));
+         dispatch(getPitchCount(userId));
+         Swal.fire({
+          icon: 'success',
+          title: 'Pitch deleted Succefully!',
+       
+        })
         dispatch({
           type: types.DELETE_PITCH_DATA_SUCCESS,
           payload: investorleadsId,

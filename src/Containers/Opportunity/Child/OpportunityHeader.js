@@ -8,6 +8,7 @@ class OpportunityHeader extends Component {
       handleOpportunityModal,
       viewType,
       setOpportunityViewType,
+      teamsAccessInd,
       handleChange,
       currentData,
       handleClear,
@@ -20,6 +21,7 @@ class OpportunityHeader extends Component {
           leftComponent={
             <OpportunityActionLeft
               viewType={viewType}
+              teamsAccessInd={teamsAccessInd}
               setOpportunityViewType={setOpportunityViewType}
               currentData={currentData}
               handleClear={handleClear}

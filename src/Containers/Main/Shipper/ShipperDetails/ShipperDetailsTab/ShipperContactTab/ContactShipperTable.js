@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-  getContactShipperList,
   handleUpdateShipperContactModal,
   setEditShipperContact,
 } from "../../../ShipperAction";
+import { getContactShipperList } from "../../../../Suppliers/SuppliersAction"
 import { EditOutlined } from "@ant-design/icons";
-import { Tooltip} from "antd";
+import { Tooltip } from "antd";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
 import { FormattedMessage } from "react-intl";
@@ -20,110 +21,109 @@ class ShipperContactTable extends Component {
 
     return (
       <>
-       <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#E3E8EE"}}>
-        <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[3.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-        <div className=" md:w-[3.1rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
-        <div className=" md:w-[4.8rem] "><FormattedMessage id="app.mobileno" defaultMessage="Mobile No" /></div>
-        <div className="md:w-[2.9rem]"><FormattedMessage id="app.designation" defaultMessage="Designation" /></div>
-        <div className="md:w-[27.8rem]"><FormattedMessage id="app.department" defaultMessage="Department" /></div>
-        <div className=" md:w-[3.1rem]"></div>
+        <div className=' flex justify-end sticky top-28 z-auto'>
+          <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
+            <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
+              <div className=" md:w-[7.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+              <div className=" md:w-[11.12rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
+              <div className=" md:w-[4.8rem] "><FormattedMessage id="app.mobileno" defaultMessage="Mobile No" /></div>
+              <div className="md:w-[2.9rem]"><FormattedMessage id="app.designation" defaultMessage="Designation" /></div>
+              <div className="md:w-[7.8rem]"><FormattedMessage id="app.department" defaultMessage="Department" /></div>
+              <div className=" md:w-[3.1rem]"></div>
 
-      </div>
-        {/* <InfiniteScroll
+            </div>
+            {/* <InfiniteScroll
         dataLength={customerByUserId.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingCustomers?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"75vh"}
       > */}
-      
-      {this.props.contactShipper.map((item) => { 
-                    return (
-                        <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "
-                                >
-                                   <div class="flex">
-                                    
-                                <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                           <h4 class=" text-xs text-cardBody font-poppins">   
-                           {`${item.salutation || ""} ${item.firstName || ""} ${
-                              item.middleName || ""
+
+            {this.props.contactShipper.map((item) => {
+              return (
+                <div>
+                  <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "
+                  >
+                    <div class="flex">
+
+                      <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+                        <h4 class=" text-xs text-cardBody font-poppins">
+                          {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
                             } ${item.lastName || ""}`}
-                           </h4>
-                       
-                       </div> 
-                               
-
-                                <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                             
-                                    <h4 class=" text-xs text-cardBody font-poppins">   
-                                    {item.emailId} 
-                                    </h4>
-                                
-                                </div> 
-                             
-                                </div>
-                              
-                                <div className=" flex font-medium flex-col md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                  
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
-
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                                   
-
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.designationName}
-
-                                    </div>
-                                </div>
-                               
-                                <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                                   
-
-                                    <div class=" text-xs text-cardBody font-poppins text-center">
-                                    {item.departmentName}
-
-                                    </div>
-                                </div>
-                             
-                                <div class="flex md:items-center"> 
-                                <div class="flex">
-       
-                       <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
-                           
-                          
-                           <h4 class=" text-xs text-cardBody font-poppins">   
-                           <Tooltip title="Edit">
-             <EditOutlined 
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  this.props.setEditShipperContact(item);
-                  this.props.handleUpdateShipperContactModal(true);
-                }}
-              />
-            </Tooltip>
-                           </h4>
-                       
-                       </div> 
-                       </div>
+                        </h4>
 
                       </div>
-                            </div>
+
+
+                      <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+
+
+                        <h4 class=" text-xs text-cardBody font-poppins">
+                          {item.emailId}
+                        </h4>
+
+                      </div>
+
+                    </div>
+
+                    <div className=" flex font-medium flex-col md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between ">
+
+                      <div class=" text-xs text-cardBody font-poppins text-center">
+                        {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
+
+                      </div>
+                    </div>
+                    <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
+
+
+                      <div class=" text-xs text-cardBody font-poppins text-center">
+                        {item.designationName}
+
+                      </div>
+                    </div>
+
+                    <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+
+
+                      <div class=" text-xs text-cardBody font-poppins text-center">
+                        {item.departmentName}
+
+                      </div>
+                    </div>
+
+                    <div class="flex md:items-center">
+                      <div class="flex">
+
+                        <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+
+
+                          <h4 class=" text-xs text-cardBody font-poppins">
+                            <Tooltip title="Edit">
+                              <BorderColorIcon
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  this.props.setEditShipperContact(item);
+                                  this.props.handleUpdateShipperContactModal(true);
+                                }}
+                              />
+                            </Tooltip>
+                          </h4>
+
                         </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
 
 
-                    )
-                })}
-        
-      </OnlyWrapCard>
-      </div>
+              )
+            })}
+
+          </OnlyWrapCard>
+        </div>
         <UpdateShipperContactModal
           handleUpdateShipperContactModal={
             this.props.handleUpdateShipperContactModal
@@ -135,8 +135,8 @@ class ShipperContactTable extends Component {
   }
 }
 
-const mapStateToProps = ({ shipper, auth }) => ({
-  contactShipper: shipper.contactShipper,
+const mapStateToProps = ({ shipper, suppliers }) => ({
+  contactShipper: suppliers.contactShipper,
   fetchingContactShipperById: shipper.fetchingContactShipperById,
   updateShipperContactModal: shipper.updateShipperContactModal,
 });
@@ -314,7 +314,7 @@ export default connect(
 //         render: (name, item, i) => {
 //           return (
 //             <Tooltip title="Edit">
-//              <EditOutlined 
+//              <EditOutlined
 //                 style={{ cursor: "pointer" }}
 //                 onClick={() => {
 //                   this.props.setEditShipperContact(item);

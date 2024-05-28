@@ -8,6 +8,8 @@ import { FormattedMessage } from 'react-intl'
 import { BundleLoader } from '../../../Components/Placeholder'
 import RemainingPhoneList from './ProductionTab/RemainingPhoneList'
 import CompletedPhones from './ProductionTab/CompletedPhones'
+import { Button } from 'antd'
+import ReassignView from './ReassignView'
 
 const RepairTechnicianList = (props) => {
 
@@ -18,21 +20,42 @@ const RepairTechnicianList = (props) => {
     const [show, setShow] = useState(false)
     const [complete, setComplete] = useState(false)
     const [remaining, setRemaining] = useState(false)
+    const [reassign, setReassign] = useState(false)
+    const [reject, setReject] = useState(false)
 
     const handleComplete = () => {
         setComplete(!complete)
         setRemaining(false)
         setShow(false)
+        setReassign(false)
+    }
+    const handleReassign = () => {
+        setComplete(false)
+        setRemaining(false)
+        setShow(false)
+        setReassign(!reassign)
+        setReject(false)
+    }
+    const handleRejectReassign = () => {
+        setComplete(false)
+        setRemaining(false)
+        setShow(false)
+        setReject(!reject)
+        setReassign(false)
     }
     const handleRemaining = () => {
         setComplete(false)
         setShow(false)
+        setReject(false)
         setRemaining(!remaining)
+        setReassign(false)
     }
     const handleShow = () => {
         setShow(!show)
         setRemaining(false)
         setComplete(false)
+        setReject(false)
+        setReassign(false)
     }
     const handleRowdata = (item) => {
         setRow(item)
@@ -81,7 +104,11 @@ const RepairTechnicianList = (props) => {
                                 id="app.complete"
                                 defaultMessage="Complete"
                             /></div>
-
+                        <div className="md:w-[8rem]">
+                            <FormattedMessage
+                                id="app.rejected"
+                                defaultMessage="Reject"
+                            /></div>
                     </div>
                     {props.repairByTechnician.map((item) => {
                         let remain = Number(item.totalPhone) - Number(item.repairInProgressPhoneCount) - Number(item.repairCompletePhoneCount)
@@ -146,8 +173,23 @@ const RepairTechnicianList = (props) => {
                                                     }}> {item.repairCompletePhoneCount || 0}
                                                 </span>
                                             </div>
-
                                         </div>
+                                        <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                                {item.rejectedPhone || 0}
+                                            </div>
+                                        </div>
+                                        <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins underline text-cyan-700 cursor-pointer">
+                                                <Button
+                                                    onClick={() => {
+                                                        handleReassign();
+                                                        handleRowdata(item)
+                                                    }}
+                                                >Reassign</Button>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -162,7 +204,12 @@ const RepairTechnicianList = (props) => {
                 row={row}
                 rowData={props.rowData}
                 orderPhoneId={props.rowData.orderPhoneId} />}
+            {reassign && <ReassignView
+                row={row}
+                rowData={props.rowData}
+                orderPhoneId={props.rowData.orderPhoneId} />}
             {complete && <CompletedPhones row={row} orderPhoneId={props.rowData.orderPhoneId} />}
+
         </>
     )
 }

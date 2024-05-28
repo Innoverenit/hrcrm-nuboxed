@@ -14,7 +14,7 @@ function RepositoryData(props) {
     <div>
     <Tooltip title="Repository">
         <LibraryBooksIcon
-         className="!text-xl cursor-pointer text-[blue] mr-[0.625rem]"
+         className="!text-xl cursor-pointer text-[blue] mr-[0.25rem]"
           onClick={() => {
           
             props.handleRepositoryOrganizationModal(true);

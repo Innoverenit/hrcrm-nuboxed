@@ -2,9 +2,17 @@ import * as types from "./OrderActionTypes";
 import moment from "moment";
 
 const initialState = {
-  viewType: "list",
+  viewType: "",
 
   addOrderModal: false,
+
+  fetchingAllHighOrderList: false,
+  fetchingAllHighOrderListError: false,
+  allHighCompleteOrder:[],
+
+  fetchingAllLowOrderList: false,
+  fetchingAllLowOrderListError: false,
+  allLowCompleteOrder:[],
 
   addNotesInOrder: false,
 
@@ -14,9 +22,13 @@ const initialState = {
   fetchingOrderCountError: false,
   orderCount: {},
 
+  fetchingProductionHistoryOrder: false,
+  fetchingProductionHistoryOrderError: false,
+  productionHistoryOrder: [],
+
   fetchingProductionOrder: false,
   fetchingProductionOrderError: false,
-  productionOrder:[],
+  productionOrder: [],
 
   fetchingOrderList: false,
   fetchingOrderListError: false,
@@ -26,14 +38,37 @@ const initialState = {
   fetchingALlCompleteOrderListError: true,
   allCompleteOrder: [],
 
+  fetchingRepairHighOrderList: false,
+  fetchingRepairHighOrderListError: false,
+  repairHighCompleteOrder:[],
+
   fetchingAllOrderCount: false,
   fetchingAllOrderCountError: false,
   allOrderCount: {},
+
+  fetchingRepairLowOrderList: false,
+  fetchingRepairLowOrderListError: false,
+  repairLowCompleteOrder:[],
+
+  fetchingRepairMediumOrderList: false,
+  fetchingRepairMediumOrderListError: false,
+  repairMediumCompleteOrder:[],
 
 
   fetchingCustomerList: false,
   fetchingCustomerListError: false,
   customerList: [],
+
+  deletingOrderRepairData: false,
+  deletingOrderRepairDataError: false,
+
+  fetchingProductionAllOrder: false,
+  fetchingProductionAllOrderError: false,
+  productionAllOrder: [],
+
+  fetchingAllMediumOrderList: false,
+  fetchingAllMediumOrderListError: false,
+  allMediumCompleteOrder:[],
 
   fetchingDistributorList: false,
   fetchingDistributorListError: false,
@@ -66,9 +101,6 @@ const initialState = {
   fetchingAllOrderListError: false,
   allOrderList: [],
 
-  fetchingOrderById: false,
-  fetchingOrderByIdError: false,
-  orderShowById: [],
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -257,23 +289,57 @@ export const orderReducer = (state = initialState, action) => {
         fetchingAllOrderList: false,
         fetchingAllOrderListError: true,
       };
-    case types.GET_ORDER_BY_ID_REQUEST:
-      return { ...state, fetchingOrderById: true };
-    case types.GET_ORDER_BY_ID_SUCCESS:
-      return {
-        ...state,
-        fetchingOrderById: false,
-        orderShowById: [
-          ...state.orderShowById,
-          ...action.payload]
-      };
-    case types.GET_ORDER_BY_ID_FAILURE:
-      return {
-        ...state,
-        fetchingOrderById: false,
-        fetchingOrderByIdError: true,
-      };
 
+
+      case types.GET_ALL_HIGH_ORDER_LIST_REQUEST:
+        return { ...state, fetchingAllHighOrderList: true };
+      case types.GET_ALL_HIGH_ORDER_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingAllHighOrderList: false,
+  
+          allHighCompleteOrder: [...state.allHighCompleteOrder, ...action.payload]
+        };
+      case types.GET_ALL_HIGH_ORDER_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingAllHighOrderList: false,
+          fetchingAllHighOrderListError: true,
+        };
+
+
+        case types.GET_ALL_MEDIUM_ORDER_LIST_REQUEST:
+          return { ...state, fetchingAllMediumOrderList: true };
+        case types.GET_ALL_MEDIUM_ORDER_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingAllMediumOrderList: false,
+    
+            allMediumCompleteOrder: [...state.allMediumCompleteOrder, ...action.payload]
+          };
+        case types.GET_ALL_MEDIUM_ORDER_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingAllMediumOrderList: false,
+            fetchingAllMediumOrderListError: true,
+          };
+
+
+          case types.GET_ALL_LOW_ORDER_LIST_REQUEST:
+            return { ...state, fetchingAllLowOrderList: true };
+          case types.GET_ALL_LOW_ORDER_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingAllLowOrderList: false,
+      
+              allLowCompleteOrder: [...state.allLowCompleteOrder, ...action.payload]
+            };
+          case types.GET_ALL_LOW_ORDER_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingAllLowOrderList: false,
+              fetchingAllLowOrderListError: true,
+            };
 
     case types.GET_ORDER_COUNT_REQUEST:
       return { ...state, fetchingOrderCount: true };
@@ -316,22 +382,129 @@ export const orderReducer = (state = initialState, action) => {
       return { ...state, addPaidButtonModal: action.payload };
 
 
-      case types.GET_PRODUCTION_ORDER_REQUEST:
-        return { ...state, fetchingProductionOrder: true };
-      case types.GET_PRODUCTION_ORDER_SUCCESS:
+    case types.GET_PRODUCTION_ORDER_REQUEST:
+      return { ...state, fetchingProductionOrder: true };
+    case types.GET_PRODUCTION_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionOrder: false,
+        productionOrder: [
+          ...state.productionOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionOrder: false,
+        fetchingProductionOrderError: true,
+      };
+
+    case types.GET_PRODUCTION_HISTORY_ORDER_REQUEST:
+      return { ...state, fetchingProductionHistoryOrder: true };
+    case types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionHistoryOrder: false,
+        productionHistoryOrder: [
+          ...state.productionHistoryOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_HISTORY_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionHistoryOrder: false,
+        fetchingProductionHistoryOrderError: true,
+      };
+
+    case types.GET_PRODUCTION_ALL_ORDER_REQUEST:
+      return { ...state, fetchingProductionAllOrder: true };
+    case types.GET_PRODUCTION_ALL_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionAllOrder: false,
+        productionAllOrder: [
+          ...state.productionAllOrder,
+          ...action.payload]
+      };
+    case types.GET_PRODUCTION_ALL_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingProductionAllOrder: false,
+        fetchingProductionAllOrderError: true,
+      };
+
+
+      case types.DELETE_ORDER_REPAIR_DATA_REQUEST:
+        return { ...state, deletingOrderRepairData: true };
+      case types.DELETE_ORDER_REPAIR_DATA_SUCCESS:
         return {
           ...state,
-          fetchingProductionOrder: false,
-          productionOrder: [
-            ...state.productionOrder,
-            ...action.payload]
+          deletingOrderRepairData: false,
+          orderShowById: state.orderShowById.filter(
+            (item) => item.orderId !== action.payload
+          ),
         };
-      case types.GET_PRODUCTION_ORDER_FAILURE:
+      case types.DELETE_ORDER_REPAIR_DATA_FAILURE:
         return {
           ...state,
-          fetchingProductionOrder: false,
-          fetchingProductionOrderError: true,
+          deletingOrderRepairData: false,
+          deletingOrderRepairDataError: true,
         };
+
+
+
+  
+    
+    
+          case types.GET_REPAIR_HIGH_ORDER_LIST_REQUEST:
+            return { ...state, fetchingRepairHighOrderList: true };
+          case types.GET_REPAIR_HIGH_ORDER_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingRepairHighOrderList: false,
+      
+              repairHighCompleteOrder: [...state.repairHighCompleteOrder, ...action.payload]
+            };
+          case types.GET_REPAIR_HIGH_ORDER_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingRepairHighOrderList: false,
+              fetchingRepairHighOrderListError: true,
+            };
+    
+    
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_REQUEST:
+              return { ...state, fetchingRepairMediumOrderList: true };
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_SUCCESS:
+              return {
+                ...state,
+                fetchingRepairMediumOrderList: false,
+        
+                repairMediumCompleteOrder: [...state.repairMediumCompleteOrder, ...action.payload]
+              };
+            case types.GET_REPAIR_MEDIUM_ORDER_LIST_FAILURE:
+              return {
+                ...state,
+                fetchingRepairMediumOrderList: false,
+                fetchingRepairMediumOrderListError: true,
+              };
+
+              case types.GET_REPAIR_LOW_ORDER_LIST_REQUEST:
+                return { ...state, fetchingRepairLowOrderList: true };
+              case types.GET_REPAIR_LOW_ORDER_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingRepairLowOrderList: false,
+          
+                  repairLowCompleteOrder: [...state.repairLowCompleteOrder, ...action.payload]
+                };
+              case types.GET_REPAIR_LOW_ORDER_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingRepairLowOrderList: false,
+                  fetchingRepairLowOrderListError: true,
+                };
+    
     default:
       return state;
   }

@@ -40,6 +40,8 @@ import DashboardPage from "../DashboardPage/DashboardPage";
 import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
+import Vendor from "./Vendor/Vendor";
+import Procre from "./Procre/Procre";
 
 const NavMenu = lazy(() =>
   import("./NavMenu")
@@ -130,9 +132,9 @@ const CandidateTotalBilling = lazy(() =>
 const Location = lazy(() =>
   import("../Event/Child/Location/Location")
 );
-const PitchDetails = lazy(() =>
-  import("../Pitch/Child/PitchDetails/PitchDetails")
-);
+// const PitchDetails = lazy(() =>
+//   import("../Pitch/Child/PitchDetails/PitchDetails")
+// );
 const Navmenu2 = lazy(() =>
   import("./Navmenu2")
 );
@@ -669,7 +671,7 @@ function MainApp(props) {
                       <SettingsDropdown />
                       : null
                     }
-                    <a href="#" style={{ marginRight: 10 }}>
+                    <a href="#" style={{ marginRight: 4 }}>
                       <div class=" flex items-center "
                       >
                         <NotificationPopover />
@@ -710,6 +712,7 @@ function MainApp(props) {
                       <Route exact path="/shipper" component={Shipper} />
                       <Route exact path="/expense" component={Expense} />
                       <Route exact path="/supplies" component={Supplies} />
+                      <Route exact path="/procre" component={Procre} />
                       {/* <Route exact path="/supplier" component={Supplier} /> */}
                       <Route exact path="/order" component={Order} />
                       <Route exact path="/account" component={Account} />
@@ -717,6 +720,7 @@ function MainApp(props) {
                       <Route exact path="/plant" component={Plant} />
                       <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
+                      <Route exact path="/vendor" component={Vendor} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
                       <Route exact path="/teams" component={Teams} />
@@ -859,11 +863,11 @@ function MainApp(props) {
                         component={SupplierDetails}
                       />
 
-                      <Route
+                      {/* <Route
                         exact
                         path="/pitch/:investorLeadsId"
                         component={PitchDetails}
-                      />
+                      /> */}
                       <Route
                         exact
                         path="/opportunity"

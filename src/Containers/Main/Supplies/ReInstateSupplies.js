@@ -20,7 +20,7 @@ function ReInstateSupplies(props) {
         <>
             <div>
                 <Popconfirm
-                    title="Confirm received"
+                    title="Do you change state?"
                     onConfirm={() => handleToggleReinstate()}
                     onCancel={null}
                     okText="Ok"

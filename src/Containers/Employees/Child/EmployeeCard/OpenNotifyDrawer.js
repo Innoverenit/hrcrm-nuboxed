@@ -11,13 +11,12 @@ function  OpenNotifyDrawer (props) {
      return (
       <>
         <StyledDrawer
-          title={"Notify"}
+          title={"Assign as Admin"}
           width="60%"
           visible={openNotifydrwr}
           closable
           destroyOnClose
           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-          style={{marginTop:"3rem"}}
           onClose={() => handleNotifyDrawer(false)}
           footer={null}
         >

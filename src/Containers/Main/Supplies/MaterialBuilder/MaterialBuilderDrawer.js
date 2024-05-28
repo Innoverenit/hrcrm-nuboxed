@@ -11,7 +11,7 @@ const MaterialBuilderDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Material Builder for ${particularDiscountData.name} ${particularDiscountData.hsn}`}
+        title={`Material Builder - ${particularDiscountData.suppliesName} ${particularDiscountData.hsn}`}
         width={drawerWidth}
         visible={materialBuildrawer}
         maskClosable={false}

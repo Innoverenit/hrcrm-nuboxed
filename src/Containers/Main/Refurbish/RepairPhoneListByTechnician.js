@@ -14,10 +14,6 @@ const RepairPhoneListByTechnician = (props) => {
     const [row, setRow] = useState({})
     const [show, setShow] = useState(false)
 
-    const handleRowdata = (item) => {
-        setRow(item)
-        setShow(!show)
-    }
 
     return (
         <>

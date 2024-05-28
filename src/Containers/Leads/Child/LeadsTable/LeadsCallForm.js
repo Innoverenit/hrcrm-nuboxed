@@ -256,8 +256,8 @@ function LeadsCallForm(props) {
               callCategory: category,
               callType: Type,
               leadsId:props.rowdata.leadsId,
-              startDate: `${newStartDate}T${newStartTime}`,
-              endDate: `${newEndDate}T${newEndTime}`,
+              startDate: `${newStartDate}T20:00:00Z`,
+              endDate: `${newEndDate}T20:00:00Z`,
 
               startTime: 0,
               endTime: 0,
@@ -429,8 +429,8 @@ function LeadsCallForm(props) {
                       </div>
                       <Switch
                         name="mode"
-                        checkedChildren="Audio"
-                        unCheckedChildren="Video"
+                        checkedChildren="Video"
+                        unCheckedChildren="Audio"
                       />
                     </div>
                     <div class=" w-1/3 self-baseline max-sm:w-wk">

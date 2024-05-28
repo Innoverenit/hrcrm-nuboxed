@@ -8,8 +8,9 @@ import { Input, Button, Tooltip,Badge,Avatar  } from "antd";
 import {
   inputDataSearch,
   getRecords,
-  getAllRecords,
+  getShipperAllRecords,
   getShipperRecords,
+  getShipperDeletedRecords,
   setShipperDashboardType,
   setSelectedTimeInterval,
   setTimeRange,
@@ -47,9 +48,13 @@ const ShipperActionLeft = (props) => {
     if (props.viewType === "table") {
       props.getShipperRecords(props.userId);
     } else if (props.viewType === "all") {
-      props.getAllRecords();
+      props.getShipperAllRecords(props.orgId);
     }
-  }, [props.viewType, props.userId]);
+    else if (props.viewType === "grid") {
+      props.getShipperDeletedRecords(props.userId);
+    }
+    
+  }, [props.viewType, props.userId,props.orgId]);
 
 const {
     transcript,
@@ -117,7 +122,7 @@ const {
       { user.shipperAccessInd === true && user.erpInd === true  && (
         <Tooltip title="All Shipper">
            <Badge size="small" 
-            count={props.recordAllData.shipper || 0}
+            count={props.recordAllData.allShipper || 0}
             >
           <span
             style={{
@@ -134,15 +139,19 @@ const {
         </Tooltip>
    )}
       <Tooltip title="Deleted Shipper">
+      <Badge size="small" 
+            count={props.recordDeletedData.deletedShipper || 0}
+            >
       <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#4bc076" }}>
         <DeleteOutlined
-        className="!text-2xl cursor-pointer"
+        className="!text-sm text-white cursor-pointer"
           style={{
             color: props.viewType === "grid" && "red",
           }}
           onClick={() => props.setShipperViewType("grid")}
         />
         </Avatar>
+        </Badge>
       </Tooltip>
       {/* <Tooltip title="Dashboard View">
         <AreaChartOutlined
@@ -225,21 +234,24 @@ const mapStateToProps = ({ auth, shipper }) => ({
   recordData: shipper.recordData,
   recordAllData: shipper.recordAllData,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   dateRangeList: shipper.dateRangeList,
   startDate: shipper.startDate,
   endDate: shipper.endDate,
   shippeRecordCount:shipper.shippeRecordCount,
+  recordDeletedData:shipper.recordDeletedData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       inputDataSearch,
       getRecords,
-      getAllRecords,
+      getShipperAllRecords,
       setShipperDashboardType,
       setSelectedTimeInterval,
       setTimeRange,
       getShipperRecords,
+      getShipperDeletedRecords,
       getShipperByUserId
 
     },

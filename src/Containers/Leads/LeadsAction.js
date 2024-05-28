@@ -107,6 +107,88 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getLeadsHot = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_HOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_HOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_HOT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getLeadsWarm = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_WARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_WARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_WARM_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getLeadsCold = (userId,pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_COLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/User/${userId}/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_COLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_COLD_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
 
   export const getCrm = () => (dispatch) => {
  
@@ -186,7 +268,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         // cb && cb("failuer");
       });
   };
-  export const deleteLeadsData = (leadsId,orgId) => (dispatch, getState) => {
+  export const deleteLeadsData = (leadsId,userId) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;
     // console.log("inside deleteCall", callId);
     dispatch({
@@ -199,8 +281,13 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         },
       })
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Lead Deleted Successfully!',
+      
+        })
         console.log(res);
-        //  dispatch(getScheduler(orgId));
+        dispatch(getLeadsRecords(userId));
         dispatch({
           type: types.DELETE_LEADS_DATA_SUCCESS,
           payload: leadsId,
@@ -663,6 +750,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         cb && cb();
       });
   };
+
+  
 
   export const getNotesListByLeadsId = (leadsId) => (dispatch) => {
     dispatch({
@@ -1546,38 +1635,77 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const removeLeadsNote = ( data,orgId) => (dispatch) => {
-    // console.log(typeId);
+  export const removeLeadsNote = (data,leadsId) => (dispatch) => {
     dispatch({
       type: types.REMOVE_LEADS_NOTE_REQUEST,
     });
     axios
-    .put(
-      `${base_url}/employee/notes`,
-     data,
-      {
+      .put(`${base_url}/employee/delete/notes`,data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
-      }
-    )
+      })
       .then((res) => {
-        // dispatch(getSectorCount(orgId));
-        Swal.fire({
-          icon: 'success',
-          title: 'Note deleted Successfully!',
-        })
-        console.log(res);
+        // dispatch(getCallTimeline(leadsId));
         dispatch({
           type: types.REMOVE_LEADS_NOTE_SUCCESS,
           payload: res.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+    
         dispatch({
           type: types.REMOVE_LEADS_NOTE_FAILURE,
+          payload: err,
         });
       });
   };
+  export const updateLeadsNote = (data,leadsId) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_REQUEST,
+    });
+    axios
+      .put(`${base_url}/employee/notes`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // dispatch(getCallTimeline(leadsId));
+        dispatch({
+          type: types.UPDATE_LEADS_NOTE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+    
+        dispatch({
+          type: types.UPDATE_LEADS_NOTE_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  
+  export const updateLeadsNoteDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const emptyClearbit = () => (dispatch) => {
+    dispatch({
+      type: types.EMPTY_CLEARBIT_TABLE,
+      
+    });
+  };
+
+  export const updateLeadsNoteDrawer = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.UPDATE_LEADS_NOTE_MODAL,
+      payload: modalProps,
+    });
+  };
+  
 

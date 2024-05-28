@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { bindActionCreators } from 'redux';
@@ -36,11 +37,7 @@ function AddOrderInAccount(props) {
     }, [])
 
     const [priority, setPriority] = useState("High")
-    const [bulkQr, setBulkQr] = useState(false)
 
-    function handleBulkQr(checked) {
-        setBulkQr(checked)
-    }
     function handleButtonClick(type) {
         console.log(type)
         setPriority(type)
@@ -70,15 +67,16 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
+              
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
+                orderType: "Repair",
                 priority: priority || "",
                 orgId: props.orgId,
-                bulkQrInd: bulkQr,
                 loadingAddress: [
                     {
                         address1: "",
@@ -120,7 +118,8 @@ function AddOrderInAccount(props) {
                         priority: priority || "",
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
-                    }, props.distributorId);
+                    }, props.distributorId,);
+                    // "0","High","Medium","Low"
                 } else {
                     message.success("Advance payment should be less than 100")
                 }
@@ -163,32 +162,6 @@ function AddOrderInAccount(props) {
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
                                         <Field
-                                            label="Contact"
-                                            style={{ borderRight: "3px red solid" }}
-                                            name="contactPersonId"
-                                            placeholder="Value"
-                                            component={SelectComponent}
-                                            options={Array.isArray(contactOption) ? contactOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="Units"
-                                            name="totalPhoneCount"
-                                            component={InputComponent}
-                                            inlineLabel
-                                            width={"100%"}
-                                            isColumn
-                                        />
-                                    </div>
-
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
                                             name="paymentInTerms"
                                             label="Payment Terms (in Days)"
                                             isColumn
@@ -213,6 +186,22 @@ function AddOrderInAccount(props) {
                                                 isColumn
                                             />
                                         </div>}
+
+                                </div>
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="Contact"
+                                            style={{ borderRight: "3px red solid" }}
+                                            name="contactPersonId"
+                                            placeholder="Value"
+                                            component={SelectComponent}
+                                            options={Array.isArray(contactOption) ? contactOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            isColumn
+                                        />
+                                    </div>
                                     <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
@@ -226,6 +215,75 @@ function AddOrderInAccount(props) {
                                     </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="orderCurrencyId"
+                                            label="Currency"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(currencyOption) ? currencyOption : []}
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            label="LOB"
+                                            name="lobDetsilsId"
+                                            component={SelectComponent}
+                                            options={Array.isArray(lobOption) ? lobOption : []}
+                                            inlineLabel
+                                            width={"100%"}
+                                            style={{ borderRight: "3px red solid" }}
+                                            isColumn
+                                        />
+                                    </div>
+                                </div>
+                                <div class="justify-between flex mt-3">
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="availabilityDate"
+                                            label="Pickup Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+
+                                            disabledDate={disabledDate}
+                                            component={DatePicker}
+                                            value={values.availabilityDate}
+
+                                        />
+                                    </div>
+                                    <div class="w-[45%]">
+                                        <Field
+                                            name="deliveryDate"
+                                            label="Delivery Date "
+                                            isColumn
+                                            inlineLabel
+                                            width={"100%"}
+                                            disable={!values.availabilityDate}
+                                            component={DatePicker}
+                                            disabledDate={(currentDate) => {
+                                                if (values.availabilityDate) {
+                                                    if (
+                                                        dayjs(currentDate).isBefore(
+                                                            dayjs(values.availabilityDate)
+                                                        )
+                                                    ) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }
+                                            }}
+                                            value={values.deliveryDate}
+
+                                        />
+                                    </div>
+
+                                </div>
+                                <div class="justify-between flex mt-3">
+
                                     <div class="w-[46%]  ml-8 mt-2">
                                         <StyledLabel><FormattedMessage
                                             id="app.priority"
@@ -298,83 +356,6 @@ function AddOrderInAccount(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            label="LOB"
-                                            name="lobDetsilsId"
-                                            component={SelectComponent}
-                                            options={Array.isArray(lobOption) ? lobOption : []}
-                                            inlineLabel
-                                            width={"100%"}
-                                            style={{ borderRight: "3px red solid" }}
-                                            isColumn
-                                        />
-                                    </div>
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="availabilityDate"
-                                            label="Pickup Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-
-                                            disabledDate={disabledDate}
-                                            component={DatePicker}
-                                            value={values.availabilityDate}
-
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="deliveryDate"
-                                            label="Delivery Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            disable={!values.availabilityDate}
-                                            component={DatePicker}
-                                            disabledDate={(currentDate) => {
-                                                if (values.availabilityDate) {
-                                                    if (
-                                                        dayjs(currentDate).isBefore(
-                                                            dayjs(values.availabilityDate)
-                                                        )
-                                                    ) {
-                                                        return true;
-                                                    } else {
-                                                        return false;
-                                                    }
-                                                }
-                                            }}
-                                            value={values.deliveryDate}
-
-                                        />
-                                    </div>
-
-                                </div>
-                                <div class="justify-between flex mt-3">
-
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="orderCurrencyId"
-                                            label="Currency"
-                                            isColumn
-                                            style={{ borderRight: "3px red solid" }}
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={Array.isArray(currencyOption) ? currencyOption : []}
-                                        />
-                                    </div>
-                                    <div class="w-[45%]">
-                                        <label>Required bulk QR code</label>
-                                        <Switch
-                                            onChange={handleBulkQr}
-                                            checked={bulkQr}
-                                            checkedChildren="Yes"
-                                            unCheckedChildren="No" />
-                                    </div>
                                 </div>
 
                                 <div class=" mt-3 flex justify-between">
@@ -396,55 +377,7 @@ function AddOrderInAccount(props) {
                                 </div>
                             </div>
                         </div>
-                        {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div style={{ width: "47%" }}>
-                                <Field
-                                    name="availabilityDate"
-                                    label="Available Date "
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    disabledDate={(currentDate) => {
-                                        const date = new Date()
-                                        if (
-                                            dayjs(currentDate).isBefore(dayjs(date).subtract(1, 'days'))
-                                        ) {
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
 
-                                    }}
-                                    component={DatePicker}
-                                    value={values.availabilityDate}
-
-                                />
-                            </div>
-                            <div style={{ width: "47%" }}>
-                                <Field
-                                    name="deliveryDate"
-                                    label="Delivery Date "
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    component={DatePicker}
-                                    value={values.deliveryDate}
-                                    disabledDate={(currentDate) => {
-                                        if (values.availabilityDate) {
-                                            if (
-                                                dayjs(currentDate).isBefore(
-                                                    dayjs(values.availabilityDate)
-                                                )
-                                            ) {
-                                                return true;
-                                            } else {
-                                                return false;
-                                            }
-                                        }
-                                    }}
-                                />
-                            </div>
-                        </div> */}
                     </Form>
                 </div>
             )}

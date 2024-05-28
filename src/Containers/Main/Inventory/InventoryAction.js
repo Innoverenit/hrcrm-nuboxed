@@ -46,6 +46,7 @@ export const addInventory = (data) => (dispatch) => {
     });
 };
 
+
 //get inventory data
 
 export const getInventory = (orgId) => (dispatch) => {
@@ -227,6 +228,14 @@ export const handleReceivedModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const handleRejectReasonModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REJECTED_REASON_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleCreateAWB = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CREATE_AWB_MODAL,
@@ -275,13 +284,38 @@ export const createAwbNo = (data, id) => (dispatch) => {
     });
 };
 
+export const sentItemToStock = (data, id) => (dispatch) => {
+  dispatch({
+    type: types.SENT_ITEM_TO_STOCK_REQUEST,
+  });
+
+  axios
+    .put(`${base_url2}/po/unitUpdate`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SENT_ITEM_TO_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SENT_ITEM_TO_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
 //get received user list
-export const getReceivedUserList = (locationDetailsId) => (dispatch) => {
+export const getReceivedUserList = (locationDetailsId, page) => (dispatch) => {
   dispatch({
     type: types.GET_RECEIVED_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-all/${locationDetailsId}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-all/${locationDetailsId}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -302,6 +336,31 @@ export const getReceivedUserList = (locationDetailsId) => (dispatch) => {
     });
 };
 
+export const getCellById = (locationDetailsId, page) => (dispatch) => {
+  dispatch({
+    type: types.GET_CELL_NUMBER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/cell/allCellChamber/${locationDetailsId}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CELL_NUMBER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CELL_NUMBER_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const handleFileDamagedModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_FILE_DAMAGED_MODAL,
@@ -393,13 +452,13 @@ export const completeShipperContact = (data, dispatchId) => (dispatch) => {
 // };
 
 //get dispatch list
-export const getDispatchList = (locationId) => (dispatch) => {
+export const getDispatchList = (locationId,pageNo) => (dispatch) => {
   // const dispatchId = getState().inventory.dispatch.dispatchId;
   dispatch({
     type: types.GET_DISPATCH_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-dispatchData/${locationId}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-dispatchData/${locationId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1150,12 +1209,12 @@ export const updateInspection = (data, orderPhoneId) => (dispatch) => {
     });
 };
 
-export const getPhonelistByOrderId = (orderPhoneId) => (dispatch) => {
+export const getPhonelistByOrderId = (orderPhoneId, page) => (dispatch) => {
   dispatch({
     type: types.GET_PHONE_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}`, {
+    .get(`${base_url2}/phone/phoneDetail/${orderPhoneId}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1329,6 +1388,30 @@ export const getMaterialReceivedDetailData = (pOSupplierDetailsId) => (dispatch)
     });
 };
 
+export const getCellData = (locationDetailsId, orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CELL_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/cellChamber/material/${locationDetailsId}/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_CELL_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CELL_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const updateReceivedDamagedUnit = (data, poSupplierDetailsId, suppliesId) => (dispatch) => {
   dispatch({ type: types.UPDATE_RECEIVED_DAMAGED_UNIT_REQUEST });
   axios
@@ -1475,7 +1558,31 @@ export const getGrnListOfaPoInStock = (locationId) => (dispatch) => {
     });
 };
 
-export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch) => {
+export const getItemInCellStock = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_IN_CELL_STOCK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoCellItemlist/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_IN_CELL_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_IN_CELL_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const trnasferGrnItemToStock = (data, poSupplierSuppliesId, cb) => (dispatch) => {
   dispatch({
     type: types.TRANSFER_PO_GRN_TO_STOCK_REQUEST,
   });
@@ -1495,6 +1602,7 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId) => (dispatch)
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
         payload: res.data,
       });
+      cb()
     })
     .catch((err) => {
       console.log(err);
@@ -1758,3 +1866,108 @@ export const getRackList = (roomRackId) => (dispatch) => {
       });
     });
 };
+
+export const getItemHistoryInstock = (pOSupplierSuppliesDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_HISTORY_IN_STOCK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/unitList/${pOSupplierSuppliesDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_HISTORY_IN_STOCK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const rejectPhoneData = (data, phoneId) => (dispatch) => {
+  dispatch({
+    type: types.REJECT_PHONE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phone/reject/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.REJECT_PHONE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.REJECT_PHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getMaterialUnitsData = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_UNITS_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoStock/material/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_UNITS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_UNITS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getInventoryLocationRecords = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVENTORY_LOCATION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/locationCount/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_INVENTORY_LOCATION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+

@@ -498,7 +498,7 @@ export const getOpportunityListByContactId = (contactId) => (dispatch) => {
     type: types.GET_CONTACT_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/recuitment/contact/open/recuitment/${contactId}`, {
+    .get(`${base_url}/opportunity/contact/${contactId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-const OpportunityForm = lazy(() => import("./OpportunityForm"));
+import OpportunityStepper from "./OpportunityStepper";
 
 const AddOpportunityModal = (props) => {
   const { addOpportunityModal, handleOpportunityModal, ...formProps } = props;
@@ -19,7 +19,8 @@ const AddOpportunityModal = (props) => {
         onClose={() => handleOpportunityModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <OpportunityForm {...formProps}/>
+          {/* <OpportunityForm {...formProps}/> */}
+          <OpportunityStepper/>
         </Suspense>
       </StyledDrawer>
     </>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Checkbox } from "antd";
+import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
+import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { Listbox, } from '@headlessui/react'
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
@@ -15,8 +17,9 @@ import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArra
 import { FlexContainer } from "../../../Components/UI/Layout";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { updateDistributor } from "./AccountAction";
+import { updateDistributor ,setClearbitData} from "./AccountAction";
 import { FormattedMessage } from "react-intl";
+import { getCrm} from "../../Leads/LeadsAction";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import AddressFieldArray4 from "../../../Components/Forms/Formik/AddressFieldArray4";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -26,12 +29,13 @@ const DistributorSchema = Yup.object().shape({
   clientId: Yup.string().required("Input needed!"),
   country: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
-  phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
+  // phoneNo: Yup.string().required("Input needed!").matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
 
 const UpdateAccountForm = ({
   fullName,
   orgId,
+  setClearbitData,
   customerListData,
   getCountry,
   getAllCustomerEmployeelist,
@@ -40,9 +44,13 @@ const UpdateAccountForm = ({
   updateDisributorById,
   updateDistributor,
   userId,
+  clearbit,
   allCustomerEmployeeList,
+  crmAllData,
   countries,
   getCustomer,
+  accounts,
+  getCrm,
   getSaleCurrency,
   getCategory,
   category
@@ -53,6 +61,7 @@ const UpdateAccountForm = ({
     getSaleCurrency();
     getCustomer(orgId);
     getCountry();
+    getCrm();
     getCategory(orgId);
     getAllCustomerEmployeelist();
   }, [getCountry, getSaleCurrency, getAllCustomerEmployeelist]);
@@ -89,10 +98,10 @@ const UpdateAccountForm = ({
   const handlevat = () => {
     setVatInd(!vatInd)
   }
-
-  const [defaultOption, setDefaultOption] = useState(fullName);
+ 
+  const [defaultOption, setDefaultOption] = useState(setEditingDistributor.assignedTo);
   const [selected, setSelected] = useState(defaultOption);
-  const selectedOption = allCustomerEmployeeList.find((item) => item.fullName === selected);
+  const selectedOption = crmAllData.find((item) => item.fullName === selected);
   return (
     <>
       <Formik
@@ -107,7 +116,8 @@ const UpdateAccountForm = ({
           currency: setEditingDistributor.currency || "",
           phoneNo: setEditingDistributor.phoneNo || "",
           dcategory: setEditingDistributor.dCategory || "",
-          assignedTo: selectedOption ? selectedOption.employeeId : userId,
+          assignedTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
+          // assignedTo: selectedOption ? selectedOption.employeeId : userId,
           url: setEditingDistributor.url || "",
           description: setEditingDistributor.description || "",
           imageId: setEditingDistributor.imageId || "",
@@ -115,6 +125,7 @@ const UpdateAccountForm = ({
           customPayment: "",
           dialCode: setEditingDistributor.dialCode || "",
           clientId: setEditingDistributor.clientName || "",
+          imageURL:setEditingDistributor.imageURL || "",
           address: [
             {
               addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
@@ -142,7 +153,8 @@ const UpdateAccountForm = ({
               vatInd: vatInd,
               orgId: orgId,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
-              assignedTo: selectedOption ? selectedOption.employeeId : userId,
+              // assignedTo: selectedOption ? selectedOption.employeeId : userId,
+              assignedTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
             },
             setEditingDistributor.distributorId,
 
@@ -162,21 +174,79 @@ const UpdateAccountForm = ({
           <Form class="form-background">
             <div class="flex justify-between" >
               <div class=" h-full w-w47.5 max-sm:w-wk">
-                <Field
-                  isRequired
-                  name="name"
-                  type="text"
-                  disable
-                  label={<FormattedMessage
-                    id="app.name"
-                    defaultMessage="name"
-                  />}
-                  width={"100%"}
-                  component={InputComponent}
-                  placeholder="Start typing..."
-                  isColumn
-                  inlineLabel
-                />
+              {/* <div>
+              {clearbit && clearbit.hasOwnProperty("logo") ? (
+  <ProgressiveImage
+    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+    image={clearbit.logo }
+    width={140}
+    height={150}
+    borderRadius={25}
+    padding={15}
+  />
+) : (
+  <ProgressiveImage
+    preview="http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+    image={setEditingDistributor.imageURL} 
+    width={140}
+    height={150}
+    borderRadius={25}
+    padding={15}
+  />
+)}
+
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div> */}
+                     <div>
+                    {clearbit && clearbit.hasOwnProperty("logo") && (
+                      <ProgressiveImage
+                        preview={
+                          "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+                        }
+                        image={clearbit.logo}
+                        width={140}
+                        height={150}
+                        borderRadius={25}
+                        padding={15}
+
+                      />
+                    )}
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div>
+                
+                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                  <Field
+                      defaultValue={{
+                        label: setEditingDistributor.name,
+                        value: setEditingDistributor.name,
+                      }}
+                    isRequired
+                    name="name"
+                    type="text"
+                    isColumn
+                    width={"100%"}
+                    style={{ borderRight: "3px red solid" }}
+                    setClearbitData={setClearbitData}
+                    component={ClearbitImage}
+                    accounts={accounts}
+                    inlineLabel
+                    />
                 <Spacer />
                 <div class=" flex justify-between">
                   <div class=" w-2/6">
@@ -401,74 +471,77 @@ const UpdateAccountForm = ({
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class=" h-full w-full mt-3">
-                  <Listbox value={selected} onChange={setSelected}>
-                    {({ open }) => (
-                      <>
-                        <Listbox.Label className="block font-semibold text-[0.75rem] ">
-                          <FormattedMessage
-                            id="app.assignedto"
-                            defaultMessage="assignedto"
-                          />
-                        </Listbox.Label>
-                        <div className="relative mt-[0.1rem]">
-                          <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                            {selected}
-                          </Listbox.Button>
-                          {open && (
-                            <Listbox.Options
-                              static
-                              className="absolute z-10 mt-1 max-h-56 w-full overflow-auto  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                <Listbox value={selected} onChange={setSelected}>
+                        {({ open }) => (
+                          <>
+                            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
+                            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
                             >
-                              {allCustomerEmployeeList.map((item) => (
-                                <Listbox.Option
-                                  key={item.employeeId}
-                                  className={({ active }) =>
-                                    `relative cursor-default select-none py-2 pl-3 pr-9 ${active ? "text-white bg-indigo-600" : "text-gray-900"
-                                    }`
-                                  }
-                                  value={item.fullName}
-                                >
-                                  {({ selected, active }) => (
-                                    <>
-                                      <div className="flex items-center">
-                                        <span
-                                          className={`ml-3 block truncate ${selected ? "font-semibold" : "font-normal"
-                                            }`}
-                                        >
-                                          {item.fullName}
-                                        </span>
-                                      </div>
-                                      {selected && (
-                                        <span
-                                          className={`absolute inset-y-0 right-0 flex items-center pr-4 ${active ? "text-white" : "text-indigo-600"
-                                            }`}
-                                        >
+                              <FormattedMessage
+                                id="app.assignedTo"
+                                defaultMessage="Assigned to"
+                              />
 
-                                          <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-5 w-5"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                          >
-                                            <path
-                                              fillRule="evenodd"
-                                              d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                              clipRule="evenodd"
-                                            />
-                                          </svg>
-                                        </span>
+                            </Listbox.Label>
+                            <div className="relative ">
+                              <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                                {selected}
+                              </Listbox.Button>
+                              {open && (
+                                <Listbox.Options
+                                  static
+                                  className="absolute z-10 max-h-56 w-full overflow-auto mt-1  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                                >
+                                  {crmAllData.map((item) => (
+                                    <Listbox.Option
+                                      key={item.employeeId}
+                                      className={({ active }) =>
+                                        `relative cursor-default select-none py-2 pl-3 pr-9 ${active ? "text-white bg-indigo-600" : "text-gray-900"
+                                        }`
+                                      }
+                                      value={item.empName}
+                                    >
+                                      {({ selected, active }) => (
+                                        <>
+                                          <div className="flex items-center">
+                                            <span
+                                              className={`ml-3 block truncate ${selected ? "font-semibold" : "font-normal"
+                                                }`}
+                                            >
+                                              {item.empName}
+                                            </span>
+                                          </div>
+                                          {selected && (
+                                            <span
+                                              className={`absolute inset-y-0 right-0 flex items-center pr-4 ${active ? "text-white" : "text-indigo-600"
+                                                }`}
+                                            >
+
+                                              <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-5 w-5"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                              >
+                                                <path
+                                                  fillRule="evenodd"
+                                                  d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                                  clipRule="evenodd"
+                                                />
+                                              </svg>
+                                            </span>
+                                          )}
+                                        </>
                                       )}
-                                    </>
-                                  )}
-                                </Listbox.Option>
-                              ))}
-                            </Listbox.Options>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </Listbox>
+                                    </Listbox.Option>
+                                  ))}
+                                </Listbox.Options>
+                              )}
+                            </div>
+                          </>
+                        )}
+                      </Listbox>
                 </div>
                 <div class="mt-4">
                   <StyledLabel > Billing Address</StyledLabel>
@@ -551,9 +624,10 @@ const UpdateAccountForm = ({
   );
 };
 
-const mapStateToProps = ({ auth, distributor, catgCustomer, rule, category, employee }) => ({
+const mapStateToProps = ({ auth, distributor, leads,catgCustomer, rule, category, employee }) => ({
   userId: auth.userDetails.userId,
   vat: rule.vat,
+  clearbit: distributor.clearbit,
   orgId: auth.userDetails.organizationId,
   customerListData: catgCustomer.customerListData,
   fullName: auth.userDetails.fullName,
@@ -563,7 +637,9 @@ const mapStateToProps = ({ auth, distributor, catgCustomer, rule, category, empl
   setEditingDistributor: distributor.setEditingDistributor,
   updateDisributorById: distributor.updateDisributorById,
   countries: auth.countries,
+  crmAllData:leads.crmAllData,
 });
+
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -573,7 +649,9 @@ const mapDispatchToProps = (dispatch) =>
       getCustomer,
       getSaleCurrency,
       getAllCustomerEmployeelist,
-      getCategory
+      getCategory,
+      getCrm,
+      setClearbitData
     },
     dispatch
   );

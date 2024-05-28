@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addSupervisor, getUserByLocationDepartment } from "../../AccountAction"
+import { addSupervisor, addLead, getUserByLocationDepartment } from "../../AccountAction"
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
-import { Select } from "antd";
+import { Button, Select } from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
 
@@ -16,7 +16,6 @@ function LocationOrderForm(props) {
 
     const handleTechnician = (val) => {
         setTechnician(val)
-        props.addSupervisor({ supervisorUserId: val }, props.particularRowData.orderId)
     }
     let location = props.particularRowData.locationDetailsId
 
@@ -24,35 +23,50 @@ function LocationOrderForm(props) {
         setDepartment(val)
         props.getUserByLocationDepartment(location, val);
     }
+    const handleSubmit = () => {
+        props.addSupervisor({ supervisorUserId: technician }, props.particularRowData.orderId)
+    }
     return (
         <>
             {props.fetchingDepartments ? <BundleLoader /> :
-                <div class=" flex justify-between">
-                    <div className=" w-2/5">
-                        <Select
-                            className="w-[350px]"
-                            value={department}
-                            onChange={(value) => handleDepartment(value)}
-                        >
-                            {props.departments.map((a) => {
-                                return <Option value={a.departmentId}>{a.departmentName}</Option>;
-                            })}
-                        </Select>
-                    </div>
+                <>
+                    <div class=" flex justify-between">
+                        <div className=" w-2/5">
+                            <label>Department</label>
+                            <Select
+                                placeholder="Select"
+                                className="w-[350px]"
+                                value={department}
+                                onChange={(value) => handleDepartment(value)}
+                            >
+                                {props.departments.map((a) => {
+                                    return <Option value={a.departmentId}>{a.departmentName}</Option>;
+                                })}
+                            </Select>
+                        </div>
 
-                    <div className=" w-2/5">
-
-                        <Select
-                            className="w-[350px]"
-                            value={technician}
-                            onChange={(value) => handleTechnician(value)}
-                        >
-                            {props.departmentUser.map((a) => {
-                                return <Option value={a.employeeId}>{a.empName}</Option>;
-                            })}
-                        </Select>
+                        <div className=" w-2/5">
+                            <label>Team Member</label>
+                            <Select
+                                placeholder="Select"
+                                className="w-[350px]"
+                                value={technician}
+                                onChange={(value) => handleTechnician(value)}
+                            >
+                                {props.departmentUser.map((a) => {
+                                    return <Option value={a.employeeId}>{a.empName}</Option>;
+                                })}
+                            </Select>
+                        </div>
                     </div>
-                </div>}
+                    <div>
+                        <Button
+                            disabled={!technician.length}
+                            type="primary"
+                            loading={props.addingSupervisor}
+                            onClick={handleSubmit}>Submit</Button>
+                    </div>
+                </>}
         </>
     );
 }
@@ -61,6 +75,7 @@ const mapStateToProps = ({ distributor, departments, auth }) => ({
     userId: auth.userDetails.userId,
     departments: departments.departments,
     departmentUser: distributor.departmentUser,
+    addingSupervisor: distributor.addingSupervisor,
     fetchingDepartments: departments.fetchingDepartments
 });
 
@@ -68,7 +83,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
         getUserByLocationDepartment,
         addSupervisor,
-        getDepartments
+        getDepartments,
+        addLead
     }, dispatch);
 
 export default connect(

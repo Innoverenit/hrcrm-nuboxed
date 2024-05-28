@@ -13,6 +13,21 @@ const initialState = {
 
   addCallTaskModal:false,
 
+  fetchingLeadsHot: false,
+  fetchingLeadsHotError: false,
+  leadsAllDataHot:[],
+
+  fetchingLeadsWarm: false,
+  fetchingLeadsWarmError: false,
+  leadsAllDataWarm:[],
+
+  fetchingLeadsCold: false,
+  fetchingLeadsColdError: false,
+  leadsAllDataCold:[],
+
+
+
+
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
             teamLeads:[],
@@ -108,6 +123,8 @@ const initialState = {
   updateLeadsInitiatives: false,
   updateLeadsInitiativesError: false,
 
+  updatingLeadsNoteDrawer:false,
+
   addDrawerLeadsEmailModal:false,
 
   addingLeadsActivityTask: false,
@@ -156,6 +173,8 @@ const initialState = {
 
   addLeadsImportModal:false,
 
+  updatingLeadsNoteDrawerModal:false,
+
   updatingLeadsOpportunity: false,
   updatingLeadsOpportunityError: false,
   leadsOpportunityByUserId: [],
@@ -191,6 +210,9 @@ const initialState = {
   addSharingLeads: false,
   addSharingLeadsError: false,
 
+
+  updatingLeadsNote: false,
+  updatingLeadsNoteError: false,
 
   addingLeadsImportForm:false,
   addingLeadsImportFormError:false,
@@ -236,7 +258,16 @@ case types.HANDLE_LEADS_MODAL:
           addingLeads: false, 
           addLeadsModal: false ,
           leadsAllData:[action.payload,...state.leadsAllData],
-          allleadsInfo:[action.payload,...state.allleadsInfo]
+          allleadsInfo:[action.payload,...state.allleadsInfo],
+          leadsAllDataHot: action.payload.type === 'hot' ? 
+          [action.payload, ...state.leadsAllDataHot] : state.leadsAllDataHot,
+          leadsAllDataWarm: action.payload.type === 'warm' ? 
+          [action.payload, ...state.leadsAllDataWarm] : state.leadsAllDataWarm,
+          leadsAllDataCold: action.payload.type === 'cold' ? 
+          [action.payload, ...state.leadsAllDataCold] : state.leadsAllDataCold,
+          // leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
+          // leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
+          // leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
         };
       case types.ADD_LEADS_FAILURE:
         return { ...state, addingLeads: false, addLeadsModal: false };    
@@ -256,6 +287,56 @@ case types.HANDLE_LEADS_MODAL:
             ...state,
             fetchingLeads: false,
             fetchingLeadsError: true,
+          };
+
+        case types.GET_LEADS_HOT_REQUEST:
+          return { ...state, fetchingLeadsHot: true };
+        case types.GET_LEADS_HOT_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsHot: false,
+            leadsAllDataHot: [...state.leadsAllDataHot, ...action.payload],
+            clearbit:null
+          };
+        case types.GET_LEADS_HOT_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsHot: false,
+            fetchingLeadsHotError: true,
+          };
+
+          case types.GET_LEADS_WARM_REQUEST:
+          return { ...state, fetchingLeadsWarm: true };
+        case types.GET_LEADS_WARM_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsWarm: false,
+            // leadsAllDataWarm: action.payload,
+            leadsAllDataWarm: [...state.leadsAllDataWarm, ...action.payload],
+            clearbit:null
+          };
+        case types.GET_LEADS_WARM_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsWarm: false,
+            fetchingLeadsWarmError: true,
+          };
+
+          case types.GET_LEADS_COLD_REQUEST:
+          return { ...state, fetchingLeadsCold: true };
+        case types.GET_LEADS_COLD_SUCCESS:
+          return {
+            ...state,
+            fetchingLeadsCold: false,
+            leadsAllDataCold:[...state.leadsAllDataCold, ...action.payload],
+            // leadsAllDataCold: action.payload,
+            clearbit:null
+          };
+        case types.GET_LEADS_COLD_FAILURE:
+          return {
+            ...state,
+            fetchingLeadsCold: false,
+            fetchingLeadsColdError: true,
           };
 
           case types.GET_CRM_REQUEST:
@@ -1005,7 +1086,7 @@ case types.HANDLE_LEADS_MODAL:
                     };
 
                     case types.EMPTY_LEADS_LIST:
-                      return { ...state, leadsAllData: [] }; 
+                      return { ...state, allleadsInfo: [] }; 
 
                       case types.GET_LEADS_ACTIVITY_RECORDS_REQUEST:
                         return { ...state, fetchingLeadsActivityCount: true };
@@ -1082,8 +1163,11 @@ case types.HANDLE_LEADS_MODAL:
                                     ...state,
                                     removingLeadsNote: false,
                                   //   notesListOfLeads: state.notesListOfLeads.filter(
-                                  //     (item) => item.taskId !== action.payload
+                                  //     (item) => item.notesId !== action.payload
                                   // ), 
+                                    notesListOfLeads: state.notesListOfLeads.filter(
+                                      (item) => item.notesId !== action.payload.notesId
+                                    ),
                                   };
                                 case types.REMOVE_LEADS_NOTE_FAILURE:
                                   return {
@@ -1091,6 +1175,38 @@ case types.HANDLE_LEADS_MODAL:
                                     removingLeadsNote: false,
                                     removingLeadsNoteError: true,
                                   };
+
+                                  case types.UPDATE_LEADS_NOTE_REQUEST:
+                                    return { ...state, updatingLeadsNote: true };
+                                  case types.UPDATE_LEADS_NOTE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      updatingLeadsNote: false,
+                                      notesListOfLeads: state.notesListOfLeads.map((item) =>
+                                      item.notesId === action.payload.notesId
+                                        ? action.payload
+                                        : item
+                                    ),
+                                    };
+                                  case types.UPDATE_LEADS_NOTE_FAILURE:
+                                    return {
+                                      ...state,
+                                      updatingLeadsNote: false,
+                                      updatingLeadsNoteError: true,
+                                    };
+
+
+                                    case types.UPDATE_LEADS_NOTE_DRAWER_MODAL:
+                                      return { ...state, updatingLeadsNoteDrawerModal: action.payload };
+
+
+                                      case types.EMPTY_CLEARBIT_TABLE:
+                                        return { ...state,  clearbit: {} };
+
+                                        case types.UPDATE_LEADS_NOTE_MODAL:
+                                          return { ...state, updatingLeadsNoteDrawer: action.payload };
+    
+          
                       
 
 default:

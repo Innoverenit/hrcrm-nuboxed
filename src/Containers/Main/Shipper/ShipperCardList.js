@@ -84,7 +84,7 @@ function ShipperCardList(props) {
             dataLength={props.shipperByUserId.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingShipperByUserId ? <div className="flex items-center" >Loading...</div> : null}
+            loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >Loading...</div> : null}
             height={"75vh"}
           >
             {props.shipperByUserId.length ? <>
@@ -94,7 +94,7 @@ function ShipperCardList(props) {
                     <div  >
                       <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                        <div className=" flex font-medium flex-col w-[10.9rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                             <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -123,7 +123,7 @@ function ShipperCardList(props) {
 
                         </div>
 
-                        <div className=" flex font-medium  w-[9.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex font-medium  w-[7.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
@@ -132,7 +132,7 @@ function ShipperCardList(props) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium  w-[12.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex font-medium  w-[11.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {`${(item.address && item.address.length && item.address[0].address1) || ""}
@@ -153,7 +153,7 @@ function ShipperCardList(props) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex font-medium  w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {(item.address &&
@@ -163,7 +163,7 @@ function ShipperCardList(props) {
                           </div>
 
                         </div>
-                        <div>
+                        <div class="w-[4rem]">
                           <Switch
                             className="toggle-clr"
                             //checked={item.productionInd}
@@ -190,7 +190,7 @@ function ShipperCardList(props) {
                           <div>
                             <Popconfirm
                               title="Do you want to delete?"
-                              onConfirm={() => props.deleteShipperData(item.shipperId)}
+                              onConfirm={() => props.deleteShipperData(item.shipperId,props.userId)}
                             >
                               <DeleteOutlined
                                 className=" !text-base cursor-pointer text-[red]"

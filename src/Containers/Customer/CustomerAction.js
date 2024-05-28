@@ -15,6 +15,15 @@ export const handleCustomerModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const emptyClearbit = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_CLEARBIT_TABLE,
+    
+  });
+};
+
 export const handleCustomerProjectModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_PROJECT_MODAL,
@@ -2965,4 +2974,90 @@ export const getInvestorDocument = (investorId) => (dispatch) => {
       });
     });
 };
+
+export const updateActivityCallForm = (data, callId, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.UPDATE_ACTIVITY_CALL_FORM_REQUEST });
+  axios
+    .put(`${base_url}/call/activity/update/${callId}`, { ...data },{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_CALL_FORM_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_CALL_FORM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updateActivityTaskForm = (data, taskId, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.UPDATE_ACTIVITY_TASK_FORM_REQUEST });
+  axios
+    .put(`${base_url}/task/activity/update/${taskId}`, { ...data },
+    {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_TASK_FORM_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_TASK_FORM_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const updateActivityEventForm = (data, eventId, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.UPDATE_ACTIVITY_EVENT_FORM_REQUEST });
+  axios
+    .put(`${base_url}/event/activity/update/${eventId}`, { ...data }, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_EVENT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACTIVITY_EVENT_FORM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setEditActivityEvents = (name) => (dispatch) => {
+  dispatch({
+    type: types.SET_ACTIVITY_EVENTS_EDIT,
+    payload: name,
+  });
+};
+
 

@@ -49,12 +49,12 @@ export default SupplierOverDetailView;
 
 const ShipperItemRow = ({ label, value }) => {
   return (
-    <div class="flex items-center flex-nowrap m-1 text-sm">
+    <div class="flex items-center flex-nowrap m-1 text-sm max-xl:text-[0.65rem]">
       <div class="text-[#444] font-semibold w-[40%]">
         {label}
       </div>
       <div
-      class=" whitespace-nowrap overflow-hidden text-ellipsis w-[61%]">
+      class=" whitespace-nowrap overflow-hidden text-ellipsis w-[61%] max-xl:text-[0.65rem]">
         {value}
       </div>
     </div>

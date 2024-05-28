@@ -2,6 +2,8 @@ import * as types from "./ShipperActionType";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import moment from "moment";
+import Swal from 'sweetalert2'
+import { message } from "antd"
 /**
  * handle Shipper modal action
  */
@@ -164,12 +166,12 @@ export const getRecords = (userId) => (dispatch) => {
     });
 };
 
-export const getAllRecords = () => (dispatch) => {
+export const getShipperAllRecords = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url2}/user/record/count`, {
+    .get(`${base_url2}/shipper/all/shipper/record/count/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -185,6 +187,32 @@ export const getAllRecords = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getShipperDeletedRecords = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_SHIPPER_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/delete/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_SHIPPER_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETED_SHIPPER_RECORDS_FAILURE,
         payload: err,
       });
     });
@@ -1030,12 +1058,16 @@ export const getShipperOrderPayment = (orderId) => (dispatch) => {
 };
 
 //get all the deleted Shipper of the user
-export const getDeletedShipper = (id) => (dispatch) => {
+export const getDeletedShipper = (userId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_DELETED_SHIPPER_REQUEST,
   });
   axios
-    .get(`${base_url}/distributor/${id}`, {})
+    .get(`${base_url2}/shipper/delete/${userId}/${pageNo}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -1188,16 +1220,24 @@ export const inputDataSearch = (name) => (dispatch) => {
     });
 };
 
-export const deleteShipperData = (id) => (dispatch, getState) => {
+export const deleteShipperData = (id,userId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_SHIPPER_DATA_REQUEST,
   });
   axios
-    .delete(`${base_url2}/shipper/${id}`)
+    .delete(`${base_url2}/shipper/${id}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully!',
+      })
       console.log(res);
-      // dispatch(getShipperByUserId(userId));
+      dispatch(getShipperRecords(userId));
       dispatch({
         type: types.DELETE_SHIPPER_DATA_SUCCESS,
         payload: id,
@@ -1238,7 +1278,6 @@ export const addContactShipper = (contact, shipperId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getContactShipperList(shipperId));
       dispatch({
         type: types.ADD_CONTACT_SHIPPER_SUCCESS,
         payload: res.data,
@@ -1256,32 +1295,7 @@ export const addContactShipper = (contact, shipperId) => (dispatch) => {
 };
 
 /*get all the contact of the Shipper */
-export const getContactShipperList = (shipperId) => (dispatch) => {
-  // const shipperId = getState().shipper.allShipper.shipperId;
-  dispatch({
-    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
-  });
-  axios
-    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 
 //SEARCH CONTACTS OF SHIPPER
 
@@ -1454,5 +1468,67 @@ export const getEmployeelistAsErp = () => (dispatch) => {
         type: types.GET_EMPLOYEE_LIST_AS_ERP_FAILURE,
         payload: err,
       });
+    });
+};
+
+export const getAwbListByShipperId = (shipperId) => (dispatch) => {
+  dispatch({
+    type: types.GET_AWB_LIST_BY_SHIPPERID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/get-awb/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_AWB_LIST_BY_SHIPPERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_AWB_LIST_BY_SHIPPERID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const reinstateToggleForShipper = (data, shipperId,userId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.REINSTATE_TOGGLE_FOR_SHIPPER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/shipper/reinitiate/Shipper/${shipperId} `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getShipperDeletedRecords(userId))
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SHIPPER_SUCCESS,
+        payload: shipperId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully!',
+      })
+      // message.success("Reinstated Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SHIPPER_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
     });
 };

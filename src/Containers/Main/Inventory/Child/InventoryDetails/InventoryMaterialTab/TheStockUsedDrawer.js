@@ -8,7 +8,7 @@ class TheStockUsedDrawer extends Component {
         const {
             stockUseDrwr,
             handleStockUsedDrawer,
-            ...formProps
+            row,
         } = this.props;
         return (
             <>
@@ -22,7 +22,10 @@ class TheStockUsedDrawer extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <StockUsedForm />
+                        <StockUsedForm 
+                        row={row} 
+                        inventory={this.props.inventory}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </>

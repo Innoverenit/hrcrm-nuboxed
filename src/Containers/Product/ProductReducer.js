@@ -66,6 +66,11 @@ const initialState = {
   addConfigureModal: false,
   addDetailsProductModal: false,
 
+
+  fetchingProductionSpareData:false,
+  fetchingProductionSpareDataError:false,
+  productionSpareData:[],
+
   addingProductCategory: false,
   addingProductCategoryError: false,
 
@@ -75,6 +80,8 @@ const initialState = {
   fetchingdeleteProducts: false,
   fetchingdeleteProductsError: false,
   deleteproducts:[],
+
+  addDrawerProductNotesModal:false,
 
   fetchingLatestProductsByOrganizationId: false,
   fetchingLatestProductsByOrganizationIdError: false,
@@ -146,6 +153,10 @@ const initialState = {
   updateServiceById: false,
   updateServiceByIdError: false,
 
+  fetchingProductsDesc:false,
+  fetchingProductsDescError:false,
+  productsDesc:[],
+
   updateProductById: false,
   updateProductByIdError: false,
 
@@ -165,6 +176,10 @@ const initialState = {
   fetchingDiscountHistory: false,
   fetchingDiscountHistoryError: false,
   discountHistory: [],
+
+  fetchingDeletedProductRecords: false,
+  fetchingDeletedProductRecordsError: false,
+  deletedProductCount:{},
 
   addingDiscount: false,
   addingDiscountError: false,
@@ -275,6 +290,10 @@ const initialState = {
   addingProductBuilderError: false,
   addedProBuilder: [],
 
+
+  addingProductDesc:false,
+  addingProductDescError:false,
+
   fetchingBuilderByProductId: false,
   fetchingBuilderByProductIdError: false,
   builderbyProductId: [],
@@ -297,38 +316,29 @@ const initialState = {
 
   fetchingAllProducts: false,
   fetchingAllProductsError: false,
-  productAlls: [
-//     {
-//     "productId": "PD68170822484172024",
-//     "productName": "Accelerator testing 1 2 ",
-//     "creationDate": "2024-04-17T08:57:17.261Z",
-//     "categoryName": "paneer",
-// },
-// {
-//     "productId": "PD5118276228082024",
-//     "productName": "Palak Phulka Phulka Palak 2.0 3.0",
-//     "creationDate": "2024-04-16T08:21:46.026Z",
-// "categoryName": "Phulka",
-// },
-// {
-//     "productId": "PD1920247105482024",
-//     "productName": "Jowar Phulka - Gluten Free Phulka Jowar  ",
-//     "creationDate": "2024-04-08T13:00:18.227Z",
-// "categoryName": "Phulka",
-// },
-
-// {
-//     "productId": "PD7213203342382024",
-//     "productName": "Paneer Stuffed Bhatura Dough Dough Paneer Stuffed Bhatura  ",
-//     "creationDate": "2024-04-08T12:36:08.306Z",
-// "categoryName": "Dough",
-// },
-],
+  productAlls: [],
 
   postingProductionBldr: false,
   postingProductionBldrError: false,
 
+  clickProdclDrwr:false,
+  removingProductPrice: false,
+  removingProductPriceError:false,
 
+  reInstatingProducts: false,
+  reInstatingProductsError:false,
+
+  fetchingNotesofProducts: false, 
+  fetchingNotesofProductsError:false,
+  notesofPRoducts:[],
+
+  addingNotesOfProducts: false,
+  addingNotesOfProductsError: false,
+
+  updatingNotesOfProducts: false,
+  updatingNotesOfProductsError:false,
+  removingNotesOfProducts: false,
+  removingNotesOfProductsError:false,
 
 };
 const newDateRange = (dateRange, newDate) =>
@@ -443,6 +453,25 @@ export const productReducer = (state = initialState, action) => {
         fetchingdeleteProducts: false,
          fetchingdeleteProductsError: true };
 
+
+
+
+
+         case types.GET_PRODUCTION_SPARE_DATA_REQUEST:
+          return { ...state, fetchingProductionSpareData: true };
+        case types.GET_PRODUCTION_SPARE_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingProductionSpareData: false,
+            productionSpareData: action.payload
+          };
+        case types.GET_PRODUCTION_SPARE_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingProductionSpareData: false,
+            fetchingProductionSpareDataError: true,
+          };
+
       case types.GET_CATEGORY_REQUEST:
       return { ...state, fetchingCategory: true, fetchingCategoryError: false };
     case types.GET_CATEGORY_SUCCESS:
@@ -469,6 +498,24 @@ export const productReducer = (state = initialState, action) => {
         addingServiceError: true,
         addConfigureModal: false,
       };
+
+
+      case types.ADD_PRODUCT_DESC_REQUEST:
+        return { ...state, addingProductDesc: true };
+      case types.ADD_PRODUCT_DESC_SUCCESS:
+        return {
+          ...state, addingProductDesc: false, 
+          // addConfigureModal: false,
+          productsDesc: [action.payload, ...state.productsDesc]
+        };
+      case types.ADD_PRODUCT_DESC_FAILURE:
+        return {
+          ...state,
+          addingProductDesc: false,
+          addingProductDescError:false,
+          // addingProductDesc: true,
+          // addConfigureModal: false,
+        };
 
     case types.GET_LATEST_PRODUCTS_BY_ORGANIZATION_ID_REQUEST:
       return { ...state, fetchingLatestProductsByOrganizationId: true };
@@ -629,9 +676,8 @@ export const productReducer = (state = initialState, action) => {
         return {
           ...state,
           deletingCatalogData: false,
-          products: state.products.filter(
-            (item) => item.productId !== action.payload
-          ),
+          products: state.products.filter((item) => item.productId !== action.payload),
+          deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
         };
       case types.DELETE_CATALOG_DATA_FAILURE:
         return {
@@ -735,6 +781,22 @@ export const productReducer = (state = initialState, action) => {
         fetchingRecordsByUserId: false,
         fetchingRecordsByUserIdError: true,
       };
+
+
+      case types.GET_DELETED_PRODUCT_RECORDS_REQUEST:
+        return { ...state, fetchingDeletedProductRecords: true };
+      case types.GET_DELETED_PRODUCT_RECORDS_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedProductRecords: false,
+          deletedProductCount: action.payload,
+        };
+      case types.GET_DELETED_PRODUCT_RECORDS_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedProductRecords: false,
+          fetchingDeletedProductRecordsError: true,
+        };
 
     case types.GET_ALL_PRODUCT_REQUEST:
       return { ...state, fetchingAllProducts: true, fetchingAllProductsError: false };
@@ -1042,13 +1104,13 @@ export const productReducer = (state = initialState, action) => {
         ...state,
         addingProductBuilder: false,
         addedProBuilder: action.payload,
-        searchedBuilders: state.searchedBuilders.map((item) => {
-          if (item.suppliesId == action.payload.suppliesId) {
-            return action.payload;
-          } else {
-            return item;
-          }
-        }),
+        // searchedBuilders: state.searchedBuilders.map((item) => {
+        //   if (item.suppliesId == action.payload.suppliesId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
         // builderbyProductId:[action.payload,...state.builderbyProductId]
       };
     case types.ADD_PRODUCT_BUILDER_FAILURE:
@@ -1095,15 +1157,21 @@ export const productReducer = (state = initialState, action) => {
         uploadingCatalogueListError: true,
       };
 
+
+      case types.GET_PRODUCT_DESC_REQUEST:
+        return { ...state, fetchingProductsDesc: true, fetchingProductsDescError: false };
+      case types.GET_PRODUCT_DESC_SUCCESS:
+        return { ...state, fetchingProductsDesc: false, productsDesc: action.payload };
+      case types.GET_PRODUCT_DESC_FAILURE:
+        return { ...state, fetchingProductsDesc: false, fetchingProductsDescError: true };
+
     case types.REMOVE_PRODUCT_BUILDER_REQUEST:
       return { ...state, removingProductBuilder: true };
     case types.REMOVE_PRODUCT_BUILDER_SUCCESS:
       return {
         ...state,
         removingProductBuilder: false,
-        builderbyProductId: state.builderbyProductId.filter(
-          (item) => item.productSupplyLinkId !== action.payload.productSupplyLinkId
-        ),
+        builderbyProductId: state.builderbyProductId.filter((item) => item.productionBuilderId !== action.payload),
       };
     case types.REMOVE_PRODUCT_BUILDER_FAILURE:
       return {
@@ -1210,6 +1278,131 @@ export const productReducer = (state = initialState, action) => {
         postingProductionBldrError: true,
       };
 
+                case types.HANDLE_PRODUCT_CELL_DRAWER:
+                  return { ...state, clickProdclDrwr: action.payload };
+
+                  case types.UPDATE_PROD_SUPPLR_BILDR_REQUEST:
+                    return { ...state, addingProductBuilder: true };
+                  case types.UPDATE_PROD_SUPPLR_BILDR_SUCCESS:
+                    return {
+                      ...state,
+                      addingProductBuilder: false,
+                      builderbyProductId: state.builderbyProductId.map((item) => {
+                        if (item.productionBuilderId == action.payload.productionBuilderId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                    };
+                  case types.UPDATE_PROD_SUPPLR_BILDR_FAILURE:
+                    return {
+                      ...state,
+                      addingProductBuilder: false,
+                      addingProductBuilderError: true,
+                    };
+
+                    case types.REMOVE_PRODUCT_PRICE_REQUEST:
+                      return { ...state, removingProductPrice: true };
+                    case types.REMOVE_PRODUCT_PRICE_SUCCESS:
+                      return {
+                        ...state,
+                        removingProductPrice: false,
+                        ProductCurrency: state.ProductCurrency.filter((item) => item.productCurrencyId !== action.payload),
+                      };
+                    case types.REMOVE_PRODUCT_PRICE_FAILURE:
+                      return {
+                        ...state,
+                        removingProductPrice: false,
+                        removingProductPriceError: true,
+                      };
+
+                      case types.HANDLE_PRODUCT_NOTES_DRAWER_MODAL:
+                        return { ...state, addDrawerProductNotesModal: action.payload };
+
+                        // case types.REINSTATE_DELETED_PRODUCTS_REQUEST:
+                        //   return { ...state, reInstatingProducts: true };
+                        // case types.REINSTATE_DELETED_PRODUCTS_SUCCESS:
+                        //   return {
+                        //     ...state,
+                        //     reInstatingProducts: false,
+                        //     deleteproducts: state.deleteproducts.filter((item) => item.productId !== action.payload),
+                        //   };
+                        // case types.REINSTATE_DELETED_PRODUCTS_FAILURE:
+                        //   return {
+                        //     ...state,
+                        //     reInstatingProducts: false,
+                        //     reInstatingProductsError: true,
+                        //   }; 
+
+                          case types.GET_NOTES_OF_PRODUCT_REQUEST:
+                            return { ...state, fetchingNotesofProducts: true, fetchingNotesofProductsError: false };
+                          case types.GET_NOTES_OF_PRODUCT_SUCCESS:
+                            return { ...state, fetchingNotesofProducts: false, notesofPRoducts: action.payload };
+                          case types.GET_NOTES_OF_PRODUCT_FAILURE:
+                            return { ...state, fetchingNotesofProducts: false, fetchingNotesofProductsError: true };
+
+        
+                              case types.ADD_NOTES_OF_PRODUCT_REQUEST:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: true,
+
+                                };
+                              case types.ADD_NOTES_OF_PRODUCT_SUCCESS:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: false,
+                                  notesofPRoducts:action.payload,
+                                };
+                              case types.ADD_NOTES_OF_PRODUCT_FAILURE:
+                                return {
+                                  ...state,
+                                  addingNotesOfProducts: false,
+                                  addingNotesOfProductsError: true,
+                                };
+
+                                case types.UPDATE_NOTES_OF_PRODUCT_REQUEST:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: true,
+                                  };
+                                case types.UPDATE_NOTES_OF_PRODUCT_SUCCESS:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: false,
+                                    notesofPRoducts:state.notesofPRoducts.map((item) => {
+                                      if (item.productId == action.payload.productId) {
+                                        return action.payload;
+                                      } else {
+                                        return item;
+                                      }
+                                    }),
+                                  };
+                                case types.UPDATE_NOTES_OF_PRODUCT_FAILURE:
+                                  return {
+                                    ...state,
+                                    updatingNotesOfProducts: false,
+                                    updatingNotesOfProductsError: true,
+                                  };
+
+                                  case types.REMOVE_NOTES_OF_PRODUCT_REQUEST:
+                                    return { ...state, removingNotesOfProducts: true };
+                                  case types.REMOVE_NOTES_OF_PRODUCT_SUCCESS:
+                                    const { notesId } = action.payload;
+                                      return {
+                                        ...state,
+                                        removingNotesOfProducts: false,
+                                        notesofPRoducts: state.notesofPRoducts.filter(item => item.notesId !== notesId),
+                                        
+                                      };
+                                    
+                                  case types.REMOVE_NOTES_OF_PRODUCT_FAILURE:
+                                    return {
+                                      ...state,
+                                      removingNotesOfProducts: false,
+                                      removingNotesOfProductsError: true,
+                                    };
 
 
     default:

@@ -6,6 +6,13 @@ const initialState = {
     fetchingBrandModelError: false,
     brandModel: [],
 
+    fetchingModels: false, 
+    fetchingModelsError: false, 
+    modelList:[],
+
+    addingModel: false,
+    addingModelError: false,
+
     addingBrandModel: false,
     addingBrandModelError: false,
 
@@ -56,6 +63,26 @@ export const brandmodelReducer = (state = initialState, action) => {
                 updatingBrandModel: false,
                 updatingBrandModelError: true,
             };
+
+
+            case types.ADD_MODEL_REQUEST:
+                return { ...state, addingModel: true };
+              case types.ADD_MODEL_SUCCESS:
+                return {
+                  ...state,
+                  addingModel: false,
+                  modelList: [...state.modelList, action.payload],
+                };
+              case types.ADD_MODEL_FAILURE:
+                return { ...state, addingModel: false,addingModelError: true };
+          
+
+                case types.GET_MODELS_REQUEST:
+                    return { ...state, fetchingModels: true };
+                  case types.GET_MODELS_SUCCESS:
+                    return { ...state, fetchingModels: false, modelList: action.payload };
+                  case types.GET_MODELS_FAILURE:
+                    return { ...state, fetchingModels: false, fetchingModelsError: true };
 
         default:
             return state;

@@ -14,7 +14,7 @@ const TabPane = StyledTabs.TabPane;
 const AddCallTaskModal = (props) => {
   const { addCallTaskModal, handleLeadCallModal, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
-  const drawerWidth = isSmallScreen ? "90%" : "55%";
+  const drawerWidth = isSmallScreen ? "90%" : "60%";
 
   return (
     <>
@@ -103,3 +103,9 @@ const AddCallTaskModal = (props) => {
 };
 
 export default AddCallTaskModal;
+
+
+
+
+
+

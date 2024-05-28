@@ -25,8 +25,10 @@ class DragableUpload extends React.Component {
   };
   handleDocumentUpload = ({ onSuccess, onError, file }) => {
     console.log(this.props);
+    console.log(file)
     let formData = new FormData();
     formData.append("file", file);
+    console.log(formData)
     axios
       .post(`${base_url}/document/upload`, formData, {
         headers: {

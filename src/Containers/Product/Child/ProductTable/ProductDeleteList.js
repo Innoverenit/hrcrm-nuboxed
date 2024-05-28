@@ -26,6 +26,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
+import ReInstateProductToggle from "./ReInstateProductToggle";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -79,13 +81,16 @@ function ProductDeleteList(props) {
     updateProductModal,
     user,
     proBuilderDrawer,
+    fetchingdeleteProducts,
     handleProductBuilderDrawer,
     handlePriceDrawer,
     priceOpenDrawer,
     deleteCatalogData,
     deleteproducts
   } = props;
-
+ if (fetchingdeleteProducts) {
+    return <BundleLoader />;
+  }
   return (
     <>
 
@@ -100,6 +105,7 @@ function ProductDeleteList(props) {
             <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
             <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
             <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
+            <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Reinstate</div>
             <div className="w-12"></div>
           </div>
           {/* <InfiniteScroll
@@ -110,7 +116,7 @@ function ProductDeleteList(props) {
             height={"75vh"}
             endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           > */}
-            {deleteproducts.map((item) => {
+            {props.deleteproducts.map((item) => {
               return (
                 <div>
                   <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
@@ -137,7 +143,7 @@ function ProductDeleteList(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[13.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-cardBody max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
@@ -190,6 +196,11 @@ function ProductDeleteList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
+                      <div className=" flex font-medium flex-col  w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+
+<ReInstateProductToggle item={item} />
+
+</div>
                       <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
                       <div>
                         <Tooltip title="Add Price">
@@ -306,6 +317,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   addCurrencyValue: supplies.addCurrencyValue,
   proBuilderDrawer: product.proBuilderDrawer,
   priceOpenDrawer: product.priceOpenDrawer,
+  fetchingdeleteProducts:product.fetchingdeleteProducts,
 });
 
 const mapDispatchToProps = (dispatch) =>

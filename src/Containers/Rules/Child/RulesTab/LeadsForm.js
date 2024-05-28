@@ -58,27 +58,23 @@ country:props.countryId,
       >
         {({ values }) => (
           <Form className="form-background">
-            <div class=" flex justify-between">
-              <div class=" h-full w-full"
-           
-              >
+            <div class="flex justify-between  pr-2 max-sm:flex-col">
+            <div class=" h-full w-w47.5 max-sm:w-wk"   >
+            <div class=" mt-2">
                 <Field
                   isRequired
                   name="maximumLeaves"
                   // label="Max leaves (in days)"
                   label={<div class="w-60"><FormattedMessage
-                    id="app.maximumLeaves"
-                    defaultMessage="Max leaves (in days)"
+                    id="app.#Leaves"
+                    defaultMessage=" #leaves (in days)"
                   /></div>}
-                  width={"10%"}
+                  width={"50%"}
                   component={InputComponent}
                   inlineLabel
-                // style={{
-                //   flexBasis: "80%",
-                //   marginTop: "0.25em",
-                //   height: "2.0625em",
-                // }}
+               
                 />
+                </div>
             <div class=" mt-4">
                 <Field
                   isRequired
@@ -89,14 +85,10 @@ country:props.countryId,
                     defaultMessage="Carry Forward(%)"
                   /></div>}
                   inlineLabel
-                  width={"10%"}
+                  width={"50%"}
                   component={InputComponent}
                 
-                // style={{
-                //   flexBasis: "80%",
-                //   marginTop: "0.25em",
-                //   height: "2.0625em",
-                // }}
+                
                 />
                 </div>
                 <div class=" mt-4">
@@ -109,51 +101,12 @@ country:props.countryId,
                     defaultMessage="Leaves Capped at times Annual Leave"
                   /></div>}
                   inlineLabel
-                  width={"10%"}
+                  width={"50%"}
                   component={InputComponent}
-                  // inlineLabel
-                // style={{
-                //   flexBasis: "80%",
-                //   marginTop: "0.25em",
-                //   height: "2.0625em",
-                // }}
+              
                 />
                    </div>
-                   <div class=" mt-4">
-                <Field
-                  isRequired
-                  name="mileageRate"
-                  // label="Max leaves (in days)"
-                  label={<div class="w-60"><FormattedMessage
-                    id="app.mileageRate"
-                    defaultMessage="Mileage Rate (ur/km)"
-                  /></div>}
-                  width={"10%"}
-                  component={InputComponent}
-                  inlineLabel
-                // style={{
-                //   flexBasis: "80%",
-                //   marginTop: "0.25em",
-                //   height: "2.0625em",
-                // }}
-                />
- <div class=" mt-4">
-<Field
-                  isRequired
-                  name="maxOpsnlHoliday"
-                  // label="Max leaves (in days)"
-                  label={<div class="w-60">Maximum optional holiday(in days)</div>}
-                  width={"10%"}
-                  component={InputComponent}
-                  inlineLabel
-                // style={{
-                //   flexBasis: "80%",
-                //   marginTop: "0.25em",
-                //   height: "2.0625em",
-                // }}
-                />
-</div>
-</div>
+     
                 {/* <FlexContainer justifyContent="space-between">
                   <div style={{ width: "50%", marginTop: "0.625em" }}>
                     <StyledLabel>Assign To</StyledLabel>
@@ -182,7 +135,28 @@ country:props.countryId,
                   options={Array.isArray(teamOption) ? teamOption : []}
                 /> */}
          
-                <div class=" flex justify-end" >
+               
+              </div>
+              <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div class=" mt-2">
+                <Field
+                  isRequired
+                  name="mileageRate"
+                  // label="Max leaves (in days)"
+                  label={<div class="w-60"><FormattedMessage
+                    id="app.mileageRate"
+                    defaultMessage="Mileage Rate (ur/km)"
+                  /></div>}
+                  width={"50%"}
+                  component={InputComponent}
+                  inlineLabel
+             
+                />
+
+</div>
+              </div>
+            </div>
+            <div class=" flex justify-end" >
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -194,8 +168,6 @@ country:props.countryId,
                 
                 <div>Updated on {moment(props.leaveData.updationDate).format("ll")} by {props.leaveData.updatedBy}</div> 
            
-              </div>
-            </div>
           </Form>
         )}
       </Formik>

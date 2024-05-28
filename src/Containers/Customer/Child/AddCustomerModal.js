@@ -21,8 +21,10 @@ const AddCustomerModal = (props) => {
         />}
         width={drawerWidth}
         visible={props.addCustomerModal}
+        destroyOnClose
         onClose={() => {
-          handleClose();
+          // handleClose();
+        
           props.handleCustomerModal(false);
         }}
       >

@@ -26,7 +26,7 @@ import {
   getCandidateTaskFilterList,
   deleteTask,
 } from "../../../Task/TaskAction";
-// import {updateActivityTask} from "../../CustomerAction"
+ import {updateActivityTaskForm} from "../../CustomerAction"
 import {
   getTaskForStages,
   getTaskForWorkflow,
@@ -280,10 +280,10 @@ const [priority,setpriority]=useState(props.selectedTask
     console.log(today);
     const {
       user: { userId, firstName, fullName, middleName, lastName, timeZone },
-      updatingActivityTask,
+      updateActivityTaskForm,
+      updatingActivityTaskForm,
       isEditing,
       prefillTask,
-      updateActivityTask,
       startDate,
       endDate,
       deleteTask,
@@ -476,27 +476,27 @@ const [priority,setpriority]=useState(props.selectedTask
                   },
                 handleCallback
                 )
-              // : updateActivityTask(
-              //     {
-              //       ...values,
-              //       opportunity:values.opportunity,
-              //       contact:values.contact,
-              //       customerId: props.customer.customerId,
-              //       taskTypeId:selectedTaskType,
-              //       taskChecklistId:selectedWorkflow,
-              //       taskStatus: active,
-              //       priority: priority,
-              //       complexity: complexity,
-              //       ownerIds: userId === userId ? [userId] : [],
-              //       startDate: `${newStartDate}T20:00:00Z`,
-              //       endDate: `${newEndDate}T20:00:00Z`,
-              //       startTime: 0,
-              //       endTime: 0,
-              //       assignedTo: selectedOption ? selectedOption.employeeId:userId,
-              //     },
-              //     handleCallback
-              //   );
-            :!isEditing && resetForm();
+              : updateActivityTaskForm(
+                  {
+                    ...values,
+                    opportunity:values.opportunity,
+                    contact:values.contact,
+                    customerId: props.customer.customerId,
+                    taskTypeId:selectedTaskType,
+                    taskChecklistId:selectedWorkflow,
+                    taskStatus: active,
+                    priority: priority,
+                    complexity: complexity,
+                    ownerIds: userId === userId ? [userId] : [],
+                    startDate: `${newStartDate}T20:00:00Z`,
+                    endDate: `${newEndDate}T20:00:00Z`,
+                    startTime: 0,
+                    endTime: 0,
+                    assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                  },props.selectedStatus.taskId,
+                  handleCallback
+                );
+            !isEditing && resetForm();
           }}
         >
           {({
@@ -1490,7 +1490,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingTask : updatingActivityTask}
+                  loading={isEditing ? updatingTask : updatingActivityTaskForm}
                 >
                   {isEditing ? (
                     "Update"
@@ -1519,7 +1519,7 @@ const mapStateToProps = ({
   customer,
   candidate,
 }) => ({
-  updatingActivityTask: customer.updatingActivityTask,
+  updatingActivityTaskForm: customer.updatingActivityTaskForm,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
   allCustomerData:customer.allCustomerData,
@@ -1544,7 +1544,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // updateActivityTask,
+      updateActivityTaskForm,
       getAllCustomerData,
       getOpportunityListByCustomerId,
       getContactListByCustomerId,

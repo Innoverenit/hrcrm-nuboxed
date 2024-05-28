@@ -95,7 +95,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             {/* Region name display or input field */}
             
             
-            <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+            <div className=" flex font-medium flex-col md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
 
                     <div class=" text-sm text-cardBody font-medium font-poppins">
 
@@ -105,7 +105,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 
 
                     <div class=" font-normal text-sm text-cardBody font-poppins">
-                    <div style={{width:"70%"}}>
+                    <div class=" w-[20rem]" >
   <div class=" basis-11/12 font-semibold">
   <CountryFlag1 countryCode={region.country_alpha2_code} />
   &nbsp;&nbsp;
@@ -115,7 +115,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex font-medium flex-col md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" text-sm text-cardBody font-medium font-poppins">
 
@@ -125,7 +125,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 
 
 <div class=" font-normal text-sm text-cardBody font-poppins">
-<div class=" w-[20%]" >
+<div class=" w-[7rem]" >
 <div class=" font-semibold" >
 +{region.country_dial_code}
 </div>
@@ -133,7 +133,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 </div>
 
 </div>
-<div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex font-medium flex-col md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
 
 <div class=" text-sm text-cardBody font-medium font-poppins">
 
@@ -142,7 +142,7 @@ Currency
 
 
 <div class=" font-normal text-sm text-cardBody font-poppins">
-<div class=" w-[70%]" >
+<div class=" w-[15rem]" >
 <div class=" font-semibold" >
 {region.country_currency_name}
 </div>

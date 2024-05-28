@@ -36,6 +36,18 @@ const initialState = {
 
   addCreateAwb: false,
 
+  fetchingReceivedUser: false,
+  fetchingReceivedUserError: false,
+  allReceivedUser: [],
+
+  fetchingCellNumber: false,
+  fetchingCellNumberError: false,
+  cellById: [],
+
+  fetchingCellData: false,
+  fetchingCellDataError: false,
+  cellData: [],
+
   updatingValidationInRecive: false,
   updatingValidationInReciveError: false,
 
@@ -66,10 +78,7 @@ const initialState = {
   addingReceivedUser: false,
   addingReceivedUserError: false,
   receivedModal: false,
-  //get received
-  fetchingReceivedUserList: false,
-  fetchingReceivedUserListError: false,
-  allReceivedUser: [],
+
   //file damaged
   fileDamagedModal: false,
 
@@ -137,11 +146,19 @@ const initialState = {
   addingReason: false,
   addingReasonError: false,
   setEditingInventoryOutput: {},
-  //output reason list
-  // fetchingOutputReasonList: false,
-  // fetchingOutputReasonListError: false,
-  // outputReasonList: [],
-  //consumptionReasonModal
+
+  fetchingItemInCellStock: false,
+  fetchingItemInCellStockError: false,
+  cellStock: [],
+
+  fetchingMaterialUnitsData:false,
+  fetchingMaterialUnitsDataError:false,
+  materialUnitsData:[],
+
+  fetchingItemHistoryInStock: false,
+  fetchingItemHistoryInStockError: false,
+  itemHistoryInStock: [],
+
   consumptionReasonModal: false,
   //addReason
   addingConsumptionReason: false,
@@ -238,6 +255,10 @@ const initialState = {
   fetchingMaterialReceiveDetailDataError: false,
   receivedDetailData: [],
 
+  fetchingInventoryLocationRecords: false,
+  fetchingInventoryLocationRecordsError: false,
+  inventoryLocationCount: {},
+
   fetchingGrnListOfAPo: false,
   fetchingGrnListOfAPoError: false,
   poGrnList: [],
@@ -276,6 +297,11 @@ const initialState = {
   fetchingRacklist: false,
   fetchingRacklistError: false,
   rackList: [],
+
+  rejectPhoneList: false,
+  rejectPhoneListError: false,
+
+  rejectedReasonModal: false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -446,20 +472,42 @@ export const inventoryReducer = (state = initialState, action) => {
         addCreateAwb: false,
       };
 
-    //get received
-    case types.GET_RECEIVED_REQUEST:
-      return { ...state, fetchingReceivedUserList: true };
-    case types.GET_RECEIVED_SUCCESS:
+
+    case types.SENT_ITEM_TO_STOCK_REQUEST:
+      return { ...state, sendingItemToStock: true };
+    case types.SENT_ITEM_TO_STOCK_SUCCESS:
       return {
         ...state,
-        fetchingReceivedUserList: false,
-        allReceivedUser: action.payload,
+        sendingItemToStock: false,
+        stockUseDrwr: false,
+        poGrnList: state.poGrnList.map((item) =>
+          item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId
+            ? action.payload : item
+        ),
+
       };
-    case types.GET_RECEIVED_FAILURE:
+    case types.SENT_ITEM_TO_STOCK_FAILURE:
       return {
         ...state,
-        fetchingReceivedUserList: false,
-        fetchingReceivedUserListError: true,
+        sendingItemToStock: false,
+        sendingItemToStockError: true,
+        stockUseDrwr: false,
+      };
+    //get received
+    case types.GET_ITEM_HISTORY_IN_STOCK_REQUEST:
+      return { ...state, fetchingItemHistoryInStock: true };
+    case types.GET_ITEM_HISTORY_IN_STOCK_SUCCESS:
+      return {
+        ...state,
+        fetchingItemHistoryInStock: false,
+        itemHistoryInStock: action.payload,
+      };
+    case types.GET_ITEM_HISTORY_IN_STOCK_FAILURE:
+      return {
+        ...state,
+        fetchingItemHistoryInStock: false,
+        fetchingItemHistoryInStockError: true,
+
       };
 
     case types.HANDLE_FILE_DAMAGED_MODAL:
@@ -920,6 +968,26 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingShipperContactError: true,
       };
 
+
+
+
+
+      case types.GET_MATERIAL_UNITS_DATA_REQUEST:
+      return { ...state, fetchingMaterialUnitsData: true };
+    case types.GET_MATERIAL_UNITS_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingMaterialUnitsData: false,
+        materialUnitsData: action.payload
+      };
+    case types.GET_MATERIAL_UNITS_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingMaterialUnitsData: false,
+        fetchingMaterialUnitsDataError: true,
+      };
+
+
     case types.SEARCH_DISPATCH_ITEM_REQUEST:
       return { ...state, searchingDispatchItem: true };
     case types.SEARCH_DISPATCH_ITEM_SUCCESS:
@@ -1050,13 +1118,45 @@ export const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPhoneListById: false,
-        phoneListById: action.payload
+        phoneListById: [...state.phoneListById, ...action.payload]
       };
     case types.GET_PHONE_LIST_BY_ID_FAILURE:
       return {
         ...state,
         fetchingPhoneListById: false,
         fetchingPhoneListByIdError: true,
+      };
+
+    case types.GET_CELL_NUMBER_REQUEST:
+      return { ...state, fetchingCellNumber: true };
+    case types.GET_CELL_NUMBER_SUCCESS:
+      return {
+        ...state,
+        fetchingCellNumber: false,
+        cellById: action.payload,
+      };
+    case types.GET_CELL_NUMBER_FAILURE:
+      return {
+        ...state,
+        fetchingCellNumber: false,
+        fetchingCellNumberError: true,
+
+      };
+
+    case types.GET_CELL_DATA_REQUEST:
+      return { ...state, fetchingCellData: true };
+    case types.GET_CELL_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingCellData: false,
+        cellData: action.payload,
+      };
+    case types.GET_CELL_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingCellData: false,
+        fetchingCellDataError: true,
+
       };
 
     case types.SET_PHONELIST_EDIT:
@@ -1262,8 +1362,24 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingGrnListOfAPo: false,
         fetchingGrnListOfAPoError: true,
+      };
+
+    case types.GET_ITEM_IN_CELL_STOCK_REQUEST:
+      return { ...state, fetchingItemInCellStock: true };
+    case types.GET_ITEM_IN_CELL_STOCK_SUCCESS:
+      return {
+        ...state,
+        fetchingItemInCellStock: false,
+        cellStock: action.payload
+      };
+    case types.GET_ITEM_IN_CELL_STOCK_FAILURE:
+      return {
+        ...state,
+        fetchingItemInCellStock: false,
+        fetchingItemInCellStockError: true,
 
       };
+
 
     case types.TRANSFER_PO_GRN_TO_STOCK_REQUEST:
       return { ...state, transferingPoGrnToStock: true };
@@ -1272,6 +1388,9 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         transferingPoGrnToStock: false,
         receivedDetailData: state.receivedDetailData.map((item) =>
+          item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId ? action.payload : item
+        ),
+        poGrnList: state.poGrnList.map((item) =>
           item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId ? action.payload : item
         ),
       };
@@ -1330,6 +1449,21 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingGrnNoByPoIdError: true,
       };
 
+    case types.GET_RECEIVED_REQUEST:
+      return { ...state, fetchingReceivedUser: true };
+    case types.GET_RECEIVED_SUCCESS:
+      return {
+        ...state,
+        fetchingReceivedUser: false,
+        allReceivedUser: [...state.allReceivedUser, ...action.payload]
+      };
+    case types.GET_RECEIVED_FAILURE:
+      return {
+        ...state,
+        fetchingReceivedUser: false,
+        fetchingReceivedUserError: true,
+
+      };
 
     case types.UPDATE_ORDER_RECEIVE_REQUEST:
       return { ...state, updatingOrderReceive: true };
@@ -1348,6 +1482,8 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingOrderReceive: false,
         updatingOrderReceiveError: true,
       };
+
+
 
     case types.UPDATE_REPAIR_STATUS_REQUEST:
       return { ...state, updatingRepairStatus: true };
@@ -1371,54 +1507,94 @@ export const inventoryReducer = (state = initialState, action) => {
     case types.HANDLE_STOCK_USED_DRAWER:
       return { ...state, stockUseDrwr: action.payload };
 
-      case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
-        return { ...state, fetchingRoomRack: true };
-      case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
-        return {
-          ...state,
-          fetchingRoomRack: false,
-          roomRackbyLoc: action.payload
-        };
-      case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
-        return {
-          ...state,
-          fetchingRoomRack: false,
-          fetchingRoomRackByIdError: true,
-        };
+    case types.GET_ROOM_RACK_BY_LOCID_REQUEST:
+      return { ...state, fetchingRoomRack: true };
+    case types.GET_ROOM_RACK_BY_LOCID_SUCCESS:
+      return {
+        ...state,
+        fetchingRoomRack: false,
+        roomRackbyLoc: action.payload
+      };
+    case types.GET_ROOM_RACK_BY_LOCID_FAILURE:
+      return {
+        ...state,
+        fetchingRoomRack: false,
+        fetchingRoomRackByIdError: true,
+      };
 
-        case types.UPDATE_ROOM_RACK_ID_REQUEST:
-          return { ...state, updatingRoomRackId: true };
-        case types.UPDATE_ROOM_RACK_ID_SUCCESS:
-          return {
-            ...state,
-            updatingRoomRackId: false,
-            roomRackbyLoc: state.roomRackbyLoc.map((item) =>
-              item.roomRackId === action.payload.roomRackId
-                ? action.payload : item
-            ),
-          };
-        case types.UPDATE_ROOM_RACK_ID_FAILURE:
-          return {
-            ...state,
-            updatingRoomRackId: false,
-            updatingRoomRackIdError: true,
-          };
-    
-          case types.GET_RACK_LIST_REQUEST:
-            return { ...state, fetchingRacklist: true };
-          case types.GET_RACK_LIST_SUCCESS:
-            return {
-              ...state,
-              fetchingRacklist: false,
-              rackList: action.payload
-            };
-          case types.GET_RACK_LIST_FAILURE:
-            return {
-              ...state,
-              fetchingRacklist: false,
-              fetchingRacklistError: true,
-            };
+    case types.UPDATE_ROOM_RACK_ID_REQUEST:
+      return { ...state, updatingRoomRackId: true };
+    case types.UPDATE_ROOM_RACK_ID_SUCCESS:
+      return {
+        ...state,
+        updatingRoomRackId: false,
+        roomRackbyLoc: state.roomRackbyLoc.map((item) =>
+          item.roomRackId === action.payload.roomRackId
+            ? action.payload : item
+        ),
+      };
+    case types.UPDATE_ROOM_RACK_ID_FAILURE:
+      return {
+        ...state,
+        updatingRoomRackId: false,
+        updatingRoomRackIdError: true,
+      };
 
+    case types.GET_RACK_LIST_REQUEST:
+      return { ...state, fetchingRacklist: true };
+    case types.GET_RACK_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingRacklist: false,
+        rackList: action.payload
+      };
+    case types.GET_RACK_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingRacklist: false,
+        fetchingRacklistError: true,
+      };
+
+    case types.HANDLE_REJECTED_REASON_MODAL:
+      return { ...state, rejectedReasonModal: action.payload };
+
+    case types.REJECT_PHONE_REQUEST:
+      return { ...state, rejectPhoneList: true };
+    case types.REJECT_PHONE_SUCCESS:
+      return {
+        ...state,
+        rejectPhoneList: false,
+        rejectedReasonModal: false,
+        updateDispatchList: state.updateDispatchList.map((item) =>
+          item.phoneId === action.payload.phoneId
+            ? action.payload : item
+        ),
+
+      };
+    case types.REJECT_PHONE_FAILURE:
+      return {
+        ...state,
+        rejectPhoneList: false,
+        rejectPhoneListError: true,
+        rejectedReasonModal: false,
+      };
+
+
+
+    case types.GET_INVENTORY_LOCATION_RECORDS_REQUEST:
+      return { ...state, fetchingInventoryLocationRecords: true };
+    case types.GET_INVENTORY_LOCATION_RECORDS_SUCCESS:
+      return {
+        ...state,
+        fetchingInventoryLocationRecords: false,
+        inventoryLocationCount: action.payload,
+      };
+    case types.GET_INVENTORY_LOCATION_RECORDS_FAILURE:
+      return {
+        ...state,
+        fetchingInventoryLocationRecords: false,
+        fetchingInventoryLocationRecordsError: true,
+      };
     default:
       return state;
   }

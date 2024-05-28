@@ -36,6 +36,13 @@ export const handleAddJobDetailtModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleOrderAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setDashboardViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_DASHBOARD_VIEW_TYPE, payload: viewType });
 
@@ -53,6 +60,30 @@ export const setSelectedTimeIntervalReport = (selectedTime) => (dispatch) => {
 export const handleActionDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ACTION_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleOrderOpenModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_OPEN_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleOrderClosedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_CLOSED_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleOrderCancelModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ORDER_CANCEL_MODAL,
     payload: modalProps,
   });
 };
@@ -2215,6 +2246,32 @@ export const getJumpOrderDetail = (type, orderType) => (dispatch) => {
     });
 };
 
+export const getJumpDistributorDetail = (type) => (dispatch) => {
+  dispatch({ type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST });
+  axios
+    .get(
+      `${base_url2}/distributor/count/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getJumpFinanceDetail = (orgId, type,orderType) => (dispatch) => {
   dispatch({ type: types.GET_JUMPSTART_FINANCE_DETAIL_REQUEST });
   axios
@@ -2423,6 +2480,31 @@ export const getRegionRecords = (year,quarter) => (dispatch) => {
       });
     });
 };
+export const getMultiOrgRegionRecords = (emailId,year,quarter) => (dispatch) => {
+  dispatch({
+    type: types.GET_MULTI_ORG_REGION_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/multi-org/dash-board/${emailId}/${year}/${quarter}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MULTI_ORG_REGION_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MULTI_ORG_REGION_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 export const getDevelopChart = (userId, startDate, endDate) => (dispatch) => {
@@ -2476,6 +2558,227 @@ export const getQuotationTableData = (country) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_QUOTATION_TABLE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const getOrderAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/all-active-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderCancelList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_CANCEL_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/all-delete-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_CANCEL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_CANCEL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
+export const getCustomerChart = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_CHART_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2}/distributor/typeWiseData/${orgId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CUSTOMER_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CUSTOMER_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderClosedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_CLOSED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_CLOSED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_CLOSED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getOrderOpenList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDER_OPEN_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDER_OPEN_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDER_OPEN_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleCustomerAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CUSTOMER_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleContactAddedModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CONTACT_ADDED_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getCustomerAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/distributor/all-distributors/${orgId}/${startDate}/${endDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CUSTOMER_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CUSTOMER_ADDED_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactAddedList = (orgId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDED_LIST_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2 }/contactPerson/all-contactPerson/${orgId}/${startDate}/${endDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_CONTACT_ADDED_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_CONTACT_ADDED_LIST_FAILURE,
         payload: err,
       });
     });

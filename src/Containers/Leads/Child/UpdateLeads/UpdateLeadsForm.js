@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select} from "antd";
 import { FormattedMessage } from "react-intl";
+import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
+import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitImage";
 import {getSources} from "../../../Settings/Category/Source/SourceAction"
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
@@ -13,6 +15,8 @@ import {
     updateLeads,
     setEditLeads,
     setClearbitData, 
+    emptyClearbit,
+
     getCrm
 } from "../../../Leads/LeadsAction";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
@@ -41,6 +45,8 @@ function UpdateLeadsForm (props) {
     props.getAllCustomerEmployeelist();
     props.getSources(props.orgId);
     props.getCrm();
+     props.emptyClearbit();
+
     fetchSector();
     if (props.setEditingLeads.source) {
       setSelectedSource(props.setEditingLeads.source);
@@ -61,6 +67,7 @@ function UpdateLeadsForm (props) {
       user,
       // user: { userId, firstName },
       isEditing,
+      clearbit,
       prefillAccount,
       updateLeadsById,
       updateLeads,
@@ -208,6 +215,11 @@ function UpdateLeadsForm (props) {
             middleName:props.setEditingLeads.middleName || "",
             lastName:props.setEditingLeads.lastName || "",
             source:props.setEditingLeads.source || "",
+            lob:props.setEditingLeads.lob || "",
+            price:props.setEditingLeads.price || "",
+            bedrooms:props.setEditingLeads.bedrooms || "",
+        
+            propertyType:props.setEditingLeads.propertyType || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
             address: [
               {
@@ -232,7 +244,9 @@ function UpdateLeadsForm (props) {
                 leadsId: props.leadsId,
                 source: selectedSource,
                 lob:selectedLob,
+                
                 sectorId: selectedSector,
+                countryDialCode:values.countryDialCode,
                 assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingLeads.employeeId,
               },
               props.leadsId,
@@ -382,10 +396,36 @@ function UpdateLeadsForm (props) {
                         </div>              
                          </div>
                   </div>
+                  <div>
+                    {clearbit && clearbit.hasOwnProperty("logo") && (
+                      <ProgressiveImage
+                        preview={
+                          "http://pluspng.com/img-png/twitter-logo-png-twitter-logo-png-256.png"
+                        }
+                        image={clearbit.logo}
+                        width={140}
+                        height={150}
+                        borderRadius={25}
+                        padding={15}
 
+                      />
+                    )}
+                    {clearbit && clearbit.hasOwnProperty("logo") ? (
+                      <a
+                        href="https://clearbit.com"
+                        target="_blank"
+                        style={{ fontSize: 13, marginLeft: 5 }}
+                      >
+                        Logos provided by Clearbit
+                      </a>
+                    ) : null}
+                  </div>
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
                   <Field
-                 
+                    defaultValue={{
+                      label: props.setEditingLeads.companyName,
+                      value: props.setEditingLeads.companyName,
+                    }}
                     name="companyName"
                     type="text"
                     //label="Name"
@@ -394,9 +434,9 @@ function UpdateLeadsForm (props) {
                     }
                     isColumn
                     width={"100%"}
-                    component={InputComponent}
-                    // setClearbitData={props.setClearbitData}
-                    // component={ClearbitImage}
+                    // component={InputComponent}
+                    setClearbitData={props.setClearbitData}
+                    component={ClearbitImage}
                     accounts={accounts}
                     inlineLabel
                     />
@@ -443,7 +483,7 @@ function UpdateLeadsForm (props) {
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -459,6 +499,7 @@ function UpdateLeadsForm (props) {
       </Select>
            </div>
                 </div>
+               
               
                 <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
@@ -611,7 +652,157 @@ function UpdateLeadsForm (props) {
                   />
                   </div>
                  
-               
+                  {props.orgType==="Real Estate"&&(
+                  <div class=" h-3/4  max-sm:w-wk "
+                >
+                  <div class=" flex  justify-between max-sm:mt-20">
+                    <div class="  w-w47.5">
+                      <Field
+                        name="bedrooms"
+                        // selectType="customerList"
+                        isColumnWithoutNoCreate
+                        label="Bedrooms"
+                       
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.tagCompany"
+                        //     defaultMessage="Tag Company"
+                        //   />
+                        // }
+                        options={["1", "2", "3","4","5","6"]}
+                        component={SelectComponent}
+                        isColumn
+                        //value={values.customerId}
+                        //isDisabled={defaultCustomers}
+                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
+                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        inlineLabel
+                      />
+                    </div>
+
+                   
+                    <div class=" w-w47.5">
+                    <FastField
+                            name="price"
+                            label="Price"
+                            //isColumnWithoutNoCreate
+                            //selectType="sourceName"
+                            options={["0-100000", "100001-300000", "300001-500000","500000+"]}
+                            component={SelectComponent}
+                           
+                            // value={values.source}
+                            isColumn
+                          />
+                        </div>
+                     
+                    
+                  </div>
+                 
+                  <div class=" flex justify-between mt-3">         
+                  <div class="  w-w47.5">
+                    <Field
+                      name="propertyType"
+                      label="Property Type"
+                      width="100%"
+                      isColumn
+                      isColumnWithoutNoCreate
+                      options={["Studio", "Row house", "Villa"]}
+                      component={SelectComponent}
+                     
+                      // value={values.departmentId}
+                      // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
+                      inlineLabel
+                    />
+                  </div>
+                
+                  </div>
+                 
+                 
+
+                 
+                  {/* <Field
+                    name="address[0].address1"
+                    // label="Address"
+                    label={
+                      <FormattedMessage
+                        id="app.address[0].address1"
+                        defaultMessage="Address"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  />
+                  */}
+                  {/* <Field
+                    name="address[0].street"
+                    //label="Street"
+
+                    label={
+                      <FormattedMessage
+                        id="app.street"
+                        defaultMessage="Street"
+                      />
+                    }
+                    component={InputComponent}
+                    isColumn
+                    width="100%"
+                  /> */}
+                 
+                  <div class=" flex  justify-between mt-3">
+                    {/* <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].city"
+                        //label="City"
+                        label={
+                          <FormattedMessage
+                            id="app.ddress[0].city"
+                            defaultMessage="City"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div> */}
+                  </div>
+                 
+                  {/* <FlexContainer justifyContent="space-between">
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].state"
+                        //label="State"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].State"
+                            defaultMessage="State"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                    <div style={{ width: "47%" }}>
+                      <Field
+                        name="address[0].postalCode"
+                        //label="Zip Code"
+
+                        label={
+                          <FormattedMessage
+                            id="app.address[0].postalCode"
+                            defaultMessage="Pin Code"
+                          />
+                        }
+                        component={InputComponent}
+                        isColumn
+                        width="100%"
+                      />
+                    </div>
+                  </FlexContainer> */}
+                </div>
+                )}
                  <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
                   <Field
                     name="notes"
@@ -652,12 +843,14 @@ const mapStateToProps = ({ auth, leads,employee,source, }) => ({
     updateLeadsByIdError: leads.updateLeadsByIdError,
     user: auth.userDetails,
     sources: source.sources,
+    clearbit: leads.clearbit,
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     organizationId: auth.userDetails.organizationId,
     employees: employee.employees,
     leadsAllData:leads.leadsAllData,
     fullName: auth.userDetails.fullName,
+    orgType:auth.userDetails.orgType,
     allCustomerEmployeeList:employee.allCustomerEmployeeList,
     crmAllData:leads.crmAllData,
     token: auth.token,
@@ -669,6 +862,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         updateLeads,
         setEditLeads,
+        emptyClearbit,
       getAllCustomerEmployeelist,
       setClearbitData,
       getSources,

@@ -110,16 +110,16 @@ const LeadsActionLeft = (props) => {
           >
             <Badge
               size="small"
-              count={(props.viewType === "teams" && props.leadsTeamCountData.LeadsTeam) || 0}
+              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
               overflowCount={999}
             >
               <span class=" md:mr-1 text-sm cursor-pointer"
                 onClick={() => props.setLeadsViewType("teams")}
-                style={{
-                  color: props.viewType === "teams" && "#1890ff",
-                }}
+                // style={{
+                //   color: props.viewType === "teams" && "#1890ff",
+                // }}
               >
-                <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                <Avatar style={{ background: props.teamsAccessInd||props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
                   <PeopleIcon className="text-white" /></Avatar>
 
               </span>
@@ -151,7 +151,7 @@ const LeadsActionLeft = (props) => {
           </Tooltip>
         )}
       </div>
-      <div class="md:mr-1 max-sm:ml-1">
+      <div class="md:mr-1 ml-2 max-sm:ml-1">
         <Badge
           size="small"
           count={(props.viewType === "list" && props.leadsCountJunked.junkedList) || 0}
@@ -196,8 +196,8 @@ const LeadsActionLeft = (props) => {
       </div>
 
 
-      <div class="w-[28%] mt-2 ml-2">
-        <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
+      <div class="w-[35%] mt-2 ml-2">
+        <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
           <Option value="ascending">A To Z</Option>
           <Option value="descending">Z To A</Option>

@@ -17,6 +17,7 @@ import AddShipperOrderModal from "./AddShipperOrderModal";
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -76,10 +77,10 @@ function AllShipperList(props) {
         dataLength={props.allShipper.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingAllShipper?<div class="text-center font-semibold text-xs">Loading...</div>:null}
+        loader={props.fetchingAllShipper ? <div class="flex justify-center">Loading...</div> : null}
         height={"75vh"}
       >
-          {props.allShipper.map((item) => {
+        {!props.fetchingAllShipper && props.allShipper.length === 0 ? <NodataFoundPage /> : props.allShipper.map((item, index) => {
             return (
               <>
                 <div  >

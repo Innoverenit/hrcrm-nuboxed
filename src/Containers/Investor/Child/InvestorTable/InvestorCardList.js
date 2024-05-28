@@ -5,6 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
+import {  DeleteOutlined } from "@ant-design/icons";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -24,12 +25,14 @@ import {
   handleCustomerEmailDrawerModal,
   getCustomerById,
 } from "../../../Customer/CustomerAction";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import ReactCountryFlag from 'react-country-flag';
 import {getInvestorsbyId,
   handleInvestorContModal,
   handleUpdateInvestorModal,
   handleInvestorPulseDrawerModal,
   handleInvestorNotesDrawerModal,emptyInvestor,
+  deleteInvestorData,
 } from "../../InvestorAction";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -108,6 +111,7 @@ function InvestorCardList(props) {
     addDrawerInvestorContactModal,
     updateInvestorModal,
     investor,
+    deleteInvestorData,
     fetchingInvestorsError,
     fetchingAllCustomers,
     user,
@@ -195,7 +199,7 @@ function InvestorCardList(props) {
                                
                                 >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[12.8rem] max-xl:w-[7.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium  w-[12.8rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -237,7 +241,7 @@ function InvestorCardList(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium items-center  w-[14.1rem] max-xl:w-[8.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center  w-[9.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -249,7 +253,7 @@ function InvestorCardList(props) {
                                 
                                 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium items-center w-[7.21rem] max-xl:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[8.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -266,7 +270,7 @@ function InvestorCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                <div className=" flex font-medium items-center w-[8.1rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -274,7 +278,7 @@ function InvestorCardList(props) {
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium items-center w-[8.124rem] max-xl:w-[4.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium items-center w-[10.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     {item.totalProposalValue && (
@@ -311,7 +315,7 @@ function InvestorCardList(props) {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium flex-col w-[5.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -332,7 +336,7 @@ function InvestorCardList(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex font-medium flex-col w-[7.211rem] max-xl:w-[3.211rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                   <div className=" flex font-medium items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Source</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -351,7 +355,21 @@ function InvestorCardList(props) {
                 />
              </Tooltip>
                           </div>
-
+                          <StyledPopconfirm
+                        title="Do you want to delete?"
+                        onConfirm={() =>
+                          deleteInvestorData(item.investorId,props.userId)
+                        }
+                      >
+                         <Tooltip title="Delete">
+                       
+                          <DeleteOutlined
+                            type="delete"
+                            className="!text-xl text-[red] cursor-pointer"
+                          />
+                       
+                        </Tooltip>
+                      </StyledPopconfirm>
           
                       </div> 
                                 <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-auto">
@@ -537,6 +555,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getInvestorsbyId,
+      deleteInvestorData,
       handleUpdateInvestorModal,
       handleInvestorContModal,
       emptyInvestor,

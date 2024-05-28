@@ -16,7 +16,6 @@ class AddContactNotesDrawerModal extends Component {
         // title="Notes"
           title={this.props.contactData.fullName}
           width="64%"
-          style={{ marginTop: "5rem" }}
           visible={this.props.addDrawerContactNotesModal}
           closable
           placement="right"

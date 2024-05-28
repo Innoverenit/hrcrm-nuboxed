@@ -124,6 +124,7 @@ const dropdownOptions = {
   Orders: ['Order X', 'Order Y', 'Order Z'],
   Production: ['Product 1', 'Product 2', 'Product 3'],
   Receivables: ['Receivable A', 'Receivable B', 'Receivable C'],
+  Productivity: ['Receivable A', 'Receivable B', 'Receivable C'],
 };
 function Reports (props){
 

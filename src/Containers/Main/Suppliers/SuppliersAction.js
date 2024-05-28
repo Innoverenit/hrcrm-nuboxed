@@ -42,6 +42,31 @@ export const addSuppliers = (data, userId) => (dispatch) => {
     });
 };
 
+export const updateQualitySuppliers = (data, userId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_QUALITY_SUPPLIERS_REQUEST });
+  axios
+    .post(`${base_url2}/po/quality/updatePrice `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_QUALITY_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_QUALITY_SUPPLIERS_FAILURE,
+        payload: err,
+      });
+      // cb();
+    });
+};
+
 // get suppliers
 
 export const getSuppliersList = (userId, pageNo) => (dispatch) => {
@@ -65,6 +90,33 @@ export const getSuppliersList = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_SUPPLIERS_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getSuppliersPriceList = (supplierId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIERS_PRICE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/latest-poSupplierDetails/${supplierId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIERS_PRICE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIERS_PRICE_LIST_FAILURE,
         payload: err,
       });
     });
@@ -616,7 +668,11 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/supplier/supplierName/${name}`, {})
+    .get(`${base_url}/supplier/supplierName/${name}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       dispatch({
         type: types.INPUT_SEARCH_DATA_SUCCESS,
@@ -880,10 +936,36 @@ export const handleSupplierContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const getContactShipperList = (shipperId) => (dispatch) => {
+  // const shipperId = getState().shipper.allShipper.shipperId;
+  dispatch({
+    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  *  adding a Contact for distributor
  */
-export const addSupplierContact = (supplier, id) => (dispatch) => {
+export const addSupplierContact = (supplier, id, type) => (dispatch) => {
   dispatch({
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
@@ -896,8 +978,11 @@ export const addSupplierContact = (supplier, id) => (dispatch) => {
       })
     .then((res) => {
       console.log(res);
-      dispatch(getSupplierContactList(id));
-      dispatch(getContactDistributorList(id));
+      // if (type === "distributor") {
+      //   dispatch(getContactDistributorList(id));
+      // } else {
+      //   dispatch(getSupplierContactList(id));
+      // }
       dispatch({
         type: types.ADD_SUPPLIER_CONTACT_SUCCESS,
         payload: res.data,
@@ -1356,6 +1441,13 @@ export const emptysUPPLIERS = () => (dispatch) => {
   });
 };
 
+export const emptysUPPLIERSPrice = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_SUPPLIER_PRICE_LIST,
+  });
+};
+
+
 export const handlePoListModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PO_LIST_MODAL,
@@ -1542,6 +1634,32 @@ export const getSupplierAllCount = (orgId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierDeletedCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_SUPPLIER_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/deleted/count/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_SUPPLIER_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_SUPPLIER_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getSupplierSuppliesQuality = () => (dispatch) => {
   dispatch({
     type: types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST,
@@ -1568,19 +1686,20 @@ export const getSupplierSuppliesQuality = () => (dispatch) => {
     });
 };
 
-export const deleteSupplierData = (supplierId) => (dispatch, getState) => {
+export const deleteSupplierData = (supplierId,userId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_SUPPLIER_DATA_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/deleteSupplier/${supplierId}`,{},
-    {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+    .put(`${base_url2}/supplier/deleteSupplier/${supplierId}`, {},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
     .then((res) => {
+      dispatch(getSupplierCount(userId))
       console.log(res);
       Swal.fire({
         icon: 'success',
@@ -1605,7 +1724,7 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
     type: types.UPDATE_SUPPLIERS_BY_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/${id} `, data,{
+    .put(`${base_url2}/supplier/${id} `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1660,6 +1779,114 @@ export const getSuppliersDeletedList = (userId, pageNo) => (dispatch) => {
         type: types.GET_SUPPLIERS_DELETED_LIST_FAILURE,
         payload: err,
       });
+    });
+};
+
+export const handleSuppliersPriceDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_PRICE_DRAWER,
+    payload: modalProps,
+  });
+};
+
+export const handleSuppliersListDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_LIST_DRAWER,
+    payload: modalProps,
+  });
+};
+
+
+export const updatePriceSuppliers = (data) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_PRICE_OF_SUPPLIER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/quality/updatePrice`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Price updated Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      dispatch({
+        type: types.UPDATE_PRICE_OF_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PRICE_OF_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSupplierwiseQuality = (supplierId,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_WISE_QUALITY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/quality/drop-down/${supplierId}/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_WISE_QUALITY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_WISE_QUALITY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/reinitiate/suppliers/${supplierId}`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getSupplierDeletedCount(orgId))
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS,
+        payload: supplierId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully!',
+      })
+      // message.success("Reinstated Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_SUPPLIER_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
     });
 };
 

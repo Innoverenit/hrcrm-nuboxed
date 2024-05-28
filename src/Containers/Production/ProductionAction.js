@@ -10,6 +10,21 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const addSpareNotesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SPARE_NOTES_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const addSpareStepsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SPARE_PARTS_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setProductionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_PRODUCTION_VIEW_TYPE, payload: viewType });
 
@@ -74,7 +89,7 @@ export const getProductionsbyLocId = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_BYLOC_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/product/${userId}/${pageNo}`,
+    .get(`${base_url2}/production/product/wip/${userId}/${pageNo}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -270,12 +285,12 @@ export const setInspectProdn = (data) => (dispatch) => {
     });
 };
 
-export const getAllProductionsbyOrgId = (orgId, pageNo) => (dispatch) => {
+export const getAllProductionsbyOrgId = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_PRODUCTION_BYORG_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/productByOrgId/${orgId}/${pageNo}`,
+    .get(`${base_url2}/production/productionProduct/${orgId}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -454,9 +469,236 @@ export const getStageList = (orgId) => (dispatch) => {
       });
     });
 };
-// export const handleProdnCellDrawer =(modalProps)=>(dispatch) => {
-//   dispatch({
-//     type: types.HANDLE_PRODUCTION_CELL_DRAWER,
-//     payload: modalProps,
-//   });
-// }
+export const updateRoomRackWip = (data, cb) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ROOM_RACK_WIP_REQUEST });
+  axios
+    .put(
+      `${base_url2}/production/wipAdRoomAndRack `, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_WIP_SUCCESS,
+        payload: res.data,
+      });
+      cb()
+      Swal({
+        icon: 'success',
+        title: 'Done',
+      })
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.UPDATE_ROOM_RACK_WIP_FAILURE,
+        payload: err
+      });
+    });
+};
+
+
+
+
+export const getProductionTable = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_TABLE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/productionProductLink/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_TABLE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateProductionstage = (
+  
+  productionProductId,
+  stageId,
+  userId,
+
+  cb
+) => (dispatch) => {
+  //console.log(sourceStageId, destinationStageId, opportunityId);
+  // if (destinationStageId === "won") {
+  //   message.success("stage is won");
+  // }
+  // if (destinationStageId === "loss") {
+  //   message.error("stage is loss");
+  // }
+  // getUserStageList
+  dispatch({
+    type: types.UPDATE_PRODUCTION_STAGE_REQUEST,
+    payload: {
+    
+    },
+    
+  });
+  axios
+    .put(
+      `${base_url2}/production/productionProductLink/update/stage/${productionProductId}/${stageId}`,{}, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+dispatch(getProductionStage(userId));
+      dispatch({
+        type: types.UPDATE_PRODUCTION_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_PRODUCTION_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
+
+
+
+export const getProductionSteps = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_STEPS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/productionBuilder/steps/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_STEPS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_STEPS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getProductionStage = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_STAGE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/stageList/productionProductLink/${userId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_STAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_STAGE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getProductionCellList = (orgId, startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_CELL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/cell/productionProductLink/${orgId}/${startDate}/${endDate}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_CELL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTION_CELL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateProductionPauseStatus = (data) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.UPDATE_PRODUCTION_PAUSE_STATUS_REQUEST });
+  axios
+    .put(`${base_url2}/production/start-pause/production/manufacture/by-user`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PRODUCTION_PAUSE_STATUS_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PRODUCTION_PAUSE_STATUS_FAILURE,
+      });
+    });
+};

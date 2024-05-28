@@ -110,7 +110,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
           </div> */}
                   </div>
                 </div>
-                <div className=" flex flex-row justify-around w-full items-end">
+                <div className=" flex flex-row justify-end w-full items-end">
                   <span>
                     {item.status === "Approved" && (
                       <div className="w-[8rem] rounded-[0.62em] m-[2px] items-center flex border-2 border-solid border-green-500 p-[0px_0.62em]">
@@ -133,8 +133,8 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     )}
                   </span>
                   <div class="flex justify-end items-center">
-                  <Tooltip title={item.reason}>
-                    <NoteAltIcon className="!text-base mt-1 cursor-pointer text-[green] "
+                  <Tooltip title="Notes">
+                    <NoteAltIcon className="!text-xl mt-1 cursor-pointer text-[green] "
                    
                     onClick={() => {
                    
@@ -153,7 +153,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                         }}
                       >
                         <Tooltip title={item.emailId}>
-                          <BorderColorIcon className="!text-base cursor-pointer text-[tomato]"/>
+                          <BorderColorIcon className="!text-xl cursor-pointer text-[tomato]"/>
                         </Tooltip>
                       </div>
                     ) : (
@@ -169,7 +169,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                       }}
                     >
                       <Tooltip title={"Status"}>
-                        <AssistantIcon  className="!text-base cursor-pointer text-[grey]"/>
+                        <AssistantIcon  className="!text-xl cursor-pointer text-[grey]"/>
                       </Tooltip>
                     </div>
                   </span>
@@ -179,7 +179,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                       <div class="cursor-pointer">
                         <DeleteOutlined
                           type="delete"
-                          className="!text-base cursor-pointer text-[red]" 
+                          className="!text-xl cursor-pointer text-[red]" 
                         ></DeleteOutlined>
                       </div>
                     ) : (

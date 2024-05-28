@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import {  DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
@@ -38,11 +39,13 @@ import {
   handleUpdateDealModal,
   emptyDeals,
   handleDealsNotesDrawerModal,
+  handleDealContactsDrawerModal,
   LinkStageDeal,
   sendToWon,
   deleteDealsData
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
@@ -97,7 +100,7 @@ function DealCardList(props) {
         }
         height={"87vh"}
       >
-        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
+    <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
 
         { !fetchingDeal && dealsByuserId.length === 0 ?<NodataFoundPage />:dealsByuserId.map((item,index) =>  {
             var findProbability = item.probability;
@@ -106,9 +109,11 @@ function DealCardList(props) {
                 findProbability = element.probability;
               }
             });
+            const percentage = Math.floor((item.proposalAmount/item.collectedAmount) * 100)
+            const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
             return (
-              <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
-              text-[#444444] m-2 p-1 w-[16vw] flex flex-col justify-center max-sm:w-wk  ">
+              <div class="rounded-md border-2 justify-center bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9rem] 
+              text-[#444444] m-2 p-1 w-[16vw] flex flex-col max-sm:w-wk  ">
                 <div class=" flex  flex-nowrap items-center h-[2.81em]"
                 >
                   <div class=" mr-[0.2rem] flex basis-[15%]">
@@ -155,6 +160,7 @@ function DealCardList(props) {
                     </div>
                   </div>
                 </div>
+
                 <div className="flex ">
         
         <div>
@@ -221,7 +227,21 @@ function DealCardList(props) {
                     />
                   </span>
                 </div>
+ <div className="flex justify-around mt-2">
+                  <div>
+                    {/* hii */}
+                  {isValidPercentage ? (
 
+<Progress
+  percent={percentage}
+  success={{ percent: 30 }}
+  format={() => `${percentage}%`}
+  style={{ width: "8rem", cursor: "pointer" }}
+/>
+) : null}
+                  </div>
+                 
+                </div>
                 <div class="w-full ">
                   <div class="flex justify-between w-wk mt-1">
                     <div>
@@ -269,11 +289,10 @@ function DealCardList(props) {
                             }
                           >
                             <CheckCircleTwoTone
+                               className="!text-xl text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
-                              size={140}
-                              style={{ fontSize: "1rem" }}
                               onClick={() =>
                                 props.sendToWon(
                                   item.invOpportunityId,
@@ -285,7 +304,7 @@ function DealCardList(props) {
                               }
                             />
                           </Tooltip>
-                          &nbsp; &nbsp;
+                        
                           <Tooltip
                             title={
                               <FormattedMessage
@@ -295,11 +314,11 @@ function DealCardList(props) {
                             }
                           >
                             <StopTwoTone
+                            className="!text-xl text-[red] cursor-pointer ml-2"
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
-                              size={140}
-                              style={{ fontSize: "1rem" }}
+                              size={140}    
                               onClick={() =>
                                 props.lostStatusRecruit(item.opportunityId, {
                                   lostInd: true,
@@ -311,6 +330,26 @@ function DealCardList(props) {
                       )}
                     </div>
                     <div>
+                    <Tooltip
+                        placement="right"
+                        title={
+                          <FormattedMessage
+                            id="app.contact"
+                            defaultMessage="Contact"
+                          />
+                        }
+                      >
+                        <span
+                          onClick={() => {
+                            props.handleDealContactsDrawerModal(true);
+                            handleSetCurrentItem(item);
+                          }}
+                        >
+                          <PermContactCalendarIcon
+                           className="!text-xl cursor-pointer text-[blue]"
+                          />
+                        </span>
+                      </Tooltip>
                       <Tooltip
                         placement="right"
                         title={
@@ -356,7 +395,7 @@ function DealCardList(props) {
                       <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
-                          deleteDealsData(item.invOpportunityId)
+                          deleteDealsData(item.invOpportunityId,props.userId)
                         }
                       >
                          <Tooltip title="Delete">
@@ -389,30 +428,20 @@ function DealCardList(props) {
         handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
-      {/*
-<AddOpportunityDrawerModal
- opportunityData={currentItem}
-opportunityForecast={props.opportunityForecast}
-opportunityInitiativesSkillsDetails={props.opportunityInitiativesSkillsDetails}
- handleSetCurrentItem={handleSetCurrentItem}
- 
- fetchingOpportunitySkills={props.fetchingOpportunitySkills}
- item={currentItem}
- opportunitySkills={props.opportunitySkills}
-allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
-             allRecruitmentByOppId={props.allRecruitmentByOppId}
-             allRecruitmentPositionFilledByOppId={props.allRecruitmentPositionFilledByOppId}
-             allRecruitmentAvgTimeByOppId={props.allRecruitmentAvgTimeByOppId}
-             allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
-               handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
-               addDrawerOpportunityModal={props.addDrawerOpportunityModal}
-      /> */}
+          <AddDealsContactDrawerModal
+        currentItem={currentItem}
+        addDrawerDealsContactsModal={props.addDrawerDealsContactsModal}
+        handleDealContactsDrawerModal={props.handleDealContactsDrawerModal}
+        handleSetCurrentItem={handleSetCurrentItem}
+      />
+
     </>
   );
 }
 
 const mapStateToProps = ({ auth, deal, opportunity }) => ({
   dealsByuserId: deal.dealsByuserId,
+  addDrawerDealsContactsModal:deal.addDrawerDealsContactsModal,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
@@ -452,6 +481,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateDealModal,
       handleOpportunityDrawerModal,
       handleDealsNotesDrawerModal,
+      handleDealContactsDrawerModal,
       setEditOpportunity,
       deleteDealsData,
       updateOwneroppById,

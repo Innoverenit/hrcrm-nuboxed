@@ -77,11 +77,24 @@ const initialState = {
   fetchingSupplierListError: false,
   supplierList: [],
 
+  fetchingDeletedSupplierCount: false,
+  fetchingDeletedSupplierCountError: false,
+  deletedCountSupplier:{},
+
+  fetchingSupplierPriceList: false,
+  fetchingSupplierPriceListError: false,
+  supplierPriceList:[],
+
+  updatingQualitySuppliers: false,
+  updatingQualitySuppliersError: false,
+
   pOSupplierDetailsId: "",
 
   addLinkSuppliersOrderConfigureModal: false,
 
   clearbitPurchase: {},
+
+  suppliersPriceOpenDrawer:false,
 
   clearbitPurchaseProduct: {},
   addPoListmModal: false,
@@ -113,7 +126,7 @@ const initialState = {
   fetchingTermsnConditionOfPOError: true,
   termsnconditionofpo: [],
 
-  setEditingSuppliers:{},
+  setEditingSuppliers: {},
 
   addSupplierCatalogueModal: false,
 
@@ -133,9 +146,18 @@ const initialState = {
   addingSuppliesToSupplier: false,
   addingSuppliesToSupplierError: false,
 
+  reInstatedSupplierById: false,
+  reInstatedSupplierByIdError: false,
+
   fetchingSuppliesList: false,
   fetchingSuppliesListError: false,
   suppliesList: [],
+
+  fetchingMaterialWiseQuality: false,
+   fetchingMaterialWiseQualityError: false ,
+   materialwiseQuality:[],
+
+  suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
   fetchingSuppliesListByIdError: false,
@@ -182,7 +204,7 @@ const initialState = {
 
   fetchingSupplierDeletedList: false,
   fetchingSupplierDeletedListError: false,
-  supplierDeletedList:[],
+  supplierDeletedList: [],
 
   fetchingAllSupplierListById: false,
   fetchingAllSupplierListByIdError: false,
@@ -208,6 +230,9 @@ const initialState = {
 
   addDeleteSuppliesModal: false,
 
+  updatePriceSupplierListItem: false,
+  updatePriceSupplierListItemError: false,
+
   deletingSuppliesData: false,
   deletingSuppliesDataError: false,
 
@@ -221,6 +246,10 @@ const initialState = {
 
   deletingSuppliesData: false,
   deletingSuppliesDataError: false,
+
+  fetchingContactShipperById: false,
+  fetchingContactShipperByIdError: false,
+  contactShipper: [],
 
   //get document
   fetchingDocumentsBySupplierId: false,
@@ -402,6 +431,21 @@ export const suppliersReducer = (state = initialState, action) => {
         addSuppliersModal: false,
       };
 
+      case types.UPDATE_QUALITY_SUPPLIERS_REQUEST:
+        return { ...state, updatingQualitySuppliers: true };
+      case types.UPDATE_QUALITY_SUPPLIERS_SUCCESS:
+        return {
+          ...state, updatingQualitySuppliers: false, suppliersListOpenDrawer: false,
+          // supplierList: [action.payload, ...state.supplierList]
+        };
+      case types.UPDATE_QUALITY_SUPPLIERS_FAILURE:
+        return {
+          ...state,
+          updatingQualitySuppliers: false,
+          updatingQualitySuppliersError: true,
+          suppliersListOpenDrawer: false,
+        };
+
     case types.GET_SUPPLIERS_LIST_REQUEST:
       return { ...state, fetchingSupplierList: true };
     case types.GET_SUPPLIERS_LIST_SUCCESS:
@@ -416,6 +460,23 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierList: false,
         fetchingSupplierListError: true,
       };
+
+
+      case types.GET_SUPPLIERS_PRICE_LIST_REQUEST:
+        return { ...state, fetchingSupplierPriceList: true };
+      case types.GET_SUPPLIERS_PRICE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          supplierPriceList: [...state.supplierPriceList, ...action.payload]
+        };
+      case types.GET_SUPPLIERS_PRICE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingSupplierPriceList: false,
+          fetchingSupplierPriceListError: true,
+        };
+  
 
     case types.GET_SUPPLIES_LIST_BY_SUPPLIER_REQUEST:
       return { ...state, fetchingSuppliesListById: true };
@@ -951,6 +1012,20 @@ export const suppliersReducer = (state = initialState, action) => {
     /**
      * add  supplier's contact
      */
+    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST:
+      return { ...state, fetchingContactShipperById: true };
+    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS:
+      return {
+        ...state,
+        fetchingContactShipperById: false,
+        contactShipper: action.payload,
+      };
+    case types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE:
+      return {
+        ...state,
+        fetchingContactShipperById: false,
+        fetchingContactShipperByIdError: true,
+      };
 
     case types.ADD_SUPPLIER_CONTACT_REQUEST:
       return { ...state, addingContactSupplier: true };
@@ -959,6 +1034,9 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         addingContactSupplier: false,
         addSupplierContactModal: false,
+        contactDistributor: [action.payload, ...state.contactDistributor],
+        contactSupplier: [action.payload, ...state.contactSupplier],
+        contactShipper: [action.payload, ...state.contactShipper]
       };
     case types.ADD_SUPPLIER_CONTACT_FAILURE:
       return {
@@ -1301,6 +1379,9 @@ export const suppliersReducer = (state = initialState, action) => {
     case types.EMPTY_SUPPLIER_LIST:
       return { ...state, supplierList: [] };
 
+      case types.EMPTY_SUPPLIER_PRICE_LIST:
+        return { ...state, supplierPriceList: [] };
+
     case types.HANDLE_SUPPLIERS_SUPPLIES_DRAWER:
       return { ...state, supplierSuppliesdrwr: action.payload };
 
@@ -1372,6 +1453,22 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingAllSupplierCountError: true,
       };
 
+
+      case types.GET_DELETED_SUPPLIER_COUNT_REQUEST:
+        return { ...state, fetchingDeletedSupplierCount: true };
+      case types.GET_DELETED_SUPPLIER_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingDeletedSupplierCount: false,
+          deletedCountSupplier: action.payload,
+        };
+      case types.GET_DELETED_SUPPLIER_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingDeletedSupplierCount: false,
+          fetchingDeletedSupplierCountError: true,
+        };
+
     case types.GET_SUPPLIER_SUPPLIES_QUALITY_REQUEST:
       return {
         ...state,
@@ -1409,46 +1506,105 @@ export const suppliersReducer = (state = initialState, action) => {
         deletingSupplierDataError: true,
       };
 
-          case types.UPDATE_SUPPLIERS_BY_ID_REQUEST:
-            return { ...state, updateSuppliersById: true };
-          case types.UPDATE_SUPPLIERS_BY_ID_SUCCESS:
+    case types.UPDATE_SUPPLIERS_BY_ID_REQUEST:
+      return { ...state, updateSuppliersById: true };
+    case types.UPDATE_SUPPLIERS_BY_ID_SUCCESS:
+      return {
+        ...state,
+        updateSuppliersById: false,
+        updateSupplierModal: false,
+        supplierList: state.supplierList.map((item) => {
+          if (item.supplierId == action.payload.supplierId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
+      return {
+        ...state,
+        updateSuppliersById: false,
+        updateSuppliersByIdError: true,
+      };
+
+    case types.SET_SUPPLIERS_EDIT:
+      return { ...state, setEditingSuppliers: action.payload };
+
+
+    case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:
+      return { ...state, fetchingSupplierDeletedList: true };
+    case types.GET_SUPPLIERS_DELETED_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierDeletedList: false,
+        supplierDeletedList: action.payload,
+      };
+    case types.GET_SUPPLIERS_DELETED_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierDeletedList: false,
+        fetchingSupplierDeletedListError: true,
+      };
+
+
+      case types.HANDLE_SUPPLIERS_PRICE_DRAWER:
+        return { ...state, suppliersPriceOpenDrawer: action.payload };
+
+        case types.HANDLE_SUPPLIERS_LIST_DRAWER:
+          return { ...state, suppliersListOpenDrawer: action.payload };
+
+
+
+          case types.UPDATE_PRICE_OF_SUPPLIER_REQUEST:
+            return { ...state, updatePriceSupplierListItem: true };
+          case types.UPDATE_PRICE_OF_SUPPLIER_SUCCESS:
             return {
               ...state,
-              updateSuppliersById: false,
-              updateSupplierModal: false,
-              supplierList: state.supplierList.map((item) => {
-                if (item.supplierId == action.payload.supplierId) {
+              updatePriceSupplierListItem: false,
+              supplierPriceList: state.supplierPriceList.map((item) => {
+                if (item.suppliesId == action.payload.suppliesId) {
                   return action.payload;
                 } else {
                   return item;
                 }
               }),
             };
-          case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
+          case types.UPDATE_PRICE_OF_SUPPLIER_FAILURE:
             return {
               ...state,
-              updateSuppliersById: false,
-              updateSuppliersByIdError: true,
+              updatePriceSupplierListItem: false,
+              updatePriceSupplierListItemError: true,
             };
 
-            case types.SET_SUPPLIERS_EDIT:
-              return { ...state, setEditingSuppliers: action.payload };
+
+            case types.GET_SUPPLIER_WISE_QUALITY_REQUEST:
+              return { ...state, fetchingMaterialWiseQuality: true };
+            case types.GET_SUPPLIER_WISE_QUALITY_SUCCESS:
+              return { ...state, fetchingMaterialWiseQuality: false, materialwiseQuality: action.payload };
+            case types.GET_SUPPLIER_WISE_QUALITY_FAILURE:
+              return { ...state, fetchingMaterialWiseQuality: false, fetchingMaterialWiseQualityError: true };
 
 
-              case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:
-                return { ...state, fetchingSupplierDeletedList: true };
-              case types.GET_SUPPLIERS_DELETED_LIST_SUCCESS:
+
+              case types.REINSTATE_TOGGLE_FOR_SUPPLIER_REQUEST:
+                return { ...state, reInstatedSupplierById: true };
+            case types.REINSTATE_TOGGLE_FOR_SUPPLIER_SUCCESS:
                 return {
-                  ...state,
-                  fetchingSupplierDeletedList: false,
-                  supplierDeletedList:action.payload,
+                    ...state,
+                    reInstatedSupplierById: false,
+                    supplierDeletedList: state.supplierDeletedList.filter(
+                        (item) => item.supplierId !== action.payload
+                      ),
+                 
                 };
-              case types.GET_SUPPLIERS_DELETED_LIST_FAILURE:
+            case types.REINSTATE_TOGGLE_FOR_SUPPLIER_FAILURE:
                 return {
-                  ...state,
-                  fetchingSupplierDeletedList: false,
-                  fetchingSupplierDeletedListError: true,
+                    ...state,
+                    reInstatedSupplierById: false,
+                    reInstatedSupplierByIdError: true,
                 };
+      
 
     default:
       return state;

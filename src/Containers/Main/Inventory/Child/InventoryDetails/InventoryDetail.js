@@ -69,7 +69,9 @@ function InventoryDetail(props) {
                   </div>
                 ) : props.viewType1 === "production" && props.productionInd ? (
                   <div class="cursor-pointer">
-                  <InventoryProductionTab />
+                  <InventoryProductionTab 
+                    inventory={inventory}
+                  />
                   </div>
                 ) : null}
               </div>

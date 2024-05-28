@@ -50,6 +50,14 @@ const initialState = {
   fetchingNotesListByDealIdError: false,
   notesListByDealId:[],
 
+  fetchingActiveAssignedToList: false,
+  fetchingActiveAssignedToListError: false,
+  activeAssignedToList:[],
+
+  fetchingDealsContactList: false,
+  fetchingDealsContactListError: false,
+  dealsContactList:[],
+
   fetchingLostDeals: false,
   fetchingLostDealsError: false,
   lostDeals:[],
@@ -60,9 +68,14 @@ const initialState = {
   fetchingDealLinkedWorkflowError: false,
   dealLinkWorkflow:[],
 
+  updatingDealsContactValue: false,
+  updatingDealsContactValueError: false,
+
   fetchingAllDealsData: false,
   fetchingAllDealsDataError: false,
   allDealsData:[],
+
+  addDrawerDealsContactsModal:false,
 
   fetchingDealLinkedStages: false,
   fetchingDealLinkedStagesError: false,
@@ -368,6 +381,11 @@ export const dealReducer = (state = initialState, action) => {
             };
           case types.HANDLE_DEALS_NOTES_DRAWER_MODAL:
             return { ...state, addDrawerDealsNotesModal: action.payload };
+
+
+            case types.HANDLE_DEALS_CONTACTS_DRAWER_MODAL:
+              return { ...state, addDrawerDealsContactsModal: action.payload };
+  
 
 
             case types.LINK_DEAL_REQUEST:
@@ -683,6 +701,77 @@ export const dealReducer = (state = initialState, action) => {
                       fetchingLostRecords: false,
                       fetchingLostRecordsError: true,
                     };
+
+
+                    case types.GET_DEALS_CONTACT_REQUEST:
+                      return { ...state, fetchingDealsContactList: true };
+                  case types.GET_DEALS_CONTACT_SUCCESS:
+                      return {
+                          ...state,
+                          fetchingDealsContactList: false,
+                          dealsContactList: action.payload,
+                      };
+                  case types.GET_DEALS_CONTACT_FAILURE:
+                      return {
+                          ...state,
+                          fetchingDealsContactList: false,
+                          fetchingDealsContactListError: true,
+                      };
+
+
+                      case types.SET_DEALS_CONTACT_REQUEST:
+                        return { ...state };
+                    case types.SET_DEALS_CONTACT_SUCCESS:
+                        return {
+                            ...state,
+                            dealsContactList: state.dealsContactList.map(
+                                (item) => {
+                                    if (item.contactId === action.payload.contactId) {
+                                        return action.payload;
+                                    } else {
+                                        return item;
+                                    }
+                                }),
+                        };
+                    case types.SET_DEALS_CONTACT_FAILURE:
+                        return { ...state };
+
+
+                        case types.SET_DEALS_CONTACT_VALUE_REQUEST:
+                          return { ...state, updatingDealsContactValue: true };
+                        case types.SET_DEALS_CONTACT_VALUE_SUCCESS:
+                          // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+                          return {
+                            ...state,
+                            updatingDealsContactValue: false,
+                            dealsContactList: state.dealsContactList.map((sector) =>
+                              sector.contactId === action.payload.contactId
+                                ? action.payload
+                                : sector
+                            ),
+                          };
+                        case types.SET_DEALS_CONTACT_VALUE_FAILURE:
+                          return {
+                            ...state,
+                            updatingDealsContactValue: false,
+                            updatingDealsContactValueError: true,
+                          };
+
+
+                          case types.GET_ACTIVE_ASSIGENED_TO_REQUEST:
+                            return { ...state, fetchingActiveAssignedToList: true };
+                          case types.GET_ACTIVE_ASSIGENED_TO_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingActiveAssignedToList: false,
+                              activeAssignedToList: action.payload,           
+                            };
+                          case types.GET_ACTIVE_ASSIGENED_TO_FAILURE:
+                            return {
+                              ...state,
+                              fetchingActiveAssignedToList: false,
+                              fetchingActiveAssignedToListError: true,
+                            };
 
     default:
       return state;

@@ -13,6 +13,7 @@ import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/B
 import { plannerReducer } from "../Containers/Planner/PlannerReducer";
 import { settingsReducer } from "../Containers/Settings/SettingsReducer";
 import { refurbishReducer } from "../Containers/Main/Refurbish/RefurbishReducer";
+import {dataRoomReducer} from "../Containers/Data Room/DataRoomReducer";
 import { themeReducer } from "../Containers/Settings/Theme/ThemeReducer";
 
 import { ruleReducer } from "../Containers/Rules/RulesReducer";
@@ -100,6 +101,11 @@ import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityR
 import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
+import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
+
+import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
+import { machinaryReducer } from "../Containers/Settings/Category/Machinary/MachinaryReducer";
+import { brandCategoryReducer } from "../Containers/Settings/Category/BrandCategory/BrandCategoryReducer";
 
 const appReducer = combineReducers({
   dashboard: dashboardReducer,
@@ -178,6 +184,7 @@ const appReducer = combineReducers({
   collection: collectionReducer,
   product: productReducer,
   refurbish: refurbishReducer,
+  datRoom: dataRoomReducer,
   investorList:investorListReducer,
   procurement:procurementReducer,
   payments:catgPaymentReducer,
@@ -196,6 +203,10 @@ const appReducer = combineReducers({
   equipment:equipmentReducer,
   industry:industryReducer,
   categoryList:categoryListReducer,
+  vendorList:vendorReducer,
+  procre:procreReducer,
+  machinary:machinaryReducer,
+  brandCategory:brandCategoryReducer,
 });
 
 const rootReducer = (state, action) => {

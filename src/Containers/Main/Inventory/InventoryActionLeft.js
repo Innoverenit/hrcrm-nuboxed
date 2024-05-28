@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Avatar } from "antd";
+import { Tooltip,Avatar,Badge } from "antd";
 import { FormattedMessage } from "react-intl";
+import {getInventoryLocationRecords} from "../Inventory/InventoryAction"
 
-class InventoryActionLeft extends React.Component {
-  render() {
-    const { viewType, setInventoryViewType } = this.props;
+const InventoryActionLeft = (props) => {
+  const { viewType, setInventoryViewType } = props;
+  useEffect(() => {
+    if (viewType === "table") {
+      props.getInventoryLocationRecords(props.orgId);
+    } 
+   
+    
+  }, [viewType,props.orgId]);
+
 
     return (
       <>
         <div class=" flex items-center" >
           <Tooltip title={<FormattedMessage id="app.location" defaultMessage="Location" />}>
+          <Badge size="small"
+           count={props.inventoryLocationCount.locCount || 0}
+           >    
             <span class=" mr-[0.5rem] cursor-pointer"
               onClick={() => setInventoryViewType("table")}
               style={{
@@ -20,10 +31,11 @@ class InventoryActionLeft extends React.Component {
                 
               }}
             >
-               <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+               <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
               <i class="fas fa-globe"></i>
               </Avatar>
             </span>
+            </Badge>
           </Tooltip>
           {/* <Tooltip title="Catalogue">
             <span
@@ -50,12 +62,17 @@ class InventoryActionLeft extends React.Component {
         </div>
       </>
     );
-  }
+ 
 }
 
-const mapStateToProps = ({ teams }) => ({});
+const mapStateToProps = ({ inventory,auth }) => ({
+  inventoryLocationCount:inventory.inventoryLocationCount,
+  orgId: auth.userDetails.organizationId,
+});
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getInventoryLocationRecords
+}, dispatch);
 
 export default connect(
   mapStateToProps,

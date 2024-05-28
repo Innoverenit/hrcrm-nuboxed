@@ -9,7 +9,7 @@ class AddLeadsNotesListDrawerModal extends Component {
 
  
   render() {
-
+    console.log(this.props.rowdata)
    
     return (
       <div className="pulse-background">
@@ -28,6 +28,7 @@ class AddLeadsNotesListDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
 
           <NotesLeadsForm
+          callTimeline={this.props.callTimeline}
             rowdata={this.props.rowdata}
           />
         </Suspense>

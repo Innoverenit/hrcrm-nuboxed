@@ -19,7 +19,7 @@ function AllowGrnToggle(props) {
         <>
             <div>
                 <Popconfirm
-                    title="Do you want to transfer to stock ?"
+                    title="Change Status?"
                     onCancel={null}
                     onConfirm={onChange}
                     okText="Yes"

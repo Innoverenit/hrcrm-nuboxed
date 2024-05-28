@@ -12,6 +12,7 @@ class LeadsHeader extends Component {
       handleChange,
       currentData,
       handleClear,
+      teamsAccessInd
     } = this.props;
     return (
       <div>
@@ -19,6 +20,7 @@ class LeadsHeader extends Component {
           leftComponent={
             <LeadsActionLeft
             viewType={viewType}
+            teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
             setLeadsViewType={setLeadsViewType}
               // currentData={currentData}

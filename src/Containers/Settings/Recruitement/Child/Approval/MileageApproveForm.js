@@ -165,7 +165,7 @@ class MileageApproveForm extends Component {
                                        
                                      
                                         <div>
-                                        <div class=" flex justify-between "
+                                        {/* <div class=" flex justify-between "
                                         
                                         >
                                                 <div class=" flex w-[20%] mb-[2%]"
@@ -191,89 +191,22 @@ class MileageApproveForm extends Component {
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     
                                         <div class=" mt-4" >
-                                            {values.approvalType ? (
+                                       
                                                 <MileageLevelApproveForm
                                                   
                                                     approvalIndicator={values.approvalIndicator ? true : false}
                                                     approvalType={values.approvalType ? "Standard" : "Exception"}
                                                 />
-                                            ) : ( 
-                                                <div class=" flex justify-between" >
-                                                    <div class=" w-[32%]">
-                                                        <Field
-                                                            name="departmentId"
-                                                            label="Department"
-                                                            options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.departmentId}
-                                                            
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        />
-                                                    </div>
-
-                                                    <div class=" w-[32%]">
-                                                    {/* <Field
-                                                            name="roleTypeId"
-                                                            label="Role"
-                                                            options={Array.isArray(roleNameOption) ? roleNameOption : []}
-                                                            component={SelectComponent}
-                                                            value={values.roleTypeId}
-                                                            placeholder
-                                                            isColumn
-                                                            inlineLabel
-                                                            style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
-                                                        /> */}
-                                                  <Field
-                    name="roleTypeId"
-                    label={<FormattedMessage
-                      id="app.role"
-                      defaultMessage="Role"
-                    />}
-                    isColumnWithoutNoCreate
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.getRoleOptions(
-                          "departmentId",
-                          values.departmentId
-                        )
-                      )
-                        ? this.getRoleOptions(
-                            "departmentId",
-                            values.departmentId
-                          )
-                        : []
-                    }
-                    value={values.roleTypeId}
-                    filterOption={{
-                      filterType: "departmentId",
-                      filterValue: values.departmentId,
-                    }}
-                    disabled={!values.departmentId}
-                    isColumn
-                    margintop={"0"}
-                    inlineLabel
-                    style={{ flexBasis: "80%" }}
-                    // value={values.roleTypeId}
-                    // width={"100%"}
-                    // isColumn
-                    // selectType="roleType"
-                     />
-                                                    </div>
-                                                 
-                                                </div>
-                                            )} 
+                                                
+                                        
                                         </div>
 
                                    
-                                        {!values.approvalType ?
+                                        {/* {!values.approvalType ?
                                               <div class=" flex justify-end " 
                                               // style={{ marginLeft: "104%", marginTop: "52px" }}
                                               >
@@ -290,7 +223,7 @@ class MileageApproveForm extends Component {
                                                     Update
                                                 </Button>
                                             </div>
-                                           : null}
+                                           : null} */}
                                     </div>
                                  ) : (null)} 
 

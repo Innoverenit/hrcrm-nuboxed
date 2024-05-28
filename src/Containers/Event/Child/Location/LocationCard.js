@@ -8,7 +8,7 @@ import { getlocation, handleLocationShiftDrawer,
   deleteLocation,addingLocationToggle,
   handleLocnCellDrawer } from "./LocationAction";
 import styled from "styled-components";
-import CellTowerIcon from '@mui/icons-material/CellTower';
+import TokenIcon from '@mui/icons-material/Token';
 import { Popconfirm, Switch, Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
@@ -73,6 +73,7 @@ const handleLoadMore = () => {
         <div className=" md:w-[9.1rem]">Country</div>
         <div className=" md:w-[11.1rem] ">Address</div>
         <div className=" md:w-[8.2rem] ">Production</div>
+        <div className=" md:w-[8.2rem] ">Refurbish</div>
         <div className="md:w-[8.5rem]">Inventory</div>
         <div className="md:w-[7.5rem]">Billing</div>
         <div className="md:w-[8.51rem]">Corporate</div>
@@ -119,22 +120,23 @@ const handleLoadMore = () => {
                   </div>
                 </div>
 
-                    {/* <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                     
-
-                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
-                        <RefurbishToggle
-                        locationDetailsId={item.locationDetailsId}
-                        productionInd={item.productionInd}
-                        />
-                      </div>
-                    </div> */}
+                
                     <div className=" flex font-medium flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                      
                       <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
                         <ProductionToggle
                     locationDetailsId={item.locationDetailsId}
                     productionInd={item.productionInd}
+                        />
+                      </div>
+                    </div>
+                        <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                     
+
+                      <div class=" font-normal text-[0.82rem] text-cardBody font-poppins">
+                        <RefurbishToggle
+                        locationDetailsId={item.locationDetailsId}
+                        refurbishInd={item.refurbishInd}
                         />
                       </div>
                     </div>
@@ -262,7 +264,7 @@ const handleLoadMore = () => {
                      {item.productionInd ?
                       <div>
                       <Tooltip title="Cell">
-                                                            <CellTowerIcon 
+                                                            <TokenIcon 
                                                             className=" !text-base cursor-pointer text-[blue]"
                                                             onClick={()=>{
                                                               handleStoredLocations(item);
@@ -288,7 +290,7 @@ const handleLoadMore = () => {
                         <div>
                         <StyledPopconfirm
                           title="Do you want to delete?"
-                          onConfirm={() => props.deleteLocation(item.locationDetailsId)}
+                          onConfirm={() => props.deleteLocation(item.locationDetailsId,props.orgId)}
                         >
                             <Tooltip title="Delete">
                           <DeleteOutlined

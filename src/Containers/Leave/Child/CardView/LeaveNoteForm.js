@@ -85,7 +85,7 @@ class LeaveNoteForm extends Component {
             // const htmlBody = 'draftToHtml(convertToRaw(editorState.getCurrentContent()))'
 
             console.log({ ...values, notes: htmlBody });
-            addLeaveNote({ ...values, notes: htmlBody }, this.createCallback);
+            addLeaveNote({ ...values, notes: htmlBody },leaveId);
             resetForm();
           }}
         >

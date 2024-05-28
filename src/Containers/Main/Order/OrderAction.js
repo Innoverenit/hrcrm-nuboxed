@@ -204,6 +204,86 @@ export const getAllOrderList = (orgId, pageNo) => (dispatch) => {
     });
 };
 
+
+export const getAllHighOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeHighOrder/${orgId}/${pageNo}/${ptype} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllMediumOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeMediumOrder/${orgId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getAllLowOrderList = (orgId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_ALL_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completeLowOrder/${orgId}/${pageNo}/${ptype} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_ALL_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ALL_LOW_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getAllComepleteOrderList = (orgId, pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_COMPLETE_ORDER_LIST_REQUEST,
@@ -230,31 +310,6 @@ export const getAllComepleteOrderList = (orgId, pageNo) => (dispatch) => {
     });
 };
 
-export const getOrderById = (userId, pageNo) => (dispatch) => {
-  dispatch({
-    type: types.GET_ORDER_BY_ID_REQUEST,
-  });
-  axios
-    .get(`${base_url2}/phoneOrder/phoneOrders/${userId}/${pageNo}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      dispatch({
-        type: types.GET_ORDER_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.GET_ORDER_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
 
 export const getCompleteOrders = (userId, pageNo) => (dispatch) => {
   dispatch({
@@ -358,7 +413,7 @@ export const getProductionOrder = (userId, pageNo) => (dispatch) => {
     type: types.GET_PRODUCTION_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/order/all-Orders/${userId}/${pageNo}`, {
+    .get(`${base_url2}/order/inCompleteOrders/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -374,6 +429,166 @@ export const getProductionOrder = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_PRODUCTION_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionHistoryOrder = (userId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_HISTORY_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/completeOrders/${userId}/${pageNo}  `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_HISTORY_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_HISTORY_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionAllOrder = (orgId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_ALL_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/order/ProductionOrders/${orgId}/${pageNo} `, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_ALL_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_ALL_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const deleteOrderRepairData = (orderId) => (dispatch, getState) => {
+  // const { userId } = getState("auth").auth.userDetails;
+  dispatch({
+    type: types.DELETE_ORDER_REPAIR_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/phoneOrder/delete/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getShipperByUserId(userId));
+      dispatch({
+        type: types.DELETE_ORDER_REPAIR_DATA_SUCCESS,
+        payload: orderId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_ORDER_REPAIR_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getRepairHighOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/highPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairMediumOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/mediumPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairLowOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/lowPriorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_LOW_ORDER_LIST_FAILURE,
         payload: err,
       });
     });

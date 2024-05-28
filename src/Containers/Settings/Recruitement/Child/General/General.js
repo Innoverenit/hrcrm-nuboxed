@@ -169,51 +169,57 @@ function General(props) {
                        
                       </div>
 
-                      {props.user.productionInd === true &&
-                        <>
-                            <div class=" flex flex-row justify-between mt-2 ml-4">
-                            <div class=" text-sm  ml-2 ">Process</div>
-                            <div>
-                            <Field
-                              name="processInd"
-                              component={SwitchComponent}
-                              data={values.processInd}
-                              checkedChildren={"Discrete"}
-                              unCheckedChildren={"Continuous"}
-                              width={"7em"}
-                            />
-                            </div>
-                          </div>
-                          <div class=" flex flex-row justify-between mt-2 ml-4">
-                          <div class=" text-sm  ml-2 ">Make To</div>
-                          <div>
-                            <Field
-                              name="typeInd"
-                              component={SwitchComponent}
-                              data={values.typeInd}
-                              checkedChildren={"Order"}
-                              unCheckedChildren={"Stock"}
-                              width={"7em"}
-                            />
-                              </div>
-                          </div>
+                      {props.user.productionInd === true ? (
+   <>
+   <div class=" flex flex-row justify-between mt-2 ml-4">
+   <div class=" text-sm  ml-2 ">Process</div>
+   <div>
+   <Field
+     name="processInd"
+     component={SwitchComponent}
+     data={values.processInd}
+     checkedChildren={"Discrete"}
+     unCheckedChildren={"Continuous"}
+     width={"7em"}
+   />
+   </div>
+ </div>
+ <div class=" flex flex-row justify-between mt-2 ml-4">
+ <div class=" text-sm  ml-2 ">Make To</div>
+ <div>
+   <Field
+     name="typeInd"
+     component={SwitchComponent}
+     data={values.typeInd}
+     checkedChildren={"Order"}
+     unCheckedChildren={"Stock"}
+     width={"7em"}
+   />
+     </div>
+ </div>
 
-                          <div class=" flex flex-row justify-between mt-2 ml-4">
-                          <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
-                          <div>
-                            <Field
-                               name="proInd"
-                              component={SwitchComponent}
-                              data={values.proInd}
-                              checkedChildren={"Yes"}
-                              unCheckedChildren={"No"}
-                              width={"7em"}
-                            />
-                              </div>
-                          </div>
-                      
-                        </>
-                      } 
+ <div class=" flex flex-row justify-between mt-2 ml-4">
+ <div class=" text-sm  ml-2 ">Show Orders To Investor</div>
+ <div>
+   <Field
+      name="proInd"
+     component={SwitchComponent}
+     data={values.proInd}
+     checkedChildren={"Yes"}
+     unCheckedChildren={"No"}
+     width={"7em"}
+   />
+     </div>
+ </div>
+
+</>
+) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Production module is Switched off. Switch it on to Access Features.
+  </div>
+)}
+
+                  
 
 <div class=" flex flex-row mt-2">
                       <div class=" text-sm  ml-2 font-bold">Inventory</div>

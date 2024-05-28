@@ -160,17 +160,17 @@ const CustomerActionLeft = (props) => {
         <Tooltip title="Teams">
           <Badge
             size="small"
-            count={(props.viewType === "teams" && props.customerTeamRecordData.CustomerTeam) || 0}
+            count={(props.teamsAccessInd||props.viewType === "teams" && props.customerTeamRecordData.CustomerTeam || 0)}
             overflowCount={999}
           >
             <span
               class=" mr-1 text-sm cursor-pointer"
               onClick={() => props.setCustomerViewType("teams")}
-              style={{
-                color: props.viewType === "teams" && "#1890ff",
-              }}
+              // style={{
+              //   color: props.viewType === "teams" && "#1890ff",
+              // }}
             >
-              <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
                 <PeopleIcon className="text-white" />
               </Avatar>
             </span>

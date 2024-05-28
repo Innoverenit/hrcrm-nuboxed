@@ -7,6 +7,29 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingContactAddedList: false,
+  fetchingContactAddedListError: false,
+  contactAddedList:[],
+
+
+  fetchingOrderClosedList:false,
+  fetchingOrderClosedListError:false,
+  orderClosedList:[],
+
+
+
+  fetchingOrderAddedList:false,
+  fetchingOrderAddedListError:false,
+  orderAddedList:[],
+
+
+
+  orderAddedModal:false,
+
+  customerAddedModal:false,
+
+  contactAddedModal:false,
+
   fetchingRegionRecordsCount: false,
   fetchingRegionRecordsCountError: false,
   regionRecords:[],
@@ -45,6 +68,10 @@ const initialState = {
   fetchingRecruiterDashboardListError: false,
   listRecruiterDashboard: [],
 
+  fetchingOrderOpenList:false,
+  fetchingOrderOpenListError:false,
+  orderOpenList:[],
+
   fetchingTodos: false,
   fetchingTodosError: false,
   todos: [],
@@ -64,6 +91,14 @@ const initialState = {
   fetchingActionSteps: false,
   fetchingActionStepsError: false,
   actionSteps: [],
+  fetchingOrderCancelList:false,
+  fetchingOrderCancelListError:false,
+  orderCancelList:[],
+
+
+  gettingCustomerChart:false,
+  gettingCustomerChartError:false,
+  customerDashboardChart:[],
 
   fetchingalldashboardTable2: false,
   fetchingalldashboardTable2Error: false,
@@ -114,6 +149,13 @@ const initialState = {
   fetchingTaskDashboardGantt: false,
   fetchingTaskDashboardGanttError: false,
   tasksdashboardGantt: [],
+
+
+  orderClosedModal:false,
+
+  fetchingCustomerAddedList: false,
+  fetchingCustomerAddedListError: false,
+  customerAddedList:[],
 
 
 
@@ -170,6 +212,8 @@ const initialState = {
   fetchingStageActionNotifications: false,
   fetchingStageActionNotificationsError: false,
   stageactionNotifications: [],
+
+  orderCancelModal:false,
 
   billableCandidateModal: false,
 
@@ -286,6 +330,10 @@ const initialState = {
   fetchingJumpstartTasklistError: false,
   jumpstartTasklistCount: {},
 
+  fetchingMultiRegionRecordsCount: false,
+  fetchingMultiRegionRecordsCountError: false,
+  multiOrgRecords:[],
+
   fetchingdashCustoContactsAdded: false,
   fetchingdashCustoContactsAddedError: false,
   dashCustoContactsAdded: [],
@@ -344,6 +392,8 @@ const initialState = {
   fetchingOppoClosed: false,
   fetchingOppoClosedError: false,
   showClosedOppo: [],
+
+  orderOpenModal:false,
 
   openPitchQualified: false,
   fetchingPitchQualified: false,
@@ -412,6 +462,10 @@ const initialState = {
   fetchingorderDetailsError: false,
   orderinDashboard: [],
 
+  fetchingdistributorDetails: false,
+  fetchingdistributorDetailsError: false,
+  distributorinDashboard:[],
+
 
   prospectDrawerModal:false,
 
@@ -424,6 +478,19 @@ export const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_DASHBOARD_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+      case types.HANDLE_ORDER_ADDED_MODAL:
+      return { ...state, orderAddedModal: action.payload };
+
+      case types.HANDLE_CUSTOMER_ADDED_MODAL:
+      return { ...state, customerAddedModal: action.payload };
+
+      case types.HANDLE_CONTACT_ADDED_MODAL:
+      return { ...state, contactAddedModal: action.payload };
+
+      case types.HANDLE_ORDER_CANCEL_MODAL:
+        return { ...state, orderCancelModal: action.payload };
 
     case types.GET_SKILLS_CLOUD_REQUEST:
       return { ...state, fetchingSkillsCloud: true };
@@ -575,6 +642,10 @@ export const dashboardReducer = (state = initialState, action) => {
       };
 
 
+      case types.HANDLE_ORDER_CLOSED_MODAL:
+        return { ...state, orderClosedModal: action.payload };
+
+
 
 
       case types.GET_PROSPECT_LIFETIME_REQUEST:
@@ -688,6 +759,25 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingTodosCount: false,
         fetchingTodosCountError: true,
       };
+
+
+
+
+      case types.GET_ORDER_OPEN_LIST_REQUEST:
+        return { ...state, fetchingOrderOpenList: true };
+      case types.GET_ORDER_OPEN_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderOpenList: false,
+          orderOpenList: action.payload,
+        };
+      case types.GET_ORDER_OPEN_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderOpenList: false,
+          fetchingOrderOpenListError: true,
+        };
+
 
     case types.GET_AVG_HOUR_REQUEST:
       return { ...state, fetchingAvgHour: true, fetchingAvgHourError: false };
@@ -892,6 +982,26 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingAllSalesDatewiseReportError: true,
         // selectedReportType: "dashboard"
       };
+
+
+
+
+      case types.GET_CUSTOMER_CHART_REQUEST:
+        return { ...state, gettingCustomerChart: true };
+  
+      case types.GET_CUSTOMER_CHART_SUCCESS:
+        return {
+          ...state,
+          gettingCustomerChart: false,
+          customerDashboardChart: action.payload,
+        };
+  
+      case types.GET_CUSTOMER_CHART_FAILURE:
+        return {
+          ...state,
+          gettingCustomerChart: false,
+          gettingCustomerChartError: true,
+        };
 
     case types.GET_ALL_DATE_WISE_REPORT_REQUEST:
       return { ...state, fetchingAllDatewiseReport: true };
@@ -1371,6 +1481,78 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingJumpstartInvestor2Error: true,
       };
 
+
+
+
+      case types.GET_ORDER_CANCEL_LIST_REQUEST:
+        return { ...state, fetchingOrderCancelList: true };
+      case types.GET_ORDER_CANCEL_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderCancelList: false,
+          orderCancelList: action.payload,
+        };
+      case types.GET_ORDER_CANCEL_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderCancelList: false,
+          fetchingOrdercancelListError: true,
+        };
+
+
+
+        case types.HANDLE_ORDER_OPEN_MODAL:
+          return { ...state, orderOpenModal: action.payload };
+
+
+
+
+      case types.GET_ORDER_ADDED_LIST_REQUEST:
+        return { ...state, fetchingOrderAddedList: true };
+      case types.GET_ORDER_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderAddedList: false,
+          orderAddedList: action.payload,
+        };
+      case types.GET_ORDER_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderAddedList: false,
+          fetchingOrderAddedListError: true,
+        };
+
+
+        case types.GET_CUSTOMER_ADDED_LIST_REQUEST:
+        return { ...state, fetchingCustomerAddedList: true };
+      case types.GET_CUSTOMER_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingCustomerAddedList: false,
+          customerAddedList: action.payload,
+        };
+      case types.GET_CUSTOMER_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingCustomerAddedList: false,
+          fetchingCustomerAddedListError: true,
+        };
+
+        case types.GET_CONTACT_ADDED_LIST_REQUEST:
+        return { ...state, fetchingContactAddedList: true };
+      case types.GET_CONTACT_ADDED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingContactAddedList: false,
+          contactAddedList: action.payload,
+        };
+      case types.GET_CONTACT_ADDED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingContactAddedList: false,
+          fetchingContactAddedListError: true,
+        };
+
     case types.GET_JUMPSTART_INVESTOR_3_REQUEST:
       return {
         ...state,
@@ -1427,6 +1609,25 @@ export const dashboardReducer = (state = initialState, action) => {
         gettingInvHotColdWarm: false,
         gettingInvHotColdWarmError: true,
       };
+
+
+
+
+
+      case types.GET_ORDER_CLOSED_LIST_REQUEST:
+        return { ...state, fetchingOrderClosedList: true };
+      case types.GET_ORDER_CLOSED_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderClosedList: false,
+          orderClosedList: action.payload,
+        };
+      case types.GET_ORDER_CLOSED_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingOrderClosedList: false,
+          fetchingOrderClosedListError: true,
+        };
 
 
 
@@ -1817,6 +2018,22 @@ export const dashboardReducer = (state = initialState, action) => {
 
       };
 
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_REQUEST:
+        return { ...state, fetchingdistributorDetails: true };
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_SUCCESS:
+        return {
+          ...state,
+          fetchingdistributorDetails: false,
+          distributorinDashboard: action.payload,
+        };
+      case types.GET_JUMPSTART_DISTRIBUTOR_DETAIL_FAILURE:
+        return {
+          ...state,
+          fetchingdistributorDetails: false,
+          fetchingdistributorDetailsError: true,
+  
+        };
+
 
 
       case types.GET_PROSPECT_DATA_REQUEST:
@@ -1864,6 +2081,19 @@ export const dashboardReducer = (state = initialState, action) => {
             fetchingRegionRecordsCount: false,
             fetchingRegionRecordsCountError: true,
           };
+
+
+          case types.GET_MULTI_ORG_REGION_RECORDS_REQUEST:
+            return { ...state, fetchingMultiRegionRecordsCount: true };
+          case types.GET_MULTI_ORG_REGION_RECORDS_SUCCESS:
+            return { ...state, fetchingMultiRegionRecordsCount: false, 
+              multiOrgRecords: action.payload };
+          case types.GET_MULTI_ORG_REGION_RECORDS_FAILURE:
+            return {
+              ...state,
+              fetchingMultiRegionRecordsCount: false,
+              fetchingMultiRegionRecordsCountError: true,
+            };
           case types.GET_DEVELOP_CHART_REQUEST:
             return { ...state, gettingDevelopChart: true };
       

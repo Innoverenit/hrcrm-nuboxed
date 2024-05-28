@@ -17,6 +17,8 @@ import ServiceLine from "./ServiceLine/ServiceLine"
 // import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
 import Industry from "./Industry/Industry";
+import IndustryTab from "./Industry/IndustryTab";
+import Machinary from "./Machinary/Machinary";
 
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -71,7 +73,9 @@ class OthersTab extends Component {
         case "9":
           return   <ServiceLine />;
           case "10":
-            return     <Industry />;
+            return     <IndustryTab />;
+            case "11":
+              return     <Machinary />;
        
         
       default:
@@ -261,6 +265,24 @@ class OthersTab extends Component {
                 >
          
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon />
+                      <Badge
+                count={this.props.machinaryCount.machinaryCount}
+                overflowCount={999}
+              >
+                      <span class=" ml-1" >
+                Machinary
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="11"
+                >
+         
+                </TabPane>
             </StyledTabs>
             <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
               {this.renderTabContent(activeKey)}
@@ -273,10 +295,11 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines,industry,masterKpi,currency,countrys,education,idProof,expenses,document
+  region,auth,serviceLines,industry,masterKpi,currency,countrys,education,idProof,expenses,document,machinary
 }
 ) => ({
   industryCount:industry.industryCount,
+  machinaryCount:machinary.machinaryCount,
   documentCount:document.documentCount,
   masterKpiCount:masterKpi.masterKpiCount,
   currencyCount:currency.currencyCount,

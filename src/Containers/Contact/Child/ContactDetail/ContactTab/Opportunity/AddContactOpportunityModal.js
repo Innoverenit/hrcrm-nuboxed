@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { StyledModal } from "../../../../../../Components/UI/Antd";
+import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 const ContactOpportunityForm = lazy(() => import("./ContactOpportunityForm"));
 
 const AddContactOpportunityModal = (props) => {
@@ -9,23 +9,25 @@ const AddContactOpportunityModal = (props) => {
 
   return (
     <>
-      <StyledModal
+      <StyledDrawer
         title={
           <FormattedMessage id="app.opportunity" defaultMessage="Opportunity" />
         }
-        width="45%"
+        width="63%"
         visible={props.addContactOpportunityModal}
         maskClosable={false}
         destroyOnClose
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
         style={{marginTop:"5rem"}}
-        onCancel={() => props.handleContactOpportunityModal(false)}
+        onClose={() => props.handleContactOpportunityModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactOpportunityForm {...formProps} />{" "}
+          <ContactOpportunityForm 
+           contactId={ props.contactId }
+          {...formProps} />{" "}
         </Suspense>
-      </StyledModal>
+      </StyledDrawer>
     </>
   );
 };

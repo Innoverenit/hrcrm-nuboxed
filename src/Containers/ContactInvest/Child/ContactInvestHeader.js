@@ -9,6 +9,7 @@ class ContactInvestHeader extends Component {
       addContactInvestModal,
       handleContactInvestModal,
       viewType,
+      teamsAccessInd,
       setContactInvetViewType,
       handleChange,
       currentData,
@@ -22,7 +23,7 @@ class ContactInvestHeader extends Component {
         <ActionHeader
           leftComponent={
             <ContactInvestActionLeft
-         
+            teamsAccessInd={teamsAccessInd}
             handleFilterChange={this.props.handleFilterChange}
             filter={this.props.filter}
               viewType={viewType}

@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Timeline, Button, Popconfirm } from 'antd';
 import moment from "moment";
-import { removeLeadsNote } from "../../LeadsAction";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { removeLeadsNote,updateLeadsNote,updateLeadsNoteDrawerModal } from "../../LeadsAction";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Spacer, SubTitle } from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Item from "antd/es/list/Item";
+import UpdateLeadsNotesListDrawerModal from "./UpdateLeadsNotesListDrawerModal";
 
 const NotesWrapper = styled.div``;
 
@@ -20,15 +23,10 @@ const SingleLeadsNotesForm = (props) => {
     userId,
     creatorId,
   } = props;
-  const handleDelete = () => {
-    let data = {
-      leadsId: props.rowdata.leadsId,
-      notesId: noteId,
-    };
-     props.removeLeadsNote(data);
-  };
-  
+  console.log(props.rowdata.leadsId)
+  console.log(props.notesId)
   return (
+    <>
     <NotesWrapper>
       <div dangerouslySetInnerHTML={{ __html: notes }} />
       <SubTitle
@@ -40,24 +38,50 @@ const SingleLeadsNotesForm = (props) => {
         {`${moment.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
      
           <DeleteOutlined
-          onClick={handleDelete()}
+          onClick={() => {
+            const data = {
+             leadsId:props.rowdata.leadsId,
+               notesId:props.notesId,
+           
+            };
+            props.removeLeadsNote(data);
+          }}
+           
             style={{
               color: "red",
               cursor: "pointer"
             }}
           />
+           &nbsp;&nbsp;
+            <BorderColorIcon
+             style={{fontSize:"1rem", cursor:"pointer"}}
+            onClick={() => {
+              props.updateLeadsNoteDrawerModal(true);
+            }}
+       />
   
       </SubTitle>
     </NotesWrapper>
+        <UpdateLeadsNotesListDrawerModal
+        rowdata={props.rowdata}
+        updatingLeadsNoteDrawerModal={props.updatingLeadsNoteDrawerModal}
+           updateLeadsNoteDrawerModal={props.updateLeadsNoteDrawerModal
+           }
+           />
+           </>
   );
 };
 
-const mapStateToProps = ({ customer, auth }) => ({});
+const mapStateToProps = ({ leads, auth }) => ({
+  updatingLeadsNoteDrawerModal:leads.updatingLeadsNoteDrawerModal,
+});
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      removeLeadsNote
+      removeLeadsNote,
+      updateLeadsNote,
+      updateLeadsNoteDrawerModal
     },
     dispatch
   );

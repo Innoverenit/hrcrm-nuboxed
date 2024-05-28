@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Popconfirm, Tooltip } from "antd";
 import { Link } from 'react-router-dom';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
@@ -15,6 +16,7 @@ import {
   deleteDistributor,
   handleBillingAddressModal,
   handleUpdateAccountModal,
+  handleAccountModal,
   emptyDistributor,
   handleAccountPulse
 } from "./AccountAction";
@@ -22,9 +24,10 @@ import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import AccountPulseModal from "./AccountPulseModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MultiAvatar } from "../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
+import AccountModal from "./AccountModal";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -47,6 +50,7 @@ function AccountTable(props) {
 
   const {
     handleUpdateAccountModal,
+    handleAccountModal,
   } = props;
   useEffect(() => {
     return () => props.emptyDistributor();
@@ -59,7 +63,7 @@ function AccountTable(props) {
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
+            <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="name"
             /></div>
@@ -82,7 +86,19 @@ function AccountTable(props) {
               defaultMessage="billingaddress"
             /></div>
 
+<div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+              <FormattedMessage
+                id="app.assigned"
+                defaultMessage="Assigned"
+              />
 
+            </div>
+            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+              <FormattedMessage
+                id="app.owner"
+                defaultMessage="Owner"
+              />
+            </div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
@@ -114,7 +130,7 @@ function AccountTable(props) {
                     <div>
                       <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                          <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -159,7 +175,7 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[11.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[5.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.url} */}
                               {item.dcategoryName}
@@ -193,6 +209,46 @@ function AccountTable(props) {
                             </div>
 
                           </div>
+                          <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                        {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
+
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+
+                          <div>
+                            {item.assignedTo === null ? (
+                              <div class="text-xs text-cardBody font-poppins">No Data</div>
+                            ) : (
+                              <>
+                                {item.assignedTo === item.ownerName ? (
+
+                                  null
+                                ) : (
+                                  <MultiAvatar2
+                                    primaryTitle={item.assignedTo}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
+                                )}
+                              </>
+                            )}
+                          </div>
+
+                        </div>
+                      </div>
+                      <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                        <Tooltip title={item.ownerName}>
+                          <div class="max-sm:flex justify-end">
+                            <Tooltip title={item.ownerName}>
+                              <MultiAvatar
+                                primaryTitle={item.ownerName}
+                                imageId={item.ownerImageId}
+                                imgWidth={"1.9rem"}
+                                imgHeight={"1.9rem"}
+                              />
+                            </Tooltip>
+                          </div>
+                        </Tooltip>
+                      </div>
 
                           {/* <div className=" flex font-medium flex-col max-sm:w-auto  w-[3.91rem] max-xl:w-[2.91rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -204,6 +260,28 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+
+                        <div class="flex md:flex-col">
+
+<div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+  <div class=" text-xs text-cardBody font-poppins">
+    <Tooltip title="">
+      <AcUnitIcon
+        className=" !text-base cursor-pointer text-[tomato]"
+        onClick={() => {
+          // props.setEditDistributor(item)
+          handleAccountModal(true);
+          handleCurrentRowData(item);
+        }}
+      />
+
+    </Tooltip>
+  </div>
+
+
+</div>
+
+</div>
 
                           <div class="flex md:flex-col">
                             <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -267,8 +345,9 @@ function AccountTable(props) {
                             <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Popconfirm
+                                loading={props.deletingDistributorById}
                                   title="Do you want to delete?"
-                                  onConfirm={() => props.deleteDistributor({}, item.distributorId)}
+                                  onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
                                   <DeleteOutlined
                                     className=" !text-base cursor-pointer text-[red]"
@@ -301,6 +380,11 @@ function AccountTable(props) {
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
       />
+        <AccountModal
+        RowData={RowData}
+        accountModal={props.accountModal}
+        handleAccountModal={handleAccountModal}
+      />
 
     </>
   );
@@ -316,7 +400,9 @@ const mapStateToProps = ({ distributor, auth }) => ({
   addDistributorOrderModal: distributor.addDistributorOrderModal,
   addDistributorActivityTableModal:
     distributor.addDistributorActivityTableModal,
-  addBillToAddress: distributor.addBillToAddress
+  addBillToAddress: distributor.addBillToAddress,
+  accountModal:distributor.accountModal,
+  deletingDistributorById:distributor.deletingDistributorById,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -330,6 +416,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteDistributor,
       handleBillingAddressModal,
       handleUpdateAccountModal,
+      handleAccountModal,
       emptyDistributor,
       handleAccountPulse
     },

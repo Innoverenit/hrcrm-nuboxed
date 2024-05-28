@@ -6,12 +6,14 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   getDispatchUpdateList,
   updateDispatchInspectionButton,
+  handleRejectReasonModal
 } from "../../../InventoryAction";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import moment from "moment";
+import RejectedReasonModal from "./RejectedReasonModal";
 const QRCodeModal = lazy(() => import("../../../../../../Components/UI/Elements/QRCodeModal"));
 const DispatchTaskTable = lazy(() => import("./DispatchTaskTable"))
 const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
@@ -33,6 +35,9 @@ function OpenReceivedOrderIdForm(props) {
   const handleRowData = (data) => {
     setRowData(data)
   }
+  const itemValue = props.updateDispatchList.every((item) => item.dispatchInspectionInd === 1)
+  console.log(itemValue)
+  console.log("dispatch",props.rowData.dispatchInspectionInd)
   const columns = [
     {
       title: "",
@@ -83,28 +88,28 @@ function OpenReceivedOrderIdForm(props) {
     },
 
 
-    {
-      title: "QR",
-      width: "8%",
-      render: (name, item, i) => {
-        return (
-          <SubTitle>
-            {item.qrCodeId ? (
-              <QRCodeModal
-                qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                imgHeight={"2.8em"}
-                imgWidth={"2.8em"}
-                imgRadius={20}
-              />
-            ) : (
-              <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
-                No QR
-              </span>
-            )}
-          </SubTitle>
-        );
-      },
-    },
+    // {
+    //   title: "QR",
+    //   width: "8%",
+    //   render: (name, item, i) => {
+    //     return (
+    //       <SubTitle>
+    //         {item.qrCodeId ? (
+    //           <QRCodeModal
+    //             qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
+    //             imgHeight={"2.8em"}
+    //             imgWidth={"2.8em"}
+    //             imgRadius={20}
+    //           />
+    //         ) : (
+    //           <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
+    //             No QR
+    //           </span>
+    //         )}
+    //       </SubTitle>
+    //     );
+    //   },
+    // },
     {
       title: "",
       width: "3%",
@@ -142,6 +147,7 @@ function OpenReceivedOrderIdForm(props) {
         );
       },
     },
+
     {
       title: "Inspected",
       width: "8%",
@@ -163,6 +169,36 @@ function OpenReceivedOrderIdForm(props) {
       dataIndex: "dispatchPhoneUserName",
       width: "10%",
     },
+    {
+      title: "",
+      width: "8%",
+      render: (name, item, i) => {
+        //debugger
+        return (
+          <Tooltip>
+            {!item.rejectInd && item.dispatchPhoneInd ? <Button
+              onClick={() => {
+                handleRowData(item)
+                props.handleRejectReasonModal(true)
+              }}
+            >Reject</Button>
+              : item.rejectInd && item.dispatchPhoneInd ?
+                <Button
+                  style={{ backgroundColor: "red", color: "white" }}
+                // onClick={() => {
+                //   handleRowData(item)
+                //   props.handleRejectReasonModal(true)
+                // }}
+                >Rejected</Button> : null
+            }
+          </Tooltip>
+        );
+      },
+    },
+    {
+      dataIndex: "reason",
+      width: "10%",
+    },
 
   ];
 
@@ -173,14 +209,19 @@ function OpenReceivedOrderIdForm(props) {
     <>
       <StyledTable
         columns={columns}
+        loading={
+          props.fetchingUpdateDispatchList || props.fetchingUpdateDispatchListError
+                    }
+        // loading={props.fetchingUpdateDispatchList}
         dataSource={props.updateDispatchList}
         pagination={false}
         scroll={{ y: tableHeight }}
       />
       <div class=" flex justify-end" >
-        {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>}
-        {props.rowData.dispatchInspectionInd === 1 &&
-          <div class=" ml-[10px]" >
+        {/* {props.rowData.dispatchInspectionInd === 1 && <Button type="primary">Pause</Button>} */}
+        {props.rowData.dispatchInspectionInd === 1 && <div>In Progress</div>}
+        {props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
+          <div class=" ml-2" >
             <Button
               loading={props.updatingDispatchInspectionButton}
               onClick={() => props.updateDispatchInspectionButton({
@@ -195,12 +236,20 @@ function OpenReceivedOrderIdForm(props) {
           </div>}
       </div>
       {task && <DispatchTaskTable phoneId={phoneId} />}
+      <RejectedReasonModal
+        rowData={rowData}
+        rejectedReasonModal={props.rejectedReasonModal}
+        handleRejectReasonModal={props.handleRejectReasonModal}
+      />
     </>
   );
 }
 
 const mapStateToProps = ({ inventory, distributor, auth }) => ({
   updateDispatchList: inventory.updateDispatchList,
+  fetchingUpdateDispatchList:inventory.fetchingUpdateDispatchList,
+  fetchingUpdateDispatchListError:inventory.fetchingUpdateDispatchListError,
+  rejectedReasonModal: inventory.rejectedReasonModal,
   updatingDispatchInspectionButton: inventory.updatingDispatchInspectionButton,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal,
@@ -212,6 +261,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getDispatchUpdateList,
       updateDispatchInspectionButton,
+      handleRejectReasonModal
     },
     dispatch
   );

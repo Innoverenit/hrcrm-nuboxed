@@ -24,15 +24,7 @@ const InventoryConsumptionTable = lazy(() =>
   import("../Consumption/InventoryConsumptionTable")
 );
 const DispatchTable = lazy(() => import("../Dispatch/DispatchTable"));
-// const AddDispatchModal = lazy(() =>
-//   import("../Dispatch/AddDispatch/AddDispatchModal")
-// );
-// const AddOutputReasonModal = lazy(() =>
-//   import("../Output/AddReason/AddReasonModal")
-// );
-// const InventoryOutputReportsTable = lazy(() =>
-//   import("../Output/InventoryOutputReportsTable")
-// );
+
 const TabPane = StyledTabs.TabPane;
 class InventoryDetailTab extends PureComponent {
   constructor(props) {
@@ -143,7 +135,9 @@ class InventoryDetailTab extends PureComponent {
               key="2"
             >
               <Suspense fallback={"Loading..."}>
-                <DispatchTable />
+                <DispatchTable 
+                   inventory={this.props.inventory}
+                />
               </Suspense>
             </TabPane>
 

@@ -1021,6 +1021,7 @@ function EmployeeTable(props) {
             ):null}
                                     </div>
                                 </div>
+                                {props.user.multyOrgLinkInd=== true && (
                                 <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs text-cardBody font-poppins text-center">
                                   
@@ -1031,6 +1032,7 @@ function EmployeeTable(props) {
 
                                     </div>
                                 </div>
+                                )}
                                 <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer text-cardBody font-poppins text-center">
                                     {item.suspendInd !== true && ( 

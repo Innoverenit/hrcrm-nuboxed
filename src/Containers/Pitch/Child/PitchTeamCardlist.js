@@ -121,7 +121,7 @@ const PitchTeamCardList = (props) => {
   { !fetchingTeamPitch && props.teamPitch.length === 0 ?<NodataFoundPage />:props.teamPitch.map((item,index) =>  {
  const currentdate = moment().format("DD/MM/YYYY");
  const date = moment(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code    
+//  const countryCode = item.address[0].country_alpha2_code    
          const diff = Math.abs(
             moment().diff(moment(item.lastRequirementOn), "days")
           );
@@ -273,9 +273,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 
                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
                             <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <CountryFlag1 countryCode={countryCode} />
+                            {/* <CountryFlag1 countryCode={countryCode} />
                 &nbsp;
-                {countryCode}
+                {countryCode} */}
                               </div>
                         </div>
                         <div className=" flex font-medium flex-col  w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
