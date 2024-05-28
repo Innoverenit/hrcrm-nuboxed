@@ -163,6 +163,9 @@ const initialState = {
   fetchingSuppliesListByIdError: false,
   suppliesBySupplier: [],
 
+  addingManual: false,
+  addingManualError:false,
+
   feedbackModal: false,
 
   fetchingFeedbackBySupplierId: false,
@@ -196,6 +199,14 @@ const initialState = {
   updatingSuppliersCall: false,
   updatingSuppliersCallError: false,
 
+  fetchingInventorylist: false,
+  fetchingInventorylistError: false,
+  inventoryList:[],
+
+  fetchingCategorylist: false,
+                        fetchingCategorylistError: false,
+                        categoryList:[],
+
   updatingSuppliersEvent: false,
   updatingSuppliersEventError: false,
 
@@ -224,6 +235,8 @@ const initialState = {
   generatingOrderBySupplierIdError: false,
   //document
   supplierDocumentUploadModal: false,
+
+  supplierExcleUploadModal:false,
   //add document
   addingDocumentBySupplierId: false,
   addingDocumentBySupplierIdError: false,
@@ -863,6 +876,9 @@ export const suppliersReducer = (state = initialState, action) => {
     //document
     case types.HANDLE_SUPPLIER_DOCUMENT_UPLOAD_MODAL:
       return { ...state, supplierDocumentUploadModal: action.payload };
+
+      case types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL:
+        return { ...state, supplierExcleUploadModal: action.payload };
     /* add/link Supplier document */
     case types.ADD_SUPPLIER_DOCUMENT_REQUEST:
       return {
@@ -1604,7 +1620,54 @@ export const suppliersReducer = (state = initialState, action) => {
                     reInstatedSupplierById: false,
                     reInstatedSupplierByIdError: true,
                 };
-      
+
+                case types.ADD_MANUAL_REQUEST:
+                  return { ...state, addingManual: true };
+                case types.ADD_MANUAL_SUCCESS:
+                  return {
+                    ...state,
+                    addingManual: false,
+                    
+                  };
+                case types.ADD_MANUAL_FAILURE:
+                  return {
+                    ...state,
+                     addingManual: false,
+                     addingManualError:true,
+                    
+                  };
+
+                  case types.GET_INVENTORYLIST_REQUEST:
+                    return { ...state, fetchingInventorylist: true };
+                  case types.GET_INVENTORYLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingInventorylist: false,
+                      inventoryList: action.payload,
+                    };
+                  case types.GET_INVENTORYLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingInventorylist: false,
+                      fetchingInventorylistError: true,
+                    };
+
+                    case types.GET_CATEGORYLIST_REQUEST:
+                      return { ...state, fetchingCategorylist: true };
+                    case types.GET_CATEGORYLIST_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingCategorylist: false,
+                        categoryList: action.payload,
+                      };
+                    case types.GET_CATEGORYLIST_FAILURE:
+                      return {
+                        ...state,
+                        fetchingCategorylist: false,
+                        fetchingCategorylistError: true,
+                      };
+
+
 
     default:
       return state;
