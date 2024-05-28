@@ -65,8 +65,8 @@ class AccountOpportunityStepper extends Component {
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
+                            id="app.quotation"
+                            defaultMessage="Quotation"
                         />}
                     />
                     {/* <Step

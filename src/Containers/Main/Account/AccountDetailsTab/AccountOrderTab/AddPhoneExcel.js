@@ -11,9 +11,13 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 function AddPhoneExcel(props) {
 
     const [bulkQr, setBulkQr] = useState(false)
+    const [nonRepaied, setNonRepaired] = useState(false)
 
     function handleBulkQr(checked) {
         setBulkQr(checked)
+    }
+    function handleRepaired(checked) {
+        setNonRepaired(checked)
     }
 
     return (
@@ -26,6 +30,7 @@ function AddPhoneExcel(props) {
                     orgId: props.orgId,
                     totalPhoneCount: "",
                     bulkQrInd: bulkQr,
+                    sendBackNonRepairInd:nonRepaied,
 
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -90,6 +95,14 @@ function AddPhoneExcel(props) {
                                             <Switch
                                                 onChange={handleBulkQr}
                                                 checked={bulkQr}
+                                                checkedChildren="Yes"
+                                                unCheckedChildren="No" />
+                                        </div>
+                                        <div class="w-[45%] mt-2">
+                                            <label>Send back non repaired units </label>
+                                            <Switch
+                                                onChange={handleRepaired}
+                                                checked={nonRepaied}
                                                 checkedChildren="Yes"
                                                 unCheckedChildren="No" />
                                         </div>

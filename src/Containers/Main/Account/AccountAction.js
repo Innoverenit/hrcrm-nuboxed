@@ -341,7 +341,7 @@ export const addOrderForm = (customer, distributorId,) => (dispatch, getState) =
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Order Created',
+        title: 'Order Created Successfully!',
         showConfirmButton: false,
    timer: 1500,
       })
@@ -359,6 +359,43 @@ export const addOrderForm = (customer, distributorId,) => (dispatch, getState) =
       console.log(err);
       dispatch({
         type: types.ADD_ORDER_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+export const addQuotationOrderForm = (customer, distributorId,) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_QUOTATION_ORDER_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/phoneOrder`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Created',
+        showConfirmButton: false,
+   timer: 1500,
+      })
+      // dispatch(getOrderRecords(distributorId));
+    
+      dispatch({
+        type: types.ADD_QUOTATION_ORDER_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUOTATION_ORDER_FAILURE,
         payload: err,
       });
       // cb && cb();
@@ -592,6 +629,94 @@ export const getCompleteOrders = (distributorId, pageNo) => (
       console.log(err);
       dispatch({
         type: types.GET_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getHighCompleteOrders = (distributorId, pageNo) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_HIGH_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_HIGH_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_HIGH_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getMediumCompleteOrders = (distributorId, pageNo) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MEDIUM_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MEDIUM_COMPLETE_ORDERS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getLowCompleteOrders = (distributorId, pageNo) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_LOW_COMPLETE_ORDERS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOW_COMPLETE_ORDERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOW_COMPLETE_ORDERS_FAILURE,
         payload: err,
       });
     });
@@ -3933,4 +4058,64 @@ export const handleProcureDetailsModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_PROCURE_DETAILS_MODAL,
     payload: modalProps,
   });
+};
+
+
+export const getQuotationRepairOrder = (distributorId, pageNo, type,ptype) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_QUOTATION_REPAIR_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUOTATION_REPAIR_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUOTATION_REPAIR_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getQuotationProcureOrder = (distributorId, pageNo, type,ptype) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_QUOTATION_PROCURE_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUOTATION_PROCURE_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUOTATION_PROCURE_ORDER_FAILURE,
+        payload: err,
+      });
+    });
 };
