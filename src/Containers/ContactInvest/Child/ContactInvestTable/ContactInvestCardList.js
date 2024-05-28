@@ -60,6 +60,8 @@ function ContactInvestCardList(props) {
         }
       }
     })
+    props.getContactInvestByUserId(props.userId,pageNo,"creationdate");
+    setPage(pageNo + 1);
   }, []);
 
   useEffect(()=>{
@@ -82,13 +84,13 @@ function ContactInvestCardList(props) {
 
   const handleLoadMore = () => {
             setPage(pageNo + 1);
-        props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo);
+        props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo,"creationdate");
   
   }
   const {
     user,
     fetchingContactsInvest,
-    contactByUserId,
+    contactiNVESTbyId,
     filterData,
     updateContactInvestModal,
     addDrawerContactInvestNotesModal,
@@ -141,7 +143,7 @@ function ContactInvestCardList(props) {
 
       </div>
           <InfiniteScroll
-        dataLength={contactByUserId.length}
+        dataLength={contactiNVESTbyId.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
@@ -437,7 +439,7 @@ const mapStateToProps = ({
   contactinvest
 }) => ({
   userId: auth.userDetails.userId,
-  contactByUserId: contact.contactByUserId,
+  contactiNVESTbyId: contact.contactiNVESTbyId,
   user: auth.userDetails,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,

@@ -51,6 +51,11 @@ const PitchActionLeft = (props) => {
       setCurrentData(transcript);
     }
     }, [ transcript]);
+    useEffect(() => {
+      if (props.teamsAccessInd) {
+        props.getTeamsPitchCount(props.userId);
+      }
+    }, [props.userId, props.teamsAccessInd]);
   useEffect(() => {
     if (props.viewType === "card") {
       props.getPitchCount(props.userId);
@@ -77,6 +82,7 @@ const PitchActionLeft = (props) => {
     />
   );
   console.log( props.pitchCount.InvestorLeadsDetails)
+  const teamCount = props.teamsAccessInd && props.teamsPitchCount ? props.teamsPitchCount.pitchTeam : 0;
   return (
     <div class=" flex  items-center">
 
@@ -111,7 +117,7 @@ const PitchActionLeft = (props) => {
       >
           <Badge
         size="small"
-         count={(props.teamsAccessInd||props.viewType === "teams" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
+         count={(teamCount||props.viewType === "teams" && props.teamsPitchCount.InvestorLeadsDetails) || 0}
         
         overflowCount={999}
       >
@@ -135,7 +141,7 @@ const PitchActionLeft = (props) => {
       >
              <Badge
         size="small"
-        count={(props.viewType === "all" && props.pitchAllRecord.InvestorLeadsDetails) || 0}
+        count={(props.viewType === "all" && props.pitchAllRecord.investorLeadsDetails) || 0}
         overflowCount={999}
       >
         <span   class=" mr-1 text-sm cursor-pointer"

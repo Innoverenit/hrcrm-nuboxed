@@ -31,6 +31,13 @@ const LeadsActionLeft = (props) => {
     }
     }, [ transcript]);
 
+    useEffect(() => {
+      
+      if (props.teamsAccessInd) {
+        props.getLeadsTeamRecords(props.userId);
+      }
+    }, [props.userId, props.teamsAccessInd]);
+
   useEffect(() => {
     if (props.viewType === "card") {
       props.getLeadsRecords(props.userId);
@@ -76,7 +83,7 @@ const LeadsActionLeft = (props) => {
   );
   const { user } = props;
   console.log(currentData)
-
+  const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -110,7 +117,7 @@ const LeadsActionLeft = (props) => {
           >
             <Badge
               size="small"
-              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
+              count={(teamCount||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
               overflowCount={999}
             >
               <span class=" md:mr-1 text-sm cursor-pointer"
