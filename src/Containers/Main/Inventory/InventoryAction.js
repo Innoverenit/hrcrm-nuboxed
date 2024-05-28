@@ -1917,6 +1917,34 @@ export const rejectPhoneData = (data, phoneId) => (dispatch) => {
 };
 
 
+
+
+export const getMaterialUnitsData = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_UNITS_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getPoStock/material/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_UNITS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_UNITS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getInventoryLocationRecords = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_INVENTORY_LOCATION_RECORDS_REQUEST,

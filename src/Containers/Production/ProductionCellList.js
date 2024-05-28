@@ -1,4 +1,4 @@
-import React, { lazy, Suspense ,useEffect} from 'react';
+import React, { lazy, Suspense ,useEffect,useState} from 'react';
 import { Card, Progress } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -31,11 +31,30 @@ const data = [
 ];
 
 const ItemCards = (props) => {
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  // Function to get today's date in the desired format
+  const getTodayDate = () => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const dd = String(today.getDate()).padStart(2, '0');
+
+    return `${yyyy}-${mm}-${dd}T20:00:00Z`;
+  };
   useEffect(() => {
-    props.getProductionCellList(props.orgId);
+    const today = getTodayDate();
+    setStartDate(today);
+    setEndDate(today);
+  }, []);
+  console.log(startDate)
+
+  useEffect(() => {
+    props.getProductionCellList(props.orgId,startDate,endDate);
     // setPage(page + 1);
     // props.getRoomRackByLocId(props.locationId, props.orgId);
-}, []);
+}, [startDate,endDate]);
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
       {/* {data.map((item, index) => ( */}

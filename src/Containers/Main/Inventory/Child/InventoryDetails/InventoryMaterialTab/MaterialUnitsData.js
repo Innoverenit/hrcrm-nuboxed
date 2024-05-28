@@ -1,3 +1,15 @@
+// import React from 'react'
+
+// function MaterialUnitsData() {
+//   return (
+//     <div>MaterialUnitsData</div>
+//   )
+// }
+
+// export default MaterialUnitsData
+
+
+
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,7 +18,7 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
-import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
+import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
@@ -18,7 +30,8 @@ const { Option } = Select;
 const GrnListOfPO = (props) => {
     useEffect(() => {
         props.getRoomRackByLocId(props.locationId, props.orgId);
-        props.getMaterialUnitsData(props.locationDetailsId);
+        props.getGrnListOfaPoInStock(props.locationDetailsId);
+
     }, [])
 
 
@@ -87,28 +100,31 @@ const GrnListOfPO = (props) => {
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[2.5rem]"></div>
-                        {/* <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div> */}
+                        <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
                         <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[3.82rem]"><FormattedMessage id="app.category" defaultMessage="Category" /></div>
+                        <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.attribute" defaultMessage="Attribute" /></div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.instock" defaultMessage="In Stock" /></div>
-                       
+                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
+                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
+                        <div className=" md:w-[4.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
+                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
+                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
+                        <div className=" md:w-[4.51rem]"><FormattedMessage id="app.room" defaultMessage="Zone" /></div>
+                        <div className=" md:w-[6.01rem]"><FormattedMessage id="app.rack" defaultMessage="#Rack" /></div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
-                        dataLength={props.materialUnitsData.length}
+                        dataLength={props.poGrnList.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
                         height={"75vh"}
                     >
-                        {props.materialUnitsData.map((item, index) => {
+                        {props.poGrnList.map((item, index) => {
                             return (
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                                        {/* <div class="flex">
+                                        <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     <PlusOutlined
@@ -119,17 +135,17 @@ const GrnListOfPO = (props) => {
                                                     />
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
-                                                    
+                                                    {item.newPoNumber}
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* <div class="flex">
+                                        <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold font-poppins cursor-pointer underline text-blue-600">
                                                     <span
@@ -142,11 +158,11 @@ const GrnListOfPO = (props) => {
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
 
                                         <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.suppliesFullName}
+                                                {item.grnNumber}
                                             </div>
                                         </div>
                                         {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -166,20 +182,20 @@ const GrnListOfPO = (props) => {
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.hsn}
+                                                {item.unitDamaged}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.balanced}
+                                                {item.unit}
                                             </div>
                                         </div>
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remark}
                                             </div>
-                                        </div> */}
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
 
@@ -201,8 +217,8 @@ const GrnListOfPO = (props) => {
                                                     </div>
                                                 )}
                                             </div>
-                                        </div> */}
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
                                                     <Select
@@ -223,8 +239,8 @@ const GrnListOfPO = (props) => {
                                                     </div>
                                                 )}
                                             </div>
-                                        </div> */}
-                                        {/* <div class="flex flex-col w-6 items-center max-sm:flex-row max-sm:w-[10%]">
+                                        </div>
+                                        <div class="flex flex-col w-6 items-center max-sm:flex-row max-sm:w-[10%]">
 
                                             <div>
                                                 <Tooltip title="">
@@ -268,13 +284,13 @@ const GrnListOfPO = (props) => {
                                             </div>
 
                                             <div></div>
-                                        </div> */}
+                                        </div>
 
                                     </div>
-                                    {/* <div>
+                                    <div>
                                         {itemHistory && (row.poSupplierSuppliesId === item.poSupplierSuppliesId)
                                             && <ItemHistoryInStock row={row} />}
-                                    </div> */}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -308,21 +324,18 @@ const mapStateToProps = ({ inventory, auth }) => ({
     orgId: auth.userDetails.organizationId,
     showStockItem: inventory.showStockItem,
     fetchingGrnListOfAPo: inventory.fetchingGrnListOfAPo,
-    stockUseDrwr: inventory.stockUseDrwr,
-    materialUnitsData:inventory.materialUnitsData,
-    fetchingMaterialUnitsData:inventory.fetchingMaterialUnitsData,
+    stockUseDrwr: inventory.stockUseDrwr
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // getGrnListOfaPoInStock,
+            getGrnListOfaPoInStock,
             handleSTockItemModal,
             handleStockUsedDrawer,
             getRackList,
             getRoomRackByLocId,
-            trnasferGrnItemToStock,
-            getMaterialUnitsData
+            trnasferGrnItemToStock
         },
         dispatch
     );

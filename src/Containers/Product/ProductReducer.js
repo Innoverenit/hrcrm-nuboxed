@@ -66,6 +66,11 @@ const initialState = {
   addConfigureModal: false,
   addDetailsProductModal: false,
 
+
+  fetchingProductionSpareData:false,
+  fetchingProductionSpareDataError:false,
+  productionSpareData:[],
+
   addingProductCategory: false,
   addingProductCategoryError: false,
 
@@ -447,6 +452,25 @@ export const productReducer = (state = initialState, action) => {
       return { ...state, 
         fetchingdeleteProducts: false,
          fetchingdeleteProductsError: true };
+
+
+
+
+
+         case types.GET_PRODUCTION_SPARE_DATA_REQUEST:
+          return { ...state, fetchingProductionSpareData: true };
+        case types.GET_PRODUCTION_SPARE_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingProductionSpareData: false,
+            productionSpareData: action.payload
+          };
+        case types.GET_PRODUCTION_SPARE_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingProductionSpareData: false,
+            fetchingProductionSpareDataError: true,
+          };
 
       case types.GET_CATEGORY_REQUEST:
       return { ...state, fetchingCategory: true, fetchingCategoryError: false };

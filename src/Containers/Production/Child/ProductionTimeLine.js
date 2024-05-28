@@ -101,6 +101,7 @@ const Component2 = (props) => {
                               className=" !text-xl cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 props.addSpareNotesModal(true);
+                                handleSteps(step);
                                 // handleSetCurrentCustomer(item);
                                 // handleRowData(item);
                               }}
@@ -163,6 +164,7 @@ const Component2 = (props) => {
         </div>
         <AddSpareStepsModal
         step={step}
+        productionProductId={props.productionProductId}
         productionTableData={props.productionTableData}
         addSpareStepsModal={props.addSpareStepsModal}
         addSparePartsDrawerModal={props.addSparePartsDrawerModal}

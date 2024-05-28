@@ -1769,3 +1769,34 @@ export const addProductDesc = (product, cb) => (dispatch) => {
       cb();
     });
 };
+
+
+
+
+export const getProductionSpareData = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_SPARE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/cellStockPart/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PRODUCTION_SPARE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_SPARE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
