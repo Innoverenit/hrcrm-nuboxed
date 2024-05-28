@@ -98,7 +98,10 @@ function AddPhoneExcel(props) {
                                                 checkedChildren="Yes"
                                                 unCheckedChildren="No" />
                                         </div>
-                                        <div class="w-[45%] mt-2">
+                                      
+                                    </div>
+                                    <div class=" flex justify-between">
+                                    <div class="w-[70%] mt-2">
                                             <label>Send back non repaired units </label>
                                             <Switch
                                                 onChange={handleRepaired}
@@ -106,7 +109,7 @@ function AddPhoneExcel(props) {
                                                 checkedChildren="Yes"
                                                 unCheckedChildren="No" />
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="justify-end flex mt-3">
