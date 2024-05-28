@@ -376,7 +376,7 @@ export const getdealsTeamRecord = (userId) => (dispatch) => {
     type: types.GET_DEALS_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/investorOpportunit/contact/teams/count/${userId}`, {
+    .get(`${base_url}/investorOpportunit/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1078,6 +1078,59 @@ export const getActiveAssignedToList = (orgId,type) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_ACTIVE_ASSIGENED_TO_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDeleteRecords = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETE_RECORDS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunity/deleteHistory/record/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETE_RECORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DELETE_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getDeletedDeal = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_DEAL_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunity/deleteHistory/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_DEAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_DEAL_FAILURE,
         payload: err,
       });
     });

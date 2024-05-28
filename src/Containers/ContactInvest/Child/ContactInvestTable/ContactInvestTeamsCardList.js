@@ -438,14 +438,14 @@ if (isMobile){
 
       </div>
           <InfiniteScroll
-        dataLength={props.allContactInvestData.length}
+        dataLength={props.teamsContactInvestData.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+        loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"75vh"}
       >
        
-       { !fetchingAllContactInvest && props.allContactInvestData.length === 0 ?<NodataFoundPage />:props.allContactInvestData.map((item,index) =>  {
+       { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -739,7 +739,7 @@ const mapStateToProps = ({
   contactByUserId: contact.contactByUserId,
   user: auth.userDetails,
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,
-  fetchingAllContactInvest: contactinvest.fetchingAllContactInvest,
+  fetchingTeamsContactInvest: contactinvest.fetchingTeamsContactInvest,
   fetchingContactsInvestError: contactinvest.fetchingContactsInvestError,
   updateContactInvestModal: contactinvest.updateContactInvestModal,
   designations: designations.designations,
