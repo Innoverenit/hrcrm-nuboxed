@@ -751,6 +751,13 @@ export const handleSupplierDocumentUploadModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleSupplierExcleUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
 //add supplier document
 
 export const addSupplierDocument = (data, cb) => (dispatch) => {
@@ -1890,3 +1897,90 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
     });
 };
 
+export const addManual = (customer,  cb) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_MANUAL_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/supplier/inventory/supplier`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getProcureDetails(orderPhoneId))
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_MANUAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MANUAL_FAILURE,
+        payload: err,
+      });
+      cb && cb();
+    });
+};
+
+
+export const getInventorylist = (userId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVENTORYLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/inventory/supplier/user/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVENTORYLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVENTORYLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCategorylist = () => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORYLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/category`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORYLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CATEGORYLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
