@@ -81,6 +81,10 @@ const initialState = {
   fetchingNotesListByDistributorIdError: false,
   notesListByDistributorId: [],
 
+  fetchingQuotationRepairOrder: false,
+  fetchingQuotationRepairOrderError: true,
+  quotationRepairOrder:[],
+
   fetchingBrand: false,
    fetchingBrandError: false,
    brand:[],
@@ -190,6 +194,10 @@ const initialState = {
   fetchingLobListError: false,
   lobList: [],
 
+  fetchingHighCompleteOrders: false,
+  fetchingHighCompleteOrdersError: false,
+  highCompleteOrder:[],
+
   addingOrderProcurement: false,
   addingOrderProcurementError: false,
 
@@ -238,6 +246,10 @@ const initialState = {
   updatingDistributorCall: false,
   updatingDistributorCallError: false,
 
+  fetchingMediumCompleteOrders: false,
+  fetchingMediumCompleteOrdersError: false,
+  mediumCompleteOrder:[],
+
   updateProcureDetailModal: false,
 
   updatingDistributorEvent: false,
@@ -249,6 +261,10 @@ const initialState = {
   fetchingDeletedDistributors: false,
   fetchingDeletedDistributorsError: false,
   deletedDistributors: [],
+
+  fetchingLowCompleteOrders: false,
+  fetchingLowCompleteOrdersError: false,
+  lowCompleteOrder:[],
 
   fetchingDistributorOfMedium: false,
   fetchingDistributorOfMediumError: false,
@@ -367,6 +383,10 @@ const initialState = {
   updateDisributorContactById: false,
   updateDisributorContactByIdError: false,
 
+  fetchingQuotationProcureOrder: false,
+  fetchingQuotationProcureOrderError: false,
+  quotationProcureOrder:[],
+
   setEditingPayment: {},
 
   updatePaymentModal: false,
@@ -391,6 +411,9 @@ const initialState = {
   fetchingPulseList: false,
   fetchingPulseListError: false,
   pulseList: [],
+
+  addingQuotationOrder: false,
+  addingQuotationOrderError: false,
 
   fetchingBillingAddressById: false,
   fetchingBillingAddressByIdError: false,
@@ -1556,6 +1579,25 @@ export const distributorReducer = (state = initialState, action) => {
         addingOrderError: true,
         // addCustomerModal: false 
       };
+
+
+      case types.ADD_QUOTATION_ORDER_REQUEST:
+        return { ...state, addingQuotationOrder: true };
+      case types.ADD_QUOTATION_ORDER_SUCCESS:
+        return {
+          ...state,
+          addingQuotationOrder: false,    
+          quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
+          quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
+          orderDetailsId: action.payload
+        };
+      case types.ADD_QUOTATION_ORDER_FAILURE:
+        return {
+          ...state,
+          addingQuotationOrder: false,
+          addingQuotationOrderError: true,
+          // addCustomerModal: false 
+        };
     /**
      * get list of documents of a DISTRIBUTOR
      */
@@ -2564,9 +2606,62 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingCompleteOrders: false,
         fetchingCompleteOrdersError: true,
-
-
       };
+
+
+      case types.GET_HIGH_COMPLETE_ORDERS_REQUEST:
+        return { ...state, fetchingHighCompleteOrders: true };
+      case types.GET_HIGH_COMPLETE_ORDERS_SUCCESS:
+        return {
+          ...state,
+          fetchingHighCompleteOrders: false,
+          highCompleteOrder: [
+            ...state.highCompleteOrder,
+            ...action.payload]
+        };
+      case types.GET_HIGH_COMPLETE_ORDERS_FAILURE:
+        return {
+          ...state,
+          fetchingHighCompleteOrders: false,
+          fetchingHighCompleteOrdersError: true,
+        };
+
+
+        case types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST:
+          return { ...state, fetchingMediumCompleteOrders: true };
+        case types.GET_MEDIUM_COMPLETE_ORDERS_SUCCESS:
+          return {
+            ...state,
+            fetchingMediumCompleteOrders: false,
+            mediumCompleteOrder: [
+              ...state.mediumCompleteOrder,
+              ...action.payload]
+          };
+        case types.GET_MEDIUM_COMPLETE_ORDERS_FAILURE:
+          return {
+            ...state,
+            fetchingMediumCompleteOrders: false,
+            fetchingMediumCompleteOrdersError: true,
+          };
+
+
+          case types.GET_LOW_COMPLETE_ORDERS_REQUEST:
+            return { ...state, fetchingLowCompleteOrders: true };
+          case types.GET_LOW_COMPLETE_ORDERS_SUCCESS:
+            return {
+              ...state,
+              fetchingLowCompleteOrders: false,
+              lowCompleteOrder: [
+                ...state.lowCompleteOrder,
+                ...action.payload]
+            };
+          case types.GET_LOW_COMPLETE_ORDERS_FAILURE:
+            return {
+              ...state,
+              fetchingLowCompleteOrders: false,
+              fetchingLowCompleteOrdersError: true,
+            };
+
     case types.SEARCH_ITEM_IN_LOCATION_REQUEST:
       return { ...state, searchingItemInLocation: true };
     case types.SEARCH_ITEM_IN_LOCATION_SUCCESS:
@@ -2952,6 +3047,38 @@ export const distributorReducer = (state = initialState, action) => {
                 case types.HANDLE_PROCURE_DETAILS_MODAL:
                   return { ...state, addProcureDetailsModal: action.payload, phoneListById: [] };
             
+                  case types.GET_QUOTATION_REPAIR_ORDER_REQUEST:
+                    return { ...state, fetchingQuotationRepairOrder: true };
+                  case types.GET_QUOTATION_REPAIR_ORDER_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingQuotationRepairOrder: false,
+                      quotationRepairOrder: [...state.quotationRepairOrder, ...action.payload]
+                    };
+                  case types.GET_QUOTATION_REPAIR_ORDER_FAILURE:
+                    return {
+                      ...state,
+                      fetchingQuotationRepairOrder: false,
+                      fetchingQuotationRepairOrderError: true,
+                    };
+
+
+                    case types.GET_QUOTATION_PROCURE_ORDER_REQUEST:
+                      return { ...state, fetchingQuotationProcureOrder: true };
+                    case types.GET_QUOTATION_PROCURE_ORDER_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingQuotationProcureOrder: false,
+                        quotationProcureOrder: [...state.quotationProcureOrder, ...action.payload]
+                      };
+                    case types.GET_QUOTATION_PROCURE_ORDER_FAILURE:
+                      return {
+                        ...state,
+                        fetchingQuotationProcureOrder: false,
+                        fetchingQuotationProcureOrderError: true,
+                      };
+
+
 
     default:
       return state;

@@ -64,8 +64,6 @@ function DispatchTable(props) {
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className=" w-[4.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.01rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className=" w-[3.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.22rem] "><FormattedMessage id="app.contact" defaultMessage="Contact" /></div>
               <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
               <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
 
@@ -111,26 +109,7 @@ function DispatchTable(props) {
                               ) : null}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5.4rem] max-xl:w-[3.4rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-poppins">
-                              <MultiAvatar2
-                                primaryTitle={item.distributorName}
-                                imageURL={item.imageURL}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </div>
-                          </div>
-                          <div className=" flex font-medium flex-col w-[4.1rem] max-xl:w-[3.41rem] max-lg:w-[2.41rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                              <MultiAvatar2
-                                primaryTitle={item.contactPersonName}
-                                imageURL={item.imageURL}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </div>
-                          </div>
+                       
 
                         </div>
 
