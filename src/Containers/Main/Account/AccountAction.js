@@ -1143,6 +1143,28 @@ export const updateDistributorOrder = (data, productId) => (dispatch) => {
     });
 };
 
+export const updateSuscription = (data) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_SUSCRIPTION_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/organization/subscription`, data)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SUSCRIPTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SUSCRIPTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getDistributorOrderHistory = (orderId) => (dispatch) => {
   dispatch({
     type: types.FETCHING_DISTRIBUTOR_ORDER_HISTORY_REQUEST,
