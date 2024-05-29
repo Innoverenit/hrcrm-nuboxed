@@ -181,7 +181,7 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
-                        {item.type}
+                        {item.orderType}
                       </h4>
                   </div>
                                      
@@ -330,7 +330,7 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
-                        {item.type}
+                        {item.orderType}
                       </h4>
                   </div>
                                         {/* <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
