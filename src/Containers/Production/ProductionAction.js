@@ -654,7 +654,7 @@ export const getProductionCellList = (orgId, startDate,endDate) => (dispatch) =>
     type: types.GET_PRODUCTION_CELL_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/cell/productionProductLink/${orgId}/${startDate}/${endDate}`,
+    .get(`${base_url2}/production/cell/productionProductLink/${orgId}?endDate=${endDate}&startDate=${startDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

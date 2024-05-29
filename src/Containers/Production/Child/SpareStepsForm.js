@@ -243,6 +243,13 @@ const DynamicInputForm = (props) => {
                                         </Popconfirm>
                                     </div>
                                 </div>
+                                {item.usedInd===true&&(
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                       <Button>Damage</Button>
+                                    </div>
+                                </div>
+                                )}
                             </div>
                         </div>
                     );
