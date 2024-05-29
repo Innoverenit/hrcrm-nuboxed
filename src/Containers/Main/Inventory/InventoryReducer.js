@@ -151,6 +151,10 @@ const initialState = {
   fetchingItemInCellStockError: false,
   cellStock: [],
 
+  fetchingMaterialUnitsData:false,
+  fetchingMaterialUnitsDataError:false,
+  materialUnitsData:[],
+
   fetchingItemHistoryInStock: false,
   fetchingItemHistoryInStockError: false,
   itemHistoryInStock: [],
@@ -963,6 +967,26 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingShipperContact: false,
         updatingShipperContactError: true,
       };
+
+
+
+
+
+      case types.GET_MATERIAL_UNITS_DATA_REQUEST:
+      return { ...state, fetchingMaterialUnitsData: true };
+    case types.GET_MATERIAL_UNITS_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingMaterialUnitsData: false,
+        materialUnitsData: action.payload
+      };
+    case types.GET_MATERIAL_UNITS_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingMaterialUnitsData: false,
+        fetchingMaterialUnitsDataError: true,
+      };
+
 
     case types.SEARCH_DISPATCH_ITEM_REQUEST:
       return { ...state, searchingDispatchItem: true };

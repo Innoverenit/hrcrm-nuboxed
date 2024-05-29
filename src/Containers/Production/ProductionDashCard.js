@@ -44,7 +44,8 @@ const ProductionDashCard = (props) => {
             <div className="rightContainer">
                 {/* Render ProductionTimeLine */}
                 <ProductionTimeLine 
-                    productionTableData={props.productionTableData}
+                productionProductId={props.productionTableData[0].productionProductId}
+                    // productionTableData={props.productionTableData}
                 />
             </div>
         </>

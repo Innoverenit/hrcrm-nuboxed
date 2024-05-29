@@ -13,6 +13,7 @@ const AddSpareStepsModal = (props) => {
       <StyledDrawer
        title={`${props.step.categoryName} ${props.step.subCategoryName}-${props.step.attributeName} ${props.step.
         subAttributeName}`}
+        destroyOnClose
         width="60%"
         visible={props.addSparePartsDrawerModal}
         onClose={() => props.addSpareStepsModal(false)}
@@ -20,7 +21,8 @@ const AddSpareStepsModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
       <SpareStepsForm 
       step={props.step}
-      productionTableData={props.productionTableData}
+      productionProductId={props.productionProductId}
+      // productionTableData={props.productionTableData}
       />
           {/* <OpportunityForm {...formProps}/> */}
         </Suspense>

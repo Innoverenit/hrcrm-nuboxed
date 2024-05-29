@@ -649,12 +649,12 @@ export const getProductionStage = (userId, pageNo) => (dispatch) => {
 
 
 
-export const getProductionCellList = (orgId, pageNo) => (dispatch) => {
+export const getProductionCellList = (orgId, startDate,endDate) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_CELL_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/cell/productionProductLink/${orgId}`,
+    .get(`${base_url2}/production/cell/productionProductLink/${orgId}?endDate=${endDate}&startDate=${startDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
