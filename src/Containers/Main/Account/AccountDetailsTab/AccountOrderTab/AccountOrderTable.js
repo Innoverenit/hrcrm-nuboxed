@@ -215,7 +215,7 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                            <div className="flex rounded-lg  mt-1 bg-white h-8 items-center p-1">
                                                 <div class="flex ">
                                                     <div className=" flex font-medium  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -645,7 +645,7 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                                                                      <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                                                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                                 <div class="flex ">
                                                     <div className=" flex font-medium  md:w-[3.56rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -1074,7 +1074,7 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                                 <div class="flex ">
                                                     <div className=" flex font-medium  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>

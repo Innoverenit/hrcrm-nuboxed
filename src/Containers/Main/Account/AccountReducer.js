@@ -1586,9 +1586,11 @@ export const distributorReducer = (state = initialState, action) => {
       case types.ADD_QUOTATION_ORDER_SUCCESS:
         return {
           ...state,
-          addingQuotationOrder: false,    
-          quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
-          quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
+          addingQuotationOrder: false,   
+          quotationRepairOrder: action.payload.type === 'Repair' ? [action.payload, ...state.quotationRepairOrder] : state.quotationRepairOrder,
+          quotationProcureOrder: action.payload.type === 'Procure' ? [action.payload, ...state.quotationProcureOrder] : state.quotationProcureOrder,  
+          // quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
+          // quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
           orderDetailsId: action.payload
         };
       case types.ADD_QUOTATION_ORDER_FAILURE:

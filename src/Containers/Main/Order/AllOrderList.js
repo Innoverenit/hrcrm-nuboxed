@@ -139,7 +139,7 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-              <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+              <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -447,7 +447,7 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-                 <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+                 <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -754,7 +754,7 @@ const handleLoadMoreLow = () => {
                    } `;
                  return (
                    <div>
-                <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                    <div class="flex">
                    <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>

@@ -103,7 +103,7 @@ const handleLoadMoreLow = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -247,7 +247,7 @@ const handleLoadMoreLow = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -391,7 +391,7 @@ const handleLoadMoreLow = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-               <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+               <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                     <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">

@@ -372,7 +372,7 @@ export const addQuotationOrderForm = (customer, distributorId,) => (dispatch, ge
   });
 
   axios
-    .post(`${base_url2}/phoneOrder`, customer, {
+    .post(`${base_url2}/quotation`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4061,14 +4061,14 @@ export const handleProcureDetailsModal = (modalProps) => (dispatch) => {
 };
 
 
-export const getQuotationRepairOrder = (distributorId, pageNo, type,ptype) => (
+export const getQuotationRepairOrder = (distributorId, pageNo, type) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_QUOTATION_REPAIR_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/`,
+    .get(`${base_url2}/quotation/order/${distributorId}/${pageNo}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4091,14 +4091,14 @@ export const getQuotationRepairOrder = (distributorId, pageNo, type,ptype) => (
 };
 
 
-export const getQuotationProcureOrder = (distributorId, pageNo, type,ptype) => (
+export const getQuotationProcureOrder = (distributorId, pageNo, type) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_QUOTATION_PROCURE_ORDER_REQUEST,
   });
   axios
-    .get(`${base_url2}/`,
+    .get(`${base_url2}/quotation/order/${distributorId}/${pageNo}/${type}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

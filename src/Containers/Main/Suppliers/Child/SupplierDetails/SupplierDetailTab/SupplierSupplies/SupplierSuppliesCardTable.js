@@ -128,7 +128,7 @@ function SupplierSuppliesCardTable(props) {
                     const initialSelectedValues = item.quality ? item.quality.map(({ qualityId }) => qualityId) : [];
                     return (
                       <>
-                        <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"
+                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
 
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
@@ -297,7 +297,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         onClick={onClick}
       >
         {/* <i className={`${iconType}`} style={{ fontSize: "1.1rem" }}></i> */}
-      <div class="text-base"></div>
+      <div class="text-xl"></div>
       </Button>
     </Tooltip>
   );
