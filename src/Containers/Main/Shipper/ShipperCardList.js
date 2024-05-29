@@ -78,7 +78,7 @@ function ShipperCardList(props) {
             <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.pinCode" defaultMessage="Pin Code" /></div>
-            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className="w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
             dataLength={props.shipperByUserId.length}
@@ -92,7 +92,7 @@ function ShipperCardList(props) {
                 return (
                   <>
                     <div  >
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded  mt-1 bg-white h-9 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col w-[10.9rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
@@ -172,11 +172,11 @@ function ShipperCardList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex flex-col w-[1rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                        <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
+                                className=" !text-xl cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditShipper(item);
@@ -193,7 +193,7 @@ function ShipperCardList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId,props.userId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>

@@ -84,7 +84,7 @@ function AllShipperList(props) {
             return (
               <>
                 <div  >
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded  mt-1 bg-white h-9 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
@@ -164,11 +164,11 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex flex-col w-[1rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                        <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
+                                className=" !text-xl cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditShipper(item);
@@ -185,7 +185,7 @@ function AllShipperList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>

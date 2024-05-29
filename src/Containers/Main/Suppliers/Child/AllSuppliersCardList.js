@@ -77,7 +77,7 @@ return(
               <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
 
             </div>
-            <div class=" w-[2rem]"></div>
+            <div class=" w-[3rem]"></div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
@@ -91,8 +91,8 @@ return(
     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
   return (
     <>
-     <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center  max-sm:h-[6rem] max-sm:flex-col">
+        <div
+                  className="flex  rounded justify-between bg-white mt-1 h-[2rem] items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -162,11 +162,11 @@ return(
                             </div>
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                        <div class="flex flex-col items-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                   
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon
-             className="!text-[1rem] cursor-pointer text-[tomato]"
+             className="!text-xl cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -183,12 +183,12 @@ return(
             >
               <DeleteOutlined
 
-className=" !text-[1rem] cursor-pointer text-[red]"
+className=" !text-xl cursor-pointer text-[red]"
               />
             </Popconfirm>
             </div>
             </div> 
-            </div>
+           
 
                           </div>
 

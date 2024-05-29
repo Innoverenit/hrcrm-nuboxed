@@ -82,7 +82,7 @@ function ShipperDeleteTable(props) {
                 return (
                
                      <>
-     <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"               >
+     <div className="flex rounded justify-between mt-1 bg-white h-9 items-center p-1"               >
  <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
