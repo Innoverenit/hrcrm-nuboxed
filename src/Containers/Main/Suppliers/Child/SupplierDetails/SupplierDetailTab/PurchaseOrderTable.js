@@ -101,7 +101,7 @@ function PurchaseOrderTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
@@ -173,7 +173,7 @@ function PurchaseOrderTable(props) {
                                                                     </div> :
                                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
                                                                    <BorderColorIcon
-                                                                       className=" !text-base cursor-pointer text-[tomato]"
+                                                                       className=" !text-xl cursor-pointer text-[tomato]"
                                                                         onClick={() => {
                                                                             handleRowData(item);
                                                                             handleCurrencyField()

@@ -92,7 +92,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 `;
                   return (
                     <div>
-                    <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
+                    <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
@@ -198,7 +198,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               {" "}
                               <a href={`https://${item.url}`} target="_blank">
                                 <ExploreIcon
-                                  className=" !text-base cursor-pointer text-[green]"
+                                  className=" !text-xl cursor-pointer text-[green]"
 
                                 />
                               </a>
@@ -221,7 +221,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                   props.handleAccountPulse(true);
                                   handleCurrentRowData(item);
                                 }}
-                                className=" !text-base cursor-pointer text-[#df9697]"
+                                className=" !text-xl cursor-pointer text-[#df9697]"
                               />
                             </Tooltip>
                           </div>
@@ -230,7 +230,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <div class=" text-xs text-cardBody font-poppins">
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
+                                className=" !text-xl cursor-pointer text-[tomato]"
                                 onClick={() => {
                                   props.setEditDistributor(item)
                                   handleUpdateAccountModal(true);

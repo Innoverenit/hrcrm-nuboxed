@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllSuppliersList,emptysUPPLIERS,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers } from "../SuppliersAction"
-import { Link } from "../../../../Components/Common";
+import StoreIcon from '@mui/icons-material/Store';
 import {Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -73,10 +73,7 @@ return(
               <FormattedMessage id="app.city" defaultMessage="City" />
 
             </div>
-            <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
-
-            </div>
+          
             <div class=" w-[3rem]"></div>
           </div>
         <InfiniteScroll
@@ -135,7 +132,7 @@ return(
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""}`}
+          ${(item.address && item.address.length && item.address[0].street) || ""}  ${(item.address && item.address.length && item.address[0].postalCode) || ""}`}
                               </div>
 
                             </div>
@@ -151,18 +148,21 @@ return(
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[7.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[4.06rem] max-lg:w-[5.61rem] ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].postalCode) ||
-                                  ""}
-                              </div>
-
-                            </div>
+                           
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                   
+                            <div>
+<Tooltip title="Purchase Order">
+<StoreIcon
+                            className="!text-xl cursor-pointer text-[red]"
+                            // onClick={() => {
+                            //    props.setEditSuppliers(item);
+                            //   handleRowData(item);
+                            //   props.handleSuppliersPriceDrawer(true);
+                            // }}
+                          />
+          </Tooltip>
+          </div>            
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon

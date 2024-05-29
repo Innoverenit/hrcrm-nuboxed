@@ -25,9 +25,9 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 function LinkedOpportunityTable(props) {
   const [page, setPage] = useState(0);
   useEffect(() => {
-    props.getProcureRecords(props.distributorData.distributorId,"Quotation");
-    props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Quotation","High");
-    props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Quotation","Medium");
+    // props.getProcureRecords(props.distributorData.distributorId,"Quotation");
+    props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair",);
+    props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",);
   
 
     setPage(page + 1);
@@ -47,13 +47,13 @@ function LinkedOpportunityTable(props) {
 const handleLoadMore = () => {
   setPage(page + 1);
   
-  props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Quotation","High")
+  props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair")
 };
 
 const handleLoadMoreMedium = () => {
   setPage(page + 1);
   
-  props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Quotation","Medium")
+  props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",)
 };
 
 
@@ -92,7 +92,7 @@ const handleLoadMoreMedium = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                        <div className="flex rounded mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -241,7 +241,7 @@ const handleLoadMoreMedium = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                                      <div className="flex rounded-lg  mt-1 bg-white h-8 items-center p-1">
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">

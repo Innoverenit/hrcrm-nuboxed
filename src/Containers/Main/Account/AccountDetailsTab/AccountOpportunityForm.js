@@ -19,9 +19,13 @@ import AddressFieldArray1 from '../../../../Components/Forms/Formik/AddressField
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
-    advancePayment: Yup.string().required("Input needed!"),
+    advancePayment: Yup.number()
+    .required("Input needed!")
+    .typeError('Number Required!'),
     contactPersonId: Yup.string().required("Input needed!"),
     orderCurrencyId: Yup.string().required("Input needed!"),
+    customPayment: Yup.number()
+    .typeError('Number Required!'),
 })
 function AccountOpportunityForm(props) {
     const contactOption = props.contactDistributor.map((item) => {
@@ -65,7 +69,7 @@ function AccountOpportunityForm(props) {
                 deliveryDate: "",
                 contactPersonId: "",
                 paymentInTerms: "",
-                customPayment: "",
+                customPayment: "0",
                 comments: "",
                 type:"Repair",
                 orderCurrencyId: "",
@@ -91,19 +95,7 @@ function AccountOpportunityForm(props) {
                     },
                 ],
 
-                unloadingAddress: [
-                    {
-                        address1: "",
-                        addressId: "",
-                        state: "",
-                        city: "",
-                        pinCode: "",
-                        countryId: "",
-                        latitude: "",
-                        longitude: "",
-                        country: "",
-                    },
-                ],
+               
 
             }}
 

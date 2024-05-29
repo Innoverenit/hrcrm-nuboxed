@@ -3,6 +3,7 @@ import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {getCategorylist} from "../../../Suppliers/SuppliersAction"
 import { addProcureDetails, getBrand, getModel } from "../../AccountAction";
 import ProcureDetailsCardList from "./ProcureDetailsCardList";
 
@@ -11,6 +12,7 @@ const { Option } = Select;
 function AddProcureExcel(props) {
   useEffect(() => {
     props.getBrand();
+    props.getCategorylist();
   }, []);
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
@@ -47,6 +49,14 @@ function AddProcureExcel(props) {
   const handleAddRow = () => {
     setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '' }]);
   };
+  const handleCategoryChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].category = value;
+    // updatedRows[index].model = ""; // Reset model when brand changes
+    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
+    setRows(updatedRows);
+    //props.getModel(value);
+  };
 
   const handleRemoveRow = (index) => {
     const updatedRows = [...rows];
@@ -59,7 +69,8 @@ function AddProcureExcel(props) {
       orderPhoneId: props.orderDetailsId.orderId,
       brandId: row.modelId,
       unit: row.unit,
-      specs: row.specs, // Include specs in the payload
+      specs: row.specs,
+      category:row.category ,
     }));
 
     // Make the API call
@@ -73,6 +84,34 @@ function AddProcureExcel(props) {
         {rows.map((row, index) => (
           <div key={index}>
             <div className="flex justify-around w-[30rem]">
+            <div>
+                <label>Category</label>
+                <div className="w-[9rem]">
+                  <Select
+                    style={{ width: 120 }}
+                    value={row.category}
+                    onChange={(value) => handleCategoryChange(value, index)}
+                  >
+                    {props.categoryList.map((a) => (
+                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+              {/* <div>
+                <label>Attribute</label>
+                <div className="w-[9rem]">
+                  <Select
+                    style={{ width: 120 }}
+                    value={row.currencies}
+                    onChange={(value) => handleCurrencyChange(value, index)}
+                  >
+                    {props.currencies.map((a) => (
+                      <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div> */}
               <div>
                 <label>Brand</label>
                 <div className="w-[13rem]">
@@ -141,7 +180,7 @@ function AddProcureExcel(props) {
   );
 }
 
-const mapStateToProps = ({ distributor, brandmodel, auth }) => ({
+const mapStateToProps = ({ distributor,suppliers, brandmodel, auth }) => ({
   userId: auth.userDetails.userId,
   orderDetailsId: distributor.orderDetailsId,
   addingProcureDetails: distributor.addingProcureDetails,
@@ -149,6 +188,7 @@ const mapStateToProps = ({ distributor, brandmodel, auth }) => ({
   brand: distributor.brand,
   model: distributor.model,
   token: auth.token,
+  categoryList:suppliers.categoryList
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -156,6 +196,7 @@ const mapDispatchToProps = (dispatch) =>
     addProcureDetails,
     getBrand,
     getModel,
+    getCategorylist,
   }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProcureExcel);

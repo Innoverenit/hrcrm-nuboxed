@@ -169,7 +169,7 @@ const handleLoadMoreLow = () => {
                                       
                                       <div>
                                          
-                <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -298,7 +298,7 @@ const handleLoadMoreLow = () => {
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
                       <h4 class=" text-xs text-cardBody font-poppins">
@@ -321,7 +321,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
-                            className="!text-base cursor-pointer"
+                            className="!text-xl cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
                             onClick={() => {
                               props.handleLeadModal(true)
@@ -367,7 +367,7 @@ const handleLoadMoreLow = () => {
                                onConfirm={() => props.deleteOrderRepairData(item.orderId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>
@@ -427,7 +427,7 @@ const handleLoadMoreLow = () => {
                                     return (
                                       <div>
                                         
-                <div className="flex justify-between  rounded-lg  mt-1 bg-white h-9 items-center p-1">
+                <div className="flex justify-between  rounded  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -555,7 +555,7 @@ const handleLoadMoreLow = () => {
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
                       <h4 class=" text-xs text-cardBody font-poppins">
@@ -578,7 +578,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
-                            className="!text-base cursor-pointer"
+                            className="!text-xl cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
                             onClick={() => {
                               props.handleLeadModal(true)
@@ -624,7 +624,7 @@ const handleLoadMoreLow = () => {
                                onConfirm={() => props.deleteOrderRepairData(item.orderId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>
@@ -684,7 +684,7 @@ const handleLoadMoreLow = () => {
                                     return (
                                       <div>
                                        
-                <div className="flex rounded-lg justify-between   mt-1 bg-white h-9 items-center p-1">
+                <div className="flex rounded justify-between   mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
                   <div className=" flex font-medium  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -813,7 +813,7 @@ const handleLoadMoreLow = () => {
                     <div class="rounded-full text-sm bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem]  max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex font-medium flex-col   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <h4 class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </h4> */}
                       <h4 class=" text-xs text-cardBody font-poppins">
@@ -836,7 +836,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
-                            className="!text-base cursor-pointer"
+                            className="!text-xl cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
                             onClick={() => {
                               props.handleLeadModal(true)
@@ -882,7 +882,7 @@ const handleLoadMoreLow = () => {
                                onConfirm={() => props.deleteOrderRepairData(item.orderId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>

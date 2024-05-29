@@ -100,7 +100,7 @@ function AllCompleteOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -271,7 +271,7 @@ function AllCompleteOrderList(props) {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-base cursor-pointer"
+                            className="!text-xl cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
