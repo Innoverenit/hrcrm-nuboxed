@@ -7,6 +7,7 @@ import { addProcureDetails, getBrand, getModel } from "../../../../../Account/Ac
 // import ProcureDetailsCardList from "./ProcureDetailsCardList";
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
 import {getCurrency} from "../../../../../../Auth/AuthAction";
+import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
 import { base_url2 } from "../../../../../../../Config/Auth";
 import LazySelect from "../../../../../../../Components/Forms/Formik/LazySelect";
 import { Field } from "formik";
@@ -17,9 +18,11 @@ function AddManualForm(props) {
     props.getBrand();
     props.getCurrency();
     props.getCategorylist();
+    props.getAllProductList();
+    props.getLocationList(props.orgId)
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currencies:'',id:'' }]);
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',currencies:'',id:'',currencyId:'' }]);
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -38,11 +41,24 @@ function AddManualForm(props) {
 
   const handleCurrencyChange = (value, index) => {
     const updatedRows = [...rows];
-    updatedRows[index].currencies = value;
+    updatedRows[index].currencyId = value;
     // updatedRows[index].model = ""; // Reset model when brand changes
     // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
     //props.getModel(value);
+  };
+
+  const handleAttributeChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].attribute = value;
+    setRows(updatedRows);
+   
+  };
+  const handleLocationChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].locationId = value;
+    setRows(updatedRows);
+   
   };
 
   const handleCategoryChange = (value, index) => {
@@ -65,7 +81,13 @@ function AddManualForm(props) {
 
   const handleSpecsChange = (value, index) => {
     const updatedRows = [...rows];
-    updatedRows[index].specs = value;
+    updatedRows[index].spces = value;
+    setRows(updatedRows);
+  };
+
+  const handleTypeChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].type = value;
     setRows(updatedRows);
   };
 
@@ -84,11 +106,14 @@ function AddManualForm(props) {
       orderPhoneId: props.orderDetailsId.orderId,
       brandId: row.modelId,
       unit: row.unit,
-      specs: row.specs,
+      spces: row.spces,
+      type: row.type,
       price: row.price,
       quality: row.quality,
-      currencies:row.currencies,
-      category:row.category
+      currencyId:row.currencyId,
+      category:row.category,
+      attribute:row.attribute,
+      locationId:row.locationId
                       
     }));
 
@@ -106,9 +131,9 @@ function AddManualForm(props) {
 
             <div>
                 <label>Category</label>
-                <div className="w-[9rem]">
+                <div className="w-[7rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 100 }}
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
@@ -118,26 +143,12 @@ function AddManualForm(props) {
                   </Select>
                 </div>
               </div>
- {/* <div className="w-[9rem]">
-                      <Field
-                        isRequired
-                        name="categoryName"
-                        label="Category"
-                        placeholder="Search or Create"
-                        optionLabel="categoryName"
-                        optionValue="categoryName"
-                        url={`${base_url2}/product/category`}
-                        component={LazySelect}
-                        isColumn
-                        inlineLabel
 
-                      />
-                    </div> */}
               <div>
                 <label>Brand</label>
-                <div className="w-[9rem]">
+                <div className="w-[7rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 100 }}
                     value={row.brand}
                     onChange={(value) => handleBrandChange(value, index)}
                   >
@@ -149,9 +160,9 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Model</label>
-                <div className="w-[9rem]">
+                <div className="w-[7rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 100 }}
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
                   >
@@ -164,10 +175,10 @@ function AddManualForm(props) {
               
               <div>
                 <label>Specs</label>
-                <div className="w-24 ml-2">
+                <div className="w-28 ">
                   <Select
                     style={{ width: 100 }}
-                    value={row.specs}
+                    value={row.spces}
                     onChange={(value) => handleSpecsChange(value, index)}
                   >
                     <Option value="US">US</Option>
@@ -179,7 +190,7 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Quality</label>
-                <div className="w-24">
+                <div className="w-28">
                   <Input
                     type="text"
                     value={row.quality}
@@ -190,7 +201,7 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Units</label>
-                <div className="w-24">
+                <div className="w-28">
                   <Input
                     type="text"
                     value={row.unit}
@@ -201,7 +212,7 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Price</label>
-                <div className="w-24">
+                <div className="w-28">
                   <Input
                     type="text"
                     value={row.price}
@@ -212,14 +223,56 @@ function AddManualForm(props) {
               </div>
               <div>
                 <label>Currency</label>
-                <div className="w-[9rem]">
+                <div className="w-[7rem]">
                   <Select
-                    style={{ width: 120 }}
-                    value={row.currencies}
+                    style={{ width: 100 }}
+                    value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
                   >
                     {props.currencies.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+              
+              <div>
+                <label>Type</label>
+                <div className="w-28 ">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.type}
+                    onChange={(value) => handleTypeChange(value, index)}
+                  >
+                    <Option value="Finished">Finished</Option>
+                    <Option value="UnFinished">UnFinished</Option>
+                  </Select>
+                </div>
+              </div>
+              <div>
+                <label>Attribute</label>
+                <div className="w-[7rem]">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.attribute}
+                    onChange={(value) => handleAttributeChange(value, index)}
+                  >
+                    {props.allProduct.map((a) => (
+                      <Option key={a.productId} value={a.productId}>{a.productFullName}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+              <div>
+                <label>Location</label>
+                <div className="w-[7rem]">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.locationId}
+                    onChange={(value) => handleLocationChange(value, index)}
+                  >
+                    {props.locationlist.map((a) => (
+                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -247,7 +300,9 @@ const mapStateToProps = ({ distributor, brandmodel, auth,suppliers }) => ({
   model: distributor.model,
   token: auth.token,
   currencies:auth.currencies,
-  categoryList:suppliers.categoryList
+  categoryList:suppliers.categoryList,
+  allProduct:distributor.allProduct,
+  locationlist:distributor.locationlist
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -256,7 +311,9 @@ const mapDispatchToProps = (dispatch) =>
     getBrand,
     getModel,
     getCurrency,
-    getCategorylist
+    getCategorylist,
+    getAllProductList,
+    getLocationList
   }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddManualForm);
