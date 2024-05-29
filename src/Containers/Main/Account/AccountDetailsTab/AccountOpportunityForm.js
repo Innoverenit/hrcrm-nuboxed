@@ -71,7 +71,7 @@ function AccountOpportunityForm(props) {
                 paymentInTerms: "",
                 customPayment: "0",
                 comments: "",
-                type:"Repair",
+                orderType:"Repair",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,
@@ -108,7 +108,7 @@ function AccountOpportunityForm(props) {
                         ...values,
                         orderSource: "erp",
                         priority: priority || "",
-                        type:values.type,
+                        orderType:values.orderType,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
                     }, props.distributorId,);
@@ -131,7 +131,7 @@ function AccountOpportunityForm(props) {
                             <div class=" flex justify-between">
  <div class="w-[45%]">
                                         <Field
-                                            name="type"
+                                            name="orderType"
                                             label="Type"
                                             isColumn
                                             inlineLabel
@@ -220,7 +220,7 @@ function AccountOpportunityForm(props) {
 
                                  
 
-                                    {values.type === "Repair" ? (
+                                    {values.orderType === "Repair" ? (
                                     <div className="mt-3">
                                         <StyledLabel>
                                             <h3>
@@ -351,7 +351,7 @@ function AccountOpportunityForm(props) {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                 <div class="w-[45%]">
-  {values.type === "Procure" ? null : (
+  {values.orderType === "Procure" ? null : (
     <Field
       name="availabilityDate"
       label="Pickup Date"
