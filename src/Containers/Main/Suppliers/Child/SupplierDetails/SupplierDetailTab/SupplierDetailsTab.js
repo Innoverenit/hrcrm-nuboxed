@@ -18,6 +18,7 @@ import { Tooltip } from "antd";
 import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
 import InventoryTable from "./InventoryTable";
 import AddSupplierExcleModal from "./SupplierDocumentTab/AddSupplierExcleModal";
+import InventoryTableAll from "./InventoryTableAll";
 const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));
 const AddSupplierContactModal = lazy(() => import("./SupplierContactTab/AddSupplierContactModal"));
 const SupplierContactTable = lazy(() => import("./SupplierContactTab/SupplierContactTable"));
@@ -241,6 +242,33 @@ class SupplierDetailsTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <SuppliersActivityTable supplier={this.props.supplier} />
+              </Suspense>
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <i class="far fa-share-square"></i>&nbsp;
+                   <label className="max-xl:text-[0.65rem]">Inventory All</label>
+                  {activeKey === "7" && (
+                    <>
+                      {/* <Tooltip title="Create">
+                        <PlusOutlined
+                          onClick={() => this.props.handleSupplierExcleUploadModal(true)}
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip> */}
+                    </>
+                  )}
+                </>
+              }
+              key="7"
+            >
+              <Suspense fallback={"Loading ..."}>
+                <InventoryTableAll />
               </Suspense>
             </TabPane>
           </StyledTabs>

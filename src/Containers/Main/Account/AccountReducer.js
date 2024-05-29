@@ -28,6 +28,9 @@ const initialState = {
   fetchingProcureRecordsError: false,
   procureRecordData: {},
 
+  updateSuscription: false,
+  updateSuscriptionError: false,
+
   addingDistributor: false,
   addingDistributorError: false,
 
@@ -1136,6 +1139,29 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         updateDisributorOrderById: false,
         updateDisributorOrderByIdError: true,
+      };
+
+
+      case types.UPDATE_SUSCRIPTION_REQUEST:
+      return { ...state, updateSuscription: true };
+    case types.UPDATE_SUSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        updateSuscription: false,
+        //updateOrderDetailModal: false,
+        // orderForGenerating: state.orderForGenerating.map((item) => {
+        //   if (item.productId == action.payload.productId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.UPDATE_SUSCRIPTION_FAILURE:
+      return {
+        ...state,
+        updateSuscription: false,
+        updateSuscriptionError: true,
       };
 
     case types.FETCHING_DISTRIBUTOR_ORDER_HISTORY_REQUEST:

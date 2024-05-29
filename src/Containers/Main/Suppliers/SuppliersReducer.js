@@ -278,6 +278,10 @@ const initialState = {
   fetchingSupplierContactListByIdError: false,
   contactSupplier: [],
 
+  fetchingInventoryAlllist: false,
+  fetchingInventoryAlllistError: false,
+  inventoryAllList:[],
+
   //getAllsuplr
   fetchingAllSupplier: false,
   fetchingAllSupplierError: false,
@@ -1650,6 +1654,21 @@ export const suppliersReducer = (state = initialState, action) => {
                       ...state,
                       fetchingInventorylist: false,
                       fetchingInventorylistError: true,
+                    };
+
+                    case types.GET_INVENTORYALLLIST_REQUEST:
+                    return { ...state, fetchingInventoryAlllist: true };
+                  case types.GET_INVENTORYALLLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingInventoryAlllist: false,
+                      inventoryAllList: action.payload,
+                    };
+                  case types.GET_INVENTORYALLLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingInventoryAlllist: false,
+                      fetchingInventoryAlllistError: true,
                     };
 
                     case types.GET_CATEGORYLIST_REQUEST:
