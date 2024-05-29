@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
-import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
-import {Popconfirm,Tooltip } from "antd";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
@@ -48,7 +44,7 @@ function SuppliersDeletedCardList(props) {
       <div className=' flex justify-end sticky top-28 z-auto'>
         <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[12.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
+            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
@@ -79,8 +75,8 @@ function SuppliersDeletedCardList(props) {
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                       <>
-                        <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
+                      <div
+                  className="flex  rounded justify-between bg-white mt-1 h-[2rem] items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[16.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
