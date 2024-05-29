@@ -380,14 +380,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
     <>
-    <div className=' flex justify-end sticky top-28 z-auto'>
-    <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+    <div className=' flex  sticky top-28 z-auto'>
+    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[16rem]">Name</div>
         <div className=" md:w-[5.1rem]">Start Date</div>
-        <div className=" md:w-[4.2rem] ">End Date</div>
+        <div className=" md:w-[6.21rem] ">End Date</div>
         <div className="md:w-[4.2rem]">Value</div>
-        <div className="md:w-[5.5rem]">Status</div>
+        <div className="md:w-[5.51rem]">Status</div>
         <div className="md:w-[1.8rem]">Sponsor</div> 
         <div className="w-[7rem]"></div>
 
@@ -427,11 +427,11 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                } `;
           return (
             <div>
-              <div
-                className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+               <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
               >
                 <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex font-medium flex-col md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
@@ -466,14 +466,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs text-cardBody font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex font-medium flex-col  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs text-cardBody font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
