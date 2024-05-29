@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
@@ -31,18 +31,14 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import AddSupplierDocumentModal from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 import AddCustomerProcurementModal from "./AccountOrderTab/AddCustomerProcurementModal";
 import CustomerProcurementTable from "./AccountOrderTab/CustomerProcurementTable";
-import LinkedOpportunity from "../../../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/LinkedOpportunity";
-import AddOpportunityModal from "../../../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerOpportunityModal";
 import LinkedOpportunityTable from "./LinkedOpportunityTable";
 import AddAccountOpportunityModal from "./AddAccountOpportunityModal";
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
 const AccountActivityModal = lazy(() => import("./AccountActivityTab/AccountActivityModal"));
-const AddDistributorDocumentModal = lazy(() => import("./AccountDocumentTab/AddDistributorDocumentModal"));
 const DistributorDocumentTable = lazy(() => import("./AccountDocumentTab/DistributorDocumentTable"));
 const LinkedDistributorNotes = lazy(() => import("./AccountNoteTab/LinkedDistributorNotes"));
-// const OrderGenerateModal = lazy(() => import("./AccountOrder1Tab/OrderGenerateModal"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
@@ -126,7 +122,7 @@ function AccountDetailsTab(props) {
                                 </Badge>
                                 &nbsp;
                                 {activeKey === "3" && (
-                                    <Tooltip title="Complete Orders">
+                                    <Tooltip title="Completed Orders">
                                         <HistoryOutlined
                                             fontSize="small"
                                             onClick={handleOpenOrder}
@@ -210,35 +206,60 @@ function AccountDetailsTab(props) {
                         </Suspense>
                     </TabPane>
                     <TabPane
-                        tab={
-                            <>
-                                <span>
-                                    <i class="fas fa-file-contract"></i>
-                                    &nbsp; Contact
-                                </span>
-                                {activeKey === "1" && (
-                                    <>
-                                        <Tooltip title="Add Contact">
-                                            <AddIcon
-                                                type="plus"
-                                                tooltipTitle="Create"
-                                                onClick={() => {
-                                                    //  props.handleDistributorContactModal(true);
-                                                    props.handleSupplierContactModal(true)
-                                                }}
-                                                className="!text-base cursor-pointer ml-1"
-                                            />
-                                        </Tooltip>
-                                    </>
-                                )}
-                            </>
+              tab={
+                <>
+                  <span>
+                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
+                    <span class=" ml-1">
+                      <FormattedMessage
+                        id="app.quotation"
+                        defaultMessage="Quotation"
+                      />
+                    </span>
+                  </span>
+                  {activeKey === "1" && (
+                    <>
+                      <Tooltip 
+                        title={
+                          <FormattedMessage
+                            id="app.create"
+                            defaultMessage="Create"
+                          />
                         }
-                        key="1"
-                    >
-                        <Suspense fallback={"Loading ..."}>
-                            <AccountContactTable distributorId={props.distributorData.distributorId} />
-                        </Suspense>
-                    </TabPane>
+                      >
+                        {props.user.opportunityCreateInd === true && (
+                          <PlusOutlined
+                            type="plus"
+                            
+                            tooltiptitle={
+                              <FormattedMessage
+                                id="app.Create"
+                                defaultMessage="Create"
+                              />
+                            }
+                            onClick={() => {
+                              props.handleAccountOpportunityModal(true);
+                            }}
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.3125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                        )}
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="1"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <LinkedOpportunityTable distributorData={props.distributorData} />
+              </Suspense>
+            </TabPane>
+                  
                     <TabPane
                         tab={
                             <>
@@ -377,59 +398,35 @@ function AccountDetailsTab(props) {
                     </TabPane>
 
                     <TabPane
-              tab={
-                <>
-                  <span>
-                    <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                      <FormattedMessage
-                        id="app.quotation"
-                        defaultMessage="Quotation"
-                      />
-                    </span>
-                  </span>
-                  {activeKey === "10" && (
-                    <>
-                      <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
+                        tab={
+                            <>
+                                <span>
+                                    <i class="fas fa-file-contract"></i>
+                                    &nbsp; Contact
+                                </span>
+                                {activeKey === "10" && (
+                                    <>
+                                        <Tooltip title="Add Contact">
+                                            <AddIcon
+                                                type="plus"
+                                                tooltipTitle="Create"
+                                                onClick={() => {
+                                                    //  props.handleDistributorContactModal(true);
+                                                    props.handleSupplierContactModal(true)
+                                                }}
+                                                className="!text-base cursor-pointer ml-1"
+                                            />
+                                        </Tooltip>
+                                    </>
+                                )}
+                            </>
                         }
-                      >
-                        {props.user.opportunityCreateInd === true && (
-                          <PlusOutlined
-                            type="plus"
-                            
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              props.handleAccountOpportunityModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
-                          />
-                        )}
-                      </Tooltip>
-                    </>
-                  )}
-                </>
-              }
-              key="10"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedOpportunityTable distributorData={props.distributorData} />
-              </Suspense>
-            </TabPane>
+                        key="10"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <AccountContactTable distributorId={props.distributorData.distributorId} />
+                        </Suspense>
+                    </TabPane>
 
                 </StyledTabs>
             </TabsWrapper>

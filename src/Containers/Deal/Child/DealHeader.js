@@ -9,6 +9,7 @@ class DealHeader extends Component {
       handleDealModal,
       viewType,
       setDealViewType,
+      teamsAccessInd,
       opencreateDealModal
     } = this.props;
     return (
@@ -18,6 +19,7 @@ class DealHeader extends Component {
         <ActionHeader
           leftComponent={
             <DealActionLeft
+            teamsAccessInd={teamsAccessInd}
               viewType={viewType}
               setDealViewType={setDealViewType}
             />

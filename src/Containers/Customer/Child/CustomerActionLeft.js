@@ -78,6 +78,11 @@ const CustomerActionLeft = (props) => {
     props.getCustomerListByUserId(props.userId, page, data);
     setPage(page + 1);
   }
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getCustomerTeamRecords(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -115,6 +120,7 @@ const CustomerActionLeft = (props) => {
 
   // }, [])
   const { user } = props;
+  const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"
     >
@@ -160,7 +166,7 @@ const CustomerActionLeft = (props) => {
         <Tooltip title="Teams">
           <Badge
             size="small"
-            count={(props.teamsAccessInd||props.viewType === "teams" && props.customerTeamRecordData.CustomerTeam || 0)}
+            count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}
             overflowCount={999}
           >
             <span

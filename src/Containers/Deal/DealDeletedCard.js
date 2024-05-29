@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../Components/UI/Elements";
 import "jspdf-autotable";
 import {
-  getTeamsDeals
+    getDeletedDeal
 } from "./DealAction";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { FormattedMessage } from "react-intl";
@@ -18,12 +18,12 @@ import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
-const DealsTeamCardList = (props) => {
+const DealDeletedCard = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
-    props.getTeamsDeals(props.userId,page);
+    props.getDeletedDeal(page);
     setPage(page + 1);
     // props.getSectors();
     // props.getCountries();
@@ -45,15 +45,15 @@ const DealsTeamCardList = (props) => {
   };
   const handleLoadMore = () => {
     setPage(page + 1);
-    props.getTeamsDeals("all", page);
+    props.getDeletedDeal( page);
     setPage(page + 1);
   }
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-  const { user, deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal, fetchingTeamsDealsData, leadsAllData } = props;
+  const { user, deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal, fetchingDeletedDeal, leadsAllData } = props;
 
-  if (fetchingTeamsDealsData) {
+  if (fetchingDeletedDeal) {
     return <BundleLoader />;
   }
 
@@ -98,13 +98,13 @@ const DealsTeamCardList = (props) => {
 
         </div>
         <InfiniteScroll
-          dataLength={props.teamsDealsData.length}
+          dataLength={props.deletedDeal.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
+          loader={fetchingDeletedDeal ? <div class="flex justify-center">Loading...</div> : null}
           height={"75vh"}
         >
-          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
+          {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <NodataFoundPage /> : props.deletedDeal.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -349,25 +349,21 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   updatePitchModal: pitch.updatePitchModal,
   openASSImodal: pitch.openASSImodal,
   allDealsData: deal.allDealsData,
-  teamsDealsData:deal.teamsDealsData,
-  fetchingTeamsDealsData:deal.fetchingTeamsDealsData,
+  deletedDeal:deal.deletedDeal,
+  fetchingDeletedDeal:deal.fetchingDeletedDeal,
+  
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getTeamsDeals,
-      // deletePitchData,
-      // handleUpdatePitchModal,
-      // setEditPitch,
-      // updateTypeForPitch,
-      // handlePitchNotesDrawerModal,
-      // handleAssimodal
+        getDeletedDeal,
+
 
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(DealsTeamCardList);
+export default connect(mapStateToProps, mapDispatchToProps)(DealDeletedCard);
 function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);

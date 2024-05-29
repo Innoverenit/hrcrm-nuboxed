@@ -19,9 +19,16 @@ import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFi
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
-    advancePayment: Yup.string().required("Input needed!"),
+    advancePayment: Yup.number()
+        .required("Input needed!")
+        .typeError('Number Required!'),
+        // .max(100, 'Advance payment should be less than 100'),
     contactPersonId: Yup.string().required("Input needed!"),
     orderCurrencyId: Yup.string().required("Input needed!"),
+    customPayment: Yup.number()
+    .typeError('Number Required!'),
+   
+    
 })
 function AddOrderInAccount(props) {
     const contactOption = props.contactDistributor.map((item) => {
@@ -58,6 +65,7 @@ function AddOrderInAccount(props) {
         // Disable past dates
         return current && current < dayjs().startOf('day');
     };
+ 
     return (
         <Formik
             initialValues={{
@@ -65,12 +73,12 @@ function AddOrderInAccount(props) {
                 deliveryDate: "",
                 contactPersonId: "",
                 paymentInTerms: "",
-                customPayment: "",
+                 customPayment: "0",
                 comments: "",
               
                 orderCurrencyId: "",
                 totalPhoneCount: "",
-                advancePayment: 50,
+                advancePayment: "50",
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
@@ -173,10 +181,11 @@ function AddOrderInAccount(props) {
                                     {values.paymentInTerms === "Custom" &&
                                         <div class="w-[45%]">
                                             <Field
+                                             type="number"
                                                 label={
                                                     <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
+                                                        id="app.CustomPayment"
+                                                        defaultMessage="Custom Payment (in days)"
                                                     />
                                                 }
                                                 name="customPayment"
@@ -204,6 +213,7 @@ function AddOrderInAccount(props) {
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
+                                         type="number"
                                             width={"100%"}
                                             style={{ borderRight: "3px red solid" }}
                                             name="advancePayment"

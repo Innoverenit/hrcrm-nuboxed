@@ -14,7 +14,7 @@ import {
   updateRequirement,
   getRequirementsDuration,
 } from "../../../../Settings/SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 const Notifications = lazy(() => import("../General/Notifications"));
 
 
@@ -58,7 +58,7 @@ function General(props) {
           
           repairProcessInd: props.requirementDuration.repairProcessInd,
           processInd: props.requirementDuration.processInd,
-          fifoInd: props.requirementDuration.fifoInd,
+          // fifoInd: props.requirementDuration.fifoInd,
 
         }}
         onSubmit={(values) => {
@@ -226,7 +226,7 @@ function General(props) {
                        
                       </div>
 
-                      {props.user.orderManagementInd === true &&
+                      {/* {props.user.orderManagementInd === true &&
                         <>
                             <div class=" flex flex-row justify-between mt-2 ml-4">
                             <div class=" text-sm  ml-2 ">Consumption</div>
@@ -244,7 +244,7 @@ function General(props) {
                        
                       
                         </>
-                      } 
+                      }  */}
 
                       <div class=" flex flex-row justify-between mt-3">
                       <div class=" text-sm  ml-2 font-bold ">Repair</div>
@@ -339,7 +339,7 @@ function General(props) {
                 </div>
                 <div class="mt-4">
                   Updated on{" "}
-                  {moment(props.requirementDuration.creationDate).format("ll")} by{" "}
+                  {dayjs(props.requirementDuration.creationDate).format("ll")} by{" "}
                   {props.requirementDuration.ownerName}
                 </div>
 

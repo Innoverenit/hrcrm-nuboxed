@@ -39,7 +39,7 @@ function AddShipperForm(props) {
       value: item.shipById,
     };
   });
-
+  console.log(shipByOptions)
   const [apiInd, setApiInd] = useState(false)
   const handleApiToggle = () => {
     setApiInd(!apiInd)

@@ -9,11 +9,18 @@ import { DeleteOutlined } from "@ant-design/icons";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import {getdealsRecord,getdealsAllRecord,getdealsTeamRecord,getlostRecords} from "../DealAction";
+import {getdealsRecord,getdealsAllRecord,
+  getdealsTeamRecord,getlostRecords,
+  getDeleteRecords
+} from "../DealAction";
 import { StopTwoTone, TableOutlined } from "@ant-design/icons";
 
 const DealActionLeft = (props) => {
-
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getdealsTeamRecord(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.getdealsRecord(props.userId);
@@ -22,7 +29,11 @@ const DealActionLeft = (props) => {
     } else if (props.viewType === "lost") {
       props.getlostRecords(props.userId);
       
-    } else if (props.viewType === "teams") {
+    }
+    else if (props.viewType === "delete") {
+      props.getDeleteRecords(props.userId);
+      
+    }  else if (props.viewType === "teams") {
       props.getdealsTeamRecord(props.userId);
     } 
   }, [props.viewType, props.userId,props.orgId]);
@@ -31,8 +42,12 @@ const DealActionLeft = (props) => {
     viewType,
     lostDealData,
    setDealViewType,
+   recordDeleteDealData,
     dealsTeamRecord,
+    user
   } = props;
+
+  const teamCount = props.teamsAccessInd && props.dealsTeamRecord ? props.dealsTeamRecord.investorOpportunityTeam : 0;
 
   return (
     <div class=" flex items-center">
@@ -158,7 +173,8 @@ const DealActionLeft = (props) => {
           size="small"
           count={
             (viewType === "lost" &&
-            lostDealData.OpportunityDetailsByLostInd) ||
+            lostDealData.OpportunityDetailsByLostInd
+            ) ||
             0
           }
           overflowCount={999}
@@ -179,7 +195,7 @@ const DealActionLeft = (props) => {
         </Badge>
       </Tooltip>
    
-      
+      {user.teamsAccessInd === true && (
         <Tooltip
           title={   <FormattedMessage
             id="app.teams"
@@ -189,8 +205,8 @@ const DealActionLeft = (props) => {
            <Badge
           size="small"
           count={
-            (viewType === "teams" &&
-            dealsTeamRecord.InvestorOpportunityTeam) ||
+            (teamCount || viewType === "teams" &&
+            dealsTeamRecord.investorOpportunityTeam) ||
             0
           }
           overflowCount={999}
@@ -206,12 +222,13 @@ const DealActionLeft = (props) => {
             tooltipTitle="Teams"
             onClick={() => props.setDealViewType("teams")}
           >
-            <Avatar style={{ background: props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
          <PeopleIcon/>
          </Avatar>
           </span>
           </Badge>
         </Tooltip>
+           )}
         {(props.dealFullListInd===true || props.user.role==="ADMIN") && (
         <Tooltip
           title={   <FormattedMessage
@@ -247,30 +264,31 @@ const DealActionLeft = (props) => {
       <Tooltip
         title={
           <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage="Deleted Opportunity"
+            id="app.deletedDeal"
+            defaultMessage="Deleted Deal"
           />
         }
       >
         {" "}
         <Badge
           size="small"
-        //   count={
-        //     (viewType === "dashboard" &&
-        //       recorddeleteOpportunityData.opportunityDetails) ||
-        //     0
-        //   }
+          count={
+            (viewType === "delete" &&
+            recordDeleteDealData.invOpportunity) ||
+            0
+          }
           overflowCount={999}
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
-            // onClick={() => props.setOpportunityViewType("dashboard")}
-            style={{
-              // cursor:"pointer"
-              //color: props.viewType === "dashboard" && "#1890ff",
+             onClick={() => props.setDealViewType("delete")}
+             style={{
+              cursor:"pointer",
+              color: props.viewType === "delete" && "#1890ff",
+            
             }}
           >
-             <Avatar style={{ background: props.viewType === "" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
             <DeleteOutlined />
             </Avatar>
           </span>
@@ -312,7 +330,8 @@ const mapStateToProps = ({ deal, auth, opportunity }) => ({
   recorddeleteOpportunityData: opportunity.recorddeleteOpportunityData,
   closeOpportunityData: opportunity.closeOpportunityData,
   lostOpportunityData: opportunity.lostOpportunityData,
-  dealFullListInd:auth.userDetails.dealFullListInd
+  dealFullListInd:auth.userDetails.dealFullListInd,
+  recordDeleteDealData:deal.recordDeleteDealData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -320,7 +339,8 @@ const mapDispatchToProps = (dispatch) =>
       getdealsRecord,
       getlostRecords,
       getdealsTeamRecord,
-      getdealsAllRecord
+      getdealsAllRecord,
+      getDeleteRecords
     },
     dispatch
   );

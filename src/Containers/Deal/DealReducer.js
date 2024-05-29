@@ -8,6 +8,10 @@ const initialState = {
   fetchingInvestorDealsDataError: false,
   investorDealsData:[],
 
+  fetchingDeletedDeal: false,
+  fetchingDeletedDealError: false,
+  deletedDeal:[],
+
   fetchingAllDelasRecords: false,
   fetchingAllDelasRecordsError: false,
   dealsAllRecord:{},
@@ -67,6 +71,10 @@ const initialState = {
   fetchingDealLinkedWorkflow: false,
   fetchingDealLinkedWorkflowError: false,
   dealLinkWorkflow:[],
+
+  fetchingDeleteRecords: false,
+  fetchingDeleteRecordsError: false,
+  recordDeleteDealData:{},
 
   updatingDealsContactValue: false,
   updatingDealsContactValueError: false,
@@ -772,6 +780,40 @@ export const dealReducer = (state = initialState, action) => {
                               fetchingActiveAssignedToList: false,
                               fetchingActiveAssignedToListError: true,
                             };
+
+
+                            case types.GET_DELETE_RECORDS_REQUEST:
+                              return { ...state, fetchingDeleteRecords: true };
+                            case types.GET_DELETE_RECORDS_SUCCESS:
+                              return {
+                                ...state,
+                                fetchingDeleteRecords: false,
+                                recordDeleteDealData: action.payload,
+                              };
+                            case types.GET_DELETE_RECORDS_FAILURE:
+                              return {
+                                ...state,
+                                fetchingDeleteRecords: false,
+                                fetchingDeleteRecordsError: true,
+                              };
+
+
+                              case types.GET_DELETED_DEAL_REQUEST:
+                                return { ...state, fetchingDeletedDeal: true };
+                              case types.GET_DELETED_DEAL_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingDeletedDeal: false,
+                                  // deletedOpportunity: action.payload,
+                          
+                                  deletedDeal: [...state.deletedDeal, ...action.payload],
+                                };
+                              case types.GET_DELETED_DEAL_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingDeletedDeal: false,
+                                  fetchingDeletedDealError: true,
+                                };
 
     default:
       return state;
