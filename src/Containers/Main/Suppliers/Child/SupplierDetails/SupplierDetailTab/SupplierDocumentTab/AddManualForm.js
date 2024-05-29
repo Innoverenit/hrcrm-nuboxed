@@ -87,9 +87,9 @@ function AddManualForm(props) {
       specs: row.specs,
       price: row.price,
       quality: row.quality,
-      currencies:row.currency_id,
-      category:row.id
-                           // Include specs in the payload
+      currencies:row.currencies,
+      category:row.category
+                      
     }));
 
     // Make the API call
