@@ -125,20 +125,7 @@ function AddProcureExcel(props) {
                   </Select>
                 </div>
               </div>
-              {/* <div>
-                <label>Attribute</label>
-                <div className="w-[9rem]">
-                  <Select
-                    style={{ width: 120 }}
-                    value={row.currencies}
-                    onChange={(value) => handleCurrencyChange(value, index)}
-                  >
-                    {props.currencies.map((a) => (
-                      <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div> */}
+           
               <div>
                 <label>Brand</label>
                 <div className="w-[13rem]">
