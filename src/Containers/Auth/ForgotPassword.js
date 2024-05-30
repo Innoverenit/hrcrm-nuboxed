@@ -99,7 +99,7 @@ class ForgotPassword extends Component {
                     // validationSchema={ChangePasswordSchema}
                     onSubmit={(values) => {
                       console.log(values);
-                      this.props.forgetPassword(
+                      this.props.forgotUserPassword(
                         {
                           emailId: this.props.email,
                         },

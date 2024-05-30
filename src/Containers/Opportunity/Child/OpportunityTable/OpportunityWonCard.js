@@ -88,15 +88,15 @@ function OpportunityWonCard(props) {
 
       return (    
   <>
-  <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex max-sm:hidden  w-[99%] max-xl:w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Name</div>
+        <div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Name</div>
         <div className=" w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.12rem] max-lg:w-[15.12rem]">Prospect</div>
-        <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">Sponsor</div>
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">Sponsor</div>
         <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
         <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">Value</div>
-        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">Sales Rep</div>
-        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">Owner</div>
+        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">Sales Rep</div>
+        <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">Owner</div>
         <div className="md:w-[4.8rem] "></div>
         <div className="w-12"></div>
       </div>
@@ -117,12 +117,11 @@ function OpportunityWonCard(props) {
                  });
                  return (
                     <div>
-                    <div
-                      className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
-                      
-                    >
+                     <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[13rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
+                      <div className=" flex font-medium  w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -139,7 +138,7 @@ function OpportunityWonCard(props) {
                                    </div>
                                    
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                        <div class=" flex max-sm:w-full items-center  flex-row ">
                                             {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
@@ -166,7 +165,7 @@ function OpportunityWonCard(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex font-medium   w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
@@ -179,7 +178,7 @@ function OpportunityWonCard(props) {
                                 
                                
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-44 max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[8.01rem] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -197,7 +196,7 @@ function OpportunityWonCard(props) {
           
                                   </div>
                               </div>
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -205,7 +204,7 @@ function OpportunityWonCard(props) {
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -252,7 +251,7 @@ function OpportunityWonCard(props) {
 
                                     </div> */}
                               
-                                <div className=" flex font-medium flex-col w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex font-medium  w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins max-sm:text-sm">
@@ -269,7 +268,7 @@ function OpportunityWonCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium  w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -287,7 +286,7 @@ function OpportunityWonCard(props) {
                    </div>
                   
                   
-                   <div class="flex flex-col w-[4rem] max-xl:w-[3.75rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto">
+                  
                     <div>
                     <Tooltip title='Click to Open'><span
          onClick={() => {
@@ -315,8 +314,8 @@ function OpportunityWonCard(props) {
             
             />
                     </div>
-                  </div>
-                  <div class="flex flex-col w-[4rem] max-xl:w-[3.75rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto">
+                 
+                  
                    
                       <div>
                          <Tooltip
@@ -364,10 +363,10 @@ function OpportunityWonCard(props) {
                           </StyledPopconfirm>
                       </div>
              
-                    <div></div>
-                  </div>   
+                   
+                 
                   
-                                <div class="flex flex-col w-[4rem] max-xl:w-[3.75rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto">
+                               
                    <div>
                    <span
           className=" cursor-pointer"
@@ -415,7 +414,7 @@ function OpportunityWonCard(props) {
         
           </Tooltip></div>
                         
-            </div>
+       
                    </div>   
                             </div>
                         </div>
