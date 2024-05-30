@@ -634,14 +634,14 @@ export const getCompleteOrders = (distributorId, pageNo) => (
     });
 };
 
-export const getHighCompleteOrders = (distributorId, pageNo) => (
+export const getHighCompleteOrders = (distributorId,type, pageNo,ptype) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_HIGH_COMPLETE_ORDERS_REQUEST,
   });
   axios
-    .get(`${base_url2}/`,
+    .get(`${base_url2}/phoneOrder/completeHighPriorityWiseOrders/${distributorId}/${type}/${pageNo}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -664,14 +664,14 @@ export const getHighCompleteOrders = (distributorId, pageNo) => (
 };
 
 
-export const getMediumCompleteOrders = (distributorId, pageNo) => (
+export const getMediumCompleteOrders = (distributorId,type, pageNo,ptype) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST,
   });
   axios
-    .get(`${base_url2}/`,
+    .get(`${base_url2}/phoneOrder/completeMediumPriorityWiseOrders/${distributorId}/${type}/${pageNo}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -693,14 +693,14 @@ export const getMediumCompleteOrders = (distributorId, pageNo) => (
     });
 };
 
-export const getLowCompleteOrders = (distributorId, pageNo) => (
+export const getLowCompleteOrders = (distributorId,type, pageNo,ptype) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_LOW_COMPLETE_ORDERS_REQUEST,
   });
   axios
-    .get(`${base_url2}/`,
+    .get(`${base_url2}/phoneOrder/completeLowPriorityWiseOrders/${distributorId}/${type}/${pageNo}/${ptype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

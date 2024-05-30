@@ -397,7 +397,7 @@ function AccountOpportunityForm(props) {
 
                                 <div class=" mt-3 flex justify-between">
 
-                                    <div class="w-[20%]  mt-[35px] mr-[100px] ml-[22rem] mb-[17px] ml-[-33px] flex justify-end">
+                                    <div class="w-[20%]  mt-[35px] mr-[100px] mb-[17px] ml-[-33px] flex justify-end">
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"

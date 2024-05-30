@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
+import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountOpportunityForm from "./AccountOpportunityForm";
+import AccountRepairSecondStep from "./AccountRepairSecondStep";
 
 const Step = StyledSteps.Step;
 
@@ -45,16 +47,16 @@ class AccountOpportunityStepper extends Component {
                 icon: <UserOutlined />,
                 content: <AccountOpportunityForm distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
-            // {
-            //     title: <FormattedMessage
-            //         id="app.phonedetails"
-            //         defaultMessage="Phone details"
-            //     />,
-            //     icon: <PhoneOutlined
-            //         style={{ color: "blue" }}
-            //     />,
-            //     content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
-            // },
+            {
+                title: <FormattedMessage
+                    id="app.phonedetails"
+                    defaultMessage="Phone details"
+                />,
+                icon: <PhoneOutlined
+                    style={{ color: "blue" }}
+                />,
+                content: <AccountRepairSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+            },
 
 
         ];
@@ -69,13 +71,13 @@ class AccountOpportunityStepper extends Component {
                             defaultMessage="Quotation"
                         />}
                     />
-                    {/* <Step
+                    <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
                         />}
-                    /> */}
+                    />
 
                 </StyledSteps>
                 <div

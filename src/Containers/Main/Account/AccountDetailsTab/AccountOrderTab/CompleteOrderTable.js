@@ -57,9 +57,9 @@ const CompleteOrderTable = (props) => {
         setPage(page + 1);
         props.getOrderRecords(props.distributorId,"repair");
         props.getLocationList(props.orgId);
-        props.getHighCompleteOrders(props.distributorId, page, "repair","High");
-        props.getMediumCompleteOrders(props.distributorId, page, "repair","Medium");
-        props.getLowCompleteOrders(props.distributorId, page, "repair","Low")
+        props.getHighCompleteOrders(props.distributorId,"repair", page, "High");
+        props.getMediumCompleteOrders(props.distributorId,"repair", page, "Medium");
+        props.getLowCompleteOrders(props.distributorId,"repair", page, "Low")
         
         // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
     }, [])
@@ -81,17 +81,17 @@ const CompleteOrderTable = (props) => {
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
-        props.getHighCompleteOrders(props.distributorId, page, "repair","High")
+        props.getHighCompleteOrders(props.distributorId,"repair", page, "High")
     };
 
     const handleLoadMoreMedium = () => {
         setPage(page + 1);
-        props.getMediumCompleteOrders(props.distributorId, page, "repair","Medium")
+        props.getMediumCompleteOrders(props.distributorId,"repair", page, "Medium")
     };
     const handleLoadMoreLow = () => {
         setPage(page + 1);
         // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
-        props.getLowCompleteOrders(props.distributorId, page, "repair","Low")
+        props.getLowCompleteOrders(props.distributorId, "repair",page, "Low")
     };
     const [visible, setVisible] = useState(false)
     const handleUpdateRevisePrice = () => {
