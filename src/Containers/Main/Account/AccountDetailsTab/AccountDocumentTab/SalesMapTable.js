@@ -41,7 +41,7 @@ const SalesMapTable = (props) => {
                             
                             return (
                                 <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex ">
                                             <div className=" flex font-medium flex-col md:w-[21.56rem] max-sm:w-full  ">
 
