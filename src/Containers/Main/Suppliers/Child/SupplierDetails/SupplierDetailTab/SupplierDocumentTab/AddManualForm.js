@@ -105,6 +105,8 @@ function AddManualForm(props) {
     const dataToSend = rows.map((row) => ({
       orderPhoneId: props.orderDetailsId.orderId,
       brandId: row.modelId,
+      orgId: props.orgId,
+      userId: props.userId,
       unit: row.unit,
       spces: row.spces,
       type: row.type,
