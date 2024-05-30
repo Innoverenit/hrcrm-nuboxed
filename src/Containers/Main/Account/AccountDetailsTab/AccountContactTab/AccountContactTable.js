@@ -135,7 +135,7 @@ class AccountContactTable extends Component {
                             const data = {}
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                                     >
                                         <div class="flex">
 
@@ -194,7 +194,7 @@ class AccountContactTable extends Component {
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 <Tooltip title="Edit">
                                                     <BorderColorIcon
-                                                        className="!text-base cursor-pointer text-[grey]"
+                                                        className="!text-xl cursor-pointer text-[grey]"
                                                         onClick={() => {
                                                             this.props.setEditDistributorContact(item);
                                                             this.props.handleUpdateDistributorContactModal(true);

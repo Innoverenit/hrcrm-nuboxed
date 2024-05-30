@@ -38,7 +38,7 @@ class DistributorDocumentTable extends Component {
                             
                             return (
                                 <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex w-3/4">
                                             <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
 

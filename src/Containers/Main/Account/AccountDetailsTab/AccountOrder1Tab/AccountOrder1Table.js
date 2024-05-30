@@ -90,7 +90,7 @@ const AccountOrder1Table = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3">
+                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                                                 <div class="flex w-3/4">
                                                     <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
                                                         <Tooltip>
@@ -180,7 +180,7 @@ const AccountOrder1Table = (props) => {
                                                         <div class=" text-xs text-cardBody font-poppins text-center">
                                                             <Tooltip title="Collection">
                                                                 <PaidIcon
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-xl cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleOrderPaymentModal(true);
                                                                         handleSetParticularOrderData(item);

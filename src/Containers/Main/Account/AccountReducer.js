@@ -1613,8 +1613,8 @@ export const distributorReducer = (state = initialState, action) => {
         return {
           ...state,
           addingQuotationOrder: false,   
-          quotationRepairOrder: action.payload.type === 'Repair' ? [action.payload, ...state.quotationRepairOrder] : state.quotationRepairOrder,
-          quotationProcureOrder: action.payload.type === 'Procure' ? [action.payload, ...state.quotationProcureOrder] : state.quotationProcureOrder,  
+          quotationRepairOrder: action.payload.orderType === 'Repair' ? [action.payload, ...state.quotationRepairOrder] : state.quotationRepairOrder,
+          quotationProcureOrder: action.payload.orderType === 'Procure' ? [action.payload, ...state.quotationProcureOrder] : state.quotationProcureOrder,  
           // quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
           // quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
           orderDetailsId: action.payload
