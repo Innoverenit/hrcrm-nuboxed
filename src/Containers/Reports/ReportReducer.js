@@ -6,9 +6,21 @@ const initialState = {
     fetchingOrganisationReportError: false,
     organisationReportData: [],
 
+
+
+    fetchingReportsAttendence:false,
+    fetchingReportsAttendenceError:false,
+    reportsAttendence:[],
+
     fetchingAllReportInvestors: false,
      fetchingAllReportInvestorsError: false,
      allReportInvestors:[],
+
+
+
+     fetchingReportsProductivity:false,
+     fetchingReportsProductivityError:false,
+     reportsProductivity:[],
 
      fetchingTaskdata:false,
      fetchingTaskdataError:false,
@@ -176,6 +188,27 @@ export const reportReducer = (state = initialState, action) => {
                 fetchingOrganisationReportError: true,
             };
 
+
+
+
+
+            case types.GET_REPORTS_ATTENDENCE_REQUEST:
+                return { ...state, fetchingReportsAttendence: true };
+              // case types.GET_LOCATION_DATA_SUCCESS:
+              //   return {
+              //     ...state,
+              //     fetchingLocationData: false,
+              //     showLocation: [...state.showLocation,...action.payload]
+              //   };
+              case types.GET_REPORTS_ATTENDENCE_SUCCESS:
+                return { ...state, fetchingReportsAttendence: false,reportsAttendence : action.payload };
+              case types.GET_REPORTS_ATTENDENCE_FAILURE:
+                return {
+                  ...state,
+                  fetchingReportsAttendence: false,
+                  fetchingReportsAttendenceError: true,
+                };
+
         //get report by myView
         case types.GET_MY_VIEW_REPORT_REQUEST:
             return { ...state, fetchingMyViewReport: true };
@@ -246,6 +279,25 @@ export const reportReducer = (state = initialState, action) => {
                   gettingReportTask: false,
                   gettingReportTaskError: true,
                 };
+
+
+
+                case types.GET_REPORTS_PRODUCTIVITY_REQUEST:
+                    return { ...state, fetchingReportsProductivity: true };
+                  // case types.GET_LOCATION_DATA_SUCCESS:
+                  //   return {
+                  //     ...state,
+                  //     fetchingLocationData: false,
+                  //     showLocation: [...state.showLocation,...action.payload]
+                  //   };
+                  case types.GET_REPORTS_PRODUCTIVITY_SUCCESS:
+                    return { ...state, fetchingReportsProductivity: false, reportsProductivity: action.payload };
+                  case types.GET_REPORTS_PRODUCTIVITY_FAILURE:
+                    return {
+                      ...state,
+                      fetchingReportsProductivity: false,
+                      fetchingReportsProductivityError: true,
+                    };
 
         case types.GET_SALES_REPORTS_REQUEST:
             return { ...state, fetchingSalesReports: true };

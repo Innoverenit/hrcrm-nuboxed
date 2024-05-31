@@ -115,6 +115,7 @@ const buttonData = [
   { name: 'Orders' },
   { name: 'Production' },
   { name: 'Receivables' },
+  { name: 'Productivity' },
 ];
 
 const dropdownOptions = {

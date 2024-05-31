@@ -1,7 +1,7 @@
 import * as types from "./ReportActionType";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url,base_url2,base_url3,login_url } from "../../Config/Auth";
 /**
  * set report viewType to me or organization
  */
@@ -249,6 +249,65 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
         console.log(err);
         dispatch({
           type: types.GET_TASK_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getReportsProductivity = (locationId,monday,sunday) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORTS_PRODUCTIVITY_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/production/manufacture/avgTime/date-wise/all-user/${locationId}?endDate=${sunday}&startDate=${monday}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+       
+        dispatch({
+          type: types.GET_REPORTS_PRODUCTIVITY_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORTS_PRODUCTIVITY_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+
+  export const getReportsAttendence = (locationId,monday,sunday) => (dispatch) => {
+    dispatch({
+      type: types.GET_REPORTS_ATTENDENCE_REQUEST,
+    });
+    axios
+      .get(`${base_url}/attendance/avgTime/date-wise/all-user/${locationId}?endDate=${sunday}&startDate=${monday}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+       
+        dispatch({
+          type: types.GET_REPORTS_ATTENDENCE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: types.GET_REPORTS_ATTENDENCE_FAILURE,
           payload: err,
         });
       });

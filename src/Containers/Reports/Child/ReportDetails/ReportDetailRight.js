@@ -1,6 +1,7 @@
 import React, { Component, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ReportsAttendenceCard from "../ReportDetails/ReportsAttendenceCard"
 import ReportsTaskList from "../ReportDetails/ReportsTaskList"
 import Requirement from "../MyViewReports/Requirement";
 import Selected from "../OrganizationView/Selected";
@@ -40,6 +41,12 @@ class ReportDetailRight extends Component {
     console.log(this.props.customer);
     return (
       <div class=" w-full">
+                  {this.props.selectedCategory === "Productivity" && (
+    <ReportsAttendenceCard 
+    gettingReportProspect={this.props.gettingReportProspect}
+    reportProspect={this.props.reportProspect}
+    allReportInvestors={this.props.allReportInvestors} />
+  )}
               {this.props.selectedCategory === "Prospect" && (
     <ReportsProspectList 
     gettingReportProspect={this.props.gettingReportProspect}
