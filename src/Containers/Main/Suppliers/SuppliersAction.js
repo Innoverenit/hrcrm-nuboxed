@@ -1897,7 +1897,7 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
     });
 };
 
-export const addManual = (customer,  cb) => (dispatch, getState) => {
+export const addManual = (customer,userId,pageNo,) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_MANUAL_REQUEST,
@@ -1910,7 +1910,7 @@ export const addManual = (customer,  cb) => (dispatch, getState) => {
       },
     })
     .then((res) => {
-     // dispatch(getProcureDetails(orderPhoneId))
+      dispatch(getInventorylist(userId,pageNo))
       Swal.fire({
         icon: 'success',
         title: 'list added',
@@ -1928,7 +1928,7 @@ export const addManual = (customer,  cb) => (dispatch, getState) => {
         type: types.ADD_MANUAL_FAILURE,
         payload: err,
       });
-      cb && cb();
+      //cb && cb();
     });
 };
 

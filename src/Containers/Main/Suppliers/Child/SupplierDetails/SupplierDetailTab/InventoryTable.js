@@ -111,16 +111,17 @@ function InventoryTable(props) {
                                         <>
                                             <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2rem] items-center p-3" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium justify-between  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             {item.categoryName}
-                                                            {date === currentdate ? (
-                                                                <div class="text-xs font-bold ml-4 text-[tomato]">
+                                                           
+
+                                                        </div>
+                                                        {date === currentdate ? (
+                                                                <div class="text-xs font-bold mr-4 text-[tomato]">
                                                                     New
                                                                 </div>
                                                             ) : null}
-
-                                                        </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[9.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
