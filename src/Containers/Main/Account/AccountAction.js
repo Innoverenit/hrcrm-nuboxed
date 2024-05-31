@@ -4006,6 +4006,34 @@ export const getProcureDetails = (orderPhoneId) => (dispatch) => {
 };
 
 
+export const getQuotationExcelDetails = (orderPhoneId) => (dispatch) => {
+  dispatch({
+      type: types.GET_QUOTATION_EXCEL_DETAILS_REQUEST,
+  });
+  axios
+      .get(`${base_url2}/quotation/procure/order/${orderPhoneId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_QUOTATION_EXCEL_DETAILS_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_QUOTATION_EXCEL_DETAILS_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+
 export const deleteProcureData = (id,orgId) => (dispatch, getState) => {
   const { userId } = getState("auth").auth.userDetails;
   // console.log("inside deleteCall", callId);
@@ -4184,13 +4212,13 @@ export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatc
   });
 
   axios
-    .post(`${base_url2}/`, customer, {
+    .post(`${base_url2}/quotation/procure/order`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      dispatch(getProcureDetails(orderPhoneId))
+      dispatch(getQuotationExcelDetails(orderPhoneId))
       Swal.fire({
         icon: 'success',
         title: 'list added',

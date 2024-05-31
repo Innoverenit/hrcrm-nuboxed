@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
+import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../../Suppliers/SuppliersAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
@@ -28,9 +29,11 @@ function ProcureDetailsCardList(props) {
   const [category, setCategory] = useState("");
   const [attribute, setAttribute] = useState("");
   const [quality, setQuality] = useState("");
+  const [currency, setCurrency] = useState("");
   const [location, setLocation] = useState("");
   const [model, setModel] = useState("");
   const [newUnitName, setUnitName] = useState('');
+  const [newPrice, setPrice] = useState('');
   const [specs, setSpecs] = useState("");
   const [particularRowData, setParticularRowData] = useState({});
 
@@ -38,6 +41,7 @@ function ProcureDetailsCardList(props) {
     props.getBrand();
     props.getProcureDetails(props.orderDetailsId.orderId);
     props.getCategorylist();
+    props.getSaleCurrency()
     props.getAllProductList();
     props.getSupplierSuppliesQuality();
     props.getLocationList(props.orgId);
@@ -53,7 +57,7 @@ function ProcureDetailsCardList(props) {
     }));
   };
 
-  const handleEditClick = (id, itemCategory,itemBrand, itemModel,itemAttribute,itemQuality, itemLocation,unit, itemSpecs) => {
+  const handleEditClick = (id, itemCategory,itemBrand, itemModel,itemAttribute,itemQuality, itemLocation,unit,price,itemCurrency, itemSpecs) => {
     setCategory(itemCategory)
     setEditContactId(id);
     setBrand(itemBrand);
@@ -62,6 +66,8 @@ function ProcureDetailsCardList(props) {
     setLocation(itemLocation)
     setModel(itemModel);
     setUnitName(unit);
+    setPrice(price);
+    setCurrency(itemCurrency)
     setSpecs(itemSpecs);
   };
 
@@ -88,6 +94,10 @@ function ProcureDetailsCardList(props) {
     setQuality(value);
    
   };
+  const handleCurrencyChange = async (value) => {
+    setCurrency(value);
+   
+  };
   const handleLocationChange = async (value) => {
     setLocation(value);
    
@@ -107,10 +117,12 @@ function ProcureDetailsCardList(props) {
       orderPhoneId: props.orderDetailsId.orderId,
       brandId: model,
       unit: newUnitName,
+      price:newPrice,
       specs: specs,
       category:category,
       attribute:attribute,
       quality:quality,
+      currency:currency,
       location:location,
     };
 
@@ -153,8 +165,15 @@ function ProcureDetailsCardList(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
+   
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          </div>
+          <div className="md:w-[8.8rem]">
+            <FormattedMessage id="app.price" defaultMessage="Price" />
+          </div>
+          <div className="md:w-[8.8rem]">
+            <FormattedMessage id="app.currency" defaultMessage="Currency" />
           </div>
         
           <div className="md:w-[6.12rem]"></div>
@@ -300,13 +319,12 @@ function ProcureDetailsCardList(props) {
                   )}
                 </div>
               </div>
-
               <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"6rem"}}
                       type="text"
                       value={newUnitName}
                       onChange={(e) => setUnitName(e.target.value)}
@@ -316,7 +334,42 @@ function ProcureDetailsCardList(props) {
                   )}
                 </div>
               </div>
-             
+
+              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Price"
+                      style={{border:"2px solid black",width:"6rem"}}
+                      type="text"
+                      value={newPrice}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price} </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={currency}
+                      onChange={(e) => handleCurrencyChange(e.target.value)}
+                    >
+                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
+                        <option key={currencyIndex} value={currencyItem.currency_id}>
+                          {currencyItem.currency_name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.currency}</div>
+                  )}
+                </div>
+              </div>
 
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
@@ -333,7 +386,7 @@ function ProcureDetailsCardList(props) {
                     <BorderColorIcon
                       tooltipTitle="Edit"
                       iconType="edit"
-                      onClick={() => handleEditClick(item.id, item.category,item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs)}
+                      onClick={() => handleEditClick(item.id, item.category,item.brand, item.model,item.attribute,item.quality,item.location, item.unit,item.price,item.currency, item.specs)}
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                   )}
@@ -375,11 +428,13 @@ const mapStateToProps = ({ distributor,suppliers,auth }) => ({
   supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
   locationlist:distributor.locationlist,
   orgId: auth.userDetails.organizationId,
+  saleCurrencies: auth.saleCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      getSaleCurrency,
       getProcureDetails,
       getAllProductList,
       deleteProcureData,

@@ -207,6 +207,9 @@ const initialState = {
                         fetchingCategorylistError: false,
                         categoryList:[],
 
+                        updatingPoContactValue: false,
+                        updatingPoContactValueError: false,
+
   updatingSuppliersEvent: false,
   updatingSuppliersEventError: false,
 
@@ -1693,6 +1696,28 @@ export const suppliersReducer = (state = initialState, action) => {
                         fetchingCategorylist: false,
                         fetchingCategorylistError: true,
                       };
+
+                      case types.UPDATE_PO_CONTACT_REQUEST:
+                        return { ...state, updatingPoContactValue: true };
+                      case types.UPDATE_PO_CONTACT_SUCCESS:
+                        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+                        return {
+                          ...state,
+                          updatingPoContactValue: false,
+                          purchaseList: state.purchaseList.map((item) => {
+                            if (item.poSupplierDetailsId == action.payload.poSupplierDetailsId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        };
+                      case types.UPDATE_PO_CONTACT_FAILURE:
+                        return {
+                          ...state,
+                          updatingPoContactValue: false,
+                          updatingPoContactValueError: true,
+                        };
 
 
 

@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import { DatePicker } from "antd";
+import moment from "moment";
+
 import {
     getPurchaseSuppliersList,
     handlePoLocationModal,
     handlePoListModal,
     handleTermsnConditionModal,
-    addCurrencyInPo
+    addCurrencyInPo,
+    updatePOContact,
+    getSupplierContactList
 } from "../../../SuppliersAction"
 import { Button, Select, Tooltip } from 'antd';
 import dayjs from "dayjs";
@@ -24,8 +29,15 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 const { Option } = Select;
 
 function PurchaseOrderTable(props) {
+
+  const [editedFields, setEditedFields] = useState({});
+  const [editContactId, setEditContactId] = useState(null);
+  const [contact, setContact] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+
     useEffect(() => {
         props.getCurrency()
+        props.getSupplierContactList(props.supplier.supplierId);
         props.getPurchaseSuppliersList(props.supplier.supplierId);
     }, []);
     const [rowData, setRowData] = useState({})
@@ -38,6 +50,30 @@ function PurchaseOrderTable(props) {
         setShowIcon(!showIcon)
 
     }
+    const handleUpdate = (poSupplierDetailsId) => {
+        const formattedDate = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z' : null;
+        const data = {
+            expectDeliveryDate:formattedDate,
+          poContactPersonId:contact,
+          
+        };
+    
+        props.updatePOContact(data, poSupplierDetailsId);
+    
+        setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
+        setEditContactId(null);
+      };
+    const handleEditClick = (poSupplierDetailsId, itemContact,expectDeliveryDate) => {
+       
+        setEditContactId(poSupplierDetailsId);
+        setContact(itemContact)
+        setSelectedDate(expectDeliveryDate);
+      };
+
+      const handleCancelClick = (poSupplierDetailsId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
+        setEditContactId(null);
+      };
     const handleChangeCurrency = (val) => {
         setCurrency(val)
     }
@@ -45,6 +81,11 @@ function PurchaseOrderTable(props) {
         setShowIcon(false)
         setCurrency("")
     }
+
+    const handleContactChange = async (value) => {
+        setContact(value);
+       
+      };
 
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
@@ -68,6 +109,9 @@ function PurchaseOrderTable(props) {
                         </div>
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Delivery
+                        </div>
+                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                            Contact
                         </div>
                         <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             <FormattedMessage
@@ -136,12 +180,53 @@ function PurchaseOrderTable(props) {
                                                             {item.locationName}
                                                         </div>
                                                     </div>
+                                                    <div className="flex font-medium flex-col md:w-[11rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+                                         <DatePicker
+                                         style={{marginLeft:"0.5rem"}}
+                                       // defaultValue={moment(item.borrowDate)}
+               value={selectedDate ? moment(selectedDate) : null} 
+               onChange={(date, dateString) => setSelectedDate(dateString)}
+               picker="date" 
+             />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">
+ 
+                        {item.expectDeliveryDate ? moment(item.expectDeliveryDate).format("ll") : ""}
+                        </div>
+                  )}
+                </div>
+              </div>
+
+                                                    <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={contact}
+                      onChange={(e) => handleContactChange(e.target.value)}
+                    >
+                      {props.contactSupplier.map((contactItem, contactIndex) => (
+                        <option key={contactIndex} value={contactItem.contactPersonId}>
+ {contactItem.firstName}{contactItem.lastName}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.category}</div>
+                  )}
+                </div>
+              </div>
+           
                                                     <div className=" flex font-medium  w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
+ 
                                                     <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
                                                             {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
@@ -159,6 +244,7 @@ function PurchaseOrderTable(props) {
                                                                 item.poCurrency}
                                                         </div>
                                                     </div>
+        
                                                     <div className=" flex font-medium  w-[12.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Update Currency">
@@ -172,6 +258,7 @@ function PurchaseOrderTable(props) {
                                                                         <Button onClick={handleCurrencyField}>Cancel</Button>
                                                                     </div> :
                                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                                 
                                                                    <BorderColorIcon
                                                                        className=" !text-xl cursor-pointer text-[tomato]"
                                                                         onClick={() => {
@@ -179,11 +266,36 @@ function PurchaseOrderTable(props) {
                                                                             handleCurrencyField()
                                                                         }}
                                                                     />
+                                                                  
                                                                     </div>
                                                                 }
                                                             </Tooltip>
                                                         </div>
                                                     </div>
+                                                    <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                <div className="flex">
+                  {editContactId === item.poSupplierDetailsId ? (
+                    <>
+                      <Button onClick={() => handleUpdate(item.poSupplierDetailsId)}>
+                        Save
+                      </Button>
+                      <Button onClick={() => handleCancelClick(item.poSupplierDetailsId)} style={{ marginLeft: '0.5rem' }}>
+                        Cancel
+                      </Button>
+                    </>
+                  ) : (
+                    <Tooltip title="Update Contact">
+                    <BorderColorIcon
+                      tooltipTitle="Edit"
+                    
+                      onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate, )}
+                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
+                    />
+                        </Tooltip>
+                  )}
+                </div>
+               
+              </div>
                                                     <div className=" flex font-medium  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             {item.locationName === null ? <Button
@@ -246,6 +358,7 @@ function PurchaseOrderTable(props) {
 }
 const mapStateToProps = ({ suppliers, auth }) => ({
     purchaseList: suppliers.purchaseList,
+    contactSupplier: suppliers.contactSupplier,
     userId: auth.userDetails.userId,
     addlocationInPo: suppliers.addlocationInPo,
     addPoListmModal: suppliers.addPoListmModal,
@@ -262,7 +375,9 @@ const mapDispatchToProps = (dispatch) =>
             handlePoListModal,
             handleTermsnConditionModal,
             getCurrency,
-            addCurrencyInPo
+            addCurrencyInPo,
+            updatePOContact,
+            getSupplierContactList
         },
         dispatch
     );

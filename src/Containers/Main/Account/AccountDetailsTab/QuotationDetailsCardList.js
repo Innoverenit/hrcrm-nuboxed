@@ -6,7 +6,7 @@ import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/Suppli
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
-  getProcureDetails,
+  getQuotationExcelDetails,
   deleteProcureData,
   getBrand,
   getModel,
@@ -36,7 +36,7 @@ function QuotationDetailsCardList(props) {
 
   useEffect(() => {
     props.getBrand();
-    props.getProcureDetails(props.orderDetailsId.orderId);
+    props.getQuotationExcelDetails(props.orderDetailsId.orderId);
     props.getCategorylist();
     props.getAllProductList();
     props.getSupplierSuppliesQuality();
@@ -124,7 +124,7 @@ function QuotationDetailsCardList(props) {
     setParticularRowData(item);
   };
 
-  if (props.fetchingProcureDetails) {
+  if (props.fetchingQuotationExcelDetails) {
     return <BundleLoader />;
   }
 
@@ -160,7 +160,7 @@ function QuotationDetailsCardList(props) {
           <div className="md:w-[6.12rem]"></div>
         </div>
 
-        {props.procureDetails.map((item, index) => {
+        {props.quotationPhoneDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
                <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -365,11 +365,11 @@ function QuotationDetailsCardList(props) {
 }
 
 const mapStateToProps = ({ distributor,suppliers,auth }) => ({
-  procureDetails: distributor.procureDetails,
+  quotationPhoneDetails: distributor.quotationPhoneDetails,
   orderDetailsId: distributor.orderDetailsId,
   brand: distributor.brand,
   model: distributor.model,
-  fetchingProcureDetails: distributor.fetchingProcureDetails,
+  fetchingQuotationExcelDetails: distributor.fetchingQuotationExcelDetails,
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
@@ -380,7 +380,7 @@ const mapStateToProps = ({ distributor,suppliers,auth }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProcureDetails,
+      getQuotationExcelDetails,
       getAllProductList,
       deleteProcureData,
       getBrand,

@@ -376,7 +376,9 @@ const initialState = {
   addingContactDistributor: false,
   addingContactDistributorError: false,
 
-
+  fetchingQuotationExcelDetails: false,
+   fetchingQuotationExcelDetailsError: false ,
+   quotationPhoneDetails:[],
 
   fetchingLocationList: false,
   fetchingLocationListError: false,
@@ -3040,6 +3042,17 @@ export const distributorReducer = (state = initialState, action) => {
             return { ...state, fetchingProcureDetails: false, procureDetails: action.payload };
         case types.GET_PROCURE_DETAILS_FAILURE:
             return { ...state, fetchingProcureDetails: false, fetchingProcureDetailsError: true };
+
+
+
+            
+          case types.GET_QUOTATION_EXCEL_DETAILS_REQUEST:
+            return { ...state, fetchingQuotationExcelDetails: true };
+        case types.GET_QUOTATION_EXCEL_DETAILS_SUCCESS:
+            return { ...state, fetchingQuotationExcelDetails: false, quotationPhoneDetails: action.payload };
+        case types.GET_QUOTATION_EXCEL_DETAILS_FAILURE:
+            return { ...state, fetchingQuotationExcelDetails: false, fetchingQuotationExcelDetailsError: true };
+    
     
   
             case types.DELETE_PROCURE_DATA_REQUEST:
