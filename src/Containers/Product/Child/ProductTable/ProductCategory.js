@@ -63,7 +63,7 @@ function ProductCategory(props) {
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Add">
                           <AddCircleIcon
-                            className="!text-base cursor-pointer text-[tomato]"
+                            className="!text-xl cursor-pointer text-[tomato]"
                             onClick={() => {
                               //props.setEditProducts(item);
                               handleCategoryModal(true);
@@ -79,7 +79,7 @@ function ProductCategory(props) {
             {categoryProducts.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     
 

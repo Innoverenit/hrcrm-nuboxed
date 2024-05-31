@@ -89,7 +89,7 @@ class AccountOpportunityStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {this.props.quotationId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
@@ -125,7 +125,7 @@ class AccountOpportunityStepper extends Component {
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
     addingOrder: distributor.addingOrder,
-    orderId: distributor.orderDetailsId.orderId,
+    quotationId: distributor.orderDetailsId.quotationId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

@@ -127,7 +127,7 @@ function DistributorColletcionArchive(props) {
 
             return (
               <div>
-                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">

@@ -87,7 +87,7 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col "
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col "
 
                                         >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">

@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch, Select } from "antd";
 import { Formik, Form, Field } from "formik";
-import { addCarDetails } from "../AccountAction";
+import { addQuotationCarDetails } from "../AccountAction";
 import DraggableUpload1 from "../../../../Components/Forms/Formik/DraggableUpload1";
 import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import AddProcureExcel from "./AccountOrderTab/AddProcureExcel";
+import AddQuotationExcel from "./AddQuotationExcel";
 
 const { Option } = Select;
 
@@ -43,10 +43,12 @@ function AddQuotationRepairExcel(props) {
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values);
-                    props.addCarDetails({
+                    props.addQuotationCarDetails({
                         ...values,
                         distributorId: props.distributorId,
-                        type: formType === 'Repair' ? "Non-Catalogue" : "Catalogue" 
+                        type: "Non-Catalogue",
+                        // orderType: formType === 'Repair',
+                        orderType: 'Repair',
                     }, props.distributorId);
                 }}
             >
@@ -118,8 +120,8 @@ function AddQuotationRepairExcel(props) {
                                             </div>
                                         </>
                                     ) : (
-                                        // Procure form fields
-                                        <AddProcureExcel/>
+                                       
+                                        <AddQuotationExcel formType={formType}/>
                                     )}
                                 </div>
                             </div>
@@ -127,7 +129,7 @@ function AddQuotationRepairExcel(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    loading={props.addingCar}
+                                    loading={props.addingQuotationCar}
                                 >
                                     <FormattedMessage
                                         id="app.finish"
@@ -146,14 +148,14 @@ function AddQuotationRepairExcel(props) {
 const mapStateToProps = ({ auth, distributor }) => ({
     userId: auth.userDetails.userId,
     orderDetailsId: distributor.orderDetailsId,
-    addingCar: distributor.addingCar,
+    addingQuotationCar: distributor.addingQuotationCar,
     orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addCarDetails
+            addQuotationCarDetails
         },
         dispatch
     );

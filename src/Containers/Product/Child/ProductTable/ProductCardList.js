@@ -112,7 +112,7 @@ function ProductCardList(props) {
             <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">Brand</div>
             <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">Model</div>
             <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">Website</div>
-            <div className="w-12"></div>
+            <div className="w-[7rem]"></div>
           </div>
           <InfiniteScroll
             dataLength={products.length}
@@ -125,7 +125,7 @@ function ProductCardList(props) {
             {products.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium flex-col w-[6.5rem] max-sm:w-auto   ">
                         <SubTitle>
@@ -202,11 +202,11 @@ function ProductCardList(props) {
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div class="flex flex-col w-[1.5rem] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
+    
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
-                            className="!text-base cursor-pointer text-[blue]"
+                            className="!text-xl cursor-pointer text-[blue]"
                             onClick={() => {
                               props.handlePriceDrawer(true);
                               handleParticularRowData(item);
@@ -218,7 +218,7 @@ function ProductCardList(props) {
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
-                            className="!text-base cursor-pointer text-[#4bc076]"
+                            className="!text-xl cursor-pointer text-[#4bc076]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);
@@ -226,8 +226,8 @@ function ProductCardList(props) {
                           />
                         </Tooltip>
                       </div>
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                 
+                   
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title={item.description}>
                         <ContactSupportIcon className="!text-xl"/>
@@ -236,7 +236,7 @@ function ProductCardList(props) {
 <div>
 <Tooltip title="Cell">
                                                             <Token 
-                                                            className=" !text-base cursor-pointer text-[blue]"
+                                                            className=" !text-xl cursor-pointer text-[blue]"
                                                             onClick={()=>{
                                                               handleParticularRowData(item);
                                                                 props.handleProdCellDrawer(true);
@@ -245,12 +245,12 @@ function ProductCardList(props) {
                                                           </Tooltip>
 </div>
 
-                    </div>
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    
+              
                       <div class=" text-xs text-cardBody font-poppins mt-1">
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className="!text-base cursor-pointer text-[tomato]"
+                            className="!text-xl cursor-pointer text-[tomato]"
                             onClick={() => {
                               props.setEditProducts(item);
                               handleUpdateProductModal(true);
@@ -267,13 +267,13 @@ function ProductCardList(props) {
                             
                             <DeleteOutlined
                               type="delete"
-                              className=" !text-base cursor-pointer text-[red]"
+                              className=" !text-xl cursor-pointer text-[red]"
                             />
                          
                           </StyledPopconfirm>
                         </div>
 
-                    </div>
+                   
                     
                 
                     </div>

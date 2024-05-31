@@ -4141,3 +4141,73 @@ export const getQuotationProcureOrder = (distributorId, pageNo, type) => (
       });
     });
 };
+
+
+export const addQuotationCarDetails = (customer, id, cb) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_QUOTATION_CAR_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Item list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_QUOTATION_CAR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUOTATION_CAR_FAILURE,
+        payload: err,
+      });
+      cb && cb();
+    });
+};
+
+export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_QUOTATION_PHONE_DETAILS_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getProcureDetails(orderPhoneId))
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_QUOTATION_PHONE_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUOTATION_PHONE_DETAILS_FAILURE,
+        payload: err,
+      });
+      cb && cb();
+    });
+};

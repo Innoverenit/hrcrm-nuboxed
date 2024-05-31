@@ -133,7 +133,7 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center justify-between p-3  max-sm:h-[8rem] max-sm:flex-col" >
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:h-[8rem] max-sm:flex-col" >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium  w-[9.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>

@@ -176,7 +176,7 @@ function OpenReceivedOrderIdForm(props) {
               {props.phoneListById.map((item, index) => {
                 return (
                   <div>
-                    <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                       <div class="flex">
                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs text-cardBody font-poppins">

@@ -29,7 +29,7 @@ function SuppliesDeletedTable(props) {
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
             <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
-            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
+            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
             
           </div>
 
@@ -47,7 +47,7 @@ function SuppliesDeletedTable(props) {
                     const currentDate = moment().format("DD/MM/YYYY");
                   return (
                     <>
-                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">

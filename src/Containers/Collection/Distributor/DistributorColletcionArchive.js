@@ -33,7 +33,7 @@ function DistributorColletcionArchive(props) {
           {props.todayDisArchive.map((item) => {
             return (
               <div>
-                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
