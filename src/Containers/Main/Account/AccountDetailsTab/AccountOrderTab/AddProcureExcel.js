@@ -3,6 +3,7 @@ import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../../Suppliers/SuppliersAction"
 import { addProcureDetails, getBrand, getModel,getAllProductList,getLocationList } from "../../AccountAction";
 import ProcureDetailsCardList from "./ProcureDetailsCardList";
@@ -12,6 +13,7 @@ const { Option } = Select;
 function AddProcureExcel(props) {
   useEffect(() => {
     props.getBrand();
+    props.getSaleCurrency()
     props.getCategorylist();
     props.getAllProductList();
     props.getLocationList(props.orgId);
@@ -21,6 +23,11 @@ function AddProcureExcel(props) {
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
 
   const handleUnitChange = (index, key, value) => {
+    const updatedRows = [...rows];
+    updatedRows[index][key] = value;
+    setRows(updatedRows);
+  };
+  const handlePriceChange = (index, key, value) => {
     const updatedRows = [...rows];
     updatedRows[index][key] = value;
     setRows(updatedRows);
@@ -50,7 +57,7 @@ function AddProcureExcel(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:"", }]);
   };
   const handleCategoryChange = (value, index) => {
     const updatedRows = [...rows];
@@ -88,21 +95,32 @@ function AddProcureExcel(props) {
     setRows(updatedRows);
   };
 
+  const handleCurrencyChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].currencyId = value;
+    // updatedRows[index].model = ""; // Reset model when brand changes
+    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
+    setRows(updatedRows);
+    //props.getModel(value);
+  };
+
   const handleSubmit = () => {
     const dataToSend = rows.map((row) => ({
       orderPhoneId: props.orderDetailsId.orderId,
       brandId: row.modelId,
       unit: row.unit,
+      price:row.price,
       specs: row.specs,
       category:row.category ,
       attribute:row.attribute,
       locationId:row.locationId,
       quality: row.quality,
+      currency:row.currencyId,
     }));
 
     // Make the API call
     props.addProcureDetails(dataToSend, props.orderDetailsId.orderId);
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:"" }]);
   };
 
   return (
@@ -182,7 +200,7 @@ function AddProcureExcel(props) {
                   </Select>
                 </div>
               </div>
-              <div class=" ml-4">
+              <div class=" ml-2">
                 <label>Location</label>
                 <div className="w-[7rem]">
                   <Select
@@ -211,7 +229,33 @@ function AddProcureExcel(props) {
                   </Select>
                 </div>
               </div>
-              <div class=" ml-4">
+              <div class=" ml-2">
+                <label>Price</label>
+                <div className="w-24">
+                  <Input
+                    type="text"
+                    value={row.price}
+                    onChange={(e) => handlePriceChange(index, 'price', e.target.value)}
+                    placeholder="Enter price"
+                  />
+                </div>
+              </div>
+              <div class=" ml-2">
+                <label>Currency</label>
+                <div className="w-[7rem]">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.currencyId}
+                    onChange={(value) => handleCurrencyChange(value, index)}
+                  >
+                    {props.saleCurrencies.map((a) => (
+                      <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+             
+              <div class=" ml-2">
                 <label>Unit</label>
                 <div className="w-24">
                   <Input
@@ -248,7 +292,8 @@ const mapStateToProps = ({ distributor,suppliers, brandmodel, auth }) => ({
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   locationlist:distributor.locationlist,
-  supplierSuppliesQuality:suppliers.supplierSuppliesQuality
+  supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
+  saleCurrencies: auth.saleCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -256,6 +301,7 @@ const mapDispatchToProps = (dispatch) =>
     addProcureDetails,
     getBrand,
     getModel,
+    getSaleCurrency,
     getCategorylist,
     getAllProductList,
     getLocationList,

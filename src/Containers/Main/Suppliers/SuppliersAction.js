@@ -2010,3 +2010,35 @@ export const getCategorylist = () => (dispatch) => {
       });
     });
 };
+
+export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PO_CONTACT_REQUEST });
+  axios
+    .put(`${base_url}/po/updateContactPerson/${poSupplierDetailsId}`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+    
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully!',
+      })
+      dispatch({
+        type: types.UPDATE_PO_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+   
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PO_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
