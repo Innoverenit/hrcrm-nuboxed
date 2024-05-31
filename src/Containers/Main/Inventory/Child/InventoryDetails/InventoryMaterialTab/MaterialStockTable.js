@@ -149,11 +149,16 @@ const GrnListOfPO = (props) => {
                                                 {item.suppliesFullName}
                                             </div>
                                         </div>
-                                        {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.price}
+                                                {item.categoryName}  {item.subCategoryName}
                                             </div>
-                                        </div> */}
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                {item.attributeName}  {item.subAttributeName}
+                                            </div>
+                                        </div>
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remainingCorrectUnit}
