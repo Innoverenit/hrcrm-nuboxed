@@ -1,61 +1,54 @@
-// import React, { Component, Suspense, lazy } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { setSuppliersViewType } from "./SuppliersAction";
-// import SuppliersHeader from "../../Main/Suppliers/SuppliersHeader";
-// import { BundleLoader } from "../../../Components/Placeholder";
-// import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
+import React, { Component, Suspense, lazy } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setTradeViewType } from "./TradeAction";
+import { BundleLoader } from "../../../Components/Placeholder";
+import InventoryTableAll from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/InventoryTableAll";
+import TradeHeader from "./TradeHeader";
 
 
 
-// class Trade extends Component {
-//   state = { currentData: "" };
+class Trade extends Component {
+  state = { currentData: "" };
 
-//   setCurrentData = (value) => {
-//     this.setState({ currentData: value });
-//   };
-//   render() {
-//     const { setSuppliersViewType, viewType } = this.props;
-//     return (
-//       <React.Fragment>
-//         <SuppliersHeader
-//           setSuppliersViewType={setSuppliersViewType}
-//           viewType={viewType}
-//           handleClear={this.handleClear}
-//           currentData={this.state.currentData}
-//           setCurrentData={this.setCurrentData}
-//         />
+  setCurrentData = (value) => {
+    this.setState({ currentData: value });
+  };
+  render() {
+    const { setTradeViewType, viewType } = this.props;
+    return (
+      <React.Fragment>
+        <TradeHeader
+          setTradeViewType={setTradeViewType}
+          viewType={viewType}
+          handleClear={this.handleClear}
+          currentData={this.state.currentData}
+          setCurrentData={this.setCurrentData}
+        />
 
-//         <Suspense fallback={<BundleLoader />}>
-//           {this.props.viewType === "card" ? (
-//             <SuppliersCardList />
-//           ) 
-//           : this.props.viewType==="all" ? (
-//             <AllSuppliersCardList/>
-//           )
-//           : this.props.viewType==="delete" ? (
-//             <SuppliersDeletedCardList/>
-//           )
-//           :null}
-//         </Suspense>
-//       </React.Fragment>
-//     );
-//   }
-// }
+        <Suspense fallback={<BundleLoader />}>
+          {this.props.viewType === "table" ? (
+            <InventoryTableAll />
+          )
+          :null}
+        </Suspense>
+      </React.Fragment>
+    );
+  }
+}
 
-// const mapStateToProps = ({ suppliers, auth }) => ({
-//   viewType: suppliers.viewType,
-//   userId: auth.userDetails.userId,
-// });
+const mapStateToProps = ({ trade, auth }) => ({
+  viewType: trade.viewType,
+  userId: auth.userDetails.userId,
+});
 
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       setSuppliersViewType,
-//       getSuppliersList,
-//       getAllSuppliersList,
-//     },
-//     dispatch
-//   );
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      setTradeViewType,
+    
+    },
+    dispatch
+  );
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Trade);
+export default connect(mapStateToProps, mapDispatchToProps)(Trade);
