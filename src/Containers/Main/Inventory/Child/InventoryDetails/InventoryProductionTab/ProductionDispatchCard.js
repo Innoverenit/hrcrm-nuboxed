@@ -74,7 +74,7 @@ function ProductionDispatchCard(props) {
                         {productionDispatchByLocsId.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
 
@@ -131,7 +131,7 @@ function ProductionDispatchCard(props) {
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
-                                                            className="!text-base cursor-pointer text-[tomato]"
+                                                            className="!text-xl cursor-pointer text-[tomato]"
                                                         // onClick={() => {
                                                         //     props.setEditProducts(item);
                                                         //     handleUpdateProductModal(true);

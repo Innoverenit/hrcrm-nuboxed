@@ -104,7 +104,7 @@ const ReceivedTable = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[8.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

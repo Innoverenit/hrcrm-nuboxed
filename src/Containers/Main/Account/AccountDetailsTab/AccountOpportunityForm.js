@@ -351,21 +351,6 @@ function AccountOpportunityForm(props) {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                 <div class="w-[45%]">
-  {values.orderType === "Procure" ? null : (
-    <Field
-      name="availabilityDate"
-      label="Pickup Date"
-      isColumn
-      inlineLabel
-      width={"100%"}
-      disabledDate={disabledDate}
-      component={DatePicker}
-      value={values.availabilityDate}
-    />
-  )}
-</div>
-
-                                    <div class="w-[45%]">
                                         <Field
                                             name="deliveryDate"
                                             label="Delivery Date "
@@ -391,6 +376,22 @@ function AccountOpportunityForm(props) {
 
                                         />
                                     </div>
+                                <div class="w-[45%]">
+  {values.orderType === "Procure" ? null : (
+    <Field
+      name="availabilityDate"
+      label="Pickup Date"
+      isColumn
+      inlineLabel
+      width={"100%"}
+      disabledDate={disabledDate}
+      component={DatePicker}
+      value={values.availabilityDate}
+    />
+  )}
+</div>
+
+                               
 
                                 </div>
                                

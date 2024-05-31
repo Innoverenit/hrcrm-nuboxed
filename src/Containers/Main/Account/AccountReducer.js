@@ -227,6 +227,9 @@ const initialState = {
   fetchingPaymentHistoryError: false,
   paymentHistory: [],
 
+  addingQuotationCar: false,
+  addingQuotationCarError: false,
+
   movingToProductionArchieve: false,
   movingToProductionArchieveError: false,
 
@@ -335,6 +338,9 @@ const initialState = {
   fetchingDocumentsByDistributorId: false,
   fetchingDocumentsByDistributorIdError: false,
   documentsByDistributorId: [],
+
+  addingQuotationPhoneDetails: false,
+  addingQuotationPhoneDetailsError:false,
 
   fetchingDocumentsByTable: false,
   fetchingDocumentsByTableError: false,
@@ -3105,6 +3111,44 @@ export const distributorReducer = (state = initialState, action) => {
                         fetchingQuotationProcureOrder: false,
                         fetchingQuotationProcureOrderError: true,
                       };
+
+
+                      case types.ADD_QUOTATION_CAR_REQUEST:
+                        return { ...state, addingQuotationCar: true };
+                      case types.ADD_QUOTATION_CAR_SUCCESS:
+                        return {
+                          ...state,
+                          addingQuotationCar: false,
+                          addAccountOpportunityModal: false,
+                          // addLinkDistributorOrderConfigureModal: false,
+                          quotationRepairOrder: state.quotationRepairOrder.map((item) => {
+                            if (item.quotationId == action.payload.quotationId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        };
+                      case types.ADD_QUOTATION_CAR_FAILURE:
+                        return {
+                          ...state, addingQuotationCar: false,
+                          // addCustomerModal: false 
+                        };
+
+                        case types.ADD_QUOTATION_PHONE_DETAILS_REQUEST:
+                          return { ...state, addingQuotationPhoneDetails: true };
+                        case types.ADD_QUOTATION_PHONE_DETAILS_SUCCESS:
+                          return {
+                            ...state,
+                            addingQuotationPhoneDetails: false,
+                       
+                          };
+                        case types.ADD_QUOTATION_PHONE_DETAILS_FAILURE:
+                          return {
+                            ...state, addingQuotationPhoneDetails: false,
+                            addingQuotationPhoneDetailsError:true,
+                            // addCustomerModal: false 
+                          };
 
 
 

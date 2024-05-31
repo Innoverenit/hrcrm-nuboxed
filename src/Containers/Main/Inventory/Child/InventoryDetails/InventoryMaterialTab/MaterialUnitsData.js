@@ -123,7 +123,7 @@ const GrnListOfPO = (props) => {
                         {props.poGrnList.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
@@ -273,7 +273,7 @@ const GrnListOfPO = (props) => {
 
                                                 ) : (
                                                     <BorderColorIcon
-                                                        className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                                                        className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
 
                                                         onClick={() => {
                                                             handleItemClick(item)

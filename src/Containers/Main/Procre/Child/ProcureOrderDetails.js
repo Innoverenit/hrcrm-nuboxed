@@ -97,6 +97,12 @@ function ProcureOrderDetails(props) {
           <div className="md:w-[7.1rem]">
             <FormattedMessage id="app.model" defaultMessage="Model" />
           </div>
+          <div className="md:w-[7.1rem]">
+            <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+          </div>
+          <div className="md:w-[7.1rem]">
+            <FormattedMessage id="app.price" defaultMessage="Price" />
+          </div>
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
@@ -109,7 +115,7 @@ function ProcureOrderDetails(props) {
 
         {props.procureDetails.map((item, index) => {
           return (
-            <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
               <div className="flex font-medium flex-col md:w-[13rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                 
@@ -121,6 +127,20 @@ function ProcureOrderDetails(props) {
                 <div className="text-sm text-cardBody font-poppins">
                 
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
+                
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.attribute}</div>
+                
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price}{item.currency}</div>
                 
                 </div>
               </div>

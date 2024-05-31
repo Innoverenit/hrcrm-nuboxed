@@ -101,7 +101,7 @@ function SuppliesTable(props) {
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Unique ID</div>
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
-            <div className="w-[6.8rem]"></div>
+            <div className="w-[8.8rem]"></div>
           </div>
 
           <InfiniteScroll
@@ -117,7 +117,7 @@ function SuppliesTable(props) {
                     const currentDate = moment().format("DD/MM/YYYY");
                   return (
                     <>
-                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[13.91rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
@@ -216,11 +216,11 @@ suppliesId={item.suppliesId}
                           </div>
                    
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
+                        
                             <div>
                               <Tooltip title="Material Builder">
                                 <ViewQuiltIcon
-                                  className="cursor-pointer text-base"
+                                  className="cursor-pointer text-xl"
                                   onClick={() => {
                                     props.handleMaterialBuilderDrawer(true);
                                     handleParticularRowData(item);
@@ -235,12 +235,12 @@ suppliesId={item.suppliesId}
                                     props.handleBrandModel(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-base cursor-pointer text-[blue]"
+                                  className=" !text-xl cursor-pointer text-[blue]"
                                 />
                               </Tooltip>}
                             </div>
-                          </div>
-                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
+                        
+                         
                             <div>
                               <Tooltip title="Suppliers">
                                 <CategoryIcon
@@ -248,15 +248,15 @@ suppliesId={item.suppliesId}
                                     props.handleSuppliersListDrawer(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-base cursor-pointer"
+                                  className=" !text-xl cursor-pointer"
                                 />
                               </Tooltip>
                             </div>
                             <div>
-                              <InventoryIcon className=" !text-base cursor-pointer" />
+                              <InventoryIcon className=" !text-xl cursor-pointer" />
                             </div>
-                          </div>
-                          <div class="flex flex-col justify-center w-[2rem] max-sm:flex-row max-sm:w-auto">
+                        
+                         
                             <div>
                               <Tooltip title="Edit">
                                 <BorderColorIcon
@@ -264,7 +264,7 @@ suppliesId={item.suppliesId}
                                     handleUpdateSupplieDrawer(true);
                                     handleParticularRowData(item);
                                   }}
-                                  className=" !text-base cursor-pointer text-[tomato]"
+                                  className=" !text-xl cursor-pointer text-[tomato]"
                                 />
                               </Tooltip>
                             </div>
@@ -274,11 +274,12 @@ suppliesId={item.suppliesId}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
 
-                                <DeleteOutlined className=" !text-base cursor-pointer text-[red]" />
+                                <DeleteOutlined className=" !text-xl cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
+                         
                           </div>
-                          </div>
+                          <div class=" w-2"></div>
                         </div>
                       </div>
                     </>

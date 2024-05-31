@@ -49,7 +49,7 @@ if (props.fetchingAllProcure) {
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[0.5rem]"></div>
     
-                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[5.4rem]"><FormattedMessage id="app.procreid#" defaultMessage="Procure ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className=" md:w-[7.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
@@ -87,7 +87,7 @@ if (props.fetchingAllProcure) {
             return (
               <div>
                 <div
-                  className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -116,7 +116,7 @@ if (props.fetchingAllProcure) {
 
                         <div class="max-sm:w-full md:w-[8.02rem]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                            <div class=" flex max-sm:w-full justify-between flex md:flex-col text-sm">
                             <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
