@@ -38,4 +38,30 @@ export const inputTradeSearch = (imei) => (dispatch) => {
       type: types.HANDLE_CLAER_REDUCER_DATA_TRADE,
     });
   };
+
+  export const getInventoryAlllist = (orgId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVENTORYALLLIST_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/supplier/inventory/supplier/all/${orgId}/${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVENTORYALLLIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_INVENTORYALLLIST_FAILURE,
+          payload: err,
+        });
+      });
+  };
   

@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import {
     getInventoryAlllist
    
-} from "../../../SuppliersAction"
+} from "../../../../Trade/TradeAction";
 import { Button, Select, Tooltip } from 'antd';
 import dayjs from "dayjs";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
@@ -196,15 +196,12 @@ function InventoryTableAll(props) {
         </>
     )
 }
-const mapStateToProps = ({ suppliers, auth }) => ({
+const mapStateToProps = ({ trade, auth }) => ({
     userId: auth.userDetails.userId,
-    addlocationInPo: suppliers.addlocationInPo,
     orgId: auth.userDetails.organizationId,
-    addPoListmModal: suppliers.addPoListmModal,
-    addTermsnCondition: suppliers.addTermsnCondition,
     currencies: auth.currencies,
-    fetchingInventoryAlllist:suppliers.fetchingInventoryAlllist,
-    inventoryAllList:suppliers.inventoryAllList
+    fetchingInventoryAlllist:trade.fetchingInventoryAlllist,
+    inventoryAllList:trade.inventoryAllList
 });
 
 const mapDispatchToProps = (dispatch) =>

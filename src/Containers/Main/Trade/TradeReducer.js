@@ -7,6 +7,10 @@ const initialState = {
     fetchingTradeSearchData:false,
     fetchingTradeSearchDataError:false,
 
+    fetchingInventoryAlllist: false,
+    fetchingInventoryAlllistError: false,
+    inventoryAllList:[],
+
   };
 
   export const tradeReducer = (state = initialState, action) => {
@@ -31,7 +35,20 @@ const initialState = {
                         return { ...state, 
                           orderPhoneList: [], 
                         };
-      
+                        case types.GET_INVENTORYALLLIST_REQUEST:
+                          return { ...state, fetchingInventoryAlllist: true };
+                        case types.GET_INVENTORYALLLIST_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingInventoryAlllist: false,
+                            inventoryAllList: action.payload,
+                          };
+                        case types.GET_INVENTORYALLLIST_FAILURE:
+                          return {
+                            ...state,
+                            fetchingInventoryAlllist: false,
+                            fetchingInventoryAlllistError: true,
+                          };
     
   
       default:

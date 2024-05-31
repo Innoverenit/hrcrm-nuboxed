@@ -120,7 +120,7 @@ function AddManualForm(props) {
     }));
 
     // Make the API call
-    props.addManual(dataToSend, props.orderDetailsId.orderId,props.userId,"0");
+    props.addManual(dataToSend, props.userId,"0");
     setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'',id:'' }]);
   };
 
