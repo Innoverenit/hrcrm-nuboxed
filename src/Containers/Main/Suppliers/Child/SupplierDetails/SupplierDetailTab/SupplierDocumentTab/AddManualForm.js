@@ -191,7 +191,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <label>Quality</label>
+                <label>Grade</label>
                 <div className="w-28">
                   <Input
                     type="text"
@@ -201,43 +201,6 @@ function AddManualForm(props) {
                   />
                 </div>
               </div>
-              <div>
-                <label>Units</label>
-                <div className="w-28">
-                  <Input
-                    type="text"
-                    value={row.unit}
-                    onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
-                    placeholder="Enter unit"
-                  />
-                </div>
-              </div>
-              <div>
-                <label>Price</label>
-                <div className="w-28">
-                  <Input
-                    type="text"
-                    value={row.price}
-                    onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
-                    placeholder="Enter Price"
-                  />
-                </div>
-              </div>
-              <div>
-                <label>Currency</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.currencyId}
-                    onChange={(value) => handleCurrencyChange(value, index)}
-                  >
-                    {props.currencies.map((a) => (
-                      <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
-              
               <div>
                 <label>Type</label>
                 <div className="w-28 ">
@@ -260,7 +223,7 @@ function AddManualForm(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.productId} value={a.productId}>{a.productFullName}</Option>
+                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -279,6 +242,44 @@ function AddManualForm(props) {
                   </Select>
                 </div>
               </div>
+              <div>
+                <label>Currency</label>
+                <div className="w-[7rem]">
+                  <Select
+                    style={{ width: 100 }}
+                    value={row.currencyId}
+                    onChange={(value) => handleCurrencyChange(value, index)}
+                  >
+                    {props.currencies.map((a) => (
+                      <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+              <div>
+                <label>Price / Unit</label>
+                <div className="w-28">
+                  <Input
+                    type="text"
+                    value={row.price}
+                    onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
+                    placeholder="Enter Price"
+                  />
+                </div>
+              </div>
+             
+              <div>
+                <label>Units</label>
+                <div className="w-28">
+                  <Input
+                    type="text"
+                    value={row.unit}
+                    onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
+                    placeholder="Enter unit"
+                  />
+                </div>
+              </div>
+
               <div className="w-4 mt-[1.5rem]">
                 <CloseOutlined onClick={() => handleRemoveRow(index)} />
               </div>

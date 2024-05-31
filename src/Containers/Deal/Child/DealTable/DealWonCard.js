@@ -85,42 +85,42 @@ function DealWonCard(props) {
   <>
 
      
-<div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.12rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" w-[6.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.investor"
                   defaultMessage="investor"
                 /></div>
-        <div className=" w-[9.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
                   id="app.sponsor"
                   defaultMessage="sponsor"
                 /></div>
-        <div className="w-[7.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.startdate"
                   defaultMessage="startdate"
                 /></div>
-        <div className="w-[11.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
                 /></div>
-        <div className="w-[5.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.stages"
                   defaultMessage="stages"
                 /></div> 
-        <div className="w-[7.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.salesRep"
                   defaultMessage="salesRep"
                 /></div>
-        <div className="w-[3.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
-        <div className="w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-20 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[2.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.action"
                   defaultMessage="action"
                 /></div>
@@ -143,11 +143,10 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
-                      
-                    >
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[13.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
+                      <div className=" flex font-medium  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -194,7 +193,7 @@ function DealWonCard(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium   w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -207,7 +206,7 @@ function DealWonCard(props) {
                                
                                
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[9.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -225,7 +224,7 @@ function DealWonCard(props) {
         
                                   </div>
                               </div>
-                                <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -233,7 +232,7 @@ function DealWonCard(props) {
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -245,7 +244,7 @@ function DealWonCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[11.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -281,7 +280,7 @@ function DealWonCard(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -296,7 +295,7 @@ function DealWonCard(props) {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex font-medium  w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -314,7 +313,7 @@ function DealWonCard(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                   <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
+                   
                     <div>
                     <Tooltip title='Click to Open'><span
           onClick={() => {
@@ -359,8 +358,8 @@ function DealWonCard(props) {
                         </span>
                       </Tooltip>
                     </div>
-                  </div>
-                  <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
+                 
+                 
                    
                       <div>
                          <Tooltip
@@ -405,9 +404,9 @@ function DealWonCard(props) {
                           </StyledPopconfirm>
                       </div>
              
-                    <div></div>
-                  </div>   
-                                <div class="flex flex-col w-[1.5rem] max-sm:flex-row max-sm:w-auto">
+                  
+                 
+                                
                    <div>
                    <span
          
@@ -432,7 +431,7 @@ function DealWonCard(props) {
            )}
          </span>
                         </div>
-            </div>
+          
                   </div>    
                             </div>
                         </div>

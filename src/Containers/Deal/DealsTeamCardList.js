@@ -61,33 +61,33 @@ const DealsTeamCardList = (props) => {
 
   return (
     <>
-      <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex  w-[96%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[10.5rem]"><FormattedMessage
+          <div className=" md:w-[13.5rem]"><FormattedMessage
             id="app.name"
             defaultMessage="name"
           /></div>
-          <div className=" md:w-[9.1rem]"><FormattedMessage
+          <div className=" md:w-[12.13rem]"><FormattedMessage
             id="app.investor"
             defaultMessage="investor"
           /></div>
-          <div className=" md:w-[15.2rem] "><FormattedMessage
+          <div className=" md:w-[8.2rem] "><FormattedMessage
             id="app.sponsor"
             defaultMessage="sponsor"
           /></div>
-          <div className="md:w-[11.1rem]"><FormattedMessage
+          <div className="md:w-[7.12rem]"><FormattedMessage
             id="app.startdate"
             defaultMessage="startdate"
           /></div>
-          <div className="md:w-[7.5rem]"><FormattedMessage
+          <div className="md:w-[7.2rem]"><FormattedMessage
             id="app.value"
             defaultMessage="Value"
           /></div>
-          <div className="md:w-[4.2rem]"><FormattedMessage
+          <div className="md:w-[6.2rem]"><FormattedMessage
             id="app.stages"
             defaultMessage="stages"
           /></div>
-          <div className="md:w-[7.1rem]"><FormattedMessage
+          <div className="md:w-[6.21rem]"><FormattedMessage
             id="app.assignto"
             defaultMessage="Assign To"
           /></div>
@@ -130,13 +130,11 @@ const DealsTeamCardList = (props) => {
               } `;
             return (
               <div>
-                <div className="flex justify-between rounded-xl  mt-2 bg-white h-11 items-center p-1"
-                // style={{
-                //     borderBottom: "3px dotted #515050"
-                // }}
-                >
+                 <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                   <div class="flex justify-between">
-                    <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
+                    <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -153,7 +151,7 @@ const DealsTeamCardList = (props) => {
 
                         </div>
 
-                        <div class="max-sm:w-full" >
+                        <div class="max-sm:w-full w-52" >
                           <Tooltip>
                             <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                               {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">
@@ -182,7 +180,7 @@ const DealsTeamCardList = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-sm text-cardBody font-poppins">
                         <Link to="/investor">
@@ -191,7 +189,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium  items-center md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins">
@@ -210,7 +208,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm justify-center text-cardBody font-poppins">
@@ -218,7 +216,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins text-center">
@@ -228,7 +226,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins text-center">
@@ -264,7 +262,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-sm text-cardBody font-poppins">
@@ -290,7 +288,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex font-medium items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
 
 
