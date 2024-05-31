@@ -1897,7 +1897,7 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
     });
 };
 
-export const addManual = (customer,userId,pageNo,) => (dispatch, getState) => {
+export const addManual = (customer,userId) => (dispatch, getState) => {
 
   dispatch({
     type: types.ADD_MANUAL_REQUEST,
@@ -1910,7 +1910,7 @@ export const addManual = (customer,userId,pageNo,) => (dispatch, getState) => {
       },
     })
     .then((res) => {
-      dispatch(getInventorylist(userId,pageNo))
+      dispatch(getInventorylist(userId,"0"))
       Swal.fire({
         icon: 'success',
         title: 'list added',
