@@ -173,14 +173,14 @@ class LinkedDealContact extends Component {
     console.log(this.props.dealDetailsbyID.invOpportunityId)
     return (
       <>
-          <div className=' flex justify-end sticky top-28 z-auto'>          
-<div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className=' flex  sticky  z-auto'>          
+<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                   <div className=" flex  w-[97.5%] p-2 bg-trandivrent font-bold sticky top-0 z-10">
-                  <div className=" md:w-[5.12rem]"></div>
-                      <div className=" md:w-[11.12rem]">Name</div>
-                      <div className=" md:w-[9.5rem]">Designation</div>
-                      <div className=" md:w-[9.8rem] ">Function</div>
-                      <div className="md:w-[9.7rem]">Email #"</div>
+                  <div className=" md:w-[2.82rem]"></div>
+                      <div className=" md:w-[12.12rem]">Name</div>
+                      <div className=" md:w-[10.5rem]">Designation</div>
+                      <div className=" md:w-[8.99rem] ">Function</div>
+                      <div className="md:w-[10.7rem]">Email #"</div>
                       <div className="md:w-[6.8rem]">Mobile #"</div>
                      
                   </div>
@@ -189,9 +189,9 @@ class LinkedDealContact extends Component {
                       
                       return (
                           <div >
-                              <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 "
-
-                              >
+                               <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                                   <div class="flex">
                                       <div className=" flex font-medium  md:w-[2.8rem] max-sm:w-full  ">
                                       <MultiAvatar

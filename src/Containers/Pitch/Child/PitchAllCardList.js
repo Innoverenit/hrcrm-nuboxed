@@ -78,42 +78,39 @@ const PitchAllCardList = (props) => {
 
   return (
     <>
- <div class="rounded-lg max-lg:w-wk max-sm:w-wk max-sm:m-1 m-5 p-2 w-[97%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+ <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
  <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" w-[3.5rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[6.5rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[5.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.country"
                   defaultMessage="country"
                 /></div>
-        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
                 /></div>
-                     <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
                 /></div>
-        <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
+        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
                 /></div>
-        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
                 /></div>
@@ -131,7 +128,7 @@ const PitchAllCardList = (props) => {
   { !fetchingAllPitch && props.allPitchData.length === 0 ?<NodataFoundPage />:props.allPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.address[0].country_alpha2_code   
+//  const countryCode = item.address[0].country_alpha2_code   
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -153,11 +150,11 @@ const PitchAllCardList = (props) => {
                } `;
                     return (
                       <div>
-                      <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-                          
-                          >
+                      <div
+          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+        >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -205,7 +202,7 @@ const PitchAllCardList = (props) => {
                                   </div>
                                   </div>
                           </div>
-                          <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                          <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 
 
 
@@ -268,7 +265,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col  w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
 
                      <div class="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -278,17 +275,17 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
 
                  </div>
-                 <div className=" flex font-medium flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             
 
                             {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
                             <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <CountryFlag1 countryCode={countryCode} />
+                            {/* <CountryFlag1 countryCode={countryCode} />
                 &nbsp;
-                {countryCode}
+                {countryCode} */}
                               </div>
                         </div>
-                        <div className=" flex font-medium flex-col  w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "No Data"}
@@ -298,21 +295,21 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "No Data"}
 </div>
 
                  </div>
-                 <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                      <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "No Data"}
 </div>
 
                  </div>
-                 <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                               {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                               <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -340,7 +337,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                  
                  {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -364,47 +361,35 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           
                          
     
-<div class="md:w-[1%]"></div>
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">
 
 
                          
-<div className=" flex font-medium flex-col md:w-16 max-sm:flex-row w-full max-sm:justify-between ">
-                   <div class="rounded-full bg-white  h-5 cursor-pointer w-8">
-                    {item.url !== null ? (
-              <Tooltip title={item.url}>
-                <span class="cursor-pointer"
-                  //type="edit"
-                  onClick={() => {}}
-                >
-                  {" "}
-                  <a href={`item.url`} target="_blank">
-                    <ExploreIcon
-                      style={{ cursor: "pointer", color: "green" ,fontSize: "1rem",}}
-                    />
-                  </a>
-                </span>
-              </Tooltip>
-            ) : null}
-                        </div>
-                                    <div class=" text-[0.82rem] text-cardBody font-poppins">
-                {/* qual */}
-                                    </div>
-                                    <div>
-<StatusPitchToggle
-            type={props.convertInd ? "primary" : "danger"}
-            investorLeadsId={item.investorLeadsId}
-            convertInd={item.convertInd}
-          />
-</div>
-                                </div>
-             <div className=" flex font-medium flex-col w-[1.75rem] max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                              
+             <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
+              {item.url !== null ? (
+        <Tooltip title={item.url}>
+          <span className=" cursor-pointer"
+            //type="edit"
+           
+            onClick={() => {}}
+          >
+            {" "}
+            <a href={`item.url`} target="_blank">
+              <ExploreIcon
+              className="!text-xl cursor-pointer text-[green]"
+              />
+            </a>
+          </span>
+        </Tooltip>
+      ) : null}
+                  </div>  
+             <div className=" flex font-medium flex-col w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                              {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Qualify</div> */}
    
                   
                               <div class=" text-[0.82rem] text-cardBody font-poppins">
-          
+          {/* qual */}
                               </div>
                               <div>
                               {item.companyName ? (
@@ -415,13 +400,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                       props.handlePitchConvertModal(true);
                    
                     }}
-                    className="!text-base cursor-pointer text-[blue]"
+                    className="!text-xl cursor-pointer text-[blue]"
                   />
                 </Tooltip>
                   ) : (
                     <Tooltip title="Company name is required to enable qualification action">
                       <ConnectWithoutContactIcon
-                        className="!text-base cursor-not-allowed text-gray-400"
+                        className="!text-xl cursor-not-allowed text-gray-400"
                       />
                     </Tooltip>
                   )}
@@ -432,7 +417,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     /> */}
 </div>
                           </div>
-                          <div class="flex flex-col justify-evenly w-6 max-xl:w-[1.5rem] max-sm:flex-row max-sm:w-[10%]">
+                          
                           <div >
               <Tooltip title="Notes">
  <NoteAltIcon
@@ -440,7 +425,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
             props.handlePitchNotesDrawerModal(true);
             handleSetCurrentLeadsId(item);
           }}
-          className="!text-base cursor-pointer text-[green]"
+          className="!text-xl cursor-pointer text-[green]"
         />
      </Tooltip>
 
@@ -452,7 +437,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
   }
 >
 <AddchartIcon
-className="!text-base cursor-pointer text-blue-500"
+className="!text-xl cursor-pointer text-blue-500"
 
 onClick={()=>{
 props.handleAssimodal(true)
@@ -461,16 +446,16 @@ handleRowData(item)
 />
 </Tooltip>
 </div>
-</div>
+
                           </div>
-                          <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
+                          <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
                          
-                          <div class="flex flex-col w-6 max-sm:flex-row">
+                        
                           {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-          className="!text-base cursor-pointer text-[tomato]"
+          className="!text-xl cursor-pointer text-[tomato]"
           onClick={() => {
              props.setEditPitch(item);
              props.handleUpdatePitchModal(true);
@@ -487,12 +472,12 @@ handleRowData(item)
 
                   <StyledPopconfirm
       title="Do you want to delete?"
-      onConfirm={() => deletePitchData(item.investorleadsId)}
+      onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
     > <Tooltip title="Delete">
        {user.imInd === true  &&  user.plantDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"
-        className="!text-base text-[red] cursor-pointer"
+        className="!text-xl text-[red] cursor-pointer"
         
       />
        )} 
@@ -504,12 +489,12 @@ handleRowData(item)
       
 
               </div>
-              </div>
-              <div class="flex flex-col w-6 max-sm:flex-row">
+            
+            
                 <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span class="cursor-pointer" >
-      <LocationOnIcon   className="!text-base cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
     </div>
@@ -517,7 +502,7 @@ handleRowData(item)
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-base cursor-pointer text-green-400"
+          className="!text-xl cursor-pointer text-green-400"
           // onClick={() => {
           //   handleSetCurrentLeadsId(item);
           //   props.handleLeadsEmailDrawerModal(true);
@@ -525,7 +510,7 @@ handleRowData(item)
         />
       </Tooltip> </div>
      
-                </div> 
+                
                 
               </div>
               </div>
@@ -663,3 +648,4 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
     </Tooltip>
   );
 }
+

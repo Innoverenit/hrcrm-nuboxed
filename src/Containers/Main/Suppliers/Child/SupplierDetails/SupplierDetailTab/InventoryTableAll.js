@@ -71,7 +71,10 @@ function InventoryTableAll(props) {
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex justify-between w-[99.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                            Trade ID
+                            </div>
                         <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
@@ -87,13 +90,15 @@ function InventoryTableAll(props) {
                         <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             Specs
                         </div>
-                        <div className=" md:w-[5.1rem]">
+                        <div className=" md:w-[5.12rem]">
                            Unit
                         </div>
-                        <div className=" md:w-[12.1rem]">
+                        <div className=" md:w-[6.1rem]">
                          Price
                         </div>
-                        <div className=" md:w-[5.1rem]"> </div>
+                        <div className=" md:w-[9.93rem]"> Location</div>
+                        <div className=" md:w-[5.1rem]"> Owner</div>
+                        
                     </div>
                     <div class="">
                         <InfiniteScroll

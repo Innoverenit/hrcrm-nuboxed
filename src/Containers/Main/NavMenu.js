@@ -917,6 +917,17 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 </Menu.Item>
  )} 
 
+<Menu.Item key="/trade" style={{ height: "1.45rem", 
+ color: selectedMenuItem === '/trade' ? 'tomato' : '#4bc076'}}>
+  <Link to="/trade" onClick={() => handleSelect('/trade')}>
+    <CategoryIcon
+      style={{ fontSize: "large" }}
+    />
+    <span class="text-white text-ls ml-1">
+      Trade
+    </span>
+  </Link>
+</Menu.Item>
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
 
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 

@@ -44,16 +44,17 @@ class AddSupplierExcleModal extends Component {
            <Switch
           checked={this.state.isManual}
           onChange={this.handleToggle}
-          checkedChildren="Excel"
-          unCheckedChildren="Manual"
+          checkedChildren="Manual"
+          unCheckedChildren="Excel"
           loading={false}
         />
         <div class="mt-2"></div>
         <Suspense fallback={<div>Loading...</div>}>
           {this.state.isManual ? (
-           <AddSupplierExcleForm />
+           
+           <AddManualForm/>
           ) : (
-          <AddManualForm/>
+            <AddSupplierExcleForm />
           )}
         </Suspense>
       </div>

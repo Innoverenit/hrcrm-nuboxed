@@ -32,7 +32,7 @@ class LinkedDocuments extends Component {
     return (
       <>
           <div className=' flex justify-end sticky top-28 z-auto'>          
-<div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                   <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                   
                   <div className="md:w-[9.7rem]">Date</div>
@@ -46,15 +46,15 @@ class LinkedDocuments extends Component {
                       
                       return (
                           <div >
-                              <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 "
-
-                              >
+                               <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                                   <div class="flex">
-                                      <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
+                                      <div className=" flex font-medium  md:w-[9.8rem] max-sm:w-full  ">
                                       <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
                                       </div>
 
-                                      <div className=" flex font-medium   md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex font-medium   md:w-[11.3rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs text-cardBody font-poppins">
                                              {item.documentTitle}
                                           </div>
@@ -98,7 +98,7 @@ class LinkedDocuments extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex font-medium  md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex font-medium  md:w-[33.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs text-cardBody font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"
