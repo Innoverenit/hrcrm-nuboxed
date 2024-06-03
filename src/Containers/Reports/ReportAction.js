@@ -312,3 +312,11 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
         });
       });
   };
+
+
+  export const addReportsProductivity = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.ADD_REPORTS_PRODUCTIVITY_MODAL,
+      payload: modalProps,
+    });
+  };

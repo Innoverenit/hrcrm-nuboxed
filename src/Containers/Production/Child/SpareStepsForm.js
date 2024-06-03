@@ -141,7 +141,7 @@ const DynamicInputForm = (props) => {
     const [switchStates, setSwitchStates] = useState([]);
 
     useEffect(() => {
-        props.getProductionSpareData(props.step.suppliesId);
+        props.getProductionSpareData(props.step.suppliesId,"0");
     }, []);
 
     useEffect(() => {
@@ -165,7 +165,7 @@ const DynamicInputForm = (props) => {
               productionProductId:props.productionProductId,
               supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
               suppliesId:item.suppliesId,
-              useInd:newSwitchStates[index],
+              usedInd:newSwitchStates[index],
               userId:props.step.userId,
             }
             props.PstoProductionBuilder(data)
@@ -183,7 +183,7 @@ const DynamicInputForm = (props) => {
               productionProductId:props.productionProductId,
               supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
               suppliesId:item.suppliesId,
-              useInd:newSwitchStates[index],
+              usedInd:newSwitchStates[index],
               userId:props.step.userId,
             }
             props.PstoProductionBuilder(data)

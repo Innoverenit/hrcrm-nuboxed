@@ -104,7 +104,7 @@ const GrnListOfPO = (props) => {
                         <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
                         <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.unit" defaultMessage="Unit" /></div>
+                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.ordered" defaultMessage="Ordered" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
                         <div className=" md:w-[4.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
                         <div className=" md:w-[5.01rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>

@@ -1263,7 +1263,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         postingProductionBldr: false,
-        builderbyProductId: state.builderbyProductId.map((item) => {
+        productionSpareData: state.productionSpareData.map((item) => {
           if (item.suppliesId == action.payload.suppliesId) {
             return action.payload;
           } else {
