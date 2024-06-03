@@ -156,7 +156,7 @@ class Productform extends Component {
             orgId:this.props.orgId,
             brand:"",
             model:"",
-            WorkflowId:""
+            workflowId:""
 ,          }}
           validationSchema={ProductSchema}
           onSubmit={(values, { resetForm }) => {
@@ -290,7 +290,7 @@ class Productform extends Component {
 
                   <div class="w-[48%]">
                       <Field
-                        name="WorkflowId"
+                        name="workflowId"
                         label="Workflow"
                         //placeholder="Search or Create"
                         //optionLabel="subAttributeName"

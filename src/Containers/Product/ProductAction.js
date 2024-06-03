@@ -1136,11 +1136,11 @@ export const uploadproductlist = (product, groupId) => (dispatch) => {
       });
     });
 };
-export const addProduct = (key,description,imageId,userId,productionBuilderId,orgId, cb) => (dispatch) => {
+export const addProduct = (data, cb) => (dispatch) => {
   console.log("inside add product");
   dispatch({ type: types.ADD_PROFESSIONALDUCT_REQUEST });
   axios
-    .post(`${base_url2}/product`, key,description,imageId,userId,productionBuilderId,orgId, {
+    .post(`${base_url2}/product`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
