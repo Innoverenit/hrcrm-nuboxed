@@ -449,7 +449,7 @@ console.log(page)
 
 
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                        <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -477,7 +477,7 @@ console.log(page)
     )} */}
                             {item.totalProposalValue && (
       <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue/10000}K`}
+      {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
       </div>
     )}
                       </div>
@@ -536,7 +536,7 @@ console.log(page)
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
                         <Popconfirm
-                          title="Change status to Account?"
+                          title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"

@@ -10,6 +10,7 @@ import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select,Button ,Popconfirm} from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -369,7 +370,7 @@ const [rowdata, setrowdata] = useState("");
 
 
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                        <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -397,7 +398,8 @@ const [rowdata, setrowdata] = useState("");
     )} */}
                             {item.totalProposalValue && (
       <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue/10000}K`}
+        {/* {`${item.userCurrency} ${item.totalProposalValue/10000}K`} */}
+        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
       </div>
     )}
                       </div>
@@ -456,18 +458,21 @@ const [rowdata, setrowdata] = useState("");
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
                         <Popconfirm
-                          title="Change status to Account?"
+                          title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem" }}>
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
+                              style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                             
+                              >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
                                 {item.convertInd === 0 && "Convert"}
                                 {item.convertInd === 1 && "In progress"}
                                 {item.convertInd === 2 && "Converted"}
+                                <ArrowForwardIcon  />
                               </div>
                             </Button>
                           )}

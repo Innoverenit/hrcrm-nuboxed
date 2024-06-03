@@ -84,6 +84,8 @@ const LeadsActionLeft = (props) => {
   const { user } = props;
   console.log(currentData)
   const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
+
+  
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -205,7 +207,10 @@ const LeadsActionLeft = (props) => {
 
       <div class="w-[35%] mt-2 ml-2">
         <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
-          <Option value="CreationDate">Creation Date</Option>
+        <Option value="" disabled hidden>
+        Sort by :
+    </Option>
+          <Option value="CreationDate"> Creation Date</Option>
           <Option value="ascending">A To Z</Option>
           <Option value="descending">Z To A</Option>
         </StyledSelect>

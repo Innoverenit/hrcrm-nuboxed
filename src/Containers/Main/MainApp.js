@@ -44,7 +44,8 @@ import Vendor from "./Vendor/Vendor";
 import Procre from "./Procre/Procre";
 import InventoryTableAll from "./Suppliers/Child/SupplierDetails/SupplierDetailTab/InventoryTableAll";
 import Trade from "./Trade/Trade";
-
+import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
+import {handleCreateSubscriptionDrawer} from "../Subscription/SubscriptionAction";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -464,22 +465,15 @@ function MainApp(props) {
               <Header>
                 <div class="flex justify-between items-center">
                 <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
-                <div class=" flex items-center h-full self-start "
-                >
-                  <div class=" ml-3 mt-1 max-sm:hidden " >
-                    <Select
-                      value={props.preferedLanguage}
-                      style={{ width: "3.8rem" }}
-                      onChange={(value) => handleLanguageSelect(value)}
-                    >
-                      <Option value="English">EN</Option>
-                      <Option value="Dutch">NL</Option>
-                    </Select>
-                  </div>
-                </div>
-              
-                <StartStop />
-              
+                
+                {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
+                {/* <StartStop /> */}
+                <div >
+                <div class="border border-black p-1 h-10 md:p-4">
+  <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
+  <StartStop />
+</div>
+</div>
                 {/* <Button
                   onClick={() => {
                     props.handleInTagDrawer(true)
@@ -621,8 +615,14 @@ function MainApp(props) {
                       }
                     />
                   </FloatButton.Group> */}
-
-
+           <div className="flex items-center">
+                <label> Subscription</label>
+                <Button
+                 type="primary"
+         
+                 onClick={() => props.handleCreateSubscriptionDrawer(true)}
+                >Upgrade</Button>
+                 </div>
                   {/* <Subscription /> */}
                   <div class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
                     onClick={() => {
@@ -668,6 +668,19 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
+                  <div class=" flex items-center h-full self-start "
+                >
+                  <div class=" mr-2 mt-1 max-sm:hidden " >
+                    <Select
+                      value={props.preferedLanguage}
+                      style={{ width: "3.8rem" }}
+                      onChange={(value) => handleLanguageSelect(value)}
+                    >
+                      <Option value="English">EN</Option>
+                      <Option value="Dutch">NL</Option>
+                    </Select>
+                  </div>
+                </div>
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -943,7 +956,10 @@ function MainApp(props) {
       // handleResponseData={this.handleResponseData}
       // responseData={this.state.responseData}
       />
-
+ <CreateSubscriptionDrawer
+          createSubscriptiondrawer={props.createSubscriptiondrawer}
+          handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
+        />
       <TagInDrawer
         clickTagInDrawr={props.clickTagInDrawr}
         handleInTagDrawer={props.handleInTagDrawer}
@@ -966,6 +982,7 @@ const mapStateToProps = ({
   contact,
   language,
   message,
+  subscription
 }) => ({
   language: language.language,
   user: auth.userDetails,
@@ -1004,6 +1021,7 @@ const mapStateToProps = ({
   user: auth.userDetails,
   actionCount: auth.actionCount,
   clickTagInDrawr: refurbish.clickTagInDrawr,
+  createSubscriptiondrawer:subscription.createSubscriptiondrawer
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1019,6 +1037,7 @@ const mapDispatchToProps = (dispatch) =>
       handleMessageModal,
       handleActionDrawerModal,
       handleInTagDrawer,
+      handleCreateSubscriptionDrawer
     },
     dispatch
   );

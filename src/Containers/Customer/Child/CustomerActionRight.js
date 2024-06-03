@@ -23,12 +23,12 @@ class CustomerActionRight extends React.Component {
     return (
       <div class=" flex  items-center">
         <div class="max-sm:hidden">
-          {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.customerFullListInd === true &&(
+          {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.customerFullListInd === true &&(
       <CustomerShareForm
       handleDropChange={this.props.handleDropChange}
       currentUser={this.props.currentUser} 
       />
-         )} 
+         )}  */}
       {role == "ADMIN" && ( 
         <Tooltip placement="left" title="XL">
 

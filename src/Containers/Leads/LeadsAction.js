@@ -1303,6 +1303,99 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           type: types.GET_TEAM_LEADS_FAILURE,
           payload: err,
         });
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Something went wrong , reach out to support!',
+        // })
+      });
+  };
+
+  export const getTeamLeadsHot = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSHOT_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getTeamLeadsWarm = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSWARM_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getTeamLeadsCold = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSCOLD_FAILURE,
+          payload: err,
+        });
         Swal.fire({
           icon: 'error',
           title: 'Something went wrong , reach out to support!',
