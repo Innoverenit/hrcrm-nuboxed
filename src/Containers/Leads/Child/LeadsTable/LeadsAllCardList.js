@@ -119,8 +119,8 @@ const LeadsAllCardList = (props) => {
         <div className= " w-[8.82rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Source</div> 
         <div className= " w-[7.8rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">LOB</div> 
         <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className=" w-[4.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
-        <div className=" w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
+        <div className=" w-[3.2rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">By</div>
+        <div className=" w-[5.91rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
         <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Qualify</div>
         <div className="w-12"></div>
 
@@ -444,35 +444,7 @@ const LeadsAllCardList = (props) => {
                  
 
                 
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                           className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
-                    {user.leadsDeleteInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                       
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId)}>
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                        </StyledPopconfirm>
-                      </div>
-                    )}
+                    
                    
                   
                 
@@ -502,7 +474,35 @@ const LeadsAllCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                 
+                    {user.leadsUpdateInd === true && user.crmInd === true && (
+                     <div class="w-5">
+                        <Tooltip title="Edit">
+                          <BorderColorIcon
+                           className="!text-xl cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.setEditLeads(item);
+                              handleUpdateLeadsModal(true);
+                              handleSetCurrentLeadsId(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+                    )}
+                    {user.leadsDeleteInd === true && user.crmInd === true && (
+                     <div class="w-5">
+                       
+                        <StyledPopconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => deleteLeadsData(item.leadsId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-xl cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                    )}
                   
                </div>
                
@@ -585,6 +585,7 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
           padding: "0.37em",
           borderColor: "transparent",
           color: role === type ? "red" : "grey",
+          height:"1.875rem"
         }}
         ghost={role !== type}
         onClick={onClick}
@@ -609,6 +610,7 @@ function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
           padding: "0.37em",
           borderColor: "transparent",
           color: role === type ? "orange" : "grey",
+          height:"1.875rem"
         }}
         ghost={role !== type}
         onClick={onClick}
@@ -633,6 +635,7 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
           padding: "0.37em",
           borderColor: "transparent",
           color: role === type ? "blue" : "grey",
+          height:"1.875rem"
         }}
         ghost={role !== type}
         onClick={onClick}

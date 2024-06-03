@@ -144,7 +144,7 @@ class Customer extends Component {
              viewType={this.props.viewType}
              /> }
             {viewType === 'map' &&    <CustomerMap/> }
-            {viewType === 'all' &&        <CustomerCardList
+            {viewType === 'all' &&        <CustomerAllCardList
              filter={this.state.filter}
              currentUser={this.state.currentUser} 
              viewType={this.props.viewType}

@@ -40,7 +40,7 @@ const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/Rei
 
 function OpportunityTeamsCard(props) {
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
+  const [pageNo, setPageNo] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
@@ -48,8 +48,8 @@ function OpportunityTeamsCard(props) {
     }else{
      
     } 
-    props. getTeamOpportunity(page);
-    setPage(page + 1);
+    props. getTeamOpportunity(props.userId,pageNo);
+    setPageNo(pageNo + 1);
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -60,10 +60,29 @@ function OpportunityTeamsCard(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //     props. getTeamOpportunity(page);
+  // }
   const handleLoadMore = () => {
-    setPage(page + 1);
-      props. getTeamOpportunity(page);
-  }
+    const callPageMapd = props.teamOpportunity && props.teamOpportunity.length &&props.teamOpportunity[0].pageCount
+    setTimeout(() => {
+      const {
+        getTeamOpportunity,
+       // userDetails: { employeeId },
+      } = props;
+      if  (props.teamOpportunity)
+      {
+        if (pageNo < callPageMapd) {
+            setPageNo(pageNo + 1);
+            getTeamOpportunity(props.userId,pageNo); 
+      }
+      if (pageNo === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
     const [currentOpportunityId, setCurrentOpportunityId] = useState("");
     function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
       setCurrentOpportunityId(opportunityId,opportunityName);
@@ -105,8 +124,9 @@ function OpportunityTeamsCard(props) {
         hasMore={hasMore}
         loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
         height={"75vh"}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
- <CardWrapper>      
+     
  { !fetchingTeamOpportunity && teamOpportunity.length === 0 ?<NodataFoundPage />:teamOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -398,7 +418,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+             
   
 
       </InfiniteScroll>

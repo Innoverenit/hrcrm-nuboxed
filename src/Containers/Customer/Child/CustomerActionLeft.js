@@ -262,10 +262,7 @@ const CustomerActionLeft = (props) => {
         <div class="w-[40%] mt-2 ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
-              <FormattedMessage
-                id="app.sort"
-                defaultMessage="Sort"
-              />
+              Sort by Creation Date
             </span>
           } onChange={(e) => props.handleFilterChange(e)}>
             <Option value="CreationDate">Creation Date</Option>

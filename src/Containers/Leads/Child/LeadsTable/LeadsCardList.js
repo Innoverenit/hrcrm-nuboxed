@@ -177,7 +177,7 @@ const LeadsCardList = (props) => {
 
    return (
     <div>
-     <div className=' flex  justify-center  sticky top-28 z-auto'>
+     <div className=' flex  justify-center  sticky  z-auto'>
      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[15.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Hot</div>
@@ -521,35 +521,7 @@ const LeadsCardList = (props) => {
                  
 
                  
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                           className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
-                    {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
-                       
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                        </StyledPopconfirm>
-                      </div>
-                    )}
+                    
                     
                  
                  
@@ -579,7 +551,35 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                
+                    {user.leadsUpdateInd === true && user.crmInd === true && (
+                     <div class="w-5">
+                        <Tooltip title="Edit">
+                          <BorderColorIcon
+                           className="!text-xl cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.setEditLeads(item);
+                              handleUpdateLeadsModal(true);
+                              handleSetCurrentLeadsId(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+                    )}
+                    {user.leadsDeleteInd === true && user.crmInd === true && (
+                      <div class="w-5">
+                       
+                        <StyledPopconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-xl cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                    )}
                   
                </div>
                
@@ -591,7 +591,7 @@ const LeadsCardList = (props) => {
       </div>
       </div>
 
-      <div className=' flex  justify-center  sticky top-28 z-auto mt-6'>
+      <div className=' flex  justify-center  sticky z-auto mt-1'>
      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[15.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Warm</div>
@@ -935,35 +935,7 @@ const LeadsCardList = (props) => {
                  
 
                  
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                           className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
-                    {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
-                       
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                        </StyledPopconfirm>
-                      </div>
-                    )}
+                   
                     
                  
                  
@@ -993,7 +965,35 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                
+                    {user.leadsUpdateInd === true && user.crmInd === true && (
+                     <div class="w-5">
+                        <Tooltip title="Edit">
+                          <BorderColorIcon
+                           className="!text-xl cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.setEditLeads(item);
+                              handleUpdateLeadsModal(true);
+                              handleSetCurrentLeadsId(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+                    )}
+                    {user.leadsDeleteInd === true && user.crmInd === true && (
+                      <div class="w-5">
+                       
+                        <StyledPopconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-xl cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                    )}
                   
                </div>
                
@@ -1005,7 +1005,7 @@ const LeadsCardList = (props) => {
       </div>
       </div>
 
-      <div className=' flex  justify-center  sticky top-28 z-auto mt-1'>
+      <div className=' flex  justify-center  sticky  z-auto mt-1'>
      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className=" w-[15.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Cold</div>
@@ -1357,35 +1357,7 @@ const LeadsCardList = (props) => {
                  
 
                  
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                           className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
-                    {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
-                       
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                        </StyledPopconfirm>
-                      </div>
-                    )}
+                   
                     
                  
                  
@@ -1415,7 +1387,35 @@ const LeadsCardList = (props) => {
                         />
                       </Tooltip>{" "}
                     </div>
-                
+                    {user.leadsUpdateInd === true && user.crmInd === true && (
+                     <div class="w-5">
+                        <Tooltip title="Edit">
+                          <BorderColorIcon
+                           className="!text-xl cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.setEditLeads(item);
+                              handleUpdateLeadsModal(true);
+                              handleSetCurrentLeadsId(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+                    )}
+                    {user.leadsDeleteInd === true && user.crmInd === true && (
+                      <div class="w-5">
+                       
+                        <StyledPopconfirm
+                          title="Do you want to delete?"
+                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-xl cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                    )}
                   
                </div>
                

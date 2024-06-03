@@ -25,8 +25,17 @@ const initialState = {
   fetchingLeadsColdError: false,
   leadsAllDataCold:[],
 
+  fetchingTeamLeadsHot: false,
+  fetchingTeamLeadsHotError: false,
+  teamLeadsHot:[],
 
+  fetchingTeamLeadsWarm: false,
+  fetchingTeamLeadsWarmError: false,
+  teamLeadsWarm:[],
 
+  fetchingTeamLeadsCold: false,
+  fetchingTeamLeadsColdError: true,
+  teamLeadsCold:[],
 
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
@@ -1021,6 +1030,51 @@ case types.HANDLE_LEADS_MODAL:
             ...state,
             fetchingTeamLeads: false,
             fetchingTeamLeadsError: true,
+          };
+
+          case types.GET_TEAM_LEADSHOT_REQUEST:
+          return { ...state, fetchingTeamLeadsHot: true };
+        case types.GET_TEAM_LEADSHOT_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsHot: false,
+        teamLeadsHot:action.payload,
+          };
+        case types.GET_TEAM_LEADSHOT_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsHot: false,
+            fetchingTeamLeadsHotError: true,
+          };
+
+          case types.GET_TEAM_LEADSWARM_REQUEST:
+          return { ...state, fetchingTeamLeadsWarm: true };
+        case types.GET_TEAM_LEADSWARM_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsWarm: false,
+        teamLeadsWarm:action.payload,
+          };
+        case types.GET_TEAM_LEADSWARM_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsWarm: false,
+            fetchingTeamLeadsWarmError: true,
+          };
+
+          case types.GET_TEAM_LEADSCOLD_REQUEST:
+          return { ...state, fetchingTeamLeadsCold: true };
+        case types.GET_TEAM_LEADSCOLD_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsCold: false,
+        teamLeadsCold:action.payload,
+          };
+        case types.GET_TEAM_LEADSCOLD_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsCold: false,
+            fetchingTeamLeadsColdError: true,
           };
 
 
