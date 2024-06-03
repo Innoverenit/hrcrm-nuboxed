@@ -42,6 +42,8 @@ const initialState = {
     gettingReportProspectError:false,
     reportProspect:[],
 
+    addReportsProductivityModal:false,
+
     reportViewType: "ME",
     dateRangeList: [
         {
@@ -225,6 +227,9 @@ export const reportReducer = (state = initialState, action) => {
                 fetchingMyViewReportError: true,
                 selectedReportType: "Select Report",
             };
+
+            case types.ADD_REPORTS_PRODUCTIVITY_MODAL:
+                return { ...state, addReportsProductivityModal: action.payload };
 
 
 

@@ -272,7 +272,8 @@ import React, { useState, useEffect } from 'react';
 import { Tabs,Spin } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getReportsProductivity,getReportsAttendence} from "../../ReportAction"
+import AddReportProductivityModal from "../ReportDetails/AddReportProductivityModal"
+import {getReportsProductivity,getReportsAttendence,addReportsProductivity} from "../../ReportAction"
 import {getlocation} from "../../../Event/Child/Location/LocationAction"
 
 const { TabPane } = Tabs;
@@ -421,6 +422,7 @@ useEffect(() => {
   }, [props.showLocation]);
 
   return (
+    <>
     <Tabs 
     type='card'
     activeKey={activeTab}
@@ -454,7 +456,14 @@ useEffect(() => {
               const totalTimeSpend = userDates.find(d => d.totalTimeSpend !== undefined);
               return (
                 <div key={index} style={styles.gridCell}>
-                  <div>
+                  <div 
+                   onClick={() => {
+                    props.addReportsProductivity(true);
+                               
+                             
+                             
+                   }}
+                  >
                   {totalTimeTaken ? `Productivity: ${totalTimeTaken.totalTimeTaken}hrs` : ''}
                   </div>
                   <div>
@@ -471,6 +480,11 @@ useEffect(() => {
     </TabPane>
         ))}
       </Tabs>
+      <AddReportProductivityModal
+      addReportsProductivity={props.addReportsProductivity}
+      addReportsProductivityModal={props.addReportsProductivityModal}
+      />
+      </>
   );
 };
 
@@ -520,6 +534,7 @@ const mapStateToProps = ({ auth, role, location,report, currency, settings, empl
     // countries: auth.countries,
     showLocation: location.showLocation,
     reportsAttendence:report.reportsAttendence,
+    addReportsProductivityModal:report.addReportsProductivityModal,
     reportsProductivity:report.reportsProductivity,
     // addingEmployee: employee.addingEmployee,
    
@@ -530,6 +545,7 @@ const mapStateToProps = ({ auth, role, location,report, currency, settings, empl
       getlocation,
       getReportsProductivity,
       getReportsAttendence,
+      addReportsProductivity
     
     }, dispatch);
   export default connect(mapStateToProps, mapDispatchToProps)(WeekendDates);

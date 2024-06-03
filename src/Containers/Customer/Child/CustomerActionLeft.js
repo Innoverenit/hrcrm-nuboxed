@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { FormattedMessage } from "react-intl";
 import TocIcon from '@mui/icons-material/Toc';
 import PeopleIcon from '@mui/icons-material/People';
@@ -28,6 +28,11 @@ const { Search } = Input;
 const CustomerActionLeft = (props) => {
   const [filter, setFilter] = useState("creationdate")
   const [page, setPage] = useState(0);
+  const [isRecording, setIsRecording] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
+
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
@@ -50,9 +55,21 @@ const CustomerActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
         color: "#1890ff",
@@ -78,6 +95,19 @@ const CustomerActionLeft = (props) => {
     props.getCustomerListByUserId(props.userId, page, data);
     setPage(page + 1);
   }
+
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
+  
   useEffect(() => {
     if (props.teamsAccessInd) {
       props.getCustomerTeamRecords(props.userId);
