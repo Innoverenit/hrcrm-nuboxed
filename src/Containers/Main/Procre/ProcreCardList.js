@@ -53,6 +53,7 @@ if (props.fetchingAllProcure) {
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.1rem]"><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className=" md:w-[7.8rem] "><FormattedMessage id="app.owner" defaultMessage="Owner"/></div>
+                        
 
                         <div className="md:w-[3.12rem]"></div>
         </div>
@@ -64,8 +65,8 @@ if (props.fetchingAllProcure) {
           height={"75vh"}
         >
           {props.allProcure.map((item) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+            const currentDate = moment().format("DD/MM/YYYY");
+            const date = moment(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
               moment().diff(moment(item.lastRequirementOn), "days")
             );
@@ -97,7 +98,7 @@ if (props.fetchingAllProcure) {
                       <div className="flex max-sm:w-full">
                       <div className=" flex font-medium  md:w-[6.56rem] max-sm:w-full  ">
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -114,7 +115,7 @@ if (props.fetchingAllProcure) {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full md:w-[8.02rem]">
+                        <div class="max-sm:w-full md:w-[10.02rem]">
                           <Tooltip>
                             <div class=" flex max-sm:w-full justify-between flex md:flex-col text-sm">
                             <span
@@ -123,17 +124,13 @@ if (props.fetchingAllProcure) {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
                                                                     }}
-                                                                >{item.newOrderNo} </span><span>{date === currentdate ? (
-                                <span
-                                  style={{
-                                    color: "tomato",
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  New
-                                </span>
-                              ) : null}
-                              </span>
+                                                                >{item.newOrderNo} 
+                                                                </span>
+                                                                <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                  <span className="text-xs text-[tomato] font-bold">
+                                                                    New
+                                                                  </span>
+                                                                ) : null} </span>
                             
                             
                             </div>
