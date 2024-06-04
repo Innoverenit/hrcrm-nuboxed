@@ -320,3 +320,82 @@ export const setSubSelectedReportType = (type) => (dispatch) =>
       payload: modalProps,
     });
   };
+
+
+
+  
+  export const getReportsProductivityData  = (userId,startDate) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/Customers/user/${userId}`;
+    // } else {
+    //   api_url = `/Customers`;
+    // }
+    dispatch({
+      type: types.GET_REPORTS_PRODUCTIVITY_DATA_REQUEST,
+    });
+    axios
+      .get(`${base_url2}/production/manufacture/Working-status/${userId}?date=${startDate}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REPORTS_PRODUCTIVITY_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_REPORTS_PRODUCTIVITY_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const addReportsAttendenceModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.ADD_REPORTS_ATTENDENCE_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
+
+  export const getReportsAttendenceDataList  = (userId,startDate) => (dispatch) => {
+    // let api_url = "";
+    // if (userId) {
+    //   api_url = `/sort/all/Customers/user/${userId}`;
+    // } else {
+    //   api_url = `/Customers`;
+    // }
+    dispatch({
+      type: types.GET_REPORTS_ATTENDENCE_DATA_LIST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/attendance/date-range/working/all-data/status/${userId}?endDate=${startDate}&startDate=${startDate}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_REPORTS_ATTENDENCE_DATA_LIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_REPORTS_ATTENDENCE_DATA_LIST_FAILURE,
+          payload: err,
+        });
+      });
+  };
+  

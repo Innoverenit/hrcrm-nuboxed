@@ -4,6 +4,7 @@ import React, { Component,Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 import { connect } from "react-redux";
+import ReportsAttendenceDataList from "../ReportDetails/ReportsAttendenceDataList"
 import ReportsProductuvityData from "../ReportDetails/ReportsProductuvityData"
 //import RecruitmentDetails from "../../../OpportunityDetail/OpportunityTab/Recruitment/Child/RecruitmentDetails"
 //import { getCandidateDocument } from "../Candidate/CandidateAction";
@@ -15,7 +16,7 @@ import { sortedLastIndex } from "lodash";
 
 
 
-class AddReportProductivityModal extends Component {
+class AddReportAttendenceModal extends Component {
   
   // componentDidMount() {
   //   const {
@@ -41,16 +42,16 @@ class AddReportProductivityModal extends Component {
     return (
       <div>
  <StyledDrawer 
-          title="Productivity"
+          title="Attendence"
           width="47em"
-          visible={this.props.addReportsProductivityModal}
+          visible={this.props.addReportsAttendenceModalList}
         //   maskClosable={false}
           closable
          
           destroyOnClose
           maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
         //   onCancel={() => this.props.handleCandidateEmailModal(false)}
-        onClose={() => this.props.addReportsProductivity(false)}
+        onClose={() => this.props.addReportsAttendenceModal(false)}
           //style={{ top: 40 }}
         //   footer={null}
         
@@ -64,10 +65,14 @@ class AddReportProductivityModal extends Component {
            documentsByCandidateId={this.props.documentsByCandidateId}
           //candidate={candidate}
           /> */}
-      <ReportsProductuvityData
+      {/* <ReportsProductuvityData
       userId={this.props.userId}
         startDateData={this.props.startDateData}
-      />
+      /> */}
+     <ReportsAttendenceDataList
+      userId={this.props.userId}
+      startDateData={this.props.startDateData}
+     />
         </Suspense>
          
         </StyledDrawer>
@@ -89,4 +94,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddReportProductivityModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReportAttendenceModal);
