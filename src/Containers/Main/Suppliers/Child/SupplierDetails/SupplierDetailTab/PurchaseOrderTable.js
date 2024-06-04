@@ -107,6 +107,11 @@ function PurchaseOrderTable(props) {
                                 id="app.created"
                                 defaultMessage="Created" />
                         </div>
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                            <FormattedMessage
+                                id="app.location"
+                                defaultMessage="Location" />
+                        </div>
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Delivery
                         </div>
@@ -147,7 +152,7 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
@@ -165,7 +170,7 @@ function PurchaseOrderTable(props) {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[9.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
@@ -199,7 +204,7 @@ function PurchaseOrderTable(props) {
                 </div>
               </div>
 
-                                                    <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                     <select

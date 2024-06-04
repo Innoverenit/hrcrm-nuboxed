@@ -1,6 +1,7 @@
 import React, {  PureComponent,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
  import { getDepartmentRoleData } from "../../../SettingsAction"
@@ -31,6 +32,9 @@ class DepartmentRole extends PureComponent {
 
     };
     render() {
+      if (this.props.fetchingDepartmentRoleData) {
+        return <BundleLoader />;
+      }
         const { departmentRoleData } = this.props;
         // console.log(this.state.departmentData.roleTypeId)
         return (
@@ -78,6 +82,7 @@ class DepartmentRole extends PureComponent {
 
 const mapStateToProps = ({ settings, opportunity, auth }) => ({
     departmentRoleData: settings.departmentRoleData,
+    fetchingDepartmentRoleData:settings.fetchingDepartmentRoleData,
 
 });
 

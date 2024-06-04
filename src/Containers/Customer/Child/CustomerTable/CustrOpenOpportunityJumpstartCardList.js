@@ -20,6 +20,7 @@ import {
 import {getOpenOppListOfJumpstart} from "../../CustomerAction"
 
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 
 function CustrOpenOpportunityJumpstartCardList(props) {
@@ -47,12 +48,15 @@ function CustrOpenOpportunityJumpstartCardList(props) {
      
       } = props;
 
+      if (fetchingCustOpenOppJumpstart) {
+        return <BundleLoader />;
+      }
+
       return (    
   <>
   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex max-sm:hidden  w-[99%] max-xl:w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Name</div>
-        <div className=" w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.12rem] max-lg:w-[15.12rem]">Prospect</div>
+        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Quotation ID</div>
         <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">Sponsor</div>
         <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
         <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">Value</div>
@@ -77,7 +81,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                       
                     >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[13rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
+                      <div className=" flex font-medium  w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -121,15 +125,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium flex-col  w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                           
-                                    {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
-                                    
-                                    {item.customer}
-                    
-                                    </div>
-                                </div>
+                               
                                 </div>
                                 
                                
@@ -164,9 +160,9 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                                     {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-sm text-cardBody font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                    <CurrencySymbol currencyType={item.currency} />
-            &nbsp;
-            {item.proposalAmount}
+                                    
+                                    {item.currency}  {item.proposalAmount}
+           
 
                                     </div>
                                 </div>

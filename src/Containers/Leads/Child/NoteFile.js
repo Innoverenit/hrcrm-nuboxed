@@ -87,7 +87,11 @@ class NoteFile extends Component {
       // userIdFromPartner,
       fetchingNotesListByLeadsId,
     } = this.props;
-    const { editorState, placeholder } = this.state;
+    const { editorState, placeholder } = this.state;  const handleEmailBlur = () => {
+      if (this.props.notes.trim() !== "") {
+        this.props.addLeadsNote({ notes: this.props.notes,leadsId: leadsId });
+      }
+    };
     return (
       <>
         <Formik
@@ -140,12 +144,12 @@ class NoteFile extends Component {
                     overflow: "auto",
                      border:"solid lightgrey 2px"
                   }}
+                // onClick={handleEmailBlur}
                   onEditorStateChange={this.onEditorStateChange}
                   placeholder={placeholder || "Type here"}
                   toolbar={toolbarOption}
                 />
-             
-                <div class=" flex justify-end">
+             <div class=" flex justify-end">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -159,9 +163,9 @@ class NoteFile extends Component {
                       id="app.post"
                       defaultMessage="Post"
                     />
-                    {/* Post */}
+                
                   </Button>
-                </div>
+                </div> 
              
               </Form>
             );
