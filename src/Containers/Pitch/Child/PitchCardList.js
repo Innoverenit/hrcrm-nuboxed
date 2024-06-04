@@ -454,7 +454,33 @@ onClick={()=>{
                                 <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
                                
                               
-                                {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                            
+                        <div>
+            
+
+                    </div>
+                  
+                  
+                      <div>
+                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+            <span class="cursor-pointer" >
+            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
+            </span>
+          </Tooltip>
+          </div>
+          <div>
+          <Tooltip title={item.email}>
+              <MailOutlineIcon
+                type="mail"
+                className="!text-xl cursor-pointer text-green-400"
+                // onClick={() => {
+                //   handleSetCurrentLeadsId(item);
+                //   props.handleLeadsEmailDrawerModal(true);
+                // }}
+              />
+            </Tooltip> </div>
+           
+            {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                 <div>
             <Tooltip title="Edit">
               <BorderColorIcon
@@ -487,32 +513,6 @@ onClick={()=>{
              </Tooltip>
           </StyledPopconfirm>
                         </div>
-                            
-                        <div>
-            
-
-                    </div>
-                  
-                  
-                      <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer" >
-            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
-          <div>
-          <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                className="!text-xl cursor-pointer text-green-400"
-                // onClick={() => {
-                //   handleSetCurrentLeadsId(item);
-                //   props.handleLeadsEmailDrawerModal(true);
-                // }}
-              />
-            </Tooltip> </div>
-           
                       
                       
                     </div>
