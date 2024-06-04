@@ -3167,12 +3167,14 @@ export const handleAccountProduction = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
-export const getAllProductList = () => (dispatch) => {
+export const getAllProductList = (category,brand,model) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_PRODUCT_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/all-product`, {
+    // .get(`${base_url2}/product/all-product`, 
+    .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
+    {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3927,12 +3929,14 @@ export const handleAccountOpportunityModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const getBrand = () => (dispatch) => {
+export const getBrand = (category) => (dispatch) => {
   dispatch({
       type: types.GET_BRAND_REQUEST,
   });
   axios
-      .get(`${base_url2}/masterlist/brand/drop-down`, {
+      // .get(`${base_url2}/masterlist/brand/drop-down`, 
+      .get(`${base_url2}/product/brandName/${category}`, 
+      {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -3953,12 +3957,14 @@ export const getBrand = () => (dispatch) => {
       });
 };
 
-export const getModel = (brandName) => (dispatch) => {
+export const getModel = (category,brand) => (dispatch) => {
   dispatch({
       type: types.GET_MODEL_REQUEST,
   });
   axios
-      .get(`${base_url2}/masterlist/model/drop-down/${brandName}`, {
+      // .get(`${base_url2}/masterlist/model/drop-down/${brandName}`,
+      .get(`${base_url2}/product/modelName/${category}/${brand}`,
+       {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },

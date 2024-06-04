@@ -89,7 +89,8 @@ class AccountOpportunityStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.quotationId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {/* {this.props.quotationId &&  */}
+                                        <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
@@ -98,7 +99,8 @@ class AccountOpportunityStepper extends Component {
                                                 id="app.proceed"
                                                 defaultMessage="Proceed"
                                             />
-                                        </Button>}
+                                        </Button>
+                                        {/* } */}
                                     </>
                                 )}
                             </>

@@ -15,10 +15,10 @@ const { Option } = Select;
 
 function AddManualForm(props) {
   useEffect(() => {
-    props.getBrand();
+    // props.getBrand();
     props.getCurrency();
     props.getCategorylist();
-    props.getAllProductList();
+    // props.getAllProductList();
     props.getLocationList(props.orgId)
   }, []);
 
@@ -36,7 +36,7 @@ function AddManualForm(props) {
     updatedRows[index].model = ""; // Reset model when brand changes
     updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    props.getModel(value);
+    props.getModel(updatedRows[index].category,value);
   };
 
   const handleCurrencyChange = (value, index) => {
@@ -67,7 +67,7 @@ function AddManualForm(props) {
     // updatedRows[index].model = ""; // Reset model when brand changes
     // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    //props.getModel(value);
+    props.getBrand(value);
   };
   
 
@@ -77,6 +77,7 @@ function AddManualForm(props) {
     updatedRows[index].model = value;
     updatedRows[index].modelId = selectedModel.id; // Assuming model object has an 'id' field
     setRows(updatedRows);
+    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
   const handleSpecsChange = (value, index) => {
@@ -104,7 +105,8 @@ function AddManualForm(props) {
   const handleSubmit = () => {
     const dataToSend = rows.map((row) => ({
       orderPhoneId: props.orderDetailsId.orderId,
-      brandId: row.modelId,
+      brandId: row.brand,
+      modelId: row.model,
       orgId: props.orgId,
       userId: props.userId,
       unit: row.unit,
@@ -115,7 +117,7 @@ function AddManualForm(props) {
       currencyId:row.currencyId,
       category:row.category,
       attribute:row.attribute,
-      locationId:row.locationId
+      location:row.locationId
                       
     }));
 
@@ -223,7 +225,7 @@ function AddManualForm(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
+                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
