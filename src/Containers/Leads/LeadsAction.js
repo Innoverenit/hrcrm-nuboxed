@@ -1245,6 +1245,87 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getAllLeadsHot = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSHOT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllLeadsWarm = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSWARM_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllLeadsCold = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSCOLD_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const convertLeads = (data,leadsId,assignedToId) => (
     dispatch,
     getState
