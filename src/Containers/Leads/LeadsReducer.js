@@ -113,6 +113,18 @@ const initialState = {
   fetchingCallListError: true,
   callList:[],
 
+  fetchingAllLeadsHot: false,
+          fetchingAllLeadsHotError: false,
+          allleadsInfoHot:[],
+
+          fetchingAllLeadsWarm: false,
+        fetchingAllLeadsWarmError: false,
+        allleadsInfoWarm:[],
+
+        fetchingAllLeadsCold: false,
+        fetchingAllLeadsColdError: false,
+        allleadsInfoCold:[],
+
   fetchingNotesListOfLeads: false,
   fetchingNotesListOfLeadsError: false,
   notesListOfLeads:[],
@@ -977,6 +989,53 @@ case types.HANDLE_LEADS_MODAL:
         fetchingAllLeads: false,
         fetchingAllLeadsError: true,
       };
+
+      case types.GET_ALL_LEADSHOT_REQUEST:
+        return { ...state, fetchingAllLeadsHot: true };
+      case types.GET_ALL_LEADSHOT_SUCCESS:
+        return {
+          ...state,
+          fetchingAllLeadsHot: false,
+          allleadsInfoHot: action.payload,
+         
+        };
+      case types.GET_ALL_LEADSHOT_FAILURE:
+        return {
+          ...state,
+          fetchingAllLeadsHot: false,
+          fetchingAllLeadsHotError: true,
+        };
+
+        case types.GET_ALL_LEADSWARM_REQUEST:
+      return { ...state, fetchingAllLeadsWarm: true };
+    case types.GET_ALL_LEADSWARM_SUCCESS:
+      return {
+        ...state,
+        fetchingAllLeadsWarm: false,
+        allleadsInfoWarm: action.payload,
+      };
+    case types.GET_ALL_LEADSWARM_FAILURE:
+      return {
+        ...state,
+        fetchingAllLeadsWarm: false,
+        fetchingAllLeadsWarmError: true,
+      };
+
+      case types.GET_ALL_LEADSCOLD_REQUEST:
+      return { ...state, fetchingAllLeadsCold: true };
+    case types.GET_ALL_LEADSCOLD_SUCCESS:
+      return {
+        ...state,
+        fetchingAllLeadsCold: false,
+        allleadsInfoCold: action.payload,
+      };
+    case types.GET_ALL_LEADSCOLD_FAILURE:
+      return {
+        ...state,
+        fetchingAllLeadsCold: false,
+        fetchingAllLeadsColdError: true,
+      };
+
 
       case types.CONVERT_LEADS_REQUEST:
         return { ...state, linkingLeads: true };

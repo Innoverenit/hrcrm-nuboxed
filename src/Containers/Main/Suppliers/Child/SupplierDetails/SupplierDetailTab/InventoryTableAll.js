@@ -118,7 +118,7 @@ function InventoryTableAll(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
-                                                           12556325
+                                                           {item.tradeId}
                                                            
 
                                                         </div>
@@ -170,7 +170,7 @@ function InventoryTableAll(props) {
                                                             {item.location}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[3.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[2.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
                                                         <MultiAvatar
                                 primaryTitle={item.ownerName}

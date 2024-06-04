@@ -34,8 +34,8 @@ class LinkedContactInvestDocuments extends Component {
                   <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                   
                   <div className="md:w-[9.7rem]">Date</div>
-                      <div className=" md:w-[11.12rem]">Name</div>
-                      <div className=" md:w-[9.5rem]">Description</div>
+                      <div className=" md:w-[14.12rem]">Name</div>
+                      <div className=" md:w-[10.5rem]">Description</div>
                       <div className=" md:w-[9.8rem] ">Uploaded By</div>
                      
                   </div>
@@ -44,11 +44,11 @@ class LinkedContactInvestDocuments extends Component {
                       
                       return (
                           <div >
-                              <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 "
-
-                              >
+                              <div
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+            >
                                   <div class="flex">
-                                      <div className=" flex font-medium  md:w-[6.8rem] max-sm:w-full  ">
+                                      <div className=" flex font-medium  md:w-[9.8rem] max-sm:w-full  ">
                                       <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                       </div>
 
@@ -58,7 +58,7 @@ class LinkedContactInvestDocuments extends Component {
                                           </div>
 
                                       </div>
-                                      <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex font-medium  md:w-[10.8rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs text-cardBody font-poppins">
                                               {item.documentDescription}
                                           </div>
