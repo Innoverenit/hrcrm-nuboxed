@@ -272,8 +272,9 @@ import React, { useState, useEffect } from 'react';
 import { Tabs,Spin } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddReportAttendenceModal from "../ReportDetails/AddReportAttendenceModal"
 import AddReportProductivityModal from "../ReportDetails/AddReportProductivityModal"
-import {getReportsProductivity,getReportsAttendence,addReportsProductivity} from "../../ReportAction"
+import {getReportsProductivity,getReportsAttendence,addReportsProductivity,addReportsAttendenceModal} from "../../ReportAction"
 import {getlocation} from "../../../Event/Child/Location/LocationAction"
 
 const { TabPane } = Tabs;
@@ -285,6 +286,9 @@ const WeekendDates = (props) => {
   const [loading, setLoading] = useState(false);
   const [monday, setMonday] = useState(null);
   const [sunday, setSunday] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [startDateData, setStartDateData] = useState(null);
+  console.log(startDateData)
   const locations = [
     { location: "Mumbai" },
     { location: "Delhi" },
@@ -414,6 +418,11 @@ useEffect(() => {
     // props.getReportsAttendence()
     //props.getMatrixdata(key, props.organizationId);
   };
+  const handleProductivityClick = (date,userId) => {
+    setStartDateData(`${(date)}T20:00:00Z`)
+    setUserId(userId)
+    console.log('Productivity date clicked:', userId);
+  };
 
   useEffect(() => {
     if (props.showLocation.length > 0) {
@@ -447,11 +456,13 @@ useEffect(() => {
             <div>{date.dayOfWeek}</div>
           </div>
         ))}
+        
         {combinedUsers.map((user) => (
           <React.Fragment key={user.userId}>
             <div style={styles.headerCell}>{user.userName}</div>
             {dates.map((date, index) => {
               const userDates = user.dto.filter(d => d.date.startsWith(date.isoDate));
+              //console.log(user)
               const totalTimeTaken = userDates.find(d => d.totalTimeTaken !== undefined);
               const totalTimeSpend = userDates.find(d => d.totalTimeSpend !== undefined);
               return (
@@ -459,6 +470,8 @@ useEffect(() => {
                   <div 
                    onClick={() => {
                     props.addReportsProductivity(true);
+                    //handleRowData(item);
+                    handleProductivityClick(date.isoDate,user.userId)
                                
                              
                              
@@ -466,7 +479,18 @@ useEffect(() => {
                   >
                   {totalTimeTaken ? `Productivity: ${totalTimeTaken.totalTimeTaken}hrs` : ''}
                   </div>
-                  <div>
+                  <div 
+                  
+                  onClick={() => {
+                    props.addReportsAttendenceModal(true);
+                    //handleRowData(item);
+                    handleProductivityClick(date.isoDate,user.userId)
+                               
+                             
+                             
+                   }}
+                  >
+                  
                   {totalTimeSpend ? `Attendance: ${totalTimeSpend.totalTimeSpend}hrs` : ''}
                   </div>
                 </div>
@@ -474,6 +498,7 @@ useEffect(() => {
             })}
           </React.Fragment>
         ))}
+       
       </div>
     </div>
      )}
@@ -481,8 +506,16 @@ useEffect(() => {
         ))}
       </Tabs>
       <AddReportProductivityModal
+      userId={userId}
+      startDateData={startDateData}
       addReportsProductivity={props.addReportsProductivity}
       addReportsProductivityModal={props.addReportsProductivityModal}
+      />
+      <AddReportAttendenceModal
+      userId={userId}
+      startDateData={startDateData}
+      addReportsAttendenceModalList={props.addReportsAttendenceModalList}
+      addReportsAttendenceModal={props.addReportsAttendenceModal}
       />
       </>
   );
@@ -536,6 +569,7 @@ const mapStateToProps = ({ auth, role, location,report, currency, settings, empl
     reportsAttendence:report.reportsAttendence,
     addReportsProductivityModal:report.addReportsProductivityModal,
     reportsProductivity:report.reportsProductivity,
+    addReportsAttendenceModalList:report.addReportsAttendenceModalList,
     // addingEmployee: employee.addingEmployee,
    
   });
@@ -545,7 +579,8 @@ const mapStateToProps = ({ auth, role, location,report, currency, settings, empl
       getlocation,
       getReportsProductivity,
       getReportsAttendence,
-      addReportsProductivity
+      addReportsProductivity,
+      addReportsAttendenceModal
     
     }, dispatch);
   export default connect(mapStateToProps, mapDispatchToProps)(WeekendDates);

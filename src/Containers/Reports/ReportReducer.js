@@ -38,6 +38,19 @@ const initialState = {
     gettingReportTaskError:false,
     reportTask:[],
 
+
+    fetchingReportsAttendenceDataList:false,
+    fetchingReportsAttendenceDataListError:false,
+    reportsAttendenceDataList:[],
+
+
+    fetchingReportsProductivityData:false,
+    fetchingReportsProductivityDataError:false,
+    reportsProductivityData:[],
+
+
+    addReportsAttendenceModalList:false,
+
     gettingReportProspect:false,
     gettingReportProspectError:false,
     reportProspect:[],
@@ -193,6 +206,12 @@ export const reportReducer = (state = initialState, action) => {
 
 
 
+            case types.ADD_REPORTS_ATTENDENCE_MODAL:
+                return { ...state, addReportsAttendenceModalList: action.payload };
+
+
+
+
 
             case types.GET_REPORTS_ATTENDENCE_REQUEST:
                 return { ...state, fetchingReportsAttendence: true };
@@ -320,6 +339,25 @@ export const reportReducer = (state = initialState, action) => {
             };
 
 
+
+
+            case types.GET_REPORTS_ATTENDENCE_DATA_LIST_REQUEST:
+                return { ...state, fetchingReportsAttendenceDataList: true };
+              case types.GET_REPORTS_ATTENDENCE_DATA_LIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingReportsAttendenceDataList: false,
+                  reportsAttendenceDataList: action.payload
+                  //clearbit: null,
+                };
+              case types.GET_REPORTS_ATTENDENCE_DATA_LIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingReportsAttendenceDataList: false,
+                  fetchingReportsAttendenceDataListError: true,
+                };
+
+
             case types.GET_ALL_REPORT_INVESTORS_REQUEST:
                 return { ...state, fetchingAllReportInvestors: true };
               case types.GET_ALL_REPORT_INVESTORS_SUCCESS:
@@ -341,6 +379,26 @@ export const reportReducer = (state = initialState, action) => {
                   fetchingTaskdata: false,
                   fetchingTaskdataError: true,
                 };
+
+
+
+
+                case types.GET_REPORTS_PRODUCTIVITY_DATA_REQUEST:
+                    return { ...state, fetchingReportsProductivityData: true };
+                  case types.GET_REPORTS_PRODUCTIVITY_DATA_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingReportsProductivityData: false,
+                      reportsProductivityData: action.payload
+                      //clearbit: null,
+                    };
+                  case types.GET_REPORTS_PRODUCTIVITY_DATA_FAILURE:
+                    return {
+                      ...state,
+                      fetchingReportsProductivityData: false,
+                      fetchingReportsProductivityDataError: true,
+                    };
+              
           
         default:
             return state;

@@ -336,12 +336,12 @@ export const getReceivedUserList = (locationDetailsId, page) => (dispatch) => {
     });
 };
 
-export const getCellById = (locationDetailsId, page) => (dispatch) => {
+export const getCellById = (suppliesId) => (dispatch) => {
   dispatch({
     type: types.GET_CELL_NUMBER_REQUEST,
   });
   axios
-    .get(`${base_url2}/cell/allCellChamber/${locationDetailsId}/${page}`, {
+    .get(`${base_url2}/cell/cellchamber/${suppliesId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
