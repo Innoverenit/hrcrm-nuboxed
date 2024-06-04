@@ -11,9 +11,9 @@ const { Option } = Select;
 
 function AddQuotationExcel(props) {
   useEffect(() => {
-    props.getBrand();
+    // props.getBrand();
     props.getCategorylist();
-    props.getAllProductList();
+    // props.getAllProductList();
     props.getLocationList(props.orgId);
     props.getSupplierSuppliesQuality();
   }, []);
@@ -32,7 +32,7 @@ function AddQuotationExcel(props) {
     updatedRows[index].model = ""; // Reset model when brand changes
     updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    props.getModel(value);
+    props.getModel(updatedRows[index].category,value);
   };
 
   const handleModelChange = (value, index) => {
@@ -41,6 +41,7 @@ function AddQuotationExcel(props) {
     updatedRows[index].model = value;
     updatedRows[index].modelId = selectedModel.id; // Assuming model object has an 'id' field
     setRows(updatedRows);
+    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
   const handleSpecsChange = (value, index) => {
@@ -58,7 +59,7 @@ function AddQuotationExcel(props) {
     // updatedRows[index].model = ""; // Reset model when brand changes
     // updatedRows[index].modelId = ""; // Reset modelId when brand changes
     setRows(updatedRows);
-    //props.getModel(value);
+    props.getBrand(value);
   };
   const handleQualityChange = (value, index) => {
     const updatedRows = [...rows];
@@ -91,13 +92,14 @@ function AddQuotationExcel(props) {
   const handleSubmit = () => {
     const dataToSend = rows.map((row) => ({
       orderPhoneId: props.orderDetailsId.orderId,
-      brandId: row.modelId,
+      brandId: row.brand,
+      modelId: row.model,
       orderType:"Procure",
       unit: row.unit,
       specs: row.specs,
       category:row.category ,
       attribute:row.attribute,
-      locationId:row.locationId,
+      location:row.locationId,
       quality: row.quality,
     }));
 
@@ -164,7 +166,7 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.productId} value={a.productId}>{a.productFullName}</Option>
+                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
