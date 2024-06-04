@@ -289,7 +289,7 @@ function AddManualForm(props) {
           </div>
         ))}
         <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingProcureDetails} onClick={handleSubmit}>Submit</Button>
+        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}>Submit</Button>
       </div>
       {/* <ProcureDetailsCardList /> */}
     </>
@@ -307,7 +307,8 @@ const mapStateToProps = ({ distributor, brandmodel, auth,suppliers }) => ({
   currencies:auth.currencies,
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
-  locationlist:distributor.locationlist
+  locationlist:distributor.locationlist,
+  addingManual:suppliers.addingManual
 });
 
 const mapDispatchToProps = (dispatch) =>

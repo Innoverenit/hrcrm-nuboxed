@@ -1635,7 +1635,7 @@ export const suppliersReducer = (state = initialState, action) => {
                     ...state,
                     addingManual: false,
                     supplierExcleUploadModal: false,
-                    //inventoryList: [action.payload, ...state.inventoryList],
+                    inventoryList: [...action.payload, ...state.inventoryList],
                     
                     // inventoryList: state.inventoryList.map((item) => {
                     //   if (item.userId === action.payload.userId) {
