@@ -109,9 +109,10 @@ function ProcureOrderDetails(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
-          <div className="md:w-[8.8rem]">
+          <div className="md:w-[3.8rem]">
             <FormattedMessage id="app.unit" defaultMessage="Unit" />
           </div>
+          
         
           <div className="md:w-[6.12rem]"></div>
         </div>
@@ -134,7 +135,7 @@ function ProcureOrderDetails(props) {
                  
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                 
                     <div className="font-normal text-sm text-cardBody font-poppins">{item.model}</div>
