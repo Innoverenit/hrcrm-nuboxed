@@ -171,9 +171,7 @@ function AccountProcureDetails(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.price" defaultMessage="Price" />
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.currency" defaultMessage="Currency" />
-          </div>
+        
         
           <div className="md:w-[6.12rem]"></div>
         </div>
@@ -301,7 +299,7 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -347,7 +345,7 @@ function AccountProcureDetails(props) {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price} </div>
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price}{item.currency} </div>
                   )}
                 </div>
               </div>
@@ -367,7 +365,8 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.currency}</div>
+                    null
+                    // <div className="font-normal text-sm text-cardBody font-poppins"></div>
                   )}
                 </div>
               </div>

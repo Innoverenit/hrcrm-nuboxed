@@ -172,9 +172,7 @@ function ProcureDetailsCardList(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.price" defaultMessage="Price" />
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.currency" defaultMessage="Currency" />
-          </div>
+        
         
           <div className="md:w-[6.12rem]"></div>
         </div>
