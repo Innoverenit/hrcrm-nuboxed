@@ -123,7 +123,7 @@ if (props.fetchingAllProcure) {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureOrderModal(true);
                                                                     }}
-                                                                >{item.newOrderNo} </span>{date === currentdate ? (
+                                                                >{item.newOrderNo} </span><span>{date === currentdate ? (
                                 <span
                                   style={{
                                     color: "tomato",
@@ -133,6 +133,7 @@ if (props.fetchingAllProcure) {
                                   New
                                 </span>
                               ) : null}
+                              </span>
                             
                             
                             </div>

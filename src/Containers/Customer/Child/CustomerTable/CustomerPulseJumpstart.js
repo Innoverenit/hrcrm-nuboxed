@@ -57,6 +57,10 @@ componentDidMount() {
 }
 
 render() {
+
+   if (this.props.fetchingOppValue) {
+    return <BundleLoader />;
+  }
   const weightedValue = `${this.props.WeightedValue.weightedValue} ${this.props.WeightedValue.tradeCurrency}`;
   const pipeLineValue = `${this.props.pipelineValue.pipeLineValue} ${this.props.pipelineValue.tradeCurrency}`;
   const OpportunityValue = `${this.props.OppValue.pipeLineValue} ${this.props.WeightedValue.tradeCurrency}`
@@ -80,7 +84,7 @@ render() {
   return(
     <>
     <div class=" flex flex-row w-full" >
-    <div class="flex w-full" >
+    <div class="flex w-full justify-center" >
         
         <JumpStartBox
             noProgress

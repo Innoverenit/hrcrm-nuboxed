@@ -2014,7 +2014,7 @@ export const getCategorylist = () => (dispatch) => {
 export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
   dispatch({ type: types.UPDATE_PO_CONTACT_REQUEST });
   axios
-    .put(`${base_url}/po/updateContactPerson/${poSupplierDetailsId}`,data,
+    .put(`${base_url2}/po/updateContactPerson/${poSupplierDetailsId}`,data,
       {
     
         headers: {
