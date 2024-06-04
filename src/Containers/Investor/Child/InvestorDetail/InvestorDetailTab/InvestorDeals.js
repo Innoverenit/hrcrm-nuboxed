@@ -47,7 +47,7 @@ const InvestorDeals = (props) => {
 console.log("investorDetails",props.investorDetails)
   return (
     <>
-  <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
     <div className=" flex  w-[98%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[15rem]"><FormattedMessage
                   id="app.name"
@@ -121,7 +121,9 @@ console.log("investorDetails",props.investorDetails)
                } `;
                     return (
                         <div>
-                            <div className="flex justify-between rounded-xl  mt-2 bg-white h-11 items-center p-1" >
+                            <div
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+            >
                                      
                                 <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
                                 <div className="flex max-sm:w-full items-center"> 

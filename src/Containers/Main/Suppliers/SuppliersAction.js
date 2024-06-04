@@ -1910,7 +1910,7 @@ export const addManual = (customer,userId) => (dispatch, getState) => {
       },
     })
     .then((res) => {
-      dispatch(getInventorylist(userId,"0"))
+     // dispatch(getInventorylist(userId,"0"))
       Swal.fire({
         icon: 'success',
         title: 'list added',
