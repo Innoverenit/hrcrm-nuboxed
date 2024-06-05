@@ -1881,5 +1881,11 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       payload: modalProps,
     });
   };
+
+  export const ClearSearchedDataOfLead = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_SEARCHED_DATA_LEAD,
+    });
+  };
   
 

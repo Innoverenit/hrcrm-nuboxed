@@ -3,6 +3,7 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import moment from "moment";
+import SearchedData from "./SearchedData"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -170,6 +171,10 @@ const LeadsTeamCardList = (props) => {
 
    return (
     <div>
+       {props.serachedData.length > 0 ? (
+    <SearchedData/>
+  ) : (
+    <>
      <div className=' flex  sticky  z-auto'>
      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
@@ -1403,7 +1408,8 @@ const LeadsTeamCardList = (props) => {
          </InfiniteScroll>
       </div>
       </div>
-
+      </>
+)}
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}
@@ -1446,6 +1452,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingTeamLeads: leads.fetchingTeamLeads,
   openCETmodal: leads.openCETmodal,
+  serachedData:leads.serachedData,
   fetchingTeamLeads: leads.fetchingTeamLeads,
   addLeadsConfirmationModal:leads.addLeadsConfirmationModal,
   addDrawerLeadsNotesModal: leads.addDrawerLeadsNotesModal,
