@@ -9,7 +9,7 @@ import { StyledLabel } from '../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, Switch } from 'antd';
+import { Button, Tooltip, message, } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"

@@ -65,24 +65,7 @@ const ProductActionLeft = (props) => {
         </span>
       </Tooltip> */}
 
-      <Tooltip title="Suspended Product">
-      <Badge
-          size="small"
-           count={( props.deletedProductCount.deletedProduct) || 0}
-          overflowCount={999}
-        >
-        <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-          <DeleteOutlined
-            className="!text-2xl cursor-pointer "
-            style={{
-
-              color: props.viewType === "dashboard" && "red",
-            }}
-            onClick={() => props.setProductViewType("dashboard")}
-          />
-        </Avatar>
-        </Badge>
-      </Tooltip>
+     
 
       <Tooltip title="Category List">
         <div
@@ -99,6 +82,25 @@ const ProductActionLeft = (props) => {
 
         </div>
       </Tooltip>
+
+<Tooltip title="Suspended Product">
+<Badge
+    size="small"
+     count={( props.deletedProductCount.deletedProduct) || 0}
+    overflowCount={999}
+  >
+  <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+    <DeleteOutlined
+      className="!text-2xl cursor-pointer "
+      style={{
+
+        color: props.viewType === "dashboard" && "red",
+      }}
+      onClick={() => props.setProductViewType("dashboard")}
+    />
+  </Avatar>
+  </Badge>
+</Tooltip>
 
     </FlexContainer>
   );

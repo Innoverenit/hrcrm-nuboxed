@@ -2,7 +2,6 @@ import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductbuilder,addProductBuilder,getSearchBuilder } from "../../ProductAction";
-// import {  Select } from "../../../../Components/UI/Elements";
 import { Select } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 

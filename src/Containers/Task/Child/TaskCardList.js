@@ -2,8 +2,6 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-// import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
-// import HourglassTopIcon from '@mui/icons-material/HourglassTop'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import AddTaskDocumentDrawerModal from "../Child/AddTaskDocumentDrawerModal"
 import styled from "styled-components";
@@ -200,6 +198,7 @@ const TaskCardList = (props) => {
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[4.54rem] text-[red]">Urgent </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -699,6 +698,7 @@ const TaskCardList = (props) => {
 <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[4.54rem] text-[orange]">High </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -1198,6 +1198,7 @@ const TaskCardList = (props) => {
 <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" md:w-[4.54rem] text-[teal]">Normal </div>
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"

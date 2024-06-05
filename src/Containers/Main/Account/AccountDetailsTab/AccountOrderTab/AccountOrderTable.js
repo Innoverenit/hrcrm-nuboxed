@@ -128,7 +128,7 @@ const AccountOrderTable = (props) => {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[3.54rem]">Urgent </div>
+                        <div className=" md:w-[3.54rem] text-[red]">Urgent </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -558,7 +558,7 @@ const AccountOrderTable = (props) => {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[5.54rem]">High </div>
+                        <div className=" md:w-[5.54rem] text-[orange]">High </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"
@@ -987,7 +987,7 @@ const AccountOrderTable = (props) => {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg m-2 p-2 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[93%]  bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[3.54rem]">Normal </div>
+                        <div className=" md:w-[3.54rem] text-[teal]">Normal </div>
                         <div className=" md:w-[11.41rem]">
                             <FormattedMessage
                                 id="app.orderno"

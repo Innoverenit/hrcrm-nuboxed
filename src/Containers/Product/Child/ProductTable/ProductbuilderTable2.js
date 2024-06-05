@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Popconfirm } from "antd";
 import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder,handleProductNotesDrawerModal } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -126,7 +125,7 @@ return (
           return (
 <div key={item.productionBuilderId}>
 
-<div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3  "    >
+<div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  "    >
 <div className=" flex font-medium  w-[9rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
                       <div>
@@ -224,7 +223,23 @@ return (
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+ 
+                        <div>
+                          <Tooltip title="Notes">
+                            <NoteAltIcon
+                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              onClick={() => {
+                                handleProductNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+
+                            />
+                          </Tooltip>
+
+                        </div>
+                        <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
@@ -241,7 +256,7 @@ return (
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.productionBuilderId)}
@@ -258,7 +273,7 @@ return (
                           >
                      <Tooltip title="Delete">
                           <DeleteOutlined
-                           className=" !text-base cursor-pointer !text-[red]"
+                           className=" !text-xl cursor-pointer !text-[red]"
                           />
                        </Tooltip>
                        </Popconfirm>
@@ -266,19 +281,6 @@ return (
                        
                        
                         </div>
-                        <div>
-                          <Tooltip title="Notes">
-                            <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleProductNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-
-                            />
-                          </Tooltip>
-
                         </div>
 </div>
 
