@@ -71,26 +71,32 @@ function InventoryTable(props) {
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                    <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[20.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                    <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                            Trade ID
+                            </div>
+                        <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
-                        <div className=" w-[33.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                             Brand
                         </div>
-                        <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[42.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                            Model
+                        </div>
+                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          Attribute
                         </div>
                         <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             Quality
                         </div>
-                        <div className=" w-[12.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
+                        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             Specs
                         </div>
-                        <div className=" md:w-[12.1rem]">
+                        <div className=" md:w-[14.9rem]">
                            Unit
                         </div>
-                        <div className=" md:w-[3.1rem]">
+                        <div className=" md:w-[5.9rem]">
                          Price
                         </div>
                         
@@ -111,27 +117,41 @@ function InventoryTable(props) {
                                         <>
                                             <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2rem] items-center p-3" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div className=" flex font-medium justify-between items-center  w-[15.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
+                                                           {item.tradeId}
+                                                           
+
+                                                        </div>
+                                                        {date === currentdate ? (
+                                                                <div class="text-xs font-bold text-[tomato] mr-4">
+                                                                    New
+                                                                </div>
+                                                            ) : null}
+                                                    </div>
+                                                    <div className=" flex font-medium justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             {item.categoryName}
                                                            
 
                                                         </div>
-                                                        {date === currentdate ? (
-                                                                <div class="text-xs font-bold mr-4 text-[tomato]">
-                                                                    New
-                                                                </div>
-                                                            ) : null}
+                                                        
                                                     </div>
-                                                    <div className=" flex font-medium  w-[18.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             {item.brand}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[20.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[21.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.model}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex font-medium  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+
+                                                            {item.attributeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[5.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -140,7 +160,7 @@ function InventoryTable(props) {
                                                             {item.quality}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[5.32rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[4.32rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
                                                             {item.spces}
                                                         </div>
@@ -152,7 +172,7 @@ function InventoryTable(props) {
                                                     </div>
                                                     <div className=" flex font-medium  w-[8.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
-                                                           {item.price}
+                                                           {item.currency} {item.price}
                                                         </div>
                                                     </div>
                                                     

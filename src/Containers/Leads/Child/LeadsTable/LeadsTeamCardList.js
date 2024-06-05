@@ -172,7 +172,9 @@ const LeadsTeamCardList = (props) => {
    return (
     <div>
        {props.serachedData.length > 0 ? (
-    <SearchedData/>
+    <SearchedData
+    serachedData={props.serachedData}
+    />
   ) : (
     <>
      <div className=' flex  sticky  z-auto'>

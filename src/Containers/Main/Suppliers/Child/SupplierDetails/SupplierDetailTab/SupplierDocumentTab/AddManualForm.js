@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { addProcureDetails, getBrand, getModel } from "../../../../../Account/AccountAction";
 // import ProcureDetailsCardList from "./ProcureDetailsCardList";
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
-import {getCurrency} from "../../../../../../Auth/AuthAction";
+import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
 import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
 import { base_url2 } from "../../../../../../../Config/Auth";
 import LazySelect from "../../../../../../../Components/Forms/Formik/LazySelect";
@@ -16,13 +16,13 @@ const { Option } = Select;
 function AddManualForm(props) {
   useEffect(() => {
     // props.getBrand();
-    props.getCurrency();
+    props.getSaleCurrency();
     props.getCategorylist();
     // props.getAllProductList();
     props.getLocationList(props.orgId)
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',currencies:'',id:'',currencyId:'' }]);
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -93,7 +93,7 @@ function AddManualForm(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'',id:'' }]);
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',saleCurrencies:'',id:'' }]);
   };
 
   const handleRemoveRow = (index) => {
@@ -123,7 +123,7 @@ function AddManualForm(props) {
 
     // Make the API call
     props.addManual(dataToSend, props.userId,"0");
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',currencies:'',id:'' }]);
+    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',price:'',quality:'',currency_id:'',saleCurrencies:'',id:'' }]);
   };
 
   return (
@@ -252,7 +252,7 @@ function AddManualForm(props) {
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
                   >
-                    {props.currencies.map((a) => (
+                    {props.saleCurrencies.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
                     ))}
                   </Select>
@@ -304,7 +304,7 @@ const mapStateToProps = ({ distributor, brandmodel, auth,suppliers }) => ({
   brand: distributor.brand,
   model: distributor.model,
   token: auth.token,
-  currencies:auth.currencies,
+  saleCurrencies:auth.saleCurrencies,
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   locationlist:distributor.locationlist,
@@ -316,7 +316,7 @@ const mapDispatchToProps = (dispatch) =>
     addManual,
     getBrand,
     getModel,
-    getCurrency,
+    getSaleCurrency,
     getCategorylist,
     getAllProductList,
     getLocationList

@@ -28,7 +28,7 @@ class AddSupplierExcleModal extends Component {
     return (
       <>
         <StyledDrawer
-          title="Excle"
+          title="Add Inventory"
           width="90%"
           visible={supplierExcleUploadModal}
           destroyOnClose

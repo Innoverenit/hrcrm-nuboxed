@@ -8,12 +8,12 @@ import Swal from "sweetalert2";
 export const setTradeViewType = (viewType) => (dispatch) =>
     dispatch({ type: types.SET_TRADE_VIEW_TYPE, payload: viewType });
 
-export const inputTradeSearch = (imei) => (dispatch) => {
+export const inputTradeSearch = (name) => (dispatch) => {
     dispatch({
       type: types.GET_SEARCH_TRADE_REQUEST,
     });
     axios
-      .get(`${base_url2}/phone/search/${imei}`, {
+      .get(`${base_url2}/supplier/inventory/supplier/search/${name}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

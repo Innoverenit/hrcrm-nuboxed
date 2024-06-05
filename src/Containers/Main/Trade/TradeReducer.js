@@ -25,7 +25,7 @@ const initialState = {
               return {
                 ...state,
                 fetchingTradeSearchData: false,
-                orderPhoneList: action.payload,
+                inventoryAllList: action.payload,
                
               };
             case types.GET_SEARCH_TRADE_FAILURE:
@@ -33,7 +33,7 @@ const initialState = {
       
               case types.HANDLE_CLAER_REDUCER_DATA_TRADE:
                         return { ...state, 
-                          orderPhoneList: [], 
+                          inventoryAllList: [], 
                         };
                         case types.GET_INVENTORYALLLIST_REQUEST:
                           return { ...state, fetchingInventoryAlllist: true };
