@@ -4,7 +4,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
-    inputTradeSearch,ClearReducerDataOfTrade
+    inputTradeSearch,ClearReducerDataOfTrade,getInventoryAlllist
 } from "./TradeAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
@@ -123,12 +123,15 @@ const {
 
 const mapStateToProps = ({ auth, suppliers }) => ({
     user: auth.userDetails,
+    orgId: auth.userDetails.organizationId,
     
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // inputDataSearch,
+          inputTradeSearch,
+          ClearReducerDataOfTrade,
+          getInventoryAlllist
             // setSuppliersDashboardType,
             // setSelectedTimeInterval,
             // setTimeRange,

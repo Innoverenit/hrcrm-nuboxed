@@ -78,22 +78,25 @@ function InventoryTableAll(props) {
                         <div className=" w-[10.81rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Category
                             </div>
-                        <div className=" w-[23.12rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                             Brand
                         </div>
                         <div className=" w-[19.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                            Model
                         </div>
-                        <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                        <div className=" w-[8.93rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          Attribute
+                        </div>
+                        <div className=" w-[6.81rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             Quality
                         </div>
                         <div className=" w-[8.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             Specs
                         </div>
-                        <div className=" md:w-[8.12rem]">
+                        <div className=" md:w-[8.2rem]">
                            Unit
                         </div>
-                        <div className=" md:w-[10.1rem]">
+                        <div className=" md:w-[9.21rem]">
                          Price
                         </div>
                         <div className=" md:w-[11.3rem]"> Location</div>
@@ -133,7 +136,7 @@ function InventoryTableAll(props) {
                                                            {item.categoryName}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[15.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.brand}
@@ -143,6 +146,12 @@ function InventoryTableAll(props) {
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.model}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex font-medium  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
+
+                                                            {item.attributeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[3.32rem] max-sm:justify-between  max-sm:flex-row ">
@@ -162,7 +171,7 @@ function InventoryTableAll(props) {
                                                     </div>
                                                     <div className=" flex font-medium  w-[6.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
-                                                            {item.price}
+                                                        {item.currency} {item.price}
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[8.25rem] max-sm:justify-between  max-sm:flex-row ">
