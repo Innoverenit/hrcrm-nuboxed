@@ -9,10 +9,18 @@ const initialState = {
   addSpareNotesDrawerModal:false,
 
 
+  fetchingManufactureLinkData:false,
+  fetchingManufactureLinkDataError:false,
+  manufactureLinkData:[],
+
+
 
   fetchingProductionCellList:false,
   fetchingProductionCellListError:false,
   productionCellList:[],
+
+
+  addCreateManufactureCard:false,
 
   creatingProductionLink: false,
   creatingProductionLinkError: false,
@@ -106,6 +114,11 @@ export const productionReducer = (state = initialState, action) => {
 
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+
+      case types.ADD_CREATE_MANUFACTURE_CARD_MODAL:
+        return { ...state, addCreateManufactureCard: action.payload };
 
 
 
@@ -227,6 +240,28 @@ export const productionReducer = (state = initialState, action) => {
         removingProduction: false,
         removingProductionError: true,
       };
+
+
+
+
+
+
+
+      case types.GET_MANUFACTURE_LINK_DATA_REQUEST:
+        return { ...state, fetchingManufactureLinkData: true };
+      case types.GET_MANUFACTURE_LINK_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingManufactureLinkData: false,
+          manufactureLinkData: action.payload
+          //clearbit: null,
+        };
+      case types.GET_MANUFACTURE_LINK_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingManufactureLinkData: false,
+          fetchingManufactureLinkDataError: true,
+        };
 
 
 

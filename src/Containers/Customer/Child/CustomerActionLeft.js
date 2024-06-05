@@ -86,10 +86,26 @@ const CustomerActionLeft = (props) => {
     // props.getCustomerRecords();
     if (transcript) {
       console.log(">>>>>>>", transcript);
+     
       setCurrentData(transcript);
     }
   }, [transcript]);
   console.log(transcript);
+
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.inputCustomerDataSearch(transcript);
+    }
+  };
+
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
   function handleFilterChange(data) {
     setFilter(data)
     props.getCustomerListByUserId(props.userId, page, data);

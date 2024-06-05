@@ -148,7 +148,54 @@ const DynamicInputForm = (props) => {
         setSwitchStates(props.productionSpareData.map((item) => item.usedInd));
     }, [props.productionSpareData]);
 
-    const handleToggle = (item,index) => {
+    // const handleToggle = (item,index) => {
+    //     const activeCount = switchStates.filter(state => state).length;
+
+    //     if (switchStates[index]) {
+    //         // If the current switch is already on, allow turning it off
+    //         const newSwitchStates = [...switchStates];
+    //         newSwitchStates[index] = !newSwitchStates[index];
+    //         setSwitchStates(newSwitchStates);
+    //         console.log(newSwitchStates[index]);
+    //         let data={
+    //           partNumber:item.cellStockPartNumId,
+    //           poSupplierDetailsId:item.poSupplierDetailsId,
+    //           poSupplierSuppliesId:item.poSupplierSuppliesId,
+    //           productionBuilderId:props.step.productionBuilderId,
+    //           productionProductId:props.productionProductId,
+    //           supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
+    //           suppliesId:item.suppliesId,
+    //           usedInd:newSwitchStates[index],
+    //           userId:props.step.userId,
+    //         }
+    //         props.PstoProductionBuilder(data)
+    //     } else if (activeCount < quantity) {
+    //         // If less than the allowed quantity of switches are on, allow turning it on
+    //         const newSwitchStates = [...switchStates];
+    //         newSwitchStates[index] = !newSwitchStates[index];
+    //         setSwitchStates(newSwitchStates);
+    //         console.log(newSwitchStates[index]);
+    //         let data={
+    //           partNumber:item.cellStockPartNumId,
+    //           poSupplierDetailsId:item.poSupplierDetailsId,
+    //           poSupplierSuppliesId:item.poSupplierSuppliesId,
+    //           productionBuilderId:props.step.productionBuilderId,
+    //           productionProductId:props.productionProductId,
+    //           supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
+    //           suppliesId:item.suppliesId,
+    //           usedInd:newSwitchStates[index],
+    //           userId:props.step.userId,
+    //         }
+    //         props.PstoProductionBuilder(data)
+            
+    //     } else {
+    //         // If the allowed quantity is reached, show a warning
+    //         message.warning(`You can only toggle ${quantity} switch${quantity > 1 ? 'es' : ''} at a time.`);
+    //     }
+       
+    // };
+
+    const handleToggle = (index, item) => {
         const activeCount = switchStates.filter(state => state).length;
 
         if (switchStates[index]) {
@@ -156,48 +203,44 @@ const DynamicInputForm = (props) => {
             const newSwitchStates = [...switchStates];
             newSwitchStates[index] = !newSwitchStates[index];
             setSwitchStates(newSwitchStates);
-            console.log(newSwitchStates[index]);
-            let data={
-              partNumber:item.cellStockPartNumId,
-              poSupplierDetailsId:item.poSupplierDetailsId,
-              poSupplierSuppliesId:item.poSupplierSuppliesId,
-              productionBuilderId:props.step.productionBuilderId,
-              productionProductId:props.productionProductId,
-              supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
-              suppliesId:item.suppliesId,
-              usedInd:newSwitchStates[index],
-              userId:props.step.userId,
-            }
-            props.PstoProductionBuilder(data)
+            let data = {
+                partNumber: item.cellStockPartNumId,
+                poSupplierDetailsId: item.poSupplierDetailsId,
+                poSupplierSuppliesId: item.poSupplierSuppliesId,
+                productionBuilderId: props.step.productionBuilderId,
+                productionProductId: props.productionProductId,
+                supplierSuppliesUniqueNumberId: item.supplierSuppliesUniqueNumberId,
+                suppliesId: item.suppliesId,
+                usedInd: newSwitchStates[index],
+                userId: props.step.userId,
+            };
+            props.PstoProductionBuilder(data);
         } else if (activeCount < quantity) {
             // If less than the allowed quantity of switches are on, allow turning it on
             const newSwitchStates = [...switchStates];
             newSwitchStates[index] = !newSwitchStates[index];
             setSwitchStates(newSwitchStates);
-            console.log(newSwitchStates[index]);
-            let data={
-              partNumber:item.cellStockPartNumId,
-              poSupplierDetailsId:item.poSupplierDetailsId,
-              poSupplierSuppliesId:item.poSupplierSuppliesId,
-              productionBuilderId:props.step.productionBuilderId,
-              productionProductId:props.productionProductId,
-              supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
-              suppliesId:item.suppliesId,
-              usedInd:newSwitchStates[index],
-              userId:props.step.userId,
-            }
-            props.PstoProductionBuilder(data)
-            
+            let data = {
+                partNumber: item.cellStockPartNumId,
+                poSupplierDetailsId: item.poSupplierDetailsId,
+                poSupplierSuppliesId: item.poSupplierSuppliesId,
+                productionBuilderId: props.step.productionBuilderId,
+                productionProductId: props.productionProductId,
+                supplierSuppliesUniqueNumberId: item.supplierSuppliesUniqueNumberId,
+                suppliesId: item.suppliesId,
+                usedInd: newSwitchStates[index],
+                userId: props.step.userId,
+            };
+            props.PstoProductionBuilder(data);
         } else {
             // If the allowed quantity is reached, show a warning
             message.warning(`You can only toggle ${quantity} switch${quantity > 1 ? 'es' : ''} at a time.`);
         }
-       
     };
 
-    const confirmToggle = (index) => {
-      handleToggle(index);
-  };
+    const confirmToggle = (index, item) => {
+        handleToggle(index, item);
+    };
 
     return (
         <div className='flex justify-end sticky z-auto'>
@@ -230,7 +273,7 @@ const DynamicInputForm = (props) => {
                                     <div className="md:w-[15.5rem]">
                                     <Popconfirm
                             title="Do you want to change the state?"
-                            onConfirm={() => confirmToggle(item,index)}
+                            onConfirm={() => confirmToggle(index,item)}
                             okText="Yes"
                             cancelText="No"
                         >
