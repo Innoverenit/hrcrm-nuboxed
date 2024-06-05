@@ -8,7 +8,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
+import { inputLeadsDataSearch, ClearSearchedDataOfLead,ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
@@ -59,6 +59,7 @@ const LeadsActionLeft = (props) => {
       setPage(pageNo + 1);
       props.getLeads(props.userId, pageNo, "creationdate");
       props.ClearReducerDataOfLead()
+      props.ClearSearchedDataOfLead()
       setSearchOnEnter(false);
     }
   };
@@ -236,6 +237,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   ClearReducerDataOfLead,
   getLeads,
   getJunkedLeadsRecords,
+  ClearSearchedDataOfLead,
   getLeadsTeamRecords,
   getLeadsAllRecords
 }, dispatch);

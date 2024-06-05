@@ -107,7 +107,7 @@ const initialState = {
 
   fetchingLeadsInputSearchData: false,
   fetchingLeadsInputSearchDataError: false,
-  inputData: [],
+  serachedData: [],
 
   fetchingCallList: true,
   fetchingCallListError: true,
@@ -803,8 +803,8 @@ case types.HANDLE_LEADS_MODAL:
       return {
         ...state,
         fetchingLeadsInputSearchData: false,
-        leadsAllData: action.payload,
-        // serachedData: action.payload,
+        //leadsAllData: action.payload,
+        serachedData: action.payload,
       };
     case types.INPUT_LEADS_SEARCH_DATA_FAILURE:
       return { ...state, fetchingLeadsInputSearchDataError: true };
@@ -1075,6 +1075,11 @@ case types.HANDLE_LEADS_MODAL:
         addingLeadsImportFormError:true,
         // addCustomerModal: false 
       };
+      case types.HANDLE_CLAER_SEARCHED_DATA_LEAD:
+        return { ...state, 
+          serachedData: [], 
+          // deletedTruck: [] 
+        };
 
         case types.GET_TEAM_LEADS_REQUEST:
           return { ...state, fetchingTeamLeads: true };
@@ -1082,6 +1087,7 @@ case types.HANDLE_LEADS_MODAL:
           return {
             ...state,
             fetchingTeamLeads: false,
+            
         teamLeads:action.payload,
           };
         case types.GET_TEAM_LEADS_FAILURE:
