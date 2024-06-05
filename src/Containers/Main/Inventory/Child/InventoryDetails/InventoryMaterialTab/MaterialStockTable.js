@@ -95,6 +95,7 @@ const GrnListOfPO = (props) => {
                         <div className=" md:w-[3.82rem]"><FormattedMessage id="app.category" defaultMessage="Category" /></div>
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
                         <div className=" md:w-[4.25rem]"><FormattedMessage id="app.attribute" defaultMessage="Attribute" /></div>
+                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.cell" defaultMessage="Cell" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.instock" defaultMessage="In Stock" /></div>
                        

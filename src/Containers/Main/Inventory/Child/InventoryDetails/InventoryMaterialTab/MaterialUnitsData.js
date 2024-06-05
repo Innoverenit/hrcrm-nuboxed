@@ -102,7 +102,7 @@ const GrnListOfPO = (props) => {
                         <div className="w-[2.5rem]"></div>
                         <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
                         <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
+                        {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
                         <div className=" md:w-[4.25rem]"><FormattedMessage id="app.ordered" defaultMessage="Ordered" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
@@ -160,11 +160,11 @@ const GrnListOfPO = (props) => {
                                             </div>
                                         </div>
 
-                                        <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        {/* <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.grnNumber}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.price}
