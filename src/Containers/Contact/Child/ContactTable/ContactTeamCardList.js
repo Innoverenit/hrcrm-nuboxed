@@ -93,12 +93,28 @@ function ContactTeamCardList(props) {
     console.log(item);
   }
 
-  const handleLoadMore = () => {
-    setPageNo(pageNo + 1);
-            props.getTeamContact(props.currentUser?props.currentUser:props.userId,pageNo,         
-              );
-  }
+  // const handleLoadMore = () => {
+  //   setPageNo(pageNo + 1);
+  //           props.getTeamContact(props.currentUser?props.currentUser:props.userId,pageNo,         
+  //             );
+  // }
 
+  const handleLoadMore = () => {
+    const callPageMapd = props.teamContact && props.teamContact.length &&props.teamContact[0].pageCount
+    setTimeout(() => {  
+      if  (props.teamContact)
+      {
+        if (pageNo < callPageMapd) {    
+          setPageNo(pageNo + 1);
+            props.getTeamContact(props.currentUser?props.currentUser:props.userId,pageNo,
+              );
+            }
+              if (pageNo === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
   function handleSetCurrentContactId(item) {
     setCurrentContactId(item);
     // console.log("Current2", item);
@@ -120,6 +136,7 @@ function ContactTeamCardList(props) {
     handleContactReactSpeechModal,
     addContactSpeechModal,
     updateContactModal,
+    fetchingTeamContact
   } = props;
 
 //  if(fetchingContacts){
@@ -174,11 +191,11 @@ function ContactTeamCardList(props) {
         dataLength={teamContact.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingContacts?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+        loader={fetchingTeamContact?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"75vh"}
       >
         
-        { !fetchingContacts && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
+        { !fetchingTeamContact && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
         
          const currentdate = moment().format("DD/MM/YYYY");
          const date = moment(item.creationDate).format("DD/MM/YYYY");
@@ -526,6 +543,7 @@ const mapStateToProps = ({
   addDrawerContactEmailModal: contact.addDrawerContactEmailModal,
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
+  fetchingTeamContact:contact.fetchingTeamContact
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
