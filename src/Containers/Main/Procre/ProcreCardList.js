@@ -40,9 +40,9 @@ function ProcreCardList(props) {
     props.getAllProcure(props.currentUser ? props.currentUser : props.orgId, page,
     );
   }
-if (props.fetchingAllProcure) {
-    return <BundleLoader />;
-  }
+// if (props.fetchingAllProcure) {
+//     return <BundleLoader />;
+//   }
   return (
     <>
     <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -87,16 +87,11 @@ if (props.fetchingAllProcure) {
               } `;
             return (
               <div>
-                <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
-                // style={{
-                //   borderBottom: "3px dotted #515050",
-                // }}
-                >
+              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
-                    <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
-                      <div className=" flex font-medium  md:w-[6.56rem] max-sm:w-full  ">
+                  <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                  <div className="flex items-center max-sm:w-full">
+                      <div className=" flex font-medium items-center  md:w-[6.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -115,10 +110,10 @@ if (props.fetchingAllProcure) {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full md:w-[10.02rem]">
+                        <div class="max-sm:w-full  items-center md:w-[10.02rem]">
                           <Tooltip>
-                            <div class=" flex max-sm:w-full justify-between flex md:flex-col text-sm">
-                            <span
+                          <div class="max-sm:w-full  justify-between flex md: flex flex-row text-sm">                      
+                                <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);

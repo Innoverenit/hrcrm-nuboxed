@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
@@ -168,17 +169,24 @@ function AccountProcureDetails(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.unit" defaultMessage="Unit" />
           </div>
-          <div className="md:w-[8.8rem]">
+          <div className="md:w-[4.8rem]">
             <FormattedMessage id="app.price" defaultMessage="Price" />
           </div>
         
         
           <div className="md:w-[6.12rem]"></div>
         </div>
-
+        <InfiniteScroll
+        dataLength={props.procureDetails.length}
+      //   next={handleLoadMore}
+      // hasMore={hasMore}
+        loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
+        height={"22vh"}
+        // endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+      >
         {props.procureDetails.map((item, index) => {
           return (
-            <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
 
 <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
@@ -365,8 +373,8 @@ function AccountProcureDetails(props) {
                       ))}
                     </select>
                   ) : (
-                    null
-                    // <div className="font-normal text-sm text-cardBody font-poppins"></div>
+                  
+                    <div className="font-normal text-sm text-cardBody font-poppins"></div>
                   )}
                 </div>
               </div>
@@ -413,6 +421,7 @@ function AccountProcureDetails(props) {
             </div>
           );
         })}
+          </InfiniteScroll>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../../Suppliers/SuppliersAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -136,9 +137,9 @@ function ProcureDetailsCardList(props) {
     setParticularRowData(item);
   };
 
-  if (props.fetchingProcureDetails) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingProcureDetails) {
+  //   return <BundleLoader />;
+  // }
 
   return (
     <>
@@ -176,10 +177,16 @@ function ProcureDetailsCardList(props) {
         
           <div className="md:w-[6.12rem]"></div>
         </div>
-
+        <InfiniteScroll
+            // hasMore={hasMore}
+          dataLength={props.procureDetails.length}
+          // next={handleLoadMore}
+          loader={props.fetchingProcureDetails?<div class="flex justify-center" >Loading...</div>:null}
+          height={"75vh"}
+        >
         {props.procureDetails.map((item, index) => {
           return (
-            <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
                <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
@@ -344,7 +351,7 @@ function ProcureDetailsCardList(props) {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price} </div>
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price} {item.currency}</div>
                   )}
                 </div>
               </div>
@@ -364,7 +371,7 @@ function ProcureDetailsCardList(props) {
                       ))}
                     </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.currency}</div>
+                    <div className="font-normal text-sm text-cardBody font-poppins"></div>
                   )}
                 </div>
               </div>
@@ -410,6 +417,7 @@ function ProcureDetailsCardList(props) {
             </div>
           );
         })}
+        </InfiniteScroll>
       </div>
     </>
   );
