@@ -447,7 +447,7 @@ import { getProductCurrency, createProductCurrency,
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getSaleCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -587,7 +587,7 @@ function ProductbuilderTable(props) {
               </div>
 
               <div>
-                <label>Price</label>
+                <label>Price (B2B)</label>
                 <div class="w-24"></div>
                 <Input
                         className="w-32"
@@ -595,7 +595,7 @@ function ProductbuilderTable(props) {
                         onChange={(e) => handleChange(index,'price',e.target.value)}
                       /></div>
               <div>
-                <label>PriceB2C</label>
+                <label>Price (B2C)</label>
                 <div class="w-24">
                 <Input
                         className="w-32"
@@ -603,7 +603,7 @@ function ProductbuilderTable(props) {
                         onChange={(e) => handleChange(index,'priceB2C',e.target.value)}
                       /></div></div>
               <div>
-                <label>Vat</label>
+                <label>VAT (in %)</label>
                 <div class="w-24">
                 <Input
                         className="w-32"
@@ -634,10 +634,10 @@ function ProductbuilderTable(props) {
           {data.length ? data.map((item) => {
             return (
               <div key={item.productCurrencyId}>
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
+                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.productCurrencyId ? (
                       <Select
@@ -736,7 +736,7 @@ function ProductbuilderTable(props) {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.productCurrencyId)}
@@ -749,8 +749,9 @@ function ProductbuilderTable(props) {
 
                           >
                      <Tooltip title="Delete">
-                          <DeleteIcon
-                           className="!text-base cursor-pointer text-[red]"
+                     <DeleteOutlined
+                            type="delete"
+                            className=" !text-xl cursor-pointer text-[red]"
                           />
                        </Tooltip>
                        </Popconfirm>

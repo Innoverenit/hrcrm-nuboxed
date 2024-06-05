@@ -93,7 +93,7 @@ const handleLoadMoreLow = () => {
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[3.54rem]">Urgent </div>
+      <div className=" md:w-[3.54rem] text-[red]">Urgent </div>
           <div className=" md:w-[9.3rem]">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
           <div className=" md:w-[5.051rem] ">Contact</div>
@@ -401,7 +401,7 @@ const handleLoadMoreLow = () => {
       <div className=' flex justify-end sticky  z-auto'>
       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[3.54rem]">High </div>
+      <div className=" md:w-[3.54rem] text-[orange]">High </div>
           <div className=" md:w-[9.3rem]">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
           <div className=" md:w-[5.051rem] ">Contact</div>
@@ -708,7 +708,7 @@ const handleLoadMoreLow = () => {
       <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-       <div className=" md:w-[3.54rem]">Normal </div>
+       <div className=" md:w-[3.54rem] text-[teal]">Normal </div>
            <div className=" md:w-[9.3rem]">Order ID</div>
            <div className=" md:w-[11.6rem]">Customer</div>
            <div className=" md:w-[5.051rem] ">Contact</div>

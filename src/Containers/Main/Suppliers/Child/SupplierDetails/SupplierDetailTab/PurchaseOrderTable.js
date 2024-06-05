@@ -50,11 +50,14 @@ function PurchaseOrderTable(props) {
         setShowIcon(!showIcon)
 
     }
+
+    
     const handleUpdate = (poSupplierDetailsId) => {
         const formattedDate = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z' : null;
         const data = {
             expectDeliveryDate:formattedDate,
           poContactPersonId:contact,
+          poCurrency: currency
           
         };
     
@@ -63,19 +66,20 @@ function PurchaseOrderTable(props) {
         setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
         setEditContactId(null);
       };
-    const handleEditClick = (poSupplierDetailsId, itemContact,expectDeliveryDate) => {
+    const handleEditClick = (poSupplierDetailsId, itemContact,expectDeliveryDate,poCurrency) => {
        
         setEditContactId(poSupplierDetailsId);
         setContact(itemContact)
         setSelectedDate(expectDeliveryDate);
+        setCurrency(poCurrency)
       };
 
       const handleCancelClick = (poSupplierDetailsId) => {
         setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
         setEditContactId(null);
       };
-    const handleChangeCurrency = (val) => {
-        setCurrency(val)
+    const handleChangeCurrency = (value) => {
+        setCurrency(value)
     }
     const handleCallback = () => {
         setShowIcon(false)
@@ -185,7 +189,7 @@ function PurchaseOrderTable(props) {
                                                             {item.locationName}
                                                         </div>
                                                     </div>
-                                                    <div className="flex font-medium flex-col md:w-[11rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex font-medium flex-col md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
@@ -207,20 +211,44 @@ function PurchaseOrderTable(props) {
                                                     <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={contact}
-                      onChange={(e) => handleContactChange(e.target.value)}
-                    >
-                      {props.contactSupplier.map((contactItem, contactIndex) => (
-                        <option key={contactIndex} value={contactItem.contactPersonId}>
- {contactItem.firstName}{contactItem.lastName}
-                        </option>
-                      ))}
-                    </select>
+               <select
+               className="customize-select"
+               style={{ width: "70%" }}
+               value={contact}
+               onChange={(e) => handleContactChange(e.target.value)}
+             >
+               <option value="" >Select a contact</option>
+               {props.contactSupplier.map((contactItem, contactIndex) => (
+                 <option key={contactIndex} value={contactItem.contactPersonId}>
+                   {contactItem.firstName} {contactItem.lastName}
+                 </option>
+               ))}
+             </select>
                   ) : (
-                    <div className="font-normal text-sm text-cardBody font-poppins">{item.category}</div>
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.poContactPersonName}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+               <select
+               className="customize-select"
+               style={{ width: "70%" }}
+               value={currency}
+                                                                
+
+               onChange={(e) => handleChangeCurrency(e.target.value)}
+             >
+               <option value="" >Select Currency</option>
+               {props.currencies.map((currencyItem, currencyIndex) => (
+                 <option key={currencyIndex} value={currencyItem.currency_id}>
+                   {currencyItem.currency_name} 
+                 </option>
+               ))}
+             </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.poCurrency}</div>
                   )}
                 </div>
               </div>
@@ -232,7 +260,7 @@ function PurchaseOrderTable(props) {
                                                         </div>
                                                     </div>
  
-                                                    <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    {/* <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
                                                             {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                 <Select
@@ -248,9 +276,9 @@ function PurchaseOrderTable(props) {
                                                                 </Select> :
                                                                 item.poCurrency}
                                                         </div>
-                                                    </div>
+                                                    </div> */}
         
-                                                    <div className=" flex font-medium  w-[12.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
+                                                    {/* <div className=" flex font-medium  w-[2.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Update Currency">
                                                                 {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
@@ -276,7 +304,7 @@ function PurchaseOrderTable(props) {
                                                                 }
                                                             </Tooltip>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                     <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (
@@ -293,7 +321,7 @@ function PurchaseOrderTable(props) {
                     <BorderColorIcon
                       tooltipTitle="Edit"
                     
-                      onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate, )}
+                      onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate,item.poCurrency )}
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                         </Tooltip>

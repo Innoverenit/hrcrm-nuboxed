@@ -48,6 +48,12 @@ function AddManualForm(props) {
     //props.getModel(value);
   };
 
+  const handleQualityChange = (value, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].quality = value;
+    setRows(updatedRows);
+  };
+
   const handleAttributeChange = (value, index) => {
     const updatedRows = [...rows];
     updatedRows[index].attribute = value;
@@ -195,12 +201,17 @@ function AddManualForm(props) {
               <div>
                 <label>Grade</label>
                 <div className="w-28">
-                  <Input
-                    type="text"
+                <Select
+                    style={{ width: 100 }}
                     value={row.quality}
-                    onChange={(e) => handleUnitChange(index, 'quality', e.target.value)}
-                    placeholder="Enter Quality"
-                  />
+                    onChange={(value) => handleQualityChange(value, index)}
+                  >
+                     <Option value="A">A+</Option>
+                    <Option value="A">A</Option>
+                    <Option value="B">B</Option>
+                    <Option value="C">C</Option>
+                    <Option value="D">D</Option>
+                  </Select>
                 </div>
               </div>
               <div>

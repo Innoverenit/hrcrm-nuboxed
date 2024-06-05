@@ -439,7 +439,10 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
     case types.GET_PROFESSIONALDUCTS_SUCCESS:
-      return { ...state, fetchingProducts: false, products: action.payload };
+      return { ...state, fetchingProducts: false, 
+        products: [
+        ...state.products,
+        ...action.payload] };
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
 

@@ -137,9 +137,9 @@ function AccountProcureDetails(props) {
   //   setParticularRowData(item);
   // };
 
-  if (props.fetchingProcureDetails) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingProcureDetails) {
+  //   return <BundleLoader />;
+  // }
 
   return (
     <>
@@ -166,22 +166,22 @@ function AccountProcureDetails(props) {
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          <div className="md:w-[2.8rem]">
+            <FormattedMessage id="app.units" defaultMessage="Units" />
           </div>
           <div className="md:w-[4.8rem]">
             <FormattedMessage id="app.price" defaultMessage="Price" />
           </div>
         
         
-          <div className="md:w-[6.12rem]"></div>
+          <div className="md:w-[2rem]"></div>
         </div>
         <InfiniteScroll
         dataLength={props.procureDetails.length}
       //   next={handleLoadMore}
       // hasMore={hasMore}
         loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
-        height={"22vh"}
+        height={"75vh"}
         // endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         {props.procureDetails.map((item, index) => {
@@ -228,7 +228,7 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -342,7 +342,7 @@ function AccountProcureDetails(props) {
                 </div>
               </div>
 
-              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <input
@@ -357,7 +357,7 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <select
