@@ -19,6 +19,7 @@ import {
   getCustomerTeamRecords,
   getCustomerAllRecords,
   getCategoryRecords,
+  getTeamCustomer
 } from "../CustomerAction";
 import { Input } from "antd";
 
@@ -36,11 +37,13 @@ const CustomerActionLeft = (props) => {
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
+  console.log(searchOnEnter)
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
     if (searchOnEnter && e.target.value.trim() === "") {
-      setPage(page + 1);
+      // setPage(page + 1);
+      props.getTeamCustomer(props.userId, page);
       props.getCustomerListByUserId(props.userId, page, "creationdate");
       props.ClearReducerDataOfCustomer();
       setSearchOnEnter(false);
@@ -98,6 +101,7 @@ const CustomerActionLeft = (props) => {
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
       props.inputCustomerDataSearch(transcript);
+      setSearchOnEnter(true);
     }
   };
 
@@ -340,7 +344,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerTeamRecords,
       getCustomerAllRecords,
       getCategoryRecords,
-      getCustomerListByUserId
+      getCustomerListByUserId,
+      getTeamCustomer
     },
     dispatch
   );
