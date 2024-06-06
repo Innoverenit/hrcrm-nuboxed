@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {
-    getInventorylist
+    getInventorylist,inputInventorySearch,ClearReducerDataOfInventory
    
 } from "../../../SuppliersAction"
-import { Button, Select, Tooltip } from 'antd';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { Input, Select,  } from 'antd';
 import dayjs from "dayjs";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import PoLocationModal from "./PoLocationModal";
-import { MultiAvatar } from "../../../../../../Components/UI/Elements";
-import POSupplierDetailsModal from "./POSupplierDetailsModal";
-import { BorderColorRounded, TerminalSharp } from "@mui/icons-material";
-import TermsnConditionModal from "./TermsnConditionModal";
-import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { AudioOutlined } from "@ant-design/icons"
+
 
 const { Option } = Select;
 
 function InventoryTable(props) {
     const [pageNo, setPageNo] = useState(0);
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);
     useEffect(() => {
         setPageNo(pageNo + 1);
         // props.getCurrency()
@@ -67,8 +64,65 @@ function InventoryTable(props) {
         }
         }, 100);
       };
+
+      const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+                setPageNo(pageNo + 1);
+               props.getInventorylist(props.userId,pageNo)
+               props.ClearReducerDataOfInventory()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.inputInventorySearch(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const suffix = (
+            <AudioOutlined
+              onClick={SpeechRecognition.startListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
+
+
+
     return (
         <>
+        <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
+                <Input
+          placeholder="Search by Trade ID"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+                  
+
+                </div>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
@@ -207,7 +261,9 @@ const mapStateToProps = ({ suppliers, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getInventorylist
+            getInventorylist,
+            inputInventorySearch,
+            ClearReducerDataOfInventory
             // getPurchaseSuppliersList,
             // handlePoLocationModal,
             // handlePoListModal,

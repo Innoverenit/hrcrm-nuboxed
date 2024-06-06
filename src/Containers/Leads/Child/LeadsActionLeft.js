@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -14,8 +14,12 @@ const Option = StyledSelect.Option;
 
 const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
-  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
   const [pageNo, setPage] = useState(0);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
   const dummy = ["cloud", "azure", "fgfdg"];
   const {
     transcript,
@@ -72,9 +76,21 @@ const LeadsActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
         color: '#1890ff',
@@ -82,6 +98,30 @@ const LeadsActionLeft = (props) => {
 
     />
   );
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.inputLeadsDataSearch(transcript);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
   const { user } = props;
   console.log(currentData)
   const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;

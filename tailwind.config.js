@@ -22,7 +22,8 @@ module.exports = {
             fontSize:{
 'xxs':'0.62rem',
 'xm':'0.875rem',
-'ls':'0.8rem'
+'ls':'0.8rem',
+'icon':'1.1rem'
             },
             colors: {
               "clr": "tomato",

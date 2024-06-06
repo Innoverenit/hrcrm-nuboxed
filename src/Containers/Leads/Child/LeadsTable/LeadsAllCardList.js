@@ -35,6 +35,7 @@ import StatusCustomerToggle from "./StatusCustomerToggle";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import SearchedData from "./SearchedData";
 const UpdateLeadsModal =lazy(()=>import("../UpdateLeads/UpdateLeadsModal"));
 const AddLeadsEmailDrawerModal =lazy(()=>import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const BorderColorIcon =lazy(()=>import("@mui/icons-material/BorderColor"));
@@ -158,6 +159,12 @@ const LeadsAllCardList = (props) => {
 
   return (
     <>
+       {props.serachedData.length > 0 ? (
+    <SearchedData
+    serachedData={props.serachedData}
+    />
+  ) : (
+    <div>
       <div className=' flex  sticky  z-auto'>
       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
@@ -1390,8 +1397,9 @@ const LeadsAllCardList = (props) => {
          </InfiniteScroll>
       </div>
       </div>
-
-
+    
+      </div>
+)}
 
 
       <Suspense fallback={<BundleLoader/>}>
@@ -1437,6 +1445,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   allleadsInfoWarm: leads.allleadsInfoWarm,
   fetchingAllLeadsWarm: leads.fetchingAllLeadsWarm,
   allleadsInfoCold: leads.allleadsInfoCold,
+  serachedData:leads.serachedData,
   fetchingAllLeadsCold: leads.fetchingAllLeadsCold
 
 });
