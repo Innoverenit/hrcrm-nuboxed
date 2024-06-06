@@ -133,20 +133,35 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Switch, message,Popconfirm } from "antd";
 import { PstoProductionBuilder, getProductionSpareData } from "../../Product/ProductAction";
 
 const DynamicInputForm = (props) => {
     const quantity = props.step.quantity;
+    const [page, setPage] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
     const [switchStates, setSwitchStates] = useState([]);
 
     useEffect(() => {
-        props.getProductionSpareData(props.step.suppliesId,"0");
+        props.getProductionSpareData(props.step.suppliesId,props.productionProductId,"0");
     }, []);
 
     useEffect(() => {
         setSwitchStates(props.productionSpareData.map((item) => item.usedInd));
     }, [props.productionSpareData]);
+
+
+
+    const handleLoadMore = () => {
+
+        setPage(page + 1);
+        // props.getProducts(page);
+       
+              props.getProductionSpareData(props.step.suppliesId,props.productionProductId,page);
+             
+         
+      };
 
     // const handleToggle = (item,index) => {
     //     const activeCount = switchStates.filter(state => state).length;
@@ -252,7 +267,14 @@ const DynamicInputForm = (props) => {
                     <div className=""></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div>
                 </div>
-
+                <InfiniteScroll
+                dataLength={props.productionSpareData.length}
+            next={handleLoadMore}
+            hasMore={hasMore}
+            //loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+            height={"79vh"}
+            endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+          >
                 {props.productionSpareData.map((item, index) => {
                     return (
                         <div key={index}>
@@ -297,6 +319,7 @@ const DynamicInputForm = (props) => {
                         </div>
                     );
                 })}
+                </InfiniteScroll>
             </div>
         </div>
     );

@@ -1773,12 +1773,12 @@ export const addProductDesc = (product, cb) => (dispatch) => {
 
 
 
-export const getProductionSpareData = (suppliesId,pageNo) => (dispatch) => {
+export const getProductionSpareData = (suppliesId,productionProductId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_SPARE_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/po/cellStockPart/${suppliesId}/${pageNo}`, {
+    .get(`${base_url2}/po/cellStockPart/${suppliesId}/${productionProductId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
