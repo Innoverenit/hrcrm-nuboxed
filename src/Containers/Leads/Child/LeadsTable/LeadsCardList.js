@@ -35,6 +35,7 @@ import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import SearchedData from "./SearchedData";
 const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
 const OpenCETmodal = lazy(() => import("./OpenCETmodal"));
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
@@ -177,6 +178,12 @@ const LeadsCardList = (props) => {
 
    return (
     <div>
+         {props.serachedData.length > 0 ? (
+    <SearchedData
+    serachedData={props.serachedData}
+    />
+  ) : (
+      <>
      <div className=' flex  justify-center  sticky  z-auto'>
      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
@@ -1426,6 +1433,8 @@ const LeadsCardList = (props) => {
          </InfiniteScroll>
       </div>
       </div>
+      </>
+      )}
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}
@@ -1472,6 +1481,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   fetchingLeadsWarm:leads.fetchingLeadsWarm,
   fetchingLeadsCold:leads.fetchingLeadsCold,
   lead: leads.lead,
+  serachedData:leads.serachedData,
   user: auth.userDetails,
   updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,

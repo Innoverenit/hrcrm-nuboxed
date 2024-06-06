@@ -1720,7 +1720,22 @@ export const suppliersReducer = (state = initialState, action) => {
                           updatingPoContactValueError: true,
                         };
 
-
+                        case types.GET_SEARCH_INVENTORY_REQUEST:
+                          return { ...state, fetchingTradeSearchData: true };
+                        case types.GET_SEARCH_INVENTORY_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingTradeSearchData: false,
+                            inventoryList: action.payload,
+                           
+                          };
+                        case types.GET_SEARCH_INVENTORY_FAILURE:
+                          return { ...state, fetchingTradeSearchDataError: true };
+                  
+                          case types.HANDLE_CLAER_REDUCER_DATA_INVENTORY:
+                                    return { ...state, 
+                                      inventoryList: [], 
+                                    };
 
     default:
       return state;

@@ -23,6 +23,7 @@ import {
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
+import { getSuscrption} from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
@@ -266,11 +267,13 @@ function MainApp(props) {
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [rowData, setrowData] = useState({});
   console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
-    props.getActionRequiredCount(props.userId)
+    props.getActionRequiredCount(props.userId);
+    props.getSuscrption(props.orgId)
   }, []);
 
 
@@ -292,7 +295,9 @@ function MainApp(props) {
     setSelectedLanguage(language);
   };
 
-
+  const handleRowData = (data) => {
+    setrowData(data);
+  };
   const showPopconfirm = () => {
     setVisible(true);
   };
@@ -387,7 +392,13 @@ function MainApp(props) {
 
   //   }
   // };
-
+  const Subscription = 
+  props.suscrptionData.subscriptionType === "1" ? "Free" :
+  props.suscrptionData.subscriptionType === "2" ? "Starter" :
+  props.suscrptionData.subscriptionType === "3" ? "Professional" :
+  props.suscrptionData.subscriptionType === "4" ? "Enterprise" :
+  "Unknown";
+  console.log(props.suscrptionData)
   return (
 
     <>
@@ -617,11 +628,12 @@ function MainApp(props) {
                     />
                   </FloatButton.Group> */}
            <div className="flex items-center">
-                <label> Subscription</label>
+                <label className="text-base font-semibold font-poppins mr-1">{Subscription}</label>
                 <Button
                  type="primary"
-         
-                 onClick={() => props.handleCreateSubscriptionDrawer(true)}
+                 onClick={() =>{
+                  handleRowData(props.suscrptionData);
+                  props.handleCreateSubscriptionDrawer(true)}}
                 >Upgrade</Button>
                  </div>
                   {/* <Subscription /> */}
@@ -963,6 +975,7 @@ function MainApp(props) {
       // responseData={this.state.responseData}
       />
  <CreateSubscriptionDrawer
+ rowData={rowData}
           createSubscriptiondrawer={props.createSubscriptiondrawer}
           handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
         />
@@ -1005,6 +1018,7 @@ const mapStateToProps = ({
   department: auth.userDetails && auth.userDetails.department,
   roleType: auth.userDetails && auth.userDetails.roleType,
   role: auth.userDetails && auth.userDetails.role,
+  orgId: auth.userDetails.organizationId,
   // orgImageId:auth.userDetails.orgImageId,
 
   imageId:
@@ -1024,6 +1038,7 @@ const mapStateToProps = ({
   organizationDetails: auth.organizationDetails,
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
+  suscrptionData:subscription.suscrptionData,
   user: auth.userDetails,
   actionCount: auth.actionCount,
   clickTagInDrawr: refurbish.clickTagInDrawr,
@@ -1043,7 +1058,8 @@ const mapDispatchToProps = (dispatch) =>
       handleMessageModal,
       handleActionDrawerModal,
       handleInTagDrawer,
-      handleCreateSubscriptionDrawer
+      handleCreateSubscriptionDrawer,
+      getSuscrption
     },
     dispatch
   );
