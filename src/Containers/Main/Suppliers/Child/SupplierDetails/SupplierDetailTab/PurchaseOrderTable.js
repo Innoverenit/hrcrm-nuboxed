@@ -122,15 +122,16 @@ function PurchaseOrderTable(props) {
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Contact
                         </div>
-                        <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                            <FormattedMessage
-                                id="app.value"
-                                defaultMessage="Value" />
-                        </div>
+                       
                         <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
                             <FormattedMessage
                                 id="app.currency"
                                 defaultMessage="Currency" />
+                        </div>
+                        <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                            <FormattedMessage
+                                id="app.value"
+                                defaultMessage="Value" />
                         </div>
                         <div className=" md:w-[5.1rem]">
 
@@ -183,7 +184,7 @@ function PurchaseOrderTable(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[9.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.locationName}
@@ -242,7 +243,7 @@ function PurchaseOrderTable(props) {
              >
                <option value="" >Select Currency</option>
                {props.currencies.map((currencyItem, currencyIndex) => (
-                 <option key={currencyIndex} value={currencyItem.currency_id}>
+                 <option key={currencyIndex} value={currencyItem.currency_name}>
                    {currencyItem.currency_name} 
                  </option>
                ))}

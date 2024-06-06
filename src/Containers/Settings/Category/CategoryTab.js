@@ -94,7 +94,9 @@ function CategoryTab (props) {
 
           ];
           const [rules, setRules] = useState(name);
-          const [currentRulesOpen, setCurrentRulesOpen] = useState(name[0]);    
+          const [currentRulesOpen, setCurrentRulesOpen] = useState(name[0]); 
+          
+          
           const handleRuleClick = (item) => {
             setCurrentRulesOpen(item);  
           };

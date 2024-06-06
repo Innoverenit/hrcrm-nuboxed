@@ -1799,4 +1799,32 @@ export const getProductionSpareData = (suppliesId,pageNo) => (dispatch) => {
 };
 
 
+export const getProductHsn = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_HSN_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/hsnSupplies `,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_HSN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCT_HSN_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 

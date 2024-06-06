@@ -83,7 +83,7 @@ function SuppliersPriceCardList(props) {
         <BundleLoader />
       ) : (
         <div className="flex justify-end sticky z-auto">
-          <div className="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div className="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className="flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
                 <FormattedMessage id="app.name" defaultMessage="Name" />
@@ -111,7 +111,7 @@ function SuppliersPriceCardList(props) {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   return (
-                    <div  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center max-sm:h-[6rem] max-sm:flex-col">
+                    <div  className="flex flex-col rounded justify-between bg-white mt-1 p-1 h-8 items-center max-sm:h-[6rem] max-sm:flex-col">
                       <div className="flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                         <div className="font-medium ml-2 flex items-center w-[15.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem]">
                           <div className="font-semibold text-[0.85rem] text-cardBody font-poppins">{item.suppliesFullName}</div>
@@ -159,7 +159,7 @@ function SuppliersPriceCardList(props) {
                         <div className="flex font-medium flex-col md:w-[5rem] max-sm:justify-between w-full max-sm:flex-row">
                           <div className="font-normal text-[0.85rem] text-cardBody font-poppins">
                           <BorderColorIcon
-                              className="!text-base cursor-pointer text-[tomato]"
+                              className="!text-xl cursor-pointer text-[tomato]"
                               onClick={() => handleEditRow(item.suppliesId)}
                             />
                           </div>

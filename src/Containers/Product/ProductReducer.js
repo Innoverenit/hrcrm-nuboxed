@@ -177,6 +177,10 @@ const initialState = {
   fetchingDiscountHistoryError: false,
   discountHistory: [],
 
+  fetchingProductHsn: false,
+  fetchingProductHsnError: false,
+  productHsn:[],
+
   fetchingDeletedProductRecords: false,
   fetchingDeletedProductRecordsError: false,
   deletedProductCount:{},
@@ -1406,6 +1410,27 @@ export const productReducer = (state = initialState, action) => {
                                       removingNotesOfProducts: false,
                                       removingNotesOfProductsError: true,
                                     };
+
+
+
+                                    case types.GET_PRODUCT_HSN_REQUEST:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: true,
+                                        fetchingProductHsnError: false,
+                                      };
+                                    case types.GET_PRODUCT_HSN_SUCCESS:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: false,
+                                        productHsn: action.payload,
+                                      };
+                                    case types.GET_PRODUCT_HSN_FAILURE:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: false,
+                                        fetchingProductHsnError: true,
+                                      };
 
 
     default:

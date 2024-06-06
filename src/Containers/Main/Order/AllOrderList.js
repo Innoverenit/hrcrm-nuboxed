@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Badge,Select,Popconfirm } from "antd";
-import moment from "moment";
+import { Tooltip, Button, Badge,Select } from "antd";
+import dayjs from "dayjs";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
@@ -18,12 +18,10 @@ import {
   deleteOrderRepairData
 } from "./OrderAction";
 import PaidIcon from '@mui/icons-material/Paid';
-import { DeleteOutlined } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { PersonAddAlt1 } from "@mui/icons-material";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
@@ -116,11 +114,11 @@ const handleLoadMoreLow = () => {
           {props.allHighCompleteOrder.length ?
             <>
               {props.allHighCompleteOrder.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -369,22 +367,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Collection">
-                        <Popconfirm
-                              title="Do you want to delete?"
-                               onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                            >
-                              <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
-
-                              />
-                            </Popconfirm>
-                        </Tooltip>
-
-                      </h4>
-                    </div>
+                   
 
 
                   </div>
@@ -424,11 +407,11 @@ const handleLoadMoreLow = () => {
           {props.allMediumCompleteOrder.length ?
             <>
               {props.allMediumCompleteOrder.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -676,22 +659,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Collection">
-                        <Popconfirm
-                              title="Do you want to delete?"
-                               onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                            >
-                              <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
-
-                              />
-                            </Popconfirm>
-                        </Tooltip>
-
-                      </h4>
-                    </div>
+                  
 
 
                   </div>
@@ -731,11 +699,11 @@ const handleLoadMoreLow = () => {
            {props.allLowCompleteOrder.length ?
              <>
                {props.allLowCompleteOrder.map((item) => {
-                 const currentdate = moment().format("DD/MM/YYYY");
-                 const date = moment(item.creationDate).format("DD/MM/YYYY");
+                 const currentdate = dayjs().format("DD/MM/YYYY");
+                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
  
                  const diff = Math.abs(
-                   moment().diff(moment(item.lastRequirementOn), "days")
+                   dayjs().diff(dayjs(item.lastRequirementOn), "days")
                  );
                  const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                    } 
@@ -983,22 +951,7 @@ const handleLoadMoreLow = () => {
                        </h4>
                      </div>
  
-                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs text-cardBody font-poppins">
-                         <Tooltip title="Collection">
-                         <Popconfirm
-                               title="Do you want to delete?"
-                                onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                             >
-                               <DeleteOutlined
-                                 className=" !text-xl cursor-pointer text-[red]"
- 
-                               />
-                             </Popconfirm>
-                         </Tooltip>
- 
-                       </h4>
-                     </div>
+                  
  
  
                    </div>
