@@ -249,15 +249,15 @@ export const productionReducer = (state = initialState, action) => {
 
 
 
-      case types.EMPTY_MANUFACTURE_LINK:
-        return { ...state, manufactureLinkData: [] };
+      // case types.EMPTY_MANUFACTURE_LINK:
+      //   return { ...state, manufactureLinkData: [] };
 
 
 
 
         case types.GET_MANUFACTURE_DETAILS_DATA_REQUEST:
           return { ...state, fetchingManufactureDetailsData: true };
-        case types.GET_MANUFACTURE_LINK_DATA_SUCCESS:
+        case types.GET_MANUFACTURE_DETAILS_DATA_SUCCESS:
           const newData1 = action.payload.filter(item => !state.manufactureDetailsData.includes(item));
           return {
             ...state,
@@ -281,8 +281,9 @@ export const productionReducer = (state = initialState, action) => {
         return {
           ...state,
           fetchingManufactureLinkData: false,
-          manufactureLinkData: [...state.manufactureLinkData, ...action.payload]
+          //manufactureLinkData: [...state.manufactureLinkData, ...action.payload]
           //clearbit: null,
+          manufactureLinkData:action.payload
         };
       case types.GET_MANUFACTURE_LINK_DATA_FAILURE:
         return {

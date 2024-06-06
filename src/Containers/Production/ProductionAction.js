@@ -12,11 +12,11 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
 
 
 
-export const emptyManufactureLink = () => (dispatch) => {
-  dispatch({
-    type: types.EMPTY_MANUFACTURE_LINK, 
-  });
-};
+// export const emptyManufactureLink = () => (dispatch) => {
+//   dispatch({
+//     type: types.EMPTY_MANUFACTURE_LINK, 
+//   });
+// };
 
 
 export const addCreateManufactureCardModal = (modalProps) => (dispatch) => {
