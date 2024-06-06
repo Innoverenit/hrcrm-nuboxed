@@ -10,6 +10,15 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const emptyManufactureLink = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_MANUFACTURE_LINK, 
+  });
+};
+
+
 export const addCreateManufactureCardModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.ADD_CREATE_MANUFACTURE_CARD_MODAL,
@@ -711,7 +720,7 @@ export const updateProductionPauseStatus = (data) => (dispatch) => {
 
 
 
-export const getManufactureLinkData  = (productionProductId) => (dispatch) => {
+export const getManufactureLinkData  = (productionProductId,pageNo) => (dispatch) => {
   // let api_url = "";
   // if (userId) {
   //   api_url = `/sort/all/Customers/user/${userId}`;
@@ -722,7 +731,7 @@ export const getManufactureLinkData  = (productionProductId) => (dispatch) => {
     type: types.GET_MANUFACTURE_LINK_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/getProductionProductBuilder/${productionProductId}`, {
+    .get(`${base_url2}/production/manufature/getProductionProductBuilder/${productionProductId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -738,6 +747,39 @@ export const getManufactureLinkData  = (productionProductId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_MANUFACTURE_LINK_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getManufactureDetailsData  = (productionProductId,pageNo) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/Customers/user/${userId}`;
+  // } else {
+  //   api_url = `/Customers`;
+  // }
+  dispatch({
+    type: types.GET_MANUFACTURE_DETAILS_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/manufature/getProductionProductBuilder/${productionProductId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MANUFACTURE_DETAILS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MANUFACTURE_DETAILS_DATA_FAILURE,
         payload: err,
       });
     });

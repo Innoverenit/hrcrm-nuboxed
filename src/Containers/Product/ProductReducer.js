@@ -466,7 +466,10 @@ export const productReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingProductionSpareData: false,
-            productionSpareData: action.payload
+            // productionSpareData: action.payload
+            productionSpareData: [
+              ...state.productionSpareData,
+              ...action.payload] 
           };
         case types.GET_PRODUCTION_SPARE_DATA_FAILURE:
           return {

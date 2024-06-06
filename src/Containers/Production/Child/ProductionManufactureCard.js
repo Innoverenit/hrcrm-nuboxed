@@ -4,12 +4,38 @@ import moment from "moment";
 //import {getReportsProductivityData} from "../../ReportAction"
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import {getManufactureLinkData} from "../ProductionAction"
+import ManufactureListData from "../Child/ManufactureListData"
+import InfiniteScroll from "react-infinite-scroll-component";
+import {getManufactureLinkData,
+    // emptyManufactureLink
+} from "../ProductionAction"
 
 function ProductionManufactureCard(props) {
+    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(0);
+    const [row, setRow] = useState({})
+    const [itemHistory, setItemHistory] = useState(false);
     useEffect(() => {
-       props.getManufactureLinkData(props.productionProductId)
+        
+       props.getManufactureLinkData(props.productionProductId,page)
+    //    props.emptyManufactureLink()
       }, []);
+      const handleLoadMore = () => {
+        setPage(page + 1);
+        props.getManufactureLinkData(props.productionProductId,page)
+    };
+
+
+
+    const handleItemHistory = () => {
+        setItemHistory(!itemHistory)
+    }
+
+    
+    const handleItemClick = (item) => {
+        setRow(item)
+    }
+    console.log(props.manufactureLinkData)
   return (
     <div className='flex justify-end sticky z-auto'>
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -24,6 +50,13 @@ function ProductionManufactureCard(props) {
                     <div className=""></div>
                     {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div> */}
                 </div>
+                <InfiniteScroll
+                        dataLength={props.manufactureLinkData.length}
+                        next={handleLoadMore}
+                        hasMore={hasMore}
+                        //loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+                        height={"75vh"}
+                    >
 
                 {props.manufactureLinkData.map((item, index) => {
                     return (
@@ -36,7 +69,12 @@ function ProductionManufactureCard(props) {
                                 </div>
 
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                    <div 
+                                      onClick={() => {
+                                        handleItemHistory()
+                                        handleItemClick(item)
+                                    }}
+                                    className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
                                         {item.partNumber}
                                     </div>
                                 </div>
@@ -56,9 +94,17 @@ function ProductionManufactureCard(props) {
                                
                             
                             </div>
+                            <div>
+                                        {itemHistory && (row.suppliesId === item.suppliesId)
+                                            && <ManufactureListData
+                                            row={row} 
+                                            //inventory={props.inventory}
+                                            />}
+                                    </div>
                         </div>
                     );
                 })}
+                 </InfiniteScroll>
             </div>
         </div>
   )
@@ -82,7 +128,8 @@ const mapStateToProps = ({
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
-        getManufactureLinkData
+        getManufactureLinkData,
+        // emptyManufactureLink
       },
       dispatch
     );

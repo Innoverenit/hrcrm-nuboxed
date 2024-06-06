@@ -15,6 +15,12 @@ const initialState = {
 
 
 
+  fetchingManufactureDetailsData:false,
+  fetchingManufactureDetailsDataError:false,
+  manufactureDetailsData:[],
+
+
+
   fetchingProductionCellList:false,
   fetchingProductionCellListError:false,
   productionCellList:[],
@@ -243,17 +249,39 @@ export const productionReducer = (state = initialState, action) => {
 
 
 
+      case types.EMPTY_MANUFACTURE_LINK:
+        return { ...state, manufactureLinkData: [] };
 
+
+
+
+        case types.GET_MANUFACTURE_DETAILS_DATA_REQUEST:
+          return { ...state, fetchingManufactureDetailsData: true };
+        case types.GET_MANUFACTURE_LINK_DATA_SUCCESS:
+          const newData1 = action.payload.filter(item => !state.manufactureDetailsData.includes(item));
+          return {
+            ...state,
+            fetchingManufactureDetailsData: false,
+            manufactureDetailsData: [...state.manufactureDetailsData, ...newData1]
+            //clearbit: null,
+          };
+        case types.GET_MANUFACTURE_DETAILS_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingManufactureDetailsData: false,
+            fetchingManufactureDetailsDataError: true,
+          };
 
 
 
       case types.GET_MANUFACTURE_LINK_DATA_REQUEST:
         return { ...state, fetchingManufactureLinkData: true };
       case types.GET_MANUFACTURE_LINK_DATA_SUCCESS:
+        //const newData = action.payload.filter(item => !state.manufactureLinkData.includes(item));
         return {
           ...state,
           fetchingManufactureLinkData: false,
-          manufactureLinkData: action.payload
+          manufactureLinkData: [...state.manufactureLinkData, ...action.payload]
           //clearbit: null,
         };
       case types.GET_MANUFACTURE_LINK_DATA_FAILURE:

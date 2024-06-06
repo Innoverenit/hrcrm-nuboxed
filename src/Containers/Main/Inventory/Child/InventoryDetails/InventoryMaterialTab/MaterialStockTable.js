@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
+import ItemHistoryInStockData from "./ItemHistoryInStockData"
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
@@ -112,7 +113,7 @@ const GrnListOfPO = (props) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
-                                        {/* <div class="flex">
+                                        <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     <PlusOutlined
@@ -123,7 +124,7 @@ const GrnListOfPO = (props) => {
                                                     />
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
@@ -300,10 +301,13 @@ const GrnListOfPO = (props) => {
                                         </div> */}
 
                                     </div>
-                                    {/* <div>
-                                        {itemHistory && (row.poSupplierSuppliesId === item.poSupplierSuppliesId)
-                                            && <ItemHistoryInStock row={row} />}
-                                    </div> */}
+                                    <div>
+                                        {itemHistory && (row.suppliesId === item.suppliesId)
+                                            && <ItemHistoryInStockData 
+                                            row={row} 
+                                            inventory={props.inventory}
+                                            />}
+                                    </div>
                                 </div>
                             );
                         })}

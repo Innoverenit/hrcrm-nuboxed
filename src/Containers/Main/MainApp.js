@@ -46,6 +46,7 @@ import InventoryTableAll from "./Suppliers/Child/SupplierDetails/SupplierDetailT
 import Trade from "./Trade/Trade";
 import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
 import {handleCreateSubscriptionDrawer} from "../Subscription/SubscriptionAction";
+import Quality from "../Quality/Quality";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -888,6 +889,11 @@ function MainApp(props) {
                         exact
                         path="/opportunity"
                         component={Opportunity}
+                      />
+                        <Route
+                        exact
+                        path="/quality"
+                        component={Quality}
                       />
                       <Route
                         exact

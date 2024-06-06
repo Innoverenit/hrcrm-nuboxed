@@ -868,6 +868,21 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         </Menu.Item>
         )} 
 
+<Menu.Item key="/quality" style={{ height: "1.45rem", 
+        color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
+          <Link to="/quality" onClick={() => handleSelect('/quality')}>
+            <PrecisionManufacturingIcon
+              style={{ fontSize: "large" }}
+            />
+            <span class="text-white text-ls ml-1"><FormattedMessage
+              id="app.quality"
+              defaultMessage="Quality"
+            />
+            </span>
+          </Link>
+        </Menu.Item>
+        
+
 <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>

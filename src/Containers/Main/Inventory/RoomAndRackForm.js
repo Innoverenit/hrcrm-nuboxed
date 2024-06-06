@@ -477,6 +477,7 @@ const RoomAndRackForm = (props) => {
                     </Option>
                     <Option value="entry">Entry</Option>
                     <Option value="exit">Exit</Option>
+                    <Option value="quality">Quality</Option>
                   </Select>
                 </div>
               </div>

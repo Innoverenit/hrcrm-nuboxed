@@ -51,6 +51,10 @@ const initialState = {
   updatingValidationInRecive: false,
   updatingValidationInReciveError: false,
 
+  fetchingItemHistoryDataInStock:false,
+  fetchingItemHistoryDataInStockError:false,
+  itemHistoryDataInStock:[],
+
   transferingPoGrnToStock: false,
   transferingPoGrnToStockError: false,
   //output table
@@ -785,6 +789,26 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingOutputPlusReasonList: false,
         fetchingOutputPlusReasonListError: true,
+      };
+
+
+
+
+
+      case types.GET_ITEM_HISTORY_DATA_IN_STOCK_REQUEST:
+      return { ...state, fetchingItemHistoryDataInStock: true };
+    case types.GET_ITEM_HISTORY_DATA_IN_STOCK_SUCCESS:
+      return {
+        ...state,
+        fetchingItemHistoryDataInStock: false,
+        itemHistoryDataInStock: action.payload,
+      };
+    case types.GET_ITEM_HISTORY_DATA_IN_STOCK_FAILURE:
+      return {
+        ...state,
+        fetchingItemHistoryDataInStock: false,
+        fetchingItemHistoryDataInStockError: true,
+
       };
 
     //pickupDate
