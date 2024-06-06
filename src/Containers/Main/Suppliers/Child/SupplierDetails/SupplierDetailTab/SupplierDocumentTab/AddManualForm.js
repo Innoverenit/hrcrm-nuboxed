@@ -148,7 +148,8 @@ function AddManualForm(props) {
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                      <Option key={a.id} value={a.categoryId
+                      }>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -206,7 +207,7 @@ function AddManualForm(props) {
                     value={row.quality}
                     onChange={(value) => handleQualityChange(value, index)}
                   >
-                     <Option value="A">A+</Option>
+                     <Option value="A+">A+</Option>
                     <Option value="A">A</Option>
                     <Option value="B">B</Option>
                     <Option value="C">C</Option>

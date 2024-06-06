@@ -5,7 +5,7 @@ import { Tooltip,Button } from "antd";
 import { getMaterialBuilderById,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from "@ant-design/icons";
 
 function MaterialbuilderCard (props) {
 
@@ -61,7 +61,7 @@ return (
     <>
   
   <div className=' flex justify-end sticky z-auto'> 
-  <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
          <div className=" md:w-[7%]">Name</div>
@@ -74,14 +74,14 @@ return (
              {props.builderMaterialbyId.map((item) => {
           return (
 <div>
-<div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "    >
-       <div class="flex">
-    <div className=" flex font-medium flex-col md:w-[6.1rem] max-sm:w-full  ">
+<div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
+       
+    <div className=" flex font-medium flex-col md:w-[13.1rem] max-sm:w-full  ">
     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
     </div>
-    </div>
+    
     
     <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs text-cardBody font-poppins">
@@ -112,7 +112,7 @@ return (
                     )}
                     </div>
   </div>
-  <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+  <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
     <div>
     {editlinkSuppliesId === item.linkSuppliesId ? (
                         <>
@@ -128,7 +128,7 @@ return (
                       
                     ) : (
                       <BorderColorIcon
-                      className="text-[blue] flex justify-items-center justify-center text-xs cursor-pointer"
+                      className="text-[blue] flex justify-items-center justify-center text-xl cursor-pointer"
                         onClick={() => handleEditClick(item.linkSuppliesId)}
                         // style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
                       />
@@ -140,14 +140,14 @@ return (
                           onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
                           >
                      <Tooltip title="Delete">
-                          <DeleteIcon
-                          className="text-base cursor-pointer text-[red]"
+                          <DeleteOutlined
+                          className="!text-xl cursor-pointer "
+                          style={{
+                       
+                            color: "red",
+                          
+                          }}
                            
-                            // style={{
-                            //   cursor: "pointer",
-                            //   color: "red",
-                            //   fontSize: "1rem",
-                            // }}
                           />
                        </Tooltip>
                        </StyledPopconfirm>

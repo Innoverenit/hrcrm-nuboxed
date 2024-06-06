@@ -50,9 +50,18 @@ const initialState = {
   fetchingRepairLowOrderListError: false,
   repairLowCompleteOrder:[],
 
+  fetchingDeletedHighOrderList: false,
+  fetchingDeletedHighOrderListError: false,
+  deletedHighOrder:[],
+
   fetchingRepairMediumOrderList: false,
   fetchingRepairMediumOrderListError: false,
   repairMediumCompleteOrder:[],
+
+
+  fetchingDeletedLowOrderList: false,
+  fetchingDeletedLowOrderListError: false,
+  deletedLowOrder:[],
 
 
   fetchingCustomerList: false,
@@ -65,6 +74,14 @@ const initialState = {
   fetchingProductionAllOrder: false,
   fetchingProductionAllOrderError: false,
   productionAllOrder: [],
+
+
+  fetchingDeletedMediumOrderList: false,
+  fetchingDeletedMediumOrderListError: false,
+  deletedMediumOrder:[],
+
+  deleteOrderData: false, 
+  deleteOrderDataError: false, 
 
   fetchingAllMediumOrderList: false,
   fetchingAllMediumOrderListError: false,
@@ -273,6 +290,9 @@ export const orderReducer = (state = initialState, action) => {
         allOrderList: [],
         orderShowById: [],
       };
+
+
+
 
     case types.GET_ALL_ORDER_LIST_REQUEST:
       return { ...state, fetchingAllOrderList: true };
@@ -504,6 +524,113 @@ export const orderReducer = (state = initialState, action) => {
                   fetchingRepairLowOrderList: false,
                   fetchingRepairLowOrderListError: true,
                 };
+
+
+                case types.GET_DELETED_HIGH_ORDER_LIST_REQUEST:
+                  return { ...state, fetchingDeletedHighOrderList: true };
+                case types.GET_DELETED_HIGH_ORDER_LIST_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingDeletedHighOrderList: false,
+                    deletedHighOrder: [
+                      ...state.deletedHighOrder,
+                      ...action.payload]
+                  };
+                case types.GET_DELETED_HIGH_ORDER_LIST_FAILURE:
+                  return {
+                    ...state,
+                    fetchingDeletedHighOrderList: false,
+                    fetchingDeletedHighOrderListError: true,
+            
+                  };
+
+
+                  case types.GET_DELETED_MEDIUM_ORDER_LIST_REQUEST:
+                    return { ...state, fetchingDeletedMediumOrderList: true };
+                  case types.GET_DELETED_MEDIUM_ORDER_LIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingDeletedMediumOrderList: false,
+                      deletedMediumOrder: [
+                        ...state.deletedMediumOrder,
+                        ...action.payload]
+                    };
+                  case types.GET_DELETED_MEDIUM_ORDER_LIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingDeletedMediumOrderList: false,
+                      fetchingDeletedMediumOrderListError: true,
+              
+                    };
+
+
+                    case types.GET_DELETED_LOW_ORDER_LIST_REQUEST:
+                      return { ...state, fetchingDeletedLowOrderList: true };
+                    case types.GET_DELETED_LOW_ORDER_LIST_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingDeletedLowOrderList: false,
+                        deletedLowOrder: [
+                          ...state.deletedLowOrder,
+                          ...action.payload]
+                      };
+                    case types.GET_DELETED_LOW_ORDER_LIST_FAILURE:
+                      return {
+                        ...state,
+                        fetchingDeletedLowOrderList: false,
+                        fetchingDeletedLowOrderListError: true,
+                
+                      };
+
+
+                      case types.DELETE_ORDER_DATA_REQUEST:
+                        return { ...state, deleteOrderData: true };
+                      case types.DELETE_ORDER_DATA_SUCCESS:
+                        return {
+                          ...state,
+                          deleteOrderData: false,
+                          allCompleteOrder: state.allCompleteOrder.filter(
+                            (item) => item.orderId !== action.payload
+                        ), 
+          
+                        };
+                      case types.DELETE_ORDER_DATA_FAILURE:
+                        return { ...state, deleteOrderData: false, deleteOrderDataError: false };
+
+
+                        
+        case types.REINSTATE_TOGGLE_FOR_ORDER_REQUEST:
+          return { ...state, reInstatedOrderById: true };
+      case types.REINSTATE_TOGGLE_FOR_ORDER_SUCCESS:
+          return {
+              ...state,
+              reInstatedOrderById: false,
+              deletedHighOrder: state.deletedHighOrder.filter(
+                  (item) => item.orderId !== action.payload
+                ),
+                deletedMediumOrder: state.deletedMediumOrder.filter(
+                  (item) => item.orderId !== action.payload
+                ),
+                deletedLowOrder: state.deletedLowOrder.filter(
+                  (item) => item.orderId !== action.payload
+                ),
+           
+          };
+      case types.REINSTATE_TOGGLE_FOR_ORDER_FAILURE:
+          return {
+              ...state,
+              reInstatedOrderById: false,
+              reInstatedOrderByIdError: true,
+          };
+
+          case types.EMPTY_MORDERS_LIST:
+            return {
+              ...state,
+              deletedHighOrder: [],
+              deletedMediumOrder: [],
+              deletedLowOrder: [],
+             
+            };
     
     default:
       return state;
