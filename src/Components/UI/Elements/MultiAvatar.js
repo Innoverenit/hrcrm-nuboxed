@@ -65,11 +65,11 @@ const MultiAvatar = ({
           // </Avatar>
         //   <Avatar.Group
         //   maxCount={1000}
-        //   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+        //   maxStyle={{ color: "#e97c28ba", backgroundColor: "#fde3cf" }}
         // >
          
          <Tooltip title={primaryTitle}>
-                  <Avatar style={{ backgroundColor: "#f56a00",fontFamily:"poppins" }}>
+                  <Avatar style={{ backgroundColor: "#e97c28ba",fontFamily:"poppins" }}>
                   {primaryTitle && primaryTitle.slice(0,2)}
                   </Avatar>
                   </Tooltip>
