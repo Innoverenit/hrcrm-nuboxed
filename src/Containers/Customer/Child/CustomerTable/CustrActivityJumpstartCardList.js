@@ -1,16 +1,8 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import dayjs from "dayjs";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip, Select,Timeline } from "antd";
-import {
-  MultiAvatar,
-  MultiAvatar2,
-} from "../../../../Components/UI/Elements";
-import { Link } from 'react-router-dom';
 import {getCustomerActivityTimeline} from "../../CustomerAction"
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import moment from "moment";
 const Option = Select;

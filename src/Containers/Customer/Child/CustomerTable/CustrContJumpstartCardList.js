@@ -80,7 +80,7 @@ function CustrContJumpstartCardList(props) {
     <>
       
      
-      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" max-sm:hidden flex justify-between w-[95%] max-lg:w-[89%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <FormattedMessage
@@ -144,7 +144,7 @@ function CustrContJumpstartCardList(props) {
             item.address[0].postalCode} `;
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
+                            <div className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
                                 >
                                      
                                 <div className=" flex font-medium flex-col w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">

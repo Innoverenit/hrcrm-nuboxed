@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
@@ -60,17 +60,17 @@ const handleLoadMoreMedium = () => {
 
   return (
     <>
-    <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+    <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
 <div class=" w-[8.5rem]">Repair</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Quotation #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
 
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -181,7 +181,7 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
-                        {item.orderType}
+                  <Button type="primary">Convert</Button>
                       </h4>
                   </div>
                                      
@@ -210,17 +210,17 @@ const handleLoadMoreMedium = () => {
                             </> : !props.quotationRepairOrder.length && !props.fetchingQuotationRepairOrder ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
-      <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
 <div class=" w-[8.5rem]">Procure</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Quotation #"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
                         <div className="md:w-[6.12rem]"></div>
                      
 
@@ -330,7 +330,7 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
-                        {item.orderType}
+                       <Button type="primary">Convert</Button>
                       </h4>
                   </div>
                                         {/* <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">

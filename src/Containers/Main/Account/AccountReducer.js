@@ -136,6 +136,7 @@ const initialState = {
 
   fetchingInputDistributorData: false,
   fetchingInputDistributorDataError: false,
+  serachedData: [],
 
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
@@ -1067,8 +1068,11 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputDistributorData: false,
-        distributorsByUserId: state.viewType === "all" ? null : action.payload,
-        allDistributors: state.viewType === "all" ? action.payload : null,
+        customerListByUser: action.payload,
+        allDistributors:action.payload,
+        deletedDistributors:action.payload,
+        // distributorsByUserId: state.viewType === "all" ? null : action.payload,
+        // allDistributors: state.viewType === "all" ? action.payload : null,
         // serachedData: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
@@ -3162,6 +3166,12 @@ export const distributorReducer = (state = initialState, action) => {
                             addingQuotationPhoneDetailsError:true,
                             // addCustomerModal: false 
                           };
+
+                          case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
+                            return { ...state, 
+                              customerListByUser: [], 
+                              // deletedTruck: [] 
+                            };
 
 
 
