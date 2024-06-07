@@ -6,7 +6,13 @@ import { SubTitle } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
-import { Button } from "antd"
+import { Button,Input } from "antd"
+import {
+    searchimeiName,
+    ClearReducerDataOfrefurbish
+} from "./RefurbishAction";
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
@@ -24,18 +30,74 @@ function InspectedPhoneByOrder(props) {
 
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const handleShow = () => {
         setShow(!show)
     }
     const handleParticularRow = (item) => {
         setData(item)
     }
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {
+                //setPageNo(pageNo + 1);
+                props.getDispatchUpdateList(props.rowData.orderPhoneId)
+                props.ClearReducerDataOfrefurbish()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.searchimeiName(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const suffix = (
+            <AudioOutlined
+              onClick={SpeechRecognition.startListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
     return (
         <>
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
                 : <div className='flex justify-end sticky ticky top-0 z-10 '>
                     <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div class=" w-72 ml-4 max-sm:w-28">
+          <Input
+            placeholder="Search by Imei"
+            width={"100%"}
+            suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+             value={currentData}
+        
+          />
+        </div>
                         <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
                             <div className=" md:w-[7.12rem]"><FormattedMessage
                                 id="app.oem"
@@ -204,7 +266,9 @@ const mapStateToProps = ({ inventory }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getDispatchUpdateList
+            getDispatchUpdateList,
+            searchimeiName,
+    ClearReducerDataOfrefurbish
         },
         dispatch
     );
