@@ -21,7 +21,12 @@ const LeadsActionLeft = (props) => {
   const minRecordingTime = 5000; // 5 seconds
   const timerRef = useRef(null);
   const dummy = ["cloud", "azure", "fgfdg"];
- 
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
 
     useEffect(() => {
       
@@ -47,12 +52,7 @@ const LeadsActionLeft = (props) => {
     }
   }, [props.viewType, props.userId,transcript]);
 
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
+  
   useEffect(() => {
     // props.getCustomerRecords();
     if (transcript) {
