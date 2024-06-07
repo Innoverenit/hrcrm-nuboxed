@@ -17,6 +17,9 @@ class InvestorPulseDrawerModal extends Component {
         // title="Notes"
           title={this.props.RowData.name}
           width="60%"
+          destroyOnClose
+          closable
+          placement="right"
           visible={this.props.addDrawerInvestorPulseModal}
           onClose={() => this.props.handleInvestorPulseDrawerModal(false)}
         >

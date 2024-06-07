@@ -975,7 +975,11 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/distributorName/${name}`, {})
+    .get(`${base_url2}/distributor/distributorName/${name}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       // if (res.data.contactId) {
       //   console.log(res.data);
@@ -4244,4 +4248,11 @@ export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatc
       });
       cb && cb();
     });
+};
+
+
+export const ClearSearchedDataOfAccount = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT,
+  });
 };

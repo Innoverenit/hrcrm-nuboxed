@@ -52,8 +52,8 @@ componentDidMount() {
 }
 
 render() {
-   const weightedValue = `${this.props.InvWeightedValue.weightedValue}`;
-   const pipeLineValue = `${this.props.InvestorPipelineValue.pipeLineValue}`;
+   const weightedValue = `${this.props.InvWeightedValue.weightedValue} ${this.props.InvWeightedValue.tradeCurrency}`;
+   const pipeLineValue = `${this.props.InvestorPipelineValue.pipeLineValue} ${this.props.InvestorPipelineValue.tradeCurrency}`;
  
   const { showDatelist, fetchingDatewiseReport } = this.props;
   console.log( this.props.taskperCount)
@@ -77,8 +77,8 @@ render() {
             noProgress
             title={
               <FormattedMessage
-                id="app.opportunities"
-                defaultMessage=" # Opportunities"
+                id="app.deals"
+                defaultMessage=" # Deals"
               />
             }
             bgColor="#33D7FF" 
@@ -105,7 +105,7 @@ render() {
             }
           
             value={
-              this.props.InvestorPipelineValue.pipeLineValue
+              pipeLineValue
 
             }
              isLoading={this.props.fetchingInvPipelineValue} 
@@ -125,7 +125,7 @@ render() {
               />
             }
             value={
-              this.props.InvWeightedValue.weightedValue
+              weightedValue
 
             }
             isLoading={this.props.fetchingINVWeightedValue} 
@@ -200,8 +200,8 @@ render() {
                 noProgress
                 title={
                   <FormattedMessage
-                    id="app.opportunities"
-                    defaultMessage="Won Opportunities"
+                    id="app.Deals"
+                    defaultMessage="Won Deals"
                   />
                 }
                 value={

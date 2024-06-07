@@ -28,11 +28,10 @@ import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import AccountModal from "./AccountModal";
-import SearchedAccountData from "./SearchedAccountData";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
-function AccountTable(props) {
+function SearchedAccountData(props) {
   const [page, setPage] = useState(0);
   const [RowData, setRowData] = useState("");
   const [hasMore, setHasMore] = useState(true);
@@ -53,13 +52,12 @@ function AccountTable(props) {
     handleUpdateAccountModal,
     handleAccountModal,
   } = props;
-  useEffect(() => {
-    return () => props.emptyDistributor();
-  }, []);
+//   useEffect(() => {
+//     return () => props.emptyDistributor();
+//   }, []);
 
   const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight * 1.2;
-
   return (
     <>
       <div className=' flex justify-end sticky  z-auto'>
@@ -426,5 +424,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountTable);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchedAccountData);
 
