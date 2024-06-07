@@ -344,7 +344,7 @@ function InvestorCardList(props) {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">            
-                                <div className="w-5">
+                                <div >
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
                   onClick={() => {
@@ -359,7 +359,7 @@ function InvestorCardList(props) {
           
                    
                                
-                          <div className="w-5">
+                          <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -371,7 +371,7 @@ function InvestorCardList(props) {
            </Tooltip>
                    </div>
                    
-                   <div className="w-5">
+                   <div >
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -391,7 +391,7 @@ function InvestorCardList(props) {
             </Tooltip>
                         </div>                   
                     
-                    <div className="w-5">
+                    <div >
                         <span 
               className=" !text-xl cursor-pointer"
             //   onClick={() => {
@@ -407,7 +407,7 @@ function InvestorCardList(props) {
             </span> 
                         </div>
         
-                        <div className="w-5">
+                        <div >
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
@@ -425,14 +425,14 @@ function InvestorCardList(props) {
                     
     
                     
-            <div className="w-5">
+            <div >
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer">
             <LocationOnIcon   className=" !text-xl cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
-            <div className="w-5">
+            <div >
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon className=" !text-xl cursor-pointer text-[tomato]"
@@ -445,7 +445,7 @@ function InvestorCardList(props) {
             </Tooltip>
            )} 
             </div>
-            <div className="w-5">
+            <div >
             <StyledPopconfirm
                         title="Do you want to delete?"
                         onConfirm={() =>
