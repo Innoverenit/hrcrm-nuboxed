@@ -21,19 +21,7 @@ const LeadsActionLeft = (props) => {
   const minRecordingTime = 5000; // 5 seconds
   const timerRef = useRef(null);
   const dummy = ["cloud", "azure", "fgfdg"];
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
-  useEffect(() => {
-    // props.getCustomerRecords();
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      setCurrentData(transcript);
-    }
-    }, [ transcript]);
+ 
 
     useEffect(() => {
       
@@ -53,16 +41,33 @@ const LeadsActionLeft = (props) => {
     else if (props.viewType === "all") {
       props.getLeadsAllRecords(props.orgId);
     }
-    
-  }, [props.viewType, props.userId]);
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      props.setCurrentData(transcript);
+    }
+  }, [props.viewType, props.userId,transcript]);
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
     if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-      setPage(pageNo + 1);
+      //setPage(pageNo + 1);
       props.getLeads(props.userId, pageNo, "creationdate");
-      props.ClearReducerDataOfLead()
+      //props.ClearReducerDataOfLead()
       props.ClearSearchedDataOfLead()
       setSearchOnEnter(false);
     }
@@ -104,6 +109,7 @@ const LeadsActionLeft = (props) => {
     if (transcript.trim() !== "") {
       setCurrentData(transcript);
       props.inputLeadsDataSearch(transcript);
+      setSearchOnEnter(true);
     }
   };
   useEffect(() => {
