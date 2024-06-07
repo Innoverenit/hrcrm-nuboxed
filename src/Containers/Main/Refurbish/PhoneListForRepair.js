@@ -37,6 +37,10 @@ function PhoneListForRepair(props) {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const componentRefs = useRef([]);
+    const [startTime, setStartTime] = useState(null);
+    const [isRecording, setIsRecording] = useState(false); //Code for Search
+    const minRecordingTime = 5000; // 5 seconds
+    const timerRef = useRef(null);
 
     const handlePrint = () => {
         window.print();
@@ -84,6 +88,53 @@ function PhoneListForRepair(props) {
           console.error("Input is empty. Please provide a value.");
         }
       };
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.searchimeiNamerapir(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
 
     const [RowData, setRowData] = useState({});
     function handleSetRowData(item) {
@@ -190,16 +241,6 @@ function PhoneListForRepair(props) {
             setBackComplete(false)
         }
     }
-    const suffix = (
-        <AudioOutlined
-          onClick={SpeechRecognition.startListening}
-          style={{
-            fontSize: 16,
-            color: '#1890ff',
-          }}
-    
-        />
-      );
     return (
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto '>

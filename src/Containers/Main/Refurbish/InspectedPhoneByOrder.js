@@ -1,15 +1,16 @@
 import React, { useEffect, lazy, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getDispatchUpdateList } from "../Inventory/InventoryAction"
+// import { getDispatchUpdateList } from "../Inventory/InventoryAction"
 import { SubTitle } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
 import { Button,Input } from "antd"
 import {
-    searchimeiName,
-    ClearReducerDataOfrefurbish
+    searchimeiNamePhone,
+    ClearPhoneDataOfrefurbish,
+    getDispatchUpdateList
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
@@ -32,6 +33,10 @@ function InspectedPhoneByOrder(props) {
     const [data, setData] = useState({})
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
     const handleShow = () => {
         setShow(!show)
     }
@@ -58,22 +63,34 @@ function InspectedPhoneByOrder(props) {
             if (searchOnEnter&&e.target.value.trim() === "") {
                 //setPageNo(pageNo + 1);
                 props.getDispatchUpdateList(props.rowData.orderPhoneId)
-                props.ClearReducerDataOfrefurbish()
+                props.ClearPhoneDataOfrefurbish()
               setSearchOnEnter(false);
             }
           };
           const handleSearch = () => {
             if (currentData.trim() !== "") {
               // Perform the search
-              props.searchimeiName(currentData);
+              props.searchimeiNamePhone(currentData);
               setSearchOnEnter(true);  //Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
             }
           };
+          const handleStartListening = () => {
+            setStartTime(Date.now());
+            setIsRecording(true);
+            SpeechRecognition.startListening();
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+              SpeechRecognition.stopListening();
+              setIsRecording(false);
+            }, minRecordingTime);
+          };
           const suffix = (
             <AudioOutlined
-              onClick={SpeechRecognition.startListening}
+            onClick={handleStartListening}
               style={{
                 fontSize: 16,
                 color: '#1890ff',
@@ -81,6 +98,31 @@ function InspectedPhoneByOrder(props) {
         
             />
           );
+          const handleStopListening = () => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+            if (transcript.trim() !== "") {
+              setCurrentData(transcript);
+              props.searchimeiNamePhone(transcript);
+              setSearchOnEnter(true);
+            }
+          };
+          useEffect(() => {
+            if (!listening && isRecording) {
+              handleStopListening();
+            }
+          }, [listening]);
+          useEffect(() => {
+            if (isRecording && !listening) {
+              // If recording was stopped but less than 5 seconds have passed, restart listening
+              const elapsedTime = Date.now() - startTime;
+              if (elapsedTime < minRecordingTime) {
+                SpeechRecognition.startListening();
+              } else {
+                setIsRecording(false);
+              }
+            }
+          }, [listening, isRecording, startTime]);
     return (
         <>
             {props.fetchingUpdateDispatchList ?
@@ -171,7 +213,7 @@ function InspectedPhoneByOrder(props) {
                                                     {item.conditions}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     <SubTitle>
                                                         {item.qrCodeId ? (
@@ -188,7 +230,7 @@ function InspectedPhoneByOrder(props) {
                                                         )}
                                                     </SubTitle>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     {item.cannotRepairInd ? "Can't Repair" : null}
@@ -267,8 +309,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getDispatchUpdateList,
-            searchimeiName,
-    ClearReducerDataOfrefurbish
+            searchimeiNamePhone,
+    ClearPhoneDataOfrefurbish
         },
         dispatch
     );
