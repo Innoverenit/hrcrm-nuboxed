@@ -1196,7 +1196,7 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/shipper/shipperList/${name}`, {
+    .get(`${base_url2}/shipper/shipperList/${name}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

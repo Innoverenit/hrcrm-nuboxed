@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
@@ -11,7 +11,8 @@ import {
   handleUpdateProcureDetailModal,
   setEditProcure,
   getProcureRecords,
-  handleProcureDetailsModal
+  handleProcureDetailsModal,
+  quotationToOrder
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
@@ -56,7 +57,10 @@ const handleLoadMoreMedium = () => {
   props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",)
 };
 
-
+const handleConfirm = (quotationId) => {
+  // Call the function to change the status to "Lost" here
+  props.quotationToOrder(quotationId,props.userId);
+};
 
   return (
     <>
@@ -181,7 +185,14 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
+                  <Popconfirm
+                          title="Change status to Order?"
+                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
                   <Button type="primary">Convert</Button>
+                  </Popconfirm>
                       </h4>
                   </div>
                                      
@@ -330,7 +341,14 @@ const handleLoadMoreMedium = () => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <h4 class="text-cardBody font-poppins text-sm">
-                       <Button type="primary">Convert</Button>
+                  <Popconfirm
+                          title="Change status to Order?"
+                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                  <Button type="primary">Convert</Button>
+                  </Popconfirm>
                       </h4>
                   </div>
                                         {/* <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
@@ -371,12 +389,13 @@ const handleLoadMoreMedium = () => {
 
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,auth }) => ({
   addProcureDetailsModal:distributor.addProcureDetailsModal,
   procurementOrder: distributor.procurementOrder,
   updateProcureDetailModal:distributor.updateProcureDetailModal,
   fetchingOrderProcurement: distributor.fetchingOrderProcurement,
   procureRecordData:distributor.procureRecordData,
+  userId: auth.userDetails.userId,
   quotationRepairOrder:distributor.quotationRepairOrder,
   fetchingQuotationRepairOrder:distributor.fetchingQuotationRepairOrder,
   quotationProcureOrder:distributor.quotationProcureOrder,
@@ -394,7 +413,8 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateProcureDetailModal,
       setEditProcure,
       getProcureRecords,
-      handleProcureDetailsModal
+      handleProcureDetailsModal,
+      quotationToOrder
     },
     dispatch
   );

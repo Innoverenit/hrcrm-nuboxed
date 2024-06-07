@@ -269,6 +269,9 @@ const initialState = {
   fetchingDeletedDistributorsError: false,
   deletedDistributors: [],
 
+  convertingQuotationToOrder: false,
+  convertingQuotationToOrderError: false,
+
   fetchingLowCompleteOrders: false,
   fetchingLowCompleteOrdersError: false,
   lowCompleteOrder:[],
@@ -3166,6 +3169,30 @@ export const distributorReducer = (state = initialState, action) => {
                             addingQuotationPhoneDetailsError:true,
                             // addCustomerModal: false 
                           };
+
+
+                          case types.QUOTATION_TO_ORDER_CONVERT_REQUEST:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: true,
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_SUCCESS:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              quotationRepairOrder: state.quotationRepairOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                              quotationProcureOrder: state.quotationProcureOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_FAILURE:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              convertingQuotationToOrderError: true,
+                            };
 
                           case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
                             return { ...state, 
