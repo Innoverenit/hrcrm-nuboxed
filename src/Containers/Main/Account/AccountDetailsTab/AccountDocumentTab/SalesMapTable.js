@@ -24,8 +24,8 @@ const SalesMapTable = (props) => {
 
         return (
             <>
-                <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[7.4rem]">LOB</div>
                         <div className=" md:w-[7.1rem]">Applicable</div>
