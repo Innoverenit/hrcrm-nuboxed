@@ -9,7 +9,7 @@ class CreateSubscriptionDrawer extends Component {
   render() {
     const { createSubscriptiondrawer, handleCreateSubscriptionDrawer,rowData, ...formProps } = this.props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "90%";
     return (
       <>
         <StyledDrawer
