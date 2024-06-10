@@ -344,7 +344,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
       }}         
      
        >
-        <LockIcon className=" !text-xl cursor-pointer"
+        <LockIcon className=" !text-icon cursor-pointer"
              
             />
           </span>
@@ -369,7 +369,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                 // handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-icon cursor-pointer text-[green]" />
               </span>
         
           </Tooltip></div>
@@ -390,7 +390,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       {user.opportunityUpdateInd ===true && (
             
             <span 
-            className=" !text-xl cursor-pointer text-[grey]"
+            className=" !text-icon cursor-pointer text-[grey]"
               
               onClick={() => {
                 props.setEditOpportunity(item);
@@ -399,7 +399,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-xl cursor-pointer text-[tomato]"
+                          className=" !text-icon cursor-pointer text-[tomato]"
                             
                           />
                         </span>
@@ -419,7 +419,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-xl cursor-pointer text-[red]"
+                          className=" !text-icon cursor-pointer text-[red]"
                         />
                         )}
                         </StyledPopconfirm>

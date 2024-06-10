@@ -318,7 +318,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 >
          {user.pulseAccessInd === true && (
            <MonitorHeartIcon
-           className=" !text-xl cursor-pointer text-[#df9697]"
+           className=" !text-icon cursor-pointer text-[#df9697]"
            />
          )}
        </span>
@@ -340,7 +340,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
      
        >
         <LockIcon
-         className=" !text-xl cursor-pointer"
+         className=" !text-icon cursor-pointer"
             />
           </span>
    </Tooltip> 
@@ -362,7 +362,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       {user.opportunityUpdateInd ===true && (
             
             <span
-            className=" !text-xl cursor-pointer text-[grey]"
+            className=" !text-icon cursor-pointer text-[grey]"
              
               onClick={() => {
                 props.setEditOpportunity(item);
@@ -371,7 +371,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-xl cursor-pointer text-[tomato]"
+                          className=" !text-icon cursor-pointer text-[tomato]"
                             
                           />
                         </span>
@@ -400,7 +400,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-xl cursor-pointer text-[red]"
+                          className=" !text-icon cursor-pointer text-[red]"
                         />
                         )}
                         </Tooltip>

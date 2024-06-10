@@ -301,7 +301,7 @@ function OpportunityWonCard(props) {
        
          >
           <LockIcon
-           className=" !text-xl cursor-pointer"
+           className=" !text-icon cursor-pointer"
                
               />
             </span>
@@ -330,7 +330,7 @@ function OpportunityWonCard(props) {
                         {user.opportunityUpdateInd ===true && (
               
               <span
-              className=" !text-xl cursor-pointer text-[grey]"
+              className=" !text-icon cursor-pointer text-[grey]"
                 onClick={() => {
                   props.setEditOpportunity(item);
                   handleUpdateOpportunityModal(true);
@@ -357,7 +357,7 @@ function OpportunityWonCard(props) {
                         
                           <DeleteOutlined
                             type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
+                            className=" !text-icon cursor-pointer text-[red]"
                           />
                           )}
                           </StyledPopconfirm>
@@ -385,7 +385,7 @@ function OpportunityWonCard(props) {
          >
            {user.pulseAccessInd === true && (
              <MonitorHeartIcon
-             className=" !text-xl cursor-pointer text-[#df9697]"
+             className=" !text-icon cursor-pointer text-[#df9697]"
              />
            )}
          </span>
@@ -409,7 +409,7 @@ function OpportunityWonCard(props) {
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className=" !text-xl cursor-pointer text-[green]" />
+                 <NoteAltIcon className=" !text-icon cursor-pointer text-[green]" />
               </span>
         
           </Tooltip></div>
