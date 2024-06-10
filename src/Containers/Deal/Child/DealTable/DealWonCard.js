@@ -327,9 +327,8 @@ function DealWonCard(props) {
          }}         
        
          >
-          <LockIcon
+          <LockIcon className="!text-icon"
                 style={{
-                  fontSize: "1.25rem",
                   cursor: "pointer",
                 }}
               />
@@ -353,7 +352,7 @@ function DealWonCard(props) {
                           }}
                         >
                           <NoteAltIcon
-                            className="!text-xl cursor-pointer text-[green]"
+                            className="!text-icon cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
@@ -379,7 +378,7 @@ function DealWonCard(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-xl cursor-pointer text-[tomato]"
+                             className="!text-icon cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -398,7 +397,7 @@ function DealWonCard(props) {
                         
                           <DeleteOutlined
                             type="delete"
-                            className="!text-xl text-[red] cursor-pointer"
+                            className="!text-icon text-[red] cursor-pointer"
                           />
                           )}
                           </StyledPopconfirm>
@@ -425,8 +424,8 @@ function DealWonCard(props) {
            }}
          >
            {user.pulseAccessInd === true && (
-             <MonitorHeartIcon
-               style={{ fontSize: "1.25rem", color: "#df9697" }}
+             <MonitorHeartIcon className="!text-icon"
+               style={{ color: "#df9697" }}
              />
            )}
          </span>
