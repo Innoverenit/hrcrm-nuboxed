@@ -292,8 +292,10 @@ function ContactInvestTeamsCardList(props) {
 
              </div>
                          
-              <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
-              <Tooltip title={item.mobileNo} >
+       
+                  <div class=" flex justify-end w-[7rem] max-sm:flex justify-end max-sm:w-full">
+                    <div>
+                  <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class=" mr-2 text-xs cursor-pointer"
           onClick={() => {
@@ -315,8 +317,8 @@ function ContactInvestTeamsCardList(props) {
         </span>
       )}
     </Tooltip>
-                  </div>
-                  <div class=" max-sm:flex justify-end max-sm:w-full">
+    </div>
+    <div>
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
@@ -328,7 +330,8 @@ function ContactInvestTeamsCardList(props) {
         }}
       />
      </Tooltip>
-                  </div>
+     </div>
+                
                
                   <div >
                   <span class="cursor-pointer"
@@ -342,10 +345,10 @@ function ContactInvestTeamsCardList(props) {
       )}
       </span>
                   </div>
-                  <div>
+              
       
 
-              </div>
+            
               
            
                 <div>
@@ -370,8 +373,8 @@ function ContactInvestTeamsCardList(props) {
      
                
               
-                </div>  
                 
+                <div>
               <Tooltip title="Notes">
  <NoteAltIcon
           onClick={() => {
@@ -381,6 +384,8 @@ function ContactInvestTeamsCardList(props) {
           className="text-green-500 cursor-pointer !text-icon"
         />
      </Tooltip>
+     </div>
+     <div>
      <Tooltip title="Pulse">
  <MonitorHeartIcon
  className=" !text-icon cursor-pointer text-[#df9697]"
@@ -391,7 +396,7 @@ function ContactInvestTeamsCardList(props) {
           
         />
      </Tooltip>
-
+     </div>
      <div>
       {user.imInd === true  && user.investorContactUpdateInd === true &&  (
       <Tooltip title="Edit">
@@ -405,6 +410,8 @@ function ContactInvestTeamsCardList(props) {
         />
       </Tooltip>
       )}
+      </div>
+      </div>
       </div>
                       </div>
                   </div>

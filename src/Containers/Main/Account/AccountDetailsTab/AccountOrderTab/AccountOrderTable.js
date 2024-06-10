@@ -8,7 +8,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from "@ant-design/icons";
 import AddPickupModal from "./AddPickupModal"
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
@@ -132,7 +132,7 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage
                                 id="app.orderno"
-                                defaultMessage="Order No#"
+                                defaultMessage="Order ID"
                             />
                         </div>
                         <div className=" md:w-[5.012rem]">
@@ -312,22 +312,22 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[5.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -336,7 +336,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : item.offerPrice}
+                                                                : (item.offerPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -417,8 +417,8 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex justify-end">
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                <div class="flex justify-end w-[8rem]">
+                                                    <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"
@@ -451,8 +451,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                  
+                                                   
 
                                                         <div>
                                                             <Tooltip title="Collection">
@@ -479,8 +479,8 @@ const AccountOrderTable = (props) => {
                                                         </Tooltip>
                                                         {/* </div>} */}
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                    
+                                                   
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.rating"
@@ -503,9 +503,9 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                    </div>
+                                                 
 
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                    
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
                                                                 id="app.updateorder"
@@ -526,7 +526,7 @@ const AccountOrderTable = (props) => {
                                                                 id="app.delete"
                                                                 defaultMessage="Detele"
                                                             />}>
-                                                                <DeleteIcon
+                                                                <DeleteOutlined
                                                                     className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
@@ -535,8 +535,8 @@ const AccountOrderTable = (props) => {
                                                         </div>
 
                                                     </div>
-                                                </div>
-
+                                             
+                                                    </div>
                                             </div>
 
                                             {checkAwb && (item.orderId === particularRowData.orderId) &&
@@ -562,7 +562,7 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage
                                 id="app.orderno"
-                                defaultMessage="Order No#"
+                                defaultMessage="Order ID"
                             />
                         </div>
                         <div className=" md:w-[5.012rem]">
@@ -742,22 +742,22 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[5.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -766,7 +766,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : item.offerPrice}
+                                                                : (item.offerPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -847,8 +847,8 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex justify-end">
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                <div class="flex justify-end  w-[8rem]">
+                                                    <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"
@@ -881,8 +881,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                   
+                                                   
 
                                                         <div>
                                                             <Tooltip title="Collection">
@@ -909,8 +909,8 @@ const AccountOrderTable = (props) => {
                                                         </Tooltip>
                                                         {/* </div>} */}
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                 
+                                                   
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.rating"
@@ -933,9 +933,9 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                    </div>
+                                                  
 
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                    
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
                                                                 id="app.updateorder"
@@ -956,7 +956,7 @@ const AccountOrderTable = (props) => {
                                                                 id="app.delete"
                                                                 defaultMessage="Detele"
                                                             />}>
-                                                                <DeleteIcon
+                                                                <DeleteOutlined
                                                                     className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
@@ -964,7 +964,7 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
 
-                                                    </div>
+                                                        </div>
                                                 </div>
 
                                             </div>
@@ -991,7 +991,7 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[11.41rem] ml-2">
                             <FormattedMessage
                                 id="app.orderno"
-                                defaultMessage="Order No#"
+                                defaultMessage="Order ID"
                             />
                         </div>
                         <div className=" md:w-[5.012rem]">
@@ -1171,22 +1171,22 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.expectedPrice}
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex font-medium  items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs text-cardBody font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{item.finalPrice}
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
 
 
-                                                    <div className=" flex font-medium  items-center  md:w-[5.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex font-medium  items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs text-cardBody font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} />
                                                             {visible && (item.orderId === particularRowData.orderId) ?
@@ -1195,7 +1195,7 @@ const AccountOrderTable = (props) => {
                                                                     value={price}
                                                                     onChange={(e) => handleChange(e.target.value)}
                                                                 />
-                                                                : item.offerPrice}
+                                                                : (item.offerPrice / 10000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -1276,8 +1276,8 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex justify-end">
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                <div class="flex justify-end w-[8rem]">
+                                                    <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.notes"
@@ -1310,8 +1310,8 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                
+                                                  
 
                                                         <div>
                                                             <Tooltip title="Collection">
@@ -1338,8 +1338,8 @@ const AccountOrderTable = (props) => {
                                                         </Tooltip>
                                                         {/* </div>} */}
 
-                                                    </div>
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                    
+                                                  
                                                         <div>
                                                             <Tooltip title={<FormattedMessage
                                                                 id="app.rating"
@@ -1362,9 +1362,9 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
 
                                                         </div>
-                                                    </div>
+                                               
 
-                                                    <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
+                                                 
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
                                                                 id="app.updateorder"
@@ -1385,7 +1385,7 @@ const AccountOrderTable = (props) => {
                                                                 id="app.delete"
                                                                 defaultMessage="Detele"
                                                             />}>
-                                                                <DeleteIcon
+                                                                <DeleteOutlined
                                                                     className="!text-xl cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
@@ -1393,7 +1393,7 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
 
-                                                    </div>
+                                                        </div>
                                                 </div>
 
                                             </div>
