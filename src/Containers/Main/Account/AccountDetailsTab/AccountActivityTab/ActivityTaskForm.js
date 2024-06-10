@@ -1483,7 +1483,7 @@ function ActivityTaskForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    Loading={isEditing ? updatingTask : addingTask}
+                                    loading={isEditing ? updatingTask : addingTask}
                                 >
                                     {isEditing ? (
                                         "Update"

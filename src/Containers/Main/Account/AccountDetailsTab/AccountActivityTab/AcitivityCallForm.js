@@ -914,7 +914,7 @@ function CallForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    Loading={isEditing ? updatingCall : props.addingCustomerActivityCall}
+                                    loading={isEditing ? updatingCall : props.addingCustomerActivityCall}
                                 >
                                     {isEditing ? (
                                         "Update"

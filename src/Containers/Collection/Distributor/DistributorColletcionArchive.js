@@ -17,7 +17,7 @@ function DistributorColletcionArchive(props) {
       </Suspense>
 
       <div className=' flex justify-end sticky  z-auto'>
-      <div class="rounded-lg m-2 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[9.1rem] max-xl:w-[13.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
             <div className=" w-[8.2rem] max-xl:w-[9.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>

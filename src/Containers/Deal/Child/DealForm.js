@@ -587,7 +587,7 @@ function DealForm(props) {
           </>
         )}
       </Listbox>
-<div>
+<div class=" mt-1">
 <Field
                     name="included"
                     // label="Include"

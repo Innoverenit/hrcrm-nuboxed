@@ -73,7 +73,7 @@ const ReceivedTable = (props) => {
     <>
       {props.fetchingReceivedUser ? <BundleLoader /> :
         <div className=' flex justify-center sticky  z-auto'>
-          <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
@@ -256,7 +256,7 @@ const ReceivedTable = (props) => {
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
-                                  className="!text-base cursor-pointer"
+                                  className="!text-xl cursor-pointer text-[green]"
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleInventoryReceivedNoteOrderModal(true);
@@ -271,7 +271,7 @@ const ReceivedTable = (props) => {
                               <div>
                                 <Tooltip title="Mismatch Phones">
                                   <LabelOffIcon
-                                    class=" text-red-700"
+                                    class=" text-xl text-red-700"
                                     onClick={() => {
                                       handleRowData(item);
                                       props.handleMismatchPhoneModal(true)

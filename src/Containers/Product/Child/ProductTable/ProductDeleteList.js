@@ -94,8 +94,8 @@ function ProductDeleteList(props) {
   return (
     <>
 
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex justify-end sticky  z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">  
           <div className="w-[7.01rem]"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
@@ -244,7 +244,9 @@ function ProductDeleteList(props) {
                     <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title={item.description}>
-                        <ContactSupportIcon/>
+                        <ContactSupportIcon
+                         className="!text-xl cursor-pointer "
+                        />
                         </Tooltip>
                       </div>
 
