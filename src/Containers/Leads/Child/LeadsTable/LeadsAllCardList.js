@@ -360,7 +360,7 @@ const LeadsAllCardList = (props) => {
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
                           <OpenInBrowserIcon
-                             className=" !text-xl cursor-pointer text-green-800"
+                             className=" !text-icon cursor-pointer text-green-800"
                           />
                         </a>
                       </div>
@@ -456,13 +456,13 @@ const LeadsAllCardList = (props) => {
           handleRowData(item);
           props.handleLeadsConfirmationModal(true);
         }}
-        className="!text-xl cursor-pointer text-[blue]"
+        className="!text-icon cursor-pointer text-[blue]"
       />
     </Tooltip>
   ) : (
     <Tooltip title="Company name is required to enable qualification action">
       <ConnectWithoutContactIcon
-        className="!text-xl cursor-not-allowed text-gray-400"
+        className="!text-icon cursor-not-allowed text-gray-400"
       />
     </Tooltip>
   )}
@@ -474,7 +474,7 @@ const LeadsAllCardList = (props) => {
                   <div class="w-5">
                     <Tooltip title="Notes">
                       <NoteAltIcon
-                       className=" !text-xl cursor-pointer text-green-800"
+                       className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);
@@ -494,7 +494,7 @@ const LeadsAllCardList = (props) => {
                       }
                     >
                       <AddchartIcon
-                       className="!text-xl cursor-pointer text-blue-500"
+                       className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
@@ -519,7 +519,7 @@ const LeadsAllCardList = (props) => {
                        
                       >
                         <LocationOnIcon
-                           className="!text-xl cursor-pointer text-[#960a0a]"
+                           className="!text-icon cursor-pointer text-[#960a0a]"
                         />
                       </div>
                     </Tooltip>
@@ -528,7 +528,7 @@ const LeadsAllCardList = (props) => {
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
-                        className="!text-xl cursor-pointer text-green-400"
+                        className="!text-icon cursor-pointer text-green-400"
                         onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
@@ -540,7 +540,7 @@ const LeadsAllCardList = (props) => {
                    <div class="w-5">
                       <Tooltip title="Edit">
                         <BorderColorIcon
-                         className="!text-xl cursor-pointer text-[tomato]"
+                         className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
@@ -559,7 +559,7 @@ const LeadsAllCardList = (props) => {
                    <Tooltip title="Delete">
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-xl cursor-pointer text-[red]"
+                          className=" !text-icon cursor-pointer text-[red]"
                         />
                      </Tooltip>
                       </StyledPopconfirm>
@@ -632,355 +632,355 @@ const LeadsAllCardList = (props) => {
                } `;
           return (
             <div>
-              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-              >
-               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
-                    <div>
-                      <ButtonGroup>
-                        <RoleButton
-                          type="Hot"
-                          iconType="fas fa-mug-hot"
-                          // tooltip="Hot"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.hot"
-                              defaultMessage="Hot"
-                            />
-                          }
-                          role={item.type}
-                          onClick={() => {
-                            const typ = "Hot";
-                            props.updateTypeForLead(item.leadsId, typ);
-                          }}
-                        />
-                      </ButtonGroup>
-                    </div>
-                    <div>
-                      <ButtonGroup>
-                        <RoleButton1
-                          type="Warm"
-                          iconType="	fas fa-burn"
-                          // tooltip="Warm"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.warm"
-                              defaultMessage="Warm"
-                            />
-                          }
-                          role={item.type}
-                          onClick={() => {
-                            const typ = "Warm";
-                            props.updateTypeForLead(item.leadsId, typ);
-                          }}
-                        />
-                      </ButtonGroup>
-                    </div>
-                    <div>
-                      <ButtonGroup>
-                        <RoleButton2
-                          type="Cold"
-                          iconType="far fa-snowflake"
-                          // tooltip="Cold"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.cold"
-                              defaultMessage="Cold"
-                            />
-                          }
-                          role={item.type}
-                          onClick={() => {
-                            const typ = "Cold";
-                            props.updateTypeForLead(item.leadsId, typ);
-                          }}
-                        />
-                      </ButtonGroup>
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
-                    <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                      <div>
-                       
-                          <MultiAvatar
-                            primaryTitle={item.name}
-                            imageId={item.imageId}
-                            imageURL={item.imageURL}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
-                       
-                      </div>
-                      <div class="w-[4%]"></div>
-
-                      <div class="max-sm:w-full md:flex items-center">
-                        <Tooltip>
-                          <div class="max-sm:w-full justify-between flex md:flex-col">
-                            <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
-                              {item.name}
-                              &nbsp;&nbsp;
-                              {date === currentdate ? (
-                                <div class="text-xs  text-[tomato] font-bold"
-                                  
-                                >
-                                  New
-                                </div>
-                              ) : null}
-                            </div>
-                          </div>
-                        </Tooltip>
-                      </div>
-                    </div>
-                  </div>
-
-                  
-                </div>
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-         
-                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                      {item.countryDialCode && item.phoneNumber
-                        ? `${item.countryDialCode} ${item.phoneNumber}`
-                        : "No Data"}
-                 
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
-                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                     
-                       <CountryFlag1 countryCode={countryCode} />
-                      &nbsp;
-                      {countryCode}
-                     
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
-                    <div class=" text-xs text-cardBody   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
-                      {item.companyName || "No Data"}
-                    </div>
-                  </div>
-                </div>
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                 
-                  <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
-                    {item.url !== null ? (
-                      <Tooltip title={item.url}>
-                        <div class="cursor-pointer"
-                          onClick={() => {}}
-                        >
-                          {" "}
-                          <a href={`https://www.${item.url}`} target="_blank">
-                            <OpenInBrowserIcon
-                               className=" !text-xl cursor-pointer text-green-800"
-                            />
-                          </a>
-                        </div>
-                      </Tooltip>
-                    ) : null}
-                  </div>
-
-                  <div className=" flex font-medium flex-col  w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
-           
-                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                      {item.sector}
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
-           
-           <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-             {item.source}
-           </div>
-         </div>
-         <div className=" flex font-medium flex-col  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
-           
-           <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-             {item.lob}
-           </div>
-         </div>
-                </div>
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
-                    <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                      <div>
-                      {item.assignedTo === null ? (
-                "No Data"
-              ) : (
-                <>
-                {item.assignedTo === item.ownerName ? (
-                  
-                  null
-                ) : (
-                  <MultiAvatar
-                  style={{ backgroundColor: "rgb(148, 179, 228)", color: "#fff" }} 
-                  primaryTitle={item.assignedTo}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-              />
-                        )}
-                        </>
-              )}
-                      </div>
-                    </div>
-                  </div>
-                     <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
-                      {item.assignedBy && (
-                    <div>
-                    {/* <Tooltip title={item.assignedBy}> */}
-                <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.assignedBy}> */}
-              <MultiAvatar
-              
-                primaryTitle={item.assignedBy}
-                // imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
-              />
-            {/* </Tooltip> */}
-            </div>
-          {/* </Tooltip> */}
-                    </div>
-                    )}
-                  </div>
-                  <div className=" flex font-medium flex-col w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
-                    <div>
-                    {/* <Tooltip title={item.ownerName}> */}
-                <div class="max-sm:flex justify-end">
-                {/* <Tooltip title={item.ownerName}> */}
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
-              />
-            {/* </Tooltip> */}
-            </div>
-          {/* </Tooltip> */}
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
-                    <div class=" text-xs text-cardBody font-poppins"></div>
-                    <div>
-    {item.companyName ? (
-      <Tooltip title="Qualify? Lead will move to Prospect section!">
-        <ConnectWithoutContactIcon
-          onClick={() => {
-            handleRowData(item);
-            props.handleLeadsConfirmationModal(true);
-          }}
-          className="!text-xl cursor-pointer text-[blue]"
-        />
-      </Tooltip>
-    ) : (
-      <Tooltip title="Company name is required to enable qualification action">
-        <ConnectWithoutContactIcon
-          className="!text-xl cursor-not-allowed text-gray-400"
-        />
-      </Tooltip>
-    )}
-  </div>
-                  </div>
-                  </div>
-                  <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
-                  
-                    <div class="w-5">
-                      <Tooltip title="Notes">
-                        <NoteAltIcon
-                         className=" !text-xl cursor-pointer text-green-800"
-                          onClick={() => {
-                            handleRowData(item);
-                            handleLeadsNotesDrawerModal(true);
-                         
-                          }}
-                         
-                        />
-                      </Tooltip>
-                    </div>
-                    <div class="w-5">
-                      <Tooltip
-                        title={
+            <div
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+            >
+             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+             <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+                  <div>
+                    <ButtonGroup>
+                      <RoleButton
+                        type="Hot"
+                        iconType="fas fa-mug-hot"
+                        // tooltip="Hot"
+                        tooltip={
                           <FormattedMessage
-                            id="app.activity"
-                            defaultMessage="Activity"
+                            id="app.hot"
+                            defaultMessage="Hot"
                           />
                         }
-                      >
-                        <AddchartIcon
-                         className="!text-xl cursor-pointer text-blue-500"
-                          onClick={() => {
-                                handleRowData(item);
-                            props.handleCETmodal(true);
-                        
-                          }}
-                        />
-                      </Tooltip>
-                    </div>
-                 
-
-                 
-                   
-                    
-                 
-                 
-                    <div class="w-5">
-                      <Tooltip
-                        overlayStyle={{ maxWidth: "300px" }}
-                        title={dataLoc}
-                      >
-                        <div class="cursor-pointer"
-                         
-                        >
-                          <LocationOnIcon
-                             className="!text-xl cursor-pointer text-[#960a0a]"
+                        role={item.type}
+                        onClick={() => {
+                          const typ = "Hot";
+                          props.updateTypeForLead(item.leadsId, typ);
+                        }}
+                      />
+                    </ButtonGroup>
+                  </div>
+                  <div>
+                    <ButtonGroup>
+                      <RoleButton1
+                        type="Warm"
+                        iconType="	fas fa-burn"
+                        // tooltip="Warm"
+                        tooltip={
+                          <FormattedMessage
+                            id="app.warm"
+                            defaultMessage="Warm"
                           />
+                        }
+                        role={item.type}
+                        onClick={() => {
+                          const typ = "Warm";
+                          props.updateTypeForLead(item.leadsId, typ);
+                        }}
+                      />
+                    </ButtonGroup>
+                  </div>
+                  <div>
+                    <ButtonGroup>
+                      <RoleButton2
+                        type="Cold"
+                        iconType="far fa-snowflake"
+                        // tooltip="Cold"
+                        tooltip={
+                          <FormattedMessage
+                            id="app.cold"
+                            defaultMessage="Cold"
+                          />
+                        }
+                        role={item.type}
+                        onClick={() => {
+                          const typ = "Cold";
+                          props.updateTypeForLead(item.leadsId, typ);
+                        }}
+                      />
+                    </ButtonGroup>
+                  </div>
+                </div>
+                <div className=" flex font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                  <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                    <div>
+                     
+                        <MultiAvatar
+                          primaryTitle={item.name}
+                          imageId={item.imageId}
+                          imageURL={item.imageURL}
+                          imgWidth={"1.8rem"}
+                          imgHeight={"1.8rem"}
+                        />
+                     
+                    </div>
+                    <div class="w-[4%]"></div>
+
+                    <div class="max-sm:w-full md:flex items-center">
+                      <Tooltip>
+                        <div class="max-sm:w-full justify-between flex md:flex-col">
+                          <div class="text-sm flex text-cardBody font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                            {item.name}
+                            &nbsp;&nbsp;
+                            {date === currentdate ? (
+                              <div class="text-xs  text-[tomato] font-bold"
+                                
+                              >
+                                New
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
                       </Tooltip>
                     </div>
-                    <div class="w-5">
-                      <Tooltip title={item.email}>
-                        <MailOutlineIcon
-                          type="mail"
-                          className="!text-xl cursor-pointer text-green-400"
+                  </div>
+                </div>
+
+                
+              </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex font-medium flex-col w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+       
+                  <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                    {item.countryDialCode && item.phoneNumber
+                      ? `${item.countryDialCode} ${item.phoneNumber}`
+                      : "No Data"}
+               
+                  </div>
+                </div>
+                <div className=" flex font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                  <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                   
+                     <CountryFlag1 countryCode={countryCode} />
+                    &nbsp;
+                    {countryCode}
+                   
+                  </div>
+                </div>
+                <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div class=" text-xs text-cardBody   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                    {item.companyName || "No Data"}
+                  </div>
+                </div>
+              </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+               
+                <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
+                  {item.url !== null ? (
+                    <Tooltip title={item.url}>
+                      <div class="cursor-pointer"
+                        onClick={() => {}}
+                      >
+                        {" "}
+                        <a href={`https://www.${item.url}`} target="_blank">
+                          <OpenInBrowserIcon
+                             className=" !text-icon cursor-pointer text-green-800"
+                          />
+                        </a>
+                      </div>
+                    </Tooltip>
+                  ) : null}
+                </div>
+
+                <div className=" flex font-medium flex-col  w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+         
+                  <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                    {item.sector}
+                  </div>
+                </div>
+                <div className=" flex font-medium flex-col  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+         
+         <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+           {item.source}
+         </div>
+       </div>
+       <div className=" flex font-medium flex-col  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+         
+         <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+           {item.lob}
+         </div>
+       </div>
+              </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex font-medium flex-col w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                  <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                    <div>
+                    {item.assignedTo === null ? (
+              "No Data"
+            ) : (
+              <>
+              {item.assignedTo === item.ownerName ? (
+                
+                null
+              ) : (
+                <MultiAvatar
+                style={{ backgroundColor: "rgb(148, 179, 228)", color: "#fff" }} 
+                primaryTitle={item.assignedTo}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+            />
+                      )}
+                      </>
+            )}
+                    </div>
+                  </div>
+                </div>
+                   <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                    {item.assignedBy && (
+                  <div>
+                  {/* <Tooltip title={item.assignedBy}> */}
+              <div class="max-sm:flex justify-end">
+              {/* <Tooltip title={item.assignedBy}> */}
+            <MultiAvatar
+            
+              primaryTitle={item.assignedBy}
+              // imageId={item.ownerImageId}
+              imgWidth={"1.9rem"}
+              imgHeight={"1.9rem"}
+            />
+          {/* </Tooltip> */}
+          </div>
+        {/* </Tooltip> */}
+                  </div>
+                  )}
+                </div>
+                <div className=" flex font-medium flex-col w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                  <div>
+                  {/* <Tooltip title={item.ownerName}> */}
+              <div class="max-sm:flex justify-end">
+              {/* <Tooltip title={item.ownerName}> */}
+            <MultiAvatar
+              primaryTitle={item.ownerName}
+              imageId={item.ownerImageId}
+              imgWidth={"1.9rem"}
+              imgHeight={"1.9rem"}
+            />
+          {/* </Tooltip> */}
+          </div>
+        {/* </Tooltip> */}
+                  </div>
+                </div>
+                <div className=" flex font-medium flex-col w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div class=" text-xs text-cardBody font-poppins"></div>
+                  <div>
+  {item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <ConnectWithoutContactIcon
+        onClick={() => {
+          handleRowData(item);
+          props.handleLeadsConfirmationModal(true);
+        }}
+        className="!text-icon cursor-pointer text-[blue]"
+      />
+    </Tooltip>
+  ) : (
+    <Tooltip title="Company name is required to enable qualification action">
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-not-allowed text-gray-400"
+      />
+    </Tooltip>
+  )}
+</div>
+                </div>
+                </div>
+                <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                
+                  <div class="w-5">
+                    <Tooltip title="Notes">
+                      <NoteAltIcon
+                       className=" !text-icon cursor-pointer text-green-800"
+                        onClick={() => {
+                          handleRowData(item);
+                          handleLeadsNotesDrawerModal(true);
+                       
+                        }}
+                       
+                      />
+                    </Tooltip>
+                  </div>
+                  <div class="w-5">
+                    <Tooltip
+                      title={
+                        <FormattedMessage
+                          id="app.activity"
+                          defaultMessage="Activity"
+                        />
+                      }
+                    >
+                      <AddchartIcon
+                       className="!text-icon cursor-pointer text-blue-500"
+                        onClick={() => {
+                              handleRowData(item);
+                          props.handleCETmodal(true);
+                      
+                        }}
+                      />
+                    </Tooltip>
+                  </div>
+               
+
+               
+                  
+                  
+               
+               
+                  <div class="w-5">
+                    <Tooltip
+                      overlayStyle={{ maxWidth: "300px" }}
+                      title={dataLoc}
+                    >
+                      <div class="cursor-pointer"
+                       
+                      >
+                        <LocationOnIcon
+                           className="!text-icon cursor-pointer text-[#960a0a]"
+                        />
+                      </div>
+                    </Tooltip>
+                  </div>
+                  <div class="w-5">
+                    <Tooltip title={item.email}>
+                      <MailOutlineIcon
+                        type="mail"
+                        className="!text-icon cursor-pointer text-green-400"
+                        onClick={() => {
+                          handleSetCurrentLeadsId(item);
+                          props.handleLeadsEmailDrawerModal(true);
+                        }}
+                      />
+                    </Tooltip>{" "}
+                  </div>
+                  {user.leadsUpdateInd === true && user.crmInd === true && (
+                   <div class="w-5">
+                      <Tooltip title="Edit">
+                        <BorderColorIcon
+                         className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
+                            props.setEditLeads(item);
+                            handleUpdateLeadsModal(true);
                             handleSetCurrentLeadsId(item);
-                            props.handleLeadsEmailDrawerModal(true);
                           }}
                         />
-                      </Tooltip>{" "}
+                      </Tooltip>
                     </div>
-                    {user.leadsUpdateInd === true && user.crmInd === true && (
-                     <div class="w-5">
-                        <Tooltip title="Edit">
-                          <BorderColorIcon
-                           className="!text-xl cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              props.setEditLeads(item);
-                              handleUpdateLeadsModal(true);
-                              handleSetCurrentLeadsId(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    )}
-                    {user.leadsDeleteInd === true && user.crmInd === true && (
-                      <div class="w-5">
-                       
-                        <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-xl cursor-pointer text-[red]"
-                          />
-                       </Tooltip>
-                        </StyledPopconfirm>
-                      </div>
-                    )}
-                  
-               </div>
-               
-              </div>
+                  )}
+                  {user.leadsDeleteInd === true && user.crmInd === true && (
+                    <div class="w-5">
+                     
+                      <StyledPopconfirm
+                        title="Do you want to delete?"
+                        onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                   <Tooltip title="Delete">
+                        <DeleteOutlined
+                          type="delete"
+                          className=" !text-icon cursor-pointer text-[red]"
+                        />
+                     </Tooltip>
+                      </StyledPopconfirm>
+                    </div>
+                  )}
+                
+             </div>
+             
             </div>
+          </div>
           );
         })}
          </InfiniteScroll>
@@ -1182,7 +1182,7 @@ const LeadsAllCardList = (props) => {
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
                           <OpenInBrowserIcon
-                             className=" !text-xl cursor-pointer text-green-800"
+                             className=" !text-icon cursor-pointer text-green-800"
                           />
                         </a>
                       </div>
@@ -1278,13 +1278,13 @@ const LeadsAllCardList = (props) => {
           handleRowData(item);
           props.handleLeadsConfirmationModal(true);
         }}
-        className="!text-xl cursor-pointer text-[blue]"
+        className="!text-icon cursor-pointer text-[blue]"
       />
     </Tooltip>
   ) : (
     <Tooltip title="Company name is required to enable qualification action">
       <ConnectWithoutContactIcon
-        className="!text-xl cursor-not-allowed text-gray-400"
+        className="!text-icon cursor-not-allowed text-gray-400"
       />
     </Tooltip>
   )}
@@ -1296,7 +1296,7 @@ const LeadsAllCardList = (props) => {
                   <div class="w-5">
                     <Tooltip title="Notes">
                       <NoteAltIcon
-                       className=" !text-xl cursor-pointer text-green-800"
+                       className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);
@@ -1316,7 +1316,7 @@ const LeadsAllCardList = (props) => {
                       }
                     >
                       <AddchartIcon
-                       className="!text-xl cursor-pointer text-blue-500"
+                       className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
@@ -1328,7 +1328,7 @@ const LeadsAllCardList = (props) => {
                
 
                
-                 
+                  
                   
                
                
@@ -1341,7 +1341,7 @@ const LeadsAllCardList = (props) => {
                        
                       >
                         <LocationOnIcon
-                           className="!text-xl cursor-pointer text-[#960a0a]"
+                           className="!text-icon cursor-pointer text-[#960a0a]"
                         />
                       </div>
                     </Tooltip>
@@ -1350,7 +1350,7 @@ const LeadsAllCardList = (props) => {
                     <Tooltip title={item.email}>
                       <MailOutlineIcon
                         type="mail"
-                        className="!text-xl cursor-pointer text-green-400"
+                        className="!text-icon cursor-pointer text-green-400"
                         onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
@@ -1362,7 +1362,7 @@ const LeadsAllCardList = (props) => {
                    <div class="w-5">
                       <Tooltip title="Edit">
                         <BorderColorIcon
-                         className="!text-xl cursor-pointer text-[tomato]"
+                         className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
@@ -1381,7 +1381,7 @@ const LeadsAllCardList = (props) => {
                    <Tooltip title="Delete">
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-xl cursor-pointer text-[red]"
+                          className=" !text-icon cursor-pointer text-[red]"
                         />
                      </Tooltip>
                       </StyledPopconfirm>

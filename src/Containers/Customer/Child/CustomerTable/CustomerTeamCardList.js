@@ -491,7 +491,7 @@ const [rowdata, setrowdata] = useState("");
                                 {" "}
                                 <a href={`https://${item.url}`} target="_blank">
                                   <ExploreIcon
-                                    className=" !text-xl cursor-pointer text-[green]"
+                                    className=" !text-icon cursor-pointer text-[green]"
 
                                   />
                                 </a>
@@ -517,7 +517,7 @@ const [rowdata, setrowdata] = useState("");
                           >
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
                           </div>
                         </div>
@@ -531,7 +531,7 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-5">
                           <Tooltip title="Contact">
                             <ContactsIcon
-                              className=" !text-xl cursor-pointer text-[#709ab3]"
+                              className=" !text-icon cursor-pointer text-[#709ab3]"
                               onClick={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -543,7 +543,7 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-5">
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
-                              className=" !text-xl cursor-pointer text-[#AF5910]"
+                              className=" !text-icon cursor-pointer text-[#AF5910]"
                               onClick={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -559,7 +559,7 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-5">
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                               onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -571,7 +571,7 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-5">
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -589,7 +589,7 @@ const [rowdata, setrowdata] = useState("");
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
-                              className=" !text-xl cursor-pointer text-[#960A0A]"
+                              className=" !text-icon cursor-pointer text-[#960A0A]"
 
                             />
 
@@ -599,7 +599,7 @@ const [rowdata, setrowdata] = useState("");
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditCustomer(item);

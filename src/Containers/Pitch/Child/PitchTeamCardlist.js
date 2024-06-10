@@ -367,7 +367,7 @@ const PitchTeamCardList = (props) => {
                   {" "}
                   <a href={`item.url`} target="_blank">
                     <ExploreIcon
-                    className="!text-xl cursor-pointer text-[green]"
+                    className="!text-icon cursor-pointer text-[green]"
                     />
                   </a>
                 </span>
@@ -390,13 +390,13 @@ const PitchTeamCardList = (props) => {
                             props.handlePitchConvertModal(true);
                          
                           }}
-                          className="!text-xl cursor-pointer text-[blue]"
+                          className="!text-icon cursor-pointer text-[blue]"
                         />
                       </Tooltip>
                         ) : (
                           <Tooltip title="Company name is required to enable qualification action">
                             <ConnectWithoutContactIcon
-                              className="!text-xl cursor-not-allowed text-gray-400"
+                              className="!text-icon cursor-not-allowed text-gray-400"
                             />
                           </Tooltip>
                         )}
@@ -415,7 +415,7 @@ const PitchTeamCardList = (props) => {
                   props.handlePitchNotesDrawerModal(true);
                   handleSetCurrentLeadsId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
 
@@ -427,7 +427,7 @@ const PitchTeamCardList = (props) => {
         }
       >
 <AddchartIcon
-className="!text-xl cursor-pointer text-blue-500"
+className="!text-icon cursor-pointer text-blue-500"
 
 onClick={()=>{
   props.handleAssimodal(true)
@@ -452,7 +452,7 @@ onClick={()=>{
                       <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer" >
-            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -460,7 +460,7 @@ onClick={()=>{
           <Tooltip title={item.email}>
               <MailOutlineIcon
                 type="mail"
-                className="!text-xl cursor-pointer text-green-400"
+                className="!text-icon cursor-pointer text-green-400"
                 // onClick={() => {
                 //   handleSetCurrentLeadsId(item);
                 //   props.handleLeadsEmailDrawerModal(true);
@@ -471,7 +471,7 @@ onClick={()=>{
                                 <div>
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-xl cursor-pointer text-[tomato]"
+                className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                    props.setEditPitch(item);
                    props.handleUpdatePitchModal(true);
@@ -493,7 +493,7 @@ onClick={()=>{
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
             <DeleteOutlined
               type="delete"
-              className="!text-xl text-[red] cursor-pointer"
+              className="!text-icon text-[red] cursor-pointer"
               
             />
              )} 

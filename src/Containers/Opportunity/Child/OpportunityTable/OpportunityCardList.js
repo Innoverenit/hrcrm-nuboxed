@@ -474,9 +474,9 @@ imgHeight={"1.8em"}
 </div>
 <div class="flex items-center">
 <div class="w-6">
-<MailOutlineIcon
+<MailOutlineIcon className="!text-icon"
                 type="mail"
-                style={{ cursor: "pointer",fontSize: "1.25rem" }}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   props.handleOpportunityRowEmailModal(true);
                   handleSetCurrentOpportunityId(item);
@@ -486,7 +486,7 @@ imgHeight={"1.8em"}
 
 <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-xl"/>
+            <PictureAsPdfIcon className="!text-icon"/>
                            </span>
           </div>
 <div class="flex items-center">
@@ -509,7 +509,7 @@ imgHeight={"1.8em"}
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <NoteAltIcon className="!text-xl cursor-pointer text-[green]" />
+                 <NoteAltIcon className="!text-icon cursor-pointer text-[green]" />
               </span>
         
           </Tooltip>
@@ -525,14 +525,14 @@ imgHeight={"1.8em"}
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
-            className="!text-xl cursor-pointer text-[grey] mb-1"
+            className="!text-icon cursor-pointer text-[grey] mb-1"
               onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
               }}
             >
-                 <BorderColorIcon  className="!text-xl cursor-pointer"/>
+                 <BorderColorIcon  className="!text-icon cursor-pointer"/>
               </span>
            )}
           </Tooltip>
@@ -545,7 +545,7 @@ imgHeight={"1.8em"}
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
             <DeleteOutlined
             // loading={props.deleteOpportunityData}
-            type="delete" className="!text-xl cursor-pointer text-[red]" />
+            type="delete" className="!text-icon cursor-pointer text-[red]" />
              )}
           </StyledPopconfirm>
 

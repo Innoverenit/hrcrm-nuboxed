@@ -377,7 +377,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
             {" "}
             <a href={`item.url`} target="_blank">
               <ExploreIcon
-              className="!text-xl cursor-pointer text-[green]"
+              className="!text-icon cursor-pointer text-[green]"
               />
             </a>
           </span>
@@ -400,13 +400,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                       props.handlePitchConvertModal(true);
                    
                     }}
-                    className="!text-xl cursor-pointer text-[blue]"
+                    className="!text-icon cursor-pointer text-[blue]"
                   />
                 </Tooltip>
                   ) : (
                     <Tooltip title="Company name is required to enable qualification action">
                       <ConnectWithoutContactIcon
-                        className="!text-xl cursor-not-allowed text-gray-400"
+                        className="!text-icon cursor-not-allowed text-gray-400"
                       />
                     </Tooltip>
                   )}
@@ -425,7 +425,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
             props.handlePitchNotesDrawerModal(true);
             handleSetCurrentLeadsId(item);
           }}
-          className="!text-xl cursor-pointer text-[green]"
+          className="!text-icon cursor-pointer text-[green]"
         />
      </Tooltip>
 
@@ -437,7 +437,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
   }
 >
 <AddchartIcon
-className="!text-xl cursor-pointer text-blue-500"
+className="!text-icon cursor-pointer text-blue-500"
 
 onClick={()=>{
 props.handleAssimodal(true)
@@ -462,7 +462,7 @@ handleRowData(item)
                 <div>
               <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
       <span class="cursor-pointer" >
-      <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
+      <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
       </span>
     </Tooltip>
     </div>
@@ -470,7 +470,7 @@ handleRowData(item)
     <Tooltip title={item.email}>
         <MailOutlineIcon
           type="mail"
-          className="!text-xl cursor-pointer text-green-400"
+          className="!text-icon cursor-pointer text-green-400"
           // onClick={() => {
           //   handleSetCurrentLeadsId(item);
           //   props.handleLeadsEmailDrawerModal(true);
@@ -481,7 +481,7 @@ handleRowData(item)
                           <div>
       <Tooltip title="Edit">
         <BorderColorIcon
-          className="!text-xl cursor-pointer text-[tomato]"
+          className="!text-icon cursor-pointer text-[tomato]"
           onClick={() => {
              props.setEditPitch(item);
              props.handleUpdatePitchModal(true);
@@ -503,7 +503,7 @@ handleRowData(item)
        {user.imInd === true  &&  user.plantDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"
-        className="!text-xl text-[red] cursor-pointer"
+        className="!text-icon text-[red] cursor-pointer"
         
       />
        )} 
