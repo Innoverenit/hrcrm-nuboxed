@@ -289,7 +289,7 @@ function DealCardList(props) {
                             }
                           >
                             <CheckCircleTwoTone
-                               className="!text-xl text-[#24D8A7] cursor-pointer"
+                               className="!text-icon text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
@@ -314,7 +314,7 @@ function DealCardList(props) {
                             }
                           >
                             <StopTwoTone
-                            className="!text-xl text-[red] cursor-pointer ml-2"
+                            className="!text-icon text-[red] cursor-pointer ml-2"
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
@@ -346,7 +346,7 @@ function DealCardList(props) {
                           }}
                         >
                           <PermContactCalendarIcon
-                           className="!text-xl cursor-pointer text-[blue]"
+                           className="!text-icon cursor-pointer text-[blue]"
                           />
                         </span>
                       </Tooltip>
@@ -366,7 +366,7 @@ function DealCardList(props) {
                           }}
                         >
                           <NoteAltIcon
-                           className="!text-xl cursor-pointer text-[green]"
+                           className="!text-icon cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
@@ -387,7 +387,7 @@ function DealCardList(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-xl cursor-pointer text-[tomato]"
+                             className="!text-icon cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -402,7 +402,7 @@ function DealCardList(props) {
                         {user.imInd === true && user.dealDeleteInd === true && (
                           <DeleteOutlined
                             type="delete"
-                            className="!text-xl text-[red] cursor-pointer"
+                            className="!text-icon text-[red] cursor-pointer"
                           />
                         )}
                         </Tooltip>
