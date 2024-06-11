@@ -12,7 +12,7 @@ class AddCustomerProcurementModal extends Component {
             <div>
                 <StyledDrawer
                     title="Add Procurement"
-                    width="60%"
+                    width="90%"
                     visible={addLinkCustomerProcurementModal}
                     destroyOnClose
                     maskClosable={false}

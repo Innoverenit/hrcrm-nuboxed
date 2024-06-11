@@ -1,17 +1,25 @@
-import React, { useState, lazy, Suspense, useEffect } from 'react';
+import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getOrderByUser, handleOrderPhoneModal, qcInspectionButton } from "./RefurbishAction"
-import { Button, Badge } from "antd";
+import { getOrderByUser, handleOrderPhoneModal, qcInspectionButton,
+    inputQcDataSearch,ClearSearchedDataOfQc } from "./RefurbishAction"
+import { Button, Badge ,Input} from "antd";
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 const OrderPhoneModal = lazy(() => import('./OrderPhoneModal'));
 
 function ProductionOrderListById(props) {
-
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);
     const [pageNo, setPageNo] = useState(0);
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
     useEffect(() => {
         setPageNo(pageNo + 1);
         props.getOrderByUser(props.userId,pageNo)
@@ -21,6 +29,90 @@ function ProductionOrderListById(props) {
     //     setPage(page + 1);
     //     props.getOrderByUser(props.userId)
     // };
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+    
+      const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+          //setPage(pageNo + 1);
+          props.getOrderByUser(props.userId,pageNo)
+          //props.ClearReducerDataOfLead()
+          props.ClearSearchedDataOfQc()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.inputQcDataSearch(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.inputQcDataSearch(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
+
+
     const handleLoadMore = () => {
         const callPageMapd = props.orderByUser && props.orderByUser.length &&props.orderByUser[0].pageCount
         setTimeout(() => {
@@ -55,6 +147,17 @@ function ProductionOrderListById(props) {
         <>
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by OrderNo "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+      </div>
+
                     <div className=" flex max-sm:hidden  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className='w-[17.2rem]'></div>
                         <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order #</div>
@@ -87,7 +190,7 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col "
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col "
 
                                         >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
@@ -204,7 +307,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getOrderByUser,
             handleOrderPhoneModal,
-            qcInspectionButton
+            qcInspectionButton,
+            inputQcDataSearch,
+            ClearSearchedDataOfQc
         },
         dispatch
     );

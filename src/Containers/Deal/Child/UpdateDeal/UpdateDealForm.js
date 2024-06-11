@@ -428,7 +428,7 @@ function UpdateDealForm (props) {
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]"><FormattedMessage
+          <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
                           id="app.assignedto"
                           defaultMessage="assignedto"
                         /></Listbox.Label>
@@ -494,7 +494,7 @@ function UpdateDealForm (props) {
         </>
       )}
     </Listbox>
-    <div>
+    <div class=" mt-1">
     <label class=" text-[#444] font-bold text-[0.75rem]" >Include</label>
  
     <Select

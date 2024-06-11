@@ -60,6 +60,8 @@ function ContactInvestCardList(props) {
         }
       }
     })
+    props.getContactInvestByUserId(props.userId,pageNo,"creationdate");
+    setPage(pageNo + 1);
   }, []);
 
   useEffect(()=>{
@@ -82,13 +84,13 @@ function ContactInvestCardList(props) {
 
   const handleLoadMore = () => {
             setPage(pageNo + 1);
-        props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo);
+        props.getContactInvestByUserId(props.currentUser?props.currentUser:props.userId,pageNo,"creationdate");
   
   }
   const {
     user,
     fetchingContactsInvest,
-    contactByUserId,
+    contactiNVESTbyId,
     filterData,
     updateContactInvestModal,
     addDrawerContactInvestNotesModal,
@@ -103,29 +105,29 @@ function ContactInvestCardList(props) {
     <>
       
 
-      <div class="rounded-lg max-sm:m-1 m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex  justify-between max-sm:hidden w-[93%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[15.12rem]"><FormattedMessage
+        <div className=" md:w-[15.32rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" md:w-[12.1rem]"><FormattedMessage
+        <div className=" md:w-[12.72rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
-        <div className=" md:w-[8.6rem] "><FormattedMessage
+        <div className=" md:w-[9.6rem] "><FormattedMessage
                   id="app.designation"
                   defaultMessage="designation"
                 /></div>
-        <div className="md:w-[10.3rem]"><FormattedMessage
+        <div className="md:w-[11.3rem]"><FormattedMessage
                   id="app.department"
                   defaultMessage="department"
                 /></div>
-        <div className="md:w-[7.1rem]"># <FormattedMessage
+        <div className="md:w-[6.1rem]"># <FormattedMessage
                   id="app.deals"
                   defaultMessage="deals"
                 /></div>
-        <div className="md:w-[7.2rem]"> <FormattedMessage
+        <div className="md:w-[7.21rem]"> <FormattedMessage
                   id="app.dealValue"
                   defaultMessage="dealValue"
                 /></div>
@@ -133,7 +135,7 @@ function ContactInvestCardList(props) {
                   id="app.source"
                   defaultMessage="source"
                 /></div>
-        <div className="md:w-[6.2rem]"><FormattedMessage
+        <div className="md:w-[6.8rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
@@ -141,7 +143,7 @@ function ContactInvestCardList(props) {
 
       </div>
           <InfiniteScroll
-        dataLength={contactByUserId.length}
+        dataLength={contactiNVESTbyId.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
@@ -172,11 +174,11 @@ function ContactInvestCardList(props) {
             item.address[0].postalCode} `;
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between  mt-2 bg-white h-11 items-center p-3 max-sm:h-[9rem] max-sm:flex-col"
-                               
-                                >
+                            <div
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+            >
                                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>
                                
@@ -218,40 +220,40 @@ function ContactInvestCardList(props) {
                                 </div>
                      
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row md:flex-col w-48">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Company </div> */}
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row md:flex-col w-[9.5rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Designation</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                          {item.designation}
                                     </div>
                                 </div>
                                 <div class="flex">
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row md:flex-col w-[12.2rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
                                   {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Department</div> */}
                                   <div class="text-[0.82rem] text-cardBody font-poppins">
                                        {item.department}
                                   </div>
                               </div>
-                                <div className=" flex font-medium flex-col md:w-[7.2rem] max-sm:flex-row w-full  ">
+                                <div className=" flex font-medium  md:w-[5.22rem] max-sm:flex-row w-full  ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">
                                      {item.oppNo}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[5.05rem] max-sm:flex-row w-full  ">
+                                <div className=" flex font-medium  md:w-[5.05rem] max-sm:flex-row w-full  ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Deal Value</div> */}
 
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">
                                      {item.totalProposalValue}
                                     </div>
                                 </div>
-                                <div className="flex font-medium max-sm:justify-between flex-col md:w-[6.2rem] max-sm:flex-row w-full ">
+                                <div className="flex font-medium max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
                                     {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Source</div> */}
 
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
@@ -260,7 +262,7 @@ function ContactInvestCardList(props) {
                                 </div>
                                 </div>
                                 <div class="flex">
-                                <div className="flex font-medium  flex-col md:w-[5.2rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex font-medium   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
                        
                        {/* <div class="text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -279,7 +281,7 @@ function ContactInvestCardList(props) {
           </Tooltip>
 
                    </div>
-                                <div class="flex flex-col md:w-6 max-sm:flex-row w-full max-sm:justify-evenly items-center">
+                               
                     <div class="rounded-full bg-white w-5 h-5 cursor-pointer">
                     <Tooltip title={item.mobileNo} >
             {item.doNotCallInd !== true && (
@@ -289,7 +291,7 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className=" !text-xl cursor-pointer"/>
+               <PhoneInTalkIcon className=" !text-icon cursor-pointer"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -299,7 +301,7 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-                <PhoneDisabledIcon className="!text-xl text-[gold]"/>
+                <PhoneDisabledIcon className="!text-icon text-[gold]"/>
               </span>
             )}
           </Tooltip>
@@ -307,7 +309,7 @@ function ContactInvestCardList(props) {
                         <div class=" max-sm:flex justify-end max-sm:w-full">
                         <Tooltip title={item.emailId}>
            
-            <MailOutlineIcon className="!text-xl cursor-pointer text-green-400"
+            <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
               type="mail"
              
               onClick={() => {
@@ -326,7 +328,7 @@ function ContactInvestCardList(props) {
                 props.handleContactDrawerModal(true);
               }}
             >{user.pulseAccessInd === true && (
-              <MonitorHeartIcon className=" !text-xl cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
             )}
             </span>
                         </div>
@@ -334,14 +336,14 @@ function ContactInvestCardList(props) {
             
 
                     </div>
-                    </div>
-                    <div class="flex flex-col md:w-6 max-sm:flex-row w-full max-sm:justify-evenly items-center">
+                    
+                 
                       <div>
                     <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
             <span class="cursor-pointer"
              
             >
-            <LocationOnIcon  className="!text-xl cursor-pointer text-[#960a0a]"/>
+            <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
             </span>
           </Tooltip>
           </div>
@@ -355,11 +357,35 @@ function ContactInvestCardList(props) {
                 }}
               />
             </Tooltip> </div> */}
-            <div>
+            
+                     
+                    
+                      </div>  
+                      
+                    <Tooltip title="Notes">
+       <NoteAltIcon
+                onClick={() => {
+                  props.handleContactInvestNotesDrawerModal(true);
+                  handleCurrentContactIdata(item);
+                }}
+                className="text-green-500 cursor-pointer !text-icon"
+              />
+           </Tooltip>
+           <Tooltip title="Pulse">
+       <MonitorHeartIcon
+       className=" !text-icon cursor-pointer text-[#df9697]"
+                onClick={() => {
+                  handleContactInvestPulseDrawerModal(true);
+                  handleCurrentContactIdata(item);
+                }}
+                
+              />
+           </Tooltip>
+           <div>
             {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-xl cursor-pointer text-[tomato]"
+                className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);
@@ -369,31 +395,7 @@ function ContactInvestCardList(props) {
             </Tooltip>
             )}
             </div>
-                      </div>  
-                    
-                      </div>  
-                      <div class="flex flex-col w-4 justify-evenly  ">
-                    <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  props.handleContactInvestNotesDrawerModal(true);
-                  handleCurrentContactIdata(item);
-                }}
-                className="text-green-500 cursor-pointer !text-xl"
-              />
-           </Tooltip>
-           <Tooltip title="Pulse">
-       <MonitorHeartIcon
-       className=" !text-xl cursor-pointer text-[#df9697]"
-                onClick={() => {
-                  handleContactInvestPulseDrawerModal(true);
-                  handleCurrentContactIdata(item);
-                }}
-                
-              />
-           </Tooltip>
-
-            </div>
+            
                             </div>
                         </div>
 
@@ -437,7 +439,7 @@ const mapStateToProps = ({
   contactinvest
 }) => ({
   userId: auth.userDetails.userId,
-  contactByUserId: contact.contactByUserId,
+  contactiNVESTbyId: contact.contactiNVESTbyId,
   user: auth.userDetails,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
   addDrawerContactInvestNotesModal:contactinvest.addDrawerContactInvestNotesModal,

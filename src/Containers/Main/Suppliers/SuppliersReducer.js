@@ -163,6 +163,9 @@ const initialState = {
   fetchingSuppliesListByIdError: false,
   suppliesBySupplier: [],
 
+  addingManual: false,
+  addingManualError:false,
+
   feedbackModal: false,
 
   fetchingFeedbackBySupplierId: false,
@@ -196,6 +199,17 @@ const initialState = {
   updatingSuppliersCall: false,
   updatingSuppliersCallError: false,
 
+  fetchingInventorylist: false,
+  fetchingInventorylistError: false,
+  inventoryList:[],
+
+  fetchingCategorylist: false,
+                        fetchingCategorylistError: false,
+                        categoryList:[],
+
+                        updatingPoContactValue: false,
+                        updatingPoContactValueError: false,
+
   updatingSuppliersEvent: false,
   updatingSuppliersEventError: false,
 
@@ -224,6 +238,8 @@ const initialState = {
   generatingOrderBySupplierIdError: false,
   //document
   supplierDocumentUploadModal: false,
+
+  supplierExcleUploadModal:false,
   //add document
   addingDocumentBySupplierId: false,
   addingDocumentBySupplierIdError: false,
@@ -264,6 +280,10 @@ const initialState = {
   fetchingSupplierContactListById: false,
   fetchingSupplierContactListByIdError: false,
   contactSupplier: [],
+
+  fetchingInventoryAlllist: false,
+  fetchingInventoryAlllistError: false,
+  inventoryAllList:[],
 
   //getAllsuplr
   fetchingAllSupplier: false,
@@ -863,6 +883,9 @@ export const suppliersReducer = (state = initialState, action) => {
     //document
     case types.HANDLE_SUPPLIER_DOCUMENT_UPLOAD_MODAL:
       return { ...state, supplierDocumentUploadModal: action.payload };
+
+      case types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL:
+        return { ...state, supplierExcleUploadModal: action.payload };
     /* add/link Supplier document */
     case types.ADD_SUPPLIER_DOCUMENT_REQUEST:
       return {
@@ -1604,7 +1627,115 @@ export const suppliersReducer = (state = initialState, action) => {
                     reInstatedSupplierById: false,
                     reInstatedSupplierByIdError: true,
                 };
-      
+
+                case types.ADD_MANUAL_REQUEST:
+                  return { ...state, addingManual: true };
+                case types.ADD_MANUAL_SUCCESS:
+                  return {
+                    ...state,
+                    addingManual: false,
+                    supplierExcleUploadModal: false,
+                    inventoryList: [...action.payload, ...state.inventoryList],
+                    
+                    // inventoryList: state.inventoryList.map((item) => {
+                    //   if (item.userId === action.payload.userId) {
+                    //     return action.payload;
+                    //   } else {
+                    //     return item;
+                    //   }
+                    // }),
+                  };
+                case types.ADD_MANUAL_FAILURE:
+                  return {
+                    ...state,
+                     addingManual: false,
+                     addingManualError:true,
+                    
+                  };
+
+                  case types.GET_INVENTORYLIST_REQUEST:
+                    return { ...state, fetchingInventorylist: true };
+                  case types.GET_INVENTORYLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingInventorylist: false,
+                      inventoryList: action.payload,
+                    };
+                  case types.GET_INVENTORYLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingInventorylist: false,
+                      fetchingInventorylistError: true,
+                    };
+
+                    case types.GET_INVENTORYALLLIST_REQUEST:
+                    return { ...state, fetchingInventoryAlllist: true };
+                  case types.GET_INVENTORYALLLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingInventoryAlllist: false,
+                      inventoryAllList: action.payload,
+                    };
+                  case types.GET_INVENTORYALLLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingInventoryAlllist: false,
+                      fetchingInventoryAlllistError: true,
+                    };
+
+                    case types.GET_CATEGORYLIST_REQUEST:
+                      return { ...state, fetchingCategorylist: true };
+                    case types.GET_CATEGORYLIST_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingCategorylist: false,
+                        categoryList: action.payload,
+                      };
+                    case types.GET_CATEGORYLIST_FAILURE:
+                      return {
+                        ...state,
+                        fetchingCategorylist: false,
+                        fetchingCategorylistError: true,
+                      };
+
+                      case types.UPDATE_PO_CONTACT_REQUEST:
+                        return { ...state, updatingPoContactValue: true };
+                      case types.UPDATE_PO_CONTACT_SUCCESS:
+                        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+                        return {
+                          ...state,
+                          updatingPoContactValue: false,
+                          purchaseList: state.purchaseList.map((item) => {
+                            if (item.poSupplierDetailsId == action.payload.poSupplierDetailsId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        };
+                      case types.UPDATE_PO_CONTACT_FAILURE:
+                        return {
+                          ...state,
+                          updatingPoContactValue: false,
+                          updatingPoContactValueError: true,
+                        };
+
+                        case types.GET_SEARCH_INVENTORY_REQUEST:
+                          return { ...state, fetchingTradeSearchData: true };
+                        case types.GET_SEARCH_INVENTORY_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingTradeSearchData: false,
+                            inventoryList: action.payload,
+                           
+                          };
+                        case types.GET_SEARCH_INVENTORY_FAILURE:
+                          return { ...state, fetchingTradeSearchDataError: true };
+                  
+                          case types.HANDLE_CLAER_REDUCER_DATA_INVENTORY:
+                                    return { ...state, 
+                                      inventoryList: [], 
+                                    };
 
     default:
       return state;

@@ -8,6 +8,7 @@ import { getSuppliersList, emptysUPPLIERS ,deleteSupplierData,
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import StoreIcon from '@mui/icons-material/Store';
 import EuroIcon from '@mui/icons-material/Euro';
 import { DeleteOutlined } from "@ant-design/icons";
 import {Popconfirm,Tooltip } from "antd";
@@ -68,10 +69,10 @@ function SuppliersCardList(props) {
 
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex justify-end sticky  z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[18.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
+            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
               id="app.name"
               defaultMessage="Name"
             /></div>
@@ -87,11 +88,8 @@ function SuppliersCardList(props) {
               <FormattedMessage id="app.city" defaultMessage="City" />
 
             </div>
-            <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
-
-            </div>
-            <div class=" w-[2rem]"></div>
+           
+            <div class=" w-[5rem]"></div>
           </div>
           <div class="overflow-x-auto h-[89vh]">
             <InfiniteScroll
@@ -109,7 +107,7 @@ function SuppliersCardList(props) {
                     return (
                       <>
                         <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center  max-sm:h-[6rem] max-sm:flex-col">
+                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -130,7 +128,7 @@ function SuppliersCardList(props) {
                             </div>
 
                             
-                            <div className=" flex font-medium flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
+                            <div className=" flex font-medium items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
 
 
@@ -140,7 +138,7 @@ function SuppliersCardList(props) {
 
                             </div>
                             </div>
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            <div class="flex items-center max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex font-medium flex-col w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -154,7 +152,7 @@ function SuppliersCardList(props) {
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""}`}
+          ${(item.address && item.address.length && item.address[0].street) || ""} ${(item.address && item.address.length && item.address[0].postalCode) || ""} `}
                               </div>
 
                             </div>
@@ -170,22 +168,26 @@ function SuppliersCardList(props) {
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[7.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[4.06rem] max-lg:w-[5.61rem] ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].postalCode) ||
-                                  ""}
-                              </div>
-
-                            </div>
+                           
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                        <div class="flex flex-col items-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                            <div>
+<Tooltip title="Purchase Order">
+<StoreIcon
+                            className="!text-xl cursor-pointer text-[red]"
+                            // onClick={() => {
+                            //    props.setEditSuppliers(item);
+                            //   handleRowData(item);
+                            //   props.handleSuppliersPriceDrawer(true);
+                            // }}
+                          />
+          </Tooltip>
+          </div>
+                     
  <div>
 <Tooltip title="Price">
 <EuroIcon
-                            className="!text-base cursor-pointer text-[blue]"
+                            className="!text-xl cursor-pointer text-[blue]"
                             onClick={() => {
                                props.setEditSuppliers(item);
                               handleRowData(item);
@@ -197,7 +199,7 @@ function SuppliersCardList(props) {
           <div>
 <Tooltip title="">
 <AssignmentIcon
-                            className="!text-base cursor-pointer text-[green]"
+                            className="!text-xl cursor-pointer text-[green]"
                             onClick={() => {
                                props.setEditSuppliers(item);
                               handleRowData(item);
@@ -206,14 +208,13 @@ function SuppliersCardList(props) {
                           />
           </Tooltip>
           </div>
-            </div> 
-            </div>
-                            <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                        <div class="flex flex-col items-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+          
+          
+                           
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon
-             className="!text-[1rem] cursor-pointer text-[tomato]"
+             className="!text-xl cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -230,14 +231,14 @@ function SuppliersCardList(props) {
             >
               <DeleteOutlined
 
-className=" !text-[1rem] cursor-pointer text-[red]"
+className=" !text-xl cursor-pointer text-[red]"
               />
             </Popconfirm>
             </div>
             </div> 
+          
             </div>
-
-                          </div>
+                        
 
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { FormattedMessage } from "react-intl";
 import TocIcon from '@mui/icons-material/Toc';
 import PeopleIcon from '@mui/icons-material/People';
@@ -19,6 +19,7 @@ import {
   getCustomerTeamRecords,
   getCustomerAllRecords,
   getCategoryRecords,
+  getTeamCustomer
 } from "../CustomerAction";
 import { Input } from "antd";
 
@@ -28,14 +29,21 @@ const { Search } = Input;
 const CustomerActionLeft = (props) => {
   const [filter, setFilter] = useState("creationdate")
   const [page, setPage] = useState(0);
+  const [isRecording, setIsRecording] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
+
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
+  console.log(searchOnEnter)
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
     if (searchOnEnter && e.target.value.trim() === "") {
-      setPage(page + 1);
+      // setPage(page + 1);
+      props.getTeamCustomer(props.userId, page);
       props.getCustomerListByUserId(props.userId, page, "creationdate");
       props.ClearReducerDataOfCustomer();
       setSearchOnEnter(false);
@@ -50,9 +58,21 @@ const CustomerActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
         color: "#1890ff",
@@ -69,15 +89,50 @@ const CustomerActionLeft = (props) => {
     // props.getCustomerRecords();
     if (transcript) {
       console.log(">>>>>>>", transcript);
+     
       setCurrentData(transcript);
     }
   }, [transcript]);
   console.log(transcript);
+
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.inputCustomerDataSearch(transcript);
+      setSearchOnEnter(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
   function handleFilterChange(data) {
     setFilter(data)
     props.getCustomerListByUserId(props.userId, page, data);
     setPage(page + 1);
   }
+
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
+  
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getCustomerTeamRecords(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -115,6 +170,7 @@ const CustomerActionLeft = (props) => {
 
   // }, [])
   const { user } = props;
+  const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"
     >
@@ -160,7 +216,7 @@ const CustomerActionLeft = (props) => {
         <Tooltip title="Teams">
           <Badge
             size="small"
-            count={(props.teamsAccessInd||props.viewType === "teams" && props.customerTeamRecordData.CustomerTeam || 0)}
+            count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}
             overflowCount={999}
           >
             <span
@@ -256,10 +312,7 @@ const CustomerActionLeft = (props) => {
         <div class="w-[40%] mt-2 ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
-              <FormattedMessage
-                id="app.sort"
-                defaultMessage="Sort"
-              />
+              Sort by Creation Date
             </span>
           } onChange={(e) => props.handleFilterChange(e)}>
             <Option value="CreationDate">Creation Date</Option>
@@ -291,7 +344,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerTeamRecords,
       getCustomerAllRecords,
       getCategoryRecords,
-      getCustomerListByUserId
+      getCustomerListByUserId,
+      getTeamCustomer
     },
     dispatch
   );

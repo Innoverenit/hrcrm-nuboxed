@@ -82,42 +82,39 @@ const PitchCardList = (props) => {
 
   return (
     <>
-  <div class="rounded-lg max-lg:w-wk max-sm:w-wk max-sm:m-1 m-5 p-2 w-[97%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
     <div className=" flex justify-between max-sm:hidden w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
                   defaultMessage="name"
                 /></div>
-        <div className=" w-[3.5rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[6.5rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[5.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.mobile#"
                   defaultMessage="mobile#"
                 /></div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.country"
                   defaultMessage="country"
                 /></div>
-        <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
+        <div className="w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]"><FormattedMessage
                   id="app.company"
                   defaultMessage="company"
                 /></div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Source"
                   defaultMessage="Source"
                 /></div>
-                     <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.Sector"
                   defaultMessage="Sector"
                 /></div>
-        <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
+        <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
+        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner" 
                 /></div>
-        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]"><FormattedMessage
                   id="app.qualify"
                   defaultMessage="qualify"
                 /></div>
@@ -156,11 +153,11 @@ const PitchCardList = (props) => {
                } `;
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
-                                
-                                >
+                            <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -208,7 +205,7 @@ const PitchCardList = (props) => {
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 
 
 
@@ -271,7 +268,7 @@ const PitchCardList = (props) => {
 </div>  
      </div>  
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col  w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Phone # </div> */}
 
                            <div class="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -281,7 +278,7 @@ const PitchCardList = (props) => {
 </div>
 
                        </div>
-                       <div className=" flex font-medium flex-col w-[6rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium  w-[4rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Country</div> */}
@@ -291,7 +288,7 @@ const PitchCardList = (props) => {
                       {countryCode}
                                     </div>
                               </div>
-                              <div className=" flex font-medium flex-col  w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium   w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "No Data"}
@@ -301,21 +298,21 @@ const PitchCardList = (props) => {
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       
-                       <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.source || "No Data"}
 </div>
 
                        </div>
-                       <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden"> Company </div> */}
                            <div className="text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "No Data"}
 </div>
 
                        </div>
-                       <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex font-medium  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                                     <div class=" text-[0.82rem] max-sm:text-[0.82rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -343,7 +340,7 @@ const PitchCardList = (props) => {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[4.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <div className=" flex font-medium  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                        
                        {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Owner</div> */}
 
@@ -367,7 +364,6 @@ const PitchCardList = (props) => {
                                 
                                
           
-     <div class="md:w-[1%]"></div>
      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
      <div class="flex justify-between items-center max-sm:w-[50%] ">
     
@@ -384,7 +380,7 @@ const PitchCardList = (props) => {
                   {" "}
                   <a href={`item.url`} target="_blank">
                     <ExploreIcon
-                    className="!text-xl cursor-pointer text-[green]"
+                    className="!text-icon cursor-pointer text-[green]"
                     />
                   </a>
                 </span>
@@ -407,13 +403,13 @@ const PitchCardList = (props) => {
                             props.handlePitchConvertModal(true);
                          
                           }}
-                          className="!text-xl cursor-pointer text-[blue]"
+                          className="!text-icon cursor-pointer text-[blue]"
                         />
                       </Tooltip>
                         ) : (
                           <Tooltip title="Company name is required to enable qualification action">
                             <ConnectWithoutContactIcon
-                              className="!text-xl cursor-not-allowed text-gray-400"
+                              className="!text-icon cursor-not-allowed text-gray-400"
                             />
                           </Tooltip>
                         )}
@@ -424,7 +420,7 @@ const PitchCardList = (props) => {
           /> */}
 </div>
                                 </div>
-                                <div class="flex flex-col justify-evenly w-6 max-xl:w-[1.5rem] max-sm:flex-row max-sm:w-[10%]">
+                                
                                 <div >
                     <Tooltip title="Notes">
        <NoteAltIcon
@@ -432,7 +428,7 @@ const PitchCardList = (props) => {
                   props.handlePitchNotesDrawerModal(true);
                   handleSetCurrentLeadsId(item);
                 }}
-                className="!text-xl cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green]"
               />
            </Tooltip>
 
@@ -444,7 +440,7 @@ const PitchCardList = (props) => {
         }
       >
 <AddchartIcon
-className="!text-xl cursor-pointer text-blue-500"
+className="!text-icon cursor-pointer text-blue-500"
 
 onClick={()=>{
   props.handleAssimodal(true)
@@ -453,16 +449,42 @@ onClick={()=>{
 />
 </Tooltip>
 </div>
-</div>
+
                                 </div>
-                                <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
+                                <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
                                
-                                <div class="flex flex-col w-6 max-sm:flex-row">
-                                {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                              
+                            
+                        <div>
+            
+
+                    </div>
+                  
+                  
+                      <div>
+                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+            <span class="cursor-pointer" >
+            <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+            </span>
+          </Tooltip>
+          </div>
+          <div>
+          <Tooltip title={item.email}>
+              <MailOutlineIcon
+                type="mail"
+                className="!text-icon cursor-pointer text-green-400"
+                // onClick={() => {
+                //   handleSetCurrentLeadsId(item);
+                //   props.handleLeadsEmailDrawerModal(true);
+                // }}
+              />
+            </Tooltip> </div>
+           
+            {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                 <div>
             <Tooltip title="Edit">
               <BorderColorIcon
-                className="!text-xl cursor-pointer text-[tomato]"
+                className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
                    props.setEditPitch(item);
                    props.handleUpdatePitchModal(true);
@@ -484,40 +506,14 @@ onClick={()=>{
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
             <DeleteOutlined
               type="delete"
-              className="!text-xl text-[red] cursor-pointer"
+              className="!text-icon text-[red] cursor-pointer"
               
             />
              )} 
              </Tooltip>
           </StyledPopconfirm>
                         </div>
-                            
-                        <div>
-            
-
-                    </div>
-                    </div>
-                    <div class="flex flex-col w-6 max-sm:flex-row">
-                      <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer" >
-            <LocationOnIcon   className="!text-xl cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
-          <div>
-          <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                className="!text-xl cursor-pointer text-green-400"
-                // onClick={() => {
-                //   handleSetCurrentLeadsId(item);
-                //   props.handleLeadsEmailDrawerModal(true);
-                // }}
-              />
-            </Tooltip> </div>
-           
-                      </div> 
+                      
                       
                     </div>
                     </div>

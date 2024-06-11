@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
-import { Formik, Form, Field, FieldArray, FastField } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { bindActionCreators } from 'redux';
+import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { StyledLabel } from '../../../../../../Components/UI/Elements';
@@ -17,7 +18,6 @@ import APIAwbNoModal from './APIAwbNoModal';
 const DispatchOrderAwb = (props) => {
     console.log(props.rowData.unloadingAddresses)
     const shipperOption = props.allShipperList.map((item) => {
-
         return {
             label: item.shipperName,
             value: item.shipperId
@@ -39,6 +39,16 @@ const DispatchOrderAwb = (props) => {
     const handleFormValue = (values) => {
         setFormValue(values)
     }
+
+    const validationSchema = Yup.object().shape({
+        packages: Yup.number()
+            .typeError('Packages must be a number'),
+            
+        weight: Yup.number()
+            .typeError('Weight must be a number'),
+       
+    });
+
     return (
         <>
             <Formik
@@ -82,7 +92,7 @@ const DispatchOrderAwb = (props) => {
 
                 }}
 
-                // validationSchema={FormSchema}
+                validationSchema={validationSchema}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
                     props.createAwbNo({
@@ -103,8 +113,8 @@ const DispatchOrderAwb = (props) => {
                 }) => (
                     <Form>
                         <div>
-                            <div class=" flex justify-between" >
-                                <div class=" w-[47%]" >
+                            <div class="flex justify-between">
+                                <div class="w-[47%]">
                                     <StyledLabel><h3> Pickup Address</h3></StyledLabel>
                                     <FieldArray
                                         disabled
@@ -118,7 +128,7 @@ const DispatchOrderAwb = (props) => {
                                         )}
                                     />
                                 </div>
-                                <div class=" w-[47%]" >
+                                <div class="w-[47%]">
                                     <StyledLabel><h3> Delivery Address</h3></StyledLabel>
                                     <FieldArray
                                         name="loadingAddress"
@@ -134,18 +144,8 @@ const DispatchOrderAwb = (props) => {
                                 </div>
                             </div>
 
-                            <div class=" flex justify-between mt-4" >
-
-                                <div class=" w-[47%]"  >
-                                    {/* <FastField
-                                        name="shipperId"
-                                        isColumnWithoutNoCreate
-                                        label="Shipper"
-                                        isColumn
-                                        selectType="shipper"
-                                        component={SearchSelect}
-                                        inlineLabel
-                                    /> */}
+                            <div class="flex justify-between mt-4">
+                                <div class="w-[47%]">
                                     <Field
                                         label="Shipper"
                                         name="shipperId"
@@ -162,25 +162,18 @@ const DispatchOrderAwb = (props) => {
                                     />
                                 </div>
 
-                                <div class=" w-[45%]"  >
+                                <div class="w-[45%]">
                                     <Field
                                         name="pickUp"
-                                        label="Available Date "
+                                        label="Available Date"
                                         isColumn
                                         inlineLabel
                                         width={"100%"}
                                         disabledDate={(currentDate) => {
                                             if (values.pickUpDate) {
-                                                if (
-                                                    dayjs(currentDate).isBefore(
-                                                        dayjs(values.pickUpDate)
-                                                    )
-                                                ) {
-                                                    return true;
-                                                } else {
-                                                    return false;
-                                                }
+                                                return dayjs(currentDate).isBefore(dayjs(values.pickUpDate));
                                             }
+                                            return false;
                                         }}
                                         value={values.pickUp}
                                         component={DatePicker}
@@ -188,10 +181,10 @@ const DispatchOrderAwb = (props) => {
                                 </div>
                             </div>
 
-                            <div class=" flex justify-between mt-4" >
-                                <div class=" w-[47%]" >
-
+                            <div class="flex justify-between mt-4">
+                                <div class="w-[47%]">
                                     <Field
+                                        type="number"
                                         width={"100%"}
                                         name="packages"
                                         label="#Package"
@@ -199,9 +192,13 @@ const DispatchOrderAwb = (props) => {
                                         inlineLabel
                                         component={InputComponent}
                                     />
+                                    {/* {errors.packages && touched.packages ? (
+                                        <div className="error">{errors.packages}</div>
+                                    ) : null} */}
                                 </div>
-                                <div class=" w-[47%]" >
+                                <div class="w-[47%]">
                                     <Field
+                                        type="number"
                                         label="Weight (in Kg)"
                                         name="weight"
                                         component={InputComponent}
@@ -209,12 +206,13 @@ const DispatchOrderAwb = (props) => {
                                         width={"100%"}
                                         isColumn
                                     />
+                                    {/* {errors.weight && touched.weight ? (
+                                        <div className="error">{errors.weight}</div>
+                                    ) : null} */}
                                 </div>
-
-
                             </div>
-                            <div class=" flex justify-between mt-4" >
-                                <div class=" flex justify-end w-[47%] " style={{ margin: "67px 39px 17px -33px" }} >
+                            <div class="flex justify-between mt-4">
+                                <div class="flex justify-end w-[47%]" style={{ margin: "67px 39px 17px -33px" }}>
                                     {values.api ?
                                         <Button
                                             style={{
@@ -222,8 +220,7 @@ const DispatchOrderAwb = (props) => {
                                                 color: "white",
                                                 fontSize: "15px",
                                                 padding: "0px 12px",
-                                            }
-                                            }
+                                            }}
                                             loading={props.addingReceivedUser}
                                             htmlType="Submit"
                                         >Save</Button>
@@ -234,8 +231,7 @@ const DispatchOrderAwb = (props) => {
                                                 color: "white",
                                                 fontSize: "15px",
                                                 padding: "0px 12px",
-                                            }
-                                            }
+                                            }}
                                             onClick={() => {
                                                 props.handleAddAWB(true);
                                                 handleFormValue(values)
@@ -245,7 +241,6 @@ const DispatchOrderAwb = (props) => {
                                 </div>
                             </div>
                         </div>
-
                     </Form>
                 )}
             </Formik>
@@ -254,11 +249,11 @@ const DispatchOrderAwb = (props) => {
                 formValue={formValue}
                 addAwbNo={props.addAwbNo}
                 handleAddAWB={props.handleAddAWB}
-
             />
         </>
     );
 }
+
 const mapStateToProps = ({ inventory, shipper, auth }) => ({
     addingReceivedUser: inventory.addingReceivedUser,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
@@ -278,4 +273,3 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(DispatchOrderAwb);
-

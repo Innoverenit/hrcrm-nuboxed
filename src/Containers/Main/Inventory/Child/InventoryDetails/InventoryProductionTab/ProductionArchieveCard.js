@@ -5,8 +5,10 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Button, Tooltip } from "antd";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
+import { addCreateManufactureCardModal } from "../../../../../Production/ProductionAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getArchieveProductionbyLocId } from "../../../InventoryAction";
+import AddCreateManufactureModal from "../../../../../Production/Child/AddCreateManufactureModal";
 
 function ProductionArchieveCard(props) {
 
@@ -70,11 +72,21 @@ function ProductionArchieveCard(props) {
                         {archieveInProduction.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 ">
 
                                     <div className=" flex font-medium flex-col  w-[11.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
-<div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+<div 
+  onClick={() => {
+    props.addCreateManufactureCardModal(true);
+    handleParticularRowData(item)
+    //handleRowData(item);
+    //handleProductivityClick(date.isoDate,user.userId)
+               
+             
+             
+   }}
+class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
     {item.manufactureId}
 </div>
 
@@ -161,25 +173,31 @@ function ProductionArchieveCard(props) {
                 </div>
             </div>
 
-
+            <AddCreateManufactureModal
+productionProductId={particularDiscountData.productionProductId}
+addCreateManufactureCard={props.addCreateManufactureCard}
+addCreateManufactureCardModal={props.addCreateManufactureCardModal}
+/>
 
         </>
     );
 }
 
 
-const mapStateToProps = ({ inventory, auth, }) => ({
+const mapStateToProps = ({ inventory, auth,production }) => ({
     archieveInProduction: inventory.archieveInProduction,
     fetchingArchieveProductionLocId: inventory.fetchingArchieveProductionLocId,
     locationId: auth.userDetails.locationId,
     userId: auth.userDetails.userId,
+    addCreateManufactureCard:production.addCreateManufactureCard,
 
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getArchieveProductionbyLocId
+            getArchieveProductionbyLocId,
+            addCreateManufactureCardModal
         },
         dispatch
     );

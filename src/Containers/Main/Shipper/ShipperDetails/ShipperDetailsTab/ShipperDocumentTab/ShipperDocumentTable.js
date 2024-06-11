@@ -3,78 +3,80 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import moment from "moment";
-import {
-  getShipperDocument,
-} from "../../../ShipperAction";
-import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
+import { getShipperDocument } from "../../../ShipperAction";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class ShipperDocumentTable extends Component {
   componentDidMount() {
     this.props.getShipperDocument(this.props.shipperId);
   }
+
   render() {
     const {
       documentsByShipperId,
       fetchingDocumentsByShipperId,
       fetchingDocumentsByShipperIdError,
     } = this.props;
-
+     if (fetchingDocumentsByShipperId) {
+    return <BundleLoader />;
+  }
 
     return (
       <>
-              <div className=' flex justify-end sticky top-28 z-auto'>
-                <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
-                    <div className=" flex justify-between w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                        <div className=" md:w-[5.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.description" defaultMessage="Description" /></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.uploadedby" defaultMessage="Uploaded By" /></div>
-                     
-
-
-                    </div>
-                    <div class="overflow-x-auto h-[64vh]">
-                        {this.props.documentsByShipperId.map((item) => {
-                            
-                            return (
-                                <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
-                                        <div class="flex w-3/4">
-                                            <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
-
-
-                                            {` ${moment(item.creationDate).format("ll")}`}
-
-                                            </div>
-
-                                            <div className=" flex font-medium flex-col  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                                            <div class=" text-xs text-cardBody font-poppins text-center">
-                                                    {item.contactDocumentName}
-                                                </div>
-                                            </div>
-
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {item.description}
-                                                </div>
-                                            </div>
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                <div class=" text-xs text-cardBody font-poppins text-center">
-                                                {item.uploadedBy}
-                                                </div></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            )
-                        })}
-                    </div>
-     
-                </OnlyWrapCard>
+        <div className="flex justify-end sticky  z-auto">
+          <div className="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className="flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
+              <div className="md:w-[0.5rem]"></div>
+              <div className="md:w-[7.4rem]">
+                <FormattedMessage id="app.date" defaultMessage="Date" />
+              </div>
+              <div className="md:w-[5.1rem]">
+                <FormattedMessage id="app.name" defaultMessage="Name" />
+              </div>
+              <div className="md:w-[8.8rem]">
+                <FormattedMessage id="app.description" defaultMessage="Description" />
+              </div>
+              <div className="md:w-[8.8rem]">
+                <FormattedMessage id="app.uploadedby" defaultMessage="Uploaded By" />
+              </div>
             </div>
+            <div className="overflow-x-auto h-[64vh]">
+              {documentsByShipperId.length > 0 ? (
+                documentsByShipperId.map((item) => (
+                  <div key={item.id}>
+                    <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
+                      <div className="flex w-3/4">
+                        <div className="flex font-medium flex-col md:w-[1.56rem] max-sm:w-full">
+                          {moment(item.creationDate).format("ll")}
+                        </div>
+                        <div className="flex font-medium flex-col md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div className="text-xs text-cardBody font-poppins text-center">
+                            {item.contactDocumentName}
+                          </div>
+                        </div>
+                        <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div className="text-xs text-cardBody font-poppins text-center">
+                            {item.description}
+                          </div>
+                        </div>
+                        <div className="flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div className="text-xs text-cardBody font-poppins text-center">
+                            {item.uploadedBy}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center p-5">
+                  <NodataFoundPage />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </>
     );
   }
@@ -91,15 +93,12 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getShipperDocument,
-      //   deleteDocument,
     },
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShipperDocumentTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ShipperDocumentTable);
+
 
 
 // import React, { Component } from "react";

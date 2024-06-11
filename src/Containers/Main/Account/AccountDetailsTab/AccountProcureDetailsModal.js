@@ -16,7 +16,7 @@ class AccountProcureDetailsModal extends Component {
                 {/* - ${this.props.particularRowData.orderId} */}
                 <StyledDrawer
                     title={`Order : ${this.props.particularRowData.newOrderNo}`}
-                    width="70%"
+                    width="80%"
                     visible={addProcureDetailsModal}
                     onClose={() => handleProcureDetailsModal(false)}
                     maskClosable={false}

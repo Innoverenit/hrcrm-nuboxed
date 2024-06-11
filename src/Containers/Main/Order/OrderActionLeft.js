@@ -3,6 +3,7 @@ import {  StyledSelect } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
+import { DeleteOutlined } from "@ant-design/icons";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
 import { getOrderCount, getAllOrderCount } from "../Order/OrderAction";
@@ -200,6 +201,24 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
+        <Tooltip title="Deleted Orders">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" mr-2 text-sm cursor-pointer"
+                        onClick={() => setOrderViewType("delete")}
+                        style={{
+                            color: viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <DeleteOutlined className="text-white" /></Avatar>
+
+                    </span>
+                    {/* </Badge> */}
+                </Tooltip>
       </div>
      
   

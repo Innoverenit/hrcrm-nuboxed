@@ -1,12 +1,19 @@
 import React, { useEffect, lazy, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getDispatchUpdateList } from "../Inventory/InventoryAction"
+// import { getDispatchUpdateList } from "../Inventory/InventoryAction"
 import { SubTitle } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
-import { Button } from "antd"
+import { Button,Input } from "antd"
+import {
+    searchimeiNamePhone,
+    ClearPhoneDataOfrefurbish,
+    getDispatchUpdateList
+} from "./RefurbishAction";
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
@@ -24,18 +31,115 @@ function InspectedPhoneByOrder(props) {
 
     const [show, setShow] = useState(false)
     const [data, setData] = useState({})
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
     const handleShow = () => {
         setShow(!show)
     }
     const handleParticularRow = (item) => {
         setData(item)
     }
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {
+                //setPageNo(pageNo + 1);
+                props.getDispatchUpdateList(props.rowData.orderPhoneId)
+                props.ClearPhoneDataOfrefurbish()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.searchimeiNamePhone(currentData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const handleStartListening = () => {
+            setStartTime(Date.now());
+            setIsRecording(true);
+            SpeechRecognition.startListening();
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+              SpeechRecognition.stopListening();
+              setIsRecording(false);
+            }, minRecordingTime);
+          };
+          const suffix = (
+            <AudioOutlined
+            onClick={handleStartListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
+          const handleStopListening = () => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+            if (transcript.trim() !== "") {
+              setCurrentData(transcript);
+              props.searchimeiNamePhone(transcript);
+              setSearchOnEnter(true);
+            }
+          };
+          useEffect(() => {
+            if (!listening && isRecording) {
+              handleStopListening();
+            }
+          }, [listening]);
+          useEffect(() => {
+            if (isRecording && !listening) {
+              // If recording was stopped but less than 5 seconds have passed, restart listening
+              const elapsedTime = Date.now() - startTime;
+              if (elapsedTime < minRecordingTime) {
+                SpeechRecognition.startListening();
+              } else {
+                setIsRecording(false);
+              }
+            }
+          }, [listening, isRecording, startTime]);
     return (
         <>
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
                 : <div className='flex justify-end sticky ticky top-0 z-10 '>
                     <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                    <div class=" w-72 ml-4 max-sm:w-28">
+          <Input
+            placeholder="Search by Imei"
+            width={"100%"}
+            suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+             value={currentData}
+        
+          />
+        </div>
                         <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
                             <div className=" md:w-[7.12rem]"><FormattedMessage
                                 id="app.oem"
@@ -62,7 +166,7 @@ function InspectedPhoneByOrder(props) {
                             {props.updateDispatchList.map((item, index) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
                                                 <div className=" flex font-medium  md:w-[7.6rem] max-sm:w-full  ">
                                                     {item.company}
@@ -109,7 +213,7 @@ function InspectedPhoneByOrder(props) {
                                                     {item.conditions}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     <SubTitle>
                                                         {item.qrCodeId ? (
@@ -126,7 +230,7 @@ function InspectedPhoneByOrder(props) {
                                                         )}
                                                     </SubTitle>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center">
                                                     {item.cannotRepairInd ? "Can't Repair" : null}
@@ -204,7 +308,9 @@ const mapStateToProps = ({ inventory }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getDispatchUpdateList
+            getDispatchUpdateList,
+            searchimeiNamePhone,
+    ClearPhoneDataOfrefurbish
         },
         dispatch
     );

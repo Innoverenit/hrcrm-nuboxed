@@ -94,8 +94,8 @@ function ProductDeleteList(props) {
   return (
     <>
 
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex justify-end sticky  z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between max-sm:hidden w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">  
           <div className="w-[7.01rem]"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">Article #</div>
@@ -119,15 +119,15 @@ function ProductDeleteList(props) {
             {props.deleteproducts.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[9rem] max-sm:flex-col ">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium flex-col w-[6.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
                               imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"2.8rem"}
-                              imgWidth={"2.8rem"}
+                              imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
                               imgRadius={20}
                             />
                           ) : (
@@ -201,11 +201,11 @@ function ProductDeleteList(props) {
 <ReInstateProductToggle item={item} />
 
 </div>
-                      <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row ">
+                      {/* <div class="flex flex-col w-[7%] max-xl:w-[8%] max-sm:w-auto max-sm:flex-row "> */}
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
-                            className="!text-base cursor-pointer text-[blue]"
+                            className="!text-xl cursor-pointer text-[blue]"
                             onClick={() => {
                               props.handlePriceDrawer(true);
                               handleParticularRowData(item);
@@ -217,7 +217,7 @@ function ProductDeleteList(props) {
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
-                            className="!text-base cursor-pointer text-[#4bc076]"
+                            className="!text-xl cursor-pointer text-[#4bc076]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);
@@ -225,12 +225,12 @@ function ProductDeleteList(props) {
                           />
                         </Tooltip>
                       </div>
-                    </div>
+                    {/* </div> */}
                     {/* <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className="!text-base cursor-pointer text-[tomato]"
+                            className="!text-xl cursor-pointer text-[tomato]"
                             onClick={() => {
                               props.setEditProducts(item);
                               handleUpdateProductModal(true);
@@ -244,7 +244,9 @@ function ProductDeleteList(props) {
                     <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title={item.description}>
-                        <ContactSupportIcon/>
+                        <ContactSupportIcon
+                         className="!text-xl cursor-pointer "
+                        />
                         </Tooltip>
                       </div>
 
@@ -258,7 +260,7 @@ function ProductDeleteList(props) {
                             
                             <DeleteOutlined
                               type="delete"
-                              className=" !text-base cursor-pointer text-[red]"
+                              className=" !text-xl cursor-pointer text-[red]"
                             />
                          
                           </StyledPopconfirm>

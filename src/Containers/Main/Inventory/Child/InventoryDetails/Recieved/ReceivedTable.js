@@ -73,7 +73,7 @@ const ReceivedTable = (props) => {
     <>
       {props.fetchingReceivedUser ? <BundleLoader /> :
         <div className=' flex justify-center sticky  z-auto'>
-          <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+          <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
             <div className=" flex max-sm:hidden  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
               <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
               <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
@@ -104,7 +104,7 @@ const ReceivedTable = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[8.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
                             <div class="text-sm text-cardBody font-semibold max-sm:text-sm  font-poppins cursor-pointer  text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -256,7 +256,7 @@ const ReceivedTable = (props) => {
                             <div>
                               <Tooltip title="Notes">
                                 <NoteAltIcon
-                                  className="!text-base cursor-pointer"
+                                  className="!text-xl cursor-pointer text-[green]"
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleInventoryReceivedNoteOrderModal(true);
@@ -271,7 +271,7 @@ const ReceivedTable = (props) => {
                               <div>
                                 <Tooltip title="Mismatch Phones">
                                   <LabelOffIcon
-                                    class=" text-red-700"
+                                    class=" text-xl text-red-700"
                                     onClick={() => {
                                       handleRowData(item);
                                       props.handleMismatchPhoneModal(true)

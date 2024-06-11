@@ -110,7 +110,7 @@ function DistributorPauseForm(props) {
                 {props.fetchingPhoneListById ? <BundleLoader /> :
                     <>
                         <div className=' flex justify-end sticky flex-col z-auto'>
-                            <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                            <div class="rounded-lg m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                                 <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
                                     <div className=" md:w-[4.2rem]"><FormattedMessage
                                         id="app.OEM"
@@ -164,7 +164,7 @@ function DistributorPauseForm(props) {
                                         {props.phoneListById.map((item, index) => {
                                             return (
                                                 <div>
-                                                    <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                                                    <div className="flex rounded  mt-2 bg-white h-8 items-center p-1 " >
                                                         <div class="flex">
                                                             <div className=" flex font-medium items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
@@ -291,7 +291,7 @@ function DistributorPauseForm(props) {
                                                                     />}>
                                                                         <PrecisionManufacturingIcon
                                                                             style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "black" }}
-                                                                            className="!text-base cursor-pointer"
+                                                                            className="!text-xl cursor-pointer"
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
                                                                                 hanldeSpare();
@@ -308,7 +308,7 @@ function DistributorPauseForm(props) {
                                                                         defaultMessage="Task"
                                                                     />}>
                                                                         <FormatListBulletedIcon
-                                                                            className="!text-base cursor-pointer"
+                                                                            className="!text-xl cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "black" }}
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
@@ -326,7 +326,7 @@ function DistributorPauseForm(props) {
                                                                         defaultMessage="Notes"
                                                                     />}>
                                                                         <NoteAltIcon
-                                                                            className="!text-base cursor-pointer"
+                                                                            className="!text-xl cursor-pointer"
                                                                             onClick={() => {
                                                                                 handleSetRowData(item);
                                                                                 props.handlePhoneNotesOrderModal(true);

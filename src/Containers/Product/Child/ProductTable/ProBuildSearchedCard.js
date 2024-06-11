@@ -1,7 +1,7 @@
 import React, { useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Table, Input, Select } from "antd";
+import { Button, Input, Select } from "antd";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import {addProductBuilder} from "../../ProductAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -84,7 +84,7 @@ function ProBuildSearchedCard (props) {
           return (
 <div key={item.suppliesId}>
 <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
+                  className="flex flex-col rounded justify-between bg-white mt-1 h-8 items-center p-1"
                 >
                   <div class="flex items-center w-wk ">
                     <div className=" flex font-medium flex-col w-[14rem]   max-sm:w-full">
@@ -145,167 +145,11 @@ className="w-16"
         </Button>
                     </div>
   
-                    {/* <div className=" flex font-medium flex-col ">
-                     
-                      <div class=" text-xs text-cardBody font-poppins">
-                        {item.sector}
-                      </div>
-                    </div> */}
+                  
                   </div>
-                  {/* <div class="flex justify-between items-center w-wk ">
-                    <div className=" flex font-medium   ">
-                      
-  
-                      <div class=" text-xs text-cardBody font-poppins">
-                      <div>
-                      {item.assignedTo === null ? (
-                "Not available"
-              ) : (
-                <>
-                {item.assignedTo === item.ownerName ? (
-                  
-                  null
-                ) : (
-                          <MultiAvatar
-                            primaryTitle={item.assignedTo}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
-                        )}
-                        </>
-              )}
-                      </div>
-                      </div>
-                    </div>
-                    <div className=" flex font-medium  ">
+                
                      
-  
-                      <span>
-                        <MultiAvatar
-                          primaryTitle={item.ownerName}
-                          imageId={item.ownerImageId}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-                      </span>
-                    </div>
-                  
-                    <div className=" flex font-medium  ">
-                     
-  
-                      <div class=" text-xs text-cardBody font-poppins"></div>
-                      <div>
-                      <Tooltip title="Qualify? Lead will move to Customer section!">
-                          <ConnectWithoutContactIcon
-                            onClick={() => {
-                              handleRowData(item);
-                              props.handleLeadsConfirmationModal(true);
-                           
-                            }}
-                            className="!text-base cursor-pointer text-[blue]"
-                          />
-                        </Tooltip>
-                        
-                      </div>
-                    </div>
-                    
-                      <div>
-                        <Tooltip title="Notes">
-                          <NoteAltIcon
-                            onClick={() => {
-                              handleRowData(item);
-                              handleLeadsNotesDrawerModal(true);
-                           
-                            }}
-                            className=" !text-base cursor-pointer text-green-800"
-                          />
-                        </Tooltip>
-                      </div>
-                      <div>
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.activity"
-                              defaultMessage="Activity"
-                            />
-                          }
-                        >
-                          <AddchartIcon
-                            className="!text-base cursor-pointer text-blue-500"
-                            onClick={() => {
-                                  handleRowData(item);
-                              props.handleCETmodal(true);
-                          
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                    
-  
-                    
-                      {user.leadsUpdateInd === true && user.crmInd === true && (
-                        <div>
-                          <Tooltip title="Edit">
-                            <BorderColorIcon
-                              className="!text-base cursor-pointer text-[tomato]"
-                              onClick={() => {
-                                props.setEditLeads(item);
-                                handleUpdateLeadsModal(true);
-                                handleSetCurrentLeadsId(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                      )}
-                      {user.leadsDeleteInd === true && user.crmInd === true && (
-                        <div>
-                          <StyledPopconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => deleteLeadsData(item.leadsId)}
-                          >
-                            
-                            <DeleteOutlined
-                              type="delete"
-                              className=" !text-base cursor-pointer text-[red]"
-                            />
-                         
-                          </StyledPopconfirm>
-                        </div>
-                      )}
-                      <div></div>
-                    
                    
-                      <div>
-                        <Tooltip
-                          overlayStyle={{ maxWidth: "300px" }}
-                          title={dataLoc}
-                        >
-                          <span class="cursor-pointer"
-                           
-                          >
-                            <LocationOnIcon
-                             className="!text-base cursor-pointer text-[#960a0a]"
-                            />
-                          </span>
-                        </Tooltip>
-                      </div>
-                      <div>
-                        <Tooltip title={item.email}>
-                          <MailOutlineIcon
-                            type="mail"
-                            className="!text-base cursor-pointer text-green-400"
-                            onClick={() => {
-                              handleSetCurrentLeadsId(item);
-                              props.handleLeadsEmailDrawerModal(true);
-                            }}
-                          />
-                        </Tooltip>{" "}
-                      </div>
-                    
-                   
-                   
-                  </div> */}
                 </div>
 </div>
           );

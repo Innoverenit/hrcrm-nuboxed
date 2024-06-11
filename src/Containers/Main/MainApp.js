@@ -23,6 +23,7 @@ import {
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
+import { getSuscrption} from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
@@ -42,7 +43,11 @@ import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
 import Procre from "./Procre/Procre";
-
+import InventoryTableAll from "./Suppliers/Child/SupplierDetails/SupplierDetailTab/InventoryTableAll";
+import Trade from "./Trade/Trade";
+import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
+import {handleCreateSubscriptionDrawer} from "../Subscription/SubscriptionAction";
+import Quality from "../Quality/Quality";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -262,11 +267,13 @@ function MainApp(props) {
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [rowData, setrowData] = useState({});
   console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
-    props.getActionRequiredCount(props.userId)
+    props.getActionRequiredCount(props.userId);
+    props.getSuscrption(props.orgId)
   }, []);
 
 
@@ -288,7 +295,9 @@ function MainApp(props) {
     setSelectedLanguage(language);
   };
 
-
+  const handleRowData = (data) => {
+    setrowData(data);
+  };
   const showPopconfirm = () => {
     setVisible(true);
   };
@@ -383,7 +392,13 @@ function MainApp(props) {
 
   //   }
   // };
-
+  const Subscription = 
+  props.suscrptionData.subscriptionType === "1" ? "Starter" :
+  props.suscrptionData.subscriptionType === "2" ? "Professional" :
+  props.suscrptionData.subscriptionType === "3" ? "Enterprise" :
+  props.suscrptionData.subscriptionType === "4" ? "Customise" :
+  "Unknown";
+  console.log(props.suscrptionData)
   return (
 
     <>
@@ -462,22 +477,15 @@ function MainApp(props) {
               <Header>
                 <div class="flex justify-between items-center">
                 <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
-                <div class=" flex items-center h-full self-start "
-                >
-                  <div class=" ml-3 mt-1 max-sm:hidden " >
-                    <Select
-                      value={props.preferedLanguage}
-                      style={{ width: "3.8rem" }}
-                      onChange={(value) => handleLanguageSelect(value)}
-                    >
-                      <Option value="English">EN</Option>
-                      <Option value="Dutch">NL</Option>
-                    </Select>
-                  </div>
-                </div>
-              
-                <StartStop />
-              
+                
+                {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
+                {/* <StartStop /> */}
+                <div >
+                <div class="border border-grey ml-1 p-1 h-10 md:p-4">
+  <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
+  <StartStop />
+</div>
+</div>
                 {/* <Button
                   onClick={() => {
                     props.handleInTagDrawer(true)
@@ -619,8 +627,15 @@ function MainApp(props) {
                       }
                     />
                   </FloatButton.Group> */}
-
-
+           <div className="flex items-center">
+                <label className="text-base font-semibold font-poppins mr-1">{Subscription}</label>
+                <Button
+                 type="primary"
+                 onClick={() =>{
+                  handleRowData(props.suscrptionData);
+                  props.handleCreateSubscriptionDrawer(true)}}
+                >Upgrade</Button>
+                 </div>
                   {/* <Subscription /> */}
                   <div class=" text-base cursor-pointer font-normal text-[blue] max-sm:hidden"
                     onClick={() => {
@@ -666,6 +681,19 @@ function MainApp(props) {
                     {props.roleType}
                   </div>
                   {/* <Subscription /> */}
+                  <div class=" flex items-center h-full self-start "
+                >
+                  <div class=" mr-2 mt-1 max-sm:hidden " >
+                    <Select
+                      value={props.preferedLanguage}
+                      style={{ width: "3.8rem" }}
+                      onChange={(value) => handleLanguageSelect(value)}
+                    >
+                      <Option value="English">EN</Option>
+                      <Option value="Dutch">NL</Option>
+                    </Select>
+                  </div>
+                </div>
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
                       <SettingsDropdown />
@@ -720,6 +748,7 @@ function MainApp(props) {
                       <Route exact path="/plant" component={Plant} />
                       <Route exact path="/plant/:plantId" component={PlantDetail} />
                       <Route exact path="/suppliers" component={Suppliers} />
+                      <Route exact path="/trade" component={Trade} />
                       <Route exact path="/vendor" component={Vendor} />
                       <Route exact path="/inventory" component={Inventory} />
                       <Route exact path="/refurbish" component={Refurbish} />
@@ -873,6 +902,11 @@ function MainApp(props) {
                         path="/opportunity"
                         component={Opportunity}
                       />
+                        <Route
+                        exact
+                        path="/quality"
+                        component={Quality}
+                      />
                       <Route
                         exact
                         path="/opportunity/:opportunityId"
@@ -940,7 +974,11 @@ function MainApp(props) {
       // handleResponseData={this.handleResponseData}
       // responseData={this.state.responseData}
       />
-
+ <CreateSubscriptionDrawer
+ rowData={rowData}
+          createSubscriptiondrawer={props.createSubscriptiondrawer}
+          handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
+        />
       <TagInDrawer
         clickTagInDrawr={props.clickTagInDrawr}
         handleInTagDrawer={props.handleInTagDrawer}
@@ -963,6 +1001,7 @@ const mapStateToProps = ({
   contact,
   language,
   message,
+  subscription
 }) => ({
   language: language.language,
   user: auth.userDetails,
@@ -979,6 +1018,7 @@ const mapStateToProps = ({
   department: auth.userDetails && auth.userDetails.department,
   roleType: auth.userDetails && auth.userDetails.roleType,
   role: auth.userDetails && auth.userDetails.role,
+  orgId: auth.userDetails.organizationId,
   // orgImageId:auth.userDetails.orgImageId,
 
   imageId:
@@ -998,9 +1038,11 @@ const mapStateToProps = ({
   organizationDetails: auth.organizationDetails,
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
+  suscrptionData:subscription.suscrptionData,
   user: auth.userDetails,
   actionCount: auth.actionCount,
   clickTagInDrawr: refurbish.clickTagInDrawr,
+  createSubscriptiondrawer:subscription.createSubscriptiondrawer
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1016,6 +1058,8 @@ const mapDispatchToProps = (dispatch) =>
       handleMessageModal,
       handleActionDrawerModal,
       handleInTagDrawer,
+      handleCreateSubscriptionDrawer,
+      getSuscrption
     },
     dispatch
   );

@@ -79,6 +79,11 @@ const ContactInvestActionLeft = (props) => {
   // useEffect(() => {
   // props.getContactInvest(props.userId)
   // }, [props.userId]);
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getTeamContactInvest(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -99,7 +104,7 @@ const ContactInvestActionLeft = (props) => {
    
  
   const { user } = props;
-  
+  const teamCount = props.teamsAccessInd && props.teamContactInvest ? props.teamContactInvest.investorContactTeam : 0;
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -134,7 +139,7 @@ const ContactInvestActionLeft = (props) => {
       <Badge
           size="small"
           count={
-            (props.teamsAccessInd||props.viewType === "teams" &&
+            (teamCount||props.viewType === "teams" &&
               props.teamContactInvest.investorContactTeam
               ) ||
             0

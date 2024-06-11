@@ -440,14 +440,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { getCurrency } from "../../../Auth/AuthAction";
-import { Button, Input, Select,Popconfirm,Tooltip } from "antd";
+import { Button, Input, Select,Tooltip } from "antd";
 import { getProductCurrency, createProductCurrency,
    handleDiscountModal, handleOfferModal,removeProductPrice } from "../../ProductAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getSaleCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -459,6 +460,7 @@ function ProductbuilderTable(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     props.getProductCurrency(props.particularDiscountData.productId);
@@ -501,10 +503,40 @@ function ProductbuilderTable(props) {
     };
     setRows([...rows, newRow]);
   };
+  // const handleChange = (index, key, value) => {
+  //   const updatedRows = [...rows];
+  //   updatedRows[index][key] = value;
+  //   setRows(updatedRows);
+  // };
+
+  // const handleChange = (index, key, value) => {
+  //   if (key === 'price' || key === 'priceB2C' || key === 'vat') {
+  //     if (!isNaN(value) && value.trim() !== '') {
+  //       const updatedRows = [...rows];
+  //       updatedRows[index][key] = value;
+  //       setRows(updatedRows);
+  //     }
+  //   } else {
+  //     const updatedRows = [...rows];
+  //     updatedRows[index][key] = value;
+  //     setRows(updatedRows);
+  //   }
+  // };
   const handleChange = (index, key, value) => {
-    const updatedRows = [...rows];
-    updatedRows[index][key] = value;
-    setRows(updatedRows);
+    if (key === 'price' || key === 'priceB2C' || key === 'vat') {
+      if (!isNaN(value)) {
+        const updatedRows = [...rows];
+        updatedRows[index][key] = value;
+        setRows(updatedRows);
+        setErrors((prevErrors) => ({ ...prevErrors, [`${key}${index}`]: '' }));
+      } else {
+        setErrors((prevErrors) => ({ ...prevErrors, [`${key}${index}`]: 'Must be a number' }));
+      }
+    } else {
+      const updatedRows = [...rows];
+      updatedRows[index][key] = value;
+      setRows(updatedRows);
+    }
   };
 
   const handleSelectChange = (value, key, dataIndex) => {
@@ -587,29 +619,37 @@ function ProductbuilderTable(props) {
               </div>
 
               <div>
-                <label>Price</label>
+                <label>Price (B2B)</label>
                 <div class="w-24"></div>
                 <Input
+                 inputMode="numeric"
                         className="w-32"
                         value={row.price}
                         onChange={(e) => handleChange(index,'price',e.target.value)}
-                      /></div>
+                      />
+                        {errors[`price${index}`] && <span className="text-red-500">{errors[`price${index}`]}</span>}
+                      </div>
               <div>
-                <label>PriceB2C</label>
+                <label>Price (B2C)</label>
                 <div class="w-24">
                 <Input
+                 inputMode="numeric"
                         className="w-32"
                         value={row.priceB2C}
                         onChange={(e) => handleChange(index,'priceB2C',e.target.value)}
-                      /></div></div>
+                      />
+                       {errors[`priceB2C${index}`] && <span className="text-red-500">{errors[`priceB2C${index}`]}</span>}
+                      </div></div>
               <div>
-                <label>Vat</label>
+                <label>VAT (in %)</label>
                 <div class="w-24">
                 <Input
+                 inputMode="numeric"
                         className="w-32"
                         value={row.vat}
                         onChange={(e) => handleChange(index,'vat',e.target.value)}
                       />
+                        {errors[`vat${index}`] && <span className="text-red-500">{errors[`vat${index}`]}</span>}
                 </div>
               </div>
             </div>
@@ -634,10 +674,10 @@ function ProductbuilderTable(props) {
           {data.length ? data.map((item) => {
             return (
               <div key={item.productCurrencyId}>
-                <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 "
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
+                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.productCurrencyId ? (
                       <Select
@@ -736,24 +776,25 @@ function ProductbuilderTable(props) {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.productCurrencyId)}
                       />
                     )}
  <div>
-      <Popconfirm
+      <StyledPopconfirm
                           title="Do you want to delete?"
                           onConfirm={() => props.removeProductPrice(item.productCurrencyId)}
 
                           >
                      <Tooltip title="Delete">
-                          <DeleteIcon
-                           className="!text-base cursor-pointer text-[red]"
+                     <DeleteOutlined
+                      style={{ color: 'red' }}
+                          className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
                           />
                        </Tooltip>
-                       </Popconfirm>
+                       </StyledPopconfirm>
                        </div>
                   </div>
 

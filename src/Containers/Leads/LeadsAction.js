@@ -1245,6 +1245,87 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const getAllLeadsHot = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSHOT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllLeadsWarm = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSWARM_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+  export const getAllLeadsCold = (pageNo,filter,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_ALL_LEADSCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/all/${pageNo}/${filter}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_ALL_LEADSCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_ALL_LEADSCOLD_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const convertLeads = (data,leadsId,assignedToId) => (
     dispatch,
     getState
@@ -1301,6 +1382,99 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_TEAM_LEADS_FAILURE,
+          payload: err,
+        });
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Something went wrong , reach out to support!',
+        // })
+      });
+  };
+
+  export const getTeamLeadsHot = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSHOT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSHOT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSHOT_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getTeamLeadsWarm = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSWARM_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSWARM_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSWARM_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getTeamLeadsCold = (userId,pageNo,type) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_TEAM_LEADSCOLD_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/teams/${userId}/${pageNo}/${type}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_LEADSCOLD_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_TEAM_LEADSCOLD_FAILURE,
           payload: err,
         });
         Swal.fire({
@@ -1705,6 +1879,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.UPDATE_LEADS_NOTE_MODAL,
       payload: modalProps,
+    });
+  };
+
+  export const ClearSearchedDataOfLead = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_SEARCHED_DATA_LEAD,
     });
   };
   

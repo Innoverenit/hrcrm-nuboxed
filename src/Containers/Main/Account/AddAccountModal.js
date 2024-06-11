@@ -16,7 +16,7 @@ const AddAccountModal = (props) => {
                 width="60%"
                 visible={addDistributorModal}
                 onClose={() => {
-                    handleClose();
+                 
                     handleDistributorModal(false)
                 }}
                 footer={null}

@@ -18,8 +18,8 @@ function SuppliesDeletedTable(props) {
   };
   return (
     <>
-   <div className=" flex justify-end sticky top-28 z-auto">
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+   <div className=" flex justify-end sticky  z-auto">
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className=" w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">HSN</div>
@@ -29,7 +29,7 @@ function SuppliesDeletedTable(props) {
             <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Attribute</div>
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Re-order level</div>
             <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Created</div>
-            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
+            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
             
           </div>
 
@@ -47,7 +47,7 @@ function SuppliesDeletedTable(props) {
                     const currentDate = moment().format("DD/MM/YYYY");
                   return (
                     <>
-                      <div className="flex rounded-xl justify-center bg-white mt-[0.5rem]  h-[2.75rem]  p-3 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">

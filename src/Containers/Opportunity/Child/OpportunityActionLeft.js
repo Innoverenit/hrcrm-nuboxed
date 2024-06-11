@@ -24,7 +24,11 @@ import { StopTwoTone, TableOutlined } from "@ant-design/icons";
 
 const OpportunityActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
-
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getOpportunityTeamRecords(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.getRecords(props.userId);
@@ -60,7 +64,7 @@ const OpportunityActionLeft = (props) => {
     closeOpportunityData,
     recordData,
   } = props;
-
+  const teamCount = props.teamsAccessInd && props.opportunityTeamRecordData ? props.opportunityTeamRecordData.OpportunityTeam : 0;
   return (
     <div class=" flex items-center">
   
@@ -205,7 +209,7 @@ const OpportunityActionLeft = (props) => {
         >
                  <Badge
         size="small"
-        count={(props.teamsAccessInd||viewType=== "teams" ?opportunityTeamRecordData.OpportunityTeam : 0)}
+        count={(teamCount||viewType=== "teams" ?opportunityTeamRecordData.OpportunityTeam : 0)}
         // count={(viewType === "teams" && opportunityTeamRecordData.OpportunityTeam) || 0}
         overflowCount={999}
       >

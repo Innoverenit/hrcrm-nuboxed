@@ -755,7 +755,7 @@ function ActivityEventForm(props) {
                                 <Button
                                     type="primary"
                                     htmlType="submit"
-                                    Loading={isEditing ? updatingEvent : props.addingCustomerActivityEvent}
+                                    loading={isEditing ? updatingEvent : props.addingCustomerActivityEvent}
                                 >
                                     {isEditing ? (
                                         "Update"

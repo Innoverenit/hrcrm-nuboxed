@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button, Badge,Select,Popconfirm } from "antd";
-import moment from "moment";
+import { Tooltip, Button, Badge,Select } from "antd";
+import dayjs from "dayjs";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
@@ -18,12 +18,10 @@ import {
   deleteOrderRepairData
 } from "./OrderAction";
 import PaidIcon from '@mui/icons-material/Paid';
-import { DeleteOutlined } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { PersonAddAlt1 } from "@mui/icons-material";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
@@ -93,8 +91,8 @@ const handleLoadMoreLow = () => {
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[3.54rem]">Urgent </div>
-          <div className=" md:w-[9.3rem]">Order ID</div>
+      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
+          <div className=" md:w-[9.3rem] ml-2">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
           <div className=" md:w-[5.051rem] ">Contact</div>
           <div className="md:w-[7.01rem]">Units</div>
@@ -116,11 +114,11 @@ const handleLoadMoreLow = () => {
           {props.allHighCompleteOrder.length ?
             <>
               {props.allHighCompleteOrder.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -139,9 +137,9 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-              <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+              <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
-                  <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
+                  <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -313,7 +311,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                            style={{ cursor: "pointer", color: "green", fontSize: "1.25rem" }}
+                            className=" !text-xl cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -343,7 +341,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                          className=" !text-xl cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -357,7 +355,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                           className=" !text-xl cursor-pointer"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -369,22 +367,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Collection">
-                        <Popconfirm
-                              title="Do you want to delete?"
-                               onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                            >
-                              <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
-
-                              />
-                            </Popconfirm>
-                        </Tooltip>
-
-                      </h4>
-                    </div>
+                   
 
 
                   </div>
@@ -401,8 +384,8 @@ const handleLoadMoreLow = () => {
       <div className=' flex justify-end sticky  z-auto'>
       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" md:w-[3.54rem]">High </div>
-          <div className=" md:w-[9.3rem]">Order ID</div>
+      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
+          <div className=" md:w-[9.3rem] ml-2">Order ID</div>
           <div className=" md:w-[11.6rem]">Customer</div>
           <div className=" md:w-[5.051rem] ">Contact</div>
           <div className="md:w-[7.01rem]">Units</div>
@@ -424,11 +407,11 @@ const handleLoadMoreLow = () => {
           {props.allMediumCompleteOrder.length ?
             <>
               {props.allMediumCompleteOrder.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -447,9 +430,9 @@ const handleLoadMoreLow = () => {
                   } `;
                 return (
                   <div>
-                 <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+                 <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                   <div class="flex">
-                  <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
+                  <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -620,7 +603,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                            style={{ cursor: "pointer", color: "green", fontSize: "1.25rem" }}
+                             className=" !text-xl cursor-pointer text-green-800"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -650,7 +633,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                              className=" !text-xl cursor-pointer "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -664,7 +647,7 @@ const handleLoadMoreLow = () => {
                       <h4 class=" text-xs text-cardBody font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                            style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                          className=" !text-xl cursor-pointer "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -676,22 +659,7 @@ const handleLoadMoreLow = () => {
                       </h4>
                     </div>
 
-                    <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                      <h4 class=" text-xs text-cardBody font-poppins">
-                        <Tooltip title="Collection">
-                        <Popconfirm
-                              title="Do you want to delete?"
-                               onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                            >
-                              <DeleteOutlined
-                                className=" !text-xl cursor-pointer text-[red]"
-
-                              />
-                            </Popconfirm>
-                        </Tooltip>
-
-                      </h4>
-                    </div>
+                  
 
 
                   </div>
@@ -708,8 +676,8 @@ const handleLoadMoreLow = () => {
       <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-       <div className=" md:w-[3.54rem]">Normal </div>
-           <div className=" md:w-[9.3rem]">Order ID</div>
+       <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
+           <div className=" md:w-[9.3rem] ml-2">Order ID</div>
            <div className=" md:w-[11.6rem]">Customer</div>
            <div className=" md:w-[5.051rem] ">Contact</div>
            <div className="md:w-[7.01rem]">Units</div>
@@ -731,11 +699,11 @@ const handleLoadMoreLow = () => {
            {props.allLowCompleteOrder.length ?
              <>
                {props.allLowCompleteOrder.map((item) => {
-                 const currentdate = moment().format("DD/MM/YYYY");
-                 const date = moment(item.creationDate).format("DD/MM/YYYY");
+                 const currentdate = dayjs().format("DD/MM/YYYY");
+                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
  
                  const diff = Math.abs(
-                   moment().diff(moment(item.lastRequirementOn), "days")
+                   dayjs().diff(dayjs(item.lastRequirementOn), "days")
                  );
                  const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                    } 
@@ -754,9 +722,9 @@ const handleLoadMoreLow = () => {
                    } `;
                  return (
                    <div>
-                <div className="flex rounded-lg justify-between  mt-1 bg-white h-9 items-center p-1">
+                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1">
                    <div class="flex">
-                   <div className=" flex font-medium  md:w-[3.96rem] max-sm:w-full  ">
+                   <div className=" flex font-medium items-center md:w-[3.96rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
@@ -927,7 +895,7 @@ const handleLoadMoreLow = () => {
                        <h4 class=" text-xs text-cardBody font-poppins">
                          <Tooltip title="Notes">
                            <NoteAltIcon
-                             style={{ cursor: "pointer", color: "green", fontSize: "1.25rem" }}
+                                className=" !text-xl cursor-pointer text-green-800"
                              onClick={() => {
  
                                props.handleNotesModalInOrder(true);
@@ -957,7 +925,7 @@ const handleLoadMoreLow = () => {
                        <h4 class=" text-xs text-cardBody font-poppins">
                          <Tooltip title="Status">
                            <EventRepeatIcon
-                             style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                              className=" !text-xl cursor-pointer "
                              onClick={() => {
                                props.handleStatusOfOrder(true);
                                handleSetParticularOrderData(item);
@@ -971,7 +939,7 @@ const handleLoadMoreLow = () => {
                        <h4 class=" text-xs text-cardBody font-poppins">
                          <Tooltip title="Collection">
                            <PaidIcon
-                             style={{ cursor: "pointer", fontSize: "1.25rem" }}
+                             className=" !text-xl cursor-pointer"
                              onClick={() => {
                                props.handlePaidModal(true);
                                handleSetParticularOrderData(item);
@@ -983,22 +951,7 @@ const handleLoadMoreLow = () => {
                        </h4>
                      </div>
  
-                     <div className=" flex font-medium flex-col w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                       <h4 class=" text-xs text-cardBody font-poppins">
-                         <Tooltip title="Collection">
-                         <Popconfirm
-                               title="Do you want to delete?"
-                                onConfirm={() => props.deleteOrderRepairData(item.orderId)}
-                             >
-                               <DeleteOutlined
-                                 className=" !text-xl cursor-pointer text-[red]"
- 
-                               />
-                             </Popconfirm>
-                         </Tooltip>
- 
-                       </h4>
-                     </div>
+                  
  
  
                    </div>

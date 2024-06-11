@@ -40,7 +40,7 @@ const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/Rei
 
 function OpportunityTeamsCard(props) {
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
+  const [pageNo, setPageNo] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
@@ -48,8 +48,8 @@ function OpportunityTeamsCard(props) {
     }else{
      
     } 
-    props. getTeamOpportunity(page);
-    setPage(page + 1);
+    props. getTeamOpportunity(props.userId,pageNo);
+    setPageNo(pageNo + 1);
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -60,10 +60,29 @@ function OpportunityTeamsCard(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //     props. getTeamOpportunity(page);
+  // }
   const handleLoadMore = () => {
-    setPage(page + 1);
-      props. getTeamOpportunity(page);
-  }
+    const callPageMapd = props.teamOpportunity && props.teamOpportunity.length &&props.teamOpportunity[0].pageCount
+    setTimeout(() => {
+      const {
+        getTeamOpportunity,
+       // userDetails: { employeeId },
+      } = props;
+      if  (props.teamOpportunity)
+      {
+        if (pageNo < callPageMapd) {
+            setPageNo(pageNo + 1);
+            getTeamOpportunity(props.userId,pageNo); 
+      }
+      if (pageNo === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
     const [currentOpportunityId, setCurrentOpportunityId] = useState("");
     function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
       setCurrentOpportunityId(opportunityId,opportunityName);
@@ -85,17 +104,17 @@ function OpportunityTeamsCard(props) {
 
       return (    
   <>
-<div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div class="rounded m-1 max-sm:m-1 p-2 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
  <div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
-        <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
-        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
-        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
-        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
-        <div className="w-[4.8rem] "></div>
+        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
+        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
+        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
+        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
+        <div className="w-[4.1rem] "></div>
         <div className="w-12"></div>
       </div>
 
@@ -105,8 +124,9 @@ function OpportunityTeamsCard(props) {
         hasMore={hasMore}
         loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
         height={"75vh"}
+        endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
- <CardWrapper>      
+     
  { !fetchingTeamOpportunity && teamOpportunity.length === 0 ?<NodataFoundPage />:teamOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -118,9 +138,9 @@ function OpportunityTeamsCard(props) {
                  return (
 
                   <div className="max-sm:w-wk">
-                  <div
-                    className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-2 max-sm:h-[9rem] max-sm:flex-col max-sm:w-wk"
-                  >
+                   <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium  w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div>
@@ -138,7 +158,7 @@ function OpportunityTeamsCard(props) {
                                  </div>
                                  
                                       <Tooltip>
-                                      <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                      <div class=" flex max-sm:w-full  flex-row items-center">
         
                                           <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold cursor-pointer">
                                               
@@ -152,7 +172,7 @@ function OpportunityTeamsCard(props) {
                             
                               </div>
 
-                              <div className=" flex font-medium flex-col  w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium   w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
@@ -164,7 +184,7 @@ function OpportunityTeamsCard(props) {
                             
                               
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium  w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -181,7 +201,7 @@ function OpportunityTeamsCard(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex font-medium flex-col w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium  w-[8.81rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                   <div class=" text-sm justify-center text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -189,7 +209,7 @@ function OpportunityTeamsCard(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex font-medium flex-col w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium  w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
                                   <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -201,7 +221,7 @@ function OpportunityTeamsCard(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex font-medium flex-col w-36 max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium  w-[7.01rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
                                   <div class=" text-sm text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -237,7 +257,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex font-medium  w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
                                   <div class=" text-sm text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -252,7 +272,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex font-medium flex-col w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                              <div className=" flex font-medium  w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -278,7 +298,7 @@ strokeColor={"#005075"}
           />
                   </div>
                
-                 <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+                
                  <div>
                  <span
        
@@ -298,14 +318,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
 >
          {user.pulseAccessInd === true && (
            <MonitorHeartIcon
-           className=" !text-xl cursor-pointer text-[#df9697]"
+           className=" !text-icon cursor-pointer text-[#df9697]"
            />
          )}
        </span>
                       </div>
-          </div>
+         
         
-                 <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+                 
                   <div>
                   <Tooltip title='Click to Open'><span
        onClick={() => {
@@ -320,14 +340,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
      
        >
         <LockIcon
-         className=" !text-xl cursor-pointer"
+         className=" !text-icon cursor-pointer"
             />
           </span>
    </Tooltip> 
                   </div>
                 
-                </div>
-                <div class="flex flex-col w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+               
+               
                  
                     <div>
                        <Tooltip
@@ -342,7 +362,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       {user.opportunityUpdateInd ===true && (
             
             <span
-            className=" !text-xl cursor-pointer text-[grey]"
+            className=" !text-icon cursor-pointer text-[grey]"
              
               onClick={() => {
                 props.setEditOpportunity(item);
@@ -351,7 +371,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
               }}
             >
                           <BorderColorIcon
-                          className=" !text-xl cursor-pointer text-[tomato]"
+                          className=" !text-icon cursor-pointer text-[tomato]"
                             
                           />
                         </span>
@@ -380,7 +400,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       
                         <DeleteOutlined
                           type="delete"
-                          className=" !text-xl cursor-pointer text-[red]"
+                          className=" !text-icon cursor-pointer text-[red]"
                         />
                         )}
                         </Tooltip>
@@ -388,7 +408,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     </div>
            
                   <div></div>
-                </div>  
+                
                 </div>
                 </div> 
                             
@@ -398,7 +418,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+             
   
 
       </InfiniteScroll>

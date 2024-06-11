@@ -41,7 +41,7 @@ const ItemCards = (props) => {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
     const dd = String(today.getDate()).padStart(2, '0');
 
-    return `${yyyy}-${mm}-${dd}T20:00:00Z`;
+    return `${yyyy}-${mm}-${dd}T00:00:00Z`;
   };
   useEffect(() => {
     const today = getTodayDate();
@@ -59,7 +59,7 @@ const ItemCards = (props) => {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
       {/* {data.map((item, index) => ( */}
          {props.productionCellList.map((item, index) => (
-        <Card key={index} title={`${item.locationName} - ${item.cellChamberName}`}>
+        <Card key={index} title={`${item.locationName} - ${item.cellChamber}`}>
           <p><strong>Item Name:</strong> {item.productName}</p>
           <Progress percent={item.percent==="Infinity"?0:item.percent} />
           {item.userList.map((itemlist, ind) => {

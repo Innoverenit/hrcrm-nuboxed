@@ -20,6 +20,9 @@ import AddCustomerOpenOppJumpstartModal from "./AddCustomerOpenOppJumpstartModal
 import AddCustomerWonOppJumpstartModal from "./AddCustomerWonOppJumpstartModal";
 import CustrOpenOpportunityJumpstartCardList from "./CustrOpenOpportunityJumpstartCardList";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import CustrContJumpstartCardList from "./CustrContJumpstartCardList";
+import CustrWonOpportunityJumpstartCardList from "./CustrWonOpportunityJumpstartCardList";
+import CustrActivityJumpstartCardList from "./CustrActivityJumpstartCardList";
 class CustomerPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -33,11 +36,12 @@ class CustomerPulseJumpStart extends React.Component{
       "-" +
       today.getDate();
 
-  this.state = {
-    date: date,
-    startDate,
-    endDate
-  };
+      this.state = {
+        date: date,
+        startDate,
+        endDate,
+        activeCard: "quotations", // default card to show
+      };
 }
 componentDidMount() {
   
@@ -55,8 +59,17 @@ componentDidMount() {
   // console.log(`Start Date: ${this.state.startDate.format("ll")}`);
   // console.log(`End Date: ${this.state.endDate.format("ll")}`);
 }
+handleCardClick = (cardName) => {
+  this.setState({ activeCard: cardName });
+}
 
 render() {
+
+   if (this.props.fetchingOppValue) {
+    return <BundleLoader />;
+  }
+
+ 
   const weightedValue = `${this.props.WeightedValue.weightedValue} ${this.props.WeightedValue.tradeCurrency}`;
   const pipeLineValue = `${this.props.pipelineValue.pipeLineValue} ${this.props.pipelineValue.tradeCurrency}`;
   const OpportunityValue = `${this.props.OppValue.pipeLineValue} ${this.props.WeightedValue.tradeCurrency}`
@@ -77,10 +90,11 @@ render() {
     addCustomerContactJumpstartModal,
     handleCustomerWonOpportunityJumpstartModal
   } = this.props;
+  const { activeCard } = this.state;
   return(
     <>
     <div class=" flex flex-row w-full" >
-    <div class="flex w-full" >
+    <div class="flex w-full justify-center" >
         
         <JumpStartBox
             noProgress
@@ -90,6 +104,8 @@ render() {
                 defaultMessage="#Open Quotations"
               />
             }
+
+             jumpstartClick={() => this.handleCardClick("quotations")}
            
             // jumpstartClick={() => {
             //   if (!this.props.fetchingOppValue &&    this.props.OppValue.CustomerOppertunityDetails !== 0) {
@@ -127,7 +143,7 @@ render() {
   bgColor="#34495E"
   value={
     this.props.fetchingPipelineValue ? "Loading..." :
-    this.props.pipelineValue.pipeLineValue === 0 ? "No Data" :
+    this.props.pipelineValue.pipeLineValue === null ? "No Data" :
     pipeLineValue
   }
   isLoading={this.props.fetchingPipelineValue} 
@@ -145,15 +161,16 @@ render() {
     }
     value={
       this.props.fetchingWonCustomerOppValue ? "Loading..." :
-      this.props.WonCustomerOpp.CustomerWonOppertunityDetails === 0 ? "No Data" :
+      this.props.WonCustomerOpp.CustomerWonOppertunityDetails === null ? "No Data" :
       this.props.WonCustomerOpp.CustomerWonOppertunityDetails
     }
     // value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
-    jumpstartClick={() => {
-      if (!this.props.fetchingWonCustomerOppValue && this.props.WonCustomerOpp.CustomerWonOppertunityDetails !== 0) {
-        handleCustomerWonOpportunityJumpstartModal(true);
-      }
-    }}
+    jumpstartClick={() => this.handleCardClick("quotationsWon")}
+    // jumpstartClick={() => {
+    //   if (!this.props.fetchingWonCustomerOppValue && this.props.WonCustomerOpp.CustomerWonOppertunityDetails !== 0) {
+    //     handleCustomerWonOpportunityJumpstartModal(true);
+    //   }
+    // }}
     cursorData={
       this.props.fetchingWonCustomerOppValue || this.props.WonCustomerOpp.CustomerWonOppertunityDetails === 0 ? "not-allowed" : "pointer"
     }
@@ -183,11 +200,12 @@ render() {
 
         // }
         isLoading={this.props.fetchingCustomerActivityCount} 
-        jumpstartClick={() => {
-          if (!this.props.fetchingCustomerActivityCount &&  this.props.customerActivityCount.count !== 0) {
-            handleCustomerActivityJumpstartModal(true);
-          }
-        }}
+        jumpstartClick={() => this.handleCardClick("activity")}
+        // jumpstartClick={() => {
+        //   if (!this.props.fetchingCustomerActivityCount &&  this.props.customerActivityCount.count !== 0) {
+        //     handleCustomerActivityJumpstartModal(true);
+        //   }
+        // }}
         cursorData={
           this.props.fetchingCustomerActivityCount ||  this.props.customerActivityCount.count === 0 ? "not-allowed" : "pointer"
         }
@@ -204,12 +222,18 @@ render() {
                 defaultMessage="#Contacts "
               />
             }
+            jumpstartClick={() => this.handleCardClick("contacts")}
+            // jumpstartClick={() => {
+            //   if (!this.props.fetchingContactValue && this.props.contactValue.CustomerContactDetails !== 0) {
+            //     this.setState({ showContactCard: !this.state.showContactCard }); 
+            //   }
+            // }}
        
-            jumpstartClick={() => {
-              if (!this.props.fetchingContactValue &&   this.props.contactValue.CustomerContactDetails !== 0) {
-                handleCustomerContactJumpstartModal(true);
-              }
-            }}
+            // jumpstartClick={() => {
+            //   if (!this.props.fetchingContactValue &&   this.props.contactValue.CustomerContactDetails !== 0) {
+            //     handleCustomerContactJumpstartModal(true);
+            //   }
+            // }}
             cursorData={
               this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
             }
@@ -249,11 +273,27 @@ render() {
 
 <div class=" flex flex-row w-full mt-4" >
 <Suspense fallback={<BundleLoader />}>
+          {activeCard === "quotations" && <CustrOpenOpportunityJumpstartCardList customer={this.props.customer} />}
+          {activeCard === "contacts" && <CustrContJumpstartCardList customer={this.props.customer} />}
+          {activeCard === "quotationsWon" && <CustrWonOpportunityJumpstartCardList customer={this.props.customer} />}
+          {activeCard === "activity" && <CustrActivityJumpstartCardList customer={this.props.customer} />}
+          
+         
+        </Suspense>
+{/* <Suspense fallback={<BundleLoader />}>
             <CustrOpenOpportunityJumpstartCardList 
           customer={this.props.customer} 
            
             />
-          </Suspense>
+                {this.state.showContactCard && (
+            <Suspense fallback={<BundleLoader />}>
+             <CustrContJumpstartCardList 
+          customer={this.props.customer} 
+           
+            />
+            </Suspense>
+          )}
+          </Suspense> */}
 {/* <div class="flex w-full" >
     
 <JumpStartBox2

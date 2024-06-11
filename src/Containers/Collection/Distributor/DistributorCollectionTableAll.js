@@ -83,7 +83,7 @@ class AllDistributorList extends Component {
            } `;
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-12 items-center p-3 "
+                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                                 // style={{
                                 //     borderBottom: "3px dotted #515050"
                                 // }}

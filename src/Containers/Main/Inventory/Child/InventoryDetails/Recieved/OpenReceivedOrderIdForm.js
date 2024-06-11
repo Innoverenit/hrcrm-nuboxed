@@ -110,7 +110,7 @@ function OpenReceivedOrderIdForm(props) {
       </div>
       {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
       <div className='flex justify-center sticky ticky z-10 '>
-        <div class="rounded-lg m-2 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" md:w-[2rem]"></div>
             <div className=" md:w-[6.74rem]"><FormattedMessage
@@ -176,7 +176,7 @@ function OpenReceivedOrderIdForm(props) {
               {props.phoneListById.map((item, index) => {
                 return (
                   <div>
-                    <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 " >
+                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                       <div class="flex">
                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs text-cardBody font-poppins">
@@ -249,7 +249,7 @@ function OpenReceivedOrderIdForm(props) {
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           <Tooltip title="Task">
-                            <FileDoneOutlined style={{ color: "black", fontSize: "1rem" }} type="file-done"
+                            <FileDoneOutlined   className="!text-xl  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 handleExpand(item.phoneId);
@@ -263,7 +263,8 @@ function OpenReceivedOrderIdForm(props) {
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              style={{ cursor: "pointer", fontSize: "1rem", color: "green" }}
+                              className="!text-xl cursor-pointer text-[green]"
+                           
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleReceivedOrderIdPhoneNoteModal(true);
@@ -312,7 +313,7 @@ function OpenReceivedOrderIdForm(props) {
                         <div class=" text-xs text-cardBody font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <EditOutlined
-                              style={{ color: "orange" }}
+                            className="!text-xl cursor-pointer text-[orange]"
                               onClick={() => {
                                 props.setEditPhoneData(item);
                                 props.handlereceivePhoneModal(true);

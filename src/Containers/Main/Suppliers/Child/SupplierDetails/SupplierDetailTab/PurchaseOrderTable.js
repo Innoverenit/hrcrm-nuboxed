@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import { DatePicker } from "antd";
+import moment from "moment";
+
 import {
     getPurchaseSuppliersList,
     handlePoLocationModal,
     handlePoListModal,
     handleTermsnConditionModal,
-    addCurrencyInPo
+    addCurrencyInPo,
+    updatePOContact,
+    getSupplierContactList
 } from "../../../SuppliersAction"
 import { Button, Select, Tooltip } from 'antd';
 import dayjs from "dayjs";
@@ -24,8 +29,15 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 const { Option } = Select;
 
 function PurchaseOrderTable(props) {
+
+  const [editedFields, setEditedFields] = useState({});
+  const [editContactId, setEditContactId] = useState(null);
+  const [contact, setContact] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+
     useEffect(() => {
         props.getCurrency()
+        props.getSupplierContactList(props.supplier.supplierId);
         props.getPurchaseSuppliersList(props.supplier.supplierId);
     }, []);
     const [rowData, setRowData] = useState({})
@@ -38,13 +50,46 @@ function PurchaseOrderTable(props) {
         setShowIcon(!showIcon)
 
     }
-    const handleChangeCurrency = (val) => {
-        setCurrency(val)
+
+    
+    const handleUpdate = (poSupplierDetailsId) => {
+        const formattedDate = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') + 'T00:00:00Z' : null;
+        const data = {
+            expectDeliveryDate:formattedDate,
+          poContactPersonId:contact,
+          poCurrency: currency
+          
+        };
+    
+        props.updatePOContact(data, poSupplierDetailsId);
+    
+        setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
+        setEditContactId(null);
+      };
+    const handleEditClick = (poSupplierDetailsId, itemContact,expectDeliveryDate,poCurrency) => {
+       
+        setEditContactId(poSupplierDetailsId);
+        setContact(itemContact)
+        setSelectedDate(expectDeliveryDate);
+        setCurrency(poCurrency)
+      };
+
+      const handleCancelClick = (poSupplierDetailsId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [poSupplierDetailsId]: undefined }));
+        setEditContactId(null);
+      };
+    const handleChangeCurrency = (value) => {
+        setCurrency(value)
     }
     const handleCallback = () => {
         setShowIcon(false)
         setCurrency("")
     }
+
+    const handleContactChange = async (value) => {
+        setContact(value);
+       
+      };
 
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
@@ -53,8 +98,8 @@ function PurchaseOrderTable(props) {
     };
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=' flex justify-end sticky z-auto'>
+                <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between w-[90.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             <FormattedMessage
@@ -66,18 +111,27 @@ function PurchaseOrderTable(props) {
                                 id="app.created"
                                 defaultMessage="Created" />
                         </div>
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                            <FormattedMessage
+                                id="app.location"
+                                defaultMessage="Location" />
+                        </div>
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                             Delivery
+                        </div>
+                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                            Contact
+                        </div>
+                       
+                        <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
+                            <FormattedMessage
+                                id="app.currency"
+                                defaultMessage="Currency" />
                         </div>
                         <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                             <FormattedMessage
                                 id="app.value"
                                 defaultMessage="Value" />
-                        </div>
-                        <div className=" w-[14.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                            <FormattedMessage
-                                id="app.currency"
-                                defaultMessage="Currency" />
                         </div>
                         <div className=" md:w-[5.1rem]">
 
@@ -101,9 +155,9 @@ function PurchaseOrderTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3" >
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[12.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
@@ -121,7 +175,7 @@ function PurchaseOrderTable(props) {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[9.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
@@ -130,19 +184,84 @@ function PurchaseOrderTable(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[9.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
+                                                    <div className="flex font-medium flex-col md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+                                         <DatePicker
+                                         style={{marginLeft:"0.5rem"}}
+                                       // defaultValue={moment(item.borrowDate)}
+               value={selectedDate ? moment(selectedDate) : null} 
+               onChange={(date, dateString) => setSelectedDate(dateString)}
+               picker="date" 
+             />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">
+ 
+                        {item.expectDeliveryDate ? moment(item.expectDeliveryDate).format("ll") : ""}
+                        </div>
+                  )}
+                </div>
+              </div>
+
+                                                    <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+               <select
+               className="customize-select"
+               style={{ width: "70%" }}
+               value={contact}
+               onChange={(e) => handleContactChange(e.target.value)}
+             >
+               <option value="" >Select a contact</option>
+               {props.contactSupplier.map((contactItem, contactIndex) => (
+                 <option key={contactIndex} value={contactItem.contactPersonId}>
+                   {contactItem.firstName} {contactItem.lastName}
+                 </option>
+               ))}
+             </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.poContactPersonName}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.poSupplierDetailsId ? (
+               <select
+               className="customize-select"
+               style={{ width: "70%" }}
+               value={currency}
+                                                                
+
+               onChange={(e) => handleChangeCurrency(e.target.value)}
+             >
+               <option value="" >Select Currency</option>
+               {props.currencies.map((currencyItem, currencyIndex) => (
+                 <option key={currencyIndex} value={currencyItem.currency_name}>
+                   {currencyItem.currency_name} 
+                 </option>
+               ))}
+             </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.poCurrency}</div>
+                  )}
+                </div>
+              </div>
+           
                                                     <div className=" flex font-medium  w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
+ 
+                                                    {/* <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins w-20">
                                                             {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
                                                                 <Select
@@ -158,8 +277,9 @@ function PurchaseOrderTable(props) {
                                                                 </Select> :
                                                                 item.poCurrency}
                                                         </div>
-                                                    </div>
-                                                    <div className=" flex font-medium  w-[12.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
+                                                    </div> */}
+        
+                                                    {/* <div className=" flex font-medium  w-[2.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Update Currency">
                                                                 {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
@@ -172,18 +292,44 @@ function PurchaseOrderTable(props) {
                                                                         <Button onClick={handleCurrencyField}>Cancel</Button>
                                                                     </div> :
                                                                    <div class=" font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                                 
                                                                    <BorderColorIcon
-                                                                       className=" !text-base cursor-pointer text-[tomato]"
+                                                                       className=" !text-xl cursor-pointer text-[tomato]"
                                                                         onClick={() => {
                                                                             handleRowData(item);
                                                                             handleCurrencyField()
                                                                         }}
                                                                     />
+                                                                  
                                                                     </div>
                                                                 }
                                                             </Tooltip>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
+                                                    <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                <div className="flex">
+                  {editContactId === item.poSupplierDetailsId ? (
+                    <>
+                      <Button onClick={() => handleUpdate(item.poSupplierDetailsId)}>
+                        Save
+                      </Button>
+                      <Button onClick={() => handleCancelClick(item.poSupplierDetailsId)} style={{ marginLeft: '0.5rem' }}>
+                        Cancel
+                      </Button>
+                    </>
+                  ) : (
+                    <Tooltip title="Update Contact">
+                    <BorderColorIcon
+                      tooltipTitle="Edit"
+                    
+                      onClick={() => handleEditClick(item.poSupplierDetailsId, item.contact,item.expectDeliveryDate,item.poCurrency )}
+                      className="!text-xl cursor-pointer flex items-center justify-center text-[tomato]"
+                    />
+                        </Tooltip>
+                  )}
+                </div>
+               
+              </div>
                                                     <div className=" flex font-medium  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem] text-cardBody font-poppins">
                                                             {item.locationName === null ? <Button
@@ -201,7 +347,7 @@ function PurchaseOrderTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex font-medium  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-normal text-[0.85rem] text-cardBody font-poppins">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-[0.85rem] text-cardBody font-poppins">
                                                             <Tooltip title="Terms and condition">
                                                                 <TerminalSharp
                                                                     onClick={() => {
@@ -246,6 +392,7 @@ function PurchaseOrderTable(props) {
 }
 const mapStateToProps = ({ suppliers, auth }) => ({
     purchaseList: suppliers.purchaseList,
+    contactSupplier: suppliers.contactSupplier,
     userId: auth.userDetails.userId,
     addlocationInPo: suppliers.addlocationInPo,
     addPoListmModal: suppliers.addPoListmModal,
@@ -262,7 +409,9 @@ const mapDispatchToProps = (dispatch) =>
             handlePoListModal,
             handleTermsnConditionModal,
             getCurrency,
-            addCurrencyInPo
+            addCurrencyInPo,
+            updatePOContact,
+            getSupplierContactList
         },
         dispatch
     );

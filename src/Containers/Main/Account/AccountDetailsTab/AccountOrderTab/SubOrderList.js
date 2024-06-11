@@ -36,7 +36,7 @@ function SubOrderList(props) {
     return (
         <>
             <div className='flex justify-end sticky top-0 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[12rem]"><FormattedMessage
                             id="app.order"
@@ -57,12 +57,12 @@ function SubOrderList(props) {
                         <InfiniteScroll
                             dataLength={props.subOrderByOrderId.length}
                             loader={props.fetchingSuborderData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                            height={"30vh"}
+                            height={"50vh"}
                         >
                             {props.subOrderByOrderId.map((item) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl  mt-4 bg-white h-10 items-center p-3 " >
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
                                                 <div className=" flex font-medium  md:w-[12rem] max-sm:w-full  ">
                                                     <Badge

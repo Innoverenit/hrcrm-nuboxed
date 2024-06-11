@@ -20,7 +20,7 @@ const AddInvestorModal = (props) => {
         width={drawerWidth}
         visible={props.addInvestorModal}
         onClose={() => {
-          handleClose();
+          // handleClose();
           props.handleInvestorModal(false)}}
       >
         <Suspense fallback={<BundleLoader />}>

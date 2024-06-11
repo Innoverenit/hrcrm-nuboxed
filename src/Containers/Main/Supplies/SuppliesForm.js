@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
+import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
@@ -49,6 +50,7 @@ class Suppliesform extends Component {
             subCategoryName: "",
             price: 0,
             tax: 0,
+            fifoInd:false,
             userId: this.props.userId,
             currencyName: ""
           }}
@@ -58,6 +60,8 @@ class Suppliesform extends Component {
             this.props.addSupplies(
               {
                 ...values,
+    
+                fifoInd: values.fifoInd ? true : false,
               },
             );
           }}
@@ -232,6 +236,19 @@ class Suppliesform extends Component {
                         }}
                       />
                     </div>
+                  </div>
+                  <div class="flex justify-between mt-2">
+                    <div class="w-[47%]">
+                    <Field
+                              name="fifoInd"
+                              component={SwitchComponent}
+                              data={values.fifoInd}
+                              checkedChildren={"LIFO"}
+                              unCheckedChildren={"FIFO"}
+                              width={"7em"}
+                            />
+                    </div>
+                
                   </div>
                   <div class="flex justify-between mt-4">
                     <div class="w-full">

@@ -149,8 +149,8 @@ class AddressFieldArray extends Component {
                         // label="Pin code"
                         label={
                           <FormattedMessage
-                            id="app.pincode"
-                            defaultMessage="Pin code"
+                            id="app.zipcode"
+                            defaultMessage="Zip code"
                           />
                         }
                         // disabled

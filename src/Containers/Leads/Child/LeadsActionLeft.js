@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -8,14 +8,18 @@ import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
-import { inputLeadsDataSearch, ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
+import { inputLeadsDataSearch, ClearSearchedDataOfLead,ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
-  const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
   const [pageNo, setPage] = useState(0);
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
   const dummy = ["cloud", "azure", "fgfdg"];
   const {
     transcript,
@@ -23,13 +27,13 @@ const LeadsActionLeft = (props) => {
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
-  useEffect(() => {
-    // props.getCustomerRecords();
-    if (transcript) {
-      console.log(">>>>>>>", transcript);
-      setCurrentData(transcript);
-    }
-    }, [ transcript]);
+
+    useEffect(() => {
+      
+      if (props.teamsAccessInd) {
+        props.getLeadsTeamRecords(props.userId);
+      }
+    }, [props.userId, props.teamsAccessInd]);
 
   useEffect(() => {
     if (props.viewType === "card") {
@@ -42,16 +46,29 @@ const LeadsActionLeft = (props) => {
     else if (props.viewType === "all") {
       props.getLeadsAllRecords(props.orgId);
     }
-    
-  }, [props.viewType, props.userId]);
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      props.setCurrentData(transcript);
+    }
+  }, [props.viewType, props.userId,transcript]);
+
+  
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
     if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-      setPage(pageNo + 1);
+      //setPage(pageNo + 1);
       props.getLeads(props.userId, pageNo, "creationdate");
-      props.ClearReducerDataOfLead()
+      //props.ClearReducerDataOfLead()
+      props.ClearSearchedDataOfLead()
       setSearchOnEnter(false);
     }
   };
@@ -64,9 +81,21 @@ const LeadsActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
         color: '#1890ff',
@@ -74,9 +103,36 @@ const LeadsActionLeft = (props) => {
 
     />
   );
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.inputLeadsDataSearch(transcript);
+      setSearchOnEnter(true);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
   const { user } = props;
   console.log(currentData)
+  const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
 
+  
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -110,7 +166,7 @@ const LeadsActionLeft = (props) => {
           >
             <Badge
               size="small"
-              count={(props.teamsAccessInd||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
+              count={(teamCount||props.viewType === "teams" ?props.leadsTeamCountData.leadsTeam : 0)}
               overflowCount={999}
             >
               <span class=" md:mr-1 text-sm cursor-pointer"
@@ -198,7 +254,10 @@ const LeadsActionLeft = (props) => {
 
       <div class="w-[35%] mt-2 ml-2">
         <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
-          <Option value="CreationDate">Creation Date</Option>
+        <Option value="" disabled hidden>
+        Sort by :
+    </Option>
+          <Option value="CreationDate"> Creation Date</Option>
           <Option value="ascending">A To Z</Option>
           <Option value="descending">Z To A</Option>
         </StyledSelect>
@@ -224,6 +283,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   ClearReducerDataOfLead,
   getLeads,
   getJunkedLeadsRecords,
+  ClearSearchedDataOfLead,
   getLeadsTeamRecords,
   getLeadsAllRecords
 }, dispatch);

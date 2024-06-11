@@ -10,9 +10,13 @@ import { InputComponent } from "../../../../../../Components/Forms/Formik/InputC
 
 function OrderStep2(props) {
     const [bulkQr, setBulkQr] = useState(false)
+    const [nonRepaied, setNonRepaired] = useState(false)
 
     function handleBulkQr(checked) {
         setBulkQr(checked)
+    }
+    function handleRepaired(checked) {
+        setNonRepaired(checked)
     }
 
     return (
@@ -24,6 +28,7 @@ function OrderStep2(props) {
                     userId: props.userId,
                     totalPhoneCount: "",
                     bulkQrInd: bulkQr,
+                    sendBackNonRepairInd:nonRepaied,
 
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -93,6 +98,16 @@ function OrderStep2(props) {
                                                 unCheckedChildren="No" />
                                         </div>
                                     </div>
+                                    <div class=" flex justify-between">
+                                    <div class="w-[70%] mt-2">
+                                            <label>Send back non repaired units </label>
+                                            <Switch
+                                                onChange={handleRepaired}
+                                                checked={nonRepaied}
+                                                checkedChildren="Yes"
+                                                unCheckedChildren="No" />
+                                        </div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="justify-end flex mt-3">

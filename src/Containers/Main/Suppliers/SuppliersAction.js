@@ -668,7 +668,7 @@ export const inputDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/supplier/supplierName/${name}`,{
+    .get(`${base_url2}/supplier/supplierName/${name}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -747,6 +747,13 @@ export const setClearbitPurchaseSupplierData = (data) => (dispatch) => {
 export const handleSupplierDocumentUploadModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_SUPPLIER_DOCUMENT_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleSupplierExcleUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_EXCLE_UPLOAD_MODAL,
     payload: modalProps,
   });
 };
@@ -1890,3 +1897,179 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
     });
 };
 
+export const addManual = (customer,userId) => (dispatch, getState) => {
+
+  dispatch({
+    type: types.ADD_MANUAL_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/supplier/inventory/supplier`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getInventorylist(userId,"0"))
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_MANUAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MANUAL_FAILURE,
+        payload: err,
+      });
+      //cb && cb();
+    });
+};
+
+
+export const getInventorylist = (userId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVENTORYLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/inventory/supplier/user/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVENTORYLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVENTORYLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getInventoryAlllist = (orgId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVENTORYALLLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/inventory/supplier/all/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVENTORYALLLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVENTORYALLLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCategorylist = () => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORYLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/allProductCatagory`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORYLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CATEGORYLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_PO_CONTACT_REQUEST });
+  axios
+    .put(`${base_url2}/po/updateContactPerson/${poSupplierDetailsId}`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+    
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated Successfully!',
+      })
+      dispatch({
+        type: types.UPDATE_PO_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+   
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PO_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const inputInventorySearch = (treadId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_INVENTORY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/inventory/supplier/search/tread/${treadId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_INVENTORY_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_INVENTORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerDataOfInventory = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_DATA_INVENTORY,
+  });
+};

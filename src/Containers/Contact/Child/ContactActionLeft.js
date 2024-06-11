@@ -117,7 +117,7 @@ const ContactActionLeft = (props) => {
       label: `${item.departmentName || ""}`,
       value: item.departmentId,
     };});
-
+    const teamCount = props.teamsAccessInd && props.contactTeamRecord ? props.contactTeamRecord.contactTeam : 0;
   return (
     <div class=" flex  items-center">
       <Tooltip
@@ -151,7 +151,7 @@ const ContactActionLeft = (props) => {
         <Badge
           size="small"
           count={
-            (props.teamsAccessInd||props.viewType === "teams" &&
+            (teamCount ||props.viewType === "teams" &&
               props.contactTeamRecord.contactTeam ||
             null)
           }

@@ -28,6 +28,9 @@ const initialState = {
   fetchingProcureRecordsError: false,
   procureRecordData: {},
 
+  updateSuscription: false,
+  updateSuscriptionError: false,
+
   addingDistributor: false,
   addingDistributorError: false,
 
@@ -81,6 +84,10 @@ const initialState = {
   fetchingNotesListByDistributorIdError: false,
   notesListByDistributorId: [],
 
+  fetchingQuotationRepairOrder: false,
+  fetchingQuotationRepairOrderError: true,
+  quotationRepairOrder:[],
+
   fetchingBrand: false,
    fetchingBrandError: false,
    brand:[],
@@ -129,6 +136,7 @@ const initialState = {
 
   fetchingInputDistributorData: false,
   fetchingInputDistributorDataError: false,
+  serachedData: [],
 
   fetchingOrderDetailsById: false,
   fetchingOrderDetailsByIdError: false,
@@ -190,6 +198,10 @@ const initialState = {
   fetchingLobListError: false,
   lobList: [],
 
+  fetchingHighCompleteOrders: false,
+  fetchingHighCompleteOrdersError: false,
+  highCompleteOrder:[],
+
   addingOrderProcurement: false,
   addingOrderProcurementError: false,
 
@@ -216,6 +228,9 @@ const initialState = {
   fetchingPaymentHistoryError: false,
   paymentHistory: [],
 
+  addingQuotationCar: false,
+  addingQuotationCarError: false,
+
   movingToProductionArchieve: false,
   movingToProductionArchieveError: false,
 
@@ -238,6 +253,10 @@ const initialState = {
   updatingDistributorCall: false,
   updatingDistributorCallError: false,
 
+  fetchingMediumCompleteOrders: false,
+  fetchingMediumCompleteOrdersError: false,
+  mediumCompleteOrder:[],
+
   updateProcureDetailModal: false,
 
   updatingDistributorEvent: false,
@@ -249,6 +268,13 @@ const initialState = {
   fetchingDeletedDistributors: false,
   fetchingDeletedDistributorsError: false,
   deletedDistributors: [],
+
+  convertingQuotationToOrder: false,
+  convertingQuotationToOrderError: false,
+
+  fetchingLowCompleteOrders: false,
+  fetchingLowCompleteOrdersError: false,
+  lowCompleteOrder:[],
 
   fetchingDistributorOfMedium: false,
   fetchingDistributorOfMediumError: false,
@@ -317,6 +343,9 @@ const initialState = {
   fetchingDocumentsByDistributorIdError: false,
   documentsByDistributorId: [],
 
+  addingQuotationPhoneDetails: false,
+  addingQuotationPhoneDetailsError:false,
+
   fetchingDocumentsByTable: false,
   fetchingDocumentsByTableError: false,
   documentTable: [],
@@ -351,7 +380,9 @@ const initialState = {
   addingContactDistributor: false,
   addingContactDistributorError: false,
 
-
+  fetchingQuotationExcelDetails: false,
+   fetchingQuotationExcelDetailsError: false ,
+   quotationPhoneDetails:[],
 
   fetchingLocationList: false,
   fetchingLocationListError: false,
@@ -366,6 +397,10 @@ const initialState = {
 
   updateDisributorContactById: false,
   updateDisributorContactByIdError: false,
+
+  fetchingQuotationProcureOrder: false,
+  fetchingQuotationProcureOrderError: false,
+  quotationProcureOrder:[],
 
   setEditingPayment: {},
 
@@ -391,6 +426,9 @@ const initialState = {
   fetchingPulseList: false,
   fetchingPulseListError: false,
   pulseList: [],
+
+  addingQuotationOrder: false,
+  addingQuotationOrderError: false,
 
   fetchingBillingAddressById: false,
   fetchingBillingAddressByIdError: false,
@@ -1033,8 +1071,11 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingInputDistributorData: false,
-        distributorsByUserId: state.viewType === "all" ? null : action.payload,
-        allDistributors: state.viewType === "all" ? action.payload : null,
+        customerListByUser: action.payload,
+        allDistributors:action.payload,
+        deletedDistributors:action.payload,
+        // distributorsByUserId: state.viewType === "all" ? null : action.payload,
+        // allDistributors: state.viewType === "all" ? action.payload : null,
         // serachedData: action.payload,
       };
     case types.INPUT_SEARCH_DATA_FAILURE:
@@ -1113,6 +1154,29 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         updateDisributorOrderById: false,
         updateDisributorOrderByIdError: true,
+      };
+
+
+      case types.UPDATE_SUSCRIPTION_REQUEST:
+      return { ...state, updateSuscription: true };
+    case types.UPDATE_SUSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        updateSuscription: false,
+        //updateOrderDetailModal: false,
+        // orderForGenerating: state.orderForGenerating.map((item) => {
+        //   if (item.productId == action.payload.productId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.UPDATE_SUSCRIPTION_FAILURE:
+      return {
+        ...state,
+        updateSuscription: false,
+        updateSuscriptionError: true,
       };
 
     case types.FETCHING_DISTRIBUTOR_ORDER_HISTORY_REQUEST:
@@ -1556,6 +1620,27 @@ export const distributorReducer = (state = initialState, action) => {
         addingOrderError: true,
         // addCustomerModal: false 
       };
+
+
+      case types.ADD_QUOTATION_ORDER_REQUEST:
+        return { ...state, addingQuotationOrder: true };
+      case types.ADD_QUOTATION_ORDER_SUCCESS:
+        return {
+          ...state,
+          addingQuotationOrder: false,   
+          quotationRepairOrder: action.payload.orderType === 'Repair' ? [action.payload, ...state.quotationRepairOrder] : state.quotationRepairOrder,
+          quotationProcureOrder: action.payload.orderType === 'Procure' ? [action.payload, ...state.quotationProcureOrder] : state.quotationProcureOrder,  
+          // quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
+          // quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
+          orderDetailsId: action.payload
+        };
+      case types.ADD_QUOTATION_ORDER_FAILURE:
+        return {
+          ...state,
+          addingQuotationOrder: false,
+          addingQuotationOrderError: true,
+          // addCustomerModal: false 
+        };
     /**
      * get list of documents of a DISTRIBUTOR
      */
@@ -2564,9 +2649,62 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingCompleteOrders: false,
         fetchingCompleteOrdersError: true,
-
-
       };
+
+
+      case types.GET_HIGH_COMPLETE_ORDERS_REQUEST:
+        return { ...state, fetchingHighCompleteOrders: true };
+      case types.GET_HIGH_COMPLETE_ORDERS_SUCCESS:
+        return {
+          ...state,
+          fetchingHighCompleteOrders: false,
+          highCompleteOrder: [
+            ...state.highCompleteOrder,
+            ...action.payload]
+        };
+      case types.GET_HIGH_COMPLETE_ORDERS_FAILURE:
+        return {
+          ...state,
+          fetchingHighCompleteOrders: false,
+          fetchingHighCompleteOrdersError: true,
+        };
+
+
+        case types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST:
+          return { ...state, fetchingMediumCompleteOrders: true };
+        case types.GET_MEDIUM_COMPLETE_ORDERS_SUCCESS:
+          return {
+            ...state,
+            fetchingMediumCompleteOrders: false,
+            mediumCompleteOrder: [
+              ...state.mediumCompleteOrder,
+              ...action.payload]
+          };
+        case types.GET_MEDIUM_COMPLETE_ORDERS_FAILURE:
+          return {
+            ...state,
+            fetchingMediumCompleteOrders: false,
+            fetchingMediumCompleteOrdersError: true,
+          };
+
+
+          case types.GET_LOW_COMPLETE_ORDERS_REQUEST:
+            return { ...state, fetchingLowCompleteOrders: true };
+          case types.GET_LOW_COMPLETE_ORDERS_SUCCESS:
+            return {
+              ...state,
+              fetchingLowCompleteOrders: false,
+              lowCompleteOrder: [
+                ...state.lowCompleteOrder,
+                ...action.payload]
+            };
+          case types.GET_LOW_COMPLETE_ORDERS_FAILURE:
+            return {
+              ...state,
+              fetchingLowCompleteOrders: false,
+              fetchingLowCompleteOrdersError: true,
+            };
+
     case types.SEARCH_ITEM_IN_LOCATION_REQUEST:
       return { ...state, searchingItemInLocation: true };
     case types.SEARCH_ITEM_IN_LOCATION_SUCCESS:
@@ -2911,6 +3049,17 @@ export const distributorReducer = (state = initialState, action) => {
             return { ...state, fetchingProcureDetails: false, procureDetails: action.payload };
         case types.GET_PROCURE_DETAILS_FAILURE:
             return { ...state, fetchingProcureDetails: false, fetchingProcureDetailsError: true };
+
+
+
+            
+          case types.GET_QUOTATION_EXCEL_DETAILS_REQUEST:
+            return { ...state, fetchingQuotationExcelDetails: true };
+        case types.GET_QUOTATION_EXCEL_DETAILS_SUCCESS:
+            return { ...state, fetchingQuotationExcelDetails: false, quotationPhoneDetails: action.payload };
+        case types.GET_QUOTATION_EXCEL_DETAILS_FAILURE:
+            return { ...state, fetchingQuotationExcelDetails: false, fetchingQuotationExcelDetailsError: true };
+    
     
   
             case types.DELETE_PROCURE_DATA_REQUEST:
@@ -2952,6 +3101,106 @@ export const distributorReducer = (state = initialState, action) => {
                 case types.HANDLE_PROCURE_DETAILS_MODAL:
                   return { ...state, addProcureDetailsModal: action.payload, phoneListById: [] };
             
+                  case types.GET_QUOTATION_REPAIR_ORDER_REQUEST:
+                    return { ...state, fetchingQuotationRepairOrder: true };
+                  case types.GET_QUOTATION_REPAIR_ORDER_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingQuotationRepairOrder: false,
+                      quotationRepairOrder: [...state.quotationRepairOrder, ...action.payload]
+                    };
+                  case types.GET_QUOTATION_REPAIR_ORDER_FAILURE:
+                    return {
+                      ...state,
+                      fetchingQuotationRepairOrder: false,
+                      fetchingQuotationRepairOrderError: true,
+                    };
+
+
+                    case types.GET_QUOTATION_PROCURE_ORDER_REQUEST:
+                      return { ...state, fetchingQuotationProcureOrder: true };
+                    case types.GET_QUOTATION_PROCURE_ORDER_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingQuotationProcureOrder: false,
+                        quotationProcureOrder: [...state.quotationProcureOrder, ...action.payload]
+                      };
+                    case types.GET_QUOTATION_PROCURE_ORDER_FAILURE:
+                      return {
+                        ...state,
+                        fetchingQuotationProcureOrder: false,
+                        fetchingQuotationProcureOrderError: true,
+                      };
+
+
+                      case types.ADD_QUOTATION_CAR_REQUEST:
+                        return { ...state, addingQuotationCar: true };
+                      case types.ADD_QUOTATION_CAR_SUCCESS:
+                        return {
+                          ...state,
+                          addingQuotationCar: false,
+                          addAccountOpportunityModal: false,
+                          // addLinkDistributorOrderConfigureModal: false,
+                          quotationRepairOrder: state.quotationRepairOrder.map((item) => {
+                            if (item.quotationId == action.payload.quotationId) {
+                              return action.payload;
+                            } else {
+                              return item;
+                            }
+                          }),
+                        };
+                      case types.ADD_QUOTATION_CAR_FAILURE:
+                        return {
+                          ...state, addingQuotationCar: false,
+                          // addCustomerModal: false 
+                        };
+
+                        case types.ADD_QUOTATION_PHONE_DETAILS_REQUEST:
+                          return { ...state, addingQuotationPhoneDetails: true };
+                        case types.ADD_QUOTATION_PHONE_DETAILS_SUCCESS:
+                          return {
+                            ...state,
+                            addingQuotationPhoneDetails: false,
+                       
+                          };
+                        case types.ADD_QUOTATION_PHONE_DETAILS_FAILURE:
+                          return {
+                            ...state, addingQuotationPhoneDetails: false,
+                            addingQuotationPhoneDetailsError:true,
+                            // addCustomerModal: false 
+                          };
+
+
+                          case types.QUOTATION_TO_ORDER_CONVERT_REQUEST:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: true,
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_SUCCESS:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              quotationRepairOrder: state.quotationRepairOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                              quotationProcureOrder: state.quotationProcureOrder.filter(
+                                (item) => item.quotationId !== action.payload
+                              ),
+                            };
+                          case types.QUOTATION_TO_ORDER_CONVERT_FAILURE:
+                            return {
+                              ...state,
+                              convertingQuotationToOrder: false,
+                              convertingQuotationToOrderError: true,
+                            };
+
+                          case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
+                            return { ...state, 
+                              customerListByUser: [], 
+                              // deletedTruck: [] 
+                            };
+
+
 
     default:
       return state;

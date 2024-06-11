@@ -48,12 +48,13 @@ const MaterialCellCardView = (props) => {
                 <Card key={index} title={`${item.cellChamber}`}>
                     {item.suppliesData.map((itemlist, ind) => {
                         return (
-                            <div key={ind} class=" flex justify-between">
-                                <div><strong>{itemlist.suppliesFullName}</strong> </div>
+                            <div key={ind} >
+                                <div>{itemlist.suppliesFullName}</div>
                                 
                                   
-                                   
-                                    <Progress percent={itemlist.unitUsed} />
+                                   <div>
+                                    <Progress percent={itemlist.balanced} />
+                                    </div>
                                     
                                     {/* <Progress percent={itemlist.unitUsed} /> */}
                             </div>
