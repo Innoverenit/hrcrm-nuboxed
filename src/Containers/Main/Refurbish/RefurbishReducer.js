@@ -12,6 +12,18 @@ const initialState = {
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
 
+  fetchingProductionUrgent: false,
+  fetchingProductionUrgentError: false,
+  productionUrgent:[],
+
+  fetchingProductionHigh: false,
+  fetchingProductionHighError: false,
+  productionHigh:[],
+
+  fetchingProductionNormal: false,
+  fetchingProductionNormalError: false,
+  productionNormal:[],
+
   showAssignRepairModal: false,
 
   fetchingRemainingPhoneList: false,
@@ -65,6 +77,11 @@ const initialState = {
   fetchingTaskByPhoneId: false,
   fetchingTaskByPhoneIdError: false,
   taskByPhone: [],
+
+  fetchingAllInputSearchData:false,
+  fetchingAllInputSearchDataError:false,
+  searchRefurbish:[],
+
 
   fetchingProductBuilderById: false,
   fetchingProductBuilderByIdError: false,
@@ -584,6 +601,51 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         fetchingProductionOrederId: false,
         fetchingProductionOrederIdError: true,
+      };
+
+      case types.GET_PRODUCTION_URGENT_REQUEST:
+      return { ...state, fetchingProductionUrgent: true };
+    case types.GET_PRODUCTION_URGENT_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionUrgent: false,
+        productionUrgent: action.payload,
+      };
+    case types.GET_PRODUCTION_URGENT_FAILURE:
+      return {
+        ...state,
+        fetchingProductionUrgent: false,
+        fetchingProductionUrgentError: true,
+      };
+
+      case types.GET_PRODUCTION_HIGH_REQUEST:
+      return { ...state, fetchingProductionHigh: true };
+    case types.GET_PRODUCTION_HIGH_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionHigh: false,
+        productionHigh: action.payload,
+      };
+    case types.GET_PRODUCTION_HIGH_FAILURE:
+      return {
+        ...state,
+        fetchingProductionHigh: false,
+        fetchingProductionHighError: true,
+      };
+
+      case types.GET_PRODUCTION_NORMAL_REQUEST:
+      return { ...state, fetchingProductionNormal: true };
+    case types.GET_PRODUCTION_NORMAL_SUCCESS:
+      return {
+        ...state,
+        fetchingProductionNormal: false,
+        productionNormal: action.payload,
+      };
+    case types.GET_PRODUCTION_NORMAL_FAILURE:
+      return {
+        ...state,
+        fetchingProductionNormal: false,
+        fetchingProductionNormalError: true,
       };
 
     case types.GET_NO_OF_REPAIR_TECHNICIAN_BY_ID_REQUEST:
@@ -1696,14 +1758,14 @@ export const refurbishReducer = (state = initialState, action) => {
         return {
           ...state,
           fetchingAllInputSearchData: false,
-          productionOrder: action.payload,
+          searchRefurbish: action.payload,
         };
       case types.INPUT_ALL_SEARCH_DATA_FAILURE:
         return { ...state, fetchingAllInputSearchDataError: true };
 
         case types.HANDLE_CLAER_SEARCHED_DATA_ALL:
           return { ...state, 
-            productionOrder: [], 
+            searchRefurbish: [], 
           };
 
     default:
