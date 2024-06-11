@@ -137,7 +137,7 @@ function ProductionRepairOrder(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                 <div class=" w-64 max-sm:w-24">
         <Input
           placeholder="Search by OrderNo "
@@ -150,10 +150,7 @@ function ProductionRepairOrder(props) {
       </div>
                     <div className=" flex max-sm:hidden w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[10.5rem]"></div>
-                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.order#"
-                            defaultMessage="Order #"
-                        /></div>
+                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
                         <div className=" w-[27.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
@@ -183,7 +180,7 @@ function ProductionRepairOrder(props) {
                                     <div>
                                         <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col "   >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[6.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex font-medium w-[7.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                 {item.priority === "High" && (
                       <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                     )}

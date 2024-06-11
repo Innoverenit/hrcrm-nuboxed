@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Select } from "antd";
+import { Button,Select,Switch } from "antd";
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -128,7 +128,7 @@ function InvesterForm(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [touched, setTouched] = useState(false);
     const [selectedSource, setSelectedSource] = useState(null);
-
+    const [contract, setContract] = useState(false);
     const [sector, setSector] = useState([]);
     const [selectedSector, setSelectedSector] = useState(null);
     const [isLoadingSector, setIsLoadingSector] = useState(false);
@@ -167,7 +167,9 @@ function InvesterForm(props) {
       }
     };
 
-
+    const handleContract = (checked) => {
+      setContract(checked);
+    };
     
     const fetchSector = async () => {
       setIsLoadingSector(true);
@@ -223,6 +225,7 @@ function InvesterForm(props) {
             category: checked ? "Both" : whiteblue ? "White" : "Blue",
             userId: props.userId,
             notes: "",
+            pvtAndIntunlInd: contract ? "true" : "false",
             businessRegistration: "",
             assignedTo: selectedOption ? selectedOption.employeeId:userId,
             department: "",
@@ -247,6 +250,7 @@ function InvesterForm(props) {
                 ...values,
                 category: checked ? "Both" : whiteblue ? "White" : "Blue",
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
+                pvtAndIntunlInd: contract ? "true" : "false",
               },
               props.userId,
               () => handleReset(resetForm)
@@ -390,7 +394,7 @@ function InvesterForm(props) {
 
 <Select
         showSearch
-        style={{ width: 200 }}
+      
         placeholder="Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -423,7 +427,7 @@ function InvesterForm(props) {
 
 <Select
         showSearch
-        style={{ width: 200 }}
+       
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -461,6 +465,16 @@ function InvesterForm(props) {
                              
                           />
                     </div>
+                    <div class=" flex flex-col items-center  mt-4">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <Switch
+                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                      onChange={handleContract}
+                      checked={contract}
+                      checkedChildren="Institutional"
+                      unCheckedChildren="Private"
+                    />
+                  </div>
                     </div> 
                  
                   <div class="mt-3">

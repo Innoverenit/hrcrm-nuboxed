@@ -404,6 +404,89 @@ export const getProductionOrderId = (userId,pageNo) => (dispatch) => {
       });
     });
 };
+
+export const getProductionUrgent = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_URGENT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/highPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_URGENT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_URGENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionHigh = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_HIGH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/mediumPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_HIGH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_HIGH_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getProductionNormal = (userId,pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTION_NORMAL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderProductionLocationLink/get-all/lowPriority/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTION_NORMAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCTION_NORMAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
 export const handleProductionNotesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCTION_NOTES_MODAL,

@@ -8,6 +8,9 @@ import { Tooltip, Button, Badge,Input } from "antd";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {
     getProductionOrderId,
+    getProductionUrgent,
+    getProductionHigh,
+    getProductionNormal,
     handleProductionNotesModal,
     handleAssignOrderById,
     handleAssignRepairModal,
@@ -34,6 +37,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BorderColorOutlined, PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadInRefurbish from "./AddLeadInRefurbish";
 import RefurbishRejectModal from "./RefurbishRejectModal";
+import SearchedDataRefurbish from "./SearchedDataRefurbish";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -55,6 +59,9 @@ const ProductionOrderList = (props) => {
     useEffect(() => {
         setPageNo(pageNo + 1);
         props.getProductionOrderId(props.userId,pageNo)
+        props.getProductionUrgent(props.userId,pageNo,"High")
+        props.getProductionHigh(props.userId,pageNo,"Medium")
+        props.getProductionNormal(props.userId,pageNo,"Low")
     }, [])
     const [hasMore, setHasMore] = useState(true);
     // const handleLoadMore = () => {
@@ -149,17 +156,57 @@ const ProductionOrderList = (props) => {
 
 
     const handleLoadMore = () => {
-        const callPageMapd = props.productionOrder && props.productionOrder.length &&props.productionOrder[0].pageCount
+        const callPageMapd = props.productionUrgent && props.productionUrgent.length &&props.productionUrgent[0].pageCount
         setTimeout(() => {
           const {
-            getProductionOrderId,
+            getProductionUrgent,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.productionUrgent)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getProductionUrgent(props.userId,pageNo,"High"); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
+
+      const handleLoadMore1 = () => {
+        const callPageMapd = props.productionHigh && props.productionHigh.length &&props.productionHigh[0].pageCount
+        setTimeout(() => {
+          const {
+            getProductionHigh,
            // userDetails: { employeeId },
           } = props;
           if  (props.productionOrder)
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getProductionOrderId(props.userId,pageNo); 
+                getProductionHigh(props.userId,pageNo,"Medium"); 
+          }
+          if (pageNo === callPageMapd){
+            setHasMore(false)
+          }
+        }
+        }, 100);
+      };
+
+      const handleLoadMore2 = () => {
+        const callPageMapd = props.productionNormal && props.productionNormal.length &&props.productionNormal[0].pageCount
+        setTimeout(() => {
+          const {
+            getProductionNormal,
+           // userDetails: { employeeId },
+          } = props;
+          if  (props.productionNormal)
+          {
+            if (pageNo < callPageMapd) {
+                setPageNo(pageNo + 1);
+                getProductionNormal(props.userId,pageNo,"Low"); 
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -176,6 +223,12 @@ const ProductionOrderList = (props) => {
 
 
     return (
+        <div>
+             {props.searchRefurbish.length > 0 ? (
+    <SearchedDataRefurbish
+    searchRefurbish={props.searchRefurbish}
+    />
+  ) : (
         <>
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
@@ -228,15 +281,15 @@ const ProductionOrderList = (props) => {
                         <div className="w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll
-                        dataLength={props.productionOrder.length}
+                        dataLength={props.productionUrgent.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingProductionUrgent ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden" }}
                         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
-                        {data.map((item) => {
+                        {props.productionUrgent.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
@@ -280,17 +333,7 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                            {/* <div className=" flex font-medium w-[6.5rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
-                                                {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
-                    )}
-                    {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
-                    )}
-                    {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
-                    )}
-                    </div> */}
+                                           
                                             <div className=" flex font-medium   w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
@@ -473,16 +516,6 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                {/* <div class=" w-64 max-sm:w-24">
-        <Input
-          placeholder="Search by OrderNo "
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChange}
-        value={currentData}
-        />
-      </div> */}
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[orange]">High </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -522,15 +555,15 @@ const ProductionOrderList = (props) => {
                         <div className="w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll
-                        dataLength={props.productionOrder.length}
-                        next={handleLoadMore}
+                        dataLength={props.productionHigh.length}
+                        next={handleLoadMore1}
                         hasMore={hasMore}
-                        loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingProductionHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden" }}
                         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
-                        {data.map((item) => {
+                        {props.productionHigh.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
@@ -574,17 +607,7 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                            {/* <div className=" flex font-medium w-[6.5rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
-                                                {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
-                    )}
-                    {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
-                    )}
-                    {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
-                    )}
-                    </div> */}
+                                           
                                             <div className=" flex font-medium   w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
@@ -767,16 +790,6 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-                {/* <div class=" w-64 max-sm:w-24">
-        <Input
-          placeholder="Search by OrderNo "
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChange}
-        value={currentData}
-        />
-      </div> */}
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]">Normal </div>
                         <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
@@ -816,15 +829,15 @@ const ProductionOrderList = (props) => {
                         <div className="w-[7.2rem]"></div>
                     </div>
                     <InfiniteScroll
-                        dataLength={props.productionOrder.length}
-                        next={handleLoadMore}
+                        dataLength={props.productionNormal.length}
+                        next={handleLoadMore2}
                         hasMore={hasMore}
-                        loader={props.fetchingProductionOrederId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingProductionNormal ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"22vh"}
                         style={{ overflowX: "hidden" }}
                         endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
-                        {data.map((item) => {
+                        {props.productionNormal.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
@@ -868,17 +881,7 @@ const ProductionOrderList = (props) => {
                                                     </span>
                                                 ) : null}
                                             </div>
-                                            {/* <div className=" flex font-medium w-[6.5rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
-                                                {item.priority === "High" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[3.1875em] bg-[red]"></div>
-                    )}
-                    {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-[2rem] w-[3rem] bg-[orange]" ></div>
-                    )}
-                    {item.priority === "Low" && (
-                      <div class="rounded-[50%] h-[2.1875em] w-[2.1875em] bg-[teal]" ></div>
-                    )}
-                    </div> */}
+                                           
                                             <div className=" flex font-medium   w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
@@ -1097,6 +1100,8 @@ const ProductionOrderList = (props) => {
                 </Suspense>
             
         </>
+        )}
+        </div>
     )
 
 }
@@ -1115,7 +1120,15 @@ const mapStateToProps = ({ refurbish, auth }) => ({
     approveSpareModal: refurbish.approveSpareModal,
     productBuilderList: refurbish.productBuilderList,
     showRefurbishLead: refurbish.showRefurbishLead,
-    refurbhsReject: refurbish.refurbhsReject
+    refurbhsReject: refurbish.refurbhsReject,
+    productionUrgent: refurbish.productionUrgent,
+    productionHigh: refurbish.productionHigh,
+    productionNormal: refurbish.productionNormal,
+    fetchingProductionUrgent: refurbish.fetchingProductionUrgent,
+    fetchingProductionHigh: refurbish.fetchingProductionHigh,
+    fetchingProductionNormal: refurbish.fetchingProductionNormal,
+    searchRefurbish: refurbish.searchRefurbish
+    
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1134,7 +1147,10 @@ const mapDispatchToProps = (dispatch) =>
             handleRefurbishLead,
             refurbishRejectPhone,
             inputAllDataSearch,
-            ClearSearchedDataOfAll
+            ClearSearchedDataOfAll,
+            getProductionUrgent,
+            getProductionHigh,
+            getProductionNormal,
         },
         dispatch
     );
