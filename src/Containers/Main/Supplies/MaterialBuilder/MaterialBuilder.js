@@ -1,9 +1,10 @@
 import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductbuilder } from "../../../Product/ProductAction";
+import { getProductHsn } from "../../../Product/ProductAction";
 import {  Select } from "../../../../Components/UI/Elements";
 import {getSearchedMaterialBuilder} from "../SuppliesAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const MaterialbuilderCard =lazy(()=>import("./MaterialbuilderCard"));
 const MaterialBuilderSearchedCard =lazy(()=>import("./MaterialBuilderSearchedCard"));
@@ -13,11 +14,11 @@ const { Option } = Select;
 function MaterialBuilder (props) {
 
   useEffect(()=> {
-    props.getProductbuilder();
+    props.getProductHsn();
     
   },[]);
 
-  const prosb=props.productBuilder
+  const prosb=props.productHsn
 
   const [selectedValue, setSelectedValue] = useState('');
 
@@ -28,6 +29,9 @@ function MaterialBuilder (props) {
       props.getSearchedMaterialBuilder(ev);
       setshowCard(true)
   };
+  if(props.fetchingProductHsn){
+    return <BundleLoader/>
+  }
 
   return (
     <>
@@ -64,8 +68,8 @@ function MaterialBuilder (props) {
 }
 
 const mapStateToProps = ({product, supplies}) => ({
-    productBuilder: product.productBuilder,
-    fetchingProductBuilder: product.fetchingProductBuilder,
+  productHsn: product.productHsn,
+  fetchingProductHsn: product.fetchingProductHsn,
     addingProductBuilder:product.addingProductBuilder,
     addedProBuilder:product.addedProBuilder,
     searchedMaterialBuilders: supplies.searchedMaterialBuilders,
@@ -74,7 +78,7 @@ const mapStateToProps = ({product, supplies}) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getProductbuilder,
+          getProductHsn,
             getSearchedMaterialBuilder,
         },
         dispatch

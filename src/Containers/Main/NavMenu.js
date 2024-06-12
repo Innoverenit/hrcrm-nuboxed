@@ -35,6 +35,10 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import ShopTwoIcon from '@mui/icons-material/ShopTwo';
+import PeopleIcon from '@mui/icons-material/People';
 
 const SubMenu = Menu.SubMenu;
 
@@ -868,10 +872,25 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         </Menu.Item>
         )} 
 
+<Menu.Item key="/quality" style={{ height: "1.45rem", 
+        color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
+          <Link to="/quality" onClick={() => handleSelect('/quality')}>
+            <VerifiedUserIcon
+              style={{ fontSize: "large" }}
+            />
+            <span class="text-white text-ls ml-1"><FormattedMessage
+              id="app.quality"
+              defaultMessage="Quality"
+            />
+            </span>
+          </Link>
+        </Menu.Item>
+        
+
 <Menu.Item key="/procre" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>
-    <CategoryIcon
+    <LocalMallIcon
       style={{ fontSize: "large" }}
     />
     <span class="text-white text-ls ml-1">
@@ -917,6 +936,17 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 </Menu.Item>
  )} 
 
+<Menu.Item key="/trade" style={{ height: "1.45rem", 
+ color: selectedMenuItem === '/trade' ? 'tomato' : '#4bc076'}}>
+  <Link to="/trade" onClick={() => handleSelect('/trade')}>
+    <ShopTwoIcon
+      style={{ fontSize: "large" }}
+    />
+    <span class="text-white text-ls ml-1">
+      Trade
+    </span>
+  </Link>
+</Menu.Item>
 {/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
 
 <Menu.Item key="/vendor" style={{ height: "1.45rem", 
@@ -1149,7 +1179,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                <Menu.Item key="/teams" style={{height:"1.45rem",
                 color: selectedMenuItem === '/teams' ? 'tomato' : '#4bc076'}}>
                 <Link to="/teams" onClick={() => handleSelect('/teams')}>
-                 <GroupsIcon
+                 <PeopleIcon
                 style={{ fontSize: "large" }}
                   />
                   <span class="text-white text-ls ml-1"><FormattedMessage 

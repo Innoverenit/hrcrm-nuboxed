@@ -27,8 +27,8 @@ const NotesForm = (props) => {
 
       
 
-      <div className="border-spacing-2 rounded-md shadow-2xl mb-1 mt-9">
-        <div style={{ height: "41vh", overflow: "auto", padding: "1rem" }}>
+      <div className="border-spacing-2 rounded-md shadow-2xl ">
+      <div class="h-[52vh] overflow-auto p-2">
           {fetchingNotesListByLeadsId ? (
             <BundleLoader />
           ) : (

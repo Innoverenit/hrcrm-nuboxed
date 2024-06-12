@@ -16,9 +16,10 @@ import {
 } from "../../../ShipperAction";
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
-import moment from "moment";
-import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
+import moment from "moment"
 import { FormattedMessage } from "react-intl";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class ShipperActivityTable extends Component {
   componentDidMount() {
@@ -29,18 +30,22 @@ class ShipperActivityTable extends Component {
     const {
       handleUpdateEventModal,
       updateEventModal,
+      fetchingActivityShipper,
       handleUpdateCallModal,
       updateCallModal,
       handleUpdateTaskModal,
       updateTaskModal,
     } = this.props;
 
-
+    if (fetchingActivityShipper) {
+      return <BundleLoader />;
+    }
+  
     return (
       <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <OnlyWrapCard style={{ backgroundColor: "#E3E8EE" }}>
-                    <div className=" flex justify-between w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex justify-end sticky  z-auto'>
+            <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[7.4rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
                         <div className=" md:w-[5.1rem]"><FormattedMessage id="app.topic" defaultMessage="Topic"/></div>
@@ -52,11 +57,12 @@ class ShipperActivityTable extends Component {
 
                     </div>
                     <div class="overflow-x-auto h-[64vh]">
-                        {this.props.activityShipper.map((item) => {
+                    {this.props.activityShipper.length > 0 ? (
+               this.props.activityShipper.map((item) => (
                             
-                            return (
-                                <div >
-                                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3 ">
+                         
+                <div key={item.id}>
+                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                                         <div class="flex w-3/4">
                                             <div className=" flex font-medium flex-col md:w-[1.56rem] max-sm:w-full  ">
 
@@ -108,7 +114,8 @@ class ShipperActivityTable extends Component {
                                             <Tooltip title="Edit">
               {item.activity === "Event" && (
                <ScheduleOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
+               className=" !text-xl cursor-pointer "
+                
                   onClick={() => {
                     // this.props.setEditEvents(item);
                     handleUpdateEventModal(true);
@@ -117,7 +124,7 @@ class ShipperActivityTable extends Component {
               )}
               {item.activity === "Call" && (
                <PhoneOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
+               className=" !text-xl cursor-pointer "
                   onClick={() => {
                     // this.props.setEditCall(item);
                     handleUpdateCallModal(true);
@@ -126,7 +133,7 @@ class ShipperActivityTable extends Component {
               )}
               {item.activity === "Task" && (
                <FileDoneOutlined 
-                  style={{ cursor: "pointer", fontSize: "12px" }}
+               className=" !text-xl cursor-pointer "
                   onClick={() => {
                     // this.props.setEditTask(item);
                     handleUpdateTaskModal(true);
@@ -141,11 +148,16 @@ class ShipperActivityTable extends Component {
                                 </div>
 
 
-                            )
-                        })}
+                          
+                        ))
+                        ) : (
+                          <div className="text-center p-5">
+                            <NodataFoundPage />
+                          </div>
+                        )}
                     </div>
      
-                </OnlyWrapCard>
+                </div>
             </div>
 
       </>

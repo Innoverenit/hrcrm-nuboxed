@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllSuppliersList,emptysUPPLIERS,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers } from "../SuppliersAction"
-import { Link } from "../../../../Components/Common";
+import StoreIcon from '@mui/icons-material/Store';
 import {Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -54,8 +54,8 @@ function AllSuppliersCardList(props) {
   
 return(
 <>
-<div className=' flex justify-end sticky top-28 z-auto'>
-<div class="rounded-lg m-5 max-sm:m-1 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+<div className=' flex justify-end sticky  z-auto'>
+<div class="rounded-lg m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
 <div className=" flex max-sm:hidden justify-between w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
               id="app.name"
@@ -73,11 +73,8 @@ return(
               <FormattedMessage id="app.city" defaultMessage="City" />
 
             </div>
-            <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-              <FormattedMessage id="app.pinCode" defaultMessage="PinCode" />
-
-            </div>
-            <div class=" w-[2rem]"></div>
+          
+            <div class=" w-[3rem]"></div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
@@ -91,8 +88,8 @@ return(
     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
   return (
     <>
-     <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[3rem] items-center  max-sm:h-[6rem] max-sm:flex-col">
+        <div
+                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -135,7 +132,7 @@ return(
                               <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""}`}
+          ${(item.address && item.address.length && item.address[0].street) || ""}  ${(item.address && item.address.length && item.address[0].postalCode) || ""}`}
                               </div>
 
                             </div>
@@ -151,22 +148,25 @@ return(
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col w-[7.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[4.06rem] max-lg:w-[5.61rem] ">
-                              <div class=" font-normal text-[0.85rem] text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].postalCode) ||
-                                  ""}
-                              </div>
-
-                            </div>
+                           
                             </div>
                             <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                        <div class="flex flex-col items-center w-[3%] max-sm:flex-row max-sm:w-[10%]">
+                            <div>
+<Tooltip title="Purchase Order">
+<StoreIcon
+                            className="!text-xl cursor-pointer text-[red]"
+                            // onClick={() => {
+                            //    props.setEditSuppliers(item);
+                            //   handleRowData(item);
+                            //   props.handleSuppliersPriceDrawer(true);
+                            // }}
+                          />
+          </Tooltip>
+          </div>            
  <div>
 <Tooltip title="Edit">
             <BorderColorIcon
-             className="!text-[1rem] cursor-pointer text-[tomato]"
+             className="!text-xl cursor-pointer text-[tomato]"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -183,12 +183,12 @@ return(
             >
               <DeleteOutlined
 
-className=" !text-[1rem] cursor-pointer text-[red]"
+className=" !text-xl cursor-pointer text-[red]"
               />
             </Popconfirm>
             </div>
             </div> 
-            </div>
+           
 
                           </div>
 

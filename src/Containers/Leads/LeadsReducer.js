@@ -25,8 +25,17 @@ const initialState = {
   fetchingLeadsColdError: false,
   leadsAllDataCold:[],
 
+  fetchingTeamLeadsHot: false,
+  fetchingTeamLeadsHotError: false,
+  teamLeadsHot:[],
 
+  fetchingTeamLeadsWarm: false,
+  fetchingTeamLeadsWarmError: false,
+  teamLeadsWarm:[],
 
+  fetchingTeamLeadsCold: false,
+  fetchingTeamLeadsColdError: true,
+  teamLeadsCold:[],
 
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
@@ -98,11 +107,23 @@ const initialState = {
 
   fetchingLeadsInputSearchData: false,
   fetchingLeadsInputSearchDataError: false,
-  inputData: [],
+  serachedData: [],
 
   fetchingCallList: true,
   fetchingCallListError: true,
   callList:[],
+
+  fetchingAllLeadsHot: false,
+          fetchingAllLeadsHotError: false,
+          allleadsInfoHot:[],
+
+          fetchingAllLeadsWarm: false,
+        fetchingAllLeadsWarmError: false,
+        allleadsInfoWarm:[],
+
+        fetchingAllLeadsCold: false,
+        fetchingAllLeadsColdError: false,
+        allleadsInfoCold:[],
 
   fetchingNotesListOfLeads: false,
   fetchingNotesListOfLeadsError: false,
@@ -782,8 +803,8 @@ case types.HANDLE_LEADS_MODAL:
       return {
         ...state,
         fetchingLeadsInputSearchData: false,
-        leadsAllData: action.payload,
-        // serachedData: action.payload,
+        //leadsAllData: action.payload,
+        serachedData: action.payload,
       };
     case types.INPUT_LEADS_SEARCH_DATA_FAILURE:
       return { ...state, fetchingLeadsInputSearchDataError: true };
@@ -969,6 +990,53 @@ case types.HANDLE_LEADS_MODAL:
         fetchingAllLeadsError: true,
       };
 
+      case types.GET_ALL_LEADSHOT_REQUEST:
+        return { ...state, fetchingAllLeadsHot: true };
+      case types.GET_ALL_LEADSHOT_SUCCESS:
+        return {
+          ...state,
+          fetchingAllLeadsHot: false,
+          allleadsInfoHot: action.payload,
+         
+        };
+      case types.GET_ALL_LEADSHOT_FAILURE:
+        return {
+          ...state,
+          fetchingAllLeadsHot: false,
+          fetchingAllLeadsHotError: true,
+        };
+
+        case types.GET_ALL_LEADSWARM_REQUEST:
+      return { ...state, fetchingAllLeadsWarm: true };
+    case types.GET_ALL_LEADSWARM_SUCCESS:
+      return {
+        ...state,
+        fetchingAllLeadsWarm: false,
+        allleadsInfoWarm: action.payload,
+      };
+    case types.GET_ALL_LEADSWARM_FAILURE:
+      return {
+        ...state,
+        fetchingAllLeadsWarm: false,
+        fetchingAllLeadsWarmError: true,
+      };
+
+      case types.GET_ALL_LEADSCOLD_REQUEST:
+      return { ...state, fetchingAllLeadsCold: true };
+    case types.GET_ALL_LEADSCOLD_SUCCESS:
+      return {
+        ...state,
+        fetchingAllLeadsCold: false,
+        allleadsInfoCold: action.payload,
+      };
+    case types.GET_ALL_LEADSCOLD_FAILURE:
+      return {
+        ...state,
+        fetchingAllLeadsCold: false,
+        fetchingAllLeadsColdError: true,
+      };
+
+
       case types.CONVERT_LEADS_REQUEST:
         return { ...state, linkingLeads: true };
       case types.CONVERT_LEADS_SUCCESS:
@@ -1007,6 +1075,11 @@ case types.HANDLE_LEADS_MODAL:
         addingLeadsImportFormError:true,
         // addCustomerModal: false 
       };
+      case types.HANDLE_CLAER_SEARCHED_DATA_LEAD:
+        return { ...state, 
+          serachedData: [], 
+          // deletedTruck: [] 
+        };
 
         case types.GET_TEAM_LEADS_REQUEST:
           return { ...state, fetchingTeamLeads: true };
@@ -1014,6 +1087,7 @@ case types.HANDLE_LEADS_MODAL:
           return {
             ...state,
             fetchingTeamLeads: false,
+            
         teamLeads:action.payload,
           };
         case types.GET_TEAM_LEADS_FAILURE:
@@ -1021,6 +1095,51 @@ case types.HANDLE_LEADS_MODAL:
             ...state,
             fetchingTeamLeads: false,
             fetchingTeamLeadsError: true,
+          };
+
+          case types.GET_TEAM_LEADSHOT_REQUEST:
+          return { ...state, fetchingTeamLeadsHot: true };
+        case types.GET_TEAM_LEADSHOT_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsHot: false,
+        teamLeadsHot:action.payload,
+          };
+        case types.GET_TEAM_LEADSHOT_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsHot: false,
+            fetchingTeamLeadsHotError: true,
+          };
+
+          case types.GET_TEAM_LEADSWARM_REQUEST:
+          return { ...state, fetchingTeamLeadsWarm: true };
+        case types.GET_TEAM_LEADSWARM_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsWarm: false,
+        teamLeadsWarm:action.payload,
+          };
+        case types.GET_TEAM_LEADSWARM_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsWarm: false,
+            fetchingTeamLeadsWarmError: true,
+          };
+
+          case types.GET_TEAM_LEADSCOLD_REQUEST:
+          return { ...state, fetchingTeamLeadsCold: true };
+        case types.GET_TEAM_LEADSCOLD_SUCCESS:
+          return {
+            ...state,
+            fetchingTeamLeadsCold: false,
+        teamLeadsCold:action.payload,
+          };
+        case types.GET_TEAM_LEADSCOLD_FAILURE:
+          return {
+            ...state,
+            fetchingTeamLeadsCold: false,
+            fetchingTeamLeadsColdError: true,
           };
 
 

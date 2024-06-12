@@ -36,6 +36,9 @@ const initialState = {
     fetchingSuppliesHistoryError: false,
     suppliesHistory: [],
 
+    addingMaterialFifoToggle: false,
+    addingMaterialFifoToggleError: false,
+
     addDeleteFeedbackModal: false,
 
     deletingSuppliesData: false,
@@ -555,6 +558,29 @@ export const suppliesReducer = (state = initialState, action) => {
                   ...state,
                   addingMaterialToggle: false,
                   addingMaterialToggleError: true,
+                };
+
+
+                
+            case types.LINK_MATERIAL_FIFO_TOGGLE_REQUEST:
+                return { ...state, addingMaterialFifoToggle: true };
+              case types.LINK_MATERIAL_FIFO_TOGGLE_SUCCESS:
+                return {
+                  ...state,
+                  addingMaterialFifoToggle: false,
+                  purchaseList: state.purchaseList.map((item) => {
+                    if (item.suppliesId === action.payload.suppliesId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.LINK_MATERIAL_FIFO_TOGGLE_FAILURE:
+                return {
+                  ...state,
+                  addingMaterialFifoToggle: false,
+                  addingMaterialFifoToggleError: true,
                 };
 
                 case types.INPUT_SUPPLIES_SEARCH_DATA_REQUEST:

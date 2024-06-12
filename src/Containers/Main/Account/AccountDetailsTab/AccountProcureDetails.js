@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
@@ -9,8 +10,12 @@ import {
   deleteProcureData,
   getBrand,
   getModel,
-  updateProcureDetails
+  updateProcureDetails,
+  getAllProductList,
+  getLocationList
 } from "../AccountAction";
+import { getSaleCurrency } from "../../../Auth/AuthAction";
+import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -20,14 +25,25 @@ const { Option } = Select;
 function AccountProcureDetails(props) {
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
+  const [attribute, setAttribute] = useState("");
   const [brand, setBrand] = useState("");
+  const [quality, setQuality] = useState("");
   const [model, setModel] = useState("");
   const [newUnitName, setUnitName] = useState('');
   const [specs, setSpecs] = useState("");
+  const [category, setCategory] = useState("");
+  const [location, setLocation] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [newPrice, setPrice] = useState('');
   // const [particularRowData, setParticularRowData] = useState({});
 
   useEffect(() => {
     props.getBrand();
+    props.getCategorylist();
+    props.getAllProductList();
+    props.getSupplierSuppliesQuality();
+    props.getLocationList(props.orgId);
+    props.getSaleCurrency()
     props.getProcureDetails(props.particularRowData.orderId);
   }, []);
 
@@ -40,13 +56,32 @@ function AccountProcureDetails(props) {
       },
     }));
   };
+  const handleQualityChange = async (value) => {
+    setQuality(value);
+   
+  };
 
-  const handleEditClick = (id, itemBrand, itemModel, unit, itemSpecs) => {
+  const handleEditClick = (id,itemCategory, itemBrand, itemModel,itemAttribute, itemQuality,itemLocation,unit, itemSpecs,itemCurrency,price) => {
     setEditContactId(id);
+    setCategory(itemCategory)
     setBrand(itemBrand);
     setModel(itemModel);
+    setAttribute(itemAttribute);
+    setQuality(itemQuality);
+    setLocation(itemLocation)
     setUnitName(unit);
     setSpecs(itemSpecs);
+    setCurrency(itemCurrency)
+    setPrice(price);
+  };
+
+  const handleLocationChange = async (value) => {
+    setLocation(value);
+   
+  };
+  const handleCurrencyChange = async (value) => {
+    setCurrency(value);
+   
   };
 
   const handleCancelClick = (id) => {
@@ -54,9 +89,19 @@ function AccountProcureDetails(props) {
     setEditContactId(null);
   };
 
+  const handleAttributeChange = async (value) => {
+    setAttribute(value);
+   
+  };
+
   const handleBrandChange = async (value) => {
     setBrand(value);
     await props.getModel(value);
+  };
+
+  const handleCategoryChange = async (value) => {
+    setCategory(value);
+   
   };
   
   const handleModelChange = (value) => {
@@ -74,6 +119,12 @@ function AccountProcureDetails(props) {
       brandId: model,
       unit: newUnitName,
       specs: specs,
+      quality:quality,
+      category:category,
+      attribute:attribute,
+      location:location,
+      currency:currency,
+      price:newPrice,
     };
 
     props.updateProcureDetails(data, id);
@@ -86,33 +137,77 @@ function AccountProcureDetails(props) {
   //   setParticularRowData(item);
   // };
 
-  if (props.fetchingProcureDetails) {
-    return <BundleLoader />;
-  }
+  // if (props.fetchingProcureDetails) {
+  //   return <BundleLoader />;
+  // }
 
   return (
     <>
       <div className="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className="flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className="md:w-[7.4rem]">
+            <FormattedMessage id="app.category" defaultMessage="Category" />
+          </div>
           <div className="md:w-[7.4rem]">
             <FormattedMessage id="app.brand" defaultMessage="Brand" />
           </div>
           <div className="md:w-[7.1rem]">
             <FormattedMessage id="app.model" defaultMessage="Model" />
           </div>
+          <div className="md:w-[7.1rem]">
+            <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+          </div>
+          <div className="md:w-[7.1rem]">
+            <FormattedMessage id="app.quality" defaultMessage="Quality" />
+          </div>
+          <div className="md:w-[7.1rem]">
+            <FormattedMessage id="app.location" defaultMessage="Location" />
+          </div>
           <div className="md:w-[8.8rem]">
             <FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          <div className="md:w-[2.8rem]">
+            <FormattedMessage id="app.units" defaultMessage="Units" />
+          </div>
+          <div className="md:w-[4.8rem]">
+            <FormattedMessage id="app.price" defaultMessage="Price" />
           </div>
         
-          <div className="md:w-[6.12rem]"></div>
+        
+          <div className="md:w-[2rem]"></div>
         </div>
-
+        <InfiniteScroll
+        dataLength={props.procureDetails.length}
+      //   next={handleLoadMore}
+      // hasMore={hasMore}
+        loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
+        height={"75vh"}
+        // endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+      >
         {props.procureDetails.map((item, index) => {
           return (
-            <div key={index} className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
+            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
+
+<div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={category}
+                      onChange={(e) => handleCategoryChange(e.target.value)}
+                    >
+                      {props.categoryList.map((categoryItem, categoryIndex) => (
+                        <option key={categoryIndex} value={categoryItem.id}>
+                          {categoryItem.categoryName}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.category}</div>
+                  )}
+                </div>
+              </div>
               <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
@@ -133,7 +228,7 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -152,7 +247,67 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[17rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={attribute}
+                      onChange={(e) => handleAttributeChange(e.target.value)}
+                    >
+                      {props.allProduct.map((attributeItem, attributeIndex) => (
+                        <option key={attributeIndex} value={attributeItem.productId}>
+                          {attributeItem.productFullName}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.attribute}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={quality}
+                      onChange={(e) => handleQualityChange(e.target.value)}
+                    >
+                      {props.supplierSuppliesQuality.map((qualityItem, qualityIndex) => (
+                        <option key={qualityIndex} value={qualityItem.qualityId}>
+                          {qualityItem.code}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.quality}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={location}
+                      onChange={(e) => handleLocationChange(e.target.value)}
+                    >
+                      {props.locationlist.map((locationItem, locationIndex) => (
+                        <option key={locationIndex} value={locationItem.locationDetailsId}>
+                          {locationItem.locationName}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.location}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-sm text-cardBody font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -186,13 +341,50 @@ function AccountProcureDetails(props) {
                   )}
                 </div>
               </div>
+
+              <div className="flex font-medium flex-col ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Price"
+                      style={{border:"2px solid black",width:"6rem"}}
+                      type="text"
+                      value={newPrice}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-sm text-cardBody font-poppins">{item.price}{item.currency} </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-sm text-cardBody font-poppins">
+                  {editContactId === item.id ? (
+                    <select
+                      className="customize-select"
+                      style={{ width: "70%" }}
+                      value={currency}
+                      onChange={(e) => handleCurrencyChange(e.target.value)}
+                    >
+                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
+                        <option key={currencyIndex} value={currencyItem.currency_id}>
+                          {currencyItem.currency_name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                  
+                    <div className="font-normal text-sm text-cardBody font-poppins"></div>
+                  )}
+                </div>
+              </div>
              
 
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.id ? (
                     <>
-                      <Button onClick={() => handleUpdate(item.id)}>
+                      <Button onClick={() => handleUpdate(item.id,)}>
                         Save
                       </Button>
                       <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
@@ -203,7 +395,7 @@ function AccountProcureDetails(props) {
                     <BorderColorIcon
                       tooltipTitle="Edit"
                       iconType="edit"
-                      onClick={() => handleEditClick(item.id, item.brand, item.model, item.unit, item.specs)}
+                      onClick={() => handleEditClick(item.id,item.category, item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs,item.price,item.currency,)}
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                   )}
@@ -229,27 +421,39 @@ function AccountProcureDetails(props) {
             </div>
           );
         })}
+          </InfiniteScroll>
       </div>
     </>
   );
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,suppliers,auth }) => ({
   procureDetails: distributor.procureDetails,
   orderDetailsId: distributor.orderDetailsId,
   brand: distributor.brand,
   model: distributor.model,
   fetchingProcureDetails: distributor.fetchingProcureDetails,
+  categoryList:suppliers.categoryList,
+  allProduct:distributor.allProduct,
+  supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
+  locationlist:distributor.locationlist,
+  saleCurrencies: auth.saleCurrencies,
+  orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+         getSaleCurrency,
+      getAllProductList,
+      getCategorylist,
       getProcureDetails,
       deleteProcureData,
       getBrand,
       getModel,
-      updateProcureDetails
+      getSupplierSuppliesQuality,
+      updateProcureDetails,
+      getLocationList
     },
     dispatch
   );

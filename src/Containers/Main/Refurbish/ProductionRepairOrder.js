@@ -1,23 +1,124 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,useRef  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getRepairOrderByUser, handleRepairPhone, repairInspectionButton, getOrderIdForCatalogueItem } from "./RefurbishAction"
-import { Button, Badge } from "antd";
+import { getRepairOrderByUser, handleRepairPhone,
+     repairInspectionButton,
+      getOrderIdForCatalogueItem ,
+      inputProcessDataSearch,ClearSearchedDataOfProcess
+    } from "./RefurbishAction"
+import { Button, Badge,Input } from "antd";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 const OrderPhoneRepairModal = lazy(() => import('./OrderPhoneRepairModal'));
 
 function ProductionRepairOrder(props) {
 
     const [page, setPage] = useState(0);
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false);
+    const [pageNo, setPageNo] = useState(0);
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
+
     useEffect(() => {
         setPage(page + 1);
         props.getRepairOrderByUser(props.userId)
     }, [])
     const [hasMore, setHasMore] = useState(true);
+
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+    
+      const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+          //setPage(pageNo + 1);
+          props.getRepairOrderByUser(props.userId)
+          //props.ClearReducerDataOfLead()
+          props.ClearSearchedDataOfProcess()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.inputProcessDataSearch(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.inputProcessDataSearch(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
+
+
+
     const handleLoadMore = () => {
         setPage(page + 1);
         props.getRepairOrderByUser(props.userId)
@@ -36,13 +137,20 @@ function ProductionRepairOrder(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+                <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by OrderNo "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+      </div>
                     <div className=" flex max-sm:hidden w-[100%] p-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[10.5rem]"></div>
-                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.order#"
-                            defaultMessage="Order #"
-                        /></div>
+                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
                         <div className=" w-[27.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
@@ -70,9 +178,9 @@ function ProductionRepairOrder(props) {
                                 const date = moment(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl justify-between mt-4 bg-white h-[2.75rem] items-center p-3 max-sm:h-[5rem] max-sm:flex-col "   >
+                                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col "   >
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium w-[6.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex font-medium w-[7.2rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                 {item.priority === "High" && (
                       <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
                     )}
@@ -197,7 +305,9 @@ const mapDispatchToProps = (dispatch) =>
             getRepairOrderByUser,
             handleRepairPhone,
             repairInspectionButton,
-            getOrderIdForCatalogueItem
+            getOrderIdForCatalogueItem,
+            inputProcessDataSearch,
+            ClearSearchedDataOfProcess
         },
         dispatch
     );

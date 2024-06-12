@@ -24,7 +24,11 @@ import { StopTwoTone, TableOutlined } from "@ant-design/icons";
 
 const OpportunityActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
-
+  useEffect(() => {
+    if (props.teamsAccessInd) {
+      props.getOpportunityTeamRecords(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
   useEffect(() => {
     if (props.viewType === "table") {
       props.getRecords(props.userId);
@@ -60,7 +64,7 @@ const OpportunityActionLeft = (props) => {
     closeOpportunityData,
     recordData,
   } = props;
-
+  const teamCount = props.teamsAccessInd && props.opportunityTeamRecordData ? props.opportunityTeamRecordData.OpportunityTeam : 0;
   return (
     <div class=" flex items-center">
   
@@ -72,8 +76,8 @@ const OpportunityActionLeft = (props) => {
         <Tooltip
           title={
             <FormattedMessage
-              id="app.listOpportunity"
-              defaultMessage="Opportunity List"
+              id="app.myquotations"
+              defaultMessage="My Quotations"
             />
           }
         >
@@ -93,7 +97,7 @@ const OpportunityActionLeft = (props) => {
       </Badge>
       <Tooltip
           title={
-            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
+            <FormattedMessage id="app.myquotationsstageview" defaultMessage="My Quotations-Stage View" />
           }
         >
              <Badge
@@ -119,7 +123,7 @@ const OpportunityActionLeft = (props) => {
           </span>
           </Badge>
         </Tooltip>
-      <Tooltip title={"Won"}>
+      <Tooltip title={"My Quotations-Won"}>
       <Badge
           size="small"
           count={
@@ -145,7 +149,7 @@ const OpportunityActionLeft = (props) => {
           </Badge>
       </Tooltip>
       {user.recruitProInd === true && (
-      <Tooltip title={"Close"}>
+      <Tooltip title={"My Quotations-Close"}>
         {" "}
         <Badge
           size="small"
@@ -160,7 +164,6 @@ const OpportunityActionLeft = (props) => {
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("close")}
             style={{
-              cursor:"pointer",
               color: props.viewType === "close" && "#1890ff",
             }}
           >
@@ -172,7 +175,7 @@ const OpportunityActionLeft = (props) => {
         </Badge>
       </Tooltip>
       )}
-      <Tooltip title={"Lost"}>
+      <Tooltip title={"My Quotations-Lost"}>
         <Badge
           size="small"
           count={
@@ -186,7 +189,6 @@ const OpportunityActionLeft = (props) => {
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setOpportunityViewType("lost")}
             style={{
-              cursor:"pointer",
               color: props.viewType === "lost" && "#1890ff",
             }}
           >
@@ -201,11 +203,11 @@ const OpportunityActionLeft = (props) => {
   {/* <div class="ml-2"> */}
   {user.teamsAccessInd === true && (
   <Tooltip
-          title="Teams"
+          title="Team View"
         >
                  <Badge
         size="small"
-        count={(props.teamsAccessInd||viewType=== "teams" ?opportunityTeamRecordData.OpportunityTeam : 0)}
+        count={(teamCount||viewType=== "teams" ?opportunityTeamRecordData.OpportunityTeam : 0)}
         // count={(viewType === "teams" && opportunityTeamRecordData.OpportunityTeam) || 0}
         overflowCount={999}
       >
@@ -228,7 +230,7 @@ const OpportunityActionLeft = (props) => {
   {/* <div class="ml-2"> */}
     {user.crmInd=== true && user.opportunityFullListInd===true && ( 
   <Tooltip
-          title="All list"
+          title="All"
         >
                        <Badge
         size="small"
@@ -257,7 +259,7 @@ const OpportunityActionLeft = (props) => {
         title={
           <FormattedMessage
             id="app.deletedOpportunity"
-            defaultMessage="Deleted Opportunity"
+            defaultMessage=" My Deleted Quotations"
           />
         }
       >
@@ -286,26 +288,6 @@ const OpportunityActionLeft = (props) => {
         </Badge>
       </Tooltip>
 
-      
-      {/* <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage="Deleted Opportunity"
-          />
-        }
-      >
-        <span
-          class=" mr-1 text-sm cursor-pointer"
-          onClick={() => props.setOpportunityViewType("Map")}
-          style={{
-            color: props.viewType === "Map" && "#1890ff",
-          }}
-        >
-          <DeleteIcon />
-        </span>
-       
-      </Tooltip> */}
     </div>
   );
 };

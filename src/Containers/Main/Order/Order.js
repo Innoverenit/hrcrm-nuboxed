@@ -9,6 +9,7 @@ import AllCompleteOrderList from "./AllCompleteOrderList";
 import ProductionOrderCardList from "./ProductionOrderCardList";
 import ProductionHistoryCardList from "./ProductionHistoryCardList";
 import ProductionAllCardList from "./ProductionAllCardList";
+import DeletedOrderList from "./DeletedOrderList";
 
 const AllOrderList = lazy(() => import("./AllOrderList"));
 const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
@@ -52,6 +53,8 @@ class Order extends Component {
             <AllOrderList />
           ) : this.props.viewType === "complete" ? (
             <CompleteOrder />
+           ) : this.props.viewType === "delete" ? (
+              <DeletedOrderList />
           ) : this.props.viewType === "allcomplete" ? (
             <AllCompleteOrderList />
           ) : null}

@@ -1,7 +1,8 @@
 import * as types from "./OrderActionTypes";
 import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import Swal from "sweetalert2";
+import { message } from "antd"
 
 export const setOrderViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_ORDER_VIEW_TYPE, payload: viewType });
@@ -176,6 +177,12 @@ export const SubmitCustomerOrderId = (payment) => (dispatch) => {
 export const emptyOrders = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_ORDERS_LIST,
+  });
+};
+
+export const emptyMOrders = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_MORDERS_LIST,
   });
 };
 export const getAllOrderList = (orgId, pageNo) => (dispatch) => {
@@ -487,7 +494,7 @@ export const getProductionAllOrder = (orgId, pageNo) => (dispatch) => {
 };
 
 
-export const deleteOrderRepairData = (orderId) => (dispatch, getState) => {
+export const deleteOrderRepairData = (orderId,userId) => (dispatch, getState) => {
   // const { userId } = getState("auth").auth.userDetails;
   dispatch({
     type: types.DELETE_ORDER_REPAIR_DATA_REQUEST,
@@ -500,7 +507,7 @@ export const deleteOrderRepairData = (orderId) => (dispatch, getState) => {
     })
     .then((res) => {
       console.log(res);
-      // dispatch(getShipperByUserId(userId));
+      dispatch(getOrderCount(userId));
       dispatch({
         type: types.DELETE_ORDER_REPAIR_DATA_SUCCESS,
         payload: orderId,
@@ -592,4 +599,237 @@ export const getRepairLowOrderList = (userId, pageNo,ptype) => (dispatch) => {
         payload: err,
       });
     });
+};
+
+export const getDeletedHighOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/delete/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDeletedMediumOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/delete/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getDeletedLowOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_DELETED_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/delete/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DELETED_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DELETED_LOW_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteOrderData = (orderPhoneId,userId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_ORDER_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/phoneOrder/delete/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getInvestor(userId));
+      Swal.fire({
+        icon: 'success',
+        title: 'Order Deleted Successfully',
+      
+      })
+      dispatch({
+        type: types.DELETE_ORDER_DATA_SUCCESS,
+        payload: orderPhoneId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_ORDER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const reinstateToggleOfOrder = (data, orderPhoneId,userId) => (
+  dispatch
+) => {
+  // debugger;
+  dispatch({
+    type: types.REINSTATE_TOGGLE_FOR_ORDER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/phoneOrder/reinstate/${orderPhoneId} `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getShipperDeletedRecords(userId))
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_ORDER_SUCCESS,
+        payload: orderPhoneId,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Reinstated Successfully!',
+      })
+      // message.success("Reinstated Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REINSTATE_TOGGLE_FOR_ORDER_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
+
+
+export const getCompletedHighOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETED_HIGH_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completed/priorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETED_HIGH_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETED_HIGH_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getCompletedMediumOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETED_MEDIUM_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completed/priorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETED_MEDIUM_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETED_MEDIUM_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getCompletedLowOrderList = (userId, pageNo,ptype) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETED_LOW_ORDER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/completed/priorityOrders/${userId}/${pageNo}/${ptype}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETED_LOW_ORDER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETED_LOW_ORDER_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const emptyCompleteOrders = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_COMPLETE_ORDERS_LIST,
+  });
 };

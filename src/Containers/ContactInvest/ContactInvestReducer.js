@@ -137,7 +137,14 @@ export const contactInvestReducer = (state = initialState, action) => {
             return action.payload;
           } else {
             return item;
-          }}),};
+          }}),
+          teamsContactInvestData: state.teamsContactInvestData.map((item) => {
+            if (item.contactId === action.payload.contactId) {
+              return action.payload;
+            } else {
+              return item;
+            }}),
+        };
     case types.UPDATE_CONTACT_INVEST_FAILURE:
       return {
         ...state,

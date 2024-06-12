@@ -1,369 +1,392 @@
-import React, { useEffect,useState,lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Highlighter from "react-highlight-words";
-import { Link } from 'react-router-dom';
+import { Button, Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
-import InfoIcon from '@mui/icons-material/Info';
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
-  MultiAvatar,
-} from "../../../../Components/UI/Elements";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
-import { CurrencySymbol } from "../../../../Components/Common";
-// import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
-//   setEditCustomerOpportunity} from "../../../../CustomerAction";
-import { Tooltip,Button,Input,Progress } from "antd";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+  getQuotationRepairOrder,
+  getQuotationProcureOrder,
+  handleUpdateProcureDetailModal,
+  setEditProcure,
+  getProcureRecords,
+  handleProcureDetailsModal,
+  quotationToOrder
+} from "../AccountAction";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FormattedMessage } from "react-intl";
+import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
+import { MultiAvatar } from "../../../../Components/UI/Elements";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function LinkedOpportunityTable(props) {
-//   useEffect(() => {
-//     props.getOpportunityListByCustomerId(props.customerId);
-//   }, []);
-//   console.log(props.customerId);
-  const [currentOpportunityId, setCurrentOpportunityId] = useState("");
-
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
-
-  function getColumnSearchProps(dataIndex) {
-    return {
-      filterDropdown: ({
-        setSelectedKeys,
-        selectedKeys,
-        confirm,
-        clearFilters,
-      }) => (
-        <div style={{ padding: 8 }}>
-          <Input
-            placeholder={`Search ${dataIndex}`}
-            value={selectedKeys[0]}
-            onChange={(e) =>
-              setSelectedKeys(e.target.value ? [e.target.value] : [])
-            }
-            onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            style={{ width: 240, marginBottom: 8, display: "block" }}
-          />
-
-          <Button
-            type="primary"
-            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            // icon="search"
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-          >
-            Search
-          </Button>
-          <Button
-            onClick={() => handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-          >
-            Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({ closeDropdown: false });
-              setSearchText(selectedKeys[0]);
-              setSearchedColumn(dataIndex);
-            }}
-          >
-            Filter
-          </Button>
-        </div>
-      ),
-      filterIcon: (filtered) => (
-        <SearchOutlined
-          type="search"
-          style={{ color: filtered ? "#1890ff" : undefined }}
-        />
-      ),
-      onFilter: (value, record) =>
-        record[dataIndex]
-          ? record[dataIndex]
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase())
-          : "",
-      onFilterDropdownVisibleChange: (visible) => {
-        if (visible) {
-        }
-      },
-      render: (text) =>
-        searchedColumn === dataIndex ? (
-          <Highlighter
-            highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-            searchWords={[searchText]}
-            autoEscape
-            textToHighlight={text ? text.toString() : ""}
-          />
-        ) : (
-          text
-        ),
-    };
-  }
-
-  function handleSearch(selectedKeys, confirm, dataIndex) {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  }
-
-  function handleReset(clearFilters) {
-    clearFilters();
-    setSearchText("");
-  }
+  const [page, setPage] = useState(0);
+  useEffect(() => {
+    // props.getProcureRecords(props.distributorData.distributorId,"Quotation");
+    props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair",);
+    props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",);
   
-  function handleSetCurrentOpportunityId(opportunityId) {
-    setCurrentOpportunityId(opportunityId);
-    console.log(opportunityId);
-  }
-  const {
-    // customer: { customerId, name },
-    user,
-    // handleUpdateCustomerOpportunityModal,
-    fetchingCustomerOpportunity,
-    opportunityByCustomerId,
-    fetchingCustomerOpportunityError,
-    addUpdateCustomerOpportunityModal,
-    setEditCustomerOpportunity,
-  } = props;
+
+    setPage(page + 1);
+  }, []);
+
+  const [particularRowData, setParticularRowData] = useState({});
+
+  // useEffect(() => {
+  //   return () => props.emptyOrders();
+  // }, []);
+  const [hasMore, setHasMore] = useState(true);
+  function handleSetParticularOrderData(item) {
+    setParticularRowData(item);
 
 
-if (fetchingCustomerOpportunity) return <BundleLoader/>;
-  const tab = document.querySelector(".ant-layout-sider-children");
-    const tableHeight = tab && tab.offsetHeight * 0.75;
+}
+const handleLoadMore = () => {
+  setPage(page + 1);
+  
+  props.getQuotationRepairOrder(props.distributorData.distributorId, page, "Repair")
+};
+
+const handleLoadMoreMedium = () => {
+  setPage(page + 1);
+  
+  props.getQuotationProcureOrder(props.distributorData.distributorId, page, "Procure",)
+};
+
+const handleConfirm = (quotationId) => {
+  // Call the function to change the status to "Lost" here
+  props.quotationToOrder(quotationId,props.userId);
+};
+
   return (
     <>
-    <div className=' flex justify-end sticky top-28 z-auto'>
-    <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[16rem]">Name</div>
-        <div className=" md:w-[5.1rem]">Start Date</div>
-        <div className=" md:w-[4.2rem] ">End Date</div>
-        <div className="md:w-[4.2rem]">Value</div>
-        <div className="md:w-[5.5rem]">Status</div>
-        <div className="md:w-[1.8rem]">Sponsor</div> 
-        <div className="w-[7rem]"></div>
+    <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+<div class=" w-[8.5rem]">Repair</div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
+                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
 
-      </div>
+                        <div className="md:w-[6.12rem]"></div>
+                     
 
-      { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<NodataFoundPage />:opportunityByCustomerId.map((item,index) =>  {
-              var findProbability = item.probability;
-              item.stageList.forEach((element) => {
-                if (element.oppStage === item.oppStage) {
-                  findProbability = element.probability;}
-               });
-          const currentdate = dayjs().format("DD/MM/YYYY");
-          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
-          const diff = Math.abs(
-            dayjs().diff(dayjs(item.lastRequirementOn), "days")
-          );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address &&
-                 item.address.length &&
-                 item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address &&
-                 item.address.length &&
-                 item.address[0].postalCode
-               } `;
-          return (
-            <div>
-              <div
-                className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-              >
-                <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
-          &nbsp;
-          <div class="max-sm:w-full">
-                                        <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
-                                          
-                                            <div class="text-sm flex text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
-      {item.opportunityName}
-    </Link>                                     
-         {/* <Link
-          toUrl={`/opportunity/${item.opportunityId}`}
-          title={`${item.opportunityName || ""} `}
-        >{item.opportunityName}</Link> */}
-        &nbsp;&nbsp;
-        {date === currentdate ? (
-          <span class="text-xs mt-[0.4rem]"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </span>
-        ) : null}
-       
+                    </div>
+    
+                    <InfiniteScroll
+                        dataLength={props.quotationRepairOrder.length}
+                        next={handleLoadMore}
+                        hasMore={hasMore}
+                        loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"19vh"}
+                    >
+                        {props.quotationRepairOrder.length ?
+                            <>
+                                {props.quotationRepairOrder.map((item) => {
+                                   const currentDate = dayjs().format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
+                                      <div>
+                                        <div className="flex rounded mt-1 bg-white h-8 items-center p-1">
+                                        <div class="flex">
+                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                            <div className="flex items-center max-sm:w-full">
+                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                                                              <Tooltip>
+                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                                                      <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                      
+                                                                                          {item.priority === "High" && (
+                                                                                              <div
+                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                          )}
+                                                                                          {item.priority === "Medium" && (
+                                                                                              <div
+                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                          {item.priority === "Low" && (
+                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </Tooltip>
+                                                                          </div>
+                      
+                                              <div class="max-sm:w-full items-center  md:w-[10.02rem]">
+                                                <Tooltip>
+                                                  <div class="max-sm:w-full  justify-between flex md: flex flex-row text-sm">
+                                                  <span
+                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          onClick={() => {
+                                                                                              handleSetParticularOrderData(item);
+                                                                                              props.handleProcureDetailsModal(true);
+                                                                                          }}
+                                                                                      >{item.newOrderNo}</span>
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
+                                          <span className="text-xs text-[tomato] font-bold">
+                                            New
+                                          </span>
+                                        ) : null} </span>
+                                                   
+                                                  </div>
+                                                </Tooltip>
+                                              </div>
                                             </div>
+                                          </div>
+                      
+                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        
+                                            
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
+                                                  </div>
+                      
+                                         
+                                          </div>
+                                        </div>
+                                        <div class="flex">
+                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class="text-cardBody font-poppins text-sm">
+                      
+                                            {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
+                               
+                              `}
                                             </div>
-                                        </Tooltip>
+                                          </div>
                                         </div>
+                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {item.budget}
+                                            </div>
                                         </div>
-                                </div>
-                </div>
-                <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-                    <div class=" text-xs text-cardBody font-poppins">
-                    {dayjs(item.startDate).format("DD/MM/YYYY")}
-                 
-                    </div>
+                                     
+                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {/* {item.contactPersonName} */}
+                                              <MultiAvatar
+                                                      primaryTitle={item.contactPersonName}
+                                                  
+                                                      imgWidth={"1.9rem"}
+                                                      imgHeight={"1.9rem"}
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {item.paymentInTerms}
+                                            </div>
+                                        </div>
+                                        
+                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="text-cardBody font-poppins text-sm">
+                  <Popconfirm
+                          title="Change status to Order?"
+                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                  <Button type="primary">Convert</Button>
+                  </Popconfirm>
+                      </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-         <div class=" text-xs text-cardBody font-poppins">
-         {dayjs(item.endDate).format("DD/MM/YYYY")}
-           {/* {item.endDate} */}
-      
-         </div>
-       </div>
-                </div>
-                <div class="flex">
-                  <div className=" flex font-medium justify-center flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-                    <div class=" text-xs text-cardBody font-poppins">
-                    <span>
-            <CurrencySymbol currencyType={item.currency} />
-            &nbsp;&nbsp;{item.proposalAmount}
-          </span>
-                 
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-         <div class=" text-xs text-cardBody font-poppins">
-         <Tooltip title={item.oppStage}>
-{" "}
-<Progress
-type="circle"
-style={{ cursor: "pointer",color:"red" }}
-percent={findProbability}
-//disable={true}
-width={30}
- strokeColor={"#005075"}
+                                     
+                                      </div>
+                                    </div>
 
-/>
-  
-</Tooltip>
-      
-         </div>
-       </div>
-                </div>
-                <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
-         
-                    <div class=" text-xs text-cardBody font-poppins">
-                    <Tooltip title={item.contactName}>
-              <span>
-                <MultiAvatar
-                  primaryTitle={item.contactName}
-                  imageId={item.imageId}
-                  imageURL={item.imageURL}
-                  imgWidth={"1.8em"}
-                  imgHeight={"1.8em"}
-                />
-              </span>
-            </Tooltip>
-                 
-                    </div>
-                  </div>
-      
-                </div>
-              
-                <div class="flex md:items-center ">
-                  <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <div class=" text-xs text-cardBody font-poppins">
-                      <Tooltip title={item.description}>
-           
-          <InfoIcon 
-          
-              // type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
-             
-            />
-          
-          </Tooltip>
-                    </div>
-                  </div>
-                  <div className=" flex font-medium flex-col md:w-[2rem]  max-sm:flex-row w-full max-sm:justify-between">
-                  <Tooltip title="Edit">
-             {user.opportunityUpdateInd ===true && (
-          <BorderColorIcon 
-          className=" !text-xl cursor-pointer text-[tomato]"
-            //   onClick={() => {
-            //     props.setEditCustomerOpportunity(item);
-            //     handleUpdateCustomerOpportunityModal(true);
-            //     handleSetCurrentOpportunityId(item.opportunityId)
-                
-            //   }}
-            />
-            )}
-          </Tooltip>
-                  </div>
-                
-             
-               
-                </div>
-              </div>
-            </div>
-          );
-        })}
+
+                                    )
+                                })}
+                            </> : !props.quotationRepairOrder.length && !props.fetchingQuotationRepairOrder ? <NodataFoundPage /> : null}
+                    </InfiniteScroll>
       </div>
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
+<div class=" w-[8.5rem]">Procure</div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
+                        <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.contact" defaultMessage="Contact"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.payment" defaultMessage="Payment"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.Status" defaultMessage="Status"/></div>
+                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.toOrder" defaultMessage="To Order"/></div>
+                        <div className="md:w-[6.12rem]"></div>
+                     
+
+
+                    </div>
+    
+                    <InfiniteScroll
+                        dataLength={props.quotationProcureOrder.length}
+                        next={handleLoadMoreMedium}
+                        hasMore={hasMore}
+                        loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        height={"19vh"}
+                    >
+                        {props.quotationProcureOrder.length ?
+                            <>
+                                {props.quotationProcureOrder.map((item) => {
+                                 const currentDate = dayjs().format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    return (
+                                      <div>
+                                      <div className="flex rounded-lg  mt-1 bg-white h-8 items-center p-1">
+                                        <div class="flex">
+                                          <div className=" flex font-medium flex-col w-wk items-center   max-sm:w-full">
+                                            <div className="flex items-center max-sm:w-full">
+                                            <div className=" flex font-medium items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                                                              <Tooltip>
+                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                                                      <div class=" text-sm text-blue-500 text-cardBody font-poppins font-semibold  cursor-pointer">
+                      
+                                                                                          {item.priority === "High" && (
+                                                                                              <div
+                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
+                                                                                          )}
+                                                                                          {item.priority === "Medium" && (
+                                                                                              <div
+                                                                                                  class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
+                                                                                          {item.priority === "Low" && (
+                                                                                              <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </Tooltip>
+                                                                          </div>
+                      
+                                              <div class="max-sm:w-full items-center  md:w-[10.02rem]">
+                                                <Tooltip>
+                                                  <div class="max-sm:w-full  justify-between flex md: flex flex-row text-sm">
+                                                  <span
+                                                                                          class="underline cursor-pointer text-[#1890ff]"
+                                                                                          onClick={() => {
+                                                                                              handleSetParticularOrderData(item);
+                                                                                              props.handleProcureDetailsModal(true);
+                                                                                          }}
+                                                                                      >{item.newOrderNo}</span>
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
+                                          <span className="text-xs text-[tomato] font-bold">
+                                            New
+                                          </span>
+                                        ) : null} </span>
+                                                   
+                                                  </div>
+                                                </Tooltip>
+                                              </div>
+                                            </div>
+                                          </div>
+                      
+                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        
+                                            
+                                            <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
+                                                  </div>
+                      
+                                         
+                                          </div>
+                                        </div>
+                                        <div class="flex">
+                                          <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class="text-cardBody font-poppins text-sm">
+                      
+                                            {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
+                               
+                              `}
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {item.budget}
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {/* {item.contactPersonName} */}
+                                              <MultiAvatar
+                                                      primaryTitle={item.contactPersonName}
+                                                  
+                                                      imgWidth={"1.9rem"}
+                                                      imgHeight={"1.9rem"}
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="text-cardBody font-poppins text-sm">
+                                              {item.paymentInTerms}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="text-cardBody font-poppins text-sm">
+                  <Popconfirm
+                          title="Change status to Order?"
+                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                  <Button type="primary">Convert</Button>
+                  </Popconfirm>
+                      </div>
+                  </div>
+                                       
+                                      </div>
+                                    </div>
+
+
+                                    )
+                                })}
+                            </> : !props.quotationProcureOrder.length && !props.fetchingQuotationProcureOrder ? <NodataFoundPage /> : null}
+                    </InfiniteScroll>
       </div>
-      {/* <AddCustomerUpdateOpportunityModal
-      opportunityId={currentOpportunityId}
-      defaultCustomers={[{ label: name, value: customerId }]}
-      customerId={{ value: customerId }}
-       addUpdateCustomerOpportunityModal={addUpdateCustomerOpportunityModal}
-        handleUpdateCustomerOpportunityModal={handleUpdateCustomerOpportunityModal}
-        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
-        
-      /> */}
+      
+
+                <AccountProcureDetailsModal
+                particularRowData={particularRowData}
+                handleProcureDetailsModal={props.handleProcureDetailsModal}
+                addProcureDetailsModal={props.addProcureDetailsModal} />
     </>
   );
+
+
+
 }
-// }
-const mapStateToProps = ({ customer,auth }) => ({
-  user: auth.userDetails,
-  fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
-  fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
-  customerId: customer.customer.customerId,
-  opportunityByCustomerId: customer.opportunityByCustomerId,
-  addUpdateCustomerOpportunityModal:customer.addUpdateCustomerOpportunityModal,
+
+const mapStateToProps = ({ distributor,auth }) => ({
+  addProcureDetailsModal:distributor.addProcureDetailsModal,
+  procurementOrder: distributor.procurementOrder,
+  updateProcureDetailModal:distributor.updateProcureDetailModal,
+  fetchingOrderProcurement: distributor.fetchingOrderProcurement,
+  procureRecordData:distributor.procureRecordData,
+  userId: auth.userDetails.userId,
+  quotationRepairOrder:distributor.quotationRepairOrder,
+  fetchingQuotationRepairOrder:distributor.fetchingQuotationRepairOrder,
+  quotationProcureOrder:distributor.quotationProcureOrder,
+    fetchingQuotationProcureOrder:distributor.fetchingQuotationProcureOrder,
+    lowDistributorOrder:distributor.lowDistributorOrder,
+    fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
+
 });
+
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   getOpportunityListByCustomerId,
-    //   handleUpdateCustomerOpportunityModal,
-    //   setEditCustomerOpportunity,
+      getQuotationRepairOrder,
+      getQuotationProcureOrder,
+      handleUpdateProcureDetailModal,
+      setEditProcure,
+      getProcureRecords,
+      handleProcureDetailsModal,
+      quotationToOrder
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(LinkedOpportunityTable);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LinkedOpportunityTable);

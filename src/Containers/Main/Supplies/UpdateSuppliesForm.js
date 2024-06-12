@@ -5,6 +5,7 @@ import { Button } from "antd";
 import * as Yup from "yup";
 import { Formik, Form, Field,FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
+import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -41,6 +42,7 @@ console.log("f",newimageId)
         <Formik
           initialValues={{
             attribute: "",
+            fifoInd:props.particularDiscountData.fifoInd || "",
             attributeName:props.particularDiscountData.attributeName || "",
             category:props.particularDiscountData.category || "",
             categoryName:props.particularDiscountData.categoryName || "",
@@ -70,6 +72,7 @@ console.log("f",newimageId)
            props.updateSupplies(
               {
                 ...values,
+                fifoInd: values.fifoInd ? true : false,
                 // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
                 // imageId: props.particularDiscountData.imageId,
               },
@@ -264,6 +267,19 @@ console.log("f",newimageId)
                         }}
                       />
                     </div>
+                  </div>
+                  <div class="flex justify-between mt-2">
+                    <div class="w-[47%]">
+                    <Field
+                              name="fifoInd"
+                              component={SwitchComponent}
+                              data={values.fifoInd}
+                              checkedChildren={"LIFO"}
+                              unCheckedChildren={"FIFO"}
+                              width={"7em"}
+                            />
+                    </div>
+                
                   </div>
                   <div class="flex justify-between mt-4">
                     <div class="w-full">

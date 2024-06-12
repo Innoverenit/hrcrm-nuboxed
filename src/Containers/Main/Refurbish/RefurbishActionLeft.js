@@ -1,8 +1,15 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Avatar, Tooltip,Badge } from "antd";
-import {getRefurbishAllCount} from "../Refurbish/RefurbishAction"
+import { Avatar, Tooltip,Badge,Input } from "antd";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import {
+  getRefurbishAllCount,
+  inputAllDataSearch,
+  ClearSearchedDataOfAll
+
+} from "../Refurbish/RefurbishAction"
 import { FlexContainer } from "../../../Components/UI/Layout";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 
@@ -10,7 +17,16 @@ function RefurbishActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
-
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
   useEffect(() => {
       if (props.viewType === "card") {
         props.getSupplierCount(props.userId);
@@ -26,6 +42,81 @@ function RefurbishActionLeft (props) {
           setProductionViewType,
       } = props;
 
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+    
+      const handleChange = (e) => {
+        setCurrentData(e.target.value);
+    
+        if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+          //setPage(pageNo + 1);
+        //  props.getLeads(props.userId, pageNo, "creationdate");
+          //props.ClearReducerDataOfLead()
+          props.ClearSearchedDataOfAll()
+          setSearchOnEnter(false);
+        }
+      };
+      const handleSearch = () => {
+        if (currentData.trim() !== "") {
+          // Perform the search
+          props.inputAllDataSearch(currentData);
+          setSearchOnEnter(true);  //Code for Search
+        } else {
+          console.error("Input is empty. Please provide a value.");
+        }
+      };
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.inputAllDataSearch(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
 
         return (
           <>
@@ -64,6 +155,20 @@ function RefurbishActionLeft (props) {
               </span>
               </Badge>
               </Tooltip>
+{viewType === "all"?
+              <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search by OrderNo"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+      </div>
+      :null}
+
+
             </FlexContainer>
     
           </>
@@ -73,9 +178,12 @@ const mapStateToProps = ({ auth, refurbish }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   allCountRefurbish:refurbish.allCountRefurbish,
+  searchRefurbish: refurbish.searchRefurbish
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getRefurbishAllCount
+  getRefurbishAllCount,
+  inputAllDataSearch,
+  ClearSearchedDataOfAll
 }, dispatch);
 
 export default connect(

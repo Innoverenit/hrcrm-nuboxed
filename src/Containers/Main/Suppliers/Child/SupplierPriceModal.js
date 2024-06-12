@@ -1,6 +1,5 @@
-import React, { lazy, Suspense } from "react";
+import React, {  Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import SuppliersPriceCardList from "./SuppliersPriceCardList";
 

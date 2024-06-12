@@ -242,23 +242,23 @@ function CustomerCardList(props) {
 console.log(page)
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex  sticky top-28 z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
               />
             </div>
-            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
               <FormattedMessage
                 id="app.work"
                 defaultMessage="Work"
               />
 
             </div>
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
               <FormattedMessage
                 id="app.sector"
                 defaultMessage="Sector"
@@ -286,7 +286,7 @@ console.log(page)
               />
 
             </div>
-            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
               <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
@@ -319,7 +319,7 @@ console.log(page)
                 defaultMessage="Customer"
               />
             </div>
-            <div className="w-[3.8rem]"></div>
+            <div className="w-[4.12rem]"></div>
 
           </div>
           <InfiniteScroll
@@ -348,11 +348,11 @@ console.log(page)
                 } `;
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-[2.75rem] max-sm:h-[9rem] items-center p-3 "
-
-                  >
+                  <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex font-medium flex-col w-[17rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex font-medium  w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -403,7 +403,7 @@ console.log(page)
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -427,7 +427,7 @@ console.log(page)
                         </div>
 
                       </div>
-                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[6.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden"> Sector </div> */}
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -445,11 +445,11 @@ console.log(page)
                         </div>
 
                       </div>
-                      <div className=" flex font-medium max-sm:w-auto flex-col justify-center w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                         {/* <div class=" text-xs text-cardBody font-poppins max-sm:hidden">Country</div> */}
-                        <div class=" text-sm text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -457,7 +457,7 @@ console.log(page)
                       </div>
 
 
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[4.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -467,7 +467,7 @@ console.log(page)
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium  max-sm:w-auto w-[3.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -477,7 +477,7 @@ console.log(page)
     )} */}
                             {item.totalProposalValue && (
       <div class="text-xs text-cardBody font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue/10000}K`}
+      {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 10000)}K`}
       </div>
     )}
                       </div>
@@ -489,7 +489,7 @@ console.log(page)
 
                                     </div>
                                 </div> */}
-                      <div className=" flex font-medium items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium items-center max-sm:w-auto   w-[6rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm text-cardBody font-poppins max-sm:hidden">Assigned to</div> */}
 
                         <div class=" text-xs text-cardBody font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -515,7 +515,7 @@ console.log(page)
 
                         </div>
                       </div>
-                      <div className=" flex font-medium items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex font-medium items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -532,11 +532,11 @@ console.log(page)
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex font-medium justify-center flex-col w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex font-medium justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-sm text-cardBody font-poppins"></div>
                         <Popconfirm
-                          title="Change status to Account?"
+                          title="Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
@@ -554,7 +554,7 @@ console.log(page)
                         </Popconfirm>
                       </div>
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                     
                         <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
@@ -566,7 +566,7 @@ console.log(page)
                                 {" "}
                                 <a href={`https://${item.url}`} target="_blank">
                                   <ExploreIcon
-                                    className=" !text-xl cursor-pointer text-[green]"
+                                    className=" !text-icon cursor-pointer text-[green]"
 
                                   />
                                 </a>
@@ -592,7 +592,7 @@ console.log(page)
                           >
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
                           </div>
                         </div>
@@ -600,13 +600,13 @@ console.log(page)
 
 
                         </div>
-                      </div>
+                     
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
+                     
+                        <div class="w-5">
                           <Tooltip title="Contact">
                             <ContactsIcon
-                              className=" !text-xl cursor-pointer text-[#709ab3]"
+                              className=" !text-icon cursor-pointer text-[#709ab3]"
                               onClick={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -615,10 +615,10 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div>
+                        <div class="w-5">
                           <Tooltip title="Opportunity">
                             <LightbulbIcon
-                              className=" !text-xl cursor-pointer text-[#AF5910]"
+                              className=" !text-icon cursor-pointer text-[#AF5910]"
                               onClick={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -629,12 +629,12 @@ console.log(page)
                           </Tooltip>
 
                         </div>
-                      </div>
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
+                     
+                     
+                        <div class="w-5">
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                               onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -643,10 +643,10 @@ console.log(page)
                             />
                           </Tooltip>
                         </div>
-                        <div>
+                        <div class="w-5">
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
                                 handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -657,24 +657,24 @@ console.log(page)
                           </Tooltip>
 
                         </div>
-                      </div>
+                     
 
-                      <div class="flex flex-col w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-                        <div >
+                      
+                        <div class="w-5">
                           <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
 
                             <LocationOnIcon
-                              className=" !text-xl cursor-pointer text-[#960A0A]"
+                              className=" !text-icon cursor-pointer text-[#960A0A]"
 
                             />
 
                           </Tooltip>
                         </div>
-                        <div>
+                        <div class="w-5">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-xl cursor-pointer text-[tomato]"
+                                className=" !text-icon cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditCustomer(item);
@@ -696,7 +696,7 @@ console.log(page)
               />
             </Tooltip> */}
                         </div>
-                      </div>
+                      
 
                     </div>
                   </div>

@@ -5,9 +5,11 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Button, Tooltip } from "antd";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
+import { addCreateManufactureCardModal } from "../../../../../Production/ProductionAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getDispatchProductionsbyLocId } from "../../../InventoryAction";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
+import AddCreateManufactureModal from "../../../../../Production/Child/AddCreateManufactureModal";
 
 function ProductionDispatchCard(props) {
 
@@ -74,11 +76,21 @@ function ProductionDispatchCard(props) {
                         {productionDispatchByLocsId.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium flex-col  w-[14.12rem] max-xl:w-[14.12rem] max-lg:w-[11.12rem] max-sm:w-auto max max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div 
+                                                 onClick={() => {
+                                                    props.addCreateManufactureCardModal(true);
+                                                    handleParticularRowData(item)
+                                                    //handleRowData(item);
+                                                    //handleProductivityClick(date.isoDate,user.userId)
+                                                               
+                                                             
+                                                             
+                                                   }}
+                                                class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     {item.manufactureId}
                                                 </div>
 
@@ -131,7 +143,7 @@ function ProductionDispatchCard(props) {
                                                 <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
-                                                            className="!text-base cursor-pointer text-[tomato]"
+                                                            className="!text-xl cursor-pointer text-[tomato]"
                                                         // onClick={() => {
                                                         //     props.setEditProducts(item);
                                                         //     handleUpdateProductModal(true);
@@ -182,16 +194,22 @@ function ProductionDispatchCard(props) {
             </div>
 
 
+            <AddCreateManufactureModal
+productionProductId={particularDiscountData.productionProductId}
+addCreateManufactureCard={props.addCreateManufactureCard}
+addCreateManufactureCardModal={props.addCreateManufactureCardModal}
+/>
 
         </>
     );
 }
 
 
-const mapStateToProps = ({ inventory, auth, }) => ({
+const mapStateToProps = ({ inventory,production, auth, }) => ({
     productionDispatchByLocsId: inventory.productionDispatchByLocsId,
     fetchingDispatchProductionLocId: inventory.fetchingDispatchProductionLocId,
     locationId: auth.userDetails.locationId,
+    addCreateManufactureCard:production.addCreateManufactureCard,
     user: auth.userDetails,
 
 });
@@ -199,7 +217,8 @@ const mapStateToProps = ({ inventory, auth, }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getDispatchProductionsbyLocId
+            getDispatchProductionsbyLocId,
+            addCreateManufactureCardModal
         },
         dispatch
     );

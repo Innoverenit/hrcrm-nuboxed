@@ -1238,7 +1238,7 @@ export const getOpportunityTeamRecords = (userId) => (dispatch) => {
     type: types.GET_OPPORTUNITY_TEAM_RECORDS_REQUEST,
   });
   axios
-    .get(`${base_url}/oppertunity/contact/team/count/${userId}`, {
+    .get(`${base_url}/oppertunity/teams/count/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3232,13 +3232,13 @@ export const getFullOpportunity = (pageNo) => (dispatch) => {
     });
 };
 
-export const getTeamOpportunity = (pageNo) => (dispatch) => {
+export const getTeamOpportunity = (userId,pageNo) => (dispatch) => {
  
   dispatch({
     type: types.GET_TEAM_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/opportunity/all/${pageNo}`, {
+    .get(`${base_url}/opportunit/teams/${userId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

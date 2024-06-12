@@ -13,15 +13,19 @@ import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
-import { addOrderProcurementForm, getLobList } from '../AccountAction'
+import { addQuotationOrderForm, getLobList } from '../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
-    advancePayment: Yup.string().required("Input needed!"),
+    advancePayment: Yup.number()
+    .required("Input needed!")
+    .typeError('Number Required!'),
     contactPersonId: Yup.string().required("Input needed!"),
     orderCurrencyId: Yup.string().required("Input needed!"),
+    customPayment: Yup.number()
+    .typeError('Number Required!'),
 })
 function AccountOpportunityForm(props) {
     const contactOption = props.contactDistributor.map((item) => {
@@ -65,16 +69,16 @@ function AccountOpportunityForm(props) {
                 deliveryDate: "",
                 contactPersonId: "",
                 paymentInTerms: "",
-                type:"",
-                customPayment: "",
+                customPayment: "0",
                 comments: "",
-               
+                orderType:"Repair",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
+                // orderType: "Repair",
                 priority: priority || "",
                 orgId: props.orgId,
                 loadingAddress: [
@@ -91,19 +95,7 @@ function AccountOpportunityForm(props) {
                     },
                 ],
 
-                unloadingAddress: [
-                    {
-                        address1: "",
-                        addressId: "",
-                        state: "",
-                        city: "",
-                        pinCode: "",
-                        countryId: "",
-                        latitude: "",
-                        longitude: "",
-                        country: "",
-                    },
-                ],
+               
 
             }}
 
@@ -112,14 +104,15 @@ function AccountOpportunityForm(props) {
                 console.log(priority)
 
                 if (values.advancePayment < 100) {
-                    props.addOrderProcurementForm({
+                    props.addQuotationOrderForm({
                         ...values,
                         orderSource: "erp",
                         priority: priority || "",
-                        type:values.type,
+                        orderType:values.orderType,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
-                    }, props.distributorId);
+                    }, props.distributorId,);
+                    // "0","High","Medium","Low"
                 } else {
                     message.success("Advance payment should be less than 100")
                 }
@@ -128,25 +121,142 @@ function AccountOpportunityForm(props) {
             {({ values, handleChange }) => (
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
-                        <div class=" flex justify-between">
-                            <div class=" w-[47%] flex-col flex">
-                                <div class="mt-3">
-                                    <StyledLabel><h3> <FormattedMessage
-                                        id="app.deliveryaddress"
-                                        defaultMessage="Delivery Address"
-                                    /></h3></StyledLabel>
 
-                                    <FieldArray
-                                        name="loadingAddress"
-                                        render={(arrayHelpers) => (
-                                            <AddressFieldArray1
-                                                singleAddress
-                                                arrayHelpers={arrayHelpers}
-                                                values={values}
-                                            />
-                                        )}
-                                    />
-                                </div>
+                        <div class=" flex justify-between">
+
+                            
+     
+                            <div class=" w-[47%] flex-col flex">
+                          
+                            <div class=" flex justify-between">
+ <div class="w-[45%]">
+                                        <Field
+                                            name="orderType"
+                                            label="Type"
+                                            isColumn
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={[
+                                                { label: "Repair", value: "Repair" },
+                                                { label: "Procure", value: "Procure" },
+                                            ]}
+                                        />
+                                    </div>
+
+
+<div class="w-[46%]  ml-8 mt-2">
+    <StyledLabel><FormattedMessage
+        id="app.priority"
+        defaultMessage="Priority"
+    /></StyledLabel>
+    <div class="justify-between flex">
+        <div>
+            <Tooltip title={<FormattedMessage
+                id="app.high"
+                defaultMessage="High"
+            />}>
+                <Button
+                    // type="primary"
+                    shape="circle"
+                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                    onClick={() => handleButtonClick("High")}
+                    style={{
+                        backgroundColor:
+                            priority === "High"
+                                ? "red"
+                                : "white",
+                        borderRadius: "50%",
+                        width: "31px",
+                        height: "31px"
+                    }}
+                />
+            </Tooltip>
+            &nbsp;
+            <Tooltip title={<FormattedMessage
+                id="app.medium"
+                defaultMessage="Medium"
+            />}>
+                <Button
+                    // type="primary"
+                    shape="circle"
+                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                    onClick={() => handleButtonClick("Medium")}
+                    style={{
+                        backgroundColor:
+                            priority === "Medium"
+                                ? "Orange"
+                                : "white",
+                        borderRadius: "50%",
+                        width: "31px",
+                        height: "31px"
+                    }}
+                />
+            </Tooltip>
+            &nbsp;
+            <Tooltip title={<FormattedMessage
+                id="app.low"
+                defaultMessage="Low"
+            />}>
+                <Button
+                    // type="primary"
+                    shape="circle"
+                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                    onClick={() => handleButtonClick("Low")}
+                    style={{
+                        backgroundColor:
+                            priority === "Low"
+                                ? "teal"
+                                : "white",
+                        borderRadius: "50%",
+                        width: "31px",
+                        height: "31px"
+                    }}
+                ></Button>
+            </Tooltip>
+        </div>
+    </div>
+</div>
+ </div>
+
+                                 
+
+                                    {values.orderType === "Repair" ? (
+                                    <div className="mt-3">
+                                        <StyledLabel>
+                                            <h3>
+                                                <FormattedMessage id="app.pickupaddress" defaultMessage="Pickup Address" />
+                                            </h3>
+                                        </StyledLabel>
+                                        <FieldArray
+                                            name="loadingAddress"
+                                            render={(arrayHelpers) => (
+                                                <AddressFieldArray1
+                                                    singleAddress
+                                                    arrayHelpers={arrayHelpers}
+                                                    values={values}
+                                                />
+                                            )}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="mt-3">
+                                        <StyledLabel>
+                                            <h3>
+                                                <FormattedMessage id="app.deliveryaddress" defaultMessage="Delivery Address" />
+                                            </h3>
+                                        </StyledLabel>
+                                        <FieldArray
+                                            name="loadingAddress"
+                                            render={(arrayHelpers) => (
+                                                <AddressFieldArray1
+                                                    singleAddress
+                                                    arrayHelpers={arrayHelpers}
+                                                    values={values}
+                                                />
+                                            )}
+                                        />
+                                    </div>
+                                )}
                                 <div class="mt-3">
                                     <Field
                                         name="comments"
@@ -186,20 +296,6 @@ function AccountOpportunityForm(props) {
                                                 isColumn
                                             />
                                         </div>}
-
-                                </div>
-                                <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
-                                        <Field
-                                            name="type"
-                                            label="Type"
-                                            isColumn
-                                            inlineLabel
-                                            component={SelectComponent}
-                                            options={["Procure", "Repair"]}
-                                        />
-                                    </div>
-                                 
 
                                 </div>
                                 <div class="justify-between flex mt-3">
@@ -254,21 +350,7 @@ function AccountOpportunityForm(props) {
                                     </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    {/* <div class="w-[45%]">
-                                        <Field
-                                            name="availabilityDate"
-                                            label="Pickup Date "
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-
-                                            disabledDate={disabledDate}
-                                            component={DatePicker}
-                                            value={values.availabilityDate}
-
-                                        />
-                                    </div> */}
-                                    <div class="w-[45%]">
+                                <div class="w-[45%]">
                                         <Field
                                             name="deliveryDate"
                                             label="Delivery Date "
@@ -294,83 +376,25 @@ function AccountOpportunityForm(props) {
 
                                         />
                                     </div>
+                                <div class="w-[45%]">
+  {values.orderType === "Procure" ? null : (
+    <Field
+      name="availabilityDate"
+      label="Pickup Date"
+      isColumn
+      inlineLabel
+      width={"100%"}
+      disabledDate={disabledDate}
+      component={DatePicker}
+      value={values.availabilityDate}
+    />
+  )}
+</div>
+
+                               
 
                                 </div>
-                                <div class="justify-between flex mt-3">
-
-                                    <div class="w-[46%]  ml-8 mt-2">
-                                        <StyledLabel><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></StyledLabel>
-                                        <div class="justify-between flex">
-                                            <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("High")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "High"
-                                                                    ? "red"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    />
-                                                </Tooltip>
-                                                &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("Medium")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "Medium"
-                                                                    ? "Orange"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    />
-                                                </Tooltip>
-                                                &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("Low")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "Low"
-                                                                    ? "teal"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    ></Button>
-                                                </Tooltip>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
 
                                 <div class=" mt-3 flex justify-between">
 
@@ -378,7 +402,7 @@ function AccountOpportunityForm(props) {
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"
-                                            loading={props.addingOrderProcurement}
+                                            loading={props.addingQuotationOrder}
                                         >
                                             <FormattedMessage
                                                 id="app.save"
@@ -403,7 +427,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
-    addingOrderProcurement: distributor.addingOrderProcurement,
+    addingQuotationOrder: distributor.addingQuotationOrder,
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
 });
@@ -411,7 +435,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addOrderProcurementForm,
+            addQuotationOrderForm,
             getSaleCurrency,
             getLobList,
             getContactDistributorList

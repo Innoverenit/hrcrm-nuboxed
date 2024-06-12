@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { getSupplierContactList, handleUpdateSupplierContactModal, setEditSupplierContact } from "../../../../SuppliersAction";
-import { EditOutlined } from "@ant-design/icons";
-// import UpdateSupplierContactModal from "./UpdateSupplierContactModal";
 
 function SupplierContactTable(props) {
 
@@ -30,7 +27,7 @@ function SupplierContactTable(props) {
   return (
     <>
     <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[13.8rem] max-xl:text-[0.65rem]">  <FormattedMessage
               id="app.name"
@@ -63,7 +60,7 @@ function SupplierContactTable(props) {
                   {props.contactSupplier.map((item) => {
                     return (
                       <>
-                        <div className="flex rounded-xl justify-between mt-[0.5rem] bg-white h-[2.75rem] items-center p-3"
+                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">

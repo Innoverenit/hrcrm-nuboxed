@@ -64,9 +64,12 @@ const InvestorActionLeft = (props) => {
     setPage(pageNo + 1);
   }
 
-// useEffect(() => {
-//   props.getInvestor(props.userId)
-//   }, [props.userId]);
+  useEffect(() => {
+
+    if (props.teamsAccessInd) {
+      props.getInvestorTeam(props.userId);
+    }
+  }, [props.userId, props.teamsAccessInd]);
 useEffect(() => {
   // props.getCustomerRecords();
   if (transcript) {
@@ -88,7 +91,7 @@ useEffect(() => {
     //   props.setCurrentData(transcript);
     // }
   }, [props.viewType, props.userId,props.orgId]);
-
+  const teamCount = props.teamsAccessInd && props.investorTeamRecord ? props.investorTeamRecord.investorTeam : 0;
   return (
     <div class=" flex items-center">
     
@@ -118,7 +121,7 @@ useEffect(() => {
 >
         <Badge
           size="small"
-        count={(props.teamsAccessInd||props.viewType === "teams" && props.investorTeamRecord.InvestorTeam) || 0}
+        count={(teamCount||props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
           overflowCount={999}
         >
           <span

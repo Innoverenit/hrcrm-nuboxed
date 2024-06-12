@@ -177,6 +177,10 @@ const initialState = {
   fetchingDiscountHistoryError: false,
   discountHistory: [],
 
+  fetchingProductHsn: false,
+  fetchingProductHsnError: false,
+  productHsn:[],
+
   fetchingDeletedProductRecords: false,
   fetchingDeletedProductRecordsError: false,
   deletedProductCount:{},
@@ -439,7 +443,10 @@ export const productReducer = (state = initialState, action) => {
     case types.GET_PROFESSIONALDUCTS_REQUEST:
       return { ...state, fetchingProducts: true, fetchingProductsError: false };
     case types.GET_PROFESSIONALDUCTS_SUCCESS:
-      return { ...state, fetchingProducts: false, products: action.payload };
+      return { ...state, fetchingProducts: false, 
+        products: [
+        ...state.products,
+        ...action.payload] };
     case types.GET_PROFESSIONALDUCTS_FAILURE:
       return { ...state, fetchingProducts: false, fetchingProductsError: true };
 
@@ -463,7 +470,10 @@ export const productReducer = (state = initialState, action) => {
           return {
             ...state,
             fetchingProductionSpareData: false,
-            productionSpareData: action.payload
+            // productionSpareData: action.payload
+            productionSpareData: [
+              ...state.productionSpareData,
+              ...action.payload] 
           };
         case types.GET_PRODUCTION_SPARE_DATA_FAILURE:
           return {
@@ -1263,7 +1273,7 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         postingProductionBldr: false,
-        builderbyProductId: state.builderbyProductId.map((item) => {
+        productionSpareData: state.productionSpareData.map((item) => {
           if (item.suppliesId == action.payload.suppliesId) {
             return action.payload;
           } else {
@@ -1403,6 +1413,27 @@ export const productReducer = (state = initialState, action) => {
                                       removingNotesOfProducts: false,
                                       removingNotesOfProductsError: true,
                                     };
+
+
+
+                                    case types.GET_PRODUCT_HSN_REQUEST:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: true,
+                                        fetchingProductHsnError: false,
+                                      };
+                                    case types.GET_PRODUCT_HSN_SUCCESS:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: false,
+                                        productHsn: action.payload,
+                                      };
+                                    case types.GET_PRODUCT_HSN_FAILURE:
+                                      return {
+                                        ...state,
+                                        fetchingProductHsn: false,
+                                        fetchingProductHsnError: true,
+                                      };
 
 
     default:

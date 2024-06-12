@@ -122,9 +122,9 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                              <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-3"
-                >
+                             <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
                                       <div class="flex items-center  justify-between">
                                  
  
@@ -324,11 +324,11 @@ if(fetchingCustomerCampaign){
       <div class="rounded-lg m-5 p-2 w-[94%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
    
          <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[6.8rem]"><FormattedMessage
+        <div className=" md:w-[7.8rem]"><FormattedMessage
                   id="app.type"
                   defaultMessage="type"
                 /></div>
-        <div className=" md:w-[7.23rem]"><FormattedMessage
+        <div className=" md:w-[6.23rem]"><FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /></div>
@@ -341,7 +341,7 @@ if(fetchingCustomerCampaign){
                   defaultMessage="end"
                 /></div>
      
-        <div className="md:w-[6.32rem]"><FormattedMessage
+        <div className="md:w-[5.32rem]"><FormattedMessage
                   id="app.include"
                   defaultMessage="include"
                 /></div>
@@ -350,7 +350,7 @@ if(fetchingCustomerCampaign){
                   id="app.assignedto"
                   defaultMessage="assignedto"
                 /></div>
-        <div className="md:w-24"><FormattedMessage
+        <div className="md:w-[24rem]"><FormattedMessage
                   id="app.owner"
                   defaultMessage="owner"
                 /></div>
@@ -366,12 +366,11 @@ if(fetchingCustomerCampaign){
       {data.map((item) => { 
                     return (
                         <div key={item.eventId}>
-                            <div className="flex rounded-xl  mt-4 bg-white h-[2.75rem] items-center p-3"
-                                style={{
-                                    // borderBottom: "3px dotted #515050"
-                                }}>
-                                     <div class="flex md:w-[22rem]">
-                                <div className=" flex font-medium flex-col w-[6.98rem] max-sm:w-full ">
+                             <div
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+              >
+                                     <div class="flex ">
+                                <div className=" flex font-medium  w-[6.98rem] max-sm:w-full ">
 <div className="flex max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -389,27 +388,27 @@ if(fetchingCustomerCampaign){
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium flex-col  md:w-[7.26rem] max-sm:flex-row  w-full ">
+                                <div className=" flex font-medium   md:w-[4.26rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
-                                <div class="flex  items-center md:w-[55rem]">
-                                <div className=" flex font-medium flex-col md:w-[6.9rem] max-sm:flex-row  w-full">
+                                <div class="flex  items-center ">
+                                <div className=" flex font-medium  md:w-[5.9rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
+                                <div className=" flex font-medium  md:w-[5.32rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[5.31rem] max-sm:flex-row  w-full ">
+                                <div className=" flex font-medium  md:w-[5.31rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem] text-cardBody font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem] text-cardBody font-poppins">
@@ -439,7 +438,7 @@ if(fetchingCustomerCampaign){
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex font-medium flex-col md:w-[4.69rem] max-sm:flex-row  w-full ">
+                                <div className="flex font-medium  md:w-[4.69rem] max-sm:flex-row  w-full ">
 
                                   
                                   
@@ -466,7 +465,7 @@ if(fetchingCustomerCampaign){
 
                                    
                                 </div>
-                                <div className="flex font-medium flex-col md:w-[4.12rem] max-sm:flex-row  w-full ">
+                                <div className="flex font-medium  md:w-[4.12rem] max-sm:flex-row  w-full ">
                    <div class="max-sm:flex justify-end">
 
             <SubTitle>
@@ -483,10 +482,10 @@ if(fetchingCustomerCampaign){
                    </div>
                                 </div>
 
-                                <div class="flex md:w-[14rem]">
+                                <div class="flex ">
                                
                              
-                   <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
+                   <div className=" flex font-medium  md:w-[6.32rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     {/* {item.budgetValue} */}
@@ -497,12 +496,12 @@ if(fetchingCustomerCampaign){
 />
                     </div>
   </div>
-  <div className=" flex font-medium flex-col md:w-[6.32rem] max-sm:flex-row  w-full">
+  <div className=" flex font-medium  md:w-[5.321rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem] text-cardBody font-poppins">
                                     
                                     <Select
-                        classNames="w-32"
+                        style={{width:"5rem"}}
                         value={item.currencyName}
                         onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
                       >
@@ -514,7 +513,7 @@ if(fetchingCustomerCampaign){
                       </Select>
                     </div>
   </div>
-  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
           Save
         </Button>

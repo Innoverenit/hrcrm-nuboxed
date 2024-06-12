@@ -58,10 +58,11 @@ function AccountTable(props) {
 
   const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight * 1.2;
+
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex justify-end sticky  z-auto'>
+      <div class="rounded-lg m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden  w-[97.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  <FormattedMessage
               id="app.name"
@@ -128,7 +129,7 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
+                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
@@ -181,14 +182,14 @@ function AccountTable(props) {
                               {item.dcategoryName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[7rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.clientName}
 
                             </div>
                           </div>
 
-                          <div className=" flex font-medium flex-col max-sm:w-auto w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex font-medium flex-col max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.payment}
 
@@ -261,13 +262,13 @@ function AccountTable(props) {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                        <div class="flex md:flex-col">
+               
 
 <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
   <div class=" text-xs text-cardBody font-poppins">
     <Tooltip title="">
       <AcUnitIcon
-        className=" !text-base cursor-pointer text-[tomato]"
+        className=" !text-icon cursor-pointer text-[tomato]"
         onClick={() => {
           // props.setEditDistributor(item)
           handleAccountModal(true);
@@ -281,10 +282,10 @@ function AccountTable(props) {
 
 </div>
 
-</div>
 
-                          <div class="flex md:flex-col">
-                            <div className=" flex font-medium flex-col  w-[1.6rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+
+                        
+                           
                               <div>
                                 <Tooltip title={item.url}>
                                   {item.url !== "" ? (
@@ -295,7 +296,7 @@ function AccountTable(props) {
                                       {" "}
                                       <a href={`https://${item.url}`} target="_blank">
                                         <ExploreIcon
-                                          className=" !text-base cursor-pointer text-[green]"
+                                          className=" !text-icon cursor-pointer text-[green]"
 
                                         />
                                       </a>
@@ -308,7 +309,7 @@ function AccountTable(props) {
                                 </Tooltip>
 
                               </div>
-                            </div>
+                           
                             <div className=" flex font-medium flex-col  w-[1.8rem] max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Tooltip title="Pulse">
@@ -317,19 +318,19 @@ function AccountTable(props) {
                                       props.handleAccountPulse(true);
                                       handleCurrentRowData(item);
                                     }}
-                                    className=" !text-base cursor-pointer text-[#df9697]"
+                                    className=" !text-icon cursor-pointer text-[#df9697]"
                                   />
                                 </Tooltip>
                               </div>
                             </div>
-                          </div>
-                          <div class="flex md:flex-col">
+      
+                         
 
-                            <div className=" flex font-medium flex-col w-[2rem] max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" flex font-medium flex-col  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Tooltip title="Edit">
                                   <BorderColorIcon
-                                    className=" !text-base cursor-pointer text-[tomato]"
+                                    className=" !text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
                                       props.setEditDistributor(item)
                                       handleUpdateAccountModal(true);
@@ -350,15 +351,16 @@ function AccountTable(props) {
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
                                   <DeleteOutlined
-                                    className=" !text-base cursor-pointer text-[red]"
+                                    className=" !text-icon cursor-pointer text-[red]"
                                   />
                                 </Popconfirm>
+ 
                               </div>
 
 
                             </div>
                           </div>
-                        </div>
+                       
                       </div>
                     </div>
 
@@ -391,6 +393,7 @@ function AccountTable(props) {
 }
 const mapStateToProps = ({ distributor, auth }) => ({
   customerListByUser: distributor.customerListByUser,
+  serachedData:distributor.serachedData,
   showPulseModal: distributor.showPulseModal,
   fetchingCustomerByUser: distributor.fetchingCustomerByUser,
   fetchingDistributorsByUserIdError:

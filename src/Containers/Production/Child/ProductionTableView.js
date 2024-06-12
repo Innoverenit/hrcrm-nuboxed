@@ -259,45 +259,9 @@ function ProductionTableView(props) {
 
                                                 <div className=" flex font-medium items-center md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
-                                                        {item.type === "In Progress" && item.startInd === false &&
-
-                                                            <PlayCircleFilledSharp
-                                                                // class=" cursor-pointer"
-                                                                onClick={() => {
-                                                                    let data = {
-                                                                        // userId: item.userId,
-                                                                        // phoneId: item.productionTableData.manufactureId,
-                                                                        // pauseInd: false
-                                                                        manufactureId:item.manufactureId,
-                                                                        productionProductId:item.productionProductId,
-                                                                        userId:item.userId,
-                                                                        startInd:true,
-                                                                        orgId:props.orgId,
-                                                                    }
-                                                                    props.updateProductionPauseStatus(data)
-                                                                }} />
-                                                        }
-                                                        {item.type === "In Progress" && item.startInd === true &&
-
-                                                            <PauseCircleFilled
-                                                                class=" cursor-pointer text-orange-400"
-                                                                onClick={() => {
-                                                                    let data = {
-                                                                        manufactureId:item.manufactureId,
-                                                                        productionProductId:item.productionProductId,
-                                                                        userId:item.userId,
-                                                                        startInd:false,
-                                                                        orgId:props.orgId,
-                                                                        // userId: props.userId,
-                                                                        // phoneId:item.manufactureId,
-                                                                        // pauseInd: true
-                                                                    }
-                                                                    props.updateProductionPauseStatus(data)
-                                                                }}
-                                                            />
-                                                        }
+                                     
                                                         <ButtonGroup>
-                                                            {item.type === "null" && (
+                                                            {item.type === "To Start" && (
                                                                 <StatusIcon
                                                                     type="In Progress"
                                                                     //iconType="fa-hourglass-half"
@@ -325,6 +289,43 @@ function ProductionTableView(props) {
                                                                     }}
                                                                 /> : null}
                                                         </ButtonGroup>
+                                                        {item.type === "In Progress" && item.startInd === false &&
+
+<PlayCircleFilledSharp
+    // class=" cursor-pointer"
+    onClick={() => {
+        let data = {
+            // userId: item.userId,
+            // phoneId: item.productionTableData.manufactureId,
+            // pauseInd: false
+            manufactureId:item.manufactureId,
+            productionProductId:item.productionProductId,
+            userId:props.userId,
+            startInd:true,
+            orgId:props.orgId,
+        }
+        props.updateProductionPauseStatus(data)
+    }} />
+}
+{item.type === "In Progress" && item.startInd === true &&
+
+<PauseCircleFilled
+    class=" cursor-pointer text-orange-400"
+    onClick={() => {
+        let data = {
+            manufactureId:item.manufactureId,
+            productionProductId:item.productionProductId,
+            userId:props.userId,
+            startInd:false,
+            orgId:props.orgId,
+            // userId: props.userId,
+            // phoneId:item.manufactureId,
+            // pauseInd: true
+        }
+        props.updateProductionPauseStatus(data)
+    }}
+/>
+}
                                                     </div>
                                                 </div>
                                                
@@ -352,7 +353,7 @@ function ProductionTableView(props) {
                         <div className="md:w-[5rem]">Inspected</div>
                         <div className=" md:w-[6.07rem]">Store</div>
                         <div className="md:w-[1.08rem]"></div>
-                        <div className="md:w-[5.07rem]">To Dispatch</div>
+                        <div className="md:w-[5.07rem]">To Quality</div>
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  
@@ -394,8 +395,9 @@ function ProductionTableView(props) {
                                                 <div className=" flex font-medium items-center md:w-[14.081rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-semibold  font-poppins">
                                                         {/* {stage} */}
-
+                                                        {item.type === "Complete" && (
                                                         <InpectProductionToggle item={item} />
+                                                        )}
                                                             {item.inspectedInd ?
                                                                 <MultiAvatar
                                                                     primaryTitle={item.inspectedUserName}

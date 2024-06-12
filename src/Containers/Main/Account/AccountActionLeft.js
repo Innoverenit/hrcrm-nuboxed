@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { inputDataSearch, getRecords, getAccountRecords, getAllRecords, getDistributorCount } from "./AccountAction";
+import { inputDataSearch,ClearSearchedDataOfAccount, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
 import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
-import dayjs from "dayjs";
 
 const AccountActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
     const [pageNo, setPage] = useState(0);
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
+  const dummy = ["cloud", "azure", "fgfdg"];
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
 
     const { user, } = props;
     useEffect(() => {
@@ -25,12 +35,7 @@ const AccountActionLeft = (props) => {
         }
     }, [props.viewType, props.userId]);
 
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition
-    } = useSpeechRecognition();
+   
     useEffect(() => {
         // props.getCustomerRecords();
         if (transcript) {
@@ -42,9 +47,9 @@ const AccountActionLeft = (props) => {
         setCurrentData(e.target.value);
 
         if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
-            setPage(pageNo + 1);
-            //   props.getLeads(props.userId, pageNo, "creationdate");
-            //   props.ClearReducerDataOfLead()
+            // setPage(pageNo + 1);
+            props.getCustomerByUser(props.userId, pageNo);
+           props.ClearSearchedDataOfAccount()
             setSearchOnEnter(false);
         }
     };
@@ -57,23 +62,64 @@ const AccountActionLeft = (props) => {
             console.error("Input is empty. Please provide a value.");
         }
     };
-    const suffix = (
+    const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
         <AudioOutlined
-            onClick={SpeechRecognition.startListening}
-            style={{
-                fontSize: 16,
-                color: '#1890ff',
-            }}
-
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
         />
-    );
+      );
+    const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.inputDataSearch(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
+  
+      console.log(currentData)
+      const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
+    
 
     return (
         <div class="flex items-center" >
             <div class=" ">
                 {user.functionName !== "Customer Care" && (
 
-                    <Tooltip title="List View">
+                    <Tooltip title="My Customer View">
                         <Badge size="small"
                             count={props.recordData.distributor || 0}
                         >
@@ -95,7 +141,7 @@ const AccountActionLeft = (props) => {
 
             {user.accountFullListInd === true && user.erpInd === true && (
                 <div class=" ">
-                    <Tooltip title="All Customers">
+                    <Tooltip title="All">
                         <Badge size="small"
                             count={props.accountRecordData.distributor || 0}
                         >
@@ -113,7 +159,7 @@ const AccountActionLeft = (props) => {
                     </Tooltip>
                 </div>
             )}
-            <Tooltip title="Deleted Distributor">
+            <Tooltip title="My Deleted-Customer">
                 <Badge size="small"
                 // count={props.accountRecordData.distributor || 0}
                 >
@@ -187,6 +233,7 @@ const AccountActionLeft = (props) => {
 
 const mapStateToProps = ({ auth, distributor }) => ({
     user: auth.userDetails,
+    customerListByUser: distributor.customerListByUser,
     allDistributorCount: distributor.allDistributorCount,
     accountRecordData: distributor.accountRecordData,
     recordData: distributor.recordData,
@@ -198,11 +245,13 @@ const mapStateToProps = ({ auth, distributor }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
+            getCustomerByUser,
             inputDataSearch,
             getRecords,
             getAccountRecords,
             getAllRecords,
             getDistributorCount,
+            ClearSearchedDataOfAccount,
         },
         dispatch
     );

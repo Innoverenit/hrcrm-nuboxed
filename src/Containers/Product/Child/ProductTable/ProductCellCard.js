@@ -2,7 +2,6 @@ import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Tabs,Spin,Input } from "antd";
-// import { Input, Button } from 'antd';
 import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell,getCatalogueCell,getcellCardList,addLocationCell} from "../../../Event/Child/Location/LocationAction";
 import ProductCellToggle from "./ProductCellToggle";
@@ -114,23 +113,23 @@ if(props.fetchingCatalogueCell){
       {props.catalogueCell.map(item => (
         <TabPane key={item.locationDetailsId} tab={item.locationName}>
          {props.fetchingCellCardList ? (
-             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+             <div class=" flex justify-center items-center h-[60vh]" >
              <BundleLoader/>
            </div>
           ) : (
             <div className=' flex justify-end sticky z-auto'>
-            <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
-              <div className=" flex justify-between w-[42%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
+            <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+              <div className=" flex justify-between w-[48%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
                 <div className=" md:w-[6rem]">#Cell</div>
-                <div className="md:w-[6.2rem] ">Tag Production</div>
-                <div className="w-12">Target Units/day</div>    </div>
+                <div className="md:w-[7.2rem] ">Tag Production</div>
+                <div className="w-[7rem]">Target Units/day</div>    </div>
                 
     
                {props.cellCardList .sort((a, b) => b.usedInd - a.usedInd)
   .map((item) => {
                 return (
                   <div >
-                    <div className="flex rounded-xl  mt-2 bg-white h-[2.75rem] items-center p-3">
+                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
     
                       <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                         <div class="text-sm text-cardBody font-semibold  font-poppins cursor-pointer">
@@ -173,6 +172,7 @@ if(props.fetchingCatalogueCell){
                         placeholder="Enter units"
                       />
                       <Button
+                      style={{ marginLeft:"0.5rem"}}
                         type="primary"
                         onClick={() => handleSubmit(item.cellChamberLinkId)}
                       >

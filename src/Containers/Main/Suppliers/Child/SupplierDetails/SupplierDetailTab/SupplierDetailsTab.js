@@ -8,7 +8,7 @@ import {
 import {
   handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
   handleSuppleirSuppliesDrawer, handleSupplierContactModal,
-  handleSupplierDocumentUploadModal, handleSuppliersActivityModal
+  handleSupplierDocumentUploadModal, handleSuppliersActivityModal,handleSupplierExcleUploadModal
 } from "../../../SuppliersAction"
 import AddPoModal from "./AddPoModal";
 import PurchaseOrderTable from "./PurchaseOrderTable";
@@ -16,6 +16,8 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import { PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import SupplierSuppliesDrawer from "./SupplierSupplies/SupplierSuppliesDrawer";
+import InventoryTable from "./InventoryTable";
+import AddSupplierExcleModal from "./SupplierDocumentTab/AddSupplierExcleModal";
 const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));
 const AddSupplierContactModal = lazy(() => import("./SupplierContactTab/AddSupplierContactModal"));
 const SupplierContactTable = lazy(() => import("./SupplierContactTab/SupplierContactTable"));
@@ -76,6 +78,34 @@ class SupplierDetailsTab extends Component {
             <TabPane
               tab={
                 <>
+                  <i class="far fa-share-square"></i>&nbsp;
+                   <label className="max-xl:text-[0.65rem]">Inventory</label>
+                  {activeKey === "2" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          onClick={() => this.props.handleSupplierExcleUploadModal(true)}
+                          size="14px"
+                          style={{
+                            verticalAlign: "center",
+                            marginLeft: "0.25em",
+                          }}
+                        />
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="2"
+            >
+              <Suspense fallback={"Loading ..."}>
+                <InventoryTable />
+              </Suspense>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <>
 
                   <i class="fab fa-connectdevelop"></i>
                   <span className="max-xl:text-[0.65rem] ml-1" >Materials</span>
@@ -101,7 +131,7 @@ class SupplierDetailsTab extends Component {
                   )} */}
                 </>
               }
-              key="2"
+              key="3"
             >
               <Suspense fallback={"Loading ..."}>
                 <SupplierSuppliesCardTable
@@ -116,7 +146,7 @@ class SupplierDetailsTab extends Component {
                   <ContactsIcon className="!text-base " />
                   <span className="max-xl:text-[0.65rem] ml-1">Contact</span>
 
-                  {activeKey === "3" && (
+                  {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
                         <PlusOutlined
@@ -137,7 +167,7 @@ class SupplierDetailsTab extends Component {
                   )}
                 </>
               }
-              key="3"
+              key="4"
             >
               <Suspense fallback={"Loading ..."}>
                 <SupplierContactTable
@@ -152,7 +182,7 @@ class SupplierDetailsTab extends Component {
                     <i class="far fa-file"></i>
                     <span className="max-xl:text-[0.65rem] ml-1">Documents</span>
                   </span>
-                  {activeKey === "4" && (
+                  {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
                         <PlusOutlined
@@ -172,7 +202,7 @@ class SupplierDetailsTab extends Component {
                   )}
                 </>
               }
-              key="4"
+              key="5"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
@@ -186,7 +216,7 @@ class SupplierDetailsTab extends Component {
                     <i class="far fa-file"></i>
                     <span className="max-xl:text-[0.65rem] ml-1">Activity</span>
                   </span>
-                  {activeKey === "5" && (
+                  {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
                         <PlusOutlined
@@ -206,13 +236,14 @@ class SupplierDetailsTab extends Component {
                   )}
                 </>
               }
-              key="5"
+              key="6"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <SuppliersActivityTable supplier={this.props.supplier} />
               </Suspense>
             </TabPane>
+          
           </StyledTabs>
 
         </TabsWrapper>
@@ -239,6 +270,15 @@ class SupplierDetailsTab extends Component {
             this.props.handleSupplierDocumentUploadModal
           }
         />
+
+<AddSupplierExcleModal
+          // supplier={this.props.supplier}
+          supplierExcleUploadModal={this.props.supplierExcleUploadModal}
+          handleSupplierExcleUploadModal={
+            this.props.handleSupplierExcleUploadModal
+          }
+        />
+
         <AddSuppliersActivityModal
           supplier={this.props.supplier}
           addSuppliersActivityModal={this.props.addSuppliersActivityModal}
@@ -257,7 +297,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
   supplierSuppliesdrwr: suppliers.supplierSuppliesdrwr,
   addSupplierContactModal: suppliers.addSupplierContactModal,
   supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
-  addSuppliersActivityModal: suppliers.addSuppliersActivityModal
+  addSuppliersActivityModal: suppliers.addSuppliersActivityModal,
+  supplierExcleUploadModal:suppliers.supplierExcleUploadModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -268,6 +309,7 @@ const mapDispatchToProps = (dispatch) =>
       handleSuppleirSuppliesDrawer,
       handleSupplierContactModal,
       handleSupplierDocumentUploadModal,
+      handleSupplierExcleUploadModal,
       handleSuppliersActivityModal
     },
     dispatch

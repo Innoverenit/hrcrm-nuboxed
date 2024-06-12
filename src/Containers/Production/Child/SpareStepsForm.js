@@ -133,22 +133,84 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Switch, message,Popconfirm } from "antd";
 import { PstoProductionBuilder, getProductionSpareData } from "../../Product/ProductAction";
 
 const DynamicInputForm = (props) => {
     const quantity = props.step.quantity;
+    const [page, setPage] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
     const [switchStates, setSwitchStates] = useState([]);
 
     useEffect(() => {
-        props.getProductionSpareData(props.step.suppliesId);
+        props.getProductionSpareData(props.step.suppliesId,props.productionProductId,"0");
     }, []);
 
     useEffect(() => {
         setSwitchStates(props.productionSpareData.map((item) => item.usedInd));
     }, [props.productionSpareData]);
 
-    const handleToggle = (item,index) => {
+
+
+    const handleLoadMore = () => {
+
+        setPage(page + 1);
+        // props.getProducts(page);
+       
+              props.getProductionSpareData(props.step.suppliesId,props.productionProductId,page);
+             
+         
+      };
+
+    // const handleToggle = (item,index) => {
+    //     const activeCount = switchStates.filter(state => state).length;
+
+    //     if (switchStates[index]) {
+    //         // If the current switch is already on, allow turning it off
+    //         const newSwitchStates = [...switchStates];
+    //         newSwitchStates[index] = !newSwitchStates[index];
+    //         setSwitchStates(newSwitchStates);
+    //         console.log(newSwitchStates[index]);
+    //         let data={
+    //           partNumber:item.cellStockPartNumId,
+    //           poSupplierDetailsId:item.poSupplierDetailsId,
+    //           poSupplierSuppliesId:item.poSupplierSuppliesId,
+    //           productionBuilderId:props.step.productionBuilderId,
+    //           productionProductId:props.productionProductId,
+    //           supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
+    //           suppliesId:item.suppliesId,
+    //           usedInd:newSwitchStates[index],
+    //           userId:props.step.userId,
+    //         }
+    //         props.PstoProductionBuilder(data)
+    //     } else if (activeCount < quantity) {
+    //         // If less than the allowed quantity of switches are on, allow turning it on
+    //         const newSwitchStates = [...switchStates];
+    //         newSwitchStates[index] = !newSwitchStates[index];
+    //         setSwitchStates(newSwitchStates);
+    //         console.log(newSwitchStates[index]);
+    //         let data={
+    //           partNumber:item.cellStockPartNumId,
+    //           poSupplierDetailsId:item.poSupplierDetailsId,
+    //           poSupplierSuppliesId:item.poSupplierSuppliesId,
+    //           productionBuilderId:props.step.productionBuilderId,
+    //           productionProductId:props.productionProductId,
+    //           supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
+    //           suppliesId:item.suppliesId,
+    //           usedInd:newSwitchStates[index],
+    //           userId:props.step.userId,
+    //         }
+    //         props.PstoProductionBuilder(data)
+            
+    //     } else {
+    //         // If the allowed quantity is reached, show a warning
+    //         message.warning(`You can only toggle ${quantity} switch${quantity > 1 ? 'es' : ''} at a time.`);
+    //     }
+       
+    // };
+
+    const handleToggle = (index, item) => {
         const activeCount = switchStates.filter(state => state).length;
 
         if (switchStates[index]) {
@@ -156,48 +218,44 @@ const DynamicInputForm = (props) => {
             const newSwitchStates = [...switchStates];
             newSwitchStates[index] = !newSwitchStates[index];
             setSwitchStates(newSwitchStates);
-            console.log(newSwitchStates[index]);
-            let data={
-              partNumber:item.cellStockPartNumId,
-              poSupplierDetailsId:item.poSupplierDetailsId,
-              poSupplierSuppliesId:item.poSupplierSuppliesId,
-              productionBuilderId:props.step.productionBuilderId,
-              productionProductId:props.productionProductId,
-              supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
-              suppliesId:item.suppliesId,
-              useInd:newSwitchStates[index],
-              userId:props.step.userId,
-            }
-            props.PstoProductionBuilder(data)
+            let data = {
+                partNumber: item.cellStockPartNumId,
+                poSupplierDetailsId: item.poSupplierDetailsId,
+                poSupplierSuppliesId: item.poSupplierSuppliesId,
+                productionBuilderId: props.step.productionBuilderId,
+                productionProductId: props.productionProductId,
+                supplierSuppliesUniqueNumberId: item.supplierSuppliesUniqueNumberId,
+                suppliesId: item.suppliesId,
+                usedInd: newSwitchStates[index],
+                userId: props.step.userId,
+            };
+            props.PstoProductionBuilder(data);
         } else if (activeCount < quantity) {
             // If less than the allowed quantity of switches are on, allow turning it on
             const newSwitchStates = [...switchStates];
             newSwitchStates[index] = !newSwitchStates[index];
             setSwitchStates(newSwitchStates);
-            console.log(newSwitchStates[index]);
-            let data={
-              partNumber:item.cellStockPartNumId,
-              poSupplierDetailsId:item.poSupplierDetailsId,
-              poSupplierSuppliesId:item.poSupplierSuppliesId,
-              productionBuilderId:props.step.productionBuilderId,
-              productionProductId:props.productionProductId,
-              supplierSuppliesUniqueNumberId:item.supplierSuppliesUniqueNumberId,
-              suppliesId:item.suppliesId,
-              useInd:newSwitchStates[index],
-              userId:props.step.userId,
-            }
-            props.PstoProductionBuilder(data)
-            
+            let data = {
+                partNumber: item.cellStockPartNumId,
+                poSupplierDetailsId: item.poSupplierDetailsId,
+                poSupplierSuppliesId: item.poSupplierSuppliesId,
+                productionBuilderId: props.step.productionBuilderId,
+                productionProductId: props.productionProductId,
+                supplierSuppliesUniqueNumberId: item.supplierSuppliesUniqueNumberId,
+                suppliesId: item.suppliesId,
+                usedInd: newSwitchStates[index],
+                userId: props.step.userId,
+            };
+            props.PstoProductionBuilder(data);
         } else {
             // If the allowed quantity is reached, show a warning
             message.warning(`You can only toggle ${quantity} switch${quantity > 1 ? 'es' : ''} at a time.`);
         }
-       
     };
 
-    const confirmToggle = (index) => {
-      handleToggle(index);
-  };
+    const confirmToggle = (index, item) => {
+        handleToggle(index, item);
+    };
 
     return (
         <div className='flex justify-end sticky z-auto'>
@@ -209,7 +267,14 @@ const DynamicInputForm = (props) => {
                     <div className=""></div>
                     <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div>
                 </div>
-
+                <InfiniteScroll
+                dataLength={props.productionSpareData.length}
+            next={handleLoadMore}
+            hasMore={hasMore}
+            //loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
+            height={"79vh"}
+            endMessage={<div class="fles text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+          >
                 {props.productionSpareData.map((item, index) => {
                     return (
                         <div key={index}>
@@ -230,7 +295,7 @@ const DynamicInputForm = (props) => {
                                     <div className="md:w-[15.5rem]">
                                     <Popconfirm
                             title="Do you want to change the state?"
-                            onConfirm={() => confirmToggle(item,index)}
+                            onConfirm={() => confirmToggle(index,item)}
                             okText="Yes"
                             cancelText="No"
                         >
@@ -243,10 +308,18 @@ const DynamicInputForm = (props) => {
                                         </Popconfirm>
                                     </div>
                                 </div>
+                                {item.usedInd===true&&(
+                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="font-normal text-[0.85rem] text-cardBody font-poppins" style={{ marginLeft: "9em" }}>
+                                       <Button>Damage</Button>
+                                    </div>
+                                </div>
+                                )}
                             </div>
                         </div>
                     );
                 })}
+                </InfiniteScroll>
             </div>
         </div>
     );

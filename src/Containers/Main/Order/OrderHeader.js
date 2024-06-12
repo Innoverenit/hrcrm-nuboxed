@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ActionHeader } from "../../../Components/Utils";
 import OrderActionLeft from "./OrderActionLeft";
-// import SuppliersActionRight from "./SuppliersActionRight";
 
 class OrderHeader extends Component {
     render() {

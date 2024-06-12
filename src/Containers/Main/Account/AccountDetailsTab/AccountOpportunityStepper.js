@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
+import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountOpportunityForm from "./AccountOpportunityForm";
+import AccountRepairSecondStep from "./AccountRepairSecondStep";
 
 const Step = StyledSteps.Step;
 
@@ -45,16 +47,16 @@ class AccountOpportunityStepper extends Component {
                 icon: <UserOutlined />,
                 content: <AccountOpportunityForm distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
-            // {
-            //     title: <FormattedMessage
-            //         id="app.phonedetails"
-            //         defaultMessage="Phone details"
-            //     />,
-            //     icon: <PhoneOutlined
-            //         style={{ color: "blue" }}
-            //     />,
-            //     content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
-            // },
+            {
+                title: <FormattedMessage
+                    id="app.phonedetails"
+                    defaultMessage="Phone details"
+                />,
+                icon: <PhoneOutlined
+                    style={{ color: "blue" }}
+                />,
+                content: <AccountRepairSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+            },
 
 
         ];
@@ -65,17 +67,17 @@ class AccountOpportunityStepper extends Component {
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
+                            id="app.quotation"
+                            defaultMessage="Quotation"
                         />}
                     />
-                    {/* <Step
+                    <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
                         />}
-                    /> */}
+                    />
 
                 </StyledSteps>
                 <div
@@ -87,7 +89,8 @@ class AccountOpportunityStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {/* {this.props.quotationId &&  */}
+                                        <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
@@ -96,7 +99,8 @@ class AccountOpportunityStepper extends Component {
                                                 id="app.proceed"
                                                 defaultMessage="Proceed"
                                             />
-                                        </Button>}
+                                        </Button>
+                                        {/* } */}
                                     </>
                                 )}
                             </>
@@ -123,7 +127,7 @@ class AccountOpportunityStepper extends Component {
 const mapStateToProps = ({ auth, distributor }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
     addingOrder: distributor.addingOrder,
-    orderId: distributor.orderDetailsId.orderId,
+    quotationId: distributor.orderDetailsId.quotationId,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

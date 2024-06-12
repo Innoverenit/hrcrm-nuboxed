@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
+import ItemHistoryInStockData from "./ItemHistoryInStockData"
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
@@ -23,6 +24,7 @@ const GrnListOfPO = (props) => {
 
 
     const [hasMore, setHasMore] = useState(true);
+   
     const [page, setPage] = useState(0);
     const handleLoadMore = () => {
         setPage(page + 1);
@@ -61,6 +63,8 @@ const GrnListOfPO = (props) => {
     const handleChangeChamber = (value) => {
         setSelectedChamberId(value)
     }
+
+   
     const handleUpdateSupplies = (
     ) => {
         const data = {
@@ -83,8 +87,8 @@ const GrnListOfPO = (props) => {
 
     return (
         <>
-            <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+            <div className=' flex justify-end sticky  z-auto'>
+                <div class="rounded-lg m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
                     <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[2.5rem]"></div>
                         {/* <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div> */}
@@ -92,6 +96,7 @@ const GrnListOfPO = (props) => {
                         <div className=" md:w-[3.82rem]"><FormattedMessage id="app.category" defaultMessage="Category" /></div>
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
                         <div className=" md:w-[4.25rem]"><FormattedMessage id="app.attribute" defaultMessage="Attribute" /></div>
+                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.cell" defaultMessage="Cell" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.instock" defaultMessage="In Stock" /></div>
                        
@@ -107,8 +112,8 @@ const GrnListOfPO = (props) => {
                         {props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
-                                        {/* <div class="flex">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                        <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm text-cardBody font-semibold  font-poppins ">
                                                     <PlusOutlined
@@ -119,7 +124,7 @@ const GrnListOfPO = (props) => {
                                                     />
                                                 </div>
                                             </div>
-                                        </div> */}
+                                        </div>
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
@@ -149,11 +154,16 @@ const GrnListOfPO = (props) => {
                                                 {item.suppliesFullName}
                                             </div>
                                         </div>
-                                        {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
-                                                {item.price}
+                                                {item.categoryName}  {item.subCategoryName}
                                             </div>
-                                        </div> */}
+                                        </div>
+                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs text-cardBody font-poppins">
+                                                {item.attributeName}  {item.subAttributeName}
+                                            </div>
+                                        </div>
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remainingCorrectUnit}
@@ -174,6 +184,26 @@ const GrnListOfPO = (props) => {
                                                 {item.balanced}
                                             </div>
                                         </div>
+
+
+                                        <div class="flex flex-col w-6 items-center max-sm:flex-row max-sm:w-[10%]">
+
+<div>
+    <Tooltip title="">
+        <i class="far fa-share-square"
+            //    className="!text-base cursor-pointer text-[tomato]"
+            onClick={() => {
+                handleItemClick(item)
+                props.handleStockUsedDrawer(true);
+            }}
+            style={{ cursor: "pointer" }}
+        />
+    </Tooltip>
+</div>
+
+
+<div></div>
+</div>
                                         {/* <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs text-cardBody font-poppins">
                                                 {item.remark}
@@ -271,10 +301,13 @@ const GrnListOfPO = (props) => {
                                         </div> */}
 
                                     </div>
-                                    {/* <div>
-                                        {itemHistory && (row.poSupplierSuppliesId === item.poSupplierSuppliesId)
-                                            && <ItemHistoryInStock row={row} />}
-                                    </div> */}
+                                    <div>
+                                        {itemHistory && (row.suppliesId === item.suppliesId)
+                                            && <ItemHistoryInStockData 
+                                            row={row} 
+                                            inventory={props.inventory}
+                                            />}
+                                    </div>
                                 </div>
                             );
                         })}

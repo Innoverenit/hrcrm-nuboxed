@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react";
 import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
@@ -102,11 +102,11 @@ if (isMobile){
         height={"75vh"}
       > */}
       {junkedLeadsData.map((item) => { 
-         const currentdate = moment().format("DD/MM/YYYY");
-         const date = moment(item.creationDate).format("DD/MM/YYYY");
+         const currentdate = dayjs().format("DD/MM/YYYY");
+         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.address[0].country_alpha2_code
          const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+          dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -440,11 +440,11 @@ Resinstate
         height={"75vh"}
       >
  { !fetchingJunkedLeads && junkedLeadsData.length === 0 ?<NodataFoundPage />:junkedLeadsData.map((item,index) =>  {
-         const currentdate = moment().format("DD/MM/YYYY");
-         const date = moment(item.creationDate).format("DD/MM/YYYY");
+         const currentdate = dayjs().format("DD/MM/YYYY");
+         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.address[0].country_alpha2_code
          const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1

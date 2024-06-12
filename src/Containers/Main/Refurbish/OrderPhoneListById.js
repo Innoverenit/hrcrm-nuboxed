@@ -32,7 +32,10 @@ function OrderPhoneListById(props) {
     const [pageNo, setPageNo] = useState(0);
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
-
+    const [startTime, setStartTime] = useState(null);
+    const [isRecording, setIsRecording] = useState(false);
+    const minRecordingTime = 5000; // 5 seconds
+  const timerRef = useRef(null);
     const componentRefs = useRef([]);
 
     const handlePrint = () => {
@@ -82,7 +85,7 @@ function OrderPhoneListById(props) {
         setCurrentData(e.target.value);
     
         if (searchOnEnter&&e.target.value.trim() === "") {
-            setPageNo(pageNo + 1);
+            //setPageNo(pageNo + 1);
             props.getPhoneOrderIdByUser(props.rowData.orderPhoneId, props.userId,pageNo)
             props.ClearReducerDataOfrefurbish()
           setSearchOnEnter(false);
@@ -97,6 +100,54 @@ function OrderPhoneListById(props) {
           console.error("Input is empty. Please provide a value.");
         }
       };
+
+      const handleStartListening = () => {
+        setStartTime(Date.now());
+        setIsRecording(true);
+        SpeechRecognition.startListening();
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+        }, minRecordingTime);
+      };
+      const suffix = (
+        <AudioOutlined
+          onClick={handleStartListening}
+          style={{
+            fontSize: 16,
+            color: '#1890ff',
+          }}
+    
+        />
+      );
+      const handleStopListening = () => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+        if (transcript.trim() !== "") {
+          setCurrentData(transcript);
+          props.searchimeiName(transcript);
+          setSearchOnEnter(true);
+        }
+      };
+      useEffect(() => {
+        if (!listening && isRecording) {
+          handleStopListening();
+        }
+      }, [listening]);
+      useEffect(() => {
+        if (isRecording && !listening) {
+          // If recording was stopped but less than 5 seconds have passed, restart listening
+          const elapsedTime = Date.now() - startTime;
+          if (elapsedTime < minRecordingTime) {
+            SpeechRecognition.startListening();
+          } else {
+            setIsRecording(false);
+          }
+        }
+      }, [listening, isRecording, startTime]);
 
     const handleCallback = () => {
         if (!props.updatingCantRepairQc) {
@@ -177,16 +228,7 @@ function OrderPhoneListById(props) {
         setHide(hide)
     }
     console.log(props.rowData.qcInspectionInd)
-    const suffix = (
-        <AudioOutlined
-          onClick={SpeechRecognition.startListening}
-          style={{
-            fontSize: 16,
-            color: '#1890ff',
-          }}
     
-        />
-      );
     return (
         <>
             {/* {props.fetchingOrderIdByUserId ? <BundleLoader /> : */}

@@ -63,6 +63,7 @@ words={words}
         {props.langWords.map((translations, index) => {
         
           return (
+            
             <div key={index} className="w-full my-2 h-16 scale-98 hover:scale-100 ease-in duration-100 scroll-overflow ">
               <div className={`bg-white rounded-md shadow-2xl border-solid w-w95 h-16 p-1 max-sm:h-28 m-0 md:m-auto`}>
                 <div className="flex max-sm:flex-col md:flex flex-row justify-around ">

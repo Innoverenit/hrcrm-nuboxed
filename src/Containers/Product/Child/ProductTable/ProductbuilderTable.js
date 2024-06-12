@@ -1,8 +1,7 @@
 import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductbuilder,addProductBuilder,getSearchBuilder } from "../../ProductAction";
-// import {  Select } from "../../../../Components/UI/Elements";
+import { getProductHsn,addProductBuilder,getSearchBuilder } from "../../ProductAction";
 import { Select } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -13,7 +12,7 @@ const { Option } = Select;
 function ProductbuilderTable (props) {
 
   useEffect(()=> {
-    props.getProductbuilder();
+    props.getProductHsn();
   },[]);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -28,7 +27,7 @@ function ProductbuilderTable (props) {
     };
   }, []);
 
-  const prosb=props.productBuilder
+  const prosb=props.productHsn
 
   const [selectedValue, setSelectedValue] = useState('');
 
@@ -40,7 +39,7 @@ function ProductbuilderTable (props) {
       setshowCard(true)
   };
 
-  if(props.fetchingProductBuilder){
+  if(props.fetchingProductHsn){
     return <BundleLoader/>
   }
 
@@ -89,8 +88,8 @@ function ProductbuilderTable (props) {
 }
 
 const mapStateToProps = ({product }) => ({
-    productBuilder: product.productBuilder,
-    fetchingProductBuilder: product.fetchingProductBuilder,
+    productHsn: product.productHsn,
+    fetchingProductHsn: product.fetchingProductHsn,
     addingProductBuilder:product.addingProductBuilder,
     addedProBuilder:product.addedProBuilder
 });
@@ -98,7 +97,7 @@ const mapStateToProps = ({product }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getProductbuilder,
+          getProductHsn,
             addProductBuilder,
             getSearchBuilder,
         },

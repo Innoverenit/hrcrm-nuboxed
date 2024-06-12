@@ -2,13 +2,14 @@ import React, { lazy, Component,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
+import SuscriptionForm from "./SuscriptionForm";
 // const EmployeeForm = lazy(() => import("../Child/EmployeeForm"));
 
 class CreateSubscriptionDrawer extends Component {
   render() {
-    const { createSubscriptiondrawer, handleCreateSubscriptionDrawer, ...formProps } = this.props;
+    const { createSubscriptiondrawer, handleCreateSubscriptionDrawer,rowData, ...formProps } = this.props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "90%";
     return (
       <>
         <StyledDrawer
@@ -25,7 +26,7 @@ class CreateSubscriptionDrawer extends Component {
 
               
                 <Suspense fallback={<BundleLoader/>}>
-               hello
+               <SuscriptionForm rowData={rowData}  />
                 </Suspense>
       
 

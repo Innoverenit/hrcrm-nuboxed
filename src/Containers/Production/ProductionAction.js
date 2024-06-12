@@ -11,6 +11,20 @@ export const handleCreateProduction = (modalProps) => (dispatch) => {
 };
 
 
+
+// export const emptyManufactureLink = () => (dispatch) => {
+//   dispatch({
+//     type: types.EMPTY_MANUFACTURE_LINK, 
+//   });
+// };
+
+
+export const addCreateManufactureCardModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.ADD_CREATE_MANUFACTURE_CARD_MODAL,
+    payload: modalProps,
+  });
+};
 export const addSpareNotesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.ADD_SPARE_NOTES_DRAWER_MODAL,
@@ -654,7 +668,7 @@ export const getProductionCellList = (orgId, startDate,endDate) => (dispatch) =>
     type: types.GET_PRODUCTION_CELL_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/cell/productionProductLink/${orgId}/${startDate}/${endDate}`,
+    .get(`${base_url2}/production/cell/productionProductLink/${orgId}?endDate=${endDate}&startDate=${startDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -699,6 +713,74 @@ export const updateProductionPauseStatus = (data) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_PRODUCTION_PAUSE_STATUS_FAILURE,
+      });
+    });
+};
+
+
+
+
+export const getManufactureLinkData  = (productionProductId,pageNo) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/Customers/user/${userId}`;
+  // } else {
+  //   api_url = `/Customers`;
+  // }
+  dispatch({
+    type: types.GET_MANUFACTURE_LINK_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/production/manufature/getProductionProductBuilder/${productionProductId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MANUFACTURE_LINK_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MANUFACTURE_LINK_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getManufactureDetailsData  = (supplierSuppliesUniqueNumberId,) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/Customers/user/${userId}`;
+  // } else {
+  //   api_url = `/Customers`;
+  // }
+  dispatch({
+    type: types.GET_MANUFACTURE_DETAILS_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/SupplierBypartNum/${supplierSuppliesUniqueNumberId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MANUFACTURE_DETAILS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MANUFACTURE_DETAILS_DATA_FAILURE,
+        payload: err,
       });
     });
 };

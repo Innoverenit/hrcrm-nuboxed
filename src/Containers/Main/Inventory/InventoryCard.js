@@ -40,8 +40,8 @@ const InventoryCard = (props) => {
   const filteredData = inventory.filter((item) => item.inventoryInd === true);
   return (
     <>
-      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      {fetchingInventoryList ? <BundleLoader /> : <div className=' flex justify-end sticky  z-auto'>
+        <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
           <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
             <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.country" defaultMessage="Country" /></div>
@@ -62,7 +62,7 @@ const InventoryCard = (props) => {
                 console.log(countryCode)
                 return (
                   <div>
-                    <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[5rem] max-sm:flex-col">
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 

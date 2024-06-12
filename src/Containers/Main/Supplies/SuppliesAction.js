@@ -681,6 +681,36 @@ export const linkMaterialToggle = ( id,uniqueId) => (dispatch, getState) => {
 };
 
 
+export const linkMaterialFifoToggle = ( data,id) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_MATERIAL_FIFO_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/fifiInd/${id}`, data, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_MATERIAL_FIFO_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MATERIAL_FIFO_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+
 export const inputSuppliesDataSearch = (name) => (dispatch) => {
   dispatch({
     type: types.INPUT_SUPPLIES_SEARCH_DATA_REQUEST,

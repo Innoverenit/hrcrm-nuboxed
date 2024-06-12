@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddCreateManufactureModal from "../Child/AddCreateManufactureModal"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
 import dayjs from "dayjs";
@@ -9,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import { BorderColorOutlined, } from "@mui/icons-material";
 import MoveToggleProduction from "./MoveToggleProduction";
-import { getProductionsbyLocId, updateRoomRackWip } from "../ProductionAction"
+import { getProductionsbyLocId,addCreateManufactureCardModal, updateRoomRackWip } from "../ProductionAction"
 import QRCode from "qrcode.react";
 import { getRoomRackByLocId, getRackList } from "../../Main/Inventory/InventoryAction";
 
@@ -116,11 +117,22 @@ function CreateProductionCard(props) {
                         {productionByLocsId.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded-xl justify-between mt-2 bg-white h-[2.75rem] items-center p-3 max-sm:h-[6rem] max-sm:flex-col ">
+                                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex font-medium flex-col  w-[13.5rem] max-xl:w-[11.5rem] max-lg:w-[9.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                                <div 
+                                                class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                                onClick={() => {
+                                                    props.addCreateManufactureCardModal(true);
+                                                    handleParticularRowData(item)
+                                                    //handleRowData(item);
+                                                    //handleProductivityClick(date.isoDate,user.userId)
+                                                               
+                                                             
+                                                             
+                                                   }}
+                                                >
                                                     {item.manufactureId}
                                                 </div>
 
@@ -226,7 +238,7 @@ function CreateProductionCard(props) {
                                                 <div class=" text-xs text-cardBody font-poppins">
                                                     <Tooltip title="Edit">
                                                         <BorderColorIcon
-                                                            className="!text-base cursor-pointer text-[tomato]"
+                                                            className="!text-xl cursor-pointer text-[tomato]"
                                                         // onClick={() => {
                                                         //     props.setEditProducts(item);
                                                         //     handleUpdateProductModal(true);
@@ -274,7 +286,11 @@ function CreateProductionCard(props) {
                 </div>
             </div>
 
-
+<AddCreateManufactureModal
+productionProductId={particularDiscountData.productionProductId}
+addCreateManufactureCard={props.addCreateManufactureCard}
+addCreateManufactureCardModal={props.addCreateManufactureCardModal}
+/>
 
         </>
     );
@@ -289,6 +305,7 @@ const mapStateToProps = ({ production, auth, inventory }) => ({
     userId: auth.userDetails.userId,
     roomRackbyLoc: inventory.roomRackbyLoc,
     rackList: inventory.rackList,
+    addCreateManufactureCard:production.addCreateManufactureCard,
     orgId: auth.userDetails.organizationId,
 });
 
@@ -298,7 +315,8 @@ const mapDispatchToProps = (dispatch) =>
             getProductionsbyLocId,
             getRoomRackByLocId,
             updateRoomRackWip,
-            getRackList
+            getRackList,
+            addCreateManufactureCardModal
         },
         dispatch
     );

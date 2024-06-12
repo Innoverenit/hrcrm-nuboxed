@@ -61,8 +61,8 @@ function AllShipperList(props) {
 
   return (
     <>
-      <div className=' flex justify-end sticky top-28 z-auto'>
-      <div class="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
+      <div className=' flex justify-end sticky  z-auto'>
+      <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
       <div className=" flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
             <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.phone" defaultMessage="Phone #" /></div>
@@ -84,7 +84,7 @@ function AllShipperList(props) {
             return (
               <>
                 <div  >
-                      <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
@@ -164,11 +164,11 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex flex-col w-[1rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                        <div class="flex max-sm:justify-end max-sm:w-wk items-center">
                           <div>
                             <Tooltip title="Edit">
                               <BorderColorIcon
-                                className=" !text-base cursor-pointer text-[tomato]"
+                                className=" !text-xl cursor-pointer text-[tomato]"
 
                                 onClick={() => {
                                   props.setEditShipper(item);
@@ -185,7 +185,7 @@ function AllShipperList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId)}
                             >
                               <DeleteOutlined
-                                className=" !text-base cursor-pointer text-[red]"
+                                className=" !text-xl cursor-pointer text-[red]"
 
                               />
                             </Popconfirm>

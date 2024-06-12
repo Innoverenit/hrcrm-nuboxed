@@ -1136,11 +1136,11 @@ export const uploadproductlist = (product, groupId) => (dispatch) => {
       });
     });
 };
-export const addProduct = (key,description,imageId,userId,productionBuilderId,orgId, cb) => (dispatch) => {
+export const addProduct = (data, cb) => (dispatch) => {
   console.log("inside add product");
   dispatch({ type: types.ADD_PROFESSIONALDUCT_REQUEST });
   axios
-    .post(`${base_url2}/product`, key,description,imageId,userId,productionBuilderId,orgId, {
+    .post(`${base_url2}/product`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1773,12 +1773,12 @@ export const addProductDesc = (product, cb) => (dispatch) => {
 
 
 
-export const getProductionSpareData = (suppliesId) => (dispatch) => {
+export const getProductionSpareData = (suppliesId,productionProductId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCTION_SPARE_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/po/cellStockPart/${suppliesId}`, {
+    .get(`${base_url2}/po/cellStockPart/${suppliesId}/${productionProductId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1793,6 +1793,34 @@ export const getProductionSpareData = (suppliesId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_PRODUCTION_SPARE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getProductHsn = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_HSN_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/hsnSupplies `,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_HSN_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRODUCT_HSN_FAILURE,
         payload: err,
       });
     });

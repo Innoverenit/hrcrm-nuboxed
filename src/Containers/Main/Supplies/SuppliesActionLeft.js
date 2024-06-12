@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -22,13 +22,18 @@ function SuppliesActionLeft (props) {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [pageNo, setPage] = useState(0);
-
+    const [startTime, setStartTime] = useState(null);
+    const [isRecording, setIsRecording] = useState(false); 
+    const minRecordingTime = 5000; // 5 seconds
+    const timerRef = useRef(null);
+    const dummy = ["cloud", "azure", "fgfdg"];
     const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition
-      } = useSpeechRecognition();
+      transcript,
+      listening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
       useEffect(() => {
         // props.getCustomerRecords();
         if (transcript) {
@@ -63,9 +68,21 @@ function SuppliesActionLeft (props) {
               console.error("Input is empty. Please provide a value.");
             }
           };
+          const handleStartListening = () => {
+            setStartTime(Date.now());
+            setIsRecording(true);
+            SpeechRecognition.startListening();
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+              SpeechRecognition.stopListening();
+              setIsRecording(false);
+            }, minRecordingTime);
+          };
           const suffix = (
             <AudioOutlined
-              onClick={SpeechRecognition.startListening}
+              onClick={handleStartListening}
               style={{
                 fontSize: 16,
                 color: '#1890ff',
@@ -73,6 +90,31 @@ function SuppliesActionLeft (props) {
         
             />
           );
+        const handleStopListening = () => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+            if (transcript.trim() !== "") {
+              setCurrentData(transcript);
+              props.inputSuppliesDataSearch(transcript);
+              setSearchOnEnter(true);
+            }
+          };
+          useEffect(() => {
+            if (!listening && isRecording) {
+              handleStopListening();
+            }
+          }, [listening]);
+          useEffect(() => {
+            if (isRecording && !listening) {
+              // If recording was stopped but less than 5 seconds have passed, restart listening
+              const elapsedTime = Date.now() - startTime;
+              if (elapsedTime < minRecordingTime) {
+                SpeechRecognition.startListening();
+              } else {
+                setIsRecording(false);
+              }
+            }
+          }, [listening, isRecording, startTime]);
 
         return (
             <>

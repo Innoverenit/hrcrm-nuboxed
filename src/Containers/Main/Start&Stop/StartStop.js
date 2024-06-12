@@ -173,7 +173,7 @@ useEffect(()=>{
   }
 
   return (
-    <div class=" flex items-center" >
+    <div class=" flex items-center -mt-4" >
       
       <div class="ml-[22px] mt-[0.2rem] max-sm:ml-1">
       <select

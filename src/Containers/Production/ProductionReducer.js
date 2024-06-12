@@ -9,10 +9,24 @@ const initialState = {
   addSpareNotesDrawerModal:false,
 
 
+  fetchingManufactureLinkData:false,
+  fetchingManufactureLinkDataError:false,
+  manufactureLinkData:[],
+
+
+
+  fetchingManufactureDetailsData:false,
+  fetchingManufactureDetailsDataError:false,
+  manufactureDetailsData:{},
+
+
 
   fetchingProductionCellList:false,
   fetchingProductionCellListError:false,
   productionCellList:[],
+
+
+  addCreateManufactureCard:false,
 
   creatingProductionLink: false,
   creatingProductionLinkError: false,
@@ -106,6 +120,11 @@ export const productionReducer = (state = initialState, action) => {
 
     case types.SET_PRODUCTION_VIEW_TYPE:
       return { ...state, viewType: action.payload };
+
+
+
+      case types.ADD_CREATE_MANUFACTURE_CARD_MODAL:
+        return { ...state, addCreateManufactureCard: action.payload };
 
 
 
@@ -227,6 +246,51 @@ export const productionReducer = (state = initialState, action) => {
         removingProduction: false,
         removingProductionError: true,
       };
+
+
+
+      // case types.EMPTY_MANUFACTURE_LINK:
+      //   return { ...state, manufactureLinkData: [] };
+
+
+
+
+        case types.GET_MANUFACTURE_DETAILS_DATA_REQUEST:
+          return { ...state, fetchingManufactureDetailsData: true };
+        case types.GET_MANUFACTURE_DETAILS_DATA_SUCCESS:
+          //const newData1 = action.payload.filter(item => !state.manufactureDetailsData.includes(item));
+          return {
+            ...state,
+            fetchingManufactureDetailsData: false,
+            manufactureDetailsData: action.payload
+            //clearbit: null,
+          };
+        case types.GET_MANUFACTURE_DETAILS_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingManufactureDetailsData: false,
+            fetchingManufactureDetailsDataError: true,
+          };
+
+
+
+      case types.GET_MANUFACTURE_LINK_DATA_REQUEST:
+        return { ...state, fetchingManufactureLinkData: true };
+      case types.GET_MANUFACTURE_LINK_DATA_SUCCESS:
+        //const newData = action.payload.filter(item => !state.manufactureLinkData.includes(item));
+        return {
+          ...state,
+          fetchingManufactureLinkData: false,
+          //manufactureLinkData: [...state.manufactureLinkData, ...action.payload]
+          //clearbit: null,
+          manufactureLinkData:action.payload
+        };
+      case types.GET_MANUFACTURE_LINK_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingManufactureLinkData: false,
+          fetchingManufactureLinkDataError: true,
+        };
 
 
 
