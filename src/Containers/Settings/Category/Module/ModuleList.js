@@ -15,6 +15,9 @@ import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ModuleTrading from "./ModuleTrading";
+import {handleStripeModal} from "./ModuleAction";
+import StripePaymentModal from "./Stripe/StripePaymentModal";
+
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
@@ -114,6 +117,7 @@ const handleFinanceClick = (checked) => {
   }, [erpInd]);
   
   const handleErpClick = (checked) => {
+  // props.handleStripeModal(true);
     setErpStatus(checked);
     let data = {
       value: checked,
@@ -121,6 +125,7 @@ const handleFinanceClick = (checked) => {
       type: "erp",
     };
     props.addingModules(data, props.orgId);
+    
   };
 
 
@@ -650,6 +655,9 @@ logisticsStatus={logisticsStatus}
                     //   currentData={this.state.currentData}
                     //   setCurrentData={this.setCurrentData}
                     //  handleDeleteDepartment={this.handleDeleteDepartment}
+                    handleStripeModal={props.handleStripeModal}
+                    addStripeModal={props.addStripeModal}
+
                     />
                     <ModuleTrading
                      handleRowData={handleRowData}
@@ -671,7 +679,10 @@ logisticsStatus={logisticsStatus}
           </MainWrapper>
           <div class=" font-bold">Updated on {dayjs(props.moduleList.updationDate).format('YYYY-MM-DD')} by {props.moduleList.updatedBy}</div>
         </div>
-     
+     <StripePaymentModal
+addStripeModal={props.addStripeModal}
+     handleStripeModal={props.handleStripeModal}
+     />
       </>
     );
   }
@@ -683,13 +694,15 @@ const mapStateToProps = ({ module, auth }) => ({
   moduleList: module.moduleList,
   fetchingModules: module.fetchingModules,
   fetchingModulesError: module.fetchingModulesError,
+  addStripeModal:module.addStripeModal,
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getModules,
-      addingModules
+      addingModules,
+      handleStripeModal
     },
     dispatch
   );
