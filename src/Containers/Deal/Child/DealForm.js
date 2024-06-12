@@ -249,7 +249,7 @@ function DealForm(props) {
           userId: props.userId,
           customerId: undefined,
           oppWorkflow: "",
-          contactId: undefined,
+          contactId: undefined?"":null,
           oppInnitiative: "",
           oppStage: "",
           source:"",
