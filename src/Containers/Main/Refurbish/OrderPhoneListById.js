@@ -373,6 +373,7 @@ function OrderPhoneListById(props) {
                                                 <div className=" flex font-medium  w-[3.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
+                                                        {props.updatingQCStatus && <span>Loading...</span>}
                                                             {props.rowData.qcInspectionInd === 1 ?
                                                                 <ButtonGroup>
                                                                     {item.qcStatus === "To Start" && <StatusIcon
@@ -641,6 +642,7 @@ const mapStateToProps = ({ refurbish, auth, inventory }) => ({
     updatingCantRepairQc: refurbish.updatingCantRepairQc,
     fetchingOrderIdByUserId: refurbish.fetchingOrderIdByUserId,
     phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
+    updatingQCStatus:refurbish.updatingQCStatus
 });
 
 const mapDispatchToProps = (dispatch) =>
