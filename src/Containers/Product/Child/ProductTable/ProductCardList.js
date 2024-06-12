@@ -211,7 +211,7 @@ function ProductCardList(props) {
                       <div>
                         <Tooltip title="Add Price">
                           <EuroIcon
-                            className="!text-xl cursor-pointer text-[blue]"
+                            className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
                               props.handlePriceDrawer(true);
                               handleParticularRowData(item);
@@ -223,7 +223,7 @@ function ProductCardList(props) {
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
-                            className="!text-xl cursor-pointer text-[#4bc076]"
+                            className="!text-icon cursor-pointer text-[#4bc076]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);
@@ -235,13 +235,13 @@ function ProductCardList(props) {
                    
                       <div class=" text-xs text-cardBody font-poppins">
                         <Tooltip title={item.description}>
-                        <ContactSupportIcon className="!text-xl"/>
+                        <ContactSupportIcon className="!text-icon"/>
                         </Tooltip>
                       </div>
 <div>
 <Tooltip title="Cell">
                                                             <Token 
-                                                            className=" !text-xl cursor-pointer text-[blue]"
+                                                            className=" !text-icon cursor-pointer text-[blue]"
                                                             onClick={()=>{
                                                               handleParticularRowData(item);
                                                                 props.handleProdCellDrawer(true);
@@ -255,7 +255,7 @@ function ProductCardList(props) {
                       <div class=" text-xs text-cardBody font-poppins mt-1">
                         <Tooltip title="Edit">
                           <BorderColorIcon
-                            className="!text-xl cursor-pointer text-[tomato]"
+                            className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
                               props.setEditProducts(item);
                               handleUpdateProductModal(true);
@@ -272,7 +272,7 @@ function ProductCardList(props) {
                             
                             <DeleteOutlined
                               type="delete"
-                              className=" !text-xl cursor-pointer text-[red]"
+                              className=" !text-icon cursor-pointer text-[red]"
                             />
                          
                           </StyledPopconfirm>

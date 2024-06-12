@@ -5,7 +5,6 @@ import { Button, Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {
-  // getOrderProcurement,
   getQuotationRepairOrder,
   getQuotationProcureOrder,
   handleUpdateProcureDetailModal,
@@ -15,9 +14,7 @@ import {
   quotationToOrder
 } from "../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
 import { FormattedMessage } from "react-intl";
-// import UpdateProcureModal from "./UpdateProcureModal";
 import AccountProcureDetailsModal from "../AccountDetailsTab/AccountProcureDetailsModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -67,7 +64,7 @@ const handleConfirm = (quotationId) => {
     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
 <div class=" w-[8.5rem]">Repair</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Quotation #"/></div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -92,7 +89,7 @@ const handleConfirm = (quotationId) => {
                         {props.quotationRepairOrder.length ?
                             <>
                                 {props.quotationRepairOrder.map((item) => {
-                                   const currentDate = moment().format("DD/MM/YYYY");
+                                   const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
@@ -129,7 +126,7 @@ const handleConfirm = (quotationId) => {
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
-                                                                                       <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
                                             New
                                           </span>
@@ -145,7 +142,7 @@ const handleConfirm = (quotationId) => {
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                                            {` ${moment(item.deliveryDate).format("ll")}`}
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
                                          
@@ -153,22 +150,22 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class="text-cardBody font-poppins text-sm">
+                                            <div class="text-cardBody font-poppins text-sm">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
                               `}
-                                            </h4>
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {item.budget}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -176,15 +173,16 @@ const handleConfirm = (quotationId) => {
                                                       imgWidth={"1.9rem"}
                                                       imgHeight={"1.9rem"}
                                                     />
-                                            </h4>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {item.paymentInTerms}
-                                            </h4>
+                                            </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class="text-cardBody font-poppins text-sm">
+                                        
+                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="text-cardBody font-poppins text-sm">
                   <Popconfirm
                           title="Change status to Order?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
@@ -193,25 +191,9 @@ const handleConfirm = (quotationId) => {
                         >
                   <Button type="primary">Convert</Button>
                   </Popconfirm>
-                      </h4>
+                      </div>
                   </div>
                                      
-                                        {/* <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                              <div>
-                                                                                
-                                                                                      <BorderColorIcon
-                                                                                          className=" !text-xl cursor-pointer text-[tomato]"
-                                                                                          onClick={() => {
-                                                                                              props.setEditProcure(item)
-                                                                                              props.handleUpdateProcureDetailModal(true)
-                                                                                              handleSetParticularOrderData(item)
-                                                                                          }}
-                                                                                      />
-                                                                            
-                                                                              </div>
-                                                                           
-                      
-                                                                          </div> */}
                                       </div>
                                     </div>
 
@@ -224,7 +206,7 @@ const handleConfirm = (quotationId) => {
       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
 <div class=" w-[8.5rem]">Procure</div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.order#" defaultMessage="Quotation #"/></div>
+                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.quotationid" defaultMessage="Quotation ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -248,7 +230,7 @@ const handleConfirm = (quotationId) => {
                         {props.quotationProcureOrder.length ?
                             <>
                                 {props.quotationProcureOrder.map((item) => {
-                                 const currentDate = moment().format("DD/MM/YYYY");
+                                 const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
@@ -285,7 +267,7 @@ const handleConfirm = (quotationId) => {
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
-                                                                                       <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
                                             New
                                           </span>
@@ -301,7 +283,7 @@ const handleConfirm = (quotationId) => {
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                                            {` ${moment(item.deliveryDate).format("ll")}`}
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
                                          
@@ -309,22 +291,22 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                         <div class="flex">
                                           <div className=" flex font-medium flex-col  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <h4 class="text-cardBody font-poppins text-sm">
+                                            <div class="text-cardBody font-poppins text-sm">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
                               `}
-                                            </h4>
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {item.budget}
-                                            </h4>
+                                            </div>
                                         </div>
                                      
                                         <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -332,15 +314,15 @@ const handleConfirm = (quotationId) => {
                                                       imgWidth={"1.9rem"}
                                                       imgHeight={"1.9rem"}
                                                     />
-                                            </h4>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <h4 class="text-cardBody font-poppins text-sm">
+                                        <div class="text-cardBody font-poppins text-sm">
                                               {item.paymentInTerms}
-                                            </h4>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <h4 class="text-cardBody font-poppins text-sm">
+                  <div class="text-cardBody font-poppins text-sm">
                   <Popconfirm
                           title="Change status to Order?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
@@ -349,24 +331,9 @@ const handleConfirm = (quotationId) => {
                         >
                   <Button type="primary">Convert</Button>
                   </Popconfirm>
-                      </h4>
+                      </div>
                   </div>
-                                        {/* <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                                              <div>
-                                                                                
-                                                                                      <BorderColorIcon
-                                                                                          className=" !text-xl cursor-pointer text-[tomato]"
-                                                                                          onClick={() => {
-                                                                                              props.setEditProcure(item)
-                                                                                              props.handleUpdateProcureDetailModal(true)
-                                                                                              handleSetParticularOrderData(item)
-                                                                                          }}
-                                                                                      />
-                                                                            
-                                                                              </div>
-                                                                           
-                      
-                                                                          </div> */}
+                                       
                                       </div>
                                     </div>
 

@@ -6,7 +6,6 @@ import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch,ClearSearchedDataOfAccount, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
 import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
-import dayjs from "dayjs";
 
 const AccountActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
@@ -120,7 +119,7 @@ const AccountActionLeft = (props) => {
             <div class=" ">
                 {user.functionName !== "Customer Care" && (
 
-                    <Tooltip title="List View">
+                    <Tooltip title="My Customer View">
                         <Badge size="small"
                             count={props.recordData.distributor || 0}
                         >
@@ -142,7 +141,7 @@ const AccountActionLeft = (props) => {
 
             {user.accountFullListInd === true && user.erpInd === true && (
                 <div class=" ">
-                    <Tooltip title="All Customers">
+                    <Tooltip title="All">
                         <Badge size="small"
                             count={props.accountRecordData.distributor || 0}
                         >
@@ -160,7 +159,7 @@ const AccountActionLeft = (props) => {
                     </Tooltip>
                 </div>
             )}
-            <Tooltip title="Deleted Distributor">
+            <Tooltip title="My Deleted-Customer">
                 <Badge size="small"
                 // count={props.accountRecordData.distributor || 0}
                 >

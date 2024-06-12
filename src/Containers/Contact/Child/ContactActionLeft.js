@@ -121,7 +121,7 @@ const ContactActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.customer" defaultMessage="Customer" />}
+        title={<FormattedMessage id="app.customer" defaultMessage="My Contacts" />}
       >
         <Badge
           size="small"
@@ -160,9 +160,6 @@ const ContactActionLeft = (props) => {
           <span
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setContactsViewType("teams")}
-            // style={{
-            //   color: props.viewType === "teams" && "#1890ff",
-            // }}
           >
             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
          <PeopleIcon className="text-white"/>

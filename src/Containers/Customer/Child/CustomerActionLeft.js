@@ -174,7 +174,7 @@ const CustomerActionLeft = (props) => {
   return (
     <div class=" flex items-center"
     >
-      <Tooltip title={<FormattedMessage id="app.list" defaultMessage="List" />}>
+      <Tooltip title={<FormattedMessage id="app.myprospect" defaultMessage="My Prospect" />}>
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
@@ -213,7 +213,7 @@ const CustomerActionLeft = (props) => {
         </Badge>
       </Tooltip> */}
       {user.teamsAccessInd === true && (
-        <Tooltip title="Teams">
+        <Tooltip title="Team View">
           <Badge
             size="small"
             count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}

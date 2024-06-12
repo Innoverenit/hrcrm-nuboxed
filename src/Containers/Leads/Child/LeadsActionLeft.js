@@ -136,7 +136,7 @@ const LeadsActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title="Card View"
+        title="My Leads"
       >
         <Badge
           size="small"
@@ -162,7 +162,7 @@ const LeadsActionLeft = (props) => {
         <div class="md:">
 
           <Tooltip
-            title="Teams"
+            title="Team View"
           >
             <Badge
               size="small"
