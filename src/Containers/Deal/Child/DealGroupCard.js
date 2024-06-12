@@ -17,12 +17,14 @@ const DealGroupCard = (props) => {
   const {
     handleClick,
     imageURL,
+    handleWon,
     primaryTitle,
     secondaryTitle,
     currencyType,
     handleDelete,
     invOpportunityId,
     investorName,
+    handleConfirm,
     user
   } = props;
   return (
@@ -63,6 +65,7 @@ const DealGroupCard = (props) => {
               {secondaryTitle || ""} 
               <Popconfirm
   title="Change status to Won?"
+  onConfirm={() => handleWon(invOpportunityId)}
   okText="Yes"
   cancelText="No"
 >
@@ -89,6 +92,7 @@ const DealGroupCard = (props) => {
               &nbsp;    
               <Popconfirm
   title="Change status to Lost?"
+  onConfirm={() => handleConfirm(invOpportunityId)}
   okText="Yes"
   cancelText="No"
 >
