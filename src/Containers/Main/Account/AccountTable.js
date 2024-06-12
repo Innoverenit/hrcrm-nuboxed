@@ -28,7 +28,6 @@ import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import AccountModal from "./AccountModal";
-import SearchedAccountData from "./SearchedAccountData";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
 
@@ -269,7 +268,7 @@ function AccountTable(props) {
   <div class=" text-xs text-cardBody font-poppins">
     <Tooltip title="">
       <AcUnitIcon
-        className=" !text-xl cursor-pointer text-[tomato]"
+        className=" !text-icon cursor-pointer text-[tomato]"
         onClick={() => {
           // props.setEditDistributor(item)
           handleAccountModal(true);
@@ -297,7 +296,7 @@ function AccountTable(props) {
                                       {" "}
                                       <a href={`https://${item.url}`} target="_blank">
                                         <ExploreIcon
-                                          className=" !text-xl cursor-pointer text-[green]"
+                                          className=" !text-icon cursor-pointer text-[green]"
 
                                         />
                                       </a>
@@ -319,7 +318,7 @@ function AccountTable(props) {
                                       props.handleAccountPulse(true);
                                       handleCurrentRowData(item);
                                     }}
-                                    className=" !text-xl cursor-pointer text-[#df9697]"
+                                    className=" !text-icon cursor-pointer text-[#df9697]"
                                   />
                                 </Tooltip>
                               </div>
@@ -331,7 +330,7 @@ function AccountTable(props) {
                               <div class=" text-xs text-cardBody font-poppins">
                                 <Tooltip title="Edit">
                                   <BorderColorIcon
-                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                    className=" !text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
                                       props.setEditDistributor(item)
                                       handleUpdateAccountModal(true);
@@ -352,9 +351,10 @@ function AccountTable(props) {
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
                                   <DeleteOutlined
-                                    className=" !text-xl cursor-pointer text-[red]"
+                                    className=" !text-icon cursor-pointer text-[red]"
                                   />
                                 </Popconfirm>
+ 
                               </div>
 
 

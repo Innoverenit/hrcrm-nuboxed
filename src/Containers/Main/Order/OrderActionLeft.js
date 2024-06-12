@@ -89,7 +89,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             >
               
               <Button type={viewType === "production" ? "primary" : ""} style={{ backgroundColor: viewType === "production" ? "" : "tomato" }}>
-             <label class="text-white">Production</label></Button>
+             <div class="text-white">Production</div></Button>
             </span>
           </Badge>
         </Tooltip>
@@ -138,8 +138,8 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
      
 )}
 {user.repairInd === true && (
-      <div className="">
-        <Tooltip title="List View">
+      <div className=" cursor-pointer">
+        <Tooltip title="My Repair Orders">
           <Badge
             size="small"
             count={(viewType === "list" && orderCount.order) || 0}
@@ -157,7 +157,8 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
                 <TocIcon className="text-white" /></Avatar> */}
 <Button type={viewType === "list" ? "primary" : ""} style={{ backgroundColor: viewType === "list" ? "" : "tomato" }}>
                 
-                <label class="text-white">Repair</label></Button>
+                <div class="text-white">Repair</div></Button>
+                
             </span>
           </Badge>
         </Tooltip>
@@ -181,7 +182,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title="All Complete Orders">
+        <Tooltip title="All Repair Orders-Completed">
           <Badge
             size="small"
             // count={(viewType === "allcomplete" && orderCount.order) || 0}
@@ -201,7 +202,7 @@ const OrderActionLeft = ({ viewType, getOrderCount, allOrderCount, getAllOrderCo
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title="Deleted Orders">
+        <Tooltip title=" All Repair Orders-Deleted">
                 {/* <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}

@@ -15,7 +15,6 @@ import {
   handleProcureDetailsModal
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
 import { FormattedMessage } from "react-intl";
 import UpdateProcureModal from "./UpdateProcureModal";
 import AccountProcureDetailsModal from "../AccountProcureDetailsModal";
@@ -75,7 +74,7 @@ const handleLoadMoreLow = () => {
     <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -99,7 +98,7 @@ const handleLoadMoreLow = () => {
                         {props.highDistributorOrder.length ?
                             <>
                                 {props.highDistributorOrder.map((item) => {
-                                   const currentDate = moment().format("DD/MM/YYYY");
+                                   const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
@@ -136,7 +135,7 @@ const handleLoadMoreLow = () => {
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
-                                                                                       <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
                                             New
                                           </span>
@@ -152,7 +151,7 @@ const handleLoadMoreLow = () => {
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                                            {` ${moment(item.deliveryDate).format("ll")}`}
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
                                          
@@ -193,16 +192,19 @@ const handleLoadMoreLow = () => {
                                      
                                         <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                                               <div>
-                                                                                
-                                                                                      <BorderColorIcon
-                                                                                          className=" !text-xl cursor-pointer text-[tomato]"
+                                                                              <Tooltip title={<FormattedMessage
+                                                                                 id="app.edit"
+                                                                                     defaultMessage="Edit"
+                                                                                    />}>
+                                                                                   <BorderColorIcon
+                                                                                          className=" !text-icon cursor-pointer text-[tomato]"
                                                                                           onClick={() => {
                                                                                               props.setEditProcure(item)
                                                                                               props.handleUpdateProcureDetailModal(true)
                                                                                               handleSetParticularOrderData(item)
                                                                                           }}
                                                                                       />
-                                                                            
+                                                                            </Tooltip>
                                                                               </div>
                                                                            
                       
@@ -219,7 +221,7 @@ const handleLoadMoreLow = () => {
       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -243,7 +245,7 @@ const handleLoadMoreLow = () => {
                         {props.mediumDistributorOrder.length ?
                             <>
                                 {props.mediumDistributorOrder.map((item) => {
-                                 const currentDate = moment().format("DD/MM/YYYY");
+                                 const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
@@ -280,7 +282,7 @@ const handleLoadMoreLow = () => {
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
-                                                                                       <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                                       <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
                                             New
                                           </span>
@@ -296,7 +298,7 @@ const handleLoadMoreLow = () => {
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                                            {` ${moment(item.deliveryDate).format("ll")}`}
+                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
                                                   </div>
                       
                                          
@@ -337,16 +339,19 @@ const handleLoadMoreLow = () => {
                                      
                                         <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                                               <div>
-                                                                                
+                                                                              <Tooltip title={<FormattedMessage
+                                                                id="app.edit"
+                                                                defaultMessage="Edit"
+                                                            />}>
                                                                                       <BorderColorIcon
-                                                                                          className=" !text-xl cursor-pointer text-[tomato]"
+                                                                                          className=" !text-icon cursor-pointer text-[tomato]"
                                                                                           onClick={() => {
                                                                                               props.setEditProcure(item)
                                                                                               props.handleUpdateProcureDetailModal(true)
                                                                                               handleSetParticularOrderData(item)
                                                                                           }}
                                                                                       />
-                                                                            
+                                                                            </Tooltip>
                                                                               </div>
                                                                            
                       
@@ -363,7 +368,7 @@ const handleLoadMoreLow = () => {
       <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#E3E8EE]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.order#" defaultMessage="Order #"/></div>
+                        <div className=" md:w-[7.4rem] ml-2"><FormattedMessage id="app.orderid" defaultMessage="Order ID"/></div>
                         <div className=" md:w-[7.1rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
                         <div className=" md:w-[8.8rem] "><FormattedMessage id="app.location" defaultMessage="Location"/></div>
                         <div className="md:w-[3.8rem]"><FormattedMessage id="app.budget" defaultMessage="Budget"/></div>
@@ -387,7 +392,7 @@ const handleLoadMoreLow = () => {
                         {props.lowDistributorOrder.length ?
                             <>
                                 {props.lowDistributorOrder.map((item) => {
-                                  const currentDate = moment().format("DD/MM/YYYY");
+                                  const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
@@ -424,7 +429,7 @@ const handleLoadMoreLow = () => {
                                                                         props.handleProcureDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
-                                                                 <span> {currentDate === moment(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                 <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold">
                       New
                     </span>
@@ -440,7 +445,7 @@ const handleLoadMoreLow = () => {
                   
                       
                       <div class="max-sm:w-full justify-between flex md:flex-col text-sm">
-                      {` ${moment(item.deliveryDate).format("ll")}`}
+                      {` ${dayjs(item.deliveryDate).format("ll")}`}
                             </div>
 
                    
@@ -481,15 +486,19 @@ const handleLoadMoreLow = () => {
                
                   <div class="flex flex-col w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
-                                                          
-                                                                <BorderColorIcon
-                                                                    className=" !text-xl cursor-pointer text-[tomato]"
+                                                        <Tooltip title={<FormattedMessage
+                                                                id="app.edit"
+                                                                defaultMessage="Edit"
+                                                            />}>
+                                                                <BorderColorIcon 
+                                                                    className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
                                                                         props.setEditProcure(item)
                                                                         props.handleUpdateProcureDetailModal(true)
                                                                         handleSetParticularOrderData(item)
                                                                     }}
                                                                 />
+                                                                </Tooltip>
                                                       
                                                         </div>
                                                      

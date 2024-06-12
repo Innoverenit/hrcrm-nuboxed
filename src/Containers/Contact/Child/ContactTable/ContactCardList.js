@@ -401,7 +401,6 @@ function ContactCardList(props) {
      </Tooltip>
                   </div>
 
-                &nbsp;&nbsp;
                   <div>
                   <span
         style={{ cursor: "pointer" }}

@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -197,10 +197,10 @@ function ContactTeamCardList(props) {
         
         { !fetchingTeamContact && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
         
-         const currentdate = moment().format("DD/MM/YYYY");
-         const date = moment(item.creationDate).format("DD/MM/YYYY");
+         const currentdate = dayjs().format("DD/MM/YYYY");
+         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+          dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${item.address &&
             item.address.length &&
@@ -245,7 +245,6 @@ function ContactTeamCardList(props) {
 {item.fullName}
 </Link>                                               
   
-  &nbsp;&nbsp;
   {date === currentdate ? (
  <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                             
@@ -405,10 +404,6 @@ function ContactTeamCardList(props) {
         }}
       />
      </Tooltip>
-                  </div>
-
-                &nbsp;&nbsp;
-                  <div>
                   <span
         style={{ cursor: "pointer" }}
         onClick={() => {
