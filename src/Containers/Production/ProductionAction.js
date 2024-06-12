@@ -753,7 +753,7 @@ export const getManufactureLinkData  = (productionProductId,pageNo) => (dispatch
 };
 
 
-export const getManufactureDetailsData  = (productionProductId,pageNo) => (dispatch) => {
+export const getManufactureDetailsData  = (supplierSuppliesUniqueNumberId,) => (dispatch) => {
   // let api_url = "";
   // if (userId) {
   //   api_url = `/sort/all/Customers/user/${userId}`;
@@ -764,7 +764,7 @@ export const getManufactureDetailsData  = (productionProductId,pageNo) => (dispa
     type: types.GET_MANUFACTURE_DETAILS_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/production/manufature/getProductionProductBuilder/${productionProductId}/${pageNo}`, {
+    .get(`${base_url2}/po/SupplierBypartNum/${supplierSuppliesUniqueNumberId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

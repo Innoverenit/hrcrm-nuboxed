@@ -17,7 +17,7 @@ const initialState = {
 
   fetchingManufactureDetailsData:false,
   fetchingManufactureDetailsDataError:false,
-  manufactureDetailsData:[],
+  manufactureDetailsData:{},
 
 
 
@@ -258,11 +258,11 @@ export const productionReducer = (state = initialState, action) => {
         case types.GET_MANUFACTURE_DETAILS_DATA_REQUEST:
           return { ...state, fetchingManufactureDetailsData: true };
         case types.GET_MANUFACTURE_DETAILS_DATA_SUCCESS:
-          const newData1 = action.payload.filter(item => !state.manufactureDetailsData.includes(item));
+          //const newData1 = action.payload.filter(item => !state.manufactureDetailsData.includes(item));
           return {
             ...state,
             fetchingManufactureDetailsData: false,
-            manufactureDetailsData: [...state.manufactureDetailsData, ...newData1]
+            manufactureDetailsData: action.payload
             //clearbit: null,
           };
         case types.GET_MANUFACTURE_DETAILS_DATA_FAILURE:

@@ -281,7 +281,7 @@ function PhoneListForRepair(props) {
                             id="app.oem"
                             defaultMessage="OEM"
                         /></div>
-                        <div className=" w-[6.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.model"
                             defaultMessage="model"
                         /></div>
@@ -303,21 +303,21 @@ function PhoneListForRepair(props) {
                             defaultMessage="End"
                         /></div>
 
-                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
                             id="app.tat"
                             defaultMessage="TAT"
                         /></div>
 
                         <div className="w-[5.81rem]">Spare</div>
-                        <div className="w-[4.5rem]">Task</div>
-                        <div className="w-[5.03rem]"></div>
+                        <div className="w-[5.4rem]">Task</div>
+                        <div className="w-[2.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.repairPhone.length}
 
                         loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"74vh"}
+                        height={"70vh"}
                     >
                         {props.repairPhone.map((item, index) => {
                              const percentage = Math.floor((item.checkedSpare / item.totalSpare) * 100)
@@ -334,7 +334,7 @@ function PhoneListForRepair(props) {
 
                                     >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium  w-[5.81rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
+                                            <div className=" flex font-medium  w-[5.99rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
                                                 {item.company}
                                             </div>
 
@@ -468,7 +468,7 @@ function PhoneListForRepair(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex font-medium w-[5.812rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs text-cardBody font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
@@ -573,26 +573,26 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium   w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                {/* <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            {/* <div className=" flex font-medium    max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs text-cardBody font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={<FormattedMessage
                                                         id="app.scan"
                                                         defaultMessage="scan"
                                                     />}>
 
                                                         <Button
-                                                            // onClick={() => {
-                                                            //     props.handleInTagDrawer(true)
-                                                            //     handleSetRowData(item)
-                                                            // }}
+                                                            onClick={() => {
+                                                                props.handleInTagDrawer(true)
+                                                                handleSetRowData(item)
+                                                            }}
                                                             class=" bg-green-600 cursor-pointer text-gray-50"
                                                         >
                                                             Scan </Button>
 
                                                     </Tooltip>
 
-                                                </div> */}
-                                            </div>
+                                                </div>
+                                            </div> */}
                                         </div>
                                         <div style={{ display: "none", textAlign: "center" }}>
 

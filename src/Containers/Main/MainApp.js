@@ -479,12 +479,12 @@ function MainApp(props) {
                 <div class="xl:hidden ml-4 "><Navmenu2 selectedLanguage={selectedLanguage} /></div>
                 
                 {/* <div className="border-2"></div>Attendance<div className="border-2"></div> */}
-                {/* <StartStop /> */}
+                <StartStop />
                 <div >
-                <div class="border border-grey ml-1 p-1 h-10 md:p-4">
+                {/* <div class="border border-grey ml-1 p-1 h-10 md:p-4">
   <label class=" bg-white flex px-2 -mt-[1.15rem] h-2 items-center w-[5.5rem]">Attendance</label>
   <StartStop />
-</div>
+</div> */}
 </div>
                 {/* <Button
                   onClick={() => {

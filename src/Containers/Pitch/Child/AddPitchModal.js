@@ -29,7 +29,7 @@ class AddPitchModal extends Component {
           destroyOnClose
           maskClosable={false}
           onClose={() => {
-            handleClose();
+           // handleClose();
             this.props.handlePitchModal(false)}}
           // onClose={() => this.props.handlePitchModal(false)}
           footer={null}
