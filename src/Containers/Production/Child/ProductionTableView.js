@@ -353,7 +353,7 @@ function ProductionTableView(props) {
                         <div className="md:w-[5rem]">Inspected</div>
                         <div className=" md:w-[6.07rem]">Store</div>
                         <div className="md:w-[1.08rem]"></div>
-                        <div className="md:w-[5.07rem]">To Dispatch</div>
+                        <div className="md:w-[5.07rem]">To Quality</div>
                         {/* <div className=" md:w-[5rem] ">Status</div> */}
    
  
