@@ -437,7 +437,7 @@ export const handleDealContactsDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const LinkStageDeal = (data, cb) => (dispatch) => {
+export const LinkStageDeal = (data,userId, cb) => (dispatch) => {
   dispatch({ type: types.LINK_DEAL_REQUEST });
 
   axios
@@ -447,8 +447,9 @@ export const LinkStageDeal = (data, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+    
       console.log(res);
-
+     
       if (res.data.message) {
         Swal.fire({
           icon: 'success',
@@ -586,7 +587,38 @@ export const getlostRecords = (userId) => (dispatch) => {
       });
     });
 };
-export const sendToWon = ( invOpportunityId,data ) => (dispatch) => {
+
+export const sendToWonCard = ( invOpportunityId,data ) => (dispatch) => {
+  dispatch({ type: types.SEND_WON_CARD_REQUEST });
+
+  axios
+    .put(`${base_url}/investorOpportunities/update/wonInd/${invOpportunityId} `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+     // dispatch(getAllDealsbyUserId(userId));
+      message.success("Congratulations on this Win.Wish you success!");
+      console.log(res);
+      dispatch({
+        type: types.SEND_WON_CARD_SUCCESS,
+        payload: invOpportunityId,
+      });
+    })
+    .catch((err) => {
+     
+      console.log(err);
+      dispatch({
+        type: types.SEND_WON_CARD_FAILURE,
+      });
+    });
+};
+
+
+
+export const sendToWon = ( invOpportunityId,data,userId ) => (dispatch) => {
   dispatch({ type: types.SEND_WON_TO_REQUEST });
 
   axios
@@ -597,6 +629,7 @@ export const sendToWon = ( invOpportunityId,data ) => (dispatch) => {
     })
 
     .then((res) => {
+      dispatch(getAllDealsbyUserId(userId));
       message.success("Congratulations on this Win.Wish you success!");
       console.log(res);
       dispatch({
@@ -609,6 +642,35 @@ export const sendToWon = ( invOpportunityId,data ) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.SEND_WON_TO_FAILURE,
+      });
+    });
+};
+
+export const lostRecruit = ( invOpportunityId,data,userId ) => (dispatch) => {
+  dispatch({ type: types.SEND_LOST_TO_REQUEST });
+
+  axios
+    .put(`${base_url}/investorOpportunity/update/lostInd/${invOpportunityId} `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch(getAllDealsbyUserId(userId));
+     // message.success("Congratulations on this Win.Wish you success!");
+      console.log(res);
+      dispatch({
+        type: types.SEND_LOST_TO_SUCCESS,
+        payload: invOpportunityId,
+      });
+      //window.location.reload();
+    })
+    .catch((err) => {
+     
+      console.log(err);
+      dispatch({
+        type: types.SEND_LOST_TO_FAILURE,
       });
     });
 };
@@ -711,6 +773,7 @@ export const updateDealdragstage = (
   sourceStageId,
   destinationStageId,
   invOpportunityId,
+  userId,
   cb
 ) => (dispatch) => {
   console.log(sourceStageId, destinationStageId, invOpportunityId);
@@ -737,6 +800,7 @@ export const updateDealdragstage = (
       }
     )
     .then((res) => {
+      dispatch(getAllDealsbyUserId(userId));
       console.log(res);
       // if (res.data.stageName === "Won") {
       //   message.error("Won");

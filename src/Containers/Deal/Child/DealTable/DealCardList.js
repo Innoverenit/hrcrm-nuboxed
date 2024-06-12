@@ -41,7 +41,7 @@ import {
   handleDealsNotesDrawerModal,
   handleDealContactsDrawerModal,
   LinkStageDeal,
-  sendToWon,
+  sendToWonCard,
   deleteDealsData
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -294,7 +294,7 @@ function DealCardList(props) {
                               theme="twoTone"
                               twoToneColor="#24D8A7"
                               onClick={() =>
-                                props.sendToWon(
+                                props.sendToWonCard(
                                   item.invOpportunityId,
 
                                   {
@@ -491,7 +491,7 @@ const mapDispatchToProps = (dispatch) =>
       getAllRecruitmentPositionFilledByOppId,
       getAllRecruitmentDetailsByOppId,
       LinkClosedOpportunity,
-      sendToWon,
+      sendToWonCard,
       lostStatusRecruit,
       LinkStageOpportunity,
       emptyDeals,

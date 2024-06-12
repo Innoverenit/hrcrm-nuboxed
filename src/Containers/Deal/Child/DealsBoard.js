@@ -126,6 +126,7 @@ function DealsBoard(props) {
       source.droppableId,
       destination.droppableId,
       draggableId,
+      props.userId,
     );
   }
 
@@ -209,7 +210,8 @@ function DealsBoard(props) {
                                       className="scrollbar"
                                       id="style-3"
                                     >
-                                      {props.dealsByuserId
+                                      {props.aLLdealsList
+                                      //props.dealsByuserId
                                         .filter(
                                           (opp, index) =>
                                             opp.invOpportunityStagesId === stage.investorOppStagesId
@@ -221,10 +223,15 @@ function DealsBoard(props) {
                                               dealDetailsbyID={opp}
                                               index={index}
                                               history={props.history}
+                                             // aLLdealsList={props.aLLdealsList}
                                             />
                                           );
                                         })}
-                                 
+         {/* {props.aLLdealsList.length === 0 && (
+    <div className="loader-container">
+      <Spin/>
+    </div>
+  )} */}
                                     </StageColumn>
                                   </Spin>
                                 </div>
@@ -256,6 +263,7 @@ const mapStateToProps = ({
    userId: auth.userDetails.userId,
    dealsByuserId:deal.dealsByuserId,
 dealsProcessStages: settings.dealsProcessStages,
+aLLdealsList: deal.aLLdealsList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

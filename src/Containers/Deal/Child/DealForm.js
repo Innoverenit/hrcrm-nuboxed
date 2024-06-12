@@ -143,7 +143,8 @@ function DealForm(props) {
   const currencyNameOption = sortedCurrency.map((item) => {
     return {
       label: `${item.currency_name}`,
-      value: item.currency_id,
+    //  value: item.currency_id,
+    value: item.currency_name,
     };
   });
 
@@ -444,7 +445,8 @@ function DealForm(props) {
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
-                        value: props.user.currency,
+                        //value: props.user.currency,
+                        value: props.currency_name
                       }}
                       label={
                         <FormattedMessage
