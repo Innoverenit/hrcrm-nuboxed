@@ -177,6 +177,7 @@ const AddMultipleQCSpare = (props) => {
                     htmlType='submit'
                     type='primary'
                     onClick={buttonOnClick}
+                    loading={props.addingSpareList}
                 >
                     <FormattedMessage
                         id="app.save"
@@ -195,6 +196,7 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     spareByBrand: distributor.spareByBrand,
     userId: auth.userDetails.userId,
     currencies: auth.currencies,
+    addingSpareList:distributor.addingSpareList
 });
 
 const mapDispatchToProps = (dispatch) =>
