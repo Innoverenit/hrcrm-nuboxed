@@ -26,6 +26,8 @@
     "@mui/x-data-grid": "^5.17.24",
     "@mui/x-date-pickers": "^6.0.0",
     "@react-google-maps/api": "^2.19.3",
+    "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/stripe-js": "^3.5.0",
     "@weknow/react-bubble-chart-d3": "^1.0.11",
     "ansi-html": "0.0.9",
     "ansi-html-community": "0.0.8",
