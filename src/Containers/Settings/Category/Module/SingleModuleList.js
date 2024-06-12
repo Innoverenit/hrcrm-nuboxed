@@ -8,6 +8,8 @@ import FWLogo2 from "../../../../Assets/Images/repair.jpg";
 import FWLogo3 from "../../../../Assets/Images/ordermanagement.jpg";
 import FWLogo4 from "../../../../Assets/Images/logistic.jpg";
 import FWLogo5 from "../../../../Assets/Images/proceurement.jpg";
+
+
 const { Option } = Select;
 
 class SingleModuleList extends Component {
@@ -46,8 +48,8 @@ class SingleModuleList extends Component {
               alt="Tekorero logo"
             />
             <div class="flex justify-center mt-1">
-              <div class=" text-sm font-semibold ">ERP</div>
-                    <div   class="  ml-2">
+              <div class=" text-sm font-semibold " onClick={()=> this.props.handleStripeModal(true)} >ERP</div>
+                    <div   class="  ml-2" >
                     <Popconfirm
         title="Do you wish to change Status?"
         onConfirm={() => this.props.handleErpClick(!this.props.erpStatus)}
@@ -56,7 +58,7 @@ class SingleModuleList extends Component {
       >
                         <Switch
                               onChange={() => {}}
-                        //  onChange={this.props.handleErpClick}
+                        //  onChange={this.props.handleErpClick} 
                           className="w-[4rem]"
                           checked={this.props.erpStatus || this.props.moduleList.erpInd}
                           checkedChildren="Yes"

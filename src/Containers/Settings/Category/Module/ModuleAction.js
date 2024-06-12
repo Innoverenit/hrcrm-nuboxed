@@ -59,7 +59,12 @@ import { message } from "antd"
       });
   };
 
- 
+  export const handleStripeModal = (modalProps) => dispatch => {
+    dispatch({
+        type: types.HANDLE_STRIPE_MODAL,
+        payload: modalProps
+    })
+  }
 
  
 
